@@ -54,12 +54,161 @@ Docker Machine をクラウド・プロバイダで始めるには
 
 .. When the creation of a host is initiated, a unique SSH key for accessing the host (initially for provisioning, then directly later if the user runs the docker-machine ssh command) will be created automatically and stored in the client’s directory in ~/.docker/machines. After the creation of the SSH key, Docker will be installed on the remote machine and the daemon will be configured to accept remote connections over TCP using TLS for authentication. Once this is finished, the host is ready for connection.
 
-
+ホスト作成時の初期設定では、ホストに接続するためのユニークな SSH 鍵（初期のプロビジョン具だけではなく、後で ``docker-machine ssh` コマンドでも使用）が自動的に作成され、クライアントの ``/.docker/machine`` ディレクトリに保管されます。SSH 鍵を作成後、Docker はリモートマシン上にデーモンをインストールし、リモートマシンとは TCP 上の TLS を使った通信ができるよう、自動的に設定します。これが終わればホストとの通信準備が整います。
 
 To prepare the Docker client to send commands to the remote server we have created, we can use the subshell method again:
 
-$ eval "$(docker-machine env staging)"
+Docker クライアントから作成したリモートのサーバに対してコマンドを送るには、シェル上で再びコマンドを実行します。
 
-From this point, the remote host behaves much like the local host we created in the last section. If we look at docker-machine ls, we’ll see it is now the “active” host, indicated by an asterisk (*) in that column:
+.. code-block:: bash
+
+   $ eval "$(docker-machine env staging)"
+
+.. From this point, the remote host behaves much like the local host we created in the last section. If we look at docker-machine ls, we’ll see it is now the “active” host, indicated by an asterisk (*) in that column:
+
+これを実行することで、先ほど作成したリモートホストが、ローカルホストのように振る舞います。ここで ``docker-machine ls`` を見てみると、"active"（アクティブ）ホストの列に、アスタリスク（*）の印が表示されます。
+
+.. code-block:: bash
+
+   $ docker-machine ls
+   NAME      ACTIVE   DRIVER         STATE     URL
+   dev                virtualbox     Running   tcp://192.168.99.103:2376
+   staging   *        digitalocean   Running   tcp://104.236.50.118:2376
+
+.. To remove a host and all of its containers and images, use docker-machine rm:
+
+ホストとホスト上の全てのコンテナとイメージを削除するには ``docker-machine rm`` を使います。
+
+.. code-block:: bash
+
+    $ docker-machine rm dev staging
+   $ docker-machine ls
+   NAME      ACTIVE   DRIVER       STATE     URL
+
+.. Adding a host without a driver
+
+ドライバを使わずにホストを追加
+========================================
+
+.. You can add a host to Docker which only has a URL and no driver. Therefore it can be used an alias for an existing host so you don’t have to type out the URL every time you run a Docker command.
+
+Docker ホストの追加は、ドライバを使わず URL でも可能です。URL で追加すると、移行は追加したホストに対するエイリアス（別名）として利用できますので、毎回 Docker コマンドで URL を指定する必要がなくなります。
+
+.. code-block:: bash
+
+   $ docker-machine create --url=tcp://50.134.234.20:2376 custombox
+   $ docker-machine ls
+   NAME        ACTIVE   DRIVER    STATE     URL
+   custombox   *        none      Running   tcp://50.134.234.20:2376
+
+.. Uisng Docker Machine with Docker Swarm
+
+Docker Machine で Docker Swarm を扱う
+========================================
+
+.. Docker Machine can also provision Swarm clusters. This can be used with any driver and will be secured with TLS.
+
+Docker Machine は `Swarm <https://github.com/docker/swarm>`_ クラスタのプロビジョニングも可能です。これにより、どのドライバを使っている場合でも、TLS で安全に通信できます。
+
+.. First, create a Swarm token. Optionally, you can use another discovery service. See the Swarm docs for details.
+
+使うためには、まず Swarm トークンを作成します。オプションとして、他のディスカバリ・サービスを使うことも可能です。詳細は Swarm のドキュメントをご覧ください。
+
+.. To create the token, first create a Machine. This example will use VirtualBox.
+
+トークンを作成したら、マシンを作成します。この例では VirtualBox を使います。
+
+.. code-block:: bash
+
+   $ docker-machine create -d virtualbox local
+
+.. Load the Machine configuration into your shell:
+
+マシンの設定をシェル上に読み込みます。
+
+.. code-block:: bash
+
+   $ eval "$(docker-machine env local)"
+
+.. Then run generate the token using the Swarm Docker image:
+
+それから、Swarm の Docker イメージを使い、トークンを生成します。
+
+.. code-block:: bash
+
+   $ docker run swarm create
+   1257e0f0bbb499b5cd04b4c9bdb2dab3
+
+トークンを作成後は、これを使ってクラスタを作成できます。
+
+.. Swarm master
+
+Swarm マスタ
+--------------------
+
+Swarm マスタを次のように作成します。
+
+.. code-block:: bash
+
+   docker-machine create \
+       -d virtualbox \
+       --swarm \
+       --swarm-master \
+       --swarm-discovery token://<先ほどのトークン> \
+       swarm-master
+
+.. Replace <TOKEN-FROM-ABOVE> with your random token. This will create the Swarm master and add itself as a Swarm node.
+
+上の ``<先ほどのトークン>`` の場所には、先ほど作成したランダムなトークンを入れます。このコマンドは、Swarm マスタを作成すると同時に、自分自身を Swarm ノードに追加します。
+
+.. Swarm nodes
+
+Swarm ノード
+====================
+
+.. Now, create more Swarm nodes:
+
+次は追加の Swarm ノードを作成します。
+
+.. code-block:: bash
+
+   docker-machine create \
+       -d virtualbox \
+       --swarm \
+       --swarm-discovery token://<TOKEN-FROM-ABOVE> \
+       swarm-node-00
+
+.. You now have a Swarm cluster across two nodes. To connect to the Swarm master, use eval $(docker-machine env --swarm swarm-master)
+
+これで２つのノードにまたがる Swarm クラスタができました。Swarm マスタに接続するには、``$(docker-machine env --swarm swarm-master)`` を使います。
+
+.. For example:
+
+実行例：
+
+.. code-block:: bash
+
+   $ docker-machine env --swarm swarm-master
+   export DOCKER_TLS_VERIFY=1
+   export DOCKER_CERT_PATH="/home/ehazlett/.docker/machines/.client"
+   export DOCKER_HOST=tcp://192.168.99.100:3376
+
+.. You can load this into your environment using eval "$(docker-machine env --swarm swarm-master)".
+
+この環境を読み込むには、 ``eval "$(docker-machine env --swarm swarm-master)"`` を使います。
+
+.. Now you can use the Docker CLI to query:
+
+Docker CLI を使うと、次のように表示されます。
+
+.. code-block:: bash
+
+   $ docker info
+   Containers: 1
+   Nodes: 1
+    swarm-master: 192.168.99.100:2376
+     └ Containers: 2
+     └ Reserved CPUs: 0 / 4
+     └ Reserved Memory: 0 B / 999.9 MiB
 
 

@@ -111,6 +111,7 @@ Provision & set up Docker hosts
    machine/index.rst
    machine/get-started.rst
    machine/get-started-cloud.rst
+   machine/migrate-to-machine.rst
 
 
 
