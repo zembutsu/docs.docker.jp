@@ -78,7 +78,7 @@ Docker はコンテナを基盤とした仮想化プラットフォームによ�
 
 .. Go to Working With Containers.
 
-:doc:`コンテナの操作 </engine/userguide/usingdocker.rst>` へ移動します。
+:doc:`コンテナの操作 </engine/userguide/usingdocker>` へ移動します。
 
 
 .. Working with Docker images
@@ -96,7 +96,7 @@ Docker の使い方を学んだら、次のステップに進む時です。Dock
 
 .. Go to Working with Docker Images.
 
-:doc:`Docker イメージの操作 </engine/userguide/dockerimages.rst>` へ移動します。
+:doc:`Docker イメージの操作 </engine/userguide/dockerimages>` へ移動します。
 
 .. Networking containers
 
@@ -109,7 +109,7 @@ Docker の使い方を学んだら、次のステップに進む時です。Dock
 
 .. Go to Networking Containers.
 
-:doc:`コンテナのネットワーク作成 </engine/userguide/networkingcontainers.rst>` へ移動します。
+:doc:`コンテナのネットワーク作成 </engine/userguide/networkingcontainers>` へ移動します。
 
 
 .. Managing data in containers
@@ -123,7 +123,7 @@ Docker コンテナ間を接続する方法を学びました。次はコンテ�
 
 .. Go to Managing Data in Containers.
 
-:doc:`コンテナの内のデータ管理 </engine/userguide/dockervolumes.rst>` へ移動します。
+:doc:`コンテナの内のデータ管理 </engine/userguide/dockervolumes>` へ移動します。
 
 
 
@@ -138,7 +138,7 @@ Docker のより詳細な使い方を学びました。次は Docker と Docker 
 
 .. Go to Working with Docker Hub.
 
-:doc:`Docker Hub の操作 </engine/userguide/dockerrepos.rst>` へ移動します。
+:doc:`Docker Hub の操作 </engine/userguide/dockerrepos>` へ移動します。
 
 
 .. Docker Compose
@@ -152,7 +152,7 @@ Docker Compose はアプリケーションの構成を定義します。コン�
 
 .. Go to Docker Compose user guide.
 
-:doc:`Docker Compose ユーザ・ガイド </compose/index.rst>` へ移動します。
+:doc:`Docker Compose ユーザ・ガイド </compose/index>` へ移動します。
 
 
 
@@ -167,7 +167,7 @@ Docker Machine は Docker Engine を起動し、迅速に実行する手助け�
 
 .. Go to Docker Machine user guide.
 
-:doc:`Docker Machine ユーザ・ガイド </machine/index.rst>` へ移動します。
+:doc:`Docker Machine ユーザ・ガイド </machine/index>` へ移動します。
 
 
 .. Docker Swarm
@@ -181,12 +181,12 @@ Docker Swarm は複数の Docker Engine をまとめて、１つの仮想的な 
 
 .. Go to Docker Swarm user guide.
 
-:doc:`Docker Swarm ユーザ・ガイド </swarm/index.rst>` へ移動します。
+:doc:`Docker Swarm ユーザ・ガイド </swarm/index>` へ移動します。
 
 
 .. Getting help
 
-助けを得るには
+ヘルプを得るには
 =============================
 
 .. 

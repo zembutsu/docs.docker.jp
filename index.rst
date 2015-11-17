@@ -69,7 +69,7 @@ Docker ドキュメントへようこそ！
 
 ----
 
-目次
+導入ガイド目次
 ==================
 
 .. toctree::
@@ -82,6 +82,37 @@ Docker ドキュメントへようこそ！
    engine/userguide/dockerimages.rst
    engine/userguide/networkingcontainers.rst
    engine/userguide/dockervolumes.rst
+   engine/userguide/dockerrepos.rst
+
+Work with Docker Images
+==============================
+
+.. toctree::
+   :maxdepth: 3
+
+   engine/articles/dockerfile_best-practice.rst
+   engine/articles/baseimages.rst
+
+
+Use Docker
+==============================
+
+.. toctree::
+   :maxdepth: 3
+
+   engine/misc.rst
+
+Provision & set up Docker hosts
+----------------------------------------
+
+.. toctree::
+   :maxdepth: 3
+
+   machine/index.rst
+   machine/get-started.rst
+   machine/get-started-cloud.rst
+
+
 
 Indices and tables
 ==================

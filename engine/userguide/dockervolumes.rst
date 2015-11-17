@@ -93,7 +93,7 @@ Docker はボリュームを、標準では読み書き可能な状態でマウ�
 
    $ docker inspect web
 
-... The output will provide details on the container configurations including the volumes. The output should look something similar to the following:
+.. The output will provide details on the container configurations including the volumes. The output should look something similar to the following:
 
 ボリュームに関する情報を含む、コンテナの詳細設定が表示されます。出力は、おそらく次のようなものでしょう：
 
@@ -139,7 +139,7 @@ Docker はボリュームを、標準では読み書き可能な状態でマウ�
 
 .. A name value must start with start with an alphanumeric character, followed by a-z0-9, _ (underscore), . (period) or - (hyphen). An absolute path starts with a / (forward slash).
 
-``名前`` の値は、アルファベットの文字で開始する必要があります。具体的には、``a-z0-9`` 、``_``（アンダースコア）、``.``（ピリオド）、``-``（ハイフン）です。絶対パスの場合は ``/``（スラッシュ）で始めます。
+``名前`` の値は、アルファベットの文字で開始する必要があります。具体的には、 ``a-z0-9`` 、``_`` （アンダースコア）、 ``.`` （ピリオド）、 ``-`` （ハイフン）です。絶対パスの場合は ``/`` （スラッシュ）で始めます。
 
 .. For example, you can specify either /foo or foo for a host-dir value. If you supply the /foo value, Docker creates a bind-mount. If you supply the foo specification, Docker creates a named volume.
 
@@ -245,7 +245,7 @@ SELinux のようなラベリング・システムでは、コンテナ内にマ
 
    $ docker create -v /dbdata --name dbdata training/postgres /bin/true
 
-You can then use the --volumes-from flag to mount the /dbdata volume in another container.
+.. You can then use the --volumes-from flag to mount the /dbdata volume in another container.
 
 次に、``--volumes-from`` フラグを使い、他のコンテナから ``/dbdata`` ボリュームをマウント可能です。
 
@@ -325,6 +325,29 @@ You can then use the --volumes-from flag to mount the /dbdata volume in another 
 この手法を使うことで、好みのツールを用いた自動バックアップ、移行、修復が行えます。
 
 .. Important tips on using shared volumes
+
+ボリューム共有時の重要なヒント
+
+.. Multiple containers can also share one or more data volumes. However, multiple containers writing to a single shared volume can cause data corruption. Make sure your applications are designed to write to shared data stores.
+
+複数のコンテナが１つまたは複数のデータ・ボリュームを共有できます。しかしながら、複数のコンテナが１つの共有ボリュームに書き込むことにより、データ破損を引き起こす場合があります。アプリケーションが共有データ・ストアに対する書き込みに対応した設計かどうか、確認してください。
+
+.. Data volumes are directly accessible from the Docker host. This means you can read and write to them with normal Linux tools. In most cases you should not do this as it can cause data corruption if your containers and applications are unaware of your direct access.
+
+データ・ボリュームは Docker ホストから直接アクセス可能です。これが意味するのは、データ・ボリュームは通常の Linux ツールから読み書き可能です。コンテナとアプリケーションが直接アクセスできることを知らないことにより、データの改竄を引き起こすことは望ましくありません。
+
+.. Next steps
+
+次のステップ
+====================
+
+.. Now we’ve learned a bit more about how to use Docker we’re going to see how to combine Docker with the services available on Docker Hub including Automated Builds and private repositories.
+
+これまでは、どのように Docker を使うのか、少々学んできました。次は Docker と `Docker Hub <https://hub.docker.com/>`_ で利用可能なサービスを連携し、自動構築（Automated Build）やプライベート・リポジトリ（private repository）について学びます。
+
+.. Go to Working with Docker Hub.
+
+:doc:`Docker Hub の操作 </engine/userguide/dockerrepos>` に移動します。
 
 
 
