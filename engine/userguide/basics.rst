@@ -1,6 +1,7 @@
 ﻿.. http://docs.docker.com/engine/userguide/basics/
 
 .. Quickstart containers
+
 =============================
 コンテナのクイックスタート
 =============================
@@ -31,8 +32,9 @@ Docker のインストールや ``sudo`` 設定に関しては、 :doc:`イン�
 
 
 .. Download a pre-built image
+
 構築済みイメージのダウンロード
-=============================
+==============================
 
 .. # Download an ubuntu image
 
@@ -53,10 +55,12 @@ Docker のインストールや ``sudo`` 設定に関しては、 :doc:`イン�
 
 
 .. Running an interactive shell
+
 対話型シェルの実行
 =============================
 
 .. To run an interactive shell in the Ubuntu image:
+
 次のようにして、Ubuntu イメージの対話型シェルを実行します：
 
 .. code-block:: bash
@@ -73,14 +77,15 @@ Docker のインストールや ``sudo`` 設定に関しては、 :doc:`イン�
 シェルを終了せずに ``tty`` をデタッチ（取り外し）するには、エスケープ・シーケンス ``Ctrl-p`` + ``Ctrp-q`` を使います。コンテナから出たあとも、停止するまでコンテナは存在し続けます。
 
 .. Bind Docker to another host/port or a Unix socket
+
 Docker を他のホスト・ポートや Unix ソケットに接続
-=======================================
+==================================================
 
 .. Warning: Changing the default docker daemon binding to a TCP port or Unix docker user group will increase your security risks by allowing non-root users to gain root access on the host. Make sure you control access to docker. If you are binding to a TCP port, anyone with access to that port has full Docker access; so it is not advisable on an open network.
 
 .. warning:: 
 
-　``docker`` デーモンが標準で利用する TCP ポートと Unix *docker* ユーザ・グループの変更は、ホスト上の非 root ユーザが *root* アクセスを得られるという、セキュリティ・リスクを増やします。``docker`` に対する管理を確実に行ってください。TCP ポートの利用時、ポートにアクセスできる誰もが Docker に対する完全なアクセスを可能です。そのため、オープンなネットワーク上での利用は望ましくありません。
+   ``docker`` デーモンが標準で利用する TCP ポートと Unix *docker* ユーザ・グループの変更は、ホスト上の非 root ユーザが *root* アクセスを得られるという、セキュリティ・リスクを増やします。``docker`` に対する管理を確実に行ってください。TCP ポートの利用時、ポートにアクセスできる誰もが Docker に対する完全なアクセスを可能です。そのため、オープンなネットワーク上での利用は望ましくありません。
 
 .. With -H it is possible to make the Docker daemon to listen on a specific IP and port. By default, it will listen on unix:///var/run/docker.sock to allow only local connections by the root user. You could set it to 0.0.0.0:2375 or a specific host IP to give access to everybody, but that is not recommended because then it is trivial for someone to gain root access to the host where the daemon is running.
 
@@ -99,6 +104,7 @@ Docker を他のホスト・ポートや Unix ソケットに接続
    tcp://[host]:[port][path] or unix://path
 
 .. For example:
+
 例：
 
 .. 
@@ -167,8 +173,9 @@ Docker をデーモン・モードで起動する：
 
 
 .. Starting a long-running worker process
+
 長時間動作するワーカー・プロセスの開始
-=============================
+=============================-----------
 
 .. # Start a very useful long-running process
    $ JOB=$(docker run -d ubuntu /bin/sh -c "while true; do echo Hello world; sleep 1; done")
@@ -192,6 +199,7 @@ Docker をデーモン・モードで起動する：
 
 
 .. Listing containers
+
 コンテナの一覧
 =============================
 
@@ -204,6 +212,7 @@ Docker をデーモン・モードで起動する：
    $ docker ps -a # 全てのコンテナをリスト表示
 
 .. Controlling containers
+
 コンテナの制御
 =============================
 
@@ -229,8 +238,9 @@ Docker をデーモン・モードで起動する：
    $ docker rm $JOB
 
 .. Bind a service on a TCP port
+
 TCP ポートにサービスを割り当て
-=============================
+==============================
 
 .. code-block:: bash
 
@@ -247,8 +257,9 @@ TCP ポートにサービスを割り当て
    $ echo "Daemon received: $(docker logs $JOB)"
 
 .. Commiting (saving) a container state
+
 コンテナの状態をコミット（保存）
-=============================
+========================================
 
 .. Save your containers state to an image, so the state can be re-used.
 
@@ -271,6 +282,7 @@ TCP ポートにサービスを割り当て
 イメージの状態を手に入れました。これは、新しいインスタンス（訳者注：コンテナのこと）を作成可能なものです。
 
 .. Where to go next
+
 次はどこに行きますか
 =============================
 

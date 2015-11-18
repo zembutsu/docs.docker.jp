@@ -290,6 +290,8 @@ Docker の特長の１つに、多くの方によって作られた、様々な�
 
 .. Building an image from a Dockerfile
 
+.. _building-an-image-from-a-dockerfile:
+
 ``Dockerfile`` からイメージを構築する
 ----------------------------------------
 

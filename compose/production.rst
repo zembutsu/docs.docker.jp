@@ -1,0 +1,107 @@
+.. http://docs.docker.com/compose/production/
+
+.. _production:
+
+.. Using Compose in production
+
+=======================================
+Compose をプロダクションで使う
+=======================================
+
+.. Compose is still primarily aimed at development and testing environments. Compose may be used for smaller production deployments, but is probably not yet suitable for larger deployments.
+
+.. note
+
+   まだ Compose は、主として開発またはテスト環境向けです。Compose は小規模なプロダクションのデプロイに使えるかもしれませんが、まだ大規模なデプロイに適していないかもしれません。
+
+.. When deploying to production, you’ll almost certainly want to make changes to your app configuration that are more appropriate to a live environment. These changes may include:
+
+プロダクションへのデプロイ時は、多くの場合、アプリケーションを適切に実行できるようにするために変更を加えるでしょう。変更とは次のようなものです。
+
+..    Removing any volume bindings for application code, so that code stays inside the container and can’t be changed from outside
+    Binding to different ports on the host
+    Setting environment variables differently (e.g., to decrease the verbosity of logging, or to enable email sending)
+    Specifying a restart policy (e.g., restart: always) to avoid downtime
+    Adding extra services (e.g., a log aggregator)
+
+* コンテナのコードを外から変更できなくするため、アプリケーション・コード用に割り当てたボリュームを削除する。
+* ホストに異なったポートを割り当てる。
+* 異なった環境変数を割り当てる（例：冗長なログの出力を減らす、あるいは、メールの送信を有効化）
+* 再起動ポリシーを指定し（例： ``restart: always`` ）、停止時間を減らす
+* 外部サービスの追加（例：ログ収集）
+
+.. For this reason, you’ll probably want to define an additional Compose file, say production.yml, which specifies production-appropriate configuration. This configuration file only needs to include the changes you’d like to make from the original Compose file. The additional Compose file can be applied over the original docker-compose.yml to create a new configuration.
+
+このような理由のため、``production.yml`` のような追加 Compose ファイルを使い、プロダクションに相応しい設定を定義したくなるでしょう。この設定ファイルには、元になった Compose ファイルからの変更点のみ記述できます。追加の Compose ファイルは、元の ``docker-compose.yml`` の設定を上書きする新しい設定を指定できます。
+
+.. Once you’ve got a second configuration file, tell Compose to use it with the -f option:
+
+２つめの設定ファイルを使うには、Compose で ``-f`` オプションを使います。
+
+.. code-block:: bash
+
+   $ docker-compose -f docker-compose.yml -f production.yml up -d
+
+.. See Using multiple compose files for a more complete example.
+
+詳細は例は :doc:`複数のComposeファイルを使用 </compose/extends/#different-environments>` をご覧ください。
+
+.. Deploying changes
+
+変更のデプロイ
+--------------------
+
+.. When you make changes to your app code, you’ll need to rebuild your image and recreate your app’s containers. To redeploy a service called web, you would use:
+
+アプリケーションのコードを変更したときは、イメージを再構築し、アプリケーションのコンテナを作り直す必要があります。``web`` という名称のサービスを再デプロイするには、次のように実行します。
+
+.. code-block:: bash
+
+   $ docker-compose build web
+   $ docker-compose up --no-deps -d web
+
+.. This will first rebuild the image for web and then stop, destroy, and recreate just the web service. The --no-deps flag prevents Compose from also recreating any services which web depends on.
+
+これは、まず ``web`` イメージを再構築するために（コンテナを）停止・破棄します。それから ``web`` サービス *のみ* 再作成します。``--nodeps`` フラグを使うことで、Compose が ``web`` に依存するサービスを再作成しないようにします。
+
+.. Runnning Compose on a single server
+
+単一サーバ上でのコンテナ実行
+==============================
+
+.. You can use Compose to deploy an app to a remote Docker host by setting the DOCKER_HOST, DOCKER_TLS_VERIFY, and DOCKER_CERT_PATH environment variables appropriately. For tasks like this, Docker Machine makes managing local and remote Docker hosts very easy, and is recommended even if you’re not deploying remotely.
+
+Compose を使い、アプリケーションをリモートの Docker ホスト上にデプロイできます。このとき、適切な環境変数 ``DOCKER_HOST`` 、 ``DOCKER_TLS_VERIFY`` 、 ``DOCKER_CERT_PATH`` を使います。このような処理は、 :doc:`Docker Machine </machine>` を使うことで、ローカルやリモートの Docker ホストの管理を非常に簡単にします。リモートにデプロイする必要がなくても、お勧めです。
+
+.. Once you’ve set up your environment variables, all the normal docker-compose commands will work with no further configuration.
+
+環境変数を設定するだけで、追加設定なしに ``docker-compose`` コマンドが普通に使えます。
+
+.. Running Compose on a Swarm cluster
+
+Swarm クラスタで Compose を実行する
+----------------------------------------
+
+.. Docker Swarm, a Docker-native clustering system, exposes the same API as a single Docker host, which means you can use Compose against a Swarm instance and run your apps across multiple hosts.
+
+:doc:`Docker Swarm </swarm/index>` とは、Docker 独自のクラスタリング・システムで、単一の Docker ホスト向けと同じ API を持っています。つまり、Compose を Swarm インスタンスも同様に扱えるので、アプリケーションを複数のホスト上で実行できることを意味します。
+
+.. Compose/Swarm integration is still in the experimental stage, and Swarm is still in beta, but if you’d like to explore and experiment, check out the integration guide.
+
+Compose と Swarm の連携は、まだ実験的な段階です。ですが、試したい場合は :doc:`統合ガイド </compose/blob/master/SWARM>` をお読みください。
+
+
+.. Compose documentation
+
+Compose のドキュメント
+==============================
+
+..    Installing Compose
+    Command line reference
+    Compose file reference
+
+* :doc:`Compose のインストール </compose/install>`
+* :doc:`コマンドライン・リファレンス </compose/reference>`
+* :doc:`Compose ファイル・リファレンス </compose/compose-file>`
+
+

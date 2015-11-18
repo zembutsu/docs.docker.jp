@@ -82,7 +82,7 @@ Docker Machine は、初期段階であり活発に開発が進んでいます�
 
 .. For more information and resources, please visit our help page.
 
-より詳細な情報やリソースについては、私たちの `ヘルプ用ページ <https://docs.docker.com/project/get-help/>`_ をご覧ください。
+より詳細な情報やリソースについては、私たちの `ヘルプ用ページ(英語) <https://docs.docker.com/project/get-help/>`_ をご覧ください。
 
 .. Where to go next
 
