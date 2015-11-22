@@ -1,6 +1,6 @@
 .. http://docs.docker.com/compose/networking/
 .. doc version: 1.9
-.. check date: 2015/11/18
+.. check date: 2015/11/22
 
 .. Networking in Compose
 
@@ -59,5 +59,90 @@ Compose はアプリケーションに対して、デフォルト・ :doc:`ネ�
 
 .. Note: in the next release there will be additional aliases for the container, including a short name without the project name and container index. The full container name will remain as one of the alias for backwards compatibility.
 
+.. note::
 
-[TBD]
+   次のリリースでは、コンテナに対する追加エイリアスを追加します。これはプロジェクト名とコンテナのインデックス（一覧）が不要な短い名前です。コンテナの完全名は、後方互換性のためにエイリアスの１つとして残し続けます。
+
+.. Updating containers
+
+コンテナのアップデート
+==============================
+
+.. If you make a configuration change to a service and run docker-compose up to update it, the old container will be removed and the new one will join the network under a different IP address but the same name. Running containers will be able to look up that name and connect to the new address, but the old address will stop working.
+
+サービスの設定を変更するには、 ``docker-compose up`` を実行して、古いコンテナの削除と新しいコンテナをネットワーク下で起動します。IP アドレスは異なりますが、ホスト名は同じです。実行中のコンテナはその名前で名前解決が可能になり、新しい IP アドレスで接続できますが、古い IP アドレスは機能しなくなります。
+
+.. If any containers have connections open to the old container, they will be closed. It is a container’s responsibility to detect this condition, look up the name again and reconnect.
+
+もし古いコンテナに対して接続しているコンテナがあれば、切断されます。この状況検知はコンテナ側の責任であり、名前解決を再度行い再接続します。
+
+.. Configure how services are published
+
+サービス公開方法の設定
+==============================
+
+.. By default, containers for each service are published on the network with the container name. If you want to change the name, or stop containers from being discoverable at all, you can use the container_name option:
+
+デフォルトでは、コンテナの各サービスは、コンテナ名を使ってネットワーク上に公開されます。コンテナの名前を変更するには、``container_name`` オプションを使います。
+
+.. code-block:: yaml
+
+   web:
+     build: .
+     container_name: "my-web-application"
+
+
+.. Links
+
+リンク
+==========
+
+.. Docker links are a one-way, single-host communication system. They should now be considered deprecated, and you should update your app to use networking instead. In the majority of cases, this will simply involve removing the links sections from your docker-compose.yml.
+
+Docker のリンク（link）は、一方通行の単一ホスト上における通信システムです。この機能は廃止される可能性があり、アプリケーションはネットワーク機能を使うようにアップデートすべきです。多くの場合は、``docker-compose.yml`` で ``link`` セクションを削除するだけです。
+
+.. Specifying the network driver
+
+ネットワークドライバの指定
+==============================
+
+.. By default, Compose uses the bridge driver when creating the app’s network. The Docker Engine provides one other driver out-of-the-box: overlay, which implements secure communication between containers on different hosts (see the next section for how to set up and use the overlay driver). Docker also allows you to install custom network drivers.
+
+アプリケーションがネットワークを作成するとき、Compose は ``bridge`` ドライバをデフォルトで使います。Docker Engine は、他にも革新的な ``overlay``  ドライバを提供します。このドライバは異なったホスト上のコンテナ間で、安全な通信を実装するものです（``overlay`` ドライバのセットアップ方法や使い方は次のセクションをご覧ください）。他にも Docker は :doc:`カスタム・ネットワーク・ドライバ </engine/extend/plugins_network>` のインストールも可能です。
+
+.. You can specify which one to use with the --x-network-driver flag:
+
+これを使うには、``--x-network-driver`` フラグを指定します。
+
+
+.. code-block:: bash
+
+   $ docker-compose --x-networking --x-network-driver=overlay up
+
+.. Multi-host networking
+
+マルチホスト・ネットワーキング
+==============================
+
+.. (TODO: talk about Swarm and the overlay driver)
+
+(TODO: Swarm とオーバレイ・ドライバについて記述)
+
+.. Custom container network modes
+
+コンテナのネットワーク・モードを変更
+========================================
+
+.. Compose allows you to specify a custom network mode for a service with the net option - for example, net: "host" specifies that its containers should use the same network namespace as the Docker host, and net: "none" specifies that they should have no networking capabilities.
+
+Compose は ``net`` オプションを指定し、カスタム・ネットワーク・モードを指定できます。例えば、 ``net: "host"`` を指定すると、コンテナは Docker ホストと同じネットワーク名前空間を使います。 ``net: "none"`` を指定すると、ネットワーク機能を持ちません。
+
+.. If a service specifies the net option, its containers will not join the app’s network and will not be able to communicate with other services in the app.
+
+サービスに対して ``net`` オプションを指定すると、そのコンテナはアプリケーションのネットワークには接続 *せず* 、アプリケーション内の他のサービスと通信できなくなります。
+
+.. If all services in an app specify the net option, a network will not be created at all.
+
+アプリケーションにおける全てのサービスで ``net`` オプションを指定すると、ネットワークを作成しません。
+
+

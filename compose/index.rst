@@ -244,9 +244,3 @@ Docker Compose は活発に開発中です。ヘルプが必要な場合、貢�
 
 より詳細な情報やリソースについては、私たちの `ヘルプ用ページ <https://docs.docker.com/project/get-help/>`_ をご覧ください。
 
-
-.. For more information and resources, please visit the Getting Help project page.
-
-
-
-

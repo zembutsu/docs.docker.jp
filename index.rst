@@ -139,12 +139,22 @@ Create multi-container applications
 
    compose/index.rst
    compose/production.rst
-   compose/produextends.rst
+   compose/extends.rst
    compose/gettingstarted.rst
    compose/django.rst
    compose/rails.rst
    compose/networking.rst
-   compose/wrodpress.rst
+   compose/wordpress.rst
+   compose/completion.rst
+
+
+Cluster Docker containers
+----------------------------------------
+
+.. toctree::
+   :maxdepth: 3
+
+   swarm/index.rst
 
 
 Indices and tables
