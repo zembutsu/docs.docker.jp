@@ -155,6 +155,7 @@ Cluster Docker containers
    :maxdepth: 3
 
    swarm/index.rst
+   swarm/install-manual.rst
 
 
 Indices and tables
