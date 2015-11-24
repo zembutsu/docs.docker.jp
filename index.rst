@@ -8,7 +8,7 @@
 Docker ドキュメント日本語化プロジェクト
 ==========================================
 
-このサイトは `http://docs.docker.com/ <http://docs.docker.com/>`_ で公開されている Docker ドキュメントの日本語訳を作成・公開・配布するプロジェクトです。この和訳ドキュメントの利用にあたっては、Common Creative License を適用します。
+このサイトは `http://docs.docker.com/ <http://docs.docker.com/>`_ で公開されている Docker ドキュメントの日本語訳を作成・公開・配布するプロジェクトです。この和訳ドキュメントの利用にあたっては、Common Creative License を適用します。訳文の間違いのご指摘、ご意見等やプル・リクエスト等々は、GitHub 上のプロジェクト `https://github.com/zembutsu/docs.docker.jp <https://github.com/zembutsu/docs.docker.jp>`_ までお願いします。
 
 ----
 

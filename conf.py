@@ -16,7 +16,7 @@ import sys
 import os
 import shlex
 
-import sphinx_rtd_theme
+#import sphinx_rtd_theme
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -122,7 +122,11 @@ html_theme = 'sphinx_rtd_theme'
 
 # Add any paths that contain custom themes here, relative to this directory.
 #html_theme_path = []
-html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+#html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+html_theme_path = ['./_themes/']
+
+#def setup(app):
+#	    app.add_stylesheet('custom_style.css')
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
@@ -198,6 +202,7 @@ html_static_path = ['_static']
 #   'da', 'de', 'en', 'es', 'fi', 'fr', 'hu', 'it', 'ja'
 #   'nl', 'no', 'pt', 'ro', 'ru', 'sv', 'tr'
 #html_search_language = 'en'
+html_search_language = 'ja'
 
 # A dictionary with options for the search language support, empty by default.
 # Now only 'ja' uses this config value
