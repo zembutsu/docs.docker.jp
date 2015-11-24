@@ -20,7 +20,7 @@
 
 .. If you get docker: command not found or something like /var/lib/docker/repositories: permission denied you may have an incomplete Docker installation or insufficient privileges to access Docker on your machine. With the default installation of Docker docker commands need to be run by a user that is in the docker group or by the root user.
 
-もしも ``docker: command not found`` や ``/var/lib/docker/repositories: permission denied `` のような表示が出る場合は、Docker のインストールが不完全か、マシン上の Docker に対してコマンドに対する権限がありません。標準の Docker インストールでは、``docker`` コマンドを実行するには ``docker`` グループのユーザ、もしくは ``root`` の必要があります。
+もしも ``docker: command not found`` や ``/var/lib/docker/repositories: permission denied`` のような表示が出る場合は、Docker のインストールが不完全か、マシン上の Docker に対してコマンドに対する権限がありません。標準の Docker インストールでは、``docker`` コマンドを実行するには ``docker`` グループのユーザ、もしくは ``root`` の必要があります。
 
 .. Depending on your Docker system configuration, you may be required to preface each docker command with sudo. One way to avoid having to use sudo with the docker commands is to create a Unix group called docker and add users that will be entering docker commands to the ‘docker’ group.
 
