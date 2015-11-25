@@ -74,6 +74,7 @@ Install
 
 .. toctree::
    :maxdepth: 3
+   :caption: インストール
 
    compose/install.rst
 
@@ -83,6 +84,7 @@ Docker Fundamentals - Docker の基礎
 
 .. toctree::
    :maxdepth: 3
+   :caption: Docker 基礎
    
    engine/userguide/basics.rst
    engine/userguide/index.rst
@@ -116,6 +118,8 @@ Use Docker
 
 .. toctree::
    :maxdepth: 3
+   :caption: Docker を使う
+
 
    engine/misc.rst
 
@@ -124,6 +128,7 @@ Provision & set up Docker hosts
 
 .. toctree::
    :maxdepth: 3
+   :caption: Docker Machine
 
    machine/index.rst
    machine/get-started.rst
@@ -136,6 +141,7 @@ Create multi-container applications
 
 .. toctree::
    :maxdepth: 3
+   :caption: Docker Compose
 
    compose/index.rst
    compose/production.rst
@@ -153,6 +159,7 @@ Cluster Docker containers
 
 .. toctree::
    :maxdepth: 3
+   :caption: Docker Swarm
 
    swarm/index.rst
    swarm/install-manual.rst
