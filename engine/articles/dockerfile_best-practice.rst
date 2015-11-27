@@ -5,7 +5,7 @@
 .. Create a base image
 
 =======================================
-ベースイメージの作成
+ベース・イメージの作成
 =======================================
 
 .. So you want to create your own Base Image? Great!
