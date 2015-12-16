@@ -1,6 +1,6 @@
 .. http://docs.docker.com/swarm/
 .. doc version: 1.9
-.. check date: 2015/11/22
+.. check date: 2015/12/15
 
 .. Docker Swarm
 

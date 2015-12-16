@@ -43,7 +43,7 @@ Docker ドキュメントへようこそ！
 
 .. Docker Swarm is used to host clustering and container scheduling. Deploy your own “swarm” today in just a few short steps.
 
-**Docker Swarm (スォーム)** はホストのクラスタリングとコンテナのスケジューリングに使われます。 :doc:`"swarm" をデプロイする <swarm/install-w-machine>` から、いくつかの短いステップで今日から使えます。
+**Docker Swarm (スウォーム)** はホストのクラスタリングとコンテナのスケジューリングに使われます。 :doc:`"swarm" をデプロイする <swarm/install-w-machine>` から、いくつかの短いステップで今日から使えます。
 
 .. Docker Compose defines multi-container applications. You can install Docker Compose on Ubuntu, Mac OS X, and other systems.
 
@@ -163,6 +163,11 @@ Cluster Docker containers
 
    swarm/index.rst
    swarm/install-manual.rst
+   swarm/multi-manager-setup.rst
+   swarm/networking.rst
+   swarm/discovery.rst
+   swarm/scheduler/filter.rst
+   swarm/scheduler/strategy.rst
 
 
 Networking
