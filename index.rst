@@ -76,6 +76,9 @@ Install
    :maxdepth: 3
    :caption: インストール
 
+
+   engine/installation/mac.rst
+   engine/installation/windows.rst
    compose/install.rst
 
 
