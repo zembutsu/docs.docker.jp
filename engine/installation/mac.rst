@@ -1,6 +1,8 @@
+.. -*- coding: utf-8 -*-
 .. https://docs.docker.com/engine/installation/mac/
 .. doc version: 1.9
 .. check date: 2015/12/16
+.. -----------------------------------------------------------------------------
 
 .. Mac OS X
 
