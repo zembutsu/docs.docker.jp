@@ -97,7 +97,10 @@ Install
    engine/installation/rackspace.rst
    engine/installation/joyent.rst
    engine/installation/binaries.rst
+   kitematic/index.rst
+   machine/install-machine.rst
    compose/install.rst
+   swarm/install-w-machine.rst
 
 
 Docker Fundamentals - Docker の基礎

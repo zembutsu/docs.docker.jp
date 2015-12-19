@@ -104,7 +104,7 @@ Swarm ノードの作成
 
 Swarm エージェントをディスカバリ・サービスに登録します。このノードの IP アドレスは、Swarm マネージャからアクセスできる必要があります。次のコマンドを実行する時は、 ``ノードID`` と ``クラスタ ID``  を適切なものに置き換えてください。
 
-.. code-block::
+.. code-block:: bash
 
    docker run -d swarm join --addr=<ノードIP:2375> token://<クラスタID>
 
@@ -112,7 +112,7 @@ Swarm エージェントをディスカバリ・サービスに登録します�
 
 実行例：
 
-.. code-block::
+.. code-block:: bash
 
    $ docker run -d swarm join --addr=172.31.40.100:2375 token://6856663cdefdec325839a4b7e1de38e8
 
