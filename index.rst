@@ -76,9 +76,27 @@ Install
    :maxdepth: 3
    :caption: インストール
 
-
+   engine/installation/index.rst
    engine/installation/mac.rst
    engine/installation/windows.rst
+   engine/installation/ubuntulinux.rst
+   engine/installation/rhel.rst
+   engine/installation/centos.rst
+   engine/installation/fedora.rst
+   engine/installation/debian.rst
+   engine/installation/archlinux.rst
+   engine/installation/cruxlinux.rst
+   engine/installation/frugalware.rst
+   engine/installation/gentoolinux.rst
+   engine/installation/oracle.rst
+   engine/installation/SUSE.rst
+   engine/installation/amazon.rst
+   engine/installation/google.rst
+   engine/installation/softlayer.rst
+   engine/installation/azure.rst
+   engine/installation/rackspace.rst
+   engine/installation/joyent.rst
+   engine/installation/binaries.rst
    compose/install.rst
 
 
