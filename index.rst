@@ -19,12 +19,12 @@ Docker ドキュメントへようこそ！
 
 .. Docker Engine or “Docker” creates and runs Docker containers. Install Docker on Ubuntu, Mac OS X, or Windows. Or use the Install menu to choose from others. 
 
-**Docker Engine (エンジン)** または "Docker" は、Docker コンテナを作成・実行します。Docker を :ref:`Ubuntu <ubuntu>`  、:ref:`Mac OS X <mac>`、:ref:`Windows <windows>` にインストールします。あるいは、メニューの **インストール** から他を選びます。
+**Docker Engine (エンジン)** または "Docker" は、Docker コンテナを作成・実行します。Docker を :doc:`Ubuntu </engine/installation/ubuntulinux>`  、:doc:`Mac OS X </engine/installation/mac>`、:doc:`Windows </engine/installation/windows>` にインストールします。あるいは、メニューの **インストール** から他を選びます。
 
 
 .. Kitematic is the desktop GUI for Docker. Install Kitematic.
 
-**Kitematic (カイトマティック)** は Docker 対応のデスクトップ GUI です。 :doc:`Kitematic のインストール <kitematic/>` はこちらです。
+**Kitematic (カイトマティック)** は Docker 対応のデスクトップ GUI です。 :doc:`Kitematic のインストール <kitematic/index>` はこちらです。
 
 
 .. Docker Hub is our hosted registry service for managing your images. There is nothing to install. You just sign up!
@@ -47,7 +47,7 @@ Docker ドキュメントへようこそ！
 
 .. Docker Compose defines multi-container applications. You can install Docker Compose on Ubuntu, Mac OS X, and other systems.
 
-**Docker Compose (コンポーズ)** はマルチ・コンテナのアプリケーションを定義します。Docker Compose を :doc:`Ubuntu、Mac OS X や、その他のシステム` にインストールできます。
+**Docker Compose (コンポーズ)** はマルチ・コンテナのアプリケーションを定義します。Docker Compose を :doc:`Ubuntu、Mac OS X や、その他のシステム </compose/install>` にインストールできます。
 
 .. Docker Registry provides open source Docker image distribution. See the registry deployment documentation for more information. 
 
@@ -55,7 +55,7 @@ Docker ドキュメントへようこそ！
 
 .. You may notice the docs look different
 
-ドキュメントが違う場合があるので注意すべきです
+ドキュメントが違う場合があるので注意すべき
 ==============================================
 
 .. You also may find a few broken links or other wonkiness. We are working on fixing these things. We appreciate your patience while we go through our growing pains
@@ -202,6 +202,16 @@ Networking
    :caption: ネットワーク機能
 
    engine/userguide/networking/dockernetworks.rst
+
+
+Command and API references
+----------------------------------------
+
+.. toctree::
+   :maxdepth: 3
+   :caption: コマンド・API リファレンス
+
+   engine/reference/builder.rst
 
 
 Indices and tables
