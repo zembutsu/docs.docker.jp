@@ -135,6 +135,24 @@ Work with Docker Containers
    engine/userguide/dockervolumes.rst
    engine/userguide/dockerrepos.rst
 
+Docker on Windows & OSX
+------------------------------
+
+.. toctree::
+   :maxdepth: 3
+
+   engine/articles/dsc.rst
+
+
+Use the Kitematic GUI
+------------------------------
+
+.. toctree::
+   :maxdepth: 3
+
+   kitematic/userguide/index.rst
+
+
 
 
 Use Docker
@@ -212,6 +230,7 @@ Command and API references
    :caption: コマンド・API リファレンス
 
    engine/reference/builder.rst
+   swarm/api/swarm-api.rst
 
 
 Indices and tables

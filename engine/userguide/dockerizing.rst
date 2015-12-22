@@ -5,7 +5,7 @@
 .. Hello world in a container
 
 =======================================
-コンテナで Hello world（こんにちは）
+コンテナで Hello world
 =======================================
 
 .. So what's this docker thing all about?
