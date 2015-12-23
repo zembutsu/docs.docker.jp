@@ -162,8 +162,11 @@ Use Docker
    :maxdepth: 3
    :caption: Docker を使う
 
+   engine/misc/index.rst
+   engine/userguide/labels-custom-metadata.rst
+   engine/misc/deprecated.rst
 
-   engine/misc.rst
+
 
 Provision & set up Docker hosts
 ----------------------------------------
