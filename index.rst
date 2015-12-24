@@ -165,6 +165,7 @@ Use Docker
    engine/misc/index.rst
    engine/userguide/labels-custom-metadata.rst
    engine/misc/deprecated.rst
+   engine/introduction/understanding-docker.rst
 
 
 
