@@ -168,7 +168,6 @@ Use Docker
    engine/introduction/understanding-docker.rst
 
 
-
 Provision & set up Docker hosts
 ----------------------------------------
 
@@ -214,6 +213,18 @@ Cluster Docker containers
    swarm/discovery.rst
    swarm/scheduler/filter.rst
    swarm/scheduler/strategy.rst
+
+
+Administrate Docker
+----------------------------------------
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Docker 管理
+
+   engine/articles/host_integration.rst
+   engine/articles/security.rst
+
 
 
 Networking
