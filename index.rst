@@ -224,7 +224,11 @@ Administrate Docker
 
    engine/articles/host_integration.rst
    engine/articles/security.rst
-
+   engine/articles/configuring.rst
+   engine/articles/runmetrics.rst
+   engine/articles/https.rst
+   engine/articles/ambassador_pattern_linking.rst
+   engine/articles/systemd.rst
 
 
 Networking
