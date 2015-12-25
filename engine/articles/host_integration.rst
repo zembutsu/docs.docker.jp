@@ -6,6 +6,8 @@
 
 .. Automatically start containers
 
+.. _host_integration-automatically-start-containers:
+
 =======================================
 コンテナ自動起動
 =======================================
@@ -19,6 +21,8 @@ Docker 1.2 から :ref:`再起動ポリシー <restart-policies-restart>` Docker
 必要に応じて再起動ポリシーを使わないでください（例：Docker ではないプロセスが Docker コンテナに依存する場合）。そのような場合は、再起動ポリシーの代わりに `upstart <http://upstart.ubuntu.com/>`_ 、 `systemd <http://freedesktop.org/wiki/Software/systemd/>`_ 、 `supervisor <http://supervisord.org/>`_  といったプロセス・マネージャをお使いください。
 
 .. Using a process manager
+
+.. _host_integration-using-a-process-manager:
 
 プロセス・マネージャを使う場合
 ==============================
@@ -37,6 +41,8 @@ Docker 1.2 から :ref:`再起動ポリシー <restart-policies-restart>` Docker
 
 .. Examples
 
+.. _host_integration-examples:
+
 例
 ==========
 
@@ -45,6 +51,8 @@ Docker 1.2 から :ref:`再起動ポリシー <restart-policies-restart>` Docker
 この例では２つの有名なプロセス・マネージャ、upstart と systemd 向けの設定ファイルを扱います。これらの例では、既に作成しているコンテナ ``--name=redis_server`` を使って Redis を起動するのを想定しています。これらのファイルは新しいサービスを定義し、docker サービスが起動した後で自動的に起動するものです。
 
 .. upstart
+
+.. _host_integration-upstart:
 
 upstart
 ----------
@@ -61,6 +69,8 @@ upstart
    end script
 
 .. systemd
+
+.. _host_integration-systemd:
 
 systemd
 ----------

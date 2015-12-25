@@ -4,7 +4,9 @@
 .. check date: 2015/12/24
 .. -----------------------------------------------------------------------------
 
-.. Docker セキュリティ
+.. Docker Security
+
+.. _security-docker-security:
 
 =======================================
 Docker セキュリティ
@@ -26,6 +28,8 @@ Docker のセキュリティを検討するにあたり、主に３つの項目�
 
 .. Kernel namespaces
 
+.. _security-kernel-namespaces:
+
 カーネルの名前空間
 ====================
 
@@ -41,11 +45,13 @@ Docker コンテナは LXC コンテナに非常に似ており、類似のセ�
 
 **各コンテナは自分自身のネットワーク・スタックを持ちます** 。つまり、コンテナはソケットや他のコンテナのインターフェースに対する特権（privileged）アクセスが得られません。もちろん、ホストシステムが適切に設定されている必要があります。そうしておけば、コンテナが相互に適切なネットワーク・インターフェースを通して通信できるようになります。ホストの外と通信できるのも同様です。コンテナに対して公開用のポートを指定するか、:doc:`リンク機能 </engine/userguide/networking/default_network/dockerlinks>` を使うことで、コンテナ間での IP 通信が許可されます。お互いに ping できるようになり、UDP パケットの送受信や、TCP 接続が確立されます。しかし、必要があれば制限を設けられます。ネットワーク・アーキテクチャの視点からすると、全てのコンテナは特定のホスト上のブリッジ・インターフェースを備えています。つまりこれは、物理マシン上で共通のイーサネット・スイッチを使っているのと同じような状態を意味します。それ以上でも、それ以下でもありません。 
 
-How mature is the code providing kernel namespaces and private networking? Kernel namespaces were introduced between kernel version 2.6.15 and 2.6.26. This means that since July 2008 (date of the 2.6.26 release, now 7 years ago), namespace code has been exercised and scrutinized on a large number of production systems. And there is more: the design and inspiration for the namespaces code are even older. Namespaces are actually an effort to reimplement the features of OpenVZ in such a way that they could be merged within the mainstream kernel. And OpenVZ was initially released in 2005, so both the design and the implementation are pretty mature.
+.. How mature is the code providing kernel namespaces and private networking? Kernel namespaces were introduced between kernel version 2.6.15 and 2.6.26. This means that since July 2008 (date of the 2.6.26 release, now 7 years ago), namespace code has been exercised and scrutinized on a large number of production systems. And there is more: the design and inspiration for the namespaces code are even older. Namespaces are actually an effort to reimplement the features of OpenVZ in such a way that they could be merged within the mainstream kernel. And OpenVZ was initially released in 2005, so both the design and the implementation are pretty mature.
 
-カーネルの名前空間を提供するコードやプライベート・ネットワーキングの成熟度ですか？ カーネルの名前空間は `カーネル 2.6.15 と 2.6.26 の間 <http://lxc.sourceforge.net/index.php/about/kernel-namespaces/>`_ に導入されました。これの意味するところは、2008年6月にリリースされた（2.6.26 がリリースされたのは、今から7年前です）名前空間のコードは、多数のプロダクション・システム上で動作・精査されてきました。そして、さらにもう１つ。名前区間コードの設計と発想はやや古いものです。名前空間が効果的に実装された例としては `OpenVZ <http://ja.wikipedia.org/wiki/OpenVZ>` があり、カーネルのメインストリームとしてマージされたこともありました。OpenVZ の初期リリースは 2005 年であり、設計と実装は、多少成熟しているでしょう。
+カーネルの名前空間を提供するコードやプライベート・ネットワーキングの成熟度ですか？ カーネルの名前空間は `カーネル 2.6.15 と 2.6.26 の間 <http://lxc.sourceforge.net/index.php/about/kernel-namespaces/>`_ に導入されました。これの意味するところは、2008年6月にリリースされた（2.6.26 がリリースされたのは、今から7年前です）名前空間のコードは、多数のプロダクション・システム上で動作・精査されてきました。そして、さらにもう１つ。名前区間コードの設計と発想はやや古いものです。名前空間が効果的に実装された例としては `OpenVZ <http://ja.wikipedia.org/wiki/OpenVZ>`_ があり、カーネルのメインストリームとしてマージされたこともありました。OpenVZ の初期リリースは 2005 年であり、設計と実装は、多少成熟しているでしょう。
 
 .. Control groups
+
+.. _security-control-groups:
 
 コントロール・グループ
 ==============================
@@ -63,6 +69,8 @@ How mature is the code providing kernel namespaces and private networking? Kerne
 コントロール・グループも同様に、以前から存在していました。コードは 2006 年から書き始めら、カーネルに 2.6.24 で初めてマージされました。
 
 .. Docker daemon attack surface
+
+.. _security-docker-daemon-attack-surface:
 
 Docker デーモンが直面する攻撃
 ==============================
@@ -100,6 +108,8 @@ Docker を使ったコンテナ（とアプリケーション）の実行とは�
 最後に、Docker をサーバで動かす場合は、サーバ上で Docker 以外を動かさないことを推奨します。そして、他のサービスは Docker によって管理されるコンテナに移動しましょう。もちろん、好きな管理ツール（おそらく SSH サーバでしょう）や既存の監視・管理プロセス（例： NRPE、collectd、等）はそのままで構いません。
 
 .. Linux kernel capabilities
+
+.. _security-linux-kernel-capabilities:
 
 Linux カーネルのキャパビリティ
 ==============================
@@ -174,6 +184,8 @@ Docker はキャパビリティの追加と削除をサポートしますので�
 
 .. Other kernel security features
 
+.. _security-other_kernel_security_features:
+
 その他のカーネル・セキュリティ機能
 ========================================
 
@@ -203,7 +215,7 @@ Docker コンテナと連携する多くのサードパーティー製ツール�
 
 .. Recent improvements in Linux namespaces will soon allow to run full-featured containers without root privileges, thanks to the new user namespace. This is covered in detail here. Moreover, this will solve the problem caused by sharing filesystems between host and guest, since the user namespace allows users within containers (including the root user) to be mapped to other users in the host system.
 
-直近の Linux 名前空間に対する改良によって、新しいユーザ名前空間の力を使い、まもなく root 特権無しに全てのコンテナ機能が使えるようになるでしょう。証紙は `こちら <http://s3hh.wordpress.com/2013/07/19/creating-and-using-containers-without-privilege/>`_ で扱っています。さらに、これはホストとゲストに関する共用ファイルシステムによって引き起こされる問題も解決できるかもしれません。これはユーザ名前空間がコンテナ内のユーザをホスト上のユーザ（rootも含まれます）に割り当て（マッピング）できるようにするためです。
+直近の Linux 名前空間に対する改良によって、新しいユーザ名前空間の力を使い、まもなく root 特権無しに全てのコンテナ機能が使えるようになるでしょう。詳細は `こちら <http://s3hh.wordpress.com/2013/07/19/creating-and-using-containers-without-privilege/>`_ で扱っています。さらに、これはホストとゲストに関する共用ファイルシステムによって引き起こされる問題も解決できるかもしれません。これはユーザ名前空間がコンテナ内のユーザをホスト上のユーザ（rootも含まれます）に割り当て（マッピング）できるようにするためです。
 
 .. Today, Docker does not directly support user namespaces, but they may still be utilized by Docker containers on supported kernels, by directly using the clone syscall, or utilizing the ‘unshare’ utility. Using this, some users may find it possible to drop more capabilities from their process as user namespaces provide an artificial capabilities set. Likewise, however, this artificial capabilities set may require use of ‘capsh’ to restrict the user-namespace capabilities set when using ‘unshare’.
 
@@ -214,6 +226,8 @@ Docker コンテナと連携する多くのサードパーティー製ツール�
 最終的には、Docker が直接ユーザ名前空間をサポートし、コンテナ上のプロセス堅牢化を簡単に行えるようになるでしょう。
 
 .. Conclusions
+
+.. _security-conclusions:
 
 まとめ
 ==========
@@ -231,6 +245,8 @@ AppArmor、SELinux、GRSEC など任意の堅牢化ソリューションを有�
 最後ですが疎かにできないのは、他のコンテナ化システムのセキュリティ機能に興味があれば、Docker と同じように、シンプルにカーネル機能を実装しているのがわかるでしょう。私たちは皆さんからの問題報告、プルリクエスト、メーリングリストにおけるやりとりを歓迎します。
 
 .. References:
+
+.. _security-references:
 
 リファレンス
 ====================
