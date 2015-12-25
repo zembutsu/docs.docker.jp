@@ -24,13 +24,13 @@ Docker をネットワーク上で安全な方法で使う必要があるなら�
 
 ..    Warning: Using TLS and managing a CA is an advanced topic. Please familiarize yourself with OpenSSL, x509 and TLS before using it in production.
 
-.. warning:
+.. warning::
 
    TLS と CA の管理は高度なトピックです。プロダクションで使う前に、自分自身で OpenSSL、x509、TLS に慣れてください。
 
 ..    Warning: These TLS commands will only generate a working set of certificates on Linux. Mac OS X comes with a version of OpenSSL that is incompatible with the certificates that Docker requires.
 
-.. warning:
+.. warning::
 
    各 TLS コマンドは Linux 上で作成された証明書のセットのみ利用可能です。Mac OS X は Docker デーモンが必要な OpenSSL のバージョンと互換性がありません。
 
@@ -41,7 +41,7 @@ OpenSL で CA （サーバとクライアントの鍵）を作成
 
 ..    Note: replace all instances of $HOST in the following example with the DNS name of your Docker daemon’s host.
 
-.. note:
+.. note::
 
    以下の例にある ``$HOST`` は、自分の Docker デーモンが動いている DNS ホスト名に置き換えてください。
 
@@ -81,7 +81,7 @@ OpenSL で CA （サーバとクライアントの鍵）を作成
 
 ..    Note: replace all instances of $HOST in the following example with the DNS name of your Docker daemon’s host.
 
-.. note:
+.. note::
 
    以下の例にある ``$HOST`` は、自分の Docker デーモンが動いている DNS ホスト名に置き換えてください。
 
@@ -207,7 +207,7 @@ TLS 接続は DNS 名と同様に、IP アドレスでも通信可能にしま�
 
 ..    Warning: As shown in the example above, you don’t have to run the docker client with sudo or the docker group when you use certificate authentication. That means anyone with the keys can give any instructions to your Docker daemon, giving them root access to the machine hosting the daemon. Guard these keys as you would a root password!
 
-.. warning:
+.. warning::
 
    上記の例では ``docker`` クライアントの実行に ``sudo`` が不要か、あるいは認証に使うユーザが ``docker`` グループに属しています。つまり、鍵を使ってDocker デーモンにアクセス可能にするのは、デーモンを動かしているマシンの root 権限を与えることを意味します。これらの鍵を root パスワード同様に保護してください！
 
