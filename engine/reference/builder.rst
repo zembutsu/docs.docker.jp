@@ -43,7 +43,7 @@ Docker は ``Dockerfile`` から命令を読み込むことで、自動的にイ
 
 ..    Warning: Do not use your root directory, /, as the PATH as it causes the build to transfer the entire contents of your hard drive to the Docker daemon.
 
-.. warning:
+.. warning::
 
    ``PATH`` として自分のルート・ディレクトリ ``/`` を使わないでください。これは、自分のハードディスクに含まれる内容を、Docker デーモンに転送しようとするためです。
 
