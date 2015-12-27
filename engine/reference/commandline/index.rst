@@ -34,7 +34,7 @@ Docker 管理コマンド
 
 .. Image commands
 
-.. _image-commands
+.. _image-commands:
 
 イメージ用コマンド
 ====================
