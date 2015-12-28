@@ -244,6 +244,17 @@ Logging
    engine/reference/logging/journald.rst
 
 
+Applications and Services
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. toctree::
+   :maxdepth: 3
+   :caption: アプリケーションとサービス
+
+   engine/examples/running_riak_service.rst
+   engine/examples/running_ssh_service.rst
+
+
 Networking
 ----------------------------------------
 
