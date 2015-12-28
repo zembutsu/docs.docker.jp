@@ -42,7 +42,7 @@ Docker Swam （Swarm = 群れ、大群）は、Docker に対応するクラス�
 * 各々のノードに Docker をインストールする
 * クラスタを安全にするため、TLS 証明書を作成・管理する
 
-. . As a starting point, the manual method is best suited for experienced administrators or programmers contributing to Docker Swarm. The alternative is to use docker-machine to install a swarm.
+.. As a starting point, the manual method is best suited for experienced administrators or programmers contributing to Docker Swarm. The alternative is to use docker-machine to install a swarm.
 
 使い始めるにあたり、管理者向けの経験のためや、プログラマが Docker Swarm に貢献するために、手動でのインストール手法は最適でしょう。あるいは、``docker-machine`` を使って Swarm をインストールする方法があります。
 
