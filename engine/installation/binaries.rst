@@ -228,6 +228,8 @@ Docker デーモンの実行
 
 .. Giving non-root access
 
+.. _giving-non-root-access:
+
 root 以外のアクセス
 --------------------
 

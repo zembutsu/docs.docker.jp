@@ -255,6 +255,19 @@ Applications and Services
    engine/examples/running_ssh_service.rst
 
 
+Integrate with Third-party Tools
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. toctree::
+   :maxdepth: 3
+   :caption: サードパーティ製ツール連携
+
+   engine/articles/cfengine_process_management.rst
+   engine/articles/chef.rst
+   engine/articles/puppet.rst
+   engine/articles/using_supervisord.rst
+
+
 Networking
 ----------------------------------------
 
