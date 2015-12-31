@@ -201,6 +201,6 @@ openSUSE または SUSE Linux Enterprise での Docker に関するより詳し�
 
 .. Continue to the User Guide.
 
-:doc;`ユーザガイド </engine/userguide/index>` に進みます。
+:doc:`ユーザガイド </engine/userguide/index>` に進みます。
 
 
