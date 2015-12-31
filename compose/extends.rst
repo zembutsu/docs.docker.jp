@@ -225,7 +225,7 @@ extends 設定の理解
 
 .. You can go further and define (or re-define) configuration locally in docker-compose.yml:
 
-さらに ``docker-compose.yml`` でローカル環境の設定（藍設定）も行えます。
+さらに ``docker-compose.yml`` でローカル環境の設定（再設定）も行えます。
 
 .. code-block:: yaml
 
