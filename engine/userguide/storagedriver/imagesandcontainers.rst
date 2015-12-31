@@ -1,7 +1,7 @@
 .. -*- coding: utf-8 -*-
 .. https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/
 .. doc version: 1.9
-.. check date: 2015/12/29
+.. check date: 2015/12/31
 .. -----------------------------------------------------------------------------
 
 .. Understand images, containers, and storage driver
@@ -14,7 +14,7 @@
 
 .. To use storage drivers effectively, you must understand how Docker builds and stores images. Then, you need an understanding of how these images are used in containers. Finally, you’ll need a short introduction to the technologies that enable both images and container operations.
 
-ストレージ・ドライバを効率的に使うには、Docker がどのようにイメージを構築・保管するかの理解が必須です。それから、これらのイメージがコンテナでどのように使われているかの理解が必要になります。最後は、イメージとコンテナの両方を操作するための技術に対する短い紹介（イントロダクション）が必要となるでしょう。
+ストレージ・ドライバを効率的に使うには、Docker がどのようにイメージを構築・保管するかの理解が必須です。そして、これらのイメージがコンテナでどのように使われているかの理解が必要になります。最後に、イメージとコンテナの両方を操作するための技術に対する、簡単な紹介をします。
 
 .. Images and containers rely on layers
 
@@ -387,7 +387,7 @@ Docker のコピー・オン・ライト方式により、コンテナによる�
     Btrfs storage driver in practice
     Device Mapper storage driver in practice
 
-* :doc:`ストレージ・ドライバの選択 </engine/userguide/storagedriver/selectadriver>`
-* :doc:`AUFS ストレージ・ドライバを使う <aufs-driver>`
-* :doc:`Btrfs ストレージ・ドライバを使う <btrfs-driver>`
-* :doc:`Device Mapper ストレージ・ドライバを使う <device-mapper-driver>`
+* :doc:`selectadriver`
+* :doc:`aufs-drive`
+* :doc:`btrfs-driver`
+* :doc:`device-mapper-driver`
