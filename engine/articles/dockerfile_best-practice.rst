@@ -479,7 +479,7 @@ ENTRYPOINT
 
    $ docker run postgres
 
-Or, it can be used to run Postgres and pass parameters to the server:
+.. Or, it can be used to run Postgres and pass parameters to the server:
 
 あるいは、PostgreSQL 実行時、サーバに対してパラメータを渡せます。
 
