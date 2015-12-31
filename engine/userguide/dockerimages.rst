@@ -550,7 +550,7 @@ Windows で Docker Machine を使っている場合、ホスト・ディレク�
 
    ストレージ・ドライバに関わらず 127 層以上のイメージは作成できません。この制限が幅広く適用されるのは、はイメージ全体のサイズが大きくならないよう最適化するためです。
 
-..You can then create a container from our new image.
+..   You can then create a container from our new image.
 
 　新しいイメージからコンテナを作成できます。
 
