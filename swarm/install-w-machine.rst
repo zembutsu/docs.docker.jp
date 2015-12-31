@@ -52,7 +52,7 @@ Docker Machine は Docker コンテナを実行可能なホストを作成しま
 
 ..    This example was run a Mac OSX system with Docker Toolbox installed. So, the docker-vm virtual machine is in the list.
 
-この例では Mac OSX システム上に Docker Toolbox をインストルシ増した。そのため、 ``docker-vm`` 仮想マシンが表示されています。
+この例では Mac OSX システム上に Docker Toolbox をインストールしました。そのため、 ``docker-vm`` 仮想マシンが表示されています。
 
 ..    Create a VirtualBox machine called local on your system.
 
