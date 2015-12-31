@@ -167,7 +167,7 @@ VirtualBox を実行中の場合、インストーラを実行する前に停止
     adds desktop icons for the Docker Quickstart Terminal and Kitematic
 
 * Docker ツールのバイナリを ``C:\Program Files\Docker Toolbox`` にインストールします。
-* VirtualBox をインストールします。あるいは、インストルール済みであればバージョンアップを行います。
+* VirtualBox をインストールします。あるいは、インストール済みであればバージョンアップを行います。
 * プログラムのショートカットに Docker Inc. フォルダを追加します。
 * 環境変数 ``PATH`` を更新します。
 * Docker Quickstart Terminal と Kitematic のアイコンをデスクトップに追加します。

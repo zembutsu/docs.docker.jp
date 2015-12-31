@@ -123,7 +123,7 @@ VirtualBox を実行中の場合、インストーラを実行する前に停止
 
 * Docker ツールのバイナリを ``/usr/local/bin`` にインストールします。
 * バイナリを全てのユーザが使えるようにします。
-* VirtualBox をインストールします。あるいは、インストルール済みであればバージョンアップを行います。
+* VirtualBox をインストールします。あるいは、インストール済みであればバージョンアップを行います。
 
 ..    Change these defaults by pressing “Customize” or “Change Install Location.”
 
