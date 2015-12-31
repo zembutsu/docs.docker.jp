@@ -145,7 +145,7 @@ Swarm エージェントはコンテナのホスティングに対して責任�
 
 ..    For example:
 
-実行例；
+実行例：
 
 .. code-block:: bash
 
