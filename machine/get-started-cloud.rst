@@ -50,7 +50,7 @@ Docker Machine をクラウド・プロバイダで始めるには
 
 .. For convenience, docker-machine will use sensible defaults for choosing settings such as the image that the VPS is based on, but they can also be overridden using their respective flags (e.g. --digitalocean-image). This is useful if, for instance, you want to create a nice large instance with a lot of memory and CPUs (by default docker-machine creates a small VPS). For a full list of the flags/settings available and their defaults, see the output of docker-machine create -h.
 
-便利な機能として、``docker-machine`` には仮想マシンの作成s時、対象となるイメージに応じて、適切な設定となるようデフォルト値を持っています。それだけではなく、必要があればフラグを指定し、その値の上書きも可能です（例： ``--digitalocean-image`` ）。これは扱いやすいもので、例えば、多くのメモリや CPU を必要とする大きなインスタンスを作成できます（デフォルトの ``docker-machine`` が作成するのは、小さな仮想マシンです ）。利用可能なフラグや値、デフォルト設定については ``docker-machine create -h`` の出力をご確認ください。
+便利な機能として、``docker-machine`` には仮想マシンの作成時、対象となるイメージに応じて、適切な設定となるようデフォルト値を持っています。それだけではなく、必要があればフラグを指定し、その値の上書きも可能です（例： ``--digitalocean-image`` ）。これは扱いやすいもので、例えば、多くのメモリや CPU を必要とする大きなインスタンスを作成できます（デフォルトの ``docker-machine`` が作成するのは、小さな仮想マシンです ）。利用可能なフラグや値、デフォルト設定については ``docker-machine create -h`` の出力をご確認ください。
 
 .. When the creation of a host is initiated, a unique SSH key for accessing the host (initially for provisioning, then directly later if the user runs the docker-machine ssh command) will be created automatically and stored in the client’s directory in ~/.docker/machines. After the creation of the SSH key, Docker will be installed on the remote machine and the daemon will be configured to accept remote connections over TCP using TLS for authentication. Once this is finished, the host is ready for connection.
 
