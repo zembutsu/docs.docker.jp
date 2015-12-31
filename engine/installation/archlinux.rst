@@ -12,7 +12,7 @@ Arch Linux
 
 .. Installing on Arch Linux can be handled via the package in community:
 
-Arch Linux におけるインストールは、コミュニティが扱うパッケージを系使います。
+Arch Linux におけるインストールは、コミュニティが扱うパッケージを使います。
 
 ..    docker
 
