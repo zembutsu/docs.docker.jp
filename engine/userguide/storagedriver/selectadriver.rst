@@ -197,6 +197,6 @@ Docker ストレージ・ドライバとデータ・ボリュームは、共有�
     Device Mapper storage driver in practice
 
 * :doc:`imagesandcontainers`
-* :doc:`aufs-drive`
+* :doc:`aufs-driver`
 * :doc:`btrfs-driver`
 * :doc:`device-mapper-driver`

@@ -388,6 +388,6 @@ Docker のコピー・オン・ライト方式により、コンテナによる�
     Device Mapper storage driver in practice
 
 * :doc:`selectadriver`
-* :doc:`aufs-drive`
+* :doc:`aufs-driver`
 * :doc:`btrfs-driver`
 * :doc:`device-mapper-driver`
