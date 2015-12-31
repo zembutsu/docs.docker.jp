@@ -54,7 +54,7 @@ Docker Machine をクラウド・プロバイダで始めるには
 
 .. When the creation of a host is initiated, a unique SSH key for accessing the host (initially for provisioning, then directly later if the user runs the docker-machine ssh command) will be created automatically and stored in the client’s directory in ~/.docker/machines. After the creation of the SSH key, Docker will be installed on the remote machine and the daemon will be configured to accept remote connections over TCP using TLS for authentication. Once this is finished, the host is ready for connection.
 
-ホスト作成時の初期設定では、ホストに接続するためのユニークな SSH 鍵（初期のプロビジョン具だけではなく、後で ``docker-machine ssh` コマンドでも使用）が自動的に作成され、クライアントの ``/.docker/machine`` ディレクトリに保管されます。SSH 鍵を作成後、Docker はリモートマシン上にデーモンをインストールし、リモートマシンとは TCP 上の TLS を使った通信ができるよう、自動的に設定します。これが終わればホストとの通信準備が整います。
+ホスト作成時の初期設定では、ホストに接続するためのユニークな SSH 鍵（初期のプロビジョニングだけではなく、後で ``docker-machine ssh` コマンドでも使用）が自動的に作成され、クライアントの ``/.docker/machine`` ディレクトリに保管されます。SSH 鍵を作成後、Docker はリモートマシン上にデーモンをインストールし、リモートマシンとは TCP 上の TLS を使った通信ができるよう、自動的に設定します。これが終わればホストとの通信準備が整います。
 
 To prepare the Docker client to send commands to the remote server we have created, we can use the subshell method again:
 
