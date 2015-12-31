@@ -327,6 +327,7 @@ SELinux のようなラベリング・システムでは、コンテナ内にマ
 .. Important tips on using shared volumes
 
 ボリューム共有時の重要なヒント
+==============================
 
 .. Multiple containers can also share one or more data volumes. However, multiple containers writing to a single shared volume can cause data corruption. Make sure your applications are designed to write to shared data stores.
 
