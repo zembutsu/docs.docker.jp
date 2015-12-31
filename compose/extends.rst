@@ -267,7 +267,7 @@ extends 設定の理解
 
 .. Extending an individual service is useful when you have multiple services that have a common configuration. The example below is a Compose app with two services: a web application and a queue worker. Both services use the same codebase and share many configuration options.
 
-個々のサービス拡張は、複数のサービスが共通の設定を持っている場合に役立ちます。以下の例では、Compose アプリはウェブ・アプリケーションとキュー・ワーカー（queue workier）の、２つのサービスを持ちます。いずれのサービスも同じコードベースを使い、多くの設定オプションを共有します。
+個々のサービス拡張は、複数のサービスが共通の設定を持っている場合に役立ちます。以下の例では、Compose アプリはウェブ・アプリケーションとキュー・ワーカー（queue worker）の、２つのサービスを持ちます。いずれのサービスも同じコードベースを使い、多くの設定オプションを共有します。
 
 .. In a common.yml we define the common configuration:
 
