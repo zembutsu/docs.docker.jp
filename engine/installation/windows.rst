@@ -377,6 +377,8 @@ Windows コマンドプロンプト(cmd.exe)でDockerを使う
 
 7. ``hello-world`` コンテナを実行し、セットアップが正常かどうか確認します。
 
+.. code-block:: bash
+
    C:\Users\mary> docker run hello-world
 
 .. Using Docker from PowerShell

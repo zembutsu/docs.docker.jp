@@ -341,6 +341,8 @@ Docker Quickstart Terminal から使う
 
 5. ``hello-world`` コンテナを実行し、セットアップが正常かどうか確認します。
 
+.. code-block:: bash
+
    $ docker run hello-world
 
 .. Learn about your Toolbox installation

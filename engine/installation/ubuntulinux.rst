@@ -590,6 +590,8 @@ Docker が使う DNS サーバの指定方法は、次の通りです。
 
 Docker デーモンを再起動します。
 
+.. code-block:: bash
+
    $ sudo restart docker
 
 
