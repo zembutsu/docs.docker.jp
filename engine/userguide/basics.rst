@@ -175,7 +175,7 @@ Docker をデーモン・モードで起動する：
 .. Starting a long-running worker process
 
 長時間動作するワーカー・プロセスの開始
-=============================-----------
+======================================
 
 .. # Start a very useful long-running process
    $ JOB=$(docker run -d ubuntu /bin/sh -c "while true; do echo Hello world; sleep 1; done")
