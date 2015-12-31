@@ -393,11 +393,11 @@ Btrfs と Docker 性能
 
 ..    Sequential writes. Btrfs writes data to disk via journaling technique. This can impact sequential writes, where performance can be up to half.
 
-* ``シーケンシャルな書き込み`` ：Btrfs はジャーナリングの技術を使ってデータをディスクに書き込みます。この影響により、シーケンシャル書き込みでは、性能が半減します。
+* ""シーケンシャルな書き込み"" ：Btrfs はジャーナリングの技術を使ってデータをディスクに書き込みます。この影響により、シーケンシャル書き込みでは、性能が半減します。
 
 ..    Fragmentation. Fragmentation is a natural byproduct of copy-on-write filesystems like Btrfs. Many small random writes can compound this issue. It can manifest as CPU spikes on Docker hosts using SSD media and head thrashing on Docker hosts using spinning media. Both of these result in poor performance.
 
-* ``断片化`` ：断片化（fragmentation）とは、Btrfs のようなフィルシステム上でコピー・オン・ライトを行うと生じる自然な副産物です。たくさんの小さなランダムな書き込みが、断片化を引き起こします。SSD メディアを使う Docker ホスト上では CPU のスパイク（突発的な利用）が顕著ですし、回転メディア（HDD）で Docker ホストを動かす場合も、メディアをむち打つものです。いずれの場合も、パフォーマンスに影響の低下を招きます。
+* ""断片化"" ：断片化（fragmentation）とは、Btrfs のようなフィルシステム上でコピー・オン・ライトを行うと生じる自然な副産物です。たくさんの小さなランダムな書き込みが、断片化を引き起こします。SSD メディアを使う Docker ホスト上では CPU のスパイク（突発的な利用）が顕著ですし、回転メディア（HDD）で Docker ホストを動かす場合も、メディアをむち打つものです。いずれの場合も、パフォーマンスに影響の低下を招きます。
 
 ..    Recent versions of Btrfs allow you to specify autodefrag as a mount option. This mode attempts to detect random writes and defragment them. You should perform your own tests before enabling this option on your Docker hosts. Some tests have shown this option has a negative performance impact on Docker hosts performing lots of small writes (including systems that start and stop many containers).
 
