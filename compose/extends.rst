@@ -271,7 +271,7 @@ extends 設定の理解
 
 .. In a common.yml we define the common configuration:
 
-**common.yalm** ファイルでは、共通設定を定義します。
+**common.yml** ファイルでは、共通設定を定義します。
 
 .. code-block:: bash
 
