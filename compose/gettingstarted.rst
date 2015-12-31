@@ -10,7 +10,7 @@ Compose を始めましょう
 
 .. On this page you build a simple Python web application running on Compose. The application uses the Flask framework and increments a value in Redis. While the sample uses Python, the concepts demonstrated here should be understandable even if you’re not familiar with it.
 
-このページでは、簡単な Python ウェブ・アプリケーションを Compose で実行しましょう。アプリケーションは Frask フレームワークを使い、Regis の値を増やします。サンプルでは Python を使いますが、ここでの動作概念は Python に親しくなくても理解可能です。
+このページでは、簡単な Python ウェブ・アプリケーションを Compose で実行しましょう。アプリケーションは Frask フレームワークを使い、Redis の値を増やします。サンプルでは Python を使いますが、ここでの動作概念は Python に親しくなくても理解可能です。
 
 .. Prerequisites
 
