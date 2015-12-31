@@ -613,7 +613,7 @@ Docker デーモンを再起動します。
 
 .. code-block:: bash
 
-..    dns=dnsmasq
+   dns=dnsmasq
 
 ..    Save and close the file.
 
