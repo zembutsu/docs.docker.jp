@@ -299,7 +299,7 @@ Python アプリケーションが動いています！
 
 .. You can see a sample of that JSON output.
 
-　実行すると、次のような JSON 出力例を表示します。
+実行すると、次のような JSON 出力例を表示します。
 
 .. code-block:: json
 
