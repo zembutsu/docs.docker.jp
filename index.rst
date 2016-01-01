@@ -280,6 +280,7 @@ Docker storage drivers
    engine/userguide/storagedriver/imagesandcontainers.rst
    engine/userguide/storagedriver/selectadriver.rst
    engine/userguide/storagedriver/aufs-driver.rst
+   engine/userguide/storagedriver/btrfs-driver.rst
 
 
 
