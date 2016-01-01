@@ -413,7 +413,7 @@ Btrfs の最近のバージョンは、 ``autodefrag`` をマウント用のオ�
 
 ..    Use Data Volumes. Data volumes provide the best and most predictable performance. This is because they bypass the storage driver and do not incur any of the potential overheads introduced by thin provisioning and copy-on-write. For this reason, you may want to place heavy write workloads on data volumes.
 
-* **データ・ボリュームの使用** ：データ・ボリュームは最上かつ最も適した性能を提供します。これは、ストレージ・ドライバを迂回し、シン・プロビジョニングやコピー・オン・ライト処理を行わないためです。そのため、データ・ボリューム上で重たい書き込みを行うのに適しています。
+* **データ・ボリュームの使用** ：データ・ボリュームは最上かつ最も予測可能な性能を提供します。これは、ストレージ・ドライバを迂回し、シン・プロビジョニングやコピー・オン・ライト処理を行わないためです。そのため、データ・ボリューム上で重たい書き込みを行うのに適しています。
 
 .. Related Information
 
