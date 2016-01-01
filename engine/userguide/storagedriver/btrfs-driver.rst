@@ -49,7 +49,7 @@ Linux プラットフォームで Docker を使う限り、多くの人々は ``
 
 .. _image-layering-and-sharing-with-btrfs:
 
-イメージのレイヤ化と Btrfs の共有
+Btrfs でイメージのレイヤ化と共有
 ========================================
 
 .. Docker leverages Btrfs subvolumes and snapshots for managing the on-disk components of image and container layers. Btrfs subvolumes look and feel like a normal Unix filesystem. As such, they can have their own internal directory structure that hooks into the wider Unix filesystem.
