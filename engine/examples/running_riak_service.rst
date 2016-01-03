@@ -12,7 +12,7 @@
 Riak の Docker 化
 =======================================
 
-The goal of this example is to show you how to build a Docker image with Riak pre-installed.
+.. The goal of this example is to show you how to build a Docker image with Riak pre-installed.
 
 この例の目標は、Riak がインストール済みの Docker イメージをどうやって構築するのか紹介します。
 

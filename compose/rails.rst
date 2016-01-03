@@ -32,7 +32,7 @@
    RUN bundle install
    ADD . /myapp
 
-これはイメージじ中にアプリケーションのコードを送るものです。ここでは Ruby イメージを使い、Bundler や内部の依存関係を持つコンテナを作成します。 ``Dockerfile`` の書き方など詳細情報については、 :ref:`Docker ユーザ・ガイド <building-an-image-from-a-dockerfile>` や :doc:`Dockerfile リファレンス </reference/builder>` をご覧ください。
+これはイメージ中にアプリケーションのコードを送るものです。ここでは Ruby イメージを使い、Bundler や内部の依存関係を持つコンテナを作成します。 ``Dockerfile`` の書き方など詳細情報については、 :ref:`Docker ユーザ・ガイド <building-an-image-from-a-dockerfile>` や :doc:`Dockerfile リファレンス </reference/builder>` をご覧ください。
 
 .. Next, create a bootstrap Gemfile which just loads Rails. It’ll be overwritten in a moment by rails new.
 

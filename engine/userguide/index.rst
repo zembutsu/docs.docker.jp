@@ -8,7 +8,7 @@ Docker ユーザ・ガイドへようこそ
 
 .. In the Introduction you got a taste of what Docker is and how it works. This guide takes you through the fundamentals of using Docker and integrating it into your environment. You’ll learn how to use Docker to:
 
-:doc:`イントロダクション（はじめに） </engine/misc>` で は Docker とは何か、Docker がどのように動くのかを見てきました。こちらのガイドは、Docker 利用の基礎を通して、皆さんの環境に取り込むことを目指します。次のような Docker の使い方を学びます：
+:doc:`イントロダクション（はじめに） </engine/misc/index>` で は Docker とは何か、Docker がどのように動くのかを見てきました。こちらのガイドは、Docker 利用の基礎を通して、皆さんの環境に取り込むことを目指します。次のような Docker の使い方を学びます：
 
 .. 
     Dockerize your applications.

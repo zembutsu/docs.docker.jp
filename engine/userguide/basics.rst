@@ -113,7 +113,7 @@ Docker を他のホスト・ポートや Unix ソケットに接続
     tcp://host:2375/path -> TCP connection on host:2375 and prepend path to all requests
     unix://path/to/socket -> Unix socket located at path/to/socket
 
-* ``tcp://`` → ``127.0.0.1`` に TCP 越俗字、TLS 暗号化が有効であればポート ``2376`` を、通信がプレーンテキストの場合はポート ``2375`` を使います。
+* ``tcp://`` → ``127.0.0.1`` に TCP 接続時、TLS 暗号化が有効であればポート ``2376`` を、通信がプレーンテキストの場合はポート ``2375`` を使います。
 * ``tcp://host:2375`` → 対象ホスト:2375 に TCP 接続します。
 * ``tcp://host:2375/path`` → 対象ホスト:2375 に TCP 接続し、あらかじめリクエストのパスを追加します。
 * ``unix://path/to/socket`` → ``path/to/socket`` にある Unix ソケットに接続します。
@@ -175,7 +175,7 @@ Docker をデーモン・モードで起動する：
 .. Starting a long-running worker process
 
 長時間動作するワーカー・プロセスの開始
-=============================-----------
+======================================
 
 .. # Start a very useful long-running process
    $ JOB=$(docker run -d ubuntu /bin/sh -c "while true; do echo Hello world; sleep 1; done")

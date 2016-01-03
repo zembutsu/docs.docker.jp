@@ -28,7 +28,7 @@ Docker クライアントについて学ぶ
 
 .. If you didn’t realize it yet, you’ve been using the Docker client each time you typed docker in your Bash terminal. The client is a simple command line client also known as a command-line interface (CLI). Each action you can take with the client is a command and each command can take a series of flags and arguments.
 
-気が付いていないかもしれませんが、Bash ターミナル上で毎回``docker`` と入力することで、Docker クライアントを使っていました。クライアントとはシンプルなコマンドライン・クライアントであり、コマンドライン・インターフェース (CLI) とも呼びます。クライアントを使った各種の動作にはコマンド（命令）を使います。各コマンドには一連のフラグや引数を持ちます。
+気が付いていないかもしれませんが、Bash ターミナル上で毎回 ``docker`` と入力することで、Docker クライアントを使っていました。クライアントとはシンプルなコマンドライン・クライアントであり、コマンドライン・インターフェース (CLI) とも呼びます。クライアントを使った各種の動作にはコマンド（命令）を使います。各コマンドには一連のフラグや引数を持ちます。
 
 .. code-block:: bash
 
@@ -234,7 +234,7 @@ Python アプリケーションが動いています！
 
 .. Using the docker ps command to return the mapped port is a bit clumsy so Docker has a useful shortcut we can use: docker port. To use docker port we specify the ID or name of our container and then the port for which we need the corresponding public-facing port.
 
-``docker ps`` コマンドを使い、割り当てたポートを確認するのは、少々面倒です。そこで、 Docker の``docker port`` という便利なソートカットを使います。``docker port`` でコンテナ ID や名前を指定すると、公開ポートに割り当てられているポート番号が分かります。
+``docker ps`` コマンドを使い、割り当てたポートを確認するのは、少々面倒です。そこで、 Docker の ``docker port`` という便利なソートカットを使います。``docker port`` でコンテナ ID や名前を指定すると、公開ポートに割り当てられているポート番号が分かります。
 
 .. code-block:: bash
 
@@ -299,7 +299,7 @@ Python アプリケーションが動いています！
 
 .. You can see a sample of that JSON output.
 
-　実行すると、次のような JSON 出力例を表示します。
+実行すると、次のような JSON 出力例を表示します。
 
 .. code-block:: json
 

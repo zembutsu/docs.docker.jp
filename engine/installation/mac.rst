@@ -123,7 +123,7 @@ VirtualBox を実行中の場合、インストーラを実行する前に停止
 
 * Docker ツールのバイナリを ``/usr/local/bin`` にインストールします。
 * バイナリを全てのユーザが使えるようにします。
-* VirtualBox をインストールします。あるいは、インストルール済みであればバージョンアップを行います。
+* VirtualBox をインストールします。あるいは、インストール済みであればバージョンアップを行います。
 
 ..    Change these defaults by pressing “Customize” or “Change Install Location.”
 
@@ -340,6 +340,8 @@ Docker Quickstart Terminal から使う
 ..    Run the hello-world container to verify your setup.
 
 5. ``hello-world`` コンテナを実行し、セットアップが正常かどうか確認します。
+
+.. code-block:: bash
 
    $ docker run hello-world
 

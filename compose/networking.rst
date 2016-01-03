@@ -22,7 +22,7 @@ Compose はアプリケーションに対して、デフォルト・ :doc:`ネ�
 
 .. note::
 
-   アプリケーション用のネットワークには、"プロジェクト名" と同じ名前が割り当てられます。プロジェクト李名とは、作業している基準の（ベースとなる）ディレクトリ名です。変更方法は :doc:`コマンドラインの概要 </compose/reference/docker-compose>` をご覧ください。
+   アプリケーション用のネットワークには、"プロジェクト名" と同じ名前が割り当てられます。プロジェクト名とは、作業している基準の（ベースとなる）ディレクトリ名です。変更方法は :doc:`コマンドラインの概要 </compose/reference/docker-compose>` をご覧ください。
 
 .. For example, suppose your app is in a directory called myapp, and your docker-compose.yml looks like this:
 

@@ -106,4 +106,4 @@ Rackspace はサーバを grub の ``menu.lst`` からブートします。し�
 
 .. Now you can finish with the Ubuntu instructions.
 
-終わったら doc:`Ubuntu </engine/installation/ubuntulinux>` の手順に進みます。
+終わったら :doc:`Ubuntu </engine/installation/ubuntulinux>` の手順に進みます。

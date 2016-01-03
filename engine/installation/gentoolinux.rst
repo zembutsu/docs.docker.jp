@@ -23,9 +23,7 @@ Gentoo Linux に Docker をインストールするには、２つの方法が�
 公式の方法
 ====================
 
-.. The first and recommended way if you are looking for a stable
-experience is to use the official app-emulation/docker package directly
-from the tree.
+.. The first and recommended way if you are looking for a stable experience is to use the official app-emulation/docker package directly from the tree.
 
 １つめの、そして安定版を使いたい場合にお薦めの方法が、公式の ``app-emulation/docker`` パッケージ・ディレクトリのツリーにあるものです。
 

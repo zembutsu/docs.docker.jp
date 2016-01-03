@@ -151,7 +151,7 @@ yum でインストール
 
 ..    Run the Docker installation script.
 
-3. DOcker インストール用スクリプトを実行します。
+3. Docker インストール用スクリプトを実行します。
 
 .. code-block:: bash
 

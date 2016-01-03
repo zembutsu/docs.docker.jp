@@ -168,7 +168,7 @@ Mac OS X のバイナリはクライアントだけです。docker デーモン�
 
 .. To download a specific version for Mac OS X, use the following URL patterns:
 
-Mac OX X 用の特定バージョンをダウンロードするには、次の URL パターンを使います。
+Mac OS X 用の特定バージョンをダウンロードするには、次の URL パターンを使います。
 
 .. code-block:: bash
 

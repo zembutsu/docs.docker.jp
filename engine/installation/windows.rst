@@ -167,7 +167,7 @@ VirtualBox を実行中の場合、インストーラを実行する前に停止
     adds desktop icons for the Docker Quickstart Terminal and Kitematic
 
 * Docker ツールのバイナリを ``C:\Program Files\Docker Toolbox`` にインストールします。
-* VirtualBox をインストールします。あるいは、インストルール済みであればバージョンアップを行います。
+* VirtualBox をインストールします。あるいは、インストール済みであればバージョンアップを行います。
 * プログラムのショートカットに Docker Inc. フォルダを追加します。
 * 環境変数 ``PATH`` を更新します。
 * Docker Quickstart Terminal と Kitematic のアイコンをデスクトップに追加します。
@@ -376,6 +376,8 @@ Windows コマンドプロンプト(cmd.exe)でDockerを使う
 ..    Run the hello-world container to verify your setup.
 
 7. ``hello-world`` コンテナを実行し、セットアップが正常かどうか確認します。
+
+.. code-block:: bash
 
    C:\Users\mary> docker run hello-world
 

@@ -92,7 +92,7 @@ Docker は、自分自身が Docker Hub のサービスに ``docker search`` 、
 
 これで、この入手したイメージをから、コンテナを実行可能です。
 
-... Specific Version or Latest
+.. Specific Version or Latest
 
 バージョンの指定と最新版
 ------------------------------

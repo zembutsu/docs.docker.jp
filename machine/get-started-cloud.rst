@@ -50,13 +50,13 @@ Docker Machine をクラウド・プロバイダで始めるには
 
 .. For convenience, docker-machine will use sensible defaults for choosing settings such as the image that the VPS is based on, but they can also be overridden using their respective flags (e.g. --digitalocean-image). This is useful if, for instance, you want to create a nice large instance with a lot of memory and CPUs (by default docker-machine creates a small VPS). For a full list of the flags/settings available and their defaults, see the output of docker-machine create -h.
 
-便利な機能として、``docker-machine`` には仮想マシンの作成s時、対象となるイメージに応じて、適切な設定となるようデフォルト値を持っています。それだけではなく、必要があればフラグを指定し、その値の上書きも可能です（例： ``--digitalocean-image`` ）。これは扱いやすいもので、例えば、多くのメモリや CPU を必要とする大きなインスタンスを作成できます（デフォルトの ``docker-machine`` が作成するのは、小さな仮想マシンです ）。利用可能なフラグや値、デフォルト設定については ``docker-machine create -h`` の出力をご確認ください。
+便利な機能として、``docker-machine`` には仮想マシンの作成時、対象となるイメージに応じて、適切な設定となるようデフォルト値を持っています。それだけではなく、必要があればフラグを指定し、その値の上書きも可能です（例： ``--digitalocean-image`` ）。これは扱いやすいもので、例えば、多くのメモリや CPU を必要とする大きなインスタンスを作成できます（デフォルトの ``docker-machine`` が作成するのは、小さな仮想マシンです ）。利用可能なフラグや値、デフォルト設定については ``docker-machine create -h`` の出力をご確認ください。
 
 .. When the creation of a host is initiated, a unique SSH key for accessing the host (initially for provisioning, then directly later if the user runs the docker-machine ssh command) will be created automatically and stored in the client’s directory in ~/.docker/machines. After the creation of the SSH key, Docker will be installed on the remote machine and the daemon will be configured to accept remote connections over TCP using TLS for authentication. Once this is finished, the host is ready for connection.
 
-ホスト作成時の初期設定では、ホストに接続するためのユニークな SSH 鍵（初期のプロビジョン具だけではなく、後で ``docker-machine ssh` コマンドでも使用）が自動的に作成され、クライアントの ``/.docker/machine`` ディレクトリに保管されます。SSH 鍵を作成後、Docker はリモートマシン上にデーモンをインストールし、リモートマシンとは TCP 上の TLS を使った通信ができるよう、自動的に設定します。これが終わればホストとの通信準備が整います。
+ホスト作成時の初期設定では、ホストに接続するためのユニークな SSH 鍵（初期のプロビジョニングだけではなく、後で ``docker-machine ssh`` コマンドでも使用）が自動的に作成され、クライアントの ``/.docker/machine`` ディレクトリに保管されます。SSH 鍵を作成後、Docker はリモートマシン上にデーモンをインストールし、リモートマシンとは TCP 上の TLS を使った通信ができるよう、自動的に設定します。これが終わればホストとの通信準備が整います。
 
-To prepare the Docker client to send commands to the remote server we have created, we can use the subshell method again:
+.. To prepare the Docker client to send commands to the remote server we have created, we can use the subshell method again:
 
 Docker クライアントから作成したリモートのサーバに対してコマンドを送るには、シェル上で再びコマンドを実行します。
 
@@ -92,7 +92,7 @@ Docker クライアントから作成したリモートのサーバに対して�
 
 .. You can add a host to Docker which only has a URL and no driver. Therefore it can be used an alias for an existing host so you don’t have to type out the URL every time you run a Docker command.
 
-Docker ホストの追加は、ドライバを使わず URL でも可能です。URL で追加すると、移行は追加したホストに対するエイリアス（別名）として利用できますので、毎回 Docker コマンドで URL を指定する必要がなくなります。
+Docker ホストの追加は、ドライバを使わず URL でも可能です。URL で追加すると、以降は追加したホストに対するエイリアス（別名）として利用できますので、毎回 Docker コマンドで URL を指定する必要がなくなります。
 
 .. code-block:: bash
 
