@@ -267,8 +267,6 @@ Integrate with Third-party Tools
    engine/articles/puppet.rst
    engine/articles/using_supervisord.rst
 
-
-
 Docker storage drivers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -283,8 +281,7 @@ Docker storage drivers
    engine/userguide/storagedriver/btrfs-driver.rst
    engine/userguide/storagedriver/device-mapper-driver.rst
    engine/userguide/storagedriver/overlayfs-driver.rst
-
-
+   engine/userguide/storagedriver/zfs-driver.rst
 
 Networking
 ----------------------------------------
