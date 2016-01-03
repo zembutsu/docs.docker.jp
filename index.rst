@@ -292,6 +292,7 @@ Networking
 
    engine/userguide/networking/dockernetworks.rst
    engine/userguide/networking/work-with-networks.rst
+   engine/userguide/networking/get-started-overlay.rst
 
 
 Docker Engine Commands

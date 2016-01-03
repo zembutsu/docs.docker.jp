@@ -1,3 +1,4 @@
+.. -*- coding: utf-8 -*-
 .. http://docs.docker.com/engine/userguide/networking/dockernetworks/
 .. doc version: 1.9
 .. check date: 2015/11/25
