@@ -291,6 +291,7 @@ Networking
    :caption: ネットワーク機能
 
    engine/userguide/networking/dockernetworks.rst
+   engine/userguide/networking/work-with-networks.rst
 
 
 Docker Engine Commands

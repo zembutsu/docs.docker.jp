@@ -120,7 +120,7 @@ OverlayFS は２つのレイヤだけ扱います。つまり、複数にレイ�
 
 ..This container exists on-disk in the Docker host’s filesystem under /var/lib/docker/overlay/73de7176c223.... If you inspect this directory using the ls -l command you find the following file and directories.
 
-このコンテナは、Docker ホストのファイルシステムにある ``/var/lib/docker/overlay/73de7176c223... `` 以下のディスク上に存在しています。もしディレクトリに対して ``ls -l`` コマンドで調べてみると、次のようにファイルとディレクトリが見えるでしょう。
+このコンテナは、Docker ホストのファイルシステムにある ``/var/lib/docker/overlay/73de7176c223...`` 以下のディスク上に存在しています。もしディレクトリに対して ``ls -l`` コマンドで調べてみると、次のようにファイルとディレクトリが見えるでしょう。
 
 .. code-block:: bash
 
