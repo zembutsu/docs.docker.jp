@@ -57,7 +57,7 @@ Docker Machine をローカル VM で始めるには
 
 .. Next, as noted in the output of the docker-machine create command, we have to tell Docker to talk to that machine. You can do this with the docker-machine env command. For example,
 
-次に、 ``docker-machine create`` コマンドの出力に注目します。その仮想マシンに対して Docker が通信できるようにしなくてはいけません。これを ``docker-machine env`` コマンドによって行います。例えば,次のように実行します。
+次に、 ``docker-machine create`` コマンドの出力に注目します。その仮想マシンに対して Docker が通信できるようにしなくてはいけません。これを ``docker-machine env`` コマンドによって行います。例えば、次のように実行します。
 
 .. code-block:: bash
 
@@ -88,7 +88,7 @@ Docker Machine をローカル VM で始めるには
    # Run this command to configure your shell:
    # eval "$(docker-machine env dev)"
 
-..You can now run Docker commands on this host:
+.. You can now run Docker commands on this host:
 
 これで対象となるホスト上で Docker コマンドを実行できます。
 
