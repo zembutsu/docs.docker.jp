@@ -10,7 +10,7 @@ Docker Machine
 
 .. Machine lets you create Docker hosts on your computer, on cloud providers, and inside your own data center. It automatically creates hosts, installs Docker on them, then configures the docker client to talk to them. A “machine” is the combination of a Docker host and a configured client.
 
-Machine （マシン）は自分のコンピュータ上やクラウド・プロバイダに Docker ホスト（Dockerの動作環境）を作成します。自動的にホストを作成し、そこに Docker をインストールし、 ``docker`` クライアントがホストと通信できるように調整します。この "machine" は、Docker ホストとクライアントを連結する設定をします。
+Machine （マシン）を使えば、自分のコンピュータ上、クラウド・プロバイダ上、またはあなたのデータセンター上に Docker ホスト（Dockerの動作環境）を作ることができます。自動的にホストを作成し、そこに Docker をインストールし、 ``docker`` クライアントがそのホストと通信できるように調整します。ひとつの "machine" は、Docker ホストと、そのホスト用に設定されたクライアントで構成されています。
 
 .. Once you create one or more Docker hosts, Docker Machine supplies a number of commands for managing them. Using these commands you can
 
@@ -20,9 +20,9 @@ Machine （マシン）は自分のコンピュータ上やクラウド・プロ
     upgrade the Docker client and daemon
     configure a Docker client to talk to your host
 
-* ホストに対する start（開始）、inspect（調査）、stop（停止）、restart（再起動）
+* Docker ホストに対する start（開始）、inspect（調査）、stop（停止）、restart（再起動）
 * Docker クライアントとデーモンの upgrade（更新）
-* Docker クライアントがホストと津心できるよう configure（設定）
+* Docker クライアントがホストと通信できるよう configure（設定）
 
 .. Looking for the installation docs?
 
@@ -53,11 +53,11 @@ Docker は Linux 上で動作するため、Docker Machine がプロビジョン
 
 .. For each machine you create, the Docker host address is the IP address of the Linux VM. This address is assigned by the docker-machine create subcommand. You use the docker-machine ls command to list the machines you have created. The docker-machine ip <machine-name> command returns a specific host’s IP address.
 
-作成した各マシンにおいて、Docker ホストのアドレスとは、Linux 仮想マシンの IP アドレスです。この IP アドレスは ``docker-machine create`` サブコマンド実行時に割り当てられます。``docker-machine ls`` コマンドは、作成したマシンの一覧を表示します。``docker-machine ip <マシン名>`` コマンドは、指定したホストの IP アドレスを返します。
+作成した各マシンにおいて、Docker ホストのアドレスは、その Linux 仮想マシンの IP アドレスです。この IP アドレスは ``docker-machine create`` サブコマンド実行時に割り当てられます。``docker-machine ls`` コマンドは、作成したマシンの一覧を表示します。``docker-machine ip <マシン名>`` コマンドは、指定したホストの IP アドレスを返します。
 
 .. Before you can run a docker command on a machine, you configure your command-line to point to that machine. The docker-machine env <machine-name> subcommand outputs the configuration command you should use. When you run a container on the Docker host, the container’s ports map to ports on the VM.
 
-マシン上で ``docker`` コマンドを実行しなくても、自分のコマンドライン上で対象マシンを指し示せます。 ``docker-machine env <マシン名>`` サブコマンドの出力結果が、使うべきコマンドです。Docker ホスト上でコンテナを実行すると、コンテナのポートが仮想マシン上のポートに割り当てられます。
+仮想マシン上で ``docker`` コマンドを実行しなくても、手元のコマンドラインで対象マシン上の docker を操作するよう設定することができます。 ``docker-machine env <マシン名>`` サブコマンドの出力結果が、使うべきコマンドです。Docker ホスト上でコンテナを実行すると、コンテナのポートが仮想マシン上のポートに割り当てられます。
 
 .. For a complete list of the docker-machine subcommands, see the Docker Machine subcommand reference.
 
@@ -70,7 +70,7 @@ Docker は Linux 上で動作するため、Docker Machine がプロビジョン
 
 .. Docker Machine is still in its infancy and under active development. If you need help, would like to contribute, or simply want to talk about the project with like-minded individuals, we have a number of open channels for communication.
 
-Docker Machine は、初期段階であり活発に開発が進んでいます。ヘルプが必要な場合、貢献したい場合、あるいはプロジェクトの同志と対話したい場合、私たちは多くのコミュニケーションのためのチャンネルを開いています。
+Docker Machine は、初期段階であり活発に開発が進んでいます。ヘルプが必要な場合、貢献したい場合、あるいはプロジェクトの同志と対話したい場合、コミュニケーションがとれるよう、私たちは多くのオープンなチャンネルを用意しています。
 
 ..    To report bugs or file feature requests: please use the issue tracker on Github.
     To talk about the project with people in real time: please join the #docker-machine channel on IRC.

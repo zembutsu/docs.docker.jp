@@ -85,6 +85,6 @@ Boot2Docker から Docker Machine への移行
      - ー
      - 利用不可
    * - upgrade
-     - uppgrade
+     - upgrade
      - マシン上の Docker クライアントを最新安定版に更新
 

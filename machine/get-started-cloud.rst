@@ -10,11 +10,11 @@ Docker Machine をクラウド・プロバイダで始めるには
 
 .. Creating a local virtual machine running Docker is useful and fun, but it is not the only thing Docker Machine is capable of. Docker Machine supports several “drivers” which let you use the same interface to create hosts on many different cloud or local virtualization platforms. This is accomplished by using the docker-machine create command with the --driver flag. Here we will be demonstrating the Digital Ocean driver (called digitalocean), but there are drivers included for several providers including Amazon Web Services, Google Compute Engine, and Microsoft Azure.
 
-ローカルの仮想環境を作り Docker を実行するのは、使いやすく面白いものです。しかし、Docker Machine には、複数の "ドライバ" をサポートする能力があります。そのため、同じインターフェースを使いながらも、多くのクラウドまたはローカルの仮想化プラットフォームで Docker を実行するホストを作れます。これには ``docker-machine create`` コマンドで ``--driver`` フラグを指定するだけです。ここでは例として `Digital Ocean <https://digitalocean.com/>`_ ドライバ（ ``digitalocean`` と呼びます ）を扱います。しかし、 Amazon Web Services、Google Compute Engine、Microsoft Azure をはじめとしたドライバがあります。
+ローカルの仮想環境を作り Docker を実行するのは、使いやすく面白いものです。しかし、Docker Machine ができることはそれだけではありません。Docker Machine には、複数の "ドライバ" をサポートしています。そのため、同じインターフェースを使いながらも、多くのクラウドまたはローカルの仮想化プラットフォームで Docker を実行するホストを作れます。これには ``docker-machine create`` コマンドで ``--driver`` フラグを指定するだけです。ここでは例として `Digital Ocean <https://digitalocean.com/>`_ ドライバ（ ``digitalocean`` と呼びます ）を扱います。しかし、 Amazon Web Services、Google Compute Engine、Microsoft Azure をはじめとしたドライバがあります。
 
 .. Usually it is required that you pass account verification credentials for these providers as flags to docker-machine create. These flags are unique for each driver. For instance, to pass a Digital Ocean access token you use the --digitalocean-access-token flag.
 
-通常、``docker-machine`` でこれらのプロバイダを利用する時、アカウント認証用の証明書（credentaial）が必要です。このフラグは、ドライバ毎に指定方法が異なります。例えば、DigitalOcean のアクセス・トークンを使うには、``--digitalocean-access-token`` フラグを使います。
+通常、``docker-machine`` でこれらのプロバイダを利用する時、アカウント認証用の証明書（credentaials）が必要です。このフラグは、ドライバ毎に指定方法が異なります。例えば、DigitalOcean のアクセス・トークンを使うには、``--digitalocean-access-token`` フラグを使います。
 
 .. Let’s take a look at how to do this.
 
@@ -50,11 +50,11 @@ Docker Machine をクラウド・プロバイダで始めるには
 
 .. For convenience, docker-machine will use sensible defaults for choosing settings such as the image that the VPS is based on, but they can also be overridden using their respective flags (e.g. --digitalocean-image). This is useful if, for instance, you want to create a nice large instance with a lot of memory and CPUs (by default docker-machine creates a small VPS). For a full list of the flags/settings available and their defaults, see the output of docker-machine create -h.
 
-便利な機能として、``docker-machine`` には仮想マシンの作成時、対象となるイメージに応じて、適切な設定となるようデフォルト値を持っています。それだけではなく、必要があればフラグを指定し、その値の上書きも可能です（例： ``--digitalocean-image`` ）。これは扱いやすいもので、例えば、多くのメモリや CPU を必要とする大きなインスタンスを作成できます（デフォルトの ``docker-machine`` が作成するのは、小さな仮想マシンです ）。利用可能なフラグや値、デフォルト設定については ``docker-machine create -h`` の出力をご確認ください。
+便利な機能として、``docker-machine`` は仮想マシンの起動時に選択可能な設定、たとえばサーバイメージなどについては、実用的なデフォルト値を使います。とはいえ特定のフラグを使えば、その値の上書きは可能です（例： ``--digitalocean-image`` ）。これは便利なもので、例えば、多くのメモリや CPU を必要とする大きなインスタンスを作成できます（デフォルトの ``docker-machine`` が作成するのは、小さな仮想マシンです）。利用可能なフラグや値、デフォルト設定については ``docker-machine create -h`` の出力をご確認ください。
 
 .. When the creation of a host is initiated, a unique SSH key for accessing the host (initially for provisioning, then directly later if the user runs the docker-machine ssh command) will be created automatically and stored in the client’s directory in ~/.docker/machines. After the creation of the SSH key, Docker will be installed on the remote machine and the daemon will be configured to accept remote connections over TCP using TLS for authentication. Once this is finished, the host is ready for connection.
 
-ホスト作成時の初期設定では、ホストに接続するためのユニークな SSH 鍵（初期のプロビジョニングだけではなく、後で ``docker-machine ssh`` コマンドでも使用）が自動的に作成され、クライアントの ``/.docker/machine`` ディレクトリに保管されます。SSH 鍵を作成後、Docker はリモートマシン上にデーモンをインストールし、リモートマシンとは TCP 上の TLS を使った通信ができるよう、自動的に設定します。これが終わればホストとの通信準備が整います。
+ホスト作成が始まるとまず、ホストに接続するためのユニークな SSH 鍵（初期のプロビジョングだけではなく、後の ``docker-machine ssh`` コマンドでも使用）が自動的に作成され、クライアントの ``/.docker/machine`` ディレクトリに保管されます。SSH 鍵を作成後、Docker がリモートマシン上にインストールされ、Docker デーモンは TLS を認証に使った TCP によるリモートからの接続を受け付けるよう、自動的に設定されます。これが終わればホストとの通信準備が整います。
 
 .. To prepare the Docker client to send commands to the remote server we have created, we can use the subshell method again:
 
@@ -81,7 +81,7 @@ Docker クライアントから作成したリモートのサーバに対して�
 
 .. code-block:: bash
 
-    $ docker-machine rm dev staging
+   $ docker-machine rm dev staging
    $ docker-machine ls
    NAME      ACTIVE   DRIVER       STATE     URL
 
@@ -92,7 +92,7 @@ Docker クライアントから作成したリモートのサーバに対して�
 
 .. You can add a host to Docker which only has a URL and no driver. Therefore it can be used an alias for an existing host so you don’t have to type out the URL every time you run a Docker command.
 
-Docker ホストの追加は、ドライバを使わず URL でも可能です。URL で追加すると、以降は追加したホストに対するエイリアス（別名）として利用できますので、毎回 Docker コマンドで URL を指定する必要がなくなります。
+Docker ホストの追加は、ドライバを使わず URL でも可能です。URL で追加すれば、それ以降は追加したホストに対するエイリアス（別名）として利用できますので、毎回 Docker コマンドで URL を指定する必要がなくなります。
 
 .. code-block:: bash
 

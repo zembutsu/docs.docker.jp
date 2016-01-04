@@ -27,9 +27,9 @@ Machine を直接インストール
 
 1. :doc:`Docker エンジン </engine/installation/index>` をインストールします。
 
-..    Download the archive containing the Docker Machine binaries and extract them to your PATH.
+..    Download the Docker Machine binary and extract it to your PATH.
 
-2. Docker Machine のバイナリを含むアーカイブをダウンロードし、PATH に展開します。
+2. Docker Machine のバイナリをダウンロードし、PATH に展開します。
 
 ..    Linux:
 
@@ -37,10 +37,9 @@ Linux：
 
 .. code-block:: bash
 
-   $ curl -L https://github.com/docker/machine/releases/download/v0.5.0/docker-machine_linux-amd64.zip >machine.zip && \
-        unzip machine.zip && \
-        rm machine.zip && \
-        mv docker-machine* /usr/local/bin
+   $ curl -L https://github.com/docker/machine/releases/download/v0.5.5/docker-machine_linux-amd64 >/usr/local/bin/docker-machine && \
+        chmod +x /usr/local/bin/docker-machine
+
 
 ..    OSX:
 
@@ -48,10 +47,8 @@ OS X：
 
 .. code-block:: bash
 
-   $ curl -L https://github.com/docker/machine/releases/download/v0.5.0/docker-machine_darwin-amd64.zip >machine.zip && \
-        unzip machine.zip && \
-        rm machine.zip && \
-        mv docker-machine* /usr/local/bin
+   $ curl -L https://github.com/docker/machine/releases/download/v0.5.5/docker-machine_darwin-amd64 >/usr/local/bin/docker-machine && \
+        chmod +x /usr/local/bin/docker-machine
 
 
 ..    Windows (using Git Bash):
@@ -60,10 +57,10 @@ Windows（Git Bash を使う場合）：
 
 .. code-block:: bash
 
-   $ curl -L https://github.com/docker/machine/releases/download/v0.5.0/docker-machine_windows-amd64.zip >machine.zip && \
-        unzip machine.zip && \
-        rm machine.zip && \
-        mv docker-machine* /usr/local/bin
+   $ if [[ ! -d "$HOME/bin" ]]; then mkdir -p "$HOME/bin"; fi && \
+        curl -L https://github.com/docker/machine/releases/download/v0.5.5/docker-machine_windows-amd64.exe > "$HOME/bin/docker-machine.exe" && \
+        chmod +x "$HOME/bin/docker-machine.exe"
+
 
 ..    Check the installation by displaying the Machine version:
 
@@ -72,7 +69,7 @@ Windows（Git Bash を使う場合）：
 .. code-block:: bash
 
    $ docker-machine -v
-   machine version 0.5.0 (3e06852)
+   docker-machine version 0.5.5, build 02c4254
 
 .. Installing bash completion scripts
 
