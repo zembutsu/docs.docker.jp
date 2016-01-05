@@ -140,7 +140,7 @@ Linux カーネルのキャパビリティ
 
 ..    log management will also typically be handed to Docker, or by third-party services like Loggly or Splunk;
 
-* ログ管理もまた DOcker の典型的な処理であり、あるいはサードパーティー製の Loggly や Splunk を使うでしょう。
+* ログ管理もまた Docker の典型的な処理であり、あるいはサードパーティー製の Loggly や Splunk を使うでしょう。
 
 ..    hardware management is irrelevant, meaning that you never need to run udevd or equivalent daemons within containers;
 

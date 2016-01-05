@@ -169,7 +169,7 @@ Docker は **ネットワーク・ドライバ** を使うことで、コンテ�
 
 .. While you can disconnect a container from a network, you cannot remove the builtin bridge network named bridge. Networks are natural ways to isolate containers from other containers or other networks. So, as you get more experienced with Docker, you’ll want to create your own networks.
 
-コンテナからネットワークから切断しようとしても、``bridge`` という名前で組み込まれている``bridge`` ネットワークの削除はできません。ネットワークとはコンテナを他のコンテナやネットワークを隔離する一般的な手法です。そのため、Docker を使い込み、自分自身でネットワークの作成も可能です。
+コンテナからネットワークから切断しようとしても、 ``bridge`` という名前で組み込まれている ``bridge`` ネットワークの削除はできません。ネットワークとはコンテナを他のコンテナやネットワークを隔離する一般的な手法です。そのため、Docker を使い込み、自分自身でネットワークの作成も可能です。
 
 .. Create your own bridge network
 

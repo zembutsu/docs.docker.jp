@@ -58,7 +58,7 @@ Docker は ``Dockerfile`` の命令を読み込み、自動的にイメージを
 
 .. In order to reduce complexity, dependencies, file sizes, and build times, you should avoid installing extra or unnecessary packages just because they might be “nice to have.” For example, you don’t need to include a text editor in a database image.
 
-複雑さ、依存関係、ファイルサイズ、構築階数をそれぞれ減らすために、余分ないし不必要な「入れた方ほうが良いだろう」というパッケージは、インストールを避けるべきです。たとえば、デーテベース・イメージであればテキストエディタは不要でしょう。
+複雑さ、依存関係、ファイルサイズ、構築階数をそれぞれ減らすために、余分ないし不必要な「入れた方ほうが良いだろう」というパッケージは、インストールを避けるべきです。たとえば、データベース・イメージであればテキストエディタは不要でしょう。
 
 .. Run only one process per container
 
@@ -276,7 +276,7 @@ CMD
 
 .. In most other cases, CMD should be given an interactive shell (bash, python, perl, etc), for example, CMD ["perl", "-de0"], CMD ["python"], or CMD [“php”, “-a”]. Using this form means that when you execute something like docker run -it python, you’ll get dropped into a usable shell, ready to go. CMD should rarely be used in the manner of CMD [“param”, “param”] in conjunction with ENTRYPOINT, unless you and your expected users are already quite familiar with how ENTRYPOINT works.
 
-大部分の他のケースでは、 ``CMD`` はインタラクティブなシェル（bash、python、perl 等）で使われます。たとえば、 ``CMD ["perl", "-de0"]`` 、 ``CMD ["python"]`` 、 `` CMD [“php”, “-a”]`` です。この利用形式が意味するのは、 ``docker run -it python`` のように実行すると、それを使いやすいシェル上に落とし込み、すぐに使えるようにします。 あなたとあなたの想定ユーザが ``ENTRYPOINT`` の動作になれていない限り、``CMD`` を``ENTRYPOINT`` と一緒に ``CMD [“パラメータ”, “パラメータ”]`` の形式で使うべきではないでしょう。
+大部分の他のケースでは、 ``CMD`` はインタラクティブなシェル（bash、python、perl 等）で使われます。たとえば、 ``CMD ["perl", "-de0"]`` 、 ``CMD ["python"]`` 、 ``CMD [“php”, “-a”]`` です。この利用形式が意味するのは、 ``docker run -it python`` のように実行すると、それを使いやすいシェル上に落とし込み、すぐに使えるようにします。 あなたとあなたの想定ユーザが ``ENTRYPOINT`` の動作になれていない限り、``CMD`` を``ENTRYPOINT`` と一緒に ``CMD [“パラメータ”, “パラメータ”]`` の形式で使うべきではないでしょう。
 
 .. EXPOSE
 
@@ -479,7 +479,7 @@ ENTRYPOINT
 
    $ docker run postgres
 
-Or, it can be used to run Postgres and pass parameters to the server:
+.. Or, it can be used to run Postgres and pass parameters to the server:
 
 あるいは、PostgreSQL 実行時、サーバに対してパラメータを渡せます。
 

@@ -144,7 +144,7 @@ Docker の特長の１つに、多くの方によって作られた、様々な�
 
 .. You can also search for images on the command line using the docker search command. Suppose your team wants an image with Ruby and Sinatra installed on which to do our web application development. You can search for a suitable image by using the docker search command to find all the images that contain the term sinatra.
 
-イメージの検索のためには、コマンドライン上で ``docker search`` コマンドを使う方法もあります。チームでウェブ・アプリケーションの開発のために Ruby と Sinatra をインストールしたイメージが必要と想定します。``docker search`` コマンドを使うことで、文字列 ``sinatora`` を含む全てのイメージを表示して、適切なイメージを探せます。
+イメージの検索のためには、コマンドライン上で ``docker search`` コマンドを使う方法もあります。チームでウェブ・アプリケーションの開発のために Ruby と Sinatra をインストールしたイメージが必要と想定します。``docker search`` コマンドを使うことで、文字列 ``sinatra`` を含む全てのイメージを表示して、適切なイメージを探せます。
 
 .. code-block:: bash
 
@@ -178,7 +178,7 @@ Docker の特長の１つに、多くの方によって作られた、様々な�
 
 .. You’ve identified a suitable image, training/sinatra, and now you can download it using the docker pull command.
 
-　適切なイメージ ``training/sinatra`` を確認したら、``docker pull`` コマンドを使ってダウンロードできます。
+適切なイメージ ``training/sinatra`` を確認したら、``docker pull`` コマンドを使ってダウンロードできます。
 
 .. code-block:: bash
 
@@ -216,7 +216,7 @@ Docker の特長の１つに、多くの方によって作られた、様々な�
 
 .. To update an image you first need to create a container from the image you’d like to update.
 
-　イメージを更新するには、まず更新したいイメージからコンテナを作成する必要があります。
+イメージを更新するには、まず更新したいイメージからコンテナを作成する必要があります。
 
 .. code-block:: bash
 
@@ -269,7 +269,7 @@ Docker の特長の１つに、多くの方によって作られた、様々な�
 
 .. You can then look at our new ouruser/sinatra image using the docker images command.
 
-あとは ``docker images`` コマンドを使うと、作成した新しいイメージ ``ouruser/sinatora`` が見えます。
+あとは ``docker images`` コマンドを使うと、作成した新しいイメージ ``ouruser/sinatra`` が見えます。
 
 .. code-block:: bash
 
@@ -319,7 +319,7 @@ Windows で Docker Machine を使っている場合、ホスト・ディレク�
 
 .. Each instruction creates a new layer of the image. Try a simple example now for building your own Sinatra image for your fictitious development team.
 
-各々の命令毎に新しいイメージ層を作成します。簡単な例として、架空の開発チーム向けの Sinatora イメージを構築しましょう。
+各々の命令毎に新しいイメージ層を作成します。簡単な例として、架空の開発チーム向けの Sinatra イメージを構築しましょう。
 
 .. code-block:: bash
 
@@ -548,11 +548,11 @@ Windows で Docker Machine を使っている場合、ホスト・ディレク�
 
 .. note::
 
-   ストレージ・ドライバに関わらず 127 層以上のイメージは作成できません。この制限が幅広く適用されるのは、はイメージ全体のサイズが大きくならないよう最適化するためです。
+   ストレージ・ドライバに関わらず 127 層以上のイメージは作成できません。この制限が幅広く適用されるのは、イメージ全体のサイズが大きくならないよう最適化するためです。
 
-..You can then create a container from our new image.
+..   You can then create a container from our new image.
 
-　新しいイメージからコンテナを作成できます。
+新しいイメージからコンテナを作成できます。
 
 .. code-block:: bash
 

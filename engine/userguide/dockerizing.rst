@@ -208,7 +208,7 @@ Hello world のデーモン化（常駐）
 
 .. We can also see the image we used to build it, ubuntu:14.04, the command it is running, its status and an automatically assigned name, insane_babbage.
 
-また、構築時に用いたイメージは ``ubuntu:14.04``` であり、実行中のコマンドと、その状態、さらに自動的に割り当てられた名前が ``insane_babbage`` だと分かります。
+また、構築時に用いたイメージは ``ubuntu:14.04`` であり、実行中のコマンドと、その状態、さらに自動的に割り当てられた名前が ``insane_babbage`` だと分かります。
 
 .. Note: Docker automatically generates names for any containers started. We’ll see how to specify your own names a bit later.
 
