@@ -7,9 +7,9 @@
 
 .. _docker-default-bridge-network:
 
-========================================
+=========================================
 Docker デフォルト・ブリッジ・ネットワーク
-========================================
+=========================================
 
 .. With the introduction of the Docker networks feature, you can create your own user-defined networks. The Docker default bridge is created when you install Docker Engine. It is a bridge network and is also named bridge. The topics in this section are related to interacting with that default bridge network.
 
@@ -27,7 +27,7 @@ Docker ネットワーク機能の導入部では、自分自身で定義した�
 * :doc:`dockerlinks`
 * :doc:`binding`
 * :doc:`build-bridges`
-* :doc:`configure-dns`
+* :doc:`donfigure-dns`
 * :doc:`custom-docker0`
 * :doc:`ipv6`
 
