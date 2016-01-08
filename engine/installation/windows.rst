@@ -27,7 +27,7 @@ Docker を Docker Toolbox を使いインストールします。Docker Toolbox 
     a shell preconfigured for a Docker command-line environment
     Oracle VM VirtualBox
 
-* Docker Machine を動かす ``docker-machne`` バイナリ
+* Docker Machine を動かす ``docker-machine`` バイナリ
 * Docker エンジンを動かす ``docker`` バイナリ
 * Docker Compose を動かす ``docker-compose`` バイナリ
 * Docker GUI の Kitematic （カイトマティック）
