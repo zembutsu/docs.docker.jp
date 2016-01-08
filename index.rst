@@ -353,6 +353,20 @@ Docker Hub
    docker-hub/orgs.rst
    docker-hub/official_repos.rst
 
+Docker Registry
+----------------------------------------
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Docker Registry
+
+   registry/index.rst
+   registry/introduction.rst
+   registry/deploying.rst
+   registry/configuration.rst
+   registry/notifications.rst
+   registry/help.rst
+
 Command and API references
 ==============================
 

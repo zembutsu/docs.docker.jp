@@ -29,7 +29,7 @@ Docker Hub 入門
     Organizations: Create work groups to manage user access to image repositories.
     GitHub and Bitbucket Integration: Add the Hub and your Docker Images to your current workflows.
 
-* :doc:`イメージ・レポジトリ <repos.rst>` ：イメージを検索・管理・取得・送信します。イメージはコミュニティ、公式、あるいはプライベートの各イメージ・ライブラリにあります。
+* :doc:`イメージ・レポジトリ <repos>` ：イメージを検索・管理・取得・送信します。イメージはコミュニティ、公式、あるいはプライベートの各イメージ・ライブラリにあります。
 * :doc:`自動構築（Automated Builds） <builds>` ：GitHub か Bitbucket レポジトリ上のソースコードに変更を加えると、新しいイメージを自動的に構築します。
 * :doc:`ウェブ・フック（Webhooks） <webhooks>` ：自動構築機能でレポジトリに送信された後、、Webhook が何らかのアクションを起こします。
 * :doc:`組織 <orgs>` ：イメージ・レポジトリにアクセスできるユーザを管理するための、ワーク・グループを作成します。
@@ -107,7 +107,7 @@ Docker 自身で Docker Hub サーバにアクセスするために、 ```docker
 
 .. You can find more information on working with Docker images in the Docker userguide.
 
-Docker イメージの動作に関する詳細情報は、 :doc:`Docker ユーザガイド </userguide/dockerimages>` をご覧ください。
+Docker イメージの動作に関する詳細情報は、 :doc:`Docker ユーザガイド </engine/userguide/dockerimages>` をご覧ください。
 
 .. Use Official Repositories
 
@@ -128,7 +128,7 @@ Docker Hub には多くの `公式レポジトリ <http://hub.docker.com/explore
 
 .. note::
 
-   あなたの組織やプロダクトが公式レポジトリに貢献したい場合は、 :doc:`Docker Hub の公式レポジトリ` に関する詳しい情報をご覧ください。
+   あなたの組織やプロダクトが公式レポジトリに貢献したい場合は、 :doc:`Docker Hub の公式レポジトリ <official_repos>` に関する詳しい情報をご覧ください。
 
 .. Create organization
 
