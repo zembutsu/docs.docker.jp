@@ -26,7 +26,7 @@ Docker Hub アカウントを GitHub アカウントにリンク
 
 .. note::
 
-   自動構築を使うためには、GitHub サービス・フックに対して `Docker Hub <https://hub.docker.com/>`_ が読み書きできる権限の設定が必要です。ここでは GItHub で権限を管理する方法を紹介しますが、選択の余地がないものです。あなたのアカウントでの操作に対して、私たちは何ら保証しません。
+   自動構築を使うためには、GitHub サービス・フックに対して `Docker Hub <https://hub.docker.com/>`__ が読み書きできる権限の設定が必要です。ここでは GItHub で権限を管理する方法を紹介しますが、選択の余地がないものです。あなたのアカウントでの操作に対して、私たちは何ら保証しません。
 
 .. In order to set up an Automated Build of a repository on GitHub, you need to link your Docker Hub account to a GitHub account. This will allow the registry to see your GitHub repositories.
 
@@ -212,14 +212,30 @@ GitHub サービス・フック
 
 .. A GitHub Service hook allows GitHub to notify the Docker Hub when something has been committed to a given git repository.
 
+GitHub サービス・フックは、特定の git レポジトリに対する何らかのコミットが発生すると、GitHub が Docker Hub に通知します。
+
 .. When you create an Automated Build from a GitHub user that has full “Public and Private” linking, a Service Hook should get automatically added to your GitHub repository.
+
+GitHub ユーザからの自動構築レポジトリを作成するとき、「Public and Private」リンクしている サービス・フックであれば、自動的に GItHub レポジトリに追加されます。
 
 .. If your GitHub account link to the Docker Hub is “Limited Access”, then you will need to add the Service Hook manually.
 
-To add, confirm, or modify the service hook, log in to GitHub, then navigate to the repository, click “Settings” (the gear), then select “Webhooks & Services”. You must have Administrator privilegdes on the repository to view or modfy this setting.
+Docker Hub からリンクする GitHub アカウントが「Limited Access」であれば、サービス・フックは手動で追加する必要があります。
 
-The image below shows the “Docker” Service Hook.
+.. To add, confirm, or modify the service hook, log in to GitHub, then navigate to the repository, click “Settings” (the gear), then select “Webhooks & Services”. You must have Administrator privilegdes on the repository to view or modfy this setting.
 
-bitbucket-hooks
+サービス・フックの追加・確認・変更は、GitHub にログイン後、レポジトリに移動し、「Settings」（歯車マーク）をクリックし、それから「Webhook & Services」を選びます。この設定を参照・編集するには、レポジトリに対する管理権限が必要です。
 
-If you add the “Docker” service manually, make sure the “Active” checkbox is selected and click the “Update service” button to save your changes.
+.. The image below shows the “Docker” Service Hook.
+
+以下の図が「Docker」サービス・フックです。
+
+.. bitbucket-hooks
+
+.. image:: ./images/github-service-hook.png
+   :scale: 60%
+   :alt: GitHub サービスフック
+
+.. If you add the “Docker” service manually, make sure the “Active” checkbox is selected and click the “Update service” button to save your changes.
+
+もし「Docker」サービスを手動で追加した場合は、「Active」チェックボックスを選択してから「Update service」ボタンをクリックして、変更を保存します。

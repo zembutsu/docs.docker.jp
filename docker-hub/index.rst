@@ -13,7 +13,7 @@ Docker Hub 入門
 
 .. The Docker Hub is a cloud-based registry service for building and shipping application or service containers. It provides a centralized resource for container image discovery, distribution and change management, user and team collaboration, and workflow automation throughout the development pipeline.
 
-`Docker Hub <https://hub.docker.com/>`_ はクラウド上のレジストリ・サービスであり、アプリケーションやサービス・コンテナの構築と配信を行います。コンテナ化されたイメージを見つけたり、配布したり、変更の管理、ユーザやチームのコラボレーション、開発パイプラインを通したワークフローの自動化といった集約されたリソースを提供します。
+`Docker Hub <https://hub.docker.com/>`__ はクラウド上のレジストリ・サービスであり、アプリケーションやサービス・コンテナの構築と配信を行います。コンテナ化されたイメージを見つけたり、配布したり、変更の管理、ユーザやチームのコラボレーション、開発パイプラインを通したワークフローの自動化といった集約されたリソースを提供します。
 
 .. image:: ./images/getting-started.png
    :scale: 60%
@@ -138,3 +138,4 @@ Docker Hub には多くの `公式レポジトリ <http://hub.docker.com/explore
 .. Learn how to create a Docker Hub account and manage your organizations and teams.
 
 Docker Hub アカウント :doc:`作成の方法 <github>` 、組織やチームでの :doc:`管理 <orgs>` を学びます。
+
