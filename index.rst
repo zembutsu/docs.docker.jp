@@ -367,6 +367,20 @@ Docker Registry
    registry/notifications.rst
    registry/help.rst
 
+
+Extend Docker
+==============================
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Docker 拡張
+
+   engine/extend/index.rst
+   engine/extend/plugins.rst
+   engine/extend/plugins_network.rst
+   engine/extend/plugins_volume.rst
+   engine/extend/plugins_api.rst
+
 Command and API references
 ==============================
 
