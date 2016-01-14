@@ -16,6 +16,8 @@
 
 .. Command line short variant options
 
+.. _command-line-short-variant-options:
+
 コマンドラインの短縮オプション
 ==============================
 
@@ -39,6 +41,8 @@
 
 .. Driver Specific Log Tags
 
+.. _driver-specific-log-tags:
+
 ドライバを指定するログ用タグ
 ==============================
 
@@ -61,6 +65,8 @@
 
 .. LXC built-in exec driver
 
+.. _lxc-built-in-exec-driver:
+
 内蔵 LXC 実行ドライバ
 ==============================
 
@@ -77,6 +83,8 @@
 外部実装である内蔵（built-in）LXC 実行ドライバは廃止されました。lxc-conf フラグと API も削除予定です。
 
 .. Old Command Line Options
+
+.. _old-command-line-options:
 
 古いコマンドライン・オプション
 ==============================
@@ -146,6 +154,8 @@
 
 .. Auto-creating missing host paths for bind mounts
 
+.. _auto-creating-missing-host-paths-for-bind-mounts:
+
 マウント割り当て用ホスト・パス喪失時の自動作成
 ==================================================
 
@@ -167,6 +177,8 @@
 
 .. Interacting with V1 registries
 
+.. _interacting-with-v1-registries:
+
 V1 レジストリとの通信
 ==============================
 
@@ -175,6 +187,8 @@ V1 レジストリとの通信
 バージョン 1.9 にフラグ（ ``--disable-legacy-registry=false`` ）が追加されました。これは docker デーモンが v1 レジストリと ``pull`` 、 ``push`` 、 ``login`` させないようにします。デフォルトでは無効化されているため、廃止された v1 プロトコルとは通信しません。
 
 .. Docker Content Trust ENV passphrase variables name change
+
+.. _docker-content-trust-env:
 
 Docker Content Trust ENV パスフレーズの変数名を変更
 ===================================================
