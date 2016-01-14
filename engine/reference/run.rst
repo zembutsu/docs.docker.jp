@@ -89,11 +89,15 @@ Docker は隔離されたコンテナでプロセスを実行します。コン�
     Runtime privilege, Linux capabilities, and LXC configuration
 
 * :ref:`デタッチド vs フォアグラウンド <detached-vs-foreground>`
- * :ref:`デタッチド (-d) <detached-d>`
+
+ * :ref:`デタッチド(-d) <detached-d>` 
  * :ref:`フォアグラウンド <foreground>`
+
 * :ref:`コンテナの識別 <container-identification>`
+
  * :ref:`名前 <name-name>`
- * :ref:`PID 相当 <pid-quivalent>`
+ * :ref:`PID相当 <pid-equivalent>`
+
 * :ref:`IPC 設定 <ipc-settings-ipc>`
 * :ref:`ネットワーク設定 <network-settings>`
 * :ref:`再起動ポリシー <restart-policies-restart>`
@@ -103,7 +107,7 @@ Docker は隔離されたコンテナでプロセスを実行します。コン�
 
 .. Detached vs foreground
 
-.. _detatched-vs-foreground:
+.. _detached-vs-foreground:
 
 デタッチド vs フォアグラウンド
 ==============================
@@ -225,7 +229,7 @@ UUID 識別子は Docker デーモンから与えられます。コンテナの�
 
 .. PID equivalent
 
-.. _pid-equivalnet:
+.. _pid-equivalent:
 
 PID 相当
 --------------------
@@ -618,7 +622,7 @@ Docker は以下の再起動ポリシーをサポートしています。
 .. _restart-examples:
 
 例
-^^^^^^^^^^
+----------
 
 .. code-block:: bash
 
@@ -709,3 +713,1006 @@ MLS であれば、次のような例になります。
 .. note::
 
    ここでは ``svirt_apache_t`` タイプ に対する書き込みポリシーがあるものと想定しています。
+
+.. Specifying custom cgroups
+
+.. _specifying-custom-cgroups:
+
+カスタム cgroups の指定
+==============================
+
+.. Using the --cgroup-parent flag, you can pass a specific cgroup to run a container in. This allows you to create and manage cgroups on their own. You can define custom resources for those cgroups and put containers under a common parent group.
+
+``--cgroup-parent`` フラグを使うことで、コンテナを特定の cgroup で実行できるようにします。これにより自分自身で cgroup の作成や管理が可能になります。各 cgroup に対してカスタム・リソースを定義でき、コンテナを共通の親グループ下に置くこともできます。
+
+.. Runtime constraints on resources
+
+.. _runtime-constraints-on-resources:
+
+実行時のリソース制限
+====================
+
+.. The operator can also adjust the performance parameters of the container:
+
+オペレータはコンテナのパフォーマンス・パラメータも調整できます。
+
+.. Option 	Description
+.. -m, --memory="" 	Memory limit (format: <number>[<unit>], where unit = b, k, m or g)
+.. --memory-swap="" 	Total memory limit (memory + swap, format: <number>[<unit>], where unit = b, k, m or g)
+.. --memory-reservation="" 	Memory soft limit (format: <number>[<unit>], where unit = b, k, m or g)
+.. --kernel-memory="" 	Kernel memory limit (format: <number>[<unit>], where unit = b, k, m or g)
+.. -c, --cpu-shares=0 	CPU shares (relative weight)
+.. --cpu-period=0 	Limit the CPU CFS (Completely Fair Scheduler) period
+.. --cpuset-cpus="" 	CPUs in which to allow execution (0-3, 0,1)
+.. --cpuset-mems="" 	Memory nodes (MEMs) in which to allow execution (0-3, 0,1). Only effective on NUMA systems.
+.. --cpu-quota=0 	Limit the CPU CFS (Completely Fair Scheduler) quota
+.. --blkio-weight=0 	Block IO weight (relative weight) accepts a weight value between 10 and 1000.
+.. --oom-kill-disable=false 	Whether to disable OOM Killer for the container or not.
+.. --memory-swappiness="" 	Tune a container’s memory swappiness behavior. Accepts an integer between 0 and 100.
+
+.. list-table::
+   :header-rows: 1
+   
+   * - オプション
+     - 説明
+   * - ``-m`` , ``--memory=""``
+     - メモリの上限（書式： ``<数値> [<単位>]`` 、単位は b 、ｋ、m、g  のいずれか）
+   * - ``--memory-swap=""``
+     - 合計メモリの上限（メモリ＋スワップ、書式： ``<数値> [<単位>]`` 、単位は b 、ｋ、m、g  のいずれか）
+   * - ``--memory-reservation=""``
+     - メモリのソフト・リミット（書式： ``<数値> [<単位>]`` 、単位は b 、ｋ、m、g  のいずれか）
+   * - ``--kernel-memory=""``
+     - カーネル・メモリの上限（書式： ``<数値> [<単位>]`` 、単位は b 、ｋ、m、g  のいずれか）
+   * - ``-c`` , ``--cpu-shares=0``
+     - CPU 共有（CPU shares）を相対値で指定
+   * - ``--cpu-period=0``
+     - CPU CFS (Completely Fair Scheduler) ピリオドの上限（訳者注：cgroup による CPU リソースへのアクセスを再割り当てする間隔）
+   * - ``--cpuset-cpus=""``
+     - 実行する CPU の割り当て（0-3, 0,1）
+   * - ``--cpuset-mems=""``
+     - 実行するメモリ・ノード（MEM）の割り当て（0-3, 0,1）。NUMA システムのみで動作
+   * - ``--cpu-quota=0``
+     - CPU CFS (Completely Fair Scheduler) のクォータを設定
+   * - ``--blkio-weight=0``
+     - ブロック I/O ウェイト（相対値）を 10 ～ 1000 までの値でウエイトを設定
+   * - ``--oom-kill-disable=false``
+     - コンテナを OOM killer による停止を無効化するかどうか指定
+   * - ``--memory-swappiness=""``
+     - コンテナがメモリのスワップ度合いを調整。整数値の 0 ～ 100 で指定
+
+.. User memory constraints
+
+.. _user-memory-constraints:
+
+ユーザ・メモリの制限
+--------------------
+
+.. We have four ways to set user memory usage:
+
+ユーザのメモリ使用を制限するには、４つの方法があります。
+
+.. Option 	Result
+.. memory=inf, memory-swap=inf (default) 	There is no memory limit for the container. The container can use as much memory as needed.
+.. memory=L<inf, memory-swap=inf 	(specify memory and set memory-swap as -1) The container is not allowed to use more than L bytes of memory, but can use as much swap as is needed (if the host supports swap memory).
+.. memory=L<inf, memory-swap=2*L 	(specify memory without memory-swap) The container is not allowed to use more than L bytes of memory, swap *plus* memory usage is double of that.
+.. memory=L<inf, memory-swap=S<inf, L<=S 	(specify both memory and memory-swap) The container is not allowed to use more than L bytes of memory, swap *plus* memory usage is limited by S.
+
+.. list-table::
+   :header-rows: 1
+   
+   * - オプション
+     - 結果
+   * - **memory=inf, memory-swap=inf** （デフォルト）
+     - コンテナに対する上限を設けない。コンテナは必要な分のメモリを使える
+   * - **memory=L<inf, memory-swap=inf**
+     - （memory を指定し、memory-swap を ``-1`` にする）コンテナは L バイト以上のメモリ使用が許されないが、必要があればスワップを使える（ホスト側がスワップ・メモリをサポートしている場合）
+   * - **memory=L<inf, memory-swap=2*L**
+     - （memory を指定するが memory-swap は指定しない）コンテナは L バイト以上のメモリ使用は許されないが、指定した値の２倍の「追加」スワップ・メモリが使える
+   * - **memory=L<inf, memory-swap=S<inf, L<=S**
+     - （memory も memory-swap も指定する）コンテナは L バイト以上のメモリ使用が許されないが、「追加」スワップ・メモリは S バイトまで使える
+
+.. Examples:
+
+例：
+
+.. code-block:: bash
+
+   $ docker run -ti ubuntu:14.04 /bin/bash
+
+.. We set nothing about memory, this means the processes in the container can use as much memory and swap memory as they need.
+
+メモリを設定していません。これはコンテナ内のプロセスは必要な分だけメモリが使えます。それだけでなく、スワップ・メモリも同様の必要なだけ使えます。
+
+.. code-block:: bash
+
+   $ docker run -ti -m 300M --memory-swap -1 ubuntu:14.04 /bin/bash
+
+.. We set memory limit and disabled swap memory limit, this means the processes in the container can use 300M memory and as much swap memory as they need (if the host supports swap memory).
+
+メモリ上限を指定し、スワップ・メモリの制限を無効化しました。これはコンテナ内のプロセスは 300M のメモリを使えます。それだけでなく、スワップ・メモリは必要なだけ使えます（ホスト側がスワップ・メモリをサポートしている場合）。
+
+.. code-block:: bash
+
+   $ docker run -ti -m 300M ubuntu:14.04 /bin/bash
+
+.. We set memory limit only, this means the processes in the container can use 300M memory and 300M swap memory, by default, the total virtual memory size (–memory-swap) will be set as double of memory, in this case, memory + swap would be 2*300M, so processes can use 300M swap memory as well.
+
+メモリの上限のみ設定しました。これはコンテナが 300M のメモリと 300M のスワップ・メモリを使えます。合計の仮想メモリサイズ（total virtual memory size、 --memory-swap で指定）はメモリの２倍に設定されます。今回の例では、メモリ＋スワップは 2×300M なので、プロセスは 300M のスワップ・メモリを利用できます。
+
+.. code-block:: bash
+
+   $ docker run -ti -m 300M --memory-swap 1G ubuntu:14.04 /bin/bash
+
+.. We set both memory and swap memory, so the processes in the container can use 300M memory and 700M swap memory.
+
+メモリとスワップ・メモリを指定したので、コンテナ内のプロセスは 300M のメモリと 700M のスワップ・メモリを使えます。
+
+.. Memory reservation is a kind of memory soft limit that allows for greater sharing of memory. Under normal circumstances, containers can use as much of the memory as needed and are constrained only by the hard limits set with the -m/--memory option. When memory reservation is set, Docker detects memory contention or low memory and forces containers to restrict their consumption to a reservation limit.
+
+メモリ予約（memory reservation）は、メモリに対するある種のソフト・リミットであり、共有メモリを大きくします。通常の状況下であれば、コンテナは必要とするだけ多くのメモリを使うことができます。そして、 ``-m`` か ``--memory`` オプションがあるときのみ、コンテナに対してハード・リミットが設定されます。メモリ予約が設定されると、Docker はメモリのコンテンション（競合）や少ないメモリを検出し、コンテナが予約した上限まで使えるようにします。
+
+.. Always set the memory reservation value below the hard limit, otherwise the hard limit takes precedence. A reservation of 0 is the same as setting no reservation. By default (without reservation set), memory reservation is the same as the hard memory limit.
+
+メモリ予約の値は、常にハード・リミット以下に設定しなければ、ハード・リミットが先に処理されてしまいます。予約値を 0 に設定するのは、予約しないのと同じです。デフォルトでは（予約をセットしない場合）、メモリ予約とはメモリのハード・リミットと同じです。
+
+.. Memory reservation is a soft-limit feature and does not guarantee the limit won’t be exceeded. Instead, the feature attempts to ensure that, when memory is heavily contended for, memory is allocated based on the reservation hints/setup.
+
+メモリ予約とはソフト・リミット機能であり、制限を超過しないことを保証しません。その代わりに、かなりメモリが競合する場合、予約のヒント/設定に基づいてメモリの割り当てを試みる機能があります。
+
+.. The following example limits the memory (-m) to 500M and sets the memory reservation to 200M.
+
+次の例はメモリの上限（ ``-m`` ）を 500M に制限し、メモリ予約を 200M に設定します。
+
+.. code-block:: bash
+
+   $ docker run -ti -m 500M --memory-reservation 200M ubuntu:14.04 /bin/bash
+
+.. Under this configuration, when the container consumes memory more than 200M and less than 500M, the next system memory reclaim attempts to shrink container memory below 200M.
+
+この設定の下では、コンテナはメモリを 200MB 以上 ～ 500MB 以下まで使えます。次のシステム・メモリはコンテナのメモリが 200MB 以下になるよう縮小を試みます。
+
+.. The following example set memory reservation to 1G without a hard memory limit.
+
+次の例はメモリのハード・リミットを設定せず、メモリ予約を 1G に設定します。
+
+.. code-block:: bash
+
+   $ docker run -ti --memory-reservation 1G ubuntu:14.04 /bin/bash
+
+.. The container can use as much memory as it needs. The memory reservation setting ensures the container doesn’t consume too much memory for long time, because every memory reclaim shrinks the container’s consumption to the reservation.
+
+コンテナはメモリを必要なだけ使えます。メモリ予約設定により、コンテナが長時間多くのメモリを消費しなくなります。これはコンテナがメモリを消費したとしても、予約分を使えるようにメモリの使用を縮小しようとするからです。
+
+.. By default, kernel kills processes in a container if an out-of-memory (OOM) error occurs. To change this behaviour, use the --oom-kill-disable option. Only disable the OOM killer on containers where you have also set the -m/--memory option. If the -m flag is not set, this can result in the host running out of memory and require killing the host’s system processes to free memory.
+
+デフォルトでは、アウト・オブ・メモリ（OOM; out of memory）エラーが発生すると、カーネルはコンテナ内のプロセスを停止（kill）します。この振る舞いを変更するには、 ``--oom-kill-disable`` オプションを使います。また、 ``-m/--memory`` オプションを指定した時のみ、コンテナに対する OOM が無効化できます。もし ``-m`` フラグがセットされなければ、ホスト側でアウト・オブ・メモリ処理が発生します。また、ホスト側のシステム・プロセスが空きメモリを必要とするため、対象のプロセスを停止（kill）します。
+
+.. The following example limits the memory to 100M and disables the OOM killer for this container:
+
+次の例はメモリの上限を 100M とし、対象となるコンテナに対する OOM killer （アウト・オブ・メモリ処理による強制停止）を無効化します。
+
+.. code-block:: bash
+
+   $ docker run -ti -m 100M --oom-kill-disable ubuntu:14.04 /bin/bash
+
+.. The following example, illustrates a dangerous way to use the flag:
+
+次の例では、危険なフラグの使い方を説明します。
+
+.. code-block:: bash
+
+   $ docker run -ti --oom-kill-disable ubuntu:14.04 /bin/bash
+
+.. The container has unlimited memory which can cause the host to run out memory and require killing system processes to free memory.
+
+コンテナは無制限にメモリを使えるため、ホスト上のメモリを使い果たしたら、空きメモリ確保の為にシステム・プロセスを停止する必要が出てきます。
+
+.. Kernel memory constraints
+
+.. _kernel-memory-constraints:
+
+カーネル・メモリ制限
+--------------------
+
+.. Kernel memory is fundamentally different than user memory as kernel memory can’t be swapped out. The inability to swap makes it possible for the container to block system services by consuming too much kernel memory. Kernel memory includes：
+
+カーネル・メモリはスワップ・アウトできないため、ユーザ・メモリとは根本的に異なります。このスワップができないことにより、システム・サービスがカーネル・メモリを多く使えないように妨害する可能性があります。カーネル・メモリとは、次のものを差します。
+
+..    stack pages
+    slab pages
+    sockets memory pressure
+    tcp memory pressure
+
+* stack pages
+* slab pages
+* sockets memory pressure
+* tcp memory pressure
+
+.. You can setup kernel memory limit to constrain these kinds of memory. For example, every process consumes some stack pages. By limiting kernel memory, you can prevent new processes from being created when the kernel memory usage is too high.
+
+これらのメモリを制限するため、カーネル・メモリの上限を設定できます。たとえば、各プロセスが同じスタック・ページ（stack page）を使うようにする場合です。カーネル・メモリの制限により、カーネル・メモリの使用量が大きいとき、新しいプロセスの作成を妨げます。
+
+.. Kernel memory is never completely independent of user memory. Instead, you limit kernel memory in the context of the user memory limit. Assume “U” is the user memory limit and “K” the kernel limit. There are three possible ways to set limits:
+
+カーネル・メモリはユーザ・メモリとは完全に独立しています。その代わり、ユーザ・メモリを制限すると同時に、カーネル・メモリの制限も必要です。上限の設定には３つの方法があります。ここでは、「U」はユーザ・メモリの上限で、「K」はカーネルの上限とみなしています。
+
+.. Option 	Result
+.. U != 0, K = inf (default) 	This is the standard memory limitation mechanism already present before using kernel memory. Kernel memory is completely ignored.
+.. U != 0, K < U 	Kernel memory is a subset of the user memory. This setup is useful in deployments where the total amount of memory per-cgroup is overcommitted. Overcommitting kernel memory limits is definitely not recommended, since the box can still run out of non-reclaimable memory. In this case, the you can configure K so that the sum of all groups is never greater than the total memory. Then, freely set U at the expense of the system's service quality.
+.. U != 0, K > U 	Since kernel memory charges are also fed to the user counter and reclamation is triggered for the container for both kinds of memory. This configuration gives the admin a unified view of memory. It is also useful for people who just want to track kernel memory usage.
+
+.. list-table::
+   :header-rows: 1
+   
+   * - オプション
+     - 結果
+   * - **U != 0, K = inf** （デフォルト）
+     - カーネル・メモリが使う前に、標準的なメモリ制限を設ける仕組み。カーネル・メモリは完全に無視される。
+   * - **U != 0, K < U**
+     - カーネル・メモリをユーザ・メモリのサブセットとする。この設定は cgroup ごとに大きな合計メモリ容量をオーバーコミットで割り当て、デプロイする場合に使いｙ水。カーネル・メモリ制限のオーバコミットは、全くもって推奨されていない。範囲が再利用できないメモリ領域の場合が有り得るため。この例では、 K を設定したので、全グループの合計は、全メモリ容量を超えられない。そして、システム・サービスの品質のために U を任意に設定できる。
+   * - **U != 0, K > U**
+     - カーネルのメモリを使用するため、コンテナ向けに両方のメモリが、ユーザ・カウンタと再利用トリガに影響を与えます。
+
+.. Examples:
+
+例：
+
+   $ docker run -ti -m 500M --kernel-memory 50M ubuntu:14.04 /bin/bash
+
+.. We set memory and kernel memory, so the processes in the container can use 500M memory in total, in this 500M memory, it can be 50M kernel memory tops.
+
+メモリとカーネルメモリを設定しました。これにより、コンテナ内のプロセスは合計 500M まで使えます。この 500M のメモリのうち、トップに 50M のカーネル・メモリがあります。
+
+.. code-block:: bash
+
+   $ docker run -ti --kernel-memory 50M ubuntu:14.04 /bin/bash
+
+.. We set kernel memory without -m, so the processes in the container can use as much memory as they want, but they can only use 50M kernel memory.
+
+**-m** オプションを指定せずカーネル・メモリを指定しました。そのため、コンテナ内のプロセスは必要なだけ多くのメモリを利用可能ですが、そこに最低限 50M のカーネル・メモリを使います。
+
+.. Swappiness constraint
+
+.. _swappiness-constraint:
+
+スワップ回避（swappiness）制限
+------------------------------
+
+.. By default, a container’s kernel can swap out a percentage of anonymous pages. To set this percentage for a container, specify a --memory-swappiness value between 0 and 100. A value of 0 turns off anonymous page swapping. A value of 100 sets all anonymous pages as swappable. By default, if you are not using --memory-swappiness, memory swappiness value will be inherited from the parent.
+
+デフォルトでは、コンテナのカーネルは、アノニマス・ページ・メモリ上の何パーセントかをスワップ・アウトします。コンテナ向けのこのパーセントを指定するには ``--memory-swappiness`` で 0 ～ 100 までの値を設定します。この値が 0 であればアノニマス・ページのスワッピング（anonymous page swapping）を無効にします。値を 100 にすると全てのページがスワップ可能となります。デフォルトでは、 ``--memory-swappiness`` を指定しなければ、メモリのスワップ回避（swapiness）は親の値を継承します。
+
+.. For example, you can set:
+
+例：
+
+.. code-block:: bash
+
+   $ docker run -ti --memory-swappiness=0 ubuntu:14.04 /bin/bash
+
+.. Setting the --memory-swappiness option is helpful when you want to retain the container’s working set and to avoid swapping performance penalties.
+
+``--memory-swappiness`` オプションが訳に立つのは、コンテナの作業セットを維持し、スワップによるパフォーマンスのペナルティを避ける場合です。
+
+.. CPU share constraint
+
+.. _cpu-share-constraint:
+
+CPU 共有制限
+--------------------
+
+.. By default, all containers get the same proportion of CPU cycles. This proportion can be modified by changing the container’s CPU share weighting relative to the weighting of all other running containers.
+
+デフォルトでは、全てのコンテナは同じ CPU サイクルの割合を持っています。この割合は変更可能なものであり、コンテナの CPU 共有ウェイトを、実行中の全てのコンテナに対する相対的な値として変更できます。
+
+.. To modify the proportion from the default of 1024, use the -c or --cpu-shares flag to set the weighting to 2 or higher. If 0 is set, the system will ignore the value and use the default of 1024.
+
+割合をデフォルトの 1024 から変更するには、 ``-c`` か ``--cpu-shares`` フラグでウェイトを 2 以上の値で設定します。もし 0 を設定しても、システムは値を無視してデフォルトの 1024 を使います。
+
+.. The proportion will only apply when CPU-intensive processes are running. When tasks in one container are idle, other containers can use the left-over CPU time. The actual amount of CPU time will vary depending on the number of containers running on the system.
+
+割合が適用されるのは　CPU に対する処理が集中するときのみです。あるコンテナのタスクがアイドル（何もしていない待機状態）であれば、他のコンテナは CPU 時間の余剰を利用できます。実際に割り当てられる CPU 時間の量は、システム上で実行するコンテナの下図に非常に依存します。
+
+.. For example, consider three containers, one has a cpu-share of 1024 and two others have a cpu-share setting of 512. When processes in all three containers attempt to use 100% of CPU, the first container would receive 50% of the total CPU time. If you add a fourth container with a cpu-share of 1024, the first container only gets 33% of the CPU. The remaining containers receive 16.5%, 16.5% and 33% of the CPU.
+
+例えば、３つのコンテナがあるとしましょう。１つめの CPU 共有は 1024 で、残り２つの CPU 共有は 512 とします。もし３つのコンテナが CPU を 100% 使用している状態になれば、１つめのコンテナが合計 CPU 時間の 50% を扱えます。４つめのコンテナを CPU 共有 1024 として追加すると、１つめのコンテナが得られるのは CPU の 33% になります。そして、残りの２つめ以降のコンテナが得られる CPU 時間は、それぞれ 16.5%（２つめ）、16.5%（３つめ）、33% （４つめ）となります。
+
+.. On a multi-core system, the shares of CPU time are distributed over all CPU cores. Even if a container is limited to less than 100% of CPU time, it can use 100% of each individual CPU core.
+
+複数のコアを持つ（マルチ・コア）システム上では、すべての CPU コアに分散してCPU 時間が共有されます。コンテナが CPU 時間の 100% より低く制限していても、個々の CPU コアでは 100% 利用できます。
+
+.. For example, consider a system with more than three cores. If you start one container {C0} with -c=512 running one process, and another container {C1} with -c=1024 running two processes, this can result in the following division of CPU shares:
+
+例えば、システムが３つ以上のコアを持っていると想定してみましょう。１つめのコンテナ ``{C0}`` では ``-c=512`` を指定し、１つのプロセスを実行するものとします。そして、他のコンテナ ``{C1}`` は ``-c=1024``  を指定し、２つのプロセスを実行するとします。この結果、CPU 共有は個々のコアに分散されます。
+
+.. code-block:: bash
+
+   PID    container    CPU CPU share
+   100    {C0}     0   100% of CPU0
+   101    {C1}     1   100% of CPU1
+   102    {C1}     2   100% of CPU2
+
+.. CPU period constraint
+
+.. _cpu-period-constraint:
+
+CPU 周期（period）制約
+------------------------------
+
+.. The default CPU CFS (Completely Fair Scheduler) period is 100ms. We can use --cpu-period to set the period of CPUs to limit the container’s CPU usage. And usually --cpu-period should work with --cpu-quota.
+
+デフォルトの CPU CFS（Completely Fair Scheduler）周期は 100 ミリ秒です。コンテナの CPU 使用率を制限するには、 ``--cpu-period`` で CPU の周期を制限します。そして、通常は ``--cpu-period`` は ``--cpu-quota`` と一緒に使われるでしょう。
+
+.. Examples:
+
+例：
+
+.. code-block:: bash
+
+   $ docker run -ti --cpu-period=50000 --cpu-quota=25000 ubuntu:14.04 /bin/bash
+
+.. If there is 1 CPU, this means the container can get 50% CPU worth of run-time every 50ms.
+
+もし１ CPU であれば、コンテナは 50 ミリ秒ごとに CPU の 50% を利用できます（訳者注：--cpu-quota のクォータ値が、 --cpu-period の周期の半分のため）。
+
+.. For more information, see the CFS documentation on bandwidth limiting.
+
+より詳しい情報については、`CFS ドキュメントの帯域制限について（英語） <https://www.kernel.org/doc/Documentation/scheduler/sched-bwc.txt>`_ をご覧ください。
+
+.. Cpuset constraint
+
+.. _cpuset-constraint:
+
+CPU セット制限
+--------------------
+
+.. We can set cpus in which to allow execution for containers.
+
+どの CPU でコンテナを実行するか指定できます。
+
+.. Examples:
+
+例：
+
+.. code-block:: bash
+
+   $ docker run -ti --cpuset-cpus="1,3" ubuntu:14.04 /bin/bash
+
+.. This means processes in container can be executed on cpu 1 and cpu 3.
+
+これはコンテナ内のプロセスを cpu 1 と cpu 3 で実行します。
+
+.. code-block:: bash
+
+   $ docker run -ti --cpuset-cpus="0-2" ubuntu:14.04 /bin/bash
+
+.. This means processes in container can be executed on cpu 0, cpu 1 and cpu 2.
+
+こちらはコンテナ内のプロセスを cpu 0 、cpu 1 、 cpu 2 で実行します。
+
+.. We can set mems in which to allow execution for containers. Only effective on NUMA systems.
+
+NUMA system 上でのみ、どのコンテナをメモリ上で実行するか設定できます。
+
+.. Examples:
+
+.. code-block:: bash
+
+   $ docker run -ti --cpuset-mems="1,3" ubuntu:14.04 /bin/bash
+
+.. This example restricts the processes in the container to only use memory from memory nodes 1 and 3.
+
+この例ではコンテナ内でのプロセスを、メモリ・ノード 1 と 3 上のメモリのみに使用を制限します。
+
+.. code-block:: bash
+
+   $ docker run -ti --cpuset-mems="0-2" ubuntu:14.04 /bin/bash
+
+.. This example restricts the processes in the container to only use memory from memory nodes 0, 1 and 2.
+
+この例ではコンテナ内でのプロセスを、メモリ・ノード ０と１と２ 上のメモリのみに使用を制限します。
+
+.. CPU quota constraint
+
+.. _cpu-quota-constraint:
+
+CPU クォータ制限
+--------------------
+
+.. The --cpu-quota flag limits the container’s CPU usage. The default 0 value allows the container to take 100% of a CPU resource (1 CPU). The CFS (Completely Fair Scheduler) handles resource allocation for executing processes and is default Linux Scheduler used by the kernel. Set this value to 50000 to limit the container to 50% of a CPU resource. For multiple CPUs, adjust the --cpu-quota as necessary. For more information, see the CFS documentation on bandwidth limiting.
+
+``--cpu-quota`` フラグはコンテナの CPU 使用を制限します。デフォルト値 0 の場合、コンテナは CPU リソース（ 1 CPU ）の 100% を扱えます。CFS (Completely Fair Scheduler) がプロセス実行時のリソース割り当てを扱っており、これがカーネルによってデフォルトの Linux スケジューラとして使われています。この値を 50000 に指定すると、コンテナは CPU リソースの 50% までの使用に制限されます。複数の CPU の場合は、 ``--cpu-quota`` の調整が必要です。より詳しい情報については、`CFS ドキュメントの帯域制限について（英語） <https://www.kernel.org/doc/Documentation/scheduler/sched-bwc.txt>`_ をご覧ください。
+
+.. Block IO bandwidth (Blkio) constraint
+
+.. _block-io-bandwidth-blkio-constraint:
+
+ブロック IO 帯域（blkio）制限
+------------------------------
+
+.. By default, all containers get the same proportion of block IO bandwidth (blkio). This proportion is 500. To modify this proportion, change the container’s blkio weight relative to the weighting of all other running containers using the --blkio-weight flag.
+
+デフォルトでは、全てのコンテナはブロック IO 帯域（blkio）を同じ割合で取得します。デフォルトの割合は 500 です。割合を変更するには ``--blkio-weight`` フラグを使い、実行中の全てのコンテナに対する装置亜的な blkio ウェイトを指定します。
+
+.. The --blkio-weight flag can set the weighting to a value between 10 to 1000. For example, the commands below create two containers with different blkio weight:
+
+``--blkio-weight`` フラグは、 10 ～ 1000 までのウェイト値を設定できます。例えば、次のコマンドは２つのコンテナに対し、別々の blkio ウェイトと設定しています。
+
+.. code-block:: bash
+
+   $ docker run -ti --name c1 --blkio-weight 300 ubuntu:14.04 /bin/bash
+   $ docker run -ti --name c2 --blkio-weight 600 ubuntu:14.04 /bin/bash
+
+.. If you do block IO in the two containers at the same time, by, for example:
+
+例えば、次のようにして２つのコンテナで同時にブロック IO を確認できます。
+
+.. code-block:: bash
+
+   $ time dd if=/mnt/zerofile of=test.out bs=1M count=1024 oflag=direct
+
+.. You’ll find that the proportion of time is the same as the proportion of blkio weights of the two containers.
+
+２つのコンテナ間の blkio ウェイトの割合により、処理にかかる時間の割合が変わるのが分かるでしょう。
+
+..    Note: The blkio weight setting is only available for direct IO. Buffered IO is not currently supported.
+
+.. note::
+
+   blkio ウェイトの設定は直接 IO (direct IO) のみです。現時点ではバッファ IO (buffered IO) をサポートしていません。
+
+.. Additional groups
+
+.. _additional-groups:
+
+グループの追加
+====================
+
+.. code-block:: bash
+
+.. --group-add: Add Linux capabilities
+
+.. By default, the docker container process runs with the supplementary groups looked up for the specified user. If one wants to add more to that list of groups, then one can use this flag:
+
+Docker コンテナのプロセスを実行できるのは、デフォルトでは、補助的なグループに所属しているユーザのみです（訳者注：docker グループに所属するユーザ）。グループを更に追加したい場合は、このフラグを使います。
+
+.. code-block:: bash
+
+   $ docker run -ti --rm --group-add audio  --group-add dbus --group-add 777 busybox id
+   uid=0(root) gid=0(root) groups=10(wheel),29(audio),81(dbus),777
+
+.. Runtime privilege, Linux capabilities, and LXC configuration
+
+.. _runtime-privilege-linux-capabilities-and-lxc-configuration:
+
+実行時の権限、Linux 機能、LXC 設定
+==================================
+
+.. code-block:: bash
+
+   --cap-add: Add Linux capabilities
+   --cap-drop: Drop Linux capabilities
+   --privileged=false: Give extended privileges to this container
+   --device=[]: Allows you to run devices inside the container without the --privileged flag.
+   --lxc-conf=[]: Add custom lxc options
+
+.. By default, Docker containers are “unprivileged” and cannot, for example, run a Docker daemon inside a Docker container. This is because by default a container is not allowed to access any devices, but a “privileged” container is given access to all devices (see lxc-template.go and documentation on cgroups devices).
+
+デフォルトでは、Docker コンテナは「unprivileged」（権限がない）ため、Docker コンテナの中で Docker デーモンを動かす等ができません。これは、デフォルトのコンテナはあらゆるデバイスに対して接続できないためであり、「privileged」（特権）コンテナのみが全てのコンテナに接続できます（ `lxc-template.go <https://github.com/docker/docker/blob/master/daemon/execdriver/lxc/lxc_template.go>`_ と `cgroups devices <https://www.kernel.org/doc/Documentation/cgroups/devices.txt>`_ のドキュメントをご覧ください ）
+
+.. When the operator executes docker run --privileged, Docker will enable to access to all devices on the host as well as set some configuration in AppArmor or SELinux to allow the container nearly all the same access to the host as processes running outside containers on the host. Additional information about running with --privileged is available on the Docker Blog.
+
+オペレータが ``docker run --privileged`` を実行すると、Docker はホスト上の全てのデバイスに対して接続可能になります。この時、 AppArmor や SELinux の設定があれば、ホスト上のコンテナ外のプロセスと同じように、ホスト上の同じアクセス権限が与えられた状態で利用可能になります。 ``--privileged`` の実行に関する追加情報については、 `Docker ブログの投稿（英語） <http://blog.docker.com/2013/09/docker-can-now-run-within-docker/>`_ をご覧ください。
+
+.. If you want to limit access to a specific device or devices you can use the --device flag. It allows you to specify one or more devices that will be accessible within the container.
+
+特定のデバイスに対する許可だけ加えたいときは、 ``--device`` フラグが使えます。これを指定すると、１つまたは複数のデバイスがコンテナ内から接続できるようになります。
+
+.. code-block:: bash
+
+   $ docker run --device=/dev/snd:/dev/snd ...
+
+.. By default, the container will be able to read, write, and mknod these devices. This can be overridden using a third :rwm set of options to each --device flag:
+
+デフォルトでは、コンテナはデバイスに対して ``read`` 、 ``write`` 、 ``mknod`` 可能です。それぞれの ``--device`` フラグは、 ``:rwm`` という３つのオプション・セットで上書きできます。
+
+.. code-block:: bash
+
+   $ docker run --device=/dev/sda:/dev/xvdc --rm -it ubuntu fdisk  /dev/xvdc
+   
+   Command (m for help): q
+   $ docker run --device=/dev/sda:/dev/xvdc:r --rm -it ubuntu fdisk  /dev/xvdc
+   You will not be able to write the partition table.
+   
+   Command (m for help): q
+   
+   $ docker run --device=/dev/sda:/dev/xvdc:w --rm -it ubuntu fdisk  /dev/xvdc
+       crash....
+   
+   $ docker run --device=/dev/sda:/dev/xvdc:m --rm -it ubuntu fdisk  /dev/xvdc
+   fdisk: unable to open /dev/xvdc: Operation not permitted
+
+.. In addition to --privileged, the operator can have fine grain control over the capabilities using --cap-add and --cap-drop. By default, Docker has a default list of capabilities that are kept. The following table lists the Linux capability options which can be added or dropped.
+
+``--privileged`` に加え、オペレータは ``--cap-add`` と ``--cap-drop`` を使うことで、機能に対する詳細な制御が可能になります。デフォルトでは、Docker はデフォルト機能の一覧を保持しています。次の表は、追加・削除可能な Linux 機能オプションの一覧です。
+
+.. Capability Key 	Capability Description
+.. SETPCAP 	Modify process capabilities.
+.. SYS_MODULE 	Load and unload kernel modules.
+.. SYS_RAWIO 	Perform I/O port operations (iopl(2) and ioperm(2)).
+.. SYS_PACCT 	Use acct(2), switch process accounting on or off.
+.. SYS_ADMIN 	Perform a range of system administration operations.
+.. SYS_NICE 	Raise process nice value (nice(2), setpriority(2)) and change the nice value for arbitrary processes.
+.. SYS_RESOURCE 	Override resource Limits.
+.. SYS_TIME 	Set system clock (settimeofday(2), stime(2), adjtimex(2)); set real-time (hardware) clock.
+.. SYS_TTY_CONFIG 	Use vhangup(2); employ various privileged ioctl(2) operations on virtual terminals.
+.. MKNOD 	Create special files using mknod(2).
+.. AUDIT_WRITE 	Write records to kernel auditing log.
+.. AUDIT_CONTROL 	Enable and disable kernel auditing; change auditing filter rules; retrieve auditing status and filtering rules.
+.. MAC_OVERRIDE 	Allow MAC configuration or state changes. Implemented for the Smack LSM.
+.. MAC_ADMIN 	Override Mandatory Access Control (MAC). Implemented for the Smack Linux Security Module (LSM).
+.. NET_ADMIN 	Perform various network-related operations.
+.. SYSLOG 	Perform privileged syslog(2) operations.
+.. CHOWN 	Make arbitrary changes to file UIDs and GIDs (see chown(2)).
+.. NET_RAW 	Use RAW and PACKET sockets.
+.. DAC_OVERRIDE 	Bypass file read, write, and execute permission checks.
+.. FOWNER 	Bypass permission checks on operations that normally require the file system UID of the process to match the UID of the file.
+.. DAC_READ_SEARCH 	Bypass file read permission checks and directory read and execute permission checks.
+.. FSETID 	Don’t clear set-user-ID and set-group-ID permission bits when a file is modified.
+.. KILL 	Bypass permission checks for sending signals.
+.. SETGID 	Make arbitrary manipulations of process GIDs and supplementary GID list.
+.. SETUID 	Make arbitrary manipulations of process UIDs.
+.. LINUX_IMMUTABLE 	Set the FS_APPEND_FL and FS_IMMUTABLE_FL i-node flags.
+.. NET_BIND_SERVICE 	Bind a socket to internet domain privileged ports (port numbers less than 1024).
+.. NET_BROADCAST 	Make socket broadcasts, and listen to multicasts.
+.. IPC_LOCK 	Lock memory (mlock(2), mlockall(2), mmap(2), shmctl(2)).
+.. IPC_OWNER 	Bypass permission checks for operations on System V IPC objects.
+.. SYS_CHROOT 	Use chroot(2), change root directory.
+.. SYS_PTRACE 	Trace arbitrary processes using ptrace(2).
+.. SYS_BOOT 	Use reboot(2) and kexec_load(2), reboot and load a new kernel for later execution.
+.. LEASE 	Establish leases on arbitrary files (see fcntl(2)).
+.. SETFCAP 	Set file capabilities.
+.. WAKE_ALARM 	Trigger something that will wake up the system.
+.. BLOCK_SUSPEND 	Employ features that can block system suspend.
+
+.. list-table::
+   :header-rows: 1
+   
+   * - 機能のキー(capability key)
+     - 機能説明
+   * - SETPCAP
+     - プロセスの機能を変更
+   * - SYS_MODULE
+     - カーネル・モジュールのロード(load)・アンロード(unload)
+   * - SYSRAWIO
+     - ランダム I/O ポート操作  (iopl(2) と ioperm(2)).
+   * - SYS_PACCT
+     - acct(2) を使いたプロセスのスイッチ回数のカウント有無
+   * - SYS_ADMIN
+     - システム管理オペレーションの処理範囲
+   * - SYS_NICE
+     - プロセスの nice 値  (nice(2), setpriority(2)) を上げるのと、任意プロセスに対する nice 値を設定
+   * - SYS_RESOURCE
+     - リソース上限の上書き
+   * - SYS_TIME
+     - システム・クロック (settimeofday(2), stime(2), adjtimex(2)) の設定
+   * - SYS_TTY_CONFIG
+     - vhangup(2) を使用。仮想ターミナル上で ioctl(2) オペレーションの関連権限
+   * - MKNOD
+     - mknod(2) で特別ファイルを作成
+   * - AUDIT_WRITE
+     - カーネル監査（ auditing ）ログに記録
+   * - AUDIT_CONTROL
+     - カーネルの監査（ auditing ）を有効化。監査フィルタルールの変更や、監査状態やフィルタリング・ルールの読み出し
+   * - MAC_OVERRIDE
+     - MAc 設定や状態の変更。Smack LSM 用の実装
+   * - MAC_ADMIN
+     - Mandatory アクセス・コントロール（MAC）の上書き。Smack Linux Security Module (LSM) 用の実装
+   * - NET_ADMIN
+     - 様々なネットワーク関連処理の実施
+   * - SYSLOG
+     - 特権 syslog(2) 処理の実施
+   * - CHOWN
+     - ファイルの UID と GID 属性を変更（ chown(2) を参照）
+   * - NET_RAW
+     - RAW と PACKET ソケットを使用
+   * - DAC_OVERRIDE
+     - ファイル音読み書き実行時に迂回し、権限を確認
+   * - FOWNER
+     - 操作権限の確認時に迂回し、ファイルの UID がシステム上で必要とする UID と一致するか確認
+   * - DAC_READ_SEARCH
+     - ファイル読み込み権限の確認を迂回し、ディレクトリの読み込み・実行権限を確認
+   * - FSETID
+     - ファイル変更時にユーザ ID とグループ ID を変更しない
+   * - KILL
+     - シグナル送信時の権限確認をバイパス
+   * - SETGID
+     - プロセス GID を GID 一覧にある任意のものに変更
+   * - SETUID
+     - プロセス UID を任意のものに変更
+   * - LINUX_IMMUTABLE
+     - FS_APPEND_FL と FS_IMMUTABLE_FL i-node フラグを設定
+   * - NET_BIND_SERVICE
+     - ソケットをインターネット・ドメイン権限用のポート（ポート番号は 1024 以下）に割り当て
+   * - NET_BROADCAST
+     - ソケットをブロードキャストし、マルチキャストをリッスンする
+   * - IPC_LOCK
+     - メモリのロック（mlock(2), mlockall(2), mmap(2), shmctl(2)）
+   * - IPC_OWNER
+     - System V IPC オブジェクト操作用の権限確認
+   * - SYS_CHROOT
+     - chroot(2) を使い、ルート・ディレクトリを変更
+   * - SYS_PTRACE
+     - ptrace(2) を使い、任意のプロセスをトレース
+   * - SYS_BOOT
+     - reboot(2) と kexec_load(2) を使い、後の処理用にリブートと新しいカーネルを読み込み
+   * - LEASE
+     - 任意のファイルのリースを確立（詳細は fcntl(2) ）
+   * - SETFCAP
+     - ファイルの機能を設定
+   * - WAKE_ALARM
+     - システムを起動する何らかのトリガ
+   * - BLOCK_SUSPEND
+     - ブロック・システムをサスペンドする機能
+
+.. Further reference information is available on the capabilities(7) - Linux man page
+
+よし詳細なリファレンス情報は `Linux man ページの capabilities(7) <http://linux.die.net/man/7/capabilities>`_ をご覧ください。
+
+.. Both flags support the value ALL, so if the operator wants to have all capabilities but MKNOD they could use:
+
+オペレータは全ての機能を有効化するため ``ALL`` の値を使えますが 、 ``MKNOD`` だけ除外したい時は次のようにします。
+
+.. code-block:: bash
+
+   $ docker run --cap-add=ALL --cap-drop=MKNOD ...
+
+.. For interacting with the network stack, instead of using --privileged they should use --cap-add=NET_ADMIN to modify the network interfaces.
+
+ネットワーク・スタックとやりとりするには、 ``--privileged`` を使う替わりに、ネットワーク・インターフェースの変更には ``--cap-add=NET_ADMIN`` を使うべきでしょう。
+
+.. code-block:: bash
+
+   $ docker run -t -i --rm  ubuntu:14.04 ip link add dummy0 type dummy
+   RTNETLINK answers: Operation not permitted
+   $ docker run -t -i --rm --cap-add=NET_ADMIN ubuntu:14.04 ip link add dummy0 type dummy
+
+.. To mount a FUSE based filesystem, you need to combine both --cap-add and --device:
+
+FUSE を基盤とするファイルシステムをマウントするには、 ``--cap-add`` と ``--device`` の両方を使う必要があります。
+
+.. code-block:: bash
+
+   $ docker run --rm -it --cap-add SYS_ADMIN sshfs sshfs sven@10.10.10.20:/home/sven /mnt
+   fuse: failed to open /dev/fuse: Operation not permitted
+   $ docker run --rm -it --device /dev/fuse sshfs sshfs sven@10.10.10.20:/home/sven /mnt
+   fusermount: mount failed: Operation not permitted
+   $ docker run --rm -it --cap-add SYS_ADMIN --device /dev/fuse sshfs
+   # sshfs sven@10.10.10.20:/home/sven /mnt
+   The authenticity of host '10.10.10.20 (10.10.10.20)' can't be established.
+   ECDSA key fingerprint is 25:34:85:75:25:b0:17:46:05:19:04:93:b5:dd:5f:c6.
+   Are you sure you want to continue connecting (yes/no)? yes
+   sven@10.10.10.20's password:
+   root@30aa0cfaf1b5:/# ls -la /mnt/src/docker
+   total 1516
+   drwxrwxr-x 1 1000 1000   4096 Dec  4 06:08 .
+   drwxrwxr-x 1 1000 1000   4096 Dec  4 11:46 ..
+   -rw-rw-r-- 1 1000 1000     16 Oct  8 00:09 .dockerignore
+   -rwxrwxr-x 1 1000 1000    464 Oct  8 00:09 .drone.yml
+   drwxrwxr-x 1 1000 1000   4096 Dec  4 06:11 .git
+   -rw-rw-r-- 1 1000 1000    461 Dec  4 06:08 .gitignore
+   ....
+
+.. If the Docker daemon was started using the lxc exec-driver (docker daemon --exec-driver=lxc) then the operator can also specify LXC options using one or more --lxc-conf parameters. These can be new parameters or override existing parameters from the lxc-template.go. Note that in the future, a given host’s docker daemon may not use LXC, so this is an implementation-specific configuration meant for operators already familiar with using LXC directly.
+
+Docker デーモンを ``lxc`` 実行ドライバを使って起動する時（ ``docker daemon --exec-driver=lxc`` ）、オペレータは１つまたは複数の LXC オプションを ``--lxc-conf`` パラメータで指定できます。これにより、 `lxc-template.go <https://github.com/docker/docker/blob/master/daemon/execdriver/lxc/lxc_template.go>`_ にある新しいパラメータの追加や既存のパラメータ上書きが可能です。将来的には、Docker ホストによっては LXC が使えなくなるかもしれないので、注意が必要です。そのため、特定の実装に関する設定操作をするため、LXC を直接操作するのに慣れておいた方が良いでしょう。
+
+..    Note: If you use --lxc-conf to modify a container’s configuration which is also managed by the Docker daemon, then the Docker daemon will not know about this modification, and you will need to manage any conflicts yourself. For example, you can use --lxc-conf to set a container’s IP address, but this will not be reflected in the /etc/hosts file.
+
+.. note::
+
+   Docker デーモンに管理されているコンテナに対して、``---lxc-conf`` を使いコンテナの設定を変更可能です。しかし Docker デーモンは変更が施されたことを把握できないため、自分自身で管理上の不一致を解決する必要があります。例えば、 ``--lxc-conf`` でコンテナの IP アドレスを設定しても、コンテナ内の ``/etc/hosts`` ファイルには反映されません。
+
+.. Logging drivers (–log-driver)
+
+.. _loggind-drivers-log-driver:
+
+ログ記録ドライバ（--log-driver）
+========================================
+
+.. The container can have a different logging driver than the Docker daemon. Use the --log-driver=VALUE with the docker run command to configure the container’s logging driver. The following options are supported:
+
+Docker デーモンはコンテナごとに異なったログ記録ドライバを指定できます。コンテナのログ記録ドライバを指定するには、 ``docker run`` コマンドで ``--log-driver=VALUE`` を指定します。以下のオプションがサポートされています。
+
+.. none 	Disables any logging for the container. docker logs won’t be available with this driver.
+.. json-file 	Default logging driver for Docker. Writes JSON messages to file. No logging options are supported for this driver.
+.. syslog 	Syslog logging driver for Docker. Writes log messages to syslog.
+.. journald 	Journald logging driver for Docker. Writes log messages to journald.
+.. gelf 	Graylog Extended Log Format (GELF) logging driver for Docker. Writes log messages to a GELF endpoint likeGraylog or Logstash.
+.. fluentd 	Fluentd logging driver for Docker. Writes log messages to fluentd (forward input).
+.. awslogs 	Amazon CloudWatch Logs logging driver for Docker. Writes log messages to Amazon CloudWatch Logs
+
+.. list-table::
+
+  * - ``none``
+    - コンテナのログ記録ドライバを無効化します。このドライバでは ``docker logs`` が機能しません。
+  * - ``json-file``
+    - Docker に対応するデフォルトのログ記録ドライバです。ファイルに JSON メッセージを書き込みます。このドライバに対するオプションはありません。
+  * - ``syslog``
+    - Docker に対応する Syslog ログ記録ドライバです。ログのメッセージを syslog に書き込みます。
+  * - ``journald``
+    - Docker に対応する Journald ログ記録ドライバです。ログのメッセージを ``journald`` に書き込みます。
+  * - ``fluentd``
+    - Docker に対応する Fluentd ログ記録ドライバです。ログ・メッセージを ``fluentd`` に書き込みます（forward input）。
+  * - ``awslogs``
+    - Docker に対応する Amazon CloudWatch Logs ロギング・ドライバです。ログ・メッセージを Amazon CloudWatch Logs に書き込みます。
+
+.. The docker logs command is available only for the json-file and journald logging drivers. For detailed information on working with logging drivers, see Configure a logging driver.
+
+``docker logs`` コマンドが使えるのは ``json-file`` と ``journald`` ログ記録ドライバのみです。ログ記録ドライバの詳細な情報については :doc:`ログ記録ドライバの設定 </engine/reference/logging/overview>` をご覧ください。
+
+.. Overriding Dockerfile image defaults
+
+.. _overriding-dockerfile-image-defaults:
+
+Dockerfile イメージのデフォルトより優先
+========================================
+
+.. When a developer builds an image from a Dockerfile or when she commits it, the developer can set a number of default parameters that take effect when the image starts up as a container.
+
+開発者が :doc:`Dockerfile </engine/reference/builder>` を使ってイメージ構築時やコミット時に、対象のイメージを使ってコンテナを起動するときに有効になる各種パラメータを、開発者自身が設定できます。
+
+.. Four of the Dockerfile commands cannot be overridden at runtime: FROM, MAINTAINER, RUN, and ADD. Everything else has a corresponding override in docker run. We’ll go through what the developer might have set in each Dockerfile instruction and how the operator can override that setting.
+
+実行時に４つのコマンド ``FORM`` 、 ``MAINTAINER`` 、 ``RUN`` 、 ``ADD``  は上書きできません。それ以外のコマンド全ては ``docker run`` で上書きできます。開発者が Dockerfile で個々の命令を設定していたとしても、オペレータはその設定を上書きして操作できます。
+
+..    CMD (Default Command or Options)
+    ENTRYPOINT (Default Command to Execute at Runtime)
+    EXPOSE (Incoming Ports)
+    ENV (Environment Variables)
+    VOLUME (Shared Filesystems)
+    USER
+    WORKDIR
+
+
+* :ref:`run-cmd`
+* :ref:`run-entrypoint`
+* :ref:`run-expose`
+* :ref:`run-env`
+* :ref:`run-volume`
+* :ref:`run-user`
+* :ref:`run-workdir`
+
+.. CMD (default command or options)
+
+.. _run-cmd:
+
+CMD（デフォルトのコマンドかオプション）
+----------------------------------------
+
+.. Recall the optional COMMAND in the Docker commandline:
+
+Docker コマンドラインでのオプション ``コマンド`` を取り消します。
+
+.. code-block:: bash
+
+   $ docker run [オプション] イメージ[:タグ|@DIGEST] [コマンド] [引数...]
+
+.. This command is optional because the person who created the IMAGE may have already provided a default COMMAND using the Dockerfile CMD instruction. As the operator (the person running a container from the image), you can override that CMD instruction just by specifying a new COMMAND.
+
+このコマンドはオプションの指定です。 ``イメージ`` の作者が Dockerfile の ``CMD`` 命令を使い、デフォルトの ``コマンド`` を既に設定している場合があるためです。オペレータ（イメージからコンテナを十個売る人のこと）によって、 ``CMD`` 命令を上書きして新しい ``コマンド`` を実行します。
+
+.. If the image also specifies an ENTRYPOINT then the CMD or COMMAND get appended as arguments to the ENTRYPOINT.
+
+イメージに ``ENTRYPOINT`` も指定されていれば、 ``CMD`` や ``コマンド`` は ``ENTRYPOINT`` に対する引数となります。
+
+.. ENTRYPOINT (default command to execute at runtime)
+
+.. _run-entrypoint:
+
+ENTRYPOINT（実行時に処理するデフォルトのコマンド）
+--------------------------------------------------
+
+.. code-block:: bash
+
+    --entrypoint="": Overwrite the default entrypoint set by the image
+
+.. The ENTRYPOINT of an image is similar to a COMMAND because it specifies what executable to run when the container starts, but it is (purposely) more difficult to override. The ENTRYPOINT gives a container its default nature or behavior, so that when you set an ENTRYPOINT you can run the container as if it were that binary, complete with default options, and you can pass in more options via the COMMAND. But, sometimes an operator may want to run something else inside the container, so you can override the default ENTRYPOINT at runtime by using a string to specify the new ENTRYPOINT. Here is an example of how to run a shell in a container that has been set up to automatically run something else (like /usr/bin/redis-server):
+
+イメージの ``ENTRYPOINT`` は ``コマンド`` と似ています。これはコンテナを開始する時に実行するコマンドを指定しているためです。しかし、こちらは（意図的に）上書きを難しくしています。 ``ENTRYPOINT`` が提供するのは、コンテナ自身が持つデフォルトの特性や振る舞いです。そのため ``ENTRYPOINT`` を指定しておくと、コンテナ実行時、あたかもコンテナ自身をバイナリのようにして実行することができるようにします。その場合は、デフォルトのオプションを持っているでしょうし、あるいは自分で ``コマンド`` を指定してオプションを指定することも可能です。しかし、時々オペレータはコンテナの中で何らかのコマンドを実行したい場合もあるでしょう。例えば、デフォルトの ``ENTRYPOINT`` のかわりに、自分で ``ENTRYPOINT`` を新たに指定したい場合です。次の例はコンテナ上でシェルを実行するものであり、同様に何らかのもの（ ``/usr/bin/redis-server`` のように ）を自動的に起動できます。
+
+.. code-block:: bash
+
+   $ docker run -i -t --entrypoint /bin/bash example/redis
+
+.. or two examples of how to pass more parameters to that ENTRYPOINT:
+
+あるいは、次の２つの例は ENTRYPOINT に更にパラメータを渡すものです。
+
+.. code-block:: bash
+
+   $ docker run -i -t --entrypoint /bin/bash example/redis -c ls -l
+   $ docker run -i -t --entrypoint /usr/bin/redis-cli example/redis --help
+
+.. EXPOSE (incoming ports)
+
+.. _run-expose:
+
+EXPOSE （受信用のポート）
+------------------------------
+
+.. The following run command options work with container networking:
+
+``run`` コマンドには、コンテナのネットワーク対応のために以下のオプションがあります。
+
+.. code-block:: bash
+
+   --expose=[]: Expose a port or a range of ports inside the container.
+                These are additional to those exposed by the `EXPOSE` instruction
+   -P=false   : Publish all exposed ports to the host interfaces
+   -p=[]      : Publish a container᾿s port or a range of ports to the host
+                  format: ip:hostPort:containerPort | ip::containerPort | hostPort:containerPort | containerPort
+                  Both hostPort and containerPort can be specified as a
+                  range of ports. When specifying ranges for both, the
+                  number of container ports in the range must match the
+                  number of host ports in the range, for example:
+                      -p 1234-1236:1234-1236/tcp
+   
+                  When specifying a range for hostPort only, the
+                  containerPort must not be a range.  In this case the
+                  container port is published somewhere within the
+                  specified hostPort range. (e.g., `-p 1234-1236:1234/tcp`)
+   
+                  (use 'docker port' to see the actual mapping)
+   
+   --link=""  : Add link to another container (<name or id>:alias or <name or id>)
+
+.. With the exception of the EXPOSE directive, an image developer hasn’t got much control over networking. The EXPOSE instruction defines the initial incoming ports that provide services. These ports are available to processes inside the container. An operator can use the --expose option to add to the exposed ports.
+
+イメージの開発者は、``EXPOSE`` 命令以外のネットワーク機能に関する管理は行えません。 ``EXPOSE`` 命令が定義するのは、サービスが初期化時に提供する受信用ポートです。このポートはコンテナの中のプロセスが利用可能にします。オペレータは ``--expose`` オプションを使うことで、公開用ポートを追加できます。
+
+.. To expose a container’s internal port, an operator can start the container with the -P or -p flag. The exposed port is accessible on the host and the ports are available to any client that can reach the host.
+
+コンテナの内部ポートを公開（expose）するには、オペレータはコンテナ実行時に ``-P``  か ``-p`` フラグを使えます。公開用のポートはホスト上でアクセス可能であり、そのポートはホストに到達可能なクライアントであれば誰でも利用できます。
+
+.. The -P option publishes all the ports to the host interfaces. Docker binds each exposed port to a random port on the host. The range of ports are within an ephemeral port range defined by /proc/sys/net/ipv4/ip_local_port_range. Use the -p flag to explicitly map a single port or range of ports.
+
+``-P`` オプションはホスト・インターフェース上に全てのポートを公開します。Docker は公開されたポートを、ホスト側のポートに対してランダムに拘束（bind）します。このポートの範囲を *エフェメラル・ポート範囲（ephemeral port range）* と呼び、 ``/proc/sys/net/ipv4/ip_local_port_range`` によって定義されています。 ``-p`` フラグを使うと、特定のポートやポートの範囲を割り当てます。
+
+.. The port number inside the container (where the service listens) does not need to match the port number exposed on the outside of the container (where clients connect). For example, inside the container an HTTP service is listening on port 80 (and so the image developer specifies EXPOSE 80 in the Dockerfile). At runtime, the port might be bound to 42800 on the host. To find the mapping between the host ports and the exposed ports, use docker port.
+
+コンテナ内のポート番号（サービスがリッスンしているポート番号）は、コンテナの外に露出するポート番号（クライアントが接続する番号）と一致させる必要がありません。たとえば、コンテナ内の HTTP サービスがポート 80 をリッスンしているとします（そして、イメージ開発者は Dockerfile で ``EXPOSE 80`` を指定しているでしょう ）。実行する時に、ホスト側のポート 42800 以上が使われます。公開用ポートがホスト側のどのポートに割り当てられたかを確認するには、 ``docker port`` コマンドを使います。
+
+.. If the operator uses --link when starting a new client container, then the client container can access the exposed port via a private networking interface. Linking is a legacy feature that is only supported on the default bridge network. You should prefer the Docker networks feature instead. For more information on this feature, see the Docker network overview””).
+
+新しいクライアント・コンテナを開始する時、オペレータが ``--link`` を指定していると、クライアント・コンテナは、プライベートなネットワーク・インターフェースを経由して、公開用のポートに接続できるようになります。このリンク機能はレガシー（古い）機能であり、サポートされているのはデフォルト・ブリッジ・ネットワーク上のみです。代わりに Docker ネットワーク機能を使うべきでしょう。ネットワーク機能の詳細に関しては :doc:`Docker ネットワーク概要 </engine/userguide/networking/index>` をご覧ください。
+
+.. ENV (environment variables)
+
+.. _run-env:
+
+ENV（環境変数）
+--------------------
+
+.. When a new container is created, Docker will set the following environment variables automatically:
+
+新しいコンテナの作成時、Docker は以下の環境変数を自動的に設定します。
+
+.. Variable 	Value
+   HOME 	Set based on the value of USER
+   HOSTNAME 	The hostname associated with the container
+   PATH 	Includes popular directories, such as :
+   /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+   TERM 	xterm if the container is allocated a pseudo-TTY
+
+.. list-table::
+   :header-rows: 1
+   
+   * - 変数
+     - 値
+   * - ``HOME``
+     - ``USER`` の値をベースにセット
+   * - ``HOSTNAME``
+     - コンテナに関連づけられるホスト名
+   * - ``PATH``
+     - ``/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin`` のような一般的なディレクトリを含む
+   * - ``TERM``
+     - コンテナが疑似ターミナル（pseudo-TTY）を割り当てるときは ``xterm``
+
+.. Additionally, the operator can set any environment variable in the container by using one or more -e flags, even overriding those mentioned above, or already defined by the developer with a Dockerfile ENV:
+
+さらに、オペレータはコンテナに対して **環境変数の組み合わせ** を ``-e`` フラグで追加出来ます。先ほど言及した環境変数や、開発者が Dockerfile の中で ``ENV`` で定義済みの環境変数を上書きできます。
+
+.. code-block:: bash
+
+   $ docker run -e "deep=purple" --rm ubuntu /bin/bash -c export
+   declare -x HOME="/"
+   declare -x HOSTNAME="85bc26a0e200"
+   declare -x OLDPWD
+   declare -x PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+   declare -x PWD="/"
+   declare -x SHLVL="1"
+   declare -x container="lxc"
+   declare -x deep="purple"
+
+.. Similarly the operator can set the hostname with -h.
+
+似たようなものとして、オペレータは ``-h`` で **hostname （ホスト名）** も定義できます。
+
+.. VOLUME (shared filesystems)
+
+.. _run-volume:
+
+VOLUME（共有ファイルシステム）
+------------------------------
+
+.. code-block:: bash
+
+   -v=[]: Create a bind mount with: [host-dir:]container-dir[:<options>], where
+   options are comma delimited and selected from [rw|ro] and [z|Z].
+          If 'host-dir' is missing, then docker creates a new volume.
+          If neither 'rw' or 'ro' is specified then the volume is mounted
+          in read-write mode.
+   --volumes-from="": Mount all volumes from the given container(s)
+
+..    Note: The auto-creation of the host path has been deprecated.
+
+.. note::
+
+   ホスト側のパスを自動作成する機能は :ref:`廃止 <auto-creating-missing-host-paths-for-bind-mounts>` されました。
+
+.. The volumes commands are complex enough to have their own documentation in section Managing data in containers. A developer can define one or more VOLUME’s associated with an image, but only the operator can give access from one container to another (or from a container to a volume mounted on the host).
+
+ボリューム関連コマンドは :doc:`/engine/userguide/dockervolumes` セクション自身のドキュメントでも複雑なものです。開発者は１つまたは複数の ``VOLUME`` を作成し、イメージと関連づけることが可能です。しかし、オペレータができるのは、あるコンテナから別のコンテナに対してのみです（あるいは、コンテナからホスト側のボリュームにマウントする場合）。
+
+.. The container-dir must always be an absolute path such as /src/docs. The host-dir can either be an absolute path or a name value. If you supply an absolute path for the host-dir, Docker bind-mounts to the path you specify. If you supply a name, Docker creates a named volume by that name.
+
+``コンテナ側ディレクトリ`` は ``/src/docs`` のように常に絶対パスの必要があります。 ``ホスト側ディレクトリ`` は絶対パスか ``名前`` の値を指定できます。 ``ホスト側ディレクトリ`` に絶対パスを指定する場合は、 Docker は指定したパスを拘束マウント（bind-mounts）します。 ``名前`` を指定する場合は、Docker は ``名前`` を持つボリュームを作成します。
+
+.. A name value must start with start with an alphanumeric character, followed by a-z0-9, _ (underscore), . (period) or - (hyphen). An absolute path starts with a / (forward slash).
+
+``名前`` は英数字で始まる必要があり、以降は ``a-z0-9`` 、``_`` （アンダースコア）、 ``.`` （ピリオド）、 ``-`` （ハイフン）が使えます。絶対パスは ``/`` （フォアワード・スラッシュ）で始める必要があります。
+
+.. For example, you can specify either /foo or foo for a host-dir value. If you supply the /foo value, Docker creates a bind-mount. If you supply the foo specification, Docker creates a named volume.
+
+例えば、 ``ホスト側ディレクトリ`` の値に ``/foo`` か ``foo`` を指定したとします。 ``/foo`` 値を指定した場合は、Docker はホスト上に拘束マウントを作成します。 ``foo`` を指定すると、Docker は指定された名前でボリュームを作成します。
+
+.. USER
+
+.. _run-user:
+
+USER
+----------
+
+.. root (id = 0) is the default user within a container. The image developer can create additional users. Those users are accessible by name. When passing a numeric ID, the user does not have to exist in the container.
+
+   ``root`` （id = 0）はコンテナのでふぉると・ゆーざいです。イメージ開発者は追加ユーザを作成できます。これらのユーザは名前で関連づけられます。特定の ID を指定するときは、コンテナの中にユーザが存在しなくても構いません。
+
+.. The developer can set a default user to run the first process with the Dockerfile USER instruction. When starting a container, the operator can override the USER instruction by passing the -u option.
+
+開発者は Dockerfile の ``USER`` 命令を使い、１つめのプロセスを実行する時のユーザを定義できます。コンテナが起動するとき、 ``-u`` オプションを使うと ``USER`` 命令を上書きできます。
+
+.. code-block:: bash
+
+   -u="": Username or UID
+
+..     Note: if you pass a numeric uid, it must be in the range of 0-2147483647.
+
+.. note::
+
+   数値で UID を指定する場合は、0 ～ 2147483647 の範囲内の必要があります。
+
+.. WORKDIR
+
+.. _run-workdir:
+
+WORKDIR
+----------
+
+.. The default working directory for running binaries within a container is the root directory (/), but the developer can set a different default with the Dockerfile WORKDIR command. The operator can override this with:
+
+コンテナ内でバイナリを実行する時、、デフォルトの作業用ディレクトリはルート( ``/`` ) ディレクトリです。しかし開発者は Dockerfile の ``WORKDIR`` コマンドを使い、デフォルトの作業用ディレクトリを変更できます。オペレータが更に設定を上書きするには、次のようにします。
+
+.. code-block:: bash
+
+   -w="": Working directory inside the container
