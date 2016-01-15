@@ -35,6 +35,8 @@ Docker Hub のホステッド・ディスカバリ
 
 まずクラスタを作成します。
 
+.. code-block:: bash
+
    # クラスタを作成
    $ swarm create
    6856663cdefdec325839a4b7e1de38e8 # <- this is your unique <cluster_id>
