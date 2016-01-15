@@ -76,7 +76,7 @@ Docker Machine を使えば、Docker Swarm をクラウド・プロバイダや�
 
 高度なスケジューリングについては、:doc:`strategies（ストラテジ）</swarm/scheduler/strategy>`  と :doc:`filetes（フィルタ ） </swarm/scheduler/filter>` のドキュメントをお読みください。
 
-..Swarm API
+.. Swarm API
 
 Swarm API
 ==============================
