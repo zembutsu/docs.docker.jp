@@ -1170,7 +1170,7 @@ CPU クォータ制限
 
 .. code-block:: bash
 
-.. --group-add: Add Linux capabilities
+   --group-add: Add Linux capabilities
 
 .. By default, the docker container process runs with the supplementary groups looked up for the specified user. If one wants to add more to that list of groups, then one can use this flag:
 
