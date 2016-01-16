@@ -185,13 +185,11 @@ Affinity（アフィニティ）フィルタ
 
 .. Because of name affinity, the logger container ends up on node-1 along with the frontend container. Instead of the frontend name you could have supplied its ID as follows:
 
-963841b138d8        logger:latest       "logger"            Less than a second ago   running                                             node-1      logge
-
-コンテナ名のアフィニティ指定によって、 ``logger`` コンテナは ``frontend`` コンテナと同じ ``node-1`` コンテナで実行されることになります。``frontend`` という名前だけでなく、次のように ID を使った指定もできます
+コンテナ名のアフィニティ指定によって、 ``logger`` コンテナは ``frontend`` コンテナと同じ ``node-1`` コンテナで実行されることになります。 ``frontend`` という名前だけでなく、次のように ID を使った指定もできます
 
 .. code-block:: bash
 
-   docker run -d --name logger -e affinity:container==87c4376856a8`
+   docker run -d --name logger -e affinity:container==87c4376856a8
 
 .. Image affinity
 
@@ -210,7 +208,7 @@ Affinity（アフィニティ）フィルタ
 
 .. Only node-1 and node-3 have the redis image. Specify a -e affinity:image==redis filter to schedule several additional containers to run on these nodes.
 
-``node-1`` と ``node-3`` のみが `` redis`` イメージを持っています。 ``-e affinity:image==redis`` フィルタを使い、これらのノード上でスケジュールします。
+``node-1`` と ``node-3`` のみが ``redis`` イメージを持っています。 ``-e affinity:image==redis`` フィルタを使い、これらのノード上でスケジュールします。
 
 .. code-block:: bash
 
@@ -289,7 +287,7 @@ Affinity（アフィニティ）フィルタ
 
 .. An affinity or a constraint expression consists of a key and a value. A key must conform the alpha-numeric pattern, with the leading alphabet or underscore. The value must be one of the following:
 
-アフィニティや制約は、 `` key`` と ``value`` の組み合わせで表現します。 ``key`` は英数字のパターンに従います。ただし、先頭はアルファベットかアンダースコアです。 ``value`` は次のようなものです。
+アフィニティや制約は、 ``key`` と ``value`` の組み合わせで表現します。 ``key`` は英数字のパターンに従います。ただし、先頭はアルファベットかアンダースコアです。 ``value`` は次のようなものです。
 
 ..    An alpha-numeric string, dots, hyphens, and underscores.
     A globbing pattern, i.e., abc*.

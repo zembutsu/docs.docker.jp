@@ -73,7 +73,7 @@ Docker Swarm の **Swarm マネージャ** は、クラスタ全体に対する�
 ２つのレプリカ（複製）を作成
 ------------------------------
 
-Now that you have a primary manager, you can create replicates.
+.. Now that you have a primary manager, you can create replicates.
 
 プライマリ・マネージャを作ったら、次はレプリカを作成できます。
 
@@ -112,7 +112,7 @@ Now that you have a primary manager, you can create replicates.
 
 .. Typing docker info should give you an output similar to the following:
 
-``docker info`` をじっコス売る事で、次のような出力が得られます。
+``docker info`` を実行する事で、次のような出力が得られます。
 
 .. code-block:: bash
 

@@ -84,7 +84,7 @@ Swarm ノードの作成
 
 .. This example uses the Docker Hub based token discovery service. Log into each node and do the following.
 
-この例では、Docker Hub を使う `` token`` ディスカバリ・サービスを使います。 **各ノード** にログインし、同じ作業を行います。
+この例では、Docker Hub を使う ``token`` ディスカバリ・サービスを使います。 **各ノード** にログインし、同じ作業を行います。
 
 ..    Start the Docker daemon with the -H flag. This ensures that the Docker remote API on Swarm Agents is available over TCP for the Swarm Manager, as well as the standard unix socket which is available in default docker installs.
 
@@ -142,7 +142,7 @@ Swarm エージェントをディスカバリ・サービスに登録します�
 
 ..    Once the manager is running, check your configuration by running docker info as follows:
 
-2. マネージャを起動後、次のように``docker info`` を実行して、設定を確認します。
+2. マネージャを起動後、次のように ``docker info`` を実行して、設定を確認します。
 
 .. code-block:: bash
 
