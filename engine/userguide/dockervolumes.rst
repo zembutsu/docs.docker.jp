@@ -267,7 +267,7 @@ SELinux のようなラベリング・システムでは、コンテナ内にマ
 
 .. You can use multiple --volumes-from parameters to bring together multiple data volumes from multiple containers.
 
-``--volumes-from`` パラメータは複数回利用できます。服宇スのコンテナから、複数のデータボリュームを一緒に扱えます。
+``--volumes-from`` パラメータは複数回利用できます。複数のコンテナから、複数のデータボリュームを一緒に扱えます。
 
 .. You can also extend the chain by mounting the volume that came from the dbdata container in yet another container via the db1 or db2 containers.
 
