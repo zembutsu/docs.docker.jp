@@ -26,8 +26,8 @@ Compose CLI 入門
 ..    docker-compose Command
     CLI Reference
 
-* :doc:`docker-compose`
-* :doc:` index`
+* :doc:`/compose/reference/docker-compose`
+* :doc:`/compose/reference/index`
 
 .. Environment Variables
 
@@ -107,8 +107,7 @@ DOCKER_HOST
 DOCKER_TLS_VERIFY
 --------------------
 
-.. When set to anything other than an empty string, enables TLS communication with the 
-docker daemon.
+.. When set to anything other than an empty string, enables TLS communication with the docker daemon.
 
 空白以外の何らかの値をセットすると、 ``docker`` デーモンとの TLS 通信を有効化します。
 
