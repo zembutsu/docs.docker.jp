@@ -384,5 +384,5 @@ Dockerfile の``ENV`` 命令を使い、変数を定義できます。これら�
 
 .. For detailed information on using ARG and ENV instructions, see the Dockerfile reference.
 
-``ARG `` と ``ENV`` 命令の詳細については、 :doc:`Dockerfile リファレンス </engine/reference/builder>` をご覧ください。
+``ARG`` と ``ENV`` 命令の詳細については、 :doc:`Dockerfile リファレンス </engine/reference/builder>` をご覧ください。
 
