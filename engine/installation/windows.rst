@@ -35,7 +35,7 @@ Docker を Docker Toolbox を使いインストールします。Docker Toolbox 
 
 .. Because the Docker daemon uses Linux-specific kernel features, you can’t run Docker natively in OS X. Instead, you must use docker-machine to create and attach to a virtual machine (VM). This machine is a Linux VM that hosts Docker for you on your Mac.
 
-Docker デーモンは Linux 固有の kernel 機能を使う為、OS X 上で Docker をネイティブに実行できません。そのかわり ``docker-machine`` を使い、仮想マシン（VM）の作成と接続が可能です。このマシンは Linuxの仮想マシンであり、自分の Windows 上の Docker ホストとなります。
+Docker デーモンは Linux 固有の kernel 機能を使う為、Windows 上で Docker をネイティブに実行できません。そのかわり ``docker-machine`` を使い、仮想マシン（VM）の作成と接続が可能です。このマシンは Linuxの仮想マシンであり、自分の Windows 上の Docker ホストとなります。
 
 .. The Docker VM is lightweight Linux virtual machine made specifically to run the Docker daemon on Windows. The VirtualBox VM runs completely from RAM, is a small ~24MB download, and boots in approximately 5s.
 
