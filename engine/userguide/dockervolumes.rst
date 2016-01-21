@@ -57,7 +57,7 @@
 
 ``docker create`` か ``docker run`` コマンドで ``-v`` フラグを使うと、コンテナにデータ・ボリュームを追加できます。``-v`` を複数回使うことで、複数のデータ・ボリュームをマウントできます。それでは、ウェブ・アプリケーションのコンテナに対して、ボリュームを１つ割り当ててみましょう。
 
-.. code-block: bash
+.. code-block:: bash
 
    $ docker run -d -P --name web -v /webapp training/webapp python app.py
 
@@ -76,7 +76,7 @@
 
 Docker はボリュームを、標準では読み書き可能な状態でマウントします。あるいは、読み込み専用(read-only) を指定したマウントも可能です。
 
-.. code-block: bash
+.. code-block:: bash
 
    $ docker run -d -P --name web -v /opt/webapp:ro training/webapp python app.py
 
