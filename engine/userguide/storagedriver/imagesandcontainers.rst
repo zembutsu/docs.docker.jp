@@ -340,6 +340,8 @@ BTFS、ZFS 、その他のドライバは、コピー・オン・ライトを異
 
 Docker のコピー・オン・ライト方式により、コンテナによるディスク容量の消費を減らすだけではなく、コンテナ起動時の時間も短縮します。起動時に、Docker は各コンテナごとに薄い書き込み可能なレイヤを作成します。次の図は ``changed-ubuntu`` イメージの読み込み専用のコピーを、５つのコンテナで共有しているものです。
 
+翻注：上記コマンドは、`/var/lib/docker`ディレクトリで実行してください。
+
 .. If Docker had to make an entire copy of the underlying image stack each time it started a new container, container start times and disk space used would be significantly increased.
 
 もし新しいコンテナを開始するたびに元になるイメージ層全体をコピーしているのであれば、コンテナの起動時間とディスク使用量が著しく増えてしまうでしょう（訳者注：実際にはそうではありません。）。
