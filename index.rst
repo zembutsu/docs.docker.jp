@@ -481,6 +481,8 @@ Docker Compose Reference
    compose/reference/stop.rst
    compose/reference/unpause.rst
    compose/reference/up.rst
+   compose/compose-file.rst
+   compose/env.rst
 
 
 Command and API references
