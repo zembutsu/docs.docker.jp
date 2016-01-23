@@ -12,30 +12,54 @@
 Amazon Web Services
 =======================================
 
-Create machines on Amazon Web Services. To create machines on Amazon Web Services, you must supply three required parameters:
+.. Create machines on Amazon Web Services. To create machines on Amazon Web Services, you must supply three required parameters:
 
-    Access Key ID
+`Amazon Web Services <http://aws.amazon.com/>`_ 上にマシンを作成します。 `Amazon Seb Services <http://aws.amazon.com/>`__ 上にマシンを作成するには、次の３つのパラメータが必要です。
+
+..    Access Key ID
     Secret Access Key
     VPC ID
 
-Obtain your IDs and Keys from AWS. To find the VPC ID:
+* アクセス・キー ID
+* シークレット・アクセスキー
+* VPC ID
 
-    Login to the AWS console
+.. Obtain your IDs and Keys from AWS. To find the VPC ID:
+
+自分の ID と鍵を AWS から取得します。VPC ID を確認するには、次のようにします。
+
+..    Login to the AWS console
     Go to Services -> VPC -> Your VPCs.
     Locate the VPC ID you want from the VPC column.
-
     Go to Services -> VPC -> Subnets. Examine the Availability Zone column to verify that zone a exists and matches your VPC ID.
 
-    For example, us-east1-a is in the a availability zone. If the a zone is not present, you can create a new subnet in that zone or specify a different zone when you create the machine.
+1. AWS コンソールにログインします。
+2. **Services -> VPC -> VPC -> 自分の VPC** に移動します。
+3. *VPC* 列から使用する VPC ID を選びます。
+4. **Services -> VPC -> Subnets** に移動します。 *Availability Zones* 列を確認し、ゾーン ``a`` が存在しているのと、自分の VPC ID と一致していることを確認します。
 
-To create the machine instance, specify --driver amazonec2 and the three required parameters.
+..    For example, us-east1-a is in the a availability zone. If the a zone is not present, you can create a new subnet in that zone or specify a different zone when you create the machine.
 
-$ docker-machine create --driver amazonec2 --amazonec2-access-key AKI******* --amazonec2-secret-key 8T93C********* --amazonec2-vpc-id vpc-****** aws01
+例えば、 ``us-east-1-a`` にはアベイラビリティ・ゾーン ``a`` が存在しています。もし ``a`` ゾーンが表示されなければ、マシンを作成するために、新しいサブネットを作成するか別のゾーンを指定します。
 
-This example assumes the VPC ID was found in the a availability zone. Use the--amazonec2-zone flag to specify a zone other than the a zone. For example, --amazonec2-zone c signifies us-east1-c.
-Options
+.. To create the machine instance, specify --driver amazonec2 and the three required parameters.
 
-    --amazonec2-access-key: required Your access key id for the Amazon Web Services API.
+マシン・インスタンスを作成するには、 ``--driver amazonec2`` と３つの必須パラメータを指定します。
+
+.. code-block:: bash
+
+   $ docker-machine create --driver amazonec2 --amazonec2-access-key AKI******* --amazonec2-secret-key 8T93C********* --amazonec2-vpc-id vpc-****** aws01
+
+.. This example assumes the VPC ID was found in the a availability zone. Use the--amazonec2-zone flag to specify a zone other than the a zone. For example, --amazonec2-zone c signifies us-east1-c.
+
+この例では、 VPC ID が ``a`` アベイラビリティ・ゾーンに存在しているものと想定されます。 ``a`` ゾーン以外を指定するには、 ``--amazonec2-zone`` フラグを使います。例えば、 ``--amazonec2-zone c`` は ``us-east1-c`` を表しています。
+
+.. Options
+
+オプション
+==========
+
+..    --amazonec2-access-key: required Your access key id for the Amazon Web Services API.
     --amazonec2-secret-key: required Your secret access key for the Amazon Web Services API.
     --amazonec2-session-token: Your session token for the Amazon Web Services API.
     --amazonec2-ami: The AMI ID of the instance to use.
@@ -53,4 +77,117 @@ Options
     --amazonec2-private-address-only: Use the private IP address only.
     --amazonec2-monitoring: Enable CloudWatch Monitoring.
 
-By default, the Amazon EC2 driver will use a daily image of Ubuntu 14.04 LTS.
+* ``--amazonec2-access-key`` : **必須** 自分の Amazon Web Services API 用のアクセス・キー緒です。
+* ``--amazonec2-secret-key`` : **必須** 自分の Amazon Web Services API 用のシークレット・アクセスキーです。
+* ``--amazonec2-session-token`` :  自分の Amazon Web Services API 用のセッション・とーくにです。
+* ``--amazonec2-ami`` : インスタンスに使用する AMI ID です。
+* ``--amazonec2-region`` : インスタンスを起動するリージョンです。
+* ``--amazonec2-vpc-id`` : *必須*** 起動したインスタンスを置く VPC ID です。
+* ``--amazonec2-zone`` : インスタンスを置く AWS ゾーンです（例： a, b, c, d, e のいずれか）。
+* ``--amazonec2-subnet-id`` : AWS VPC サブネット ID です。
+* ``--amazonec2-security-group`` : AWS VPC セキュリティ・グループ名です。
+* ``--amazonec2-instance-type``: 実行するインスタンス・タイプです。
+* ``--amazonec2-root-size`` : インスタンスのルート・ディスク容量（単位：GB）。
+* ``--amazonec2-iam-instance-profile`` : インスタンスのプロフィールに使われる AWS IAM ロール名。
+* ``--amazonec2-ssh-user`` : SSH ログインユーザ名。
+* ``--amazonec2-request-spot-instance`` : スポット・インスタンスを使用。
+* ``--amazonec2-spot-price`` : スポット・インスタンスの bid 価格（単位：ドル）。 ``--amazonec2-request-spot-instance`` フラグが必要です。
+* ``--amazonec2-private-address-only`` : プライベート・アドレスのみ使います。
+* ``--amazonec2-monitoring`` : CloudWatch モニタリングを有効化します。
+
+.. By default, the Amazon EC2 driver will use a daily image of Ubuntu 14.04 LTS.
+
+デフォルトでは、Amazon EC2 ドライバは Ubuntu 14.04 LTS の daily build を使います。
+
+.. list-table::
+   :header-rows: 1
+   
+   * - リージョン
+     - AMI ID
+   * - ap-northeast-1
+     - ami-b36d4edd
+   * - ap-southeast-1
+     - ami-1d336a7e
+   * - ap-southeast-2
+     - ami-1d336a7e
+   * - cn-north-1
+     - ami-79eb2214
+   * - eu-west-1
+     - ami-8aa67cf9
+   * - eu-central-1
+     - ami-ab0210c7
+   * - sa-east-1
+     - ami-185de774
+   * - us-west-1
+     - ami-26d5af4c
+   * - us-west-1
+     - ami-9cbcd2fc
+   * - us-west-2
+     - ami-16b1a077
+   * - us-gov-west-1
+     -  ami-b0bad893
+
+.. Environment variables and default values:
+
+環境変数とデフォルト値は以下の通りです。
+
+.. list-table::
+   :header-rows: 1
+   
+   * - コマンドライン・オプション
+     - 環境変数
+     - デフォルト値
+   * - ``--amazonec2-access-key``
+     - ``AWS_ACCESS_KEY_ID``
+     - -
+   * - ``--amazonec2-secret-key``
+     - ``AWS_SECRET_ACCESS_KEY``
+     - -
+   * - ``--amazonec2-session-token``
+     - ``AWS_SESSION_TOKEN``
+     - -
+   * - ``--amazonec2-ami``
+     - ``AWS_AMI``
+     - ``ami-5f709f34``
+   * - ``--amazonec2-region``
+     - ``AWS_DEFAULT_REGION``
+     - ``us-east-1``
+   * - ``--amazonec2-vpc-id``
+     - ``AWS_VPC_ID``
+     - -
+   * - ``--amazonec2-vpc-id``
+     - ``AWS_VPC_ID``
+     - -
+   * - ``--amazonec2-zone``
+     - ``AWS_ZONE``
+     - ``a``
+   * - ``--amazonec2-subnet-id``
+     - ``AWS_SUBNET_ID``
+     - -
+   * - ``--amazonec2-security-group``
+     - ``AWS_SECURITY_GROUP``
+     - ``docker-machine``
+   * - ``--amazonec2-instance-type``
+     - ``AWS_INSTANCE_TYPE``
+     - ``t2.micro``
+   * - ``--amazonec2-root-size``
+     - ``AWS_ROOT_SIZE``
+     - ``16``
+   * - ``--amazonec2-iam-instance-profile``
+     - ``AWS_INSTANCE_PROFILE``
+     - -
+   * - ``--amazonec2-ssh-user``
+     - ``AWS_SSH_USER``
+     - ``ubuntu``
+   * - ``--amazonec2-request-spot-instance``
+     - -
+     - ``false``
+   * - ``--amazonec2-spot-price``
+     - -
+     - ``0.50``
+   * - ``--amazonec2-private-address-only``
+     - -
+     - ``false``
+   * - ``--amazonec2-monitoring``
+     - -
+     - ``false``
