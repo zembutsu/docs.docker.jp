@@ -318,7 +318,7 @@ SELinux のようなラベリング・システムでは、コンテナ内にマ
 
 .. code-block:: bash
 
-   $ docker run --volumes-from dbdata2 -v $(pwd):/backup ubuntu cd /dbdata && tar xvf /backup/backup.tar
+   $ docker run --volumes-from dbstore2 -v $(pwd):/backup ubuntu bash -c "cd /dbdata && tar xvf /backup/backup.tar"
 
 .. You can use the techniques above to automate backup, migration and restore testing using your preferred tools.
 
