@@ -484,15 +484,40 @@ Docker Compose Reference
    compose/compose-file.rst
    compose/env.rst
 
-
-Command and API references
+Docker Machine references
 ----------------------------------------
 
 .. toctree::
    :maxdepth: 3
-   :caption: コマンド・API リファレンス
+   :caption: Docker Machine リファレンス
 
-   engine/reference/builder.rst
+   machine/drivers/index.rst
+
+Docker Machine Drivers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Docker Machine ドライバ
+
+   machine/drivers/os-base.rst
+   machine/drivers/aws.rst
+   machine/drivers/digital-ocean.rst
+   machine/drivers/generic.rst
+   machine/drivers/gce.rst
+   machine/drivers/soft-layer.rst
+   machine/drivers/azure.rst
+   machine/drivers/hyper-v.rst
+   machine/drivers/openstack.rst
+   machine/drivers/virtualbox.rst
+
+Docker Swarm references
+----------------------------------------
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Docker Swarm リファレンス
+
    swarm/api/swarm-api.rst
 
 

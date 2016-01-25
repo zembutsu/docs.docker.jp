@@ -14,7 +14,7 @@ IBM SoftLayer
 
 .. Create machines on Softlayer.
 
-`SoftLayer`_ 上にマシンを作成します。
+`SoftLayer <http://softlayer.com/>`_ 上にマシンを作成します。
 
 .. You need to generate an API key in the softlayer control panel. Retrieve your API key
 
