@@ -56,5 +56,62 @@ SoftLayer コントロール・パネルで API を生成する必要があり�
 * ``--softlayer-public-vlan-id`` : パブリック VLAN ID 。
 * ``--softlayer-private-vlan-id`` : プライベート VLAN ID 。
 
+.. The SoftLayer driver will use UBUNTU_LATEST as the image type by default.
 
-The SoftLayer driver will use UBUNTU_LATEST as the image type by default.
+SoftLayer ドライバは、デフォルトで ``UBUNTU_LATEST`` イメージ・タイプを使います。
+
+利用可能な環境変数とデフォルト値は以下の通りです。
+
+.. list-table::
+   :header-rows: 1
+   
+   * - コマンドライン・オプション
+     - 環境変数
+     - デフォルト値
+   * - ``--softlayer-memory``
+     - ``SOFTLAYER_MEMORY``
+     - ``1024``
+   * - ``--softlayer-disk-size``
+     - ``SOFTLAYER_DISK_SIZE``
+     - ``0``
+   * - ``--softlayer-user``
+     - ``SOFTLAYER_USER``
+     - -
+   * - ``--softlayer-api-key``
+     - ``SOFTLAYER_API_KEY``
+     - -
+   * - ``--softlayer-region``
+     - ``SOFTLAYER_REGION``
+     - ``dal01``
+   * - ``--softlayer-cpu``
+     - ``SOFTLAYER_CPU``
+     - ``1``
+   * - ``--softlayer-hostname``
+     - ``SOFTLAYER_HOSTNAME``
+     - ``docker``
+   * - ``--softlayer-domain``
+     - ``SOFTLAYER_DOMAIN``
+     - -
+   * - ``--softlayer-api-endpoint``
+     - ``SOFTLAYER_API_ENDPOINT``
+     - ``api.softlayer.com/rest/v3``
+   * - ``--softlayer-hourly-billing``
+     - ``SOFTLAYER_HOURLY_BILLING``
+     - ``false``
+   * - ``--softlayer-local-disk``
+     - ``SOFTLAYER_LOCAL_DISK``
+     - ``false``
+   * - ``--softlayer-private-net-only``
+     - ``SOFTLAYER_PRIVATE_NET``
+     - ``false``
+   * - ``--softlayer-image``
+     - ``SOFTLAYER_IMAGE``
+     - ``UBUNTU_LATEST``
+   * - ``--softlayer-public-vlan-id``
+     - ``SOFTLAYER_PUBLIC_VLAN_ID``
+     - ``0``
+   * - ``--softlayer-private-vlan-id``
+     - ``SOFTLAYER_PRIVATE_VLAN_ID``
+     - ``0``
+
+
