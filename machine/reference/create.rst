@@ -142,12 +142,14 @@ Docker Machine は、デーモンに対するパラメータを単にセット�
 
 .. The following is an example usage:
 
-$ docker-machine create -d virtualbox \
-    --engine-label foo=bar \
-    --engine-label spam=eggs \
-    --engine-storage-driver overlay \
-    --engine-insecure-registry registry.myco.com \
-    foobarmachine
+.. code-block:: bash
+
+   $ docker-machine create -d virtualbox \
+       --engine-label foo=bar \
+       --engine-label spam=eggs \
+       --engine-storage-driver overlay \
+       --engine-insecure-registry registry.myco.com \
+       foobarmachine
 
 .. This will create a virtual machine running locally in Virtualbox which uses the overlay storage backend, has the key-value pairs foo=bar and spam=eggs as labels on the engine, and allows pushing / pulling from the insecure registry located at registry.myco.com. You can verify much of this by inspecting the output of docker info:
 
