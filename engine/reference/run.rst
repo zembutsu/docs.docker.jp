@@ -1415,7 +1415,7 @@ Docker デーモンを ``lxc`` 実行ドライバを使って起動する時（ 
 
 .. Logging drivers (–log-driver)
 
-.. _loggind-drivers-log-driver:
+.. _logging-drivers-log-driver:
 
 ログ記録ドライバ（--log-driver）
 ========================================
