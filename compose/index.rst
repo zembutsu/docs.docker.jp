@@ -18,7 +18,7 @@ Compose は開発環境、テスト、ステージング環境だけでなく、
 
 .. Using Compose is basically a three-step process.
 
-Compose を使うには、基本的に３つのステップをを踏みます。
+Compose を使うには、基本的に３つのステップを踏みます。
 
 ..    Define your app’s environment with a Dockerfile so it can be reproduced anywhere.
     Define the services that make up your app in docker-compose.yml so they can be run together in an isolated environment.
