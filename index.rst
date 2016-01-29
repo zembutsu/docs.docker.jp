@@ -511,6 +511,34 @@ Docker Machine Drivers
    machine/drivers/openstack.rst
    machine/drivers/virtualbox.rst
 
+Supported Docker Machine subcommands
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Docker Machine サブコマンド
+
+   machine/reference/index.rst
+   machine/reference/active.rst
+   machine/reference/config.rst
+   machine/reference/create.rst
+   machine/reference/env.rst
+   machine/reference/help.rst
+   machine/reference/inspect.rst
+   machine/reference/ip.rst
+   machine/reference/kill.rst
+   machine/reference/ls.rst
+   machine/reference/regenerate-certs.rst
+   machine/reference/restart.rst
+   machine/reference/rm.rst
+   machine/reference/scp.rst
+   machine/reference/ssh.rst
+   machine/reference/start.rst
+   machine/reference/status.rst
+   machine/reference/stop.rst
+   machine/reference/upgrade.rst
+   machine/reference/url.rst
+
 Docker Swarm references
 ----------------------------------------
 
@@ -529,6 +557,7 @@ About
    :caption: Docker について
 
    engine/reference/glossary.rst
+   release-notes.rst
 
 
 
