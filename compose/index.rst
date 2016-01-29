@@ -10,7 +10,7 @@ Docker Compose 概要
 
 .. Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a Compose file to configure your application’s services. Then, using a single command, you create and start all the services from your configuration. To learn more about all the features of Compose see the list of features.
 
-Compose とは、複数のコンテナを使う Docker アプリケーションを、定義・実行するツールです。Compose はアプリケーションのサービスを設定に、Compose ファイルを使います。そして、コマンドを１つ実行するだけで、設定した全てのサービスを作成・起動します。Compose の全ての機能一覧について学ぶには、 :ref:`機能一覧 <features>` をご覧ください。
+Compose とは、複数のコンテナを使う Docker アプリケーションを、定義・実行するツールです。Compose はアプリケーションのサービスの設定に、Compose ファイルを使います。そして、コマンドを１つ実行するだけで、設定した全てのサービスを作成・起動します。Compose の全ての機能一覧について学ぶには、 :ref:`機能一覧 <features>` をご覧ください。
 
 .. Compose is great for development, testing, and staging environments, as well as CI workflows. You can learn more about each case in Common Use Cases.
 
@@ -18,7 +18,7 @@ Compose は開発環境、テスト、ステージング環境だけでなく、
 
 .. Using Compose is basically a three-step process.
 
-Compose を使うには、基本的に３つのステップをを踏みます。
+Compose を使うには、基本的に３つのステップを踏みます。
 
 ..    Define your app’s environment with a Dockerfile so it can be reproduced anywhere.
     Define the services that make up your app in docker-compose.yml so they can be run together in an isolated environment.
