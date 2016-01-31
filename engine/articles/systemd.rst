@@ -112,6 +112,8 @@ Docker イメージ、コンテナ、ボリュームを別々のパーティシ�
 
 この例では、次のような ``docker.service`` ファイルがあるものとします。
 
+.. code-block:: bash
+
    [Unit]
    Description=Docker Application Container Engine
    Documentation=https://docs.docker.com
