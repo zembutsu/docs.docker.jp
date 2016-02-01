@@ -556,10 +556,9 @@ About
    :maxdepth: 3
    :caption: Docker について
 
-   engine/reference/glossary.rst
    release-notes.rst
-
-
+   engine/reference/glossary.rst
+   engine/misc/faq.rst
 
 Indices and tables
 ==================
