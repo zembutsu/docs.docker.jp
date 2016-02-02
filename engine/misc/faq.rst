@@ -55,4 +55,15 @@ Mac OS X や Windows で Docker は動きますか？
 
    Docker Machine を通して仮想マシン上の Docker デーモンをリモート操作する場合は、ドキュメントの例で ``docker`` コマンドの前にある ``sudo`` を入力 *しない* でください。
 
+.. How do containers compare to virtual machines?
+
+.. _how-do-containers-compare-to-virtual-machines:
+
+コンテナと仮想マシンの違いは何ですか？
+========================================
+
+.. They are complementary. VMs are best used to allocate chunks of hardware resources. Containers operate at the process level, which makes them very lightweight and perfect as a unit of software delivery.
+
+相互補完します。仮想マシンはハードウェア・リソースの塊を割り当てるのに一番便利です。コンテナの操作はプロセス・レベルであり、ソフトウェアのデリバリをまとめることができるため、軽量かつパーフェクトです。
+
 (以下TODO)
