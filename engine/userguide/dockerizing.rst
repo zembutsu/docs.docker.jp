@@ -283,7 +283,7 @@ Hello world のデーモン化（常駐）
 
 .. Now, you have the basis learn more about Docker and how to do some more advanced tasks. Go to “Run a simple application“ to actually build a web application with the Docker client.
 
-以上で、Docker の基本と高度な処理を学びました。:doc:`シンプルなアプリケーションの実行 </engine/userguide/usingdocker>` に移動し、Docker クタイアントを使って実際のウェブアプリケーションを構築します。
+以上で、Docker の基本と高度な処理を学びました。:doc:`シンプルなアプリケーションの実行 </engine/userguide/usingdocker>` に移動し、Docker クライアントを使って実際のウェブアプリケーションを構築します。
 
 
 
