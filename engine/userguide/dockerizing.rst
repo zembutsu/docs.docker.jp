@@ -218,7 +218,7 @@ Hello world のデーモン化（常駐）
 
 .. Okay, so we now know it’s running. But is it doing what we asked it to do? To see this we’re going to look inside the container using the docker logs command. Let’s use the container name Docker assigned.
 
-大丈夫ですね。コンテナは実行中だと分かりました。しかし、実行するように求めた処理は、正しく行われているでしょうか。コンテナの中でどのような処理が行われているか確認するには、``docker logs`` 使います。Docker が割り当てたコンテナ名を使いましょう。
+大丈夫ですね。コンテナは実行中だと分かりました。しかし、実行するように求めた処理は、正しく行われているでしょうか。コンテナの中でどのような処理が行われているか確認するには、``docker logs`` を使います。Docker が割り当てたコンテナ名を使いましょう。
 
 .. code-block:: bash
 
