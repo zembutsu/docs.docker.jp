@@ -1,7 +1,7 @@
 .. -*- coding: utf-8 -*-
 .. https://docs.docker.com/engine/misc/faq/
 .. doc version: 1.9
-.. check date: 2016/02/01
+.. check date: 2016/02/04
 .. -----------------------------------------------------------------------------
 
 .. Frequently Asked Questions (FAQ)
@@ -66,4 +66,16 @@ Mac OS X や Windows で Docker は動きますか？
 
 相互補完します。仮想マシンはハードウェア・リソースの塊を割り当てるのに一番便利です。コンテナの操作はプロセス・レベルであり、ソフトウェアのデリバリをまとめることができるため、軽量かつパーフェクトです。
 
-(以下TODO)
+.. What does Docker add to just plain LXC?
+
+.. _what-does-docker-add-to-just-plain-lxc:
+
+なぜ Docker は LXC に技術を追加しようとしたのですか？
+=====================================================
+
+.. Docker is not a replacement for LXC. “LXC” refers to capabilities of the Linux kernel (specifically namespaces and control groups) which allow sandboxing processes from one another, and controlling their resource allocations. On top of this low-level foundation of kernel features, Docker offers a high-level tool with several powerful functionalities:
+
+Docker 技術は LXC の置き換えではありません。 「LXC」は Linux カーネルの機能を参照しており（特に名前空間とコントロール・グループ）、あるプロセスから別のプロセスに対するサンドボックスを可能とし、リソースの割り当てを制御するものです。これらはカーネル機能のローレベルを基礎としています。一方、Docker は複数の強力な機能を持つハイレベルなツールです。
+
+(TODO)
+
