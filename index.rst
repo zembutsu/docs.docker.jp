@@ -99,60 +99,22 @@ Docker ドキュメントへようこそ！
 
    docker-hub/toc.rst
 
+.. toctree::
+   :caption: Docker Machine
+   :hidden:
 
+   machine/toc.rst
+
+.. toctree::
+   :caption: Kitematic
+   :hidden:
+
+   kitematic/toc.rst
 
 ----
 
 * v1.9 index ( will be migration to v1.10 )
 
-Install
-====================
-
-.. toctree::
-   :maxdepth: 3
-   :caption: インストール
-
-   kitematic/index.rst
-   machine/install-machine.rst
-
-Use the Kitematic GUI
-------------------------------
-
-.. toctree::
-   :maxdepth: 3
-
-   kitematic/userguide/index.rst
-
-
-Provision & set up Docker hosts
-----------------------------------------
-
-.. toctree::
-   :maxdepth: 3
-   :caption: Docker Machine
-
-   machine/index.rst
-   machine/get-started.rst
-   machine/get-started-cloud.rst
-   machine/migrate-to-machine.rst
-
-
-Docker Hub
-----------------------------------------
-
-.. toctree::
-   :maxdepth: 3
-   :caption: Docker Hub
-
-   docker-hub/index.rst
-   docker-hub/accounts.rst
-   docker-hub/repos.rst
-   docker-hub/builds.rst
-   docker-hub/webhooks.rst
-   docker-hub/bitbucket.rst
-   docker-hub/github.rst
-   docker-hub/orgs.rst
-   docker-hub/official_repos.rst
 
 Docker Registry
 ----------------------------------------
@@ -193,62 +155,6 @@ Command and API references
    engine/reference/builder.rst
    engine/reference/remote_api_client_libraries.rst
    engine/reference/docker_io_accounts_api.rst
-
-
-Docker Machine references
-----------------------------------------
-
-.. toctree::
-   :maxdepth: 3
-   :caption: Docker Machine リファレンス
-
-   machine/drivers/index.rst
-
-Docker Machine Drivers
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. toctree::
-   :maxdepth: 3
-   :caption: Docker Machine ドライバ
-
-   machine/drivers/os-base.rst
-   machine/drivers/aws.rst
-   machine/drivers/digital-ocean.rst
-   machine/drivers/generic.rst
-   machine/drivers/gce.rst
-   machine/drivers/soft-layer.rst
-   machine/drivers/azure.rst
-   machine/drivers/hyper-v.rst
-   machine/drivers/openstack.rst
-   machine/drivers/virtualbox.rst
-
-Supported Docker Machine subcommands
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. toctree::
-   :maxdepth: 3
-   :caption: Docker Machine サブコマンド
-
-   machine/reference/index.rst
-   machine/reference/active.rst
-   machine/reference/config.rst
-   machine/reference/create.rst
-   machine/reference/env.rst
-   machine/reference/help.rst
-   machine/reference/inspect.rst
-   machine/reference/ip.rst
-   machine/reference/kill.rst
-   machine/reference/ls.rst
-   machine/reference/regenerate-certs.rst
-   machine/reference/restart.rst
-   machine/reference/rm.rst
-   machine/reference/scp.rst
-   machine/reference/ssh.rst
-   machine/reference/start.rst
-   machine/reference/status.rst
-   machine/reference/stop.rst
-   machine/reference/upgrade.rst
-   machine/reference/url.rst
 
 
 About
