@@ -93,6 +93,13 @@ Docker ドキュメントへようこそ！
 
    compose/toc.rst
 
+.. toctree::
+   :caption: Docker Hub
+   :hidden:
+
+   docker-hub/toc.rst
+
+
 
 ----
 
@@ -187,34 +194,6 @@ Command and API references
    engine/reference/remote_api_client_libraries.rst
    engine/reference/docker_io_accounts_api.rst
 
-Docker Compose Reference
-----------------------------------------
-
-.. toctree::
-   :maxdepth: 3
-   :caption: Docker Compose リファレンス
-
-   compose/reference/index.rst
-   compose/reference/overview.rst
-   compose/reference/docker-compose.rst
-   compose/reference/build.rst
-   compose/reference/help.rst
-   compose/reference/kill.rst
-   compose/reference/logs.rst
-   compose/reference/pause.rst
-   compose/reference/port.rst
-   compose/reference/ps.rst
-   compose/reference/pull.rst
-   compose/reference/restart.rst
-   compose/reference/rm.rst
-   compose/reference/run.rst
-   compose/reference/scale.rst
-   compose/reference/start.rst
-   compose/reference/stop.rst
-   compose/reference/unpause.rst
-   compose/reference/up.rst
-   compose/compose-file.rst
-   compose/env.rst
 
 Docker Machine references
 ----------------------------------------
