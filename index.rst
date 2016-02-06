@@ -81,6 +81,19 @@ Docker ドキュメントへようこそ！
 
    engine/toc.rst
 
+.. toctree::
+   :caption: Docker Swarm
+   :hidden:
+
+   swarm/toc.rst
+
+.. toctree::
+   :caption: Docker Compose
+   :hidden:
+
+   compose/toc.rst
+
+
 ----
 
 * v1.9 index ( will be migration to v1.10 )
@@ -94,8 +107,6 @@ Install
 
    kitematic/index.rst
    machine/install-machine.rst
-   compose/install.rst
-   swarm/install-w-machine.rst
 
 Use the Kitematic GUI
 ------------------------------
@@ -117,40 +128,6 @@ Provision & set up Docker hosts
    machine/get-started.rst
    machine/get-started-cloud.rst
    machine/migrate-to-machine.rst
-
-
-Create multi-container applications
-----------------------------------------
-
-.. toctree::
-   :maxdepth: 3
-   :caption: Docker Compose
-
-   compose/index.rst
-   compose/production.rst
-   compose/extends.rst
-   compose/gettingstarted.rst
-   compose/django.rst
-   compose/rails.rst
-   compose/networking.rst
-   compose/wordpress.rst
-   compose/completion.rst
-
-
-Cluster Docker containers
-----------------------------------------
-
-.. toctree::
-   :maxdepth: 3
-   :caption: Docker Swarm
-
-   swarm/index.rst
-   swarm/install-manual.rst
-   swarm/multi-manager-setup.rst
-   swarm/networking.rst
-   swarm/discovery.rst
-   swarm/scheduler/filter.rst
-   swarm/scheduler/strategy.rst
 
 
 Docker Hub
@@ -293,15 +270,6 @@ Supported Docker Machine subcommands
    machine/reference/stop.rst
    machine/reference/upgrade.rst
    machine/reference/url.rst
-
-Docker Swarm references
-----------------------------------------
-
-.. toctree::
-   :maxdepth: 3
-   :caption: Docker Swarm リファレンス
-
-   swarm/api/swarm-api.rst
 
 
 About
