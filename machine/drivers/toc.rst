@@ -4,24 +4,25 @@
 .. check date: 2016/02/06
 .. -----------------------------------------------------------------------------
 
-.. Machine toc
+.. machine drivers toc
 
-.. machine-toc:
+.. machine-drivers-toc:
 
 ========================================
-Docker Machine
+ドライバ
 ========================================
 
 .. toctree::
    :maxdepth: 3
-   :caption: Docker Machine 目次
-   
-   overview.rst
-   install-machine.rst
-   get-started.rst
-   get-started-cloud.rst
-   concepts.rst
-   migrate-to-machine.rst
-   references/toc.rst
-   drivers/toc.rst
-   completion.rst
+
+   index.rst
+   os-base.rst
+   aws.rst
+   digital-ocean.rst
+   generic.rst
+   gce.rst
+   soft-layer.rst
+   azure.rst
+   hyper-v.rst
+   openstack.rst
+   virtualbox.rst
