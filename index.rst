@@ -560,6 +560,17 @@ About
    engine/reference/glossary.rst
    engine/misc/faq.rst
 
+
+Docs archive
+====================
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Docs アーカイブ
+   
+   v1.9 <http://docs.docker.jp/v1.9/>
+
+
 Indices and tables
 ==================
 
