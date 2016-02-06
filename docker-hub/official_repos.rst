@@ -25,7 +25,7 @@ Docker Hub 上の公式レポジトリ
 
 ..    Exemplify Dockerfile best practices and provide clear documentation to serve as a reference for other Dockerfile authors.
 
-* ``Dockerfile`` の :doc:`ベスト・プラクティス </engine/articles/dockerfile_best-practice>` を提示し、他の ``Dockerfile`` 著者のリファレンスを提供します。
+* ``Dockerfile`` の :doc:`ベスト・プラクティス </engine/userguide/eng-image/dockerfile_best-practice>` を提示し、他の ``Dockerfile`` 著者のリファレンスを提供します。
 
 ..    Ensure that security updates are applied in a timely manner. This is particularly important as many Official Repositories are some of the most popular on Docker Hub.
 

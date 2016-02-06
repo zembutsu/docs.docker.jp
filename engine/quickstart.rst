@@ -290,6 +290,6 @@ TCP ポートにサービスを割り当て
     Read more about Share Images via Repositories
     Review Command Line
 
-* :doc:`Docker ユーザ・ガイド <engine/userguide>` の中に進む
-* :doc:`レポジトリを通したイメージの共有 <engine/userguide/dockerreps>` について読む
-* :doc:`コマンドラインの練習 <engine/reference/commandline/cli>` を参照
+* :doc:`Docker ユーザ・ガイド <userguide/index>` の中に進む
+* :doc:`レポジトリを通したイメージの共有 <userguide/containers/dockerreps>` について読む
+* :doc:`コマンドラインの練習 <reference/commandline/cli>` を参照

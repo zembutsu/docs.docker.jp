@@ -91,7 +91,7 @@ Docker は次の内容で構成されています。
 
 .. The Understanding Docker section will help you:
 
-:doc:`Docker を理解するセクション </engine/introduction/understanding-docker>` は、次のような手助けになります。
+:doc:`Docker を理解するセクション </engine/understanding-docker>` は、次のような手助けになります。
 
 ..    See how Docker works at a high level
     Understand the architecture of Docker
@@ -148,7 +148,7 @@ Docker において、既存の機能を削除したり、新しい機能に置�
 
 .. The complete list of deprecated features can be found on the Deprecated Features page.
 
-廃止機能の一覧リストについては、:doc:`廃止機能のページ </engine/misc/deprecated>` をご覧ください。
+廃止機能の一覧リストについては、:doc:`廃止機能のページ </engine/deprecated>` をご覧ください。
 
 .. Licensing
 

@@ -30,6 +30,6 @@ Docker 利用例
 * :doc:`apt-cacher-ng`
 * :doc:`running_riak_service`
 * :doc:`running_ssh_service`
-* :doc:`/engine/userguide/dockerizing`
+* :doc:`/engine/userguide/containers/dockerizing`
 
 

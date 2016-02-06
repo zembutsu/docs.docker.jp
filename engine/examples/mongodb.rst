@@ -257,6 +257,6 @@ MongoDB イメージを使う
     Creating an Automated Build
 
 * :doc:`/engine/userguide/networking/default_network/dockerlinks`
-* :doc:`/engine/articles/ambassador_pattern_linking`
+* :doc:`/engine/admin/ambassador_pattern_linking`
 * :doc:`/docker-hub/builds`
 

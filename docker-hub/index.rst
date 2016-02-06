@@ -107,7 +107,7 @@ Docker 自身で Docker Hub サーバにアクセスするために、 ```docker
 
 .. You can find more information on working with Docker images in the Docker userguide.
 
-Docker イメージの動作に関する詳細情報は、 :doc:`Docker ユーザガイド </engine/userguide/dockerimages>` をご覧ください。
+Docker イメージの動作に関する詳細情報は、 :doc:`Docker ユーザガイド </engine/userguide/containers/dockerimages>` をご覧ください。
 
 .. Use Official Repositories
 

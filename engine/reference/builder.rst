@@ -16,7 +16,7 @@ Docker は ``Dockerfile`` から命令を読み込むことで、自動的にイ
 
 .. This page describes the commands you can use in a Dockerfile. When you are done reading this page, refer to the Dockerfile Best Practices for a tip-oriented guide.
 
-このページは ``Dockerfile`` で利用可能な命令を説明します。このページを読み終えたら、より便利に使うための ``Dockerfile`` の :doc:`ベスト・プラクティス </engine/articles/dockerfile_best-practice>` をご覧ください。
+このページは ``Dockerfile`` で利用可能な命令を説明します。このページを読み終えたら、より便利に使うための ``Dockerfile`` の :doc:`ベスト・プラクティス </engine/userguide/eng-image/dockerfile_best-practice>` をご覧ください。
 
 .. Usage
 
@@ -98,7 +98,7 @@ Docker デーモンは ``Dockerfile`` の命令を1行ずつ実行し、必要�
 
 .. When you’re done with your build, you’re ready to look into Pushing a repository to its registry.
 
-構築が終わったら、:doc:`レジストリにレポジトリを送信 </engine/userguide/dockerrepos>` する準備が整いました。
+構築が終わったら、:doc:`レジストリにレポジトリを送信 </engine/userguide/containers/dockerrepos>` する準備が整いました。
 
 .. Format
 
@@ -345,7 +345,7 @@ FROM
 
 .. The FROM instruction sets the Base Image for subsequent instructions. As such, a valid Dockerfile must have FROM as its first instruction. The image can be any valid image – it is especially easy to start by pulling an image from the Public Repositories.
 
-``FROM`` 命令は、 :ref:`ベース・イメージ <base-image>` サブシーケント命令を指定します。あるいは、有効な ``Dockerfile`` は、１行目を ``FROM`` 命令で指定する必要があります。イメージとは、あらゆる有効なものが利用できます。 :doc:`パブリック・レポジトリ </engine/userguide/dockerrepos>` から **イメージを取得する** 方法が一番簡単です。
+``FROM`` 命令は、 :ref:`ベース・イメージ <base-image>` サブシーケント命令を指定します。あるいは、有効な ``Dockerfile`` は、１行目を ``FROM`` 命令で指定する必要があります。イメージとは、あらゆる有効なものが利用できます。 :doc:`パブリック・レポジトリ </engine/userguide/containers/dockerrepos>` から **イメージを取得する** 方法が一番簡単です。
 
 ..    FROM must be the first non-comment instruction in the Dockerfile.
 

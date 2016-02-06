@@ -115,7 +115,7 @@ tag
 
 .. By default, Docker uses the first 12 characters of the container ID to tag log messages. Refer to the log tag option documentation for customizing the log tag format.
 
-デフォルトでは、Docker はコンテナ ID の冒頭 12 文字を tag log メッセージで使います。このログフォーマットをカスタマイズするには、 :doc:`log tag オプションのドキュメント </engine/reference/logging/log_tags>` をご覧ください。
+デフォルトでは、Docker はコンテナ ID の冒頭 12 文字を tag log メッセージで使います。このログフォーマットをカスタマイズするには、 :doc:`log tag オプションのドキュメント <log_tags>` をご覧ください。
 
 .. labels and env
 

@@ -68,7 +68,7 @@ OSX と Windows
 インストール後は
 ====================
 
-* :doc:`Docker について </engine/misc>`
+* :doc:`Docker について </engine/admin>`
 * `サポート（英語） <https://www.docker.com/support/>`_
 * `トレーニング（英語） <https://training.docker.com//>`_
 

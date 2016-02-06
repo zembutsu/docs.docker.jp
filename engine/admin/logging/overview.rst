@@ -154,7 +154,7 @@ syslog のオプション
 
 .. By default, Docker uses the first 12 characters of the container ID to tag log messages. Refer to the log tag option documentation for customizing the log tag format.
 
-デフォルトでは、Docker はコンテナ ID の始めの 12 文字だけログ・メッセージにタグ付けします。タグ・フォーマットの記録方式をカスタマイズするには、 :doc:`log tag オプションのドキュメント </engine/reference/logging/log_tags>` をご覧ください。
+デフォルトでは、Docker はコンテナ ID の始めの 12 文字だけログ・メッセージにタグ付けします。タグ・フォーマットの記録方式をカスタマイズするには、 :doc:`log tag オプションのドキュメント <log_tags>` をご覧ください。
 
 .. journald options
 
@@ -165,7 +165,7 @@ journald オプション
 
 .. The journald logging driver stores the container id in the journal’s CONTAINER_ID field. For detailed information on working with this logging driver, see the journald logging driver reference documentation.
 
-``journald`` ロギング・ドライバは journal の ``CONTAINER_ID`` フィールドにコンテナ ID を記録します。ロギング・ドライバの詳細な動作については、 :doc:`journald ロギング・ドライバ </engine/reference/logging/journald>` リファレンス・ドキュメントをご覧ください。
+``journald`` ロギング・ドライバは journal の ``CONTAINER_ID`` フィールドにコンテナ ID を記録します。ロギング・ドライバの詳細な動作については、 :doc:`journald ロギング・ドライバ <journald>` リファレンス・ドキュメントをご覧ください。
 
 .. gelf options
 
@@ -195,7 +195,7 @@ GELF ロギングドライバは以下のオプションをサポートしてい
 
 .. By default, Docker uses the first 12 characters of the container ID to tag log messages. Refer to the log tag option documentation for customizing the log tag format.
 
-デフォルトでは、Docker はコンテナ ID の始めの 12 文字だけログ・メッセージにタグ付けします。タグ・フォーマットの記録方式をカスタマイズするには、 :doc:`log tag オプションのドキュメント </engine/reference/logging/log_tags>` をご覧ください。
+デフォルトでは、Docker はコンテナ ID の始めの 12 文字だけログ・メッセージにタグ付けします。タグ・フォーマットの記録方式をカスタマイズするには、 :doc:`log tag オプションのドキュメント <log_tags>` をご覧ください。
 
 .. The labels and env options are supported by the gelf logging driver. It adds additional key on the extra fields, prefixed by an underscore (_).
 
@@ -235,7 +235,7 @@ fluentd オプション
 
 .. If container cannot connect to the Fluentd daemon on the specified address, the container stops immediately. For detailed information on working with this logging driver, see the fluentd logging driver
 
-コンテナは指定した場所にある Fluentd デーモンに接続できなければ、コンテナは直ちに停止します。このロギング・ドライバの動作に関する詳細情報は :doc:`fluentd ロギング・ドライバ </engine/reference/logging/fluentd>` をご覧ください。
+コンテナは指定した場所にある Fluentd デーモンに接続できなければ、コンテナは直ちに停止します。このロギング・ドライバの動作に関する詳細情報は :doc:`fluentd ロギング・ドライバ <fluentd>` をご覧ください。
 
 .. Specify Amazon CloudWatch Logs options
 
@@ -256,6 +256,6 @@ Amazon CloudWatch ロギングドライバは、以下のオプションをサ�
 
 .. For detailed information on working with this logging driver, see the awslogs logging driver reference documentation.
 
-このロギング・ドライバの動作に関する詳細情報は :doc:`awslogs ロギング・ドライバ </engine/reference/logging/awslogs>` をご覧ください。
+このロギング・ドライバの動作に関する詳細情報は :doc:`awslogs ロギング・ドライバ <awslogs>` をご覧ください。
 
 
