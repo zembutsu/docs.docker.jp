@@ -103,7 +103,7 @@ Docker ドキュメントへようこそ！
    :caption: Docker Machine
    :hidden:
 
-   machine/toc.rst
+   machine/index.rst
 
 .. toctree::
    :caption: Kitematic
@@ -111,50 +111,17 @@ Docker ドキュメントへようこそ！
 
    kitematic/toc.rst
 
+
+.. toctree::
+   :caption: コンポーネント・プロジェクト
+   :hidden:
+
+   registry/toc.rst
+
+
 ----
 
 * v1.9 index ( will be migration to v1.10 )
-
-
-Docker Registry
-----------------------------------------
-
-.. toctree::
-   :maxdepth: 3
-   :caption: Docker Registry
-
-   registry/index.rst
-   registry/introduction.rst
-   registry/deploying.rst
-   registry/configuration.rst
-   registry/notifications.rst
-   registry/help.rst
-
-
-Extend Docker
-==============================
-
-.. toctree::
-   :maxdepth: 3
-   :caption: Docker 拡張
-
-   engine/extend/index.rst
-   engine/extend/plugins.rst
-   engine/extend/plugins_network.rst
-   engine/extend/plugins_volume.rst
-   engine/extend/plugins_api.rst
-
-Command and API references
-==============================
-
-.. toctree::
-   :maxdepth: 3
-   :caption: コマンド&APIリファレンス
-
-   engine/reference/run.rst
-   engine/reference/builder.rst
-   engine/reference/remote_api_client_libraries.rst
-   engine/reference/docker_io_accounts_api.rst
 
 
 About
