@@ -109,7 +109,7 @@ Docker のアーキテクチャとは？
 
 Docker はクライアント・サーバ型のアーキテクチャです。Docker *クライアント* は Docker *デーモン* と通信することで、Docker コンテナの構築・実行・配布といった力仕事をします。Docker クライアントとデーモンのいずれも同じシステム上でも実行できます。あるいは、Docker クライアントはリモートの Docker デーモンに接続することも可能です。Docker クライアントとデーモンは、お互いにソケットか RESTful API を通して通信します。
 
-.. image:: ../article-img/architecture.png
+.. image:: ./article-img/architecture.png
    :scale: 60%
    :alt: Docker アーキテクチャ図
 
