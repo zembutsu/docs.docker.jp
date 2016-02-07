@@ -1,14 +1,19 @@
-﻿.. http://docs.docker.com/engine/userguide/basics/
+﻿.. -*- coding: utf-8 -*-
+.. https://docs.docker.com/engine/quickstart/
+.. doc version: 1.10
+.. check date: 2016/02/07
 
-.. Quickstart containers
+.. Quickstart Docker Engine
+
+.. _quickstart-docker-engine:
 
 =============================
-コンテナのクイックスタート
+Docker Engine クイックスタート
 =============================
 
-.. This quickstart assumes you have a working installation of Docker. To verify Docker is installed, use the following command:
+.. This quickstart assumes you have a working installation of Docker Engine. To verify Engine is installed, use the following command:
 
-このクイックスタートは、Docker のインストール作業完了を想定しています。Docker がインストールされているか確認するには、次のコマンドを実行します。
+このクイックスタートは、Docker Engineのインストール作業完了を想定しています。Docker Engine がインストールされているか確認するには、次のコマンドを実行します。
 
 ..    # Check that you have a working install
 
