@@ -3,12 +3,16 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. doc version: 1.10
+.. check date: 2016/02/08
+.. -----------------------------------------------------------------------------
+
 .. Welcome to Docker-docs-ja's documentation!
 
 Docker ドキュメント日本語化プロジェクト
 ==========================================
 
-このサイトは `http://docs.docker.com/ <http://docs.docker.com/>`_ で公開されている Docker ドキュメントの日本語訳を作成・公開・配布するプロジェクトです。この和訳ドキュメントの利用にあたっては、Common Creative License を適用します。訳文の間違いのご指摘、ご意見等やプル・リクエスト等々は、GitHub 上のプロジェクト `https://github.com/zembutsu/docs.docker.jp <https://github.com/zembutsu/docs.docker.jp>`_ までお願いします。
+* :doc:`about`
 
 ----
 
@@ -19,23 +23,21 @@ Docker ドキュメントへようこそ！
 
 .. Docker Engine or “Docker” creates and runs Docker containers. Install Docker on Ubuntu, Mac OS X, or Windows. Or use the Install menu to choose from others. 
 
-**Docker Engine (エンジン)** または "Docker" は、Docker コンテナを作成・実行します。Docker を :doc:`Ubuntu </engine/installation/ubuntulinux>`  、:doc:`Mac OS X </engine/installation/mac>`、:doc:`Windows </engine/installation/windows>` にインストールします。あるいは、メニューの **インストール** から他を選びます。
+.. Docker Engine provides the core functions you need to create Docker images and run Docker containers. Install Engine on Ubuntu or see the full list of others to choose from. 
 
+**Docker Engine (エンジン)** は、Docker イメージの作成と Docker コンテナの実行に必要なコア機能を提供します。Engine を :doc:`Ubuntu </engine/installation/ubuntulinux>` にインストールする方法や、 :doc:`その他の一覧リスト </engine/installation/index>` をご覧ください。
 
-.. Kitematic is the desktop GUI for Docker. Install Kitematic.
+.. Docker Toolbox delivers all the Docker tools such as Engine, Machine, Compose, and Kitematic to your Mac OS X or Windows desktop. 
 
-**Kitematic (カイトマティック)** は Docker 対応のデスクトップ GUI です。 :doc:`Kitematic のインストール <kitematic/index>` はこちらです。
-
+**Docker Toolbox (ツールボックス)** は :doc:`Mac OS X </engine/installation/mac>` や :doc:`Windows </engine/installation/windows>` デスクトップ上に Docker Engine 、Machine、Compose 、 :doc:`Kitematic </kitematic/index>` のような Docker ツールを提供します。
 
 .. Docker Hub is our hosted registry service for managing your images. There is nothing to install. You just sign up!
 
 **Docker Hub (ハブ)** はイメージを管理するためのホステッド・レジストリ・サービス [#f1]_ です。インストール不要です。`サインアップ <https://hub.docker.com/>`_ するだけです。
 
-
 .. Docker Trusted Registry (DTR) supplies a private dedicated image registry. To learn about DTR for your team, see the overview.
 
-**Docker Trusted Registry (トラステッド・レジストリ)** (DTR) はプライベートな専用イメージ・レジストリを提供します。チームでの DTR の使い方を学ぶには、:doc:`概要 <dokcer-trusted-registry/>` をご覧ください。
-
+**Docker Trusted Registry (トラステッド・レジストリ)** (DTR) はプライベートな専用イメージ・レジストリを提供します。チームでの DTR の使い方を学ぶには、:doc:`概要 <dokcer-trusted-registry/index>` をご覧ください。
 
 .. Docker Machine automates container provisioning on your network or in the cloud. Install machine on Windows, Mac OS X, or Linux.
 
@@ -43,36 +45,32 @@ Docker ドキュメントへようこそ！
 
 .. Docker Swarm is used to host clustering and container scheduling. Deploy your own “swarm” today in just a few short steps.
 
-**Docker Swarm (スウォーム)** はホストのクラスタリングとコンテナのスケジューリングに使われます。 :doc:`"swarm" をデプロイする <swarm/install-w-machine>` から、いくつかの短いステップで今日から使えます。
+**Docker Swarm (スウォーム)** はホストのクラスタリングとコンテナのスケジューリングに使われます。 :doc:`"swarm" をデプロイする <swarm/get-swarm>` から、いくつかの短いステップで今日から使えます。
 
 .. Docker Compose defines multi-container applications. You can install Docker Compose on Ubuntu, Mac OS X, and other systems.
 
-**Docker Compose (コンポーズ)** はマルチ・コンテナのアプリケーションを定義します。Docker Compose を :doc:`Ubuntu、Mac OS X や、その他のシステム </compose/install>` にインストールできます。
+**Docker Compose (コンポーズ)** は複数のコンテナを使うアプリケーションを定義します。Docker Compose を :doc:`Ubuntu、Mac OS X や、その他のシステム </compose/install>` にインストールできます。
 
 .. Docker Registry provides open source Docker image distribution. See the registry deployment documentation for more information. 
 
-**Docker Registry (レジストリ)** はオープンソースの Docker イメージ配布を提供します。詳細な情報は :doc:`レジストリのデプロイ` をご覧ください。
+**Docker Registry (レジストリ)** はオープンソースの Docker イメージ配布を提供します。詳細な情報は :doc:`レジストリのデプロイ </registry/deploying>` をご覧ください。
 
-.. You may notice the docs look different
+.. New Navigation!
 
-ドキュメントが違う場合があるので注意すべき
-==============================================
+新しいナビゲーション
+====================
 
-.. You also may find a few broken links or other wonkiness. We are working on fixing these things. We appreciate your patience while we go through our growing pains
+.. You’ll notice we have a new arrangement of the documentation navigation, it is now organized by Docker product. This is a step toward more changes to our docs look-and-feel coming soon in the near future. If you have comments good or bad, please email the feedback to us, we will be happy to hear from you.
 
-リンクが切れや信頼できない箇所が見つかるかもしれません。私達はこれら課題の修正中です。産みの苦しみの中、私達は皆さんの我慢に感謝します。
-
+ドキュメントのナビゲーションを Docker のプロダクトごとに新しく編成しなおしました。これは、近いうちにドキュメントの見た目と雰囲気を改善するステップの１つです。良いか悪いかコメントがあれば、私たちまで `メール <https://twitter.com/dankoromochi>`_ をいただければ、皆さんの意見を伺えて嬉しいです。
 
 .. rubric:: 脚注
 
 .. [#f1] 訳者注：ホステッドとは、Docker社が提供するという意味です。
 
-
 ----
 
-* v1.10 index
-
-目次
+Doc v1.10 目次
 ====================
 
 .. toctree::
@@ -117,11 +115,6 @@ Docker ドキュメントへようこそ！
    :hidden:
 
    registry/toc.rst
-
-
-----
-
-* v1.9 index ( will be migration to v1.10 )
 
 
 About
