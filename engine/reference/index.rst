@@ -15,9 +15,8 @@ Engine リファレンス
 .. toctree::
    :maxdepth: 3
 
-   index.rst
    builder.rst
    run.rst
-   commandline/cli/toc.rst
+   commandline/toc.rst
    api/docker_remote_api/toc.rst
 

@@ -15,9 +15,10 @@ Engine の拡張
 .. toctree::
    :maxdepth: 3
 
+   index.rst
    authorization.rst
    plugins.rst
    plugins_network.rst
-   plugins_volumes.rst
+   plugins_volume.rst
    plugin_api.rst
 

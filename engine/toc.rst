@@ -24,6 +24,7 @@ Docker Engine
    :caption: Install
    :hidden:
 
+   index.rst
    installation/toc.rst
    userguide/index.rst
    admin/index.rst
@@ -35,4 +36,3 @@ Docker Engine
    breaking_changes.rst
    deprecated.rst
    faq.rst
-   index.rst

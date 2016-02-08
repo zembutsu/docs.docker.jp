@@ -22,6 +22,6 @@ Docker Machine
    get-started-cloud.rst
    concepts.rst
    migrate-to-machine.rst
-   references/toc.rst
+   reference/toc.rst
    drivers/toc.rst
    completion.rst

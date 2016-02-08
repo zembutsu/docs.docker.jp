@@ -126,6 +126,7 @@ About
 
    release-notes.rst
    engine/reference/glossary.rst
+   about.rst
 
 
 Docs archive

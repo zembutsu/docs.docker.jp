@@ -24,6 +24,6 @@
    running_redis_service.rst
    running_riak_service.rst
    running_ssh_service.rst
-   apt-cache-ng.rst
+   apt-cacher-ng.rst
 
 

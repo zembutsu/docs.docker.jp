@@ -23,12 +23,15 @@ Docker ネットワーク機能の導入部では、自分自身で定義した�
     Customize the docker0 bridge
     IPv6 with Docker
 
-* :doc:`container-communication`
-* :doc:`dockerlinks`
-* :doc:`binding`
-* :doc:`build-bridges`
-* :doc:`donfigure-dns`
-* :doc:`custom-docker0`
-* :doc:`ipv6`
 
+.. toctree::
+   :maxdepth: 3
+
+   container-communication
+   dockerlinks
+   binding
+   build-bridges
+   donfigure-dns
+   custom-docker0
+   ipv6
 
