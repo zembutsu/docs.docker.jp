@@ -33,6 +33,6 @@ Docker Engine
    examples/toc.rst
    reference/index.rst
    migration.rst
-   breaking_changes.rst
-   deprecated.rst
+   破壊的変更 <breaking_changes.rst>
+   廃止機能 <deprecated.rst>
    faq.rst

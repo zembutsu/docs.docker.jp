@@ -1,7 +1,8 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/introduction/understanding-docker/
-.. doc version: 1.9
-.. check date: 2015/12/24
+.. URL: https://docs.docker.com/engine/introduction/understanding-docker/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/understanding-docker.md
+.. doc version: 1.10
+.. check date: 2016/02/07
 .. -----------------------------------------------------------------------------
 
 .. Understand the architecture
@@ -160,7 +161,7 @@ Docker レジストリ
 
 .. Docker registries hold images. These are public or private stores from which you upload or download images. The public Docker registry is provided with the Docker Hub. It serves a huge collection of existing images for your use. These can be images you create yourself or you can use images that others have previously created. Docker registries are the distribution component of Docker.
 
-Docker レジストリはイメージを保持します。パブリックもしくはプライベートに保管されているイメージのアップロードやダウンロードを行えます。パブリックな Docker レジストリとして `Docker Hub <http://hub.docker.com/>`__ が提供されています。たくさんの利用可能なイメージが提供されています。イメージを自分自身で作れるだけでなく、他人が作成したイメージも利用できます。Docker レジストりとは Docker における **配布（distribution）** コンポーネントです。
+Docker レジストリはイメージを保持します。パブリックもしくはプライベートに保管されているイメージのアップロードやダウンロードを行えます。パブリックな Docker レジストリとして `Docker Hub <http://hub.docker.com/>`__ が提供されています。たくさんの利用可能なイメージが提供されています。イメージを自分自身で作れるだけでなく、他人が作成したイメージも利用できます。Docker レジストリとは Docker における **配布（distribution）** コンポーネントです。
 
 .. Docker containers
 

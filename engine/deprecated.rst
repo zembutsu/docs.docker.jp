@@ -1,7 +1,8 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/misc/deprecated/
-.. doc version: 1.9
-.. check date: 2015/12/22
+.. URL: https://docs.docker.com/engine/deprecated/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/deprecated.md
+.. doc version: 1.10
+.. check date: 2016/02/08
 .. -----------------------------------------------------------------------------
 
 .. Deprecated Features
@@ -13,6 +14,79 @@
 .. The following list of features are deprecated.
 
 以下は廃止された機能の一覧です。
+
+.. Ambiguous event fields in API
+
+.. _ambiguous-event-fields-in-api:
+
+イベント API における不明瞭なフィールド
+========================================
+
+.. Deprecated In Release: v1.10
+
+**廃止リリース：v1.10**
+
+.. The fields ID, Status and From in the events API have been deprecated in favor of a more rich structure. See the events API documentation for the new format.
+
+イベント API の ``ID`` 、 ``Status`` 、 ``From`` フィールドは、より優れた構造にするため廃止されました。新しいフォーマットに関してはイベント API のドキュメントをご覧ください。
+
+
+.. -f lag on docker tag
+
+.. _f-flag-on-docker-tag:
+
+``docker tag`` における ``-f`` フラグ
+========================================
+
+.. Deprecated In Release: v1.10
+
+**廃止リリース：v1.10**
+
+.. Target For Removal In Release: v1.12
+
+**削除目標リリース：v1.12**
+
+.. To make tagging consistent across the various docker commands, the -f flag on the docker tag command is deprecated. It is not longer necessary to specify -f to move a tag from one image to another. Nor will docker generate an error if the -f flag is missing and the specified tag is already in use.
+
+様々な ``docker`` コマンド間でタグ付けを一貫させるため、 ``docker tag`` コマンドの ``-f`` フラグは廃止されました。あるイメージのタグを別のものに変更するために、 ``-f`` オプションの指定は不要です。また、対象でタグが既に指定されているものであれば、 ``docker`` コマンドに ``-f`` フラグが無くてもエラーになりません。
+
+.. HostConfig at API contaienr start
+
+.. _hostconfig-at-api-container-start
+
+API による HostConfig を使ったコンテナ開始
+==================================================
+
+.. Deprecated In Release: v1.10
+
+**廃止リリース：v1.10**
+
+.. Target For Removal In Release: v1.12
+
+**削除目標リリース：v1.12**
+
+.. Passing an HostConfig to POST /containers/{name}/start is deprecated in favor of defining it at container creation (POST /containers/create).
+
+``POST /containers/{name}/start`` における ``HostConfig`` の指定は、コンテナ作成時の定義 （ ``POST /containers/create`` ）に置き換えられました。
+
+.. Docker ps ‘before’ and ‘since’ options
+
+.. _docker-ps-before-and-since-options:
+
+Docker ps の「before」「since」オプション
+==================================================
+
+.. Deprecated In Release: v1.10.0
+
+**廃止リリース： `v1.10.0 <https://github.com/docker/docker/releases/tag/v1.10.0>`_ **
+
+.. Target For Removal In Release: v1.12
+
+**削除目標リリース：v1.12**
+
+.. The docker ps --before and docker ps --since options are deprecated. Use docker ps --filter=before=... and docker ps --filter=since=... instead.
+
+``docker ps --before`` と ``docker ps --since`` オプションは廃止されました。その代わりに ``docker ps --filter=before=...`` と ``docker ps --filter=since=...`` をお使いください。
 
 .. Command line short variant options
 

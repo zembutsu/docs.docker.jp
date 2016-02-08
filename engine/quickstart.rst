@@ -1,7 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/quickstart/
+.. URL: https://docs.docker.com/engine/quickstart/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/quickstart.md
 .. doc version: 1.10
 .. check date: 2016/02/07
+.. -----------------------------------------------------------------------------
 
 .. Quickstart Docker Engine
 
@@ -13,7 +15,7 @@ Docker Engine クイックスタート
 
 .. This quickstart assumes you have a working installation of Docker Engine. To verify Engine is installed, use the following command:
 
-このクイックスタートは、Docker Engineのインストール作業完了を想定しています。Docker Engine がインストールされているか確認するには、次のコマンドを実行します。
+このクイックスタートは、Docker Engine のインストール作業完了を想定しています。Docker Engine のインストールを確認するには、次のコマンドを実行します。
 
 ..    # Check that you have a working install
 
@@ -22,18 +24,17 @@ Docker Engine クイックスタート
    # インストールしたものが正常に動作するか確認
    $ docker info
 
+.. If you get docker: command not found or something like /var/lib/docker/repositories: permission denied you may have an incomplete Docker installation or insufficient privileges to access Engine on your machine. With the default installation of Engine docker commands need to be run by a user that is in the docker group or by the root user.
 
-.. If you get docker: command not found or something like /var/lib/docker/repositories: permission denied you may have an incomplete Docker installation or insufficient privileges to access Docker on your machine. With the default installation of Docker docker commands need to be run by a user that is in the docker group or by the root user.
+もしも ``docker: command not found`` や ``/var/lib/docker/repositories: permission denied`` のような表示が出る場合は、Docker のインストールが不完全か、コマンドがマシン上の Docker Engine に対してアクセスする権限がありません。標準の Docker Engine インストールでは、``docker`` コマンドを実行するには ``docker`` グループのユーザ、もしくは ``root`` の必要があります。
 
-もしも ``docker: command not found`` や ``/var/lib/docker/repositories: permission denied`` のような表示が出る場合は、Docker のインストールが不完全か、マシン上の Docker に対してコマンドに対する権限がありません。標準の Docker インストールでは、``docker`` コマンドを実行するには ``docker`` グループのユーザ、もしくは ``root`` の必要があります。
+.. Depending on your Engine system configuration, you may be required to preface each docker command with sudo. One way to avoid having to use sudo with the docker commands is to create a Unix group called docker and add users that will be entering docker commands to the ‘docker’ group.
 
-.. Depending on your Docker system configuration, you may be required to preface each docker command with sudo. One way to avoid having to use sudo with the docker commands is to create a Unix group called docker and add users that will be entering docker commands to the ‘docker’ group.
+Docker Engine はシステム設定の依存状態により、各 ``docker`` コマンドの前に ``sudo`` が必要になる場合があります。``docker`` コマンドで ``sudo`` を使わないようにする方法の１つに、``docker`` という Unix グループを作成し、ユーザを `docker` グループに追加し、``docker`` コマンドを使えるようにします。
 
-Docker はシステム設定の依存状態により、各 ``docker`` コマンドの前に ``sudo`` が必要になる場合があります。``docker`` コマンドで ``sudo`` を使わないようにする方法の１つに、``docker`` という Unix グループを作成し、ユーザを `docker` グループに追加し、``docker`` コマンドを使えるようにします。
+.. For more information about installing Docker Engine or sudo configuration, refer to the installation instructions for your operating system.
 
-.. For more information about installing Docker or sudo configuration, refer to the installation instructions for your operating system.
-
-Docker のインストールや ``sudo`` 設定に関しては、 :doc:`インストール <engine/installation>` を参照ください。
+Docker Engine のインストールや ``sudo`` 設定に関しては、 :doc:`インストール <engine/installation>` を参照ください。
 
 
 .. Download a pre-built image
@@ -272,7 +273,7 @@ TCP ポートにサービスを割り当て
 
 .. When you commit your container, Docker only stores the diff (difference) between the source image and the current state of the container’s image. To list images you already have, use the docker images command.
 
-コンテナをコミット（commit）すると、Docker は元のイメージとコンテナ・イメージの現在の状態との diff （差分）のみを保管します。どのイメージを持っているかは、``docker images`` コマンドを使います。
+コンテナをコミット（commit）すると、Docker は元イメージと現在のコンテナ・イメージ状態との差分（diff）のみを保管します。どのようなイメージが存在しているかを確認するには、``docker images`` コマンドを使います。
 
 .. code-block:: bash
 
@@ -296,5 +297,5 @@ TCP ポートにサービスを割り当て
     Review Command Line
 
 * :doc:`Docker ユーザ・ガイド <userguide/index>` の中に進む
-* :doc:`レポジトリを通したイメージの共有 <userguide/containers/dockerreps>` について読む
+* :doc:`レポジトリを通したイメージの共有 <userguide/containers/dockerrepos>` について読む
 * :doc:`コマンドラインの練習 <reference/commandline/cli>` を参照
