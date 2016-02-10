@@ -1,6 +1,14 @@
-﻿.. http://docs.docker.com/engine/userguide/dockerizing/
+﻿.. -*- coding: utf-8 -*-
+.. URL: https://docs.docker.com/engine/userguide/containers/dockerizing/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/containers/dockerizing.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/containers/dockerizing.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/release/v1.9/docs/userguide/dockerizing.md
+.. check date: 2016/02/10
+.. ----------------------------------------------------------------------------
 
-.. _dockerizing:
+.. _hello-world-in-a-container:
 
 .. Hello world in a container
 
@@ -14,7 +22,7 @@
 
 .. Docker allows you to run applications, worlds you create, inside containers. Running an application inside a container takes a single command: docker run.
 
-Docker はコンテナの中に作成した世界で、アプリケーションを実行できるようにします。コンテナの中でアプリケーションを実行するには、``docker run`` というコマンド１つを実行します。
+Docker はコンテナの中に作成した世界で、アプリケーションを実行できるようにします。コンテナの中でアプリケーションを実行するには、``docker run`` というコマンドを１つを実行します。
 
 .. Note: Depending on your Docker system configuration, you may be required to preface each docker command on this page with sudo. To avoid this behavior, your system administrator can create a Unix group called docker and add users to it.
 
@@ -23,6 +31,8 @@ Docker はコンテナの中に作成した世界で、アプリケーション�
    Docker システムの設定によっては、各ページの ``docker`` コマンドは ``sudo`` が必要になる場合があります。この挙動を回避するには、システム管理者は ``docker`` という名称の Unix グループを作成し、そこにユーザを追加します。
 
 .. Run a Hello world
+
+.. _run-a-hello-world:
 
 Hello world の実行
 ===================
@@ -38,19 +48,19 @@ Hello world の実行
 
 .. And you just launched your first container!
 
-初めてのコンテナを起動しました！
+コンテナを初めて起動しました！
 
 .. So what just happened? Let’s step through what the docker run command did.
 
-何が起こったのでしょうか？ ``docker run`` コマンドが行った内容を見ていきましょう。
+何が起こったのでしょうか？ ``docker run`` コマンドが処理した内容を見ていきましょう。
 
 .. First we specified the docker binary and the command we wanted to execute, run. The docker run combination runs containers.
 
-まず ``docker`` バイナリに対して、実行したいコマンド ``run`` を指定します。``docker run`` の組み合わせは、コンテナを実行 (run) します。
+まず ``docker`` バイナリに対して、処理したいコマンド ``run`` （「実行」の意味）を指定します。``docker run`` の組み合わせは、コンテナを実行 （run)）します。
 
-.. Next we specified an image: ubuntu:14.04. This is the source of the container we ran. Docker calls this an image. In this case we used an Ubuntu 14.04 operating system image.
+.. Next we specified an image: ubuntu. This is the source of the container we ran. Docker calls this an image. In this case we used the Ubuntu operating system image.
 
-次はイメージ ``ubuntu:14.04`` を指定しました。これは、私達が実行したコンテナの元（ソース）にあたります。これを Docker はイメージと呼びます。この例では、Ubuntu 14.04 オペレーティング・システムのイメージを使いました。
+次に指定したのはイメージ ``ubuntu`` です。を指定しました。これは、私達が実行したコンテナの元です。これを Docker はイメージと呼びます。この例では、Ubuntu オペレーティング・システムのイメージを使いました。
 
 .. When you specify an image, Docker looks first for the image on your Docker host. If it can’t find it then it downloads the image from the public image registry: Docker Hub.
 
@@ -58,42 +68,44 @@ Hello world の実行
 
 .. Next we told Docker what command to run inside our new container:
 
-次に、Docker に対して新しいコンテナの中で、どのようなコマンドを実行するか伝えます。
+次に、Docker に対して新しいコンテナの中で、どのようなコマンドを実行するか命令します。
 
-::
+.. code-block:: bash
 
    /bin/echo 'Hello world'
 
-.. When our container was launched Docker created a new Ubuntu 14.04 environment and then executed the /bin/echo command inside it. We saw the result on the command line:
+.. When our container was launched Docker created a new Ubuntu environment and then executed the /bin/echo command inside it. We saw the result on the command line:
 
-コンテナが起動すると、Docker は新しい Ubuntu 14.04 の環境を作り、その中で ``/bin/echo`` コマンドを実行します。コマンドライン上では、次の結果が表示されます：
+コンテナが起動すると、Docker は新しい Ubuntu 環境を作り、その中で ``/bin/echo`` コマンドを実行します。コマンドライン上では、次の結果が表示されます：
 
-::
+.. code-block:: bash
 
    Hello world
 
 
 .. So what happened to our container after that? Well Docker containers only run as long as the command you specify is active. Here, as soon as Hello world was echoed, the container stopped.
 
-それでは、コンテナはこの後どのような状況でしょうか。Docker コンテナが実行されていたのは、指定したコマンドを処理していた間のみです。この例では、``Hello world`` を画面に表示したあと、直ちにコンテナが停止しました。
+それでは、この後のコンテナはどのような状況でしょうか。Docker コンテナが実行されていたのは、指定したコマンドを処理していた間のみです。この例では、``Hello world`` を画面に表示した後、直ちにコンテナが停止しました。
 
 .. An interactive container
+.. _an-interactive-container:
 
-対話型コンテナ
-===================
+
+インタラクティブなコンテナ
+==============================
 
 .. Let’s try the docker run command again, this time specifying a new command to run in our container.
 
-もう一度 ``docker run`` コマンドを実行します。今度はコンテナ内で新しいコマンドを指定しましょう。
+もう一度 ``docker run`` コマンドを実行しましょう。今度はコンテナ内で新しいコマンドを指定します。
 
 .. code-block:: bash
 
    $ docker run -t -i ubuntu:14.04 /bin/bash
    root@af8bae53bdd3:/#
 
-.. Here we’ve again specified the docker run command and launched an ubuntu:14.04 image. But we’ve also passed in two flags: -t and -i. The -t flag assigns a pseudo-tty or terminal inside our new container and the -i flag allows us to make an interactive connection by grabbing the standard in (STDIN) of the container.
+.. Here we’ve again specified the docker run command and launched an ubuntu image. But we’ve also passed in two flags: -t and -i. The -t flag assigns a pseudo-tty or terminal inside our new container and the -i flag allows us to make an interactive connection by grabbing the standard in (STDIN) of the container.
 
-ここでは再び ``docker run`` コマンドを実行し、``ubuntu:14.04`` イメージを起動しました。しかし、今回は ``-t`` と ``-i`` の２つのフラグも付けました。``-t`` フラグは、新しいコンテナの中に疑似ターミナル (pseudo-tty) を割り当てます。``-i`` フラグは双方向に接続できるようにするため、コンテナの標準入力 (``STDIN``)を取得します。
+ここでは再び ``docker run`` コマンドを実行し、``ubuntu`` イメージを起動しました。しかし、今回は ``-t`` と ``-i`` の２つのフラグも付けました。``-t`` フラグは、新しいコンテナの中に疑似ターミナル (pseudo-tty) を割り当てます。``-i`` フラグは双方向に接続できるようにするため、コンテナの標準入力 (``STDIN``)を取得します。
 
 .. We’ve also specified a new command for our container to run: /bin/bash. This will launch a Bash shell inside our container.
 
@@ -118,6 +130,8 @@ Hello world の実行
    root@af8bae53bdd3:/# ls
    bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr var
 
+.. You can see we’ve run the pwd to show our current directory and can see we’re in the / root directory. We’ve also done a directory listing of the root directory which shows us what looks like a typical Linux file system.
+
 ``pwd`` を実行すると、現在のディレクトリが表示されます。ここでは ``/`` ルートディレクトリにいることがわかります。また、ルートディレクトリ以下でディレクトリ一覧を表示すると、典型的な Linux ファイル・システムのように見えます。
 
 .. You can play around inside this container and when you’re done you can use the exit command or enter Ctrl-D to finish.
@@ -134,16 +148,18 @@ Hello world の実行
 
 .. A daemonized Hello world
 
-Hello world のデーモン化（常駐）
-=======================================
+.. _a-daemonized-hello-world:
+
+Hello world のデーモン化
+==============================
 
 .. Now a container that runs a command and then exits has some uses but it’s not overly helpful. Let’s create a container that runs as a daemon, like most of the applications we’re probably going to run with Docker.
 
-これまでのコマンドを実行して終了するコンテナは、使い道はありますが、あまり有用ではありません。今度は、Docker と一緒に実行するであろう多くのアプリケーションと同様に、デーモンとして実行するコンテナを作りましょう。
+先ほどのようなコマンドを実行して終了するコンテナは、使い道はありますが、あまり有用ではありません。今度は、Docker と一緒に実行するであろう多くのアプリケーションと同様に、デーモンとして実行するコンテナを作りましょう。
 
 .. Again we can do this with the docker run command:
 
-次のように、再び ``docker run`` コマンドを実行できます：
+次のように、再び ``docker run`` コマンドを実行します：
 
 .. code-block:: bash
 
@@ -152,11 +168,12 @@ Hello world のデーモン化（常駐）
 
 .. Wait, what? Where’s our “hello world” output? Let’s look at what we’ve run here. It should look pretty familiar. We ran docker run but this time we specified a flag: -d. The -d flag tells Docker to run the container and put it in the background, to daemonize it.
 
-あれ、ちょっとまって？ "hello world" の出力はどこに行ったのでしょうか。まず、ここで何を実行したのか確認しましょう。先ほどと大部分が同じコマンドに見えます。``docker run`` を事項しましたが、今回は ``-d`` フラグを指定しました。``-d`` フラグはコンテナ実行時にデーモン化して、バックグラウンドで動作するように Docker に対して指示します。
 
-.. We also specified the same image: ubuntu:14.04.
+あれ、ちょっとまって？ "hello world" の出力はどこに行ったのでしょうか。まず、ここで何を実行したのか確認しましょう。先ほどと大部分が同じコマンドに見えます。``docker run`` を実行しましたが、今回は ``-d`` フラグを指定しました。``-d`` フラグはコンテナ実行時にデーモン化して、バックグラウンドで動作するように Docker に対して指示します。
 
-また、同じイメージ ``ubuntu:14.04`` を指定しました。
+.. We also specified the same image: ubuntu.
+
+また、同じイメージ ``ubuntu`` を指定しました。
 
 .. Finally, we specified a command to run:
 
@@ -172,7 +189,7 @@ Hello world のデーモン化（常駐）
 
 .. So why aren’t we seeing any hello world’s? Instead Docker has returned a really long string:
 
-にも関わらず、``hello world`` が表示されないのは何故でしょうか。そのかわり、Docker は長い文字列を返しました。
+それなのに ``hello world`` が表示されないのは何故でしょうか。そのかわり、Docker は長い文字列を返しました。
 
 .. code-block:: bash
 
@@ -180,7 +197,7 @@ Hello world のデーモン化（常駐）
 
 .. This really long string is called a container ID. It uniquely identifies a container so we can work with it.
 
-この長い文字列を *コンテナ ID* と呼ばれます。コンテナをユニークに識別して操作するのに使います。
+この長い文字列を *コンテナ ID* と呼びます。コンテナをユニークに識別して操作するのに使います。
 
 .. Note: The container ID is a bit long and unwieldy. A bit later, we’ll see a shorter ID and ways to name our containers to make working with them easier.
 
@@ -204,11 +221,11 @@ Hello world のデーモン化（常駐）
 
 .. Here we can see our daemonized container. The docker ps has returned some useful information about it, starting with a shorter variant of its container ID: 1e5535038e28.
 
-ここではデーモン化されたコンテナが見えています。``docker ps`` は、コンテナ ID: ``1e5535038e28`` で始まる短いバージョンのコンテナ ID に加え、コンテナに関する便利な情報を返します。
+ここではデーモン化されたコンテナが見えています。``docker ps`` は、コンテナ ID: ``1e5535038e28`` で始まる短いバージョンのコンテナ ID のほかにも、コンテナに関する便利な情報を返します。
 
-.. We can also see the image we used to build it, ubuntu:14.04, the command it is running, its status and an automatically assigned name, insane_babbage.
+.. We can also see the image we used to build it, ubuntu, the command it is running, its status and an automatically assigned name, insane_babbage.
 
-また、構築時に用いたイメージは ``ubuntu:14.04`` であり、実行中のコマンドと、その状態、さらに自動的に割り当てられた名前が ``insane_babbage`` だと分かります。
+また、構築時に用いたイメージは ``ubuntu`` であり、実行中のコマンドと、その状態、さらに自動的に割り当てられた名前が ``insane_babbage`` だと分かります。
 
 .. Note: Docker automatically generates names for any containers started. We’ll see how to specify your own names a bit later.
 
@@ -283,7 +300,7 @@ Hello world のデーモン化（常駐）
 
 .. Now, you have the basis learn more about Docker and how to do some more advanced tasks. Go to “Run a simple application“ to actually build a web application with the Docker client.
 
-以上で、Docker の基本と高度な処理を学びました。:doc:`シンプルなアプリケーションの実行 </engine/userguide/usingdocker>` に移動し、Docker クライアントを使って実際のウェブアプリケーションを構築します。
+以上で、Docker の基本と高度な処理を学びました。:doc:`シンプルなアプリケーションの実行 </engine/userguide/containers/usingdocker>` に移動し、Docker クライアントを使って実際のウェブアプリケーションを構築します。
 
 
 
