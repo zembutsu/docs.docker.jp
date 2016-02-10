@@ -1,8 +1,16 @@
-.. http://docs.docker.com/engine/userguide/networkingcontainers/
-
-.. _networkingcontainers:
+.. -*- coding: utf-8 -*-
+.. URL: https://docs.docker.com/engine/userguide/containers/networkingcontainers/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/containers/networkingcontainers.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/containers/networkingcontainers.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/release/v1.9/docs/userguide/networkingcontainers.md
+.. check date: 2016/02/10
+.. ----------------------------------------------------------------------------
 
 .. Networking containers
+
+.. _networking-containers:
 
 =======================================
 コンテナのネットワーク
@@ -19,7 +27,7 @@
 
 .. You’ve already seen that each container you create has an automatically created name; indeed you’ve become familiar with our old friend nostalgic_morse during this guide. You can also name containers yourself. This naming provides two useful functions:
 
-これまで作成してきたコンテナは、自動的にコンテナ名が作成されました。このガイドでは、古き友人である nostalgic_morse のような名前でした。自分自身でもコンテナに名前を付けられます。名前を付けると、２つの便利な機能が使えます。
+これまで作成してきたコンテナは、自動的にコンテナ名が作成されました。このガイドでは、古き友人である ``nostalgic_morse`` のような名前でした。自分自身でもコンテナに名前を付けられます。名前を付けると、２つの便利な機能が使えます。
 
 ..    You can name containers that do specific functions in a way that makes it easier for you to remember them, for example naming a container containing a web application web.
 
@@ -72,7 +80,7 @@
 
 .. Container names must be unique. That means you can only call one container web. If you want to re-use a container name you must delete the old container (with docker rm) before you can reuse the name with a new container. Go ahead and stop and them remove your web container.
 
-コンテナ名はユニークである必要があります。これが意味するのは、``web`` と呼ばれるコンテナは唯一のものです。もしも同じコンテナ名を再利用したい場合は、新しいコンテナで名前を使う前に、古いコンテナを削除（``docker rm`` コマンドで）しなくてはいけません。``web`` コンテナの停止と削除をしてから、次に進みます。
+コンテナ名はユニークである必要があります。これが意味するのは、``web`` と呼ばれるコンテナはただ一つです。もしも同じコンテナ名を再利用したいならば、新しいコンテナで名前を使う前に、古いコンテナを削除（``docker rm`` コマンドで）しなくてはいけません。``web`` コンテナの停止と削除をしてから、次に進みます。
 
 .. code-block:: bash
 
@@ -83,12 +91,14 @@
 
 .. Launch a container on the default network
 
+.. _launch-a-container-on-the-default-network:
+
 コンテナをデフォルトのネットワークで起動
 ========================================
 
 .. Docker includes support for networking containers through the use of network drivers. By default, Docker provides two network drivers for you, the bridge and the overlay driver. You can also write a network driver plugin so that you can create your own drivers but that is an advanced task.
 
-Docker は **ネットワーク・ドライバ** を使うことで、コンテナのネットワーク（訳者注：連結するという意味）をサポートします。標準では、Docker は ``bridge`` （ブリッジ） と  
+Docker は **ネットワーク・ドライバ** を使うことで、コンテナのネットワーク（訳者注：連結や接続するという意味の機能）をサポートします。標準では、Docker は ``bridge`` （ブリッジ） と  
 ``overlay`` （オーバレイ） の２つのネットワーク・ドライバを提供します。高度な使い方として、自分自身でネットワーク・ドライバ・プラグインを書き、自分自身のドライバでネットワークの作成もできます。
 
 .. Every installation of the Docker Engine automatically includes three default networks. You can list them:
@@ -173,6 +183,8 @@ Docker は **ネットワーク・ドライバ** を使うことで、コンテ�
 
 .. Create your own bridge network
 
+.. _create-your-own-bridge-network:
+
 ブリッジ・ネットワークの作成
 ==============================
 
@@ -186,7 +198,7 @@ Docker Engine はブリッジ・ネットワークとオーバレイ・ネット
 
 .. The -d flag tells Docker to use the bridge driver for the new network. You could have left this flag off as bridge is the default value for this flag. Go ahead and list the networks on your machine:
 
-``-d`` フラグは、Docker に対して新しいネットワークで使用する ``bridge`` ドライバを指定します。このフラグを指定しない場合でも、同様にこの ``bridge`` フラグがが適用されます。マシン上のネットワーク一覧を表示します。
+Docker に対して新しいネットワークで使用する ``bridge`` ドライバを指定するには、 ``-d`` フラグを使います。このフラグを指定しなくても、同様にこの ``bridge`` フラグが適用されます。マシン上のネットワーク一覧を表示します。
 
 .. code-block:: bash
 
@@ -213,7 +225,10 @@ Docker Engine はブリッジ・ネットワークとオーバレイ・ネット
            "IPAM": {
                "Driver": "default",
                "Config": [
-                   {}
+                   {
+                       "Subnet": "172.18.0.0/16",
+                       "Gateway": "172.18.0.1/16"
+                   }
                ]
            },
            "Containers": {},
@@ -222,6 +237,8 @@ Docker Engine はブリッジ・ネットワークとオーバレイ・ネット
    ]
 
 .. Add containers to a network
+
+.. _add-containers-to-a-network:
 
 ネットワークにコンテナを追加
 ==============================
@@ -245,7 +262,8 @@ PostgreSQL データベースを実行するコンテナを起動します。``-
 .. code-block:: bash
 
    $ docker inspect --format='{{json .NetworkSettings.Networks}}'  db
-   {"bridge":{"EndpointID":"508b170d56b2ac9e4ef86694b0a76a22dd3df1983404f7321da5649645bf7043","Gateway":"172.17.0.1","IPAddress":"172.17.0.3","IPPrefixLen":16,"IPv6Gateway":"","GlobalIPv6Address":"","GlobalIPv6PrefixLen":0,"MacAddress":"02:42:ac:11:00:02"}}
+   {"my-bridge-network":{"NetworkID":"7d86d31b1478e7cca9ebed7e73aa0fdeec46c5ca29497431d3007d2d9e15ed99",
+"EndpointID":"508b170d56b2ac9e4ef86694b0a76a22dd3df1983404f7321da5649645bf7043","Gateway":"172.18.0.1","IPAddress":"172.18.0.2","IPPrefixLen":16,"IPv6Gateway":"","GlobalIPv6Address":"","GlobalIPv6PrefixLen":0,"MacAddress":"02:42:ac:11:00:02"}}
 
 .. Now, go ahead and start your by now familiar web application. This time leave off the -P flag and also don’t specify a network.
 
@@ -262,7 +280,8 @@ PostgreSQL データベースを実行するコンテナを起動します。``-
 .. code-block:: bash
 
    $ docker inspect --format='{{json .NetworkSettings.Networks}}'  web
-   {"bridge":{"EndpointID":"508b170d56b2ac9e4ef86694b0a76a22dd3df1983404f7321da5649645bf7043","Gateway":"172.17.0.1","IPAddress":"172.17.0.3","IPPrefixLen":16,"IPv6Gateway":"","GlobalIPv6Address":"","GlobalIPv6PrefixLen":0,"MacAddress":"02:42:ac:11:00:02"}}
+   {"bridge":{"NetworkID":"7ea29fc1412292a2d7bba362f9253545fecdfa8ce9a6e37dd10ba8bee7129812",
+"EndpointID":"508b170d56b2ac9e4ef86694b0a76a22dd3df1983404f7321da5649645bf7043","Gateway":"172.17.0.1","IPAddress":"172.17.0.2","IPPrefixLen":16,"IPv6Gateway":"","GlobalIPv6Address":"","GlobalIPv6PrefixLen":0,"MacAddress":"02:42:ac:11:00:02"}}
 
 .. Then, get the IP address of your web
 
@@ -287,9 +306,9 @@ PostgreSQL データベースを実行するコンテナを起動します。``-
    --- 172.17.0.2 ping statistics ---
    44 packets transmitted, 0 received, 100% packet loss, time 43185ms
 
-.. After a bit, use CTRL-C to end the ping and you’ll find the ping failed. That is because the two container are running on different networks. You can fix that. Then, use CTRL-C to exit the container.
+.. After a bit, use `CTRL-C` to end the `ping` and you'll find the ping failed. That is because the two containers are running on different networks. You can fix that. Then, use the `exit` command to close the container.
 
-少し経ってから CTRL-C を使って ``ping`` を終了します。ping が通らないことが分かりした。これは、２つのコンテナが異なるネットワークで実行しているからです。これを修正しましょう。次に、CTRL-C を使って、コンテナから出ます。
+少し経ってから CTRL-C を使って ``ping`` を終了します。ping が通らないことが分かりした。これは、２つのコンテナが異なるネットワークで実行しているからです。これを修正しましょう。次に ``exit`` を使って、コンテナから出ます。
 
 .. Docker networking allows you to attach a container to as many networks as you like. You can also attach an already running container. Go ahead and attach your running web app to the my-bridge-network.
 
@@ -325,5 +344,5 @@ Docker のネットワーク機能は、必要に応じてコンテナに対し�
 
 .. Now that you know how to network containers, see how to manage data in containers.
 
-コンテナのネットワークについて学びましたので、次は :doc:`コンテナにおけるデータ管理 </engine/userguide/dockervolumes>` を見ていきます。
+コンテナのネットワークについて学びましたので、次は :doc:`コンテナにおけるデータ管理 <dockervolumes>` を見ていきます。
 
