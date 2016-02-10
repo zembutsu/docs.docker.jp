@@ -308,7 +308,7 @@ PostgreSQL データベースを実行するコンテナを起動します。``-
 
 .. After a bit, use `CTRL-C` to end the `ping` and you'll find the ping failed. That is because the two containers are running on different networks. You can fix that. Then, use the `exit` command to close the container.
 
-少し経ってから CTRL-C を使って ``ping`` を終了します。ping が通らないことが分かりした。これは、２つのコンテナが異なるネットワークで実行しているからです。これを修正しましょう。次に ``exit`` を使って、コンテナから出ます。
+少し経ってから CTRL-C を使って ``ping`` を終了します。ping が通らないことが分かりました。これは、２つのコンテナが異なるネットワークで実行しているからです。これを修正しましょう。次に ``exit`` を使って、コンテナから出ます。
 
 .. Docker networking allows you to attach a container to as many networks as you like. You can also attach an already running container. Go ahead and attach your running web app to the my-bridge-network.
 
