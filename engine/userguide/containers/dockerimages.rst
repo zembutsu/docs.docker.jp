@@ -1,8 +1,16 @@
-﻿.. http://docs.docker.com/engine/userguide/dockerimages/
-
-.. dockerimages:
+﻿.. -*- coding: utf-8 -*-
+.. URL: https://docs.docker.com/engine/userguide/containers/dockerimages/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/containers/dockerimages.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/containers/dockerimages.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/release/v1.9/docs/userguide/dockerimages.md
+.. check date: 2016/02/10
+.. ----------------------------------------------------------------------------
 
 .. Bulid your own images
+
+.. _build-your-own-images:
 
 =======================================
 イメージの構築
@@ -10,7 +18,7 @@
 
 .. Docker images are the basis of containers. Each time you’ve used docker run you told it which image you wanted. In the previous sections of the guide you used Docker images that already exist, for example the ubuntu image and the training/webapp image.
 
-Docker イメージとはコンテナの土台です。``docker run`` を実行する度に、どのイメージを使うのか指定します。ガイドの前のセクションでは、既存の ``ubuntu`` イメージと ``training/webapp`` イメージを使いました。
+Docker イメージはコンテナの土台（基盤）です。``docker run`` を実行する度に、どのイメージを使うのか指定します。ガイドの前セクションでは、既存の ``ubuntu`` イメージと ``training/webapp`` イメージを使いました。
 
 .. You also discovered that Docker stores downloaded images on the Docker host. If an image isn’t already present on the host then it’ll be downloaded from a registry: by default the Docker Hub Registry.
 
@@ -42,7 +50,7 @@ Docker はダウンロードしたイメージを Docker ホスト上に保管�
 .. code-block:: bash
 
    $ docker images
-   REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+   REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
    ubuntu              14.04               1d073211c498        3 days ago          187.9 MB
    busybox             latest              2c5ac3f849df        5 days ago          1.113 MB
    training/webapp     latest              54bb4e8718e8        5 months ago        348.7 MB
@@ -68,7 +76,7 @@ Docker はダウンロードしたイメージを Docker ホスト上に保管�
 
 .. A repository potentially holds multiple variants of an image. In the case of our ubuntu image you can see multiple variants covering Ubuntu 10.04, 12.04, 12.10, 13.04, 13.10 and 14.04. Each variant is identified by a tag and you can refer to a tagged image like so:
 
-レポジトリによっては複数の種類をイメージを持つ場合があります。先ほどの ``ubuntu`` イメージの場合は、Ubuntu 10.04、12.04、12.10、13.03、13.10 という、複数の異なったものがあります。それぞれの違いをタグ (tag) によって識別子、次のようにイメージに対するタグとして参照できます。
+レポジトリによっては複数の種類をイメージを持つ場合があります。先ほどの ``ubuntu`` イメージの場合は、Ubuntu 10.04、12.04、12.10、13.03、13.10 という、複数の異なったものがあります。それぞれの違いをタグ (tag) によって識別し、次のようにイメージに対するタグとして参照できます。
 
 .. code-block:: bash
 
@@ -95,13 +103,15 @@ Docker はダウンロードしたイメージを Docker ホスト上に保管�
 
 タグを指定しない場合、ここでは ``ubuntu`` しか指定しないと、Docker は標準で ``ubuntu:latest`` イメージを使用します。
 
-..     Tip: You recommend you always use a specific tagged image, for example ubuntu:12.04. That way you always know exactly what variant of an image is being used.
+..     Tip: You should always specify an image tag, for example ubuntu:14.04. That way, you always know exactly what variant of an image you are using. This is useful for troubleshooting and debugging.
 
 .. tip::
 
-   常に ``ubuntu:12.04`` のようにイメージに対するタグの指定を推奨します。タグの指定こそが、確実にイメージを使えるようにする手法だからです。
+   常に ``ubuntu:14.04`` のようにイメージに対するタグを指定すべきです。タグの指定こそが、確実にイメージを使えるようにする手法だからです。トラブルシュートやデバッグに便利です。
 
 .. Getting a new image
+
+.. _getting-a-new-image:
 
 新しいイメージの取得
 ==============================
@@ -133,12 +143,14 @@ Docker はダウンロードしたイメージを Docker ホスト上に保管�
 
 .. Finding images
 
-イメージの検索
+.. _finding-images:
+
+イメージを探す
 ====================
 
 .. One of the features of Docker is that a lot of people have created Docker images for a variety of purposes. Many of these have been uploaded to Docker Hub. You can search these images on the Docker Hub website.
 
-Docker の特長の１つに、多くの方によって作られた、様々な目的の Docker イメージがあります。大部分が `Docker Hub <https://hub.docker.com/>`_ にアップロードされています。これらのイメージは `Docker Hub のウェブサイト <https://hub.docker.com/explore/>`_ から検索できます。
+Docker の特長の１つは、様々な目的の Docker イメージが多くの方によって作られています。大部分が `Docker Hub <https://hub.docker.com/>`_ にアップロードされています。これらのイメージは `Docker Hub のウェブサイト <https://hub.docker.com/explore/>`_ から検索できます。
 
 .. image:: search.png
 
@@ -161,7 +173,7 @@ Docker の特長の１つに、多くの方によって作られた、様々な�
 
 .. You can see the command returns a lot of images that use the term sinatra. You’ve received a list of image names, descriptions, Stars (which measure the social popularity of images - if a user likes an image then they can “star” it), and the Official and Automated build statuses. Official Repositories are a carefully curated set of Docker repositories supported by Docker, Inc. Automated repositories are Automated Builds that allow you to validate the source and content of an image.
 
-コマンドを実行すると、``sinatra`` を含む多くのイメージが表示されます。表示されるのは、イメージ名の一覧、スター（イメージがソーシャル上で有名かどうか測るものです。利用者はイメージを気に入れば"スター"を付けられます ）、公式（OFFICIAL）か、自動構築（AUTOMATED）といった状態です。:doc:`公式レポジトリ </docker-hub/official_repos>` とは、Docker 社のサポートよって丁寧に精査されている Docker レポジトリです。:doc:`Automated Build（自動構築） </engine/userguide/dockerrepos/#automated-builds>` とは、有効なソースとイメージ内容によって自動構築されたレポジトリです。
+コマンドを実行すると、``sinatra`` を含む多くのイメージが表示されます。表示されるのは、イメージ名の一覧、スター（イメージがソーシャル上で有名かどうか測るものです。利用者はイメージを気に入れば"スター"を付けられます ）、公式（OFFICIAL）か、自動構築（AUTOMATED）といった状態です。:doc:`公式レポジトリ </docker-hub/official_repos>` とは、Docker 社のサポートよって丁寧に精査されている Docker レポジトリです。:ref:`自動構築（Automated Build） <automated-builds>` とは、有効なソースとイメージ内容によって自動構築されたレポジトリです。
 
 .. You’ve reviewed the images available to use and you decided to use the training/sinatra image. So far you’ve seen two types of images repositories, images like ubuntu, which are called base or root images. These base images are provided by Docker Inc and are built, validated and supported. These can be identified by their single word names.
 
@@ -172,6 +184,8 @@ Docker の特長の１つに、多くの方によって作られた、様々な�
 また、``training/sinatra`` イメージのようなユーザ・イメージも表示されます。ユーザ・イメージとは Docker コミュニティのメンバーに属するもので、メンバーによって公徳、メンテナンスされます。ユーザ・イメージは、常にユーザ名がイメージの前に付きます。この例のイメージは、``training`` というユーザによって作成されました。
 
 .. Pulling our image
+
+.. _pulling-our-image:
 
 イメージの取得
 ====================
@@ -195,6 +209,8 @@ Docker の特長の１つに、多くの方によって作られた、様々な�
 
 .. Creating our own images
 
+.. _creating-our-own-images:
+
 イメージの作成
 ====================
 
@@ -210,6 +226,8 @@ Docker の特長の１つに、多くの方によって作られた、様々な�
 2. ``Dockerfile`` を使って、イメージ作成の命令を指定する
 
 .. Updating and committing an image
+
+.. _updating-and-committing-an-image:
 
 更新とイメージのコミット
 ------------------------------
@@ -274,7 +292,7 @@ Docker の特長の１つに、多くの方によって作られた、様々な�
 .. code-block:: bash
 
    $ docker images
-   REPOSITORY          TAG     IMAGE ID       CREATED       VIRTUAL SIZE
+   REPOSITORY          TAG     IMAGE ID       CREATED       SIZE
    training/sinatra    latest  5bc342fa0b91   10 hours ago  446.7 MB
    ouruser/sinatra     v2      3c59e02ddd1a   10 hours ago  446.7 MB
    ouruser/sinatra     latest  5db5f8471261   10 hours ago  446.7 MB
@@ -335,7 +353,7 @@ Windows で Docker Machine を使っている場合、ホスト・ディレク�
 
 .. code-block:: bash
 
-   命令 ステートメント（詳細）
+   命令 ステートメント
 
 ..    Note: You use # to indicate a comment
 
@@ -542,7 +560,7 @@ Windows で Docker Machine を使っている場合、ホスト・ディレク�
 
 .. Next you can see each instruction in the Dockerfile being executed step-by-step. You can see that each step creates a new container, runs the instruction inside that container and then commits that change - just like the docker commit work flow you saw earlier. When all the instructions have executed you’re left with the 97feabe5d2ed image (also helpfully tagged as ouruser/sinatra:v2) and all intermediate containers will get removed to clean things up.
 
-次は ``Dockerfile`` の命令を一行ずつ実行します。それぞれのステップで、新しいコンテナを作成し、コンテナの中で命令を実行し、変更にに対してコミットするのが見えるでしょう。これは先ほど ``docker commit`` のワークフローで見てきたものです。全ての命令を実行すると、イメージ ``97feabe5d2ed `` が残されます（扱いやすいよう ``ouruser/sinatra:v2`` とタグ付けもされています）。そして、作業中に作成された全てのコンテナを削除し、綺麗に片付けています。
+次は ``Dockerfile`` の命令を一行ずつ実行します。それぞれのステップで、新しいコンテナを作成し、コンテナの中で命令を実行し、変更に対してコミットするのが見えるでしょう。これは先ほど ``docker commit`` のワークフローで見てきたものです。全ての命令を実行すると、イメージ ``97feabe5d2ed `` が残されます（扱いやすいよう ``ouruser/sinatra:v2`` とタグ付けもされています）。そして、作業中に作成された全てのコンテナを削除し、綺麗に片付けています。
 
 ..    Note: An image can’t have more than 127 layers regardless of the storage driver. This limitation is set globally to encourage optimization of the overall size of images.
 
@@ -563,9 +581,11 @@ Windows で Docker Machine を使っている場合、ホスト・ディレク�
 
 .. note::
 
-   ここではイメージ作成の簡単な概要を紹介しました。他にも利用可能な命令がありますが、省略しています。ガイドの後半を見ていただくと、``Dockerfile`` のレファレンスから、コマンド毎に更なる詳細や例を参照いただけます。``Dockerfile`` を明らかに、読めるように、管理できるようにするため、``Dockerfile`` :doc:`ベストプラクティス・ガイド </engine/articles/dockerfile_best-practices>` もお読みください。
+   ここではイメージ作成の簡単な概要を紹介しました。他にも利用可能な命令がありますが、省略しています。ガイドの後半を見ていただくと、``Dockerfile`` のレファレンスから、コマンド毎に更なる詳細や例を参照いただけます。``Dockerfile`` を明らかに、読めるように、管理できるようにするため、``Dockerfile`` :doc:`ベストプラクティス・ガイド </engine/userguide/eng-image/dockerfile_best-practice>` もお読みください。
 
 .. Setting tag on an image
+
+.. _setting-tag-on-an-image:
 
 イメージにタグを設定
 ====================
@@ -589,13 +609,15 @@ Windows で Docker Machine を使っている場合、ホスト・ディレク�
 .. code-block:: bash
 
    $ docker images ouruser/sinatra
-   REPOSITORY          TAG     IMAGE ID      CREATED        VIRTUAL SIZE
+   REPOSITORY          TAG     IMAGE ID      CREATED        SIZE
    ouruser/sinatra     latest  5db5f8471261  11 hours ago   446.7 MB
    ouruser/sinatra     devel   5db5f8471261  11 hours ago   446.7 MB
    ouruser/sinatra     v2      5db5f8471261  11 hours ago   446.7 MB
 
 
 .. Image Digest
+
+.. _image-digest:
 
 イメージのダイジェスト
 ==============================
@@ -607,7 +629,7 @@ v2 以上のフォーマットのイメージには、内容に対して ``diges
 .. code-block:: bash
 
    $ docker images --digests | head
-   REPOSITORY                         TAG                 DIGEST                                                                     IMAGE ID            CREATED             VIRTUAL SIZE
+   REPOSITORY                         TAG                 DIGEST                                                                     IMAGE ID            CREATED             SIZE
    ouruser/sinatra                    latest              sha256:cbbf2f9a99b47fc460d422812b6a5adff7dfee951d8fa2e4a98caa0382cfbdbf    5db5f8471261        11 hours ago        446.7 MB
 
 .. When pushing or pulling to a 2.0 registry, the push or pull command output includes the image digest. You can pull using a digest value.
@@ -623,6 +645,8 @@ v2 以上のフォーマットのイメージには、内容に対して ``diges
 ダイジェスト値は ``create``、``run``、``rmi`` コマンドや、Dockerfile で ``FROM`` イメージを参照するにも使えます。
 
 .. Push an image to Docker Hub
+
+.. _push-an-image-to-docker-hub:
 
 イメージを Docker Hub に送信
 ==============================
@@ -640,6 +664,8 @@ v2 以上のフォーマットのイメージには、内容に対して ``diges
    . . .
 
 .. Remove an image from the host
+
+.. _remove-an-image-from-the-host:
 
 ホストからイメージを削除
 ==============================
@@ -664,7 +690,7 @@ Docker ホスト上で、`コンテナの削除 <usingdocker>`と同じように
 
 .. note::
 
-   ホストからイメージを削除する時は、どのコンテナも対象となるイメージを基に使っていないことを確認してください。
+   ホストからイメージを削除する時は、どのコンテナも対象となるイメージを元していないことを確認してください。
 
 .. Next steps
 
@@ -673,7 +699,7 @@ Docker ホスト上で、`コンテナの削除 <usingdocker>`と同じように
 
 .. Until now you’ve seen how to build individual applications inside Docker containers. Now learn how to build whole application stacks with Docker by networking together multiple Docker containers.
 
-ここまでは、Docker コンテナの中にアプリケーションをクークに構築する方法を見てきました。次は、複数の Docker コンテナを結び付けるアプリケーション・スタック（積み重ね）の構築方法を学びましょう。
+ここまでは、Docker コンテナ内に個々のアプリケーションを構築する方法を見てきました。次は、複数の Docker コンテナを結び付けるアプリケーション・スタック（積み重ね）の構築方法を学びましょう。
 
 .. Go to Network containers.
 

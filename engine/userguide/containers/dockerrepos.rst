@@ -179,6 +179,8 @@ Docker Hub の機能
 
 .. Automated Builds
 
+.. _automated-builds:
+
 自動構築
 ------------------------------
 
