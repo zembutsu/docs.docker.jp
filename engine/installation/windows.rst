@@ -1,7 +1,11 @@
 .. -*- coding: utf-8 -*-
 .. https://docs.docker.com/engine/installation/windows/
-.. doc version: 1.9
-.. check date: 2015/12/17
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/windows.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/installation/windows.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/release/v1.9/docs/installation/windows.md
+.. check date: 2016/02/09
 .. -----------------------------------------------------------------------------
 
 .. Windows
@@ -49,7 +53,9 @@ Docker 仮想マシンとは、Docker デーモンを Windows 上で動かすた
 
 .. Your machine must be running Windows 7 or newer to run Docker. To find out what version of Windows you have:
 
-Docker を実行するには、Windows 7 以上で動作する PC が必要です。Windows のバージョンは次のようにして確認します。
+.. To run Docker, your machine must have a 64-bit operating system running Windows 7 or higher. Additionally, you must make sure that virtualization is enabled on your machine. To verify your machine meets these requirements, do the following:
+
+Docker を実行するには、Windows 7 以上が動作する 64 ビットのオペレーティング・システム必要です。さらに、マシン上の仮想化が有効になっているかを確認してください。Windows のバージョンは次のようにして確認します。
 
 .. Right click the Windows Start Menu and choose System.
 
@@ -89,11 +95,20 @@ Windows 7 の場合
 
 `Microsoft® のハードウェア支援による仮想化の検出ツール <https://www.microsoft.com/en-us/download/details.aspx?id=592>`_ を実行し、画面の指示に従います。
 
-..    Note: If you have Docker hosts running and you don’t wish to do a Docker Toolbox installation, you can install the docker.exe using the unofficial Windows package manager Chocolately. For information on how to do this, see Docker package on Chocolatey.
+
+3. Verify your Windows OS is 64-bit (x64)
+
+3. Windows の OS が 64 ビット（x64）であることを確認します。
+
+.. How you do this verification depends on your Windows version. For details, see the Windows article How to determine whether a computer is running a 32-bit version or 64-bit version of the Windows operating system.
+
+どのように確認するかは使っている Windows のバージョンに依存します。詳細については、 `コンピューターは、32 ビット版または 64 ビット バージョンの Windows オペレーティング システムを実行しているかどうかを確認する方法 <https://support.microsoft.com/ja-jp/kb/827218>`_ をご覧ください。
+
+..    Note: If you have Docker hosts running and you don’t wish to do a Docker Toolbox installation, you can install the docker.exe using the unofficial Windows package manager Chocolatey. For information on how to do this, see Docker package on Chocolatey.
 
 .. note::
 
-   Docker が動くホストを持っており、Docker Toolbox のインストールをしたくない場合は、非公式 Windows パッケージ・マネージャの Chocolately を使い ``docker.exe`` をインストールできます。詳細な情報は `Chocolatey にある Docker パッケージ <https://www.microsoft.com/en-us/download/details.aspx?id=592>`_ をご覧ください。
+   Docker が動くホストを持っており、Docker Toolbox のインストールをしたくない場合は、非公式 Windows パッケージ・マネージャの Chocolatey を使い ``docker.exe`` をインストールできます。詳細な情報は `Chocolatey にある Docker パッケージ <https://www.microsoft.com/en-us/download/details.aspx?id=592>`_ をご覧ください。
 
 .. Learn the key concepts before installing
 

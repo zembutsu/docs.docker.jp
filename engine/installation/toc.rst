@@ -1,7 +1,7 @@
 .. -*- coding: utf-8 -*-
 .. 
 .. doc version: 1.10
-.. check date: 2016/02/06
+.. check date: 2016/02/09
 .. -----------------------------------------------------------------------------
 
 .. engine installation toc
@@ -27,19 +27,30 @@ Linux ディストリビューション
 .. toctree::
    :maxdepth: 3
 
-   ubuntulinux.rst
-   rhel.rst
-   centos.rst
-   fedora.rst
-   debian.rst
-   archlinux.rst
-   cruxlinux.rst
-   frugalware.rst
-   gentoolinux.rst
-   oracle.rst
-   SUSE.rst
+   linux/ubuntulinux.rst
+   linux/rhel.rst
+   linux/centos.rst
+   linux/fedora.rst
+   linux/debian.rst
+   linux/archlinux.rst
+   linux/cruxlinux.rst
+   linux/frugalware.rst
+   linux/gentoolinux.rst
+   linux/oracle.rst
+   linux/SUSE.rst
 
 クラウド
+=============================
+
+.. toctree::
+   :maxdepth: 3
+
+   cloud/index.rst
+   cloud/cloud.rst
+   cloud/cloud-ex-aws.rst
+   cloud/cloud-ex-machine-ocean.rst
+
+クラウド（古い文章）
 =============================
 
 .. toctree::

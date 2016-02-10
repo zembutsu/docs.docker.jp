@@ -1,8 +1,12 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/installation/rhel/
-.. doc version: 1.9
-.. check date: 2015/12/18
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/installation/linux/rhel/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/linux/rhel.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/installation/linux/rhel.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/release/v1.9/docs/installation/rhel.md
+.. check date: 2016/02/09
+.. ----------------------------------------------------------------------------
 
 .. Red Hat enterprise Linux
 
@@ -12,7 +16,7 @@ Red Hat Enterprise Linux
 
 .. Docker is supported on Red Hat Enterprise Linux 7. This page instructs you to install using Docker-managed release packages and installation mechanisms. Using these packages ensures you get the latest release of Docker. If you wish to install using Red Hat-managed packages, consult your Red Hat release documentation for information on Red Hat’s Docker support.
 
-Docker は Red Hat Enterprise Linux 7 でサポートされています。このページでは Docker が管理しているパッケージとインストール手法を使ってインストールします。これらパッケ―ジを使い、Docker の最新リリースを入手します。もし Red Hat が管理するパッケージを使いたい場合は、Red Hat の Docker サポートに関する情報のドキュメントをお調べください。
+Docker は Red Hat Enterprise Linux 7 でサポートされています。このページでは Docker が管理しているパッケージとインストール手法を使ってインストールします。これらパッケージを使い、Docker の最新リリースを入手します。もし Red Hat が管理するパッケージを使いたい場合は、Red Hat の Docker サポートに関する情報のドキュメントをお調べください。
 
 
 .. Prerequisites

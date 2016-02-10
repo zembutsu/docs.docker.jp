@@ -1,7 +1,11 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/installation/mac/
-.. doc version: 1.9
-.. check date: 2015/12/16
+.. URL: https://docs.docker.com/engine/installation/mac/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/mac.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/installation/mac.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/release/v1.9/docs/installation/mac.md
+.. check date: 2016/02/09
 .. -----------------------------------------------------------------------------
 
 .. Mac OS X
@@ -629,8 +633,6 @@ Mac OS X の Docker 実行例
 
    $ docker stop mysite
    $ docker rm mysite
-
-.. Upgrade Docker Toolbox
 
 Docker Toolbox のアップグレード
 ========================================

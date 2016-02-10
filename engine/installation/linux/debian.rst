@@ -1,8 +1,12 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/installation/debian/
-.. doc version: 1.9
-.. check date: 2015/12/18
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/installation/linux/debian/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/linux/debian.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/installation/linux/debian.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/release/v1.9/docs/installation/debian.md
+.. check date: 2016/02/09
+.. ----------------------------------------------------------------------------
 
 .. Debian
 
@@ -71,17 +75,21 @@ Docker 1.7.1 以上は Docker の ``apt`` レポジトリに保管されてい�
    $ apt-get purge lxc-docker*
    $ apt-get purge docker.io*
 
+.. Update package information, ensure that APT works with the https method, and that CA certificates are installed.
+
+4. パッケージ情報を更新します。 APT が ``https`` メソッドで動作することを確認し、 ``CA`` 証明書がインストールされるのを確認します。
+
 ..    Add the new gpg key.
 
-3. 新しい ``gpg`` 鍵を追加します。
+5. 新しい ``GPG`` 鍵を追加します。
 
 .. code-block:: bash
 
-   $ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+   $ apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
 ..    Open the /etc/apt/sources.list.d/docker.list file in your favorite editor.
 
-4. ``/etc/apt/sources.list.d/docker.list`` ファイルを好みのエディタで開きます。
+6. ``/etc/apt/sources.list.d/docker.list`` ファイルを好みのエディタで開きます。
 
 ..    If the file doesn’t exist, create it.
 
@@ -89,11 +97,11 @@ Docker 1.7.1 以上は Docker の ``apt`` レポジトリに保管されてい�
 
 ..    Remove any existing entries.
 
-5. 既存のエントリがあれば削除します。
+7. 既存のエントリがあれば削除します。
 
 ..    Add an entry for your Debian operating system.
 
-6. Debian オペレーティング・システム向けのエントリを追加します。
+8. Debian オペレーティング・システム向けのエントリを追加します。
 
 ..    The possible entries are:
 
@@ -123,29 +131,21 @@ Docker 1.7.1 以上は Docker の ``apt`` レポジトリに保管されてい�
 
    deb https://apt.dockerproject.org/repo debian-stretch main
 
-..    Save and close the /etc/apt/sources.list.d/docker.list file.
+..    Save and close the file.
 
-8. ``/etc/apt/sources.list.d/docker.list`` ファイルを保存して閉じます。
+9. ファイルを保存して閉じます。
 
 ..    Update the apt package index.
 
-8. ``apt`` パッケージのインデックスを更新します。
+10. ``APT`` パッケージのインデックスを更新します。
 
 .. code-block:: bash
 
    $ apt-get update
 
-..    Purge the old repo if it exists.
+..    Verify that APT is pulling from the right repository.
 
-9. 古いレポジトリが残っているのなら、パージします。
-
-.. code-block:: bash
-
-   $ apt-get purge lxc-docker
-
-..    Verify that apt is pulling from the right repository.
-
-10. ``apt`` が正しいレポジトリから取得できるか確認します。
+10. ``APT`` が正しいレポジトリから取得しているか確認します。
 
 .. code-block:: bash
 
@@ -153,20 +153,20 @@ Docker 1.7.1 以上は Docker の ``apt`` レポジトリに保管されてい�
 
 ..    From now on when you run apt-get upgrade, apt pulls from the new repository.
 
-これで ``apt-get update`` を実行すると、 ``apt`` は新しいレポジトリから取得します。
+これで ``apt-get update`` を実行すると、 ``APT`` は新しいレポジトリから取得します。
 
 .. Install Docker
 
 Docker インストール
 ====================
 
-.. Before installing Docker, make sure you have set your apt repository correctly as described in the prerequisites.
+.. Before installing Docker, make sure you have set your APT repository correctly as described in the prerequisites.
 
-Docker インストール前に、必要条件で説明した通り、 ``apt`` レポジトリを正しく設定してください。
+Docker インストール前に、必要条件で説明した通り、 ``APT`` レポジトリを正しく設定してください。
 
-..    Update your apt package index.
+..    Update your APT package index.
 
-1. ``apt`` パッケージのインデックスを更新します。
+1. ``APT`` パッケージのインデックスを更新します。
 
 .. code-block:: bash
 
@@ -218,28 +218,23 @@ root 以外のアクセス指定
 
 .. warning::
 
-   ``docker`` グループは ``root`` ユーザ相当です。システム上のセキュリティに対する影響の詳細は、 :ref:`Docker デーモンが直面する攻撃 <docker-daemon-attach surface>` をご覧ください。
+   ``docker`` グループは ``root`` ユーザ相当です。システム上のセキュリティに対する影響の詳細は、 :ref:`Docker デーモンが直面する攻撃 <docker-daemon-attach-surface>` をご覧ください。
 
-.. To create the docker group and add your user:
-
-``docker`` グループを作成し、ユーザを追加するには、
-
-..    Log into Debian as a user with sudo privileges.
-
-1. Debian に ``sudo`` 特権のあるユーザでログインします。
-
-..    Create the docker group and add your user.
-
-2. ``docker`` グループを作成し、ユーザを追加します。
+**例：**
 
 .. code-block:: bash
 
+   # docker グループが存在していなければ追加します。
+   $ sudo groupadd docker
+   
+   # 接続するユーザ "${USER}" を docker グループに追加します。
+   # 適切なユーザ名に変更してください。
+   # この設定が反映されるのは、ログアウト後に、戻ってきてからです。
    $ sudo groupadd docker
    $ sudo gpasswd -a ${USER} docker
-
-..    Restart the Docker daemon.
-
-3. Docker デーモンを再起動します。
+   
+   # Docker デーモンを再起動します。
+   $ sudo service docker restart
 
 .. Upgrade Docker
 
@@ -287,4 +282,11 @@ Docker パッケージと必要の無い依存関係をアンインストール�
 
 ユーザが作成した設定ファイルは、手動で削除する必要があります。
 
+.. What next?
 
+次は？
+==========
+
+.. Continue with the User Guide.
+
+:doc:`ユーザ・ガイド </engine/userguide/index>` へ進みましょう。

@@ -1,7 +1,11 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/installation/binaries/
-.. doc version: 1.9
-.. check date: 2015/12/18
+.. URL: https://docs.docker.com/engine/installation/binaries/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/binaries.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/installation/binaries.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/release/v1.9/docs/installation/binaries.md
+.. check date: 2016/02/09
 .. -----------------------------------------------------------------------------
 
 .. Binaries
@@ -279,5 +283,5 @@ root 以外のアクセス
 
 .. Continue with the User Guide.
 
-:doc:`ユーザガイド </engine/userguide/index>` に進みます。
+:doc:`ユーザ・ガイド </engine/userguide/index>` に進みます。
 

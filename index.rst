@@ -25,7 +25,7 @@ Docker ドキュメントへようこそ！
 
 .. Docker Engine provides the core functions you need to create Docker images and run Docker containers. Install Engine on Ubuntu or see the full list of others to choose from. 
 
-**Docker Engine (エンジン)** は、Docker イメージの作成と Docker コンテナの実行に必要なコア機能を提供します。Engine を :doc:`Ubuntu </engine/installation/ubuntulinux>` にインストールする方法や、 :doc:`その他の一覧リスト </engine/installation/index>` をご覧ください。
+**Docker Engine (エンジン)** は、Docker イメージの作成と Docker コンテナの実行に必要なコア機能を提供します。Engine を :doc:`Ubuntu </engine/installation/linux/ubuntulinux>` にインストールする方法や、 :doc:`その他の一覧リスト </engine/installation/index>` をご覧ください。
 
 .. Docker Toolbox delivers all the Docker tools such as Engine, Machine, Compose, and Kitematic to your Mac OS X or Windows desktop. 
 

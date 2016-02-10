@@ -1,70 +1,72 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/installation/centos/
-.. doc version: 1.9
-.. check date: 2015/12/18
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/installation/linux/fedora/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/linux/fedora.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/installation/linux/fedora.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/release/v1.9/docs/installation/fedora.md
+.. check date: 2016/02/09
+.. ----------------------------------------------------------------------------
 
-.. CentOS
+.. Fedora
 
 ==============================
-CentOS
+Fedora
 ==============================
 
-.. Docker runs on CentOS 7.X. An installation on other binary compatible EL7 distributions such as Scientific Linux might succeed, but Docker does not test or support Docker on these distributions.
+.. Docker is supported on Fedora version 22 and 23. This page instructs you to install using Docker-managed release packages and installation mechanisms. Using these packages ensures you get the latest release of Docker. If you wish to install using Fedora-managed packages, consult your Fedora release documentation for information on Fedora’s Docker support.
 
-Docker は CentOS 7.X で動作します。Scientific Linux のような EL7 バイナリ互換のディストリビューションでもインストールは可能かもしれませんが、Docker はこれらのディストリビューションでテストしておらず、サポートも行いません。
-
-.. This page instructs you to install using Docker-managed release packages and installation mechanisms. Using these packages ensures you get the latest release of Docker. If you wish to install using CentOS-managed packages, consult your CentOS documentation.
-
-このページでは Docker が管理しているパッケージとインストール手法を使ってインストールします。これらパッケ―ジを使い、Docker の最新リリースを入手します。もし CentOS が管理するパッケージを使いたい場合は、CentOS の Docker サポートに関する情報のドキュメントをお調べください。
+Docker は Fedora バージョン 22 と 23 をサポートします。このページでは Docker が管理しているパッケージとインストール手法を使ってインストールします。これらパッケージを使い、Docker の最新リリースを入手します。もし Fedora が管理するパッケージを使いたい場合は、Fedora の Docker サポートに関する Fedora リリース情報のドキュメントをお調べください。
 
 .. Prerequisites
 
 動作条件
 ====================
 
-.. Docker requires a 64-bit installation regardless of your CentOS version. Docker requires that your kernel must be 3.10 at minimum, which CentOS 7 runs.
+.. Docker requires a 64-bit installation regardless of your Fedora version. Docker requires that your kernel must be 3.10 at minimum, which Fedora 7 runs.
 
-Docker は 64bit でインストールされた何らかの CentOS バージョンを必要とします。さらに、CentOS 7 で動作する kernel は少なくとも 3.10 以上が必要です。
+.. Docker requires a 64-bit installation regardless of your Fedora version. Also, your kernel must be 3.10 at minimum. To check your current kernel version, open a terminal and use uname -r to display your kernel version:
 
-.. To check your current kernel version, open a terminal and use uname -r to display your kernel version:
-
-現在のカーネル・バージョンを確認するには、ターミナルを開き、 ``uname -r``  を使ってカーネルのバージョンを確認します。
+Docker は 64bit でインストールされた何らかの Fedora バージョンを必要とします。さらに、 kernel は少なくとも 3.10 以上が必要です。現在のカーネル・バージョンを確認するには、ターミナルを開き、 ``uname -r``  を使ってカーネルのバージョンを確認します。
 
 .. code-block:: bash
 
    $ uname -r
-   3.10.0-229.el7.x86_64
+   3.19.5-100.fc21.x86_64
+
+.. If your kernel is at a older version, you must update it.
+
+もし kernel のバージョンが古ければ、更新する必要があります。
 
 .. Finally, is it recommended that you fully update your system. Please keep in mind that your system should be fully patched to fix any potential kernel bugs. Any reported kernel bugs may have already been fixed on the latest kernel packages.
 
 最後に、システムを全て更新することをお勧めします。システムは潜在的なカーネルのバグを修正するために、全てパッチを当てるべきと考慮ください。報告されているカーネルのバグは、最新のカーネル・パッケージでは修正済みの場合があります。
 
-.. Install Docker Engine
+.. Install
 
-Docker エンジンのインストール
-==============================
+インストール
+====================
 
-.. There are two ways to install Docker Engine. You can install with the yum package manager directly yourself. Or you can use curl with the get.docker.com site. This second method runs an installation script which installs via the yum package manager.
+.. There are two ways to install Docker Engine. You can install with the dnf package manager. Or you can use curl with the get.docker.com site. This second method runs an installation script which also installs via the dnf package manager.
 
-Docker エンジンをインストールするには２つの方法があります。 ``yum`` パッケージ・マネージャを使い、直接自分でインストールできます。あるいは、 ``crul`` で ``get.docker.com`` を使う方法があります。２つめの方法はインストール用のスクリプトを実行すると、 ``yum``  パッケージ・マネージャを通してセットアップします。
+Docker エンジンをインストールするには２つの方法があります。 ``dnf`` パッケージ・マネージャを使い、直接自分でインストールできます。あるいは、 ``crul`` で ``get.docker.com`` を使う方法があります。２つめの方法はインストール用のスクリプトを実行すると、 ``dnf``  パッケージ・マネージャを通してセットアップします。
 
-.. Install with yum
+.. Install with DNF
 
-yum でインストール
+dnf でインストール
 -------------------
 
 ..    Log into your machine as a user with sudo or root privileges.
 
 1. マシンに ``sudo`` あるいは ``root`` 特権のあるユーザでログインします。
 
-..    Make sure your existing yum packages are up-to-date.
+..    Make sure your existing dnfj packages are up-to-date.
 
-2. 既存の yum パッケージを更新します。
+2. 既存の dnf パッケージを更新します。
 
 .. code-block:: bash
 
-   $ sudo yum update
+   $ sudo dnf update
 
 ..    Add the yum repo yourself.
 
@@ -72,10 +74,10 @@ yum でインストール
 
 .. code-block:: bash
 
-   $ sudo tee /etc/yum.repos.d/docker.repo <<-EOF
+   $ sudo tee /etc/yum.repos.d/docker.repo <<-'EOF'
    [dockerrepo]
    name=Docker Repository
-   baseurl=https://yum.dockerproject.org/repo/main/centos/7
+   baseurl=https://yum.dockerproject.org/repo/main/fedora/$releasever/
    enabled=1
    gpgcheck=1
    gpgkey=https://yum.dockerproject.org/gpg
@@ -87,7 +89,7 @@ yum でインストール
 
 .. code-block:: bash
 
-   $ sudo yum install docker-engine
+   $ sudo dnf install docker-engine
 
 ..    Start the Docker daemon.
 
@@ -95,7 +97,7 @@ yum でインストール
 
 .. code-block:: bash
 
-   $ sudo service docker start
+   $ sudo systemctl start docker
 
 ..    Verify docker is installed correctly by running a test image in a container.
 
@@ -137,21 +139,17 @@ yum でインストール
 スクリプトでインストール
 ------------------------------
 
-.. You use the same installation procedure for all versions of CentOS.
-
-同じ手順が CentOS Enterprise Linux の全てのバージョンで使えます。
-
 ..    Log into your machine as a user with sudo or root privileges.
 
 1. マシンに ``sudo`` あるいは ``root`` 特権のあるユーザでログインします。
 
-..     Make sure your existing yum packages are up-to-date.
+..     Make sure your existing dnf packages are up-to-date.
 
-2. 既存の yum パッケージを更新します。
+2. 既存の dnf パッケージを更新します。
 
 .. code-block:: bash
 
-   $ sudo yum update
+   $ sudo dnf update
 
 ..    Run the Docker installation script.
 
@@ -159,7 +157,11 @@ yum でインストール
 
 .. code-block:: bash
 
-   $ curl -sSL https://get.docker.com/ | sh
+   $ curl -fsSL https://get.docker.com/ | sh
+
+.. This script adds the docker.repo repository and installs Docker.
+
+このスクリプトは ``docker.repo`` レポジトリを追加し、Docker をインストールします。
 
 ..    Start the Docker daemon.
 
@@ -167,7 +169,7 @@ yum でインストール
 
 .. code-block:: bash
 
-   $ sudo service docker start
+   $ sudo systemctl start docker
 
 ..    Verify docker is installed correctly by running a test image in a container.
 
@@ -200,9 +202,9 @@ docker グループの作成
 
 ``docker`` グループを作成し、ユーザを追加するには、
 
-..    Log into Centos as a user with sudo privileges.
+..    Log into Fedora as a user with sudo privileges.
 
-1. Centos に ``sudo`` 特権のあるユーザでログインします。
+1. Fedora に ``sudo`` 特権のあるユーザでログインします。
 
 ..    Create the docker group and add your user.
 
@@ -230,8 +232,8 @@ docker グループの作成
 
 .. Start the docker daemon at boot
 
-ブート時の Docker 開始設定
-------------------------------
+ブート時の Docker 自動起動を設定
+========================================
 
 .. To ensure Docker starts when you boot your system, do the following:
 
@@ -239,20 +241,46 @@ Docker をブート時に起動するようにするには、次のように実�
 
 .. code-block:: bash
 
-   $ sudo chkconfig docker on
+   $ sudo systemctl enable docker
 
 .. If you need to add an HTTP Proxy, set a different directory or partition for the Docker runtime files, or make other customizations, read our Systemd article to learn how to customize your Systemd Docker daemon options.
 
 HTTP プロキシの追加が必要な場合、Docker のランタイム・ファイルを異なったディレクトリやパーティションに置いてください。あるいは別のカスタマイズ方法として、Systemd の記事 :doc:`Systemd Docker デーモン・オプションのカスタマイズ </engine/admin/systemd>` から、どのように設定するかをご覧ください。
+
+.. Running Docker with a manually-defined network
+
+Docker をマニュアル定義ネットワークで実行
+==================================================
+
+.. If you manually configure your network using systemd-network with systemd version 219 or higher, containers you start with Docker may be unable to access your network. Beginning with version 220, the forwarding setting for a given network (net.ipv4.conf.<interface>.forwarding) defaults to off. This setting prevents IP forwarding. It also conflicts with Docker which enables the net.ipv4.conf.all.forwarding setting within a container.
+
+``systemd`` バージョン 219 以上では、 ``systemd-network`` を使い、手動でネットワークを設定できます。そのため、Docker でコンテナを起動してもネットワークに接続できないかもしれません。バージョン 220 を使う場合、ネットワークの転送設定（ ``net.ipv4.conf.<インターフェース>.forwarding`` ）がデフォルトでは *off* です。この設定は IP 転送を阻止します。また、これは Docker がコンテナの中で設定する ``net.ipv4.conf.all.forward`` と競合します。
+
+.. To work around this, edit the <interface>.network file in /usr/lib/systemd/network/ on your Docker host (ex: /usr/lib/systemd/network/80-container-host0.network) add the following block:
+
+動作するためには、Docker ホスト上の ``/usr/lib/systemd/network/`` にある ``<インターフェース>.network`` ファイルを編集し（例： ``/usr/lib/systemd/network/80-container-host0.netowrk`` ）、次のブロックを追加します。
+
+.. code-block:: bash
+
+   [Network]
+   ...
+   IPForward=kernel
+   # OR
+   IPForward=true
+   ...
+
+.. This configuration allows IP forwarding from the container as expected.
+
+この設定は、コンテナからと予想される IP 転送を許可するものです。
 
 .. Uninstall
 
 アンインストール
 ====================
 
-.. You can uninstall the Docker software with yum.
+.. You can uninstall the Docker software with dnf.
 
-Docker ソフトウェアを yum でアンインストール可能です。
+Docker ソフトウェアを ``dnf`` でアンインストール可能です。
 
 ..    List the package you have installed.
 
@@ -260,9 +288,8 @@ Docker ソフトウェアを yum でアンインストール可能です。
 
 .. code-block:: bash
 
-   $ yum list installed | grep docker
-   yum list installed | grep docker
-   docker-engine.x86_64                1.7.1-0.1.el7@/docker-engine-1.7.1-0.1.el7.x86_64
+   $ dnf list installed | grep docker dnf list installed | grep docker
+   docker-engine.x86_64     1.7.1-0.1.fc21 @/docker-engine-1.7.1-0.1.fc21.el7.x86_64
 
 ..    Remove the package.
 
@@ -270,7 +297,7 @@ Docker ソフトウェアを yum でアンインストール可能です。
 
 .. code-block:: bash
 
-   $ sudo yum -y remove docker-engine.x86_64
+   $ sudo dnf -y remove docker-engine.x86_64
 
 ..    This command does not remove images, containers, volumes, or user created configuration files on your host.
 

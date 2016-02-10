@@ -1,8 +1,12 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/installation/SUSE/
-.. doc version: 1.9
-.. check date: 2015/12/18
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/installation/linux/SUSE/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/linux/SUSE.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/installation/linux/SUSE.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/release/v1.9/docs/installation/SUSE.md
+.. check date: 2016/02/09
+.. ----------------------------------------------------------------------------
 
 .. openSUSE and SUSE Linux Enterprise
 

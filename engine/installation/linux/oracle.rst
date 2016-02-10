@@ -1,8 +1,12 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/installation/oracle/
-.. doc version: 1.9
-.. check date: 2015/12/18
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/installation/linux/oracle/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/linux/oracle.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/installation/linux/oracle.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/release/v1.9/docs/installation/oracle.md
+.. check date: 2016/02/09
+.. ----------------------------------------------------------------------------
 
 .. Oracle Linux
 
@@ -16,7 +20,7 @@ Docker は Oracle Linux 6 と 7 をサポートします。Docker Linux に Dock
 
 .. This page instructs you to install using Docker-managed release packages and installation mechanisms. Using these packages ensures you get the latest release of Docker. If you wish to install using Oracle Linux-managed packages, consult your Oracle Linux documentation.
 
-このページでは Docker が管理しているパッケージとインストール手法を使ってインストールします。これらパッケ―ジを使い、Docker の最新リリースを入手します。もし Oracle Linux が管理するパッケージを使いたい場合は、Oracle Linux の Docker サポートに関する情報の `ドキュメント <https://linux.oracle.com/>`_ をお調べください。
+このページでは Docker が管理しているパッケージとインストール手法を使ってインストールします。これらパッケージを使い、Docker の最新リリースを入手します。もし Oracle Linux が管理するパッケージを使いたい場合は、Oracle Linux の Docker サポートに関する情報の `ドキュメント <https://linux.oracle.com/>`_ をお調べください。
 
 .. Prerequisites
 
@@ -25,13 +29,28 @@ Docker は Oracle Linux 6 と 7 をサポートします。Docker Linux に Dock
 
 .. Due to current Docker limitations, Docker is only able to run only on the x86_64 architecture. Docker requires the use of the Unbreakable Enterprise Kernel Release 3 (3.8.13) or higher on Oracle Linux. This kernel supports the Docker btrfs storage engine on both Oracle Linux 6 and 7
 
-現在は Docker の制限により、Docker は x86_64 アーキテクチャ上でのみ動作します。Docker は Oracle Linux の Unbreakable Enterprise Kernel Release 3 (3.8.13) 以上をサポートします。このカーネルは Oracle Linux 6 と 7 で、Docker の btrfs ストレージエンジンをサポートしています。
-
+現在は Docker の制限により、Docker は x86_64 アーキテクチャ上でのみ動作します。Docker は Oracle Linux の Unbreakable Enterprise Kernel Release 4 (4.1.12) 以上をサポートします。このカーネルは Oracle Linux 6 と 7 で、Docker の btrfs ストレージエンジンをサポートしています。
 
 .. Install
 
 インストール
 ====================
+
+.. Note: The procedure below installs binaries built by Docker. These binaries are not covered by Oracle Linux support. To ensure Oracle Linux support, please follow the installation instructions provided in the Oracle Linux documentation.
+.. The installation instructions for Oracle Linux 6 can be found in Chapter 10 of the Administrator's Solutions Guide
+.. The installation instructions for Oracle Linux 7 can be found in Chapter 29 of the Administrator's Guide
+
+.. note::
+
+   以下のバイナリ版インストール手順は Docker が作成しました。これらのバイナリは Oracle LInux サポートが扱わないものです。Oracle Linux サポートが必要であれば、 `Oracle Linux が提供するドキュメント <https://docs.oracle.com/en/operating-systems/?tab=2>`_ のインストール手順に従ってください。
+
+.. note::
+
+   Oracle Linux 6 に関するインストール手順は `Chapter 10 of the Administrator's Solutions Guide <https://docs.oracle.com/cd/E37670_01/E37355/html/ol_docker.html>`_ をご覧ください。
+
+.. note::
+
+   Oracle Linux 7 に関するインストール手順は、 `Chapter 29 of the Administrator's Guide <https://docs.oracle.com/cd/E52668_01/E54669/html/ol7-docker.html>`_ をご覧ください。
 
 ..    Log into your machine as a user with sudo or root privileges.
 
@@ -141,7 +160,7 @@ docker グループの作成
 
 .. warning::
 
-   ``docker`` グループは ``root`` ユーザ相当です。システム上のセキュリティに対する影響の詳細は、 :ref:`Docker デーモンが直面する攻撃 <docker-daemon-attach surface>` をご覧ください。
+   ``docker`` グループは ``root`` ユーザ相当です。システム上のセキュリティに対する影響の詳細は、 :ref:`Docker デーモンが直面する攻撃 <docker-daemon-attach-surface>` をご覧ください。
 
 .. To create the docker group and add your user:
 

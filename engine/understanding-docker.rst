@@ -1,8 +1,11 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/introduction/understanding-docker/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/understanding-docker.md
-.. doc version: 1.10
-.. check date: 2016/02/07
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/understanding-docker.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/release/v1.9/docs/introduction/understanding-docker.md
+.. check date: 2016/02/09
 .. -----------------------------------------------------------------------------
 
 .. Understand the architecture

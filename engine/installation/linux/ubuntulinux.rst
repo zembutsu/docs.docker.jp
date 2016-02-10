@@ -1,8 +1,12 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/installation/ubuntulinux/
-.. doc version: 1.9
-.. check date: 2015/12/17
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/installation/linux/ubuntulinux/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/linux/ubuntulinux.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/installation/linux/ubuntulinux.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/release/v1.9/docs/installation/ubuntulinux.md
+.. check date: 2016/02/09
+.. ----------------------------------------------------------------------------
 
 .. Ubuntu
 
@@ -21,7 +25,7 @@ Docker は以下のオペレーティング・システムをサポートして�
 
 .. This page instructs you to install using Docker-managed release packages and installation mechanisms. Using these packages ensures you get the latest release of Docker. If you wish to install using Ubuntu-managed packages, consult your Ubuntu documentation.
 
-このページでは、Docker が管理しているパッケージとインストール手法を使ってインストールします。これらパッケ―ジを使い、Docker の最新リリースを入手します。もし Ubuntu が管理するパッケージを使いたい場合は、Ubuntu のドキュメントをお調べください。
+このページでは、Docker が管理しているパッケージとインストール手法を使ってインストールします。これらパッケージを使い、Docker の最新リリースを入手します。もし Ubuntu が管理するパッケージを使いたい場合は、Ubuntu のドキュメントをお調べください。
 
 ..    Note: Ubuntu Utopic 14.10 exists in Docker’s apt repository but it is no longer officially supported.
 
@@ -66,17 +70,26 @@ apt ソースの更新
 
 Docker 1.7.1 以上は Docker の ``apt`` レポジトリに保管されています。 ``apt`` が新しいレポジトリにあるパッケージを使えるように設定します。
 
-..    If you haven’t already done so, log into your Ubuntu instance as a privileged user.
+.. Log into your machine as a user with `sudo` or `root` privileges.
 
-1. まだであれば Ubuntu サーバに特権ユーザでログインします。
+1. マシンに ``sudo `` もしくは ``root`` 特権のあるユーザでログインします。
 
 ..    Open a terminal window.
 
 2. ターミナルのウインドウを開きます。
 
+.. Update package information, ensure that APT works with the https method, and that CA certificates are installed.
+
+3. パッケージ情報を更新します。 APT が ``https`` メソッドで動作することを確認し、 ``CA`` 証明書がインストールされるのを確認します。
+
+.. code-block:: bash
+
+   $ apt-get update
+   $ apt-get install apt-transport-https ca-certificates
+
 ..    Add the new gpg key.
 
-3. 新しい ``gpg`` 鍵を追加します。
+4. 新しい ``GPG`` 鍵を追加します。
 
 .. code-block:: bash
 
@@ -84,7 +97,7 @@ Docker 1.7.1 以上は Docker の ``apt`` レポジトリに保管されてい�
 
 ..    Open the /etc/apt/sources.list.d/docker.list file in your favorite editor.
 
-4. ``/etc/apt/sources.list.d/docker.list`` ファイルを好みのエディタで開きます。
+5. ``/etc/apt/sources.list.d/docker.list`` ファイルを好みのエディタで開きます。
 
 ..    If the file doesn’t exist, create it.
 
@@ -92,11 +105,11 @@ Docker 1.7.1 以上は Docker の ``apt`` レポジトリに保管されてい�
 
 ..    Remove any existing entries.
 
-5. 既存のエントリがあれば削除します。
+6. 既存のエントリがあれば削除します。
 
 ..    Add an entry for your Ubuntu operating system.
 
-6. Ubuntu オペレーティング・システム向けのエントリを追加します。
+7. Ubuntu オペレーティング・システム向けのエントリを追加します。
 
 ..    The possible entries are:
 
@@ -136,27 +149,27 @@ Docker 1.7.1 以上は Docker の ``apt`` レポジトリに保管されてい�
 
 ..    Save and close the /etc/apt/sources.list.d/docker.list file.
 
-7. ``/etc/apt/sources.list.d/docker.list`` ファイルを保存して閉じます。
+8. ``/etc/apt/sources.list.d/docker.list`` ファイルを保存して閉じます。
 
 ..    Update the apt package index.
 
-8. ``apt`` パッケージのインデックスを更新します。
+9. ``apt`` パッケージのインデックスを更新します。
 
 .. code-block:: bash
 
-   $ apt-get update
+   $ sudo apt-get update
 
 ..    Purge the old repo if it exists.
 
-9. 古いレポジトリが残っているのなら、パージします。
+10. 古いレポジトリが残っているのなら、パージします。
 
 .. code-block:: bash
 
-   $ apt-get purge lxc-docker
+   $ sudo apt-get purge lxc-docker
 
 ..    Verify that apt is pulling from the right repository.
 
-10. ``apt`` が正しいレポジトリから取得できるか確認します。
+11. ``apt`` が正しいレポジトリから取得できるか確認します。
 
 .. code-block:: bash
 
@@ -349,7 +362,7 @@ docker グループの作成
 
 .. warning::
 
-   ``docker`` グループは ``root`` ユーザ相当です。システム上のセキュリティに対する影響の詳細は、 :ref:`Docker デーモンが直面する攻撃 <docker-daemon-attach surface>` をご覧ください。
+   ``docker`` グループは ``root`` ユーザ相当です。システム上のセキュリティに対する影響の詳細は、 :ref:`Docker デーモンが直面する攻撃 <docker-daemon-attach-surface>` をご覧ください。
 
 .. To create the docker group and add your user:
 
@@ -504,7 +517,7 @@ UFW を設定するには、Docker ポートに対する incoming 接続を許�
 
 ..    Reload UFW to use the new setting.
 
-6. UFW を新しい設定を使って再読込します。
+6. UFW を新しい設定を使って再読み込みします。
 
 .. code-block:: bash
 
@@ -660,7 +673,7 @@ Docker の最新版をインストールするには、 ``apt-get`` を使いま
 
 .. code-block:: bash
 
-   $ apt-get upgrade docker-engine
+   $ sudo apt-get upgrade docker-engine
 
 .. Uninstallation
 

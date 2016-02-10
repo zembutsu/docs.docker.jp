@@ -1,7 +1,11 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/installation/archlinux/
-.. doc version: 1.9
-.. check date: 2015/12/18
+.. URL: https://docs.docker.com/engine/installation/linux/archlinux/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/linux/archlinux.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/installation/linux/archlinux.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/release/v1.9/docs/installation/archlinux.md
+.. check date: 2016/02/09
 .. -----------------------------------------------------------------------------
 
 .. Arch Linux
@@ -97,6 +101,15 @@ docker によって systemd サービスの unit が作成されます。docker 
 
 デーモンのオプション設定
 ==============================
+
+.. If you need to add an HTTP Proxy, set a different directory or partition for the Docker runtime files, or make other customizations, read our systemd article to learn how to customize your systemd Docker daemon options.
+
+HTTP プロキシの追加が必要な場合、Docker のランタイム・ファイルを異なったディレクトリやパーティションに置いてください。あるいは別のカスタマイズ方法として、Systemd の記事 :doc:`Systemd Docker デーモン・オプションのカスタマイズ </engine/admin/systemd>` から、どのように設定するかをご覧ください。
+
+.. Running Docker with a manually-defined network
+
+Docker のネットワークを手動設定する
+========================================
 
 .. If you manually configure your network using systemd-network with systemd version 219 or higher, containers you start with Docker may be unable to access your network. Beginning with version 220, the forwarding setting for a given network (net.ipv4.conf.<interface>.forwarding) defaults to off. This setting prevents IP forwarding. It also conflicts with Docker which enables the net.ipv4.conf.all.forwarding setting within a container.
 

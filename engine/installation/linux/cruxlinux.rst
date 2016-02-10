@@ -1,8 +1,12 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/installation/cruxlinux/
-.. doc version: 1.9
-.. check date: 2015/12/18
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/installation/linux/cruxlinux/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/linux/cruxlinux.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/installation/linux/cruxlinux.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/release/v1.9/docs/installation/cruxlinux.md
+.. check date: 2016/02/09
+.. ----------------------------------------------------------------------------
 
 .. CRUX Linux
 
