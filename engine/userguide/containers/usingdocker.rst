@@ -1,8 +1,18 @@
-﻿.. http://docs.docker.com/engine/userguide/usingdocker/
+﻿.. -*- coding: utf-8 -*-
+.. URL: https://docs.docker.com/engine/userguide/containers/usingdocker/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/containers/usingdocker.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/containers/usingdocker.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/release/v1.9/docs/userguide/usingdocker.md
+.. check date: 2016/02/10
+.. ----------------------------------------------------------------------------
 
 .. _usingdocker:
 
 .. Run a simple application
+
+.. _run-a-simple-application:
 
 =======================================
 シンプルなアプリケーションの実行
@@ -10,7 +20,7 @@
 
 .. In the “Hello world in a container“ you launched your first containers using the docker run command. You ran an interactive container that ran in the foreground. You also ran a detached container that ran in the background. In the process you learned about several Docker commands:
 
-:doc:`"コンテナで Hello world" </engine/userguide/dockerizing>` で、``docker run`` コマンドを使い、初めてのコンテナを起動しました。*双方向コンテナ (interactive container)* をフォアグラウンドで実行しました。また、*デタッチド・コンテナ (detached container)* をバックグランドで実行しました。この過程で、複数の Docker コマンドを学びました：
+:doc:`dockerizing` では、``docker run`` コマンドを使い、初めてのコンテナを起動しました。そして、フォアグラウンドで *インタラクティブなコンテナ (interactive container)* を実行しました。また、バックグラウンドで *デタッチド・コンテナ (detached container)* を実行しました。この過程で、複数の Docker コマンドを学びました：
 
 .. 
     docker ps - Lists containers.
@@ -23,12 +33,14 @@
 
 .. Learn about the Docker client
 
+.. _learn-about-the-docker-client:
+
 Docker クライアントについて学ぶ
 ===============================
 
 .. If you didn’t realize it yet, you’ve been using the Docker client each time you typed docker in your Bash terminal. The client is a simple command line client also known as a command-line interface (CLI). Each action you can take with the client is a command and each command can take a series of flags and arguments.
 
-気が付いていないかもしれませんが、Bash ターミナル上で毎回 ``docker`` と入力することで、Docker クライアントを使っていました。クライアントとはシンプルなコマンドライン・クライアントであり、コマンドライン・インターフェース (CLI) とも呼びます。クライアントを使った各種の動作にはコマンド（命令）を使います。各コマンドには一連のフラグや引数を持ちます。
+気が付いていないかもしれませんが、Bash ターミナル上で毎回 ``docker`` と入力することで、既に Docker クライアントを利用していました。クライアントとはシンプルなコマンドライン・クライアントであり、コマンドライン・インターフェース（CLI）とも呼びます。クライアントを使った各種の動作にはコマンド（命令）を使います。各コマンドには一連のフラグや引数を持ちます。
 
 .. code-block:: bash
 
@@ -68,6 +80,8 @@ Docker クライアントについて学ぶ
 
 .. Get Docker command help
 
+.. _get-docker-command-help:
+
 Docker コマンドの使い方を表示
 =============================
 
@@ -82,7 +96,7 @@ Docker コマンドの使い方を表示
 
 .. To see usage for a specific command, specify the command with the --help flag:
 
-典型的な使い方は、コマンドラインで ``--help`` フラグの指定です。
+コマンドラインで ``--help`` フラグを指定するのが典型的な使い方です。
 
 .. code-block:: bash
 
@@ -105,12 +119,14 @@ Docker コマンドの使い方を表示
 
 .. Running a web application in Docker
 
+.. _running-a-web-application-in-docker:
+
 Docker でウェブ・アプリケーションを実行
 =======================================
 
 .. So now you’ve learned a bit more about the docker client you can move onto the important stuff: running more containers. So far none of the containers you’ve run did anything particularly useful, so you can change that by running an example web application in Docker.
 
-それでは、これまで ``docker`` クライアントについて少しだけ学んできました。多くのコンテナの実行という、より重要なことを学びます。これまで実行してきたコンテナのほとんどは、いずれも役に立つような何かを行うものではありませんでした。今度は、Docker を使ったウェブ・アプリケーションの実行に移ります。
+ここまでは ``docker`` クライアントについて少しだけ学びました。次は多くのコンテナの実行という、より重要なことを学びます。これまで実行たコンテナのほとんどは、いずれも何かに役に立つ処理を行うものではありませんでした。今度は、Docker を使ったウェブ・アプリケーションの実行に移ります。
 
 .. For our web application we’re going to run a Python Flask application. Start with a docker run command.
 
@@ -141,6 +157,8 @@ Docker でウェブ・アプリケーションを実行
 
 .. Viewing our web application container
 
+.. viewing-our-web-application-container:
+
 ウェブ・アプリケーションのコンテナを表示
 ========================================
 
@@ -166,7 +184,7 @@ Docker でウェブ・アプリケーションを実行
 
 .. We can see the same details we saw when we first Dockerized a container with one important addition in the PORTS column.
 
-:doc:`始めて Docker 化したコンテナ </engine/userguide/dockerizing/>` で見てきた詳細に加え、重要な ``PORTS`` 列に情報が追加されています。
+:doc:`始めて Docker 化したコンテナ <dockerizing>` で見てきた詳細に加え、重要な ``PORTS`` 列に情報が追加されています。
 
 .. code-block:: bash
 
@@ -181,7 +199,7 @@ Docker でウェブ・アプリケーションを実行
 
 .. note::
 
-   Docker イメージで公開ポートの指定方法については、 :doc:`イメージの構築方法 </engine/userguide/dockerimages/>` で学びます。
+   Docker イメージで公開ポートの指定方法については、 :doc:`イメージの構築方法 <dockerimages>` で学びます。
 
 .. In this case Docker has exposed port 5000 (the default Python Flask port) on port 49155.
 
@@ -229,6 +247,8 @@ Python アプリケーションが動いています！
 
 .. A network port shortcut
 
+.. _a-network-port-shortcut:
+
 ネットワーク・ポートのショートカット
 =======================================
 
@@ -247,12 +267,14 @@ Python アプリケーションが動いています！
 
 .. Viewing the web application's log
 
+.. _viewing-the-web-applications-log:
+
 ウェブ・アプリケーションのログ表示
 =======================================
 
 .. You can also find out a bit more about what’s happening with our application and use another of the commands you’ve learned, docker logs.
 
-アプリケーションで何が起こっているのか、より詳しく見られます。これまで学んだ ``docker logs`` コマンドを使います。
+アプリケーションで何が起こっているのか、より詳しく見てみましょう。これまで学んだ ``docker logs`` コマンドを使います。
 
 .. code-block:: bash
 
@@ -266,6 +288,8 @@ Python アプリケーションが動いています！
 今回は新しい ``-f`` フラグを使いました。これは ``docker logs`` コマンドに対して ``tail -f`` コマンドのように動作するもので、コンテナの標準出力を見ます。ここではポート 5000 で動作している Flask アプリケーションに対する接続ログを表示します。
 
 .. Looking at our web application container's processes
+
+.. _looking-at-our-web-application-containers-processes:
 
 アプリケーション・コンテナのプロセスを見る
 =================================================
@@ -286,12 +310,14 @@ Python アプリケーションが動いています！
 
 .. Inspecting our web application container
 
+.. _inspecting-our-web-application-container:
+
 ウェブ・アプリケーション・コンテナの調査
 ==================================================
 
 .. Lastly, we can take a low-level dive into our Docker container using the docker inspect command. It returns a JSON document containing useful configuration and status information for the specified container.
 
-最後に、Docker コンテナに低レベルのアクセスをするには、``docker inspect`` コマンドを使います。指定したコンテナに対する便利な構成情報やステータス情報を、JSON 形式で得られます。
+最後に、Docker コンテナに低レベルでアクセスするには、``docker inspect`` コマンドを使います。指定したコンテナに対する便利な構成情報やステータス情報を、JSON 形式で得られます。
 
 .. code-block:: bash
 
@@ -327,12 +353,14 @@ Python アプリケーションが動いています！
 
 .. Stopping our web application container
 
+.. _stopping-our-web-application-container:
+
 ウェブ・アプリケーション・コンテナの停止
 ==================================================
 
 .. Okay you’ve seen web application working. Now you can stop it using the docker stop command and the name of our container: nostalgic_morse.
 
-ここまではウェブ・アプリケーションが動作するのを見て来ました。次は ``docker stop`` コマンドを使い、``nostalgic_morse`` という名前のコンテナを指定します。
+ここまではウェブ・アプリケーションが動作するのを確認しました。次は ``docker stop`` コマンドを使い、``nostalgic_morse`` という名前のコンテナを指定します。
 
 .. code-block:: bash
 
@@ -348,6 +376,8 @@ Python アプリケーションが動いています！
    $ docker ps -l
 
 .. Restarting our web application container
+
+.. _restarting-out-web-application-container:
 
 ウェブ・アプリケーション・コンテナの再起動
 ==================================================
@@ -372,6 +402,8 @@ Python アプリケーションが動いています！
    ``docker restart`` コマンドも利用可能です。こちらはコンテナの停止と起動を行います。
 
 .. Removing our web application container
+
+.. _removing-our-web-application-container:
 
 ウェブ・アプリケーション・コンテナの削除
 ==================================================
@@ -418,6 +450,6 @@ Python アプリケーションが動いています！
 
 .. Go to Working with Docker images.
 
-:doc:`Docker イメージの操作 </engine/userguide/dockerimages>` に移動します。
+:doc:`Docker イメージの操作 <dockerimages>` に移動します。
 
 
