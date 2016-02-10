@@ -1,16 +1,24 @@
-.. http://docs.docker.com/engine/articles/baseimages/
-
-.. _baseimages:
+.. -*- coding: utf-8 -*-
+.. URL: https://docs.docker.com/engine/userguide/eng-image/baseimages/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/eng-image/baseimages.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/eng-image/baseimages.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/release/v1.9/docs/articles/baseimages.md
+.. check date: 2016/02/10
+.. ---------------------------------------------------------------------------
 
 .. Create a base image
 
+.. _create-a-base-image:
+
 =======================================
-ベースイメージの作成
+ベース・イメージの作成
 =======================================
 
 .. So you want to create your own Base Image? Great!
 
-自分自分で :doc:`ベース・イメージ </engine/reference/glossary/#base-image>` を作りたいですか？　素晴らしい！
+自分自分で :ref:`ベース・イメージ <base-image>` を作りたいですか？　素晴らしいです！
 
 .. The specific process will depend heavily on the Linux distribution you want to package. We have some examples below, and you are encouraged to submit pull requests to contribute new ones.
 
@@ -63,7 +71,7 @@ Docker が準備した最小イメージ ``scratch`` を、コンテナの構築
 
 .. While scratch appears in Docker’s repository on the hub, you can’t pull it, run it, or tag any image with the name scratch. Instead, you can refer to it in your Dockerfile. For example, to create a minimal container using scratch:
 
-``scratch`` は Docker Hub 上のレポジトリからは見えません。そのため、取得（pull）や実行したり、イメージを ``scratch`` という名前でタグ付けできません。そのかわり、``Dockerfile`` で参照可能です。例えば、 ``scratch`` を使って最小コンテナを作成するには、次のようにします。
+``scratch`` は Docker Hub 上のレポジトリからは見えません。そのため、取得（pull）や実行や、イメージを ``scratch`` という名前でタグ付けできません。そのかわり、``Dockerfile`` で参照可能です。例えば、 ``scratch`` を使って最小コンテナを作成するには、次のようにします。
 
 .. code-block:: dockerfile
 
@@ -90,6 +98,6 @@ Docker が準備した最小イメージ ``scratch`` を、コンテナの構築
     If your goal is to create a new Official Repository, be sure to read up on Docker’s Official Repositories.
 
 * ``Dockerfile`` リファレンス・セクションには、 :doc:`利用可能な命令の全ガイド </engine/reference/builder>` があります。
-* 作成した ``Dockerfile`` を、より綺麗に、読みやすく、メンテナンスしやすいように、 :doc:`ベスト・プラクティス・ガイド </engine/articles/dockerfile_best-practices/>` を書きました。
+* 作成した ``Dockerfile`` を、より綺麗に、読みやすく、メンテナンスしやすいように、 :doc:`ベスト・プラクティス・ガイド <dockerfile_best-practice>` を書きました。
 * もし自分で新しい公式レポジトリを作成するのが目標であれば、Docker の :doc:`公式レポジトリについて </docker-hub/official_repos/>` をお読みください。
 
