@@ -1384,7 +1384,7 @@ Docker は Dockerfile に対応する ``ARG`` 命令がなくても、既定の 
 
 これらを使うには、コマンドラインで ``--build-arg <変数名>=<値>`` フラグを単に渡すだけです。
 
-.. _onbulid:
+.. onbuild:
 
 ONBUILD
 ==========

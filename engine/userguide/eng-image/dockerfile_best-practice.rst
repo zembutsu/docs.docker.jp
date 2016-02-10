@@ -1,13 +1,19 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/articles/dockerfile_best-practices/
-.. doc version: 1.9
-.. check date: 2015/12/21
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/eng-image/dockerfile_best-practices.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/eng-image/dockerfile_best-practices.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/release/v1.9/docs/articles/dockerfile_best-practices.md
+.. check date: 2016/02/10
+.. ---------------------------------------------------------------------------
 
 .. Best practices for writing Dockerfile
 
+.. _best-practices-for-writing-dockerfile:
+
 =======================================
-Dockerfile のベストプラクティス
+Dockerfile を書くベスト・プラクティス
 =======================================
 
 .. Docker can build images automatically by reading the instructions from a Dockerfile, a text file that contains all the commands, in order, needed to build a given image. Dockerfiles adhere to a specific format and use a specific set of instructions. You can learn the basics on the Dockerfile Reference page. If you’re new to writing Dockerfiles, you should start there.
@@ -117,7 +123,7 @@ Docker イメージ構築のプロセスとは、 ``Dockerfile``  で指定し�
 
 ..    Starting with a base image that is already in the cache, the next instruction is compared against all child images derived from that base image to see if one of them was built using the exact same instruction. If not, the cache is invalidated.
 
-* 開始にあたり、ベース・イメージが既にキャッシュにあれば、次の命令を対象のベース・イメジから派生した全ての子イメージと比較します。同じ命令があれば構築にそのイメージを使います。もし同じ命令がなければ、キャッシュは無効化されます。
+* 開始にあたり、ベース・イメージが既にキャッシュにあれば、次の命令を対象のベース・イメージから派生した全ての子イメージと比較します。同じ命令があれば構築にそのイメージを使います。もし同じ命令がなければ、キャッシュは無効化されます。
 
 ..    In most cases simply comparing the instruction in the Dockerfile with one of the child images is sufficient. However, certain instructions require a little more examination and explanation.
 
@@ -555,7 +561,7 @@ ONBUILD
 
 .. Dockerfile reference for the ONBUILD instruction
 
-:ref:`Dockerfile リファレンスの ONBUILD 命令 <onbluid>`
+:ref:`Dockerfile リファレンスの ONBUILD 命令 <onbuild>`
 
 .. An ONBUILD command executes after the current Dockerfile build completes. ONBUILD executes in any child image derived FROM the current image. Think of the ONBUILD command as an instruction the parent Dockerfile gives to the child Dockerfile.
 
@@ -607,7 +613,7 @@ Docker は ``ONBUILD`` コマンドを処理する前に、あらゆる子 ``Doc
     Guidelines for Creating Official Repositories
 
 * :doc:`Dockerfile リファレンス </engine/reference/builder>`
-* :doc:`ベース・イメージの詳細 </engine/articles/baseimages>`
+* :doc:`ベース・イメージの詳細 <baseimages>`
 * :doc:`自動構築の詳細 </docker-hub/builds>`
 * :doc:`公式レポジトリ作成のガイドライン </docker-hub/official_repos>`
 
