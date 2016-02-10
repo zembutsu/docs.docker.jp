@@ -126,7 +126,7 @@ Docker でウェブ・アプリケーションを実行
 
 .. So now you’ve learned a bit more about the docker client you can move onto the important stuff: running more containers. So far none of the containers you’ve run did anything particularly useful, so you can change that by running an example web application in Docker.
 
-ここまでは ``docker`` クライアントについて少しだけ学びました。次は多くのコンテナの実行という、より重要なことを学びます。これまで実行たコンテナのほとんどは、いずれも何かに役に立つ処理を行うものではありませんでした。今度は、Docker を使ったウェブ・アプリケーションの実行に移ります。
+ここまでは ``docker`` クライアントについて少しだけ学びました。次は多くのコンテナの実行という、より重要なことを学びます。これまで実行したコンテナのほとんどは、いずれも何かに役に立つ処理を行うものではありませんでした。今度は、Docker を使ったウェブ・アプリケーションの実行に移ります。
 
 .. For our web application we’re going to run a Python Flask application. Start with a docker run command.
 
