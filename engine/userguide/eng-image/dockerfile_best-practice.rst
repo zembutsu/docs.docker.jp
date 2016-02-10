@@ -64,7 +64,7 @@ Docker は ``Dockerfile`` の命令を読み込み、自動的にイメージを
 
 .. In order to reduce complexity, dependencies, file sizes, and build times, you should avoid installing extra or unnecessary packages just because they might be “nice to have.” For example, you don’t need to include a text editor in a database image.
 
-複雑さ、依存関係、ファイルサイズ、構築階数をそれぞれ減らすために、余分ないし不必要な「入れた方ほうが良いだろう」というパッケージは、インストールを避けるべきです。たとえば、データベース・イメージであればテキストエディタは不要でしょう。
+複雑さ、依存関係、ファイルサイズ、構築階数をそれぞれ減らすために、余分ないし不必要な「入れた方が良いだろう」というパッケージは、インストールを避けるべきです。たとえば、データベース・イメージであればテキストエディタは不要でしょう。
 
 .. Run only one process per container
 
