@@ -1,11 +1,19 @@
-.. http://docs.docker.com/engine/userguide/dockerrepos/
-
-.. _dockerrepos:
+.. -*- coding: utf-8 -*-
+.. URL: https://docs.docker.com/engine/userguide/containers/dockerrepos/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/containers/dockerrepos.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/containers/dockerrepos.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/release/v1.9/docs/userguide/dockerrepos.md
+.. check date: 2016/02/10
+.. ----------------------------------------------------------------------------
 
 .. Store images on Docker Hub
 
+.. _store-images-on-docker-hub:
+
 =======================================
-Docker Hub にイメージを保管する
+イメージをDocker Hubに保管
 =======================================
 
 .. So far you’ve learned how to use the command line to run Docker on your local host. You’ve learned how to pull down images to build containers from existing images and you’ve learned how to create your own images.
@@ -147,7 +155,7 @@ Docker Hub の機能
 
 .. Let’s take a closer look at some of the features of Docker Hub. You can find more information here.
 
-それでは、Docker Hub のいくつかの機能について、詳細をみていきましょう。より詳しい情報は :doc:`こちら </docker-hub/index.rst>` からご覧いただけます。
+それでは、Docker Hub のいくつかの機能について、詳細をみていきましょう。より詳しい情報は :doc:`こちら </docker-hub/index>` からご覧いただけます。
 
 ..    Private repositories
     Organizations and teams
@@ -238,7 +246,7 @@ Docker Hub の URL を経由しても、自動構築のトリガにできます�
 
 .. See the Docker Hub documentation for more information on webhooks
 
-:doc:`ウェブフックの詳細 </docker-hub/repos.rst#webhooks>` については、Docker Hub のドキュメントをご覧ください。
+:ref:`ウェブフックの詳細 <repos-webhooks>` については、Docker Hub のドキュメントをご覧ください。
 
 .. Next steps
 

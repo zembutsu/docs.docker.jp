@@ -1,4 +1,12 @@
-.. http://docs.docker.com/engine/userguide/dockervolumes/
+.. -*- coding: utf-8 -*-
+.. URL: https://docs.docker.com/engine/userguide/containers/dockervolumes/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/containers/dockervolumes.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/containers/dockervolumes.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/release/v1.9/docs/userguide/dockervolumes.md
+.. check date: 2016/02/10
+.. ----------------------------------------------------------------------------
 
 .. _dockervolumes:
 
@@ -30,7 +38,7 @@
 
 .. A data volume is a specially-designated directory within one or more containers that bypasses the Union File System. Data volumes provide several useful features for persistent or shared data:
 
-*データ・ボリューム (data volume)* とは、１つまたは複数のコンテナ内で、特別に設計されたディレクトリであり、 :doc:`ユニオン・ファイルシステム (Union File System) </engine/reference/glossary/#union-file-system>` をバイパス（迂回）するものです。データ・ボリュームは、データの保持や共有のために、複数の便利な機能を提供します。
+*データ・ボリューム (data volume)* とは、１つまたは複数のコンテナ内で、特別に設計されたディレクトリであり、 :ref:`ユニオン・ファイルシステム (Union File System) <union-file-system>` をバイパス（迂回）するものです。データ・ボリュームは、データの保持や共有のために、複数の便利な機能を提供します。
 
 ..    Volumes are initialized when a container is created. If the container’s base image contains data at the specified mount point, that existing data is copied into the new volume upon volume initialization.
     Data volumes can be shared and reused among containers.
@@ -348,7 +356,7 @@ SELinux のようなラベリング・システムでは、コンテナ内にマ
 
 .. Go to Working with Docker Hub.
 
-:doc:`Docker Hub の操作 </engine/userguide/dockerrepos>` に移動します。
+:doc:`Docker Hub の操作 <dockerrepos>` に移動します。
 
 
 
