@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/
-.. doc version: 1.9
-.. check date: 2015/12/31
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/storagedriver/imagesandcontainers.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/storagedriver/imagesandcontainers.md
+.. check date: 2016/02/10
+.. ---------------------------------------------------------------------------
 
 .. Understand images, containers, and storage driver
 
@@ -14,12 +16,14 @@
 
 .. To use storage drivers effectively, you must understand how Docker builds and stores images. Then, you need an understanding of how these images are used in containers. Finally, you’ll need a short introduction to the technologies that enable both images and container operations.
 
+.. To use storage drivers effectively, you must understand how Docker builds and stores images. Then, you need an understanding of how these images are used by containers. Finally, you’ll need a short introduction to the technologies that enable both images and container operations.
+
 ストレージ・ドライバを効率的に使うには、Docker がどのようにイメージを構築・保管するかの理解が必須です。そして、これらのイメージがコンテナでどのように使われているかの理解が必要になります。最後に、イメージとコンテナの両方を操作するための技術に対する、簡単な紹介をします。
 
-.. Images and containers rely on layers
+.. Images and layers
 
-イメージとコンテナはレイヤに依存
-========================================
+イメージとレイヤ
+====================
 
 .. Docker images are a series of read-only layers that are stacked on top of each other to form a single unified view. The first image in the stack is called a base image and all the other layers are stacked on top of this layer. The diagram below shows the Ubuntu 15:04 image comprising 4 stacked image layers.
 
@@ -28,6 +32,10 @@ Docker イメージは読み込み専用（read-only）のレイヤが組（セ�
 .. image:: ./images/image-layers.png
    :scale: 60%
    :alt: イメージ層
+
+.. The Docker storage driver is responsible for stacking these layers and providing a single unified view.
+
+Docker ストレージ・ドライバは、これらレイヤを積み重ねて単一に見えるようにする役割があります。
 
 .. When you make a change inside a container by, for example, adding a new file to the Ubuntu 15.04 image, you add a new layer on top of the underlying image stack. This change creates a new image layer containing the newly added file. Each image layer has its own universal unique identifier (UUID) and each successive image layer builds on top of the image layer below it.
 
@@ -41,9 +49,139 @@ Docker イメージは読み込み専用（read-only）のレイヤが組（セ�
    :scale: 60%
    :alt: コンテナ・レイヤとイメージ
 
+.. Content addressable storage
+
+.. _content-addressable-storage:
+
+連想ストレージ
+----------------------------------------
+
+.. Docker 1.10 introduced a new content addressable storage model. This is a completely new way to address image and layer data on disk. Previously, image and layer data was referenced and stored using a a randomly generated UUID. In the new model this is replaced by a secure content hash.
+
+Docker 1.10 は、新しい連想（コンテント・アドレッサブル；content adressable）ストレージ・モデルを導入しました。これはイメージとレイヤをディスクで扱うための、全く新しい手法です。従来のイメージとレイヤのデータは、ランダムに生成される UUID を使って保管・参照していました。新しいモデルでは、これを安全な *コンテント・ハッシュ（content hash）* に置き換えます。
+
+.. The new model improves security, provides a built-in way to avoid ID collisions, and guarantees data integrity after pull, push, load, and save operations. It also enables better sharing of layers by allowing many images to freely share their layers even if they didn’t come from the same build.
+
+新しいモデルはセキュリティの改善です。ID の重複を防ぐ機能を持っており、pull ・ push ・ load ・ save 操作を実施後のデータ保証を完全なものとします。また、同時に構築していなくても、多くイメージが各レイヤを自由に共有できるようにもなりました。
+
+.. The diagram below shows an updated version of the previous diagram, highlighting the changes implemented by Docker 1.10.
+
+次の図は、従来バージョンの図を更新したものです。Docker 1.10 で実装された変更をハイライトしています。
+
+.. image:: ./images/container-layers-cas.png
+   :scale: 60%
+   :alt: コンテナ・レイヤとイメージ
+
+.. As can be seen, all image layer IDs are cryptographic hashes, whereas the container ID is still a randomly generated UUID.
+
+こちらにある通り、まだコンテナ ID がランダムな UUID であるのに対して、全てのイメージ・レイヤの ID は暗号化ハッシュです。
+
+.. There are several things to note regarding the new model. These include:
+
+新しいモデルに関して、いくつかの注意点があります。
+
+..    Migration of existing images
+    Image and layer filesystem structures
+
+1. 既存イメージの移行
+2. イメージとレイヤのファイルシステム構造
+
+.. Existing images, those created and pulled by earlier versions of Docker, need to be migrated before they can be used with the new model. This migration involves calculating new secure checksums and is performed automatically the first time you start an updated Docker daemon. After the migration is complete, all images and tags will have brand new secure IDs.
+
+既存イメージとは、以前のバージョンの Docker で作成あるいは取得したものです。これらは新しいモデルで使う前に、変換が必要です。以降時には、新しい安全なチェックサムを計算します。この計算は更新した Docker デーモンを初回起動時、自動的に行われます。移行が終わったら、全てのイメージとタグが新しい安全な ID に更新されます。
+
+.. Although the migration is automatic and transparent, it is computationally intensive. This means it and can take time if you have lots of image data. During this time your Docker daemon will not respond to other requests.
+
+移行は自動的かつ透過的に行われますが、多くの計算を必要とします。つまり、イメージ・データが大量にあれば、時間がかかることを意味します。移行期間中、Docker デーモンは他のリクエストに応答しません。
+
+.. A migration tool exists that allows you to migrate existing images to the new format before upgrading your Docker daemon. This means that upgraded Docker daemons do not need to perform the migration in-band, and therefore avoids any associated downtime. It also provides a way to manually migrate existing images so that they can be distributed to other Docker daemons in your environment that are already running the latest versions of Docker.
+
+新しいイメージへの移行を、Docker デーモンをアップグレードする前に行えるツールgああります。つまり、移行に時間がかかららず、停止時間の発生を避けられます。また、既存のイメージを手動で移行できるので、最新バージョンの Docker が既に動いている環境に移行することも可能です。
+
+.. The migration tool is provided by Docker, Inc., and runs as a container. You can download it from https://github.com/docker/v1.10-migrator/releases.
+
+Docker 社が提供している移行ツールは、コンテナとして実行できます。 https://github.com/docker/v1.10-migrator/releases からダウンロードできます。
+
+.. While running the “migrator” image you need to expose your Docker host’s data directory to the container. If you are using the default Docker data path, the command to run the container will look like this
+
+「migrator」イメージの実行中は、Docker ホストのデータ・ディレクトリをコンテナに対して公開する必要があります。Docker データを置く場所がデフォルトであれば、コマンドラインでコンテナを実行するには、次のようにします。
+
+.. code-block:: bash
+
+   $ sudo docker run --rm -v /var/lib/docker:/var/lib/docker docker/v1.10-migrator
+
+.. If you use the devicemapper storage driver, you will need to include the --privileged option so that the container has access to your storage devices.
+
+``devicemapper`` ストレージ・ドライバを使っている場合は、 ``--privileged`` オプションを使ってコンテナがストレージ・デバイスにアクセスできるようにする必要があります。
+
+.. Migration example
+
+.. _migration-example:
+
+移行例
+----------
+
+The following example shows the migration tool in use on a Docker host running version 1.9.1 of the Docker daemon and the AUFS storage driver. The Docker host is running on a t2.micro AWS EC2 instance with 1 vCPU, 1GB RAM, and a single 8GB general purpose SSD EBS volume. The Docker data directory (/var/lib/docker) was consuming 2GB of space.
+
+以下の例は、 Dockre デーモンのホスト・バージョンが 1.9.1 で、 AUFS ストレージ・ドライバを使っている環境を移行します。Docker ホストは *t2.micro** AWS EC2 インスタンス上で動いており、1 vCPU 、1GB メモリ、8GB の SSD EBS ボリュームを持っています。Docker のデータ・ディレクトリ（ ``/var/lib/docker`` ）は 2GB の容量を使っています。
+
+.. code-block:: bash
+
+   $ docker images
+   REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+   jenkins             latest              285c9f0f9d3d        17 hours ago        708.5 MB
+   mysql               latest              d39c3fa09ced        8 days ago          360.3 MB
+   mongo               latest              a74137af4532        13 days ago         317.4 MB
+   postgres            latest              9aae83d4127f        13 days ago         270.7 MB
+   redis               latest              8bccd73928d9        2 weeks ago         151.3 MB
+   centos              latest              c8a648134623        4 weeks ago         196.6 MB
+   ubuntu              15.04               c8be1ac8145a        7 weeks ago         131.3 MB
+   
+   $ du -hs /var/lib/docker
+   2.0G    /var/lib/docker
+   
+   $ time docker run --rm -v /var/lib/docker:/var/lib/docker docker/v1.10-migrator
+   Unable to find image 'docker/v1.10-migrator:latest' locally
+   latest: Pulling from docker/v1.10-migrator
+   ed1f33c5883d: Pull complete
+   b3ca410aa2c1: Pull complete
+   2b9c6ed9099e: Pull complete
+   dce7e318b173: Pull complete
+   Digest: sha256:bd2b245d5d22dd94ec4a8417a9b81bb5e90b171031c6e216484db3fe300c2097
+   Status: Downloaded newer image for docker/v1.10-migrator:latest
+   time="2016-01-27T12:31:06Z" level=debug msg="Assembling tar data for 01e70da302a553ba13485ad020a0d77dbb47575a31c4f48221137bb08f45878d from /var/lib/docker/aufs/diff/01e70da302a553ba13485ad020a0d77dbb47575a31c4f48221137bb08f45878d"
+   time="2016-01-27T12:31:06Z" level=debug msg="Assembling tar data for 07ac220aeeef9febf1ac16a9d1a4eff7ef3c8cbf5ed0be6b6f4c35952ed7920d from /var/lib/docker/aufs/diff/07ac220aeeef9febf1ac16a9d1a4eff7ef3c8cbf5ed0be6b6f4c35952ed7920d"
+   <snip>
+   time="2016-01-27T12:32:00Z" level=debug msg="layer dbacfa057b30b1feaf15937c28bd8ca0d6c634fc311ccc35bd8d56d017595d5b took 10.80 seconds"
+   
+   real    0m59.583s
+   user    0m0.046s
+   sys     0m0.008s
+
+.. The Unix time command prepends the docker run command to produce timings for the operation. As can be seen, the overall time taken to migrate 7 images comprising 2GB of disk space took approximately 1 minute. However, this included the time taken to pull the docker/v1.10-migrator image (approximately 3.5 seconds). The same operation on an m4.10xlarge EC2 instance with 40 vCPUs, 160GB RAM and an 8GB provisioned IOPS EBS volume resulted in the following improved timings:
+
+Unix ``time`` コマンドを ``docker run`` コマンドより前に付け、処理時間を計測します。表示されているように、2GB の容量を消費している７つのディスク・イメージの移行に、おおよそ１分かかっています。しかし、これには ``docker/v1.10-migrator`` イメージ（約3.5秒）の取得も含まれています。同じ処理を m4.10xlarge EC2 インスタンス、40 VCPU 、160GB のメモリ、8GB の provisioned IOPS EBS ボリュームであれば、次のような結果になります。
+
+.. code-block:: bash
+
+   real    0m9.871s
+   user    0m0.094s
+   sys     0m0.021s
+
+.. This shows that the migration operation is affected by the hardware spec of the machine performing the migration.
+
+以上の結果から、処理時間は移行をするマシンのハードウェア性能に影響を受けることが分かります。
+
+.. Container and layers
+
+.. _container-and-layers:
+
+コンテナとレイヤ
+====================
+
 .. The major difference between a container and an image is this writable layer. All writes to the container that add new or modifying existing data are stored in this writable layer. When the container is deleted the writeable layer is also deleted. The image remains unchanged.
 
-コンテナとイメージとの主な違いは、書き込み可能なレイヤ（writable layer）です。全てのコンテナに対する書き込み、つまり、新しいファイルの追加や既存のデータに対する変更は、この書き込み可能なレイヤに保管されます。コンテナが書き込み可能なレイヤを削除すると、コンテナも削除されます。イメージは変更されないままです。
+.. コンテナとイメージとの主な違いは、書き込み可能なレイヤ（writable layer）です。全てのコンテナに対する書き込み、つまり、新しいファイルの追加や既存のデータに対する変更は、この書き込み可能なレイヤに保管されます。コンテナが書き込み可能なレイヤを削除すると、コンテナも削除されます。イメージは変更されないままです。
 
 .. Because each container has its own thin writable container layer and all data is stored this container layer, this means that multiple containers can share access to the same underlying image and yet have their own data state. The diagram below shows multiple containers sharing the same Ubuntu 15.04 image.
 
@@ -72,7 +210,7 @@ Docker イメージは読み込み専用（read-only）のレイヤが組（セ�
 
 コピー・オン・ライト（copy-on-write、cow）とは、共有とコピーのストラテジ（訳者注：方針、戦略の意味、ここでは方式と訳します）に似ています。このストラテジは、システム・プロセスが自分自身でデータのコピーを持つより、同一インスタンス上にあるデータ共有を必要とするものとします。書き込む必要があるプロセスのみが、データのコピーにアクセスできます。その他のプロセスは、オリジナルのデータを使い続けられます。
 
-.. Docker uses a copy-on-write technology with both images and containers. This CoW strategy optimizes both image disk space usage and the performance of container start times. The next sections look at how copy-on-write is leveraged with images and containers thru sharing and copying.
+.. Docker uses a copy-on-write technology with both images and containers. This CoW strategy optimizes both image disk space usage and the performance of container start times. The next sections look at how copy-on-write is leveraged with images and containers through sharing and copying.
 
 Docker はコピー・オン・ライト技術をイメージとコンテナの両方に使います。この CoW 方式はイメージのディスク使用量とコンテナ実行時のパフォーマンスの両方を最適化します。次のセクションでは、イメージとコンテナの共有とコピーにおいて、コピー・オン・ライトがどのように動作してるのかを見てきます。
 
@@ -95,11 +233,11 @@ Docker はコピー・オン・ライト技術をイメージとコンテナの�
 
    $ docker pull ubuntu:15.04
    15.04: Pulling from library/ubuntu
-   6e6a100fa147: Pull complete
-   13c0c663a321: Pull complete
-   2bd276ed39d5: Pull complete
-   013f3d01d247: Pull complete
-   Digest: sha256:c7ecf33cef00ae34b131605c31486c91f5fd9a76315d075db2afd39d1ccdf3ed
+   1ba8ac955b97: Pull complete
+   f157c4e5ede7: Pull complete
+   0b7e98f84c4c: Pull complete
+   a3ed95caeb02: Pull complete
+   Digest: sha256:5e279a9df07990286cce22e1b0f5b0490629ca6d187698746ae5e28e604a640e
    Status: Downloaded newer image for ubuntu:15.04
 
 .. From the output, you’ll see that the command actually pulls 4 image layers. Each of the above lines lists an image layer and its UUID. The combination of these four layers makes up the ubuntu:15.04 Docker image.

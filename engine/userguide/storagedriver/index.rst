@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/userguide/storagedriver/
-.. doc version: 1.9
-.. check date: 2015/12/29
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/userguide/storagedriver/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/storagedriver/index.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/storagedriver/index.md
+.. check date: 2016/02/10
+.. ---------------------------------------------------------------------------
 
 .. Docker storage drivers
 
