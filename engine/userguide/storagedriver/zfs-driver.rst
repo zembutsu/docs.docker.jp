@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/userguide/storagedriver/zfs-driver/
-.. doc version: 1.9
-.. check date: 2016/01/02
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/userguide/storagedriver/zfs-driver/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/storagedriver/zfs-driver.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/storagedriver/zfs-driver.md
+.. check date: 2016/02/12
+.. ---------------------------------------------------------------------------
 
 .. Docker and ZFS in practice
 
@@ -59,7 +61,7 @@ ZFS ファイルシステムはシン・プロビジョニング（訳者注：�
 
 .. The solid line in the diagram shows the process flow for creating a clone. Step 1 creates a snapshot of the filesystem, and step two creates the clone from the snapshot. The dashed line shows the relationship between the clone and the filesystem, via the snapshot. All three ZFS datasets draw space form the same underlying zpool.
 
-図の実線はクローン作成手順の流れです。手順１はファイスシステムのスナップショットを作成します。手順２はスナップショットからクローンを作成します。図の点線はクローンとスナップショットの関係であり、スナップショットを経由しています。
+図の実線はクローン作成手順の流れです。手順１はファイルシステムのスナップショットを作成します。手順２はスナップショットからクローンを作成します。図の点線はクローンとスナップショットの関係であり、スナップショットを経由しています。
 
 .. On Docker hosts using the zfs storage driver, the base layer of an image is a ZFS filesystem. Each child layer is a ZFS clone based on a ZFS snapshot of the layer below it. A container is a ZFS clone based on a ZFS Snapshot of the top layer of the image it’s created from. All ZFS datasets draw their space from a common zpool. The diagram below shows how this is put together with a running container based on a two-layer image.
 
@@ -240,7 +242,7 @@ Ubuntu 14.04 LTS に Zfs をインストール
 
 .. _configure-zfs-for-docker:
 
-ZFS を Docker にを設定
+ZFS を Docker に設定
 ==============================
 
 .. Once ZFS is installed and loaded, you’re ready to configure ZFS for Docker.
@@ -372,7 +374,7 @@ Docker で ``zfs`` ストレージ・ドライバを使うにあたり、パフ�
 
 * **SSD** 。ベストな性能のために、SSD（ソリッド・ステート・デバイス）のような高速なストレージ・メディアを使うのは常に良い考えです。十分に利用可能な SSD ストレージ容量があるのなら、ZIL を SSD 上に置くことを推奨します。
 
-..    Use Data Volumes. Data volumes provide the best and most predictable performance. This is because they bypass the storage driver and do not incur any of the potential overheads introduced by thin provisioning and copy-on-write. For this reason, you may want to place heavy write workloads on data volumes.
+..    Use Data Volumes. Data volumes provide the best and most predictable performance. This is because they bypass the storage driver and do not incur any of the potential overheads introduced by thin provisioning and copy-on-write. For this reason, you should place heavy write workloads on data volumes.
 
-* **データ・ボリュームの使用** 。データ・ボリュームは最上かつ最も予測可能な性能を提供します。これは、ストレージ・ドライバを迂回し、シン・プロビジョニングやコピー・オン・ライト処理を行わないためです。そのため、データ・ボリューム上で重たい書き込みを行うのに適しています。
+* **データ・ボリュームの使用** 。データ・ボリュームは最上かつ最も予測可能な性能を提供します。これは、ストレージ・ドライバを迂回し、シン・プロビジョニングやコピー・オン・ライト処理を行わないためです。そのため、データ・ボリューム上で重たい書き込みを場合に使うべきでしょう。
 
