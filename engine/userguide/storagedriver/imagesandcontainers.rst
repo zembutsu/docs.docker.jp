@@ -96,7 +96,7 @@ Docker 1.10 は、新しい連想（コンテント・アドレッサブル；co
 
 .. A migration tool exists that allows you to migrate existing images to the new format before upgrading your Docker daemon. This means that upgraded Docker daemons do not need to perform the migration in-band, and therefore avoids any associated downtime. It also provides a way to manually migrate existing images so that they can be distributed to other Docker daemons in your environment that are already running the latest versions of Docker.
 
-新しいイメージへの移行を、Docker デーモンをアップグレードする前に行えるツールgああります。つまり、移行に時間がかかららず、停止時間の発生を避けられます。また、既存のイメージを手動で移行できるので、最新バージョンの Docker が既に動いている環境に移行することも可能です。
+新しいイメージへの移行を、Docker デーモンをアップグレードする前に行えるツールがあります。つまり、移行に時間をかけないので、停止時間の発生を避けられます。また、既存のイメージを手動で移行できるので、最新バージョンの Docker が既に動いている環境に移行することも可能です。
 
 .. The migration tool is provided by Docker, Inc., and runs as a container. You can download it from https://github.com/docker/v1.10-migrator/releases.
 
