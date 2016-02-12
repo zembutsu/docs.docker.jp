@@ -1,7 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/userguide/networking/index.rst
-.. doc version: 1.9
-.. check date: 2016/01/04
+.. URL: https://docs.docker.com/engine/userguide/networking/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/index.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/networking/index.md
+.. check date: 2016/02/12
+.. ---------------------------------------------------------------------------
 
 .. Docker network feature overview
 
