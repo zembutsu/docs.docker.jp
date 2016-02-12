@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/userguide/storagedriver/aufs-driver/
-.. doc version: 1.9
-.. check date: 2015/12/31
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/userguide/storagedriver/aufs-driver/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/storagedriver/aufs-driver.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/storagedriver/aufs-driver.md
+.. check date: 2016/02/12
+.. ---------------------------------------------------------------------------
 
 .. Docker and AUFS in practice
 
@@ -14,7 +16,7 @@ AUFS ストレージ・ドライバを使う
 
 .. AUFS was the first storage driver in use with Docker. As a result, it has a long and close history with Docker, is very stable, has a lot of real-world deployments, and has strong community support. AUFS has several features that make it a good choice for Docker. These features enable:
 
-AUFS は Docker に使った初めてのストレージ・ドライバです。そのため、Docker の歴史で長く使われており、非常に安定し、多くの実際の開発に使われ、強力なコミュニティのサポートがあります。AUFS には複数の機能があります。これらは Docker の良い選択肢となるでしょう。次の機能を有効にします。
+AUFS は Docker に使われた初めてのストレージ・ドライバです。そのため、Docker の歴史で長く使われており、非常に安定し、多くの実際の開発に使われ、強力なコミュニティのサポートがあります。AUFS には複数の機能があります。これらは Docker の良い選択肢となるでしょう。次の機能を有効にします。
 
 ..    Fast container startup times.
     Efficient use of storage.
@@ -55,13 +57,13 @@ Docker 内部では、 AUFS ユニオン・マウントがイメージのレイ�
    :scale: 60%
    :alt: イメージ層
 
-.. This diagram shows the relationship between the Docker image layers and the AUFS branches (directories) in /var/lib/docker/aufs. Each image layer and the container layer correspond to an AUFS branch (directory) in the Docker host’s local storage area. The union mount point gives the unified view of all layers.
+.. This diagram shows that each image layer, and the container layer, is represented in the Docker hosts filesystem as a directory under /var/lib/docker/. The union mount point provides the unified view of all layers. As of Docker 1.10, image layer IDs do not correspond to the names of the directories that contain their data.
 
-この図は、Docker イメージ・レイヤと、Docker ホスト上のローカル・ストレージ領域 ``/var/lib/docker/aufs`` にある AUFS ブランチ（ディレクトリ）の関係を表しています。ユニオン・マウント・ポイントは、全てのレイヤを一体化して見えるようにします。
+この図は、Docker イメージ・レイヤと、Docker ホスト上の ``/var/lib/docker`` 以下にあるローカル・ストレージ領域との関係性を表しています。ユニオン・マウント・ポイントは、全てのレイヤを一体化して見えるようにします。Docker 1.10 からは、イメージ ID はデータが置かれるディレクトリ名と対応しなくなりました。
 
 .. AUFS also supports the copy-on-write technology (CoW). Not all storage drivers do.
 
-また、AUFS はコピー・オン・ライト技術（CoW）もサポートしています。これは、全てのドライバがサポートしているものではありません。
+また、AUFS はコピー・オン・ライト技術（copy-on-write; CoW）もサポートしています。これは、全てのドライバがサポートしているものではありません。
 
 .. Container reads and writes with AUFS
 
@@ -89,15 +91,17 @@ AUFS ストレージ・ドライバでのファイル削除
 
 .. The AUFS storage driver deletes a file from a container by placing a whiteout file in the container’s top layer. The whiteout file effectively obscures the existence of the file in image’s lower, read-only layers. The simplified diagram below shows a container based on an image with three image layers.
 
-AUFS ストレージ・ドライバでコンテナからファイルを削除すると、コンテナの一番上のレイヤに *ホワイトアウト・ファイル（whiteout file）* が置かれます。ホワイトアウト・ファイルとは、イメージの下の読み込み専用レイヤに存在しているファイルを、効果的に隠すものです。以下に単純化した図は、３つのイメージ・レイヤのイメージに基づくコンテナを表しています。
+.. The AUFS storage driver deletes a file from a container by placing a whiteout file in the container’s top layer. The whiteout file effectively obscures the existence of the file in the read-only image layers below. The simplified diagram below shows a container based on an image with three image layers.
+
+AUFS ストレージ・ドライバでコンテナからファイルを削除すると、コンテナの一番上のレイヤに *ホワイトアウト・ファイル（whiteout file）* が置かれます。読み込み専用のイメージ・レイヤの下にあるファイルを、ホワイトアウト・ファイルが効果的に隠します。以下の単純化した図は、３つのイメージ・レイヤのイメージに基づくコンテナを表しています。
 
 .. image:: ./images/aufs-delete.png
    :scale: 60%
    :alt: イメージ層
 
-.. The file3 was deleted from the container. So, the AUFS storage driver placed a whiteout file in the container’s top layer. This whiteout file effectively “deletes” file3 from the container by obscuring any of the original file’s existence in the image’s read-only base layer. Of course, the image could have been in any of the other layers instead or in addition depending on how the layers are built.
+.. The file3 was deleted from the container. So, the AUFS storage driver placed a whiteout file in the container’s top layer. This whiteout file effectively “deletes” file3 from the container by obscuring any of the original file’s existence in the image’s read-only layers. This works the same no matter which of the image’s read-only layers the file exists in.
 
-``ファイル3`` はコンテナ上で削除されました。すると、AUFS ストレージ・ドライバは、コンテナの最上位レイヤにホワイトアウト・ファイルを置きます。このホワイトアウト・ファイルは、イメージの読み込み専用なベース・レイヤに存在するオリジナルのファイルを隠すことにより、コンテナ上から事実上 ``ファイル3`` が削除されたものとします。もちろん、イメージは他のレイヤの一部であり続けますし、更にレイヤが'構築されれば、そこに依存関係も追加されます。
+``ファイル3`` はコンテナ上で削除されました。すると、AUFS ストレージ・ドライバは、コンテナの最上位レイヤにホワイトアウト・ファイルを置きます。このホワイトアウト・ファイルは、イメージの読み込み専用レイヤに存在するオリジナルのファイルを隠すことにより、コンテナ上から事実上 ``ファイル3`` が削除されたものとします。この処理はイメージの読み込み専用レイヤに対し何ら影響を与えません。
 
 .. Configure Docker with AUFS
 
@@ -162,28 +166,31 @@ AUFS ストレージ・ドライバを使えるのは、AUFS がインストー�
 
 As the docker daemon runs with the AUFS driver, the driver stores images and containers on within the Docker host’s local storage area in the /var/lib/docker/aufs directory.
 
-``docker daemon`` を AUFS ドライバで実行すると、ドライバは Docker ホスト上のローカル・ストレージ領域である ``/var/lib/docker/aufs`` ディレクトリ内に、イメージとコンテナを保管します。
+``docker daemon`` を AUFS ドライバで実行すると、ドライバは Docker ホスト上のローカル・ストレージ領域である ``/var/lib/docker/aufs`` 内に、イメージとコンテナを保管します。
 
 .. Images
 
 イメージ
 ----------
 
-.. Image layers and their contents are stored under /var/lib/docker/aufs/mnt/diff/<image-id> directory. The contents of an image layer in this location includes all the files and directories belonging in that image layer.
+.. Image layers and their contents are stored under /var/lib/docker/aufs/diff/. With Docker 1.10 and higher, image layer IDs do not correspond to directory names
 
-イメージ・レイヤと各コンテナは、 ``/var/lib/docker/aufs/mnt/diff/<イメージID>`` ディレクトリ以下に保管されます。この場所にあるイメージ・レイヤに含まれるのは、対象のイメージ・レイヤに所属する全てのファイルとディレクトリです。
+イメージ・レイヤと各コンテナは、 ``/var/lib/docker/aufs/diff/<イメージID>`` ディレクトリ以下に保管されます。Docker 1.10 以降はイメージ・レイヤ ID はディレクトリ名と一致しません。
 
-.. The /var/lib/docker/aufs/layers/ directory contains metadata about how image layers are stacked. This directory contains one file for every image or container layer on the Docker host. Inside each file are the image layers names that exist below it. The diagram below shows an image with 4 layers.
+.. The /var/lib/docker/aufs/layers/ directory contains metadata about how image layers are stacked. This directory contains one file for every image or container layer on the Docker host (though file names no longer match image layer IDs). Inside each file are the names of the directories that exist below it in the stack
 
-``/var/lib/docker/aufs/layers/`` ディレクトリに含まれるのは、どのようにイメージ・レイヤを重ねるかというメタデータです。このディレクトリには、Docker ホスト上のイメージかコンテナ毎に１つのファイルがあります。各ファイルの中にはイメージ・レイヤの名前があります。次の図は１つのイメージが４つのレイヤを持つのを示しています。
+``/var/lib/docker/aufs/layers/`` ディレクトリに含まれるのは、どのようにイメージ・レイヤを重ねるかというメタデータです。このディレクトリには、Docker ホスト上のイメージかコンテナ毎に１つのファイルがあります（ファイル名はイメージのレイヤ ID と一致しません）。各ファイルの中にはイメージ・レイヤの名前があります。次の図は１つのイメージが４つのレイヤを持つのを示しています。
 
-.. image:: ./images/aufs-metadata.png
-   :scale: 60%
-   :alt: AUFS メタデータ
+.... image:: ./images/aufs-metadata.png
+..   :scale: 60%
+..   :alt: AUFS メタデータ
 
 .. Inspecting the contents of the file relating to the top layer of the image shows the three image layers below it. They are listed in the order they are stacked.
+..イメージの最上位レイヤのファイル内容を調べると、下層にある３つのイメージ・レイヤに関する情報が含まれています。これらは積み重ねられた順番で並べられています。
 
-イメージの最上位レイヤのファイル内容を調べると、下層にある３つのイメージ・レイヤに関する情報が含まれています。これらは積み重ねられた順番で並べられています。
+.. The command below shows the contents of a metadata file in /var/lib/docker/aufs/layers/ that lists the the three directories that are stacked below it in the union mount. Remember, these directory names do no map to image layer IDs with Docker 1.10 and higher.
+
+以下のコマンドは、 ``/var/lib/docker/aufs/layers/`` にあるメタデータ・ファイルを表示しています。ここで表示されるディレクトリの一覧は、ユニオン・マウントに積み重ねられている（スタックしている）ものです。ただし、覚えておかなくてはいけないのは、Docker 1.10 以上ではディレクトリ名とイメージ・レイヤ ID が一致しなくなりました。
 
 .. code-block:: bash
 
@@ -201,33 +208,21 @@ The base layer in an image has no image layers below it, so its file is empty.
 コンテナ
 ----------
 
-.. Running containers are mounted at locations in the /var/lib/docker/aufs/mnt/<container-id> directory. This is the AUFS union mount point that exposes the container and all underlying image layers as a single unified view. If a container is not running, its directory still exists but is empty. This is because containers are only mounted when they are running.
+.. Running containers are mounted below /var/lib/docker/aufs/mnt/<container-id>. 
+This is where the AUFS union mount point that exposes the container and all underlying image layers as a single unified view exists. If a container is not running, it still has a directory here but it is empty. This is because AUFS only mounts a container when it is running. With Docker 1.10 and higher, container IDs no longer correspond to directory names under /var/lib/docker/aufs/mnt/<container-id>.
 
-実行中のコンテナは ``/var/lib/docker/aufs/mnt/<コンテナ ID>`` ディレクトリの中にマウントされます。これが AUFS ユニオン・マウント・ポイントであり、コンテナと下層のイメージ・レイヤが１つに統合されて公開されている場所です。コンテナが実行されていなければ、これらのディレクトリは存在しますが、内容は空っぽです。なぜなら、コンテナが実行する時のみマウントするための場所だからです。
+実行中のコンテナは ``/var/lib/docker/aufs/mnt/<コンテナ ID>`` 配下にマウントされます。これが AUFS ユニオン・マウント・ポイントであり、コンテナと下層のイメージ・レイヤが１つに統合されて公開されている場所です。コンテナが実行されていなければ、これらのディレクトリは存在しますが、内容は空っぽです。なぜなら、コンテナが実行する時のみマウントするための場所だからです。Docker 1.10 以上では、コンテナ ID はディレクトリ名 ``/var/lib/docker/aufs/mnt/<コンテナID>`` と対応しません。
 
-.. Container metadata and various config files that are placed into the running container are stored in /var/lib/containers/<container-id>. Files in this directory exist for all containers on the system, including ones that are stopped. However, when a container is running the container’s log files are also in this directory.
+.. Container metadata and various config files that are placed into the running container are stored in /var/lib/docker/containers/<container-id>. Files in this directory exist for all containers on the system, including ones that are stopped. However, when a container is running the container’s log files are also in this directory.
 
-コンテナのメタデータやコンテナの実行に関する様々な設定ファイルは、 ``/var/lib/containers/<コンテナ ID>`` に保管されます。ディレクトリ内に存在するファイルはシステム上の全コンテナに関するものであり、停止されたものも含みます。しかしながら、コンテナを実行すると、コンテナのログファイルもこのディレクトリに保存されます。
+コンテナのメタデータやコンテナの実行に関する様々な設定ファイルは、 ``/var/lib/docker/containers/<コンテナ ID>`` に保管されます。ディレクトリ内に存在するファイルはシステム上の全コンテナに関するものであり、停止されたものも含みます。しかしながら、コンテナを実行すると、コンテナのログファイルもこのディレクトリに保存されます。
 
-.. A container’s thin writable layer is stored under /var/lib/docker/aufs/diff/<container-id>. This directory is stacked by AUFS as the containers top writable layer and is where all changes to the container are stored. The directory exists even if the container is stopped. This means that restarting a container will not lose changes made to it. Once a container is deleted this directory is deleted.
+.. A container’s thin writable layer is stored in a directory under /var/lib/docker/aufs/diff/. With Docker 1.10 and higher, container IDs no longer correspond to directory names. However, the containers thin writable layer still exists under here and is stacked by AUFS as the top writable layer and is where all changes to the container are stored. The directory exists even if the container is stopped. This means that restarting a container will not lose changes made to it. Once a container is deleted, it’s thin writable layer in this directory is deleted.
 
-コンテナの薄い書き込み可能なレイヤ（thin writable layer）は ``/var/lib/docker/aufs/diff/<コンテナ ID>`` に保管されます。このディレクトリは AUFS によってコンテナの最上位の書き込みレイヤとして積み重ねられるもので、コンテナに対する全ての変更が保管されます。コンテナが停止しても、このディレクトリは存在し続けます。つまり、コンテナを再起動しても、その変更内容は失われません。コンテナが削除された時のみ、このディレクトリは削除されます。
+コンテナの薄い書き込み可能なレイヤ（thin writable layer）は ``/var/lib/docker/aufs/diff/<コンテナ ID>`` に保存されます。Docker 1.10 以上では、コンテナ ID はディレクトリ名と対応しません。しかしながら、コンテナの薄い書き込み可能なレイヤは、まだこの配下に存在し続けています。このディレクトリは AUFS によってコンテナの最上位の書き込みレイヤとして積み重ねられるものであり、コンテナに対する全ての変更が保管されます。コンテナが停止しても、このディレクトリは存在し続けます。つまり、コンテナを再起動しても、その変更内容は失われません。コンテナが削除された時のみ、このディレクトリは削除されます。
 
 .. Information about which image layers are stacked below a container’s top writable layer is stored in the following file /var/lib/docker/aufs/layers/<container-id>. The command below shows that the container with ID b41a6e5a508d has 4 image layers below it:
-
-コンテナ最上位の書き込み可能なレイヤの下に、どのようなイメージ・レイヤが積み重ねられているかという情報は、ファイル ``/var/lib/docker/aufs/layers/<コンテナ ID>`` のファイルを調べます。以下のコマンドから、コンテナ ID ``b41a6e5a508d``  が４つのイメージ・レイヤを下層に持っているのが分かります。
-
-.. code-block:: bash
-
-   $ cat /var/lib/docker/aufs/layers/b41a6e5a508dfa02607199dfe51ed9345a675c977f2cafe8ef3e4b0b5773404e-init
-   91e54dfb11794fad694460162bf0cb0a4fa710cfa3f60979c177d920813e267c
-   d74508fb6632491cea586a1fd7d748dfc5274cd6fdfedee309ecdcbc2bf5cb82
-   c22013c8472965aa5b62559f2b540cd440716ef149756e7b958a1b2aba421e87
-   d3a1f33e8a5a513092f01bb7eb1c2abf4d711e5105390a3fe1ae2248cfde1391
-
-.. The image layers are shown in order. In the output above, the layer starting with image ID “d3a1…” is the image’s base layer. The image layer starting with “91e5…” is the image’s topmost layer.
-
-イメージ・レイヤは順番に表示されます。先ほどの実行結果では、イメージ ID 「d3a1...」のレイヤをベース・イメージとしているのが分かります。イメージ ID「91e5...］のイメージ・レイヤ、イメージ最上位のレイヤです。
+.. コンテナ最上位の書き込み可能なレイヤの下に、どのようなイメージ・レイヤが積み重ねられているかという情報は、ファイル ``/var/lib/docker/aufs/layers/<コンテナ ID>`` のファイルを調べます。以下のコマンドから、コンテナ ID ``b41a6e5a508d``  が４つのイメージ・レイヤを下層に持っているのが分かります。
 
 .. AUFS and Docker performance
 

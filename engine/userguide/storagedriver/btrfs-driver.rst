@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/userguide/storagedriver/btrfs-driver/
-.. doc version: 1.9
-.. check date: 2015/12/31
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/userguide/storagedriver/btrfs-driver/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/storagedriver/btrfs-driver.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/storagedriver/btrfs-driver.md
+.. check date: 2016/02/12
+.. ---------------------------------------------------------------------------
 
 .. Docker and Btrfs in practice
 
@@ -14,7 +16,7 @@ Btrfs ストレージ・ドライバを使う
 
 .. Btrfs is a next generation copy-on-write filesystem that supports many advanced storage technologies that make it a good fit for Docker. Btrfs is included in the mainline Linux kernel and it’s on-disk-format is now considered stable. However, many of its features are still under heavy development and users should consider it a fast-moving target.
 
-Btrfs は次世代のコピー・オン・ライト対応ファイルシステムです。Docker に適している多くの高度なストレージ技術をサポートしています。Btrfs は Linux カーネルのメインラインに含まれており、オン・ディスク・フォーマットは安定していると考えられています。しかしながら、その機能の大部分はまだ開発中ですので、ユーザは Btrfs を動きの速い目標と考えるべきでしょう。
+Btrfs （ビーツリー・エフエス）は次世代のコピー・オン・ライト対応ファイルシステムです。Docker に適している多くの高度なストレージ技術をサポートしています。Btrfs は Linux カーネルのメインラインに含まれており、オン・ディスク・フォーマットは安定していると考えられています。しかしながら、その機能の大部分はまだ開発中ですので、ユーザは Btrfs を動きの速い目標と考えるべきでしょう。
 
 .. Docker’s btrfs storage driver leverages many Btrfs features for image and container management. Among these features are thin provisioning, copy-on-write, and snapshotting.
 
@@ -28,7 +30,7 @@ Docker の ``btrfs`` ストレージ・ドライバは、イメージとコン�
 
 .. note::
 
-   `商用サポート Docker エンジン（CS-Engine） <https://www.docker.com/compatibility-maintenance>`_ は、現時点では ``btrfs`` ストレージ・ドライバをサポートしていません。
+   `商用サポート版 Docker Engine（CS-Engine） <https://www.docker.com/compatibility-maintenance>`_ は、現時点では ``btrfs`` ストレージ・ドライバをサポートしていません。
 
 .. The future of Btrfs
 
@@ -102,7 +104,7 @@ Docker ホストが ``btrfs`` ドライバを使い、イメージとコンテ�
 
 ..    The image ID is used as the subvolume name. E.g., a base layer with image ID “f9a9f253f6105141e0f8e091a6bcdb19e3f27af949842db93acba9048ed2410b” will be stored in /var/lib/docker/btrfs/subvolumes/f9a9f253f6105141e0f8e091a6bcdb19e3f27af949842db93acba9048ed2410b
 
-イメージ ID はサブボリューム名として使用されミズ合う。例えば、ベース・レイヤのイメージ ID が「f9a9f253f6105141e0f8e091a6bcdb19e3f27af949842db93acba9048ed2410b」であれば、これが保管されるのは ``/var/lib/docker/btrfs/subvolumes/f9a9f253f6105141e0f8e091a6bcdb19e3f27af949842db93acba9048ed2410b`` です。
+.. イメージ ID はサブボリューム名として使用されます。例えば、ベース・レイヤのイメージ ID が「f9a9f253f6105141e0f8e091a6bcdb19e3f27af949842db93acba9048ed2410b」であれば、これが保管されるのは ``/var/lib/docker/btrfs/subvolumes/f9a9f253f6105141e0f8e091a6bcdb19e3f27af949842db93acba9048ed2410b`` です。
 
 ..    Subsequent image layers are stored as a Btrfs snapshot of the parent layer’s subvolume or snapshot.
 
@@ -116,6 +118,10 @@ Docker ホストが ``btrfs`` ドライバを使い、イメージとコンテ�
    :scale: 60%
    :alt: ディスク構造上のイメージ
 
+.. As of Docker 1.10, image layer IDs no longer correspond to directory names under /var/lib/docker/.
+
+Docker 1.10 からは、イメージ・レイヤ ID は ``/var/lib/docker`` 以下のディレクトリ名に対応しません。
+
 .. Image and container on-disk constructs
 
 .. _image-and-container-on-disk-constructs:
@@ -123,47 +129,9 @@ Docker ホストが ``btrfs`` ドライバを使い、イメージとコンテ�
 ディスク構造上のイメージとコンテナ
 ========================================
 
-.. Image layers and containers are visible in the Docker host’s filesystem at /var/lib/docker/btrfs/subvolumes/<image-id> OR <container-id>. Directories for containers are present even for containers with a stopped status. This is because the btrfs storage driver mounts a default, top-level subvolume at /var/lib/docker/subvolumes. All other subvolumes and snapshots exist below that as Btrfs filesystem objects and not as individual mounts.
+.. Image layers and containers are visible in the Docker host’s filesystem at /var/lib/docker/btrfs/subvolumes/. However, as previously stated, directory names no longer correspond to image layer IDs. That said, directories for containers are present even for containers with a stopped status. This is because the btrfs storage driver mounts a default, top-level subvolume at /var/lib/docker/subvolumes. All other subvolumes and snapshots exist below that as Btrfs filesystem objects and not as individual mounts.
 
-イメージ・レイヤとコンテナは Docker ホスト上のファイルシステム ``/var/lib/docker/btrfs/subvolumes/<イメージ ID>`` か ``<コンテナID>`` で見られます。コンテナ用のディレクトリは、コンテナが停止した状態でも表示されます。ストレージ・ドライバがデフォルトでマウントするのは、 ``/var/lib/docker/subvolumes`` のサブボリュームをトップレベルとする場所です。その他すべてのサブボリュームとボリューム名は Btrfs ファイルシステムのオブジェクトとして、個々にマウントするのではなく、この下に存在しています。
-
-.. The following example shows a single Docker image with four image layers.
-
-以下は、４つのイメージ・レイヤを持つ Docker イメージの例です。
-
-.. code-block:: bash
-
-   $ sudo docker images -a
-   REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-   ubuntu              latest              0a17decee413        2 weeks ago         188.3 MB
-   <none>              <none>              3c9a9d7cc6a2        2 weeks ago         188.3 MB
-   <none>              <none>              eeb7cb91b09d        2 weeks ago         188.3 MB
-   <none>              <none>              f9a9f253f610        2 weeks ago         188.1 MB
-
-.. Each image layer exists as a Btrfs subvolume or snapshot with the same name as it’s image ID as illustrated by the btrfs subvolume list command shown below:
-
-各イメージ・レイヤは Bitrfs サブボリュームかスナップショットとして存在しています。それぞれイメージ ID と同じ名前を持っており、以下のように ``btrfs subvolume list`` で確認できます。
-
-.. code-block:: bash
-
-   $ sudo btrfs subvolume list /var/lib/docker
-   ID 257 gen 9 top level 5 path btrfs/subvolumes/f9a9f253f6105141e0f8e091a6bcdb19e3f27af949842db93acba9048ed2410b
-   ID 258 gen 10 top level 5 path btrfs/subvolumes/eeb7cb91b09d5de9edb2798301aeedf50848eacc2123e98538f9d014f80f243c
-   ID 260 gen 11 top level 5 path btrfs/subvolumes/3c9a9d7cc6a235eb2de58ca9ef3551c67ae42a991933ba4958d207b29142902b
-   ID 261 gen 12 top level 5 path btrfs/subvolumes/0a17decee4139b0de68478f149cc16346f5e711c5ae3bb969895f22dd6723751
-
-.. Under the /var/lib/docker/btrfs/subvolumes directoy, each of these subvolumes and snapshots are visible as a normal Unix directory:
-
-``/var/lib/docker/btrfs/subvolumes`` ディレクトリの下には、各サブボリュームとスナップショットが 通常の Unix ディレクトリとして見えます。
-
-.. code-block:: bash
-
-   $ ls -l /var/lib/docker/btrfs/subvolumes/
-   total 0
-   drwxr-xr-x 1 root root 132 Oct 16 14:44 0a17decee4139b0de68478f149cc16346f5e711c5ae3bb969895f22dd6723751
-   drwxr-xr-x 1 root root 132 Oct 16 14:44 3c9a9d7cc6a235eb2de58ca9ef3551c67ae42a991933ba4958d207b29142902b
-   drwxr-xr-x 1 root root 132 Oct 16 14:44 eeb7cb91b09d5de9edb2798301aeedf50848eacc2123e98538f9d014f80f243c
-   drwxr-xr-x 1 root root 132 Oct 16 14:44 f9a9f253f6105141e0f8e091a6bcdb19e3f27af949842db93acba9048ed2410b
+イメージ・レイヤとコンテナは Docker ホスト上のファイルシステム ``/var/lib/docker/btrfs/subvolumes/`` にあります。しかしながら、以前とは異なり、ディレクトリ名はイメージ ID の名前を表しません。コンテナ用のディレクトリは、コンテナが停止した状態でも表示されます。ストレージ・ドライバがデフォルトでマウントするのは、 ``/var/lib/docker/subvolumes`` のサブボリュームをトップレベルとする場所です。その他すべてのサブボリュームとボリューム名は Btrfs ファイルシステムのオブジェクトとして、個々にマウントするのではなく、この下に存在しています。
 
 .. Because Btrfs works at the filesystem level and not the block level, each image and container layer can be browsed in the filesystem using normal Unix commands. The example below shows a truncated output of an ls -l command against the image’s top layer:
 
@@ -207,7 +175,7 @@ Btrfs を使うと、沢山の小さなファイルの書き込みと更新は�
 
 .. _configuring-docker-with-btrfs:
 
-Btrfsの Docker 設定
+Docker で Btrfs を設定
 ====================
 
 .. The btrfs storage driver only operates on a Docker host where /var/lib/docker is mounted as a Btrfs filesystem. The following procedure shows how to configure Btrfs on Ubuntu 14.04 LTS.
@@ -381,7 +349,7 @@ Btrfs と Docker 性能
 
 ..    Page caching. Btrfs does not support page cache sharing. This means that n containers accessing the same file require n copies to be cached. As a result, the btrfs driver may not be the best choice for PaaS and other high density container use cases.
 
-* **ページ・キャシュ** ：btrrfs はページ・キャッシュ共有をサポートしていません。つまり、ｎ個のコンテナがキャッシュするために、ｎ個のコピーを必要とします。そのため、 ``btrfs`` ドライバは 、PaaS や、その他にも密度を求められる用途には適していません。
+* **ページ・キャッシュ** ：btrrfs はページ・キャッシュ共有をサポートしていません。つまり、ｎ個のコンテナがキャッシュするために、ｎ個のコピーを必要とします。そのため、 ``btrfs`` ドライバは 、PaaS や、その他にも密度を求められる用途には適していません。
 
 ..    Small writes. Containers performing lots of small writes (including Docker hosts that start and stop many containers) can lead to poor use of Btrfs chunks. This can ultimately lead to out-of-space conditions on your Docker host and stop it working. This is currently a major drawback to using current versions of Btrfs.
 
@@ -401,7 +369,7 @@ Btrfs と Docker 性能
 
 ..    Recent versions of Btrfs allow you to specify autodefrag as a mount option. This mode attempts to detect random writes and defragment them. You should perform your own tests before enabling this option on your Docker hosts. Some tests have shown this option has a negative performance impact on Docker hosts performing lots of small writes (including systems that start and stop many containers).
 
-Btrfs の最近のバージョンは、 ``autodefrag`` をマウント用のオプションに指定できます。このモードによって、断片化せずにランダムに書き込みをします。ただ、Docker ホスト上でこのオプションwの有効化する前に、自分自身で性能評価をすべきです。いくつかのテストは Docker ホスト上に多数の小さなファイルをさくせいしますので、良くない性能に影響与える場合があります（あるいは、システムで沢山のコンテナを停止・起動した場合も）。
+Btrfs の最近のバージョンは、 ``autodefrag`` をマウント用のオプションに指定できます。このモードによって、断片化せずにランダムに書き込みをします。ただ、Docker ホスト上でこのオプションwの有効化する前に、自分自身で性能評価をすべきです。いくつかのテストは Docker ホスト上に多数の小さなファイルを作成しますので、良くない性能に影響与える場合があります（あるいは、システムで沢山のコンテナを停止・起動した場合も）。
 
 ..    Solid State Devices (SSD). Btrfs has native optimizations for SSD media. To enable these, mount with the -o ssd mount option. These optimizations include enhanced SSD write performance by avoiding things like seek optimizations that have no use on SSD media.
 
