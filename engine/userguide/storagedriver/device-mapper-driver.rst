@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/
-.. doc version: 1.9
-.. check date: 2016/01/01
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/storagedriver/device-mapper-driver.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/storagedriver/device-mapper-driver.md
+.. check date: 2016/02/12
+.. ---------------------------------------------------------------------------
 
 .. Docker and the Device Mapper storage driver
 
@@ -62,7 +64,7 @@ Device Mapper は Linux カーネルのバージョン 2.6.9 以降、メイン�
 
    また、スナップショットは *シン・デバイス（thin device）* や *仮想デバイス（virtual device）* としても参照されます。つまり、 ``devicemapper`` ストレージ・ドライバにおいては、どれも同じものを意味します。
 
-.. With the devicemapper the high level process for creating images is as follows:
+.. With devicemapper the high level process for creating images is as follows:
 
 ``devicemapper`` でイメージを作るハイレベルな手順は、以下の通りです。
 
@@ -132,7 +134,7 @@ devicemappr からの読み込み
 
 ..    An application makes a read request for block 0x44f in the container.
 
-1. アプリケーションがコンテナ内のブロック 0x44f に対して読み込みを要求します。
+1. アプリケーションがコンテナ内のブロック ``0x44f`` に対して読み込みを要求します。
 
 ..    Because the container is a thin snapshot of an image it does not have the data. Instead, it has a pointer (PTR) to where the data is stored in the image snapshot lower down in the image stack.
 
@@ -209,9 +211,9 @@ devicemappr からの読み込み
 
 2. 更新が必要なブロックに対して、コピー・オン・ライト処理が行われます。
 
-..    The operation allocates new blocks to the container snapshot and copies the data into those blocks.
+..    The operation allocates new empty blocks to the container snapshot and copies the data into those blocks.
 
-3. 処理によって新しいブロックがコンテナのスナップショットに割り当てられ、そのブロックにデータがコピーされます。
+3. 処理によって新しい空のブロックがコンテナのスナップショットに割り当てられ、そのブロックにデータがコピーされます。
 
 ..    The modified data is written into the newly allocated blocks.
 
@@ -411,12 +413,12 @@ Docker ホストは ``devicemapper`` ストレージ・ドライバを、デフ�
    NAME                       MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
    xvda                       202:0    0    8G  0 disk
    └─xvda1                    202:1    0    8G  0 part /
-   xvdf                       202:80   0  100G  0 disk
+   xvdf                       202:80   0   10G  0 disk
    ├─vg--docker-data          253:0    0   90G  0 lvm
-   │ └─docker-202:1-1032-pool 253:2    0  100G  0 dm
+   │ └─docker-202:1-1032-pool 253:2    0   10G  0 dm
    └─vg--docker-metadata      253:1    0    4G  0 lvm
-     └─docker-202:1-1032-pool 253:2    0  100G  0 dm
-
+     └─docker-202:1-1032-pool 253:2    0   10G  0 dm
+  
 .. The diagram below shows the image from prior examples updated with the detail from the lsblk command above.
 
 下図は、先ほどの例で使ったイメージの更新を、 ``lsblk`` コマンドの詳細で表しています。
