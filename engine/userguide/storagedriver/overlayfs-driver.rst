@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/
-.. doc version: 1.9
-.. check date: 2016/01/01
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/storagedriver/overlayfs-driver.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/storagedriver/overlayfs-driver.md
+.. check date: 2016/02/12
+.. ---------------------------------------------------------------------------
 
 .. Docker and OverlayFS in practice
 
@@ -45,7 +47,7 @@ Docker の ``overlay`` ストレージ・ドライバは、ディスク上でイ
 OvarlayFS でイメージのレイヤ化と共有
 ========================================
 
-.. OverlayFS takes two directories on a single Linux host, layers one on top of the other, and provides a single unified view. These directories are often referred to as layers and the technology used to layer them is is known as a union mount. The OverlayFS terminology is “lowerdir” for the bottom layer and “upperdir” for the top layer. The unified view is exposed through its own directory called “merged”.
+.. OverlayFS takes two directories on a single Linux host, layers one on top of the other, and provides a single unified view. These directories are often referred to as layers and the technology used to layer them is known as a union mount. The OverlayFS terminology is “lowerdir” for the bottom layer and “upperdir” for the top layer. The unified view is exposed through its own directory called “merged”.
 
 OverlayFS は１つの Linux ホスト上で２つのディレクトリを扱います。他のレイヤよりも一番上にあるレイヤにより、１つに統一して見えます。これらのディレクトリは *レイヤ* としてたびたび参照され、レイヤに対しては *ユニオン・マウント（union mount）* と呼ばれる技術が使われています。OverlayFS 技術は「下位ディレクトリ」が下の方のレイヤであり、「上位ディレクトリ」が上のレイヤになります。統一して表示される場所そのものを、「マージされた」（marged）ディレクトリと呼びます。
 
@@ -61,13 +63,9 @@ OverlayFS は１つの Linux ホスト上で２つのディレクトリを扱い
 
 イメージ・レイヤとコンテナ・レイヤに、同じファイルを含められることに注意してください。この時に発生するのは、コンテナ・レイヤ（上位ディレクトリ）に含まれるファイルが優位になり、イメージ・レイヤ（下位ディレクトリ）にある同じファイルを存在しないものとみなします。コンテナ・マウント（マージ化）が、統一した表示をもたらします。
 
-.. OverlayFS only works with two layers. This means that multi-layered images cannot be implemented as multiple OverlayFS layers. Instead, each image layer is implemented as its own directory under /var/lib/docker/overlay. Hard links are then used as a space-efficient way to reference data shared with lower layers. The diagram below shows a four-layer image and how it is represented in the Docker host’s filesystem.
+.. OverlayFS only works with two layers. This means that multi-layered images cannot be implemented as multiple OverlayFS layers. Instead, each image layer is implemented as its own directory under /var/lib/docker/overlay. Hard links are then used as a space-efficient way to reference data shared with lower layers. As of Docker 1.10, image layer IDs no longer correspond to directory names in /var/lib/docker/
 
-OverlayFS は２つのレイヤだけ扱います。つまり、複数にレイヤ化されたイメージは、複数の OverlayFS レイヤとしては使われません。その代わり、各イメージ・レイヤは ``/var/lib/docker/overlay`` ディレクトリ以下で自身が使われます。下位のレイヤと共有するデータを効率的に参照する手法として、ハードリンクが使われます。下図は４つのレイヤを持つイメージが、Docker ホストのファイルシステム上でどのように見えるかを説明しています。
-
-.. image:: ./images/overlay-construct2.png
-   :scale: 60%
-   :alt: OverlayFS の構造
+OverlayFS は２つのレイヤだけ扱います。つまり、複数にレイヤ化されたイメージは、複数の OverlayFS レイヤとしては使われません。その代わり、各イメージ・レイヤは ``/var/lib/docker/overlay`` ディレクトリ以下で自身が使われます。下位のレイヤと共有するデータを効率的に参照する手法として、ハードリンクが使われます。Docker 1.10 からは、イメージ・レイヤ ID は ``/var/lib/docker/`` 内のディレクトリ名と一致しなくなりました。
 
 .. To create a container, the overlay driver combines the directory representing the image’s top layer plus a new directory for the container. The image’s top layer is the “lowerdir” in the overlay and read-only. The new directory for the container is the “upperdir” and is writable.
 
@@ -82,18 +80,29 @@ OverlayFS は２つのレイヤだけ扱います。つまり、複数にレイ�
 
 以下の ``docker images -a`` コマンドは、Docker ホスト上の１つのイメージを表示しています。表示されているように、イメージは４つのレイヤで構成されています。
 
+.. The following docker pull command shows a Docker host with downloading a Docker image comprising four layers.
+
+以下の ``docker pull`` コマンドが表しているのは、４つのレイヤに圧縮された Docker イメージを Docker ホスト上にダウンロードしています。
+
 .. code-block:: bash
 
-   $ docker images -a
-   REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-   ubuntu              latest              1d073211c498        7 days ago          187.9 MB
-   <none>              <none>              5a4526e952f0        7 days ago          187.9 MB
-   <none>              <none>              99fcaefe76ef        7 days ago          187.9 MB
-   <none>              <none>              c63fb41c2213        7 days ago          187.7 MB
+   $ sudo docker pull ubuntu
+   Using default tag: latest
+   latest: Pulling from library/ubuntu
+   8387d9ff0016: Pull complete
+   3b52deaaf0ed: Pull complete
+   4bd501fad6de: Pull complete
+   a3ed95caeb02: Pull complete
+   Digest: sha256:457b05828bdb5dcc044d93d042863fba3f2158ae249a6db5ae3934307c757c54
+   Status: Downloaded newer image for ubuntu:latest
 
-.. Below, the command’s output illustrates that each of the four image layers has it’s own directory under /var/lib/docker/overlay/.
+.. Each image layer has it’s own directory under /var/lib/docker/overlay/. This is where the the contents of each image layer are stored.
 
-更に次のコマンド出力は、 ``/var/lib/docker/overlay/`` の下に、４つのイメージ・レイヤが自身のディレクトリを持っているのが分かります。
+``/var/lib/docker/overlay`` 以下のディレクトリに、各イメージ・レイヤを置くディレクトリがあります。ここが、各イメージ・レイヤの内容が保管される場所です。
+
+.. The output of the command below shows the four directories that store the contents of each image layer just pulled. However, as can be seen, the image layer IDs do not match the directory names in /var/lib/docker/overlay. This is normal behavior in Docker 1.10 and later.
+
+以下のコマンドの出力は、取得した各イメージ・レイヤの内容が保管されている４つのディレクトリを表しています。しかしながら、これまで見てきたように、イメージ・レイヤ ID は ``/var/lib/docker/overlay`` にあるディレクトリ名と一致しません。これは Docker 1.10 以降の通常の振る舞いです。
 
 .. code-block:: bash
 
@@ -104,27 +113,17 @@ OverlayFS は２つのレイヤだけ扱います。つまり、複数にレイ�
    drwx------ 5 root root 4096 Oct 28 11:06 99fcaefe76ef1aa4077b90a413af57fd17d19dce4e50d7964a273aae67055235
    drwx------ 3 root root 4096 Oct 28 11:01 c63fb41c2213f511f12f294dd729b9903a64d88f098c20d2350905ac1fdbcbba
 
-.. Each directory is named after the image layer IDs in the previous docker images -a command. The image layer directories contain the files unique to that layer as well as hard links to the data that is shared with lower layers. This allows for efficient use of disk space.
+.. The image layer directories contain the files unique to that layer as well as hard links to the data that is shared with lower layers. This allows for efficient use of disk space.
 
-先ほど ``docker images -a`` コマンドで見えたイメージ・レイヤの ID で、各ディレクトリに名前が付けられます。イメージ・レイヤのディレクトリには、ユニーク（一意）なファイルが含まれます。レイヤと同様に、データに対するハードリンクで下層レイヤを共有します。これによって、ディスク容量を効率的に使えます。
+イメージ・レイヤのディレクトリに含まれるファイルはレイヤに対してユニークなものです。つまり、下層レイヤと共有するデータのハード・リンクと同等です。これにより、ディスク容量を効率的に使えます。
 
-.. The following docker ps command shows the same Docker host running a single container. The container ID is “73de7176c223”.
+.. Containers also exist on-disk in the Docker host’s filesystem under /var/lib/docker/overlay/. If you inspect the directory relating to a running container using the ls -l command, you find the following file and directories.
 
-以下の ``docker ps`` コマンドから、同じ Docker ホスト上でコンテナが１つ動いていることがわかります。このコンテナ ID は「73de7176c223」です。
-
-.. code-block:: bash
-
-   $ docker ps
-   CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-   73de7176c223        ubuntu              "bash"              2 days ago          Up 2 days                               stupefied_nobel
-
-..This container exists on-disk in the Docker host’s filesystem under /var/lib/docker/overlay/73de7176c223.... If you inspect this directory using the ls -l command you find the following file and directories.
-
-このコンテナは、Docker ホストのファイルシステムにある ``/var/lib/docker/overlay/73de7176c223...`` 以下のディスク上に存在しています。もしディレクトリに対して ``ls -l`` コマンドで調べてみると、次のようにファイルとディレクトリが見えるでしょう。
+また、コンテナは Docker ホストのファイルシステム上の ``/var/lib/docker/overlay/`` 以下に存在します。実行中のコンテナに関するディレクトリを直接 ``ls -l`` コマンドで調べると、次のようなファイルとディレクトリが見えるでしょう。
 
 .. code-block:: bash
 
-   $ ls -l /var/lib/docker/overlay/73de7176c223a6c82fd46c48c5f152f2c8a7e49ecb795a7197c3bb795c4d879e
+   $ ls -l /var/lib/docker/overlay/<実行中コンテナのディレクトリ>
    total 16
    -rw-r--r-- 1 root root   64 Oct 28 11:06 lower-id
    drwxr-xr-x 1 root root 4096 Oct 28 11:06 merged
@@ -289,7 +288,7 @@ Docker が overlay ストレージ・ドライバを使うには、Docker ホス
 
 ..    Notice that the Backing filesystem in the output above is showing as extfs. Multiple backing filesystems are supported but extfs (ext4) is recommended for production use cases.
 
-先の出力では、背後のファイルシステムが ``extfs`` なのに注意してください。服宇スのファイルシステムがサポートされていますが、プロダクションでの使用で推奨されているのは ``extfs`` (ext4) のみです。
+先の出力では、背後のファイルシステムが ``extfs`` なのに注意してください。複数のファイルシステムがサポートされていますが、プロダクションでの使用で推奨されているのは ``extfs`` (ext4) のみです。
 
 .. Your Docker host is now using the overlay storage driver. If you run the mount command, you’ll find Docker has automatically created the overlay mount with the required “lowerdir”, “upperdir”, “merged” and “workdir” constructs.
 
@@ -299,7 +298,7 @@ Docker が overlay ストレージ・ドライバを使うには、Docker ホス
 
 .. _overlayfs-and-docker-performance:
 
-OverlayFS と Docker 性能
+OverlayFS と Docker の性能
 ==============================
 
 .. As a general rule, the overlay driver should be fast. Almost certainly faster than aufs and devicemapper. In certain circumstances it may also be faster than btrfs. That said, there are a few things to be aware of relative to the performance of Docker using the overlay storage driver.
@@ -338,6 +337,6 @@ OverlayFS のコピーアップ処理は AUFS の同じ処理よりも高速で�
 
 * **SSD** 。ベストな性能のために、SSD（ソリッド・ステート・デバイス）のような高速なストレージ・メディアを使うのは常に良い考えです。
 
-..    Use Data Volumes. Data volumes provide the best and most predictable performance. This is because they bypass the storage driver and do not incur any of the potential overheads introduced by thin provisioning and copy-on-write. For this reason, you may want to place heavy write workloads on data volumes.
+..    Use Data Volumes. Data volumes provide the best and most predictable performance. This is because they bypass the storage driver and do not incur any of the potential overheads introduced by thin provisioning and copy-on-write. For this reason, you should place heavy write workloads on data volumes.
 
-* **データ・ボリュームの使用** 。データ・ボリュームは最上かつ最も予測可能な性能を提供します。これは、ストレージ・ドライバを迂回し、シン・プロビジョニングやコピー・オン・ライト処理を行わないためです。そのため、データ・ボリューム上で重たい書き込みを行うのに適しています。
+* **データ・ボリュームの使用** 。データ・ボリュームは最上かつ最も予測可能な性能を提供します。これは、ストレージ・ドライバを迂回し、シン・プロビジョニングやコピー・オン・ライト処理を行わないためです。そのため、データ・ボリューム上で重たい書き込みを行う場合に使うべきでしょう。
