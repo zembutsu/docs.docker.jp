@@ -1,17 +1,20 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/userguide/networking/default_network/build-bridges/
-.. doc version: 1.9
-.. check date: 2016/01/05
+.. URL: https://docs.docker.com/engine/userguide/networking/default_network/build-bridges/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/default_network/build-bridges.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/networking/default_network/build-bridges.md
+.. check date: 2016/02/13
+.. ---------------------------------------------------------------------------
 
 .. Build your own bridge
 
 .. _biuld-your-own-bridge:
 
 ========================================
-自分のブリッジを作成
+自分でブリッジを作成
 ========================================
 
-.. This section explains building your own bridge to replaced the Docker default bridge. This is a bridge network named bridge created automatically when you install Docker.
+.. This section explains how to build your own bridge to replace the Docker default bridge. This is a bridge network named bridge created automatically when you install Docker.
 
 このセクションでは、Docker のデフォルト・ブリッジを自分自身で構築したブリッジに置き換える方法を説明します。``bridge`` という名称の ``bridge`` ネットワークは、Docker インストール時に自動的に作成されるものです。
 
@@ -21,9 +24,9 @@
 
    :doc:`Docker ネットワーク機能 </engine/userguide/networking/dockernetworks>` を使えば、デフォルト・ブリッジ・ネットワークに加え、自分で定義したネットワークも作成できます。
 
-.. You can set up your own bridge before starting Docker and use -b BRIDGE or --bridge=BRIDGE to tell Docker to use your bridge instead. If you already have Docker up and running with its default docker0 still configured, you will probably want to begin by stopping the service and removing the interface:
+.. You can set up your own bridge before starting Docker and use -b BRIDGE or --bridge=BRIDGE to tell Docker to use your bridge instead. If you already have Docker up and running with its default docker0 still configured, you can directly create your bridge and restart Docker with it or want to begin by stopping the service and removing the interface:
 
-自分自身のブリッジをセットアップをするには、Docker を起動する前に Docker に対して ``-b BRIDGE`` か ``--bridge=BRIDGE`` を使い、替わりのブリッジを指定します。既に Docker を起動している場合は、既にデフォルトの ``docker0`` で実行されており、その場合はサービスを停止してインターフェースを削除する必要があります。
+自分自身のブリッジをセットアップするには、Docker を起動する前に Docker に対して ``-b BRIDGE`` か ``--bridge=BRIDGE`` を使い、替わりのブリッジを指定します。既に Docker を起動している場合は、既にデフォルトの ``docker0`` で実行されていますが、自分でブリッジを作成できます。必要があれば、サービスを停止してインターフェースの削除も可能です。
 
 .. code-block:: bash
 
@@ -40,7 +43,7 @@
 
 .. code-block:: bash
 
-   # 自分自身のブリッジを作成
+   # 自分自身でブリッジを作成
    
    $ sudo brctl addbr bridge0
    $ sudo ip addr add 192.168.5.1/24 dev bridge0

@@ -1,7 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/userguide/networking/default_network/custom-docker0/
-.. doc version: 1.9
-.. check date: 2016/01/05
+.. URL: https://docs.docker.com/engine/userguide/networking/default_network/custom-docker0/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/default_network/custom-docker0.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/networking/default_network/custom-docker0.md
+.. check date: 2016/02/13
+.. ---------------------------------------------------------------------------
 
 .. Customize the docker0 bridge
 

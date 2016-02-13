@@ -1,7 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/userguide/networking/default_network/configure-dns/
-.. doc version: 1.9
-.. check date: 2016/01/05
+.. URL: https://docs.docker.com/engine/userguide/networking/default_network/configure-dns/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/default_network/configure-dns.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/networking/default_network/configure-dns.md
+.. check date: 2016/02/13
+.. ---------------------------------------------------------------------------
 
 .. Configure container DNS
 
@@ -17,9 +20,11 @@
 
 .. Note: The Docker networks feature allows you to create user-defined networks in addition to the default bridge network.
 
+.. Note: The Docker networks feature allows you to create user-defined networks in addition to the default bridge network. Please refer to the Docker Embedded DNS section for more information on DNS configurations in user-defined networks.
+
 .. note::
 
-   :doc:`Docker ネットワーク機能 </engine/userguide/networking/dockernetworks>` を使えば、デフォルト・ブリッジ・ネットワークに加え、自分で定義したネットワークも作成できます。
+   :doc:`Docker ネットワーク機能 </engine/userguide/networking/dockernetworks>` を使えば、デフォルト・ブリッジ・ネットワークに加え、自分でユーザ定義ネットワークも作成できます。ユーザ定義ネットワーク上で DNS 設定を行う詳細な情報は、 :doc:`Docker 内蔵 DNS </engine/userguide/networking/configure-dns>` をご覧ください。
 
 .. How can Docker supply each container with a hostname and DNS configuration, without having to build a custom image with the hostname written inside? Its trick is to overlay three crucial /etc files inside the container with virtual files where it can write fresh information. You can see this by running mount inside a container:
 
@@ -81,7 +86,7 @@ DNS 設定に関して、オプション ``--dns=IPアドレス...`` 、 ``--dns
 
 .. note::
 
-   ホスト側のローカルなレゾルバにアクセスする必要があるなら、コンテナ内から到達可能になるように、ホスト上にある DNS サービスがローカルホスト以外をリッスンするよう設定が必要です。
+   ホスト側のローカルなリゾルバにアクセスする必要があるなら、コンテナ内から到達可能になるように、ホスト上にある DNS サービスがローカルホスト以外をリッスンするよう設定が必要です。
 
 .. You might wonder what happens when the host machine’s /etc/resolv.conf file changes. The docker daemon has a file change notifier active which will watch for changes to the host DNS configuration.
 
@@ -101,4 +106,4 @@ host ファイルが変更されるとき、 ``resolv.conf`` を持っている�
 
 .. note::
 
-   ``/etc/resolv.conf`` の更新機能が実装されているのは、Docker 1.5.0 以降に作られたコンテナです。つまり、以前のコンテナはホスト側の ``resolv.conf``  の変更が発生しても検出できません。Docker 1.5 以降にで作成されたコンテナのみ、上記の自動更新機能が使えます。
+   ``/etc/resolv.conf`` の更新機能が実装されているのは、Docker 1.5.0 以降に作られたコンテナです。つまり、以前のコンテナはホスト側の ``resolv.conf``  の変更が発生しても検出できません。Docker 1.5 以降に作成されたコンテナのみ、上記の自動更新機能が使えます。

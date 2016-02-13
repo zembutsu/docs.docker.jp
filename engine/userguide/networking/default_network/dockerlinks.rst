@@ -1,7 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/
-.. doc version: 1.9
-.. check date: 2016/01/03
+.. URL: https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/default_network/dockerlinks.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/networking/default_network/dockerlinks.md
+.. check date: 2016/02/13
+.. ---------------------------------------------------------------------------
 
 .. Legacy container links
 
@@ -15,13 +18,13 @@
 
 このセクションで説明する情報は、Docker のデフォルト・ブリッジ内で扱える、過去のコンテナ・リンク機能に関してです。これは ``bridge`` という名称の ``bridge`` ネットワークであり、Docker をインストールすると自動的に作成されます。
 
-.. Before the Docker networks feature, you could use the Docker link feature to allow containers to discover each other and securely transfer information about one container to another container. With the introduction of the Docker networks feature, you can still create links but they are only supported on the default bridge network named bridge and appearing in your network stack as docker0.
+.. Before the Docker networks feature, you could use the Docker link feature to allow containers to discover each other and securely transfer information about one container to another container. With the introduction of the Docker networks feature, you can still create links but they behave differently between default bridge network and user defined networks
 
-:doc:`Docker ネットワーク機能 </engine/userguide/networking/dockernetworks>` の前に、Docker リンク機能によって、あるコンテナから別のコンテナに対してコンテナ間で相互の発見をし、安全に転送する情報を得られます。Docker ネットワーク機能について学んでいく前に、まだリンク機能を作成することはできますが、サポートされているのは ``bridge`` という名前の ``bridge`` ネットワーク上（ネットワーク・スタック上の ``docker0`` ）のみです。
+:doc:`Docker ネットワーク機能 </engine/userguide/networking/dockernetworks>` が導入されるよりも前は、この Docker リンク機能によって、あるコンテナから別のコンテナに対してコンテナ間で相互の発見をし、安全に転送する情報を得られました。Docker ネットワーク機能について学んでいく前に、まだリンク機能を作成することはできますが、サポートされている機能は、デフォルトの ``bridge`` ネットワークと :ref:`ユーザ定義ネットワーク <linking-containers-in-user-defined-networks>` では異なるのでご注意ください。
 
-.. This section briefly discuss connecting via a network port and then goes into detail on container linking. While links are still supported on Docker’s default network (bridge bridge), you should avoid them in preference of the Docker networks feature. Linking is expected to be deprecated and removed in a future release.
+.. This section briefly discusses connecting via a network port and then goes into detail on container linking in default bridge network.
 
-このセクションではネットワーク・ポートの接続と、それらをコンテナ上でリンクする方法を簡単に扱います。リンクはまだ Docker のデフォルト・ネットワーク（ ``bridge bridge`` ）でサポートされていますが、Docker のネットワーク機能の選択としては、避けるべきでしょう。リンク機能は将来のリリースでは、廃止・削除される可能性があります。
+このセクションではネットワーク・ポートの接続と、それらをデフォルトの ``birdge`` ネットワーク上のコンテナ上でリンクする方法を簡単に扱います。
 
 .. Connect using network port mapping
 
@@ -358,7 +361,7 @@ Docker はこれら接頭語の形式を、３つの異なる環境変数で使�
 
 .. You can see that Docker has created a series of environment variables with useful information about the source db container. Each variable is prefixed with DB_, which is populated from the alias you specified above. If the alias were db1, the variables would be prefixed with DB1_. You can use these environment variables to configure your applications to connect to the database on the db container. The connection will be secure and private; only the linked web container will be able to talk to the db container.
 
-このように、Docker は環境変数を作成しており、そこには元になった ``source`` コンテナに関する便利な情報が含まれています。各変数にある接頭語 ``DB_`` とは、先ほど指定した ``alias`` から割り当てられています。もし ``alias`` が ``db1`` であれば、環境変数の接頭語は ``DB1_`` になります。これらの環境変数を使い、アプリケーションが ``db`` コンテナ上のデターベースに接続する設定も可能です。接続は安全かつプライベートなものですが、これはリンクされた ``web`` コンテナと ``db`` コンテナが通信できるようにするだけです。
+このように、Docker は環境変数を作成しており、そこには元になった ``source`` コンテナに関する便利な情報が含まれています。各変数にある接頭語 ``DB_`` とは、先ほど指定した ``alias`` から割り当てられています。もし ``alias`` が ``db1`` であれば、環境変数の接頭語は ``DB1_`` になります。これらの環境変数を使い、アプリケーションが ``db`` コンテナ上のデータベースに接続する設定も可能です。接続は安全かつプライベートなものですが、これはリンクされた ``web`` コンテナと ``db`` コンテナが通信できるようにするだけです。
 
 .. Important notes on Docker environment variables
 

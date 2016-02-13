@@ -1,7 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/userguide/networking/default_network/binding/
-.. doc version: 1.9
-.. check date: 2016/01/05
+.. URL: https://docs.docker.com/engine/userguide/networking/default_network/binding/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/default_network/binding.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/networking/default_network/binding.md
+.. check date: 2016/02/13
+.. ---------------------------------------------------------------------------
 
 .. Bind container ports to the host
 
@@ -78,7 +81,7 @@ Docker はこれらコンテナ側のポートを ``0.0.0.0`` 、つまりワイ
 
 .. Or if you always want Docker port forwards to bind to one specific IP address, you can edit your system-wide Docker server settings and add the option --ip=IP_ADDRESS. Remember to restart your Docker server after editing this setting.
 
-あるいは、Docker のポート転送を常に特定の IP アドレスに割り当てたい場合には、システム全体の Docker サーバ設定ファイルを編集し、 ``--ip=IP_ADDRESS`` オプションをツイ買います。編集内容が有効になるのは、Docker サーバの再起動後なのでご注意ください。
+あるいは、Docker のポート転送を常に特定の IP アドレスに割り当てたい場合には、システム全体の Docker サーバ設定ファイルを編集し、 ``--ip=IP_ADDRESS`` オプションを使います。編集内容が有効になるのは、Docker サーバの再起動後なのでご注意ください。
 
 ..    Note: With hairpin NAT enabled (--userland-proxy=false), containers port exposure is achieved purely through iptables rules, and no attempt to bind the exposed port is ever made. This means that nothing prevents shadowing a previously listening service outside of Docker through exposing the same port for a container. In such conflicting situation, Docker created iptables rules will take precedence and route to the container.
 
@@ -101,4 +104,4 @@ Docker はこれらコンテナ側のポートを ``0.0.0.0`` 、つまりワイ
 
 * :doc:`/engine/userguide/networking/dockernetworks`
 * :doc:`/engine/userguide/networking/work-with-networks`
-* :doc:`/engine/userguide/networking/default_network/dockerlinks`
+* :doc:`dockerlinks`

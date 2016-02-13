@@ -1,7 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/userguide/networking/default_network/container-communication/
-.. doc version: 1.9
-.. check date: 2016/01/04
+.. URL: https://docs.docker.com/engine/userguide/networking/default_network/container-communication/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/default_network/container-communication.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/networking/default_network/container-communication.md
+.. check date: 2016/02/13
+.. ---------------------------------------------------------------------------
 
 .. Understand container communication
 
@@ -28,7 +31,7 @@
 外の世界との通信
 ====================
 
-.. Whether a container can talk to the world is governed by two factors. The first factor is whether the host machine is forwarding its IP packets. The second is whether the hosts iptables allow this particular connections
+.. Whether a container can talk to the world is governed by two factors. The first factor is whether the host machine is forwarding its IP packets. The second is whether the host's iptables allow this particular connection.
 
 コンテナが世界と通信できるかどうかは、２つの要素が左右します。１つめの要素は、ホストマシンが IP パケットを転送できるかどうかです。２つめはホスト側の ``iptables`` が特定の接続を許可するかどうかです。
 
