@@ -1,4 +1,13 @@
 .. -*- coding: utf-8 -*-
+.. URL: https://docs.docker.com/engine/userguide/networking/get-started-overlay/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/get-started-overlay.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/networking/get-started-overlay.md
+.. check date: 2016/02/13
+.. ---------------------------------------------------------------------------
+
+
+.. -*- coding: utf-8 -*-
 .. https://docs.docker.com/engine/userguide/networking/get-started-overlay/
 .. doc version: 1.9
 .. check date: 2016/01/03
@@ -19,11 +28,13 @@
     Access to a key-value store. Docker supports Consul, Etcd, and ZooKeeper (Distributed store) key-value stores.
     A cluster of hosts with connectivity to the key-value store.
     A properly configured Engine daemon on each host in the cluster.
+    Hosts within the cluster must have unique hostnames because the key-value store uses the hostnames to identify cluster members.
 
 * kernel バージョン 3.16 以上のホスト。
 * キーバリュー・ストアに対するアクセス。エンジンがサポートするキーバリュー・ストアは、Consul、Etcd、Zookeeper（分散ストア）。
 * ホストのクラスタが、キーバリュー・ストアに接続する。
 * Swarm の各ホスト上で動作するエンジン ``daemon`` に、適切な設定を行う。
+* クラスタ上のホストはユニークなホスト名を持つ必要がある。これは、キーバリュー・ストアがクラスタのメンバをホスト名で識別するため。
 
 .. Though Docker Machine and Docker Swarm are not mandatory to experience Docker multi-host networking, this example uses them to illustrate how they are integrated. You’ll use Machine to create both the key-value store server and the host cluster. This example creates a Swarm cluster.
 
@@ -229,11 +240,17 @@ Docker マルチホスト・ネットワーキング機能を使うのに、Dock
 
 .. code-block:: bash
 
-   $ docker network create --driver overlay my-net
+   $ docker network create --driver overlay --subnet=10.0.9.0/24 my-net
 
 ..    You only need to create the network on a single host in the cluster. In this case, you used the Swarm master but you could easily have run it on any host in the cluster.
 
 クラスタ上のどこかのホストで、ネットワークを作成する必要があります。この例では、Swarm マスタを使いますが、クラスタ上のホストであれば、どこでも簡単にできます。
+
+.. Note : It is highly recommended to use the --subnet option while creating a network. If the --subnet is not specified, the docker daemon automatically chooses and assigns a subnet for the network and it could overlap with another subnet in your infrastructure that is not managed by docker. Such overlaps can cause connectivity issues or failures when containers are connected to that network.
+
+.. note::
+
+   ネットワークの作成時は ``--subnet`` オプションの指定を強く推奨します。 ``--subnet`` を指定しなければ、docker デーモンはネットワークに対してサブネットを自動的に割り当てます。そのとき、Docker が管理していない基盤上の別サブネットと重複する可能性が有り得ます。このような重複により、コンテナがネットワークに接続するときに問題や障害を引き起こします。
 
 ..    Check that the network is running:
 
@@ -432,72 +449,12 @@ Swarm マスタ環境にいるため、このように Swarm エージェント�
 
 .. _step6-extra-credit-with-docker-compose:
 
-手順６：Docker Compose との連携機能
+手順６：Docker Compose との連係機能
 ========================================
 
-.. You can try starting a second network on your existing Swarm cluster using Docker Compose.
+.. Please refer to the Networking feature introduced in Compose V2 format and execute the multi-host networking scenario in the Swarm cluster used above.
 
-既存の Swarm クラスタ上に、Docker Compose を使って２つめのネットワークを起動できます。
-
-..    If you haven’t already, install Docker Compose.
-
-1. Docker Compose を持っていなければ、インストールします。
-
-..    Change your environment to the Swarm master.
-
-2. 環境変数を Swarm マスタに切り替えます。
-
-.. code-block:: bash
-
-    $ eval $(docker-machine env --swarm mhs-demo0)
-
-..    Create a docker-compose.yml file.
-
-3. ``docker-compose.yml`` ファイルを作成します。
-
-..    Add the following content to the file.
-
-4. ファイル内容に以下の項目を追加します。
-
-.. code-block:: yaml
-
-   web:
-       image: bfirsh/compose-mongodb-demo
-       environment:
-           - "MONGO_HOST=counter_mongo_1"
-           - "constraint:node==mhs-demo0"
-       ports:
-           - "80:5000"
-   mongo:
-       image: mongo
-
-..    Save and close the file.
-
-5. ファイルを保存して閉じます。
-
-..    Start the application with Compose.
-
-6. Compose を使ってアプリケーションを起動します。
-
-.. code-block:: bash
-
-   $ docker-compose --x-networking --project-name=counter up -d
-
-..    Get the Swarm master’s IP address.
-
-7. Swarm マスタの IP アドレスを取得します。
-
-.. code-block:: bash
-
-   $ docker-machine ip mhs-demo0
-
-..    Put the IP address into your web browser.
-
-8. その IP アドレスをブラウザで開きます。
-
-..    Upon success, the browser should display the web application.
-
-成功すると、ブラウザはウェブ・アプリケーションを表示するでしょう。
+:doc:`Compose v2 フォーマット </compose/networking>` で導入された新しい機能を参照し、上記の Swarm クラスタを使ったマルチホスト・ネットワーク機能のシナリオをお試しください。
 
 .. Related information
 
