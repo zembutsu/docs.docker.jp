@@ -1,7 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/userguide/networking/work-with-networks/
-.. doc version: 1.9
-.. check date: 2016/01/03
+.. URL: https://docs.docker.com/engine/userguide/networking/work-with-networks/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/work-with-networks.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/networking/work-with-networks.md
+.. check date: 2016/02/13
+.. ---------------------------------------------------------------------------
 
 .. Work with network commands
 
@@ -42,18 +45,21 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 .. code-block:: bash
 
    $ docker network create simple-network
-   de792b8258895cf5dc3b43835e9d61a9803500b991654dacb1f4f0546b1c88f8
+   69568e6336d8c96bbf57869030919f7c69524f71183b44d80948bd3927c87f6a
    $ docker network inspect simple-network
    [
        {
            "Name": "simple-network",
-           "Id": "de792b8258895cf5dc3b43835e9d61a9803500b991654dacb1f4f0546b1c88f8",
+           "Id": "69568e6336d8c96bbf57869030919f7c69524f71183b44d80948bd3927c87f6a",
            "Scope": "local",
            "Driver": "bridge",
            "IPAM": {
                "Driver": "default",
                "Config": [
-                   {}
+                   {
+                       "Subnet": "172.22.0.0/16",
+                       "Gateway": "172.22.0.1/16"
+                   }
                ]
            },
            "Containers": {},
@@ -65,7 +71,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 ブリッジ・ネットワークとは異なり、 ``overlay`` ネットワークの場合は、作成前に事前準備がいくつか必要です。事前準備とは、次の通りです。
 
-..    Access to a key-value store. Engine supports Consul Etcd, and ZooKeeper (Distributed store) key-value stores.
+..    Access to a key-value store. Engine supports Consul, Etcd, and ZooKeeper (Distributed store) key-value stores.
     A cluster of hosts with connectivity to the key-value store.
     A properly configured Engine daemon on each host in the swarm.
 
@@ -89,6 +95,12 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 デフォルトではネットワーク作成時、エンジンはサブネットが重複しないネットワークを作成します。このデフォルトの挙動は変更できます。特定のサブネットワークを直接指定するには ``--subnet`` オプションを使います。 ``bridge`` ネットワーク上では１つだけサブネットを作成できます。 ``overlay`` ネットワークでは、複数のサブネットをサポートしています。
 
+.. Note : It is highly recommended to use the --subnet option while creating a network. If the --subnet is not specified, the docker daemon automatically chooses and assigns a subnet for the network and it could overlap with another subnet in your infrastructure that is not managed by docker. Such overlaps can cause connectivity issues or failures when containers are connected to that network.
+
+.. note::
+
+   ネットワークの作成時は ``--subnet`` オプションの指定を強く推奨します。 ``--subnet`` を指定しなければ、docker デーモンはネットワークに対してサブネットを自動的に割り当てます。そのとき、Docker が管理していない基盤上の別サブネットと重複する可能性が有り得ます。このような重複により、コンテナがネットワークに接続するときに問題や障害を引き起こします。
+
 .. In addition to the --subnetwork option, you also specify the --gateway --ip-range and --aux-address options.
 
 ``--subnetwork`` オプションの他にも、 ``--gateway`` ``--ip-range`` ``--aux-address`` オプションが指定可能です。
@@ -106,6 +118,73 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 .. Be sure that your subnetworks do not overlap. If they do, the network create fails and Engine returns an error.
 
 サブネットワークが重複しないように注意してください。重複すると、ネットワーク作成が失敗し、エンジンはエラーを返します。
+
+.. When creating a custom network, the default network driver (i.e. bridge) has additional options that can be passed. The following are those options and the equivalent docker daemon flags used for docker0 bridge:
+
+カスタム・ネットワークの作成時、デフォルトのネットワーク・ドライバ（例： ``bridge`` ）は追加オプションを指定できます。dokcer0 ブリッジにおいては、Docker デーモンのフラグで指定するのと同等の以下の設定が利用できます。
+
+.. list-table:
+   :header-rows: 1
+
+   * - オプション
+     - 同等
+     - 説明
+   * - ``com.docker.network.bridge.name``
+     - －
+     - Linux ブリッジ作成時に使われるブリッジ名
+   * - ``com.docker.network.bridge.enable_ip_masquerade``
+     - ``--ip-masq``
+     - IP マスカレードを有効化
+   * - ``com.docker.network.bridge.enable_icc``
+     - ``--icc``
+     - Docker 内部におけるコンテナの接続性を有効化・無効化
+   * - ``com.docker.network.bridge.host_binding_ipv4``
+     - ``--ip``
+     - コンテナのポートをバインドする（割り当てる）デフォルトの IP
+   * - ``com.docker.network.mtu``
+     - ``--mtu``
+     - コンテナのネットワーク MTU を設定
+   * - ``com.docker.network.enable_ipv6``
+     - ``--ipv6``
+     - IPv6 ネットワークの有効化
+
+.. For example, now let’s use -o or --opt options to specify an IP address binding when publishing ports:
+
+例えば、 ``-o`` または ``--opt`` オプションを使ってポートを公開するために割り当てる IP アドレスを指定しましょう。
+
+.. code-block:: bash
+
+   $ docker network create -o "com.docker.network.bridge.host_binding_ipv4"="172.23.0.1" my-network
+   b1a086897963e6a2e7fc6868962e55e746bee8ad0c97b54a5831054b5f62672a
+   $ docker network inspect my-network
+   [
+       {
+           "Name": "my-network",
+           "Id": "b1a086897963e6a2e7fc6868962e55e746bee8ad0c97b54a5831054b5f62672a",
+           "Scope": "local",
+           "Driver": "bridge",
+           "IPAM": {
+               "Driver": "default",
+               "Options": {},
+               "Config": [
+                   {
+                       "Subnet": "172.23.0.0/16",
+                       "Gateway": "172.23.0.1/16"
+                   }
+               ]
+           },
+           "Containers": {},
+           "Options": {
+               "com.docker.network.bridge.host_binding_ipv4": "172.23.0.1"
+           }
+       }
+   ]
+   $ docker run -d -P --name redis --net my-network redis
+   bafb0c808c53104b2c90346f284bda33a69beadcab4fc83ab8f2c5a4410cd129
+   $ docker ps
+   CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                        NAMES
+   bafb0c808c53        redis               "/entrypoint.sh redis"   4 seconds ago       Up 3 seconds        172.23.0.1:32770->6379/tcp   redis
+
 
 .. Connect containers
 
@@ -140,8 +219,8 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 .. code-block:: bash
 
-   $ docker network create -d bridge isolated_nw
-   f836c8deb6282ee614eade9d2f42d590e603d0b1efa0d99bd88b88c503e6ba7a
+   $ docker network create -d bridge --subnet 172.25.0.0/16 isolated_nw
+   06a62f1c73c4e3107c0f555b7a5f163309827bfbbf999840166065a8f35455a8
 
 .. Connect container2 to the network and then inspect the network to verify the connection:
 
@@ -154,20 +233,24 @@ Docker エンジンをインストールすると、Docker エンジンは自動
    [[
        {
            "Name": "isolated_nw",
-           "Id": "f836c8deb6282ee614eade9d2f42d590e603d0b1efa0d99bd88b88c503e6ba7a",
+           "Id": "06a62f1c73c4e3107c0f555b7a5f163309827bfbbf999840166065a8f35455a8",
            "Scope": "local",
            "Driver": "bridge",
            "IPAM": {
                "Driver": "default",
                "Config": [
-                   {}
+                   {
+                       "Subnet": "172.21.0.0/16",
+                       "Gateway": "172.21.0.1/16"
+                   }
                ]
            },
            "Containers": {
-               "498eaaaf328e1018042c04b2de04036fc04719a6e39a097a4f4866043a2c2152": {
-                   "EndpointID": "0e24479cfaafb029104999b4e120858a07b19b1b6d956ae56811033e45d68ad9",
-                   "MacAddress": "02:42:ac:15:00:02",
-                   "IPv4Address": "172.21.0.2/16",
+               "90e1f3ec71caf82ae776a827e0712a68a110a3f175954e5bd4222fd142ac9428": {
+                   "Name": "container2",
+                   "EndpointID": "11cedac1810e864d6b1589d92da12af66203879ab89f4ccd8c8fdaa9b1c48b1d",
+                   "MacAddress": "02:42:ac:19:00:02",
+                   "IPv4Address": "172.25.0.2/16",
                    "IPv6Address": ""
                }
            },
@@ -175,14 +258,18 @@ Docker エンジンをインストールすると、Docker エンジンは自動
        }
    ]
 
-.. You can see that the Engine automatically assigns an IP address to container2. If you had specified a --subnetwork when creating your network, the network would have used that addressing. Now, start a third container and connect it to the network on launch using the docker run command’s --net option:
+.. You can see that the Engine automatically assigns an IP address to container2. Given we specified a --subnet when creating the network, Engine picked an address from that same subnet. Now, start a third container and connect it to the network on launch using the docker run command’s --net option:
 
-エンジンが自動的に ``container2`` に IP アドレスを割り当てているのが分かります。もしもネットワーク作成時に ``--subnetwork`` を指定しているのであれば、そのネットワーク体系から割り当てられます。次は３つめのコンテナを起動し、ネットワークに接続するために、 ``docker run`` コマンドに ``--net`` オプションを使います。
+エンジンが自動的に ``container2`` に IP アドレスを割り当てているのが分かります。もしもネットワーク作成時に ``--subnet`` を指定しているのであれば、Engine は指定されたサブネットから IP アドレスを取得します。次に３つめのコンテナを起動します。このネットワークに接続するには、 ``docker run`` コマンドで ``--net`` オプションを使います。
  
 .. code-block:: bash
 
-   $ docker run --net=isolated_nw -itd --name=container3 busybox
-   c282ca437ee7e926a7303a64fc04109740208d2c20e442366139322211a6481c
+   $ docker run --net=isolated_nw --ip=172.25.3.3 -itd --name=container3 busybox
+   467a7863c3f0277ef8e661b38427737f28099b61fa55622d6c30fb288d88c551
+
+.. As you can see you were able to specify the ip address for your container. As long as the network to which the container is connecting was created with a user specified subnet, you will be able to select the IPv4 and/or IPv6 address(es) for your container when executing docker run and docker network connect commands. The selected IP address is part of the container networking configuration and will be preserved across container reload. The feature is only available on user defined networks, because they guarantee their subnets configuration does not change across daemon reload.
+
+見ての通り、コンテナに対して IP アドレスを指定できました。``docker run`` コマンドでコンテナ作成時に、ユーザが接続先のサブネットを指定すると、任意の IPv4 アドレスと同時あるいは別に IPv6 アドレスも指定できます。また ``docker network connect`` コマンドでも追加出来ます。IP アドレスの指定は、コンテナのネットワーク設定の一部です。そのため、コンテナを再起動しても IP アドレスは維持されるでしょう。将来的にはユーザ定義ネットワーク上でのみ利用可能になります。ユーザ定義ネットワークでなければ、デーモンを再起動してもサブネット設定情報の維持が保証されないためです。
 
 .. Now, inspect the network resources used by container3.
 
@@ -191,7 +278,8 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 .. code-block:: bash
 
    $ docker inspect --format='{{json .NetworkSettings.Networks}}'  container3
-   {"isolated_nw":{"EndpointID":"e5d077f9712a69c6929fdd890df5e7c1c649771a50df5b422f7e68f0ae61e847","Gateway":"172.21.0.1","IPAddress":"172.21.0.3","IPPrefixLen":16,"IPv6Gateway":"","GlobalIPv6Address":"","GlobalIPv6PrefixLen":0,"MacAddress":"02:42:ac:15:00:03"}}
+   {"isolated_nw":{"IPAMConfig":{"IPv4Address":"172.25.3.3"},"NetworkID":"1196a4c5af43a21ae38ef34515b6af19236a3fc48122cf585e3f3054d509679b",
+   "EndpointID":"dffc7ec2915af58cc827d995e6ebdc897342be0420123277103c40ae35579103","Gateway":"172.25.0.1","IPAddress":"172.25.3.3","IPPrefixLen":16,"IPv6Gateway":"","GlobalIPv6Address":"","GlobalIPv6PrefixLen":0,"MacAddress":"02:42:ac:19:03:03"}}
 
 .. Repeat this command for container2. If you have Python installed, you can pretty print the output.
 
@@ -202,24 +290,28 @@ Docker エンジンをインストールすると、Docker エンジンは自動
    $ docker inspect --format='{{json .NetworkSettings.Networks}}'  container2 | python -m json.tool
    {
        "bridge": {
-           "EndpointID": "281b5ead415cf48a6a84fd1a6504342c76e9091fe09b4fdbcc4a01c30b0d3c5b",
+           "NetworkID":"7ea29fc1412292a2d7bba362f9253545fecdfa8ce9a6e37dd10ba8bee7129812",
+           "EndpointID": "0099f9efb5a3727f6a554f176b1e96fca34cae773da68b3b6a26d046c12cb365",
            "Gateway": "172.17.0.1",
            "GlobalIPv6Address": "",
            "GlobalIPv6PrefixLen": 0,
+           "IPAMConfig": null,
            "IPAddress": "172.17.0.3",
            "IPPrefixLen": 16,
            "IPv6Gateway": "",
            "MacAddress": "02:42:ac:11:00:03"
        },
        "isolated_nw": {
-           "EndpointID": "0e24479cfaafb029104999b4e120858a07b19b1b6d956ae56811033e45d68ad9",
-           "Gateway": "172.21.0.1",
+           "NetworkID":"1196a4c5af43a21ae38ef34515b6af19236a3fc48122cf585e3f3054d509679b",
+           "EndpointID": "11cedac1810e864d6b1589d92da12af66203879ab89f4ccd8c8fdaa9b1c48b1d",
+           "Gateway": "172.25.0.1",
            "GlobalIPv6Address": "",
            "GlobalIPv6PrefixLen": 0,
-           "IPAddress": "172.21.0.2",
+           "IPAMConfig": null,
+           "IPAddress": "172.25.0.2",
            "IPPrefixLen": 16,
            "IPv6Gateway": "",
-           "MacAddress": "02:42:ac:15:00:02"
+           "MacAddress": "02:42:ac:19:00:02"
        }
    }
 
@@ -260,8 +352,8 @@ Docker エンジンをインストールすると、Docker エンジンは自動
              RX bytes:648 (648.0 B)  TX bytes:648 (648.0 B)
    
    eth1      Link encap:Ethernet  HWaddr 02:42:AC:15:00:02  
-             inet addr:172.21.0.2  Bcast:0.0.0.0  Mask:255.255.0.0
-             inet6 addr: fe80::42:acff:fe15:2/64 Scope:Link
+             inet addr:172.25.0.2  Bcast:0.0.0.0  Mask:255.255.0.0
+             inet6 addr: fe80::42:acff:fe19:2/64 Scope:Link
              UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
              RX packets:8 errors:0 dropped:0 overruns:0 frame:0
              TX packets:8 errors:0 dropped:0 overruns:0 carrier:0
@@ -277,35 +369,18 @@ Docker エンジンをインストールすると、Docker エンジンは自動
              collisions:0 txqueuelen:0
              RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
 
-.. Display the container’s etc/hosts file:
+.. On the `isolated_nw` which was user defined, the Docker embedded DNS server enables name resolution for other containers in the network.  Inside of `container2` it is possible to ping `container3` by name.
 
-コンテナの ``etc/hosts`` ファイルを表示します。
-
-.. code-block:: bash
-
-   / # cat /etc/hosts
-   172.17.0.3	498eaaaf328e
-   127.0.0.1	localhost
-   ::1	localhost ip6-localhost ip6-loopback
-   fe00::0	ip6-localnet
-   ff00::0	ip6-mcastprefix
-   ff02::1	ip6-allnodes
-   ff02::2	ip6-allrouters
-   172.21.0.3	container3
-   172.21.0.3	container3.isolated_nw
-
-.. On the isolated_nw which was user defined, the Docker network feature updated the /etc/hosts with the proper name resolution. Inside of container2 it is possible to ping container3 by name.
-
-``isolated_nw`` はユーザによって定義されたものであり、Docker ネットワーク機能が ``/etc/hosts`` を更新し、適切な名前解決を行います。 ``container2`` の内部では、 ``container3`` に対して名前で ping できるでしょう。
+``isolated_nw`` はユーザによって定義されたものであり、Docker 内蔵 DNS サーバがネットワーク上の他のコンテナに対する適切な名前解決を行います。 ``container2`` の内部では、 ``container3`` に対して名前で ping できるでしょう。
 
 .. code-block:: bash
 
    / # ping -w 4 container3
-   PING container3 (172.21.0.3): 56 data bytes
-   64 bytes from 172.21.0.3: seq=0 ttl=64 time=0.070 ms
-   64 bytes from 172.21.0.3: seq=1 ttl=64 time=0.080 ms
-   64 bytes from 172.21.0.3: seq=2 ttl=64 time=0.080 ms
-   64 bytes from 172.21.0.3: seq=3 ttl=64 time=0.097 ms
+   PING container3 (172.25.3.3): 56 data bytes
+   64 bytes from 172.25.3.3: seq=0 ttl=64 time=0.070 ms
+   64 bytes from 172.25.3.3: seq=1 ttl=64 time=0.080 ms
+   64 bytes from 172.25.3.3: seq=2 ttl=64 time=0.080 ms
+   64 bytes from 172.25.3.3: seq=3 ttl=64 time=0.097 ms
    
    --- container3 ping statistics ---
    4 packets transmitted, 4 packets received, 0% packet loss
@@ -313,7 +388,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 .. This isn’t the case for the default bridge network. Both container2 and container1 are connected to the default bridge network. Docker does not support automatic service discovery on this network. For this reason, pinging container1 by name fails as you would expect based on the /etc/hosts file:
 
-デフォルトのブリッジ・ネットワークを使っている場合、この名前解決機能を利用できません。 ``containe2`` と ``container1`` は、どちらもデフォルトのブリッジ・ネットワークに接続しています。このデフォルトのネットワーク上では、Docker は自動サービス・ディスカバリをサポートしません。そのため、 ``container1`` に対して名前で ping をしても、 ``/etc/hosts`` ファイルには記述がないため失敗するでしょう。
+デフォルトの ``bridge`` ネットワークを使っている場合、この名前解決機能を利用できません。 ``containe2`` と ``container1`` は、どちらもデフォルトのブリッジ・ネットワークに接続しています。このデフォルトのネットワーク上では、Docker は自動サービス・ディスカバリをサポートしません。そのため、 ``container1`` に対して名前で ping をしても、 ``/etc/hosts`` ファイルには記述がないため失敗するでしょう。
 
 .. code-block:: bash
 
@@ -358,9 +433,339 @@ Docker エンジンをインストールすると、Docker エンジンは自動
    --- 172.17.0.2 ping statistics ---
    10 packets transmitted, 0 packets received, 100% packet loss
 
-.. To connect a container to a network, the container must be running. If you stop a container and inspect a network it belongs to, you won’t see that container. The docker network inspect command only shows running containers.
+.. You can connect both running and non-running containers to a network. However, docker network inspect only displays information on running containers.
 
-コンテナのネットワークに接続するとき、コンテナは実行中の必要があります。コンテナを停止して確認（ inspect ）すると、ネットワークには所属したままですが、コンテナの情報が見えなくなるでしょう。 ``docker network inspect`` コマンドは、実行中のコンテナのみ表示します。
+コンテナをネットワークに接続するには、実行中でも停止中でも可能です。しかしながら、 ``docker network inspect`` が表示するのは、実行中のコンテナのみです。
+
+.. Linking containers in user-defined networks
+
+.. _linking-containers-in-user-defined-networks:
+
+ユーザ定義ネットワークでコンテナをリンク
+----------------------------------------
+
+.. In the above example, container_2 was able to resolve container_3’s name automatically in the user defined network isolated_nw, but the name resolution did not succeed automatically in the default bridge network. This is expected in order to maintain backward compatibility with legacy link.
+
+先の例では、ユーザ定義ネットワーク ``isolated_nw`` において ``container_2`` は自動的に ``container_3`` の名前解決が可能でした。しかし、デフォルトの ``bridge`` ネットワークでは自動的に名前解決が行われません。そのため、後方互換性のある :doc:`レガシーのリンク機能 <default_network/dockerlinks>` を使い続ける必要が予想されます。
+
+.. The legacy link provided 4 major functionalities to the default bridge network.
+
+``レガシーのリンク`` はデフォルト ``bridge`` ネットワーク上で４つの主な機能を提供します。
+
+..    name resolution
+    name alias for the linked container using --link=CONTAINER-NAME:ALIAS
+    secured container connectivity (in isolation via --icc=false)
+    environment variable injection
+
+* 名前解決
+* ``--link=コンテナ名:エイリアス`` の形式で、リンクしたコンテナの別名を指定
+* コンテナの接続性を安全にする（ ``--icc=false`` で隔離する ）
+* 環境変数の挿入
+
+.. Comparing the above 4 functionalities with the non-default user-defined networks such as isolated_nw in this example, without any additional config, docker network provides
+
+上の４つの機能を、例で使ったデフォルトではない ``isolated_nw`` のようなユーザ定義ネットワークと比較します。 ``docker network`` では追加設定を行わないものとします。
+
+..    automatic name resolution using DNS
+    automatic secured isolated environment for the containers in a network
+    ability to dynamically attach and detach to multiple networks
+    supports the --link option to provide name alias for the linked container
+
+* DNS を使い自動的に名前解決
+* ネットワーク内のコンテナに対して、安全に隔離された環境を自動的に
+* 複数のネットワークを動的に装着・取り外しできる能力
+* リンクしているコンテナに対しては ``--link`` オプションでエイリアス名を指定
+
+Continuing with the above example, create another container container_4 in i.. solated_nw with --link to provide additional name resolution using alias for other containers in the same network.
+
+先ほどの例で説明を続けると、 ``isolated_nw`` において別のコンテナ ``container_4``  を作成します。このとき、 ``--link`` オプションを付けると、同一ネットワーク上の別のコンテナが名前解決に使える別名を指定できます。
+
+.. code-block:: bash
+
+   $ docker run --net=isolated_nw -itd --name=container4 --link container5:c5 busybox
+01b5df970834b77a9eadbaff39051f237957bd35c4c56f11193e0594cfd5117c
+
+.. With the help of --link container4 will be able to reach container5 using the aliased name c5 as well.
+
+``--link`` の助けにより、 ``container4`` は ``container5`` に接続するのに、 ``c5`` という別名でも接続できます。
+
+.. Please note that while creating container4, we linked to a container named container5 which is not created yet. That is one of the differences in behavior between the legacy link in default bridge network and the new link functionality in user defined networks. The legacy link is static in nature and it hard-binds the container with the alias and it doesn't tolerate linked container restarts. While the new link functionality in user defined networks are dynamic in nature and supports linked container restarts including tolerating ip-address changes on the linked container.
+
+container 4 の作成時、リンクしようとする ``container5`` という名前のコンテナは、まだ作成されていないに注意してください。これが、デフォルトの ``bridge`` における  ``レガシーのリンク`` 機能と、ユーザ定義ネットワークにおける新しい ``リンク`` 機能における挙動の違いの１つです。 ``レガシーのリンク`` は静的なものです。コンテナに対するエイリアス名は固定されるものであり、リンク対象のコンテナを再起動するのは許容されません。一方のユーザ定義ネットワークにおける新 ``リンク`` 機能であれば、動的な性質を持っています。リンク対象のコンテナの再起動は許容されますし、IP アドレスの変更もできます。
+
+.. Now let us launch another container named container5 linking container4 to c4.
+
+それでは ``container4`` を c4 としてリンクする ``container5`` という名前の別コンテナを起動しましょう。
+
+.. code-block:: bash
+
+   $ docker run --net=isolated_nw -itd --name=container5 --link container4:c4 busybox
+   72eccf2208336f31e9e33ba327734125af00d1e1d2657878e2ee8154fbb23c7a
+
+.. As expected, container4 will be able to reach container5 by both its container name and its alias c5 and container5 will be able to reach container4 by its container name and its alias c4.
+
+予想通り、 ``container4`` は ``container5`` に対してアクセスできるのは、コンテナ名とエイリアスである c5 の両方です。そして、 ``container5`` は ``container4`` に対しても、コンテナ名とエイリアスである c4 でアクセスできます。
+
+.. code-block:: bash
+
+   $ docker attach container4
+   / # ping -w 4 c5
+   PING c5 (172.25.0.5): 56 data bytes
+   64 bytes from 172.25.0.5: seq=0 ttl=64 time=0.070 ms
+   64 bytes from 172.25.0.5: seq=1 ttl=64 time=0.080 ms
+   64 bytes from 172.25.0.5: seq=2 ttl=64 time=0.080 ms
+   64 bytes from 172.25.0.5: seq=3 ttl=64 time=0.097 ms
+   
+   --- c5 ping statistics ---
+   4 packets transmitted, 4 packets received, 0% packet loss
+   round-trip min/avg/max = 0.070/0.081/0.097 ms
+   
+   / # ping -w 4 container5
+   PING container5 (172.25.0.5): 56 data bytes
+   64 bytes from 172.25.0.5: seq=0 ttl=64 time=0.070 ms
+   64 bytes from 172.25.0.5: seq=1 ttl=64 time=0.080 ms
+   64 bytes from 172.25.0.5: seq=2 ttl=64 time=0.080 ms
+   64 bytes from 172.25.0.5: seq=3 ttl=64 time=0.097 ms
+   
+   --- container5 ping statistics ---
+   4 packets transmitted, 4 packets received, 0% packet loss
+   round-trip min/avg/max = 0.070/0.081/0.097 ms
+
+.. code-block:: bash
+
+   $ docker attach container5
+   / # ping -w 4 c4
+   PING c4 (172.25.0.4): 56 data bytes
+   64 bytes from 172.25.0.4: seq=0 ttl=64 time=0.065 ms
+   64 bytes from 172.25.0.4: seq=1 ttl=64 time=0.070 ms
+   64 bytes from 172.25.0.4: seq=2 ttl=64 time=0.067 ms
+   64 bytes from 172.25.0.4: seq=3 ttl=64 time=0.082 ms
+   
+   --- c4 ping statistics ---
+   4 packets transmitted, 4 packets received, 0% packet loss
+   round-trip min/avg/max = 0.065/0.070/0.082 ms
+   
+   / # ping -w 4 container4
+   PING container4 (172.25.0.4): 56 data bytes
+   64 bytes from 172.25.0.4: seq=0 ttl=64 time=0.065 ms
+   64 bytes from 172.25.0.4: seq=1 ttl=64 time=0.070 ms
+   64 bytes from 172.25.0.4: seq=2 ttl=64 time=0.067 ms
+   64 bytes from 172.25.0.4: seq=3 ttl=64 time=0.082 ms
+   
+   --- container4 ping statistics ---
+   4 packets transmitted, 4 packets received, 0% packet loss
+   round-trip min/avg/max = 0.065/0.070/0.082 ms
+
+.. Similar to the legacy link functionality the new link alias is localized to a container and the aliased name has no meaning outside of the container using the --link.
+
+レガシーのリンク機能と新しいリンクのエイリアスは、コンテナに対してエイリアス名を指定するという意味では似ています。しかし、コンテナに ``--link`` を指定しなければ意味がありません。
+
+.. Also, it is important to note that if a container belongs to multiple networks, the linked alias is scoped within a given network. Hence the containers can be linked to different aliases in different networks.
+
+また、重要な注意点として、コンテナが複数のネットワークに所属している場合、リンクのエイリアス（別名）が有効な範囲は所属ネットワーク全体に適用されます。そのため、別のネットワークでは異なったエイリアスとしてリンクされることがあります。
+
+.. Extending the example, let us create another network named local_alias
+
+先ほどの例を進めます。 ``local_alias`` という別のネットワークを作成しましょう。
+
+.. code-block:: bash
+
+   $ docker network create -d bridge --subnet 172.26.0.0/24 local_alias
+   76b7dc932e037589e6553f59f76008e5b76fa069638cd39776b890607f567aaa
+
+.. let us connect container4 and container5 to the new network local_alias
+
+``container4`` と ``container5`` を新しい ``local_aliases`` ネットワークに接続します。
+
+.. code-block:: bash
+
+   $ docker network connect --link container5:foo local_alias container4
+   $ docker network connect --link container4:bar local_alias conta
+
+.. code-block:: bash
+
+   $ docker attach container4
+   
+   / # ping -w 4 foo
+   PING foo (172.26.0.3): 56 data bytes
+   64 bytes from 172.26.0.3: seq=0 ttl=64 time=0.070 ms
+   64 bytes from 172.26.0.3: seq=1 ttl=64 time=0.080 ms
+   64 bytes from 172.26.0.3: seq=2 ttl=64 time=0.080 ms
+   64 bytes from 172.26.0.3: seq=3 ttl=64 time=0.097 ms
+   
+   --- foo ping statistics ---
+   4 packets transmitted, 4 packets received, 0% packet loss
+   round-trip min/avg/max = 0.070/0.081/0.097 ms
+   
+   / # ping -w 4 c5
+   PING c5 (172.25.0.5): 56 data bytes
+   64 bytes from 172.25.0.5: seq=0 ttl=64 time=0.070 ms
+   64 bytes from 172.25.0.5: seq=1 ttl=64 time=0.080 ms
+   64 bytes from 172.25.0.5: seq=2 ttl=64 time=0.080 ms
+   64 bytes from 172.25.0.5: seq=3 ttl=64 time=0.097 ms
+   
+   --- c5 ping statistics ---
+   4 packets transmitted, 4 packets received, 0% packet loss
+   round-trip min/avg/max = 0.070/0.081/0.097 ms
+
+.. Note that the ping succeeds for both the aliases but on different networks. Let us conclude this section by disconnecting container5 from the isolated_nw and observe the results
+
+異なったネットワーク上でも ping が成功するのに注目してください。このセクションの結論を導くために、 ``container5`` を ``isolated_nw`` から切り離し、その結果を観察しましょう。
+
+.. code-block:: bash
+
+   $ docker network disconnect isolated_nw container5
+   
+   $ docker attach container4
+   
+   / # ping -w 4 c5
+   ping: bad address 'c5'
+   
+   / # ping -w 4 foo
+   PING foo (172.26.0.3): 56 data bytes
+   64 bytes from 172.26.0.3: seq=0 ttl=64 time=0.070 ms
+   64 bytes from 172.26.0.3: seq=1 ttl=64 time=0.080 ms
+   64 bytes from 172.26.0.3: seq=2 ttl=64 time=0.080 ms
+   64 bytes from 172.26.0.3: seq=3 ttl=64 time=0.097 ms
+   
+   --- foo ping statistics ---
+   4 packets transmitted, 4 packets received, 0% packet loss
+   round-trip min/avg/max = 0.070/0.081/0.097 ms
+
+.. In conclusion, the new link functionality in user defined networks provides all the benefits of legacy links while avoiding most of the well-known issues with legacy links.
+
+結論として、ユーザ定義ネットワークにおける新しいリンク機能は、 従来のリンク機能が抱えていた問題を解決しているため、あらゆる面で ``レガシーのリンク`` より優位と言えます。
+
+.. One notable missing functionality compared to legacy links is the injection of environment variables. Though very useful, environment variable injection is static in nature and must be injected when the container is started. One cannot inject environment variables into a running container without significant effort and hence it is not compatible with docker network which provides a dynamic way to connect/ disconnect containers to/from a network.
+
+``レガシーのリンク`` 機能と比較すると、環境変数の挿入が、失われた機能の１つとして注目すべきです。環境変数の挿入は非常に便利なものです。しかし、静的な性質であり、コンテナが開始する時に必ず挿入する必要がありました。環境変数を挿入できなかったのは、 ``docker network`` と互換性を保とうとするからです。これはネットワークにコンテナを動的に接続／切断する手法であり、環境変数の挿入は、実行中のコンテナに対して影響を与えてしまうからです。
+
+.. Network-scoped alias
+
+.. _network-scoped-alias:
+
+ネットワーク範囲のエイリアス
+----------------------------------------
+
+.. While links provide private name resolution that is localized within a container, the network-scoped alias provides a way for a container to be discovered by an alternate name by any other container within the scope of a particular network. Unlike the link alias, which is defined by the consumer of a service, the network-scoped alias is defined by the container that is offering the service to the network.
+
+``リンク`` 機能はコンテナ内におけるプライベートな名前解決を提供します。ネットワークを範囲としたエイリアス（network-scoped alias）とは、特定のネットワークの範囲内でコンテナのエイリアス名を有効にします。
+
+.. Continuing with the above example, create another container in isolated_nw with a network alias.
+
+先ほどの例を続けます。 ``isolated_nw`` でネットワーク・エイリアスを有効にした別のコンテナを起動します。
+
+.. code-block:: bash
+
+   $ docker run --net=isolated_nw -itd --name=container6 --net-alias app busybox
+   8ebe6767c1e0361f27433090060b33200aac054a68476c3be87ef4005eb1df17
+
+.. code-block:: bash
+
+   $ docker attach container4
+   / # ping -w 4 app
+   PING app (172.25.0.6): 56 data bytes
+   64 bytes from 172.25.0.6: seq=0 ttl=64 time=0.070 ms
+   64 bytes from 172.25.0.6: seq=1 ttl=64 time=0.080 ms
+   64 bytes from 172.25.0.6: seq=2 ttl=64 time=0.080 ms
+   64 bytes from 172.25.0.6: seq=3 ttl=64 time=0.097 ms
+   
+   --- app ping statistics ---
+   4 packets transmitted, 4 packets received, 0% packet loss
+   round-trip min/avg/max = 0.070/0.081/0.097 ms
+   
+   / # ping -w 4 container6
+   PING container5 (172.25.0.6): 56 data bytes
+   64 bytes from 172.25.0.6: seq=0 ttl=64 time=0.070 ms
+   64 bytes from 172.25.0.6: seq=1 ttl=64 time=0.080 ms
+   64 bytes from 172.25.0.6: seq=2 ttl=64 time=0.080 ms
+   64 bytes from 172.25.0.6: seq=3 ttl=64 time=0.097 ms
+   
+   --- container6 ping statistics ---
+   4 packets transmitted, 4 packets received, 0% packet loss
+   round-trip min/avg/max = 0.070/0.081/0.097 ms
+
+``container6`` を ``local_alias`` ネットワークに接続しますが、異なったネットワーク範囲のエイリアスを指定します。
+
+.. code-block:: bash
+
+   $ docker network connect --alias scoped-app local_alias container6
+
+この例における ``container6`` は、 ``isolated_nw`` では ``app`` とエイリアス名が指定されており、 ``local_alias`` では ``scoped-app`` とエイリアス名が指定されています。
+
+.. Let’s try to reach these aliases from container4 (which is connected to both these networks) and container5 (which is connected only to isolated_nw).
+
+``container4`` （両方のネットワークに接続）と ``container5`` （ ``isolated_nw`` のみ接続 ）から接続できるか確認しましょう。
+
+.. code-block:: bash
+
+   $ docker attach container4
+   
+   / # ping -w 4 scoped-app
+   PING foo (172.26.0.5): 56 data bytes
+   64 bytes from 172.26.0.5: seq=0 ttl=64 time=0.070 ms
+   64 bytes from 172.26.0.5: seq=1 ttl=64 time=0.080 ms
+   64 bytes from 172.26.0.5: seq=2 ttl=64 time=0.080 ms
+   64 bytes from 172.26.0.5: seq=3 ttl=64 time=0.097 ms
+   
+   --- foo ping statistics ---
+   4 packets transmitted, 4 packets received, 0% packet loss
+   round-trip min/avg/max = 0.070/0.081/0.097 ms
+   
+   $ docker attach container5
+   
+   / # ping -w 4 scoped-app
+   ping: bad address 'scoped-app'
+
+.. As you can see, the alias is scoped to the network it is defined on and hence only those containers that are connected to that network can access the alias.
+
+ご覧の通り、ネットワークのエイリアス範囲は、ネットワークをエイリアスとしてアクセス可能に定義した範囲内のコンテナのみです。
+
+.. In addition to the above features, multiple containers can share the same network-scoped alias within the same network. For example, let’s launch container7 in isolated_nw with the same alias as container6
+
+この機能に加え、同一ネットワーク内であれば、複数のコンテナが同じネットワーク範囲としてのエイリアス名を共有できます。例えば ``isolated_nw`` に ``container7`` を ``container6`` と同じエイリアスで起動しましょう。
+
+.. code-block:: bash
+
+   $ docker run --net=isolated_nw -itd --name=container7 --net-alias app busybox
+   3138c678c123b8799f4c7cc6a0cecc595acbdfa8bf81f621834103cd4f504554
+
+.. When multiple containers share the same alias, name resolution to that alias will happen to one of the containers (typically the first container that is aliased). When the container that backs the alias goes down or disconnected from the network, the next container that backs the alias will be resolved.
+
+複数のコンテナが同じエイリアス名を共有するとき、エイリアスの名前解決はコンテナのいずれかで行います（通常は初めてエイリアス指定をしたコンテナです）。コンテナが停止してエイリアスが無効になるか、ネットワークから切断すると、次のコンテナが名前解決のエイリアスに使われます。
+
+.. Let us ping the alias app from container4 and bring down container6 to verify that container7 is resolving the app alias.
+
+``container4`` から ``app`` エイリアスに ping をした後、 ``container6`` を停止すると、 ``app`` に対する名前解決が ``container7`` になるのを確認しましょう。
+
+.. code-block:: bash
+
+   $ docker attach container4
+   / # ping -w 4 app
+   PING app (172.25.0.6): 56 data bytes
+   64 bytes from 172.25.0.6: seq=0 ttl=64 time=0.070 ms
+   64 bytes from 172.25.0.6: seq=1 ttl=64 time=0.080 ms
+   64 bytes from 172.25.0.6: seq=2 ttl=64 time=0.080 ms
+   64 bytes from 172.25.0.6: seq=3 ttl=64 time=0.097 ms
+   
+   --- app ping statistics ---
+   4 packets transmitted, 4 packets received, 0% packet loss
+   round-trip min/avg/max = 0.070/0.081/0.097 ms
+   
+   $ docker stop container6
+   
+   $ docker attach container4
+   / # ping -w 4 app
+   PING app (172.25.0.7): 56 data bytes
+   64 bytes from 172.25.0.7: seq=0 ttl=64 time=0.095 ms
+   64 bytes from 172.25.0.7: seq=1 ttl=64 time=0.075 ms
+   64 bytes from 172.25.0.7: seq=2 ttl=64 time=0.072 ms
+   64 bytes from 172.25.0.7: seq=3 ttl=64 time=0.101 ms
+   
+   --- app ping statistics ---
+   4 packets transmitted, 4 packets received, 0% packet loss
+   round-trip min/avg/max = 0.072/0.085/0.101 ms
+
 
 .. Disconnecting containers
 
@@ -393,23 +798,27 @@ Docker エンジンをインストールすると、Docker エンジンは自動
    
    
    $ docker network inspect isolated_nw
-   [[
+   [
        {
            "Name": "isolated_nw",
-           "Id": "f836c8deb6282ee614eade9d2f42d590e603d0b1efa0d99bd88b88c503e6ba7a",
+           "Id": "06a62f1c73c4e3107c0f555b7a5f163309827bfbbf999840166065a8f35455a8",
            "Scope": "local",
            "Driver": "bridge",
            "IPAM": {
                "Driver": "default",
                "Config": [
-                   {}
+                   {
+                       "Subnet": "172.21.0.0/16",
+                       "Gateway": "172.21.0.1/16"
+                   }
                ]
            },
            "Containers": {
-               "c282ca437ee7e926a7303a64fc04109740208d2c20e442366139322211a6481c": {
-                   "EndpointID": "e5d077f9712a69c6929fdd890df5e7c1c649771a50df5b422f7e68f0ae61e847",
-                   "MacAddress": "02:42:ac:15:00:03",
-                   "IPv4Address": "172.21.0.3/16",
+               "467a7863c3f0277ef8e661b38427737f28099b61fa55622d6c30fb288d88c551": {
+                   "Name": "container3",
+                   "EndpointID": "dffc7ec2915af58cc827d995e6ebdc897342be0420123277103c40ae35579103",
+                   "MacAddress": "02:42:ac:19:03:03",
+                   "IPv4Address": "172.25.3.3/16",
                    "IPv6Address": ""
                }
            },
@@ -445,7 +854,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
              RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
    
    / # ping container3
-   PING container3 (172.20.0.1): 56 data bytes
+   PING container3 (172.25.3.3): 56 data bytes
    ^C
    --- container3 ping statistics ---
    2 packets transmitted, 0 packets received, 100% packet loss
@@ -465,6 +874,23 @@ Docker エンジンをインストールすると、Docker エンジンは自動
    2 packets transmitted, 2 packets received, 0% packet loss
    round-trip min/avg/max = 0.119/0.146/0.174 ms
    / #
+
+.. There are certain scenarios such as ungraceful docker daemon restarts in multi-host network, where the daemon is unable to cleanup stale connectivity endpoints. Such stale endpoints may cause an error container already connected to network when a new container is connected to that network with the same name as the stale endpoint. In order to cleanup these stale endpoints, first remove the container and force disconnect (docker network disconnect -f) the endpoint from the network. Once the endpoint is cleaned up, the container can be connected to the network.
+
+複数ホストのネットワークにおいて、不意に docker デーモンの再起動が発生するシナリオを考えて見ます。デーモンは接続していたエンドポイントとの接続性を解消していないものとします。エンドポイントでは、新しいコンテナがかつてと同じ名前で接続しようとしても ``container already connected to netwok`` （コンテナは既にネットワークに接続している）とエラーがでるかもしれません。エンドポイントの認識が古いのを解消するには、まずはじめにコンテナを削除し、エンドポイントのネットワークから強制的に切断します（ ``docker network disconnect -f`` ）。エンドポイントがクリーンアップされれば、コンテナはネットワークに接続できるようになります。
+
+.. code-block:: bash
+
+   $ docker run -d --name redis_db --net multihost redis
+   ERROR: Cannot start container bc0b19c089978f7845633027aa3435624ca3d12dd4f4f764b61eac4c0610f32e: container already connected to network multihost
+   
+   $ docker rm -f redis_db
+   $ docker network disconnect -f multihost redis_db
+   
+   $ docker run -d --name redis_db --net multihost redis
+   7d986da974aeea5e9f7aca7e510bdb216d58682faa83a9040c2f2adc0544795a
+
+
 
 .. Remove a network
 
@@ -486,13 +912,16 @@ Docker エンジンをインストールすると、Docker エンジンは自動
    [
        {
            "Name": "isolated_nw",
-           "Id": "f836c8deb6282ee614eade9d2f42d590e603d0b1efa0d99bd88b88c503e6ba7a",
+           "Id": "06a62f1c73c4e3107c0f555b7a5f163309827bfbbf999840166065a8f35455a8",
            "Scope": "local",
            "Driver": "bridge",
            "IPAM": {
                "Driver": "default",
                "Config": [
-                   {}
+                   {
+                       "Subnet": "172.21.0.0/16",
+                       "Gateway": "172.21.0.1/16"
+                   }
                ]
            },
            "Containers": {},
