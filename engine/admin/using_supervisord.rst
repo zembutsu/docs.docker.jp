@@ -1,22 +1,26 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/articles/using_supervisord/
-.. doc version: 1.9
-.. check date: 2015/12/29
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/admin/using_supervisord/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/using_supervisord.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/admin/using_supervisord.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/master/docs/articles/using_supervisord.md
+.. check date: 2016/02/13
+.. ---------------------------------------------------------------------------
 
 .. Using Supervisor with Docker
 
 .. _using-pupet:
 
 =======================================
-Supervisor と Docker を使う
+Supervisor を Docker で使う
 =======================================
 
 ..    Note: - If you don’t like sudo then see Giving non-root access
 
 .. note::
 
-   **sudo を使いたくなければ**、 :ref:`ルート以外でアクセスするには  <giving-non-root-access>` をご覧ください。
+   **sudo を使いたくなければ**、 :ref:`ルート以外でアクセスする方法  <giving-non-root-access>` をご覧ください。
 
 .. Traditionally a Docker container runs a single process when it is launched, for example an Apache daemon or a SSH server daemon. Often though you want to run more than one process in a container. There are a number of ways you can achieve this ranging from using a simple Bash script as the value of your container’s CMD instruction to installing a process management tool.
 

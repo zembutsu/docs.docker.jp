@@ -1,8 +1,12 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/articles/puppet/
-.. doc version: 1.9
-.. check date: 2015/12/29
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/admin/puppet/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/puppet.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/admin/puppet.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/master/docs/articles/puppet.md
+.. check date: 2016/02/13
+.. ---------------------------------------------------------------------------
 
 .. Using Puppet
 
@@ -16,7 +20,7 @@ Puppet を使う
 
 .. note::
 
-   このインストール方法は、コミュニティ貢献によるものです。 ``公式の`` インストール方法は `Ubuntu <https://docs.docker.com/engine/installation/ubuntulinux/>`_ を使います。このバージョンは情報が古いかもしれません。
+   このインストール方法は、コミュニティによる貢献です。 ``公式の`` インストール方法は `Ubuntu <https://docs.docker.com/engine/installation/ubuntulinux/>`_ を使います。このバージョンは情報が古いかもしれません。
 
 .. Requirements
 

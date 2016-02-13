@@ -1,14 +1,20 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/articles/configuring/
-.. doc version: 1.9
-.. check date: 2015/12/24
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/admin/configuring/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/configuring.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/admin/configuring.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/master/docs/articles/configuring.md
+.. check date: 2016/02/13
+.. ---------------------------------------------------------------------------
 
-.. Configuring and runnin Docker on various distributions
+.. Configuring and running Docker on various distributions
 
-=======================================
-Docker の設定と実行
-=======================================
+.. _configuring-and-running Docker on various distributions:
+
+============================================================
+様々なディストリビューションにおける Docker の設定と実行
+============================================================
 
 .. After successfully installing Docker, the docker daemon runs with its default configuration.
 
@@ -132,6 +138,10 @@ Ubuntu
 Docker の設定
 --------------------
 
+.. The instructions below depict configuring Docker on a system that uses upstart as the process manager. As of Ubuntu 15.04, Ubuntu uses systemd as its process manager. For Ubuntu 15.04 and higher, refer to control and configure Docker with systemd.
+
+以下の例は、プロセス・マネージャに ``upstart`` を使い Docker システムを設定する方法です。Ubuntu 15.04 以降の Ubuntu はプロセス・マネージャに ``systemd`` を使います。Ubuntu 15.04 以降は、 :doc:`systemd` をご覧ください。
+
 .. You configure the docker daemon in the /etc/default/docker file on your system. You do this by specifying values in a DOCKER_OPTS variable.
 
 システム上にある ``docker`` デーモンの設定は、 ``/etc/default/docker`` ファイルを編集します。ここに ``DOCKER_OPTS`` 環境変数を指定可能です。
@@ -146,7 +156,7 @@ Docker オプションの設定を変更するには：
 
 ..    If you don’t have one, create the /etc/default/docker file on your host. Depending on how you installed Docker, you may already have this file.
 
-2. ホスト上に ``/etc/default/docker`` ファイルがなければ咲く壊死します。Docker のインストール方法によっては、既にファイルが作成されている場合があります。
+2. ホスト上に ``/etc/default/docker`` ファイルがなければ作成します。Docker のインストール方法によっては、既にファイルが作成されている場合があります。
 
 ..    Open the file with your favorite editor.
 
@@ -265,13 +275,17 @@ Docker をブート時に起動するようにするには、次のように実�
 Docker の設定
 --------------------
 
-.. You configure the docker daemon in the /etc/sysconfig/docker file on your host. You do this by specifying values in a variable. For CentOS 7.x and RHEL 7.x, the name of the variable is OPTIONS and for CentOS 6.x and RHEL 6.x, the name of the variable is other_args. For this section, we will use CentOS 7.x as an example to configure the docker daemon.
+.. For CentOS 7.x and RHEL 7.x you can control and configure Docker with systemd.
 
-システム上にある ``docker`` デーモンの設定は ``/etc/default/docker`` ファイルを編集します。ここで様々な変数を設定します。CentOS 7.x と RHEL 7.x では、この変数名が ``OPTIONS`` になります。CentOS 6.x と RHEL 6.x では、この変数名は ``other_args`` です。このセクションでは CentOS 7 を例にした ``docker`` デーモンを説明します。
+CentOS 7.x と RHEL 7.x では :doc:`systemd で Docker を管理・設定できます <systemd>` 。
 
-..  By default, systemd services are located either in /etc/systemd/service, /lib/systemd/system or /usr/lib/systemd/system. The docker.service file can be found in either of these three directories depending on your host.
+.. Previously, for CentOS 6.x and RHEL 6.x you would configure the docker daemon in the /etc/sysconfig/docker file on your system. You would do this by specifying values in a other_args variable. For a short time in CentOS 7.x and RHEL 7.x you would specify values in a OPTIONS variable. This is no longer recommended in favor of using systemd directly.
 
-デフォルトでは、systemd サービスは ``/etc/systemd/service`` 、 ``/lib/systemd/system`` 、 ``/usr/lib/systemd/system`` にあります。 ``docker.service`` ファイルはホストに依存して、いすれかのディレクトリに置かれています。
+以前の CentOS 6.x や RHEL 6.x の場合は、システム上にある ``docker`` デーモンの設定は ``/etc/default/docker`` ファイルを編集し、ここで様々な変数を設定します。CentOS 7.x と RHEL 7.x では、この変数名が ``OPTIONS`` になります。CentOS 6.x と RHEL 6.x では、この変数名は ``other_args`` です。このセクションでは CentOS 7 を例にした ``docker`` デーモンを説明します。
+
+.. For this section, we will use CentOS 7.x as an example to configure the docker daemon.
+
+このセクションでは、CentOS 7.x で ``docker`` デーモンを設定する例をみていきます。
 
 .. To configure Docker options:
 
@@ -281,25 +295,35 @@ Docker オプションの設定を変更するには：
 
 1. ホストに ``sudo`` や ``root`` 特権を持つユーザでログインします。
 
-..     If you don’t have one, create the /etc/sysconfig/docker file on your host. Depending on how you installed Docker, you may already have this file.
+.. Create the /etc/systemd/system/docker.service.d directory.
 
-2. ホスト上に ``/etc/default/docker`` ファイルがなければ咲く壊死します。Docker のインストール方法によっては、既にファイルが作成されている場合があります。
-
-..     Open the file with your favorite editor.
-
-3. 任意のエディタでファイルを開きます。
+2. ``/etc/systemd/system/docker.service.d`` ディレクトリを作成します。
 
 .. code-block:: bash
 
-   $ sudo vi /etc/sysconfig/docker
+   $ sudo mkdir /etc/systemd/system/docker.service.d
 
-..    Add a OPTIONS variable with the following options. These options are appended to the command that starts the docker daemon.
+.. Create a /etc/systemd/system/docker.service.d/docker.conf file. 
 
-4. ``OPTIONS`` 変数に、次のオプションを指定します。これらのオプションは ``docker`` デーモンを実行する時に追加されるものです。
+3. ``/etc/systemd/system/docker.service.d/docker.conf`` ファイルを作成します。
+
+.. Open the file with your favorite editor
+
+4. 任意のエディタでファイルを開きます。
 
 .. code-block:: bash
 
-   OPTIONS="-D --tls=true --tlscert=/var/docker/server.pem --tlskey=/var/docker/serverkey.pem -H tcp://192.168.59.3:2376"
+   $ sudo vi /etc/systemd/system/docker.service.d/docker.conf
+
+.. Override the ExecStart configuration from your docker.service file to customize the docker daemon. To modify the ExecStart configuration you have to specify an empty configuration followed by a new one as follows:
+
+5. ``docker`` デーモンの設定を変更するため、 ``docker.service`` ファイルの ``ExecStart`` 設定を上書きします。 ``ExecStart`` 設定を変更するためには、新しい設定行を追加する前に、次のように空の設定行を追加します。
+
+.. code-block:: bash
+
+   [Service]
+   ExecStart=
+   ExecStart=/usr/bin/docker daemon -H fd:// -D --tls=true --tlscert=/var/docker/server.pem --tlskey=/var/docker/serverkey.pem -H tcp://192.168.59.3:2376
 
 .. These options :
 
@@ -319,11 +343,19 @@ Docker オプションの設定を変更するには：
 
 ..    Save and close the file.
 
-5. ファイルを保存して閉じます。
+6. ファイルを保存して閉じます。
+
+.. Flush change
+
+7. 変更を反映（フラッシュ）します。
+
+.. code-block:: bash
+
+   $ sudo systemctl daemon-reload
 
 ..    Restart the docker daemon.
 
-6. ``docker`` デーモンを再起動します。
+8. ``docker`` デーモンを再起動します。
 
 .. code-block:: bash
 
@@ -331,7 +363,7 @@ Docker オプションの設定を変更するには：
 
 ..     Verify that the docker daemon is running as specified with the ps command.
 
-7. ``docker`` デーモンが指定したオプションで実行しているか、 ``ps`` コマンドで確認します。
+9. ``docker`` デーモンが指定したオプションで実行しているか、 ``ps`` コマンドで確認します。
 
 .. code-block:: bash
 

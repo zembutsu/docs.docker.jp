@@ -1,15 +1,19 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/articles/host_integration/
-.. doc version: 1.9
-.. check date: 2015/12/24
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/admin/host_integration/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/host_integration.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/admin/host_integration.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/master/docs/articles/host_integration.md
+.. check date: 2016/02/13
+.. ---------------------------------------------------------------------------
 
 .. Automatically start containers
 
 .. _host_integration-automatically-start-containers:
 
 =======================================
-コンテナ自動起動
+コンテナの自動起動
 =======================================
 
 .. As of Docker 1.2, restart policies are the built-in Docker mechanism for restarting containers when they exit. If set, restart policies will be used when the Docker daemon starts up, as typically happens after a system boot. Restart policies will ensure that linked containers are started in the correct order.

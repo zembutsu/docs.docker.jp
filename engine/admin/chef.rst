@@ -1,8 +1,12 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/articles/chef/
-.. doc version: 1.9
-.. check date: 2015/12/28
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/admin/chef/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/chef.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/admin/chef.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/master/docs/articles/chef.md
+.. check date: 2016/02/13
+.. ---------------------------------------------------------------------------
 
 .. Using Chef
 
@@ -16,7 +20,7 @@ Chef を使う
 
 .. note::
 
-   このインストール方法は、コミュニティ貢献によるものです。
+   このインストール方法に関するドキュメントは、コミュニティによる貢献です。
 
 .. Requirements
 

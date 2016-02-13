@@ -1,13 +1,17 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/articles/systemd/
-.. doc version: 1.9
-.. check date: 2015/12/25
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/admin/systemd/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/systemd.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/admin/systemd.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/master/docs/articles/systemd.md
+.. check date: 2016/02/13
+.. ---------------------------------------------------------------------------
 
 .. Control and configure Docker with systemd
 
 =======================================
-systemd と Docker の管理・設定
+systemd で Docker の管理・設定
 =======================================
 
 .. Many Linux distributions use systemd to start the Docker daemon. This document shows a few examples of how to customise Docker’s settings.
@@ -125,6 +129,7 @@ Docker イメージ、コンテナ、ボリュームを別々のパーティシ�
    ExecStart=/usr/bin/docker daemon -H fd://
    LimitNOFILE=1048576
    LimitNPROC=1048576
+   TasksMax=1048576
    
    [Install]
    Also=docker.socket
@@ -137,7 +142,7 @@ Docker イメージ、コンテナ、ボリュームを別々のパーティシ�
 
    [Service]
    ExecStart=
-   ExecStart=/usr/bin/docker daemon -H fd:// --graph /mnt/docker-data --storage-driver btrfs
+   ExecStart=/usr/bin/docker daemon -H fd:// --graph="/mnt/docker-data" --storage-driver=overlay
 
 .. You can also set other environment variables in this file, for example, the HTTP_PROXY environment variables described below.
 
@@ -174,7 +179,7 @@ HTTP プロキシ
 
 .. If you are behind a HTTP proxy server, for example in corporate settings, you will need to add this configuration in the Docker systemd service file.
 
-HTTP プロキシサーバの背ろにいる場合、ここでは会社で設定する例として、Docker の systemd サービス・ファイルに設定を追加する必要があるものとします。
+HTTP プロキシサーバの背後にいる場合、ここでは会社で設定する例として、Docker の systemd サービス・ファイルに設定を追加する必要があるものとします。
 
 .. First, create a systemd drop-in directory for the docker service:
 

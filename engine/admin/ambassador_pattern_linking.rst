@@ -1,8 +1,12 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/articles/ambassador_pattern_linking/
-.. doc version: 1.9
-.. check date: 2015/12/25
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/admin/ambassador_pattern_linking/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/ambassador_pattern_linking.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/admin/ambassador_pattern_linking.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/master/docs/articles/ambassador_pattern_linking.md
+.. check date: 2016/02/13
+.. ---------------------------------------------------------------------------
 
 .. Link via an ambassador container
 
@@ -214,5 +218,5 @@ svendowideit/ambassador Dockerfile
        apk add socat && \
        rm -r /var/cache/
    
-   CMD env | grep _TCP= | sed 's/.*_PORT_\([0-9]*\)_TCP=tcp:\/\/\(.*\):\(.*\)/socat -t 100000000 TCP4-LISTEN:\1,fork,reuseaddr TCP4:\2:\3 \& wait/' | sh
+   CMD env | grep _TCP= | sed 's/.*_PORT_\([0-9]*\)_TCP=tcp:\/\/\(.*\):\(.*\)/socat -t 100000000 TCP4-LISTEN:\1,fork,reuseaddr TCP4:\2:\3 \&/' && echo wait) | sh
 

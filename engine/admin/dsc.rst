@@ -1,8 +1,12 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/articles/dsc/
-.. doc version: 1.9
-.. check date: 2015/12/22
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/admin/dsc/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/dsc.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/admin/dsc.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/master/docs/articles/dsc.md
+.. check date: 2016/02/13
+.. ---------------------------------------------------------------------------
 
 .. Using PowerShell DSC
 
@@ -169,7 +173,7 @@ Docker インストール
 
 .. To create or remove containers, you can use the Container parameter with one or more hashtables. The hashtable(s) passed to this parameter can have the following properties:
 
-コンテナを作成・削除するには、１つまたは複数のバッシュ・テーブルを ``Container`` に使います。ハッシュ・テーブルは次のプロパティのパラメータを私ミズ合う。
+コンテナを作成・削除するには、１つまたは複数のバッシュ・テーブルを ``Container`` に使います。ハッシュ・テーブルは次のプロパティのパラメータを指定します。
 
 ..    Name (required)
     Image (required unless Remove property is set to $true)

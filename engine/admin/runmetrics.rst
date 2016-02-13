@@ -1,8 +1,12 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/articles/runmetrics/
-.. doc version: 1.9
-.. check date: 2015/12/25
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/admin/runmetrics/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/runmetrics.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/admin/runmetrics.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/master/docs/articles/runmetrics.md
+.. check date: 2016/02/13
+.. ---------------------------------------------------------------------------
 
 .. Runtime metrics
 
@@ -56,7 +60,7 @@ Linux はプロセス・グループの追跡だけでなく、CPU・メモリ�
 
 .. Enumerating cgroups
 
-.. _enumerating_cgroups:
+.. _enumerating-cgroups:
 
 コントロール・グループの列挙
 ========================================
@@ -221,7 +225,7 @@ Block I/O メトリクス
 
 .. Block I/O is accounted in the blkio controller. Different metrics are scattered across different files. While you can find in-depth details in the blkio-controller file in the kernel documentation, here is a short list of the most relevant ones:
 
-Block I/O は ``blkio`` コントローラを算出します。異なったメトリックスが別々のファイルに散在しています。より詳細な情報を知りたい場合は、カーネル・ドキュメントのの `blkio-controller <https://www.kernel.org/doc/Documentation/cgroups/blkio-controller.txt>`_ をご覧ください。ここでは最も関係が深いものをいくつか扱います。
+Block I/O は ``blkio`` コントローラを算出します。異なったメトリックスが別々のファイルに散在しています。より詳細な情報を知りたい場合は、カーネル・ドキュメントの `blkio-controller <https://www.kernel.org/doc/Documentation/cgroups/blkio-controller.txt>`_ をご覧ください。ここでは最も関係が深いものをいくつか扱います。
 
 ..     blkio.sectors:
 ..     contain the number of 512-bytes sectors read and written by the processes member of the cgroup, device by device. Reads and writes are merged in a single counter.
@@ -352,7 +356,7 @@ IPtables を使うことで（というよりも、インターフェースに�
 
 .. Please review Enumerating Cgroups to learn how to find the cgroup of a process running in the container of which you want to measure network usage. From there, you can examine the pseudo-file named tasks, which contains the PIDs that are in the control group (i.e., in the container). Pick any one of them.
 
-ネットワーク使用状況を調査したいコンテナがあり、そこで実行しているプロセスを見つける方法を学ぶには、 :ref:`<enumerating_cgroups>` を読み直してください。ここからは ``tasks`` と呼ばれる疑似ファイルを例に、コントロール・グループ（つまり、コンテナ）の中にどのような PID があるかを調べましょう。
+ネットワーク使用状況を調査したいコンテナがあり、そこで実行しているプロセスを見つける方法を学ぶには、 :ref:`enumerating-cgroups` を読み直してください。ここからは ``tasks`` と呼ばれる疑似ファイルを例に、コントロール・グループ（つまり、コンテナ）の中にどのような PID があるかを調べましょう。
 
 .. Putting everything together, if the “short ID” of a container is held in the environment variable $CID, then you can do this:
 
