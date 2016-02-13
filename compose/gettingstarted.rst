@@ -152,7 +152,7 @@ Dockerfile の書き方や詳細な情報については、 :ref:`Docker ユー�
 
 .. This Compose file defines two services, web and redis. The web service:
 
-この Compose 用ファイルは ``web`` と ``redis`` という２つのサービスを定義します。
+この Compose 用ファイルは ``web`` と ``redis`` という２つのサービスを定義します。``web`` サービスは次のように設定されます。
 
 .. Builds from the Dockerfile in the current directory.
    Forwards the exposed port 5000 on the container to port 5000 on the host machine.
