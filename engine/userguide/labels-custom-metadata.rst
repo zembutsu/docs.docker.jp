@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/userguide/labels-custom-metadata/
-.. doc version: 1.9
-.. check date: 2015/12/22
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/userguide/labels-custom-metadata/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/labels-custom-metadata.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/userguide/labels-custom-metadata.md
+.. check date: 2016/02/13
+.. ---------------------------------------------------------------------------
 
 .. Apply custom metadata
 
@@ -121,7 +123,7 @@ Docker は ``key`` の使用にあたり、厳密な制約を設けていませ�
 
 .. code-block:: bash
 
-   LABEL [<namespace>.]<key>[=<value>] ...
+   LABEL [<名前空間>.]<key>=<value> ...
 
 .. The LABEL instruction adds a label to your image, optionally with a value. Use surrounding quotes or backslashes for labels that contain white space characters in the <value>:
 
@@ -130,7 +132,8 @@ Docker は ``key`` の使用にあたり、厳密な制約を設けていませ�
 .. code-block:: bash
 
    LABEL vendor=ACME\ Incorporated
-   LABEL com.example.version.is-beta
+   LABEL com.example.version.is-beta=
+   LABEL com.example.version.is-production=""
    LABEL com.example.version="0.0.1-beta"
    LABEL com.example.release-date="2015-02-12"
 
@@ -149,7 +152,8 @@ Docker は ``key`` の使用にあたり、厳密な制約を設けていませ�
 .. code-block:: bash
 
    LABEL vendor=ACME\ Incorporated \
-         com.example.is-beta \
+         com.example.is-beta= \
+         com.example.is-production="" \
          com.example.version="0.0.1-beta" \
          com.example.release-date="2015-02-12"
 
@@ -169,6 +173,7 @@ Docker が推奨するのは、複数のラベルを１つの ``LABEL`` 命令�
    "Labels": {
        "vendor": "ACME Incorporated",
        "com.example.is-beta": "",
+       "com.example.is-production": "",
        "com.example.version": "0.0.1-beta",
        "com.example.release-date": "2015-02-12"
    }
@@ -177,7 +182,7 @@ Docker が推奨するのは、複数のラベルを１つの ``LABEL`` 命令�
    # Inspect labels on container
    $ docker inspect -f "{{json .Config.Labels }}" 4fa6e0f0c678
    
-   {"Vendor":"ACME Incorporated","com.example.is-beta":"","com.example.version":"0.0.1-beta","com.example.release-date":"2015-02-12"}
+   {"Vendor":"ACME Incorporated","com.example.is-beta":"", "com.example.is-production":"", "com.example.version":"0.0.1-beta","com.example.release-date":"2015-02-12"}
    
    # Inspect labels on images
    $ docker inspect -f "{{json .ContainerConfig.Labels }}" myimage
@@ -253,8 +258,13 @@ Docker が推奨するのは、複数のラベルを１つの ``LABEL`` 命令�
 
 これらのラベルは ``docker info`` によるデーモンの出力で表示されます。
 
+.. code-block:: bash
+
    $ docker -D info
    Containers: 12
+   Running: 5
+   Paused: 2
+   Stopped: 5
    Images: 672
    Server Version: 1.9.0
    Storage Driver: aufs
