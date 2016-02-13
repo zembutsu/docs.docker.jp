@@ -25,7 +25,7 @@ network コマンドを使う
 
 .. While not required, it is a good idea to read Understanding Docker network before trying the examples in this section. The examples for the rely on a bridge network so that you can try them immediately. If you would prefer to experiment with an overlay network see the Getting started with multi-host networks instead.
 
-必要としなくても、このセクションの例に取り組む前に、 :doc:`Docker ネットワークの理解 <dockernetworks>` を読むのは良い考えです。例では ``bridge`` ネットワークを使用するため、すぐに試せられます。 ``overlay`` ネットワークを試したいのであれば、 :doc:`マルチホスト・ネットワーキングを始める <https://docs.docker.com/engine/userguide/networking/get-started-overlay/>` をご覧ください。
+必要としなくても、このセクションの例に取り組む前に、 :doc:`Docker ネットワークの理解 <dockernetworks>` を読むのは良い考えです。例では ``bridge`` ネットワークを使用するため、すぐに試せられます。 ``overlay`` ネットワークを試したいのであれば、 :doc:`マルチホスト・ネットワーキングを始める <get-started-overlay>` をご覧ください。
 
 .. Create networks
 
