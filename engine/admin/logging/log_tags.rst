@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/logging/log_tags/
-.. doc version: 1.9
-.. check date: 2015/12/28
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/logging/log_tags/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/logging/log_tags.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/admin/logging/log_tags.md
+.. check date: 2016/02/13
+.. -------------------------------------------------------------------
 
 .. Log Tags
 

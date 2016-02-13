@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/logging/fluentd/
-.. doc version: 1.9
-.. check date: 2015/12/28
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/logging/fluentd/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/logging/fluentd.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/admin/logging/fluentd.md
+.. check date: 2016/02/13
+.. ---------------------------------------------------------------------------
 
 .. Fluentd logging driver
 

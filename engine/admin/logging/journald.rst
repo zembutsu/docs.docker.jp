@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/logging/journald/
-.. doc version: 1.9
-.. check date: 2015/12/28
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/logging/journald/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/logging/journald.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/admin/logging/journald.md
+.. check date: 2016/02/13
+.. -------------------------------------------------------------------
 
 .. Journald logging driver
 
@@ -34,6 +36,8 @@ Journald ロギング・ドライバ
      - 完全な 64 文字のコンテナ ID。
    * - ``CONTAINER_NAME``
      - 開始時のコンテナ名。 ``docker rename`` でコンテナの名称を変えても、新しい名前は journal エントリに反映されない。
+   * - ``CONTAINER_TAG``
+     - コンテナのタグ（ :doc:`ログのタグに関するドキュメント <log_tags.md>` ）
 
 .. Usage
 
