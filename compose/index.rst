@@ -166,7 +166,7 @@ Compose ファイルは ``extends`` フィールドを使うことで、複数�
 
 .. Compose can be used in many different ways. Some common use cases are outlined below.
 
-Compose は様々な使い方ががあります。一般的な利用例は、以下の通りです。
+Compose は様々な使い方があります。一般的な利用例は、以下の通りです。
 
 .. Development environments
 
