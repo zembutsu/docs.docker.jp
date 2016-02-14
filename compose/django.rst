@@ -177,7 +177,7 @@ Django プロジェクトの作成
 
 .. In this section, you set up the database connection for Django.
 
-このセクションでは、Django 向けのセータベースをセットアップします。
+このセクションでは、Django 向けのデータベースをセットアップします。
 
 ..    In your project dirctory, edit the composeexample/settings.py file.
 
