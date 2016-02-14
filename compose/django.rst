@@ -130,7 +130,7 @@ Django プロジェクトの作成
 
 ..     Create the Django project using the docker-compose command.
 
-2. Django プロジェクトを ``docker-compose`` コマンを使って作成します。
+2. Django プロジェクトを ``docker-compose`` コマンドを使って作成します。
 
 .. code-block:: bash
 
