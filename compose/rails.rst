@@ -10,7 +10,7 @@
 
 .. This quick-start guide demonstrates how to use Compose to set up and run a simple Rails/PostgreSQL app. Before starting, you’ll need to have Compose installed.
 
-このクイックスタート・ガイドは、Compose を使い、簡単な Raails/PostgreSQL アプリのセットアップと実行をします。始める前に、 :doc:`Compose のインストール </compose/install>` が必要です。
+このクイックスタート・ガイドは、Compose を使い、簡単な Rails/PostgreSQL アプリのセットアップと実行をします。始める前に、 :doc:`Compose のインストール </compose/install>` が必要です。
 
 .. Define the project
 
