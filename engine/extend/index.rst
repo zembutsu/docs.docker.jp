@@ -1,7 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/extend/
-.. doc version: 1.9
-.. check date: 2016/01/08
+.. URL: https://docs.docker.com/engine/extend/authorization/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/extend/index.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/extend/index.md
+.. check date: 2016/02/15
+.. ---------------------------------------------------------------
 
 .. Extending Docker
 
@@ -16,8 +19,9 @@ Docker の拡張
 現在、プラグインを追加することにより Docker を拡張できます。このセクションは以下の話題を扱います。
 
 * :doc:`plugins`
-* :doc:`plugins_network`
 * :doc:`plugins_volume`
+* :doc:`plugins_network`
+* :doc:`authorization`
 * :doc:`plugin_api`
 
 
