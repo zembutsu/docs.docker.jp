@@ -28,7 +28,7 @@ Docker Engine
    installation/toc.rst
    userguide/index.rst
    admin/index.rst
-   security/index.rst
+   security/toc.rst
    extend/toc.rst
    examples/toc.rst
    reference/index.rst

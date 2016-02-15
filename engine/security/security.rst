@@ -1,8 +1,12 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/articles/security/
-.. doc version: 1.9
-.. check date: 2015/12/24
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/security/security/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/security/security.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/security/security.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/release/v1.9/docs/articles/security.md
+.. check date: 2016/02/15
+.. -------------------------------------------------------------------
 
 .. Docker Security
 
@@ -21,7 +25,7 @@ Docker のセキュリティを検討するにあたり、主に３つの項目�
     loopholes in the container configuration profile, either by default, or when customized by users.
     the “hardening” security features of the kernel and how they interact with containers.
 
-* カーネルに起因するセキュリティと、カーネルがさぽーとする名前空間と cgroups について
+* カーネルに起因するセキュリティと、カーネルがサポートする名前空間と cgroups について
 * Docker デーモン自身が直面する攻撃について
 * コンテナ設定プロファイル（デフォルトでもユーザによってカスタマイズされた時も）における抜け道について
 * カーネルのセキュリティ「硬化」機能と、コンテナへの対応。
@@ -93,7 +97,7 @@ Docker を使ったコンテナ（とアプリケーション）の実行とは�
 
 .. You can also expose the REST API over HTTP if you explicitly decide to do so. However, if you do that, being aware of the above mentioned security implication, you should ensure that it will be reachable only from a trusted network or VPN; or protected with e.g., stunnel and client SSL certificates. You can also secure them with HTTPS and certificates.
 
-明示的に HTTP 上で REST API を晒すことも可能です。しかし、実行すべきではありません。上記で言及したセキュリティ実装のため、信頼できるネットワークや VPN 、 ``stunnel`` やクライアント SSL 証明が利用できる所でのみ使うべきです。より安全にするためには :doc:`HTTPS と証明書 </engine/articles/https>` を利用できます。
+明示的に HTTP 上で REST API を晒すことも可能です。しかし、実行すべきではありません。上記で言及したセキュリティ実装のため、信頼できるネットワークや VPN 、 ``stunnel`` やクライアント SSL 証明が利用できる所でのみ使うべきです。より安全にするためには :doc:`HTTPS と証明書 <https>` を利用できます。
 
 .. The daemon is also potentially vulnerable to other inputs, such as image loading from either disk with ‘docker load’, or from the network with ‘docker pull’. This has been a focus of improvement in the community, especially for ‘pull’ security. While these overlap, it should be noted that ‘docker load’ is a mechanism for backup and restore and is not currently considered a secure mechanism for loading images. As of Docker 1.3.2, images are now extracted in a chrooted subprocess on Linux/Unix platforms, being the first-step in a wider effort toward privilege separation.
 
@@ -242,19 +246,23 @@ AppArmor、SELinux、GRSEC など任意の堅牢化ソリューションを有�
 
 .. Last but not least, if you see interesting security features in other containerization systems, these are simply kernels features that may be implemented in Docker as well. We welcome users to submit issues, pull requests, and communicate via the mailing list.
 
-最後ですが疎かにできないのは、他のコンテナ化システムのセキュリティ機能に興味があれば、Docker と同じように、シンプルにカーネル機能を実装しているのがわかるでしょう。私たちは皆さんからの問題報告、プルリクエスト、メーリングリストにおけるやりとりを歓迎します。
+最後ですが疎かにできないのは、他のコンテナ化システムのセキュリティ機能に興味があれば、それらは Docker と同じようにシンプルにカーネルの機能を実装しているのがわかるでしょう。私たちは皆さんからの問題報告、プルリクエスト、メーリングリストにおけるやりとりを歓迎します。
+
+関連情報
+==========
+
+* :doc:`trust/index`
+* :doc:`seccomp`
+* :doc:`apparmor`
+* `On the Security of Containers (2014) <https://medium.com/@ewindisch/on-the-security-of-containers-2c60ffe25a9e>`_ 
 
 .. References:
-
-.. _security-references:
-
-リファレンス
-====================
+.. リファレンス
+.. ====================
 
 ..    Docker Containers: How Secure Are They? (2013).
     On the Security of Containers (2014).
-
-* `Docker Containers: How Secure Are They? (2013). <http://blog.docker.com/2013/08/containers-docker-how-secure-are-they/>`_ 
-* `On the Security of Containers (2014) <https://medium.com/@ewindisch/on-the-security-of-containers-2c60ffe25a9e>`_ 
+.. * `Docker Containers: How Secure Are They? (2013). <http://blog.docker.com/2013/08/containers-docker-how-secure-are-they/>`_ 
+.. * `On the Security of Containers (2014) <https://medium.com/@ewindisch/on-the-security-of-containers-2c60ffe25a9e>`_ 
 
 
