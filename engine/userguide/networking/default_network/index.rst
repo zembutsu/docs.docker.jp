@@ -34,7 +34,7 @@ Docker ネットワーク機能の導入部では、自分自身で定義した�
    dockerlinks
    binding
    build-bridges
-   donfigure-dns
+   configure-dns
    custom-docker0
    ipv6
 
