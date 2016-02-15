@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. 
-.. doc version: 1.10
+.. URL: https://docs.docker.com/engine/security/trust/index/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/security/trust/index.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/security/trust/index.md
 .. check date: 2016/02/15
-.. -----------------------------------------------------------------------------
+.. -------------------------------------------------------------------
 
 .. engine security/trust toc
 
@@ -10,6 +12,8 @@
 
 信頼のあるイメージを使う
 ========================
+
+以下のトピックがあります。
 
 .. toctree::
    :maxdepth: 3
