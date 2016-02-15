@@ -709,7 +709,7 @@ Add は２つの形式があります。
 
 .. The <dest> is an absolute path, or a path relative to WORKDIR, into which the source will be copied inside the destination container.
 
-``<送信先>`` は絶対パスです。あるいは、パスは ``WORKDIR`` からの相対パスです。ソースににあるものが、対象となる送信先コンテナの中にコピーされます。
+``<送信先>`` は絶対パスです。あるいは、パスは ``WORKDIR`` からの相対パスです。ソースにあるものが、対象となる送信先コンテナの中にコピーされます。
 
 .. code-block:: bash
 
@@ -1138,7 +1138,7 @@ exec 形式の ENTRYPOINT 例
 
 .. You can see from the output of top that the specified ENTRYPOINT is not PID 1.
 
-``top`` の素津力から、 ``ENTRYPOINT`` が ``PID 1`` ではないことが分かるでしょう。
+``top`` の出力から、 ``ENTRYPOINT`` が ``PID 1`` ではないことが分かるでしょう。
 
 .. If you then run docker stop test, the container will not exit cleanly - the stop command will be forced to send a SIGKILL after the timeout:
 
