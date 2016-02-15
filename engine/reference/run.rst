@@ -1536,7 +1536,7 @@ ENTRYPOINT（実行時に処理するデフォルトのコマンド）
 
 .. EXPOSE (incoming ports)
 
-.. _run-expose:
+.. _expose-incoming-ports:
 
 EXPOSE （受信用のポート）
 ------------------------------

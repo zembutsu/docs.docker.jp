@@ -1,88 +1,80 @@
-.. http://docs.docker.com/machine/
+.. -*- coding: utf-8 -*-
+.. URL: https://docs.docker.com/machine/overview/
+.. SOURCE: https://github.com/docker/machine/blob/master/docs/overview.md
+   doc version: 1.10
+      https://github.com/docker/machine/commits/master/docs/overview.md
+.. check date: 2016/02/15
+.. -------------------------------------------------------------------
 
 .. _machine:
 
-.. Docker Machine
+.. Docker Machine Overview
 
 =======================================
-Docker Machine
+Docker Machine 概要
 =======================================
 
-.. Machine lets you create Docker hosts on your computer, on cloud providers, and inside your own data center. It automatically creates hosts, installs Docker on them, then configures the docker client to talk to them. A “machine” is the combination of a Docker host and a configured client.
+.. You can use Docker Machine to:
 
-Machine （マシン）を使えば、自分のコンピュータ上、クラウド・プロバイダ上、またはあなたのデータセンター上に Docker ホスト（Dockerの動作環境）を作ることができます。自動的にホストを作成し、そこに Docker をインストールし、 ``docker`` クライアントがそのホストと通信できるように調整します。ひとつの "machine" は、Docker ホストと、そのホスト用に設定されたクライアントで構成されています。
+Docker Machine を使い、以下の操作ができます。
 
-.. Once you create one or more Docker hosts, Docker Machine supplies a number of commands for managing them. Using these commands you can
+..    Install and run Docker on Mac or Windows
+    Provision and manage multiple remote Docker hosts
+    Provision Swarm clusters
 
-１つまたは複数の Docker ホストを作った後は、Docker Machine はこれらを管理するための、複数のコマンドを提供します。次のようなコマンドが利用可能です。
+* Mac や Windows 上に Docker をインストール・実行
+* 複数のリモート Docker ホストを構築・管理
+* Swarm クラスタの構築（プロビジョン）
 
-..    start, inspect, stop, and restart a host
-    upgrade the Docker client and daemon
-    configure a Docker client to talk to your host
+.. What is Docker Machine?
 
-* Docker ホストに対する start（開始）、inspect（調査）、stop（停止）、restart（再起動）
-* Docker クライアントとデーモンの upgrade（更新）
-* Docker クライアントがホストと通信できるよう configure（設定）
+.. _what-is-docker-machine:
 
-.. Looking for the installation docs?
-
-インストール用のドキュメントをお探しですか？
---------------------------------------------------
-
-.. For Windows or Mac, you can obtain Docker Machine by installing the Docker Toolbox. To read instructions for installing Machine on Linux or for installing Machine alone without Docker Toolbox, see the Machine installation instructions.
-
-Windows か Mac の場合、Docker Machine は `Docker Toolbox <https://www.docker.com/toolbox>`_ のインストールで入手できます。Linux の場合や Docker Toolbox を使わず Machine のみインストールしたい場合は、:doc:`Machine のインストール方法 </machine/install-machine/>` をお読みください。
-
-
-.. Understand Docker Machine basic concepts
-
-Docker Machine 基本概念の理解
+Docker Machine とは何ですか？
 ==============================
 
-.. Docker Machine allows you to provision Docker on virtual machines that reside either on your local system or on a cloud provider. Docker Machine creates a host on a VM and you use the Docker Engine client as needed to build images and create containers on the host.
+.. Docker Machine is a tool that lets you install Docker Engine on virtual hosts, and manage the hosts with docker-machine commands. You can use Machine to create Docker hosts on your local Mac or Windows box, on your company network, in your data center, or on cloud providers like AWS or Digital Ocean.
 
-Docker Machine は仮想マシン上に Docker をプロビジョン（訳者注：自動的にセットアップ）します。仮想マシンはローカルのシステム上だけではなく、クラウド・プロバイダ上でも利用できます。Docker Machine は仮想マシン上にホストを作成し、Docker Engine クライアントで、そのホスト上でイメージの構築やコンテナの作成を行えるようにします。
+.. Using docker-machine commands, you can start, inspect, stop, and restart a managed host, upgrade the Docker client and daemon, and configure a Docker client to talk to your host.
 
-.. To create a virtual machine, you supply Docker Machine with the name of the driver you want use. The driver represents the virtual environment. For example, on a local Linux, Mac, or Windows system the driver is typically Oracle Virtual Box. For cloud providers, Docker Machine supports drivers such as AWS, Microsoft Azure, Digital Ocean and many more. The Docker Machine reference includes a complete list of the supported drivers.
+.. Point the Machine CLI at a running, managed host, and you can run docker commands directly on that host. For example, run docker-machine env default to point to a host called default, follow on-screen instructions to complete env setup, and run docker ps, docker run hello-world, and so forth.
 
-仮想マシンの作成にあたり、Docker machine に対して利用したいドライバ名を伝えます。ドライバとは仮想化の環境を表すものです。例えば、ローカルの Linux、Mac、Windows システムにおける典型的なドライバは、Oracle Virtual Box です。クラウド・プロバイダであれば、Docker Machine は AWS、Microsoft Azure、Digital Ocean など多くのドライバをサポートしています。Docker Machine のリファレンスには、:doc:`サポートしているドライバ一覧 </machine/drivers>` のリストがあります。
 
-.. Since Docker runs on Linux, each VM that Docker Machine provisions relies on a base operating system. For convenience, there are default base operating systems. For the Oracle Virtual Box driver, this base operating system is the boot2docker.iso. For drivers used to connect to cloud providers, the base operating system is Ubuntu 12.04+. You can change this default when you create a machine. The Docker Machine reference includes a complete list of the supported operating systems.
+.. Why should I use it?
 
-Docker は Linux 上で動作するため、Docker Machine がプロビジョンする仮想マシンは、ベース・オペレーティング・システムを頼りとします。便宜上、標準のベース・オペレーティング・システムがあります。Oracle Virtual Box ドライバの場合は、このベース・オペレーティング・システムは ``boot2docker.iso`` になります。ドライバがクラウド・プロバイダに接続する場合、ベース・オペレーティング・システムは Ubuntu 12.04 以上です。仮想マシン作成時、この標準設定を変更可能です。Docker Machine リファレンスには、:doc:`サポートしているオペレーティング・システムの一覧 </machine/drivers/os-base>` があります。
+.. _why-shoud-i-use-it:
 
-.. For each machine you create, the Docker host address is the IP address of the Linux VM. This address is assigned by the docker-machine create subcommand. You use the docker-machine ls command to list the machines you have created. The docker-machine ip <machine-name> command returns a specific host’s IP address.
+なぜ使うべきですか？
+=====================
 
-作成した各マシンにおいて、Docker ホストのアドレスは、その Linux 仮想マシンの IP アドレスです。この IP アドレスは ``docker-machine create`` サブコマンド実行時に割り当てられます。``docker-machine ls`` コマンドは、作成したマシンの一覧を表示します。``docker-machine ip <マシン名>`` コマンドは、指定したホストの IP アドレスを返します。
 
-.. Before you can run a docker command on a machine, you configure your command-line to point to that machine. The docker-machine env <machine-name> subcommand outputs the configuration command you should use. When you run a container on the Docker host, the container’s ports map to ports on the VM.
 
-仮想マシン上で ``docker`` コマンドを実行しなくても、手元のコマンドラインで対象マシン上の docker を操作するよう設定することができます。 ``docker-machine env <マシン名>`` サブコマンドの出力結果が、使うべきコマンドです。Docker ホスト上でコンテナを実行すると、コンテナのポートが仮想マシン上のポートに割り当てられます。
+Machine is currently the only way to run Docker on Mac or Windows, and the best way to provision multiple remote Docker hosts on various flavors of Linux.
 
-.. For a complete list of the docker-machine subcommands, see the Docker Machine subcommand reference.
+Docker Machine has these two broad use cases.
 
-``docker-machine`` サブコマンドの完全な一覧は、 :doc:`Docker Machine サブコマンド・リファレンス </machine/reference>` をご覧ください。
+    I want to run Docker on Mac or Windows
 
-.. Getting help
+Docker Machine on Mac and Windows
 
-ヘルプを得るには
-====================
+If you work primarily on a Mac or Windows laptop or desktop, you need Docker Machine in order to “run Docker” (that is, Docker Engine) locally. Installing Docker Machine on a Mac or Windows box provisions a local virtual machine with Docker Engine, gives you the ability to connect it, and run docker commands.
 
-.. Docker Machine is still in its infancy and under active development. If you need help, would like to contribute, or simply want to talk about the project with like-minded individuals, we have a number of open channels for communication.
+    I want to provision Docker hosts on remote systems
 
-Docker Machine は、初期段階であり活発に開発が進んでいます。ヘルプが必要な場合、貢献したい場合、あるいはプロジェクトの同志と対話したい場合、コミュニケーションがとれるよう、私たちは多くのオープンなチャンネルを用意しています。
+Docker Machine for provisioning multiple systems
 
-..    To report bugs or file feature requests: please use the issue tracker on Github.
-    To talk about the project with people in real time: please join the #docker-machine channel on IRC.
-    To contribute code or documentation changes: please submit a pull request on Github.
+Docker Engine runs natively on Linux systems. If you have a Linux box as your primary system, and want to run docker commands, all you need to do is download and install Docker Engine. However, if you want an efficient way to provision multiple Docker hosts on a network, in the cloud or even locally, you need Docker Machine.
 
-* バグ報告や機能リクエストは、 `GitHub の issue トラッカー <https://github.com/docker/machine/issues>`_ をご利用ください。
-* プロジェクトのメンバーとリアルタイムに会話したければ、IRC の ``#docker-machine`` チャンネルにご参加ください。
-* コードやドキュメントの変更に貢献したい場合は、`GitHub にプルリクエスト <https://github.com/docker/machine/pulls>`_ をお送りください。
+Whether your primary system is Mac, Windows, or Linux, you can install Docker Machine on it and use docker-machine commands to provision and manage large numbers of Docker hosts. It automatically creates hosts, installs Docker Engine on them, then configures the docker clients. Each managed host (”machine”) is the combination of a Docker host and a configured client.
+What’s the difference between Docker Engine and Docker Machine?
 
-.. For more information and resources, please visit our help page.
+When people say “Docker” they typically mean Docker Engine, the client-server application made up of the Docker daemon, a REST API that specifies interfaces for interacting with the daemon, and a command line interface (CLI) client that talks to the daemon (through the REST API wrapper). Docker Engine accepts docker commands from the CLI, such as docker run <image>, docker ps to list running containers, docker images to list images, and so on.
 
-より詳細な情報やリソースについては、私たちの `ヘルプ用ページ(英語) <https://docs.docker.com/project/get-help/>`_ をご覧ください。
+Docker Engine
+
+Docker Machine is a tool for provisioning and managing your Dockerized hosts (hosts with Docker Engine on them). Typically, you install Docker Machine on your local system. Docker Machine has its own command line client docker-machine and the Docker Engine client, docker. You can use Machine to install Docker Engine on one or more virtual systems. These virtual systems can be local (as when you use Machine to install and run Docker Engine in VirtualBox on Mac or Windows) or remote (as when you use Machine to provision Dockerized hosts on cloud providers). The Dockerized hosts themselves can be thought of, and are sometimes referred to as, managed “machines”.
+
+
 
 .. Where to go next
 

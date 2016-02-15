@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/builder
-.. doc version: 1.9
-.. check date: 2015/12/21
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/reference/builder/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/biulder.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/builder.md
+.. check date: 2016/02/15
+.. -------------------------------------------------------------------
 
 .. Dockerfile reference
 
@@ -91,7 +93,7 @@ Docker デーモンは ``Dockerfile`` の命令を1行ずつ実行し、必要�
    Step 2 : RUN apk update &&      apk add socat &&        rm -r /var/cache/
     ---> Using cache
     ---> 21ed6e7fbb73
-   Step 3 : CMD env | grep _TCP= | sed 's/.*_PORT_\([0-9]*\)_TCP=tcp:\/\/\(.*\):\(.*\)/socat -t 100000000 TCP4-LISTEN:\1,fork,reuseaddr TCP4:\2:\3 \& wait/' | sh
+   Step 3 : CMD env | grep _TCP= | sed 's/.*_PORT_\([0-9]*\)_TCP=tcp:\/\/\(.*\):\(.*\)/socat -t 100000000 TCP4-LISTEN:\1,fork,reuseaddr TCP4:\2:\3 \&/' && echo wait) | sh
     ---> Using cache
     ---> 7ea8aef582cc
    Successfully built 7ea8aef582cc
@@ -308,7 +310,7 @@ README を含むファイル以外は、``README-secret.md`` も含め、残り�
 
 README を含む全てのファイル除外します。真ん中の行 ``README-secrect.md`` は最終行の ``!README*.md`` に一致するため、何の影響もありません。
 
-.. You can even use the .dockerignore file to exclude the Dockerfile and .dockerignore files. These files are still sent to the daemon because it needs them to do its job. But the ADD and COPY commands do not copy them to the the image.
+.. You can even use the .dockerignore file to exclude the Dockerfile and .dockerignore files. These files are still sent to the daemon because it needs them to do its job. But the ADD and COPY commands do not copy them to the image.
 
 ``.dockerignore`` ファイルは ``Dockerfile`` と ``.dockerignore`` ファイルの除外にも使えます。それでも、これらのファイルはジョブを処理するためデーモンに送信されます。しかし ``ADD`` と ``COPY`` コマンドは、これらをイメージ内にコピーしません。
 
@@ -628,7 +630,7 @@ ENV
    ENV <key> <value>
    ENV <key>=<value> ...
 
-.. The ENV instruction sets the environment variable <key> to the value <value>. This value will be in the environment of all “descendent” Dockerfile commands and can be replaced inline in many as well.
+.. The ENV instruction sets the environment variable <key> to the value <value>. This value will be in the environment of all “descendant” Dockerfile commands and can be replaced inline in many as well.
 
 ``ENV`` 命令は、環境変数 ``<key>`` と 値 ``<value>`` のセットです。値は ``Dockerfile`` から派生する全てのコマンド環境で利用でき、 :ref:`インラインで置き換え <environment-replacement>` も可能です。
 
@@ -775,6 +777,12 @@ Add は２つの形式があります。
 
 1. 送信先のパスが存在しているかどうか
 2. ファイル単位の原則に従って、ソース・ツリーの内容と衝突しないかどうか「2」を繰り返す
+
+.. Note: Whether a file is identified as a recognized compression format or not is done soley based on the contents of the file, not the name of the file. For example, if an empty file happens to end with .tar.gz this will not be recognized as a compressed file and will not generate any kind of decompression error message, rather the file will simply be copied to the destination.
+
+.. note::
+
+   ファイルが圧縮フォーマットと認識されるか、あるいはファイルの集まりをベースにしているのかは、ファイルの名前では判断しません。例えば、空のファイル名の拡張子が ``.tar.gz`` であれば圧縮ファイルと認識しないため、展開エラーのメッセージを表示 **しません** 。そして単純に送信先にファイルをコピーします。
 
 ..    If <src> is any other kind of file, it is copied individually along with its metadata. In this case, if <dest> ends with a trailing slash /, it will be considered a directory and the contents of <src> will be written at <dest>/base(<src>).
 
@@ -1467,7 +1475,7 @@ STOPSIGNAL
 
    STOPSIGNAL シグナル
 
-The STOPSIGNAL instruction sets the system call signal that will be sent to the container to exit. This signal can be a valid unsigned number that matches a position in the kernel’s syscall table, for instance 9, or a signal name in the format SIGNAME, for instance SIGKILL.
+.. The STOPSIGNAL instruction sets the system call signal that will be sent to the container to exit. This signal can be a valid unsigned number that matches a position in the kernel’s syscall table, for instance 9, or a signal name in the format SIGNAME, for instance SIGKILL.
 
 ``STOPSIGNAL`` 命令は、コンテナを終了するときに送信するための、システム・コール・シグナルを設定します。シグナルはカーネルの syscall テーブルと一致する、有効な番号の必要があります。例えば、9 あるいはシグナル名 SIGNAME や、 SIGKILL などです。
 
@@ -1478,7 +1486,7 @@ Dockerfile の例
 
 .. Below you can see some examples of Dockerfile syntax. If you’re interested in something more realistic, take a look at the list of Dockerization examples.
 
-以下は Dockerfile 構文の例を参照できます。実際の環境に興味があれば、:doc: `Docker 化の例 </engine/examples>` をご覧ください。
+以下は Dockerfile 構文の例を参照できます。実際の環境に興味があれば、:doc: `Docker 化の例 </engine/examples/index>` をご覧ください。
 
 .. code-block:: bash
 
