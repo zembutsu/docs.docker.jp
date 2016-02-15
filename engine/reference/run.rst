@@ -1,7 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/run/
-.. doc version: 1.9
-.. check date: 2016/01/10
+.. URL: https://docs.docker.com/engine/reference/builder/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/biulder.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/builder.md
+.. check date: 2016/02/15
+.. -------------------------------------------------------------------
 
 .. Docker run reference
 
@@ -373,8 +376,11 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
                        'container:<name|id>': reuses another container network stack
                        'host': use the host network stack inside the container
                        'NETWORK': connects the container to user-created network using `docker network create` command
+   --net-alias=[]   : Add network-scoped alias for the container
    --add-host=""    : Add a line to /etc/hosts (host:IP)
    --mac-address="" : Sets the container's Ethernet device's MAC address
+   --ip=""          : Sets the container's Ethernet device's IPv4 address
+   --ip6=""         : Sets the container's Ethernet device's IPv6 address
 
 .. By default, all containers have networking enabled and they can make any outgoing connections. The operator can completely disable networking with docker run --net none which disables all incoming and outgoing networking. In cases like this, you would perform I/O through files or STDIN and STDOUT only.
 
@@ -508,7 +514,7 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
 .. code-block:: bash
 
-   $ docker network create -d overlay my-net
+   $ docker network create -d bridge my-net
    $ docker run --net=my-net -itd --name=container3 busybox
 
 .. Managing /etc/hosts
@@ -655,11 +661,11 @@ Docker は以下の再起動ポリシーをサポートしています。
 
    --rm=false: Automatically remove the container when it exits (incompatible with -d)
 
-..     Note: When you set the --rm flag, Docker also removes the volumes associated with the container when the container is removed. This is similar to running docker rm -v my-container.
+..     Note: When you set the --rm flag, Docker also removes the volumes associated with the container when the container is removed. This is similar to running docker rm -v my-container. Only volumes that are specified without a name are removed. For example, with docker run --rm -v /foo -v awesome:/bar busybox top, the volume for /foo will be removed, but the volume for /bar will not. Volumes inheritted via --volumes-from will be removed with the same logic -- if the original volume was specified with a name it will not be removed.
 
 .. note::
 
-   ``--rm`` フラグを設定すると、コンテナの削除時、関連するボリュームも削除されます。これは ``docker rm -v my-container`` を実行するのと同様です。
+   ``--rm`` フラグを設定すると、コンテナの削除時、関連するボリュームも削除されます。これは ``docker rm -v my-container`` を実行するのと同様です。ただし、名前を指定しなかったボリュームのみが削除されます。例えば ``docker run --rm -v /foo -v awesome:/bar busybox top`` の場合、 ``/foo`` ボリュームは削除されます。しかし、 ``/bar`` は削除されません。 ``--volume-form`` で継承しているボリュームが削除されないのと同じ仕組みです。このように、オリジナルのボリュームに名前が指定されていれば、そこは削除 **されません** 。
 
 .. Security configuration
 
@@ -1178,8 +1184,8 @@ Docker コンテナのプロセスを実行できるのは、デフォルトで�
 
 .. code-block:: bash
 
-   $ docker run -ti --rm --group-add audio  --group-add dbus --group-add 777 busybox id
-   uid=0(root) gid=0(root) groups=10(wheel),29(audio),81(dbus),777
+   $ docker run --rm --group-add audio --group-add nogroup --group-add 777 busybox id
+   uid=0(root) gid=0(root) groups=10(wheel),29(audio),99(nogroup),777
 
 .. Runtime privilege, Linux capabilities, and LXC configuration
 
@@ -1195,6 +1201,12 @@ Docker コンテナのプロセスを実行できるのは、デフォルトで�
    --privileged=false: Give extended privileges to this container
    --device=[]: Allows you to run devices inside the container without the --privileged flag.
    --lxc-conf=[]: Add custom lxc options
+
+.. Note: With Docker 1.10 and greater, the default seccomp profile will also block syscalls, regardless of --cap-add passed to the container. We recommend in these cases to create your own custom seccomp profile based off our default. Or if you don’t want to run with the default seccomp profile, you can pass --security-opt=seccomp:unconfined on run.
+
+.. note::
+
+   Docker 1.10 以降では、デフォルトの seccomp プロフィールでは、コンテナに対して ``--cap-add`` を指定しても、システムコールをブロックします。このような場合に私たちが推奨するのは、私たちの `デフォルト <https://github.com/docker/docker/blob/master/profiles/seccomp/default.json>`_ プロフィールを元に書き換える方法です。あるいはデフォルトの seccomp プロファイルを使いたくないのであれば、実行時に ``--security-opt=seccomp:unconfined`` を指定できます。
 
 .. By default, Docker containers are “unprivileged” and cannot, for example, run a Docker daemon inside a Docker container. This is because by default a container is not allowed to access any devices, but a “privileged” container is given access to all devices (see lxc-template.go and documentation on cgroups devices).
 
@@ -1287,7 +1299,7 @@ Docker コンテナのプロセスを実行できるのは、デフォルトで�
    * - SYSRAWIO
      - ランダム I/O ポート操作  (iopl(2) と ioperm(2)).
    * - SYS_PACCT
-     - acct(2) を使いたプロセスのスイッチ回数のカウント有無
+     - acct(2) を用いたプロセスのスイッチ回数のカウント有無
    * - SYS_ADMIN
      - システム管理オペレーションの処理範囲
    * - SYS_NICE
@@ -1449,7 +1461,7 @@ Docker デーモンはコンテナごとに異なったログ記録ドライバ�
 
 .. The docker logs command is available only for the json-file and journald logging drivers. For detailed information on working with logging drivers, see Configure a logging driver.
 
-``docker logs`` コマンドが使えるのは ``json-file`` と ``journald`` ログ記録ドライバのみです。ログ記録ドライバの詳細な情報については :doc:`ログ記録ドライバの設定 </engine/reference/logging/overview>` をご覧ください。
+``docker logs`` コマンドが使えるのは ``json-file`` と ``journald`` ログ記録ドライバのみです。ログ記録ドライバの詳細な情報については :doc:`ログ記録ドライバの設定 </engine/admin/logging/overview>` をご覧ください。
 
 .. Overriding Dockerfile image defaults
 
@@ -1477,7 +1489,7 @@ Dockerfile イメージのデフォルトより優先
 
 * :ref:`run-cmd`
 * :ref:`run-entrypoint`
-* :ref:`run-expose`
+* :ref:`expose-incoming-ports`
 * :ref:`run-env`
 * :ref:`run-volume`
 * :ref:`run-user`
@@ -1583,9 +1595,14 @@ EXPOSE （受信用のポート）
 
 コンテナ内のポート番号（サービスがリッスンしているポート番号）は、コンテナの外に露出するポート番号（クライアントが接続する番号）と一致させる必要がありません。たとえば、コンテナ内の HTTP サービスがポート 80 をリッスンしているとします（そして、イメージ開発者は Dockerfile で ``EXPOSE 80`` を指定しているでしょう ）。実行する時に、ホスト側のポート 42800 以上が使われます。公開用ポートがホスト側のどのポートに割り当てられたかを確認するには、 ``docker port`` コマンドを使います。
 
-.. If the operator uses --link when starting a new client container, then the client container can access the exposed port via a private networking interface. Linking is a legacy feature that is only supported on the default bridge network. You should prefer the Docker networks feature instead. For more information on this feature, see the Docker network overview””).
+.. If the operator uses --link when starting a new client container, then the client container can access the exposed port via a private networking interface. 
+Linking is a legacy feature that is only supported on the default bridge network. 
+You should prefer the Docker networks feature instead. 
+For more information on this feature, see the Docker network overview””).
 
-新しいクライアント・コンテナを開始する時、オペレータが ``--link`` を指定していると、クライアント・コンテナは、プライベートなネットワーク・インターフェースを経由して、公開用のポートに接続できるようになります。このリンク機能はレガシー（古い）機能であり、サポートされているのはデフォルト・ブリッジ・ネットワーク上のみです。代わりに Docker ネットワーク機能を使うべきでしょう。ネットワーク機能の詳細に関しては :doc:`Docker ネットワーク概要 </engine/userguide/networking/index>` をご覧ください。
+.. If the operator uses --link when starting a new client container in the default bridge network, then the client container can access the exposed port via a private networking interface. If --link is used when starting a container in a user-defined network as described in Docker network overview””), it will provide a named alias for the container being linked to.
+
+デフォルトのブリッジ・ネットワークにおいて、新しいクライアント・コンテナの起動時にオペレータが ``--link`` を指定すると、クライアント・コンテナはプライベートなネットワーク・インターフェースを経由して公開ポートにアクセスできます。 :doc:`Docker ネットワーク概要 </engine/userguide/networking/index>` にあるユーザ定義ネットワーク上で ``--link`` を指定すると、コンテナをリンクするためのエイリアス名を作成します。
 
 .. ENV (environment variables)
 
@@ -1639,6 +1656,29 @@ ENV（環境変数）
 
 似たようなものとして、オペレータは ``-h`` で **hostname （ホスト名）** も定義できます。
 
+
+.. TMPFS (mount tmpfs filesystems)
+
+.. _run-tmpfs:
+
+TMPFS （tmfps ファイルシステムのマウント）
+-----------------------------------------------===
+
+.. code-block:: bash
+
+   --tmpfs=[]: Create a tmpfs mount with: container-dir[:<options>],
+               where the options are identical to the Linux
+               'mount -t tmpfs -o' command.
+
+.. The example below mounts an empty tmpfs into the container with the rw, noexec, nosuid, and size=65536k options.
+
+この例では、オプションで ``rw`` 、 ``noexec`` 、 ``nosuid`` 、 ``size=65536k`` 、コンテナに対して空の tmpfs をマウントしています。
+
+.. code-block:: bash
+
+   $ docker run -d --tmpfs /run:rw,noexec,nosuid,size=65536k my_imaage
+
+
 .. VOLUME (shared filesystems)
 
 .. _run-volume:
@@ -1661,9 +1701,15 @@ VOLUME（共有ファイルシステム）
 
    ホスト側のパスを自動作成する機能は :ref:`廃止 <auto-creating-missing-host-paths-for-bind-mounts>` されました。
 
+.. Note: When using systemd to manage the Docker daemon’s start and stop, in the systemd unit file there is an option to control mount propagation for the Docker daemon itself, called MountFlags. The value of this setting may cause Docker to not see mount propagation changes made on the mount point. For example, if this value is slave, you may not be able to use the shared or rshared propagation on a volume.
+
+.. note::
+
+   Docker デーモンの開始・停止を systemd で管理する場合は、 Docker デーモン自身がマウント・プロパゲーション（mount propagation）を管理できるよう、systemd の unit ファイル上で ``MountFlags`` というオプションを設定します。このマウントポイントが変更されても、Docker はマウント・プロパゲーションの変更を把握できません。例えば、値を ``slave`` としているのであれば、ボリュームのプロパゲーション値に ``shared`` や ``rshared`` を指定すべきではないでしょう。
+
 .. The volumes commands are complex enough to have their own documentation in section Managing data in containers. A developer can define one or more VOLUME’s associated with an image, but only the operator can give access from one container to another (or from a container to a volume mounted on the host).
 
-ボリューム関連コマンドは :doc:`/engine/userguide/dockervolumes` セクション自身のドキュメントでも複雑なものです。開発者は１つまたは複数の ``VOLUME`` を作成し、イメージと関連づけることが可能です。しかし、オペレータができるのは、あるコンテナから別のコンテナに対してのみです（あるいは、コンテナからホスト側のボリュームにマウントする場合）。
+ボリューム関連コマンドは :doc:`/engine/userguide/containers/dockervolumes` セクション自身のドキュメントでも複雑なものです。開発者は１つまたは複数の ``VOLUME`` を作成し、イメージと関連づけることが可能です。しかし、オペレータができるのは、あるコンテナから別のコンテナに対してのみです（あるいは、コンテナからホスト側のボリュームにマウントする場合）。
 
 .. The container-dir must always be an absolute path such as /src/docs. The host-dir can either be an absolute path or a name value. If you supply an absolute path for the host-dir, Docker bind-mounts to the path you specify. If you supply a name, Docker creates a named volume by that name.
 
@@ -1694,7 +1740,15 @@ USER
 
 .. code-block:: bash
 
-   -u="": Username or UID
+   -u="", --user="": Sets the username or UID used and optionally the groupname or GID for the specified command.
+
+.. The followings examples are all valid:
+
+以下の例は無効です。
+
+.. code-block:: bash
+
+   --user=[ user | user:group | uid | uid:gid | user:gid | uid:group ]
 
 ..     Note: if you pass a numeric uid, it must be in the range of 0-2147483647.
 
@@ -1711,7 +1765,7 @@ WORKDIR
 
 .. The default working directory for running binaries within a container is the root directory (/), but the developer can set a different default with the Dockerfile WORKDIR command. The operator can override this with:
 
-コンテナ内でバイナリを実行する時、、デフォルトの作業用ディレクトリはルート( ``/`` ) ディレクトリです。しかし開発者は Dockerfile の ``WORKDIR`` コマンドを使い、デフォルトの作業用ディレクトリを変更できます。オペレータが更に設定を上書きするには、次のようにします。
+コンテナ内でバイナリを実行する時、デフォルトの作業用ディレクトリはルート( ``/`` ) ディレクトリです。しかし開発者は Dockerfile の ``WORKDIR`` コマンドを使い、デフォルトの作業用ディレクトリを変更できます。オペレータが更に設定を上書きするには、次のようにします。
 
 .. code-block:: bash
 
