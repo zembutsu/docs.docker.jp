@@ -1,5 +1,5 @@
 .. -*- coding: utf-8 -*-
-.. 
+.. https://docs.docker.com/engine/security/trust/
 .. doc version: 1.10
 .. check date: 2016/02/06
 .. -----------------------------------------------------------------------------
@@ -18,19 +18,9 @@ Engine を安全に
    security.rst
    https.rst
    certificates.rst
+   trust/index.rst
    apparmor.rst
    seccomp.rst
 
-信頼されたイメージを使う
-========================
 
-.. toctree::
-   :maxdepth: 3
-   
-   trust/content_trust.rst
-   trust/trust_automation.rst
-   trust/deploying_notary.rst
-   trust/trust_key_mng.rst
-   trust/trust_sandbox.rst
-   
 
