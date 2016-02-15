@@ -1,8 +1,12 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/articles/https/
-.. doc version: 1.9
-.. check date: 2015/12/25
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/security/https/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/security/https.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/security/https.md
+   doc version: 1.9
+      https://github.com/docker/docker/commits/release/v1.9/docs/articles/https.md
+.. check date: 2016/02/15
+.. -------------------------------------------------------------------
 
 .. Protect the Docker daemon socket
 
@@ -295,3 +299,11 @@ Docker クライアントの接続をデフォルトで安全にしたい場合�
      --cacert ~/.docker/ca.pem
 
 
+関連情報
+==========
+
+..    Using certificates for repository client verification
+    Use trusted images
+
+* :doc:`certificates`
+* :doc:`trust/indexl`
