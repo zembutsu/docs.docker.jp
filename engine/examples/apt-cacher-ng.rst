@@ -1,7 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/examples/apt-cacher-ng/
-.. doc version: 1.9
-.. check date: 2016/01/06
+.. URL: https://docs.docker.com/engine/extend/examples/apt-cacher-ng/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/examples/apt-cacher-ng.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/examples/apt-cacher-ng.md
+.. check date: 2016/02/15
+.. ---------------------------------------------------------------
 
 .. Dockerizing an apt-cacher-ng service
 
@@ -32,6 +35,8 @@ apt-cacher-ng サービスの Docker 化
    # and then you can run containers with:
    #   docker run -t -i --rm -e http_proxy http://dockerhost:3142/ debian bash
    #
+   # Here, `dockerhost` is the IP address or FQDN of a host running the Docker daemon
+   # which acts as an APT proxy server.
    FROM        ubuntu
    MAINTAINER  SvenDowideit@docker.com
    
@@ -65,9 +70,9 @@ apt-cacher-ng サービスの Docker 化
 
    $ docker logs -f test_apt_cacher_ng
 
-.. To get your Debian-based containers to use the proxy, you can do one of three things
+.. To get your Debian-based containers to use the proxy, you have following options
 
-この proxy を Debian をベースとしたコンテナで使うには、以下３つの選択肢があります。
+Debian をベースとしたコンテナで proxy を使うには、以下のオプションがあります。
 
 ..    Add an apt Proxy setting echo 'Acquire::http { Proxy "http://dockerhost:3142"; };' >> /etc/apt/conf.d/01proxy
     Set an environment variable: http_proxy=http://dockerhost:3142/
@@ -82,6 +87,10 @@ apt-cacher-ng サービスの Docker 化
 2. 環境変数を設定します： ``http_proxy=http://dockerhost:3142/``
 
 3. ``sources.list`` エントリを変更し、 ``http://dockerhost:3142/`` から始めるようにします。
+
+4. ``--link`` を使って APT proxy コンテナを Debian ベースのコンテナにリンクします。
+
+5. Debian ベースのコンテナで、APT proxy コンテナに接続するカスタム・ネットワークを作成します。
 
 .. Option 1 injects the settings safely into your apt configuration in a local version of a common base:
 
@@ -106,6 +115,27 @@ apt-cacher-ng サービスの Docker 化
 .. Option 3 is the least portable, but there will be times when you might need to do it and you can do it from your Dockerfile too.
 
 **オプション３** ： これは最新版を取り入れるためですが、 ``Dockerfile`` では何度が記述が必要になるかもしれません。
+
+.. Option 4  links Debian-containers to the proxy server using following command:
+
+**オプション４** ：Debian コンテナを proxy サーバに次のコマンドでリンクします。
+
+.. code-block:: bash
+   $ docker run -i -t --link test_apt_cacher_ng:apt_proxy -e http_proxy=http://apt_proxy:3142/ debian bash
+
+.. **Option 5** creates a custom network of APT proxy server and Debian-based containers:
+
+**オプション５** ：APT proxy サーバと Debian ベースのコンテナが繋がるカスタム・ネットワークを作成します。
+
+.. code-block:: bash
+
+   $ docker network create mynetwork
+   $ docker run -d -p 3142:3142 --net=mynetwork --name test_apt_cacher_ng eg_apt_cacher_ng
+   $ docker run --rm -it --net=mynetwork -e http_proxy=http://test_apt_cacher_ng:3142/ debian bash
+
+
+
+
 
 .. Apt-cacher-ng has some tools that allow you to manage the repository, and they can be used by leveraging the VOLUME instruction, and the image we built to run the service:
 

@@ -1,7 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/examples/mongodb/
-.. doc version: 1.9
-.. check date: 2016/01/05
+.. URL: https://docs.docker.com/engine/extend/examples/mongodb/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/examples/mongodb.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/examples/mongodb.md
+.. check date: 2016/02/15
+.. ---------------------------------------------------------------
 
 .. Dockerizing MongoDB
 

@@ -1,7 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/examples/couchdb_data_volumes/
-.. doc version: 1.9
-.. check date: 2016/01/06
+.. URL: https://docs.docker.com/engine/extend/examples/couchdb_data_volumes/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/examples/couchdb_data_volumes.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/examples/couchdb_data_volumes.md
+.. check date: 2016/02/15
+.. ---------------------------------------------------------------
 
 .. Dockerizing a CounchDB service
 

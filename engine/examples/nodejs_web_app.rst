@@ -1,7 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/examples/nodejs_web_app/
-.. doc version: 1.9
-.. check date: 2016/01/06
+.. URL: https://docs.docker.com/engine/extend/examples/nodejs_web_app/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/examples/nodejs_web_app.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/examples/nodejs_web_app.md
+.. check date: 2016/02/15
+.. ---------------------------------------------------------------
 
 .. Dockerizing a Node.js web app
 

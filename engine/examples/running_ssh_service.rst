@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/examples/running_ssh_service/
-.. doc version: 1.9
-.. check date: 2015/12/28
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/extend/examples/running_ssh_service/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/examples/running_ssh_service.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/examples/running_ssh_service.md
+.. check date: 2016/02/15
+.. ---------------------------------------------------------------
 
 .. Dockerizing an SSH daemon service
 
@@ -21,7 +23,7 @@ SSH デーモンの Docker 化
 
 .. The following Dockerfile sets up an SSHd service in a container that you can use to connect to and inspect other container’s volumes, or to get quick access to a test container.
 
-以下の ``Dockerfile`` はコンテナ内に SSHd サービスをセットアップします。これを接続のために使い、他のコンテナのボリュームの調査や、テスト用コンテナに対する迅速なアクセスを提供します。
+以下の ``Dockerfile`` はコンテナ内に SSHd サービスをセットアップします。これは他のコンテナ用ボリュームの調査や、テスト用コンテナに対する迅速なアクセスを提供します。
 
 .. code-block:: bash
 

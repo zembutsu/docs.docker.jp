@@ -1,7 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/examples/postgresql_service/
-.. doc version: 1.9
-.. check date: 2016/01/06
+.. URL: https://docs.docker.com/engine/extend/examples/postgresql_service/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/examples/postgresql_service.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/examples/postgresql_service.md
+.. check date: 2016/02/15
+.. ---------------------------------------------------------------
 
 .. Dockerizing PostgreSQL
 

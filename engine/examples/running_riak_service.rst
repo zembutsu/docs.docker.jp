@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/examples/running_riak_service/
-.. doc version: 1.9
-.. check date: 2015/12/28
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/extend/examples/running_riak_service/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/examples/running_riak_service.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/examples/running_riak_service.md
+.. check date: 2016/02/15
+.. ---------------------------------------------------------------
 
 .. Dockerizing a Riak service
 
@@ -52,7 +54,7 @@ Dockerfile の作成
    # Install Riak repository before we do apt-get update, so that update happens
    # in a single step
    RUN apt-get install -q -y curl && \
-       curl -sSL https://packagecloud.io/install/repositories/basho/riak/script.deb | sudo bash
+       curl -fsSL https://packagecloud.io/install/repositories/basho/riak/script.deb | sudo bash
 
 .. Then we install and setup a few dependencies:
 

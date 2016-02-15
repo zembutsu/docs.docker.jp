@@ -1,14 +1,17 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/examples/
-.. doc version: 1.9
-.. check date: 2016/01/05
+.. URL: https://docs.docker.com/engine/extend/examples/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/examples/index.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/examples/index.md
+.. check date: 2016/02/15
+.. ---------------------------------------------------------------
 
-.. Exameples
+.. Dockerize an application
 
-.. _applied-docker:
+.. _dockerize-an-application:
 
 ========================================
-Docker 利用例
+アプリケーションの Docker 化
 ========================================
 
 .. This section contains the following:
@@ -27,9 +30,10 @@ Docker 利用例
 * :doc:`postgresql_service`
 * :doc:`couchdb_data_volumes`
 * :doc:`nodejs_web_app`
+* :doc:`running_redis_service`
 * :doc:`apt-cacher-ng`
+* :doc:`/engine/userguide/containers/dockerizing`
 * :doc:`running_riak_service`
 * :doc:`running_ssh_service`
-* :doc:`/engine/userguide/containers/dockerizing`
 
 
