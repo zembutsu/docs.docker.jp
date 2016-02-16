@@ -3,7 +3,7 @@
 .. SOURCE: https://github.com/docker/machine/blob/master/docs/overview.md
    doc version: 1.10
       https://github.com/docker/machine/commits/master/docs/overview.md
-.. check date: 2016/02/15
+.. check date: 2016/02/16
 .. -------------------------------------------------------------------
 
 .. _machine:
@@ -34,6 +34,8 @@ Docker Machine とは何ですか？
 ==============================
 
 .. Docker Machine is a tool that lets you install Docker Engine on virtual hosts, and manage the hosts with docker-machine commands. You can use Machine to create Docker hosts on your local Mac or Windows box, on your company network, in your data center, or on cloud providers like AWS or Digital Ocean.
+
+Docker Machine は
 
 .. Using docker-machine commands, you can start, inspect, stop, and restart a managed host, upgrade the Docker client and daemon, and configure a Docker client to talk to your host.
 
