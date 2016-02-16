@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/cli/
-.. doc version: 1.9
-.. check date: 2015/12/25
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/reference/commandline/cli/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/cli.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/cli.md
+.. check date: 2016/02/15
+.. -------------------------------------------------------------------
 
 .. Use the Docker command line
 
@@ -120,6 +122,32 @@ Docker は設定ディレクトリにある殆どのファイルを管理して�
 .. The property psFormat specifies the default format for docker ps output. When the --format flag is not provided with the docker ps command, Docker’s client uses this property. If this property is not set, the client falls back to the default table format. For a list of supported formatting directives, see the Formatting section in the docker ps documentation
 
 ``psFormat`` 属性は ``docker ps`` 出力のデフォルトの出力フォーマットを指定します。 ``docker ps`` コマンドで ``--format`` フラグが指定されなければ、Docker クライアントはこの属性を使います。この属性が設定されなければ、クライアントはデフォルトの表フォーマットに戻ります。サポートされている形式を確認するには、 ``docker ps`` :doc:`ドキュメントにあるフォーマットのセクション <ps>` をご覧ください。
+
+.. Once attached to a container, users detach from it and leave it running using the using CTRL-p CTRL-q key sequence. This detach key sequence is customizable using the detachKeys property. Specify a <sequence> value for the property. The format of the <sequence> is a comma-separated list of either a letter [a-Z], or the ctrl- combined with any of the following:
+
+コンテナにアタッチ後は、 ``CTRL-p CTRL-q`` キー・シーケンスで使ってデタッチできます。このデタッチ用キー・シーケンスは ``detachKyes`` 属性を使ってカスタマイズできます。 ``<シーケンス>`` 値の属性を指定します。 ``<シーケンス>`` の書式は [a-Z] までの文字列をカンマ区切りにしたリストにするか、 ``ctrl-`` に以下のいずれかを組み合わせます。
+
+..    a-z (a single lowercase alpha character )
+    @ (at sign)
+    [ (left bracket)
+    \\ (two backward slashes)
+    _ (underscore)
+    ^ (caret)
+
+* ``a-z`` （小文字のアルファベット文字列）
+* ``@`` （アット記号）
+* ``[`` （左かっこ）
+* ``\\`` （２つのバックスラッシュ）
+* ``_`` （アンダースコア）
+* ``^`` （キャレット）
+
+.. Your customization applies to all containers started in with your Docker client. Users can override your custom or the default key sequence on a per-container basis. To do this, the user specifies the --detach-keys flag with the docker attach, docker exec, docker run or docker start command.
+
+Docker クライアントで起動するコンテナ全てにカスタマイズが適用されます。ユーザはコンテナごとにデフォルトのキー・シーケンスを変更可能です。ユーザが指定するには、 ``--detach-keys`` フラグを ``docker attach`` 、 ``docker exec`` 、 ``docker run`` 、 ``docker start`` コマンドで使います。
+
+.. The property imagesFormat specifies the default format for docker images output. When the --format flag is not provided with the docker images command, Docker’s client uses this property. If this property is not set, the client falls back to the default table format. For a list of supported formatting directives, see the Formatting section in the docker images documentation
+
+``imageFormat`` 属性は ``docker ps`` 出力のデフォルトの出力フォーマットを指定します。 ``docker images`` コマンドで ``--format`` フラグが指定されなければ、Docker クライアントはこの属性を使います。この属性が設定されなければ、クライアントはデフォルトの表フォーマットに戻ります。サポートされている形式を確認するには、 ``docker images`` :doc:`ドキュメントにあるフォーマットのセクション <images>` をご覧ください。
 
 .. Following is a sample config.json file:
 
