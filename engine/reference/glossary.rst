@@ -1,7 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/glossary/
-.. doc version: 1.9
-.. check date: 2016/01/10
+.. URL: https://docs.docker.com/engine/reference/glossary/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/glossary.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/glossary.md
+.. check date: 2016/02/17
+.. -------------------------------------------------------------------
 
 .. Glossary
 
