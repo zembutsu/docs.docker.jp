@@ -403,7 +403,7 @@ Docker ホストは ``devicemapper`` ストレージ・ドライバを、デフ�
 ホスト上の devicemapper 構造の例
 ----------------------------------------
 
-..You can use the lsblk command to see the device files created above and the pool that the devicemapper storage driver creates on top of them.
+.. You can use the lsblk command to see the device files created above and the pool that the devicemapper storage driver creates on top of them.
 
 ``lsblk`` コマンドを使うと、先ほど作成したデバイス・ファイルと、その上に ``devicemapper`` ストレージ・ドライバによって作られた ``pool`` （プール）を確認できます。
 

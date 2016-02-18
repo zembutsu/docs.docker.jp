@@ -402,7 +402,7 @@ Docker バージョン 1.10 より低いバージョンまでは、各レイヤ�
 
 ..   The docker history output shows the new 94e6b7d2c720 image layer at the top. You know that this is the new image layer added because it was created by the echo "Hello world" > /tmp/newfile command in your Dockerfile. The 4 image layers below it are the exact same image layers that make up the ubuntu:15.04 image.
 
-``docker history`` の出力から、新しい ``94e6b7d2c720 `` イメージ・レイヤが一番上にあることがわかります。``03b964f68d06`` レイヤとは、先ほどの ``Dockerfile`` で ``echo "Hello world" > /tmp/newfile`` コマンドでファイルを追加されたものだと分かります。そして、４つのイメージ・レイヤは、先ほど ``ubuntu:15.04`` イメージを構築する時に使ったレイヤと一致していることがわかります。
+``docker history`` の出力から、新しい ``94e6b7d2c720`` イメージ・レイヤが一番上にあることがわかります。 ``03b964f68d06`` レイヤとは、先ほどの ``Dockerfile`` で ``echo "Hello world" > /tmp/newfile`` コマンドでファイルを追加されたものだと分かります。そして、４つのイメージ・レイヤは、先ほど ``ubuntu:15.04`` イメージを構築する時に使ったレイヤと一致していることがわかります。
 
 ..   Note: Under the content addressable storage model introduced with Docker 1.10, image history data is no longer stored in a config file with each image layer. It is now stored as a string of text in a single config file that relates to the overall image. This can result in some image layers showing as “missing” in the output of the docker history command. This is normal behaviour and can be ignored.
 ..    You may hear images like these referred to as flat images.
