@@ -3,7 +3,7 @@
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/daemon.md
    doc version: 1.10
       https://github.com/docker/docker/commits/master/docs/reference/commandline/daemon.md
-.. check date: 2016/02/16
+.. check date: 2016/02/19
 .. -------------------------------------------------------------------
 
 .. daemon
@@ -98,7 +98,7 @@ Docker デーモンは :doc:`Docker リモート API </engine/reference/api/dock
 
 .. If you need to access the Docker daemon remotely, you need to enable the tcp Socket. Beware that the default setup provides un-encrypted and un-authenticated direct access to the Docker daemon - and should be secured either using the built in HTTPS encrypted socket, or by putting a secure web proxy in front of it. You can listen on port 2375 on all network interfaces with -H tcp://0.0.0.0:2375, or on a particular network interface using its IP address: -H tcp://192.168.59.103:2375. It is conventional to use port 2375 for un-encrypted, and port 2376 for encrypted communication with the daemon.
 
-Docker デーモンにリモートからの接続を考えているのであれば、 ``tcp`` ソケットを有効にする必要があります。デフォルトのセットアップでは、Docker デーモンとの暗号化や認証機能はありませんのでご注意ください。そして、安全に使うには :doc:`内蔵の HTTP 暗号化ソケット </engine/articles/https>` を使うべきです。あるいは安全なウェブ・プロキシをフロントに準備してください。ポート ``2375`` をリッスンしている場合は、全てのネットワークインターフェースで ``-H tcp://0.0.0.0:2375`` を使うか、あるいは IP アドレスを ``-H tcp://192.168.59.103:2375`` のように指定します。習慣として、デーモンとの通信が暗号化されていない場合はポート ``2375`` を、暗号化されている場合はポート ``2376`` を使います。
+Docker デーモンにリモートからの接続を考えているのであれば、 ``tcp`` ソケットを有効にする必要があります。デフォルトのセットアップでは、Docker デーモンとの暗号化や認証機能はありませんのでご注意ください。そして、安全に使うには :doc:`内蔵の HTTP 暗号化ソケット </engine/security/https>` を使うべきです。あるいは安全なウェブ・プロキシをフロントに準備してください。ポート ``2375`` をリッスンしている場合は、全てのネットワークインターフェースで ``-H tcp://0.0.0.0:2375`` を使うか、あるいは IP アドレスを ``-H tcp://192.168.59.103:2375`` のように指定します。習慣として、デーモンとの通信が暗号化されていない場合はポート ``2375`` を、暗号化されている場合はポート ``2376`` を使います。
 
 ..    Note: If you’re using an HTTPS encrypted socket, keep in mind that only TLS1.0 and greater are supported. Protocols SSLv3 and under are not supported anymore for security reasons.
 
@@ -687,7 +687,7 @@ Ulimits のデフォルト
 
 .. Be careful setting nproc with the ulimit flag as nproc is designed by Linux to set the maximum number of processes available to a user, not to a container. For details please check the run reference.
 
-``noproc`` と ``ulimit`` フラグを使う時は注意してください。 ``noproc`` は Linux がユーザに対して利用可能な最大プロセス数を設定するものであり、コンテナ向けではありません。詳細については、 :doc:`<run>` リファレンスをご確認ください。
+``noproc`` と ``ulimit`` フラグを使う時は注意してください。 ``noproc`` は Linux がユーザに対して利用可能な最大プロセス数を設定するものであり、コンテナ向けではありません。詳細については、 :doc:`run` リファレンスをご確認ください。
 
 .. Nodes discovery
 

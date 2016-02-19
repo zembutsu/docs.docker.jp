@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/logout/
-.. doc version: 1.9
-.. check date: 2015/12/26
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/reference/commandline/logout/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/logout.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/logout.md
+.. check date: 2016/02/19
+.. -------------------------------------------------------------------
 
 .. logout
 
@@ -17,7 +19,7 @@ logout
    Log out from a Docker registry, if no server is
    specified "https://index.docker.io/v1/" is the default.
    
-     --help=false    Print usage
+     --help          Print usage
 
 .. For example:
 

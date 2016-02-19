@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/inspect/
-.. doc version: 1.9
-.. check date: 2015/12/26
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/reference/commandline/inspect/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/inspect.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/inspect.md
+.. check date: 2016/02/19
+.. -------------------------------------------------------------------
 
 .. inspect
 
@@ -17,7 +19,7 @@ inspect
    Return low-level information on a container or image
    
      -f, --format=""         Format the output using the given go template
-     --help=false            Print usage
+     --help                  Print usage
      --type=container|image  Return JSON for specified type, permissible
                              values are "image" or "container"
      -s, --size=false        Display total file sizes if the type is container
@@ -25,6 +27,10 @@ inspect
 .. By default, this will render all results in a JSON array. If a format is specified, the given template will be executed for each result.
 
 デフォルトは、全ての結果を JSON 配列で表示します。フォーマットを指定した場合は、それぞれのテンプレートに従って結果を表示します。
+
+.. By default, this will render all results in a JSON array. If the container and image have the same name, this will return container JSON for unspecified type. If a format is specified, the given template will be executed for each result.
+
+デフォルトは、全ての結果を JSON 配列で表示します。コンテナとイメージが同じ名前を持つ場合は、タイプを指定しなければコンテナの JSON を返します。フォーマットを指定した場合は、それぞれのテンプレートに従って結果を表示します。
 
 .. Go’s text/template package describes all the details of the format.
 

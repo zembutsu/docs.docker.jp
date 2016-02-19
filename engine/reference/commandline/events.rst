@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/events/
-.. doc version: 1.9
-.. check date: 2015/12/26
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/reference/commandline/events/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/events.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/events.md
+.. check date: 2016/02/19
+.. -------------------------------------------------------------------
 
 .. events
 
@@ -17,25 +19,41 @@ events
    Get real time events from the server
    
      -f, --filter=[]    Filter output based on conditions provided
-     --help=false       Print usage
+     --help             Print usage
      --since=""         Show all events created since timestamp
      --until=""         Stream events until this timestamp
 
-.. Docker containers will report the following events:
+.. Docker containers report the following events:
 
 Docker コンテナは以下のイベントを報告します。
 
 .. code-block:: bash
 
-   attach, commit, copy, create, destroy, die, exec_create, exec_start, export, kill, oom, pause, rename, resize, restart, start, stop, top, unpause
+   attach, commit, copy, create, destroy, die, exec_create, exec_start, export, kill, oom, pause, rename, resize, restart, start, stop, top, unpause, update
 
-.. and Docker images will report:
+.. Docker images report the following events:
 
-そして、Docker イメージに関する情報を報告します。
+Docker イメージは以下のイベントを報告します。
 
 .. code-block:: bash
 
    delete, import, pull, push, tag, untag
+
+.. Docker volumes report the following events:
+
+Docker ボリュームは以下のイベントを報告します。
+
+.. code-block:: bash
+
+   create, mount, unmount, destroy
+
+.. Docker networks report the following events:
+
+Docker ネットワークは以下のイベントを報告します。
+
+.. code-block:: bash
+
+   create, connect, disconnect, destroy
 
 .. The --since and --until parameters can be Unix timestamps, RFC3339 dates or Go duration strings (e.g. 10m, 1h30m) computed relative to client machine’s time. If you do not provide the –since option, the command returns only new and/or live events.
 

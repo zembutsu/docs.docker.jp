@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/exec/
-.. doc version: 1.9
-.. check date: 2015/12/26
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/reference/commandline/exec/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/exec.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/exec.md
+.. check date: 2016/02/19
+.. -------------------------------------------------------------------
 
 .. exec
 
@@ -17,6 +19,7 @@ exec
    Run a command in a running container
    
      -d, --detach=false         Detached mode: run command in the background
+     --detach-keys              Specify the escape key sequence used to detach a container
      --help=false               Print usage
      -i, --interactive=false    Keep STDIN open even if not attached
      --privileged=false         Give extended Linux capabilities to the command

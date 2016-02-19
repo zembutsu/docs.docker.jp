@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/images/
-.. doc version: 1.9
-.. check date: 2015/12/26
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/reference/commandline/images/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/images.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/images.md
+.. check date: 2016/02/19
+.. -------------------------------------------------------------------
 
 .. images
 
@@ -19,25 +21,25 @@ images
      -a, --all=false      Show all images (default hides intermediate images)
      --digests=false      Show digests
      -f, --filter=[]      Filter output based on conditions provided
-     --help=false         Print usage
+     --help               Print usage
      --no-trunc=false     Don't truncate output
      -q, --quiet=false    Only show numeric IDs
 
-.. The default docker images will show all top level images, their repository and tags, and their virtual size.
+.. The default docker images will show all top level images, their repository and tags, and their size.
 
-標準の ``docker image`` は全てのトップ・レベルのイメージと、レポジトリ・タグ・仮想サイズ（virtual size）を表示します。
+標準の ``docker image`` は全てのトップ・レベルのイメージと、レポジトリ・タグ・容量を表示します。
 
 .. Docker images have intermediate layers that increase reusability, decrease disk usage, and speed up docker build by allowing each step to be cached. These intermediate layers are not shown by default.
 
-Docker イメージは中間レイヤ（intermidiate layer）を持っています。これは再利用性を高め、ディスク容量を偉し、 ``docker build`` は各ステップがキャッシュされるので速度を向上します。デフォルトでは、これらの中間レイヤは表示されません。
+Docker イメージは中間レイヤ（intermidiate layer）を持っています。これは再利用性を高め、ディスク容量を減らし、 ``docker build`` は各ステップがキャッシュされるので速度を向上します。デフォルトでは、これらの中間レイヤは表示されません。
 
-.. The VIRTUAL SIZE is the cumulative space taken up by the image and all its parent images. This is also the disk space used by the contents of the Tar file created when you docker save an image.
+.. The SIZE is the cumulative space taken up by the image and all its parent images. This is also the disk space used by the contents of the Tar file created when you docker save an image.
 
-``VIRTUAL SIZE`` （仮想サイズ）は、イメージと全ての親イメージの累積した領域です。また、 ``docker save`` でイメージを作成していた場合、 Tar ファイルの内容に含まれるディスク容量です。
+``SIZE`` （容量）は、イメージと全ての親イメージの累積した領域です。また、 ``docker save`` でイメージを作成していた場合、 Tar ファイルの内容に含まれるディスク容量です。
 
-.. An image will be listed more than once if it has multiple repository names or tags. This single image (identifiable by its matching IMAGE ID) uses up the VIRTUAL SIZE listed only once.
+.. An image will be listed more than once if it has multiple repository names or tags. This single image (identifiable by its matching IMAGE ID) uses up the SIZE listed only once.
 
-イメージ一覧では、複数のレポジトリ名やタグが表示されます。イメージ（ ``IMAGE ID`` が一致するもの ）ごとの ``VIRTUAL ISZE`` が複数表示されますが、実際に対象としている容量は１つだけです。
+イメージ一覧では、複数のレポジトリ名やタグが表示されます。イメージ（ ``IMAGE ID`` が一致するもの ）ごとの ``SIZE`` が複数表示されますが、実際に対象としている容量は１つだけです。
 
 .. Listing the most recently created images
 
@@ -49,7 +51,7 @@ Docker イメージは中間レイヤ（intermidiate layer）を持っていま�
 .. code-block:: bash
 
    $ docker images
-   REPOSITORY                TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+   REPOSITORY                TAG                 IMAGE ID            CREATED             SIZE
    <none>                    <none>              77af4d6b9913        19 hours ago        1.089 GB
    committ                   latest              b6fa739cedf5        19 hours ago        1.089 GB
    <none>                    <none>              78a85c484f71        19 hours ago        1.089 GB
@@ -79,7 +81,7 @@ Docker イメージは中間レイヤ（intermidiate layer）を持っていま�
 .. code-block:: bash
 
    $ docker images java
-   REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+   REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
    java                8                   308e519aac60        6 days ago          824.5 MB
    java                7                   493d82594c15        3 months ago        656.3 MB
    java                latest              2711b1d6f3aa        5 months ago        603.9 MB
@@ -95,7 +97,7 @@ Docker イメージは中間レイヤ（intermidiate layer）を持っていま�
 .. code-block:: bash
 
    $ docker images java:8
-   REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+   REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
    java                8                   308e519aac60        6 days ago          824.5 MB
 
 .. If nothing matches REPOSITORY[:TAG], the list is empty.
@@ -105,7 +107,7 @@ Docker イメージは中間レイヤ（intermidiate layer）を持っていま�
 .. code-block:: bash
 
    $ docker images java:0
-   REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+   REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 
 .. Listing the full length image IDs
 
@@ -117,7 +119,7 @@ Docker イメージは中間レイヤ（intermidiate layer）を持っていま�
 .. code-block:: bash
 
    $ docker images --no-trunc
-   REPOSITORY                    TAG                 IMAGE ID                                                           CREATED             VIRTUAL SIZE
+   REPOSITORY                    TAG                 IMAGE ID                                                           CREATED             SIZE
    <none>                        <none>              77af4d6b9913e693e8d0b4b294fa62ade6054e6b2f1ffb617ac955dd63fb0182   19 hours ago        1.089 GB
    committest                    latest              b6fa739cedf5ea12a620a439402b6004d057da800f91c7524b5086a5e4749c9f   19 hours ago        1.089 GB
    <none>                        <none>              78a85c484f71509adeaace20e72e941f6bdd2b25b4c75da8693efd9f61a37921   19 hours ago        1.089 GB
@@ -142,7 +144,7 @@ v2 移行の形式を使うイメージには、 ``digest`` と呼ばれる識�
 .. code-block:: bash
 
    $ docker images --digests
-   REPOSITORY                         TAG                 DIGEST                                                                    IMAGE ID            CREATED             VIRTUAL SIZE
+   REPOSITORY                         TAG                 DIGEST                                                                    IMAGE ID            CREATED             SIZE
    localhost:5000/test/busybox        <none>              sha256:cbbf2f9a99b47fc460d422812b6a5adff7dfee951d8fa2e4a98caa0382cfbdbf   4986bf8c1536        9 weeks ago         2.43 MB
 
 .. When pushing or pulling to a 2.0 registry, the push or pull command output includes the image digest. You can pull using a digest value. You can also reference by digest in create, run, and rmi commands, as well as the FROM image reference in a Dockerfile.
@@ -179,7 +181,7 @@ v2 移行の形式を使うイメージには、 ``digest`` と呼ばれる識�
 
    $ docker images --filter "dangling=true"
    
-   REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+   REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
    <none>              <none>              8abc22fbb042        4 weeks ago         0 B
    <none>              <none>              48e5f45168b9        4 weeks ago         2.489 MB
    <none>              <none>              bf747efa0e2f        4 weeks ago         0 B
@@ -231,7 +233,7 @@ v2 移行の形式を使うイメージには、 ``digest`` と呼ばれる識�
 
    $ docker images --filter "label=com.example.version"
    
-   REPOSITORY          TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
+   REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
    match-me-1          latest              eeae25ada2aa        About a minute ago   188.3 MB
    match-me-2          latest              eeae25ada2aa        About a minute ago   188.3 MB
 
@@ -242,7 +244,7 @@ v2 移行の形式を使うイメージには、 ``digest`` と呼ばれる識�
 .. code-block:: bash
 
    $ docker images --filter "label=com.example.version=1.0"
-   REPOSITORY          TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
+   REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
    match-me            latest              eeae25ada2aa        About a minute ago   188.3 MB
 
 .. In this example, with the 0.1 value, it returns an empty set because no matches were found.
@@ -252,6 +254,6 @@ v2 移行の形式を使うイメージには、 ``digest`` と呼ばれる識�
 .. code-block:: bash
 
    $ docker images --filter "label=com.example.version=0.1"
-   REPOSITORY          TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
+   REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
 
 

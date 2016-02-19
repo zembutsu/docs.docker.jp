@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/import/
-.. doc version: 1.9
-.. check date: 2015/12/26
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/reference/commandline/import/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/import.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/import.md
+.. check date: 2016/02/19
+.. -------------------------------------------------------------------
 
 .. import
 
@@ -19,12 +21,12 @@ import
    optionally tag it.
    
      -c, --change=[]     Apply specified Dockerfile instructions while importing the image
-     --help=false        Print usage
+     --help              Print usage
      -m, --message=      Set commit message for imported image
 
 .. You can specify a URL or - (dash) to take data directly from STDIN. The URL can point to an archive (.tar, .tar.gz, .tgz, .bzip, .tar.xz, or .txz) containing a filesystem or to an individual file on the Docker host. If you specify an archive, Docker untars it in the container relative to the / (root). If you specify an individual file, you must specify the full path within the host. To import from a remote location, specify a URI that begins with the http:// or https:// protocol.
 
-``URL`` か ``-``（ダッシュ）を指定し、 ``STDIN`` （標準入力）から直接データを取り込みます。 ``URL`` はアーカイブ（ .tar、.tar.gz、.tgz、.bzip、.tar.xz、txz）に含まれる圧縮ファイルシステムや、Docker ホスト上の個々のファイルを指定します。アーカイブを指定すると、 Docker はコンテナの ``/`` （ルート）以下の相対パスとして展開します。個々のファイルを指定する場合、ホスト上のフルパスを指定する必要があります。リモートの場所から import する場合、 ``URI`` の形式は、 ``http://`` か ``https://`` プロトコルで始まる必要があります。
+``URL`` か ``-`` （ダッシュ）を指定し、 ``STDIN`` （標準入力）から直接データを取り込みます。 ``URL`` はアーカイブ（ .tar、.tar.gz、.tgz、.bzip、.tar.xz、txz）に含まれる圧縮ファイルシステムや、Docker ホスト上の個々のファイルを指定します。アーカイブを指定すると、 Docker はコンテナの ``/`` （ルート）以下の相対パスとして展開します。個々のファイルを指定する場合、ホスト上のフルパスを指定する必要があります。リモートの場所から import する場合、 ``URI`` の形式は、 ``http://`` か ``https://`` プロトコルで始まる必要があります。
 
 .. The --change option will apply Dockerfile instructions to the image that is created. Supported Dockerfile instructions: CMD|ENTRYPOINT|ENV|EXPOSE|ONBUILD|USER|VOLUME|WORKDIR
 

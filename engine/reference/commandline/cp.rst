@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/cp/
-.. doc version: 1.9
-.. check date: 2015/12/26
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/reference/commandline/cp/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/cp.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/cp.md
+.. check date: 2016/02/19
+.. -------------------------------------------------------------------
 
 .. cp
 
@@ -17,7 +19,7 @@ cp
    
    Copy files/folders between a container and the local filesystem
    
-     --help=false        Print usage
+     --help              Print usage
 
 .. In the first synopsis form, the docker cp utility copies the contents of PATH from the filesystem of CONTAINER to the LOCALPATH (or stream as a tar archive to STDOUT if - is specified).
 

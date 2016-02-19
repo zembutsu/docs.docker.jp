@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/load/
-.. doc version: 1.9
-.. check date: 2015/12/26
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/reference/commandline/load/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/load.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/load.md
+.. check date: 2016/02/19
+.. -------------------------------------------------------------------
 
 .. load
 
@@ -16,7 +18,7 @@ load
    
    Load an image from a tar archive or STDIN
    
-     --help=false       Print usage
+     --help             Print usage
      -i, --input=""     Read from a tar archive file, instead of STDIN. The tarball may be compressed with gzip, bzip, or xz
    
 .. Loads a tarred repository from a file or the standard input stream. Restores both images and tags.

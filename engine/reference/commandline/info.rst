@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/info/
-.. doc version: 1.9
-.. check date: 2015/12/26
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/reference/commandline/info/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/info.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/info.md
+.. check date: 2016/02/19
+.. -------------------------------------------------------------------
 
 .. info
 
@@ -16,7 +18,7 @@ info
    
    Display system-wide information
    
-     --help=false        Print usage
+     --help              Print usage
 
 .. For example:
 
@@ -59,7 +61,7 @@ info
 
 .. The global -D option tells all docker commands to output debug information.
 
-グローバルな``-D`` オプションは 、 ``docker`` コマンドのデバッグ情報を表示します。
+グローバルな ``-D`` オプションは 、 ``docker`` コマンドのデバッグ情報を表示します。
 
 .. When sending issue reports, please use docker version and docker -D info to ensure we know how your setup is configured.
 

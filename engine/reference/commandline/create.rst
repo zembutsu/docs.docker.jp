@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/create/
-.. doc version: 1.9
-.. check date: 2015/12/26
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/reference/commandline/create/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/create.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/create.md
+.. check date: 2016/02/19
+.. -------------------------------------------------------------------
 
 .. create
 
@@ -43,7 +45,7 @@ create
      --expose=[]                   Expose a port or a range of ports
      --group-add=[]                Add additional groups to join
      -h, --hostname=""             Container host name
-     --help=false                  Print usage
+     --help                        Print usage
      -i, --interactive=false       Keep STDIN open even if not attached
      --ipc=""                      IPC namespace to use
      --kernel-memory=""            Kernel memory limit
@@ -56,7 +58,7 @@ create
      -m, --memory=""               Memory limit
      --mac-address=""              Container MAC address (e.g. 92:d0:c6:0a:29:33)
      --memory-reservation=""       Memory soft limit
-     --memory-swap=""              Total memory (memory + swap), '-1' to disable swap
+     --memory-swap=""              A positive integer equal to memory plus swap. Specify -1 to enable unlimited swap.
      --memory-swappiness=""        Tune a container's memory swappiness behavior. Accepts an integer between 0 and 100.
      --name=""                     Assign a name to the container
      --net="default"               Set the Network mode for the container

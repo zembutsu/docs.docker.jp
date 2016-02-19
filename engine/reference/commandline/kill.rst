@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/kill/
-.. doc version: 1.9
-.. check date: 2015/12/26
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/reference/commandline/kill/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/kill.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/kill.md
+.. check date: 2016/02/19
+.. -------------------------------------------------------------------
 
 .. kill
 
@@ -16,7 +18,7 @@ kill
    
    Kill a running container using SIGKILL or a specified signal
    
-     --help=false           Print usage
+     --help                 Print usage
      -s, --signal="KILL"    Signal to send to the container
    
 .. The main process inside the container will be sent SIGKILL, or any signal specified with option --signal.
@@ -27,4 +29,4 @@ kill
 
 .. note::
 
-   ``ENTRYPOINT`` と ``CMD`` を *シェル *形式で実行している場合は、 ``/bin/sh -c`` のサブコマンドとして実行されていますので、シグナルを受け取ることができません。つまり、（シェル軽視気では）コンテナの PID 1 は Unix シグナルを受け取りません。
+   ``ENTRYPOINT`` と ``CMD`` を *シェル* 形式で実行している場合は、 ``/bin/sh -c`` のサブコマンドとして実行されていますので、シグナルを受け取ることができません。つまり、（シェル形式では）コンテナの PID 1 は Unix シグナルを受け取りません。

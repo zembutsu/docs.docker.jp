@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/login/
-.. doc version: 1.9
-.. check date: 2015/12/26
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/reference/commandline/login/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/login.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/login.md
+.. check date: 2016/02/19
+.. -------------------------------------------------------------------
 
 .. login
 
@@ -18,7 +20,7 @@ login
    specified "https://index.docker.io/v1/" is the default.
    
      -e, --email=""       Email
-     --help=false         Print usage
+     --help               Print usage
      -p, --password=""    Password
      -u, --username=""    Username
    

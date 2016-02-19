@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/history/
-.. doc version: 1.9
-.. check date: 2015/12/26
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/engine/reference/commandline/history/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/history.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/history.md
+.. check date: 2016/02/19
+.. -------------------------------------------------------------------
 
 .. history
 
@@ -17,7 +19,7 @@ history
    Show the history of an image
    
      -H, --human=true     Print sizes and dates in human readable format
-     --help=false         Print usage
+     --help               Print usage
      --no-trunc=false     Don't truncate output
      -q, --quiet=false    Only show numeric IDs
 

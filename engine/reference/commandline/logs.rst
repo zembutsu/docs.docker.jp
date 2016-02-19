@@ -1,8 +1,10 @@
-.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/logs/
-.. doc version: 1.9
-.. check date: 2015/12/26
-.. -----------------------------------------------------------------------------
+*- coding: utf-8 -*-
+.. URL: https://docs.docker.com/engine/reference/commandline/logs/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/logs.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/logs.md
+.. check date: 2016/02/19
+.. -------------------------------------------------------------------
 
 .. logs
 
@@ -17,7 +19,7 @@ logs
    Fetch the logs of a container
    
      -f, --follow=false        Follow log output
-     --help=false              Print usage
+     --help                    Print usage
      --since=""                Show logs since timestamp
      -t, --timestamps=false    Show timestamps
      --tail="all"              Number of lines to show from the end of the logs
