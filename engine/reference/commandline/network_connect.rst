@@ -1,8 +1,10 @@
-.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/network_connect/
-.. doc version: 1.9
-.. check date: 2015/12/27
-.. -----------------------------------------------------------------------------
+*- coding: utf-8 -*-
+.. URL: https://docs.docker.com/engine/reference/commandline/network_connect/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/network_connect.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/network_connect.md
+.. check date: 2016/02/20
+.. -------------------------------------------------------------------
 
 .. network connect
 
@@ -16,11 +18,15 @@ network connect
    
    Connects a container to a network
    
-     --help=false       Print usage
+     --alias=[]         Add network-scoped alias for the container
+     --help             Print usage
+     --ip               IPv4 Address
+     --ip6              IPv6 Address
+     --link=[]          Add a link to another container
 
-.. Connects a running container to a network. You can connect a container by name or by ID. Once connected, the container can communicate with other containers in the same network.
+.. Connects a container to a network. You can connect a container by name or by ID. Once connected, the container can communicate with other containers in the same network.
 
-実行中のコンテナをネットワークに接続（connect）します。接続はコンテナ名か ID で行えます。一度接続すると、コンテナは同じネットワーク上の他のコンテナと通信できます。
+コンテナをネットワークに接続（connect）します。コンテナの接続はコンテナ名かコンテナ ID を使います。接続後は、同一ネットワーク上にある他のコンテナと通信可能になります。
 
 .. code-block:: bash
 
@@ -34,9 +40,45 @@ network connect
 
    $ docker run -itd --net=multi-host-network busybox
 
-.. You can pause, restart, and stop containers that are connected to a network. Paused containers remain connected and a revealed by a network inspect. When the container is stopped, it does not appear on the network until you restart it. The container’s IP address is not guaranteed to remain the same when a stopped container rejoins the network.
+.. You can specify the IP address you want to be assigned to the container’s interface.
 
-コンテナを中断（pause）・再起動・停止しても、ネットワークに接続したままです。中断したコンテナはネットワークに接続しつづけており、 ``network inspect`` で確認できます。コンテナを停止（stop）すると、再起動するまではネットワーク上に表示されません。停止していたコンテナが再起動時、同じネットワークに参加しても IP アドレスが同じになる保証はありません。
+コンテナのインターフェースに任意の IP アドレスを割り当て可能です。
+
+.. code-block:: bash
+
+   $ docker network connect --ip 10.10.36.122 multi-host-network container2
+
+.. You can use --link option to link another container with a preferred alias
+
+``--link`` オプションを使うことで、他のコンテナを任意のエイリアス名でリンクできます。
+
+.. code-block:: bash
+
+   $ docker network connect --link container1:c1 multi-host-network container2
+
+.. --alias option can be used to resolve the container by another name in the network being connected to.
+
+``--alias`` オプションを使うことで、ネットワークを接続したコンテナ間での名前解決に使う別名を指定できます。
+
+.. code-block:: bash
+
+   $ docker network connect --alias db --alias mysql multi-host-network container2
+
+.. You can pause, restart, and stop containers that are connected to a network. Paused containers remain connected and can be revealed by a network inspect. When the container is stopped, it does not appear on the network until you restart it.
+
+コンテナを中断（pause）・再起動・停止しても、ネットワークに接続したままです。中断したコンテナはネットワークに接続しつづけており、 ``network inspect`` で確認できます。コンテナを停止（stop）すると、再起動するまではネットワーク上に表示されません。
+
+.. If specified, the container’s IP address(es) is reapplied when a stopped container is restarted. If the IP address is no longer available, the container fails to start. One way to guarantee that the IP address is available is to specify an --ip-range when creating the network, and choose the static IP address(es) from outside that range. This ensures that the IP address is not given to another container while this container is not on the network.
+
+停止しているコンテナを再起動するときに IP アドレスを指定できます。もしも IP アドレスが使えなければ、コンテナは起動に失敗します。IP アドレスを確実に割り当てるためには、ネットワーク作成時に ``--ip-range`` （IPアドレスの範囲）を指定しておき、その範囲内外にある静的な IP アドレスを割り当てる方法があります。そうしておけば、コンテナが対象のネットワークに所属していない間でも、他のコンテナに IP アドレスを使われる心配はありません。
+
+.. code-block:: bash
+
+   $ docker network create --subnet 172.20.0.0/16 --ip-range 172.20.240.0/20 multi-host-network
+
+.. code-block:: bash
+
+   $ docker network connect --ip 172.20.128.2 multi-host-network container2
 
 .. To verify the container is connected, use the docker network inspect command. Use docker network disconnect to remove a container from the network.
 
