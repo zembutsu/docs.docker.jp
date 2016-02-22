@@ -1,4 +1,4 @@
-*- coding: utf-8 -*-
+.. *- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/network_create/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/network_create.md
    doc version: 1.10
@@ -153,8 +153,8 @@ network create
 
 .. _network-internal-mode:
 
-ネットワーク internal モード
-------------------------------
+内部ネットワーク(internal)モード
+----------------------------------------
 
 .. By default, when you connect a container to an overlay network, Docker also connects a bridge network to it to provide external connectivity. If you want to create an externally isolated overlay network, you can specify the --internal option.
 
