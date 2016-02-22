@@ -1,8 +1,10 @@
-.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/network_create/
-.. doc version: 1.9
-.. check date: 2015/12/27
-.. -----------------------------------------------------------------------------
+*- coding: utf-8 -*-
+.. URL: https://docs.docker.com/engine/reference/commandline/network_create/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/network_create.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/network_create.md
+.. check date: 2016/02/22
+.. -------------------------------------------------------------------
 
 .. network create
 
@@ -19,10 +21,12 @@ network create
    --aux-address=map[]      Auxiliary ipv4 or ipv6 addresses used by network driver
    -d --driver=DRIVER       Driver to manage the Network bridge or overlay. The default is bridge.
    --gateway=[]             ipv4 or ipv6 Gateway for the master subnet
-   --help=false             Print usage
+   --help                   Print usage
+   --internal               Restricts external access to the network
    --ip-range=[]            Allocate container ip from a sub-range
    --ipam-driver=default    IP Address Management Driver
-   -o --opt=map[]           Set custom network plugin options
+   --ipam-opt=map[]         Set custom IPAM driver specific options
+   -o --opt=map[]           Set custom driver specific options
    --subnet=[]              Subnet in CIDR format that represents a network segment
 
 .. Creates a new network. The DRIVER accepts bridge or overlay which are the built-in network drivers. If you have installed a third party or your own custom network driver you can specify that DRIVER here also. If you don’t specify the --driver option, the command automatically creates a bridge network for you. When you install Docker Engine it creates a bridge network automatically. This network corresponds to the docker0 bridge that Engine has traditionally relied on. When launch a new container with docker run it automatically connects to this bridge network. You cannot remove this default bridge network but you can create new ones using the network create command.
@@ -144,6 +148,18 @@ network create
 .. Be sure that your subnetworks do not overlap. If they do, the network create fails and Engine returns an error.
 
 サブネットワークが重複しないように気をつけてください。重複すると、ネットワークの作成に失敗し、エンジンはエラーを表示します。
+
+.. Network internal mode
+
+.. _network-internal-mode:
+
+ネットワーク internal モード
+------------------------------
+
+.. By default, when you connect a container to an overlay network, Docker also connects a bridge network to it to provide external connectivity. If you want to create an externally isolated overlay network, you can specify the --internal option.
+
+コンテナを ``overlay`` ネットワークに接続するとき、デフォルトでは外部への接続性を提供するためブリッジ・ネットワークにも接続します。外部された隔離された ``overlay`` ネットワークを作成したい場合は、 ``--internal`` オプションを使います。
+
 
 .. Related information
 
