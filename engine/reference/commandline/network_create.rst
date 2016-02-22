@@ -147,7 +147,51 @@ network create
 
 .. Be sure that your subnetworks do not overlap. If they do, the network create fails and Engine returns an error.
 
-サブネットワークが重複しないように気をつけてください。重複すると、ネットワークの作成に失敗し、エンジンはエラーを表示します。
+サブ・ネットワークが重複しないように気をつけてください。重複してしまうと、ネットワークの作成に失敗し、エンジンはエラーを表示します。
+
+.. Bridge driver options
+
+.. _bridge-driver-options:
+
+ブリッジ・ドライバのオプション
+==============================
+
+.. When creating a custom network, the default network driver (i.e. bridge) has additional options that can be passed. The following are those options and the equivalent docker daemon flags used for docker0 bridge:
+
+カスタム・ネットワークの作成時、デフォルトのネットワーク・ドライバ（例： ``bridge`` ）では追加のオプションを指定できます。以下のオプション指定は、 docker デーモンで docker0 ブリッジ用のフラグを指定するのと同等です。
+
+.. list-table::
+   :header-rows: 1
+   
+   * - オプション
+     -  同等
+     - 説明
+   * - ``com.docker.network.bridge.name``
+     - －
+     - Linux ブリッジを作成する時に使うブリッジ名
+   * - ``com.docker.network.bridge.enable_ip_masquerade``
+     - ``--ip-masq``
+     - IP マスカレードの有効化
+   * - ``com.docker.network.bridge.enable_icc``
+     - ``--icc``
+     - 内部におけるコンテナの接続性を、有効化または無効化
+   * - ``com.docker.network.bridge.host_binding_ipv4``
+     - ``--ip``
+     - コンテナのポートをバインドする時の、デフォルト IP アドレスを指定。
+   * - ``com.docker.network.bridge.mtu``
+     - ``--mtu``
+     - コンテナのネットワーク MTU を指定
+   * - ``com.docker.network.bridge.enable_ipv6``
+     - ``--ipv6``
+     - IPv6 ネットワーク機能を有効化
+
+.. For example, let’s use -o or --opt options to specify an IP address binding when publishing ports:
+
+例えば、ポート公開用に使う IP アドレスを割り当てるには、 ``-o`` か ``--opt`` オプションを使います。
+
+.. code-block:: bash
+
+   docker network create -o "com.docker.network.bridge.host_binding_ipv4"="172.19.0.1" simple-network
 
 .. Network internal mode
 
