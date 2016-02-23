@@ -1,8 +1,11 @@
-.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/network_disconnect/
-.. doc version: 1.9
-.. check date: 2015/12/27
-.. -----------------------------------------------------------------------------
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/engine/reference/commandline/network_disconnect/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/network_disconnect.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/network_disconnect.md
+.. Commits on Jan 14, 2016
+.. b464f1d78cdfa2a4124e083b8f7b0f2353f12de3
+.. -------------------------------------------------------------------
 
 .. network disconnect
 
@@ -16,7 +19,8 @@ network disconnect
    
    Disconnects a container from a network
    
-     --help=false       Print usage
+     -f, --force        Force the container to disconnect from a network
+     --help             Print usage
 
 .. Disconnects a container from a network. The container must be running to disconnect it from the network.
 
