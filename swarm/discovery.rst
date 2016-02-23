@@ -289,7 +289,7 @@ IP アドレスの範囲をパターンで指定
 
 .. The file and nodes discoveries support a range pattern to specify IP addresses, i.e., 10.0.0.[10:200] will be a list of nodes starting from 10.0.0.10 to 10.0.0.200.
 
-``file`` と ``node`` あ、特定の IP アドレスの範囲をパターンで指定することで、ディスカバリをサポートします。例えば ``10.0.0.[10:200]`` は ``10.0.0.10`` から ``10.0.0.200`` の範囲にあるノードを使います。
+``file`` と ``node`` は、特定の IP アドレスの範囲をパターンで指定することで、ディスカバリをサポートします。例えば ``10.0.0.[10:200]`` は ``10.0.0.10`` から ``10.0.0.200`` の範囲にあるノードを使います。
 
 .. For example for the file discovery method.
 

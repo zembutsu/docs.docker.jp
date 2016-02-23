@@ -238,9 +238,11 @@ Swam は CLI と Swam 間の TLS 認証をサポートしているだけでな�
 
 .. Please refer to the Docker documentation for more information on how to set up TLS authentication on Docker and generating the certificates.
 
-Docker の TLS 認証設定や証明書の生成に関する詳細情報は、 :doc:`Docker のドキュメント </articles/https>` を参照ください。
+Docker の TLS 認証設定や証明書の生成に関する詳細情報は、 :doc:`Docker のドキュメント </engine/security/https>` を参照ください。
 
 ..     Note: Swarm certificates must be generated with extendedKeyUsage = clientAuth,serverAuth
 
-Swam 証明書の生成には、 ``extendedKeyUsage = clientAuth,serverAuth`` を使う必要があります。
+.. note::
+
+   Swam 証明書の生成には、 ``extendedKeyUsage = clientAuth,serverAuth`` を使う必要があります。
 

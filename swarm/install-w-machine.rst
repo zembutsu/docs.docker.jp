@@ -310,6 +310,5 @@ Swarm を直接操作
 ====================
 
 .. At this point, you’ve installed Docker Swarm by pulling the latest image of it from Docker Hub. Then, you built and ran a swarm on your local machine using VirtualBox. If you want, you can onto read an overview of Docker Swarm features. Alternatively, you can develop a more in-depth view of Swarm by manually installing Swarm on a network.
-On this page:
 
 これまで、 Docker Swarm を Docker Hub 上の最新イメージを取得して構築しました。それから VirtualBox を使ってローカルのマシン上に Swarm クラスタを構築しました。必要であれば、 :doc:`Docker Swarm 機能の概要 </swarm/index>` をお読みください。あるいは、Swarm をより深く開発するためには、ネットワーク上で :doc:`Swarm の手動インストール </swarm/install-manual>` をお読みください。

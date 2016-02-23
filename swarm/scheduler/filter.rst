@@ -22,8 +22,8 @@
     Dependency
     Health
 
-* :ref:`Constraint（コンストレイント） <constraint_filter>`
-* :ref:`Affinity（アフィニティ） <affinity_filter>`
+* :ref:`Constraint（制限／コンストレイント） <constraint_filter>`
+* :ref:`Affinity（類似／アフィニティ） <affinity_filter>`
 * :ref:`Port（ポート） <port_filter>`
 * :ref:`Dependency（依存関係） <dependency_filter>`
 * :ref:`Health（ヘルス状態） <health_filter>`
@@ -36,7 +36,7 @@
 
 .. Constraint Filter
 
-Constraint （コンストレイント）フィルタ
+Constraint （制限／コンストレイント）フィルタ
 ========================================
 
 .. Constraints are key/value pairs associated to particular nodes. You can see them as node tags.
