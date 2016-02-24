@@ -115,16 +115,16 @@ Docker を使ったコンテナ（とアプリケーション）の実行とは�
 
 .. _security-linux-kernel-capabilities:
 
-Linux カーネルのキャパビリティ
+Linux カーネルのケーパビリティ
 ==============================
 
 .. By default, Docker starts containers with a restricted set of capabilities. What does that mean?
 
-デフォルトでは Docker はキャパビリティを抑えた状態でコンテナを起動します。つまり、どういうことでしょう？
+デフォルトでは Docker はケーパビリティを抑えた状態でコンテナを起動します。つまり、どういうことでしょう？
 
 .. Capabilities turn the binary “root/non-root” dichotomy into a fine-grained access control system. Processes (like web servers) that just need to bind on a port below 1024 do not have to run as root: they can just be granted the net_bind_service capability instead. And there are many other capabilities, for almost all the specific areas where root privileges are usually needed.
 
-キャパビリティとは、「root」か「root以外か」といったバイナリの二分法によって分類する、きめ細かなアクセス制御システムです。（ウェブサーバのような）プロセスがポート 1024 以下でポートをバインドする必要があるとき、root 権限でなければ実行できません。そこで ``net_bind_service`` キャパビリティを使い、権限を得られます。他にも多くのキャパビリティがあります。大部分は特定条件下で root 特権を利用できるようにするものです。
+ケーパビリティとは、「root」か「root以外か」といったバイナリの二分法によって分類する、きめ細かなアクセス制御システムです。（ウェブサーバのような）プロセスがポート 1024 以下でポートをバインドする必要があるとき、root 権限でなければ実行できません。そこで ``net_bind_service`` ケーパビリティを使い、権限を得られます。他にも多くのケーパビリティがあります。大部分は特定条件下で root 特権を利用できるようにするものです。
 
 .. This means a lot for container security; let’s see why!
 
@@ -156,7 +156,7 @@ Linux カーネルのキャパビリティ
 
 .. This means that in most cases, containers will not need “real” root privileges at all. And therefore, containers can run with a reduced capability set; meaning that “root” within a container has much less privileges than the real “root”. For instance, it is possible to:
 
-これらが意味するのは、大部分のケースにおいて、コンテナを「本当の」 root 特権で動かす必要は *全くない* ということです。それゆえ、コンテナはキャパビリティの組み合わせを減らして実行できるのです。つまり、コンテナ内の「root」は、実際の「root」よりも権限が少ないことを意味します。例えば、次のような使い方があります。
+これらが意味するのは、大部分のケースにおいて、コンテナを「本当の」 root 特権で動かす必要は *全くない* ということです。それゆえ、コンテナはケーパビリティの組み合わせを減らして実行できるのです。つまり、コンテナ内の「root」は、実際の「root」よりも権限が少ないことを意味します。例えば、次のような使い方があります。
 
 ..    deny all “mount” operations;
     deny access to raw sockets (to prevent packet spoofing);
@@ -176,15 +176,15 @@ Linux カーネルのキャパビリティ
 
 .. This won’t affect regular web apps; but malicious users will find that the arsenal at their disposal has shrunk considerably! By default Docker drops all capabilities except those needed, a whitelist instead of a blacklist approach. You can see a full list of available capabilities in Linux manpages.
 
-通常のウェブ・アプリケーションには影響を与えません。しかし、悪意のあるユーザであれば、自分たちが自由に使える武器が減ったと分かるでしょう！ Docker は `必要に応じて <https://github.com/docker/docker/blob/master/daemon/execdriver/native/template/default_template.go>`_ 全てのキャパビリティを除外し、ブラックリストからホワイトリストに除外する方法も使えます。利用可能なキャパビリティについては、 `Linux の man ページ <http://man7.org/linux/man-pages/man7/capabilities.7.html>`_ をご覧ください。
+通常のウェブ・アプリケーションには影響を与えません。しかし、悪意のあるユーザであれば、自分たちが自由に使える武器が減ったと分かるでしょう！ Docker は `必要に応じて <https://github.com/docker/docker/blob/master/daemon/execdriver/native/template/default_template.go>`_ 全てのケーパビリティを除外し、ブラックリストからホワイトリストに除外する方法も使えます。利用可能なケーパビリティについては、 `Linux の man ページ <http://man7.org/linux/man-pages/man7/capabilities.7.html>`_ をご覧ください。
 
 .. One primary risk with running Docker containers is that the default set of capabilities and mounts given to a container may provide incomplete isolation, either independently, or when used in combination with kernel vulnerabilities.
 
-Docker コンテナ実行にあたり、最も重要なリスクというのは、デフォルトのキャパビリティのセットとコンテナに対するマウントにより、不完全な分離（独立性、あるいは、カーネルの脆弱性と組み合わせ）をもたらすかもしれない点です
+Docker コンテナ実行にあたり、最も重要なリスクというのは、デフォルトのケーパビリティのセットとコンテナに対するマウントにより、不完全な分離（独立性、あるいは、カーネルの脆弱性と組み合わせ）をもたらすかもしれない点です
 
 .. Docker supports the addition and removal of capabilities, allowing use of a non-default profile. This may make Docker more secure through capability removal, or less secure through the addition of capabilities. The best practice for users would be to remove all capabilities except those explicitly required for their processes.
 
-Docker はキャパビリティの追加と削除をサポートしますので、デフォルトで何も無いプロファイルも扱えます。これにより、キャパビリティが削除されても Docker は安全ですが、キャパビリティを追加するときは安全が低下します。利用にあたってのベストプラクティスは、各プロセスが明らかに必要なキャパビリティを除き、すべて削除することです。
+Docker はケーパビリティの追加と削除をサポートしますので、デフォルトで何も無いプロファイルも扱えます。これにより、ケーパビリティが削除されても Docker は安全ですが、ケーパビリティを追加するときは安全が低下します。利用にあたってのベストプラクティスは、各プロセスが明らかに必要なケーパビリティを除き、すべて削除することです。
 
 .. Other kernel security features
 
@@ -195,11 +195,11 @@ Docker はキャパビリティの追加と削除をサポートしますので�
 
 .. Capabilities are just one of the many security features provided by modern Linux kernels. It is also possible to leverage existing, well-known systems like TOMOYO, AppArmor, SELinux, GRSEC, etc. with Docker.
 
-キャパビリティは、最近の Linux カーネルが提供する様々なセキュリティ機能の１つです。他にも既存のよく知られている TOMOYO、AppArmor、SELinux、GRSEC のようなシステムを Docker で使えます。
+ケーパビリティは、最近の Linux カーネルが提供する様々なセキュリティ機能の１つです。他にも既存のよく知られている TOMOYO、AppArmor、SELinux、GRSEC のようなシステムを Docker で使えます。
 
 .. While Docker currently only enables capabilities, it doesn’t interfere with the other systems. This means that there are many different ways to harden a Docker host. Here are a few examples.
 
-現時点の Docker はキャパビリティの有効化しかできず、他のシステムには干渉できません。つまり、Docker ホストを堅牢にするには様々な異なった方法があります。以下は複数の例です。
+現時点の Docker はケーパビリティの有効化しかできず、他のシステムには干渉できません。つまり、Docker ホストを堅牢にするには様々な異なった方法があります。以下は複数の例です。
 
 ..     You can run a kernel with GRSEC and PAX. This will add many safety checks, both at compile-time and run-time; it will also defeat many exploits, thanks to techniques like address randomization. It doesn’t require Docker-specific configuration, since those security features apply system-wide, independent of containers.
 
@@ -207,7 +207,7 @@ Docker はキャパビリティの追加と削除をサポートしますので�
 
 ..    If your distribution comes with security model templates for Docker containers, you can use them out of the box. For instance, we ship a template that works with AppArmor and Red Hat comes with SELinux policies for Docker. These templates provide an extra safety net (even though it overlaps greatly with capabilities).
 
-* ディストリビューションに Docker コンテナに対応したセキュリティ・モデル・テンプレートがあれば、利用可能です。たとえば、私たちは AppArmor で動作するテンプレートを提供していますし、Red hat は Docker 対応の SELinux ポリシーを提供しています。これらのテンプレートは外部のセーフティーネットを提供します（キャパビリティと大いに重複する部分もありますが）。
+* ディストリビューションに Docker コンテナに対応したセキュリティ・モデル・テンプレートがあれば、利用可能です。たとえば、私たちは AppArmor で動作するテンプレートを提供していますし、Red hat は Docker 対応の SELinux ポリシーを提供しています。これらのテンプレートは外部のセーフティーネットを提供します（ケーパビリティと大いに重複する部分もありますが）。
 
 ..    You can define your own policies using your favorite access control mechanism.
 
@@ -223,7 +223,7 @@ Docker コンテナと連携する多くのサードパーティー製ツール�
 
 .. Today, Docker does not directly support user namespaces, but they may still be utilized by Docker containers on supported kernels, by directly using the clone syscall, or utilizing the ‘unshare’ utility. Using this, some users may find it possible to drop more capabilities from their process as user namespaces provide an artificial capabilities set. Likewise, however, this artificial capabilities set may require use of ‘capsh’ to restrict the user-namespace capabilities set when using ‘unshare’.
 
-今日、Docker はユーザ名前空間を直接サポートしていません。しかし、Docker コンテナの実行をサポートしているカーネルでは利用可能なものです。直接使うには syscall をクローンするか、 'unshare' ユーティリティを使います。これらを使い、ユーザ名前空間が提供するアーティフィカル・キャパビリティ・セット（artificial capabilities set）から、特定のユーザに対するキャパビリティを無効化できることが分かるでしょう。しかしながら、このアーティフィカル・キャパビリティ・セットを `unshare` で使う時は、ユーザ名前空間で制限するために 'capsh' が必要になるかもしれません。
+今日、Docker はユーザ名前空間を直接サポートしていません。しかし、Docker コンテナの実行をサポートしているカーネルでは利用可能なものです。直接使うには syscall をクローンするか、 'unshare' ユーティリティを使います。これらを使い、ユーザ名前空間が提供するアーティフィカル・ケーパビリティ・セット（artificial capabilities set）から、特定のユーザに対するケーパビリティを無効化できることが分かるでしょう。しかしながら、このアーティフィカル・ケーパビリティ・セットを `unshare` で使う時は、ユーザ名前空間で制限するために 'capsh' が必要になるかもしれません。
 
 .. Eventually, it is expected that Docker will have direct, native support for user-namespaces, simplifying the process of hardening containers.
 
