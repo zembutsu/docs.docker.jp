@@ -33,7 +33,7 @@ Docker Hub 入門
 * :doc:`自動構築（Automated Builds） <builds>` ：GitHub か Bitbucket レポジトリ上のソースコードに変更を加えると、新しいイメージを自動的に構築します。
 * :doc:`ウェブ・フック（Webhooks） <webhooks>` ：自動構築機能でレポジトリに送信された後、、Webhook が何らかのアクションを起こします。
 * :doc:`組織 <orgs>` ：イメージ・レポジトリにアクセスできるユーザを管理するための、ワーク・グループを作成します。
-* GitHub と Bitbucket 統合。Dockre Hub と Docker イメージを、現在のワークフローに追加します。
+* GitHub と Bitbucket 統合。Docker Hub と Docker イメージを、現在のワークフローに追加します。
 
 .. Create a Docker Hub account
 

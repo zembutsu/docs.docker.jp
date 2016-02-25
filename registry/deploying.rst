@@ -327,7 +327,7 @@ X509 エラーが表示されるのは、たいて自己署名した証明書を
 
 .. _managing-with-compose:
 
-Dockre Compose で管理
+Docker Compose で管理
 ==============================
 
 .. As your registry configuration grows more complex, dealing with it can quickly become tedious.

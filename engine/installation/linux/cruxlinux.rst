@@ -31,7 +31,7 @@ CRUX Linux でのインストールは、 `James Mills <http://prologic.shortcir
 
 .. Assuming you have contrib enabled, update your ports tree and install docker:
 
-contrib を有効にしていることを想定しています。ports tree を更新し、dockre をインストールします。
+contrib を有効にしていることを想定しています。ports tree を更新し、docker をインストールします。
 
 .. code-block:: bash
 

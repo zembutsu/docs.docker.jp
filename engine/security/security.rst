@@ -81,7 +81,7 @@ Docker デーモンが直面する攻撃
 
 .. Running containers (and applications) with Docker implies running the Docker daemon. This daemon currently requires root privileges, and you should therefore be aware of some important details.
 
-Docker を使ったコンテナ（とアプリケーション）の実行とは、Dockre デーモンが動かしていることを意味します。このデーモンは、現時点では ``root`` 特権が必要であり、それゆえ、いくつか重要な点に配慮が必要です。
+Docker を使ったコンテナ（とアプリケーション）の実行とは、Docker デーモンが動かしていることを意味します。このデーモンは、現時点では ``root`` 特権が必要であり、それゆえ、いくつか重要な点に配慮が必要です。
 
 .. First of all, only trusted users should be allowed to control your Docker daemon. This is a direct consequence of some powerful Docker features. Specifically, Docker allows you to share a directory between the Docker host and a guest container; and it allows you to do so without limiting the access rights of the container. This means that you can start a container where the /host directory will be the / directory on your host; and the container will be able to alter your host filesystem without any restriction. This is similar to how virtualization systems allow filesystem resource sharing. Nothing prevents you from sharing your root filesystem (or even your root block device) with a virtual machine.
 
