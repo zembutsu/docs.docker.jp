@@ -93,6 +93,8 @@ Docker Hub からのイメージの取得（あるいは構築）
 
 自分のレジストリ上のイメージを指定
 
+.. code-block:: bash
+
    docker tag ubuntu localhost:5000/myfirstimage
 
 .. Push it
