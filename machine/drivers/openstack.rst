@@ -1,4 +1,4 @@
-. -*- coding: utf-8 -*-
+.. -*- coding: utf-8 -*-
 .. https://docs.docker.com/machine/drivers/openstack/
 .. doc version: 1.9
 .. check date: 2016/01/25
