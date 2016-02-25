@@ -118,14 +118,14 @@ Docker イメージの動作に関する詳細情報は、 :doc:`Docker ユー�
 
 .. The Docker Hub contains a number of Official Repositories. These are public, certified repositories from vendors and contributors to Docker. They contain Docker images from vendors like Canonical, Oracle, and Red Hat that you can use as the basis to building your applications and services.
 
-Docker Hub には多くの `公式レポジトリ <http://hub.docker.com/explore/>`_ がありｍさう。これらはベンダやコントリビュータ（貢献者）によって公開されているものであり、Docker 社によって認証されています。Docker イメージのベンダには  Canonical、Oracle、Red Hat が含まれており、これらを基盤に自分のアプリケーションやサービスを構築できます。
+Docker Hub には多くの `公式レポジトリ <http://hub.docker.com/explore/>`_ があります。これらはベンダやコントリビュータ（貢献者）によって公開されているものであり、Docker 社によって認証されています。Docker イメージのベンダには  Canonical、Oracle、Red Hat が含まれており、これらを基盤に自分のアプリケーションやサービスを構築できます。
 
 .. With Official Repositories you know you’re using an optimized and up-to-date image that was built by experts to power your applications.
 
 公式レポジトリには、専門家の力によって最適化された最新のイメージが使われており、これを自分のアプリケーションに活用できます。
 
 ..    Note: If you would like to contribute an Official Repository for your organization or product, see the documentation on Official Repositories on Docker Hub for more information.
-
+う
 .. note::
 
    あなたの組織やプロダクトが公式レポジトリに貢献したい場合は、 :doc:`Docker Hub の公式レポジトリ <official_repos>` に関する詳しい情報をご覧ください。
