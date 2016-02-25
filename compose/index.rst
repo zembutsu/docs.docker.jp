@@ -212,7 +212,7 @@ Compose は様々な使い方があります。一般的な利用例は、以下
 
 .. For details on using production-oriented features, see compose in production in this documentation.
 
-プロダクション向け機能の詳細な使い方は、 :doc:`プロダクションの構成 <http://docs.d/compose/production>` をご覧ください。
+プロダクション向け機能の詳細な使い方は、 :doc:`プロダクションの構成 </compose/production>` をご覧ください。
 
 .. Release Notes
 

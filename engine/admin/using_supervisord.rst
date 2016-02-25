@@ -28,7 +28,7 @@ Supervisor を Docker で使う
 
 .. In this example we’re going to make use of the process management tool, Supervisor, to manage multiple processes in our container. Using Supervisor allows us to better control, manage, and restart the processes we want to run. To demonstrate this we’re going to install and manage both an SSH daemon and an Apache daemon.
 
-この例では、プロセス管理ツール `Supervisor <http://supervisord.org/>` を使い、コンテナ内で複数のプロセスを管理します。Supervisor を使うことにより、制御・管理しやすくし、実行したいプロセスを再起動できます。デモンストレーションとして、SSH デーモンと Apache デーモンの両方をインストール・管理します。
+この例では、プロセス管理ツール `Supervisor <http://supervisord.org/>`_ を使い、コンテナ内で複数のプロセスを管理します。Supervisor を使うことにより、制御・管理しやすくし、実行したいプロセスを再起動できます。デモンストレーションとして、SSH デーモンと Apache デーモンの両方をインストール・管理します。
 
 
 .. Creating a Dockerfile

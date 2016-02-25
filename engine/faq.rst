@@ -198,7 +198,7 @@ Docker のセキュリティ問題はどこに報告したらよいですか？
 
 .. Please read our blog post on the introduction of the DCO.
 
-DCO (Developer's Certificate of Origin) については、 `こちらのブログ投稿 <http://blog.docker.com/2014/01/docker-code-contributions-require-developer-certificate-of-origin/>` をご覧ください。
+DCO (Developer's Certificate of Origin) については、 `こちらのブログ投稿 <http://blog.docker.com/2014/01/docker-code-contributions-require-developer-certificate-of-origin/>`_ をご覧ください。
 
 .. When building an image, should I prefer system libraries or bundled ones?
 
@@ -207,7 +207,7 @@ DCO (Developer's Certificate of Origin) については、 `こちらのブロ�
 
 .. This is a summary of a discussion on the docker-dev mailing list.
 
-このディスカッションの詳細については `docker-dev メーリングリストの議論 <https://groups.google.com/forum/#!topic/docker-dev/L2RBSPDu1L0>` をご覧ください。
+このディスカッションの詳細については `docker-dev メーリングリストの議論 <https://groups.google.com/forum/#!topic/docker-dev/L2RBSPDu1L0>`_ をご覧ください。
 
 .. Virtually all programs depend on third-party libraries. Most frequently, they will use dynamic linking and some kind of package dependency, so that when multiple programs need the same library, it is installed only once.
 
