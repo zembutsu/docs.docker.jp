@@ -1,3 +1,13 @@
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/engine/reference/api/remote_api_client_libraries/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/api/remote_api_client_libraries.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/api/remote_api_client_libraries.md
+.. check date: 2016/02/25
+.. Commits on Feb 9, 2016 47dbb59e5b5d3472f9391e965131015d83d614a4
+.. -------------------------------------------------------------------
+
+
 .. -*- coding: utf-8 -*-
 .. https://docs.docker.com/engine/reference/api/remote_api_client_libraries/
 .. doc version: 1.9
@@ -40,6 +50,10 @@
      - https://github.com/bwu-dart/bwu_docker
      - Active
    * - Go
+     - engine-api
+     - https://github.com/docker/engine-api
+     - Active
+   * - Go
      - go-dockerclient
      - https://github.com/fsouza/go-dockerclient
      - Active
@@ -80,6 +94,10 @@
      - https://github.com/shekhargulati/rx-docker-client
      - Active
    * - JavaScript (NodeJS)
+     - dockerizer
+     - https://github.com/kesarion/dockerizer
+     - Active
+   * - JavaScript (NodeJS)
      - dockerode
      - https://github.com/apocas/dockerode NPM 経由でインストール： *npm install dockerode*
      - Active
@@ -91,6 +109,10 @@
      - docker-js
      - https://github.com/dgoujard/docker-js
      - 無効
+   * - JavaScript (Angular) **WebUI**
+     - Albatros
+     - https://github.com/dcylabs/albatros
+     - Active
    * - JavaScript (Angular) **WebUI**
      - docker-cp
      - https://github.com/13W/docker-cp
@@ -117,7 +139,11 @@
      - Active
    * - PHP
      - Docker-PHP
-     - http://stage1.github.io/docker-php/
+     - https://github.com/docker-php/docker-php
+     - Active
+   * - PHP
+     - Docker-PHP-Client
+     - https://github.com/jarkt/docker-php-client
      - Active
    * - Python
      - docker-py
@@ -134,6 +160,10 @@
    * - Rust
      - docker-rust
      - https://github.com/abh1nav/docker-rust
+     - Active
+   * - Rust
+     - shiplift
+     - https://github.com/softprops/shiplift
      - Active
    * - Scala
      - tugboat
