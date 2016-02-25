@@ -692,7 +692,7 @@ Docker は以下の再起動ポリシーをサポートしています。
 
    $ docker run --security-opt label:level:s0:c100,c200 -i -t fedora bash
 
-. .An MLS example might be:
+.. An MLS example might be:
 
 MLS であれば、次のような例になります。
 
