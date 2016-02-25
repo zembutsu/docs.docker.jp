@@ -211,7 +211,7 @@ j
 
 .. Indication that Docker no longer is using the named volume. This is called once per container stop. Plugin may deduce that it is safe to deprovision it at this point.
 
-Docker ホストに指定した名前のボリュームを使わないことを指示しｍさう。これはコンテナが停止すると呼び出されます。その時点でプラグインはデプロビジョンが安全に行われているとみなします。
+Docker ホストに指定した名前のボリュームを使わないことを指示します。これはコンテナが停止すると呼び出されます。その時点でプラグインはデプロビジョンが安全に行われているとみなします。
 
 .. Response:
 
