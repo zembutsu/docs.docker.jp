@@ -17,7 +17,7 @@
 プロジェクトの構成物を定義
 ==============================
 
-..For this project, you need to create a Dockerfile, a Python dependencies file, and a docker-compose.yml file.
+.. For this project, you need to create a Dockerfile, a Python dependencies file, and a docker-compose.yml file.
 
 このプロジェクトでは、Dockerfile と、Python 依存関係のファイル、``docker-compose.yml`` ファイルを作成する必要があります。
 
