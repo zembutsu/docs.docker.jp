@@ -81,7 +81,7 @@ Compose のドキュメント
 * :doc:`Django の始め方 </compose/django>`
 * :doc:`Rails の始め方 </compose/rails>`
 * :doc:`WordPress の始め方 </compose/wordpress>`
-* :doc:`コマンドライン・リファレンス </compose/reference>`
+* :doc:`コマンドライン・リファレンス </compose/reference/index>`
 * :doc:`Compose ファイル・リファレンス </compose/compose-file>`
 
 .. Features
