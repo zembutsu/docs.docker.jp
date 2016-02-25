@@ -1,8 +1,11 @@
-.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/pull/
-.. doc version: 1.9
-.. check date: 2015/12/27
-.. -----------------------------------------------------------------------------
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/engine/reference/commandline/pull/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/pull.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/pull.md
+.. check date: 2016/02/25
+.. Commits on Dec 24, 2015 e6115a6c1c02768898b0a47e550e6c67b433c436
+.. -------------------------------------------------------------------
 
 .. pull
 
@@ -18,7 +21,7 @@ pull
    
      -a, --all-tags=false          Download all tagged images in the repository
      --disable-content-trust=true  Skip image verification
-     --help=false                  Print usage
+     --help                        Print usage
 
 .. Most of your images will be created on top of a base image from the Docker Hub registry.
 
@@ -56,4 +59,6 @@ pull
    # be replaced with the path to a local registry to pull from another source.
    # sudo docker pull myhub.com:8080/test-image
 
+.. Killing the docker pull process, for example by pressing CTRL-c while it is running in a terminal, will terminate the pull operation.
 
+``docker pull`` プロセスを停止するには、ターミナルで実行中に ``CTRL-c`` を押すると、pull 処理を中断します。

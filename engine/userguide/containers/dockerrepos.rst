@@ -120,6 +120,8 @@ Docker は、自分自身が Docker Hub のサービスに ``docker search`` 、
 
 .. Contributing to Docker Hub
 
+.. _contributing-to-docker-hub:
+
 Docker Hub への貢献
 ====================
 

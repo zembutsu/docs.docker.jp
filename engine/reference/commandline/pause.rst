@@ -1,8 +1,11 @@
-.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/pause/
-.. doc version: 1.9
-.. check date: 2015/12/27
-.. -----------------------------------------------------------------------------
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/engine/reference/commandline/pause/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/pause.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/pause.md
+.. check date: 2016/02/25
+.. Commits on Dec 24, 2015 e6115a6c1c02768898b0a47e550e6c67b433c436
+.. -------------------------------------------------------------------
 
 .. pause
 
@@ -16,7 +19,7 @@ pause
    
    Pause all processes within a container
    
-     --help=false    Print usage
+     --help          Print usage
 
 .. The docker pause command uses the cgroups freezer to suspend all processes in a container. Traditionally, when suspending a process the SIGSTOP signal is used, which is observable by the process being suspended. With the cgroups freezer the process is unaware, and unable to capture, that it is being suspended, and subsequently resumed.
 

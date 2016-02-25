@@ -1,8 +1,11 @@
-.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/port/
-.. doc version: 1.9
-.. check date: 2015/12/27
-.. -----------------------------------------------------------------------------
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/engine/reference/commandline/port/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/port.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/port.md
+.. check date: 2016/02/25
+.. Commits on Jan 21, 2016 c2b59b03df364901ce51ee485d60fce7e7aaa955
+.. -------------------------------------------------------------------
 
 .. port
 
@@ -17,7 +20,7 @@ port
    List port mappings for the CONTAINER, or lookup the public-facing port that is
    NAT-ed to the PRIVATE_PORT
    
-     --help=false    Print usage
+     --help          Print usage
 
 .. You can find out all the ports mapped by not specifying a PRIVATE_PORT, or just a specific mapping:
 
@@ -25,7 +28,7 @@ port
 
 .. code-block:: bash
 
-   $ docker ps test
+   $ docker ps
    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                                            NAMES
    b650456536c7        busybox:latest      top                 54 minutes ago      Up 54 minutes       0.0.0.0:1234->9876/tcp, 0.0.0.0:4321->7890/tcp   test
    $ docker port test

@@ -1,8 +1,11 @@
-.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/ps/
-.. doc version: 1.9
-.. check date: 2015/12/27
-.. -----------------------------------------------------------------------------
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/engine/reference/commandline/ps/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/ps.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/ps.md
+.. check date: 2016/02/25
+.. Commits on Feb 24, 2016 bd4fb00fb6241d35537b460a2d9f48256111ae7a
+.. -------------------------------------------------------------------
 
 .. ps
 
@@ -16,17 +19,23 @@ ps
    
    List containers
    
-     -a, --all=false       Show all containers (default shows just running)
-     --before=""           Show only container created before Id or Name
-     -f, --filter=[]       Filter output based on conditions provided
+     -a, --all             Show all containers (default shows just running)
+     -f, --filter=[]       Filter output based on these conditions:
+                           - exited=<int> an exit code of <int>
+                           - label=<key> or label=<key>=<value>
+                           - status=(created|restarting|running|paused|exited)
+                           - name=<string> a container's name
+                           - id=<ID> a container's ID
+                           - before=(<container-name>|<container-id>)
+                           - since=(<container-name>|<container-id>)
+                           - ancestor=(<image-name>[:tag]|<image-id>|<image@digest>) - containers created from an image or a descendant.
      --format=[]           Pretty-print containers using a Go template
-     --help=false          Print usage
-     -l, --latest=false    Show the latest created container, include non-running
-     -n=-1                 Show n last created containers, include non-running
-     --no-trunc=false      Don't truncate output
-     -q, --quiet=false     Only display numeric IDs
-     -s, --size=false      Display total file sizes
-     --since=""            Show created since Id or Name, include non-running
+     --help                Print usage
+     -l, --latest          Show the latest created container (includes all states)
+     -n=-1                 Show n last created containers (includes all states)
+     --no-trunc            Don't truncate output
+     -q, --quiet           Only display numeric IDs
+     -s, --size            Display total file sizes
 
 .. Running docker ps --no-trunc showing 2 linked containers.
 
@@ -66,7 +75,7 @@ ps
     label (label=<key> or label=<key>=<value>)
     name (container’s name)
     exited (int - the code of exited containers. Only useful with --all)
-    status (created|restarting|running|paused|exited)
+    status (created|restarting|running|paused|exited|dead)
     ancestor (<image-name>[:<tag>], <image id> or <image@digest>) - filters containers that were created from the given image or a descendant.
 
 * ID（コンテナの ID）
@@ -165,7 +174,9 @@ status
 
 .. The status filter matches containers by status. You can filter using created, restarting, running, paused and exited. For example, to filter for running containers:
 
-``status`` はコンテナの状態が一致するものでフィルタします。フィルタとして使えるのは ``created`` 、 ``restarting`` 、 ``running`` 、 ``paused`` 、 ``exited`` です。例えば、 ``running`` （実行中）のコンテナでフィルタするには、次のようにします。
+.. The status filter matches containers by status. You can filter using created, restarting, running, paused, exited and dead. For example, to filter for running containers:
+
+``status`` はコンテナの状態が一致するものでフィルタします。フィルタとして使えるのは ``created`` 、 ``restarting`` 、 ``running`` 、 ``paused`` 、 ``exited`` 、 ``dead`` です。例えば、 ``running`` （実行中）のコンテナでフィルタするには、次のようにします。
 
 .. code-block:: bash
 

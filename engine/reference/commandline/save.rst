@@ -1,8 +1,11 @@
-.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/save/
-.. doc version: 1.9
-.. check date: 2015/12/27
-.. -----------------------------------------------------------------------------
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/engine/reference/commandline/save/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/save.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/save.md
+.. check date: 2016/02/25
+.. Commits on Dec 24, 2015 e6115a6c1c02768898b0a47e550e6c67b433c436
+.. -------------------------------------------------------------------
 
 .. save
 
@@ -16,7 +19,7 @@ save
    
    Save an image(s) to a tar archive (streamed to STDOUT by default)
    
-     --help=false       Print usage
+     --help             Print usage
      -o, --output=""    Write to a file, instead of STDOUT
 
 .. Produces a tarred repository to the standard output stream. Contains all parent layers, and all tags + versions, or specified repo:tag, for each argument provided.

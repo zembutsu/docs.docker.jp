@@ -1,8 +1,11 @@
-.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/version/
-.. doc version: 1.9
-.. check date: 2015/12/27
-.. -----------------------------------------------------------------------------
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/engine/reference/commandline/version/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/version.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/version.md
+.. check date: 2016/02/25
+.. Commits on Dec 24, 2015 e6115a6c1c02768898b0a47e550e6c67b433c436
+.. -------------------------------------------------------------------
 
 .. version
 
@@ -17,7 +20,7 @@ version
    Show the Docker version information.
    
      -f, --format=""    Format the output using the given go template
-     --help=false       Print usage
+     --help             Print usage
 
 .. By default, this will render all version information in an easy to read layout. If a format is specified, the given template will be executed instead.
 

@@ -1,8 +1,11 @@
-.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/run/
-.. doc version: 1.9
-.. check date: 2015/12/27
-.. -----------------------------------------------------------------------------
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/engine/reference/commandline/run/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/run.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/run.md
+.. check date: 2016/02/25
+.. Commits on Feb 16, 2016 1ab7d76f30f3cf693c986eb827ad49a6554d806d
+.. -------------------------------------------------------------------
 
 .. run
 
@@ -19,6 +22,7 @@ run
      -a, --attach=[]               Attach to STDIN, STDOUT or STDERR
      --add-host=[]                 Add a custom host-to-IP mapping (host:ip)
      --blkio-weight=0              Block IO weight (relative weight)
+     --blkio-weight-device=[]      Block IO weight (relative device weight, format: `DEVICE_NAME:WEIGHT`)
      --cpu-shares=0                CPU shares (relative weight)
      --cap-add=[]                  Add Linux capabilities
      --cap-drop=[]                 Drop Linux capabilities
@@ -28,8 +32,13 @@ run
      --cpu-quota=0                 Limit CPU CFS (Completely Fair Scheduler) quota
      --cpuset-cpus=""              CPUs in which to allow execution (0-3, 0,1)
      --cpuset-mems=""              Memory nodes (MEMs) in which to allow execution (0-3, 0,1)
-     -d, --detach=false            Run container in background and print container ID
+     -d, --detach                  Run container in background and print container ID
+     --detach-keys                 Specify the escape key sequence used to detach a container
      --device=[]                   Add a host device to the container
+     --device-read-bps=[]          Limit read rate (bytes per second) from a device (e.g., --device-read-bps=/dev/sda:1mb)
+     --device-read-iops=[]         Limit read rate (IO per second) from a device (e.g., --device-read-iops=/dev/sda:1000)
+     --device-write-bps=[]         Limit write rate (bytes per second) to a device (e.g., --device-write-bps=/dev/sda:1mb)
+     --device-write-iops=[]        Limit write rate (IO per second) to a device (e.g., --device-write-bps=/dev/sda:1000)
      --disable-content-trust=true  Skip image verification
      --dns=[]                      Set custom DNS servers
      --dns-opt=[]                  Set custom DNS options
@@ -40,44 +49,55 @@ run
      --expose=[]                   Expose a port or a range of ports
      --group-add=[]                Add additional groups to run as
      -h, --hostname=""             Container host name
-     --help=false                  Print usage
-     -i, --interactive=false       Keep STDIN open even if not attached
+     --help                        Print usage
+     -i, --interactive             Keep STDIN open even if not attached
+     --ip=""                       Container IPv4 address (e.g. 172.30.100.104)
+     --ip6=""                      Container IPv6 address (e.g. 2001:db8::33)
      --ipc=""                      IPC namespace to use
+     --isolation=""                Container isolation technology
      --kernel-memory=""            Kernel memory limit
      -l, --label=[]                Set metadata on the container (e.g., --label=com.example.key=value)
      --label-file=[]               Read in a file of labels (EOL delimited)
      --link=[]                     Add link to another container
      --log-driver=""               Logging driver for container
      --log-opt=[]                  Log driver specific options
-     --lxc-conf=[]                 Add custom lxc options
      -m, --memory=""               Memory limit
      --mac-address=""              Container MAC address (e.g. 92:d0:c6:0a:29:33)
      --memory-reservation=""       Memory soft limit
-     --memory-swap=""              Total memory (memory + swap), '-1' to disable swap
+     --memory-swap=""              A positive integer equal to memory plus swap. Specify -1 to enable unlimited swap.
      --memory-swappiness=""        Tune a container's memory swappiness behavior. Accepts an integer between 0 and 100.
      --name=""                     Assign a name to the container
-     --net="bridge"                Connects a container to a network
-                                   'bridge': creates a new network stack for the container on the docker bridge
-                                   'none': no networking for this container
-                                   'container:<name|id>': reuses another container network stack
-                                   'host': use the host network stack inside the container
-                                   'NETWORK': connects the container to user-created network using `docker network create` command
-     --oom-kill-disable=false      Whether to disable OOM Killer for the container or not
-     -P, --publish-all=false       Publish all exposed ports to random ports
+     --net="bridge"                Connect a container to a network
+                                   'bridge': create a network stack on the default Docker bridge
+                                   'none': no networking
+                                   'container:<name|id>': reuse another container's network stack
+                                   'host': use the Docker host network stack
+                                   '<network-name>|<network-id>': connect to a user-defined network
+     --net-alias=[]                Add network-scoped alias for the container
+     --oom-kill-disable            Whether to disable OOM Killer for the container or not
+     --oom-score-adj=0             Tune the host's OOM preferences for containers (accepts -1000 to 1000)
+     -P, --publish-all             Publish all exposed ports to random ports
      -p, --publish=[]              Publish a container's port(s) to the host
      --pid=""                      PID namespace to use
-     --privileged=false            Give extended privileges to this container
-     --read-only=false             Mount the container's root filesystem as read only
+     --privileged                  Give extended privileges to this container
+     --read-only                   Mount the container's root filesystem as read only
      --restart="no"                Restart policy (no, on-failure[:max-retry], always, unless-stopped)
-     --rm=false                    Automatically remove the container when it exits
+     --rm                          Automatically remove the container when it exits
+     --shm-size=[]                 Size of `/dev/shm`. The format is `<number><unit>`. `number` must be greater than `0`.  Unit is optional and can be `b` (bytes), `k` (kilobytes), `m` (megabytes), or `g` (gigabytes). If you omit the unit, the system uses bytes. If you omit the size entirely, the system uses `64m`.
      --security-opt=[]             Security Options
      --sig-proxy=true              Proxy received signals to the process
      --stop-signal="SIGTERM"       Signal to stop a container
-     -t, --tty=false               Allocate a pseudo-TTY
+     -t, --tty                     Allocate a pseudo-TTY
      -u, --user=""                 Username or UID (format: <name|uid>[:<group|gid>])
      --ulimit=[]                   Ulimit options
      --uts=""                      UTS namespace to use
-     -v, --volume=[]               Bind mount a volume
+     -v, --volume=[host-src:]container-dest[:<options>]
+                                   Bind mount a volume. The comma-delimited
+                                   `options` are [rw|ro], [z|Z], or
+                                   [[r]shared|[r]slave|[r]private]. The
+                                   'host-src' is an absolute path or a name
+                                   value.
+     --volume-driver=""            Container's volume driver
      --volumes-from=[]             Mount volumes from the specified container(s)
      -w, --workdir=""              Working directory inside the container
 
@@ -91,14 +111,14 @@ run
 
 .. For information on connecting a container to a network, see the “Docker network overview“.
 
-コンテナをネットワークで接続する詳細については、 :doc:`Docker ネットワーク概要 </engine/userguide/networking>` をご覧ください。
+コンテナをネットワークで接続する詳細については、 :doc:`Docker ネットワーク概要 </engine/userguide/networking/index>` をご覧ください。
 
 .. Examples
 
 例
 ==========
 
-.. Assign name and allocate psuedo-TTY (–name, -it)
+.. Assign name and allocate pseudo-TTY (–name, -it)
 
 .. _assign-name-and-allocalte-pseudo-tty:
 
@@ -149,7 +169,7 @@ run
 
 .. code-block:: bash
 
-   $ docker run --privileged ubuntu bash
+   $ docker run -t -i --privileged ubuntu bash
    root@50e3f57e16e6:/# mount -t tmpfs none /mnt
    root@50e3f57e16e6:/# df -h
    Filesystem      Size  Used Avail Use% Mounted on
@@ -173,6 +193,19 @@ run
 .. The -w lets the command being executed inside directory given, here /path/to/dir/. If the path does not exists it is created inside the container.
 
 ``-w`` は、指定したディレクトリの中でコマンドを実行します。この例では ``/path/to/dir`` で実行します。コンテナ内にパスが存在しなければ、作成されます。
+
+.. Mount tmpfs (--tmpfs)
+
+tmpfs のマウント（--tmpfs）
+------------------------------
+
+.. code-block:: bash
+
+   $ docker run -d --tmpfs /run:rw,noexec,nosuid,size=65536k my_image
+
+.. The --tmpfs flag mounts an empty tmpfs into the container with the rw, noexec, nosuid, size=65536k options.
+
+``--tmpfs`` フラグはコンテナに対して空っぽの tmfps をマウントします。このとき、オプション ``rw`` 、 ``noexec`` 、``nosuid`` 、 ``size=65536k`` オプションを指定しています。
 
 .. Mount volume (-v, –read-only)
 
@@ -207,9 +240,9 @@ run
 
 .. code-block:: bash
 
-   $ docker run -t -i -v /var/run/docker.sock:/var/run/docker.sock -v ./static-docker:/usr/bin/docker busybox sh
+   $ docker run -t -i -v /var/run/docker.sock:/var/run/docker.sock -v /path/to/static-docker-binary:/usr/bin/docker busybox sh
 
-.. By bind-mounting the docker unix socket and statically linked docker binary (such as that provided by https://get.docker.com), you give the container the full access to create and manipulate the host’s Docker daemon.
+.. By bind-mounting the docker unix socket and statically linked docker binary (refer to get the linux binary), you give the container the full access to create and manipulate the host’s Docker daemon.
 
 Docker Unix ソケットと docker バイナリ（ https://get.docker.com から入手）に対するマウントにより、コンテナはホスト側の Docker デーモンに対して作成や各種操作といった完全アクセスをもたらします。
 
@@ -244,9 +277,9 @@ Docker Unix ソケットと docker バイナリ（ https://get.docker.com から
 
    $ docker run -e MYVAR1 --env MYVAR2=foo --env-file ./env.list ubuntu bash
 
-.. This sets environmental variables in the container. For illustration all three flags are shown here. Where -e, --env take an environment variable and value, or if no = is provided, then that variable’s current value is passed through (i.e. $MYVAR1 from the host is set to $MYVAR1 in the container). When no = is provided and that variable is not defined in the client’s environment then that variable will be removed from the container’s list of environment variables. All three flags, -e, --env and --env-file can be repeated.
+.. This sets simple (non-array) environmental variables in the container. For illustration all three flags are shown here. Where -e, --env take an environment variable and value, or if no = is provided, then that variable’s current value is passed through (i.e. $MYVAR1 from the host is set to $MYVAR1 in the container). When no = is provided and that variable is not defined in the client’s environment then that variable will be removed from the container’s list of environment variables. All three flags, -e, --env and --env-file can be repeated.
 
-これはコンテナ内における環境変数を設定します。この３つのフラグについて説明します。 ``-e`` と ``--env`` は環境変数と値を指定する場所です。あるいは、もし ``=`` が指定されなければ、現在の環境変数がそのまま送られます（例： ホスト上の ``$MYVAR1`` がコンテナ内の ``$MYVAR1`` にセットされます ）。 ``=`` が指定されず、クライアント側の環境変数がない場合は、コンテナ内の環境変数からは削除されます。この３つのフラグ ``-e`` 、 ``--env`` 、``--env-file`` は何度でも指定できます。
+これはコンテナ内におけるシンプルな（配列ではない）環境変数を設定します。この３つのフラグについて説明します。 ``-e`` と ``--env`` は環境変数と値を指定する場所です。あるいは、もし ``=`` が指定されなければ、現在の環境変数がそのまま送られます（例： ホスト上の ``$MYVAR1`` がコンテナ内の ``$MYVAR1`` にセットされます ）。 ``=`` が指定されず、クライアント側の環境変数がない場合は、コンテナ内の環境変数からは削除されます。この３つのフラグ ``-e`` 、 ``--env`` 、``--env-file`` は何度でも指定できます。
 
 .. Regardless of the order of these three flags, the --env-file are processed first, and then -e, --env flags. This way, the -e or --env will override variables as needed.
 
@@ -367,13 +400,21 @@ label-file の書式は、環境変数の読み込み書式と似ています（
 コンテナをネットワークに接続（--net）
 ----------------------------------------
 
-.. When you start a container use the --net flag to connect it to a network. This adds the busybox container to the mynet network.
+.. When you start a container use the --net flag to connect it to a network. This adds the busybox container to the my-net network.
 
-コンテナ実行時に ``--net`` フラグを付けるとネットワークに接続します。次の例は ``busybox`` コンテナに ``mynet`` ネットワークを追加します。
+コンテナ実行時に ``--net`` フラグを付けるとネットワークに接続します。次の例は ``busybox`` コンテナに ``my-net`` ネットワークを追加します。
 
 .. code-block:: bash
 
-   $ docker run -itd --net=my-multihost-network busybox
+   $ docker run -itd --net=my-net busybox
+
+.. You can also choose the IP addresses for the container with --ip and --ip6 flags when you start the container on a user-defined network.
+
+また、ユーザ定義ネットワーク上でコンテナを起動時、 ``--ip`` と ``--ipv6`` フラグを使い、コンテナに対して IP アドレスを割り当て可能です。
+
+.. code-block:: bash
+
+   $ docker run -itd --net=my-net --ip=10.10.9.75 busybox
 
 .. If you want to add a running container to a network use the docker network connect subcommand.
 
@@ -478,12 +519,12 @@ STDIN・STDOUT・STDERRのアタッチ（-a）
    $ docker run --device=/dev/sda:/dev/xvdc --rm -it ubuntu fdisk  /dev/xvdc
    
    Command (m for help): q
-   $ docker run --device=/dev/sda:/dev/xvdc:ro --rm -it ubuntu fdisk  /dev/xvdc
+   $ docker run --device=/dev/sda:/dev/xvdc:r --rm -it ubuntu fdisk  /dev/xvdc
    You will not be able to write the partition table.
    
    Command (m for help): q
    
-   $ docker run --device=/dev/sda:/dev/xvdc --rm -it ubuntu fdisk  /dev/xvdc
+   $ docker run --device=/dev/sda:/dev/xvdc:rw -it ubuntu fdisk  /dev/xvdc
    
    Command (m for help): q
    
@@ -591,7 +632,7 @@ IPv6 は ``-4`` フラグにかわって ``-6`` を指定します。他のネ�
 
 .. code-block:: bash
 
-   $ docker run --ulimit nofile=1024:1024 --rm debian ulimit -n
+   $ docker run --ulimit nofile=1024:1024 --rm debian sh -c "ulimit -n"
    1024
 
 ..    Note: If you do not provide a hard limit, the soft limit will be used for both values. If no ulimits are set, they will be inherited from the default ulimits set on the daemon. as option is disabled now. In other words, the following script is not supported: $ docker run -it --ulimit as=1024 fedora /bin/bash
