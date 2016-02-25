@@ -1,8 +1,11 @@
-.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/commandline/volume_create/
-.. doc version: 1.9
-.. check date: 2015/12/27
-.. -----------------------------------------------------------------------------
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/engine/reference/commandline/volume_create/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/volume_create.md
+   doc version: 1.10
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/volume_create.md
+.. check date: 2016/02/25
+.. Commits on Feb 10, 2016 910ea8adf6c2c94fdb3748893e5b1e51a6b8c431
+.. -------------------------------------------------------------------
 
 .. volume create
 
@@ -17,7 +20,7 @@ volume create
    Create a volume
    
      -d, --driver=local    Specify volume driver name
-     --help=false          Print usage
+     --help                Print usage
      --name=               Specify volume name
      -o, --opt=map[]       Set driver specific options
 
@@ -76,4 +79,15 @@ volume create
 .. note::
 
    内蔵の ``local`` ボリューム・ドライバは、現時点ではオプションを受け付けません。
+
+関連情報
+==========
+
+* :doc:`volume_inspect`
+* :doc:`volume_ls`
+* :doc:`volume_rm`
+* :doc:`/engine/userguide/containers/dockervolumes`
+
+
+
 
