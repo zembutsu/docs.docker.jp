@@ -181,9 +181,9 @@ As the docker daemon runs with the AUFS driver, the driver stores images and con
 
 ``/var/lib/docker/aufs/layers/`` ディレクトリに含まれるのは、どのようにイメージ・レイヤを重ねるかというメタデータです。このディレクトリには、Docker ホスト上のイメージかコンテナ毎に１つのファイルがあります（ファイル名はイメージのレイヤ ID と一致しません）。各ファイルの中にはイメージ・レイヤの名前があります。次の図は１つのイメージが４つのレイヤを持つのを示しています。
 
-.... image:: ./images/aufs-metadata.png
-..   :scale: 60%
-..   :alt: AUFS メタデータ
+.. image:: ./images/aufs-metadata.png
+   :scale: 60%
+   :alt: AUFS メタデータ
 
 .. Inspecting the contents of the file relating to the top layer of the image shows the three image layers below it. They are listed in the order they are stacked.
 ..イメージの最上位レイヤのファイル内容を調べると、下層にある３つのイメージ・レイヤに関する情報が含まれています。これらは積み重ねられた順番で並べられています。
