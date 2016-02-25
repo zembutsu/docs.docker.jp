@@ -199,7 +199,7 @@ As the docker daemon runs with the AUFS driver, the driver stores images and con
    c22013c8472965aa5b62559f2b540cd440716ef149756e7b958a1b2aba421e87
    d3a1f33e8a5a513092f01bb7eb1c2abf4d711e5105390a3fe1ae2248cfde1391
 
-The base layer in an image has no image layers below it, so its file is empty.
+.. The base layer in an image has no image layers below it, so its file is empty.
 
 イメージのベース・レイヤは下層にイメージ・レイヤを持ちませんので、対象となるファイルの内容は空っぽです。
 
@@ -208,8 +208,7 @@ The base layer in an image has no image layers below it, so its file is empty.
 コンテナ
 ----------
 
-.. Running containers are mounted below /var/lib/docker/aufs/mnt/<container-id>. 
-This is where the AUFS union mount point that exposes the container and all underlying image layers as a single unified view exists. If a container is not running, it still has a directory here but it is empty. This is because AUFS only mounts a container when it is running. With Docker 1.10 and higher, container IDs no longer correspond to directory names under /var/lib/docker/aufs/mnt/<container-id>.
+.. Running containers are mounted below /var/lib/docker/aufs/mnt/<container-id>. This is where the AUFS union mount point that exposes the container and all underlying image layers as a single unified view exists. If a container is not running, it still has a directory here but it is empty. This is because AUFS only mounts a container when it is running. With Docker 1.10 and higher, container IDs no longer correspond to directory names under /var/lib/docker/aufs/mnt/<container-id>.
 
 実行中のコンテナは ``/var/lib/docker/aufs/mnt/<コンテナ ID>`` 配下にマウントされます。これが AUFS ユニオン・マウント・ポイントであり、コンテナと下層のイメージ・レイヤが１つに統合されて公開されている場所です。コンテナが実行されていなければ、これらのディレクトリは存在しますが、内容は空っぽです。なぜなら、コンテナが実行する時のみマウントするための場所だからです。Docker 1.10 以上では、コンテナ ID はディレクトリ名 ``/var/lib/docker/aufs/mnt/<コンテナID>`` と対応しません。
 
