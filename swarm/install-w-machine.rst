@@ -1,314 +1,354 @@
-.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/swarm/install-w-machine/
-.. doc version: 1.9
-.. check date: 2015/12/19
-.. -----------------------------------------------------------------------------
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/swarm/install-w-machine/
+.. SOURCE: https://github.com/docker/swarm/blob/master/docs/install-w-machine.md
+   doc version: 1.10
+      https://github.com/docker/swarm/commits/master/docs/install-w-machine.md
+.. check date: 2016/02/26
+.. Commits on Feb 25, 2016 b9f7b8a91a0cbd04f91bac4a7b5172443476d205
+.. -------------------------------------------------------------------
 
-.. Install and Create a Docker Swarm
+.. Evaluate Swarm in a sandbox
+
+.. _evaluate-swarm-in-a-sandbox:
 
 =======================================
-Docker Swarm のインストール
+Swarm を検証環境で試すには
 =======================================
 
-.. You use Docker Swarm to host and schedule a cluster of Docker containers. This section introduces you to Docker Swarm by teaching you how to create a swarm on your local machine using Docker Machine and VirtualBox.
+.. This getting started example shows you how to create a Docker Swarm, the native clustering tool for Docker.
 
-Docker コンテナのクラスタを、ホストとスケジュールするために Docker Swarm が使えます。このセクションでは Docker Swarm の紹介として、ローカルマシン上に Docker Machine と VirtualBox を使ってクラスタを作る方法を学びます。
+この導入ガイドでは、Docker Swarm という Docker 用のネイティブなクラスタリング・ツールを使う方法を紹介します。
 
-.. Prerequisites
+.. You’ll use Docker Toolbox to install Docker Machine and some other tools on your computer. Then you’ll use Docker Machine to provision a set of Docker Engine hosts. Lastly, you’ll use Docker client to connect to the hosts, where you’ll create a discovery token, create a cluster of one Swarm manager and nodes, and manage the cluster.
 
-動作条件
-==========
+Docker Machine がインストールされた Docker Toolbox と、コンピュータ上の他のツールをいくつか使います。Docker Machine は Docker Engine ホスト群をプロビジョン（自動構築）するために使います。そして、Docker クライアントをホストに接続するために使います。ホストとはディスカバリ・トークンの作成や、Swarm マネージャとノードオンクラスタを作成し、クラスタを管理するための場所です。
 
-.. Make sure your local system has VirtualBox installed. If you are using Mac OS X or Windows and have installed Docker, you should have VirtualBox already installed.
+.. When you finish, you’ll have a Docker Swarm up and running in VirtualBox on your local Mac or Windows computer. You can use this Swarm as personal development sandbox.
 
-ローカルのシステムに VirtualBox がインストールされていることを確認します。Mac OS X や Windows であれば、Docker をインストール済みであれば VirtualBox もインストールされているでしょう。
+準備が完了すると、ローカルの Mac か Windows コンピュータ上で動く VirtualBox に Docker Swarm を起動します。この Swarm 環境は個人的な開発環境（サンドボックス）として使えます。
 
-.. Using the instructions appropriate to your system architecture, install Docker Machine.
+.. To use Docker Swarm on Linux, see Build a Swarm cluster for production.
 
-自分のシステム・アーキテクチャに応じた指示に従い、 :doc:`Docker Machine をインストール </machine/install-machine>` します。
+Docker Swarm を Linux 上で使う場合は、 :doc:`install-manual` をご覧ください。
 
-.. Create a Docker Swarm
+.. Install Docker Toolbox
 
-Docker Swarm の作成
-====================
+.. _install-docker-toolbox:
 
-.. Docker Machine gets hosts ready to run Docker containers. Each node in your Docker Swarm must have access to Docker to pull images and run them in containers. Docker Machine manages all this provisioning for your swarm.
+Docker Toolbox のインストール
+==============================
 
-Docker Machine は Docker コンテナを実行可能なホストを作成します。Docker Swarm の各ノードは Docker にアクセスし、イメージの取得やコンテナを実行します。Docker Machine はクラスタ全体のプロビジョニングを管理します。
+.. Download and install Docker Toolbox.
 
-.. Before you create a swarm with docker-machine, you associate each node with a discovery service. This example uses the token discovery service hosted by Docker Hub. This discovery service associates a token with instances of the Docker Daemon running on each node. Other discovery service backends such as etcd, consul, and zookeeper are available.
+`Docker Toolbox <https://www.docker.com/docker-toolbox>`_ のダウンロードとインストールをします。
 
-``docker-machine`` で Swarm クラスタを作成する前に、ディスカバリ・サービスと各ノードを連携しておきます。この例では Docker Hub が提供するトークンによるディスカバリ・サービスを使います。ディスカバリ・サービスは、Docker デーモンを実行している各ノードのインスタンスを、トークンで関連づけるものです。他にも ``etcd`` 、 ``consul`` 、 ``zookeeper`` といったディスカバリ・サービス・バックエンドが :doc:`利用できます </swarm/discovery>` 。
+.. The toolbox installs a handful of tools on your local Windows or Mac OS X computer. In this exercise, you use three of those tools:
 
-..    List the machines on your system.
+ Toolbox はローカルの Windows や Mac OS X コンピュータ上に便利なツールをインストールします。この練習では、３つのツールを使います。
 
-1. システム上のマシン一覧を表示します。
+..    Docker Machine: To deploy virtual machines that run Docker Engine.
+    VirtualBox: To host the virtual machines deployed from Docker Machine.
+    Docker Client: To connect from your local computer to the Docker Engines on the VMs and issue docker commands to create the Swarm.
+
+* Docker Machine: Docker Engine を実行する仮想マシンをデプロイします。
+* VirtualBox: Docker Machine を使い、仮想マシンのホストをデプロイします。
+* Docker クライアント: ローカルのコンピュータから仮想マシン上の Docker エンジンに接続します。それと、docker コマンドで Swarm クラスタを作成します。
+
+.. The following sections provide more information on each of these tools. The rest of the document uses the abbreviation, VM, for virtual machine.
+
+以下のセクションでは各ツールの詳細を説明します。移行のドキュメントでは仮想マシン（Virtual Machine）のことを VM と省略します。
+
+.. Create three VMs running Docker Engine
+
+.. _create-three-vms-running-docker-engine:
+
+Docker Engine で３つの VM を作成
+========================================
+
+.. Here, you use Docker Machine to provision three VMs running Docker Engine.
+
+ここでは Docker Machine を使い、Docker Engine を動かす３つの VM を作成（プロビジョン）します。
+
+..    Open a terminal on your computer. Use Docker Machine to list any VMs in VirtualBox.
+
+1. 自分のコンピュータ上のターミナルを開きます。Docker Machine を使い VirtualBox 上の VM 一覧を表示します。
 
 .. code-block:: bash
 
    $ docker-machine ls
    NAME         ACTIVE   DRIVER       STATE     URL                         SWARM
-   docker-vm    *        virtualbox   Running   tcp://192.168.99.100:2376   
+   default    *        virtualbox   Running   tcp://192.168.99.100:2376
 
-..    This example was run a Mac OSX system with Docker Toolbox installed. So, the docker-vm virtual machine is in the list.
+..    Optional: To conserve system resources, stop any virtual machines you are not using. For example, to stop the VM named default, enter:
 
-この例では Mac OSX システム上に Docker Toolbox をインストールしました。そのため、 ``docker-vm`` 仮想マシンが表示されています。
-
-..    Create a VirtualBox machine called local on your system.
-
-2. 自分のシステム上に ``local`` という名称の VirtualBox マシンを作成します。
+2. オプション： システム・リソースを節約するために、使っていない仮想マシンを停止します。例えば、 ``default`` という名前の VM を停止するには、次のようにします。
 
 .. code-block:: bash
 
-   $ docker-machine create -d virtualbox local
-   INFO[0000] Creating SSH key...                          
-   INFO[0000] Creating VirtualBox VM...                    
-   INFO[0005] Starting VirtualBox VM...                    
-   INFO[0005] Waiting for VM to start...                   
-   INFO[0050] "local" has been created and is now the active machine.
-   INFO[0050] To point your Docker client at it, run this in your shell: eval "$(docker-machine env local)"
+   $ docker-machine stop default
 
-..    Load the local machine configuration into your shell.
+..    Create and run a VM named manager.
 
-3. ``local`` マシンの設定をシェルに読み込みます。
+3. ``manager`` （マネージャ）という名前の VM を作成・実行します。
 
 .. code-block:: bash
 
-   $ eval "$(docker-machine env local)"
+   $ docker-machine create -d virtualbox manager
 
-..    Generate a discovery token using the Docker Swarm image.
+..    Create and run a VM named agent1.
 
-4. Docker Swarm イメージを使い、ディスカバリ・トークンを生成します。
-
-..    The command below runs the swarm create command in a container. If you haven’t got the swarm:latest image on your local machine, Docker pulls it for you.
-
-次のコマンドはコンテナ内で ``swarm create`` を実行します。もしローカルのマシン上に ``swarm:latest`` イメージが存在しなければ、Docker は Docker Hub からダウンロード（pull）します。
+4. ``agent1`` （エージェント１）という名前の VM を作成・実行します。
 
 .. code-block:: bash
 
-   $ docker run swarm create
-   Unable to find image 'swarm:latest' locally
-   latest: Pulling from swarm
-   de939d6ed512: Pull complete
-   79195899a8a4: Pull complete
-   79ad4f2cc8e0: Pull complete
-   0db1696be81b: Pull complete
-   ae3b6728155e: Pull complete
-   57ec2f5f3e06: Pull complete
-   73504b2882a3: Already exists
-   swarm:latest: The image you are pulling has been verified. Important: image verification is a tech preview feature and should not be relied on to provide security.
-   Digest: sha256:aaaf6c18b8be01a75099cc554b4fb372b8ec677ae81764dcdf85470279a61d6f
+   $ docker-machine create -d virtualbox agent1
+
+..    Create and run a VM named agent2.
+
+5. ``agent2`` （エージェント２）という名前の VM を作成・実行します。
+
+.. code-block:: bash
+
+   $ docker-machine create -d virtualbox agent2
+
+.. Each create command checks for a local copy of the latest VM image, called boot2docker.iso. If it isn’t available, Docker Machine downloads the image from Docker Hub. Then, Docker Machine uses boot2docker.iso to create a VM that automatically runs Docker Engine.
+
+各 create コマンドの実行時、 boot2docker.iso と呼ばれる VM イメージの *最新版* がローカルにコピーされているかどうか確認します。利用できなければ、Docker Machine は Docker Hub からイメージをダウンロードします。それから Docker Machine は boot2docker.iso を使い、Docker Engine を自動的に実行する VM を作成します。
+
+.. note::
+
+.. Troubleshooting: If your computer or hosts cannot reach Docker Hub, the docker-machine or docker run commands that pull images may fail. In that case, check the Docker Hub status page for service availability. Then, check whether your computer is connected to the Internet. Finally, check whether VirtualBox’s network settings allow your hosts to connect to the Internet.
+
+   トラブルシューティング：コンピュータやホストが Docker Hub にアクセスできなければ、 ``docker-machine`` や ``docker run`` コマンドは失敗します。そのような場合、サービスが利用可能かどうか `Docker Hub ステータス・ページ <http://status.docker.com/>`_ を確認します。その次は、自分のコンピュータがインターネットに接続しているか確認します。あとは VirtualBox のネットワーク設定で、ホストがインターネット側に接続可能かどうかを確認してください。
+
+.. Create a Swarm discovery token
+
+.. _create-a-swam-discovery-token:
+
+Swarm ディスカバリ・トークンの作成
+========================================
+
+.. Here you use the discovery backend hosted on Docker Hub to create a unique discovery token for your cluster. This discovery backend is only for low-volume development and testing purposes, not for production. Later on, when you run the Swarm manager and nodes, they register with the discovery backend as members of the cluster that’s associated with the unique token. The discovery backend maintains an up-to-date list of cluster members and shares that list with the Swarm manager. The Swarm manager uses this list to assign tasks to the nodes.
+
+ここでは Docker Hub 上にあるディスカバリ・バックエンドを使い、自分のクラスタのためのユニークなディスカバリ・トークンを作成します。このディスカバリ・バックエンドは、小規模の開発環境やテスト目的のためであり、プロダクション向けではありません。後ほど、Swarm マネージャとノードを起動したら、ディスカバリ・バックエンドにクラスタのメンバとして登録します。クラスタとユニークなトークンを結び付けるのが、このバックエンドです。ディスカバリ・バックエンドはクラスタのメンバのリストを最新情報に更新し続け、その情報を Swarm マネージャと共有します。Swarm マネージャはこのリストを使いノードに対してタスクを割り当てます。
+
+..    Connect the Docker Client on your computer to the Docker Engine running on manager.
+
+1. コンピュータ上の Docker クライアントを Docker Engine が動いている ``manager``  に接続します。
+
+.. code-block:: bash
+
+   $ eval $(docker-machine env manager)
+
+..    The client will send the docker commands in the following steps to the Docker Engine on on manager.
+
+移行の手順では、 クライアント側の ``docker`` コマンドは ``manager`` 上の Docker Engine に送信します。
+
+.. Create a unique id for the Swarm cluster.
+
+2. Swarm クラスタに対するユニーク ID を作成します。
+
+.. code-block:: bash
+
+   $ docker run --rm swarm create
+   .
+   .
+   .
    Status: Downloaded newer image for swarm:latest
-   fe0cc96a72cf04dba8c1c4aa79536ec3
+   0ac50ef75c9739f5bfeeaf00503d4e6e
 
-..    The swarm create command returned the fe0cc96a72cf04dba8c1c4aa79536ec3 token.
+.. The docker run command gets the latest swarm image and runs it as a container. The create argument makes the Swarm container connect to the Docker Hub discovery service and get a unique Swarm ID, also known as a “discovery token”. The token appears in the output, it is not saved to a file on the host. The --rm option automatically cleans up the container and removes the file system when the container exits.
 
-``swarm create`` コマンドは ``fe0cc96a72cf04dba8c1c4aa79536ec3`` のようなトークンを返します。
+``docker run`` コマンドは最新（latest）の ``swam`` を取得し、コンテナとして実行します。引数 ``create`` は Swarm コンテナを Docker Hub ディスカバリ・サービスに接続し、ユニークな Swarm ID を取得します。この ID を「ディスカバリ・トークン」（discovery token）と呼びます。トークンは出力（アウトプット）されるだけであり、ホスト上のファイルには保管されません。 ``--rm`` オプションは自動的にコンテナを後片付けするもので、コンテナが終了するとファイルシステムを削除します。
 
-..    Save the token in a safe place.
+.. The discovery service keeps unused tokens for approximately one week.
 
-5. トークンを安全な場所に保存します。
+トークンが使われなくなると、およそ一週間後にディスカバリ・サービスによって削除されます。
 
-..    You’ll use this token in the next step to create a Docker Swarm.
+.. Copy the discovery token from the last line of the previous output to a safe place.
 
-このトークンは次のステップで Docker Swarm を作成するときに使います。
+3. 先ほどの出力されたディスカバリ・トークンを安全な場所にコピーします。
 
-.. Launch the Swarm manager
+.. Create the Swarm manager and nodes
 
-Swarm マネージャの起動
+.. _create-the-swarm-manager-and-nodes:
+
+Swarm マネージャとノードの作成
 ==============================
 
-.. A single system in your network is known as your Docker Swarm manager. The swarm manager orchestrates and schedules containers on the entire cluster. The swarm manager rules a set of agents (also called nodes or Docker nodes).
+.. Here, you connect to each of the hosts and create a Swarm manager or node.
 
-Docker Swarm マネージャと呼ばれるネットワーク上のシステムがあります。Swarm マネージャは、オーケストレート（自動処理）とクラスタ内のコンテナのスケジュールをします。Swarm マネージャはエージェント（ノードや Docker ノードとも呼ばれます）の集団を統率します。
+ここでは、各ホストに接続し、Swarm マネージャまたはノードを作成します。
 
-.. Swarm agents are responsible for hosting containers. They are regular docker daemons and you can communicate with them using the Docker remote API.
+..    Get the IP addresses of the three VMs. For example:
 
-Swarm エージェントはコンテナのホスティングに対して責任を持ちます。これらは通常の Docker デーモンであり、Docker リモート API を使って通信可能です。
-
-.. In this section, you create a swarm manager and two nodes.
-
-このセクションでは、Swarm マネージャと２つのノードを作成します。
-
-..    Create a swarm manager under VirtualBox.
-
-1. VirtualBox 配下で Swarm マネージャを作成します。
+1. ３つの VM の IP アドレスを取得します。例：
 
 .. code-block:: bash
 
-   docker-machine create \
-           -d virtualbox \
-           --swarm \
-           --swarm-master \
-           --swarm-discovery token://<TOKEN-FROM-ABOVE> \
-           swarm-master
+   $ docker-machine ls
+   NAME      ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER   ERRORS
+   agent1    -        virtualbox   Running   tcp://192.168.99.102:2376           v1.9.1
+   agent2    -        virtualbox   Running   tcp://192.168.99.103:2376           v1.9.1
+   manager   *        virtualbox   Running   tcp://192.168.99.100:2376           v1.9.1
 
-..    For example:
+..    Your client should still be pointing to Docker Engine on manager. Use the following syntax to run a Swarm container as the primary Swarm manager on manager.
 
-実行例：
-
-.. code-block:: bash
-
-   $ docker-machine create -d virtualbox --swarm --swarm-master --swarm-discovery token://fe0cc96a72cf04dba8c1c4aa79536ec3 swarm-master
-   INFO[0000] Creating SSH key...                          
-   INFO[0000] Creating VirtualBox VM...                    
-   INFO[0005] Starting VirtualBox VM...                    
-   INFO[0005] Waiting for VM to start...                   
-   INFO[0060] "swarm-master" has been created and is now the active machine.
-   INFO[0060] To point your Docker client at it, run this in your shell: eval "$(docker-machine env swarm-master)"
-
-..    Open your VirtualBox Manager, it should contain the local machine and the new swarm-master machine.
-
-2. VirtualBox マネージャを開き、 ``local`` マシンと新しい ``swarm-master`` マシンが作成されていることを確認します。
-
-  ..  VirtualBox　（図；ToDo）
-
-..     Create a swarm node.
-
-3. Swarm ノードを作成します。
+2. クライアントは ``manager`` を実行する Docker Engine を指し示しているままでしょう。次の構文は ``manager`` 上で Swarm コンテナをプライマリ Swarm マネージャとして実行します。
 
 .. code-block:: bash
 
-    docker-machine create \
-    -d virtualbox \
-    --swarm \
-    --swarm-discovery token://<TOKEN-FROM-ABOVE> \
-    swarm-agent-00
+   $ docker run -d -p <your_selected_port>:3376 -t -v /var/lib/boot2docker:/certs:ro swarm manage -H 0.0.0.0:3376 --tlsverify --tlscacert=/certs/ca.pem --tlscert=/certs/server.pem --tlskey=/certs/server-key.pem token://<cluster_id>
 
-..    For example:
+.. For example:
 
-実行例：
+例：
 
 .. code-block:: bash
 
-   $ docker-machine create -d virtualbox --swarm --swarm-discovery token://fe0cc96a72cf04dba8c1c4aa79536ec3 swarm-agent-00
-   INFO[0000] Creating SSH key...                          
-   INFO[0000] Creating VirtualBox VM...                    
-   INFO[0005] Starting VirtualBox VM...                    
-   INFO[0006] Waiting for VM to start...                   
-   INFO[0066] "swarm-agent-00" has been created and is now the active machine.
-   INFO[0066] To point your Docker client at it, run this in your shell: eval "$(docker-machine env swarm-agent-00)"
+   $ docker run -d -p 3376:3376 -t -v /var/lib/boot2docker:/certs:ro swarm manage -H 0.0.0.0:3376 --tlsverify --tlscacert=/certs/ca.pem --tlscert=/certs/server.pem --tlskey=/certs/server-key.pem swarm manage token://0ac50ef75c9739f5bfeeaf00503d4e6e
 
-..    Add another agent called swarm-agent-01.
+.. The -p option maps a port 3376 on the container to port 3376 on the host. The -v option mounts the directory containing TLS certificates (/var/lib/boot2docker for the manager VM) into the container running Swarm manager in read-only mode.
 
-4. ``swarm-agent-01`` という名前の別のエージェントを追加します。
+``-p`` オプションは、コンテナのポート 3376 をホスト上の 3376 に割り当てています。 ``-v`` オプションは TLS 証明書が入っているディレクトリ（ ``manager`` VM 上の ``/var/lib/boot2docker`` ）をマウントします。これは Swarm マネージャの中では読み込み専用（read-only）モードで扱われます。
+
+.. Connect Docker Client to agent1.
+
+3. Docker クライアントを ``agent1`` に接続します。
 
 .. code-block:: bash
 
-   $ docker-machine create -d virtualbox --swarm --swarm-discovery token://fe0cc96a72cf04dba8c1c4aa79536ec3 swarm-agent-01
+   $ eval $(docker-machine env agent1)
 
-..    You should see the two agents in your VirtualBox Manager.
+.. Use the following syntax to run a Swarm container as an agent on agent1. Replace with the IP address of the VM.
 
-VirtualBox マネージャ上に、２つのエージェントが表示されているでしょう。
+4. 次の構文は  ``agent1`` 上で Swarm コンテナをエージェントとして起動します。IP アドレスは VM のものに書き換えます。
 
-.. Direct your swarm
+.. code-block:: bash
 
-Swarm を直接操作
+   $ docker run -d swarm join --addr=<node_ip>:<
+
+..     For example:
+
+例：
+
+.. code-block:: bash
+
+   $ docker run -d swarm join --addr=192.168.99.102:2376 token://0ac50ef75c9739f5bfeeaf00503d4e6e
+
+..    Connect Docker Client to agent2.
+
+5. Docker クライアントを ``agent2`` に接続します。
+
+.. code-block:: bash
+
+   $ eval $(docker-machine env agent2)
+
+..    Run a Swarm container as an agent on agent2. For example:
+
+6. ``agent2`` 上で Swarm コンテナをエージェントとして起動します。
+
+.. code-block:: bash
+
+   $ docker run -d swarm join --addr=192.168.99.103:2376 token://0ac50ef75c9739f5bfeeaf00503d4e6e
+
+.. Manage your Swarm
+
+Swarm クラスタを管理
 ====================
 
-.. In this step, you connect to the swarm machine, display information related to your swarm, and start an image on your swarm.
+.. Here, you connect to the cluster and review information about the Swarm manager and nodes. You tell the Swarm to run a container and check which node did the work.
 
-このステップでは、Swarm マシンに接続し、Swarm クラスタに関連する情報を表示します。さらに Swarm 上でイメージを実行します。
+ここではクラスタに接続し、Swarm マネージャとノードの情報を見ていきます。Swarm に対してコンテナ実行を命令し、どのノードで動作しているかを確認します。
 
-..    Point your Docker environment to the machine running the swarm master.
+..     Connect the Docker Client to the Swarm by updating the DOCKER_HOST environment variable.
 
-1. Docker環境を Swarm マスタが実行しているマシンに切り替えます。
+1. Docker クライアントを Swarm に接続するため、 ``DOCKER_HOST`` 環境変数を更新します。
 
 .. code-block:: bash
 
-   $ eval $(docker-machine env --swarm swarm-master)
+   $ DOCKER_HOST=<manager_ip>:<your_selected_port>
 
-..    Get information on your new swarm using the docker command.
+..     For the current example, the manager has IP address 192.168.99.100 and we selected port 3376 for the Swarm manager.
 
-2. ``docker`` コマンドを使って新しいクラスタの情報を取得します。
+この例では ``manager`` の IP アドレスは ``192.168.99.100`` です。Swarm マネージャ用のポートは 3376 を選びました。
+
+.. code-block:: bash
+
+   $ DOCKER_HOST=192.168.99.100:3376
+
+..    Because Docker Swarm uses the standard Docker API, you can connect to it using Docker Client and other tools such as Docker Compose, Dokku, Jenkins, and Krane, among others.
+
+Docker Swarm は標準 Docker API を使うため、Docker クライアントで接続できます。他にも Docker Compose や、Dokku、Jenkins、Krane などのツールが利用できます。
+
+.. Get information about the Swarm.
+
+2. Swarm に関する情報を取得します。
 
 .. code-block:: bash
 
    $ docker info
-   Containers: 4
-   Strategy: spread
-  Filters: affinity, health, constraint, port, dependency
-   Nodes: 3
-    swarm-agent-00: 192.168.99.105:2376
-       └ Containers: 1
-       └ Reserved CPUs: 0 / 8
-       └ Reserved Memory: 0 B / 1.023 GiB
-    swarm-agent-01: 192.168.99.106:2376
-       └ Containers: 1
-       └ Reserved CPUs: 0 / 8
-       └ Reserved Memory: 0 B / 1.023 GiB
-    swarm-master: 192.168.99.104:2376
-       └ Containers: 2
-       └ Reserved CPUs: 0 / 8
 
-.. You can see that each agent and the master all have port 2376 exposed. When you create a swarm, you can use any port you like and even different ports on different nodes. Each swarm node runs the swarm agent container.
+.. As you can see, the output displays information about the two agent nodes and the one manager node in the Swarm.
 
-各エージェントとマスタは、全てポート ``2376`` を開いているのが分かります。Swarm クラスタ作成時、ノード毎に任意のポート利用も可能です。各 Swarm ノードは、Swarm エージェントのコンテナを実行しています。
+実行すると、Swarm 上にあるマネージャ１つと、エージェント・ノード２つの情報が表示されます。
 
-.. The master is running both the swarm manager and a swarm agent container. This isn’t recommended in a production environment because it can cause problems with agent failover. However, it is perfectly fine to do this in a learning environment like this one.
+.. Check the images currently running on your Swarm.
 
-マスタは Swarm マネージャと Swarm エージェントの各コンテナを実行しています。プロダクション環境では、エージェントが停止すると問題が発生するためお薦めしません。しかしながら、このような学習環境においては十分です。
-
-..    Check the images currently running on your swarm.
-
-1. Swarm 上で実行しているイメージを確認します。
+3. Swarm 上で実行中のイメージを確認します。
 
 .. code-block:: bash
 
-   $ docker ps  -a
-   CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS              PORTS                                     NAMES
-   78be991b58d1        swarm:latest        "/swarm join --addr    3 minutes ago       Up 2 minutes        2375/tcp                                  swarm-agent-01/swarm-agent        
-   da5127e4f0f9        swarm:latest        "/swarm join --addr    6 minutes ago       Up 6 minutes        2375/tcp                                  swarm-agent-00/swarm-agent        
-   ef395f316c59        swarm:latest        "/swarm join --addr    16 minutes ago      Up 16 minutes       2375/tcp                                  swarm-master/swarm-agent          
-   45821ca5208e        swarm:latest        "/swarm manage --tls   16 minutes ago      Up 16 minutes       2375/tcp, 192.168.99.104:3376->3376/tcp   swarm-master/swarm-agent-master   
+   $ docker ps
 
-..    Run the Docker hello-world test image on your swarm.
+.. Run a container on the Swarm.
 
-2. Docker の ``hello-world`` テストイメージを Swarm クラスタ上で実行します。
+4. Swarm 上でコンテナを実行します。
 
 .. code-block:: bash
 
    $ docker run hello-world
    Hello from Docker.
-   This message shows that your installation appears to be working correctly.
-   
-   
-   To generate this message, Docker took the following steps:
-    1. The Docker client contacted the Docker daemon.
-    2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
-           (Assuming it was not already locally available.)
-    3. The Docker daemon created a new container from that image which runs the
-           executable that produces the output you are currently reading.
-    4. The Docker daemon streamed that output to the Docker client, which sent it
-           to your terminal.
-   
-   
-   To try something more ambitious, you can run an Ubuntu container with:
-    $ docker run -it ubuntu bash
-   
-   
-   For more examples and ideas, visit:
-    http://docs.docker.com/userguide/
+   .
+   .
+   .
 
-..    Use the docker ps command to find out which node the container ran on.
+.. Use the docker ps command to find out which node the container ran on. For example:
 
-3. ``docker ps`` コマンドを使うと、どのノードでコンテナが実行中か分かります。
+5. ``docker ps`` コマンドを使い、どのノードでコンテナが実行されているかを確認します。実行例：
 
 .. code-block:: bash
 
    $ docker ps -a
-    CONTAINER ID        IMAGE                COMMAND                CREATED             STATUS                     PORTS                                     NAMES
-   54a8690043dd        hello-world:latest   "/hello"               22 seconds ago      Exited (0) 3 seconds ago                                             swarm-agent-00/modest_goodall     
-   78be991b58d1        swarm:latest         "/swarm join --addr    5 minutes ago       Up 4 minutes               2375/tcp                                  swarm-agent-01/swarm-agent        
-   da5127e4f0f9        swarm:latest         "/swarm join --addr    8 minutes ago       Up 8 minutes               2375/tcp                                  swarm-agent-00/swarm-agent        
-   ef395f316c59        swarm:latest         "/swarm join --addr    18 minutes ago      Up 18 minutes              2375/tcp                                  swarm-master/swarm-agent          
-   45821ca5208e        swarm:latest         "/swarm manage --tls   18 minutes ago      Up 18 minutes              2375/tcp, 192.168.99.104:3376->3376/tcp   swarm-master/swarm-agent-master   
+   CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS               NAMES
+   0b0628349187        hello-world         "/hello"                 20 minutes ago      Exited (0) 20 minutes ago                       agent1
+   .
+   .
+   .
+
+.. In this case, the Swarm ran ‘hello-world’ on the ‘swarm1’.
+
+この例では、 ``swarm1`` 上で ``hello-world`` が動いています。
+
+.. By default, Docker Swarm uses the “spread” strategy to choose which node runs a container. When you run multiple containers, the spread strategy assigns each container to the node with the fewest containers.
+
+Docker Swarm がコンテナをどのノードで実行するかを決めるにあたり、デフォルトでは「spread」（スプレッド）ストラテジを使います。複数のコンテナを実行する場合、スプレッド・ストラテジはコンテナの実行数が最も少ないノードに対してコンテナを割り当てます。
 
 .. Where to go next
 
-次はどちらへ
+さらに詳しく
 ====================
 
-.. At this point, you’ve installed Docker Swarm by pulling the latest image of it from Docker Hub. Then, you built and ran a swarm on your local machine using VirtualBox. If you want, you can onto read an overview of Docker Swarm features. Alternatively, you can develop a more in-depth view of Swarm by manually installing Swarm on a network.
+.. At this point, you’ve done the following: - Created a Swarm discovery token. - Created Swarm nodes using Docker Machine. - Managed a Swarm and run containers on it. - Learned Swarm-related concepts and terminology.
 
-これまで、 Docker Swarm を Docker Hub 上の最新イメージを取得して構築しました。それから VirtualBox を使ってローカルのマシン上に Swarm クラスタを構築しました。必要であれば、 :doc:`Docker Swarm 機能の概要 </swarm/index>` をお読みください。あるいは、Swarm をより深く開発するためには、ネットワーク上で :doc:`Swarm の手動インストール </swarm/install-manual>` をお読みください。
+ここまでは次の作業を行いました。
+
+* Swarm ディスカバリ・トークンの作成
+* Docker Machine を使って Swarm ノードを作成
+* Swarm を使ってコンテナを実行
+* Swarm に関連する概念と技術を学んだ
+
+.. However, Docker Swarm has many other aspects and capabilities. For more information, visit the Swarm landing page or read the Swarm documentation.
+
+しかしながら、Docker Swarm には多くの特徴や能力があります。より詳しい情報は、 `Swarm のランディング・ページ（英語） <https://www.docker.com/docker-swarm>`_ や :doc:`Swarm ドキュメント </swarm/index>` をご覧ください。
+
