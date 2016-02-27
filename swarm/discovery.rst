@@ -47,8 +47,8 @@ Docker Hub のホステッド・ディスカバリ
 
 .. code-block:: bash
 
-   # 各ノードで Swam エージェントを起動します。
-   # Swam Manager がアクセス可能であれば、
+   # 各ノードで Swarm エージェントを起動します。
+   # Swarm Manager がアクセス可能であれば、
    # <node_ip> はパブリックである必要はありません（例：192.168.0.x）。
    $ swarm join --advertise=<node_ip:2375> token://<cluster_id>
 
@@ -324,7 +324,7 @@ IP アドレスの範囲をパターンで指定
 
 .. You can contribute a new discovery backend to Swarm. For information on how to do this, see our discovery README in the Docker Swarm repository.
 
-あなたは Swam 向けに新しいディスカバリ・バックエンドに貢献できます。どのようにするかは、 `Docker Swarm レポジトリにある discovery README <https://github.com/docker/swarm/blob/master/discovery/README.md>`_ をお読みください。
+あなたは Swarm 向けに新しいディスカバリ・バックエンドに貢献できます。どのようにするかは、 `Docker Swarm レポジトリにある discovery README <https://github.com/docker/swarm/blob/master/discovery/README.md>`_ をお読みください。
 
 
 

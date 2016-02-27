@@ -411,7 +411,7 @@ Docker クラスタから、パブリックのポート ``80`` が利用可能�
 
 .. Finally, Docker Swarm will refuse to run another container that requires port 80 since not a single node in the cluster has it available:
 
-最終的に、クラスタ上でポート ``80`` が利用可能なノードが無くなると、Docker Swam はコンテナの実行を拒否します。
+最終的に、クラスタ上でポート ``80`` が利用可能なノードが無くなると、Docker Swarm はコンテナの実行を拒否します。
 
 .. code-block:: bash
 

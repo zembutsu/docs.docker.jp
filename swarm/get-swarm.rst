@@ -104,7 +104,7 @@ Mac か Windows を使っている場合は、Docker Machine コマンドで Doc
 
 .. In this example, the swarm image did not exist on the Engine host, so the Engine downloaded it. After it downloaded, the image executed the help subcommand to display the help text. After displaying the help, the swarm image exits and returns your to your terminal command line.
 
-この例では ``swarm`` イメージは Engine ホスト上に存在していないため、Engine はイメージをダウンロードします。ダウンロード後、イメージは ``help`` サブコマンドを実行し、ヘルプ・テキストを表示します。ヘルプを表示した後、 ``swam`` イメージは終了し、ターミナル上のコマンドラインに戻ります。
+この例では ``swarm`` イメージは Engine ホスト上に存在していないため、Engine はイメージをダウンロードします。ダウンロード後、イメージは ``help`` サブコマンドを実行し、ヘルプ・テキストを表示します。ヘルプを表示した後、 ``swarm`` イメージは終了し、ターミナル上のコマンドラインに戻ります。
 
 .. List the running containers on your Engine host.
 
@@ -117,7 +117,7 @@ Mac か Windows を使っている場合は、Docker Machine コマンドで Doc
 
 .. Swarm is no longer running. The swarm image exits after you issue it a command.
 
-Swarm は動作していません。コマンドを実行後、 ``swam`` イメージが終了したからです。
+Swarm は動作していません。コマンドを実行後、 ``swarm`` イメージが終了したからです。
 
 .. Why use the image?
 
