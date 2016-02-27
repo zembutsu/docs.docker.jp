@@ -124,8 +124,8 @@ Docker Hub には多くの `公式レポジトリ <http://hub.docker.com/explore
 
 公式レポジトリには、専門家の力によって最適化された最新のイメージが使われており、これを自分のアプリケーションに活用できます。
 
-..    Note: If you would like to contribute an Official Repository for your organization or product, see the documentation on Official Repositories on Docker Hub for more information.
-う
+.. Note: If you would like to contribute an Official Repository for your organization or product, see the documentation on Official Repositories on Docker Hub for more information.
+
 .. note::
 
    あなたの組織やプロダクトが公式レポジトリに貢献したい場合は、 :doc:`Docker Hub の公式レポジトリ <official_repos>` に関する詳しい情報をご覧ください。
