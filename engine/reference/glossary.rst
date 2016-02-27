@@ -249,7 +249,7 @@ libnetwork（リブネットワーク）は Go 言語のネイティブな実装
 
 .. links provide a legacy interface to connect Docker containers running on the same host to each other without exposing the hosts’ network ports. Use the Docker networks feature instead.
 
-リンク機能は同じホスト上で実行している Docker コンテナ間を接続するための、レガシーな（古い）インタフェースです。リンク機能を使うと、ホスト側のネットワーク・ポートを開く必要がありません。現在は、この機能の替わりに Dockre ネットワーク機能を使います。
+リンク機能は同じホスト上で実行している Docker コンテナ間を接続するための、レガシーな（古い）インタフェースです。リンク機能を使うと、ホスト側のネットワーク・ポートを開く必要がありません。現在は、この機能の替わりに Docker ネットワーク機能を使います。
 
 .. Machine
 
@@ -301,7 +301,7 @@ OverlayFS は、他のファイルシステムに対する `ユニオン・マ�
 
 .. The default registry can be accessed using a browser at Docker Hub or using the docker search command.
 
-デフォルトのレジストリにアクセスするには、ブラウザで :ref:`Dockre Hub <docker-hub>` を開くか、 ``docker search`` コマンドを使います。
+デフォルトのレジストリにアクセスするには、ブラウザで :ref:`Docker Hub <docker-hub>` を開くか、 ``docker search`` コマンドを使います。
 
 .. repository
 
@@ -316,7 +316,7 @@ OverlayFS は、他のファイルシステムに対する `ユニオン・マ�
 
 .. Here is an example of the shared nginx repository and its tags
 
-共有 `Nginx レポジトリ <https://registry.hub.docker.com/_/nginx/>` と `タグ <https://registry.hub.docker.com/_/nginx/tags/manage/>`_ の例です。
+共有 `Nginx レポジトリ <https://registry.hub.docker.com/_/nginx/>`_ と `タグ <https://registry.hub.docker.com/_/nginx/tags/manage/>`_ の例です。
 
 .. Swarm
 

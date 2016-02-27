@@ -288,7 +288,7 @@ webhook 連鎖のコールバックを確認するには、次のようにしま
 ..    Retrieve the callback_url value in the request’s JSON payload.
     Send a POST request to this URL containing a valid JSON body.
 
-1. リクエストする JSON ペイロードに``callback_url`` 値を入れてから、読み込む
+1. リクエストする JSON ペイロードに ``callback_url`` 値を入れてから、読み込む
 2. 有効な JSON の内容に含まれる URL に対して、POST リクエストが送信
 
 ..    Note: A chain request will only be considered complete once the last callback has been validated.

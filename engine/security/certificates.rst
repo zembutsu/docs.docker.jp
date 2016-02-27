@@ -93,7 +93,7 @@
 
    これらの TLS コマンドが生成する証明書は、LInux 上で動作するものです。Mac OS X に含まれている OpenSSL のバージョンでは、Docker が必要とする証明書のタイプとの互換性はありません。
 
-... Troubleshooting tips
+.. Troubleshooting tips
 
 上手くいかない場合の確認点
 ==============================

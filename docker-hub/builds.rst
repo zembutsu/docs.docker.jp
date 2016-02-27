@@ -40,8 +40,6 @@ Docker Hub の自動構築
 
 .. Link to a hosted repository service
 
--- _link-to-a-hosted-repository-service:
-
 ホステッド・レポジトリ・サービスとリンク
 ==================================================
 

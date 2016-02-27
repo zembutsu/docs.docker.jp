@@ -10,7 +10,7 @@
 
 .. This section tells you how to create a Docker Swarm on your network to use only for debugging, testing, or development purposes. You can also use this type of installation if you are developing custom applications for Docker Swarm or contributing to 
 
-このページでは、自分のネットワーク上に Docker Swam を作成する方法を紹介します。用途は、デバッグやテストや開発目的のみ対象です。この構築手順は、Docker Swam 向けの何らかのアプリケーション開発や、貢献のためにも使えます。
+このページでは、自分のネットワーク上に Docker Swarm を作成する方法を紹介します。用途は、デバッグやテストや開発目的のみ対象です。この構築手順は、Docker Swarm 向けの何らかのアプリケーション開発や、貢献のためにも使えます。
 
 .. Caution: Only use this set up if your network environment is secured by a firewall or other measures.
 
@@ -80,7 +80,7 @@ Swarm ノードの作成
 
 .. Each Swarm node will run a Swarm node agent. The agent registers the referenced Docker daemon, monitors it, and updates the discovery backend with the node’s status.
 
-各 Swam ノードでは Swam ノードのエージェントを実行します。エージェントは Docker デーモンや監視のために登録され、ノードの状態とディスカバリ・バックエンドを更新します。
+各 Swarm ノードでは Swarm ノードのエージェントを実行します。エージェントは Docker デーモンや監視のために登録され、ノードの状態とディスカバリ・バックエンドを更新します。
 
 .. This example uses the Docker Hub based token discovery service. Log into each node and do the following.
 
@@ -226,7 +226,7 @@ TLS
 
 .. Swarm supports TLS authentication between the CLI and Swarm but also between Swarm and the Docker nodes. However, all the Docker daemon certificates and client certificates must be signed using the same CA-certificate.
 
-Swam は CLI と Swam 間の TLS 認証をサポートしているだけでなく、Swam と Docker ノード間でもサポートしています。 *しかしながら* 、全ての Docker デーモンと Docker ノードが同じ CA 証明書を使って認証されている **必要があります** 。
+Swarm は CLI と Swarm 間の TLS 認証をサポートしているだけでなく、Swarm と Docker ノード間でもサポートしています。 *しかしながら* 、全ての Docker デーモンと Docker ノードが同じ CA 証明書を使って認証されている **必要があります** 。
 
 .. In order to enable TLS for both client and server, the same command line options as Docker can be specified:
 
@@ -244,5 +244,5 @@ Docker の TLS 認証設定や証明書の生成に関する詳細情報は、 :
 
 .. note::
 
-   Swam 証明書の生成には、 ``extendedKeyUsage = clientAuth,serverAuth`` を使う必要があります。
+   Swarm 証明書の生成には、 ``extendedKeyUsage = clientAuth,serverAuth`` を使う必要があります。
 

@@ -33,7 +33,7 @@ Docker Hub 入門
 * :doc:`自動構築（Automated Builds） <builds>` ：GitHub か Bitbucket レポジトリ上のソースコードに変更を加えると、新しいイメージを自動的に構築します。
 * :doc:`ウェブ・フック（Webhooks） <webhooks>` ：自動構築機能でレポジトリに送信された後、、Webhook が何らかのアクションを起こします。
 * :doc:`組織 <orgs>` ：イメージ・レポジトリにアクセスできるユーザを管理するための、ワーク・グループを作成します。
-* GitHub と Bitbucket 統合。Dockre Hub と Docker イメージを、現在のワークフローに追加します。
+* GitHub と Bitbucket 統合。Docker Hub と Docker イメージを、現在のワークフローに追加します。
 
 .. Create a Docker Hub account
 
@@ -118,13 +118,13 @@ Docker イメージの動作に関する詳細情報は、 :doc:`Docker ユー�
 
 .. The Docker Hub contains a number of Official Repositories. These are public, certified repositories from vendors and contributors to Docker. They contain Docker images from vendors like Canonical, Oracle, and Red Hat that you can use as the basis to building your applications and services.
 
-Docker Hub には多くの `公式レポジトリ <http://hub.docker.com/explore/>`_ がありｍさう。これらはベンダやコントリビュータ（貢献者）によって公開されているものであり、Docker 社によって認証されています。Docker イメージのベンダには  Canonical、Oracle、Red Hat が含まれており、これらを基盤に自分のアプリケーションやサービスを構築できます。
+Docker Hub には多くの `公式レポジトリ <http://hub.docker.com/explore/>`_ があります。これらはベンダやコントリビュータ（貢献者）によって公開されているものであり、Docker 社によって認証されています。Docker イメージのベンダには  Canonical、Oracle、Red Hat が含まれており、これらを基盤に自分のアプリケーションやサービスを構築できます。
 
 .. With Official Repositories you know you’re using an optimized and up-to-date image that was built by experts to power your applications.
 
 公式レポジトリには、専門家の力によって最適化された最新のイメージが使われており、これを自分のアプリケーションに活用できます。
 
-..    Note: If you would like to contribute an Official Repository for your organization or product, see the documentation on Official Repositories on Docker Hub for more information.
+.. Note: If you would like to contribute an Official Repository for your organization or product, see the documentation on Official Repositories on Docker Hub for more information.
 
 .. note::
 

@@ -226,8 +226,6 @@ Docker は ``#`` で *始まる* 行をコメントとみなします。 ``#`` �
 
 .. _dockerignore-file:
 
-.. .dockerignore file
-
 .dockerignore ファイル
 ------------------------------
 
@@ -383,7 +381,7 @@ RUN
 
 RUN には２つの形式があります。
 
-...    RUN <command> (shell form, the command is run in a shell - /bin/sh -c)
+..  RUN <command> (shell form, the command is run in a shell - /bin/sh -c)
     RUN ["executable", "param1", "param2"] (exec form)
 
 * ``RUN <コマンド>``（シェル形式、コマンドをシェル ``/bin/sh -c`` で実行する）

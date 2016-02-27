@@ -59,7 +59,7 @@ Zsh
 
    fpath=(~/.zsh/completion $fpath)
 
-... Make sure compinit is loaded or do it by adding in ~/.zshrc
+.. Make sure compinit is loaded or do it by adding in ~/.zshrc
 
 ``compinit`` で読み込まれて ``~/.zshrc`` に追加されているか確認します。
 

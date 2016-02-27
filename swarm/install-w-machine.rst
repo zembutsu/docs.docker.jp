@@ -123,8 +123,6 @@ Docker Engine で３つの VM を作成
 
 .. Create a Swarm discovery token
 
-.. _create-a-swam-discovery-token:
-
 Swarm ディスカバリ・トークンの作成
 ========================================
 
@@ -159,7 +157,7 @@ Swarm ディスカバリ・トークンの作成
 
 .. The docker run command gets the latest swarm image and runs it as a container. The create argument makes the Swarm container connect to the Docker Hub discovery service and get a unique Swarm ID, also known as a “discovery token”. The token appears in the output, it is not saved to a file on the host. The --rm option automatically cleans up the container and removes the file system when the container exits.
 
-``docker run`` コマンドは最新（latest）の ``swam`` を取得し、コンテナとして実行します。引数 ``create`` は Swarm コンテナを Docker Hub ディスカバリ・サービスに接続し、ユニークな Swarm ID を取得します。この ID を「ディスカバリ・トークン」（discovery token）と呼びます。トークンは出力（アウトプット）されるだけであり、ホスト上のファイルには保管されません。 ``--rm`` オプションは自動的にコンテナを後片付けするもので、コンテナが終了するとファイルシステムを削除します。
+``docker run`` コマンドは最新（latest）の ``swarm`` を取得し、コンテナとして実行します。引数 ``create`` は Swarm コンテナを Docker Hub ディスカバリ・サービスに接続し、ユニークな Swarm ID を取得します。この ID を「ディスカバリ・トークン」（discovery token）と呼びます。トークンは出力（アウトプット）されるだけであり、ホスト上のファイルには保管されません。 ``--rm`` オプションは自動的にコンテナを後片付けするもので、コンテナが終了するとファイルシステムを削除します。
 
 .. The discovery service keeps unused tokens for approximately one week.
 
@@ -170,8 +168,6 @@ Swarm ディスカバリ・トークンの作成
 3. 先ほどの出力されたディスカバリ・トークンを安全な場所にコピーします。
 
 .. Create the Swarm manager and nodes
-
-.. _create-the-swarm-manager-and-nodes:
 
 Swarm マネージャとノードの作成
 ==============================
