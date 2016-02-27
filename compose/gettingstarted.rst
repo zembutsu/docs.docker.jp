@@ -227,7 +227,7 @@ Mac や Windows 上で Docker Machine を使っている場合は、 ``docker-ma
 
 .. If you want to run your services in the background, you can pass the -d flag (for “detached” mode) to docker-compose up and use docker-compose ps to see what is currently running:
 
-サービスをバックグラウンドで実行したい場合は、``docker-compose up`` に ``-d`` フラグ（"デタッチド"モード用）のフラグを付けます。どのように動作しているか見るには、``docker-compose up`` を使います。
+サービスをバックグラウンドで実行したい場合は、``docker-compose up`` に ``-d`` フラグ（"デタッチド"モード用）のフラグを付けます。どのように動作しているか見るには、``docker-compose ps`` を使います。
 
 .. code-block:: bash
 
@@ -242,7 +242,7 @@ Mac や Windows 上で Docker Machine を使っている場合は、 ``docker-ma
 
 .. The docker-compose run command allows you to run one-off commands for your services. For example, to see what environment variables are available to the web service:
 
-``docker-compose rum`` コマンドを使うと、サービスに対して一度だけコマンドを実行します。例えば、``web`` サービス上でどのような環境変数があるのかを知るには、次のようにします。
+``docker-compose run`` コマンドを使うと、サービスに対して一度だけコマンドを実行します。例えば、``web`` サービス上でどのような環境変数があるのかを知るには、次のようにします。
 
 .. code-block:: bash
 
