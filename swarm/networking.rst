@@ -140,4 +140,4 @@ Docker Swarm ドキュメント目次
 * :doc:`ユーザ・ガイド </swarm/index>`
 * :doc:`スケジュール・ストラテジ </swarm/scheduler/strategy>`
 * :doc:`スケジューラ・フィルタ </swarm/scheduler/filter>`
-* :doc:`Swarm API </swarm/api/swarm-api>`
+* :doc:`Swarm API </swarm/swarm-api>`
