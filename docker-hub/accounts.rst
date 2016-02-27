@@ -103,7 +103,7 @@ Docker Hub アカウントを作成する別の方法は、コマンドライン
 
 .. Free Hub accounts include one private registry. If you need more private registries, you can upgrade your account to a paid plan directly from the Hub.
 
-無料の Docker Hub アカウントは、プライベート・レジストリを１つ利用できます。多くのプライベート・レポジトリが必要な場合は、Docker Hub 上の `アカウントのアップグレード（英語） <https://hub.docker.com/account/billing-plans/`__ から支払いプランを選べます。
+無料の Docker Hub アカウントは、プライベート・レジストリを１つ利用できます。多くのプライベート・レポジトリが必要な場合は、Docker Hub 上の `アカウントのアップグレード（英語） <https://hub.docker.com/account/billing-plans/>`__ から支払いプランを選べます。
 
 .. Password reset process
 
