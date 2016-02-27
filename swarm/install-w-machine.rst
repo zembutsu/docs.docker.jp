@@ -123,8 +123,6 @@ Docker Engine で３つの VM を作成
 
 .. Create a Swarm discovery token
 
-.. _create-a-swam-discovery-token:
-
 Swarm ディスカバリ・トークンの作成
 ========================================
 
@@ -170,8 +168,6 @@ Swarm ディスカバリ・トークンの作成
 3. 先ほどの出力されたディスカバリ・トークンを安全な場所にコピーします。
 
 .. Create the Swarm manager and nodes
-
-.. _create-the-swarm-manager-and-nodes:
 
 Swarm マネージャとノードの作成
 ==============================
