@@ -150,7 +150,7 @@ Docker は ``#`` で *始まる* 行をコメントとみなします。 ``#`` �
 
 .. Environment variables are notated in the Dockerfile either with $variable_name or ${variable_name}. They are treated equivalently and the brace syntax is typically used to address issues with variable names with no whitespace, like ${foo}_bar.
 
-``Dockerfile`` で、環境変数は ``$variable_name`` か ``${variable_name}``の形式で記述します。これらは同等に扱われ、固定用の構文として典型的に使われるのは、ホワイトスペースを変数名に入れず ``${foo}_bar`` のような変数名に割り当てることです。
+``Dockerfile`` で、環境変数は ``$variable_name`` か ``${variable_name}`` の形式で記述します。これらは同等に扱われ、固定用の構文として典型的に使われるのは、ホワイトスペースを変数名に入れず ``${foo}_bar`` のような変数名に割り当てることです。
 
 .. The ${variable_name} syntax also supports a few of the standard bash modifiers as specified below:
 
@@ -259,8 +259,8 @@ CLI は ``.dockerignore`` ファイルを行ごとに隔てて解釈します。
    temp? 	Exclude files and directories in the root directory whose names are a one-character extension of temp. For example, /tempa and /tempb are excluded.
 
 
-* ``*/temp*`` … ルート以下のあらゆるサブディレクトリを含め、 ``temp``で始める名称のファイルをディレクトリを除外します。例えば、テキストファイル ``/somedir/temporary.txt`` は除外されますし、ディレクトリ ``/somedir/temp`` も除外されます。
-* ``*/*/temp*`` … ルートから２レベル以下の ``temp``で始める名称のファイルをディレクトリを除外します。例えば ``/somedir/subdir/temporary.txt`` が除外されます。
+* ``*/temp*`` … ルート以下のあらゆるサブディレクトリを含め、 ``temp`` で始まる名称のファイルをディレクトリを除外します。例えば、テキストファイル ``/somedir/temporary.txt`` は除外されますし、ディレクトリ ``/somedir/temp`` も除外されます。
+* ``*/*/temp*`` … ルートから２レベル以下の ``temp`` で 始まる名称のファイルをディレクトリを除外します。例えば ``/somedir/subdir/temporary.txt`` が除外されます。
 * ``temp?`` … ルートディレクトリにあるファイル名が ``temp`` と１文字一致するファイルとディレクトリを除外します。例えば、 ``/tempa`` と ``/tempb`` が除外されます。
 
 .. Matching is done using Go’s filepath.Match rules. A preprocessing step removes leading and trailing whitespace and eliminates . and .. elements using Go’s filepath.Clean. Lines that are blank after preprocessing are ignored.
@@ -432,7 +432,7 @@ RUN には２つの形式があります。
 
 .. note::
 
-   *シェル* 形式と異なり、 *exec* 形式はコマンド・シェルを呼び出しません。つまり、通常のシェルによる処理が行われません。例えば ``RUN [ "echo", "$HOME" ]`` は ``$HOME`` の変数展開を行いません。シェルによる処理を行いたい場合は、 *シェル* 形式を使う化、あるいはシェルを直接使います。例： ``RUN [ "sh", "-c", "echo", "$HOME" ]`` 。
+   *シェル* 形式と異なり、 *exec* 形式はコマンド・シェルを呼び出しません。つまり、通常のシェルによる処理が行われません。例えば ``RUN [ "echo", "$HOME" ]`` は ``$HOME`` の変数展開を行いません。シェルによる処理を行いたい場合は、 *シェル* 形式を使うか、あるいはシェルを直接使います。例： ``RUN [ "sh", "-c", "echo", "$HOME" ]`` 。
 
 .. The cache for RUN instructions isn’t invalidated automatically during the next build. The cache for an instruction like RUN apt-get dist-upgrade -y will be reused during the next build. The cache for RUN instructions can be invalidated by using the --no-cache flag, for example docker build --no-cache.
 
@@ -504,7 +504,7 @@ CMD
 
 .. note::
 
-   *シェル* 形式と異なり、 *exec* 形式はコマンド・シェルを呼び出しません。つまり、通常のシェルによる処理が行われません。例えば ``CMD [ "echo", "$HOME" ]`` は ``$HOME`` の変数展開を行いません。シェルによる処理を行いたい場合は、 *シェル* 形式を使う化、あるいはシェルを直接使います。例： ``CMD [ "sh", "-c", "echo", "$HOME" ]`` 。
+   *シェル* 形式と異なり、 *exec* 形式はコマンド・シェルを呼び出しません。つまり、通常のシェルによる処理が行われません。例えば ``CMD [ "echo", "$HOME" ]`` は ``$HOME`` の変数展開を行いません。シェルによる処理を行いたい場合は、 *シェル* 形式を使うか、あるいはシェルを直接使います。例： ``CMD [ "sh", "-c", "echo", "$HOME" ]`` 。
 
 .. When used in the shell or exec formats, the CMD instruction sets the command to be executed when running the image.
 
@@ -536,7 +536,7 @@ CMD
 
 ユーザが ``docker run`` で引数を指定したとき、これらは ``CMD`` で指定したデフォルトを上書きします。
 
-    Note: don’t confuse RUN with CMD. RUN actually runs a command and commits the result; CMD does not execute anything at build time, but specifies the intended command for the image.
+..    Note: don’t confuse RUN with CMD. RUN actually runs a command and commits the result; CMD does not execute anything at build time, but specifies the intended command for the image.
 
 .. note::
 
@@ -834,7 +834,7 @@ COPY は２つの形式があります。
 
 .. The <dest> is an absolute path, or a path relative to WORKDIR, into which the source will be copied inside the destination container.
 
-``<送信先>`` は絶対パスです。あるいは、パスは ``WORKDIR`` からの相対パスです。ソースににあるものが、対象となる送信先コンテナの中にコピーされます。
+``<送信先>`` は絶対パスです。あるいは、パスは ``WORKDIR`` からの相対パスです。ソースにあるものが、対象となる送信先コンテナの中にコピーされます。
 
 .. code-block:: bash
 
@@ -920,7 +920,7 @@ ENTRYPOINT には２つの形式があります。
 
 *シェル* 形式では ``CMD`` や ``run`` コマンド行の引数を使えないという不利な点があります。 ``ENTRYPOINT`` は ``/bin/sh -c`` のサブコマンドとして実行されるため、シグナルを渡せません。つまり、何かを実行してもコンテナの ``PID 1`` にはなりません。そして、 Unix シグナルを受け付け *ません*。そのため、実行ファイルは ``docker stop <コンテナ>`` を実行しても、 ``SIGTERM``  を受信しません。
 
-..Only the last ENTRYPOINT instruction in the Dockerfile will have an effect.
+.. Only the last ENTRYPOINT instruction in the Dockerfile will have an effect.
 
 ``Dockerfile`` の最後に現れた ``ENTRYPOINT`` 命令のみ有効です。
 
@@ -1069,7 +1069,7 @@ exec 形式の ENTRYPOINT 例
 
 .. note::
 
-   *シェル* 形式とは異なり、 *exec* 形式はシェルを呼び出しません。つまり、通常のシェル上の処理はされません。例えば、 ``ENTRYPOINT ["echo", "$HOME"]`` は ``$HOME`` を変数展開しません。シェル上の処理が必要であれば、 *シェル* 形式を使う化、シェルを直接実行します。例： ``ENTRYPOINT [ "sh", "-c", "echo", "$HOME" ]``。変数は ``Dockerfile`` で ``ENV`` を使って定義することができ、 ``Dockerfile`` パーサー上で展開されます。
+   *シェル* 形式とは異なり、 *exec* 形式はシェルを呼び出しません。つまり、通常のシェル上の処理はされません。例えば、 ``ENTRYPOINT ["echo", "$HOME"]`` は ``$HOME`` を変数展開しません。シェル上の処理が必要であれば、 *シェル* 形式を使うか、シェルを直接実行します。例： ``ENTRYPOINT [ "sh", "-c", "echo", "$HOME" ]``。変数は ``Dockerfile`` で ``ENV`` を使って定義することができ、 ``Dockerfile`` パーサー上で展開されます。
 
 .. Shell form ENTRYPOINT example
 
@@ -1403,7 +1403,7 @@ ONBUILD
 
 .. The ONBUILD instruction adds to the image a trigger instruction to be executed at a later time, when the image is used as the base for another build. The trigger will be executed in the context of the downstream build, as if it had been inserted immediately after the FROM instruction in the downstream Dockerfile.
 
-イメージは他で構築したイメージをもとにしていいるとき、``ONBUILD`` 命令はイメージに対して最終的に実行する *トリガ* 命令を追加します。トリガは構築後に行うもので、 ``Dockerfile`` で ``FROM`` 命令のあとに書くことができます。
+イメージは他で構築したイメージをもとにしているとき、``ONBUILD`` 命令はイメージに対して最終的に実行する *トリガ* 命令を追加します。トリガは構築後に行うもので、 ``Dockerfile`` で ``FROM`` 命令のあとに書くことができます。
 
 .. Any build instruction can be registered as a trigger.
 
