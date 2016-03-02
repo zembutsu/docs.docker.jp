@@ -329,7 +329,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 .. Use the docker attach command to connect to the running container2 and examine its networking stack:
 
-``docker attach`` コマンドで実行中の ``container2`` に接続詞、ネットワーク・スタックを確認しましょう。
+``docker attach`` コマンドで実行中の ``container2`` に接続し、ネットワーク・スタックを確認しましょう。
 
 .. code-block:: bash
 
@@ -476,14 +476,14 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 * 複数のネットワークを動的に装着・取り外しできる能力
 * リンクしているコンテナに対しては ``--link`` オプションでエイリアス名を指定
 
-Continuing with the above example, create another container container_4 in i.. solated_nw with --link to provide additional name resolution using alias for other containers in the same network.
+.. Continuing with the above example, create another container container_4 in i solated_nw with --link to provide additional name resolution using alias for other containers in the same network.
 
 先ほどの例で説明を続けると、 ``isolated_nw`` において別のコンテナ ``container_4``  を作成します。このとき、 ``--link`` オプションを付けると、同一ネットワーク上の別のコンテナが名前解決に使える別名を指定できます。
 
 .. code-block:: bash
 
    $ docker run --net=isolated_nw -itd --name=container4 --link container5:c5 busybox
-01b5df970834b77a9eadbaff39051f237957bd35c4c56f11193e0594cfd5117c
+   01b5df970834b77a9eadbaff39051f237957bd35c4c56f11193e0594cfd5117c
 
 .. With the help of --link container4 will be able to reach container5 using the aliased name c5 as well.
 
