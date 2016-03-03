@@ -22,7 +22,7 @@ Docker Swarm
    install-w-machine.rst
    plan-for-production.rst
    install-manual.rst
-   swarm_at_scale.rst
+   swarm_at_scale/index.rst
    multi-manager-setup.rst
    networking.rst
    discovery.rst
