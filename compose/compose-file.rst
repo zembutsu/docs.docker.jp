@@ -584,7 +584,7 @@ cpu_shares、 cpuset、 domainname、 entrypoint、 hostname、 ipc、 mac_addre
 
 .. Variable substitution
 
-.. variable-substitution:
+.. _variable-substitution:
 
 変数の置き換え
 ====================
