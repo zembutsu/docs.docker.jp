@@ -1,6 +1,11 @@
-.. http://docs.docker.com/compose/gettingstarted/
-.. doc version: 1.9
-.. check date: 2015/11/18
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/compose/gettingstarted/
+.. SOURCE: https://github.com/docker/compose/blob/master/docs/gettingstarted.md
+   doc version: 1.10
+      https://github.com/docker/compose/commits/master/docs/gettingstarted.md
+.. check date: 2016/03/05
+.. Commits on Feb 24, 2016 e6797e116648fb566305b39040d5fade83aacffc
+.. -------------------------------------------------------------------
 
 .. Getting Started
 
@@ -10,7 +15,7 @@ Compose を始めましょう
 
 .. On this page you build a simple Python web application running on Compose. The application uses the Flask framework and increments a value in Redis. While the sample uses Python, the concepts demonstrated here should be understandable even if you’re not familiar with it.
 
-このページでは、簡単な Python ウェブ・アプリケーションを Compose で実行しましょう。アプリケーションは Flask フレームワークを使い、Redis の値を増やします。サンプルでは Python を使いますが、ここでの動作概念は Python に親しくなくても理解可能です。
+このページでは、簡単な Python ウェブ・アプリケーションを Docker Compose で実行しましょう。アプリケーションは Flask フレームワークを使い、Redis の値を増やします。サンプルでは Python を使いますが、ここでの動作概念は Python に親しくなくても理解可能です。
 
 .. Prerequisites
 
@@ -110,7 +115,7 @@ Compose を始めましょう
 
 .. For more information on how to write Dockerfiles, see the Docker user guide and the Dockerfile reference.
 
-Dockerfile の書き方や詳細な情報については、 :ref:`Docker ユーザ・ガイド <building-an-image-from-a-dockerfile>` や :doc:`Dockerfile リファレンス </reference/builder>` をご覧ください。
+Dockerfile の書き方や詳細な情報については、 :ref:`Docker ユーザ・ガイド <building-an-image-from-a-dockerfile>` や :doc:`Dockerfile リファレンス </engine/reference/builder>` をご覧ください。
 
 ..    Build the image.
 
@@ -139,16 +144,18 @@ Dockerfile の書き方や詳細な情報については、 :ref:`Docker ユー�
 
 .. code-block:: yaml
 
-   web:
-     build: .
-     ports:
-      - "5000:5000"
-     volumes:
-      - .:/code
-     links:
-      - redis
-   redis:
-     image: redis
+   version: '2'
+   services:
+     web:
+       build: .
+       ports:
+        - "5000:5000"
+       volumes:
+        - .:/code
+       depends_on:
+        - redis
+     redis:
+       image: redis
 
 .. This Compose file defines two services, web and redis. The web service:
 
@@ -275,6 +282,6 @@ Compose を ``docker-compose up -d`` で起動した場合は、次のように�
     Compose configuration file reference
 
 * 次は、:doc:`Django </compose/django>` 、 :doc:`Rails </compose/rails>`  、 :doc:`WordPress </compose/wordpress>`  向けのクイックスタートガイドを試しましょう。
-* :doc:`/compose/reference`
+* :doc:`/compose/reference/index`
 * :doc:`/compose/compose-file`
 
