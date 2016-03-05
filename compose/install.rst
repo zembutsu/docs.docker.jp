@@ -1,6 +1,15 @@
-.. http://docs.docker.com/compose/install/
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/compose/install/
+.. SOURCE: https://github.com/docker/compose/blob/master/docs/install.md
+   doc version: 1.10
+      https://github.com/docker/compose/commits/master/docs/install.md
+.. check date: 2016/03/05
+.. Commits on Feb 26, 2016 c72e9b3843c2a286e6478dde445fe3de99d88239
+.. -------------------------------------------------------------------
 
 .. Install Docker Compose
+
+.. _install-docker-compose:
 
 =======================================
 Docker Compose のインストール
@@ -21,9 +30,9 @@ Compose をインストールするには、次のように実行します。
 
 1. Docker エンジン 1.7.1 以上をインストールします。
 
-   * :doc:`Mac OS X へのインストール </installation/mac>`  （Toolbox のインストールに、Engine と Compose が含まれます）
-   * :doc:`Ubuntu へのインストール </installation/ubuntulinux>`
-   * :doc:`その他システムへのインストール </installation/index>`
+   * :doc:`Mac OS X へのインストール </engine/installation/mac>`  （Toolbox のインストールに、Engine と Compose が含まれます）
+   * :doc:`Ubuntu へのインストール </engine/installation/linux/ubuntulinux>`
+   * :doc:`その他システムへのインストール </engine/installation/index>`
 
 .. Mac OS X users are done installing. Others should continue to the next step.
 
@@ -37,6 +46,8 @@ Compose をインストールするには、次のように実行します。
 
 4. リリース・ページの指示に従い、ターミナル上で ``curl`` コマンドを実行します。
 
+.. Note: If you get a “Permission denied” error, your /usr/local/bin directory probably isn’t writable and you’ll need to install Compose as the superuser. Run sudo -i, then the two commands below, then exit.
+
 .. note::
 
    もし "Permission denied" エラーが表示される場合は、``/usr/local/bin`` ディレクトリに対する書き込み権限がありません。その場合は Compose をスーパーユーザで実行する必要があります。``sudo -i`` を実行し、２つのコマンドを実行してから ``exit`` します。
@@ -45,7 +56,7 @@ Compose をインストールするには、次のように実行します。
 
 .. code-block:: bash
 
-   curl -L https://github.com/docker/compose/releases/download/1.5.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+   curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 
 .. If you have problems installing with curl, see Alternative Install Options.
 
@@ -70,13 +81,13 @@ Compose をインストールするには、次のように実行します。
 .. code-block:: bash
 
    $ docker-compose --version
-   docker-compose version: 1.5.1
+   docker-compose version: 1.6.2
 
 .. Alternative install options
 
 .. _alternative-install-option:
 
-代替インストール・オプション
+代替インストール方法
 ==============================
 
 .. Install using pip
@@ -92,6 +103,11 @@ Comose は `pypi <https://pypi.python.org/pypi/docker-compose>`_ から ``pip`` 
 
    $ pip install docker-compose
 
+.. Note: pip version 6.0 or greater is required.
+
+.. note::
+
+   pip バージョン 6.0 以上が必要です。
 
 .. Install as a container
 
@@ -104,7 +120,7 @@ Comspose コンテナの中でも、小さな bash スクリプトのラッパ�
 
 .. code-block:: bash
 
-   $ curl -L https://github.com/docker/compose/releases/download/1.5.1/run.sh > /usr/local/bin/docker-compose
+   $ curl -L https://github.com/docker/compose/releases/download/1.6.2/run.sh > /usr/local/bin/docker-compose
    $ chmod +x /usr/local/bin/docker-compose
 
 
@@ -126,9 +142,9 @@ Comspose コンテナの中でも、小さな bash スクリプトのラッパ�
 
 Compose 1.2 以前からアップグレードする場合、Compose を更新後、既存のコンテナの削除・移行が必要です。これは Compose バージョン 1.3 がコンテナ追跡用に Docker ラベルを用いているためであり、ラベルを追加したものへと置き換える必要があります。
 
-.. If Compose detects containers that were created without labels, it will refuse to run so that you don’t end up with two sets of them. If you want to keep using your existing containers (for example, because they have data volumes you want to preserve) you can migrate them with the following command:
+.. If Compose detects containers that were created without labels, it will refuse to run so that you don’t end up with two sets of them. If you want to keep using your existing containers (for example, because they have data volumes you want to preserve) you can use compose 1.5.x to migrate them with the following command:
 
-Compose は作成されたコンテナにラベルがないことを検出すると、実行を拒否し、処理停止と表示します。既存のコンテナを使い続けたい場合（例えば、コンテナにデータ・ボリュームがあり、使い続けたい場合）は、次のコマンドで移行できます。
+Compose は作成されたコンテナにラベルがないことを検出すると、実行を拒否し、処理停止と表示します。既存のコンテナを compose 1.5.x 以降も使い続けたい場合（例えば、コンテナにデータ・ボリュームがあり、使い続けたい場合）は、次のコマンドで移行できます。
 
 .. code-block:: bash
 
@@ -183,13 +199,11 @@ Compose は作成されたコンテナにラベルがないことを検出する
     Command line reference
     Compose file reference
 
-* :doc:`ユーザガイド </index>`
-* :doc:`</compose/gettingstarted>`
-* :doc:`</compose/django>`
-* :doc:`</compose/rails>`
-* :doc:`</compose/wordpress>`
-* :doc:`</compose/reference>`
-* :doc:`</compose/compose-file>`
-
-
+* :doc:`ユーザガイド <index>`
+* :doc:`gettingstarted`
+* :doc:`django`
+* :doc:`rails`
+* :doc:`wordpress`
+* :doc:`reference/index`
+* :doc:`compose-file`
 
