@@ -1,16 +1,21 @@
-.. http://docs.docker.com/compose/rails/
-.. doc version: 1.9
-.. check date: 2015/11/18
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/compose/rails/
+.. SOURCE: https://github.com/docker/compose/blob/master/docs/rails.md
+   doc version: 1.10
+      https://github.com/docker/compose/commits/master/docs/rails.md
+.. check date: 2016/03/05
+.. Commits on Feb 24, 2016 e6797e116648fb566305b39040d5fade83aacffc
+.. ----------------------------------------------------------------------------
 
 .. Quickstart Guide: Compose and Rails
 
 =================================================
-クイックスタート・ガイド：Compose と Rails
+クイックスタート・ガイド：Docker Compose と Rails
 =================================================
 
-.. This quick-start guide demonstrates how to use Compose to set up and run a simple Rails/PostgreSQL app. Before starting, you’ll need to have Compose installed.
+.. This quick-start guide demonstrates how to use Docker Compose to set up and run a simple Rails/PostgreSQL app. Before starting, you’ll need to have Compose installed.
 
-このクイックスタート・ガイドは、Compose を使い、簡単な Rails/PostgreSQL アプリのセットアップと実行をします。始める前に、 :doc:`Compose のインストール </compose/install>` が必要です。
+このクイックスタート・ガイドは Docker Compose を使い、簡単な Rails/PostgreSQL アプリをセットアップします。その前に、 :doc:`Compose のインストール </compose/install>` が必要です。
 
 .. Define the project
 
@@ -32,7 +37,7 @@
    RUN bundle install
    ADD . /myapp
 
-これはイメージ中にアプリケーションのコードを送るものです。ここでは Ruby イメージを使い、Bundler や内部の依存関係を持つコンテナを作成します。 ``Dockerfile`` の書き方など詳細情報については、 :ref:`Docker ユーザ・ガイド <building-an-image-from-a-dockerfile>` や :doc:`Dockerfile リファレンス </reference/builder>` をご覧ください。
+これはイメージ中にアプリケーションのコードを送るものです。ここでは Ruby イメージを使い、Bundler や内部の依存関係を持つコンテナを作成します。 ``Dockerfile`` の書き方など詳細情報については、 :ref:`Docker ユーザ・ガイド <building-an-image-from-a-dockerfile>` や :doc:`Dockerfile リファレンス </engine//reference/builder>` をご覧ください。
 
 .. Next, create a bootstrap Gemfile which just loads Rails. It’ll be overwritten in a moment by rails new.
 
@@ -57,18 +62,20 @@
 
 .. code-block:: yaml
 
-   db:
-     image: postgres
-   web:
-     build: .
-     command: bundle exec rails s -p 3000 -b '0.0.0.0'
-     volumes:
-       - .:/myapp
-     ports:
-       - "3000:3000"
-     links:
-       - db
-
+   version: '2'
+   services:
+     db:
+       image: postgres
+     web:
+       build: .
+       command: bundle exec rails s -p 3000 -b '0.0.0.0'
+       volumes:
+         - .:/myapp
+       ports:
+         - "3000:3000"
+       depends_on:
+         - db
+   
 .. Build the proejct
 
 プロジェクトの構築
@@ -193,11 +200,12 @@ Compose の更なるドキュメント
     Command line reference
     Compose file reference
 
-* :doc:`ユーザガイド </index>`
+* :doc:`ユーザガイド <index>`
+* :doc:`/compose/install`
 * :doc:`/compose/gettingstarted`
 * :doc:`/compose/django`
 * :doc:`/compose/wordpress`
-* :doc:`/compose/reference`
+* :doc:`/compose/reference/index`
 * :doc:`/compose/compose-file`
 
 

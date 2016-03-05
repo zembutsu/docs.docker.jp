@@ -20,6 +20,7 @@ Docker Compose
    overview.rst
    install.rst
    gettingstarted.rst
+   swarm.rst
    django.rst
    rails.rst
    wordpress.rst

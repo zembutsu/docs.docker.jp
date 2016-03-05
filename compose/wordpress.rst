@@ -1,16 +1,21 @@
-.. http://docs.docker.com/compose/wordpress/
-.. doc version: 1.9
-.. check date: 2015/11/18
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/compose/wordpress/
+.. SOURCE: https://github.com/docker/compose/blob/master/docs/wordpress.md
+   doc version: 1.10
+      https://github.com/docker/compose/commits/master/docs/wordpress.md
+.. check date: 2016/03/05
+.. Commits on Feb 24, 2016 e6797e116648fb566305b39040d5fade83aacffc
+.. ----------------------------------------------------------------------------
 
-.. Quickstart Guide: Compose and WordPress
+.. Quickstart Guide: Docker Compose and WordPress
 
 =================================================
-クイックスタート・ガイド：Compose と Wordpress
+クイックスタート・ガイド：Docker Compose と Wordpress
 =================================================
 
-.. You can use Compose to easily run WordPress in an isolated environment built with Docker containers.
+.. You can use Docker Compose to easily run WordPress in an isolated environment built with Docker containers. This quick-start guide demonstrates how to use Compose to set up and run WordPress. Before starting, you’ll need to have Compose installed.
 
-Compose を使えば、Docker コンテナを構築に使い、分離した環境に上で簡単に WordPress を実行できます。
+Docker Compose を使えば、Dockdr コンテナで構築した WordPress の独立した環境を簡単に実行できます。このクイックスタート・ガイドでは、Compose のセットアップ方法と WordPress の実行方法を紹介します。その前に、 :doc:`Compose のインストール </compose/install>` が必要です。
 
 .. Define the project
 
@@ -31,7 +36,7 @@ Compose を使えば、Docker コンテナを構築に使い、分離した環�
 
 .. Next, inside that directory, create a Dockerfile, a file that defines what environment your app is going to run in. For more information on how to write Dockerfiles, see the Docker user guide and the Dockerfile reference. In this case, your Dockerfile should be:
 
-次に、ディレクトリに入り、 ``Dockerfile`` を作成します。このファイルでは、どのような環境でアプリケーションを実行しようとしているかを定義します。Dockerfile の書き方は、 :ref:`Docker ユーザガイド <building-an-image-from-a-dockerfile>` と :doc:`Dockerfile リファレンス</compose/builder>` をお読みください。この例では、Dockefile を次のようにします：
+次に、ディレクトリに入り、 ``Dockerfile`` を作成します。このファイルでは、どのような環境でアプリケーションを実行しようとしているかを定義します。Dockerfile の書き方は、 :ref:`Docker ユーザガイド <building-an-image-from-a-dockerfile>` と :doc:`Dockerfile リファレンス</engine/reference/builder>` をお読みください。この例では、Dockefile を次のようにします：
 
 .. code-block:: yaml
 
@@ -48,19 +53,21 @@ Compose を使えば、Docker コンテナを構築に使い、分離した環�
 
 .. code-block:: yaml
 
-   web:
-     build: .
-     command: php -S 0.0.0.0:8000 -t /code
-     ports:
-       - "8000:8000"
-     links:
-       - db
-     volumes:
-       - .:/code
-   db:
-     image: orchardup/mysql
-     environment:
-       MYSQL_DATABASE: wordpress
+   version: '2'
+   services:
+     web:
+       build: .
+       command: php -S 0.0.0.0:8000 -t /code/wordpress/
+       ports:
+         - "8000:8000"
+       depends_on:
+         - db
+       volumes:
+         - .:/code
+     db:
+       image: orchardup/mysql
+       environment:
+         MYSQL_DATABASE: wordpress
 
 .. A supporting file is needed to get this working. wp-config.php is the standard WordPress config file with a single change to point the database configuration at the db container:
 
@@ -119,11 +126,12 @@ Compose の更なるドキュメント
     Command line reference
     Compose file reference
 
-* :doc:`ユーザガイド </index>`
+* :doc:`ユーザガイド <index>`
+* :doc:`/compose/install`
 * :doc:`/compose/gettingstarted`
 * :doc:`/compose/django`
 * :doc:`/compose/rails`
-* :doc:`/compose/reference`
+* :doc:`/compose/reference/index`
 * :doc:`/compose/compose-file`
 
 
