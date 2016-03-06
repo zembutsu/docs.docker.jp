@@ -58,6 +58,8 @@ Compose は２つのファイルを共有方法をサポートしています。
 
 .. Different environments
 
+.. _different-environments:
+
 異なった環境
 ^^^^^^^^^^^^^^^^^^^^
 

@@ -1,8 +1,15 @@
-.. http://docs.docker.com/compose/production/
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/compose/production/
+.. SOURCE: https://github.com/docker/compose/blob/master/docs/production.md
+   doc version: 1.10
+      https://github.com/docker/compose/commits/master/docs/production.md
+.. check date: 2016/03/06
+.. Commits on Feb 20, 2016 520c695bf4f4fa7c41a0febb00234f21be776d43
+.. ----------------------------------------------------------------------------
 
-.. _production:
+.. Using Compose in Production
 
-.. Using Compose in production
+.. _using-compose-in-production:
 
 =======================================
 Compose をプロダクションで使う
@@ -44,7 +51,7 @@ Compose をプロダクションで使う
 
 .. See Using multiple compose files for a more complete example.
 
-詳細は例は :doc:`複数のComposeファイルを使用 </compose/extends/#different-environments>` をご覧ください。
+詳細は例は :ref:`複数のComposeファイルを使用 <different-environments>` をご覧ください。
 
 .. Deploying changes
 
@@ -71,7 +78,7 @@ Compose をプロダクションで使う
 
 .. You can use Compose to deploy an app to a remote Docker host by setting the DOCKER_HOST, DOCKER_TLS_VERIFY, and DOCKER_CERT_PATH environment variables appropriately. For tasks like this, Docker Machine makes managing local and remote Docker hosts very easy, and is recommended even if you’re not deploying remotely.
 
-Compose を使い、アプリケーションをリモートの Docker ホスト上にデプロイできます。このとき、適切な環境変数 ``DOCKER_HOST`` 、 ``DOCKER_TLS_VERIFY`` 、 ``DOCKER_CERT_PATH`` を使います。このような処理は、 :doc:`Docker Machine </machine>` を使うことで、ローカルやリモートの Docker ホストの管理を非常に簡単にします。リモートにデプロイする必要がなくても、お勧めです。
+Compose を使い、アプリケーションをリモートの Docker ホスト上にデプロイできます。このとき、適切な環境変数 ``DOCKER_HOST`` 、 ``DOCKER_TLS_VERIFY`` 、 ``DOCKER_CERT_PATH`` を使います。このような処理は、 :doc:`Docker Machine </machine/overview>` を使うことで、ローカルやリモートの Docker ホストの管理を非常に簡単にします。リモートにデプロイする必要がなくても、お勧めです。
 
 .. Once you’ve set up your environment variables, all the normal docker-compose commands will work with no further configuration.
 
@@ -84,11 +91,11 @@ Swarm クラスタで Compose を実行する
 
 .. Docker Swarm, a Docker-native clustering system, exposes the same API as a single Docker host, which means you can use Compose against a Swarm instance and run your apps across multiple hosts.
 
-:doc:`Docker Swarm </swarm/index>` とは、Docker 独自のクラスタリング・システムで、単一の Docker ホスト向けと同じ API を持っています。つまり、Compose を Swarm インスタンスも同様に扱えるので、アプリケーションを複数のホスト上で実行できることを意味します。
+:doc:`Docker Swarm </swarm/overview>` とは、Docker 独自のクラスタリング・システムで、単一の Docker ホスト向けと同じ API を持っています。つまり、Compose を Swarm インスタンスも同様に扱えるので、アプリケーションを複数のホスト上で実行できることを意味します。
 
 .. Compose/Swarm integration is still in the experimental stage, and Swarm is still in beta, but if you’d like to explore and experiment, check out the integration guide.
 
-Compose と Swarm の連携は、まだ実験的な段階です。ですが、試したい場合は :doc:`統合ガイド </compose/blob/master/SWARM>` をお読みください。
+Compose と Swarm の連携は、まだ実験的な段階です。ですが、調べたり使ってみたい場合は :doc:`統合ガイド </compose/swarm>` をお読みください。
 
 
 .. Compose documentation
@@ -101,7 +108,7 @@ Compose のドキュメント
     Compose file reference
 
 * :doc:`Compose のインストール </compose/install>`
-* :doc:`コマンドライン・リファレンス </compose/reference>`
+* :doc:`コマンドライン・リファレンス </compose/reference/index>`
 * :doc:`Compose ファイル・リファレンス </compose/compose-file>`
 
 
