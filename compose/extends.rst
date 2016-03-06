@@ -1,6 +1,13 @@
-.. http://docs.docker.com/compose/extends/
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/compose/extends/
+.. SOURCE: https://github.com/docker/compose/blob/master/docs/extends.md
+   doc version: 1.10
+      https://github.com/docker/compose/commits/master/docs/extends.md
+.. check date: 2016/03/05
+.. Commits on Feb 26, 2016 2cd1b94dd3a16688e8be2442c35ac1f03d62cacb
+.. ----------------------------------------------------------------------------
 
-.. Extending services and Compose files
+.. Extending Services and Compose files
 
 =======================================
 サービスの拡張と Compose ファイル
@@ -28,13 +35,13 @@ Compose は２つのファイルを共有方法をサポートしています。
 
 デフォルトでは、Compose は２つのファイルを読み込みます。 ``docker-compose.yml`` と、オプションで ``docker-compose.override.yml`` （上書き）ファイルです。慣例として、``docker-compose.yml`` に基本設定を含みます。上書きファイルとは、その名前が暗に示しているように、既存のサービスを新しいサービスに全て置き換えるものです。
 
-.. If a service is defined in both files, Compose merges the configurations using the same rules as the extends field (see Adding and overriding configuration), with one exception. If a service contains links or volumes_from those fields are copied over and replace any values in the original service, in the same way single-valued fields are copied.
+.. If a service is defined in both files Compose merges the configurations using the rules described in Adding and overriding configuration.
 
-もし両方のファイルにサービスが定義されていると、Compose は ``extends`` フィールド（ :ref:`adding-and-overriding-configuration` をご覧ください ）と同じルールを使って設定を統合（マージ）します。ただし、１つだけ例外があります。サービスに ``link`` か ``volumes_from`` を含んでいる場合、元のサービスのあらゆる箇所の値がコピー・上書きされるだけでなく、同様に単一の値のフィールドもコピーされます。
+もし両方のファイルに定義があれば、Compose は追加された設定の情報でルールを上書きします。
 
 .. To use multiple override files, or an override file with a different name, you can use the -f option to specify the list of files. Compose merges files in the order they’re specified on the command line. See the docker-compose command reference for more information about using -f.
 
-複数の上書きファイルを使いたい場合や、違った名前で上書きしたい場合は、 ``-f`` オプションでファイルの一覧を指定可能です。Compose はコマンドライン上で指定した順番で、ファイルを統合します。詳細は :doc:`docker-compose コマンド・リファレンス </compose/reference/docker-compose>`  の ``-f`` に関する情報をご覧ください。
+複数の上書きファイルを使いたい場合や、違った名前で上書きしたい場合は、 ``-f`` オプションでファイルの一覧を指定可能です。Compose はコマンドライン上で指定した順番で、ファイルを統合します。詳細は :doc:`docker-compose コマンド・リファレンス </compose/reference/overview>`  の ``-f`` に関する情報をご覧ください。
 
 .. When you use multiple configuration files, you must make sure all paths in the files are relative to the base Compose file (the first Compose file specified with -f). This is required because override files need not be valid Compose files. Override files can contain small fragments of configuration. Tracking which fragment of a service is relative to which path is difficult and confusing, so to keep paths easier to understand, all paths must be defined relative to the base file.
 
@@ -184,11 +191,11 @@ Compose をプロダクションで使うための詳細情報は :doc:`プロ�
 
 Docker Compose の ``extends`` （拡張）キーワードは、異なったファイル間で設定を共有できるだけでなく、異なったプロジェクトでも利用可能です。拡張サービスは複数のサービスを持っている場合、一般的な設定オプションの再利用に便利です。 ``extends`` を使えば、１箇所だけでなく、どこでも利用可能なサービス・オプションの共通セットを定義できます。
 
-..    Note: links and volumes_from are never shared between services using extends. See Adding and overriding configuration for more information.
+.. Note: links, volumes_from, and depends_on are never shared between services using >extends. These exceptions exist to avoid implicit dependencies—you always define links and volumes_from locally. This ensures dependencies between services are clearly visible when reading the current file. Defining these locally also ensures changes to the referenced file don’t result in breakage.
 
 .. note::
 
-   ``links`` と ``volumes_form`` は ``extends`` を使ってもサービスを共有しません。詳細は :ref:`adding-and-overriding-configuration` をご覧ください。
+   ``extends`` を使っても ``links`` と ``volumes_form`` はサービスを共有しません。このような例外が存在しているのは、依存性が暗黙のうちに発生しないようにするためです。 ``links`` と ``volumes_from`` は常にローカルで定義すべきです。そうすると、現在のファイルを読み込むときに、依存関係を明確化します。また、参照するファイルを変更したとしても、ローカルで定義する場合は壊れないようにします。
 
 .. Understand the extends configuration
 
@@ -312,13 +319,9 @@ extends 設定の理解
 設定の追加と上書き
 ====================
 
-.. Compose copies configurations from the original service over to the local one, except for links and volumes_from. These exceptions exist to avoid implicit dependencies—you always define links and volumes_from locally. This ensures dependencies between services are clearly visible when reading the current file. Defining these locally also ensures changes to the referenced file don’t result in breakage.
+.. Compose copies configurations from the original service over to the local one. If a configuration option is defined in both the original service the local service, the local value replaces or extends the original value.
 
-Compose は本来のサービス設定を、（訳者注：extends を使う時や、複数ファイルの読み込み時に）各所に対してコピー（引き継ぎ）します。ただし、``link`` と ``volumes_form`` は **除外** します。この例外は依存性の衝突を避けるためです。例えば、常に ``link`` と ``volumes_form`` をローカルで定義していたとします。これはサービス間でファイルを読み込む依存性がある場合、間違いなく（ファイルを）見えるようにします。ローカルにおける定義であれば、参照しているファイルを変更しても、表示上の問題は出ないでしょう。
-
-.. If a configuration option is defined in both the original service the local service, the local value replaces or extends the original value.
-
-もしも、設定オプションが元のサービスと、ローカル（直近の設定）のサービスの両方で定義された場合、ローカルの値は置き換えられるか、元の値を拡張します。
+Compose は本来のサービス設定を、（訳者注：extends を使う時や、複数ファイルの読み込み時に）各所に対してコピー（引き継ぎ）します。もしも、設定オプションが元のサービスと、ローカル（直近の設定）のサービスの両方で定義された場合、ローカルの値は置き換えられるか、元の値を拡張します。
 
 .. For single-value options like image, command or mem_limit, the new value replaces the old value.
 
