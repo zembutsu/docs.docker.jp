@@ -2,7 +2,7 @@
 .. URL: https://docs.docker.com/compose/faq/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/faq.md
    doc version: 1.10
-      https://github.com/docker/compose/commits/master/docs/overview.md
+      https://github.com/docker/compose/commits/master/docs/faq.md
 .. check date: 2016/03/04
 .. Commits on Feb 17, 2016 53a3d14046e00b6489ae4aadeb0e3325cb5169b1
 .. -------------------------------------------------------------------
