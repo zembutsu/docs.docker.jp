@@ -1453,7 +1453,7 @@ Compose ファイルでバージョンを宣言しなければ「バージョン
 
 .. links with environment variables: As documented in the environment variables reference, environment variables created by links have been deprecated for some time. In the new Docker network system, they have been removed. You should either connect directly to the appropriate hostname or set the relevant environment variable yourself, using the link hostname:
 
-* ``links`` と環境変数： :ref:`環境変数リファレンス </compose/link-env-deprecated>` に文章化している通り、links によって作成される環境変数機能は、いずれ廃止予定です。新しい Docker ネットワーク・システム上では、これらは削除されています。ホスト名のリンクを使う場合は、適切なホスト名で接続できるように設定するか、あるいは自分自身で代替となる環境変数を指定します。
+* ``links`` と環境変数： :doc:`環境変数リファレンス </compose/link-env-deprecated>` に文章化している通り、links によって作成される環境変数機能は、いずれ廃止予定です。新しい Docker ネットワーク・システム上では、これらは削除されています。ホスト名のリンクを使う場合は、適切なホスト名で接続できるように設定するか、あるいは自分自身で代替となる環境変数を指定します。
 
 .. code-block:: yaml
 

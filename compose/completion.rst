@@ -1,6 +1,11 @@
-.. http://docs.docker.com/compose/completion/
-.. doc version: 1.9
-.. check date: 2015/11/22
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/compose/completion/
+.. SOURCE: https://github.com/docker/compose/blob/master/docs/completion.md
+   doc version: 1.10
+      https://github.com/docker/compose/commits/master/docs/completion.md
+.. check date: 2016/03/07
+.. Commits on Jan 28, 2016 3fc72038c56482e63dbb2e1341f8475cf6bb5350
+.. ----------------------------------------------------------------------------
 
 .. Command-line Completion
 
@@ -32,7 +37,7 @@ bash 補完（completion）がインストールされているかどうか確�
 
 .. code-block:: bash
 
-   curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose --version | awk 'NR==1{print $NF}')/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose
+   curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose
 
 .. Completion will be available upon next login.
 
@@ -49,7 +54,7 @@ Zsh
 .. code-block:: bash
 
    mkdir -p ~/.zsh/completion
-   curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose --version | awk 'NR==1{print $NF}')/contrib/completion/zsh/_docker-compose > ~/.zsh/completion/_docker-compose
+   curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/zsh/_docker-compose > ~/.zsh/completion/_docker-compose
 
 .. Include the directory in your $fpath, e.g. by adding in ~/.zshrc
 

@@ -1,15 +1,18 @@
-.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/compose/env/
-.. doc version: 1.9
-.. check date: 2016/01/21
-.. -----------------------------------------------------------------------------
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/compose/link-env-deprecated/
+.. SOURCE: https://github.com/docker/compose/blob/master/docs/link-env-deprecated.md
+   doc version: 1.10
+      https://github.com/docker/compose/commits/master/docs/link-env-deprecated.md
+.. check date: 2016/03/07
+.. Commits on Feb 3, 2016 cf24c36c5549a2a87952da27c6e3d35974687e1c
+.. ----------------------------------------------------------------------------
 
-.. Compose environment variables reference
+.. Link environment variables reference:
 
-.. _compose-environment-variables-reference:
+.. _link-environment-variables-reference:
 
 =======================================
-Compose 環境変数リファレンス
+リンク環境変数リファレンス
 =======================================
 
 .. Note: Environment variables are no longer the recommended method for connecting to linked services. Instead, you should use the link name (by default, the name of the linked service) as the hostname to connect to. See the docker-compose.yml documentation for details.
@@ -17,6 +20,12 @@ Compose 環境変数リファレンス
 .. note::
 
    サービスをリンクで接続する手法としては、環境変数の使用は推奨されなくなりました。そのかわりに、接続するホスト名として、名前を使ったリンクが可能です（デフォルトではサービスの名前でリンクします）。詳細は :ref:`docker-compose.yml ドキュメント <compose-file-links>` をご覧ください。
+
+.. Environment variables will only be populated if you’re using the legacy version 1 Compose file format.
+
+.. note::
+
+   環境変数を（Composeで自動的に扱えるように）は、 :ref:`過去の Compose ファイル形式バージョン１ <compose-file-version-1>` を使う場合のみです。
 
 .. Compose uses Docker links to expose services’ containers to one another. Each linked container injects a set of environment variables, each of which begins with the uppercase name of the container.
 
@@ -75,5 +84,5 @@ Compose はサービスのコンテナを他に公開するために、 :doc:`Do
 * :doc:`/compose/index`
 * :doc:`/compose/install`
 * :doc:`/compose/reference/index`
-* :doc:`/compose/reference/compose-file`
+* :doc:`/compose/compose-file`
 
