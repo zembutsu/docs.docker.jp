@@ -21,7 +21,7 @@ Compose CLI リファレンス
 * :doc:`config <config>`
 * :doc:`create <create>`
 * :doc:`down <down>`
-* :doc:`build <build>`
+* :doc:`events <events>`
 * :doc:`help <help>`
 * :doc:`kill <kill>`
 * :doc:`ps <ps>`

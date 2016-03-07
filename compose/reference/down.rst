@@ -4,7 +4,7 @@
    doc version: 1.10
       https://github.com/docker/compose/commits/master/docs/reference/down.md
 .. check date: 2016/03/07
-.. Commits on Jan 7, 2016 0bca8d9cb39a01736f2ce043f2ea7b6407ffc281
+.. Commits on Feb 3, 2016 a713447e0b746838ebaed192cadd4cbd3caba2af
 .. -------------------------------------------------------------------
 
 .. down
@@ -14,8 +14,6 @@
 =======================================
 down
 =======================================
-
-.. code-block:: bash
 
 .. Stop containers and remove containers, networks, volumes, and images
 .. created by `up`. Only containers and networks are removed by default.

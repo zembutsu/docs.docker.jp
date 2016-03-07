@@ -23,6 +23,7 @@
    config.rst
    create.rst
    down.rst
+   events.rst
    help.rst
    kill.rst
    logs.rst
