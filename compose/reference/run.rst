@@ -1,8 +1,11 @@
-.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/compose/reference/run/
-.. doc version: 1.9
-.. check date: 2016/01/18
-.. -----------------------------------------------------------------------------
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/compose/reference/run/
+.. SOURCE: https://github.com/docker/compose/blob/master/docs/reference/run.md
+   doc version: 1.10
+      https://github.com/docker/compose/commits/master/docs/reference/run.md
+.. check date: 2016/03/07
+.. Commits on Jan 7, 2016 4e75ed42319b372ac79c7b8762c5fec794afa841
+.. -------------------------------------------------------------------
 
 .. run
 
@@ -19,6 +22,7 @@ run
    Options:
    -d                    Detached mode: Run container in the background, print
                              new container name.
+   --name NAME           Assign a name to the container
    --entrypoint CMD      Override the entrypoint of the image.
    -e KEY=VAL            Set an environment variable (can be used multiple times)
    -u, --user=""         Run as specified username or uid

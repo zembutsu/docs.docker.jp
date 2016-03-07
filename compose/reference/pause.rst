@@ -1,8 +1,11 @@
-.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/compose/reference/pause/
-.. doc version: 1.9
-.. check date: 2016/01/19
-.. -----------------------------------------------------------------------------
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/compose/reference/pause/
+.. SOURCE: https://github.com/docker/compose/blob/master/docs/reference/pause.md
+   doc version: 1.10
+      https://github.com/docker/compose/commits/master/docs/reference/pause.md
+.. check date: 2016/03/07
+.. Commits on Aug 21, 2015 227584b8640be269f60975d7c7f361e856c9e9f6
+.. -------------------------------------------------------------------
 
 .. pause
 
@@ -14,8 +17,8 @@ pause
 
 .. code-block:: bash
 
-   Usage: unpause [SERVICE...]
+   227584b8640be269f60975d7c7f361e856c9e9f6
 
-.. Unpauses paused containers of a service.
+.. Pauses running containers of a service. They can be unpaused with docker-compose unpause.
 
-一時停止（pause）しているサービスのコンテナを再開（unpause）します。
+サービスを実行しているコンテナを一時停止（pause）します。再開（unpause）するには ``docker-compose unpose`` を使います。

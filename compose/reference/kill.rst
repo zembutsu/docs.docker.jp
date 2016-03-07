@@ -1,8 +1,11 @@
-.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/compose/reference/kill/
-.. doc version: 1.9
-.. check date: 2016/01/18
-.. -----------------------------------------------------------------------------
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/compose/reference/kill/
+.. SOURCE: https://github.com/docker/compose/blob/master/docs/reference/kill.md
+   doc version: 1.10
+      https://github.com/docker/compose/commits/master/docs/reference/kill.md
+.. check date: 2016/03/07
+.. Commits on Aug 25, 2015 59d4f304ee3bf4bb20ba0f5e0ad6c4a3ff1568f3
+.. -------------------------------------------------------------------
 
 .. kill
 

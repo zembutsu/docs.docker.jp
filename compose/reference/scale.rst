@@ -1,8 +1,11 @@
-.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/compose/reference/scale/
-.. doc version: 1.9
-.. check date: 2016/01/19
-.. -----------------------------------------------------------------------------
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/compose/reference/scale/
+.. SOURCE: https://github.com/docker/compose/blob/master/docs/reference/scale.md
+   doc version: 1.10
+      https://github.com/docker/compose/commits/master/docs/reference/scale.md
+.. check date: 2016/03/07
+.. Commits on Aug 25, 2016 59d4f304ee3bf4bb20ba0f5e0ad6c4a3ff1568f3
+.. -------------------------------------------------------------------
 
 .. scale
 

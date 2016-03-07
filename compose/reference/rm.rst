@@ -1,8 +1,11 @@
-.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/compose/reference/rm/
-.. doc version: 1.9
-.. check date: 2016/01/25
-.. -----------------------------------------------------------------------------
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/compose/reference/rm/
+.. SOURCE: https://github.com/docker/compose/blob/master/docs/reference/rm.md
+   doc version: 1.10
+      https://github.com/docker/compose/commits/master/docs/reference/rm.md
+.. check date: 2016/03/07
+.. Commits on Dec 18, 2015 2e9a49b4eb48d7611543bf5cb34130e8f5448dff
+.. -------------------------------------------------------------------
 
 .. rm
 
@@ -23,3 +26,12 @@ rm
 .. Removes stopped service containers.
 
 停止済みのサービス・コンテナを削除します。
+
+.. By default, volumes attached to containers will not be removed. You can see all volumes with docker volume ls.
+
+デフォルトでは、コンテナにアタッチしているボリュームは削除されません。全てのボリュームは ``docker volume ls`` で確認できます。
+
+.. Any data which is not in a volume will be lost.
+
+（明示的に削除しなければ）ボリューム内にあるデータは失われません。
+

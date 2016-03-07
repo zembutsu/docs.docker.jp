@@ -1,8 +1,11 @@
-.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/compose/reference/pull/
-.. doc version: 1.9
-.. check date: 2016/01/25
-.. -----------------------------------------------------------------------------
+.. *- coding: utf-8 -*-
+.. URL: https://docs.docker.com/compose/reference/pull/
+.. SOURCE: https://github.com/docker/compose/blob/master/docs/reference/pull.md
+   doc version: 1.10
+      https://github.com/docker/compose/commits/master/docs/reference/pull.md
+.. check date: 2016/03/07
+.. Commits on Sep 21, 2015 c9083e21c81576ba7b8f27dfd952f269cc25a7fd
+.. -------------------------------------------------------------------
 
 .. pull
 
