@@ -149,11 +149,10 @@ Compose は構築時に別のファイルを使えます。構築時のパスも
      dockerfile: Dockerfile-alternate
 
 ..    Note: In the version 1 file format, dockerfile is different in two ways:
-
-.. note::
-
     It appears alongside build, not as a sub-option:
     Using dockerfile together with image is not allowed. Attempting to do so results in an error.
+
+.. note::
 
    :ref:`バージョン１のフォーマット <compose-file-version-1>` とは ``dockerfile`` の使い方が異なります。
    
