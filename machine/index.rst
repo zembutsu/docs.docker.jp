@@ -1,4 +1,4 @@
-.. *- coding: utf-8 -*-
+.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/machine/
 .. SOURCE: https://github.com/docker/machine/blob/master/docs/index.md
    doc version: 1.10
