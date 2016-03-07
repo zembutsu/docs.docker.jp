@@ -31,5 +31,6 @@ Docker Compose
    reference/toc.rst
    completion.rst
    link-env-deprecated.rst
+   startup-order.rst
    faq.rst
 
