@@ -374,7 +374,7 @@ build がイメージを置き換える例：
 
 .. For the multi-value options ports, expose, external_links, dns and dns_search, Compose concatenates both sets of values:
 
-**複数の値を持つオプショーン**、``ports`` 、 ``expose`` 、 ``external_links`` 、 ``dns`` 、 ``dns_search`` の場合、Compose は両方の値を連結します。
+**複数の値を持つオプション**、``ports`` 、 ``expose`` 、 ``external_links`` 、 ``dns`` 、 ``dns_search`` の場合、Compose は両方の値を連結します。
 
 .. code-block:: yaml
 
