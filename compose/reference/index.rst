@@ -20,6 +20,7 @@ Compose CLI リファレンス
 * :doc:`build <build>`
 * :doc:`config <config>`
 * :doc:`create <create>`
+* :doc:`down <down>`
 * :doc:`build <build>`
 * :doc:`help <help>`
 * :doc:`kill <kill>`

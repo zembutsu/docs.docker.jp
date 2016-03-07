@@ -17,8 +17,6 @@ create
 
 .. code-block:: bash
 
-.. code-block:: bash
-
    create
    
    Usage: create [options] [SERVICE...]
