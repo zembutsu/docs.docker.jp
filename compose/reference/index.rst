@@ -19,6 +19,7 @@ Compose CLI リファレンス
 * :doc:`docker-compose <overview>`
 * :doc:`build <build>`
 * :doc:`config <config>`
+* :doc:`create <create>`
 * :doc:`build <build>`
 * :doc:`help <help>`
 * :doc:`kill <kill>`

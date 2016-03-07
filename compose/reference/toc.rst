@@ -21,6 +21,7 @@
    docker-compose.rst
    build.rst
    config.rst
+   create.rst
    help.rst
    kill.rst
    logs.rst
