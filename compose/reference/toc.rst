@@ -22,6 +22,7 @@
    build.rst
    config.rst
    create.rst
+   down.rst
    help.rst
    kill.rst
    logs.rst
