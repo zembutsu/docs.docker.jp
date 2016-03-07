@@ -20,6 +20,7 @@
    overview.rst
    docker-compose.rst
    build.rst
+   config.rst
    help.rst
    kill.rst
    logs.rst

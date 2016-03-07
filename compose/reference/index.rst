@@ -14,8 +14,11 @@ Compose CLI リファレンス
 
 .. The following pages describe the usage information for the docker-compose subcommands. You can also see this information by running docker-compose [SUBCOMMAND] --help from the command line.
 
-以下のページでは :doc:`docker-compose </compose/reference/docker-compose>` サブコマンドに関する説明を扱っています。また、コマンドラインで ``docker-compose [サブコマンド] --help`` を実行しても情報は表示されます。
+以下のページでは :doc:`docker-compose </compose/reference/overview>` サブコマンドに関する説明を扱っています。また、コマンドラインで ``docker-compose [サブコマンド] --help`` を実行しても情報は表示されます。
 
+* :doc:`docker-compose <overview>`
+* :doc:`build <build>`
+* :doc:`config <config>`
 * :doc:`build <build>`
 * :doc:`help <help>`
 * :doc:`kill <kill>`
