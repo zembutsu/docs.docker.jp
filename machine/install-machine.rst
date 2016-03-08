@@ -1,8 +1,11 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/machine/install-machine/
-.. doc version: 1.9
-.. check date: 2015/12/19
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/machine/install-machine/
+.. SOURCE: https://github.com/docker/machine/blob/master/docs/install-machine.md
+   doc version: 1.10
+      https://github.com/docker/machine/commits/master/docs/install-machine.md
+.. check date: 2016/03/08
+.. Commits on Feb 4, 2016 63f8f1fb482bb4f99007b2763e3893fa4eababa5
+.. -------------------------------------------------------------------
 
 .. Install Docker Machine
 
@@ -14,53 +17,43 @@ Docker Machine のインストール
 
 OS X と Windows の場合、Docker Toolbox をインストールすることで、他の Docker プロダクトと一緒にインストールされます。Docker Toolbox の詳細は、:doc:`Mac OS X インストールガイド</engine/installation/mac>`  か :doc:`Windows インストールガイド</engine/installation/windows>` をご覧ください。
 
-.. If you only want Docker Machine, you can install the Machine binaries (the latest versions of which are located at https://github.com/docker/machine/releases/ ) directly by following the instructions in the next section.
+.. If you want only Docker Machine, you can install the Machine binaries directly by following the instructions in the next section. You can find the latest versions of the binaries are on the docker/machine release page on GitHub.
 
-Docker Machine だけインストールしたい場合は、Machine のバイナリを（最新版は https://github.com/docker/machine/releases/ です）を直接インストールできます。詳細は次のセクションをご覧ください。
+Docker Machine だけインストールしたい場合は、Machine のバイナリを直接インストールできます。詳細は次のセクションをご覧ください。また、最新版のバイナリは GitHub 上の `docker/machine リリース・ページ <https://github.com/docker/machine/releases/>`_ 上で確認できます。
 
 .. Installing Machine Directly
+
+.. _installing-machine-directly:
 
 Machine を直接インストール
 ==============================
 
 ..    Install the Docker binary.
 
-1. :doc:`Docker エンジン </engine/installation/index>` をインストールします。
+1. :doc:`Docker のバイナリ </engine/installation/index>` をインストールします。
 
 ..    Download the Docker Machine binary and extract it to your PATH.
 
 2. Docker Machine のバイナリをダウンロードし、PATH に展開します。
 
-..    Linux:
-
-Linux：
+Mac OS X もしくは Windows の場合：
 
 .. code-block:: bash
 
-   $ curl -L https://github.com/docker/machine/releases/download/v0.5.5/docker-machine_linux-amd64 >/usr/local/bin/docker-machine && \
-        chmod +x /usr/local/bin/docker-machine
+   $ curl -L https://github.com/docker/machine/releases/download/v0.6.0/docker-machine-`uname -s`-`uname -m` > /usr/local/bin/docker-machine && \
+   chmod +x /usr/local/bin/docker-machine
 
-
-..    OSX:
-
-OS X：
-
-.. code-block:: bash
-
-   $ curl -L https://github.com/docker/machine/releases/download/v0.5.5/docker-machine_darwin-amd64 >/usr/local/bin/docker-machine && \
-        chmod +x /usr/local/bin/docker-machine
-
-
-..    Windows (using Git Bash):
-
-Windows（Git Bash を使う場合）：
+Windows 上の git bash の場合：
 
 .. code-block:: bash
 
    $ if [[ ! -d "$HOME/bin" ]]; then mkdir -p "$HOME/bin"; fi && \
-        curl -L https://github.com/docker/machine/releases/download/v0.5.5/docker-machine_windows-amd64.exe > "$HOME/bin/docker-machine.exe" && \
-        chmod +x "$HOME/bin/docker-machine.exe"
+   curl -L https://github.com/docker/machine/releases/download/v0.6.0/docker-machine-Windows-x86_64.exe > "$HOME/bin/docker-machine.exe" && \
+   chmod +x "$HOME/bin/docker-machine.exe"
 
+.. Otherwise, download one of the releases from the docker/machine release page directly.
+
+あるいは、 `docker/machine リリース・ページ <https://github.com/docker/machine/releases/>`_ から直接ダウンロードします。
 
 ..    Check the installation by displaying the Machine version:
 
@@ -68,8 +61,8 @@ Windows（Git Bash を使う場合）：
 
 .. code-block:: bash
 
-   $ docker-machine -v
-   docker-machine version 0.5.5, build 02c4254
+   $ docker-machine version
+   docker-machine version 0.6.0, build 61388e9
 
 .. Installing bash completion scripts
 
@@ -109,9 +102,8 @@ Machine 用のレポジトリには次の機能を持つ ``bash`` スクリプ�
     Docker Machine driver reference
     Docker Machine subcommand reference
 
-* :doc:`Docker Machine 概要 </machine/index>`
-* :doc:`Docker Machine ドライバ・リファレンス </machine/drivers>`
-* :doc:`Docker Machine サブコマンド・リファレンス </machine/reference>`
-
-
-
+* :doc:`overview`
+* machine を :doc:`ローカルの VirtualBox を使ったシステム </machine/get-started>` にインストール
+* 複数の machine を :doc:`クラウド・プロバイダ </machine/get-started-cloud/>` にインストール
+* :doc:`Docker Machine ドライバ・リファレンス </machine/drivers/index>`
+* :doc:`Docker Machine サブコマンド・リファレンス </machine/reference/index>`
