@@ -1,8 +1,11 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/machine/drivers/azure/
-.. doc version: 1.9
-.. check date: 2016/01/25
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/machine/drivers/azure/
+.. SOURCE: https://github.com/docker/machine/blob/master/docs/drivers/azure.md
+   doc version: 1.10
+      https://github.com/docker/machine/commits/master/docs/drivers/azure.md
+.. check date: 2016/03/09
+.. Commits on Dec 8, 2015 db9ca3c3b7844d8711b0dfd4decc30f0bd9bdcae
+.. ----------------------------------------------------------------------------
 
 .. Microsoft Azure
 

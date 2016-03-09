@@ -1,8 +1,11 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/machine/drivers/openstack/
-.. doc version: 1.9
-.. check date: 2016/01/25
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/machine/drivers/openstack/
+.. SOURCE: https://github.com/docker/machine/blob/master/docs/drivers/openstack.md
+   doc version: 1.10
+      https://github.com/docker/machine/commits/master/docs/drivers/openstack.md
+.. check date: 2016/03/09
+.. Commits on Feb 4, 2016 a8625397bc0b3526a3177303a1e39dac25e68850
+.. ----------------------------------------------------------------------------
 
 .. OpenStack
 
@@ -15,6 +18,10 @@ OpenStack
 .. Create machines on OpenStack
 
 `OpenStack <http://www.openstack.org/software/>`_  上にマシンを作成します。
+
+.. code-block:: bash
+
+   $ docker-machine create --driver openstack vm
 
 .. Mandatory:
 
@@ -53,10 +60,12 @@ OpenStack
 * ``--openstack-domain-name or --openstack-domain-id`` :  認証に使うドメイン名の指定（Keystone v3 のみ）
 * ``--openstack-endpoint-type`` : エンドポイント・タイプとして ``internalURL`` 、 ``publicURL`` 上の ``adminURL`` を指定します。OpenStack サービス・カタログ上で適切なドライバを選択すると便利です。指定しなければ、デフォルトの ID ``publicURL`` が指定されます。
 * ``--openstack-floatingip-pool`` : マシンに割り当てるパブリック IP に使用するための IP プールを指定。IP アドレスが作成されていてもマシンに割り当てられていなければ、マシン用に割り当てる。割り当て可能な IP アドレスが無ければ、新しく作成してマシンに割り当てる。
+* ``--openstack-keypair-name`` : 既存の Nova キーペアを使う指定をする。
 * ``--openstack-insecure`` :  OpenStack ドライバが「insecure（非安全）」SSL (https)リクエストを処理できるのを明示します。サーバの証明書において証明書の権限を確認しません。このオプションは注意を払って遣うべきです。
 * ``--openstack-ip-version`` : IPv4 か IPv6 アドレスのどちらかのバージョンを選びます。何も指定されなければ、 ``4`` が使われます。
 * ``--openstack-net-name`` または ``--openstack-net-id`` : マシンに接続するプライベートなネットワークを指定します。OpenStack プロジェクトにプライベート・ネットワークがあれば、自動的に使われます。
 * ``--openstack-password`` : ユーザ・パスワード。環境変数 ``OS_PASSWORD`` が設定されれば、そちらから流用します。
+* ``--openstack-private-key-file`` : ``--openstack-keypari-name`` と同時に使い、キーペアに対応するプライベート・キーを関連づける。
 * ``--openstack-region`` : 実行するリージョンを指定します。OpenStack 上に１つのリージョンしかなければ、そちらを使います。
 * ``--openstack-sec-groups`` : OpenStack 上でセキュリティ・グループが利用可能であれば、マシンが使う環境をカンマ区切りで指定できる（例： ``secgrp001,secgrp002`` ）。
 * ``--openstack-username`` : 認証時に識別するユーザ名。
@@ -113,6 +122,9 @@ OpenStack
    * - ``--openstack-ip-version``
      - ``OS_IP_VERSION``
      - ``4``
+   * - ``--openstack-keypair-name``
+     - ``OS_KEYPAIR_NAME``
+     - -
    * - ``--openstack-net-id``
      - ``OS_NETWORK_ID``
      - -
@@ -121,6 +133,9 @@ OpenStack
      - -
    * - ``--openstack-password``
      - ``OS_PASSWORD``
+     - -
+   * - ``--openstack-private-key-file``
+     - ``OS_PRIVATE_KEY_FILE``
      - -
    * - ``--openstack-region``
      - ``OS_REGION_NAME``

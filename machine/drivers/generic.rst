@@ -1,15 +1,18 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/machine/drivers/generic/
-.. doc version: 1.9
-.. check date: 2016/01/23
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/machine/drivers/generic/
+.. SOURCE: https://github.com/docker/machine/blob/master/docs/drivers/generic.md
+   doc version: 1.10
+      https://github.com/docker/machine/commits/master/docs/drivers/generic.md
+.. check date: 2016/03/09
+.. Commits on Feb 19, 2016 742c87ee3f1af146b6c3e18fe4a4f6c2da976170
+.. ----------------------------------------------------------------------------
 
 .. Generic
 
 .. _driver-generic:
 
 =======================================
-汎用ドライバ(generic)
+汎用(generic)ドライバ
 =======================================
 
 .. Create machines using an existing VM/Host with SSH.
@@ -25,16 +28,70 @@
 作成時、ドライバは以下の処理を行います。
 
 ..    If docker is not running on the host, it will be installed automatically.
+    It will update the host packages (apt-get update, yum update...).
     It will generate certificates to secure the docker daemon
     The docker daemon will be restarted, thus all running containers will be stopped.
+    The hostname will be changed to fit the machine name.
 
 * ホスト上で docker が動いていなければ、自動的にインストールを行う。
+* ホスト上のパッケージを更新します（ ``apt-get update`` ``yum update`` ...  ）
 * docker デーモンを安全にする証明書を生成する。
 * docker デーモンを再起動するため、実行中のコンテナは全て停止される。
+* ホスト名がマシン名に対応します。
+
+.. Example
+
+例
+==========
+
+.. To create a machine instance, specify --driver generic, the IP address or DNS name of the host and the path to the SSH private key authorized to connect to the host.
+
+マシン・インスタンスを作成するには、 ``--driver generic`` を指定します。また、ホストの IP アドレスまたは DNS 名と、ホストに接続できるようにするための SSH 秘密鍵も指定します。
+
+.. code-block:: bash
+
+   $ docker-machine create \
+     --driver generic \
+     --generic-ip-address=203.0.113.81 \
+     --generic-ssh-key=~/.ssh/id_rsa \
+     vm
+
+.. Password-protected SSH keys
+
+パスワードで保護された SSH 鍵
+==============================
+
+.. When an SSH identity is not provided (with the --generic-ssh-key flag), the SSH agent (if running) will be consulted. This makes it possible to easily use password-protected SSH keys.
+
+SSH 認証情報の指定（ ``--generic-ssh-key`` フラグを使う ）がなければ、 SSH エージェントは（実行中であれば）訊ねます。つまり、パスワードで保護された SSH 鍵を簡単に使えるようにします。
+
+.. Note that this usage is only supported if you're using the external SSH client, which is the default behaviour when the ssh binary is available. If you're using the native client (with --native-ssh), using the SSH agent is not yet supported.
+
+ただしサポートされているのは、外部の SSH クライアント、ここでは ``ssh`` バイナリが実行できるデフォルトの挙動が扱える場合のみです。ネイティブ・クライアントを使う場合（ ``--native-ssh`` ）は、まだ SSH エージェントの利用をサポートしていませんのでご注意ください。
+
+.. code-block:: bash
+
+   $ docker-machine create \
+     --driver generic \
+     --generic-ip-address=203.0.113.81 \
+     other
+
+.. Sudo privileges
+
+.. _sudo-privileges:
+
+sudo 権限
+==========
+
+.. The user that is used to SSH into the host can be specified with --generic-ssh-user flag. This user has to be have password-less sudo privileges. If it's not the case, you need to edit the sudoers file and configure the user as a sudoer with NOPASSWD. See https://help.ubuntu.com/community/Sudoers.
+
+ホストに SSH 接続できるユーザを指定するには ``--generic-ssh-user`` フラグを使います。この時、指定したユーザはパスワード入力なしに sudo を実行する権限が必要です。もしそのようになっていなければ、 ``sudoers`` ファイルを編集し、そのユーザに ``NOPASSWD`` としての調整が必要になります。詳しくは `ドキュメント <https://help.ubuntu.com/community/Sudoers>`_ をご覧ください。
+
 
 .. Options:
 
-オプション：
+オプション
+==========
 
 ..    --generic-ip-address: required IP Address of host.
     --generic-ssh-key: Path to the SSH user private key.
@@ -73,17 +130,3 @@
      - ``GENERIC_SSH_PORT``
      - ``22``
 
-.. Interaction with SSH Agents
-
-.. _interaction-with-ssh-agents:
-
-SSH エージェントとの通信
-==============================
-
-.. When an SSH identity is not provided (with the --generic-ssh-key flag), the SSH agent (if running) will be consulted. This makes it possible to easily use password-protected SSH keys.
-
-SSH 認証情報の指定（ ``--generic-ssh-key`` フラグを使う ）がなければ、 SSH エージェントは（実行中であれば）訊ねます。つまり、パスワードで保護された SSH 鍵を簡単に使えるようにします。
-
-.. Note that this usage is only supported if you’re using the external SSH client, which is the default behaviour when the ssh binary is available. If you’re using the native client (with --native-ssh), using the SSH agent is not yet supported.
-
-ただしサポートされているのは、外部の SSH クライアント、ここでは ``ssh`` バイナリが実行できるデフォルトの挙動が扱える場合のみです。ネイティブ・クライアントを使う場合（ ``--native-ssh`` ）は、まだ SSH エージェントの利用をサポートしていませんのでご注意ください。

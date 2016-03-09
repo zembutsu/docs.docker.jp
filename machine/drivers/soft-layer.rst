@@ -1,8 +1,11 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/machine/drivers/soft-layer/
-.. doc version: 1.9
-.. check date: 2016/01/23
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/machine/drivers/soft-layer/
+.. SOURCE: https://github.com/docker/machine/blob/master/docs/drivers/soft-layer.md
+   doc version: 1.10
+      https://github.com/docker/machine/commits/master/docs/drivers/soft-layer.md
+.. check date: 2016/03/09
+.. Commits on Jan 26, 2016 75f138949aa465dd4b3da1df75abba44ff197cdf
+.. ----------------------------------------------------------------------------
 
 .. IBM Softlayer
 
@@ -19,6 +22,10 @@ IBM SoftLayer
 .. You need to generate an API key in the softlayer control panel. Retrieve your API key
 
 SoftLayer コントロール・パネルで API を生成する必要があります。 `API Key を取得するには（英語） <http://knowledgelayer.softlayer.com/procedure/retrieve-your-api-key>`_ 。
+
+.. code-block:: bash
+
+   $ docker-machine create --driver softlayer --softlayer-user=user --softlayer-api-key=KEY --softlayer-domain=domain vm
 
 .. Options:
 

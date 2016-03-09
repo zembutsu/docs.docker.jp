@@ -1,8 +1,11 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/machine/drivers/digital-ocean/
-.. doc version: 1.9
-.. check date: 2016/01/23
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/machine/drivers/digital-ocean/
+.. SOURCE: https://github.com/docker/machine/blob/master/docs/drivers/digital-ocean.md
+   doc version: 1.10
+      https://github.com/docker/machine/commits/master/docs/drivers/digital-ocean.md
+.. check date: 2016/03/09
+.. Commits on Mar 3, 2016 17c6578583e61b144eb6071a900b589a3a9d26eb
+.. ----------------------------------------------------------------------------
 
 .. Digital Ocean
 
@@ -45,6 +48,9 @@ Digital Ocean のコントロール・パネルにある「Apps & API」から�
 * ``--digitalocean-private-networking`` : ドロップレットのプライベート・ネットワーク対応を有効化。
 * ``--digitalocean-backups`` : ドロップレットのバックアップを有効化。
 * ``--digitalocean-userdata`` : ドロップレット用のユーザ・データを含むファイルのパス。
+* ``--digitalocean-ssh-user`` : SSH ユーザ名。
+* ``--digitalocean-ssh-port`` : SSH ポート番号。
+* ``--digitalocean-ssh-key-fingerprint`` : 新しい SSH 鍵を作らず、既存の鍵を使います。詳細は `SSH Keys のページ <https://developers.digitalocean.com/documentation/v2/#ssh-keys>`_ をご覧ください。
 
 .. The DigitalOcean driver will use ubuntu-15-10-x64 as the default image.
 
@@ -81,5 +87,14 @@ DigialOcean ドライバは、 ``ubuntu-15-10-x64`` をデフォルトのイメ�
      - ``false``
    * - ``--digitalocean-userdata``
      - ``DIGITALOCEAN_USERDATA``
-     -
+     - 
+   * - ``--digitalocean-ssh-user``
+     - ``DIGITALOCEAN_SSH_USER``
+     - ``root``
+   * - ``--digitalocean-ssh-port``
+     - ``DIGITALOCEAN_SSH_PORT``
+     - ``22``
+   * - ``--digitalocean-ssh-key-fingerprint``
+     - ``DIGITALOCEAN_SSH_KEY_FINGERPRINT``
+     - 
 

@@ -1,8 +1,11 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/machine/drivers/gce/
-.. doc version: 1.9
-.. check date: 2016/01/23
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/machine/drivers/gce/
+.. SOURCE: https://github.com/docker/machine/blob/master/docs/drivers/gce.md
+   doc version: 1.10
+      https://github.com/docker/machine/commits/master/docs/drivers/gce.md
+.. check date: 2016/03/09
+.. Commits on Jan 11, 2016 52bd740ad353a6b1a582668f4da76b8b38a9c89f
+.. ----------------------------------------------------------------------------
 
 .. Google Compute Engine
 
