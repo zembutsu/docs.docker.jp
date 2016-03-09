@@ -173,7 +173,7 @@ Dockerfile の書き方や詳細な情報については、 :ref:`Docker ユー�
 
 .. The redis service uses the latest public Redis image pulled from the Docker Hub registry.
 
-``redis`` サービスには、Docker Hub レジストリから取得した最新の公開（パブリック） `Regis <https://registry.hub.docker.com/_/redis/>`_ イメージを使用します。
+``redis`` サービスには、Docker Hub レジストリから取得した最新の公開（パブリック） `Redis <https://registry.hub.docker.com/_/redis/>`_ イメージを使用します。
 
 .. Step 4: Build and run your app with Compose
 
