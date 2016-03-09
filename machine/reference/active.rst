@@ -1,8 +1,11 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/machine/reference/active/
-.. doc version: 1.9
-.. check date: 2016/01/25
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/machine/reference/active/
+.. SOURCE: https://github.com/docker/machine/blob/master/docs/reference/active.md
+   doc version: 1.10
+      https://github.com/docker/machine/commits/master/docs/reference/active.md
+.. check date: 2016/03/09
+.. Commits on Jan 20, 2016 cda5d00bd8d898d07d1b41c0a8e8250fd4a34a50
+.. ----------------------------------------------------------------------------
 
 .. active
 
@@ -21,9 +24,9 @@ active
    $ docker-machine ls
    NAME      ACTIVE   DRIVER         STATE     URL
    dev       -        virtualbox     Running   tcp://192.168.99.103:2376
-   staging   *        digitalocean   Running   tcp://104.236.50.118:2376
+   staging   *        digitalocean   Running   tcp://203.0.113.81:2376
    $ echo $DOCKER_HOST
-   tcp://104.236.50.118:2376
+   tcp://203.0.113.81:2376
    $ docker-machine active
    staging
 

@@ -1,8 +1,11 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/machine/reference/create/
-.. doc version: 1.9
-.. check date: 2016/01/26
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/machine/reference/create/
+.. SOURCE: https://github.com/docker/machine/blob/master/docs/reference/create.md
+   doc version: 1.10
+      https://github.com/docker/machine/commits/master/docs/reference/create.md
+.. check date: 2016/03/09
+.. Commits on Feb 21, 2016 d7e97d04436601da26d24b199532652abe78770e
+.. ----------------------------------------------------------------------------
 
 .. create
 
@@ -51,8 +54,6 @@ create
    
    Run 'docker-machine create --driver name' to include the create flags for that driver in the help text.
    
-   Options:
-   
       --driver, -d "none"                                                                                  Driver to create machine with.
       --engine-install-url "https://get.docker.com"                                                        Custom URL to use for engine installation [$MACHINE_DOCKER_INSTALL_URL]
       --engine-opt [--engine-opt option --engine-opt option]                                               Specify arbitrary flags to include with the created engine in the form flag=value
@@ -68,7 +69,7 @@ create
       --swarm-strategy "spread"                                                                            Define a default scheduling strategy for Swarm
       --swarm-opt [--swarm-opt option --swarm-opt option]                                                  Define arbitrary flags for swarm
       --swarm-host "tcp://0.0.0.0:3376"                                                                    ip/socket to listen on for Swarm master
-      --swarm-addr                                                                                         addr to advertise for Swarm (default: detect and use the machine IP)
+      --swarm-addr      
 
 .. Additionally, drivers can specify flags that Machine can accept as part of their plugin code. These allow users to customize the provider-specific parameters of the created machine, such as size (--amazonec2-instance-type m1.medium), geographical region (--amazonec2-region us-west-1), and so on.
 
@@ -115,7 +116,7 @@ create
       --virtualbox-hostonly-nictype "82540EM"                                                              Specify the Host Only Network Adapter Type [$VIRTUALBOX_HOSTONLY_NIC_TYPE]
       --virtualbox-import-boot2docker-vm                                                                   The name of a Boot2Docker VM to import
       --virtualbox-memory "1024"                                                                           Size of memory for host in MB [$VIRTUALBOX_MEMORY_SIZE]
-      --virtualbox-no-share                                                                                Disable the mount of your home directory
+      --virtualbox-no-share  
 
 .. You may notice that some flags specify environment variables that they are associated with as well (located to the far left hand side of the row). If these environment variables are set when docker-machine create is invoked, Docker Machine will use them for the default value of the flag.
 
@@ -244,3 +245,15 @@ Docker Machine は、デーモンに対するパラメータを単にセット�
 
 こちらは Swarm スケジューリング・ストラテジに「binpack」を指定し（ホストに広く展開するのではなく、できるだけコンテナをホストに集約する設定）、「heartbeat」間隔を５秒にします。
 
+.. Pre-create check
+
+作成の事前確認
+====================
+
+.. Since many drivers require a certain set of conditions to be in place before they can successfully perform a create (e.g. VirtualBox should be installed, or the provided API credentials should be valid), Docker Machine has a “pre-create check” which is specified at the driver level.
+
+多くのドライバで、それぞれの場所で実際に作成可能どうか確認する必要があるでしょう（例：VirtualBox がインストールされているかや、指定する API 証明書が有効かどうか）。Docker Machine は「作成の事前確認」（pre-create check）をドライバごとに行えます。
+
+.. .If this pre-create check succeeds, Docker Machine will proceed with the creation as normal. If the pre-create check fails, the Docker Machine process will exit with status code 3 to indicate that the source of the non-zero exit was the pre-create check failing.
+
+事前確認が成功すると、Docker Machine は通常通り作成手順を進行します。事前確認に失敗すると、 Docker Machine のプロセスは終了コード 3 で終了します。つまり、ゼロ以外の終了コードを返す場合は、事前作成に失敗したのが分かります。

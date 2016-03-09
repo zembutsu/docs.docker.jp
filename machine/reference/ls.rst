@@ -1,8 +1,11 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/machine/reference/ls/
-.. doc version: 1.9
-.. check date: 2016/01/28
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/machine/reference/ls/
+.. SOURCE: https://github.com/docker/machine/blob/master/docs/reference/ls.md
+   doc version: 1.10
+      https://github.com/docker/machine/commits/master/docs/reference/ls.md
+.. check date: 2016/03/09
+.. Commits on Feb 21, 2016 d7e97d04436601da26d24b199532652abe78770e
+.. ----------------------------------------------------------------------------
 
 .. ls
 
@@ -22,7 +25,8 @@ ls
    
       --quiet, -q                                  Enable quiet mode
       --filter [--filter option --filter option]   Filter output based on conditions provided
-      --timeout, -t                                Timeout in seconds, default to 10s
+      --timeout, -t "10"                           Timeout in seconds, default to 10s
+      --format, -f                                 Pretty-print machines using a Go template
 
 .. Timeout
 
@@ -49,9 +53,9 @@ ls
 フィルタリング
 ====================
 
-.. The filtering flag (-f or --filter) format is a key=value pair. If there is more than one filter, then pass multiple flags (e.g. --filter "foo=bar" --filter "bif=baz")
+.. The filtering flag (--filter) format is a key=value pair. If there is more than one filter, then pass multiple flags (e.g. --filter "foo=bar" --filter "bif=baz")
 
-フィルタリング・フラグ（ ``-f`` か ``--filter`` ）の形式は ``key=value`` のペアです。複数のフィルタを使う場合は、複数のフラグを使います（例： ``--filter "foo=bar" --filter "bif=baz"`` ）。
+フィルタリング・フラグ（ ``--filter`` ）の指定は ``key=value`` のペア形式です。複数のフィルタを使う場合は、複数のフラグを使います（例： ``--filter "foo=bar" --filter "bif=baz"`` ）。
 
 .. The currently supported filters are:
 
@@ -77,18 +81,88 @@ ls
 .. code-block:: bash
 
    $ docker-machine ls
-   NAME   ACTIVE   DRIVER       STATE     URL
+   NAME   ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER   ERRORS
    dev    -        virtualbox   Stopped
-   foo0   -        virtualbox   Running   tcp://192.168.99.105:2376
-   foo1   -        virtualbox   Running   tcp://192.168.99.106:2376
-   foo2   *        virtualbox   Running   tcp://192.168.99.107:2376
+   foo0   -        virtualbox   Running   tcp://192.168.99.105:2376           v1.9.1
+   foo1   -        virtualbox   Running   tcp://192.168.99.106:2376           v1.9.1
+   foo2   *        virtualbox   Running   tcp://192.168.99.107:2376           v1.9.1
+   
+   $ docker-machine ls --filter name=foo0
+   NAME   ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER   ERRORS
+   foo0   -        virtualbox   Running   tcp://192.168.99.105:2376           v1.9.1
    
    $ docker-machine ls --filter driver=virtualbox --filter state=Stopped
-   NAME   ACTIVE   DRIVER       STATE     URL   SWARM
-   dev    -        virtualbox   Stopped
+   NAME   ACTIVE   DRIVER       STATE     URL   SWARM   DOCKER   ERRORS
+   dev    -        virtualbox   Stopped                 v1.9.1
    
    $ docker-machine ls --filter label=com.class.app=foo1 --filter label=com.class.app=foo2
-   NAME   ACTIVE   DRIVER       STATE     URL
-   foo1   -        virtualbox   Running   tcp://192.168.99.105:2376
-   foo2   *        virtualbox   Running   tcp://192.168.99.107:2376
+   NAME   ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER   ERRORS
+   foo1   -        virtualbox   Running   tcp://192.168.99.105:2376           v1.9.1
+   foo2   *        virtualbox   Running   tcp://192.168.99.107:2376           v1.9.1
 
+
+.. Formatting
+
+書式
+==========
+
+.. The formatting option (--format) will pretty-print machines using a Go template.
+
+マシンの結果を分かりやすくするため、書式オプション（ ``--format`` ）で Go 言語のテンプレートが使えます。
+
+.. Valid placeholders for the Go template are listed below:
+
+以下の Go テンプレートをプレースホルダに指定可能です。
+
+.. list-table::
+   :header-rows: 1
+   
+   * - プレースホルダ
+     - 説明
+   * - .Name
+     - マシン名
+   * - .Active
+     - マシンがアクティブか
+   * - .ActiveHost
+     - マシンがアクティブな Swarm のホストではないか
+   * - .ActiveSwarm
+     - マシンがアクティブな Swarm マスタか
+   * - .DriverName
+     - ドライバ名
+   * - .State
+     - マシンの状態（実行中、停止中など）
+   * - .URL
+     - マシン URL
+   * - .Swarm
+     - マシンの Swarm 名
+   * - .Error
+     - マシンのエラー
+   * - .DockerVersion
+     - Docker デーモンのバージョン
+   * - .ResponseTime
+     - ホストの応答時間
+
+.. When using the --format option, the ls command will either output the data exactly as the template declares or, when using the table directive, will include column headers as well.
+
+``ls`` コマンドで ``--format`` オプションを使うと、テンプレートから自分が必要なデータだけ出力できます。また table 命令を使うと、ヘッダ部分も調整可能です。
+
+.. The following example uses a template without headers and outputs the Name and Driver entries separated by a colon for all running machines:
+
+以下の例では ``Name`` と ``Driver``  のエントリをヘッダ情報無しに表示しミズ会う。
+
+.. code-block:: bash
+
+   $ docker-machine ls --format "{{.Name}}: {{.DriverName}}"
+   default: virtualbox
+   ec2: amazonec2
+
+.. To list all machine names with their driver in a table format you can use:
+
+全てのマシン名とドライバを表形式（table format）で表示できます。
+
+.. code-block:: bash
+
+   $ docker-machine ls --format "table {{.Name}} {{.DriverName}}"
+   NAME     DRIVER
+   default  virtualbox
+   ec2      amazonec2

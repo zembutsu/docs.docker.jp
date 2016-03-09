@@ -1,8 +1,11 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/machine/reference/env/
-.. doc version: 1.9
-.. check date: 2016/01/27
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/machine/reference/env/
+.. SOURCE: https://github.com/docker/machine/blob/master/docs/reference/env.md
+   doc version: 1.10
+      https://github.com/docker/machine/commits/master/docs/reference/env.md
+.. check date: 2016/03/09
+.. Commits on Jan 9, 2016 b585ca631b53fb54591b044764198f863b490816
+.. ----------------------------------------------------------------------------
 
 .. env
 
@@ -15,6 +18,25 @@ env
 .. Set environment variables to dictate that docker should run a command against a particular machine.
 
 ``docker`` コマンドの実行時に、特定のマシンを指し示せるような環境変数を表示します。
+
+.. code-block:: bash
+
+   $ docker-machine env --help
+   
+   Usage: docker-machine env [OPTIONS] [arg...]
+   
+   Display the commands to set up the environment for the Docker client
+   
+   Description:
+      Argument is a machine name.
+   
+   Options:
+   
+      --swarm  Display the Swarm config instead of the Docker daemon
+      --shell  Force environment to be configured for a specified shell: [fish, cmd, powershell], default is sh/bash
+      --unset, -u  Unset variables instead of setting them
+      --no-proxy   Add machine IP to NO_PROXY environment variable
+
 
 .. docker-machine env machinename will print out export commands which can be run in a subshell. Running docker-machine env -u will print unset commands which reverse this effect.
 
@@ -34,9 +56,9 @@ env
    $ env | grep DOCKER
    $ # The environment variables have been unset.
 
-.. The output described above is intended for the shells bash and zsh (if you’re not sure which shell you’re using, there’s a very good possibility that it’s bash). However, these are not the only shells which Docker Machine supports.
+.. The output described above is intended for the shells bash and zsh (if you’re not sure which shell you’re using, there’s a very good possibility that it’s bash). However, these are not the only shells which Docker Machine supports. Depending of the environment you’re running your command into we will print them for the proper system. We support bash, cmd, powershell and emacs.
 
-上記の出力は ``bash`` や ``zsh`` シェル上での実行を想定したものです（どのシェルを使っているか分からなければ、大抵の場合で ``bash`` でしょう）。しかし、Docker Machine がサポートしているシェルはこれだけではありません。・
+上記の出力は ``bash`` や ``zsh`` シェル上での実行を想定したものです（どのシェルを使っているか分からなければ、大抵の場合で ``bash`` でしょう）。しかし、Docker Machine がサポートしているシェルはこれだけではありません。どのようなコマンドを使うかは、それぞれの環境にあわせる必要があります。現時点では ``bash`` 、 ``cmd`` 、 ``powershell`` 、 ``emacs`` のシステムをサポートしています。
 
 .. If you are using fish and the SHELL environment variable is correctly set to the path where fish is located, docker-machine env name will print out the values in the format which fish expects:
 
@@ -51,9 +73,9 @@ env
    # Run this command to configure your shell:
    # eval "$(docker-machine env overlay)"
 
-.. If you are on Windows and using Powershell or cmd.exe, docker-machine env cannot detect your shell automatically, but it does have support for these shells. In order to use them, specify which shell you would like to print the options for using the --shell flag for docker-machine env.
+.. If you are on Windows and using either Powershell or cmd.exe, docker-machine env Docker Machine should now detect your shell automatically. If the automagic detection does not work you can still override it using the --shell flag for docker-machine env.
 
-``docker-machine env`` コマンドはシェルを自動的に検出します。しかし、もし Windows でパワーシェルや ``cmd.exe`` を使う場合であれば、自動検出できません。そのため、 ``docker-machine env`` に自分で ``--shell`` フラグのオプションを指定する必要があります。
+``docker-machine env`` コマンドはシェルを自動的に検出します。しかし、もし Windows でパワーシェルや ``cmd.exe`` を使う場合であれば、自動検出できません。そのため、 ``docker-machine env`` に自分で ``--shell`` フラグのオプションを上書き指定する必要があります。
 
 .. For Powershell:
 

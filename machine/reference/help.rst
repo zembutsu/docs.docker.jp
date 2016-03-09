@@ -1,8 +1,11 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/machine/reference/help/
-.. doc version: 1.9
-.. check date: 2016/01/28
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/machine/reference/help/
+.. SOURCE: https://github.com/docker/machine/blob/master/docs/reference/help.md
+   doc version: 1.10
+      https://github.com/docker/machine/commits/master/docs/reference/help.md
+.. check date: 2016/03/09
+.. Commits on Feb 21, 2016 d7e97d04436601da26d24b199532652abe78770e
+.. ----------------------------------------------------------------------------
 
 .. help
 
@@ -11,6 +14,12 @@
 =======================================
 help
 =======================================
+
+.. code-block:: bash
+
+   Usage: docker-machine help [arg...]
+   
+   Shows a list of commands or help for one command
 
 .. Usage: docker-machine help subcommand
 
@@ -23,4 +32,13 @@ help
 .. code-block:: bash
 
    $ docker-machine help config
-
+   Usage: docker-machine config [OPTIONS] [arg...]
+   
+   Print the connection config for machine
+   
+   Description:
+      Argument is a machine name.
+   
+   Options:
+   
+      --swarm      Display the Swarm config instead of the Docker daemon

@@ -1,8 +1,11 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/machine/reference/ip/
-.. doc version: 1.9
-.. check date: 2016/01/28
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/machine/reference/ip/
+.. SOURCE: https://github.com/docker/machine/blob/master/docs/reference/ip.md
+   doc version: 1.10
+      https://github.com/docker/machine/commits/master/docs/reference/ip.md
+.. check date: 2016/03/09
+.. Commits on Nov 27, 2015 68e6e3f905856bc1d93cb5c1e99cc3b3ac900022
+.. ----------------------------------------------------------------------------
 
 .. ip
 

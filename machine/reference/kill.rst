@@ -1,8 +1,11 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/machine/reference/kill/
-.. doc version: 1.9
-.. check date: 2016/01/28
-.. -----------------------------------------------------------------------------
+.. URL: https://docs.docker.com/machine/reference/kill/
+.. SOURCE: https://github.com/docker/machine/blob/master/docs/reference/kill.md
+   doc version: 1.10
+      https://github.com/docker/machine/commits/master/docs/reference/kill.md
+.. check date: 2016/03/09
+.. Commits on Feb 21, 2016 d7e97d04436601da26d24b199532652abe78770e
+.. ----------------------------------------------------------------------------
 
 .. kill
 
@@ -11,6 +14,15 @@
 =======================================
 kill
 =======================================
+
+.. code-block:: bash
+
+   Usage: docker-machine kill [arg...]
+   
+   Kill (abruptly force stop) a machine
+   
+   Description:
+      Argument(s) are one or more machine names.
 
 .. Kill (abruptly force stop) a machine.
 
