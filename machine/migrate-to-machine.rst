@@ -1,4 +1,11 @@
-.. http://docs.docker.com/machine/migrate-to-machine/
+.. -*- coding: utf-8 -*-
+.. URL: https://docs.docker.com/machine/migrate-to-machine/
+.. SOURCE: https://github.com/docker/machine/blob/master/docs/migrate-to-machine.md
+   doc version: 1.10
+      https://github.com/docker/machine/commits/master/docs/migrate-to-machine.md
+.. check date: 2016/03/09
+.. Commits on Feb 11, 2016 0eb405f1d7ea3ad4c3595fb2c97d856d3e2d9c5c
+.. ----------------------------------------------------------------------------
 
 .. _migrate-to-machine:
 
