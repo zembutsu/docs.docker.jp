@@ -103,7 +103,7 @@ Docker ホスト上で実際の Redis サーバを開始します。
 
 .. On the Docker host (192.168.1.52) that Redis will run on:
 
-Docker ホスト（192.168.1.52）上では Regis が実行されています。
+Docker ホスト（192.168.1.52）上では Redis が実行されています。
 
 .. code-block:: bash
 
