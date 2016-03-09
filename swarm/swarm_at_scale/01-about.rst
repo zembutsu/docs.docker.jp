@@ -1,4 +1,4 @@
-.. *- coding: utf-8 -*-
+.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/swarm/swarm_at_scale/01-about/
 .. SOURCE: https://github.com/docker/swarm/blob/master/docs/swarm_at_scale/01-about.md
    doc version: 1.10
@@ -140,7 +140,7 @@ Swarm クラスタのアーキテクチャ
 
 .. The network infrastructure
 
-- _the-network-infrastructure:
+.. _the-network-infrastructure:
 
 ネットワーク・インフラ
 ==============================

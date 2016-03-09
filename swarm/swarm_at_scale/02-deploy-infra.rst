@@ -1,14 +1,15 @@
-.. *- coding: utf-8 -*-
+.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/swarm/swarm_at_scale/02-infra-deploy/
 .. SOURCE: https://github.com/docker/swarm/blob/master/docs/swarm_at_scale/02-infra-deploy.md
    doc version: 1.10
       https://github.com/docker/swarm/commits/master/docs/swarm_at_scale/02-infra-deploy.md
-.. check date: 2016/03/03
+.. check date: 2016/03/09
 .. Commits on Feb 28, 2016 ec8ceae209c54091065c8f9e50439bd76255b022
 .. -------------------------------------------------------------------
 
 .. Deploy your infrastructure
 
+====================
 インフラのデプロイ
 ====================
 
@@ -75,8 +76,8 @@ Amazon AWS アカウントを持っている必要があります。このアカ
 
 .. _step-1-build-and-configure-the-vpc:
 
-ステップ１. VPC の構築と設定
-------------------------------
+ステップ１：VPC の構築と設定
+==============================
 
 .. This step shows you using the VPC wizard on Amazon. If you prefer to build the VPC manually, configure your VPC with the following values:
 
@@ -170,11 +171,157 @@ AWS が VPC を構築すると **VPC Successfully Created** ページが表示�
 
 次のステップでは CloudFormation テンプレートを使って残りの AWS 設定を進めていきます。
 
-(ToDo)
+.. Step 2. Build the network stack
 
+ステップ２：ネットワーク・スタックの構築
+========================================
 
+.. In this step, you use CloudFormation template to build a stack on AWS. Before you begin, make sure you have the prerequisites:
 
+このステップは CloudFourmation テンプレートを使い AWS 上にスタックを構築します。始める前に、動作条件を確認します。
 
+..    access to a private key pair associated with your AWS account.
+    a clone or download of the the example code on your local machine.
 
+* 自分の AWS アカウントに個人のキー・ペアを関連づけていること
+* ローカルマシン上に `サンプル・コード <https://github.com/docker/swarm-microservice-demo-v1>` をダウンロードするか複製する
 
+.. Then, do the following:
 
+それから、以下の手順に進みます。
+
+..    Go to the AWS console and choose CloudFormation.
+
+1. AWS コンソールの CloudFormation ページから **Create Stack** （スタックの作成）を選びます。
+
+..    Click Create Stack.
+
+2. **Create Stack** をクリックします。
+
+..    Under Choose a template click the Choose file button.
+
+3. **Choose a template** （テンプレートの選択）セクションにある  **選択** ボタンを押します。
+
+..    Browse to the download sample code and choose the the swarm-microservice-demo-v1/AWS/cloudformation.json CloudFormation template.
+
+4. ダウンロードしたサンプル・コードを探したし、CloudFormation テンプレートにある ``swarm-microservice-demo-v1/AWS/cloudformation.json`` を指定します。
+
+..    Click Next.
+
+5. **Next** をクリックします。
+
+..    The system pre-populates most of the Specify Details dialog from the template.
+
+テンプレートの **Specify Details** ダイアログの詳細から対象システムを指定します。
+
+..    Name the stack VotingAppStack.
+
+6. スタックの名前は ``VotingAppStack`` です。
+
+..    You can name the stack something else if you want just make sure it is meaningful.
+
+この名前を使っても構いませんし、他にも意味のある名前を指定できます。
+
+..    Select your key pair from the KeyName dropdown.
+
+7. **KeyName** ドロップダウンからキーペアを選びます。
+
+..    Select the publicSwarm for the Subnetid dropdown menu.
+
+8. **Subntid** ドロップダウン・メニューから ``publicSwarm`` を選びます。
+
+..    Select swarm-scale from the Vpcid dropdown menu.
+
+9. **Vpcid** ドロップダウン・メニューから ``swarm-scale`` を選びます。
+
+..    Click Next twice to reach the Review page.
+
+10. **Next** を２回押し、 **Review** ページを表示します。
+
+..    Check the values.
+
+11. 値を確認します。
+
+..    The Template URL,SubnetId and VpcId are always unique, so yours will not match, but otherwise you should see the following:
+
+**Template URL** 、 **SubnetId** 、 **VpcId** は常にユニークであり、毎回違いますが、以下のように表示されます。
+
+(ToDo: 図）
+
+..    Click Create.
+
+12. **Create** を押します。
+
+..    AWS displays the progress of your stack being created
+
+スタックの作成が開始され、進行状況が表示されます。
+
+.. Step 3. Check your deployment
+
+ステップ３：デプロイの確認
+==============================
+
+.. When completed, the CloudFormation populates your VPC with six EC2 instances.
+
+処理が終わると、CloudFormation は VPC と６つの EC2 インスタンスを投入しています。
+
+.. Instance 	Size 	Private IP Address
+   frontend01 	t2.micro 	192.168.33.20
+   frontend02 	t2.micro 	192.168.33.21
+   interlock 	t2.micro 	192.168.33.12
+   manager 	t2.micro 	192.168.33.11
+   store 	m3.medium 	192.168.33.250
+   worker01 	t2.micro 	192.168.33.200
+
+.. list-table::
+   :header-rows: 1
+   
+   * - インスタンス名
+     - サイズ
+     - プライベート IP アドレス
+   * - ``frontend01``
+     - t2.micro
+     - 192.168.33.20
+   * - ``frontend02``
+     - t2.micro
+     - 192.168.33.21
+   * - ``interlock``
+     - t2.micro
+     - 192.168.33.12
+   * - ``manager``
+     - t2.micro
+     - 192.168.33.11
+   * - ``store``
+     - m3.medium
+     - 192.168.33.250
+   * - ``worker01``
+     - t2.micro
+     - 192.168.33.200
+
+.. Navigate to the EC2 dashboard to view them running.
+
+EC2 ダッシュボードに移動すると、各マシンが動いているのが分かります。
+
+.. The underlying AWS infrastructure has this configuration.
+
+AWS のインフラは次のような状態です。
+
+.. image:: ../images/aws-infrastructure.png
+   :scale: 60%
+
+.. All instances are based on the ami-56f59e36 AMI. This is an Ubuntu 14.04 image with a 3.13 kernel and 1.10.2 version of the Docker Engine installed. Each Engine daemon was pre-configured via the /etc/default/docker file using the following DOCKER_OPTS values.
+
+インスタンスは ``ami-56f59e36`` AMI をベースにしています。これは カーネル 3.16 の Ubuntu 14.04 イメージであり、Docker Engine 1.10.2 がインストールされています。また、 ``/etc/default/docker`` の ``DOCKER_OPTS`` 行に、次のパラメータを追加しています。
+
+.. code-block:: bash
+
+   --cluster-store=consul://192.168.33.11:8500 --cluster-advertise=eth0:2375 -H=tcp://0.0.0.0:2375 -H=unix:///var/run/docker.sock
+
+.. Next step
+
+次のステップ
+====================
+
+.. At this point your infrastructure stack is created successfully. You are ready to progress to the next step and build the Swarm cluster.
+
+これでインフラのスタックを作成完了しました。次のステップ :doc:`Swarm クラスタの構築 <03-create-cluster>` に進む準備が整いました。
