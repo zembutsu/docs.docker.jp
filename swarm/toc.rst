@@ -30,6 +30,7 @@ Docker Swarm
    scheduler/index.rst
    secure-swarm-tls.rst
    configure-tls.rst
+   reference/index.rst
    swarm-api.rst
    
 
