@@ -1,34 +1,57 @@
-.. https://docs.docker.com/swarm/networking/
-.. doc version: 1.9
-.. check date: 2015/12/16
+.. -*- coding: utf-8 -*-
+.. URL: https://docs.docker.com/swarm/networking/
+.. SOURCE: https://github.com/docker/swarm/blob/master/docs/networking.md
+   doc version: 1.10
+      https://github.com/docker/swarm/commits/master/docs/networking.md
+.. check date: 2016/03/10
+.. Commits on Mar 4, 2016 4b8ed91226a9a49c2acb7cb6fb07228b3fe10007
+.. -------------------------------------------------------------------
 
-.. Networking
+.. Swarm and container networks
+
+.. _swarm-and-container-networks:
 
 ==============================
-ネットワーキング
+Swarm とコンテナのネットワーク
 ==============================
 
-.. Docker Swarm is fully compatible for the new networking model added in docker 1.9
+.. Docker Swarm is fully compatible with Docker’s networking features. This includes the multi-host networking feature which allows creation of custom container networks that span multiple Docker hosts.
 
-Docker Swarm は Docker 1.9 で追加された新しいネットワーキング・モデルと完全に互換性があります。
+Docker Swarm は Docker のネットワーク機能と完全な互換性があります。互換性の中には複数のホストに対するマルチホスト・ネットワーク機能も含まれます。これは複数の Docker ホストを横断するカスタム・コンテナ・ネットワークを作成する機能です。
 
-.. Setup
+.. Before using Swarm with a custom network, read through the conceptual information in Docker container networking. You should also have walked through the Get started with multi-host networking example.
 
-セットアップ
-====================
+Swarm をカスタム・ネットワークで使う前に、:doc:`Docker コンテナ・ネットワーク </engine/userguide/networking/dockernetworks>` の概念に関する情報をお読みください。また、 :doc:`/engine/userguide/networking/get-started-overlay` のサンプルも試すべきでしょう。
 
-.. To use multi-host networking you need to start your docker engines with --cluster-store and --cluster-advertise as indicated in the docker engine docs.
+.. Create a custom network in a Swarm cluster
 
-マルチホスト・ネットワーキングを使うには、Docker エンジンを ``--cluster-store``  と ``--cluster-advertise`` のオプションをドキュメントが示すように付けて起動する必要があります。
+.. _create-a-custom-network-in-a-swarm-cluster:
+
+Swarm クラスタにカスタム・ネットワークを作成
+==================================================
+
+.. Multi-host networks require a key-value store. The key-value store holds information about the network state which includes discovery, networks, endpoints, IP addresses, and more. Through the Docker’s libkv project, Docker supports Consul, Etcd, and ZooKeeper key-value store backends. For details about the supported backends, refer to the libkv project.
+
+マルチホスト・ネットワーク機能を使うにはキーバリュー・ストアが必要です。キーバリュー・ストアはネットワークの情報を保持する場所です。ここにはディスカバリ情報、ネットワーク、エンドポイント、 IP アドレス等が含まれます。Docker の libkv プロジェクトの成果により、Docker は Consul 、Etcd 、ZooKeeper の各キーバリュー・ストア・バックエンドをサポートします。詳細は `libkv プロジェクト <https://github.com/docker/libkv>`_ をご覧ください。
+
+.. To create a custom network, you must choose a key-value store backend and implement it on your network. Then, you configure the Docker Engine daemon to use this store. Two required parameters, --cluster-store and --cluster-advertise, refer to your key-value store server.
+
+カスタム・ネットワークを作成するには、キーバリュー・ストア・バックエンドを選択肢、自分のネットワーク上に実装する必要があります。それから、Docker Engine デーモンの設定を変更し、キーバリュー・ストアにデータを保管できるようにします。キーバリュー・ストア用のサーバを参照するには ``--cluster-store`` と ``--cluster-advertise`` という２つのパラメータが必要です。
+
+.. Once you’ve configured and restarted the daemon on each Swarm node, you are ready to create a network.
+
+Swarm の各ノード上にあるデーモンの設定変更・再起動を行うと、ネットワーク作成の準備が整います。
 
 .. List networks
 
+.. _list-networks:
+
 ネットワークの一覧
---------------------
+====================
 
-.. This example assumes there are two nodes node-0 and node-1 in the cluster.
+.. This example assumes there are two nodes node-0 and node-1 in the cluster. From a swarm node, list the networks:
 
-次の例は、クラスタ上に２のノード ``node-1`` と ``node-1`` があるものとします。
+以下は、クラスタ上に２のノード ``node-0`` と ``node-1`` がある場合の例です。Swarm ノードからネットワーク一覧を表示しています。
 
 .. code-block:: bash
 
@@ -43,16 +66,18 @@ Docker Swarm は Docker 1.9 で追加された新しいネットワーキング�
 
 .. As you can see, each network name is prefixed by the node name.
 
-このように、各ネットワーク名の接頭語がノード名になっています。
+このように、各ネットワーク名の接頭語がノード名になっていることが分かります。
 
 .. Create a network 
+
+.. _create-a-network:
 
 ネットワークの作成
 ====================
 
-.. By default, swarm is using the overlay network driver, a global scope driver.
+.. By default, swarm is using the overlay network driver, a global scope driver. A global-scope network driver creates a network across an entire swarm. When you create an overlay network under Swarm, you can omit the -d option:
 
-デフォルトでは、Swarm はネットワーク全体を範囲とする ``overlay`` ネットワーク・ドライバを使います。
+デフォルトでは、Swarm はネットワーク全体を範囲とする ``overlay`` ネットワーク・ドライバを使います。ネットワーク全体を範囲とするドライバを使えば、Swarm クラスタ全体を横断するネットワークを作成できます。Swarm で ``overlay`` ネットワークを作成する時には ``-d`` オプションを省略できます。
 
 .. code-block:: bash
 
@@ -69,10 +94,9 @@ Docker Swarm は Docker 1.9 で追加された新しいネットワーキング�
    6382abccd23d        node-1/none            null
    42131321acab        node-1/swarm_network   overlay
 
+.. As you can see here, both the node-0/swarm_network and the node-1/swarm_network have the same ID. This is because when you create a network on the swarm, it is accessible from all the nodes.
 
-.. As you can see here, the ID is the same on the two nodes, because it’s the same network.
-
-ここで表示されているように、２つのノード上に同じ ID があります。これは同じネットワークだからです。
+ここで表示されているように、２つのノード上に ``node-0/swarm_network`` と ``node-1/swarm_network`` という同じ ID を持つネットワークがあります。これは Swarm によって作成されたネットワークであり、全てのノード上でアクセス可能なものです。
 
 .. If you want to want to create a local scope network (for example with the bridge driver) you should use <node>/<name> otherwise your network will be created on a random node.
 

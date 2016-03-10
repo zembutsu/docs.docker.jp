@@ -208,11 +208,11 @@ consul ディスカバリ・バックエンドのセットアップ
 
 ここでは最小のディスカバリ・バックエンドを作成します。Swarm マネージャとノードは、このバックエンドをクラスタ上のメンバを認識するために使います。また、Swarm マネージャはコンテナを実行可能なノードがどれかを識別するためにも使います。
 
-To keep things simple, you are going to run a single consul daemon on the same host as one of the Swarm managers.
+.. To keep things simple, you are going to run a single consul daemon on the same host as one of the Swarm managers.
 
 簡単さを保つために、Swarm マネージャが動いているホストのうちどれか１つで consul デーモンを起動します。
 
-To start, copy the following launch command to a text file.
+.. To start, copy the following launch command to a text file.
 
 実行するには、以下のコマンドをコピーして consul コンテナを起動します。
 
@@ -239,7 +239,7 @@ consul ノードを立ち上げて実行すると、クラスタ用のディス�
 
 ディスカバリ・バックエンドを作ったあとは、Swarm マネージャを作成できます。ここでは高い可用性を持つ設定のため、２つの Swarm マネージャを作成します。１つめのマネージャを Swarm の *プライマリ・マネージャ (primary manager) * とします。ドキュメントのいくつかはプライマリを「マスタ」と表現していますが、置き換えてください。２つめのマネージャは *レプリカ（replica）* を提供します。もしもプライマリ・マネージャが利用できなくなれば、クラスタはレプリカからプライマリ・マネージャを選出します。
 
-To create the primary manager in a high-availability Swarm cluster, use the following syntax:
+.. To create the primary manager in a high-availability Swarm cluster, use the following syntax:
 
 高可用性 Swarm クラスタのプライマリ・マネージャを作成するには、次の構文を使います。
 
@@ -383,13 +383,15 @@ swarm マスタを起動します。例：
 
 クラスタのマスタとノードに関する情報を取得するには、次のように実行します。
 
+.. code-block:: bash
+
    $ docker -H :4000 info
 
 .. You can connect to the “master1” node and run the info and logs commands. They will display corresponding entries for the change in leadership.
 
 「master1」ノードに接続し、 ``info`` や ``logs`` コマンドを実行できます。そうすると、新しいリーダーが適切なエントリを返します。
 
-. Additional Resources
+.. Additional Resources
 
 追加情報
 ==========

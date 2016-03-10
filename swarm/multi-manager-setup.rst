@@ -1,6 +1,11 @@
-.. https://docs.docker.com/swarm/multi-manager-setup/
-.. doc version: 1.9
-.. check date: 2015/12/15
+.. -*- coding: utf-8 -*-
+.. URL: https://docs.docker.com/swarm/multi-manager-setup/
+.. SOURCE: https://github.com/docker/swarm/blob/master/docs/multi-manager-setup.md
+   doc version: 1.10
+      https://github.com/docker/swarm/commits/master/docs/multi-manager-setup.md
+.. check date: 2016/03/10
+.. Commits on Mar 4, 2016 4b8ed91226a9a49c2acb7cb6fb07228b3fe10007
+.. -------------------------------------------------------------------
 
 .. High availability in Docker Swarm
 
@@ -10,7 +15,7 @@ Docker Swarm の高可用性
 
 .. In Docker Swarm, the Swarm manager is responsible for the entire cluster and manages the resources of multiple Docker hosts at scale. If the Swarm manager dies, you must create a new one and deal with an interruption of service.
 
-Docker Swarm の **Swarm マネージャ** は、クラスタ全体に対する責任を持ち、スケール時は複数 *Docker* ホストのリソースを管理します。もし Swarm マネージャが停止したら、新しいマネージャを作成し、サービス中断に対処しなくてはいけません。
+Docker Swarm の **Swarm マネージャ** は、クラスタ全体に対する責任を持ち、スケール時は複数 *Docker ホスト* のリソースを管理します。もし Swarm マネージャが停止したら、新しいマネージャを作成し、サービス中断に対処しなくてはいけません。
 
 .. The *High Availability* feature allow a Docker Swarm to gracefully handle the failover of a manager instance. Using this feature, you can create a single **primary manager** instance and multiple **replica** instances.
 
