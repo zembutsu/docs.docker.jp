@@ -9,7 +9,7 @@
 
 .. Try Swarm at scale
 
-.. _try-swam-at-scale
+.. _try-swam-at-scale:
 
 =======================================
 swarm のスケールを試す
