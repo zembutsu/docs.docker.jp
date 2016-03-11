@@ -1,14 +1,16 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/docker-hub/
-.. doc version: 1.9
-.. check date: 2016/01/06
+.. URL: https://docs.docker.com/docker-hub/overview/
+.. SOURCE: -
+   doc version: 1.10
+.. check date: 2016/03/11
+.. -------------------------------------------------------------------
 
-.. About the Docker Hub
+.. Overview of Docker Hub
 
-.. _about-the-docker-hub:
+.. _overview-of-docker-hub:
 
 ========================================
-Docker Hub 入門
+Docker Hub 概要
 ========================================
 
 .. The Docker Hub is a cloud-based registry service for building and shipping application or service containers. It provides a centralized resource for container image discovery, distribution and change management, user and team collaboration, and workflow automation throughout the development pipeline.
@@ -31,7 +33,7 @@ Docker Hub 入門
 
 * :doc:`イメージ・レポジトリ <repos>` ：イメージを検索・管理・取得・送信します。イメージはコミュニティ、公式、あるいはプライベートの各イメージ・ライブラリにあります。
 * :doc:`自動構築（Automated Builds） <builds>` ：GitHub か Bitbucket レポジトリ上のソースコードに変更を加えると、新しいイメージを自動的に構築します。
-* :doc:`ウェブ・フック（Webhooks） <webhooks>` ：自動構築機能でレポジトリに送信された後、、Webhook が何らかのアクションを起こします。
+* :doc:`ウェブ・フック（Webhooks） <webhooks>` ：自動構築機能でレポジトリに送信された後、Webhook が何らかのアクションを起こします。
 * :doc:`組織 <orgs>` ：イメージ・レポジトリにアクセスできるユーザを管理するための、ワーク・グループを作成します。
 * GitHub と Bitbucket 統合。Docker Hub と Docker イメージを、現在のワークフローに追加します。
 
@@ -137,5 +139,10 @@ Docker Hub には多くの `公式レポジトリ <http://hub.docker.com/explore
 
 .. Learn how to create a Docker Hub account and manage your organizations and teams.
 
-Docker Hub アカウント :doc:`作成の方法 <github>` 、組織やチームでの :doc:`管理 <orgs>` を学びます。
+Docker Hub アカウント :doc:`作成の方法 <github>` 、組織やチームでの :doc:`管理 <orgs>` の仕方を学びます。
+
+.. seealso:: 
+
+   Overview of Docker Hub
+      https://docs.docker.com/docker-hub/overview/
 
