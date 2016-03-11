@@ -95,7 +95,7 @@ Doc v1.10 目次
    :caption: Docker Hub
    :hidden:
 
-   docker-hub/toc.rst
+   docker-hub/index.rst
 
 .. toctree::
    :caption: Docker Machine
