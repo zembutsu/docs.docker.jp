@@ -77,3 +77,8 @@ Swarm - Docker ネイティブのクラスタリング・システム
 * :doc:`join, j <join>` : Swarm ノードの作成
 * :doc:`help, h <help>` : Swarm コマンドの一覧を表示するか、各コマンドに対するヘルプを表示。
 
+.. seealso:: 
+
+   Swarm — A Docker-native clustering system
+      https://docs.docker.com/swarm/reference/swarm/
+

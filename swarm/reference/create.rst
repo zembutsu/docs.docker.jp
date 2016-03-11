@@ -36,8 +36,14 @@ create - ディスカバリ・トークンの作成
 
 .. warning::
 
-   Docker Hub のホステット・ディスカバリ・バックエンドはプロダクション環境での利用が推奨されていません。純粋にテスト・開発目的での利用を意図しています。
+   Docker Hub のホステッド・ディスカバリ・バックエンドはプロダクション環境での利用が推奨されていません。純粋にテスト・開発目的での利用を意図しています。
 
 .. For more information and examples about this and other discovery backends, see the Docker Swarm Discovery topic.
 
 具体的な利用方法や他のバックエンドに関する情報は :doc:`/swarm/discovery` をご覧ください。
+
+.. seealso:: 
+
+   create — Create a discovery token
+      https://docs.docker.com/swarm/reference/create/
+
