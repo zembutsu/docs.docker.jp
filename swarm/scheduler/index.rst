@@ -4,19 +4,23 @@
 .. check date: 2016/02/06
 .. -----------------------------------------------------------------------------
 
-.. swarm scheduling toc
+.. Advanced Scheduling
 
-.. swarm-scheduling-toc:
+.. _advanced-scheduling:
 
 ========================================
-スケジューリング
+高度なスケジューリング
 ========================================
+
+.. To learn more about advanced scheduling, see the strategies and filters documents.
+
+高度なスケジューリングを学ぶため、 :doc:`ストラテジ <strategy>` と :doc:`フィルタ <filter>` のドキュメントを学びましょう
 
 .. toctree::
    :maxdepth: 3
 
-   filter.rst
-   strategy.rst
+   フィルタ <filter.rst>
+   ストラテジ <strategy.rst>
 
 .. seealso:: 
 

@@ -1,114 +1,175 @@
-.. https://docs.docker.com/swarm/scheduler/filter/
-.. doc version: 1.9
-.. check date: 2015/12/16
+.. -*- coding: utf-8 -*-
+.. URL: https://docs.docker.com/swarm/scheduler/filter/
+.. SOURCE: https://github.com/docker/swarm/blob/master/docs/scheduler/filter.md
+   doc version: 1.10
+      https://github.com/docker/swarm/commits/master/docs/scheduler/filter.md
+.. check date: 2016/03/11
+.. Commits on Mar 3, 2016 03b8481f0103eb07934491dacf26f2e65266671b
+.. -------------------------------------------------------------------
 
-.. Filters
+.. Swarm filters
+
+.. _swarm-filters:
 
 ==============================
-フィルタ
+Swarm フィルタ
 ==============================
 
-.. The Docker Swarm scheduler comes with multiple filters.
+.. Filters tell Docker Swarm scheduler which nodes to use when creating and running a container.
 
-``Docker Swarm``  スケジューラは複数のフィルタを持っています。
+フィルタとは Docker Swarm スケジューラに対して、ノードを使ってコンテナの作成・実行をするか伝えます。
 
-.. The following filters are currently used to schedule containers on a subset of nodes:
+.. Configure the available filters
 
-ノードの一部（サブセット）にコンテナをスケジュールする時、次のフィルタが利用できます。
+.. _configure-the-available-filters:
 
-..  Constraint
-    Affinity
-    Port
-    Dependency
-    Health
+設定可能なフィルタ
+====================
 
-* :ref:`Constraint（制限／コンストレイント） <constraint_filter>`
-* :ref:`Affinity（類似／アフィニティ） <affinity_filter>`
-* :ref:`Port（ポート） <port_filter>`
-* :ref:`Dependency（依存関係） <dependency_filter>`
-* :ref:`Health（ヘルス状態） <health_filter>`
+.. Filters are divided into two categories, node filters and container configuration filters. Node filters operate on characteristics of the Docker host or on the configuration of the Docker daemon. Container configuration filters operate on characteristics of containers, or on the availability of images on a host.
 
-.. You can choose the filter(s) you want to use with the --filter flag of swarm manage
+フィルタはノード・フィルタ（node filters）とコンテナ設定フィルタ（container configuration filters）の２種類に分けられます。ノード・フィルタは Docker ホストの特徴か Docker デーモンの設定によって処理します。コンテナ設定フィルタはコンテナの特徴か、あるいは、ホスト上で利用可能なイメージによって処理します。
 
-利用可能なフィルタを指定するには、 ``swarm manage`` の実行時に ``--filter`` フラグを使って指定します。
+.. Each filter has a name that identifies it. The node filters are:
 
-.. _constraint_filter:
+各フィルタには名前があります。ノード・フィルタは、以下の２つです。
 
-.. Constraint Filter
+* ``constraint`` （ノードの制限）
+* ``health`` （ノードが正常かどうか）
 
-Constraint （制限／コンストレイント）フィルタ
-========================================
+.. The container configuration filters are:
 
-.. Constraints are key/value pairs associated to particular nodes. You can see them as node tags.
+コンテナ設定フィルタは以下の通りです。
 
-Constraint（訳者注：制約や制限の意味）は、特定のノードをキー・バリューの組で結び付けます。これらの情報は *node* のタグとして確認できます。
 
-.. When creating a container, the user can select a subset of nodes that should be considered for scheduling by specifying one or more sets of matching key/value pairs. This approach has several practical use cases such as:
+* ``affinity`` （親密さ）
+* ``dependency`` （依存関係）
+* ``port`` （ポート）
 
-コンテナを作成時、ノードを配置するグループ（サブセット）を選べます。グループとは、コンテナのスケジューリングにあたり、１つまたは複数のキー・バリューの組が一致すると考えられるものです。この方法には、複数の指定方法があります。
+.. When you start a Swarm manager with the swarm manage command, all the filters are enabled. If you want to limit the filters available to your Swarm, specify a subset of filters by passing the --filter flag and the name:
 
-..    Selecting specific host properties (such as storage=ssd, in order to schedule containers on specific hardware).
-    Tagging nodes based on their physical location (region=us-east, to force containers to run on a given location).
-    Logical cluster partitioning (environment=production, to split a cluster into sub-clusters with different properties).
+``swarm manage`` コマンドで Swarm マネージャの起動する時、全てのフィルタが指定可能です。もしも Swarm に対して利用可能なフィルタを制限したい場合は、 ``--filter`` フラグと名前のサブセットを指定します。
 
+.. code-block:: bash
+
+   $ swarm manage --filter=health --filter=dependency
+
+..    Note: Container configuration filters match all containers, including stopped containers, when applying the filter. To release a node used by a container, you must remove the container from the node.
+
+.. note::
+
+   コンテナ設定フィルタに一致するのは全てのコンテナが対象でです。フィルタが適用されるのは停止しているコンテナも含みます。コンテナによって使用されているノードを解放するには、ノード上からコンテナを削除する必要があります。
+
+.. Node filters:
+
+.. _node-filters:
+
+ノード・フィルタ
+====================
+
+.. When creating a container or building an image, you use a constraint or health filter to select a subset of nodes to consider for scheduling.
+
+コンテナ作成時とイメージ構築時に、 ```constraint`` か ``health`` フィルタを使い、コンテナをスケジューリングするノード群を選択できます。
+
+.. Use a constraint Filter
+
+.. _user-a-constraint-filter:
+
+constraint （制限）フィルタを使う
+----------------------------------------
+
+.. Node constraints can refer to Docker's default tags or to custom labels. Default tags are sourced from docker info. Often, they relate to properties of the Docker host. Currently, the default tags include:
+
+ノード制限（constraint；コンストレイント＝制限・制約の意味）は Docker のデフォルトのタグやカスタム・ラベルを参照します。デフォルトのタグとは ``docker info`` の情報を元にします。しばし Docker ホストの設定状態に関連づけられます。現在以下の項目をデフォルト・タグとして利用できます。
+
+* ``node`` ノードを参照するための ID もしくは名前
+* ``storagedriver``
+* ``executiondriver``
+* ``kernelversion``
+* ``operatingsystem``
+
+.. Custom node labels you apply when you start the docker daemon, for example:
+
+カスタム・ノード・ラベルは ``docker daemon`` 起動時に追加できます。実行例：
+
+.. code-block:: bash
+
+   $ docker daemon --label com.example.environment="production" --label
+   com.example.storage="ssd"
+
+.. Then, when you start a container on the cluster, you can set constraints using these default tags or custom labels. The Swarm scheduler looks for matching node on the cluster and starts the container there. This approach has several practical applications:
+
+そして、クラスタ上でコンテナを起動するときに、これらのデフォルト・タグかカスタム・ラベルを使って制限（constraint）を指定可能です。Swarm スケジューラはクラスタ上に条件が一致するノードを探し、そこでコンテナを起動します。この手法は、いくつもの実践的な機能になります。
+
+..    Schedule based on specific host properties, for example,storage=ssd schedules containers on specific hardware.
+..    Force containers to run in a given location, for example region=us-east`.
+..    Create logical cluster partitions by splitting a cluster into sub-clusters with different properties, for example environment=production.
 
 * ホスト・プロパティを指定した選択（ ``storage=ssd`` のように、特定のハードウェアにコンテナをスケジュールするため）
 * ノードの基盤に、物理的な場所をタグ付けする（ ``region=us-ease`` のように、指定した場所でコンテナを強制的に実行）
 * 論理的なクラスタの分割（ ``environment=production`` のように、プロパティの違いによりクラスタを複数のサブクラスタに分割）
 
-.. To tag a node with a specific set of key/value pairs, one must pass a list of --label options at docker startup time.
+.. Example node constraints
 
-ノードに対して特定のキー・バリューの組み合わせをタグ付けするには、docker 起動時のオプションで、少なくとも１つの ``--label`` 指定が必要です。
+.. _example-node-constraints:
 
-.. For instance, let’s start node-1 with the storage=ssd label:
+ノード制限の例
+--------------------
 
-例えば、 ``node-1`` を起動するとき ``storage=ssd`` ラベルを付けてみましょう。
+.. To specify custom label for a node, pass a list of --label options at docker startup time. For instance, to start node-1 with the storage=ssd label:
+
+ノードに対してカスタム・ラベルを指定するには、 ``docker`` 起動時に ``--lable`` オプションのリストを指定します。例として、 ``node-1`` に ``storage=ssd`` ラベルを付けて起動します。
 
 .. code-block:: bash
 
    $ docker -d --label storage=ssd
    $ swarm join --advertise=192.168.0.42:2375 token://XXXXXXXXXXXXXXXXXX
 
-.. Again, but this time node-2 with storage=disk:
+.. You might start a different node-2 with storage=disk:
 
-ただし次は ``node-2`` を ``storage=disk`` で起動します：
+``node-2`` を ``storage=disk`` としても起動できます。
 
 .. code-block:: bash
 
    $ docker -d --label storage=disk
    $ swarm join --advertise=192.168.0.43:2375 token://XXXXXXXXXXXXXXXXXX
 
+.. Once the nodes are joined to a cluster, the Swarm master pulls their respective tags. Moving forward, the master takes the tags into account when scheduling new containers.
+
+ノードがクラスタに登録されると、Swarm マスタは個々のタグを取得します。マスタは新しいコンテナをスケジューリングする時に、ここで取得下タグの情報を使って処理します。
+
 .. Once the nodes are registered with the cluster, the master pulls their respective tags and will take them into account when scheduling new containers.
 
 ノードがクラスタに登録されると、マスタは各々のタグを取得し、新しいコンテナをスケジューリングするときにそれらを反映します。
 
-.. Let’s start a MySQL server and make sure it gets good I/O performance by selecting nodes with flash drives:
+.. Continuing the previous example, assuming your cluster with node-1 and node-2, you can run a MySQL server container on the cluster. When you run the container, you can use a constraint to ensure the database gets good I/O performance. You do this by filtering for nodes with flash drives:
 
-それでは MySQL サーバを起動し、良い I/O 性能を持つフラッシュ・ドライブ上で利用できるようにしましょう：
+先ほどのサンプルを例に進めましょう。クラスタには ``node-1`` と ``node-2`` があります。このクラスタ上に MySQL サーバ・コンテナを実行できます。コンテナの実行時、 ``constraint`` （制限） を使い、データベースが良い I/O 性能を得られるようにできます。そのためには、フラッシュ・ドライブを持つノードをフィルタします。
 
 .. code-block:: bash
 
-   $ docker run -d -P -e constraint:storage==ssd --name db mysql
+   $ docker tcp://<manager_ip:manager_port>  run -d -P -e constraint:storage==ssd --name db mysql
    f8b693db9cd6
    
-   $ docker ps
+   $ docker tcp://<manager_ip:manager_port>  ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    f8b693db9cd6        mysql:latest        "mysqld"            Less than a second ago   running             192.168.0.42:49178->3306/tcp    node-1      db
 
-.. In this case, the master selected all nodes that met the storage=ssd constraint and applied resource management on top of them, as discussed earlier. node-1 was selected in this example since it’s the only host running flash.
+.. In this example, the master selected all nodes that met the storage=ssd constraint and applied resource management on top of them. Only node-1 was selected because it's the only host running flash.
 
-この例では、マスタは選択された全てのノードから、事前に指定された ``storage=ssd`` を強制したリソース管理を適用します。 ``node-1`` は フラッシュ・ドライブ上で動いているホストが選ばれています。
+この例では、マスタは全てのノードの中から ``storage-ssd`` 制限に一致するノードを探し、そこに対してリソース管理を適用します。ここではホストがフラッシュ上で動いている ``node-1`` のみが選ばれました。
 
-.. Now we want to run an Nginx frontend in our cluster. However, we don’t want flash drives since we’ll mostly write logs to disk.
+.. Suppose you want to run an Nginx frontend in a cluster. In this case, you wouldn't want flash drives because the frontend mostly writes logs to disk.
 
-次はクラスタ上に Nginx フロントエンドを走らせてみます。ですが、ログをディスクに沢山書き込むのでフラッシュ・ドライブを使いたくありません。
+クラスタのフロントエンドとして Nginx の実行をお考えでしょうか。この例では、フロントエンドはディスクのログを記録するだけなので、フラッシュ・ドライブを使いたくないでしょう。
+
 
 .. code-block:: bash
 
-   $ docker run -d -P -e constraint:storage==disk --name frontend nginx
+   $ docker tcp://<manager_ip:manager_port> run -d -P -e constraint:storage==disk --name frontend nginx
    963841b138d8
    
-   $ docker ps
+   $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    963841b138d8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.43:49177->80/tcp      node-2      frontend
    f8b693db9cd6        mysql:latest        "mysqld"            Up About a minute        running             192.168.0.42:49178->3306/tcp    node-1      db
@@ -117,43 +178,97 @@ Constraint（訳者注：制約や制限の意味）は、特定のノードを�
 
 スケジューラは ``storage=disk`` ラベルを付けて起動済みの ``node-2`` で起動します。
 
-.. Standard Constraints
+.. Finally, build args can be used to apply node constraints to a docker build. Again, you'll avoid flash drives.
 
-標準制約（Standard Constraint）
-========================================
+最後に、 ``docker biuld`` の構築時の引数としてもノード制限を利用できます。今度もフラッシュ・ドライブを避けてみましょう。
 
-.. Additionally, a standard set of constraints can be used when scheduling containers without specifying them when starting the node. Those tags are sourced from docker info and currently include:
+.. code-block:: bash
 
-さらに、ノードを開始するときに特に指定していなくても、コンテナのスケジュールに使う標準 constraint セットを使えます。これらのタグは docker info で確認できるものです。現在利用できるのは次の通りです。
+   $ mkdir sinatra
+   $ cd sinatra
+   $ echo "FROM ubuntu:14.04" > Dockerfile
+   $ echo "MAINTAINER Kate Smith <ksmith@example.com>" >> Dockerfile
+   $ echo "RUN apt-get update && apt-get install -y ruby ruby-dev" >> Dockerfile
+   $ echo "RUN gem install sinatra" >> Dockerfile
+   $ docker build --build-arg=constraint:storage==disk -t ouruser/sinatra:v2 .
+   Sending build context to Docker daemon 2.048 kB
+   Step 1 : FROM ubuntu:14.04
+    ---> a5a467fddcb8
+   Step 2 : MAINTAINER Kate Smith <ksmith@example.com>
+    ---> Running in 49e97019dcb8
+    ---> de8670dcf80e
+   Removing intermediate container 49e97019dcb8
+   Step 3 : RUN apt-get update && apt-get install -y ruby ruby-dev
+    ---> Running in 26c9fbc55aeb
+    ---> 30681ef95fff
+   Removing intermediate container 26c9fbc55aeb
+   Step 4 : RUN gem install sinatra
+    ---> Running in 68671d4a17b0
+    ---> cd70495a1514
+   Removing intermediate container 68671d4a17b0
+   Successfully built cd70495a1514
+   
+   $ docker images
+   REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+   dockerswarm/swarm   master              8c2c56438951        2 days ago          795.7 MB
+   ouruser/sinatra     v2                  cd70495a1514        35 seconds ago      318.7 MB
+   ubuntu              14.04               a5a467fddcb8        11 days ago         187.9 MB
 
-..     node ID or node Name (using key “node”)
-    storagedriver
-    executiondriver
-    kernelversion
-    operatingsystem
+.. Use the health filter
 
-* ノード ID またはノード名（"node" をキーに用いる）
-* storagedriver（ストレージ・ドライバ）
-* executiondriver（実行ドライバ）
-* kernelversion（カーネルバージョン）
-* operatingsystem（オペレーティング・システム）
+.. _use-the-health-filter:
 
-
-.. _affinity_filter:
-
-.. Affinity filter
-
-Affinity（アフィニティ）フィルタ
-========================================
-
-.. You use an --affinity:<filter> to create “attractions” between containers. For example, you can run a container and instruct it to locate and run next to another container based on an identifier, an image, or a label. These attractions ensure that containers run on the same network node — without you having to know what each node is running.
-
-コンテナ間を"引き寄せて" を作成するのに、--affinity:<フィルタ> を使うことができます（訳者注：affinity とは親密さの意味）。例えば、あるコンテナを実行したとします。別のコンテナを実行するとき、特定のイメージやラベルを持つコンテナのある場所で実行できます。この引き寄せ機能によって、コンテナを同じネットワーク・ノード上で確実に動かせます。そのとき、どのノードで実行しているかを知る必要はありません。
-
-.. Container affinity
-
-コンテナの親密さ（affinity）
+health フィルタを使う
 ------------------------------
+
+.. The node health filter prevents the scheduler form running containers on unhealthy nodes. A node is considered unhealthy if the node is down or it can't communicate with the cluster store.
+
+ノード ``health`` フィルタは障害の発生したノードにコンテナをスケジュールするの防ぎます。対象のノードはダウンしているか、クラスタ・ストアとの通信ができないことが考えられます。
+
+.. Container filters
+
+.. _container-filters:
+
+コンテナ・フィルタ
+====================
+
+.. When creating a container, you can use three types of container filters:
+
+コンテナの作成時、３種類のコンテナ・フィルタを使えます。
+
+* ``affinity``
+* ``dependency``
+* ``port``
+
+.. Use an affinity filter
+
+.. _use-an-affinity-filter:
+
+アフィニティ（親密さ）フィルタを使う
+----------------------------------------
+
+.. Use an affinity filter to create "attractions" between containers. For example, you can run a container and instruct Swarm to schedule it next to another container based on these affinities:
+
+アフィニティ（親密さ）フィルタを使えば、コンテナ間を「集めて」作成できます。例えばコンテナを実行する時に、次の３つの親密さを元にして Swarm に対してスケジュールできます。
+
+..    container name or id
+    an image on the host
+    a custom label applied to the container
+
+* コンテナ名か ID
+* イメージのあるホスト
+* コンテナに適用したカスタム・ラベル
+
+.. These affinities ensure that containers run on the same network node — without you having to know what each node is running.
+
+これらのアフィニティ（親密さ）とは、コンテナを同じネットワーク・ノード上で実行することです。それぞれどのノード上で実行しているかどうか、知る必要がありません。
+
+.. Example name affinity
+
+.. _example-name-affinity:
+
+名前アフィニティの例
+--------------------
 
 .. You can schedule a new container to run next to another based on a container name or ID. For example, you can start a container called frontend running nginx:
 
@@ -161,11 +276,10 @@ Affinity（アフィニティ）フィルタ
 
 .. code-block:: bash
 
-   $ docker run -d -p 80:80 --name frontend nginx
-    87c4376856a8
+   $ docker tcp://<manager_ip:manager_port>  run -d -p 80:80 --name frontend nginx
+   87c4376856a8
    
-   
-   $ docker ps
+   $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    87c4376856a8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:80->80/tcp         node-1      frontend
 
@@ -175,13 +289,13 @@ Affinity（アフィニティ）フィルタ
 
 .. code-block:: bash
 
-   $ docker run -d --name logger -e affinity:container==frontend logger
-    87c4376856a8
+   $ docker tcp://<manager_ip:manager_port> run -d --name logger -e affinity:container==frontend logger
+   87c4376856a8
    
-   $ docker ps
+   $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    87c4376856a8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:80->80/tcp         node-1      frontend
-   963841b138d8        logger:latest       "logger"            Less than a second ago   running                                             node-1      logger
+    963841b138d8        logger:latest       "logger"            Less than a second ago   running                                             node-1      logger
 
 .. Because of name affinity, the logger container ends up on node-1 along with the frontend container. Instead of the frontend name you could have supplied its ID as follows:
 
@@ -191,14 +305,16 @@ Affinity（アフィニティ）フィルタ
 
    docker run -d --name logger -e affinity:container==87c4376856a8
 
-.. Image affinity
+.. Example Image affinity
 
-イメージ・アフィニティ
+イメージ・アフィニティの例
 ------------------------------
+
+.. You can schedule a container to run only on nodes where a specific image is already pulled. For example, suppose you pull a redis image to two hosts and a mysql image to a third.
 
 .. You can schedule a container to run only on nodes where a specific image is already pulled.
 
-コンテナを起動するとき、特定のイメージをダウンロード済みのノードのみにスケジュールすることができます。
+コンテナを起動するとき、特定のイメージをダウンロード済みのノードのみにスケジュールすることができます。たとえば、２つのホストに ``redis`` イメージをダウンロードし、３つめのホストに ``mysql`` イメージをダウンロードしたい場合があるでしょう。
 
 .. code-block:: bash
 
@@ -212,16 +328,16 @@ Affinity（アフィニティ）フィルタ
 
 .. code-block:: bash
 
-   $ docker run -d --name redis1 -e affinity:image==redis redis
-   $ docker run -d --name redis2 -e affinity:image==redis redis
-   $ docker run -d --name redis3 -e affinity:image==redis redis
-   $ docker run -d --name redis4 -e affinity:image==redis redis
-   $ docker run -d --name redis5 -e affinity:image==redis redis
-   $ docker run -d --name redis6 -e affinity:image==redis redis
-   $ docker run -d --name redis7 -e affinity:image==redis redis
-   $ docker run -d --name redis8 -e affinity:image==redis redis
+   $ docker tcp://<manager_ip:manager_port> run -d --name redis1 -e affinity:image==redis redis
+   $ docker tcp://<manager_ip:manager_port> run -d --name redis2 -e affinity:image==redis redis
+   $ docker tcp://<manager_ip:manager_port> run -d --name redis3 -e affinity:image==redis redis
+   $ docker tcp://<manager_ip:manager_port> run -d --name redis4 -e affinity:image==redis redis
+   $ docker tcp://<manager_ip:manager_port> run -d --name redis5 -e affinity:image==redis redis
+   $ docker tcp://<manager_ip:manager_port> run -d --name redis6 -e affinity:image==redis redis
+   $ docker tcp://<manager_ip:manager_port> run -d --name redis7 -e affinity:image==redis redis
+   $ docker tcp://<manager_ip:manager_port> run -d --name redis8 -e affinity:image==redis redis
    
-   $ docker ps
+   $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    87c4376856a8        redis:latest        "redis"             Less than a second ago   running                                             node-1      redis1
    1212386856a8        redis:latest        "redis"             Less than a second ago   running                                             node-1      redis2
@@ -242,12 +358,12 @@ Affinity（アフィニティ）フィルタ
    REPOSITORY                         TAG                       IMAGE ID            CREATED             VIRTUAL SIZE
    redis                              latest                    06a1f75304ba        2 days ago          111.1 MB
    
-   $ docker run -d --name redis1 -e affinity:image==06a1f75304ba redis
+   $ docker tcp://<manager_ip:manager_port> run -d --name redis1 -e affinity:image==06a1f75304ba redis
 
-.. Label affinity
+.. Example Label affinity
 
-ラベル・アフィニティ
---------------------
+ラベル・アフィニティの例
+------------------------------
 
 .. Label affinity allows you to set up an attraction based on a container’s label. For example, you can run a nginx container with the com.example.type=frontend label.
 
@@ -255,10 +371,10 @@ Affinity（アフィニティ）フィルタ
 
 .. code-block:: bash
 
-   $ docker run -d -p 80:80 --label com.example.type=frontend nginx
-    87c4376856a8
+   $ docker tcp://<manager_ip:manager_port> run -d -p 80:80 --label com.example.type=frontend nginx
+   87c4376856a8
    
-   $ docker ps  --filter "label=com.example.type=frontend"
+   $ docker tcp://<manager_ip:manager_port> ps  --filter "label=com.example.type=frontend"
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    87c4376856a8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:80->80/tcp         node-1      trusting_yonath
 
@@ -268,10 +384,10 @@ Affinity（アフィニティ）フィルタ
 
 .. code-block:: bash
 
-   $ docker run -d -e affinity:com.example.type==frontend logger
-    87c4376856a8
+   $ docker tcp://<manager_ip:manager_port> run -d -e affinity:com.example.type==frontend logger
+   87c4376856a8
    
-   $ docker ps
+   $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    87c4376856a8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:80->80/tcp         node-1      trusting_yonath
    963841b138d8        logger:latest       "logger"            Less than a second ago   running                                             node-1      happy_hawking
@@ -280,26 +396,220 @@ Affinity（アフィニティ）フィルタ
 
 ``logger`` コンテナは、最終的に ``node-1`` に置かれます。これはアフィニティに  ``com.example.type==frontend`` ラベルを指定しているからです。
 
-.. Expression Syntax
+.. Use a dependency filter
 
-文法表現
-----------
+.. _use-a-dependency-filter:
 
-.. An affinity or a constraint expression consists of a key and a value. A key must conform the alpha-numeric pattern, with the leading alphabet or underscore. The value must be one of the following:
+dependency フィルタを使う
+------------------------------
 
-アフィニティや制約は、 ``key`` と ``value`` の組み合わせで表現します。 ``key`` は英数字のパターンに従います。ただし、先頭はアルファベットかアンダースコアです。 ``value`` は次のようなものです。
+.. A container dependency filter co-schedules dependent containers on the same node. Currently, dependencies are declared as follows:
 
-..    An alpha-numeric string, dots, hyphens, and underscores.
-    A globbing pattern, i.e., abc*.
-    A regular expression in the form of /regexp/. We support the Go’s regular expression syntax.
+コンテナの依存関係（dependency）フィルタは、既にスケジューリング済みのコンテナと同じ場所でスケジューリングするという依存関係をもたらします。現時点では、以下の依存関係を宣言できます。
 
-* 英数字の文字列、ドット、ハイフン、アンダースコア。
+* ``--volumes-from=dependency`` (共有ボリューム)
+* ``--link=dependency:alias`` (リンク機能)
+* ``--net=container:dependency`` (共有ネットワーク)
+
+.. Swarm attempts to co-locate the dependent container on the same node. If it cannot be done (because the dependent container doesn't exist, or because the node doesn't have enough resources), it will prevent the container creation.
+
+Swarm は依存関係のあるコンテナを同じノード上に置こうとします。もしそれができない場合（依存関係のあるコンテナが存在しない場合や、ノードが十分なリソースを持っていない場合）、コンテナの作成を拒否します。
+
+.. The combination of multiple dependencies are honored if possible. For instance, if you specify --volumes-from=A --net=container:B, the scheduler attempts to co-locate the container on the same node as A and B. If those containers are running on different nodes, Swarm does not schedule the container.
+
+必要であれば、複数の依存関係を組み合わせることもできます。例えば、 ``--volumes-from=A --net=container:B`` は、コンテナ ``A`` と ``B`` を同じノード上に置こうとします。しかし、これらのコンテナが別々のノードで動いているなら、Swarm はコンテナのスケジューリングを行いません。
+
+.. Use a port filter
+
+.. _use-a-port-filter:
+
+port フィルタを使う
+--------------------
+
+.. When the port filter is enabled, a container's port configuration is used as a unique constraint. Docker Swarm selects a node where a particular port is available and unoccupied by another container or process. Required ports may be specified by mapping a host port, or using the host networking an exposing a port using the container configuration.
+
+``port`` フィルタが有効であれば、コンテナのポート利用がユニークになるよう設定します。Docker Swarm は対象のポートが利用可能であり、他のコンテナのプロセスにポートが専有されていないノードを選びます。ホスト側にポート番号を割り当てたい場合や、ホスト・ネットワーキング機能を使っている場合は、対象ポートの明示が必要になるかもしれません。
+
+.. Example in bridge mode
+
+.. _example-in-bridge-mode:
+
+ブリッジ・モードでの例
+^^^^^^^^E^^^^^^^^^^^^^^^^^^^^^
+
+.. By default, containers run on Docker's bridge network. To use the port filter with the bridge network, you run a container as follows.
+
+デフォルトでは、コンテナは Docker のブリッジ・ネットワーク上で動作します。ブリッジ・ネットワーク上で ``port`` フィルタを使うには、コンテナを次のように実行します。
+
+.. code-block:: bash
+
+   $ docker tcp://<manager_ip:manager_port> run -d -p 80:80 nginx
+   87c4376856a8
+  
+   $ docker tcp://<manager_ip:manager_port> ps
+   CONTAINER ID    IMAGE               COMMAND         PORTS                       NODE        NAMES
+   87c4376856a8    nginx:latest        "nginx"         192.168.0.42:80->80/tcp     node-1      prickly_engelbart
+
+..  Docker Swarm selects a node where port 80 is available and unoccupied by another container or process, in this case node-1. Attempting to run another container that uses the host port 80 results in Swarm selecting a different node, because port 80 is already occupied on node-1:
+
+Docker Swarm はポート ``80`` が利用可能であり他のコンテナ・プロセスに専有されていないノードを探します。この例では ``node-1``  にあたります。ポート ``80`` を使用する他のコンテナを起動しようとしても、Swarm は他のノードを選択します。理由は ``node-1``  では既にポート ``80`` が使われているからです。
+
+.. code-block:: bash
+
+   $ docker tcp://<manager_ip:manager_port> run -d -p 80:80 nginx
+   963841b138d8
+   
+   $ docker tcp://<manager_ip:manager_port> ps
+   CONTAINER ID        IMAGE          COMMAND        PORTS                           NODE        NAMES
+   963841b138d8        nginx:latest   "nginx"        192.168.0.43:80->80/tcp         node-2      dreamy_turing
+   87c4376856a8        nginx:latest   "nginx"        192.168.0.42:80->80/tcp         node-1      prickly_engelbart
+
+.. Again, repeating the same command will result in the selection of node-3, since port 80 is neither available on node-1 nor node-2:
+
+同じコマンドを繰り返すと ``node-3`` が選ばれます。これは ``node-1`` と ``node-2`` の両方でポート ``80`` が使用済みのためです。
+
+.. code-block:: bash
+
+   $ docker tcp://<manager_ip:manager_port> run -d -p 80:80 nginx
+   963841b138d8
+   
+   $ docker tcp://<manager_ip:manager_port> ps
+   CONTAINER ID   IMAGE               COMMAND        PORTS                           NODE        NAMES
+   f8b693db9cd6   nginx:latest        "nginx"        192.168.0.44:80->80/tcp         node-3      stoic_albattani
+   963841b138d8   nginx:latest        "nginx"        192.168.0.43:80->80/tcp         node-2      dreamy_turing
+   87c4376856a8   nginx:latest        "nginx"        192.168.0.42:80->80/tcp         node-1      prickly_engelbart
+
+.. Finally, Docker Swarm will refuse to run another container that requires port 80, because it is not available on any node in the cluster:
+
+最終的に、Docker Swarm は他のコンテナがポート ``80`` を要求しても拒否するでしょう。クラスタ上のすべてのノードでポートが使えないためです。
+
+.. code-block:: bash
+
+   $ docker tcp://<manager_ip:manager_port> run -d -p 80:80 nginx
+   2014/10/29 00:33:20 Error response from daemon: no resources available to schedule container
+
+.. Each container occupies port 80 on its residing node when the container is created and releases the port when the container is deleted. A container in exited state still owns the port. If prickly_engelbart on node-1 is stopped but not deleted, trying to start another container on node-1 that requires port 80 would fail because port 80 is associated with prickly_engelbart. To increase running instances of nginx, you can either restart prickly_engelbart, or start another container after deleting prickly_englbart.
+
+各ノード中のポート ``80`` は、各コンテナによって専有されています。これはコンテナ作成時からのものであり、コンテナを削除するとポートは解放されます。コンテナが ``exited`` （終了）の状態であれば、まだポートを持っている状態です。もし ``node-1`` の ``prickly_engelbart`` が停止したとしても、ポートの情報は削除されないため、 ``node-1`` 上でポート ``80`` を必要とする他のコンテナの起動を試みても失敗します。nginx インスタンスを起動するには、 ``prickly_engelbart`` コンテを再起動するか、あるいは ``prickly_engelbart`` コンテナを削除後に別のコンテナを起動します。
+
+.. Note port filter with host networking
+
+.. _node-port-filter-with-host-networking:
+
+ホスト・ネットワーキング機能とノード・ポート・フィルタを使う
+-------------------------------------------------------------
+
+.. A container running with --net=host differs from the default bridge mode as the host mode does not perform any port binding. Instead, host mode requires that you explicitly expose one or more port numbers. You expose a port using EXPOSE in the Dockerfile or --expose on the command line. Swarm makes use of this information in conjunction with the host mode to choose an available node for a new container.
+
+コンテナ実行時に ``--net=host`` を指定すると、デフォルトの ``bridge`` モードとは違い、 ``host`` モードはどのポートもバインドしません。そのため、 host モードでは公開したいポート番号を明示する必要があります。このポート公開には ``Dockerfile`` で ``EXPOSE``  命令を使うか、コマンドラインで ``--expose`` を指定します。Swarm は ``host`` モードで新しいコンテナを作成しようとする時にも、これらの情報を利用します。
+
+.. For example, the following commands start nginx on 3-node cluster.
+
+例えば、以下のコマンドは３つのノードのクラスタで ``nginx`` を起動します。 
+
+.. code-block:: bash
+
+   $ docker tcp://<manager_ip:manager_port> run -d --expose=80 --net=host nginx
+   640297cb29a7
+   $ docker tcp://<manager_ip:manager_port> run -d --expose=80 --net=host nginx
+   7ecf562b1b3f
+   $ docker tcp://<manager_ip:manager_port> run -d --expose=80 --net=host nginx
+   09a92f582bc2
+
+.. Port binding information is not available through the docker ps command because all the nodes were started with the host network.
+
+``docker ps`` コマンドを実行してもポートをバインド（拘束）している情報が表示されないのは、全てのノードで ``host`` ネットワークを利用しているためです。
+
+.. code-block:: bash
+
+   $ docker tcp://<manager_ip:manager_port> ps
+   CONTAINER ID        IMAGE               COMMAND                CREATED                  STATUS              PORTS               NAMES
+   640297cb29a7        nginx:1             "nginx -g 'daemon of   Less than a second ago   Up 30 seconds                           box3/furious_heisenberg
+   7ecf562b1b3f        nginx:1             "nginx -g 'daemon of   Less than a second ago   Up 28 seconds                           box2/ecstatic_meitner
+   09a92f582bc2        nginx:1             "nginx -g 'daemon of   46 seconds ago           Up 27 seconds                           box1/mad_goldstine
+
+.. Swarm refuses the operation when trying to instantiate the 4th container.
+
+４つめのコンテナを起動しようとしても、Swarm は処理を拒否します。
+
+.. code-block:: bash
+
+   $  docker tcp://<manager_ip:manager_port> run -d --expose=80 --net=host nginx
+   FATA[0000] Error response from daemon: unable to find a node with port 80/tcp available in the Host mode
+
+.. However, port binding to the different value, for example 81, is still allowed.
+
+しかしながら、例えばポート ``81`` のような異なった値のポートをバインドするのであれば、コマンドを実行できます。
+
+.. code-block:: bash
+
+   $  docker tcp://<manager_ip:manager_port> run -d -p 81:80 nginx:latest
+   832f42819adc
+   $  docker tcp://<manager_ip:manager_port> ps
+   CONTAINER ID        IMAGE               COMMAND                CREATED                  STATUS                  PORTS                                 NAMES
+   832f42819adc        nginx:1             "nginx -g 'daemon of   Less than a second ago   Up Less than a second   443/tcp, 192.168.136.136:81->80/tcp   box3/thirsty_hawking
+   640297cb29a7        nginx:1             "nginx -g 'daemon of   8 seconds ago            Up About a minute                                             box3/furious_heisenberg
+   7ecf562b1b3f        nginx:1             "nginx -g 'daemon of   13 seconds ago           Up About a minute                                             box2/ecstatic_meitner
+   09a92f582bc2        nginx:1             "nginx -g 'daemon of   About a minute ago       Up About a minute                                             box1/mad_goldstine
+
+.. How to write filter expressions
+
+.. _how-to-write-filter-expressions:
+
+フィルタ表現の書き方
+====================
+
+.. To apply a node constraint or container affinity filters you must set environment variables on the container using filter expressions, for example:
+
+ノード ``constraint`` やコンテナ ``affinity`` フィルタをノードに適用するには、コンテナがフィルタ表現を使うため環境変数の指定が必要です。例：
+
+.. code-block:: bash
+
+   $ docker tcp://<manager_ip:manager_port> run -d --name redis1 -e affinity:image==~redis redis
+
+.. Each expression must be in the form:
+
+表現は次のような記述方式です。
+
+.. code-block:: bash
+
+   <filter-type>:<key><operator><value>
+
+.. The <filter-type> is either the affinity or the constraint keyword. It identifies the type filter you intend to use.
+
+``<filter-type>`` は ``affinity`` か ``constraint``  のキーワードのどちらかです。使いたいフィルタのタイプによって異なります。
+
+.. The <key> is an alpha-numeric and must start with a letter or underscore. The <key> corresponds to one of the following:
+
+``<key>`` は英数字のパターンであり、先頭はアルファベットかアンダースコアです。 ``<key>`` に相当するのは以下の条件です。
+
+..     the container keyword
+    the node keyword
+    a default tag (node constraints)
+    a custom metadata label (nodes or containers).
+
+* ``container`` キーワード
+* ``node`` キーワード
+* デフォルト・タグ（node 制限）
+* カスタム・メタデータ・ラベル（node あるいは containers）
+
+.. The <operator>is either == or !=. By default, expression operators are hard enforced. If an expression is not met exactly , the manager does not schedule the container. You can use a ~(tilde) to create a "soft" expression. The scheduler tries to match a soft expression. If the expression is not met, the scheduler discards the filter and schedules the container according to the scheduler's strategy.
+
+``<オペレータ>`` （演算子）は ``==`` か ``!=`` のどちらかです。デフォルトではフィルタ処理はハード・エンフォース（hard enforced:強制）です。指定した表現に一致しなければ、マネージャはコンテナをスケジュールしません。 ``~`` （チルダ）を使い 「ソフト」表現を作成できます。こちらはフィルタ条件に一致しなくても、スケジューラ自身のストラテジに従ってコンテナを実行します。
+
+.. The <value> is an alpha-numeric string, dots, hyphens, and underscores making up one of the following:
+
+``<value>`` は英数時、ドット、ハイフン、アンダースコアと、以下を組みあわせた文字列です。
+
+..    A globbing pattern, for example, abc*.
+    A regular expression in the form of /regexp/. See re2 syntax for the supported regex syntax.
+
 * 部分一致、例えば ``abc*``。
 * ``/regexp/`` 形式の正規表現。Go 言語の正規表現構文をサポート。
 
 .. Currently Swarm supports the following affinity/constraint operators: == and !=. For example:
 
-現時点の Swarm は、アフィニティ・constraint で演算子 ``==`` と ``!=`` をサポートしています。
+現時点の Swarm は、以下のような命令をサポートしています。
 
 ..    constraint:node==node1 matches node node1
     constraint:node!=node1 matches all nodes, except node1.
@@ -309,6 +619,9 @@ Affinity（アフィニティ）フィルタ
     constraint:node!=/node-[01]/ matches all nodes, except node-0 and node-1.
     constraint:node!=/foo\[bar\]/ matches all nodes, except foo[bar]. You can see the use of escape characters here.
     constraint:node==/(?i)node1/ matches node node1 case-insensitive. So NoDe1 or NODE1 also match.
+   affinity:image==~redis tries to match for nodes running container with a redis image
+   constraint:region==~us* searches for nodes in the cluster belongs to the us region
+   affinity:container!=~redis* schedule a new redis5 container to a node without a container that satisfies redis*
 
 * ``constraint:node==node1`` は、ノード ``node1`` に一致。
 * ``constraint:node!=node1`` は、``node1`` をのぞく全てのノードに一致。
@@ -319,10 +632,18 @@ Affinity（アフィニティ）フィルタ
 * ``constraint:node!=/foo\[bar\]/`` は、 ``foo[var]`` 以外の全てのノードに一致。
 * ``constraint:node==/(?i)node1/`` は、大文字・小文字を区別しない ``node1`` に一致。そのため、 ``NoDe1`` や ``NODE1`` も一致する。
 
+* ``affinity:image==~redis`` は、``redis`` に一致する名前のイメージがあるノード上でコンテナを実行。
+* ``constraint:region==~us*`` は、``*us`` に一致するリージョンのノードを探す。
+* ``affinity:container!=~redis*`` は、 ``redis*`` という名前を持つコンテナが動いていないノードで ``node5`` コンテナをスケジュール。
+
 .. Soft Affinities/Constraints
 
+.. warning::
+
+   以下 v1.9 用のドキュメント、削除予定
+
 Soft アフィニティ・制約の設定
-------------------------------
+--------------------------------------------------
 
 .. By default, affinities and constraints are hard enforced. If an affinity or constraint is not met, the container won’t be scheduled. With soft affinities/constraints the scheduler will try to meet the rule. If it is not met, the scheduler will discard the filter and schedule the container according to the scheduler’s strategy.
 
@@ -356,174 +677,13 @@ Soft アフィニティ・制約の設定
 
 アフィニティ・フィルタは新しい ``redis5`` コンテナを、指定した ``redis*`` の名前を含むコンテナが無いノードにスケジュールします。もしクラスタの各々のノードが ``redis*`` コンテナを持っている場合、スケジューラはアフィニティのルールを破棄し、ストラテジに従ってスケジュールします。
 
-.. _port_filter:
 
-.. Port Filter
-
-ポート・フィルタ
-====================
-
-.. With this filter, ports are considered unique resources.
-
-``ports`` フィルタは、ユニーク（未使用）なリソースを探し出します。
-
-.. code-block:: bash
-
-   $ docker run -d -p 80:80 nginx
-   87c4376856a8
-   
-   $ docker ps
-   CONTAINER ID    IMAGE               COMMAND         PORTS                       NODE        NAMES
-   87c4376856a8    nginx:latest        "nginx"         192.168.0.42:80->80/tcp     node-1      prickly_engelbart
-
-.. Docker cluster selects a node where the public 80 port is available and schedules a container on it, in this case node-1.
-
-Docker クラスタから、パブリックのポート ``80`` が利用可能なノードを選択し、コンテナの実行をスケジュールします。この例では ``node-1`` が該当します。
-
-.. Attempting to run another container with the public 80 port will result in the cluster selecting a different node, since that port is already occupied on node-1:
-
-他のコンテナでパブリックのポート ``80`` で起動しようとするなら、既に ``node-1`` は使用中のため、別のノードが選ばれることになります。
-
-.. code-block:: bash
-
-   $ docker run -d -p 80:80 nginx
-   963841b138d8
-   
-   $ docker ps
-   CONTAINER ID        IMAGE          COMMAND        PORTS                           NODE        NAMES
-   963841b138d8        nginx:latest   "nginx"        192.168.0.43:80->80/tcp         node-2      dreamy_turing
-   87c4376856a8        nginx:latest   "nginx"        192.168.0.42:80->80/tcp         node-1      prickly_engelbart
-
-.. Again, repeating the same command will result in the selection of node-3, since port 80 is neither available on node-1 nor node-2:
-
-再び同じコマンドを実行すると、ポート ``80`` が使えない ``node-1`` や ``node-2`` ではなく、 ``node-3`` が選ばれます。
-
-.. code-block:: bash
-
-   $ docker run -d -p 80:80 nginx
-   963841b138d8
-   
-   $ docker ps
-   CONTAINER ID   IMAGE               COMMAND        PORTS                           NODE        NAMES
-   f8b693db9cd6   nginx:latest        "nginx"        192.168.0.44:80->80/tcp         node-3      stoic_albattani
-   963841b138d8   nginx:latest        "nginx"        192.168.0.43:80->80/tcp         node-2      dreamy_turing
-   87c4376856a8   nginx:latest        "nginx"        192.168.0.42:80->80/tcp         node-1      prickly_engelbart
-
-.. Finally, Docker Swarm will refuse to run another container that requires port 80 since not a single node in the cluster has it available:
-
-最終的に、クラスタ上でポート ``80`` が利用可能なノードが無くなると、Docker Swarm はコンテナの実行を拒否します。
-
-.. code-block:: bash
-
-   $ docker run -d -p 80:80 nginx
-   2014/10/29 00:33:20 Error response from daemon: no resources available to schedule container
-
-.. Port filter in Host Mode
-
-ホスト・モードでのポートフィルタ
-----------------------------------------
-
-.. Docker in the host mode, running with --net=host, differs from the default bridge mode as the host mode does not perform any port binding. So, it require that you explicitly expose one or more port numbers (using EXPOSE in the Dockerfile or --expose on the command line). Swarm makes use of this information in conjunction with the host mode to choose an available node for a new container.
-
-Docker を ``--net=host`` を使ったホスト・モードで実行すると、デフォルトの ``bridge`` モードとは異なり、ポートのバインディングができない ``host`` モードになります。そのため、１つ以上のポート番号を明示する必要があります（ Dockerfile で ``EXPOSE`` を使うか、コマンドラインで ``--expose`` を使います ）。Swarm がこの情報を使うのは、 ``host`` モードで新しいコンテナが利用可能なノードを選ぶときです。
-
-.. For example, the following commands start nginx on 3-node cluster.
-
-例えば、以下のコマンドは nginx を３つのノード・クラスタで起動します。
-
-.. code-block:: bash
-
-   $ docker run -d --expose=80 --net=host nginx
-   640297cb29a7
-   $ docker run -d --expose=80 --net=host nginx
-   7ecf562b1b3f
-   $ docker run -d --expose=80 --net=host nginx
-   09a92f582bc2
-
-.. Port binding information will not be available through the docker ps command because all the nodes are started in the host mode.
-
-ポートの利用情報は、 ``docker ps`` コマンドを通して利用可能です。これは全てのノードが host モードで起動されているためです。
-
-.. code-block:: bash
-
-   $ docker ps
-   CONTAINER ID        IMAGE               COMMAND                CREATED                  STATUS              PORTS               NAMES
-   640297cb29a7        nginx:1             "nginx -g 'daemon of   Less than a second ago   Up 30 seconds                           box3/furious_heisenberg
-   7ecf562b1b3f        nginx:1             "nginx -g 'daemon of   Less than a second ago   Up 28 seconds                           box2/ecstatic_meitner
-   09a92f582bc2        nginx:1             "nginx -g 'daemon of   46 seconds ago           Up 27 seconds                           box1/mad_goldstine
-
-.. The swarm will refuse the operation when trying to instantiate the 4th container.
-
-４つめのコンテナを準備しようとしても、Swarm は拒否するでしょう。
-
-.. code-block:: bash
-
-   $  docker run -d --expose=80 --net=host nginx
-   FATA[0000] Error response from daemon: unable to find a node with port 80/tcp available in the Host mode
-
-.. However port binding to the different value, e.g. 81, is still allowed.
-
-そのかわり、ポート ``81`` のような、異なったポートをバインドすることはできます。
-
-.. code-block:: bash
-
-   $  docker run -d -p 81:80 nginx:latest
-   832f42819adc
-   $  docker ps
-   CONTAINER ID        IMAGE               COMMAND                CREATED                  STATUS                  PORTS                                 NAMES
-   832f42819adc        nginx:1             "nginx -g 'daemon of   Less than a second ago   Up Less than a second   443/tcp, 192.168.136.136:81->80/tcp   box3/thirsty_hawking
-   640297cb29a7        nginx:1             "nginx -g 'daemon of   8 seconds ago            Up About a minute                                             box3/furious_heisenberg
-   7ecf562b1b3f        nginx:1             "nginx -g 'daemon of   13 seconds ago           Up About a minute                                             box2/ecstatic_meitner
-   09a92f582bc2        nginx:1             "nginx -g 'daemon of   About a minute ago       Up About a minute                                             box1/mad_gol
-
-.. Dependency Filter
-
-.. _dependency_filter:
-
-依存関係フィルタ
-====================
-
-.. This filter co-schedules dependent containers on the same node.
-
-このフィルタは、コンテナの依存関係により、同じノード上にスケジュールするものです。
-
-.. Currently, dependencies are declared as follows:
-
-現時点では、次の依存関係を宣言できます。
-
-..    Shared volumes: --volumes-from=dependency
-    Links: --link=dependency:alias
-    Shared network stack: --net=container:dependency
-
-* ボリューム共有： ``--volumes-from=dependency``
-* リンク：  ``--link=dependency:alias``
-* 共有ネットワーク層： ``--net=container:dependency``
-
-.. Swarm will attempt to co-locate the dependent container on the same node. If it cannot be done (because the dependent container doesn’t exist, or because the node doesn’t have enough resources), it will prevent the container creation.
-
-Swarm は依存関係のある同じノード上にコンテナを設置しようとします。もし実行できなそうであれば（依存関係のコンテナが存在しなかったり、ノードに十分なリソースが無い場合）、コンテナは作成されません。
-
-.. The combination of multiple dependencies will be honored if possible. For instance, --volumes-from=A --net=container:B will attempt to co-locate the container on the same node as A and B. If those containers are running on different nodes, Swarm will prevent you from scheduling the container.
-
-必要であれば、複数の依存関係を組み合わせることもできます。例えば、 ``--volumes-from=A --net=container:B`` は、コンテナ ``A`` と ``B`` を同じノード上に置こうとします。しかし、これらのコンテナが別々のノードで動いているなら、Swarm はコンテナのスケジューリングを行いません。
-
-.. _health_filter:
-
-.. Health Filter
-
-ヘルス・フィルタ
-====================
-
-.. This filter will prevent scheduling containers on unhealthy nodes.
-
-ヘルスフィルタは、障害が発生しているノードへのスケジューリングを阻止します。
-
-Docker Swarm ドキュメンテーション目次
+関連情報
 ========================================
 
-* :doc:`ユーザ・ガイド </swarm/index>`
+* :doc:`Docker Sarm ユーザ・ガイド </swarm/index>`
+* :doc:`/swarm/discovery`
 * :doc:`スケジュール・ストラテジ </swarm/scheduler/strategy>`
-* :doc:`スケジューラ・フィルタ </swarm/scheduler/filter>`
 * :doc:`Swarm API </swarm/swarm-api>`
 
 .. seealso:: 

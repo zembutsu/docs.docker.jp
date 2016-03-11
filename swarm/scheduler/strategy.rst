@@ -1,11 +1,18 @@
-.. https://docs.docker.com/swarm/scheduler/strategy/
-.. doc version: 1.9
-.. check date: 2015/12/16
+.. -*- coding: utf-8 -*-
+.. URL: https://docs.docker.com/swarm/scheduler/strategy/
+.. SOURCE: https://github.com/docker/swarm/blob/master/docs/scheduler/strategy.md
+   doc version: 1.10
+      https://github.com/docker/swarm/commits/master/docs/scheduler/strategy.md
+.. check date: 2016/03/11
+.. Commits on Feb 2, 2016 4b8ed91226a9a49c2acb7cb6fb07228b3fe10007
+.. -------------------------------------------------------------------
 
-.. Strategies
+.. Docker Swarm strategies
+
+.. _docker-swarm-strategies:
 
 ==============================
-ストラテジ
+Docker Swarm ストラテジ
 ==============================
 
 .. The Docker Swarm scheduler features multiple strategies for ranking nodes. The strategy you choose determines how Swarm computes ranking. When you run a new container, Swarm chooses to place it on the node with the highest computed ranking for your chosen strategy.
@@ -49,20 +56,20 @@ Docker Swarm スケジューラは、複数のストラテジ（stragegy；方�
 Spread ストラテジの例
 ==============================
 
-.. In this example, your swarm is using the spread strategy which optimizes for nodes that have the fewest containers. In this swarm, both node-1 and node-2 have 2G of RAM, 2 CPUs, and neither node is running a container. Under this strategy node-1 and node-2 have the same ranking.
+.. In this example, your cluster is using the spread strategy which optimizes for nodes that have the fewest containers. In this cluster, both node-1 and node-2 have 2G of RAM, 2 CPUs, and neither node is running a container. Under this strategy node-1 and node-2 have the same ranking.
 
 この例では、Swarm は ``spread`` ストラテジでノードを最適化し、多くのコンテナを起動してみます。このクラスタは、 ``node-1`` と ``node-2`` は 2GB のメモリ、2 CPUであり、他のノードではコンテナは動いていません。このストラテジでは ``node-1`` と ``node-2`` は同じ順位です。
 
-.. When you run a new container, the system chooses node-1 at random from the swarm of two equally ranked nodes:
+.. When you run a new container, the system chooses node-1 at random from the Swarm cluster of two equally ranked nodes:
 
 新しいコンテナを実行するときは、クラスタ上で同じランキングのノードが存在しますので、そこからランダムに ``node-1`` をシステムが選びます。
 
 .. code-block:: bash
 
-   $ docker run -d -P -m 1G --name db mysql
+   $ docker tcp://<manager_ip:manager_port> run -d -P -m 1G --name db mysql
    f8b693db9cd6
    
-   $ docker ps
+   $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    f8b693db9cd6        mysql:latest        "mysqld"            Less than a second ago   running             192.168.0.42:49178->3306/tcp    node-1      db
 
@@ -72,10 +79,10 @@ Spread ストラテジの例
 
 .. code-block:: bash
 
-   $ docker run -d -P -m 1G --name frontend nginx
+   $ docker run tcp://<manager_ip:manager_port> -d -P -m 1G --name frontend nginx
    963841b138d8
    
-   $ docker ps
+   $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    963841b138d8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:49177->80/tcp      node-2      frontend
    f8b693db9cd6        mysql:latest        "mysqld"            Up About a minute        running             192.168.0.42:49178->3306/tcp    node-1      db
@@ -89,16 +96,16 @@ Spread ストラテジの例
 BinPack ストラテジの例
 ==============================
 
-.. In this example, let’s says that both node-1 and node-2 have 2G of RAM and neither is running a container. Again, the nodes are equal. When you run a new container, the system chooses node-1 at random from the swarm:
+.. In this example, let’s says that both node-1 and node-2 have 2G of RAM and neither is running a container. Again, the nodes are equal. When you run a new container, the system chooses node-1 at random from the cluster:
 
-この例では、 ``node-1`` と ``node-2`` いずれも 2GB のメモリを持ち、コンテナを実行していないとします。ノードが同じとき、コンテナの実行は、今回は swarm によって ``node-1`` が選ばれたとします
+この例では、 ``node-1`` と ``node-2`` いずれも 2GB のメモリを持ち、コンテナを実行していないとします。ノードが同じとき、コンテナの実行は、今回はクラスタから ``node-1`` が選ばれたとします
 
 .. code-block:: bash
 
-   $ docker run -d -P -m 1G --name db mysql
+   $ docker run tcp://<manager_ip:manager_port> -d -P -m 1G --name db mysql
    f8b693db9cd6
    
-   $ docker ps
+   $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    f8b693db9cd6        mysql:latest        "mysqld"            Less than a second ago   running             192.168.0.42:49178->3306/tcp    node-1      db   
 
@@ -108,10 +115,10 @@ BinPack ストラテジの例
 
 .. code-block:: bash
 
-   $ docker run -d -P -m 1G --name frontend nginx
+   $ docker run tcp://<manager_ip:manager_port> -d -P -m 1G --name frontend nginx
    963841b138d8
    
-   $ docker ps
+   $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    963841b138d8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:49177->80/tcp      node-1      frontend
    f8b693db9cd6        mysql:latest        "mysqld"            Up About a minute        running             192.168.0.42:49178->3306/tcp    node-1      db
