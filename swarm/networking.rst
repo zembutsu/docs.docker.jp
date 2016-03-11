@@ -165,3 +165,8 @@ Docker Swarm ドキュメント目次
 * :doc:`スケジュール・ストラテジ </swarm/scheduler/strategy>`
 * :doc:`スケジューラ・フィルタ </swarm/scheduler/filter>`
 * :doc:`Swarm API </swarm/swarm-api>`
+
+.. seealso:: 
+
+   Swarm and container networks
+      https://docs.docker.com/swarm/networking/

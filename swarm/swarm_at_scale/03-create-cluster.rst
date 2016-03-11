@@ -424,3 +424,8 @@ Swarm ノードの全てが ``consul://192.168.33.11:8500`` の Consul ディス
 .. Your Swarm cluster is now built and you are ready to build and run the voting application on it.
 
 Swarm クラスタの構築が終わりましたので、ここに  :doc:`投票アプリケーションを構築・実行 <04-deploy-app>` する準備が整いました。
+
+.. seealso:: 
+
+   Setup cluster resources
+      https://docs.docker.com/swarm/swarm_at_scale/03-create-cluster/

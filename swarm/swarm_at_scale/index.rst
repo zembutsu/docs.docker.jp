@@ -35,3 +35,9 @@ swarm のスケールを試す
    03-create-cluster.rst
    04-deploy-app.rst
    05-troubleshoot.rst
+
+.. seealso:: 
+
+   Try Swarm at scale
+      https://docs.docker.com/swarm/swarm_at_scale/
+

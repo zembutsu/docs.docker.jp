@@ -7,10 +7,10 @@
 .. Commits on Feb 4, 2016 b88cb64358908b8e0c3fddd402d23088ed633ef9
 .. -------------------------------------------------------------------
 
-.. Docker Swarm
+.. Docker Swarm overview
 
 ==============================
-Docker Swarm
+Docker Swarm 概要
 ==============================
 
 .. Docker Swarm is native clustering for Docker. It turns a pool of Docker hosts into a single, virtual Docker host. Because Docker Swarm serves the standard Docker API, any tool that already communicates with a Docker daemon can use Swarm to transparently scale to multiple hosts. Supported tools include, but are not limited to, the following:
@@ -120,3 +120,8 @@ Docker Swarm は活発に開発中です。ヘルプが必要な場合、貢献�
 .. For more information and resources, please visit the Getting Help project page.
 
 より詳細な情報やリソースについては、私たちの `ヘルプ用ページ <https://docs.docker.com/project/get-help/>`_ をご覧ください。
+
+.. seealso:: 
+
+   Docker Swarm overview
+      https://docs.docker.com/swarm/overview/

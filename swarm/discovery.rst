@@ -375,4 +375,8 @@ Docker Swarm ドキュメント目次
 * :doc:`scheduler/filter`
 * :doc:`swarm-api`
 
+.. seealso:: 
+
+   Docker Swarm Discovery
+      https://docs.docker.com/swarm/discovery/
 

@@ -348,3 +348,7 @@ Docker Swarm がコンテナをどのノードで実行するかを決めるに�
 
 しかしながら、Docker Swarm には多くの特徴や能力があります。より詳しい情報は、 `Swarm のランディング・ページ（英語） <https://www.docker.com/docker-swarm>`_ や :doc:`Swarm ドキュメント </swarm/index>` をご覧ください。
 
+.. seealso:: 
+
+   Evaluate Swarm in a sandbox
+      https://docs.docker.com/swarm/install-w-machine/

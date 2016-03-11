@@ -17,3 +17,8 @@
 
    filter.rst
    strategy.rst
+
+.. seealso:: 
+
+   Advanced Scheduling
+      https://docs.docker.com/swarm/scheduler/

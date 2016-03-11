@@ -391,4 +391,8 @@ Engine のコンテナ・ネットワークは Linux カーネルの 3.16 以上
 * :doc:`multi-manager-setup`
 * `ユニバーサル・コントロール・プレーン（英語） <https://www.docker.com/products/docker-universal-control-plane>`_
 
+.. seealso:: 
+
+   Plan for Swarm in production
+      https://docs.docker.com/swarm/plan-for-production/
 

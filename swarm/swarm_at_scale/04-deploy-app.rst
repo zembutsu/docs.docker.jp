@@ -441,4 +441,8 @@ Interlock サービスの負荷分散に関する詳細なデータは、ブラ�
 
 おめでとうございます。マイクロサービスをベースとしたアプリケーションを Swarm クラスタ上に手動でデプロイできました。もちろん、すべてが上手くいくとは限りません。どのようにスケールするアプリケーションをデプロイするかを学びましたので、次は :doc:`Swarm クラスタ上で大規模アプリケーション実行時のトラブルシューティング <05-troubleshoot>` を学ぶべきでしょう。
 
+.. seealso:: 
+
+   Deploy the application
+      https://docs.docker.com/swarm/swarm_at_scale/04-deploy-app/
 

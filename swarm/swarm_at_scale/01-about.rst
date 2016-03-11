@@ -158,3 +158,7 @@ Swarm クラスタのアーキテクチャ
 
 これでアプリケーションのアーキテクチャを理解しましたの。デプロイするにあたり、どのようなネットワーク設定をサポートする必要があるのか分かったと思います。次のステップでは、このサンプルを使って AWS 上に :doc:`ネットワーク・インフラをデプロイ <02-deploy-infra>` します。
 
+.. seealso:: 
+
+   Learn the application architecture
+      https://docs.docker.com/swarm/swarm_at_scale/01-about/

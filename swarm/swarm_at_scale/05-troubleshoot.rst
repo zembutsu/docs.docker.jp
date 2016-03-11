@@ -256,4 +256,7 @@ Swarm クラスタのアベイラビリティ・ゾーンを増やすには：
 * :doc:`/swarm/networking`
 * :doc:`/swarm/multi-manager-setup`
 
+.. seealso:: 
 
+   Troubleshoot the application
+      https://docs.docker.com/swarm/swarm_at_scale/05-troubleshoot/

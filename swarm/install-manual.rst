@@ -425,3 +425,8 @@ swarm マスタを起動します。例：
 * ネットワーク
 
   * :doc:`networking`
+
+.. seealso:: 
+
+   Build a Swarm cluster for production
+      https://docs.docker.com/swarm/install-manual/

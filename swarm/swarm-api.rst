@@ -61,3 +61,8 @@ Docker Swarm ドキュメント目次
 * :doc:`ディスカバリ・オプション </swarm/discovery>`
 * :doc:`スケジュール・ストラテジ </swarm/scheduler/strategy>`
 * :doc:`スケジューラ・フィルタ </swarm/scheduler/filter>`
+
+.. seealso:: 
+
+   Docker Swarm API
+      https://docs.docker.com/swarm/swarm-api/

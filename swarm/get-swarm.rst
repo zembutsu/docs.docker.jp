@@ -11,8 +11,9 @@
 
 .. _how-to-get-docker-swarm:
 
-Swarm の入手方法
-====================
+==============================
+Docker Swarm の入手方法
+==============================
 
 .. You can create a Docker Swarm cluster using the swarm executable image from a container or using an executable swarm binary you install on your system. This page introduces the two methods and discusses their pros and cons.
 
@@ -188,3 +189,8 @@ Swarm バイナリの実行
 
 * Docker Hub 上の `Docker Swarm 公式イメージ <https://hub.docker.com/_/swarm/>`_ レポジトリ
 * :doc:`provision-with-machine`
+
+.. seealso:: 
+
+   How to get Docker Swarm
+      https://docs.docker.com/swarm/get-swarm/

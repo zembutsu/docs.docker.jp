@@ -325,3 +325,8 @@ AWS のインフラは次のような状態です。
 .. At this point your infrastructure stack is created successfully. You are ready to progress to the next step and build the Swarm cluster.
 
 これでインフラのスタックを作成完了しました。次のステップ :doc:`Swarm クラスタの構築 <03-create-cluster>` に進む準備が整いました。
+
+.. seealso:: 
+
+   Deploy your infrastructure
+      https://docs.docker.com/swarm/swarm_at_scale/02-deploy-infra/

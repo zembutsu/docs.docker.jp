@@ -526,3 +526,7 @@ Docker Swarm ドキュメンテーション目次
 * :doc:`スケジューラ・フィルタ </swarm/scheduler/filter>`
 * :doc:`Swarm API </swarm/swarm-api>`
 
+.. seealso:: 
+
+   Swarm filters
+      https://docs.docker.com/swarm/scheduler/filter/

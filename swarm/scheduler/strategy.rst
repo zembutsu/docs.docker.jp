@@ -139,4 +139,8 @@ Docker Swarm ドキュメント目次
 * :doc:`Swarm API </swarm/swarm-api>`
 
 
+.. seealso:: 
+
+   Docker Swarm strategies
+      https://docs.docker.com/swarm/scheduler/strategy/
 
