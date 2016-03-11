@@ -1,7 +1,9 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/docker-hub/builds/
-.. doc version: 1.9
-.. check date: 2016/01/06
+.. URL: https://docs.docker.com/docker-hub/builds/
+.. SOURCE: -
+   doc version: 1.10
+.. check date: 2016/03/11
+.. -------------------------------------------------------------------
 
 .. Automated Builds on Docker Hub
 
@@ -301,7 +303,7 @@ Docker はコード・レポジトリに対して push で変更が加えられ�
 
 ..    In the Repository Links section, enter an image repository name.
 
-2. Repository Links のヵ所で、イメージのレポジトリ名を入力します。
+2. Repository Links の箇所で、イメージのレポジトリ名を入力します。
 
 ..    A remote repository name should be either an official repository name such as ubuntu or a public repository name namespace/repoName.
 
@@ -347,3 +349,8 @@ Docker はコード・レポジトリに対して push で変更が加えられ�
 .. To verify everything is working correctly, check the Last 10 Trigger Logs on the page.
 
 正常に動作するかを確認するには、同じページの Last 10 Trigger Logs （直近のトリガ10個のログ）をご覧ください。
+
+.. seealso:: 
+
+   Automated Builds on Docker Hub
+      https://docs.docker.com/docker-hub/builds/

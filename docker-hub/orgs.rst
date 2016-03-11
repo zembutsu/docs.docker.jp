@@ -1,7 +1,9 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/docker-hub/orgs/
-.. doc version: 1.9
-.. check date: 2016/01/08
+.. URL: https://docs.docker.com/docker-hub/orgs/
+.. SOURCE: -
+   doc version: 1.10
+.. check date: 2016/03/11
+.. -------------------------------------------------------------------
 
 .. Organizations and teams
 
@@ -81,7 +83,7 @@ teams（チーム）はレポジトリを操作できるユーザを管理しま
 
 * ``Read`` （読み込み）権限は、ユーザに対してプライベート・レポジトリをパブリック・レポジトリと同じように表示・検索・取得をできるようにします。
 * ``Write`` （書き込み）権限は、Docker Hub のレポジトリに対して、手動で送信（push）できるようにします。
-* ``Admin`` （管理）権限は、レポジトリに対するユーザの「Description」「Collaborators」権限設定、「Public/Priate」の可視性や、「Delete」を行えます。
+* ``Admin`` （管理）権限は、レポジトリに対するユーザの「Description」「Collaborators」権限設定、「Public/Private」の可視性や、「Delete」を行えます。
 
 ..    Note: A User who has not yet verified their email address will only have Read access to the repository, regardless of the rights their team membership has given them.
 
@@ -94,3 +96,9 @@ teams（チーム）はレポジトリを操作できるユーザを管理しま
 .. image:: ./images/org-repo-collaborators.png
    :scale: 60%
    :alt: Organization レポジトリのコラボレータ
+
+
+.. seealso:: 
+
+   Organizations and teams
+      https://docs.docker.com/docker-hub/orgs/

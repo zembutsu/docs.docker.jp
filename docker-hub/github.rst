@@ -1,7 +1,9 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/docker-hub/github/
-.. doc version: 1.9
-.. check date: 2016/01/07
+.. URL: https://docs.docker.com/docker-hub/github/
+.. SOURCE: -
+   doc version: 1.10
+.. check date: 2016/03/11
+.. -------------------------------------------------------------------
 
 .. Automated Builds from GitHub
 
@@ -239,3 +241,8 @@ Docker Hub からリンクする GitHub アカウントが「Limited Access」�
 .. If you add the “Docker” service manually, make sure the “Active” checkbox is selected and click the “Update service” button to save your changes.
 
 もし「Docker」サービスを手動で追加した場合は、「Active」チェックボックスを選択してから「Update service」ボタンをクリックして、変更を保存します。
+
+.. seealso:: 
+
+   Auomated Builds from GitHub
+      https://docs.docker.com/docker-hub/github/

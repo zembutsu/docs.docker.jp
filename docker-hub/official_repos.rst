@@ -1,7 +1,9 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/docker-hub/official_repos/
-.. doc version: 1.9
-.. check date: 2016/01/08
+.. URL: https://docs.docker.com/docker-hub/official_repos/
+.. SOURCE: -
+   doc version: 1.10
+.. check date: 2016/03/11
+.. -------------------------------------------------------------------
 
 .. Official Repositories on Docker Hub
 
@@ -108,3 +110,9 @@ Docker 社は、全ての公式レポジトリの内容に関し、レビュー�
 .. note::
 
    もし公式レポジトリの提案に興味があるとき、まず Docker 社とプライベートに議論したい場合は、リクエストを partners@docker.com にお送りください。ただし、迅速ではありませんし、支払いオプションもありません。
+
+
+.. seealso:: 
+
+   Official Repositories on Docker Hub
+      https://docs.docker.com/docker-hub/official_repos/

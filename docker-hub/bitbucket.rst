@@ -1,7 +1,9 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/docker-hub/bitbucket/
-.. doc version: 1.9
-.. check date: 2016/01/07
+.. URL: https://docs.docker.com/docker-hub/bitbucket/
+.. SOURCE: -
+   doc version: 1.10
+.. check date: 2016/03/11
+.. -------------------------------------------------------------------
 
 .. Automated Builds with Bitbucket
 
@@ -83,3 +85,9 @@ Bitbucket のサービス・フック・ログを確認・変更するには、�
 .. image:: ./images/bitbucket-hook.png
    :scale: 60%
    :alt: bitbucket の hook
+
+
+.. seealso:: 
+
+   Auomated Builds with Bitbucket
+      https://docs.docker.com/docker-hub/bitbucket/

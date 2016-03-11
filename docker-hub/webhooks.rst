@@ -1,7 +1,9 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/docker-hub/webhooks/
-.. doc version: 1.9
-.. check date: 2016/01/07
+.. URL: https://docs.docker.com/docker-hub/webhooks/
+.. SOURCE: -
+   doc version: 1.10
+.. check date: 2016/03/11
+.. -------------------------------------------------------------------
 
 .. Webhooks for automated builds
 
@@ -125,3 +127,8 @@ JSON データのコールバック
 * ``description`` ：Docker Hub で利用可能な様々な説明を含む文字列。最大255文字。
 * ``context`` ：操作に関連するコンテキストを含む文字列。Docker Hub が受信可能。最大100文字。
 * ``target_url`` ：オペレーションで得られた結果を送る URL 。Docker Hub が受信可能。
+
+.. seealso:: 
+
+   Webhooks for automated builds
+      https://docs.docker.com/docker-hub/webhooks/

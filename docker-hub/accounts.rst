@@ -1,14 +1,16 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/docker-hub/accounts/
-.. doc version: 1.9
-.. check date: 2016/01/06
+.. URL: https://docs.docker.com/docker-hub/accounts/
+.. SOURCE: -
+   doc version: 1.10
+.. check date: 2016/03/11
+.. -------------------------------------------------------------------
 
 .. Your Docker Hub account
 
 .. _your-docker-hub-account:
 
 ========================================
-自分の Docker Hub アカウント
+自分用 Docker Hub アカウント
 ========================================
 
 .. You can search for Docker images and pull them from Docker Hub without signing in or even having an account. However, in order to push images, leave comments, or to star a repository, you are going to need a Docker Hub account.
@@ -115,3 +117,9 @@ Docker Hub アカウントを作成する別の方法は、コマンドライン
 .. If you can’t access your account for some reason, you can reset your password from the Password Reset page.
 
 何らかの理由により自分のアカウントにアクセスできない場合は、 `パスワードのリセット <https://hub.docker.com/reset-password/>`_ ページからパスワードをリセットできます。
+
+
+.. seealso:: 
+
+   Your Docker Hub account
+      https://docs.docker.com/docker-hub/accounts/
