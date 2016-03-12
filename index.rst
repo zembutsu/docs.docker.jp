@@ -13,6 +13,7 @@ Docker ドキュメント日本語化プロジェクト
 ==========================================
 
 * :doc:`about`
+* :doc:`guide`
 
 ----
 
@@ -127,6 +128,7 @@ About
    release-notes.rst
    engine/reference/glossary.rst
    about.rst
+   guide.rst
 
 
 Docs archive
