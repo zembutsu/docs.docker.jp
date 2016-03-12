@@ -16,9 +16,12 @@ Docker Registry
    :maxdepth: 3
    :caption: Docker Registry 目次
    
+   overview.rst
    index.rst
    introduction.rst
    deploying.rst
    configuration.rst
    notifications.rst
+   recipes.rst
+   reference.rst
    help.rst

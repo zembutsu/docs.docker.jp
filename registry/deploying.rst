@@ -1,7 +1,9 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/registry/deploying/
-.. doc version: 1.9
-.. check date: 2016/01/08
+.. URL: https://docs.docker.com/registry/deploying/
+.. SOURCE: -
+   doc version: 1.10
+.. check date: 2016/03/12
+.. -------------------------------------------------------------------
 
 .. Deploying a registry server
 
@@ -19,7 +21,7 @@
 
 .. registry-running-on-localhost:
 
-ローカルホストでレジストリを実行
+ローカルホスト上で実行
 ========================================
 
 .. Start your registry:
@@ -75,7 +77,7 @@ Docker Hub からイメージを手に入れ、自分のレジストリ上にタ
 
 .. By default, your registry data is persisted as a docker volume on the host filesystem. Properly understanding volumes is essential if you want to stick with a local filesystem storage.
 
-デフォルトでは、ホスト・ファイルシステム上の :doc:`docker volume </engine/userguide/dockervolumes>` にレジストリのデータが保管されます。ローカル・ファイルシステムをストレージに使う場合は、ボリュームに対する適切な理解が必要です。
+デフォルトでは、ホスト・ファイルシステム上の :doc:`docker volume </engine/userguide/containers/dockervolumes>` にレジストリのデータが保管されます。ローカル・ファイルシステムをストレージに使う場合は、ボリュームに対する適切な理解が必要です。
 
 .. Specifically, you might want to point your volume location to a specific place in order to more easily access your registry data. To do so you can:
 
@@ -106,7 +108,7 @@ Docker Hub からイメージを手に入れ、自分のレジストリ上にタ
 
 .. _running-a-domain-registry:
 
-ドメイン・レジストリの実行
+ドメインでレジストリを実行
 ==============================
 
 .. While running on localhost has its uses, most people want their registry to be more widely available. To do so, the Docker engine requires you to secure it using TLS, which is conceptually very similar to configuring your web server with SSL.
@@ -388,10 +390,16 @@ Docker Compose で管理
     Storage driver model
     Token authentication
 
-* :doc:`index`
+* :doc:`configuration`
 * :doc:`notifications`
 * :doc:`recipes`
 * :doc:`spec/api`
 * :doc:`storagedrivers`
 * :doc:`spec/auth/tokens`
+
+.. seealso:: 
+
+   Deploying a registry server
+      https://docs.docker.com/registry/deploying/
+
 

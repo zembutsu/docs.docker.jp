@@ -1,7 +1,9 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/registry/
-.. doc version: 1.9
-.. check date: 2016/01/08
+.. URL: https://docs.docker.com/registry/
+.. SOURCE: -
+   doc version: 1.10
+.. check date: 2016/03/12
+.. -------------------------------------------------------------------
 
 .. Docker Registry
 
@@ -10,6 +12,11 @@
 ========================================
 Docker レジストリ
 ========================================
+
+.. caution::
+
+   訳者注：Docker Registry は今後 Docker Distribution https://github.com/docker/distribution に統合予定です。そのため、ドキュメントの更新は停止しており、将来的にここに書かれている情報が古くなる可能性があります。
+
 
 .. What it is
 
@@ -130,19 +137,9 @@ Docker Hub からのイメージの取得（あるいは構築）
 
 .. You should now read the detailed introduction about the registry, or jump directly to deployment instructions.
 
-これで :doc:`レジストリの詳細な紹介 <introduction>` を読むか、 :doc:`デプロイ方法 <deploying>` に直接ジャンプしてください。
+これで :doc:`レジストリの詳細な紹介 <introduction>` を読むか、 :doc:`デプロイ方法 <deploying>` のページに直接ジャンプしてください。
 
+.. seealso:: 
 
-その他のドキュメント
-====================
-
-.. toctree::
-   :maxdepth: 3
-   :caption: その他のドキュメント
-
-   insecure.rst
-   notifications
-   recipes
-   spec/api
-   storagedrivers
-   spec/auth/tokens
+   Official Repositories on Docker Hub
+      https://docs.docker.com/docker-hub/official_repos/
