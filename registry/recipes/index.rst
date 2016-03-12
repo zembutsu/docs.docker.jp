@@ -1,27 +1,23 @@
 .. -*- coding: utf-8 -*-
 .. 
 .. doc version: 1.10
-.. check date: 2016/02/06
+.. check date: 2016/03/12
 .. -----------------------------------------------------------------------------
 
 .. Docker Registry toc
 
-.. registry-toc:
+.. registry-recipes-toc:
 
 ========================================
-Docker Registry
+レシピ
 ========================================
 
 .. toctree::
    :maxdepth: 3
-   :caption: Docker Registry 目次
    
-   overview.rst
-   index.rst
-   introduction.rst
-   deploying.rst
-   configuration.rst
-   notifications.rst
-   recipes/index.rst
-   reference.rst
-   help.rst
+   recipes.rst
+   apache.rst
+   nginx.rst
+   osx-setup-guide.rst
+   building.rst
+   mirror.rst
