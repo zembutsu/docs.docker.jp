@@ -262,3 +262,10 @@ Currently, the queues are inmemory, so endpoints should be reasonably reliable. 
 This can be mitigated by running endpoints in close proximity to the registry instances. One could run an endpoint that pages to disk and then forwards a request to provide better durability.
 
 The notification system is designed around a series of interchangeable sinks which can be wired up to achieve interesting behavior. If this system doesn’t provide acceptable guarantees, adding a transactional Sink to the registry is a possibility, although it may have an effect on request service time. Please see the godoc for more information.
+
+.. seealso:: 
+
+   Working with notifications
+      https://docs.docker.com/registry/notifications/
+
+
