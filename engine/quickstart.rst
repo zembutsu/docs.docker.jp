@@ -2,20 +2,22 @@
 .. URL: https://docs.docker.com/engine/quickstart/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/quickstart.md
 .. doc version: 1.10
-.. check date: 2016/02/07
+      https://github.com/docker/docker/commits/master/docs/quickstart.md
+.. check date: 2016/03/12
+.. Commits on Mar 1, 2016 0b882cc0140bc03dfe79462c5cdf77b972c94067
 .. -----------------------------------------------------------------------------
 
-.. Quickstart Docker Engine
+.. Docker Engine Quickstart
 
-.. _quickstart-docker-engine:
+.. _docker-engine-quickstart:
 
 =============================
 Docker Engine クイックスタート
 =============================
 
-.. This quickstart assumes you have a working installation of Docker Engine. To verify Engine is installed, use the following command:
+.. This quickstart assumes you have a working installation of Docker Engine. To verify Engine is installed and configured, use the following command:
 
-このクイックスタートは、Docker Engine のインストール作業完了を想定しています。Docker Engine のインストールを確認するには、次のコマンドを実行します。
+このクイックスタートを始めるには、Docker Engine をインストール完了しているのが前提です。Docker Engine のインストール・設定情報を確認するには、次のコマンドを実行します。
 
 ..    # Check that you have a working install
 
@@ -24,9 +26,9 @@ Docker Engine クイックスタート
    # インストールしたものが正常に動作するか確認
    $ docker info
 
-.. If you get docker: command not found or something like /var/lib/docker/repositories: permission denied you may have an incomplete Docker installation or insufficient privileges to access Engine on your machine. With the default installation of Engine docker commands need to be run by a user that is in the docker group or by the root user.
+.. If you have a successful install, the system information appears. If you get docker: command not found or something like /var/lib/docker/repositories: permission denied you may have an incomplete Docker installation or insufficient privileges to access Engine on your machine. With the default installation of Engine docker commands need to be run by a user that is in the docker group or by the root user.
 
-もしも ``docker: command not found`` や ``/var/lib/docker/repositories: permission denied`` のような表示が出る場合は、Docker のインストールが不完全か、コマンドがマシン上の Docker Engine に対してアクセスする権限がありません。標準の Docker Engine インストールでは、``docker`` コマンドを実行するには ``docker`` グループのユーザ、もしくは ``root`` の必要があります。
+インストールに成功しているのであれば、システム情報が表示されます。もしも ``docker: command not found`` や ``/var/lib/docker/repositories: permission denied`` のような表示が出る場合は、Docker のインストールが不完全か、コマンドがマシン上の Docker Engine に対してアクセスする権限がありません。標準の Docker Engine インストールでは、``docker`` コマンドを実行するには ``docker`` グループのユーザ、もしくは ``root`` の必要があります。
 
 .. Depending on your Engine system configuration, you may be required to preface each docker command with sudo. One way to avoid having to use sudo with the docker commands is to create a Unix group called docker and add users that will be entering docker commands to the ‘docker’ group.
 
@@ -42,6 +44,10 @@ Docker Engine のインストールや ``sudo`` 設定に関しては、 :doc:`�
 構築済みイメージのダウンロード
 ==============================
 
+.. To pull an `ubuntu` image, run:
+
+``ubuntu`` イメージをダウンロード（pull）するには、次のように実行します。
+
 .. # Download an ubuntu image
 
 .. code-block:: bash
@@ -49,16 +55,19 @@ Docker Engine のインストールや ``sudo`` 設定に関しては、 :doc:`�
    # ubuntu イメージのダウンロード
    $ docker pull ubuntu
 
-.. This will find the ubuntu image by name on Docker Hub and download it from Docker Hub to a local image cache.
+.. This downloads the ubuntu image by name from Docker Hub to a local image cache. To search for an image, run docker search. For more information, go to: Searching images
 
-このコマンドは :ref:`Docker Hub <searching-for-images>` 上の ``ubuntu`` イメージを探し、`Docker Hub <https://hub.docker.com/>`_ からローカルのイメージ・キャッシュにダウンロードします。
+このコマンドは `Docker Hub <https://hub.docker.com/>`_ 上の ``ubuntu`` イメージをローカルのイメージ・キャッシュにダウンロードします。  イメージを検索するには ``docker run`` コマンドを実行します。詳しい情報は :ref:`searching-for-images` をご覧ください。
 
-.. Note: When the image is successfully downloaded, you see a 12 character hash 539c0211cd76: Download complete which is the short form of the image ID. These short image IDs are the first 12 characters of the full image ID - which can be found using docker inspect or docker images --no-trunc=true.
+.. Note: When the image is successfully downloaded, you see a 12 character hash 539c0211cd76: Download complete which is the short form of the Image ID. These short Image IDs are the first 12 characters of the full image ID. To view this information, run docker inspect or docker images --no-trunc=true.
 
 .. note::
 
-   イメージのダウンロードに成功すると、12文字のハッシュ ``539c0211cd76: Download complete`` が表示されます。これはイメージ ID を短くしたものです。この短いイメージ ID（short image ID）は、完全イメージ ID （full iamge ID）の始めから12文字です。完全イメージ ID は ``docker inspect`` や ``docker images --no-trunc=true`` で確認できます。
+   イメージのダウンロードに成功すると、12文字のハッシュ ``539c0211cd76: Download complete`` が表示されます。これはイメージ ID を短くしたものです。この短いイメージ ID（short image ID）は、完全イメージ ID （full iamge ID）の始めから12文字です。完全イメージ ID を確認するには ``docker inspect`` や ``docker images --no-trunc=true`` を実行します。
 
+.. To display a list of downloaded images, run docker images.
+
+ダウンロードしたイメージの一覧を確認するには ``docker images`` を実行します。
 
 .. Running an interactive shell
 
@@ -73,10 +82,9 @@ Docker Engine のインストールや ``sudo`` 設定に関しては、 :doc:`�
 
    $ docker run -i -t ubuntu /bin/bash 
 
+.. The -i flag starts an interactive container. The -t flag creates a pseudo-TTY that attaches stdin and stdout. The image is ubuntu. The command /bin/bash starts a shell you can log in.
 
-.. The -i flag starts an interactive container. The -t flag creates a pseudo-TTY that attaches stdin and stdout.
-
-``-i`` フラグは対話型 (interactive) のコンテナを起動します。``-t`` フラグは疑似ターミナル (pseudo-TTY) を起動し、``stdin`` と ``stdout`` （標準入出力）をアタッチ（接続）します。
+``-i`` フラグは対話型 (interactive) のコンテナを起動します。``-t`` フラグは疑似ターミナル (pseudo-TTY) を起動し、``stdin`` と ``stdout`` （標準入出力）をアタッチ（接続）します。イメージは ``ubuntu`` です。コマンド ``/bin/bash`` を使ってログインできます。
 
 .. To detach the tty without exiting the shell, use the escape sequence Ctrl-p + Ctrl-q. The container will continue to exist in a stopped state once exited. To list all containers, stopped and running, use the docker ps -a command.
 
@@ -267,25 +275,26 @@ TCP ポートにサービスを割り当て
 コンテナの状態をコミット（保存）
 ========================================
 
-.. Save your containers state to an image, so the state can be re-used.
+.. To save the current state of a container as an image:
 
-コンテナの状態をイメージに保存すると、その状態を再利用可能です。
-
-.. When you commit your container, Docker only stores the diff (difference) between the source image and the current state of the container’s image. To list images you already have, use the docker images command.
-
-コンテナをコミット（commit）すると、Docker は元イメージと現在のコンテナ・イメージ状態との差分（diff）のみを保管します。どのようなイメージが存在しているかを確認するには、``docker images`` コマンドを使います。
+コンテナの現在の状態をイメージとして保存します。
 
 .. code-block:: bash
 
-   # コンテナを新しい名前のイメージとしてコミットする
-   $ docker commit <container> <some_name>
-   
-   # イメージ一覧を表示する
+   $ docker commit <コンテナ> <何かの名前>
+
+.. When you commit your container, Docker Engine only stores the diff (difference) between the source image and the current state of the container's image. To list images you already have, run:
+
+コンテナをコミットするというのは、Docker Engine は元になったイメージと現在のコンテナの差分情報のみを保存します。どのようなイメージがあるかを確認するには、次のコマンドを実行します。
+
+.. code-block:: bash
+
+   # List your images
    $ docker images
 
 .. You now have an image state from which you can create new instances.
 
-イメージの状態を手に入れました。これは、新しいインスタンス（訳者注：コンテナのこと）を作成可能なものです。
+コミットによって新しいイメージを手に入れました。これは、新しいインスタンス（訳者注：コンテナのこと）を作成可能なものです。
 
 .. Where to go next
 
@@ -299,3 +308,9 @@ TCP ポートにサービスを割り当て
 * :doc:`Docker ユーザ・ガイド <userguide/index>` の中に進む
 * :doc:`レポジトリを通したイメージの共有 <userguide/containers/dockerrepos>` について読む
 * :doc:`コマンドラインの練習 <reference/commandline/cli>` を参照
+
+.. seealso:: 
+
+   Quickstart Docker Engine
+      https://docs.docker.com/engine/quickstart/
+
