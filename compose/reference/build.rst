@@ -26,4 +26,4 @@ build
 
 .. Services are built once and then tagged as project_service, e.g., composetest_db. If you change a service’s Dockerfile or the contents of its build directory, run docker-compose build to rebuild it.
 
-サービスは ``project_サービス`` として構築時にタグ付けられます。例： ``composetest_db`` 。サービスの Dockerfile や構築痔レクトリの内容に変更を加える場合は、 ``docker-compose build`` で再構築を実行します。
+サービスは ``project_サービス`` として構築時にタグ付けられます。例： ``composetest_db`` 。サービスの Dockerfile や構築ディレクトリの内容に変更を加える場合は、 ``docker-compose build`` で再構築を実行します。
