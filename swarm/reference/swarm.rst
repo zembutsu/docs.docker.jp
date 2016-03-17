@@ -71,7 +71,7 @@ Swarm - Docker ネイティブのクラスタリング・システム
     join, j - Create a Swarm node
     help - Display a list of Swarm commands, or help for one command
 
-* :doc:`create, c <crate>` : ディスカバリ・トークンの作成
+* :doc:`create, c <create>` : ディスカバリ・トークンの作成
 * :doc:`list, l <list>` : Docker クラスタのノード一覧を表示
 * :doc:`manage, m <manage>` : Swarm マネージャの作成
 * :doc:`join, j <join>` : Swarm ノードの作成

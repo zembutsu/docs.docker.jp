@@ -42,7 +42,7 @@ create
 
 .. The docker-machine create command has some flags which are applicable to all drivers. These largely control aspects of Machine’s provisoning process (including the creation of Docker Swarm containers) that the user may wish to customize.
 
-``docker-machine crate`` コマンドには全てのドライバで適用できる共通のフラグがあります。主に、マシンのプロビジョニング手順における挙動を制御するもので（Docker Swarm コンテナの作成も含みます）、利用者がカスタマイズできます。
+``docker-machine create`` コマンドには全てのドライバで適用できる共通のフラグがあります。主に、マシンのプロビジョニング手順における挙動を制御するもので（Docker Swarm コンテナの作成も含みます）、利用者がカスタマイズできます。
 
 .. code-block:: bash
 
@@ -202,7 +202,7 @@ Docker Machine は、デーモンに対するパラメータを単にセット�
 
 .. Additionally, Docker Machine supports a flag, --engine-env, which can be used to specify arbitrary environment variables to be set within the engine with the syntax --engine-env name=value. For example, to specify that the engine should use example.com as the proxy server, you could run the following create command:
 
-さらに、Docker Machine は ``--engine-env`` フラグをサポートしています。これは外部の環境変数を指定するものであり、エンジンに適用するには ``--engine-env name=value`` の形式で指定します。例えば、エンジンが ``example.com`` をプロキシ・サーバとして使うには、crate コマンドで次のように実行します。
+さらに、Docker Machine は ``--engine-env`` フラグをサポートしています。これは外部の環境変数を指定するものであり、エンジンに適用するには ``--engine-env name=value`` の形式で指定します。例えば、エンジンが ``example.com`` をプロキシ・サーバとして使うには、create コマンドで次のように実行します。
 
 .. code-block:: bash
 

@@ -1,5 +1,5 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/swarm/swarm_at_scale/03-crate-cluster/
+.. URL: https://docs.docker.com/swarm/swarm_at_scale/03-create-cluster/
 .. SOURCE: https://github.com/docker/swarm/blob/master/docs/swarm_at_scale/03-create-cluster.md
    doc version: 1.10
       https://github.com/docker/swarm/commits/master/docs/swarm_at_scale/03-create-cluster.md
