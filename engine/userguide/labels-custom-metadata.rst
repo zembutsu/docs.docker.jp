@@ -85,7 +85,7 @@ Docker は ``key`` の使用にあたり、厳密な制約を設けていませ�
 
 .. Label values can contain any data type as long as it can be represented as a string. For example, consider this JSON document:
 
-ラベルの値は文字列に代表されるような、あらゆる種類のデータを含められミズ得。例えば、次のような JSON ドキュメントを考えます。
+ラベルの値は文字列で表現できるような、あらゆる種類のデータを含められます。例えば、次のような JSON ドキュメントを考えます。
 
 .. code-block:: json
 
