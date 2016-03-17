@@ -154,7 +154,7 @@ Docker Machine は、デーモンに対するパラメータを単にセット�
 
 .. This will create a virtual machine running locally in Virtualbox which uses the overlay storage backend, has the key-value pairs foo=bar and spam=eggs as labels on the engine, and allows pushing / pulling from the insecure registry located at registry.myco.com. You can verify much of this by inspecting the output of docker info:
 
-これはローカルの VirtualBox に仮想マシンを作成するにあたり、ストレージのバックエンドには ``overlay`` を使用し、エンジンのラベルとしてキーバリュー・ペアの ``foo-bar`` と ``spam=enngs`` を指定します。さらに、 ``registry.myco.com`` にある非安全なレジストリへのイメージ送信・取得を許可します。詳細情報は ``docker info`` の出力結果から確認できます。
+これはローカルの VirtualBox に仮想マシンを作成するにあたり、ストレージのバックエンドには ``overlay`` を使用し、エンジンのラベルとしてキーバリュー・ペアの ``foo=bar`` と ``spam=eggs`` を指定します。さらに、 ``registry.myco.com`` にある非安全なレジストリへのイメージ送信・取得を許可します。詳細情報は ``docker info`` の出力結果から確認できます。
 
 .. code-block:: bash
 
