@@ -39,7 +39,7 @@ Docker Swarm は Docker に対応するネイティブなクラスタリング�
 
 .. The first step to creating a swarm on your network is to pull the Docker Swarm image. Then, using Docker, you configure the swarm manager and all the nodes to run Docker Swarm. This method requires that you:
 
-自分のネットワーク上で Swarm クラスタ（訳注；原文では"swarm"=群れ、と書かれていますが、日本語では抽象的なため、以下"Swarm クラスタ"と訳しています）を形成するには、まず Docker Swarm イメージを取得します。それから Docker を使い、swarm manager を設定し、Docker Swarm を実行実行したい全てのノードを設定します。この手順で次のものが必要です。
+自分のネットワーク上で Swarm クラスタ（訳注；原文では"swarm"=群れ、と書かれていますが、日本語では抽象的なため、以下"Swarm クラスタ"と訳しています）を形成するには、まず Docker Swarm イメージを取得します。それから Docker を使い、swarm manager を設定し、Docker Swarm を実行したい全てのノードを設定します。この手順で次のものが必要です。
 
 ..    open a TCP port on each node for communication with the swarm manager
     install Docker on each node
