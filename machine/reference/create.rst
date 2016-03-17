@@ -77,7 +77,7 @@ create
 
 .. To see the provider-specific flags, simply pass a value for --driver when invoking the create help text.
 
-プロバイダ固有のフラグを確認するには ``create`` ヘルプ・テキストを表示するときに ``--deriver`` を単純に指定するだけです。
+プロバイダ固有のフラグを確認するには ``create`` ヘルプ・テキストを表示するときに ``--driver`` を単純に指定するだけです。
 
 .. code-block:: bash
 
