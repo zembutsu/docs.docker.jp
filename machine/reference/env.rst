@@ -40,7 +40,7 @@ env
 
 .. docker-machine env machinename will print out export commands which can be run in a subshell. Running docker-machine env -u will print unset commands which reverse this effect.
 
-``docker-machine env マシン名`` を実行すると、サブシェル上で実行可能な ``export`` コマンドが表示されます。 ``docker-machine env -u`` を実行すると、この効果を無効化する ``unsete`` コマンドを表示します。
+``docker-machine env マシン名`` を実行すると、サブシェル上で実行可能な ``export`` コマンドが表示されます。 ``docker-machine env -u`` を実行すると、この効果を無効化する ``unset`` コマンドを表示します。
 
 .. code-block:: bash
 
