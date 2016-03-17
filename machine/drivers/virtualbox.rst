@@ -52,7 +52,7 @@ Oracle VirtualBox
 * ``--virtualbox-import-boot2docker-vm`` : 取り込む Boot2Docker 仮想マシンの名前。
 * ``--virtualbox-hostonly-cidr`` :  ホストオンリー・アダプタの CIDR 。
 * ``--virtualbox-hostonly-nictype`` :  ホストオンリー・ネットワーク・アダプタのタイプを指定。値は ``82540EM`` (Intel PRO/1000)、 ``Am79C973`` (PCnet-FAST III) 、``virtio-net`` 準仮想化ネットワーク・アダプタのいずれか。
-* ``--virtualbox-hostonly-nicpromisc`` : ホスト・オンリー・ネットワーク・アダプタのプロミスキャス・モードを指定。オプションは deny、allow-vms、allow-allo のいずれか。
+* ``--virtualbox-hostonly-nicpromisc`` : ホスト・オンリー・ネットワーク・アダプタのプロミスキャス・モードを指定。オプションは deny、allow-vms、allow-all のいずれか。
 * ``--virtualbox-no-share`` : ホーム・ディレクトリのマウントを無効化。
 * ``--virtualbox-dns-proxy`` : 全ての DNS リクエストをホスト側にプロキシする（　Boolean 値で、デフォルトは false）。
 
