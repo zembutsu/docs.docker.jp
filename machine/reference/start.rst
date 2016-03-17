@@ -17,9 +17,9 @@ start
 
 .. code-block:: bash
 
-   Usage: docker-machine restart [arg...]
+   Usage: docker-machine start [arg...]
    
-   Restart a machine
+   Start a machine
    
    Description:
       Argument(s) are one or more machine names.
