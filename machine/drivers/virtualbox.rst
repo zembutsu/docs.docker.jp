@@ -52,13 +52,13 @@ Oracle VirtualBox
 * ``--virtualbox-import-boot2docker-vm`` : 取り込む Boot2Docker 仮想マシンの名前。
 * ``--virtualbox-hostonly-cidr`` :  ホストオンリー・アダプタの CIDR 。
 * ``--virtualbox-hostonly-nictype`` :  ホストオンリー・ネットワーク・アダプタのタイプを指定。値は ``82540EM`` (Intel PRO/1000)、 ``Am79C973`` (PCnet-FAST III) 、``virtio-net`` 準仮想化ネットワーク・アダプタのいずれか。
-* ``--virtualbox-hostonly-nicpromisc`` : ホスト・オンリー・ネットワーク・アダプタのプロミスキャス・モードを指定。オプションは deny、allow-vms、allow-allo のいずれか。
+* ``--virtualbox-hostonly-nicpromisc`` : ホスト・オンリー・ネットワーク・アダプタのプロミスキャス・モードを指定。オプションは deny、allow-vms、allow-all のいずれか。
 * ``--virtualbox-no-share`` : ホーム・ディレクトリのマウントを無効化。
 * ``--virtualbox-dns-proxy`` : 全ての DNS リクエストをホスト側にプロキシする（　Boolean 値で、デフォルトは false）。
 
 .. The --virtualbox-boot2docker-url flag takes a few different forms. By default, if no value is specified for this flag, Machine will check locally for a boot2docker ISO. If one is found, that will be used as the ISO for the created machine. If one is not found, the latest ISO release available on boot2docker/boot2docker will be downloaded and stored locally for future use. Note that this means you must run docker-machine upgrade deliberately on a machine if you wish to update the “cached” boot2docker ISO.
 
-``--virtualbox-boot2docker-url`` フラグには、いくつかの異なった使い方ががあります。デフォルトでは、フラグに値を何も指定しなければ、Docker Machine はローカルの boot2docker ISO を探します。もしローカル上に見つかれば、マシン作成用の ISO として用いられます。もし見つからない場合は、 `boot2docker/boot2docker <https://github.com/boot2docker/boot2docker>`_ にある最新の ISO イメージをダウンロードし、ローカルに保存してから使います。つまり、ローカルに「キャッシュされた」boot2docker ISO を更新したい場合は、 ``docker-machine upgrade`` を実行しなくてはいけません。
+``--virtualbox-boot2docker-url`` フラグには、いくつかの異なった使い方があります。デフォルトでは、フラグに値を何も指定しなければ、Docker Machine はローカルの boot2docker ISO を探します。もしローカル上に見つかれば、マシン作成用の ISO として用いられます。もし見つからない場合は、 `boot2docker/boot2docker <https://github.com/boot2docker/boot2docker>`_ にある最新の ISO イメージをダウンロードし、ローカルに保存してから使います。つまり、ローカルに「キャッシュされた」boot2docker ISO を更新したい場合は、 ``docker-machine upgrade`` を実行しなくてはいけません。
 
 .. This is the default behavior (when --virtualbox-boot2docker-url=""), but the option also supports specifying ISOs by the http:// and file:// protocols. file:// will look at the path specified locally to locate the ISO: for instance, you could specify --virtualbox-boot2docker-url file://$HOME/Downloads/rc.iso to test out a release candidate ISO that you have downloaded already. You could also just get an ISO straight from the Internet using the http:// form.
 

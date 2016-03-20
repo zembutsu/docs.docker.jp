@@ -148,7 +148,7 @@ ls
 
 .. The following example uses a template without headers and outputs the Name and Driver entries separated by a colon for all running machines:
 
-以下の例では ``Name`` と ``Driver``  のエントリをヘッダ情報無しに表示しミズ会う。
+以下の例では ``Name`` と ``Driver``  のエントリをヘッダ情報無しに表示します。
 
 .. code-block:: bash
 

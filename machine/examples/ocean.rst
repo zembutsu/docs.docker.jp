@@ -204,7 +204,7 @@ Droplet が作成されると、Docker はユニークな SSH 鍵を生成し、
 
 .. If you create a host with Docker Machine, but remove it through the cloud provider console, Machine will lose track of the server status. So please use the docker-machine rm command for hosts you create with docker-machine --create.
 
-Docker Machine は作成したホストは、クラウド・プロバイダのコンソールからも削除できます。ただし Machine は状況が追跡できなくなります。そのため、 ``docker-machine --create`` で作成したホストは ``docker-machine rm`` をお使いください。
+Docker Machine は作成したホストは、クラウド・プロバイダのコンソールからも削除できます。ただし Machine は状況が追跡できなくなります。そのため、 ``docker-machine create`` で作成したホストは ``docker-machine rm`` をお使いください。
 
 .. Where to go next
 

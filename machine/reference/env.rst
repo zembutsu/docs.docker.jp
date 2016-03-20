@@ -40,7 +40,7 @@ env
 
 .. docker-machine env machinename will print out export commands which can be run in a subshell. Running docker-machine env -u will print unset commands which reverse this effect.
 
-``docker-machine env マシン名`` を実行すると、サブシェル上で実行可能な ``export`` コマンドが表示されます。 ``docker-machine env -u`` を実行すると、この効果を無効化する ``unsete`` コマンドを表示します。
+``docker-machine env マシン名`` を実行すると、サブシェル上で実行可能な ``export`` コマンドが表示されます。 ``docker-machine env -u`` を実行すると、この効果を無効化する ``unset`` コマンドを表示します。
 
 .. code-block:: bash
 
@@ -58,7 +58,7 @@ env
 
 .. The output described above is intended for the shells bash and zsh (if you’re not sure which shell you’re using, there’s a very good possibility that it’s bash). However, these are not the only shells which Docker Machine supports. Depending of the environment you’re running your command into we will print them for the proper system. We support bash, cmd, powershell and emacs.
 
-上記の出力は ``bash`` や ``zsh`` シェル上での実行を想定したものです（どのシェルを使っているか分からなければ、大抵の場合で ``bash`` でしょう）。しかし、Docker Machine がサポートしているシェルはこれだけではありません。どのようなコマンドを使うかは、それぞれの環境にあわせる必要があります。現時点では ``bash`` 、 ``cmd`` 、 ``powershell`` 、 ``emacs`` のシステムをサポートしています。
+上記の出力は ``bash`` や ``zsh`` シェル上での実行を想定したものです（どのシェルを使っているか分からなければ、大抵の場合 ``bash`` でしょう）。しかし、Docker Machine がサポートしているシェルはこれだけではありません。どのようなコマンドを使うかは、それぞれの環境にあわせる必要があります。現時点では ``bash`` 、 ``cmd`` 、 ``powershell`` 、 ``emacs`` のシステムをサポートしています。
 
 .. If you are using fish and the SHELL environment variable is correctly set to the path where fish is located, docker-machine env name will print out the values in the format which fish expects:
 

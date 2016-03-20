@@ -42,7 +42,7 @@ create
 
 .. The docker-machine create command has some flags which are applicable to all drivers. These largely control aspects of Machine’s provisoning process (including the creation of Docker Swarm containers) that the user may wish to customize.
 
-``docker-machine crate`` コマンドには全てのドライバで適用できる共通のフラグがあります。主に、マシンのプロビジョニング手順における挙動を制御するもので（Docker Swarm コンテナの作成も含みます）、利用者がカスタマイズできます。
+``docker-machine create`` コマンドには全てのドライバで適用できる共通のフラグがあります。主に、マシンのプロビジョニング手順における挙動を制御するもので（Docker Swarm コンテナの作成も含みます）、利用者がカスタマイズできます。
 
 .. code-block:: bash
 
@@ -77,7 +77,7 @@ create
 
 .. To see the provider-specific flags, simply pass a value for --driver when invoking the create help text.
 
-プロバイダ固有のフラグを確認するには ``create`` ヘルプ・テキストを表示するときに ``--deriver`` を単純に指定するだけです。
+プロバイダ固有のフラグを確認するには ``create`` ヘルプ・テキストを表示するときに ``--driver`` を単純に指定するだけです。
 
 .. code-block:: bash
 
@@ -154,7 +154,7 @@ Docker Machine は、デーモンに対するパラメータを単にセット�
 
 .. This will create a virtual machine running locally in Virtualbox which uses the overlay storage backend, has the key-value pairs foo=bar and spam=eggs as labels on the engine, and allows pushing / pulling from the insecure registry located at registry.myco.com. You can verify much of this by inspecting the output of docker info:
 
-これはローカルの VirtualBox に仮想マシンを作成するにあたり、ストレージのバックエンドには ``overlay`` を使用し、エンジンのラベルとしてキーバリュー・ペアの ``foo-bar`` と ``spam=enngs`` を指定します。さらに、 ``registry.myco.com`` にある非安全なレジストリへのイメージ送信・取得を許可します。詳細情報は ``docker info`` の出力結果から確認できます。
+これはローカルの VirtualBox に仮想マシンを作成するにあたり、ストレージのバックエンドには ``overlay`` を使用し、エンジンのラベルとしてキーバリュー・ペアの ``foo=bar`` と ``spam=eggs`` を指定します。さらに、 ``registry.myco.com`` にある非安全なレジストリへのイメージ送信・取得を許可します。詳細情報は ``docker info`` の出力結果から確認できます。
 
 .. code-block:: bash
 
@@ -202,7 +202,7 @@ Docker Machine は、デーモンに対するパラメータを単にセット�
 
 .. Additionally, Docker Machine supports a flag, --engine-env, which can be used to specify arbitrary environment variables to be set within the engine with the syntax --engine-env name=value. For example, to specify that the engine should use example.com as the proxy server, you could run the following create command:
 
-さらに、Docker Machine は ``--engine-env`` フラグをサポートしています。これは外部の環境変数を指定するものであり、エンジンに適用するには ``--engine-env name=value`` の形式で指定します。例えば、エンジンが ``example.com`` をプロキシ・サーバとして使うには、crate コマンドで次のように実行します。
+さらに、Docker Machine は ``--engine-env`` フラグをサポートしています。これは外部の環境変数を指定するものであり、エンジンに適用するには ``--engine-env name=value`` の形式で指定します。例えば、エンジンが ``example.com`` をプロキシ・サーバとして使うには、create コマンドで次のように実行します。
 
 .. code-block:: bash
 
@@ -221,7 +221,7 @@ Docker Machine は、デーモンに対するパラメータを単にセット�
 
 .. In addition to being able to configure Docker Engine options as listed above, you can use Machine to specify how the created Swarm master should be configured). There is a --swarm-strategy flag, which you can use to specify the scheduling strategy which Docker Swarm should use (Machine defaults to the spread strategy). There is also a general purpose --swarm-opt option which works similar to how the aforementioned --engine-opt option does, except that it specifies options for the swarm manage command (used to boot a master node) instead of the base command. You can use this to configure features that power users might be interested in, such as configuring the heartbeat interval or Swarm’s willingness to over-commit resources.
 
-先ほどの Docker Engine オプションの設定を指定できるだけではありません。Docker Machine を使えば、 Swarm マスタをどのように作成するかも指定できます。 ``--swarm-strategy`` フラグを使うと、Docker Swarm が使うべき :doc:`スケジューリング・ストラテジ </swarm/scheduler/strategy>` （デフォルトは ``spread`` ストラテジ ）を指定できます。また前述した ``--engine-opt`` オプションで指定したように、 ``--swarm-opt`` オプションで一般的なオプションを設定できますが、違いは ``swarm manage`` コマンドに対するオプション（マスタ・ノードの起動時に使用）を指定するものです。これらの機能設定を使うことで、パワーユーザであれば beartbeat 間隔の調整や、Swarm のオーバーコミット・リソースの調整に活用できるでしょう。
+先ほどの Docker Engine オプションの設定を指定できるだけではありません。Docker Machine を使えば、 Swarm マスタをどのように作成するかも指定できます。 ``--swarm-strategy`` フラグを使うと、Docker Swarm が使うべき :doc:`スケジューリング・ストラテジ </swarm/scheduler/strategy>` （デフォルトは ``spread`` ストラテジ ）を指定できます。また前述した ``--engine-opt`` オプションで指定したように、 ``--swarm-opt`` オプションで一般的なオプションを設定できますが、違いは ``swarm manage`` コマンドに対するオプション（マスタ・ノードの起動時に使用）を指定するものです。これらの機能設定を使うことで、パワーユーザであれば heartbeat 間隔の調整や、Swarm のオーバーコミット・リソースの調整に活用できるでしょう。
 
 .. If you’re not sure how to configure these options, it is best to not specify configuration at all. Docker Machine will choose sensible defaults for you and you won’t have to worry about it.
 

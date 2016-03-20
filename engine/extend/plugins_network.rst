@@ -5,7 +5,7 @@
 
 .. Docker network driver plugins
 
-.. _docker-network-deriver-plugins:
+.. _docker-network-driver-plugins:
 
 ========================================
 Docker ネットワーク・プラグイン
