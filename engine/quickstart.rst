@@ -11,9 +11,9 @@
 
 .. _docker-engine-quickstart:
 
-=============================
+========================================
 Docker Engine クイックスタート
-=============================
+========================================
 
 .. This quickstart assumes you have a working installation of Docker Engine. To verify Engine is installed and configured, use the following command:
 
@@ -36,7 +36,7 @@ Docker Engine のシステム設定によっては、各 ``docker`` コマンド
 
 .. For more information about installing Docker Engine or sudo configuration, refer to the installation instructions for your operating system.
 
-Docker Engine のインストールや ``sudo`` 設定に関しては、 :doc:`インストール <engine/installation>` を参照ください。
+Docker Engine のインストールや ``sudo`` 設定に関しては、 :doc:`インストール <engine/installation/index>` を参照ください。
 
 
 .. Download a pre-built image
