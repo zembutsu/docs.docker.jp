@@ -33,8 +33,8 @@ Docker レジストリ
 
 .. _registry-why-use-it:
 
-なぜ使うのですか？
-====================
+何のために使うのですか？
+==============================
 
 .. You should use the Registry if you want to:
 

@@ -17,7 +17,7 @@ Docker Engine クイックスタート
 
 .. This quickstart assumes you have a working installation of Docker Engine. To verify Engine is installed and configured, use the following command:
 
-このクイックスタートを始めるには、Docker Engine をインストール完了しているのが前提です。Docker Engine のインストール・設定情報を確認するには、次のコマンドを実行します。
+このクイックスタートを始めるにあたり、Docker Engine はインストールを終えているのを前提にしています。Docker Engine がインストール済み・設定済みかを確認するには、次のコマンドを実行します。
 
 ..    # Check that you have a working install
 
@@ -28,11 +28,11 @@ Docker Engine クイックスタート
 
 .. If you have a successful install, the system information appears. If you get docker: command not found or something like /var/lib/docker/repositories: permission denied you may have an incomplete Docker installation or insufficient privileges to access Engine on your machine. With the default installation of Engine docker commands need to be run by a user that is in the docker group or by the root user.
 
-インストールに成功しているのであれば、システム情報が表示されます。もしも ``docker: command not found`` や ``/var/lib/docker/repositories: permission denied`` のような表示が出る場合は、Docker のインストールが不完全か、コマンドがマシン上の Docker Engine に対してアクセスする権限がありません。標準の Docker Engine インストールでは、``docker`` コマンドを実行するには ``docker`` グループのユーザ、もしくは ``root`` の必要があります。
+インストールに成功しているのであれば、システム情報が表示されます。もしも ``docker: command not found`` （訳：docker コマンドが見つかりません）や ``/var/lib/docker/repositories: permission denied`` （訳：権限がありませんｎ）のような表示が出る場合は、Docker のインストールが不完全か、コマンドでマシン上の Docker Engine にアクセスする権限がありません。Docker Engine の標準インストールでは、``docker`` コマンドを実行するには ``docker`` グループに所属するユーザ、もしくは ``root`` の必要があります。
 
 .. Depending on your Engine system configuration, you may be required to preface each docker command with sudo. One way to avoid having to use sudo with the docker commands is to create a Unix group called docker and add users that will be entering docker commands to the ‘docker’ group.
 
-Docker Engine はシステム設定の依存状態により、各 ``docker`` コマンドの前に ``sudo`` が必要になる場合があります。``docker`` コマンドで ``sudo`` を使わないようにする方法の１つに、``docker`` という Unix グループを作成し、ユーザを `docker` グループに追加し、``docker`` コマンドを使えるようにします。
+Docker Engine のシステム設定によっては、各 ``docker`` コマンドの前に ``sudo`` が必要になる場合があります。``docker`` コマンドで ``sudo`` を使わないようにする方法の１つに、``docker`` という Unix グループを作成し、ユーザを `docker` グループに追加して ``docker`` コマンドを使えるようにできます。
 
 .. For more information about installing Docker Engine or sudo configuration, refer to the installation instructions for your operating system.
 
@@ -52,12 +52,12 @@ Docker Engine のインストールや ``sudo`` 設定に関しては、 :doc:`�
 
 .. code-block:: bash
 
-   # ubuntu イメージのダウンロード
+   # ubuntu イメージのダウンロード（pull）
    $ docker pull ubuntu
 
 .. This downloads the ubuntu image by name from Docker Hub to a local image cache. To search for an image, run docker search. For more information, go to: Searching images
 
-このコマンドは `Docker Hub <https://hub.docker.com/>`_ 上の ``ubuntu`` イメージをローカルのイメージ・キャッシュにダウンロードします。  イメージを検索するには ``docker run`` コマンドを実行します。詳しい情報は :ref:`searching-for-images` をご覧ください。
+このコマンドは `Docker Hub <https://hub.docker.com/>`_ 上の ``ubuntu`` イメージをローカルのイメージ・キャッシュにダウンロードします。  イメージを検索するには ``docker search`` コマンドを実行します。詳しい情報は :ref:`searching-for-images` をご覧ください。
 
 .. Note: When the image is successfully downloaded, you see a 12 character hash 539c0211cd76: Download complete which is the short form of the Image ID. These short Image IDs are the first 12 characters of the full image ID. To view this information, run docker inspect or docker images --no-trunc=true.
 
@@ -67,7 +67,7 @@ Docker Engine のインストールや ``sudo`` 設定に関しては、 :doc:`�
 
 .. To display a list of downloaded images, run docker images.
 
-ダウンロードしたイメージの一覧を確認するには ``docker images`` を実行します。
+ダウンロードしたイメージの一覧を表示するには ``docker images`` を実行します。
 
 .. Running an interactive shell
 
@@ -76,7 +76,7 @@ Docker Engine のインストールや ``sudo`` 設定に関しては、 :doc:`�
 
 .. To run an interactive shell in the Ubuntu image:
 
-次のようにして、Ubuntu イメージの対話型シェルを実行します：
+Ubuntu イメージの対話型シェルを使うには、次のように実行します：
 
 .. code-block:: bash
 
@@ -84,7 +84,7 @@ Docker Engine のインストールや ``sudo`` 設定に関しては、 :doc:`�
 
 .. The -i flag starts an interactive container. The -t flag creates a pseudo-TTY that attaches stdin and stdout. The image is ubuntu. The command /bin/bash starts a shell you can log in.
 
-``-i`` フラグは対話型 (interactive) のコンテナを起動します。``-t`` フラグは疑似ターミナル (pseudo-TTY) を起動し、``stdin`` と ``stdout`` （標準入出力）をアタッチ（接続）します。イメージは ``ubuntu`` です。コマンド ``/bin/bash`` を使ってログインできます。
+``-i`` フラグは対話型 (interactive；インタラクティブ) のコンテナを起動します。``-t`` フラグは疑似ターミナル (pseudo-TTY) を起動し、``stdin`` と ``stdout`` （標準入出力）をアタッチ（接続）します。イメージ名は ``ubuntu`` です。コマンド ``/bin/bash`` を使ってログインできます。
 
 .. To detach the tty without exiting the shell, use the escape sequence Ctrl-p + Ctrl-q. The container will continue to exist in a stopped state once exited. To list all containers, stopped and running, use the docker ps -a command.
 
@@ -103,7 +103,7 @@ Docker を他のホスト・ポートや Unix ソケットに接続
 
 .. With -H it is possible to make the Docker daemon to listen on a specific IP and port. By default, it will listen on unix:///var/run/docker.sock to allow only local connections by the root user. You could set it to 0.0.0.0:2375 or a specific host IP to give access to everybody, but that is not recommended because then it is trivial for someone to gain root access to the host where the daemon is running.
 
-``-H`` オプションを使うと、Docker デーモンは指定した IP アドレスとポートをリッスンします（ポートを開きます）。標準では、``unis:///var/run/docker.sock`` をリッスンし、ローカルの *root* ユーザのみ接続できます。これを ``0.0.0.0:2375`` や特定のホスト IP を指定することで、誰でもアクセス可能にできましたが、**推奨されていません**。理由は、デーモンが稼働しているホスト上の root アクセスを誰もが簡単に得られるためです。
+Docker デーモンで ``-H`` オプション使用すると、指定した IP アドレスとポートをリッスンします（ポートを開きます）。標準では、``unis:///var/run/docker.sock`` をリッスンし、ローカルの *root* ユーザのみ接続できます。これを ``0.0.0.0:2375`` や特定のホスト IP を指定することで、誰でもアクセス可能にできましたが、**推奨されていません**。理由は、デーモンが稼働しているホスト上の root アクセスを誰もが簡単に得られるためです。
 
 .. Similarly, the Docker client can use -H to connect to a custom port. The Docker client will default to connecting to unix:///var/run/docker.sock on Linux, and tcp://127.0.0.1:2376 on Windows.
 
@@ -127,14 +127,14 @@ Docker を他のホスト・ポートや Unix ソケットに接続
     tcp://host:2375/path -> TCP connection on host:2375 and prepend path to all requests
     unix://path/to/socket -> Unix socket located at path/to/socket
 
-* ``tcp://`` → ``127.0.0.1`` に TCP 接続時、TLS 暗号化が有効であればポート ``2376`` を、通信がプレーンテキストの場合はポート ``2375`` を使います。
+* ``tcp://`` → ``127.0.0.1`` に TCP 接続時、TLS 暗号化が有効であればポート ``2376`` を、通信がプレーンテキストの場合（暗号化していない）はポート ``2375`` を使います。
 * ``tcp://host:2375`` → 対象ホスト:2375 に TCP 接続します。
 * ``tcp://host:2375/path`` → 対象ホスト:2375 に TCP 接続し、あらかじめリクエストのパスを追加します。
 * ``unix://path/to/socket`` → ``path/to/socket`` にある Unix ソケットに接続します。
 
 .. -H, when empty, will default to the same value as when no -H was passed in.
 
-``-H`` の後に何も指定しない場合は、標準では ``-H`` を指定していないのと同じです。
+``-H`` の後に何も指定しないと、標準では ``-H`` を指定していないのと同じ挙動になります。
 
 .. -H also accepts short form for TCP bindings:
 
@@ -205,7 +205,7 @@ Docker をデーモン・モードで起動する：
    # とても便利な長時間動作プロセスの開始
    $ JOB=$(docker run -d ubuntu /bin/sh -c "while true; do echo Hello world; sleep 1; done")
    
-   # これまでのジョブの出力を収拾
+   # これまでのジョブの出力を収集
    $ docker logs $JOB
    
    # ジョブの停止(kill)
@@ -277,7 +277,7 @@ TCP ポートにサービスを割り当て
 
 .. To save the current state of a container as an image:
 
-コンテナの現在の状態をイメージとして保存します。
+現在のコンテナの状態をイメージとして保存するには、 ``docker commit`` コマンドを使います。
 
 .. code-block:: bash
 
@@ -285,7 +285,7 @@ TCP ポートにサービスを割り当て
 
 .. When you commit your container, Docker Engine only stores the diff (difference) between the source image and the current state of the container's image. To list images you already have, run:
 
-コンテナをコミットするというのは、Docker Engine は元になったイメージと現在のコンテナの差分情報のみを保存します。どのようなイメージがあるかを確認するには、次のコマンドを実行します。
+コンテナのコミットとは、元になったイメージと現在のコンテナの差分情報のみを、Docker Engine が保存します。どのようなイメージがあるかを確認するには、次のコマンドを実行します。
 
 .. code-block:: bash
 
@@ -294,7 +294,7 @@ TCP ポートにサービスを割り当て
 
 .. You now have an image state from which you can create new instances.
 
-コミットによって新しいイメージを手に入れました。これは、新しいインスタンス（訳者注：コンテナのこと）を作成可能なものです。
+コミットによって新しいイメージを手に入れました。これを使い、新しいインスタンス（訳者注：コンテナのこと）を作成可能でうｓ。
 
 .. Where to go next
 
