@@ -14,11 +14,11 @@ Dockerfile リファレンス
 
 .. Docker can build images automatically by reading the instructions from a Dockerfile. A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image. Using docker build users can create an automated build that executes several command-line instructions in succession.
 
-Docker は ``Dockerfile`` から命令を読み込むことで、自動的にイメージを構築できます。 ``Dockerfile`` はテキスト文章であり、ユーザはコマンド行でイメージを作り上げる命令を全て記述します。ユーザが ``docker build`` を使うと、複数のコマンド行の命令を連続実行し、イメージを自動構築します。
+Docker は ``Dockerfile`` から命令を読み込み、自動的にイメージを構築できます。 ``Dockerfile`` はテキスト形式のドキュメントであり、コマンドライン上でイメージを作り上げる命令を全て記述します。ユーザあ ``docker build`` を使うと、複数のコマンド行の命令を順次実行し、イメージを自動構築します。
 
 .. This page describes the commands you can use in a Dockerfile. When you are done reading this page, refer to the Dockerfile Best Practices for a tip-oriented guide.
 
-このページは ``Dockerfile`` で利用可能な命令を説明します。このページを読み終えたら、より便利に使うための ``Dockerfile`` の :doc:`ベスト・プラクティス </engine/userguide/eng-image/dockerfile_best-practice>` をご覧ください。
+このページは ``Dockerfile`` 内で利用可能な命令について説明します。このページを読み終えたら、より便利に使うための ``Dockerfile`` の :doc:`ベスト・プラクティス </engine/userguide/eng-image/dockerfile_best-practice>` をご覧ください。
 
 .. Usage
 
@@ -27,7 +27,7 @@ Docker は ``Dockerfile`` から命令を読み込むことで、自動的にイ
 
 .. The docker build command builds an image from a Dockerfile and a context. The build’s context is the files at a specified location PATH or URL. The PATH is a directory on your local filesystem. The URL is a the location of a Git repository.
 
-``docker build`` コマンドは ``Dockerfile`` と *コンテクスト(context)* に従いイメージを構築します。構築のコンテクストとは、ファイルを示す ``PATH``  や ``URL`` の場所です。 ``PATH`` はローカルのファイルシステム上のディレクトリです。 ``URL`` は Git レポジトリの場所です。
+``docker build`` コマンドは ``Dockerfile`` と *コンテクスト(context；内容物の意味)* に従いイメージを構築します。構築のコンテクストとは、ファイルを示す ``PATH``  や ``URL`` の場所です。 ``PATH`` はローカルのファイルシステム上のディレクトリです。 ``URL`` は Git レポジトリの場所です。
 
 .. A context is processed recursively. So, a PATH includes any subdirectories and the URL includes the repository and its submodules. A simple build command that uses the current directory as context:
 
@@ -486,7 +486,7 @@ CMD
 
 .. The main purpose of a CMD is to provide defaults for an executing container. These defaults can include an executable, or they can omit the executable, in which case you must specify an ENTRYPOINT instruction as well.
 
-** ``CMD`` の主な目的は、コンテナ実行時のデフォルトを提供します。 ** デフォルトには、実行可能なコマンドが含まれていたり、あるいは省略されるかもしれません。省略時は ``ENTRYPOINT`` 命令で同様に指定する必要があります。
+``CMD`` の主な目的は、 ** コンテナ実行時のデフォルトを提供します** 。 デフォルトには、実行可能なコマンドが含まれていたり、あるいは省略されるかもしれません。省略時は ``ENTRYPOINT`` 命令で同様に指定する必要があります。
 
 ..     Note: If CMD is used to provide default arguments for the ENTRYPOINT instruction, both the CMD and ENTRYPOINT instructions should be specified with the JSON array format.
 
