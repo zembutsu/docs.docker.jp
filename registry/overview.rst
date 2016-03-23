@@ -26,7 +26,7 @@ Docker Registry ドキュメントには、以下のトピックがあります�
 * :doc:`deploying`
 * :doc:`configuration`
 * :doc:`notifications`
-* :doc:`recipes`
+* :doc:`recipes/index`
 * :doc:`help`
 
 .. seealso:: 

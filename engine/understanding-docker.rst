@@ -25,7 +25,7 @@ Docker はアプリケーションを開発（developing）・移動（shipping�
 
 .. Docker does this by combining kernel containerization features with workflows and tooling that help you manage and deploy your applications
 
-Docker は、カーネルのコンテナ化機能がもたらすワークフローと手法（ツール）を組みあわせます。そのため、アプリケーションの管理とデプロイの手助けになるでしょう。
+Docker は、カーネルのコンテナ化機能（containerization；コンテナライゼーション）がもたらすワークフローと手法（ツール）を組みあわせます。そのため、アプリケーションの管理とデプロイの手助けになるでしょう。
 
 .. At its core, Docker provides a way to run almost any application securely isolated in a container. The isolation and security allow you to run many containers simultaneously on your host. The lightweight nature of containers, which run without the extra load of a hypervisor, means you can get more out of your hardware.
 
@@ -401,3 +401,8 @@ Docker ユーザ・ガイド
 .. Learn Docker in depth.
 
 :doc:`さらに深く学びましょう。 </engine/userguide/index>` 
+
+.. seealso:: 
+   Understand the architecture
+      https://docs.docker.com/engine/understanding-docker/
+
