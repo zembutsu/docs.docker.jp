@@ -14,6 +14,12 @@
 Ubuntu
 ==============================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Docker is supported on these Ubuntu operating systems:
 
 Docker は以下のオペレーティング・システムをサポートしています。
@@ -362,7 +368,7 @@ docker グループの作成
 
 .. warning::
 
-   ``docker`` グループは ``root`` ユーザ相当です。システム上のセキュリティに対する影響の詳細は、 :ref:`Docker デーモンが直面する攻撃 <docker-daemon-attach-surface>` をご覧ください。
+   ``docker`` グループは ``root`` ユーザ相当です。システム上のセキュリティに対する影響の詳細は、 :ref:`Docker デーモンが直面する攻撃 <docker-daemon-attack-surface>` をご覧ください。
 
 .. To create the docker group and add your user:
 
@@ -708,4 +714,8 @@ Docker パッケージと必要の無い依存関係をアンインストール�
 
 ユーザが作成した設定ファイルは、手動で削除する必要があります。
 
+.. seealso:: 
+
+   Installation on Ubuntu
+      https://docs.docker.com/engine/installation/linux/ubuntulinux/
 

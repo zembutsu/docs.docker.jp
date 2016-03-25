@@ -14,6 +14,12 @@
 Arch Linux
 ==============================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Installing on Arch Linux can be handled via the package in community:
 
 Arch Linux におけるインストールは、コミュニティが扱うパッケージを使います。
@@ -163,3 +169,7 @@ Docker パッケージと必要の無い依存関係をアンインストール�
 
 ユーザが作成した設定ファイルは、手動で削除する必要があります。
 
+.. seealso:: 
+
+   Installation on Arch Linux
+      https://docs.docker.com/engine/installation/linux/archlinux/

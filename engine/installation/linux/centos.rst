@@ -14,6 +14,12 @@
 CentOS
 ==============================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Docker runs on CentOS 7.X. An installation on other binary compatible EL7 distributions such as Scientific Linux might succeed, but Docker does not test or support Docker on these distributions.
 
 Docker は CentOS 7.X で動作します。Scientific Linux のような EL7 バイナリ互換のディストリビューションでもインストールは可能かもしれませんが、Docker はこれらのディストリビューションでテストしておらず、サポートも行いません。
@@ -294,3 +300,7 @@ Docker ソフトウェアを ``yum`` でアンインストール可能です。
 
 4. ユーザが作成した設定ファイルを探して削除します。
 
+.. seealso:: 
+
+   Install on CentOS
+      https://docs.docker.com/engine/installation/linux/centos

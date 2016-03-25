@@ -14,6 +14,12 @@
 Fedora
 ==============================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Docker is supported on Fedora version 22 and 23. This page instructs you to install using Docker-managed release packages and installation mechanisms. Using these packages ensures you get the latest release of Docker. If you wish to install using Fedora-managed packages, consult your Fedora release documentation for information on Fedora’s Docker support.
 
 Docker は Fedora バージョン 22 と 23 をサポートします。このページでは Docker が管理しているパッケージとインストール手法を使ってインストールします。これらパッケージを使い、Docker の最新リリースを入手します。もし Fedora が管理するパッケージを使いたい場合は、Fedora の Docker サポートに関する Fedora リリース情報のドキュメントをお調べください。
@@ -315,3 +321,7 @@ Docker ソフトウェアを ``dnf`` でアンインストール可能です。
 
 4. ユーザが作成した設定ファイルを探して削除します。
 
+.. seealso:: 
+
+   Install on Fedora
+      https://docs.docker.com/engine/fedora/

@@ -14,6 +14,12 @@
 Debian
 ==============================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Docker is supported on these Debian operating systems:
 
 Docker は以下の Debian バージョンをサポートしています。
@@ -290,3 +296,8 @@ Docker パッケージと必要の無い依存関係をアンインストール�
 .. Continue with the User Guide.
 
 :doc:`ユーザ・ガイド </engine/userguide/index>` へ進みましょう。
+
+.. seealso:: 
+
+   Installation on Debian
+      https://docs.docker.com/engine/installation/linux/debian/

@@ -10,6 +10,12 @@
 
 .. FrugalWare
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 ==============================
 FrugalWare
 ==============================
@@ -121,3 +127,8 @@ Docker パッケージと必要の無い依存関係をアンインストール�
 .. You must delete the user created configuration files manually.
 
 ユーザが作成した設定ファイルは、手動で削除する必要があります。
+
+.. seealso:: 
+
+   Installation on FrugalWare
+      https://docs.docker.com/engine/installation/linux/frugalware/

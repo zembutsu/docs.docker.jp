@@ -14,6 +14,12 @@
 Oracle Linux
 ==============================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Docker is supported Oracle Linux 6 and 7. You do not require an Oracle Linux Support subscription to install Docker on Oracle Linux.
 
 Docker は Oracle Linux 6 と 7 をサポートします。Docker Linux に Docker をインストールするにあたり、Oracle Linux サポートのサブスクリプションは不要です。
@@ -323,3 +329,7 @@ Oracle Linux 7 で btrfs ストレージ・エンジンを使う場合は、 ``/
 
 Oracle Linux サポート・サブスクリプションをお持ちでなければ、 `Oracle Linux Forum <https://community.oracle.com/community/server_%26_storage_systems/linux/oracle_linux>`_ コミュニティのサポートをご利用ください。
 
+.. seealso:: 
+
+   Installation on Oracle Linux
+      https://docs.docker.com/engine/installation/linux/oracle/

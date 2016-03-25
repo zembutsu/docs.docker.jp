@@ -14,6 +14,12 @@
 openSUSE and SUSE Linux Enterprise
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. This page provides instructions for installing and configuring the lastest Docker Engine software on openSUSE and SUSE systems.
 
 このページは最新の Docker エンジン・ソフトウェアを openSUSE と SUSE システムにインストール・設定する方法を紹介します。
@@ -207,4 +213,8 @@ openSUSE または SUSE Linux Enterprise での Docker に関するより詳し�
 
 :doc:`ユーザガイド </engine/userguide/index>` に進みます。
 
+.. seealso:: 
+
+   Installation on openSUSE and SUSE Linux Enterprise
+      https://docs.docker.com/engine/installation/linux/SUSE/
 

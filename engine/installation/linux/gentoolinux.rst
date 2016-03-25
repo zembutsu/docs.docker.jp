@@ -14,6 +14,12 @@
 Gentoo
 ==============================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Installing Docker on Gentoo Linux can be accomplished using one of two ways: the official way and the docker-overlay way.
 
 Gentoo Linux に Docker をインストールするには、２つの方法があります。 **公式** の方法と、 ``docker-overlay`` を使う方法です。
@@ -211,4 +217,8 @@ Docker パッケージと必要の無い依存関係をアンインストール�
 
 ユーザが作成した設定ファイルは、手動で削除する必要があります。
 
+.. seealso:: 
+
+   Installation on Gentoo
+      https://docs.docker.com/engine/installation/linux/gentoolinux/
 

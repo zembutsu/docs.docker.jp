@@ -14,6 +14,12 @@
 CRUX Linux
 ==============================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Installing on CRUX Linux can be handled via the contrib ports from James Mills and are included in the official contrib ports:
 
 CRUX Linux でのインストールは、 `James Mills <http://prologic.shortcircuit.net.au/>`_ の contrib ports によるものと、オフィシャルの `contrib <http://crux.nu/portdb/?a=repo&q=contrib>`_ ports が使えます。
@@ -150,4 +156,7 @@ Docker パッケージをアンインストールします。
 
 サポートの連絡は `CRUX メーリングリスト <http://crux.nu/Main/MailingLists>`_ か、 `FreeNode <http://freenode.net/>`_ IRC ネットワークの CRUX `IRC チャンネル <http://crux.nu/Main/IrcChannels>`_ に参加ください。
 
+.. seealso:: 
 
+   Installation on CRUX Linux
+      https://docs.docker.com/engine/installation/linux/cruxlinux/

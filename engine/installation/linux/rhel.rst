@@ -14,6 +14,12 @@
 Red Hat Enterprise Linux
 ==============================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Docker is supported on Red Hat Enterprise Linux 7. This page instructs you to install using Docker-managed release packages and installation mechanisms. Using these packages ensures you get the latest release of Docker. If you wish to install using Red Hat-managed packages, consult your Red Hat release documentation for information on Red Hat’s Docker support.
 
 Docker は Red Hat Enterprise Linux 7 でサポートされています。このページでは Docker が管理しているパッケージとインストール手法を使ってインストールします。これらパッケージを使い、Docker の最新リリースを入手します。もし Red Hat が管理するパッケージを使いたい場合は、Red Hat の Docker サポートに関する情報のドキュメントをお調べください。
@@ -288,3 +294,8 @@ Docker ソフトウェアを yum でアンインストール可能です。
 ..    Locate and delete any user-created configuration files.
 
 4. ユーザが作成した設定ファイルを探して削除します。
+
+.. seealso:: 
+
+   Installation on Red Hat Enterprise Linux
+      https://docs.docker.com/engine/installation/linux/rhel/
