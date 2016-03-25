@@ -27,6 +27,7 @@ Linux ディストリビューション
 .. toctree::
    :maxdepth: 3
 
+   linux/index.rst
    linux/ubuntulinux.rst
    linux/rhel.rst
    linux/centos.rst
@@ -45,8 +46,7 @@ Linux ディストリビューション
 .. toctree::
    :maxdepth: 3
 
-   cloud/index.rst
-   cloud/cloud.rst
+   cloud/overview.rst
    cloud/cloud-ex-aws.rst
    cloud/cloud-ex-machine-ocean.rst
 

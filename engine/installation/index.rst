@@ -11,12 +11,18 @@
 .. Install Docker Engine
 
 ==============================
-Docker エンジンのインストール
+Docker Engine のインストール
 ==============================
+
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 2
+       :local:
 
 .. Docker Engine is supported on Linux, Cloud, Windows, and OS X. Installation instructions are available for the following:
 
-Docker エンジンは Linux、クラウド、Windows、OS X でサポートされています。インストール方法は、以下をご覧ください。
+Docker Engine は Linux、クラウド、Windows、OS X でサポートされています。インストール方法は、以下の各ページをご覧ください。
 
 .. On Linux
 
@@ -39,16 +45,16 @@ Linux
 
 .. If your linux distribution is not listed above, don’t give up yet. To try out Docker on a distribution that is not listed above, go here: Installation from binaries.
 
-Linux ディストリビューションの一覧になくても、あきらめないでください。一覧になくても、Docker を試せます。 :doc:`バイナリをインストール <binaries>` へ移動します。
+この Linux ディストリビューションの一覧になくても、あきらめないでください。一覧になくても Docker を試せます。 :doc:`バイナリをインストール <binaries>` するページに移動しましょう。
 
 .. On Cloud
 
 クラウド
 ==========
 
-* :doc:`インストール方法を選択 <cloud/cloud>`
-* :doc:`例：クラウド・プロバイダ上で手動インストール <cloud/cloud>`
-* :doc:`例：Docker Machine でクラウド・ホスト作成 <cloud/cloud>`
+* :doc:`インストール方法を選択 <cloud/overview>`
+* :doc:`例：クラウド・プロバイダ上で手動インストール <cloud/cloud-ex-aws>`
+* :doc:`例：Docker Machine でクラウド・ホスト作成 <cloud/cloud-ex-machine-ocean>`
 
 （以下v.1.9 用ドキュメント；削除予定）
 
@@ -69,8 +75,8 @@ OSX と Windows
 
 .. The Docker Archives
 
-Docker アーカイブ
-====================
+Docker ドキュメントのアーカイブ
+========================================
 
 .. Instructions for installing prior releases of Docker can be found in the following docker archives: Docker v1.7, Docker v1.6, Docker v1.5, and Docker v1.4.
 
@@ -85,7 +91,8 @@ Docker アーカイブ
 * `サポート（英語） <https://www.docker.com/support/>`_
 * `トレーニング（英語） <https://training.docker.com//>`_
 
+.. seealso:: 
 
-
-
+   Install
+      https://docs.docker.com/engine/installation/
 
