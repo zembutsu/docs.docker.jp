@@ -26,7 +26,7 @@ Registry の設定は YAML 形式のファイルをベースとしており、�
 
 .. In a typical setup where you run your Registry from the official image, you can specify a configuration variable from the environment by passing -e arguments to your docker run stanza, or from within a Dockerfile using the ENV instruction.
 
-Regisry の 一般的なセットアップは公式イメージを使う方法です。 ``docker run`` を実行する時、 ``-e`` オプションを使うことで環境変数を通した設定が可能となります。あるいは、 Dockerfile の中で ``ENV`` 命令を使うこともできます。
+Registry の 一般的なセットアップは公式イメージを使う方法です。 ``docker run`` を実行する時、 ``-e`` オプションを使うことで環境変数を通した設定が可能となります。あるいは、 Dockerfile の中で ``ENV`` 命令を使うこともできます。
 
 .. To override a configuration option, create an environment variable named REGISTRY_variable where variable is the name of the configuration option and the _ (underscore) represents indention levels. For example, you can configure the rootdirectory of the filesystem storage backend:
 
@@ -327,7 +327,7 @@ log
 
 .. list-table::
    :header-rows: 1
-   
+
    * - パラメータ
      - 必須
      - 説明
@@ -370,7 +370,7 @@ hooks
 
 .. loglevel
 
-.. _registry-loglefel:
+.. _registry-loglevel:
 
 loglevel
 ==========
@@ -519,7 +519,7 @@ maintenance
 
 .. list-table:
    :header-rows: 1
-   
+
    * - パラメータ
      - 必須
      - 説明
@@ -657,13 +657,13 @@ silly
 
 .. list-table::
    :header-rows: 1
-   
+
    * - パラメータ
      - 必須
      - 説明
    * - ``realm``
      - はい
-     - レジストリ・サーバ認証は realm 
+     - レジストリ・サーバ認証は realm
    * - ``service``
      - はい
      - サービスが認証された状態
@@ -687,13 +687,13 @@ token
 
 .. list-table::
    :header-rows: 1
-   
+
    * - パラメータ
      - 必須
      - 説明
    * - ``realm``
      - はい
-     - レジストリ・サーバ認証は realm 
+     - レジストリ・サーバ認証は realm
    * - ``service``
      - はい
      - サービスが認証された状態
@@ -731,13 +731,13 @@ htpasswd
 
 .. list-table::
    :header-rows: 1
-   
+
    * - パラメータ
      - 必須
      - 説明
    * - ``realm``
      - はい
-     - レジストリ・サーバ認証は realm 
+     - レジストリ・サーバ認証は realm
    * - ``service``
      - はい
      - サービスが認証された状態
@@ -793,7 +793,7 @@ middleware
 
 .. list-table::
    :header-rows: 1
-   
+
    * - パラメータ
      - 必須
      - 説明
@@ -842,7 +842,7 @@ reporting
 
 .. list-table::
    :header-rows: 1
-   
+
    * - パラメータ
      - 必須
      - 説明
@@ -865,7 +865,7 @@ reporting
 
 .. list-table::
    :header-rows: 1
-   
+
    * - パラメータ
      - 必須
      - 説明
@@ -1196,4 +1196,3 @@ middleware:
              duration: 60
 
     Note: Cloudfront keys exist separately to other AWS keys. See the documentation on AWS credentials for more information.
-

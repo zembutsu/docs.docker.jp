@@ -8,7 +8,7 @@
 
 .. engine security/trust toc
 
-.. _engine-security-tsust-toc:
+.. _engine-security-trust-toc:
 
 信頼のあるイメージを使う
 ========================
@@ -17,7 +17,7 @@
 
 .. toctree::
    :maxdepth: 3
-   
+
    content_trust.rst
    trust_automation.rst
    deploying_notary.rst

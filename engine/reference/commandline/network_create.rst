@@ -16,9 +16,9 @@ network create
 .. code-block:: bash
 
    Usage:  docker network create [OPTIONS] NETWORK-NAME
-   
+
    Creates a new network with a name specified by the user
-   
+
    --aux-address=map[]      Auxiliary ipv4 or ipv6 addresses used by network driver
    -d --driver=DRIVER       Driver to manage the Network bridge or overlay. The default is bridge.
    --gateway=[]             ipv4 or ipv6 Gateway for the master subnet
@@ -144,7 +144,7 @@ network create
      --ip-range=192.168.1.0/24
      --aux-address a=192.168.1.5 --aux-address b=192.168.1.6
      --aux-address a=192.170.1.5 --aux-address b=192.170.1.6
-     my-multihost-newtork
+     my-multihost-network
 
 .. Be sure that your subnetworks do not overlap. If they do, the network create fails and Engine returns an error.
 
@@ -163,7 +163,7 @@ network create
 
 .. list-table::
    :header-rows: 1
-   
+
    * - オプション
      -  同等
      - 説明
@@ -226,4 +226,3 @@ network create
 * :doc:`network ls <network_ls>`
 * :doc:`network rm <network_rm>`
 * :doc:`Docker コンテナ・ネットワークの理解 </engine/userguide/networking/dockernetworks>`
-

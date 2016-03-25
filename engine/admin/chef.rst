@@ -53,18 +53,18 @@ Chef を使う
     Use resources shipped in cookbook in a recipe, the same way you’d use core Chef resources (file, template, directory, package, etc).
 
 * 自分の cookbook の metadata.rb に ``depends 'docker', '~> 2.0'`` を追加します。
-* cookbook のレシピに送信するリソースを指定します。同様にコア Cherf リソースも使えます（file、template、directory、package 等）。
+* cookbook のレシピに送信するリソースを指定します。同様にコア Chef リソースも使えます（file、template、directory、package 等）。
 
 .. code-block:: bash
 
    docker_service 'default' do
      action [:create, :start]
    end
-   
+
    docker_image 'busybox' do
      action :pull
    end
-   
+
    docker_container 'an echo server' do
      repo 'busybox'
      port '1234:1234'
@@ -87,7 +87,7 @@ Chef を使う
      tag 'latest'
      action :pull
    end
-   
+
    # Run container exposing ports
    docker_container 'my_nginx' do
      repo 'nginx'
@@ -99,5 +99,3 @@ Chef を使う
      env 'FOO=bar'
      subscribes :redeploy, 'docker_image[nginx]'
    end
-
-

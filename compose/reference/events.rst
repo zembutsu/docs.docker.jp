@@ -9,7 +9,7 @@
 
 .. events
 
-.. _compse-events:
+.. _compose-events:
 
 =======================================
 events
@@ -18,7 +18,7 @@ events
 .. code-block:: bash
 
    Usage: events [options] [SERVICE...]
-   
+
    Options:
        --json      Output events as a stream of json objects
 
@@ -39,4 +39,3 @@ events
        "image": "alpine:edge",
        "time": "2015-11-20T18:01:03.615550",
    }
-

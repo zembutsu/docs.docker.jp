@@ -118,7 +118,7 @@ constraint （制限）フィルタを使う
 
 .. To specify custom label for a node, pass a list of --label options at docker startup time. For instance, to start node-1 with the storage=ssd label:
 
-ノードに対してカスタム・ラベルを指定するには、 ``docker`` 起動時に ``--lable`` オプションのリストを指定します。例として、 ``node-1`` に ``storage=ssd`` ラベルを付けて起動します。
+ノードに対してカスタム・ラベルを指定するには、 ``docker`` 起動時に ``--label`` オプションのリストを指定します。例として、 ``node-1`` に ``storage=ssd`` ラベルを付けて起動します。
 
 .. code-block:: bash
 
@@ -150,7 +150,7 @@ constraint （制限）フィルタを使う
 
    $ docker tcp://<manager_ip:manager_port>  run -d -P -e constraint:storage==ssd --name db mysql
    f8b693db9cd6
-   
+
    $ docker tcp://<manager_ip:manager_port>  ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    f8b693db9cd6        mysql:latest        "mysqld"            Less than a second ago   running             192.168.0.42:49178->3306/tcp    node-1      db
@@ -168,7 +168,7 @@ constraint （制限）フィルタを使う
 
    $ docker tcp://<manager_ip:manager_port> run -d -P -e constraint:storage==disk --name frontend nginx
    963841b138d8
-   
+
    $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    963841b138d8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.43:49177->80/tcp      node-2      frontend
@@ -180,7 +180,7 @@ constraint （制限）フィルタを使う
 
 .. Finally, build args can be used to apply node constraints to a docker build. Again, you'll avoid flash drives.
 
-最後に、 ``docker biuld`` の構築時の引数としてもノード制限を利用できます。今度もフラッシュ・ドライブを避けてみましょう。
+最後に、 ``docker build`` の構築時の引数としてもノード制限を利用できます。今度もフラッシュ・ドライブを避けてみましょう。
 
 .. code-block:: bash
 
@@ -207,7 +207,7 @@ constraint （制限）フィルタを使う
     ---> cd70495a1514
    Removing intermediate container 68671d4a17b0
    Successfully built cd70495a1514
-   
+
    $ docker images
    REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
    dockerswarm/swarm   master              8c2c56438951        2 days ago          795.7 MB
@@ -278,7 +278,7 @@ health フィルタを使う
 
    $ docker tcp://<manager_ip:manager_port>  run -d -p 80:80 --name frontend nginx
    87c4376856a8
-   
+
    $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    87c4376856a8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:80->80/tcp         node-1      frontend
@@ -291,7 +291,7 @@ health フィルタを使う
 
    $ docker tcp://<manager_ip:manager_port> run -d --name logger -e affinity:container==frontend logger
    87c4376856a8
-   
+
    $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    87c4376856a8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:80->80/tcp         node-1      frontend
@@ -336,7 +336,7 @@ health フィルタを使う
    $ docker tcp://<manager_ip:manager_port> run -d --name redis6 -e affinity:image==redis redis
    $ docker tcp://<manager_ip:manager_port> run -d --name redis7 -e affinity:image==redis redis
    $ docker tcp://<manager_ip:manager_port> run -d --name redis8 -e affinity:image==redis redis
-   
+
    $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    87c4376856a8        redis:latest        "redis"             Less than a second ago   running                                             node-1      redis1
@@ -357,7 +357,7 @@ health フィルタを使う
    $ docker images
    REPOSITORY                         TAG                       IMAGE ID            CREATED             VIRTUAL SIZE
    redis                              latest                    06a1f75304ba        2 days ago          111.1 MB
-   
+
    $ docker tcp://<manager_ip:manager_port> run -d --name redis1 -e affinity:image==06a1f75304ba redis
 
 .. Example Label affinity
@@ -373,7 +373,7 @@ health フィルタを使う
 
    $ docker tcp://<manager_ip:manager_port> run -d -p 80:80 --label com.example.type=frontend nginx
    87c4376856a8
-   
+
    $ docker tcp://<manager_ip:manager_port> ps  --filter "label=com.example.type=frontend"
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    87c4376856a8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:80->80/tcp         node-1      trusting_yonath
@@ -386,7 +386,7 @@ health フィルタを使う
 
    $ docker tcp://<manager_ip:manager_port> run -d -e affinity:com.example.type==frontend logger
    87c4376856a8
-   
+
    $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    87c4376856a8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:80->80/tcp         node-1      trusting_yonath
@@ -445,7 +445,7 @@ port フィルタを使う
 
    $ docker tcp://<manager_ip:manager_port> run -d -p 80:80 nginx
    87c4376856a8
-  
+
    $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID    IMAGE               COMMAND         PORTS                       NODE        NAMES
    87c4376856a8    nginx:latest        "nginx"         192.168.0.42:80->80/tcp     node-1      prickly_engelbart
@@ -458,7 +458,7 @@ Docker Swarm はポート ``80`` が利用可能であり他のコンテナ・�
 
    $ docker tcp://<manager_ip:manager_port> run -d -p 80:80 nginx
    963841b138d8
-   
+
    $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE          COMMAND        PORTS                           NODE        NAMES
    963841b138d8        nginx:latest   "nginx"        192.168.0.43:80->80/tcp         node-2      dreamy_turing
@@ -472,7 +472,7 @@ Docker Swarm はポート ``80`` が利用可能であり他のコンテナ・�
 
    $ docker tcp://<manager_ip:manager_port> run -d -p 80:80 nginx
    963841b138d8
-   
+
    $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID   IMAGE               COMMAND        PORTS                           NODE        NAMES
    f8b693db9cd6   nginx:latest        "nginx"        192.168.0.44:80->80/tcp         node-3      stoic_albattani
@@ -505,7 +505,7 @@ Docker Swarm はポート ``80`` が利用可能であり他のコンテナ・�
 
 .. For example, the following commands start nginx on 3-node cluster.
 
-例えば、以下のコマンドは３つのノードのクラスタで ``nginx`` を起動します。 
+例えば、以下のコマンドは３つのノードのクラスタで ``nginx`` を起動します。
 
 .. code-block:: bash
 
@@ -681,12 +681,12 @@ Soft アフィニティ・制約の設定
 関連情報
 ========================================
 
-* :doc:`Docker Sarm ユーザ・ガイド </swarm/index>`
+* :doc:`Docker Swarm ユーザ・ガイド </swarm/index>`
 * :doc:`/swarm/discovery`
 * :doc:`スケジュール・ストラテジ </swarm/scheduler/strategy>`
 * :doc:`Swarm API </swarm/swarm-api>`
 
-.. seealso:: 
+.. seealso::
 
    Swarm filters
       https://docs.docker.com/swarm/scheduler/filter/

@@ -4,12 +4,12 @@
 .. doc version: 1.10
       https://github.com/docker/docker/commits/master/docs/deprecated.md
 .. check date: 2016/03/25
-.. Commits on Mar 18, 2016 
+.. Commits on Mar 18, 2016
 .. -----------------------------------------------------------------------------
 
 .. sidebar:: 目次
 
-   .. contents:: 
+   .. contents::
        :depth: 2
        :local:
 
@@ -45,7 +45,7 @@
 
 docker login コマンドから、ユーザ名が指定されなかった場合に、対象レジストリのアカウントに自動で関連づける機能が削除されます。この変更に伴い email フラグは必要ではなくなり、将来的に廃止します。
 
-.. The flag --security-opt doesn't use the colon separator(:) anymore to divide keys and values, it uses the equal symbol(=) for consinstency with other similar flags, like --storage-opt.
+.. The flag --security-opt doesn't use the colon separator(:) anymore to divide keys and values, it uses the equal symbol(=) for consistency with other similar flags, like --storage-opt.
 
 ``--security-opt`` フラグでキーと値の分割にコロン・セパレータ（ ``:`` ）を使えなくなります。これは ``--storage-opt``  のような他のフラグと同様、イコール記号（ ``=`` ）で指定することになります。
 
@@ -85,7 +85,7 @@ docker login コマンドから、ユーザ名が指定されなかった場合�
 
 様々な ``docker`` コマンド間でタグの付け方を統一するため、 ``docker tag`` コマンドの ``-f`` フラグを廃止しました。イメージのタグを別のものに変えるとき、 ``-f`` オプションの指定は不要です。また、対象のタグが既に利用中であれば、 ``docker`` コマンドに ``-f`` フラグが無くてもエラーになりません。
 
-.. HostConfig at API contaienr start
+.. HostConfig at API container start
 
 .. _hostconfig-at-api-container-start
 
@@ -317,7 +317,6 @@ Docker Content Trust ENV パスフレーズの変数名を変更
 * DOCKER_CONTENT_TRUST_OFFLINE_PASSPHRASE を DOCKER_CONTENT_TRUST_ROOT_PASSPHRASE に変更します
 * DOCKER_CONTENT_TRUST_TAGGING_PASSPHRASE を DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE に変更します。
 
-.. seealso:: 
+.. seealso::
    Deprecated Engine Features
       https://docs.docker.com/engine/deprecated/
-

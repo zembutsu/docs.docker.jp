@@ -16,7 +16,7 @@ openSUSE and SUSE Linux Enterprise
 
 .. sidebar:: 目次
 
-   .. contents:: 
+   .. contents::
        :depth: 3
        :local:
 
@@ -55,7 +55,7 @@ SUSE Linux Enterprise
 
 .. Docker is officially supported on SUSE Linux Enterprise 12 and later. You can find the latest supported Docker packages inside the Container module. To enable this module, do the following:
 
-SUSE Linux Enterpsei 12 以降、Docker は正式にサポートされています。 ``Container`` モジュールの中で、最新のサポートされた Docker パッケージを確認できます。このモジュールを有効にするには、次のようにします。
+SUSE Linux Enterprise 12 以降、Docker は正式にサポートされています。 ``Container`` モジュールの中で、最新のサポートされた Docker パッケージを確認できます。このモジュールを有効にするには、次のようにします。
 
 ..    Start YaST, and select Software > Software Repositories.
 
@@ -71,7 +71,7 @@ SUSE Linux Enterpsei 12 以降、Docker は正式にサポートされていま�
 
 ..    From the list of available extensions and modules, select Container Module and click Next. The containers module and its repositories are added to your system.
 
-4. 利用可能な extentions と modules の中から、 *Container Module* を選び、 *Next* をクリックします。container モジュールとレポジトリがシステムに追加されます。
+4. 利用可能な extensions と modules の中から、 *Container Module* を選び、 *Next* をクリックします。container モジュールとレポジトリがシステムに追加されます。
 
 ..    If you use Subscription Management Tool, update the list of repositories at the SMT server.
 
@@ -84,7 +84,7 @@ SUSE Linux Enterpsei 12 以降、Docker は正式にサポートされていま�
 .. code-block:: bash
 
    $ sudo SUSEConnect -p sle-module-containers/12/x86_64 -r ''
-   
+
 .. **Note:** currently the `-r ''` flag is required to avoid a known limitation of `SUSEConnect`.
 
 .. note::
@@ -139,7 +139,7 @@ Docker 起動時のオプション設定
 
 .. The docker package creates a new group named docker. Users, other than root user, must be part of this group to interact with the Docker daemon. You can add users with this command syntax:
 
-``docker`` パッケージは ``dokcer`` という名称のグループを作成します。 ``root`` 以外のユーザが Docker デーモンに接続するには、このグループに所属させるひつヨガあります。ユーザの追加は、次のような構文です。
+``docker`` パッケージは ``docker`` という名称のグループを作成します。 ``root`` 以外のユーザが Docker デーモンに接続するには、このグループに所属させるひつヨガあります。ユーザの追加は、次のような構文です。
 
 .. code-block:: bash
 
@@ -217,8 +217,7 @@ openSUSE または SUSE Linux Enterprise での Docker に関するより詳し�
 
 :doc:`ユーザガイド </engine/userguide/index>` に進みます。
 
-.. seealso:: 
+.. seealso::
 
    Installation on openSUSE and SUSE Linux Enterprise
       https://docs.docker.com/engine/installation/linux/SUSE/
-

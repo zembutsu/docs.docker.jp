@@ -9,7 +9,7 @@
 
 .. stop
 
-.. _compse-stop:
+.. _compose-stop:
 
 =======================================
 stop
@@ -18,7 +18,7 @@ stop
 .. code-block:: bash
 
    Usage: stop [options] [SERVICE...]
-   
+
    Options:
    -t, --timeout TIMEOUT      Specify a shutdown timeout in seconds (default: 10).
 

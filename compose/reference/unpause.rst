@@ -9,7 +9,7 @@
 
 .. unpause
 
-.. _compse-unpause:
+.. _compose-unpause:
 
 =======================================
 unpause
@@ -22,5 +22,3 @@ unpause
 .. Unpauses paused containers of a service.
 
 停止中（paused）のサービスを再開します。
-
-

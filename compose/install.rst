@@ -97,7 +97,7 @@ pip でインストール
 
 .. Compose can be installed from pypi using pip. If you install using pip it is highly recommended that you use a virtualenv because many operating systems have python system packages that conflict with docker-compose dependencies. See the virtualenv tutorial to get started.
 
-Comose は `pypi <https://pypi.python.org/pypi/docker-compose>`_ から ``pip`` を使いインストールできます。インストールに ``pip`` を使う場合、 `virtualenv <https://virtualenv.pypa.io/en/latest/>`_ の利用を強く推奨します。これは多くのオペレーティング・システム上の Python システム・パッケージと、docker-compose の依存性に競合する可能性があるためです。詳しくは `virtualenv チュートリアル（英語） <http://docs.python-guide.org/en/latest/dev/virtualenvs/>`_ をご覧ください。
+Compose は `pypi <https://pypi.python.org/pypi/docker-compose>`_ から ``pip`` を使いインストールできます。インストールに ``pip`` を使う場合、 `virtualenv <https://virtualenv.pypa.io/en/latest/>`_ の利用を強く推奨します。これは多くのオペレーティング・システム上の Python システム・パッケージと、docker-compose の依存性に競合する可能性があるためです。詳しくは `virtualenv チュートリアル（英語） <http://docs.python-guide.org/en/latest/dev/virtualenvs/>`_ をご覧ください。
 
 .. code-block:: bash
 
@@ -116,7 +116,7 @@ Comose は `pypi <https://pypi.python.org/pypi/docker-compose>`_ から ``pip`` 
 
 .. Compose can also be run inside a container, from a small bash script wrapper. To install compose as a container run:
 
-Comspose コンテナの中でも、小さな bash スクリプトのラッパーを通することが可能です。Compose をコンテナとして実行・インストールするには、次のようにします。
+Compose コンテナの中でも、小さな bash スクリプトのラッパーを通することが可能です。Compose をコンテナとして実行・インストールするには、次のようにします。
 
 .. code-block:: bash
 
@@ -190,7 +190,7 @@ Compose は作成されたコンテナにラベルがないことを検出する
 次はどこへ行きますか
 ====================
 
-.. 
+..
     User guide
     Getting Started
     Get started with Django
@@ -206,4 +206,3 @@ Compose は作成されたコンテナにラベルがないことを検出する
 * :doc:`wordpress`
 * :doc:`reference/index`
 * :doc:`compose-file`
-

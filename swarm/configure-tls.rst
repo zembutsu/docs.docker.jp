@@ -1,6 +1,6 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/swarm/configure-tls/
-.. SOURCE: https://github.com/docker/swarm/blob/master/docs/confiugure-tls.md
+.. SOURCE: https://github.com/docker/swarm/blob/master/docs/configure-tls.md
    doc version: 1.10
       https://github.com/docker/swarm/commits/master/docs/configure-tls.md
 .. check date: 2016/03/10
@@ -77,7 +77,7 @@ https://docs.docker.com/swarm/configure-tls/
 .. _step-9-configure-the-engine-cli-to-use-tls:
 
 
-.. seealso:: 
+.. seealso::
 
    Configure Docker Swarm for TLS
       https://docs.docker.com/swarm/configure-tls/

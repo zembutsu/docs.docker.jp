@@ -24,7 +24,7 @@ Docker Machine を使えば、様々な環境・様々な仮想マシン上で D
 
 .. To create a virtual machine, you supply Docker Machine with the name of the driver you want use. The driver determines where the virtual machine is created. For example, on a local Mac or Windows system, the driver is typically Oracle VirtualBox. For provisioning physical machines, a generic driver is provided. For cloud providers, Docker Machine supports drivers such as AWS, Microsoft Azure, Digital Ocean, and many more. The Docker Machine reference includes a complete list of supported drivers.
 
-仮想マシンを作成するには、Docker Machine 実行時に使いたいドライバの名前を指定します。ドライバの選択は、仮想マシンをどこで作成するかによります。例えば、ローカルの Mac や Windows システム上であれば、Ovrable VirtualBox が一般的なドライバになります。物理マシン上にプロビジョニングする場合は generic （ジェネリック）ドライバです。クラウド・プロバイダであれば、 Docker Machine は AWS ・ Microsoft Azure ・ Digital Ocean 等々に対応してます。Docker Machine のリファレンスに :doc:`サポートしているドライバ一覧 <drivers/index>` があります。
+仮想マシンを作成するには、Docker Machine 実行時に使いたいドライバの名前を指定します。ドライバの選択は、仮想マシンをどこで作成するかによります。例えば、ローカルの Mac や Windows システム上であれば、Oracle VirtualBox が一般的なドライバになります。物理マシン上にプロビジョニングする場合は generic （ジェネリック）ドライバです。クラウド・プロバイダであれば、 Docker Machine は AWS ・ Microsoft Azure ・ Digital Ocean 等々に対応してます。Docker Machine のリファレンスに :doc:`サポートしているドライバ一覧 <drivers/index>` があります。
 
 .. Default base operating systems for local and cloud hosts
 
@@ -72,7 +72,7 @@ CLI の操作対象 Docker ホストを環境変数で指定
 
 .. If you wish to opt out of error reporting, you can create a no-error-report file in your $HOME/.docker/machine directory, and Docker Machine will disable this behavior. e.g.:
 
-エラーメッセージを送りたくなければ、自分の ``$HOME/docker/machine`` ディレクトリに ``no-error-report`` ファイルを置きます。そうしておけば Docker Mahcine はレポートを報告しません。
+エラーメッセージを送りたくなければ、自分の ``$HOME/docker/machine`` ディレクトリに ``no-error-report`` ファイルを置きます。そうしておけば Docker Machine はレポートを報告しません。
 
 .. code-block:: bash
 

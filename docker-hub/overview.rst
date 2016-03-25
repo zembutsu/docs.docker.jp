@@ -93,7 +93,7 @@ Docker 自身で Docker Hub サーバにアクセスするために、 ```docker
 
 .. There are two ways you can search for public repositories and images available on the Docker Hub. You can “Search” on the Docker Hub website, or you can docker search for all the repositories and images using the Docker commandline tool:
 
-公開レポジトリと Docker Hub で利用可能なイメージを検索するには、２つの方法があります。Docker Hub ウェブサイト上の「search」（検索）を使うか、Docker コマンドライン・ツールで ``docker saerch`` を使い、全てのレポジトリとイメージを検索します。
+公開レポジトリと Docker Hub で利用可能なイメージを検索するには、２つの方法があります。Docker Hub ウェブサイト上の「search」（検索）を使うか、Docker コマンドライン・ツールで ``docker search`` を使い、全てのレポジトリとイメージを検索します。
 
 .. code-block:: bash
 
@@ -113,7 +113,7 @@ Docker イメージの動作に関する詳細情報は、 :doc:`Docker ユー�
 
 .. Use Official Repositories
 
-.. _use-oficial-repositories:
+.. _use-official-repositories:
 
 公式レポジトリを使う
 --------------------
@@ -141,8 +141,7 @@ Docker Hub には多くの `公式レポジトリ <http://hub.docker.com/explore
 
 Docker Hub アカウント :doc:`作成の方法 <github>` 、組織やチームでの :doc:`管理 <orgs>` の仕方を学びます。
 
-.. seealso:: 
+.. seealso::
 
    Overview of Docker Hub
       https://docs.docker.com/docker-hub/overview/
-

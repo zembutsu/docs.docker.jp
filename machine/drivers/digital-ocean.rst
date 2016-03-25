@@ -43,7 +43,7 @@ Digital Ocean のコントロール・パネルにある「Apps & API」から�
 * ``--digitalocean-access-token`` : **必須** Digital Ocean API 用のパーソナル・アクセス・トークン。
 * ``--digitalocean-image`` : Digital Ocean イメージ用の名前。
 * ``--digitalocean-region`` : ドロップレットを作成するリージョンの指定です。詳細一覧は `Region API <https://developers.digitalocean.com/documentation/v2/#regions>`_ を参照。
-* ``--digitalocean-size`` : Digial Ocean ドロップレットのサイズ（ デフォルトの ``2gb`` 以上より大きいもの ）。
+* ``--digitalocean-size`` : Digital Ocean ドロップレットのサイズ（ デフォルトの ``2gb`` 以上より大きいもの ）。
 * ``--digitalocean-ipv6`` : ドロップレットで IPv6 を有効化。
 * ``--digitalocean-private-networking`` : ドロップレットのプライベート・ネットワーク対応を有効化。
 * ``--digitalocean-backups`` : ドロップレットのバックアップを有効化。
@@ -54,13 +54,13 @@ Digital Ocean のコントロール・パネルにある「Apps & API」から�
 
 .. The DigitalOcean driver will use ubuntu-15-10-x64 as the default image.
 
-DigialOcean ドライバは、 ``ubuntu-15-10-x64`` をデフォルトのイメージとして使います。
+DigitalOcean ドライバは、 ``ubuntu-15-10-x64`` をデフォルトのイメージとして使います。
 
 利用可能な環境変数とデフォルト値は以下の通りです。
 
 .. list-table::
    :header-rows: 1
-   
+
    * - コマンドライン・オプション
      - 環境変数
      - デフォルト値
@@ -87,7 +87,7 @@ DigialOcean ドライバは、 ``ubuntu-15-10-x64`` をデフォルトのイメ�
      - ``false``
    * - ``--digitalocean-userdata``
      - ``DIGITALOCEAN_USERDATA``
-     - 
+     -
    * - ``--digitalocean-ssh-user``
      - ``DIGITALOCEAN_SSH_USER``
      - ``root``
@@ -96,5 +96,4 @@ DigialOcean ドライバは、 ``ubuntu-15-10-x64`` をデフォルトのイメ�
      - ``22``
    * - ``--digitalocean-ssh-key-fingerprint``
      - ``DIGITALOCEAN_SSH_KEY_FINGERPRINT``
-     - 
-
+     -

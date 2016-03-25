@@ -27,7 +27,7 @@ Fluentd ロギング・ドライバ
 
 .. list-table::
    :headers-rows: 1
-   
+
    * - フィールド
      - 説明
    * - ``container_id``
@@ -126,7 +126,7 @@ label と env
 
 .. The labels and env options each take a comma-separated list of keys. If there is collision between label and env keys, the value of the env takes precedence. Both options add additional fields to the extra attributes of a logging message.
 
-``label`` と ``env`` オプションは、どちらもカンマ区切りでキーを指定できます。 ``label`` と ``env`` キーが重複する場合は、 ``env`` の値が優先されます。どちらのオプションもロギング・メッセージの特別属性（extra attibutes）に追加フィールドを加えます。
+``label`` と ``env`` オプションは、どちらもカンマ区切りでキーを指定できます。 ``label`` と ``env`` キーが重複する場合は、 ``env`` の値が優先されます。どちらのオプションもロギング・メッセージの特別属性（extra attributes）に追加フィールドを加えます。
 
 .. Fluentd daemon management with Docker
 
@@ -159,8 +159,8 @@ Docker と Fluentd デーモンの管理
    <source>
      @type forward
    </source>
-   
-   
+
+
    <match docker.**>
      @type stdout
    </match>
@@ -180,6 +180,3 @@ Docker と Fluentd デーモンの管理
 .. code-block:: bash
 
    $ docker run --log-driver=fluentd your/application
-
-
-

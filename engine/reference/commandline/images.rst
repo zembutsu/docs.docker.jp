@@ -15,9 +15,9 @@ images
 .. code-block:: bash
 
    Usage: docker images [OPTIONS] [REPOSITORY[:TAG]]
-   
+
    List images
-   
+
      -a, --all=false      Show all images (default hides intermediate images)
      --digests=false      Show digests
      -f, --filter=[]      Filter output based on conditions provided
@@ -31,7 +31,7 @@ images
 
 .. Docker images have intermediate layers that increase reusability, decrease disk usage, and speed up docker build by allowing each step to be cached. These intermediate layers are not shown by default.
 
-Docker イメージは中間レイヤ（intermidiate layer）を持っています。これは再利用性を高め、ディスク容量を減らし、 ``docker build`` は各ステップがキャッシュされるので速度を向上します。デフォルトでは、これらの中間レイヤは表示されません。
+Docker イメージは中間レイヤ（intermediate layer）を持っています。これは再利用性を高め、ディスク容量を減らし、 ``docker build`` は各ステップがキャッシュされるので速度を向上します。デフォルトでは、これらの中間レイヤは表示されません。
 
 .. The SIZE is the cumulative space taken up by the image and all its parent images. This is also the disk space used by the contents of the Tar file created when you docker save an image.
 
@@ -180,7 +180,7 @@ v2 移行の形式を使うイメージには、 ``digest`` と呼ばれる識�
 .. code-block:: bash
 
    $ docker images --filter "dangling=true"
-   
+
    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
    <none>              <none>              8abc22fbb042        4 weeks ago         0 B
    <none>              <none>              48e5f45168b9        4 weeks ago         2.489 MB
@@ -200,7 +200,7 @@ v2 移行の形式を使うイメージには、 ``digest`` と呼ばれる識�
 .. code-block:: bash
 
    $ docker rmi $(docker images -f "dangling=true" -q)
-   
+
    8abc22fbb042
    48e5f45168b9
    bf747efa0e2f
@@ -232,7 +232,7 @@ v2 移行の形式を使うイメージには、 ``digest`` と呼ばれる識�
 .. code-block:: bash
 
    $ docker images --filter "label=com.example.version"
-   
+
    REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
    match-me-1          latest              eeae25ada2aa        About a minute ago   188.3 MB
    match-me-2          latest              eeae25ada2aa        About a minute ago   188.3 MB
@@ -255,5 +255,3 @@ v2 移行の形式を使うイメージには、 ``digest`` と呼ばれる識�
 
    $ docker images --filter "label=com.example.version=0.1"
    REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
-
-

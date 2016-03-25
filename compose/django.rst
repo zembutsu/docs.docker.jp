@@ -17,7 +17,7 @@
 
 このクイックスタート・ガイドは Docker Compose を使い、簡単な Django/PostgreSQL アプリをセットアップします。その前に、 :doc:`Compose のインストール </compose/install>` が必要です。
 
-.. Define the project coponents
+.. Define the project components
 
 プロジェクトの構成物を定義
 ==============================
@@ -48,7 +48,7 @@ Dockerfile はアプリケーションのイメージ内容に含まれる、１
 
 .. code-block:: dockerfile
 
-   
+
    FROM python:2.7
    ENV PYTHONUNBUFFERED 1
    RUN mkdir /code
@@ -199,7 +199,7 @@ Docker を Mac あるいは Window 上で動かしている場合は、 ``django
 
 このセクションでは、Django 向けのデータベースをセットアップします。
 
-..    In your project dirctory, edit the composeexample/settings.py file.
+..    In your project directory, edit the composeexample/settings.py file.
 
 1. プロジェクト用ディレクトリで、``composeexample/settings.py`` ファイルを編集します。
 
@@ -272,5 +272,3 @@ Compose の更なるドキュメント
 * :doc:`/compose/wordpress`
 * :doc:`/compose/reference/index`
 * :doc:`/compose/compose-file`
-
-

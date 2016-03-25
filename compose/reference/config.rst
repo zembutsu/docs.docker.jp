@@ -9,7 +9,7 @@
 
 .. config
 
-.. _compse-config:
+.. _compose-config:
 
 =======================================
 config
@@ -18,7 +18,7 @@ config
 .. code-block:: bash
 
    Usage: config [options]
-   
+
    Options:
    -q, --quiet     Only validate the configuration, don't print
                    anything.
@@ -27,4 +27,3 @@ config
 .. Validate and view the compose file.
 
 Compose ファイルを確認・表示します。
-

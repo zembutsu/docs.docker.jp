@@ -26,7 +26,7 @@ Compose を始めましょう
 
 既に :doc:`Docker Engine と Docker Compose がインストール済み </compose/install>` なのを確認します。Python をインストールする必要はなく、Docker イメージのものを使います。
 
-.. Step 1: Steup
+.. Step 1: Setup
 
 ステップ１：セットアップ
 ==============================
@@ -48,18 +48,18 @@ Compose を始めましょう
 
    from flask import Flask
    from redis import Redis
-   
-   
+
+
    app = Flask(__name__)
    redis = Redis(host='redis', port=6379)
-   
-   
+
+
    @app.route('/')
    def hello():
        redis.incr('hits')
        return 'Hello World! I have been seen %s times.' % redis.get('hits')
-   
-   
+
+
    if __name__ == "__main__":
        app.run(host="0.0.0.0", debug=True)
 
@@ -276,7 +276,7 @@ Compose を ``docker-compose up -d`` で起動した場合は、次のように�
 次はどこへ
 ==========
 
-.. 
+..
     Next, try the quick start guide for Django, Rails, or WordPress.
     Explore the full list of Compose commands
     Compose configuration file reference
@@ -284,4 +284,3 @@ Compose を ``docker-compose up -d`` で起動した場合は、次のように�
 * 次は、:doc:`Django </compose/django>` 、 :doc:`Rails </compose/rails>`  、 :doc:`WordPress </compose/wordpress>`  向けのクイックスタートガイドを試しましょう。
 * :doc:`/compose/reference/index`
 * :doc:`/compose/compose-file`
-

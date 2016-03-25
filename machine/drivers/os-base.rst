@@ -42,7 +42,7 @@
 .. Operating System 	Version 	Notes
 .. Boot2Docker 	1.5+ 	default for local
 .. Ubuntu 	12.04+ 	default for remote
-.. RancherOS 	0.3+ 	
+.. RancherOS 	0.3+
 .. Debian 	8.0+ 	experimental
 .. RedHat Enterprise Linux 	7.0+ 	experimental
 .. CentOS 	7+ 	experimental
@@ -50,11 +50,11 @@
 
 .. list-table::
    :header-rows: 1
-   
+
    * - オペレーティング・システム
      - バージョン
      - メモ
-   * - Boot2Docker 
+   * - Boot2Docker
      - 1.5+
      - ローカル用のデフォルト
    * - Ubuntu
@@ -62,7 +62,7 @@
      - リモート用のデフォルト
    * - RancherOS
      - 0.3+
-     - 
+     -
    * - Debian
      - 8.0+
      - 実験的(experimental)
@@ -78,9 +78,8 @@
 
 .. To use a different base operating system on a remote provider, specify the provider’s image flag and one of its available images. For example, to select a debian-8-x64 image on DigitalOcean you would supply the --digitalocean-image=debian-8-x64 flag.
 
-リモート・プロバイダ上で異なったベース・オペレーティング・システムを使うには、プロバイダのイメージ・フラグと利用可能なイメージの指定が必要になります。例えば、 DigialOcean で ``debian-8-x64`` イメージを指定するには、 ``--digitalocean-image=debian-8-x64`` フラグが必要です。
+リモート・プロバイダ上で異なったベース・オペレーティング・システムを使うには、プロバイダのイメージ・フラグと利用可能なイメージの指定が必要になります。例えば、 DigitalOcean で ``debian-8-x64`` イメージを指定するには、 ``--digitalocean-image=debian-8-x64`` フラグが必要です。
 
 .. If you change the base image for a provider, you may also need to change the SSH user. For example, the default Red Hat AMI on EC2 expects the SSH user to be ec2-user, so you would have to specify this with --amazonec2-ssh-user ec2-user.
 
 プロバイダ用のベース・イメージを変更する時、SSH ユーザの変更も必要になる場合があります。例えば、 EC2 上のデフォルト Red Hat AMI の SSH ユーザは ``ec2-user`` なので、 ``--amazonec2-ssh-user ec2-user`` と指定する必要があります。
-

@@ -136,7 +136,7 @@ Swarm マネージャを作成する前に、 :doc:`ディスカバリ・トー�
 
 .. Use --strategy "<value>" to tell the Docker Swarm scheduler which placement strategy to use.
 
-``--stragety "<値>"`` を使い、 Docker Swarm スケジューラに対して何のストラテジを使うか指定します。
+``--strategy "<値>"`` を使い、 Docker Swarm スケジューラに対して何のストラテジを使うか指定します。
 
 .. Where <value> is:
 
@@ -343,7 +343,7 @@ Swarm マネージャを作成する前に、 :doc:`ディスカバリ・トー�
 
 .. Use --api-enable-cors or --cors to enable cross-origin resource sharing (CORS) headers in the remote API.
 
-``--api-remote-cors`` か ``--cors`` を使い CORS (cross-origin resource sharning) ヘッダをリモート API に入れます。
+``--api-remote-cors`` か ``--cors`` を使い CORS (cross-origin resource sharing) ヘッダをリモート API に入れます。
 
 .. --cluster-driver, -c — Cluster driver to use
 
@@ -420,7 +420,7 @@ Mesos ドライバの利用に関する詳しい情報は、 `Using Docker Swarm
 
 より詳しい情報は :doc:`/swarm/discovery` をご覧ください。
 
-.. seealso:: 
+.. seealso::
 
    manage — Create a Swarm manager
       https://docs.docker.com/swarm/reference/manage/

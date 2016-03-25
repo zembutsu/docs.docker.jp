@@ -16,7 +16,7 @@ Gentoo
 
 .. sidebar:: 目次
 
-   .. contents:: 
+   .. contents::
        :depth: 3
        :local:
 
@@ -43,12 +43,12 @@ Gentoo Linux に Docker をインストールするには、２つの方法が�
 
 .. docker-overlay way
 
-docker-overay の方法
+docker-overlay の方法
 ====================
 
 .. If you’re looking for a -bin ebuild, a live ebuild, or a bleeding edge ebuild, use the provided overlay, docker-overlay which can be added using app-portage/layman. The most accurate and up-to-date documentation for properly installing and using the overlay can be found in the overlay.
 
-``-bin`` ebuild、live ebuild、bleeding edge ebuild を探している場合は、オーバレイとして `docker-overay <https://github.com/tianon/docker-overlay>`_  を提供しています。これは ``app-portage/layman`` を使えるようにしたものです。適切にインストールするための、最も正確かつ最新のドキュメントと、overlay の使い方は `overlay <https://github.com/tianon/docker-overlay/blob/master/README.md#using-this-overlay>`_ をご覧ください。
+``-bin`` ebuild、live ebuild、bleeding edge ebuild を探している場合は、オーバレイとして `docker-overlay <https://github.com/tianon/docker-overlay>`_  を提供しています。これは ``app-portage/layman`` を使えるようにしたものです。適切にインストールするための、最も正確かつ最新のドキュメントと、overlay の使い方は `overlay <https://github.com/tianon/docker-overlay/blob/master/README.md#using-this-overlay>`_ をご覧ください。
 
 .. If any issues arise from this ebuild or the resulting binary, including and especially missing kernel configuration flags or dependencies, open an issue on the docker-overlay repository or ping tianon directly in the #docker IRC channel on the Freenode network.
 
@@ -71,10 +71,10 @@ docker-overay の方法
      - デフォルト
      - 説明
    * - aufs
-     - 
+     -
      - "aufs" graph ドライバと、必要なカーネル・フラグを含む依存関係を有効にします。
    * - btrfs
-     - 
+     -
      -  "btrfs" graph ドライバと、必要なカーネル・フラグを含む依存関係を有効にします。
    * - contrib
      - Yes
@@ -83,16 +83,16 @@ docker-overay の方法
      - Yes
      -  "devicemapper" graph ドライバと、必要なカーネル・フラグを含む依存関係を有効にします。
    * - doc
-     - 
+     -
      -  追加ドキュメント（API、Javadoc、等）を追加します。全体よりも個別のパッケージ毎の追加を推奨します。
    * - lxc
-     - 
+     -
      - "lxc" 実行ドライバの依存関係を有効化します。
    * - vim-syntax
-     - 
+     -
      -  vim syntax スクリプトに関連する取得をします。
    * - zsh-completion
-     - 
+     -
      -  zsh 補完コマンドを有効化します。
 
 .. USE flags are described in detail on tianon’s blog.
@@ -217,8 +217,7 @@ Docker パッケージと必要の無い依存関係をアンインストール�
 
 ユーザが作成した設定ファイルは、手動で削除する必要があります。
 
-.. seealso:: 
+.. seealso::
 
    Installation on Gentoo
       https://docs.docker.com/engine/installation/linux/gentoolinux/
-

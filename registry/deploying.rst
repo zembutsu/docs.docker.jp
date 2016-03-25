@@ -254,7 +254,7 @@ Docker Hub からイメージを手に入れ、自分のレジストリ上にタ
 
 .. First create a password file with one entry for the user “testuser”, with password “testpassword”:
 
-まずはパスワード・ファイルを作成し、ユーザ「testuesr」、パスワード「testpasswrod」のエントリを1行追加します。
+まずはパスワード・ファイルを作成し、ユーザ「testuser」、パスワード「testpassword」のエントリを1行追加します。
 
 .. code-block:: bash
 
@@ -397,9 +397,7 @@ Docker Compose で管理
 * :doc:`storagedrivers`
 * :doc:`spec/auth/tokens`
 
-.. seealso:: 
+.. seealso::
 
    Deploying a registry server
       https://docs.docker.com/registry/deploying/
-
-

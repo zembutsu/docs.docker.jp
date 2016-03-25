@@ -9,7 +9,7 @@
 
 .. kill
 
-.. _compse-kill:
+.. _compose-kill:
 
 =======================================
 kill
@@ -18,7 +18,7 @@ kill
 .. code-block:: bash
 
    Usage: kill [options] [SERVICE...]
-   
+
    Options:
    -s SIGNAL         SIGNAL to send to the container. Default signal is SIGKILL.
 

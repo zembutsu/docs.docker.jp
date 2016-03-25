@@ -31,7 +31,7 @@ Docker を Docker Toolbox を使いインストールします。Docker Toolbox 
     a shell preconfigured for a Docker command-line environment
     Oracle VM VirtualBox
 
-* Docker Machine を動かす ``docker-machne`` バイナリ
+* Docker Machine を動かす ``docker-machine`` バイナリ
 * Docker エンジンを動かす ``docker`` バイナリ
 * Docker Compose を動かす ``docker-compose`` バイナリ
 * Docker GUI の Kitematic （カイトマティック）
@@ -191,7 +191,7 @@ Docker Quickstart Terminal から使う
 
 ..    Open the “Applications” folder or the “Launchpad”.
 
-1. 「アプリケーション」フォルダから「Lanchpad」を開きます。
+1. 「アプリケーション」フォルダから「Launchpad」を開きます。
 
 ..     Find the Docker Quickstart Terminal and double-click to launch it.
 
@@ -703,4 +703,3 @@ Docker Toolbox のアンインストール
 .. You can continue with the Docker User Guide. If you are interested in using the Kitematic GUI, see the Kitematic user guide.
 
 :doc:`Docker ユーザガイド </engine/userguide/index>` を読み続けられます。 Kitematic GUI の使用に興味があれば、 :doc:`Kitematic ユーザガイド </kitematic/userguide/index>` をご覧ください。
-

@@ -9,7 +9,7 @@
 
 .. ps
 
-.. _compse-ps:
+.. _compose-ps:
 
 =======================================
 ps
@@ -18,11 +18,10 @@ ps
 .. code-block:: bash
 
    Usage: ps [options] [SERVICE...]
-   
+
    Options:
    -q    Only display IDs
 
 .. Lists containers.
 
 コンテナ一覧を表示します。
-

@@ -69,9 +69,9 @@ Compose をプロダクションで使う
 
 .. This will first rebuild the image for web and then stop, destroy, and recreate just the web service. The --no-deps flag prevents Compose from also recreating any services which web depends on.
 
-これは、まず ``web`` イメージを再構築するために（コンテナを）停止・破棄します。それから ``web`` サービス *のみ* 再作成します。``--nodeps`` フラグを使うことで、Compose が ``web`` に依存するサービスを再作成しないようにします。
+これは、まず ``web`` イメージを再構築するために（コンテナを）停止・破棄します。それから ``web`` サービス *のみ* 再作成します。``--no-deps`` フラグを使うことで、Compose が ``web`` に依存するサービスを再作成しないようにします。
 
-.. Runnning Compose on a single server
+.. Running Compose on a single server
 
 単一サーバ上でのコンテナ実行
 ==============================
@@ -110,5 +110,3 @@ Compose のドキュメント
 * :doc:`Compose のインストール </compose/install>`
 * :doc:`コマンドライン・リファレンス </compose/reference/index>`
 * :doc:`Compose ファイル・リファレンス </compose/compose-file>`
-
-

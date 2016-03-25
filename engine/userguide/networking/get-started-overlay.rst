@@ -70,7 +70,7 @@ Docker マルチホスト・ネットワーキング機能を使うのに、Dock
 
 ..    Provision a VirtualBox machine called mh-keystore.
 
-2. ``mh-keysotre`` という名前の VirtualBox マシンを作成します。
+2. ``mh-keystore`` という名前の VirtualBox マシンを作成します。
 
 .. code-block:: bash
 
@@ -354,14 +354,14 @@ Swarm マスタ環境にいるため、このように Swarm エージェント�
    <h1>Welcome to nginx!</h1>
    <p>If you see this page, the nginx web server is successfully installed and
    working. Further configuration is required.</p>
-   
-   
+
+
    <p>For online documentation and support please refer to
    <a href="http://nginx.org/">nginx.org</a>.<br/>
    Commercial support is available at
    <a href="http://nginx.com/">nginx.com</a>.</p>
-   
-   
+
+
    <p><em>Thank you for using nginx.</em></p>
    </body>
    </html>
@@ -470,4 +470,3 @@ Swarm マスタ環境にいるため、このように Swarm エージェント�
 * :doc:`ネットワーク・コマンドを使う <work-with-networks>`
 * :doc:`Docker Swarm  概要 </swarm/index>`
 * :doc:`Docker Machine 概要 </machine/index>`
-

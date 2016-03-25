@@ -25,7 +25,7 @@
 .. awslogs 	Amazon CloudWatch Logs logging driver for Docker. Writes log messages to Amazon CloudWatch Logs.
 
 .. list-table::
-   
+
    * - ``none``
     - コンテナ用のロギング・ドライバを無効化します。このドライバを指定すると ``docker logs`` は無効化されます。
    * - ``json-file``
@@ -243,7 +243,7 @@ fluentd オプション
 
 .. _specify-amazon-cloudwatch-logs-options:
 
-Amaxon CloudWatch Logs オプションの指定
+Amazon CloudWatch Logs オプションの指定
 ========================================
 
 .. The Amazon CloudWatch Logs logging driver supports the following options:
@@ -259,5 +259,3 @@ Amazon CloudWatch ロギングドライバは、以下のオプションをサ�
 .. For detailed information on working with this logging driver, see the awslogs logging driver reference documentation.
 
 このロギング・ドライバの動作に関する詳細情報は :doc:`awslogs ロギング・ドライバ <awslogs>` をご覧ください。
-
-

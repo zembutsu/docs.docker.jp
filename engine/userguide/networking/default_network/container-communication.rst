@@ -37,7 +37,7 @@
 
 .. IP packet forwarding is governed by the ip_forward system parameter. Packets can only pass between containers if this parameter is 1. Usually you will simply leave the Docker server at its default setting --ip-forward=true and Docker will go set ip_forward to 1 for you when the server starts up. If you set --ip-forward=false and your system’s kernel has it enabled, the --ip-forward=false option has no effect. To check the setting on your kernel or to turn it on manually:
 
-IP パケット転送は、 ``ip_forward`` システム・パラメータで管理されます。このパラメータが ``1`` の時のみ、パケットは通信出来ます。通常、Docker サーバはデフォルトの設定のままでも ``--ip-forward=true`` であり、Docker はサーバの起動時に ``ip_forward`` を ``1`` にします。もし ``--ip-foward=false`` をセットし、システム・カーネルが有効な場合は、この ``--ip-forward=false`` オプションは無効化されます。カーネルの設定を確認は、手動で行います。
+IP パケット転送は、 ``ip_forward`` システム・パラメータで管理されます。このパラメータが ``1`` の時のみ、パケットは通信出来ます。通常、Docker サーバはデフォルトの設定のままでも ``--ip-forward=true`` であり、Docker はサーバの起動時に ``ip_forward`` を ``1`` にします。もし ``--ip-forward=false`` をセットし、システム・カーネルが有効な場合は、この ``--ip-forward=false`` オプションは無効化されます。カーネルの設定を確認は、手動で行います。
 
 .. code-block:: bash
 
@@ -107,7 +107,7 @@ Docker ホスト上で ``iptables`` コマンドを実行すると、 ``FORWARD`
 .. code-block:: bash
 
    # When --icc=false, you should see a DROP rule:
-   
+
    $ sudo iptables -L -n
    ...
    Chain FORWARD (policy ACCEPT)
@@ -115,18 +115,18 @@ Docker ホスト上で ``iptables`` コマンドを実行すると、 ``FORWARD`
    DOCKER     all  --  0.0.0.0/0            0.0.0.0/0
    DROP       all  --  0.0.0.0/0            0.0.0.0/0
    ...
-   
+
    # When a --link= has been created under --icc=false,
    # you should see port-specific ACCEPT rules overriding
    # the subsequent DROP policy for all other packets:
-   
+
    $ sudo iptables -L -n
    ...
    Chain FORWARD (policy ACCEPT)
    target     prot opt source               destination
    DOCKER     all  --  0.0.0.0/0            0.0.0.0/0
    DROP       all  --  0.0.0.0/0            0.0.0.0/0
-   
+
    Chain DOCKER (1 references)
    target     prot opt source               destination
    ACCEPT     tcp  --  172.17.0.2           172.17.0.3           tcp spt:80
@@ -137,5 +137,3 @@ Docker ホスト上で ``iptables`` コマンドを実行すると、 ``FORWARD`
 .. note::
 
   ホストを広範囲にわたって公開する ``iptables`` のルールは、各コンテナが持つ実際の IP アドレスを通して公開されますのでご注意ください。そのため、あるコンテナから別のコンテナに対する接続は、前者のコンテナ自身が持っている IP アドレスからの接続に見えるでしょう。
-  
-  

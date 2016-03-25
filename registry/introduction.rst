@@ -1,4 +1,4 @@
-.. -*- coding: utf-8 -*-
+9.. -*- coding: utf-8 -*-
 .. https://docs.docker.com/registry/introduction/
 .. doc version: 1.9
 .. check date: 2016/01/08
@@ -66,7 +66,7 @@ Docker レジストリ の理解
 
 .. You can find out more about the various Docker commands dealing with images in the official Docker engine documentation.
 
-Dokcer がイメージをやりとりするコマンドの詳細については、 :doc:`公式の Docker engine ドキュメント </reference/commandline/cli>` をご覧ください。
+Docker がイメージをやりとりするコマンドの詳細については、 :doc:`公式の Docker engine ドキュメント </reference/commandline/cli>` をご覧ください。
 
 .. Use cases
 
@@ -110,4 +110,3 @@ Docker に完全に慣れ親しんでいる必要があります。特にイメ�
 .. Dive into deploying your registry
 
 :doc:`レジストリのデプロイ <deploying>` に進みましょう。
-

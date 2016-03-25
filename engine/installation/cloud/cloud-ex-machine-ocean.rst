@@ -17,7 +17,7 @@
 
 .. sidebar:: 目次
 
-   .. contents:: 
+   .. contents::
        :depth: 3
        :local:
 
@@ -130,7 +130,7 @@ Docker Machine ドライバ・プラグインは多くのクラウド・プラ�
 
    $ docker-machine ls
    NAME      ACTIVE   DRIVER       STATE     URL                         SWARM
-   default   *        virtualbox   Running   tcp:////xxx.xxx.xx.xxx:xxxx  
+   default   *        virtualbox   Running   tcp:////xxx.xxx.xx.xxx:xxxx
 
 ..    Run some Docker commands to make sure that Docker Engine is also up-and-running.
 
@@ -143,22 +143,22 @@ Docker Machine ドライバ・プラグインは多くのクラウド・プラ�
 .. code-block:: bash
 
    $ docker run hello-world
-   
+
    Hello from Docker.
    This message shows that your installation appears to be working correctly.
    ...
 
 .. Step 4. Use Machine to Create the Droplet
 
-.. _step4-use-machine-to-craete-the-droplet:
+.. _step4-use-machine-to-create-the-droplet:
 
 ステップ４：Machine でドロップレットの作成
 ==================================================
 
 ..    Run docker-machine create with the digitalocean driver and pass your key to the --digitalocean-access-token flag, along with a name for the new cloud server.
 
-1. ``docker-machine create`` で ``digitalocean`` ドライバを指定します。また、 
-``--digital-cean-access-token`` フラグでトークンの指定と、新しいクラウド・サーバの名前も指定します。
+1. ``docker-machine create`` で ``digitalocean`` ドライバを指定します。また、
+``--digitalocean-access-token`` フラグでトークンの指定と、新しいクラウド・サーバの名前も指定します。
 
 ..    For this example, we’ll call our new Droplet “docker-sandbox”.
 
@@ -204,8 +204,8 @@ Docker Machine ドライバ・プラグインは多くのクラウド・プラ�
 
    $ docker-machine ls
    NAME             ACTIVE   DRIVER         STATE     URL                         SWARM
-   default          *        virtualbox     Running   tcp://192.168.99.100:2376   
-   docker-sandbox   -        digitalocean   Running   tcp://45.55.139.48:2376     
+   default          *        virtualbox     Running   tcp://192.168.99.100:2376
+   docker-sandbox   -        digitalocean   Running   tcp://45.55.139.48:2376
 
 ..    Notice that the new cloud server is running but is not the active host. Our command shell is still connected to the default machine, which is currently the active host as indicated by the asterisk (*).
 
@@ -224,7 +224,7 @@ Docker Machine ドライバ・プラグインは多くのクラウド・プラ�
    export DOCKER_MACHINE_NAME="docker-sandbox"
    # Run this command to configure your shell:
    # eval "$(docker-machine env docker-sandbox)"
-   
+
    $ eval "$(docker-machine env docker-sandbox)"
 
 ..    Re-run docker-machine ls to verify that our new server is the active machine, as indicated by the asterisk (*) in the ACTIVE column.
@@ -235,8 +235,8 @@ Docker Machine ドライバ・プラグインは多くのクラウド・プラ�
 
    $ docker-machine ls
    NAME             ACTIVE   DRIVER         STATE     URL                         SWARM
-   default          -        virtualbox     Running   tcp://192.168.99.100:2376   
-   docker-sandbox   *        digitalocean   Running   tcp://45.55.222.72:2376     
+   default          -        virtualbox     Running   tcp://192.168.99.100:2376
+   docker-sandbox   *        digitalocean   Running   tcp://45.55.222.72:2376
 
 ..    Run some docker-machine commands to inspect the remote host. For example, docker-machine ip <machine> gets the host IP adddress and docker-machine inspect <machine> lists all the details.
 
@@ -246,7 +246,7 @@ Docker Machine ドライバ・プラグインは多くのクラウド・プラ�
 
    $ docker-machine ip docker-sandbox
    104.131.43.236
-   
+
    $ docker-machine inspect docker-sandbox
    {
        "ConfigVersion": 3,
@@ -305,7 +305,7 @@ create コマンドのデフォルト・オプションを理解する
 
 .. For convenience, docker-machine will use sensible defaults for choosing settings such as the image that the server is based on, but you override the defaults using the respective flags (e.g. --digitalocean-image). This is useful if, for example, you want to create a cloud server with a lot of memory and CPUs (by default docker-machine creates a small server). For a full list of the flags/settings available and their defaults, see the output of docker-machine create -h at the command line. See also Driver options and operating system defaults and information about the create command in the Docker Machine documentation.
 
-利便性を高めるため、 ``docker-machine`` には各サーバを起動するために、イメージ名の指定など実用的なデフォルト・オプションを適用しています。しかし、オプションはそれぞれのフラグ（例： ``--digitalocean`` ）を指定して上書きできます。クラウドサーバに多くのメモリや CPU を使いたい時に便利です（デフォルトの ``docker-machine`` は小さなホストを作成します）。利用可能なフラグや設定の詳細に関しては、Docker Machne ドキュメントの  :doc:`/machine/drivers/os-base` や :doc:`/machine/reference/create` をご覧ください。
+利便性を高めるため、 ``docker-machine`` には各サーバを起動するために、イメージ名の指定など実用的なデフォルト・オプションを適用しています。しかし、オプションはそれぞれのフラグ（例： ``--digitalocean`` ）を指定して上書きできます。クラウドサーバに多くのメモリや CPU を使いたい時に便利です（デフォルトの ``docker-machine`` は小さなホストを作成します）。利用可能なフラグや設定の詳細に関しては、Docker Machine ドキュメントの  :doc:`/machine/drivers/os-base` や :doc:`/machine/reference/create` をご覧ください。
 
 .. Step 5. Use Machine to remove the Droplet
 
@@ -324,7 +324,7 @@ create コマンドのデフォルト・オプションを理解する
    $ docker-machine rm docker-sandbox
    Do you really want to remove "docker-sandbox"? (y/n): y
    Successfully removed docker-sandbox
-   
+
    $ docker-machine ls
    NAME      ACTIVE   DRIVER       STATE     URL                         SWARM
    default   *        virtualbox   Running   tcp:////xxx.xxx.xx.xxx:xxxx
@@ -356,8 +356,7 @@ Docker Machine でホストを作成しても、クラウド・プロバイダ�
 * :doc:`/engine/userguide/intro`
 
 
-.. seealso:: 
+.. seealso::
 
    Example: Use Docker Machine to provision cloud hosts
       https://docs.docker.com/engine/installation/cloud/cloud-ex-machine-ocean/
-

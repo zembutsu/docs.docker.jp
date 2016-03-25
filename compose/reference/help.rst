@@ -10,7 +10,7 @@
 
 .. help
 
-.. _compse-help:
+.. _compose-help:
 
 =======================================
 help
@@ -23,4 +23,3 @@ help
 .. Displays help and usage instructions for a command.
 
 コマンドのヘルプと使い方の指示を表示します。
-

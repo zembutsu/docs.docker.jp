@@ -25,7 +25,7 @@ Docker Machine は様々なクラウド・プラットフォーオムに対応�
 
 .. Then you provide account verification, security credentials, and configuration options for the providers as flags to docker-machine create. The flags are unique for each cloud-specific driver. For instance, to pass a Digital Ocean access token you use the --digitalocean-access-token flag. Take a look at the examples below for Digital Ocean and AWS.
 
-次にアカウント証明書、セキュリティ証明書など、 ``docker-machine create`` コマンドのオプション用フラグで必要なものを確認します。例えば、 Digtal Ocean のアクセス・トークンを指定するには ``--digitalocean-access_token`` フラグを使います。以降のページでは Digital Ocean と AWS の設定例を見ていきます。
+次にアカウント証明書、セキュリティ証明書など、 ``docker-machine create`` コマンドのオプション用フラグで必要なものを確認します。例えば、 Digital Ocean のアクセス・トークンを指定するには ``--digitalocean-access_token`` フラグを使います。以降のページでは Digital Ocean と AWS の設定例を見ていきます。
 
 .. Examples
 
@@ -69,7 +69,7 @@ Machine を使い、AWS 上の Docker 対応インスタンスで更なる操作
 
 .. The docker-machine create command
 
-.. _the-docker-machine-craate-command:
+.. _the-docker-machine-create-command:
 
 docker-machine create コマンド
 ==============================
@@ -96,11 +96,11 @@ docker-machine create コマンド
 
 .. For a full list of the flags/settings available and their defaults, see the output of docker-machine create -h at the command line, the create command in the Machine command line reference, and driver options and operating system defaults in the Machine driver reference.
 
-デフォルトの値、あるいは利用可能なフラグや設定を全て確認したい場合は、コマンドラインで `docker-machine create -h`` を使います。他にも、Machine :doc:`コマンドライン・リファレンス </machine/reference/index>` の :doc:`create < /machine/reference/craete>` コマンドや、Machine ドライバ・リファレンスの :doc:`/machine/drivers/os-base`  をご覧ください。
+デフォルトの値、あるいは利用可能なフラグや設定を全て確認したい場合は、コマンドラインで `docker-machine create -h`` を使います。他にも、Machine :doc:`コマンドライン・リファレンス </machine/reference/index>` の :doc:`create < /machine/reference/create>` コマンドや、Machine ドライバ・リファレンスの :doc:`/machine/drivers/os-base`  をご覧ください。
 
 .. Drivers for cloud providers
 
-.. _drivers-for-cloud-proviers:
+.. _drivers-for-cloud-providers:
 
 クラウド・プロバイダ向けのドライバ
 ========================================
@@ -173,6 +173,4 @@ Docker Machine を使えば :doc:`Docker Swarm </swarm/overview>` クラスタ�
 * :doc:`concepts`
 * :doc:`Docker Machine ドライバ・リファレンス </machine/drivers/index>`
 * :doc:`Docker Machine サブコマンド・リファレンス </machine/reference/index>`
-* :doc:`/swarm/provision-with-machine` 
-
-
+* :doc:`/swarm/provision-with-machine`

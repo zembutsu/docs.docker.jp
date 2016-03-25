@@ -1,6 +1,6 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/builder/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/biulder.md
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/builder.md
    doc version: 1.10
       https://github.com/docker/docker/commits/master/docs/reference/builder.md
 .. check date: 2016/02/15
@@ -93,7 +93,7 @@ Docker は隔離されたコンテナでプロセスを実行します。コン�
 
 * :ref:`デタッチド vs フォアグラウンド <detached-vs-foreground>`
 
- * :ref:`デタッチド(-d) <detached-d>` 
+ * :ref:`デタッチド(-d) <detached-d>`
  * :ref:`フォアグラウンド <foreground>`
 
 * :ref:`コンテナの識別 <container-identification>`
@@ -335,7 +335,7 @@ UTS 名前空間とは、プロセスを実行する名前空間上で見える�
 
 .. _ipc-settings-ipc:
 
-IPC 設定（--ipc） 
+IPC 設定（--ipc）
 ====================
 
 .. --ipc=""  : Set the IPC mode for the container,
@@ -581,7 +581,7 @@ Docker は以下の再起動ポリシーをサポートしています。
 
 .. list-table::
    :header-rows: 1
-   
+
    * - ポリシー
      - 結果
    * - **no** （なし）
@@ -661,7 +661,7 @@ Docker は以下の再起動ポリシーをサポートしています。
 
    --rm=false: Automatically remove the container when it exits (incompatible with -d)
 
-..     Note: When you set the --rm flag, Docker also removes the volumes associated with the container when the container is removed. This is similar to running docker rm -v my-container. Only volumes that are specified without a name are removed. For example, with docker run --rm -v /foo -v awesome:/bar busybox top, the volume for /foo will be removed, but the volume for /bar will not. Volumes inheritted via --volumes-from will be removed with the same logic -- if the original volume was specified with a name it will not be removed.
+..     Note: When you set the --rm flag, Docker also removes the volumes associated with the container when the container is removed. This is similar to running docker rm -v my-container. Only volumes that are specified without a name are removed. For example, with docker run --rm -v /foo -v awesome:/bar busybox top, the volume for /foo will be removed, but the volume for /bar will not. Volumes inherited via --volumes-from will be removed with the same logic -- if the original volume was specified with a name it will not be removed.
 
 .. note::
 
@@ -758,7 +758,7 @@ MLS であれば、次のような例になります。
 
 .. list-table::
    :header-rows: 1
-   
+
    * - オプション
      - 説明
    * - ``-m`` , ``--memory=""``
@@ -805,7 +805,7 @@ MLS であれば、次のような例になります。
 
 .. list-table::
    :header-rows: 1
-   
+
    * - オプション
      - 結果
    * - **memory=inf, memory-swap=inf** （デフォルト）
@@ -949,7 +949,7 @@ MLS であれば、次のような例になります。
 
 .. list-table::
    :header-rows: 1
-   
+
    * - オプション
      - 結果
    * - **U != 0, K = inf** （デフォルト）
@@ -986,7 +986,7 @@ MLS であれば、次のような例になります。
 
 .. By default, a container’s kernel can swap out a percentage of anonymous pages. To set this percentage for a container, specify a --memory-swappiness value between 0 and 100. A value of 0 turns off anonymous page swapping. A value of 100 sets all anonymous pages as swappable. By default, if you are not using --memory-swappiness, memory swappiness value will be inherited from the parent.
 
-デフォルトでは、コンテナのカーネルは、アノニマス・ページ・メモリ上の何パーセントかをスワップ・アウトします。コンテナ向けのこのパーセントを指定するには ``--memory-swappiness`` で 0 ～ 100 までの値を設定します。この値が 0 であればアノニマス・ページのスワッピング（anonymous page swapping）を無効にします。値を 100 にすると全てのページがスワップ可能となります。デフォルトでは、 ``--memory-swappiness`` を指定しなければ、メモリのスワップ回避（swapiness）は親の値を継承します。
+デフォルトでは、コンテナのカーネルは、アノニマス・ページ・メモリ上の何パーセントかをスワップ・アウトします。コンテナ向けのこのパーセントを指定するには ``--memory-swappiness`` で 0 ～ 100 までの値を設定します。この値が 0 であればアノニマス・ページのスワッピング（anonymous page swapping）を無効にします。値を 100 にすると全てのページがスワップ可能となります。デフォルトでは、 ``--memory-swappiness`` を指定しなければ、メモリのスワップ回避（swappiness）は親の値を継承します。
 
 .. For example, you can set:
 
@@ -1231,16 +1231,16 @@ Docker コンテナのプロセスを実行できるのは、デフォルトで�
 .. code-block:: bash
 
    $ docker run --device=/dev/sda:/dev/xvdc --rm -it ubuntu fdisk  /dev/xvdc
-   
+
    Command (m for help): q
    $ docker run --device=/dev/sda:/dev/xvdc:r --rm -it ubuntu fdisk  /dev/xvdc
    You will not be able to write the partition table.
-   
+
    Command (m for help): q
-   
+
    $ docker run --device=/dev/sda:/dev/xvdc:w --rm -it ubuntu fdisk  /dev/xvdc
        crash....
-   
+
    $ docker run --device=/dev/sda:/dev/xvdc:m --rm -it ubuntu fdisk  /dev/xvdc
    fdisk: unable to open /dev/xvdc: Operation not permitted
 
@@ -1289,7 +1289,7 @@ Docker コンテナのプロセスを実行できるのは、デフォルトで�
 
 .. list-table::
    :header-rows: 1
-   
+
    * - 機能のキー(capability key)
      - 機能説明
    * - SETPCAP
@@ -1317,7 +1317,7 @@ Docker コンテナのプロセスを実行できるのは、デフォルトで�
    * - AUDIT_CONTROL
      - カーネルの監査（ auditing ）を有効化。監査フィルタルールの変更や、監査状態やフィルタリング・ルールの読み出し
    * - MAC_OVERRIDE
-     - MAc 設定や状態の変更。Smack LSM 用の実装
+     - MAC 設定や状態の変更。Smack LSM 用の実装
    * - MAC_ADMIN
      - Mandatory アクセス・コントロール（MAC）の上書き。Smack Linux Security Module (LSM) 用の実装
    * - NET_ADMIN
@@ -1569,14 +1569,14 @@ EXPOSE （受信用のポート）
                   number of container ports in the range must match the
                   number of host ports in the range, for example:
                       -p 1234-1236:1234-1236/tcp
-   
+
                   When specifying a range for hostPort only, the
                   containerPort must not be a range.  In this case the
                   container port is published somewhere within the
                   specified hostPort range. (e.g., `-p 1234-1236:1234/tcp`)
-   
+
                   (use 'docker port' to see the actual mapping)
-   
+
    --link=""  : Add link to another container (<name or id>:alias or <name or id>)
 
 .. With the exception of the EXPOSE directive, an image developer hasn’t got much control over networking. The EXPOSE instruction defines the initial incoming ports that provide services. These ports are available to processes inside the container. An operator can use the --expose option to add to the exposed ports.
@@ -1595,9 +1595,9 @@ EXPOSE （受信用のポート）
 
 コンテナ内のポート番号（サービスがリッスンしているポート番号）は、コンテナの外に露出するポート番号（クライアントが接続する番号）と一致させる必要がありません。たとえば、コンテナ内の HTTP サービスがポート 80 をリッスンしているとします（そして、イメージ開発者は Dockerfile で ``EXPOSE 80`` を指定しているでしょう ）。実行する時に、ホスト側のポート 42800 以上が使われます。公開用ポートがホスト側のどのポートに割り当てられたかを確認するには、 ``docker port`` コマンドを使います。
 
-.. If the operator uses --link when starting a new client container, then the client container can access the exposed port via a private networking interface. 
-Linking is a legacy feature that is only supported on the default bridge network. 
-You should prefer the Docker networks feature instead. 
+.. If the operator uses --link when starting a new client container, then the client container can access the exposed port via a private networking interface.
+Linking is a legacy feature that is only supported on the default bridge network.
+You should prefer the Docker networks feature instead.
 For more information on this feature, see the Docker network overview””).
 
 .. If the operator uses --link when starting a new client container in the default bridge network, then the client container can access the exposed port via a private networking interface. If --link is used when starting a container in a user-defined network as described in Docker network overview””), it will provide a named alias for the container being linked to.
@@ -1624,7 +1624,7 @@ ENV（環境変数）
 
 .. list-table::
    :header-rows: 1
-   
+
    * - 変数
      - 値
    * - ``HOME``
@@ -1676,7 +1676,7 @@ TMPFS （tmfps ファイルシステムのマウント）
 
 .. code-block:: bash
 
-   $ docker run -d --tmpfs /run:rw,noexec,nosuid,size=65536k my_imaage
+   $ docker run -d --tmpfs /run:rw,noexec,nosuid,size=65536k my_image
 
 
 .. VOLUME (shared filesystems)

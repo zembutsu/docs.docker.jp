@@ -9,7 +9,7 @@
 
 .. down
 
-.. _compse-down:
+.. _compose-down:
 
 =======================================
 down
@@ -24,11 +24,9 @@ down
 .. code-block:: bash
 
    Usage: down [options]
-   
+
    Options:
        --rmi type      Remove images, type may be one of: 'all' to remove
                        all images, or 'local' to remove only images that
                        don't have an custom name set by the `image` field
        -v, --volumes   Remove data volumes
-
-

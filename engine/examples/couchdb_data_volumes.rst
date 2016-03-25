@@ -6,9 +6,9 @@
 .. check date: 2016/02/15
 .. ---------------------------------------------------------------
 
-.. Dockerizing a CounchDB service
+.. Dockerizing a CouchDB service
 
-.. _dockerizing-a-counchdb-service:
+.. _dockerizing-a-couchdb-service:
 
 ========================================
 CouchDB サービスの Docker 化

@@ -168,7 +168,7 @@ Docker が推奨するのは、複数のラベルを１つの ``LABEL`` 命令�
 .. code-block:: bash
 
    $ docker inspect 4fa6e0f0c678
-   
+
    ...
    "Labels": {
        "vendor": "ACME Incorporated",
@@ -178,16 +178,16 @@ Docker が推奨するのは、複数のラベルを１つの ``LABEL`` 命令�
        "com.example.release-date": "2015-02-12"
    }
    ...
-   
+
    # Inspect labels on container
    $ docker inspect -f "{{json .Config.Labels }}" 4fa6e0f0c678
-   
+
    {"Vendor":"ACME Incorporated","com.example.is-beta":"", "com.example.is-production":"", "com.example.version":"0.0.1-beta","com.example.release-date":"2015-02-12"}
-   
+
    # Inspect labels on images
    $ docker inspect -f "{{json .ContainerConfig.Labels }}" myimage
 
-.. _query-lables:
+.. _query-labels:
 
 .. Query labels
 
@@ -236,7 +236,7 @@ Docker が推奨するのは、複数のラベルを１つの ``LABEL`` 命令�
 
 .. Please refer to the Query labels section above for information on how to query labels set on a container.
 
-コンテナにクエリ・ラベルをセットするには、先ほどの :ref:`クエリ・ラベル <query-lables>` セクションをご覧ください。
+コンテナにクエリ・ラベルをセットするには、先ほどの :ref:`クエリ・ラベル <query-labels>` セクションをご覧ください。
 
 .. Daemon labels
 

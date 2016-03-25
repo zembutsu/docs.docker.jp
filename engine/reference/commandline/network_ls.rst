@@ -16,7 +16,7 @@ network ls
 .. code-block:: bash
 
    Usage:  docker network ls [OPTIONS]
-   
+
    Lists all the networks created by the user
      -f, --filter=[]       Filter output based on conditions provided
      --help                Print usage
@@ -44,10 +44,10 @@ Docker エンジンの ``daemon`` が把握している全てのネットワー�
 
    docker network ls --no-trunc
    NETWORK ID                                                         NAME                DRIVER
-   18a2866682b85619a026c81b98a5e375bd33e1b0936a26cc497c283d27bae9b3   none                null                
-   c288470c46f6c8949c5f7e5099b5b7947b07eabe8d9a27d79a9cbf111adcbf47   host                host                
-   7b369448dccbf865d397c8d2be0cda7cf7edc6b0945f77d2529912ae917a0185   bridge              bridge              
-   95e74588f40db048e86320c6526440c504650a1ff3e9f7d60a497c4d2163e5bd   foo                 bridge    
+   18a2866682b85619a026c81b98a5e375bd33e1b0936a26cc497c283d27bae9b3   none                null
+   c288470c46f6c8949c5f7e5099b5b7947b07eabe8d9a27d79a9cbf111adcbf47   host                host
+   7b369448dccbf865d397c8d2be0cda7cf7edc6b0945f77d2529912ae917a0185   bridge              bridge
+   95e74588f40db048e86320c6526440c504650a1ff3e9f7d60a497c4d2163e5bd   foo                 bridge
    63d1ff1f77b07ca51070a8c227e962238358bd310bde1529cf62e6c307ade161   dev                 bridge
 
 .. Filtering
@@ -59,7 +59,7 @@ Docker エンジンの ``daemon`` が把握している全てのネットワー�
 
 .. The filtering flag (-f or --filter) format is a key=value pair. If there is more than one filter, then pass multiple flags (e.g. --filter "foo=bar" --filter "bif=baz"). Multiple filter flags are combined as an OR filter. For example, -f type=custom -f type=builtin returns both custom and builtin networks.
 
-フィルタリング・フラグ（ ``-f`` または ``--flter`` ）の書式は ``key=value`` のペアです。フィルタを何回もしたい場合は、複数のフラグを使います（例： ``-filter "foo=bar" --filter "bif=baz"`` ）。複数のフィルタを指定すると、 ``OR`` （同一条件）フィルタとして連結されます。例えば、 ``-f type=custom -f type=builtin`` は ``custom`` と ``builtin``  ネットワークの両方を返します。
+フィルタリング・フラグ（ ``-f`` または ``--filter`` ）の書式は ``key=value`` のペアです。フィルタを何回もしたい場合は、複数のフラグを使います（例： ``-filter "foo=bar" --filter "bif=baz"`` ）。複数のフィルタを指定すると、 ``OR`` （同一条件）フィルタとして連結されます。例えば、 ``-f type=custom -f type=builtin`` は ``custom`` と ``builtin``  ネットワークの両方を返します。
 
 .. The currently supported filters are:
 
@@ -164,7 +164,7 @@ id
    $ docker network ls --filter id=95e74588f40d
    NETWORK ID          NAME                DRIVER
    95e74588f40d        foo                 bridge
-   
+
    $ docker network ls --filter id=95e
    NETWORK ID          NAME                DRIVER
    95e74588f40d        foo                 bridge

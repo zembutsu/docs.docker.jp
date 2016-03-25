@@ -9,7 +9,7 @@
 
 .. pause
 
-.. _compse-pause:
+.. _compose-pause:
 
 =======================================
 pause
@@ -21,4 +21,4 @@ pause
 
 .. Pauses running containers of a service. They can be unpaused with docker-compose unpause.
 
-サービスを実行しているコンテナを一時停止（pause）します。再開（unpause）するには ``docker-compose unpose`` を使います。
+サービスを実行しているコンテナを一時停止（pause）します。再開（unpause）するには ``docker-compose unpause`` を使います。

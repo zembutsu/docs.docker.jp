@@ -23,7 +23,7 @@ Microsoft Hyper-V
 
 .. note::
 
-   ドライバを使うには既存の仮想スイッチを使う必要があります。Hyper-V は外部のネットワーク・インターフェース（ブリッジなど）を共有できます。詳しくは `こちらのブログ <http://blogs.technet.com/b/canitpro/archive/2014/03/11/step-by-step-enabling-hyper-v-for-use-on-windows-8-1.aspx>`_ をご覧ください。NAT を使いたい場合は、内部のネットワーク（inetrnal network）を作成し、 `Internet Connection Sharing <http://www.packet6.com/allowing-windows-8-1-hyper-v-vm-to-work-with-wifi/>`_ を有効化します。
+   ドライバを使うには既存の仮想スイッチを使う必要があります。Hyper-V は外部のネットワーク・インターフェース（ブリッジなど）を共有できます。詳しくは `こちらのブログ <http://blogs.technet.com/b/canitpro/archive/2014/03/11/step-by-step-enabling-hyper-v-for-use-on-windows-8-1.aspx>`_ をご覧ください。NAT を使いたい場合は、内部のネットワーク（internal network）を作成し、 `Internet Connection Sharing <http://www.packet6.com/allowing-windows-8-1-hyper-v-vm-to-work-with-wifi/>`_ を有効化します。
 
 .. code-block:: bash
 
@@ -54,7 +54,7 @@ Microsoft Hyper-V
 
 .. list-table::
    :header-rows: 1
-   
+
    * - コマンドライン・オプション
      - 環境変数
      - デフォルト値
@@ -79,4 +79,3 @@ Microsoft Hyper-V
    * - ``--hyperv-vlan-id``
      - ``HYPERV_VLAN_ID``
      - *未定義*
-

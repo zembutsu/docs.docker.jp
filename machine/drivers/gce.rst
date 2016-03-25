@@ -9,7 +9,7 @@
 
 .. Google Compute Engine
 
-.. _driver-gogle-compute-engine:
+.. _driver-google-compute-engine:
 
 =======================================
 Google Compute Engine
@@ -94,7 +94,7 @@ GCE ドライバは、イメージの指定がなければ ``ubuntu-1510-wily-v2
 
 .. list-table::
    :header-rows: 1
-   
+
    * - コマンドライン・オプション
      - 環境変数
      - デフォルト値

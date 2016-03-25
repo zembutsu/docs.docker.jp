@@ -1,4 +1,4 @@
-﻿.. -*- coding: utf-8 -*-
+.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/quickstart/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/quickstart.md
 .. doc version: 1.10
@@ -9,7 +9,7 @@
 
 .. sidebar:: 目次
 
-   .. contents:: 
+   .. contents::
        :depth: 2
        :local:
 
@@ -69,7 +69,7 @@ Docker Engine のインストールや ``sudo`` 設定に関しては、 :doc:`�
 
 .. note::
 
-   イメージのダウンロードに成功すると、12文字のハッシュ ``539c0211cd76: Download complete`` が表示されます。これはイメージ ID を短くしたものです。この短いイメージ ID（short image ID）は、完全イメージ ID （full iamge ID）の始めから12文字です。完全イメージ ID を確認するには ``docker inspect`` や ``docker images --no-trunc=true`` を実行します。
+   イメージのダウンロードに成功すると、12文字のハッシュ ``539c0211cd76: Download complete`` が表示されます。これはイメージ ID を短くしたものです。この短いイメージ ID（short image ID）は、完全イメージ ID （full image ID）の始めから12文字です。完全イメージ ID を確認するには ``docker inspect`` や ``docker images --no-trunc=true`` を実行します。
 
 .. To display a list of downloaded images, run docker images.
 
@@ -86,7 +86,7 @@ Ubuntu イメージの対話型シェルを使うには、次のように実行�
 
 .. code-block:: bash
 
-   $ docker run -i -t ubuntu /bin/bash 
+   $ docker run -i -t ubuntu /bin/bash
 
 .. The -i flag starts an interactive container. The -t flag creates a pseudo-TTY that attaches stdin and stdout. The image is ubuntu. The command /bin/bash starts a shell you can log in.
 
@@ -94,7 +94,7 @@ Ubuntu イメージの対話型シェルを使うには、次のように実行�
 
 .. To detach the tty without exiting the shell, use the escape sequence Ctrl-p + Ctrl-q. The container will continue to exist in a stopped state once exited. To list all containers, stopped and running, use the docker ps -a command.
 
-シェルを終了せずに ``tty`` をデタッチ（取り外し）するには、エスケープ・シーケンス ``Ctrl-p`` + ``Ctrp-q`` を使います。コンテナから出たあとも、停止するまでコンテナは存在し続けます。
+シェルを終了せずに ``tty`` をデタッチ（取り外し）するには、エスケープ・シーケンス ``Ctrl-p`` + ``Ctrl-q`` を使います。コンテナから出たあとも、停止するまでコンテナは存在し続けます。
 
 .. Bind Docker to another host/port or a Unix socket
 
@@ -103,7 +103,7 @@ Docker を他のホスト・ポートや Unix ソケットに接続
 
 .. Warning: Changing the default docker daemon binding to a TCP port or Unix docker user group will increase your security risks by allowing non-root users to gain root access on the host. Make sure you control access to docker. If you are binding to a TCP port, anyone with access to that port has full Docker access; so it is not advisable on an open network.
 
-.. warning:: 
+.. warning::
 
    ``docker`` デーモンが標準で利用する TCP ポートと Unix *docker* ユーザ・グループの変更は、ホスト上の非 root ユーザが *root* アクセスを得られるという、セキュリティ・リスクを増やします。``docker`` に対する管理を確実に行ってください。TCP ポートの利用時、ポートにアクセスできる誰もが Docker に対する完全なアクセスを可能です。そのため、オープンなネットワーク上での利用は望ましくありません。
 
@@ -119,7 +119,7 @@ Docker デーモンで ``-H`` オプション使用すると、指定した IP �
 
 ``-H`` は次の書式でホストとポートを割り当てます：
 
-:: 
+::
 
    tcp://[host]:[port][path] or unix://path
 
@@ -127,7 +127,7 @@ Docker デーモンで ``-H`` オプション使用すると、指定した IP �
 
 例：
 
-.. 
+..
     tcp:// -> TCP connection to 127.0.0.1 on either port 2376 when TLS encryption is on, or port 2375 when communication is in plain text.
     tcp://host:2375 -> TCP connection on host:2375
     tcp://host:2375/path -> TCP connection on host:2375 and prepend path to all requests
@@ -199,10 +199,10 @@ Docker をデーモン・モードで起動する：
 
 .. # Start a very useful long-running process
    $ JOB=$(docker run -d ubuntu /bin/sh -c "while true; do echo Hello world; sleep 1; done")
-   
+
    # Collect the output of the job so far
    $ docker logs $JOB
-   
+
    # Kill the job
    $ docker kill $JOB
 
@@ -210,10 +210,10 @@ Docker をデーモン・モードで起動する：
 
    # とても便利な長時間動作プロセスの開始
    $ JOB=$(docker run -d ubuntu /bin/sh -c "while true; do echo Hello world; sleep 1; done")
-   
+
    # これまでのジョブの出力を収集
    $ docker logs $JOB
-   
+
    # ジョブの停止(kill)
    $ docker kill $JOB
 
@@ -240,19 +240,19 @@ Docker をデーモン・モードで起動する：
 
    # 新しいコンテナの起動
    $ JOB=$(docker run -d ubuntu /bin/sh -c "while true; do echo Hello world; sleep 1; done")
-   
+
    # コンテナの停止
    $ docker stop $JOB
-   
+
    # コンテナの起動
    $ docker start $JOB
-   
+
    # コンテナの再起動
    $ docker restart $JOB
-   
+
    # コンテナを SIGKILL で停止
    $ docker kill $JOB
-   
+
    # コンテナを削除
    $ docker stop $JOB # Container must be stopped to remove it
    $ docker rm $JOB
@@ -266,17 +266,17 @@ TCP ポートにサービスを割り当て
 
    # コンテナにポート 4444 を割り当て、netcat でリッスンする
    $ JOB=$(docker run -d -p 4444 ubuntu:12.10 /bin/nc -l 4444)
-   
+
    # どの外部ポートがコンテナに NAT されているか？
    $ PORT=$(docker port $JOB 4444 | awk -F: '{ print $2 }')
-   
+
    # 公開ポートに接続
    $ echo hello world | nc 127.0.0.1 $PORT
-   
+
    # ネットワーク接続の動作を確認
    $ echo "Daemon received: $(docker logs $JOB)"
 
-.. Commiting (saving) a container state
+.. Committing (saving) a container state
 
 コンテナの状態をコミット（保存）
 ========================================
@@ -315,8 +315,7 @@ TCP ポートにサービスを割り当て
 * :doc:`レポジトリを通したイメージの共有 <userguide/containers/dockerrepos>` について読む
 * :doc:`コマンドラインの練習 <reference/commandline/cli>` を参照
 
-.. seealso:: 
+.. seealso::
 
    Quickstart Docker Engine
       https://docs.docker.com/engine/quickstart/
-

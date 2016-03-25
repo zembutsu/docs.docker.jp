@@ -9,7 +9,7 @@
 
 .. up
 
-.. _compse-up:
+.. _compose-up:
 
 =======================================
 up
@@ -18,7 +18,7 @@ up
 .. code-block:: bash
 
    Usage: up [options] [SERVICE...]
-   
+
    Options:
    -d                         Detached mode: Run containers in the background,
                               print new container names.

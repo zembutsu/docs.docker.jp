@@ -50,7 +50,7 @@ Swarm マネージャが利用不可能になると、アプリケーション�
 
 .. Docker Swarm supports high availability for Swarm managers. This allows a single Swarm cluster to have two or more managers. One manager is elected as the primary manager and all others operate as secondaries. In the event that the primary manager fails, one of the secondaries is elected as the new primary, and cluster operations continue gracefully. If you are deploying multiple Swarm managers for high availability, you should consider spreading them across multiple failure domains within your infrastructure.
 
-Docker Swarm は Sarm マネージャの高可用性をサポートしています。そのため、１つのクラスタ上に２つ以上のマネージャを追加可能です。あるマネージャがプライマリ・マネージャとして選ばれると、その他のものはセカンダリになります。プライマリ・マネージャで障害が発生すると、他のセカンダリから新しいプライマリ・マネージャが選び出され、クラスタの操作をし続けることが可能2鳴ります。高可用性に対応した Swarm マネージャを複数デプロイする場合は、インフラ上で複数の領域を横断する障害発生を考慮したほうが良いでしょう。
+Docker Swarm は Swarm マネージャの高可用性をサポートしています。そのため、１つのクラスタ上に２つ以上のマネージャを追加可能です。あるマネージャがプライマリ・マネージャとして選ばれると、その他のものはセカンダリになります。プライマリ・マネージャで障害が発生すると、他のセカンダリから新しいプライマリ・マネージャが選び出され、クラスタの操作をし続けることが可能2鳴ります。高可用性に対応した Swarm マネージャを複数デプロイする場合は、インフラ上で複数の領域を横断する障害発生を考慮したほうが良いでしょう。
 
 .. Consul (discovery backend) failures
 
@@ -216,7 +216,7 @@ Swarm クラスタのアベイラビリティ・ゾーンを増やすには：
     Deploy all scalable components of the application across multiple AZs
 
 * HA 用の Swarm マネージャを、異なった AZ にある HAノードにデプロイ
-* HA 用の COnsul ディスカバリ・サービスを、異なった AZ にある HA ノードにデプロイ
+* HA 用の Consul ディスカバリ・サービスを、異なった AZ にある HA ノードにデプロイ
 * 全てのスケーラブルなアプリケーションのコンポーネントを、複数の AZ に横断させる
 
 .. This configuration is shown in the diagram below.
@@ -256,7 +256,7 @@ Swarm クラスタのアベイラビリティ・ゾーンを増やすには：
 * :doc:`/swarm/networking`
 * :doc:`/swarm/multi-manager-setup`
 
-.. seealso:: 
+.. seealso::
 
    Troubleshoot the application
       https://docs.docker.com/swarm/swarm_at_scale/05-troubleshoot/

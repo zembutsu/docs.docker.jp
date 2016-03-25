@@ -16,7 +16,7 @@ Oracle Linux
 
 .. sidebar:: 目次
 
-   .. contents:: 
+   .. contents::
        :depth: 3
        :local:
 
@@ -48,7 +48,7 @@ Docker は Oracle Linux 6 と 7 をサポートします。Docker Linux に Dock
 
 .. note::
 
-   以下のバイナリ版インストール手順は Docker が作成しました。これらのバイナリは Oracle LInux サポートが扱わないものです。Oracle Linux サポートが必要であれば、 `Oracle Linux が提供するドキュメント <https://docs.oracle.com/en/operating-systems/?tab=2>`_ のインストール手順に従ってください。
+   以下のバイナリ版インストール手順は Docker が作成しました。これらのバイナリは Oracle Linux サポートが扱わないものです。Oracle Linux サポートが必要であれば、 `Oracle Linux が提供するドキュメント <https://docs.oracle.com/en/operating-systems/?tab=2>`_ のインストール手順に従ってください。
 
 .. note::
 
@@ -146,7 +146,7 @@ Oracle Linux７の場合：
     Use the btrfs storage engine
 
 * docker グループの作成
-* ブート時の Doker 開始設定
+* ブート時の Docker 開始設定
 * btrfs ストレージ・エンジンを使う
 
 .. Create a Docker group
@@ -329,7 +329,7 @@ Oracle Linux 7 で btrfs ストレージ・エンジンを使う場合は、 ``/
 
 Oracle Linux サポート・サブスクリプションをお持ちでなければ、 `Oracle Linux Forum <https://community.oracle.com/community/server_%26_storage_systems/linux/oracle_linux>`_ コミュニティのサポートをご利用ください。
 
-.. seealso:: 
+.. seealso::
 
    Installation on Oracle Linux
       https://docs.docker.com/engine/installation/linux/oracle/

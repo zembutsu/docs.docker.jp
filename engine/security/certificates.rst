@@ -91,7 +91,7 @@
 
 .. note::
 
-   これらの TLS コマンドが生成する証明書は、LInux 上で動作するものです。Mac OS X に含まれている OpenSSL のバージョンでは、Docker が必要とする証明書のタイプとの互換性はありません。
+   これらの TLS コマンドが生成する証明書は、Linux 上で動作するものです。Mac OS X に含まれている OpenSSL のバージョンでは、Docker が必要とする証明書のタイプとの互換性はありません。
 
 .. Troubleshooting tips
 
@@ -116,4 +116,3 @@ Docker デーモンは ``.crt`` ファイルを CA 証明書として認識し�
 
 * :doc:`trust/index`
 * :doc:`https`
-

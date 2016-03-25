@@ -87,7 +87,7 @@ Linux ディストリビューションが AppArmor か SELinuxをサポート�
 
 .. Some Linux distributions enable AppArmor or SELinux by default and they run a kernel which doesn’t meet the minimum requirements (3.10 or newer). Updating the kernel to 3.10 or newer on such a system might not be enough to start Docker and run containers. Incompatibilities between the version of AppArmor/SELinux user space utilities provided by the system and the kernel could prevent Docker from running, from starting containers or, cause containers to exhibit unexpected behaviour.
 
-ディストリビューションによっては AppArmr や SELinux がデフォルトで有効になっており、カーネルが最小動作条件（3.10以上）を満たさないかもしれません。カーネルを 3.10 や新しいものに更新すると、システムではDocker の起動やコンテナを実行できないかもしれません。システムが提供する AppArmor や SELinux のユーザ・スペース・ユーティリティとカーネル間の非互換性により、Docker の実行ができなかったり、コンテナを起動出来なかったか、コンテナが予期しない動作を起こす可能性があります。
+ディストリビューションによっては AppArmor や SELinux がデフォルトで有効になっており、カーネルが最小動作条件（3.10以上）を満たさないかもしれません。カーネルを 3.10 や新しいものに更新すると、システムではDocker の起動やコンテナを実行できないかもしれません。システムが提供する AppArmor や SELinux のユーザ・スペース・ユーティリティとカーネル間の非互換性により、Docker の実行ができなかったり、コンテナを起動出来なかったか、コンテナが予期しない動作を起こす可能性があります。
 
 ..    Warning: If either of the security mechanisms is enabled, it should not be disabled to make Docker or its containers run. This will reduce security in that environment, lose support from the distribution’s vendor for the system, and might break regulations and security policies in heavily regulated environments.
 
@@ -277,11 +277,10 @@ root 以外のアクセス
 
    # docker バージョンの確認
    $ sudo ./docker version
-   
+
    # コンテナを実行し、コンテナ内のシェルをインタラクティブに開きます
    $ sudo ./docker run -i -t ubuntu /bin/bash
 
 .. Continue with the User Guide.
 
 :doc:`ユーザ・ガイド </engine/userguide/index>` に進みます。
-

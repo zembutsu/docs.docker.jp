@@ -5,9 +5,9 @@
 .. check date: 2016/03/12
 .. -------------------------------------------------------------------
 
-.. Recipies
+.. Recipes
 
-.. _recipies:
+.. _recipes:
 
 ========================================
 レシピ
@@ -69,8 +69,7 @@
 * :doc:`building`
 * :doc:`mirror`
 
-.. seealso:: 
+.. seealso::
 
-   Recipies
+   Recipes
       https://docs.docker.com/registry/recipes/
-

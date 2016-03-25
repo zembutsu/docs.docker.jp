@@ -17,7 +17,7 @@ Docker Swarm ストラテジ
 
 .. The Docker Swarm scheduler features multiple strategies for ranking nodes. The strategy you choose determines how Swarm computes ranking. When you run a new container, Swarm chooses to place it on the node with the highest computed ranking for your chosen strategy.
 
-Docker Swarm スケジューラは、複数のストラテジ（stragegy；方針）機能でノードを順位付けします。選択したストラテジによって、 Swarm が順位を算出します。Swarm で新しいコンテナを作成するときは、選択したストラテジに従って、コンテナを置くために最も順位の高いノードを算出します。
+Docker Swarm スケジューラは、複数のストラテジ（strategy；方針）機能でノードを順位付けします。選択したストラテジによって、 Swarm が順位を算出します。Swarm で新しいコンテナを作成するときは、選択したストラテジに従って、コンテナを置くために最も順位の高いノードを算出します。
 
 .. To choose a ranking strategy, pass the --strategy flag and a strategy value to the swarm manage command. Swarm currently supports these values:
 
@@ -68,7 +68,7 @@ Spread ストラテジの例
 
    $ docker tcp://<manager_ip:manager_port> run -d -P -m 1G --name db mysql
    f8b693db9cd6
-   
+
    $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    f8b693db9cd6        mysql:latest        "mysqld"            Less than a second ago   running             192.168.0.42:49178->3306/tcp    node-1      db
@@ -81,7 +81,7 @@ Spread ストラテジの例
 
    $ docker run tcp://<manager_ip:manager_port> -d -P -m 1G --name frontend nginx
    963841b138d8
-   
+
    $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    963841b138d8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:49177->80/tcp      node-2      frontend
@@ -104,10 +104,10 @@ BinPack ストラテジの例
 
    $ docker run tcp://<manager_ip:manager_port> -d -P -m 1G --name db mysql
    f8b693db9cd6
-   
+
    $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
-   f8b693db9cd6        mysql:latest        "mysqld"            Less than a second ago   running             192.168.0.42:49178->3306/tcp    node-1      db   
+   f8b693db9cd6        mysql:latest        "mysqld"            Less than a second ago   running             192.168.0.42:49178->3306/tcp    node-1      db
 
 .. Now, you start another container, asking for 1G of RAM again.
 
@@ -117,7 +117,7 @@ BinPack ストラテジの例
 
    $ docker run tcp://<manager_ip:manager_port> -d -P -m 1G --name frontend nginx
    963841b138d8
-   
+
    $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    963841b138d8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:49177->80/tcp      node-1      frontend
@@ -134,7 +134,7 @@ BinPack ストラテジの例
 Docker Swarm ドキュメント目次
 ==============================
 
-.. 
+..
     User guide
     Scheduler strategies
     Scheduler filters
@@ -146,8 +146,7 @@ Docker Swarm ドキュメント目次
 * :doc:`Swarm API </swarm/swarm-api>`
 
 
-.. seealso:: 
+.. seealso::
 
    Docker Swarm strategies
       https://docs.docker.com/swarm/scheduler/strategy/
-

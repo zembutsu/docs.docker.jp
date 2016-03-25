@@ -68,7 +68,7 @@ Swarm の各ノード上にあるデーモンの設定変更・再起動を行�
 
 このように、各ネットワーク名の接頭語がノード名になっていることが分かります。
 
-.. Create a network 
+.. Create a network
 
 .. _create-a-network:
 
@@ -114,7 +114,7 @@ Swarm の各ノード上にあるデーモンの設定変更・再起動を行�
    09138343e80e        node-0/bridge          bridge
    8834dbd552e5        node-0/none            null
    42131321acab        node-0/swarm_network   overlay
-   921817fefea5        node-0/bridge2         brige
+   921817fefea5        node-0/bridge2         bridge
    45782acfe427        node-1/host            host
    8926accb25fd        node-1/bridge          bridge
    6382abccd23d        node-1/none            null
@@ -155,7 +155,7 @@ Swarm の各ノード上にあるデーモンの設定変更・再起動を行�
 Docker Swarm ドキュメント目次
 ==============================
 
-.. 
+..
     User guide
     Scheduler strategies
     Scheduler filters
@@ -166,7 +166,7 @@ Docker Swarm ドキュメント目次
 * :doc:`スケジューラ・フィルタ </swarm/scheduler/filter>`
 * :doc:`Swarm API </swarm/swarm-api>`
 
-.. seealso:: 
+.. seealso::
 
    Swarm and container networks
       https://docs.docker.com/swarm/networking/

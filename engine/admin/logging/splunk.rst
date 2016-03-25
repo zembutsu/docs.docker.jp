@@ -61,7 +61,7 @@ Splunnk ロギング・ドライバでは、``--log-opt 名前=値`` フラグ�
      - Splunk HTTP Event Collector トークンを指定
    * - ``splunk-url``
      - 必須
-     - Splunk Enterprise または Splunk Cloud インスタンスに対するパス（HTTP Event Coolector の使うポートとスキーマを含む） ``https://your_splunk_instance:8088``
+     - Splunk Enterprise または Splunk Cloud インスタンスに対するパス（HTTP Event Collector の使うポートとスキーマを含む） ``https://your_splunk_instance:8088``
    * - ``splunk-source``
      - オプション
      - イベント・ソース

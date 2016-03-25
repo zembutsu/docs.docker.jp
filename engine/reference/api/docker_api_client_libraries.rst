@@ -28,7 +28,7 @@
 
 .. list-table::
    :header-rows: 1
-   
+
    * - 言語/フレームワーク
      - 名前
      - レポジトリ
@@ -41,7 +41,7 @@
      - lasote/docker_client
      - http://www.biicode.com/lasote/docker_client
      - Active
-   * - Elang
+   * - Erlang
      - erldocker
      - https://github.com/proger/erldocker
      - Active

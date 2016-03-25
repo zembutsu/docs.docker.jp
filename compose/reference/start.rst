@@ -9,7 +9,7 @@
 
 .. start
 
-.. _compse-start:
+.. _compose-start:
 
 =======================================
 start
@@ -22,4 +22,3 @@ start
 .. Starts existing containers for a service.
 
  コンテナをサービスとして存在するように起動します。
-

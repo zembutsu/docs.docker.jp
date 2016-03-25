@@ -9,7 +9,7 @@
 
 .. Learn the application architecture
 
-.. _learn-the-application-architecure:
+.. _learn-the-application-architecture:
 
 =======================================
 アプリケーションのアーキテクチャを学ぶ
@@ -132,7 +132,7 @@ Swarm クラスタのアーキテクチャ
 * ``store`` ：
 
   * コンテナ：Postgres（pg）
-  * コンテナ：resluts アプリ（results-app）
+  * コンテナ：results アプリ（results-app）
 
 .. After you deploy the application, you’ll configure your local system so that you can test the application from your local browser. In production, of course, this step wouldn’t be needed.
 
@@ -158,7 +158,7 @@ Swarm クラスタのアーキテクチャ
 
 これでアプリケーションのアーキテクチャを理解しましたの。デプロイするにあたり、どのようなネットワーク設定をサポートする必要があるのか分かったと思います。次のステップでは、このサンプルを使って AWS 上に :doc:`ネットワーク・インフラをデプロイ <02-deploy-infra>` します。
 
-.. seealso:: 
+.. seealso::
 
    Learn the application architecture
       https://docs.docker.com/swarm/swarm_at_scale/01-about/

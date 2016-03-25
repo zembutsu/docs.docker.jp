@@ -1,4 +1,4 @@
-.. -*- coding: utf-8 -*-
+swarm/multi-manager-setup.rst.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/swarm/multi-manager-setup/
 .. SOURCE: https://github.com/docker/swarm/blob/master/docs/multi-manager-setup.md
    doc version: 1.10
@@ -244,8 +244,7 @@ Docker Swarm の **Swarm マネージャ** は、クラスタ全体に対する�
 
 好みによって、 何らかの仕組みを使うことにより、``DOCKER_HOST`` が現在のプライマリ・マネージャを常に示すよう にも可能です。そうしておけば、フェイルオーバ発生のたびに、Docker Swarm に対する接続を失うことはないでしょう。
 
-.. seealso:: 
+.. seealso::
 
-   High availabilit in Docker Swarm
+   High availability in Docker Swarm
       https://docs.docker.com/swarm/multi-manager-setup/
-

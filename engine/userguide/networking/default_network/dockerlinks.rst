@@ -24,7 +24,7 @@
 
 .. This section briefly discusses connecting via a network port and then goes into detail on container linking in default bridge network.
 
-このセクションではネットワーク・ポートの接続と、それらをデフォルトの ``birdge`` ネットワーク上のコンテナ上でリンクする方法を簡単に扱います。
+このセクションではネットワーク・ポートの接続と、それらをデフォルトの ``bridge`` ネットワーク上のコンテナ上でリンクする方法を簡単に扱います。
 
 .. Connect using network port mapping
 

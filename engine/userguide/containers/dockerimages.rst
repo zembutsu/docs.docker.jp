@@ -1,4 +1,4 @@
-﻿.. -*- coding: utf-8 -*-
+.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/containers/dockerimages/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/containers/dockerimages.md
    doc version: 1.10
@@ -8,7 +8,7 @@
 .. check date: 2016/02/10
 .. ----------------------------------------------------------------------------
 
-.. Bulid your own images
+.. Build your own images
 
 .. _build-your-own-images:
 
@@ -28,7 +28,7 @@ Docker はダウンロードしたイメージを Docker ホスト上に保管�
 
 このセクションでは Docker イメージについて、次の内容を含めて深掘りしていきます：
 
-.. 
+..
     Managing and working with images locally on your Docker host.
     Creating basic images.
     Uploading images to Docker Hub Registry.
@@ -59,7 +59,7 @@ Docker はダウンロードしたイメージを Docker ホスト上に保管�
 
 これまでのガイドで使用したイメージが表示されます。それぞれ、コンテナでイメージを起動するとき、 `Docker Hub <https://hub.docker.com/>`_ からダウンロードしたものです。イメージの一覧を表示するとき、３つの重要な情報が表示されます。
 
-.. 
+..
     What repository they came from, for example ubuntu.
     The tags for each image, for example 14.04.
     The image ID of each image.
@@ -129,7 +129,7 @@ Docker はダウンロードしたイメージを Docker ホスト上に保管�
    511136ea3c5a: Download complete
    ef52fb1fe610: Download complete
    . . .
-   
+
    Status: Downloaded newer image for centos
 
 .. You can see that each layer of the image has been pulled down and now you can run a container from this image and you won’t have to wait to download the image.
@@ -539,7 +539,7 @@ Windows で Docker Machine を使っている場合、ホスト・ディレク�
     ---> 97feabe5d2ed
    Removing intermediate container 6b81cb6313e5
    Successfully built 97feabe5d2ed
-   
+
 .. You’ve specified our docker build command and used the -t flag to identify our new image as belonging to the user ouruser, the repository name sinatra and given it the tag v2.
 
 ``docker build`` コマンドで  ``-t`` フラグを指定し、新しいイメージがユーザ ``ouruser`` に属していること、レポジトリ名が ``sinatra`` 、タグを ``v2`` に指定します。
@@ -704,6 +704,3 @@ Docker ホスト上で、`コンテナの削除 <usingdocker>`と同じように
 .. Go to Network containers.
 
 :doc:`コンテナのネットワーク <networkingcontainers>`  に移動します。
-
-
-

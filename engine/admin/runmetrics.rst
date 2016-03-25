@@ -67,7 +67,7 @@ Linux はプロセス・グループの追跡だけでなく、CPU・メモリ�
 
 .. You can look into /proc/cgroups to see the different control group subsystems known to the system, the hierarchy they belong to, and how many groups they contain.
 
-``/proc/cgoups`` を調べると、システム上の様々に異なるコントロール・グループのサブシステムが見えます。それぞれに階層がサブシステムに相当しており、多くのグループが見えるでしょう。
+``/proc/cgroups`` を調べると、システム上の様々に異なるコントロール・グループのサブシステムが見えます。それぞれに階層がサブシステムに相当しており、多くのグループが見えるでしょう。
 
 .. You can also look at /proc/<pid>/cgroup to see which control groups a process belongs to. The control group will be shown as a path relative to the root of the hierarchy mountpoint; e.g., / means “this process has not been assigned into a particular group”, while /lxc/pumpkin means that the process is likely to be a member of a container named pumpkin.
 
@@ -271,7 +271,7 @@ IPtables を使うことで（というよりも、インターフェースに�
 
 .. For instance, you can setup a rule to account for the outbound HTTP traffic on a web server:
 
-例えば、ウェブサーバの外側に対する(outbund) HTTP トラフィックの計算のために、次のようなルールを作成できます。
+例えば、ウェブサーバの外側に対する(outbound) HTTP トラフィックの計算のために、次のようなルールを作成できます。
 
 .. code-block:: bash
 
@@ -419,4 +419,3 @@ Docker は ``lxc-start`` に依存しており、終了時は丁寧に自分自�
 .. Finally, your process should move itself back to the root control group, and remove the container control group. To remove a control group, just rmdir its directory. It’s counter-intuitive to rmdir a directory as it still contains files; but remember that this is a pseudo-filesystem, so usual rules don’t apply. After the cleanup is done, the collection process can exit safely.
 
 最後に、自分のプロセスをルート・コントロール・グループに移動し、コンテナのコントロール・グループを削除します。コントロール・グループの削除は、ディレクトリを ``rmdir`` するだけです。感覚的にディレクトリに対する ``rmdir`` は、まだ中にファイルのではと思うかもしれませんが、これは疑似ファイルシステムのため、通常のルールは適用されません。クリーンアップが完了すると、これで収集プロセスは安全に終了できました。
-

@@ -9,7 +9,7 @@
 
 .. scale
 
-.. _compse-scale:
+.. _compose-scale:
 
 =======================================
 scale
@@ -30,4 +30,3 @@ scale
 .. code-block:: bash
 
    $ docker-compose scale web=2 worker=3
-

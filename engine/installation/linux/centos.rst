@@ -16,7 +16,7 @@ CentOS
 
 .. sidebar:: 目次
 
-   .. contents:: 
+   .. contents::
        :depth: 3
        :local:
 
@@ -59,7 +59,7 @@ Docker は 64bit でインストールされた何らかの CentOS バージョ�
 
 .. There are two ways to install Docker Engine. You can install using the yum package manager. Or you can use curl with the get.docker.com site. This second method runs an installation script which also installs via the yum package manager.
 
-Docker エンジンをインストールするには２つの方法があります。１つは ``yum`` パッケージ・マネージャを使ってインストールする方法です。あるいは ``crul`` コマンドで ``get.docker.com`` を取得します。これがもう１つの方法であり、内容は ``yum``  パッケージ・マネージャを通してセットアップするための命令が書かれたスクリプトです。
+Docker エンジンをインストールするには２つの方法があります。１つは ``yum`` パッケージ・マネージャを使ってインストールする方法です。あるいは ``curl`` コマンドで ``get.docker.com`` を取得します。これがもう１つの方法であり、内容は ``yum``  パッケージ・マネージャを通してセットアップするための命令が書かれたスクリプトです。
 
 .. Install with yum
 
@@ -125,8 +125,8 @@ yum でインストール
        Status: Downloaded newer image for hello-world:latest
        Hello from Docker.
        This message shows that your installation appears to be working correctly.
-   
-   
+
+
        To generate this message, Docker took the following steps:
         1. The Docker client contacted the Docker daemon.
         2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
@@ -135,12 +135,12 @@ yum でインストール
                executable that produces the output you are currently reading.
         4. The Docker daemon streamed that output to the Docker client, which sent it
                to your terminal.
-   
-   
+
+
        To try something more ambitious, you can run an Ubuntu container with:
         $ docker run -it ubuntu bash
-   
-   
+
+
        For more examples and ideas, visit:
         http://docs.docker.com/userguide/
 
@@ -300,7 +300,7 @@ Docker ソフトウェアを ``yum`` でアンインストール可能です。
 
 4. ユーザが作成した設定ファイルを探して削除します。
 
-.. seealso:: 
+.. seealso::
 
    Install on CentOS
       https://docs.docker.com/engine/installation/linux/centos

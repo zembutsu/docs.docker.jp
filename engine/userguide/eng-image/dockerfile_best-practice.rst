@@ -95,7 +95,7 @@ Docker は ``Dockerfile`` の命令を読み込み、自動的にイメージを
 
 .. Here’s an example from the buildpack-deps image:
 
-以下は ``buidpack-deps`` `イメージ <https://github.com/docker-library/buildpack-deps>`_ の記述例です。
+以下は ``buildpack-deps`` `イメージ <https://github.com/docker-library/buildpack-deps>`_ の記述例です。
 
 .. code-block:: bash
 
@@ -188,7 +188,7 @@ RUN
 
 .. Always combine RUN apt-get update with apt-get install in the same RUN statement, for example:
 
-``RUN apt-get updaate`` と ``apt-get install`` は常に同じ ``RUN`` 命令文で連結します。以下は実行例です。
+``RUN apt-get update`` と ``apt-get install`` は常に同じ ``RUN`` 命令文で連結します。以下は実行例です。
 
 .. code-block:: bash
 
@@ -445,17 +445,17 @@ ENTRYPOINT
 
    #!/bin/bash
    set -e
-   
+
    if [ "$1" = 'postgres' ]; then
        chown -R postgres "$PGDATA"
-   
+
        if [ -z "$(ls -A "$PGDATA")" ]; then
            gosu postgres initdb
        fi
-   
+
        exec gosu postgres "$@"
    fi
-   
+
    exec "$@"
 
 ..     Note: This script uses the exec Bash command so that the final running application becomes the container’s PID 1. This allows the application to receive any Unix signals sent to the container. See the ENTRYPOINT help for more details.
@@ -532,7 +532,7 @@ USER
 .. note::
 
    イメージ内で得られるユーザとグループは UID/GID に依存しないため、イメージの構築に関係なく次の UID/GID が割り当てられます。そのため、これが問題になるのであれば、UID/GID を明確に割り当ててください。
-   
+
 .. You should avoid installing or using sudo since it has unpredictable TTY and signal-forwarding behavior that can cause more problems than it solves. If you absolutely need functionality similar to sudo (e.g., initializing the daemon as root but running it as non-root), you may be able to use “gosu”.
 
 TTY やシグナル転送を使わないつもりであれば、 ``sudo`` のインストールや使用を避けたほうが良いでしょう。使うことで引き起こされる問題の解決は大変だからです。もし、どうしても ``sudo`` のような機能が必要であれば（例：root としてデーモンを初期化するが、実行は root 以外で行いたい時）、 「 `gosu <https://github.com/tianon/gosu>`_ 」を使うことができます。
@@ -565,7 +565,7 @@ ONBUILD
 
 .. An ONBUILD command executes after the current Dockerfile build completes. ONBUILD executes in any child image derived FROM the current image. Think of the ONBUILD command as an instruction the parent Dockerfile gives to the child Dockerfile.
 
-``ONBULID`` コマンドは ``Dockerfile`` による構築後に実行されます。 ``ONBUILD`` は ``FROM`` から現在に至るあらゆる子イメージで実行できます。 ``ONBUILD`` コマンドは親の ``Dockerfile`` が子 ``Dockefile``  を指定する命令としても考えられます。
+``ONBULID`` コマンドは ``Dockerfile`` による構築後に実行されます。 ``ONBUILD`` は ``FROM`` から現在に至るあらゆる子イメージで実行できます。 ``ONBUILD`` コマンドは親の ``Dockerfile`` が子 ``Dockerfile``  を指定する命令としても考えられます。
 
 .. A Docker build executes ONBUILD commands before any command in a child Dockerfile.
 
@@ -616,5 +616,3 @@ Docker は ``ONBUILD`` コマンドを処理する前に、あらゆる子 ``Doc
 * :doc:`ベース・イメージの詳細 <baseimages>`
 * :doc:`自動構築の詳細 </docker-hub/builds>`
 * :doc:`公式レポジトリ作成のガイドライン </docker-hub/official_repos>`
-
-

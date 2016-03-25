@@ -162,7 +162,7 @@ Compose は Compose ファイル中で、変数の使用をサポートしてい
 
 Compose ファイルは ``extends`` フィールドを使うことで、複数の Compose ファイルを作成できるように拡張できます。詳細は :doc:`extends <extends>` をご覧ください。
 
-.. Commpon Use Cases
+.. Common Use Cases
 
 .. _compose-common-use-cases:
 
@@ -248,4 +248,3 @@ Docker Compose は活発に開発中です。ヘルプが必要な場合、貢�
 .. For more information and resources, please visit the Getting Help project page.
 
 より詳細な情報やリソースについては、私たちの `ヘルプ用ページ（英語） <https://docs.docker.com/project/get-help/>`_ をご覧ください。
-

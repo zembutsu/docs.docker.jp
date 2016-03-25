@@ -27,7 +27,7 @@
 
 .. Docker images are a series of read-only layers that are stacked on top of each other to form a single unified view. The first image in the stack is called a base image and all the other layers are stacked on top of this layer. The diagram below shows the Ubuntu 15:04 image comprising 4 stacked image layers.
 
-Docker イメージは読み込み専用（read-only）のレイヤが組（セット）になっているもので、それぞれのレイヤが層（スタック）として積み重なり、１つに統合された形に見えるものです。この１番目の層を *ベース・イメージ (base imae)* と呼び、他の全てのレイヤは、このベース・イメージのレイヤ上に積み重なります。次の図は、 Ubuntu 15:04 イメージが４つのイメージ・レイヤを組みあわせて構成されているのが分かります。
+Docker イメージは読み込み専用（read-only）のレイヤが組（セット）になっているもので、それぞれのレイヤが層（スタック）として積み重なり、１つに統合された形に見えるものです。この１番目の層を *ベース・イメージ (base image)* と呼び、他の全てのレイヤは、このベース・イメージのレイヤ上に積み重なります。次の図は、 Ubuntu 15:04 イメージが４つのイメージ・レイヤを組みあわせて構成されているのが分かります。
 
 .. image:: ./images/image-layers.png
    :scale: 60%
@@ -136,10 +136,10 @@ Docker 社が提供している移行ツールは、コンテナとして実行�
    redis               latest              8bccd73928d9        2 weeks ago         151.3 MB
    centos              latest              c8a648134623        4 weeks ago         196.6 MB
    ubuntu              15.04               c8be1ac8145a        7 weeks ago         131.3 MB
-   
+
    $ du -hs /var/lib/docker
    2.0G    /var/lib/docker
-   
+
    $ time docker run --rm -v /var/lib/docker:/var/lib/docker docker/v1.10-migrator
    Unable to find image 'docker/v1.10-migrator:latest' locally
    latest: Pulling from docker/v1.10-migrator
@@ -153,7 +153,7 @@ Docker 社が提供している移行ツールは、コンテナとして実行�
    time="2016-01-27T12:31:06Z" level=debug msg="Assembling tar data for 07ac220aeeef9febf1ac16a9d1a4eff7ef3c8cbf5ed0be6b6f4c35952ed7920d from /var/lib/docker/aufs/diff/07ac220aeeef9febf1ac16a9d1a4eff7ef3c8cbf5ed0be6b6f4c35952ed7920d"
    <snip>
    time="2016-01-27T12:32:00Z" level=debug msg="layer dbacfa057b30b1feaf15937c28bd8ca0d6c634fc311ccc35bd8d56d017595d5b took 10.80 seconds"
-   
+
    real    0m59.583s
    user    0m0.046s
    sys     0m0.008s
@@ -262,7 +262,7 @@ Docker バージョン 1.10 より低いバージョンまでは、各レイヤ�
    c8be1ac8145a: Pull complete
    Digest: sha256:5e279a9df07990286cce22e1b0f5b0490629ca6d187698746ae5e28e604a640e
    Status: Downloaded newer image for ubuntu:15.04
-   
+
    $ ls /var/lib/docker/aufs/layers
    47984b517ca9ca0312aced5c9698753ffa964c2015f2a5f18e5efa9848cf30e2
    c8be1ac8145a6e59a55667f573883749ad66eaeef92b4df17e5ea1260e2d7356
@@ -287,7 +287,7 @@ Docker バージョン 1.10 より低いバージョンまでは、各レイヤ�
    a3ed95caeb02: Pull complete
    Digest: sha256:5e279a9df07990286cce22e1b0f5b0490629ca6d187698746ae5e28e604a640e
    Status: Downloaded newer image for ubuntu:15.04
-   
+
    $ ls /var/lib/docker/aufs/layers/
    1d6674ff835b10f76e354806e16b950f91a191d3b471236609ab13a930275e24
    5dbb0cbe0148cf447b9464a358c1587be586058d9a4c9ce079320265e2bb94e7
@@ -335,7 +335,7 @@ Docker バージョン 1.10 より低いバージョンまでは、各レイヤ�
 .. code-block:: bash
 
    FROM ubuntu:15.04
-   
+
    RUN echo "Hello world" > /tmp/newfile
 
 ..    Save and close the file.
@@ -394,8 +394,8 @@ Docker バージョン 1.10 より低いバージョンまでは、各レイヤ�
 
    $ docker history changed-ubuntu
    IMAGE               CREATED              CREATED BY                                      SIZE        COMMENT
-   94e6b7d2c720        2 minutes ago       /bin/sh -c echo "Hello world" > /tmp/newfile    12 B 
-   3f7bcee56709        6 weeks ago         /bin/sh -c #(nop) CMD ["/bin/bash"]             0 B  
+   94e6b7d2c720        2 minutes ago       /bin/sh -c echo "Hello world" > /tmp/newfile    12 B
+   3f7bcee56709        6 weeks ago         /bin/sh -c #(nop) CMD ["/bin/bash"]             0 B
    <missing>           6 weeks ago         /bin/sh -c sed -i 's/^#\s*\(deb.*universe\)$/   1.879 kB
    <missing>           6 weeks ago         /bin/sh -c echo '#!/bin/sh' > /usr/sbin/polic   701 B
    <missing>           6 weeks ago         /bin/sh -c #(nop) ADD file:8e4943cd86e9b2ca13   131.3 MB
@@ -410,7 +410,7 @@ Docker バージョン 1.10 より低いバージョンまでは、各レイヤ�
 .. note::
 
    Docker 1.10 で導入された連想ストレージ・モデル（content addressable storage model）下では、イメージの履歴データは各イメージ・レイヤの設定ファイル上に保存されません。これからは、イメージ全体に関連する単一の設定ファイル上の文字列に保管されます。これにより、 ``docker history`` コマンドを実行すると、いくつかのイメージ・レイヤは「missing」（行方不明）と表示されるでしょう。しかしこれは通常の動作であり、無視して構いません。
-   
+
    これらのイメージを *フラット・イメージ (flat images)* として読んでいるのを耳にしているかもしれません。
 
 .. Notice the new changed-ubuntu image does not have its own copies of every layer. As can be seen in the diagram below, the new image is sharing it’s four underlying layers with the ubuntu:15.04 image.
