@@ -108,7 +108,7 @@ context
 
 .. note::
 
-   contest は :ref:`バージョン２のフォーマット <compose-file-version-2>` のみで利用可能です。バージョン１では :ref:`build <compose-file-build>` をお使いください。
+   context は :ref:`バージョン２のフォーマット <compose-file-version-2>` のみで利用可能です。バージョン１では :ref:`build <compose-file-build>` をお使いください。
 
 .. Either a path to a directory containing a Dockerfile, or a url to a git repository.
 
