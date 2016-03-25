@@ -85,7 +85,11 @@ SUSE Linux Enterpsei 12 以降、Docker は正式にサポートされていま�
 
    $ sudo SUSEConnect -p sle-module-containers/12/x86_64 -r ''
    
-   >**Note:** currently the `-r ''` flag is required to avoid a known limitation of `SUSEConnect`.
+.. **Note:** currently the `-r ''` flag is required to avoid a known limitation of `SUSEConnect`.
+
+.. note::
+
+   現時点では ``-r`` フラグが ``SUSEConnect`` に対する既知の制限を避けるために必要です。
 
 .. The Virtualization:containers project on the Open Build Service contains also bleeding edge Docker packages for SUSE Linux Enterprise. However these packages are not supported by SUSE.
 

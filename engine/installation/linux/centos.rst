@@ -26,7 +26,7 @@ Docker は CentOS 7.X で動作します。Scientific Linux のような EL7 バ
 
 .. This page instructs you to install using Docker-managed release packages and installation mechanisms. Using these packages ensures you get the latest release of Docker. If you wish to install using CentOS-managed packages, consult your CentOS documentation.
 
-このページでは Docker が管理しているパッケージとインストール手法を使ってインストールします。これらパッケ―ジを使い、Docker の最新リリースを入手します。もし CentOS が管理するパッケージを使いたい場合は、CentOS の Docker サポートに関する情報のドキュメントをお調べください。
+このページでは Docker が管理しているパッケージとインストール手法を使ってインストールします。これらパッケージを使い、Docker の最新リリースを入手します。もし CentOS が管理するパッケージを使いたい場合は、CentOS の Docker サポートに関する情報のドキュメントをお調べください。
 
 .. Prerequisites
 
@@ -206,7 +206,7 @@ docker グループの作成
 
 .. warning::
 
-   ``docker`` グループは ``root`` ユーザ相当です。システム上のセキュリティに対する影響の詳細は、 :ref:`Docker デーモンが直面する攻撃 <docker-daemon-attach-surface>` をご覧ください。
+   ``docker`` グループは ``root`` ユーザ相当です。システム上のセキュリティに対する影響の詳細は、 :ref:`Docker デーモンが直面する攻撃 <docker-daemon-attack-surface>` をご覧ください。
 
 .. To create the docker group and add your user:
 

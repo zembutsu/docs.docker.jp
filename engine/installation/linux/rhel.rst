@@ -45,7 +45,7 @@ Docker は 64bit でインストールされた何らかの Red Hat バージョ
 
 .. Finally, is it recommended that you fully update your system. Please keep in mind that your system should be fully patched to fix any potential kernel bugs. Any reported kernel bugs may have already been fixed on the latest kernel packages.
 
-最後に、システムを全て更新することをお勧めします。システムは潜在的なカーネルのバグを修正するために、全てパッチを当てるべきと考慮ください。報告されているカーネルのバグは、最新のカーネル・パッケージでは修正済みの場合があります。
+最後に、システム全ての更新をお勧めします。システムは潜在的なカーネルのバグを修正するために、全てパッチを当てるべきと考慮ください。報告されているカーネルのバグは、最新のカーネル・パッケージでは修正済みの場合があります。
 
 .. Install Docker Engine
 
@@ -54,7 +54,7 @@ Docker エンジンのインストール
 
 .. There are two ways to install Docker Engine. You can install with the yum package manager directly yourself. Or you can use curl with the get.docker.com site. This second method runs an installation script which installs via the yum package manager.
 
-Docker エンジンをインストールするには２つの方法があります。 ``yum`` パッケージ・マネージャを使い、直接自分でインストールできます。あるいは、 ``crul`` で ``get.docker.com`` を使う方法があります。２つめの方法はインストール用のスクリプトを実行すると、 ``yum``  パッケージ・マネージャを通してセットアップします。
+Docker エンジンをインストールするには２つの方法があります。 ``yum`` パッケージ・マネージャを使い、直接自分でインストールできます。あるいは、 ``crul`` で ``get.docker.com`` を使う方法があります。２つめの方法はインストール用のスクリプトを実行し、 ``yum``  パッケージ・マネージャを通してセットアップします。
 
 .. Install with yum
 
@@ -201,7 +201,7 @@ docker グループの作成
 
 .. warning::
 
-   ``docker`` グループは ``root`` ユーザ相当です。システム上のセキュリティに対する影響の詳細は、 :ref:`Docker デーモンが直面する攻撃 <docker-daemon-attach-surface>` をご覧ください。
+   ``docker`` グループは ``root`` ユーザ相当です。システム上のセキュリティに対する影響の詳細は、 :ref:`Docker デーモンが直面する攻撃 <docker-daemon-attack-surface>` をご覧ください。
 
 .. To create the docker group and add your user:
 

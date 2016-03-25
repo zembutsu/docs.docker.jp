@@ -10,19 +10,19 @@
 
 .. FrugalWare
 
+==============================
+FrugalWare
+==============================
+
 .. sidebar:: 目次
 
    .. contents:: 
        :depth: 3
        :local:
 
-==============================
-FrugalWare
-==============================
-
 .. Installing on FrugalWare is handled via the official packages:
 
-FrugalWare でのインストールは、公式パッケージを使います。
+FrugalWare へのインストールは、公式パッケージを使います。
 
 * lxc-docker i686
 * lxc-docker x86_64

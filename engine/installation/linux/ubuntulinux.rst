@@ -31,7 +31,7 @@ Docker は以下のオペレーティング・システムをサポートして�
 
 .. This page instructs you to install using Docker-managed release packages and installation mechanisms. Using these packages ensures you get the latest release of Docker. If you wish to install using Ubuntu-managed packages, consult your Ubuntu documentation.
 
-このページでは、Docker が管理しているパッケージとインストール手法を使ってインストールします。これらパッケージを使い、Docker の最新リリースを入手します。もし Ubuntu が管理するパッケージを使いたい場合は、Ubuntu のドキュメントをお調べください。
+このページは、Docker が管理しているパッケージとインストール手順で作業します。Docker が提供する最新リリースのパッケージを使えるようにします。もし Ubuntu が管理するパッケージを使いたい場合は、Ubuntu のドキュメントをお調べください。
 
 ..    Note: Ubuntu Utopic 14.10 exists in Docker’s apt repository but it is no longer officially supported.
 
@@ -46,7 +46,7 @@ Docker は以下のオペレーティング・システムをサポートして�
 
 .. Docker requires a 64-bit installation regardless of your Ubuntu version. Additionally, your kernel must be 3.10 at minimum. The latest 3.10 minor version or a newer maintained version are also acceptable.
 
-Docker は 64bit でインストールされた何らかの Ubuntu バージョンを必要とします。さらに、kernel は少なくとも 3.10 以上が必要です。最新の 3.10 マイナーバージョンか、それよりも新しいバージョンが利用可能です。
+Docker は 64bit でインストールされた何らかの Ubuntu バージョンを必要とします。さらに、kernel は少なくとも 3.10 以上が必要です。最新の 3.10 マイナーバージョンか、それよりも新しいバージョンを利用可能です。
 
 .. Kernels older than 3.10 lack some of the features required to run Docker containers. These older versions are known to have bugs which cause data loss and frequently panic under certain conditions.
 
@@ -239,11 +239,11 @@ Ubuntu Precise では、Docker は カーネル・バージョン 3.13 が必要
 .. linux-headers-generic-lts-trusty 	Allows packages such as ZFS and VirtualBox guest additions which depend on them. If you didn’t install the headers for your existing kernel, then you can skip these headers for the”trusty” kernel. If you’re unsure, you should include this package for safety.
 .. xserver-xorg-lts-trusty 	Optional in non-graphical environments without Unity/Xorg. Required when running Docker on machine with a graphical environment.
 .. To learn more about the reasons for these packages, read the installation instructions for backported kernels, specifically the LTS Enablement Stack — refer to note 5 under each version.
-libgl1-mesa-glx-lts-trusty
+.. libgl1-mesa-glx-lts-trusty
 
 * ``linux-image-generic-lts-trusty``… generic の Linux カーネル・イメージ。このカーネルは AUFS が組み込み済み。Docker 実行に必要。
 * ``linux-headers-generic-lts-trusty`` … ZFS と VirtualBox のゲスト追加に依存するようなパッケージを利用可能にします。既存のカーネルに対して headers をインストールしなければ、"trusty" カーネル向けのヘッダをスキップします。自信がなければ、安全のためにこのパッケージを導入すべきです。
-* ``xserver-xorg-lts-trusty`` , ``libgl1-mesa-glx-lts-trusty`` … Unity/Xorg の無い（グラフィカルでは無い）環境向けのオプションです。Docker をグラフィカルな環境で実行する時に **必要**です。これらのパッケージが必要な理由は、バックポートされたカーネルに関するインストール手順をご覧ください。 `LTS Enablement Stack <https://wiki.ubuntu.com/Kernel/LTSEnablementStack>`_ の note 5 にある各バージョンをご覧ください。
+* ``xserver-xorg-lts-trusty`` , ``libgl1-mesa-glx-lts-trusty`` … Unity/Xorg の無い（グラフィカルでは無い）環境向けのオプションです。Docker をグラフィカルな環境で実行する時に **必要** です。これらのパッケージが必要な理由は、バックポートされたカーネルに関するインストール手順をご覧ください。 `LTS Enablement Stack <https://wiki.ubuntu.com/Kernel/LTSEnablementStack>`_ の note 5 にある各バージョンをご覧ください。
 
 .. To upgrade your kernel and install the additional packages, do the following:
 
@@ -283,7 +283,7 @@ libgl1-mesa-glx-lts-trusty
 
 ..    After your system reboots, go ahead and install Docker.
 
-5. システムの再起動後、Docker のインストーに移ります。
+5. システムの再起動後、Docker のインストールに移ります。
 
 .. Install
 
@@ -292,7 +292,7 @@ libgl1-mesa-glx-lts-trusty
 
 .. Make sure you have installed the prerequisites for your Ubuntu version. Then, install Docker using the following:
 
-各 Ubuntu のバージョンごとに、事前のインストール作業を終えてください。それから、次の手順で Docker をインストールします。
+インストール前に、各 Ubuntu のバージョンごとの作業を終えてください。それから、以降の手順で Docker をインストールします。
 
 ..    Log into your Ubuntu installation as a user with sudo privileges.
 
@@ -368,7 +368,7 @@ docker グループの作成
 
 .. warning::
 
-   ``docker`` グループは ``root`` ユーザ相当です。システム上のセキュリティに対する影響の詳細は、 :ref:`Docker デーモンが直面する攻撃 <docker-daemon-attack-surface>` をご覧ください。
+   ``docker`` グループに所属するユーザは ``root`` と同等です。システム上のセキュリティに対する影響の詳細は、 :ref:`Docker デーモンが直面する攻撃 <docker-daemon-attack-surface>` をご覧ください。
 
 .. To create the docker group and add your user:
 
@@ -380,7 +380,7 @@ docker グループの作成
 
 ..    This procedure assumes you log in as the ubuntu user.
 
-ログインは ``ubuntu`` ユーザかもしれません。
+ログイン時のユーザ名は ``ubuntu`` ユーザかもしれません。
 
 ..    Create the docker group and add your user.
 
@@ -396,7 +396,7 @@ docker グループの作成
 
 ..    This ensures your user is running with the correct permissions.
 
-対象ユーザが正しい権限を持つようにするためです。
+対象ユーザが適切な権限を持つようにするためです。
 
 ..    Verify your work by running docker without sudo.
 
@@ -408,7 +408,7 @@ docker グループの作成
 
 ..    If this fails with a message similar to this:
 
-失敗すると、次のようなメッセージが表示されます。
+失敗時は、次のようなメッセージが表示されます。
 
 .. code-block:: bash
 
