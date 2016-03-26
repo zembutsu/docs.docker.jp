@@ -18,9 +18,15 @@
 シンプルなアプリケーションの実行
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. In the “Hello world in a container“ you launched your first containers using the docker run command. You ran an interactive container that ran in the foreground. You also ran a detached container that ran in the background. In the process you learned about several Docker commands:
 
-:doc:`dockerizing` では、``docker run`` コマンドを使い、初めてのコンテナを起動しました。そして、フォアグラウンドで *インタラクティブなコンテナ (interactive container)* を実行しました。また、バックグラウンドで *デタッチド・コンテナ (detached container)* を実行しました。この過程で、複数の Docker コマンドを学びました：
+「 :doc:`dockerizing` 」では、``docker run`` コマンドを使い、初めてのコンテナを起動しました。そして、フォアグラウンドで *インタラクティブなコンテナ (interactive container)* を実行しました。また、バックグラウンドで *デタッチド・コンテナ (detached container)* を実行しました。この過程で複数の Docker コマンドを学びました：
 
 .. 
     docker ps - Lists containers.
@@ -50,7 +56,7 @@ Docker クライアントについて学ぶ
 
 .. You can see this in action by using the docker version command to return version information on the currently installed Docker client and daemon.
 
-実際に動作するかどうかは ``docker version`` コマンドを使い、現在インストールしている Docker クライアントとデーモンのバージョン情報を確認できます。
+実際に動作するかどうかは ``docker version`` コマンドを使います。現在インストールしている Docker クライアントとデーモンのバージョン情報を確認できます。
 
 .. code-block:: bash
 
@@ -58,7 +64,7 @@ Docker クライアントについて学ぶ
 
 .. This command will not only provide you the version of Docker client and daemon you are using, but also the version of Go (the programming language powering Docker).
 
-このコマンドは、使用している Docker クライアントとデーモンのバージョンを表示するだけでなく、Go 言語のバージョン（Docker を動かすプログラミング言語）も表示します。
+このコマンドは使用している Docker クライアントとデーモンのバージョンを表示するだけではありません。Go 言語のバージョン（Docker を動かすプログラミング言語）も表示します。
 
 .. code-block:: bash
 
@@ -446,10 +452,14 @@ Python アプリケーションが動いています！
 
 .. Until now you’ve only used images that you’ve downloaded from Docker Hub. Next, you can get introduced to building and sharing our own images.
 
-ここまでは Docker Hub からダウンロードしたイメージのみを使ってきました。次は、自分自身にイメージの構築を共有する方法を紹介します。
+ここまでは Docker Hub からダウンロードしたイメージのみを使ってきました。次は、自分でイメージを構築し、共有する方法を紹介します。
 
 .. Go to Working with Docker images.
 
 :doc:`Docker イメージの操作 <dockerimages>` に移動します。
 
+.. seealso:: 
+
+   Run a simple application
+      https://docs.docker.com/engine/userguide/containers/usingdocker/
 

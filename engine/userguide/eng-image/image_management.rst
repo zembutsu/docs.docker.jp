@@ -14,6 +14,12 @@
 イメージの管理
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. The Docker Engine provides a client which you can use to create images on the command line or through a build process. You can run these images in a container or publish them for others to use. Storing the images you create, searching for images you might want, or publishing images others might use are all elements of image management.
 
 Docker エンジンにあるクライアントを使い、コマンドライン上でイメージの作成や、構築プロセスに渡すことができます。これらのイメージをコンテナで使ったり、他人が使えるように公開も可能です。作成したイメージの保管や、使いたいイメージの検索、あるいは、他人が公開しているのを使いたい場合、これらは全てイメージ管理に分離されます。
@@ -76,4 +82,9 @@ Docker Hub はハブのように自身のレジストリを持ち、Docker 社�
 .. Content trust is currently only available for users of the public Docker Hub. It is currently not available for the Docker Trusted Registry or for private registries.
 
 :doc:`コンテント・トラスト(Content Trust) </engine/security/trust/index>` は、現時点ではパブリックな Docker Hub の利用者だけが使えます。現時点では Docker トラステッド・レジストリやプライベート・レジストリでは利用できません。
+
+.. seealso:: 
+
+   Image management
+      https://docs.docker.com/engine/userguide/eng-image/image_management/
 

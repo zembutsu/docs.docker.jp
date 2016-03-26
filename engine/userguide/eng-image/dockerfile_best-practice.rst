@@ -16,6 +16,12 @@
 Dockerfile を書くベスト・プラクティス
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Docker can build images automatically by reading the instructions from a Dockerfile, a text file that contains all the commands, in order, needed to build a given image. Dockerfiles adhere to a specific format and use a specific set of instructions. You can learn the basics on the Dockerfile Reference page. If you’re new to writing Dockerfiles, you should start there.
 
 Docker は ``Dockerfile`` の命令を読み込み、自動的にイメージを構築できます。これはテキストファイルであり、特定のイメージを構築するために必要な全ての命令が入っています。 ``Dockerfile`` は個別の命令セットを使い、特定の形式で記述します。基本を :doc:`Dockerfile リファレンス </engine/reference/builder>` で学べます。新しく ``Dockerfile`` を書こうとしているのであれば、ここから始めましょう。
@@ -68,7 +74,7 @@ Docker は ``Dockerfile`` の命令を読み込み、自動的にイメージを
 
 .. Run only one process per container
 
-コンテナ毎に１つのプロセスだけ実行
+コンテナごとに１つのプロセスだけ実行
 ----------------------------------------
 
 .. In almost all cases, you should only run a single process in a single container. Decoupling applications into multiple containers makes it much easier to scale horizontally and reuse containers. If that service depends on another service, make use of container linking.
@@ -91,7 +97,7 @@ Docker は ``Dockerfile`` の命令を読み込み、自動的にイメージを
 
 .. Whenever possible, ease later changes by sorting multi-line arguments alphanumerically. This will help you avoid duplication of packages and make the list much easier to update. This also makes PRs a lot easier to read and review. Adding a space before a backslash (\) helps as well.
 
-可能であれば常に複数行の引数をアルファベット順にします。これにより、パッケージが重複しないようにしたり、リストの更新を簡単にします。また、プルリクエストの読み込みとレビューをより簡単にします。バックスラッシュ(\) の前に空白を追加するのも、同じく役立つでしょう。
+可能であれば常に複数行の引数をアルファベット順にします。これにより、パッケージが重複しないようにし、あるいはリストの更新を簡単します。また、プルリクエストの読み込みとレビューをより簡単にします。バックスラッシュ( \\ ) の前に空白を追加するのも、同じく役立つでしょう。
 
 .. Here’s an example from the buildpack-deps image:
 
@@ -131,7 +137,7 @@ Docker イメージ構築のプロセスとは、 ``Dockerfile``  で指定し�
 
 ..    For the ADD and COPY instructions, the contents of the file(s) in the image are examined and a checksum is calculated for each file. The last-modified and last-accessed times of the file(s) are not considered in these checksums. During the cache lookup, the checksum is compared against the checksum in the existing images. If anything has changed in the file(s), such as the contents and metadata, then the cache is invalidated.
 
-* ``ADD`` と ``COPY`` 命令は、イメージに含まれるファイルが検査され、各ファイル毎のチェックサムを計算します。ファイルの最終編集・最終アクセス時間は、チェックサムに影響ありません。キャッシュを探し、既存のイメージのチェックサムと比較します。内容やメタデータのようにファイルに変更があれば、キャッシュは無効化されます。
+* ``ADD`` と ``COPY`` 命令は、イメージに含まれるファイルが検査され、各ファイルごとのチェックサムを計算します。ファイルの最終編集・最終アクセス時間は、チェックサムに影響ありません。キャッシュを探し、既存のイメージのチェックサムと比較します。内容やメタデータのようにファイルに変更があれば、キャッシュは無効化されます。
 
 ..    Aside from the ADD and COPY commands, cache checking will not look at the files in the container to determine a cache match. For example, when processing a RUN apt-get -y update command the files updated in the container will not be examined to determine if a cache hit exists. In that case just the command string itself will be used to find a match.
 
@@ -616,3 +622,8 @@ Docker は ``ONBUILD`` コマンドを処理する前に、あらゆる子 ``Doc
 * :doc:`ベース・イメージの詳細 <baseimages>`
 * :doc:`自動構築の詳細 </docker-hub/builds>`
 * :doc:`公式レポジトリ作成のガイドライン </docker-hub/official_repos>`
+
+.. seealso:: 
+
+   Best practices for writing Dockerfiles
+      https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/

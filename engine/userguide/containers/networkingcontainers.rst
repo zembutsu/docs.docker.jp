@@ -16,9 +16,15 @@
 コンテナのネットワーク
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. If you are working your way through the user guide, you just built and ran a simple application. You’ve also built in your own images. This section teaches you how to network your containers.
 
-ユーザ・ガイドを進んできたのなら、これまでは単純なアプリケーションを構築して実行しました。また、自分でイメージも構築しました。このセクションは、コンテナをどのように接続するかを学びます。
+これまでのユーザ・ガイドでは、単純なアプリケーションを構築して実行しました。また、自分でイメージの構築をしました。このセクションでは、コンテナをどのように接続するかを学びます。
 
 .. Name a container
 
@@ -27,11 +33,11 @@
 
 .. You’ve already seen that each container you create has an automatically created name; indeed you’ve become familiar with our old friend nostalgic_morse during this guide. You can also name containers yourself. This naming provides two useful functions:
 
-これまで作成してきたコンテナは、自動的にコンテナ名が作成されました。このガイドでは、古き友人である ``nostalgic_morse`` のような名前でした。自分自身でもコンテナに名前を付けられます。名前を付けると、２つの便利な機能が使えます。
+これまで作成してきたコンテナは、自動的にコンテナ名が作成されました。このガイドでは  ``nostalgic_morse`` という古い友人のような名前でした。自動で歯無く自分でもコンテナに名前を付けられます。コンテナに名前を付けると、２つの便利な機能が使えます。
 
 ..    You can name containers that do specific functions in a way that makes it easier for you to remember them, for example naming a container containing a web application web.
 
-* コンテナに対して特定機能の名前を付けることで、簡単に覚えられるようにします。例えば、ウェブ・アプリケーションを含むコンテナを ``web`` と名付けます。
+* コンテナに対して何らかの役割を示す名前を付けると、簡単に覚えられます。例えば、ウェブ・アプリケーションを含むコンテナには ``web`` と名付けます。
 
 ..    Names provide Docker with a reference point that allows it to refer to other containers. There are several commands that support this and you’ll use one in a exercise later.
 
@@ -57,7 +63,7 @@
 
 .. You can also use docker inspect with the container’s name.
 
-あるいは ``docker inspect`` を使ってもコンテナ名を見られます。
+あるいは ``docker inspect`` を使ってもコンテナ名を確認できます。
 
 .. code-block:: bash
 
@@ -80,7 +86,7 @@
 
 .. Container names must be unique. That means you can only call one container web. If you want to re-use a container name you must delete the old container (with docker rm) before you can reuse the name with a new container. Go ahead and stop and them remove your web container.
 
-コンテナ名はユニークである必要があります。これが意味するのは、``web`` と呼ばれるコンテナはただ一つです。もしも同じコンテナ名を再利用したいならば、新しいコンテナで名前を使う前に、古いコンテナを削除（``docker rm`` コマンドで）しなくてはいけません。``web`` コンテナの停止と削除をしてから、次に進みます。
+コンテナ名はユニークである必要があります。これが意味するのは、``web`` と呼ばれるコンテナはただ一つしか使えません。もしも同じコンテナ名を再利用したいならば、新しいコンテナで名前を使う前に、古いコンテナを削除（``docker rm`` コマンドで）しなくてはいけません。``web`` コンテナの停止と削除をしてから、次に進みます。
 
 .. code-block:: bash
 
@@ -99,11 +105,11 @@
 .. Docker includes support for networking containers through the use of network drivers. By default, Docker provides two network drivers for you, the bridge and the overlay driver. You can also write a network driver plugin so that you can create your own drivers but that is an advanced task.
 
 Docker は **ネットワーク・ドライバ** を使うことで、コンテナのネットワーク（訳者注：連結や接続するという意味の機能）をサポートします。標準では、Docker は ``bridge`` （ブリッジ） と  
-``overlay`` （オーバレイ） の２つのネットワーク・ドライバを提供します。高度な使い方として、自分自身でネットワーク・ドライバ・プラグインを書き、自分自身のドライバでネットワークの作成もできます。
+``overlay`` （オーバレイ） の２つのネットワーク・ドライバを提供します。高度な使い方として、自分でネットワーク・ドライバ・プラグインを書き、その自分のドライバでネットワークを作成することも可能です。
 
 .. Every installation of the Docker Engine automatically includes three default networks. You can list them:
 
-すべての Docker エンジンは、自動的に３つのデフォルト・ネットワークをインストールします。
+Docker Engine は、自動的に３つのデフォルト・ネットワークをインストールします。
 
 .. code-block:: bash
 
@@ -345,4 +351,9 @@ Docker のネットワーク機能は、必要に応じてコンテナに対し�
 .. Now that you know how to network containers, see how to manage data in containers.
 
 コンテナのネットワークについて学びましたので、次は :doc:`コンテナにおけるデータ管理 <dockervolumes>` を見ていきます。
+
+.. seealso:: 
+
+   Network containers
+      https://docs.docker.com/engine/userguide/containers/networkingcontainers/
 
