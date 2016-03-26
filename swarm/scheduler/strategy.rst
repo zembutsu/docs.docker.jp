@@ -68,7 +68,7 @@ Spread ストラテジの例
 
    $ docker tcp://<manager_ip:manager_port> run -d -P -m 1G --name db mysql
    f8b693db9cd6
-
+   
    $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    f8b693db9cd6        mysql:latest        "mysqld"            Less than a second ago   running             192.168.0.42:49178->3306/tcp    node-1      db
@@ -81,7 +81,7 @@ Spread ストラテジの例
 
    $ docker run tcp://<manager_ip:manager_port> -d -P -m 1G --name frontend nginx
    963841b138d8
-
+   
    $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    963841b138d8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:49177->80/tcp      node-2      frontend
@@ -104,7 +104,7 @@ BinPack ストラテジの例
 
    $ docker run tcp://<manager_ip:manager_port> -d -P -m 1G --name db mysql
    f8b693db9cd6
-
+   
    $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    f8b693db9cd6        mysql:latest        "mysqld"            Less than a second ago   running             192.168.0.42:49178->3306/tcp    node-1      db

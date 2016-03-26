@@ -24,7 +24,7 @@
 
 データを Docker で管理する、２つの主な手法を見ていきます。
 
-..
+.. 
     Data volumes, and
     Data volume containers.
 
@@ -361,3 +361,6 @@ SELinux のようなラベリング・システムでは、コンテナ内にマ
 .. Go to Working with Docker Hub.
 
 :doc:`Docker Hub の操作 <dockerrepos>` に移動します。
+
+
+

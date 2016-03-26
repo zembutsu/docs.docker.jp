@@ -150,7 +150,7 @@ Compose はまず、``Dockerfile`` を使い ``web`` サービスのイメージ
      username: postgres
      password:
      host: db
-
+   
    test:
      <<: *default
      database: myapp_test
@@ -207,3 +207,7 @@ Compose の更なるドキュメント
 * :doc:`/compose/wordpress`
 * :doc:`/compose/reference/index`
 * :doc:`/compose/compose-file`
+
+
+
+

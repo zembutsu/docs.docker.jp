@@ -16,9 +16,9 @@ run
 .. code-block:: bash
 
    Usage: docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
-
+   
    Run a command in a new container
-
+   
      -a, --attach=[]               Attach to STDIN, STDOUT or STDERR
      --add-host=[]                 Add a custom host-to-IP mapping (host:ip)
      --blkio-weight=0              Block IO weight (relative weight)
@@ -302,7 +302,7 @@ Docker Unix ソケットと docker バイナリ（ https://get.docker.com から
 
    $ cat ./env.list
    TEST_FOO=BAR
-
+   
    # this is a comment
    TEST_APP_DEST_HOST=10.10.0.127
    TEST_APP_DEST_PORT=8888
@@ -311,7 +311,7 @@ Docker Unix ソケットと docker バイナリ（ https://get.docker.com から
    helloWorld=true
    123qwe=bar
    org.spring.config=something
-
+   
    # pass through this variable from the caller
    TEST_PASSTHROUGH
    $ TEST_PASSTHROUGH=howdy docker run --env-file ./env.list busybox env
@@ -327,7 +327,7 @@ Docker Unix ソケットと docker バイナリ（ https://get.docker.com から
    HOME=/root
    123qwe=bar
    org.spring.config=something
-
+   
    $ docker run --env-file ./env.list busybox env
    PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
    HOSTNAME=5198e0745561
@@ -380,7 +380,7 @@ label-file の書式は、環境変数の読み込み書式と似ています（
 .. code-block:: bash
 
    com.example.label1="a label"
-
+   
    # これはコメントです
    com.example.label2=another\ label
    com.example.label3
@@ -517,17 +517,17 @@ STDIN・STDOUT・STDERRのアタッチ（-a）
 .. code-block:: bash
 
    $ docker run --device=/dev/sda:/dev/xvdc --rm -it ubuntu fdisk  /dev/xvdc
-
+   
    Command (m for help): q
    $ docker run --device=/dev/sda:/dev/xvdc:r --rm -it ubuntu fdisk  /dev/xvdc
    You will not be able to write the partition table.
-
+   
    Command (m for help): q
-
+   
    $ docker run --device=/dev/sda:/dev/xvdc:rw -it ubuntu fdisk  /dev/xvdc
-
+   
    Command (m for help): q
-
+   
    $ docker run --device=/dev/sda:/dev/xvdc:m --rm -it ubuntu fdisk  /dev/xvdc
    fdisk: unable to open /dev/xvdc: Operation not permitted
 
@@ -556,7 +556,7 @@ Docker の ``--restart`` はコンテナの *再起動ポリシー* を指定し
 
 .. list-table::
    :header-rows: 1
-
+   
    * -  ポリシー
      - 結果
    * - **no**
@@ -677,3 +677,4 @@ IPv6 は ``-4`` フラグにかわって ``-6`` を指定します。他のネ�
 .. The --stop-signal flag sets the system call signal that will be sent to the container to exit. This signal can be a valid unsigned number that matches a position in the kernel’s syscall table, for instance 9, or a signal name in the format SIGNAME, for instance SIGKILL.
 
 ``--stop-signal`` フラグは、システムコールのシグナルを設定します。これは、コンテナを終了するときに送るものです。このシグナルはカーネルの syscall テーブルにある適切な数値と一致する必要があります。例えば 9 や、SIGNAME のような形式のシグナル名（例：SIGKILL）です。
+

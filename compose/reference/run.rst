@@ -18,7 +18,7 @@ run
 .. code-block:: bash
 
    Usage: run [options] [-e KEY=VAL...] SERVICE [COMMAND] [ARGS...]
-
+   
    Options:
    -d                    Detached mode: Run container in the background, print
                              new container name.

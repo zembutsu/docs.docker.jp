@@ -79,10 +79,10 @@ Compose は２つのファイルを共有方法をサポートしています。
      links:
        - db
        - cache
-
+   
    db:
      image: postgres:latest
-
+   
    cache:
      image: redis:latest
 
@@ -99,12 +99,12 @@ Compose は２つのファイルを共有方法をサポートしています。
        - 8883:80
      environment:
        DEBUG: 'true'
-
+   
    db:
      command: '-d'
      ports:
        - 5432:5432
-
+   
    cache:
      ports:
        - 6379:6379
@@ -121,7 +121,7 @@ Compose は２つのファイルを共有方法をサポートしています。
        - 80:80
      environment:
        PRODUCTION: 'true'
-
+   
    cache:
      environment:
        TTL: '500'
@@ -161,7 +161,7 @@ Compose をプロダクションで使うための詳細情報は :doc:`プロ�
      image: example/my_web_app:latest
      links:
        - db
-
+   
    db:
      image: postgres:latest
 
@@ -245,7 +245,7 @@ extends 設定の理解
      environment:
        - DEBUG=1
      cpu_shares: 5
-
+   
    important_web:
      extends: web
      cpu_shares: 10
@@ -305,7 +305,7 @@ extends 設定の理解
      links:
        - queue
        - db
-
+   
    queue_worker:
      extends:
        file: common.yml
@@ -333,10 +333,10 @@ Compose は本来のサービス設定を、（訳者注：extends を使う時�
 
    # 元のサービス
    command: python app.py
-
+   
    # ローカルのサービス
    command: python otherapp.py
-
+   
    # 結果
    command: python otherapp.py
 
@@ -352,10 +352,10 @@ image が build を置き換える例：
 
    # 元のサービス
    build: .
-
+   
    # ローカルのサービス
    image: redis
-
+   
    # 結果
    image: redis
 
@@ -365,10 +365,10 @@ build がイメージを置き換える例：
 
    # 元のサービス
    image: redis
-
+   
    # ローカルのサービス
    build: .
-
+   
    # 結果
    build: .
 
@@ -381,12 +381,12 @@ build がイメージを置き換える例：
    # 元のサービス
    expose:
      - "3000"
-
+   
    # ローカルのサービス
    expose:
      - "4000"
      - "5000"
-
+   
    # 結果
    expose:
      - "3000"
@@ -403,12 +403,12 @@ build がイメージを置き換える例：
    environment:
      - FOO=original
      - BAR=original
-
+   
    # ローカルのサービス
    environment:
      - BAR=local
      - BAZ=local
-
+   
    # 結果
    environment:
      - FOO=original
@@ -438,3 +438,5 @@ Compose のドキュメント
 * :doc:`</compose/wordpress>`
 * :doc:`</compose/reference>`
 * :doc:`</compose/compose-file>`
+
+

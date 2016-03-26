@@ -218,7 +218,7 @@ Docker Machine には、 ``env`` コマンドで Swarm ノードに接続する�
 * :doc:`discovery`
 * :doc:`Docker Machine </machine/index>` ドキュメント
 
-.. seealso::
+.. seealso:: 
 
    Provision a Swarm cluster with Docker Machine
       https://docs.docker.com/swarm/provision-with-machine/

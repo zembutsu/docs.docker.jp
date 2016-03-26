@@ -61,16 +61,16 @@ Docker サーバが作成するマスカレード・ルールは、外の世界�
 
    # What your NAT rules might look like when Docker
    # is finished setting up a -P forward:
-
+   
    $ iptables -t nat -L -n
    ...
    Chain DOCKER (2 references)
    target     prot opt source               destination
    DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:49153 to:172.17.0.2:80
-
+   
    # What your NAT rules might look like when Docker
    # is finished setting up a -p 80:80 forward:
-
+   
    Chain DOCKER (2 references)
    target     prot opt source               destination
    DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:80 to:172.17.0.2:80

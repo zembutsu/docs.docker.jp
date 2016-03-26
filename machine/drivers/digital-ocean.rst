@@ -60,7 +60,7 @@ DigitalOcean ドライバは、 ``ubuntu-15-10-x64`` をデフォルトのイメ
 
 .. list-table::
    :header-rows: 1
-
+   
    * - コマンドライン・オプション
      - 環境変数
      - デフォルト値
@@ -87,7 +87,7 @@ DigitalOcean ドライバは、 ``ubuntu-15-10-x64`` をデフォルトのイメ
      - ``false``
    * - ``--digitalocean-userdata``
      - ``DIGITALOCEAN_USERDATA``
-     -
+     - 
    * - ``--digitalocean-ssh-user``
      - ``DIGITALOCEAN_SSH_USER``
      - ``root``
@@ -96,4 +96,5 @@ DigitalOcean ドライバは、 ``ubuntu-15-10-x64`` をデフォルトのイメ
      - ``22``
    * - ``--digitalocean-ssh-key-fingerprint``
      - ``DIGITALOCEAN_SSH_KEY_FINGERPRINT``
-     -
+     - 
+

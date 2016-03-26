@@ -27,7 +27,7 @@ Fluentd ロギング・ドライバ
 
 .. list-table::
    :headers-rows: 1
-
+   
    * - フィールド
      - 説明
    * - ``container_id``
@@ -159,8 +159,8 @@ Docker と Fluentd デーモンの管理
    <source>
      @type forward
    </source>
-
-
+   
+   
    <match docker.**>
      @type stdout
    </match>
@@ -180,3 +180,6 @@ Docker と Fluentd デーモンの管理
 .. code-block:: bash
 
    $ docker run --log-driver=fluentd your/application
+
+
+

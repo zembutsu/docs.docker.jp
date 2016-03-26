@@ -48,7 +48,7 @@ Dockerfile はアプリケーションのイメージ内容に含まれる、１
 
 .. code-block:: dockerfile
 
-
+   
    FROM python:2.7
    ENV PYTHONUNBUFFERED 1
    RUN mkdir /code
@@ -272,3 +272,5 @@ Compose の更なるドキュメント
 * :doc:`/compose/wordpress`
 * :doc:`/compose/reference/index`
 * :doc:`/compose/compose-file`
+
+

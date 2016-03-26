@@ -18,7 +18,7 @@ restart
 .. code-block:: bash
 
    Usage: restart [options] [SERVICE...]
-
+   
    Options:
    -t, --timeout TIMEOUT      Specify a shutdown timeout in seconds. (default: 10)
 

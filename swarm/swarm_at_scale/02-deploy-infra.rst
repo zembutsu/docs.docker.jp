@@ -85,7 +85,7 @@ Amazon AWS アカウントを持っている必要があります。このアカ
 
 .. list-table::
    :header-rows: 1
-
+   
    * - フィールド
      - 値
    * - **VPC Network (CIDR)**
@@ -275,7 +275,7 @@ AWS が VPC を構築すると **VPC Successfully Created** ページが表示�
 
 .. list-table::
    :header-rows: 1
-
+   
    * - インスタンス名
      - サイズ
      - プライベート IP アドレス
@@ -326,7 +326,7 @@ AWS のインフラは次のような状態です。
 
 これでインフラのスタックを作成完了しました。次のステップ :doc:`Swarm クラスタの構築 <03-create-cluster>` に進む準備が整いました。
 
-.. seealso::
+.. seealso:: 
 
    Deploy your infrastructure
       https://docs.docker.com/swarm/swarm_at_scale/02-deploy-infra/

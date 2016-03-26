@@ -18,7 +18,7 @@ port
 .. code-block:: bash
 
    Usage: port [options] SERVICE PRIVATE_PORT
-
+   
    Options:
    --protocol=proto  tcp or udp [default: tcp]
    --index=index     index of the container if there are multiple
@@ -27,3 +27,4 @@ port
 .. Prints the public port for a port binding.
 
 ポートを割り当てる公開用のポートを表示します。
+

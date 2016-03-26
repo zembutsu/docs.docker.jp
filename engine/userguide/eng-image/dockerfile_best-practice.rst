@@ -445,17 +445,17 @@ ENTRYPOINT
 
    #!/bin/bash
    set -e
-
+   
    if [ "$1" = 'postgres' ]; then
        chown -R postgres "$PGDATA"
-
+   
        if [ -z "$(ls -A "$PGDATA")" ]; then
            gosu postgres initdb
        fi
-
+   
        exec gosu postgres "$@"
    fi
-
+   
    exec "$@"
 
 ..     Note: This script uses the exec Bash command so that the final running application becomes the container’s PID 1. This allows the application to receive any Unix signals sent to the container. See the ENTRYPOINT help for more details.
@@ -532,7 +532,7 @@ USER
 .. note::
 
    イメージ内で得られるユーザとグループは UID/GID に依存しないため、イメージの構築に関係なく次の UID/GID が割り当てられます。そのため、これが問題になるのであれば、UID/GID を明確に割り当ててください。
-
+   
 .. You should avoid installing or using sudo since it has unpredictable TTY and signal-forwarding behavior that can cause more problems than it solves. If you absolutely need functionality similar to sudo (e.g., initializing the daemon as root but running it as non-root), you may be able to use “gosu”.
 
 TTY やシグナル転送を使わないつもりであれば、 ``sudo`` のインストールや使用を避けたほうが良いでしょう。使うことで引き起こされる問題の解決は大変だからです。もし、どうしても ``sudo`` のような機能が必要であれば（例：root としてデーモンを初期化するが、実行は root 以外で行いたい時）、 「 `gosu <https://github.com/tianon/gosu>`_ 」を使うことができます。

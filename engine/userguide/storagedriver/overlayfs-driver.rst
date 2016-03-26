@@ -36,7 +36,7 @@ Docker の ``overlay`` ストレージ・ドライバは、ディスク上でイ
 
 ..    Note: Since it was merged into the mainline kernel, the OverlayFS kernel module was renamed from “overlayfs” to “overlay”. As a result you may see the two terms used interchangeably in some documentation. However, this document uses “OverlayFS” to refer to the overall filesystem, and overlay to refer to Docker’s storage-driver.
 
-.. note::
+.. note:: 
 
    カーネルのメインラインに取り込まれるにあたり、 OverlayFS *カーネル・モジュール* の名前が「overlayfs」から「overlay」に名称変更されました。そのため、同じドキュメントでも２つの用語が用いられるかもしれません。ですが、このドキュメントでは「OverlayFS」はファイル全体を指すものとし、 ``overlay`` は Docker のストレージ・ドライバを指すために遣います。
 
@@ -251,8 +251,8 @@ Docker が overlay ストレージ・ドライバを使うには、Docker ホス
 
    $ uname -r
    3.19.0-21-generic
-
-
+   
+   
    $ lsmod | grep overlay
    overlay
 

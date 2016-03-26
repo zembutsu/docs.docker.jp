@@ -581,7 +581,7 @@ Docker は以下の再起動ポリシーをサポートしています。
 
 .. list-table::
    :header-rows: 1
-
+   
    * - ポリシー
      - 結果
    * - **no** （なし）
@@ -758,7 +758,7 @@ MLS であれば、次のような例になります。
 
 .. list-table::
    :header-rows: 1
-
+   
    * - オプション
      - 説明
    * - ``-m`` , ``--memory=""``
@@ -805,7 +805,7 @@ MLS であれば、次のような例になります。
 
 .. list-table::
    :header-rows: 1
-
+   
    * - オプション
      - 結果
    * - **memory=inf, memory-swap=inf** （デフォルト）
@@ -949,7 +949,7 @@ MLS であれば、次のような例になります。
 
 .. list-table::
    :header-rows: 1
-
+   
    * - オプション
      - 結果
    * - **U != 0, K = inf** （デフォルト）
@@ -1231,16 +1231,16 @@ Docker コンテナのプロセスを実行できるのは、デフォルトで�
 .. code-block:: bash
 
    $ docker run --device=/dev/sda:/dev/xvdc --rm -it ubuntu fdisk  /dev/xvdc
-
+   
    Command (m for help): q
    $ docker run --device=/dev/sda:/dev/xvdc:r --rm -it ubuntu fdisk  /dev/xvdc
    You will not be able to write the partition table.
-
+   
    Command (m for help): q
-
+   
    $ docker run --device=/dev/sda:/dev/xvdc:w --rm -it ubuntu fdisk  /dev/xvdc
        crash....
-
+   
    $ docker run --device=/dev/sda:/dev/xvdc:m --rm -it ubuntu fdisk  /dev/xvdc
    fdisk: unable to open /dev/xvdc: Operation not permitted
 
@@ -1289,7 +1289,7 @@ Docker コンテナのプロセスを実行できるのは、デフォルトで�
 
 .. list-table::
    :header-rows: 1
-
+   
    * - 機能のキー(capability key)
      - 機能説明
    * - SETPCAP
@@ -1569,14 +1569,14 @@ EXPOSE （受信用のポート）
                   number of container ports in the range must match the
                   number of host ports in the range, for example:
                       -p 1234-1236:1234-1236/tcp
-
+   
                   When specifying a range for hostPort only, the
                   containerPort must not be a range.  In this case the
                   container port is published somewhere within the
                   specified hostPort range. (e.g., `-p 1234-1236:1234/tcp`)
-
+   
                   (use 'docker port' to see the actual mapping)
-
+   
    --link=""  : Add link to another container (<name or id>:alias or <name or id>)
 
 .. With the exception of the EXPOSE directive, an image developer hasn’t got much control over networking. The EXPOSE instruction defines the initial incoming ports that provide services. These ports are available to processes inside the container. An operator can use the --expose option to add to the exposed ports.
@@ -1624,7 +1624,7 @@ ENV（環境変数）
 
 .. list-table::
    :header-rows: 1
-
+   
    * - 変数
      - 値
    * - ``HOME``

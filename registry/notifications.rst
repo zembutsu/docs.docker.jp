@@ -263,7 +263,9 @@ This can be mitigated by running endpoints in close proximity to the registry in
 
 The notification system is designed around a series of interchangeable sinks which can be wired up to achieve interesting behavior. If this system doesn’t provide acceptable guarantees, adding a transactional Sink to the registry is a possibility, although it may have an effect on request service time. Please see the godoc for more information.
 
-.. seealso::
+.. seealso:: 
 
    Working with notifications
       https://docs.docker.com/registry/notifications/
+
+

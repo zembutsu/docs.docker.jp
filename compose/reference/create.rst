@@ -18,9 +18,9 @@ create
 .. code-block:: bash
 
    create
-
+   
    Usage: create [options] [SERVICE...]
-
+   
    Options:
    --force-recreate       Recreate containers even if their configuration and
                           image haven't changed. Incompatible with --no-recreate.
@@ -31,3 +31,4 @@ create
 .. Creates containers for a service.
 
 サービス用のコンテナを作成します。
+

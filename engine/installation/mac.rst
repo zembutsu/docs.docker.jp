@@ -703,3 +703,4 @@ Docker Toolbox のアンインストール
 .. You can continue with the Docker User Guide. If you are interested in using the Kitematic GUI, see the Kitematic user guide.
 
 :doc:`Docker ユーザガイド </engine/userguide/index>` を読み続けられます。 Kitematic GUI の使用に興味があれば、 :doc:`Kitematic ユーザガイド </kitematic/userguide/index>` をご覧ください。
+

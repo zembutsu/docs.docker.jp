@@ -420,7 +420,7 @@ Mesos ドライバの利用に関する詳しい情報は、 `Using Docker Swarm
 
 より詳しい情報は :doc:`/swarm/discovery` をご覧ください。
 
-.. seealso::
+.. seealso:: 
 
    manage — Create a Swarm manager
       https://docs.docker.com/swarm/reference/manage/

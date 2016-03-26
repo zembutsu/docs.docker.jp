@@ -16,7 +16,7 @@ network ls
 .. code-block:: bash
 
    Usage:  docker network ls [OPTIONS]
-
+   
    Lists all the networks created by the user
      -f, --filter=[]       Filter output based on conditions provided
      --help                Print usage
@@ -44,10 +44,10 @@ Docker エンジンの ``daemon`` が把握している全てのネットワー�
 
    docker network ls --no-trunc
    NETWORK ID                                                         NAME                DRIVER
-   18a2866682b85619a026c81b98a5e375bd33e1b0936a26cc497c283d27bae9b3   none                null
-   c288470c46f6c8949c5f7e5099b5b7947b07eabe8d9a27d79a9cbf111adcbf47   host                host
-   7b369448dccbf865d397c8d2be0cda7cf7edc6b0945f77d2529912ae917a0185   bridge              bridge
-   95e74588f40db048e86320c6526440c504650a1ff3e9f7d60a497c4d2163e5bd   foo                 bridge
+   18a2866682b85619a026c81b98a5e375bd33e1b0936a26cc497c283d27bae9b3   none                null                
+   c288470c46f6c8949c5f7e5099b5b7947b07eabe8d9a27d79a9cbf111adcbf47   host                host                
+   7b369448dccbf865d397c8d2be0cda7cf7edc6b0945f77d2529912ae917a0185   bridge              bridge              
+   95e74588f40db048e86320c6526440c504650a1ff3e9f7d60a497c4d2163e5bd   foo                 bridge    
    63d1ff1f77b07ca51070a8c227e962238358bd310bde1529cf62e6c307ade161   dev                 bridge
 
 .. Filtering
@@ -164,7 +164,7 @@ id
    $ docker network ls --filter id=95e74588f40d
    NETWORK ID          NAME                DRIVER
    95e74588f40d        foo                 bridge
-
+   
    $ docker network ls --filter id=95e
    NETWORK ID          NAME                DRIVER
    95e74588f40d        foo                 bridge

@@ -34,7 +34,7 @@ Rackspace はサーバを grub の ``menu.lst`` からブートします。し�
 
    # apt を更新
    $ apt-get update
-
+   
    # 新しいカーネルをインストール
    $ apt-get install linux-generic-lts-raring
 
@@ -46,7 +46,7 @@ Rackspace はサーバを grub の ``menu.lst`` からブートします。し�
 
    # 正確な名前を把握
    $ find /boot/ -name '*3.8*'
-
+   
    # ここに何らかの結果が表示されます
 
 .. Now you need to manually edit /boot/grub/menu.lst, you will find a section at the bottom with the existing options. Copy the top one and substitute the new kernel into that. Make sure the new kernel is on top, and double check the kernel and initrd lines point to the right files.
@@ -69,17 +69,17 @@ Rackspace はサーバを grub の ``menu.lst`` からブートします。し�
 .. code-block:: bash
 
    ## ## End Default Options ##
-
+   
    title              Ubuntu 12.04.2 LTS, kernel 3.8.x generic
    root               (hd0)
    kernel             /boot/vmlinuz-3.8.0-19-generic root=/dev/xvda1 ro quiet splash console=hvc0
    initrd             /boot/initrd.img-3.8.0-19-generic
-
+   
    title              Ubuntu 12.04.2 LTS, kernel 3.2.0-38-virtual
    root               (hd0)
    kernel             /boot/vmlinuz-3.2.0-38-virtual root=/dev/xvda1 ro quiet splash console=hvc0
    initrd             /boot/initrd.img-3.2.0-38-virtual
-
+   
    title              Ubuntu 12.04.2 LTS, kernel 3.2.0-38-virtual (recovery mode)
    root               (hd0)
    kernel             /boot/vmlinuz-3.2.0-38-virtual root=/dev/xvda1 ro quiet splash  single
@@ -101,7 +101,7 @@ Rackspace はサーバを grub の ``menu.lst`` からブートします。し�
 
    $ uname -a
    # Linux docker-12-04 3.8.0-19-generic #30~precise1-Ubuntu SMP Wed May 1 22:26:36 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux
-
+   
    # 大丈夫です！ 3.8 ですね。
 
 .. Now you can finish with the Ubuntu instructions.

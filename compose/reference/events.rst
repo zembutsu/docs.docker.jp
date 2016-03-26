@@ -18,7 +18,7 @@ events
 .. code-block:: bash
 
    Usage: events [options] [SERVICE...]
-
+   
    Options:
        --json      Output events as a stream of json objects
 

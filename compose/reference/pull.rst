@@ -18,10 +18,12 @@ pull
 .. code-block:: bash
 
    Usage: pull [options] [SERVICE...]
-
+   
    Options:
    --ignore-pull-failures  Pull what it can and ignores images with pull failures.
 
 .. Pulls service images.
 
 サービス用イメージを取得します。
+
+

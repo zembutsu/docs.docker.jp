@@ -150,7 +150,7 @@ Docker デーモンの起動時に ``--registry-mirror`` オプションを指�
 
    どのようにセットアップするかは、ローカルホスト上の設定に依存します。環境によっては ``/etc/default/docker`` の ``DOCKER_OPTS`` 環境変数に ``--registry-mirror`` を追加します。
 
-.. seealso::
+.. seealso:: 
 
    Registry as a pull through
       https://docs.docker.com/registry/nginx/

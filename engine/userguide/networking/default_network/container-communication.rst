@@ -107,7 +107,7 @@ Docker ホスト上で ``iptables`` コマンドを実行すると、 ``FORWARD`
 .. code-block:: bash
 
    # When --icc=false, you should see a DROP rule:
-
+   
    $ sudo iptables -L -n
    ...
    Chain FORWARD (policy ACCEPT)
@@ -115,18 +115,18 @@ Docker ホスト上で ``iptables`` コマンドを実行すると、 ``FORWARD`
    DOCKER     all  --  0.0.0.0/0            0.0.0.0/0
    DROP       all  --  0.0.0.0/0            0.0.0.0/0
    ...
-
+   
    # When a --link= has been created under --icc=false,
    # you should see port-specific ACCEPT rules overriding
    # the subsequent DROP policy for all other packets:
-
+   
    $ sudo iptables -L -n
    ...
    Chain FORWARD (policy ACCEPT)
    target     prot opt source               destination
    DOCKER     all  --  0.0.0.0/0            0.0.0.0/0
    DROP       all  --  0.0.0.0/0            0.0.0.0/0
-
+   
    Chain DOCKER (1 references)
    target     prot opt source               destination
    ACCEPT     tcp  --  172.17.0.2           172.17.0.3           tcp spt:80
@@ -137,3 +137,5 @@ Docker ホスト上で ``iptables`` コマンドを実行すると、 ``FORWARD`
 .. note::
 
   ホストを広範囲にわたって公開する ``iptables`` のルールは、各コンテナが持つ実際の IP アドレスを通して公開されますのでご注意ください。そのため、あるコンテナから別のコンテナに対する接続は、前者のコンテナ自身が持っている IP アドレスからの接続に見えるでしょう。
+  
+  

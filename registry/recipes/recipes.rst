@@ -69,7 +69,8 @@
 * :doc:`building`
 * :doc:`mirror`
 
-.. seealso::
+.. seealso:: 
 
    Recipes
       https://docs.docker.com/registry/recipes/
+

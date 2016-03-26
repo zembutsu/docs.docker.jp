@@ -92,25 +92,25 @@ Swarm に TLS 設定を行うための詳しい情報は、 :doc:`secure-swarm-t
 * **Swarm マネージャ** ：
 
   * **Inbound 80/tcp (HTTP)**： ``docker pull`` コマンドで使います。Docker Hub から取得するためには、インターネット側のポート 80 からの通信を許可する必要があります。
-  * **Inbound 2375/tcp** ：Docker Engine CLI が Engine デーモンと直接通信します。
-  * **Inbound 3375/tcp** ：Docker Engine CLI が Swarm マネージャと通信します。
-  * **Inbound 22/tcp** ：SSH を経由したリモート管理を行います。
+  * **Inbound 2375/tcp** ：Docker Engine CLI が Engine デーモンと直接通信します。 
+  * **Inbound 3375/tcp** ：Docker Engine CLI が Swarm マネージャと通信します。 
+  * **Inbound 22/tcp** ：SSH を経由したリモート管理を行います。 
 
 * **サービス・ディスカバリ** ：
 
-  * **Inbound 80/tcp (HTTP)** ： ``docker pull`` コマンドで使います。Docker Hub から取得するためには、インターネット側のポート 80 からの通信を許可する必要があります。
-  * **Inbound 「ディスカバリ・サービス用のポート」** ：バックエンド・ディスカバリ・サービス（consul、etcd、zookeeper）が公開するポートの設定が必要です。
-  * **Inbound 22/tcp** ：SSH を経由したリモート管理を行います。
+  * **Inbound 80/tcp (HTTP)** ： ``docker pull`` コマンドで使います。Docker Hub から取得するためには、インターネット側のポート 80 からの通信を許可する必要があります。 
+  * **Inbound 「ディスカバリ・サービス用のポート」** ：バックエンド・ディスカバリ・サービス（consul、etcd、zookeeper）が公開するポートの設定が必要です。 
+  * **Inbound 22/tcp** ：SSH を経由したリモート管理を行います。 
 
 * **Swarm  ノード** ：
 
-  * **Inbound 80/tcp (HTTP)** ： ``docker pull`` コマンドで使います。Docker Hub から取得するためには、インターネット側のポート 80 からの通信を許可する必要があります。
+  * **Inbound 80/tcp (HTTP)** ： ``docker pull`` コマンドで使います。Docker Hub から取得するためには、インターネット側のポート 80 からの通信を許可する必要があります。 
   * **Inbound 2375/tcp** ：Docker Engine CLI が Engine デーモンと直接通信します。
   * **Inbound 22/tcp** ：SSH を経由したリモート管理を行います。
 
 * **その他、ホスト横断コンテナ・ネットワーク** ：
 
-  * **Inbound 7946/tcp** ： 他のコンテナ・ネットワークから発見（ディスカバリ）されるために必要です。
+  * **Inbound 7946/tcp** ： 他のコンテナ・ネットワークから発見（ディスカバリ）されるために必要です。 
   * **Inbound 7946/udp** ： 他のコンテナ・ネットワークから発見（ディスカバリ）されるために必要です。
   * **Inbound /tcp** ： キーバリュー・ストアのサービス用ポートに接続します。
   * **7489/udp** ： コンテナのオーバレイ・ネットワーク用です。
@@ -225,16 +225,16 @@ Consul 、 etcd 、 Zookeeper はプロダクションにどれも相応しく�
 .. It is possible to share the same Consul, etcd, or Zookeeper containers between the Swarm discovery and Engine container networks. However, for best performance and availability you should deploy dedicated instances – a discovery instance for Swarm and another for your container networks.
 
  Swarm ディスカバリ用の Consul 、 etcd 、 Zookeeper コンテナは、Engine コンテナ・ネットワークは共有できるかもしれません。しかし最高の性能と可用性のためには、Swarm のディスカバリ用に専用のインスタンスをデプロイし、他はコンテナのネットワーク用に使うべきでしょう。
-
+ 
  .. Multiple clouds
-
+ 
  .. _multiple-clouds:
 
 複数のクラウド
 --------------------
 
  .. You can architect and build Swarm clusters that stretch across multiple cloud providers, and even across public cloud and on premises infrastructures. The diagram below shows an example Swarm cluster stretched across AWS and Azure.
-
+ 
  Swarm クラスタを複数のクラウド・プロバイダを横断するよう設計・構築できます。これはパブリック・クラウドでも、オンプレミスの基盤でもです。次の図は Swarm クラスタを AWS と Azure に横断しています。
 
  .. image:: ./images/swarm-across-aws-and-azure.png
@@ -391,7 +391,8 @@ Engine のコンテナ・ネットワークは Linux カーネルの 3.16 以上
 * :doc:`multi-manager-setup`
 * `ユニバーサル・コントロール・プレーン（英語） <https://www.docker.com/products/docker-universal-control-plane>`_
 
-.. seealso::
+.. seealso:: 
 
    Plan for Swarm in production
       https://docs.docker.com/swarm/plan-for-production/
+

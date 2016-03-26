@@ -15,9 +15,9 @@ daemon
 .. code-block:: bash
 
    Usage: docker daemon [OPTIONS]
-
+   
    A self-sufficient runtime for linux containers.
-
+   
    Options:
      --api-cors-header=""                   Set CORS headers in the remote API
      --authorization-plugin=[]              Set authorization plugins to load
@@ -788,7 +788,7 @@ Linux カーネルの `ユーザ名前空間(user namespace)サポート <http:/
 .. note::
 
    現時点ではデーモン毎に１つだけマッピングするという制約があります。これは Engine インスタンス上で実行している全てのコンテナにまたがる共有イメージ・レイヤを Docker が共有しているためです。ファイルの所有者は、レイヤ内容を共有している全てのコンテナで共通の必要があるため、解決策としては ``docker pull`` の処理時、ファイル所有者をデーモンのユーザとグループに割り当てる（マッピングする）ことでした。そのため、イメージ内容をダウンロード後は遅延なくコンテナを起動できました。この設計は同じパフォーマンスを維持するため、 ``docker pull`` と ``docker push`` の実行時には維持されています。
-
+   
 .. Starting the daemon with user namespaces enabled
 
 .. _starting-the-daemon-with-user-namespaces-enabled:

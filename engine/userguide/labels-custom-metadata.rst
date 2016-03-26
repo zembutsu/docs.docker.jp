@@ -168,7 +168,7 @@ Docker が推奨するのは、複数のラベルを１つの ``LABEL`` 命令�
 .. code-block:: bash
 
    $ docker inspect 4fa6e0f0c678
-
+   
    ...
    "Labels": {
        "vendor": "ACME Incorporated",
@@ -178,12 +178,12 @@ Docker が推奨するのは、複数のラベルを１つの ``LABEL`` 命令�
        "com.example.release-date": "2015-02-12"
    }
    ...
-
+   
    # Inspect labels on container
    $ docker inspect -f "{{json .Config.Labels }}" 4fa6e0f0c678
-
+   
    {"Vendor":"ACME Incorporated","com.example.is-beta":"", "com.example.is-production":"", "com.example.version":"0.0.1-beta","com.example.release-date":"2015-02-12"}
-
+   
    # Inspect labels on images
    $ docker inspect -f "{{json .ContainerConfig.Labels }}" myimage
 

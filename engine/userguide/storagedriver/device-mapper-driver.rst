@@ -418,7 +418,7 @@ Docker ホストは ``devicemapper`` ストレージ・ドライバを、デフ�
    │ └─docker-202:1-1032-pool 253:2    0   10G  0 dm
    └─vg--docker-metadata      253:1    0    4G  0 lvm
      └─docker-202:1-1032-pool 253:2    0   10G  0 dm
-
+  
 .. The diagram below shows the image from prior examples updated with the detail from the lsblk command above.
 
 下図は、先ほどの例で使ったイメージの更新を、 ``lsblk`` コマンドの詳細で表しています。

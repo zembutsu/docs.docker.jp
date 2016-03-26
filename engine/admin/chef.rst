@@ -60,11 +60,11 @@ Chef を使う
    docker_service 'default' do
      action [:create, :start]
    end
-
+   
    docker_image 'busybox' do
      action :pull
    end
-
+   
    docker_container 'an echo server' do
      repo 'busybox'
      port '1234:1234'
@@ -87,7 +87,7 @@ Chef を使う
      tag 'latest'
      action :pull
    end
-
+   
    # Run container exposing ports
    docker_container 'my_nginx' do
      repo 'nginx'
@@ -99,3 +99,5 @@ Chef を使う
      env 'FOO=bar'
      subscribes :redeploy, 'docker_image[nginx]'
    end
+
+

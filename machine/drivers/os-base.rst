@@ -42,7 +42,7 @@
 .. Operating System 	Version 	Notes
 .. Boot2Docker 	1.5+ 	default for local
 .. Ubuntu 	12.04+ 	default for remote
-.. RancherOS 	0.3+
+.. RancherOS 	0.3+ 	
 .. Debian 	8.0+ 	experimental
 .. RedHat Enterprise Linux 	7.0+ 	experimental
 .. CentOS 	7+ 	experimental
@@ -50,11 +50,11 @@
 
 .. list-table::
    :header-rows: 1
-
+   
    * - オペレーティング・システム
      - バージョン
      - メモ
-   * - Boot2Docker
+   * - Boot2Docker 
      - 1.5+
      - ローカル用のデフォルト
    * - Ubuntu
@@ -62,7 +62,7 @@
      - リモート用のデフォルト
    * - RancherOS
      - 0.3+
-     -
+     - 
    * - Debian
      - 8.0+
      - 実験的(experimental)
@@ -83,3 +83,4 @@
 .. If you change the base image for a provider, you may also need to change the SSH user. For example, the default Red Hat AMI on EC2 expects the SSH user to be ec2-user, so you would have to specify this with --amazonec2-ssh-user ec2-user.
 
 プロバイダ用のベース・イメージを変更する時、SSH ユーザの変更も必要になる場合があります。例えば、 EC2 上のデフォルト Red Hat AMI の SSH ユーザは ``ec2-user`` なので、 ``--amazonec2-ssh-user ec2-user`` と指定する必要があります。
+

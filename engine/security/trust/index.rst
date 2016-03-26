@@ -17,7 +17,7 @@
 
 .. toctree::
    :maxdepth: 3
-
+   
    content_trust.rst
    trust_automation.rst
    deploying_notary.rst

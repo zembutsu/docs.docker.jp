@@ -16,7 +16,7 @@ Gentoo
 
 .. sidebar:: 目次
 
-   .. contents::
+   .. contents:: 
        :depth: 3
        :local:
 
@@ -71,10 +71,10 @@ docker-overlay の方法
      - デフォルト
      - 説明
    * - aufs
-     -
+     - 
      - "aufs" graph ドライバと、必要なカーネル・フラグを含む依存関係を有効にします。
    * - btrfs
-     -
+     - 
      -  "btrfs" graph ドライバと、必要なカーネル・フラグを含む依存関係を有効にします。
    * - contrib
      - Yes
@@ -83,16 +83,16 @@ docker-overlay の方法
      - Yes
      -  "devicemapper" graph ドライバと、必要なカーネル・フラグを含む依存関係を有効にします。
    * - doc
-     -
+     - 
      -  追加ドキュメント（API、Javadoc、等）を追加します。全体よりも個別のパッケージ毎の追加を推奨します。
    * - lxc
-     -
+     - 
      - "lxc" 実行ドライバの依存関係を有効化します。
    * - vim-syntax
-     -
+     - 
      -  vim syntax スクリプトに関連する取得をします。
    * - zsh-completion
-     -
+     - 
      -  zsh 補完コマンドを有効化します。
 
 .. USE flags are described in detail on tianon’s blog.
@@ -217,7 +217,8 @@ Docker パッケージと必要の無い依存関係をアンインストール�
 
 ユーザが作成した設定ファイルは、手動で削除する必要があります。
 
-.. seealso::
+.. seealso:: 
 
    Installation on Gentoo
       https://docs.docker.com/engine/installation/linux/gentoolinux/
+

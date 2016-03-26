@@ -18,10 +18,12 @@ logs
 .. code-block:: bash
 
    Usage: logs [options] [SERVICE...]
-
+   
    Options:
    --no-color  Produce monochrome output.
 
 .. Displays log output from services.
 
 サービスからのログ出力を表示します。
+
+

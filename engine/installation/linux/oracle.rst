@@ -16,7 +16,7 @@ Oracle Linux
 
 .. sidebar:: 目次
 
-   .. contents::
+   .. contents:: 
        :depth: 3
        :local:
 
@@ -329,7 +329,7 @@ Oracle Linux 7 で btrfs ストレージ・エンジンを使う場合は、 ``/
 
 Oracle Linux サポート・サブスクリプションをお持ちでなければ、 `Oracle Linux Forum <https://community.oracle.com/community/server_%26_storage_systems/linux/oracle_linux>`_ コミュニティのサポートをご利用ください。
 
-.. seealso::
+.. seealso:: 
 
    Installation on Oracle Linux
       https://docs.docker.com/engine/installation/linux/oracle/

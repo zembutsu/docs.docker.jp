@@ -190,7 +190,7 @@ Compose は作成されたコンテナにラベルがないことを検出する
 次はどこへ行きますか
 ====================
 
-..
+.. 
     User guide
     Getting Started
     Get started with Django
@@ -206,3 +206,4 @@ Compose は作成されたコンテナにラベルがないことを検出する
 * :doc:`wordpress`
 * :doc:`reference/index`
 * :doc:`compose-file`
+

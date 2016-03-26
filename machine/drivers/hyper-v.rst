@@ -54,7 +54,7 @@ Microsoft Hyper-V
 
 .. list-table::
    :header-rows: 1
-
+   
    * - コマンドライン・オプション
      - 環境変数
      - デフォルト値
@@ -79,3 +79,4 @@ Microsoft Hyper-V
    * - ``--hyperv-vlan-id``
      - ``HYPERV_VLAN_ID``
      - *未定義*
+

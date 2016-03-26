@@ -1,4 +1,4 @@
-9.. -*- coding: utf-8 -*-
+.. -*- coding: utf-8 -*-
 .. https://docs.docker.com/registry/introduction/
 .. doc version: 1.9
 .. check date: 2016/01/08
@@ -110,3 +110,4 @@ Docker に完全に慣れ親しんでいる必要があります。特にイメ�
 .. Dive into deploying your registry
 
 :doc:`レジストリのデプロイ <deploying>` に進みましょう。
+

@@ -161,3 +161,4 @@ Docker において、既存の機能を削除したり、新しい機能に置�
 .. Docker is licensed under the Apache License, Version 2.0. See LICENSE for the full license text.
 
 Docker は Apache License, Version 2.0 でライセンスされています。ライセンス条項の詳細は  `LICENSE <https://github.com/docker/docker/blob/master/LICENSE>`_ をご覧ください。
+

@@ -397,7 +397,9 @@ Docker Compose で管理
 * :doc:`storagedrivers`
 * :doc:`spec/auth/tokens`
 
-.. seealso::
+.. seealso:: 
 
    Deploying a registry server
       https://docs.docker.com/registry/deploying/
+
+

@@ -16,7 +16,7 @@ openSUSE and SUSE Linux Enterprise
 
 .. sidebar:: 目次
 
-   .. contents::
+   .. contents:: 
        :depth: 3
        :local:
 
@@ -84,7 +84,7 @@ SUSE Linux Enterprise 12 以降、Docker は正式にサポートされていま
 .. code-block:: bash
 
    $ sudo SUSEConnect -p sle-module-containers/12/x86_64 -r ''
-
+   
 .. **Note:** currently the `-r ''` flag is required to avoid a known limitation of `SUSEConnect`.
 
 .. note::
@@ -217,7 +217,8 @@ openSUSE または SUSE Linux Enterprise での Docker に関するより詳し�
 
 :doc:`ユーザガイド </engine/userguide/index>` に進みます。
 
-.. seealso::
+.. seealso:: 
 
    Installation on openSUSE and SUSE Linux Enterprise
       https://docs.docker.com/engine/installation/linux/SUSE/
+

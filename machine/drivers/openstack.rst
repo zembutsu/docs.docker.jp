@@ -79,7 +79,7 @@ OpenStack
 
 .. list-table::
    :header-rows: 1
-
+   
    * - コマンドライン・オプション
      - 環境変数
      - デフォルト値

@@ -18,7 +18,7 @@ rm
 .. code-block:: bash
 
    Usage: rm [options] [SERVICE...]
-
+   
    Options:
    -f, --force   Don't ask to confirm removal
    -v            Remove volumes associated with containers
@@ -34,3 +34,4 @@ rm
 .. Any data which is not in a volume will be lost.
 
 （明示的に削除しなければ）ボリューム内にあるデータは失われません。
+

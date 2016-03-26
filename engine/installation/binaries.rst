@@ -277,10 +277,11 @@ root 以外のアクセス
 
    # docker バージョンの確認
    $ sudo ./docker version
-
+   
    # コンテナを実行し、コンテナ内のシェルをインタラクティブに開きます
    $ sudo ./docker run -i -t ubuntu /bin/bash
 
 .. Continue with the User Guide.
 
 :doc:`ユーザ・ガイド </engine/userguide/index>` に進みます。
+

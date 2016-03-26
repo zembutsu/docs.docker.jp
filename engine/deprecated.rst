@@ -4,12 +4,12 @@
 .. doc version: 1.10
       https://github.com/docker/docker/commits/master/docs/deprecated.md
 .. check date: 2016/03/25
-.. Commits on Mar 18, 2016
+.. Commits on Mar 18, 2016 
 .. -----------------------------------------------------------------------------
 
 .. sidebar:: 目次
 
-   .. contents::
+   .. contents:: 
        :depth: 2
        :local:
 
@@ -317,6 +317,7 @@ Docker Content Trust ENV パスフレーズの変数名を変更
 * DOCKER_CONTENT_TRUST_OFFLINE_PASSPHRASE を DOCKER_CONTENT_TRUST_ROOT_PASSPHRASE に変更します
 * DOCKER_CONTENT_TRUST_TAGGING_PASSPHRASE を DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE に変更します。
 
-.. seealso::
+.. seealso:: 
    Deprecated Engine Features
       https://docs.docker.com/engine/deprecated/
+

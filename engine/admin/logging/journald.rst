@@ -27,7 +27,7 @@ Journald ロギング・ドライバ
 
 .. list-table::
    :header-rows: 1
-
+   
    * - フィールド
      - 説明
    * - ``CONTAINER_ID``
@@ -138,9 +138,11 @@ journal API でログメッセージを表示
 .. code-block:: bash
 
    import systemd.journal
-
+   
    reader = systemd.journal.Reader()
    reader.add_match('CONTAINER_NAME=web')
-
+   
    for msg in reader:
      print '{CONTAINER_ID_FULL}: {MESSAGE}'.format(**msg)
+
+

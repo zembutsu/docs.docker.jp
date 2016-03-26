@@ -951,7 +951,7 @@ exec 形式の ENTRYPOINT 例
    %Cpu(s):  0.1 us,  0.1 sy,  0.0 ni, 99.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
    KiB Mem:   2056668 total,  1616832 used,   439836 free,    99352 buffers
    KiB Swap:  1441840 total,        0 used,  1441840 free.  1324440 cached Mem
-
+   
      PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND
        1 root      20   0   19744   2336   2080 R  0.0  0.1   0:00.04 top
 
@@ -990,17 +990,17 @@ exec 形式の ENTRYPOINT 例
 
    #!/bin/bash
    set -e
-
+   
    if [ "$1" = 'postgres' ]; then
        chown -R postgres "$PGDATA"
-
+   
        if [ -z "$(ls -A "$PGDATA")" ]; then
            gosu postgres initdb
        fi
-
+   
        exec gosu postgres "$@"
    fi
-
+   
    exec "$@"
 
 .. Lastly, if you need to do some extra cleanup (or communicate with other containers) on shutdown, or are co-ordinating more than one executable, you may need to ensure that the ENTRYPOINT script receives the Unix signals, passes them on, and then does some more work:
@@ -1011,21 +1011,21 @@ exec 形式の ENTRYPOINT 例
 
    #!/bin/sh
    # メモ：これは sh を使っていますので、busyboy コンテナでも動きます
-
+   
    # サービス停止時に手動でもクリーンアップが必要な場合は trap を使います。
    # あるいは１つのコンテナ内に複数のサービスを起動する必要があります。
    trap "echo TRAPed signal" HUP INT QUIT KILL TERM
-
+   
    # ここからバックグラウンドでサービスを開始します
    /usr/sbin/apachectl start
-
+   
    echo "[hit enter key to exit] or run 'docker stop <container>'"
    read
-
+   
    # ここからサービスを停止し、クリーンアップします
    echo "stopping apache"
    /usr/sbin/apachectl stop
-
+   
    echo "exited $0"
 
 .. If you run this image with docker run -it --rm -p 80:80 --name test apache, you can then examine the container’s processes with docker exec, or docker top, and then ask the script to stop Apache:
@@ -1491,13 +1491,13 @@ Dockerfile の例
    # Nginx
    #
    # VERSION               0.0.1
-
+   
    FROM      ubuntu
    MAINTAINER Victor Vieux <victor@docker.com>
-
+   
    LABEL Description="This image is used to start the foobar executable" Vendor="ACME Products" Version="1.0"
    RUN apt-get update && apt-get install -y inotify-tools nginx apache2 openssh-server
-
+   
    # Firefox over VNC
    #
    # VERSION               0.3
@@ -1506,7 +1506,7 @@ Dockerfile の例
 .. code-block:: bash
 
    FROM ubuntu
-
+   
    # Install vnc, xvfb in order to create a 'fake' display and firefox
    RUN apt-get update && apt-get install -y x11vnc xvfb firefox
    RUN mkdir ~/.vnc
@@ -1514,10 +1514,10 @@ Dockerfile の例
    RUN x11vnc -storepasswd 1234 ~/.vnc/passwd
    # Autostart firefox (might not be the best way, but it does the trick)
    RUN bash -c 'echo "firefox" >> /.bashrc'
-
+   
    EXPOSE 5900
    CMD    ["x11vnc", "-forever", "-usepw", "-create"]
-
+   
    # Multiple images example
    #
    # VERSION               0.1
@@ -1527,10 +1527,10 @@ Dockerfile の例
    FROM ubuntu
    RUN echo foo > bar
    # Will output something like ===> 907ad6c2736f
-
+   
    FROM ubuntu
    RUN echo moo > oink
    # Will output something like ===> 695d7793cbe4
-
+   
    # You᾿ll now have two images, 907ad6c2736f with /bar, and 695d7793cbe4 with
    # /oink.

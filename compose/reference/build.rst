@@ -18,7 +18,7 @@ build
 .. code-block:: bash
 
    Usage: build [options] [SERVICE...]
-
+   
    Options:
    --force-rm  Always remove intermediate containers.
    --no-cache  Do not use cache when building the image.

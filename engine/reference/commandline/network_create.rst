@@ -16,9 +16,9 @@ network create
 .. code-block:: bash
 
    Usage:  docker network create [OPTIONS] NETWORK-NAME
-
+   
    Creates a new network with a name specified by the user
-
+   
    --aux-address=map[]      Auxiliary ipv4 or ipv6 addresses used by network driver
    -d --driver=DRIVER       Driver to manage the Network bridge or overlay. The default is bridge.
    --gateway=[]             ipv4 or ipv6 Gateway for the master subnet
@@ -163,7 +163,7 @@ network create
 
 .. list-table::
    :header-rows: 1
-
+   
    * - オプション
      -  同等
      - 説明
@@ -226,3 +226,4 @@ network create
 * :doc:`network ls <network_ls>`
 * :doc:`network rm <network_rm>`
 * :doc:`Docker コンテナ・ネットワークの理解 </engine/userguide/networking/dockernetworks>`
+

@@ -17,7 +17,7 @@
 
 .. sidebar:: 目次
 
-   .. contents::
+   .. contents:: 
        :depth: 3
        :local:
 
@@ -130,7 +130,7 @@ Docker Machine ドライバ・プラグインは多くのクラウド・プラ�
 
    $ docker-machine ls
    NAME      ACTIVE   DRIVER       STATE     URL                         SWARM
-   default   *        virtualbox   Running   tcp:////xxx.xxx.xx.xxx:xxxx
+   default   *        virtualbox   Running   tcp:////xxx.xxx.xx.xxx:xxxx  
 
 ..    Run some Docker commands to make sure that Docker Engine is also up-and-running.
 
@@ -143,7 +143,7 @@ Docker Machine ドライバ・プラグインは多くのクラウド・プラ�
 .. code-block:: bash
 
    $ docker run hello-world
-
+   
    Hello from Docker.
    This message shows that your installation appears to be working correctly.
    ...
@@ -204,8 +204,8 @@ Docker Machine ドライバ・プラグインは多くのクラウド・プラ�
 
    $ docker-machine ls
    NAME             ACTIVE   DRIVER         STATE     URL                         SWARM
-   default          *        virtualbox     Running   tcp://192.168.99.100:2376
-   docker-sandbox   -        digitalocean   Running   tcp://45.55.139.48:2376
+   default          *        virtualbox     Running   tcp://192.168.99.100:2376   
+   docker-sandbox   -        digitalocean   Running   tcp://45.55.139.48:2376     
 
 ..    Notice that the new cloud server is running but is not the active host. Our command shell is still connected to the default machine, which is currently the active host as indicated by the asterisk (*).
 
@@ -224,7 +224,7 @@ Docker Machine ドライバ・プラグインは多くのクラウド・プラ�
    export DOCKER_MACHINE_NAME="docker-sandbox"
    # Run this command to configure your shell:
    # eval "$(docker-machine env docker-sandbox)"
-
+   
    $ eval "$(docker-machine env docker-sandbox)"
 
 ..    Re-run docker-machine ls to verify that our new server is the active machine, as indicated by the asterisk (*) in the ACTIVE column.
@@ -235,8 +235,8 @@ Docker Machine ドライバ・プラグインは多くのクラウド・プラ�
 
    $ docker-machine ls
    NAME             ACTIVE   DRIVER         STATE     URL                         SWARM
-   default          -        virtualbox     Running   tcp://192.168.99.100:2376
-   docker-sandbox   *        digitalocean   Running   tcp://45.55.222.72:2376
+   default          -        virtualbox     Running   tcp://192.168.99.100:2376   
+   docker-sandbox   *        digitalocean   Running   tcp://45.55.222.72:2376     
 
 ..    Run some docker-machine commands to inspect the remote host. For example, docker-machine ip <machine> gets the host IP adddress and docker-machine inspect <machine> lists all the details.
 
@@ -246,7 +246,7 @@ Docker Machine ドライバ・プラグインは多くのクラウド・プラ�
 
    $ docker-machine ip docker-sandbox
    104.131.43.236
-
+   
    $ docker-machine inspect docker-sandbox
    {
        "ConfigVersion": 3,
@@ -324,7 +324,7 @@ create コマンドのデフォルト・オプションを理解する
    $ docker-machine rm docker-sandbox
    Do you really want to remove "docker-sandbox"? (y/n): y
    Successfully removed docker-sandbox
-
+   
    $ docker-machine ls
    NAME      ACTIVE   DRIVER       STATE     URL                         SWARM
    default   *        virtualbox   Running   tcp:////xxx.xxx.xx.xxx:xxxx
@@ -356,7 +356,8 @@ Docker Machine でホストを作成しても、クラウド・プロバイダ�
 * :doc:`/engine/userguide/intro`
 
 
-.. seealso::
+.. seealso:: 
 
    Example: Use Docker Machine to provision cloud hosts
       https://docs.docker.com/engine/installation/cloud/cloud-ex-machine-ocean/
+

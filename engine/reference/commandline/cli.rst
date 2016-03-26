@@ -24,11 +24,11 @@ Docker コマンドラインを使う
      Usage: docker [OPTIONS] COMMAND [arg...]
             docker daemon [ --help | ... ]
             docker [ --help | -v | --version ]
-
+   
        -H, --host=[]: The socket(s) to talk to the Docker daemon in the format of tcp://host:port/path, unix:///path/to/socket, fd://* or fd://socketfd.
-
+   
      A self-sufficient runtime for Linux containers.
-
+   
      ...
 
 .. Depending on your Docker system configuration, you may be required to preface each docker command with sudo. To avoid having to use sudo with the docker command, your system administrator can create a Unix group called docker and add users to it.
@@ -189,11 +189,11 @@ Notary
 .. code-block:: bash
 
    $ docker run --help
-
+   
    Usage: docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
-
+   
    Run a command in a new container
-
+   
      -a, --attach=[]            Attach to STDIN, STDOUT or STDERR
      --cpu-shares=0             CPU shares (relative weight)
    ...
@@ -272,3 +272,5 @@ Notary
 .. Options like --name="" expect a string, and they can only be specified once. Options like -c=0 expect an integer, and they can only be specified once.
 
 ``--name=""`` のように文字が含まれるオプションは、１つしか指定できません。 ``-c=0`` のように整数の場合も、１つしか指定できません。
+
+

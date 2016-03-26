@@ -66,7 +66,7 @@ build
 .. code-block:: yaml
 
    build: ./dir
-
+   
    build:
      context: ./dir
      dockerfile: Dockerfile-alternate
@@ -93,7 +93,7 @@ build
 .. note::
 
    :ref:`バージョン１のフォーマット <compose-file-version-1>` では、 ``build`` の使い方が異なります：
-
+   
    * ``build: .`` の文字列のみ許可されています。オブジェクトは指定できません。
    * ``build`` と ``image`` は同時に使えません。指定するとエラーになります。
 
@@ -155,12 +155,12 @@ Compose は構築時に別のファイルを使えます。構築時のパスも
 .. note::
 
    :ref:`バージョン１のフォーマット <compose-file-version-1>` とは ``dockerfile`` の使い方が異なります。
-
+   
    * ``build`` と ``dockerfile`` は並列であり、サブオプションではありません。
-
+   
       build: .
       dockerfile: Dockerfile-alternate
-
+   
    * ``dockerfile`` と ``image`` を同時に使えません。使おうとしてもエラーになります。
 
 .. args
@@ -190,7 +190,7 @@ args
      args:
        buildno: 1
        user: someuser
-
+   
    build:
      args:
        - buildno=1
@@ -209,7 +209,7 @@ cap_add, cap_drop
 
    cap_add:
      - ALL
-
+   
    cap_drop:
      - NET_ADMIN
      - SYS_ADMIN
@@ -399,7 +399,7 @@ Compose ファイルを ``docker-compose -f ファイル名`` で指定する場
 .. code-block:: yaml
 
    env_file: .env
-
+   
    env_file:
      - ./common.env
      - ./apps/web.env
@@ -434,7 +434,7 @@ environment
      RACK_ENV: development
      SHOW: 'true'
      SESSION_SECRET:
-
+   
    environment:
      - RACK_ENV=development
      - SHOW=true
@@ -584,7 +584,7 @@ labels
      com.example.description: "Accounting webapp"
      com.example.department: "Finance"
      com.example.label-with-empty-value: ""
-
+   
    labels:
      - "com.example.description=Accounting webapp"
      - "com.example.department=Finance"

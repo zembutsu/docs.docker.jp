@@ -327,7 +327,7 @@ log
 
 .. list-table::
    :header-rows: 1
-
+   
    * - パラメータ
      - 必須
      - 説明
@@ -519,7 +519,7 @@ maintenance
 
 .. list-table:
    :header-rows: 1
-
+   
    * - パラメータ
      - 必須
      - 説明
@@ -657,13 +657,13 @@ silly
 
 .. list-table::
    :header-rows: 1
-
+   
    * - パラメータ
      - 必須
      - 説明
    * - ``realm``
      - はい
-     - レジストリ・サーバ認証は realm
+     - レジストリ・サーバ認証は realm 
    * - ``service``
      - はい
      - サービスが認証された状態
@@ -687,13 +687,13 @@ token
 
 .. list-table::
    :header-rows: 1
-
+   
    * - パラメータ
      - 必須
      - 説明
    * - ``realm``
      - はい
-     - レジストリ・サーバ認証は realm
+     - レジストリ・サーバ認証は realm 
    * - ``service``
      - はい
      - サービスが認証された状態
@@ -731,13 +731,13 @@ htpasswd
 
 .. list-table::
    :header-rows: 1
-
+   
    * - パラメータ
      - 必須
      - 説明
    * - ``realm``
      - はい
-     - レジストリ・サーバ認証は realm
+     - レジストリ・サーバ認証は realm 
    * - ``service``
      - はい
      - サービスが認証された状態
@@ -793,7 +793,7 @@ middleware
 
 .. list-table::
    :header-rows: 1
-
+   
    * - パラメータ
      - 必須
      - 説明
@@ -842,7 +842,7 @@ reporting
 
 .. list-table::
    :header-rows: 1
-
+   
    * - パラメータ
      - 必須
      - 説明
@@ -865,7 +865,7 @@ reporting
 
 .. list-table::
    :header-rows: 1
-
+   
    * - パラメータ
      - 必須
      - 説明
@@ -1196,3 +1196,4 @@ middleware:
              duration: 60
 
     Note: Cloudfront keys exist separately to other AWS keys. See the documentation on AWS credentials for more information.
+

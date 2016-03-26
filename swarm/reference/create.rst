@@ -42,7 +42,8 @@ create - ディスカバリ・トークンの作成
 
 具体的な利用方法や他のバックエンドに関する情報は :doc:`/swarm/discovery` をご覧ください。
 
-.. seealso::
+.. seealso:: 
 
    create — Create a discovery token
       https://docs.docker.com/swarm/reference/create/
+

@@ -141,7 +141,8 @@ Docker Hub には多くの `公式レポジトリ <http://hub.docker.com/explore
 
 Docker Hub アカウント :doc:`作成の方法 <github>` 、組織やチームでの :doc:`管理 <orgs>` の仕方を学びます。
 
-.. seealso::
+.. seealso:: 
 
    Overview of Docker Hub
       https://docs.docker.com/docker-hub/overview/
+

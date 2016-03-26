@@ -87,25 +87,25 @@ CFEngine は ``ENTRYPOINT`` で指定したコマンドの ``ベースネーム`
 
    FROM ubuntu
    MAINTAINER Eystein Måløy Stenberg <eytein.stenberg@gmail.com>
-
+   
    RUN apt-get update && apt-get install -y wget lsb-release unzip ca-certificates
-
+   
    # install latest CFEngine
    RUN wget -qO- http://cfengine.com/pub/gpg.key | apt-key add -
    RUN echo "deb http://cfengine.com/pub/apt $(lsb_release -cs) main" > /etc/apt/sources.list.d/cfengine-community.list
    RUN apt-get update && apt-get install -y cfengine-community
-
+   
    # install cfe-docker process management policy
    RUN wget https://github.com/estenberg/cfe-docker/archive/master.zip -P /tmp/ && unzip /tmp/master.zip -d /tmp/
    RUN cp /tmp/cfe-docker-master/cfengine/bin/* /var/cfengine/bin/
    RUN cp /tmp/cfe-docker-master/cfengine/inputs/* /var/cfengine/inputs/
    RUN rm -rf /tmp/cfe-docker-master /tmp/master.zip
-
+   
    # apache2 and openssh are just for testing purposes, install your own apps here
    RUN apt-get update && apt-get install -y openssh-server apache2
    RUN mkdir -p /var/run/sshd
    RUN echo "root:password" | chpasswd  # need a password for ssh
-
+   
    ENTRYPOINT ["/var/cfengine/bin/docker_processes_run.sh"]
 
 .. By saving this file as Dockerfile to a working directory, you can then build your image with the docker build command, e.g., docker build -t managed_image.
@@ -136,7 +136,7 @@ CFEngine は ``ENTRYPOINT`` で指定したコマンドの ``ベースネーム`
 .. code-block:: bash
 
    ssh -p222 root@127.0.0.1
-
+   
    ps -ef
    UID        PID  PPID  C STIME TTY          TIME CMD
    root         1     0  0 07:48 ?        00:00:00 /bin/bash /var/cfengine/bin/docker_processes_run.sh /usr/sbin/sshd /etc/init.d/apache2 start
@@ -180,3 +180,4 @@ CFEngine は ``ENTRYPOINT`` で指定したコマンドの ``ベースネーム`
 
 * 上記の Dockerfile を使い、 ``apache2`` と ``sshd`` のかわりに自分のアプリケーションをインストールします。
 * ``docker run`` でコンテナを開始する時のために、 ``apache2`` と ``sshd`` ではなく、自分のアプリケーション向けのコマンドライン上の引数を指定します。
+

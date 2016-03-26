@@ -186,7 +186,8 @@ Swarm ノードを作成する前に、 :doc:`ディスカバリ・トークン�
 
 より詳しい情報は :doc:`/swarm/discovery` をご覧ください。
 
-.. seealso::
+.. seealso:: 
 
    join — Create a Swarm node
       https://docs.docker.com/swarm/reference/join/
+

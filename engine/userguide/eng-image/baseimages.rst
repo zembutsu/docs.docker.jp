@@ -100,3 +100,4 @@ Docker が準備した最小イメージ ``scratch`` を、コンテナの構築
 * ``Dockerfile`` リファレンス・セクションには、 :doc:`利用可能な命令の全ガイド </engine/reference/builder>` があります。
 * 作成した ``Dockerfile`` を、より綺麗に、読みやすく、メンテナンスしやすいように、 :doc:`ベスト・プラクティス・ガイド <dockerfile_best-practice>` を書きました。
 * もし自分で新しい公式レポジトリを作成するのが目標であれば、Docker の :doc:`公式レポジトリについて </docker-hub/official_repos/>` をお読みください。
+

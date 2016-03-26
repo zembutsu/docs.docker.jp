@@ -79,13 +79,13 @@ IPv6 転送（IPv6 forwarding）は既存の IPv6 設定に干渉する場合が
 .. code-block:: bash
 
    docker run -it ubuntu bash -c "ip -6 addr show dev eth0; ip -6 route show"
-
+   
    15: eth0: <BROADCAST,UP,LOWER_UP> mtu 1500
       inet6 2001:db8:1:0:0:242:ac11:3/64 scope global
          valid_lft forever preferred_lft forever
       inet6 fe80::42:acff:fe11:3/64 scope link
          valid_lft forever preferred_lft forever
-
+   
    2001:db8:1::/64 dev eth0  proto kernel  metric 256
    fe80::/64 dev eth0  proto kernel  metric 256
    default via fe80::1 dev eth0  metric 1024

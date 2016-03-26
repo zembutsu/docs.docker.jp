@@ -15,9 +15,9 @@ build
 .. code-block:: bash
 
    Usage: docker build [OPTIONS] PATH | URL | -
-
+   
    Build a new image from the source code at PATH
-
+   
      --build-arg=[]                  Set build-time variables
      --cpu-shares                    CPU Shares (relative weight)
      --cgroup-parent=""              Optional parent cgroup for the container
@@ -66,7 +66,7 @@ Git の URL は、コロン ``:`` をコンテキストのセクションを分�
 
 .. list-table::
    :header-rows: 1
-
+   
    * - 構築構文のサフィックス
      - コミットに利用
      - 構築コンテキストに使用
@@ -389,3 +389,4 @@ Dockerfile の``ENV`` 命令を使い、変数を定義できます。これら�
 .. For detailed information on using ARG and ENV instructions, see the Dockerfile reference.
 
 ``ARG`` と ``ENV`` 命令の詳細については、 :doc:`Dockerfile リファレンス </engine/reference/builder>` をご覧ください。
+

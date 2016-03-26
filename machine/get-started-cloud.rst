@@ -173,4 +173,6 @@ Docker Machine を使えば :doc:`Docker Swarm </swarm/overview>` クラスタ�
 * :doc:`concepts`
 * :doc:`Docker Machine ドライバ・リファレンス </machine/drivers/index>`
 * :doc:`Docker Machine サブコマンド・リファレンス </machine/reference/index>`
-* :doc:`/swarm/provision-with-machine`
+* :doc:`/swarm/provision-with-machine` 
+
+
