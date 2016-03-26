@@ -350,7 +350,7 @@ Docker はコード・レポジトリに対して push で変更が加えられ�
 
 正常に動作するかを確認するには、同じページの Last 10 Trigger Logs （直近のトリガ10個のログ）をご覧ください。
 
-.. seealso::
+.. seealso:: 
 
    Automated Builds on Docker Hub
       https://docs.docker.com/docker-hub/builds/

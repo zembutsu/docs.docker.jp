@@ -66,7 +66,7 @@ build
 .. code-block:: yaml
 
    build: ./dir
-
+   
    build:
      context: ./dir
      dockerfile: Dockerfile-alternate
@@ -93,7 +93,7 @@ build
 .. note::
 
    :ref:`バージョン１のフォーマット <compose-file-version-1>` では、 ``build`` の使い方が異なります：
-
+   
    * ``build: .`` の文字列のみ許可されています。オブジェクトは指定できません。
    * ``build`` と ``image`` は同時に使えません。指定するとエラーになります。
 
@@ -155,12 +155,12 @@ Compose は構築時に別のファイルを使えます。構築時のパスも
 .. note::
 
    :ref:`バージョン１のフォーマット <compose-file-version-1>` とは ``dockerfile`` の使い方が異なります。
-
+   
    * ``build`` と ``dockerfile`` は並列であり、サブオプションではありません。
-
+   
       build: .
       dockerfile: Dockerfile-alternate
-
+   
    * ``dockerfile`` と ``image`` を同時に使えません。使おうとしてもエラーになります。
 
 .. args
@@ -190,7 +190,7 @@ args
      args:
        buildno: 1
        user: someuser
-
+   
    build:
      args:
        - buildno=1
@@ -209,7 +209,7 @@ cap_add, cap_drop
 
    cap_add:
      - ALL
-
+   
    cap_drop:
      - NET_ADMIN
      - SYS_ADMIN
@@ -399,7 +399,7 @@ Compose ファイルを ``docker-compose -f ファイル名`` で指定する場
 .. code-block:: yaml
 
    env_file: .env
-
+   
    env_file:
      - ./common.env
      - ./apps/web.env
@@ -434,7 +434,7 @@ environment
      RACK_ENV: development
      SHOW: 'true'
      SESSION_SECRET:
-
+   
    environment:
      - RACK_ENV=development
      - SHOW=true
@@ -584,7 +584,7 @@ labels
      com.example.description: "Accounting webapp"
      com.example.department: "Finance"
      com.example.label-with-empty-value: ""
-
+   
    labels:
      - "com.example.description=Accounting webapp"
      - "com.example.department=Finance"
@@ -822,18 +822,18 @@ aliases
 .. code-block:: yaml
 
    version: 2
-
+   
    services:
      web:
        build: ./web
        networks:
          - new
-
+   
      worker:
        build: ./worker
        networks:
        - legacy
-
+   
      db:
        image: mysql
        networks:
@@ -843,7 +843,7 @@ aliases
          legacy:
            aliases:
              - mysql
-
+   
    networks:
      new:
      legacy:
@@ -950,16 +950,16 @@ volumes, volume_driver
    volumes:
      # パスを指定すると、Engine はボリュームを作成
      - /var/lib/mysql
-
+   
      # 絶対パスを指定しての割り当て
      - /opt/data:/var/lib/mysql
-
+   
      # ホスト上のパスを指定するとき、Compose ファイルからのパスを指定
      - ./cache:/tmp/cache
-
+   
      # ユーザの相対パスを使用
      - ~/configs:/etc/configs/:ro
-
+   
      # 名前付きボリューム（Named volume）
      - datavolume:/var/lib/mysql
 
@@ -1005,7 +1005,7 @@ volumes_from
 .. note::
 
    ``コンテナ:...`` の形式をサポートしているのは :ref:`バージョン２のファイル形式 <compose-file-version-2>` のみです。 :ref:`バージョン１の場合 <compose-file-version-1>` は、次のようにマークすることなくコンテナ名を使えます。
-
+   
    - service_name
    - service_name:ro
    - container_name
@@ -1027,21 +1027,21 @@ cpu_shares、 cpuset、 domainname、 entrypoint、 hostname、 ipc、 mac_addre
    cpu_shares: 73
    cpu_quota: 50000
    cpuset: 0,1
-
+   
    user: postgresql
    working_dir: /code
-
+   
    domainname: foo.com
    hostname: foo
    ipc: host
    mac_address: 02:42:ac:11:65:43
-
+   
    mem_limit: 1000000000
    memswap_limit: 2000000000
    privileged: true
-
+   
    restart: always
-
+   
    read_only: true
    stdin_open: true
    tty: true
@@ -1107,13 +1107,13 @@ external
 .. code-block:: yaml
 
    version: '2'
-
+   
    services:
      db:
        image: postgres
        volumes:
          - data:/var/lib/postgres/data
-
+   
    volumes:
      data:
        external: true
@@ -1237,7 +1237,7 @@ external
 .. code-block:: yaml
 
    version: '2'
-
+   
    services:
      proxy:
        build: ./proxy
@@ -1248,7 +1248,7 @@ external
        build: ./app
        networks:
          - default
-
+   
    networks:
      outside:
        external: true

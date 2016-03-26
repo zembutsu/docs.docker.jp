@@ -287,7 +287,7 @@ Docker バージョン 1.10 より低いバージョンまでは、各レイヤ�
    a3ed95caeb02: Pull complete
    Digest: sha256:5e279a9df07990286cce22e1b0f5b0490629ca6d187698746ae5e28e604a640e
    Status: Downloaded newer image for ubuntu:15.04
-
+   
    $ ls /var/lib/docker/aufs/layers/
    1d6674ff835b10f76e354806e16b950f91a191d3b471236609ab13a930275e24
    5dbb0cbe0148cf447b9464a358c1587be586058d9a4c9ce079320265e2bb94e7
