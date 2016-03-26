@@ -14,6 +14,12 @@
 AUFS ストレージ・ドライバを使う
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. AUFS was the first storage driver in use with Docker. As a result, it has a long and close history with Docker, is very stable, has a lot of real-world deployments, and has strong community support. AUFS has several features that make it a good choice for Docker. These features enable:
 
 AUFS は Docker に使われた初めてのストレージ・ドライバです。そのため、Docker の歴史で長く使われており、非常に安定し、多くの実際の開発に使われ、強力なコミュニティのサポートがあります。AUFS には複数の機能があります。これらは Docker の良い選択肢となるでしょう。次の機能を有効にします。
@@ -266,3 +272,8 @@ AUFS と Docker の性能
 * :doc:`selectadriver`
 * :doc:`btrfs-driver`
 * :doc:`device-mapper-driver`
+
+.. seealso:: 
+
+   Docker and AUFS in practice
+      https://docs.docker.com/engine/userguide/storagedriver/aufs-driver/

@@ -14,6 +14,12 @@
 Btrfs ストレージ・ドライバを使う
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Btrfs is a next generation copy-on-write filesystem that supports many advanced storage technologies that make it a good fit for Docker. Btrfs is included in the mainline Linux kernel and it’s on-disk-format is now considered stable. However, many of its features are still under heavy development and users should consider it a fast-moving target.
 
 Btrfs （ビーツリー・エフエス）は次世代のコピー・オン・ライト対応ファイルシステムです。Docker に適している多くの高度なストレージ技術をサポートしています。Btrfs は Linux カーネルのメインラインに含まれており、オン・ディスク・フォーマットは安定していると考えられています。しかしながら、その機能の大部分はまだ開発中ですので、ユーザは Btrfs を動きの速い目標と考えるべきでしょう。
@@ -397,3 +403,8 @@ Btrfs の最近のバージョンは、 ``autodefrag`` をマウント用のオ�
 * :doc:`selectadriver`
 * :doc:`aufs-driver`
 * :doc:`device-mapper-driver`
+
+.. seealso:: 
+
+   Docker and Btrfs in practice
+      https://docs.docker.com/engine/userguide/storagedriver/btrfs-driver/

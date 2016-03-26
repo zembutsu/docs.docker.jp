@@ -14,6 +14,12 @@
 ストレージ・ドライバの選択
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. This page describes Docker’s storage driver feature. It lists the storage driver’s that Docker supports and the basic commands associated with managing them. Finally, this page provides guidance on choosing a storage driver.
 
 このページは Docker のストレージ・ドライバ機能を説明します。Docker がサポートしているストレージ・ドライバの一覧と、ドライバ管理に関連する基本的なコマンドをみていきます。ページの最後では、ストレージ・ドライバの選び方のガイドを提供します。
@@ -264,3 +270,8 @@ Docker がサポートしているストレージ・ドライバの利用経験�
 * :doc:`aufs-driver`
 * :doc:`btrfs-driver`
 * :doc:`device-mapper-driver`
+
+.. seealso:: 
+
+   Select a storage driver
+      https://docs.docker.com/engine/userguide/storagedriver/selectadriver/
