@@ -76,7 +76,6 @@
        depends_on:
          - db
    
-
 .. Build the project
 
 プロジェクトの構築

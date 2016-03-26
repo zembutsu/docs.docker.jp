@@ -87,7 +87,7 @@ Bitbucket のサービス・フック・ログを確認・変更するには、�
    :alt: bitbucket の hook
 
 
-.. seealso::
+.. seealso:: 
 
    Automated Builds with Bitbucket
       https://docs.docker.com/docker-hub/bitbucket/

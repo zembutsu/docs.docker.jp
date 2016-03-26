@@ -117,7 +117,7 @@ BinPack ストラテジの例
 
    $ docker run tcp://<manager_ip:manager_port> -d -P -m 1G --name frontend nginx
    963841b138d8
-
+   
    $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
    963841b138d8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:49177->80/tcp      node-1      frontend
@@ -134,7 +134,7 @@ BinPack ストラテジの例
 Docker Swarm ドキュメント目次
 ==============================
 
-..
+.. 
     User guide
     Scheduler strategies
     Scheduler filters
@@ -150,3 +150,4 @@ Docker Swarm ドキュメント目次
 
    Docker Swarm strategies
       https://docs.docker.com/swarm/scheduler/strategy/
+

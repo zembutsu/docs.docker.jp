@@ -242,7 +242,7 @@ Docker Hub からリンクする GitHub アカウントが「Limited Access」�
 
 もし「Docker」サービスを手動で追加した場合は、「Active」チェックボックスを選択してから「Update service」ボタンをクリックして、変更を保存します。
 
-.. seealso::
+.. seealso:: 
 
    Automated Builds from GitHub
       https://docs.docker.com/docker-hub/github/
