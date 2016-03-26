@@ -13,7 +13,7 @@
 ========================================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
    :titlesonly:
 
    index.rst
@@ -25,7 +25,7 @@ Linux ディストリビューション
 =============================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
 
    linux/index.rst
    linux/ubuntulinux.rst
@@ -44,7 +44,7 @@ Linux ディストリビューション
 =============================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
 
    cloud/overview.rst
    cloud/cloud-ex-aws.rst
@@ -54,7 +54,7 @@ Linux ディストリビューション
 =============================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
 
    amazon.rst
    google.rst

@@ -1,7 +1,7 @@
 .. -*- coding: utf-8 -*-
 .. 
 .. doc version: 1.10
-.. check date: 2016/03/26
+.. check date: 2016/02/06
 .. -----------------------------------------------------------------------------
 
 .. engine userguide toc
@@ -9,17 +9,11 @@
 .. _engine-userguide-toc:
 
 ========================================
-Docker Engine ユーザガイド
+ユーザガイド
 ========================================
 
-.. sidebar:: 目次
-
-   .. contents:: 
-       :depth: 3
-       :local:
-
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 3
 
    はじめに <intro.rst>
 
@@ -27,7 +21,7 @@ Docker Engine ユーザガイド
 ====================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 3
 
    containers/dockerizing.rst
    containers/usingdocker.rst
@@ -40,7 +34,7 @@ Docker Engine ユーザガイド
 ====================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 3
 
    eng-image/dockerfile_best-practice.rst
    eng-image/baseimages.rst
@@ -51,7 +45,7 @@ Docker ストレージ・ドライバ
 ==============================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 3
 
    storagedriver/index.rst
    storagedriver/imagesandcontainers.rst
@@ -66,34 +60,20 @@ Docker ストレージ・ドライバ
 ==============================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 3
 
    networking/index.rst
    networking/dockernetworks.rst
    networking/work-with-networks.rst
    networking/get-started-overlay.rst
    networking/configure-dns.rst
-
-default ネットワークを使う
-------------------------------
-
-.. toctree::
-   :maxdepth: 2
-
    networking/default_network/index.rst
 
 
-その他
+カスタム・メタデータ
 ====================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 3
 
    labels-custom-metadata.rst
-
-
-.. seealso:: 
-
-   Docker Engine user guide
-      https://docs.docker.com/engine/userguide/
-
