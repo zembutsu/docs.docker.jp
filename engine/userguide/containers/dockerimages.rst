@@ -16,6 +16,12 @@
 イメージの構築
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Docker images are the basis of containers. Each time you’ve used docker run you told it which image you wanted. In the previous sections of the guide you used Docker images that already exist, for example the ubuntu image and the training/webapp image.
 
 Docker イメージはコンテナの土台（基盤）です。``docker run`` を実行する度に、どのイメージを使うのか指定します。ガイドの前セクションでは、既存の ``ubuntu`` イメージと ``training/webapp`` イメージを使いました。
@@ -45,7 +51,7 @@ Docker はダウンロードしたイメージを Docker ホスト上に保管�
 
 .. Let’s start with listing the images you have locally on our host. You can do this using the docker images command like so:
 
-ローカルのホスト上にあるイメージの一覧を表示してみましょう。表示のためには ``docker images`` コマンドを使います：
+ローカルのホスト上にあるイメージの一覧を表示してみましょう。表示するには ``docker images`` コマンドを使います：
 
 .. code-block:: bash
 
@@ -57,7 +63,7 @@ Docker はダウンロードしたイメージを Docker ホスト上に保管�
 
 .. You can see the images you’ve previously used in the user guide. Each has been downloaded from Docker Hub when you launched a container using that image. When you list images, you get three crucial pieces of information in the listing.
 
-これまでのガイドで使用したイメージが表示されます。それぞれ、コンテナでイメージを起動するとき、 `Docker Hub <https://hub.docker.com/>`_ からダウンロードしたものです。イメージの一覧を表示するとき、３つの重要な情報が表示されます。
+これまでのガイドで使用したイメージが表示されます。それぞれ、コンテナでイメージを起動するときに `Docker Hub <https://hub.docker.com/>`_ からダウンロードしたものです。イメージの一覧を表示すると、３つの重要な情報が表示されます。
 
 .. 
     What repository they came from, for example ubuntu.
@@ -66,7 +72,7 @@ Docker はダウンロードしたイメージを Docker ホスト上に保管�
 
 * どのレポジトリから取得したのか（例：``ubuntu``）
 * 各イメージのタグ（例：``14.04``）
-* イメージ毎のイメージ ID
+* イメージごとのイメージ ID
 
 .. Tip: You can use a third-party dockviz tool or the Image layers site to display visualizations of image data.
 
@@ -118,7 +124,7 @@ Docker はダウンロードしたイメージを Docker ホスト上に保管�
 
 .. So how do you get new images? Well Docker will automatically download any image you use that isn’t already present on the Docker host. But this can potentially add some time to the launch of a container. If you want to pre-load an image you can download it using the docker pull command. Suppose you’d like to download the centos image.
 
-それでは、新しいイメージをどうやって取得できるのでしょうか。Docker は Docker ホスト上に存在しないイメージを使うとき、自動的にイメージをダウンロードします。しかしながら、コンテナを起動するまで少々時間がかかる場合があります。イメージをあらかじめダウンロードしたい場合は、``docker pull`` コマンドが使えます。``centos`` イメージは次のようにダウンロードします。
+それでは、新しいイメージをどうやって取得できるのでしょうか。Docker は Docker ホスト上に存在しないイメージを使うとき、自動的にイメージをダウンロードします。しかしながら、コンテナを起動するまで少々時間がかかる場合があります。イメージをあらかじめダウンロードしたい場合は、``docker pull`` コマンドが使えます。以下は ``centos`` イメージをダウンロードする例です。
 
 .. code-block:: bash
 
@@ -134,7 +140,7 @@ Docker はダウンロードしたイメージを Docker ホスト上に保管�
 
 .. You can see that each layer of the image has been pulled down and now you can run a container from this image and you won’t have to wait to download the image.
 
-イメージの各レイヤーを取得するのが見えます。このイメージを使ったコンテナを起動するとき、イメージのダウンロードのために待つ必要はありません。
+イメージの各レイヤーを取得しているのが見えます。コンテナを起動するとき、このイメージを使えばイメージのダウンロードのために待つ必要はありません。
 
 .. code-block:: bash
 
@@ -145,18 +151,18 @@ Docker はダウンロードしたイメージを Docker ホスト上に保管�
 
 .. _finding-images:
 
-イメージを探す
+イメージの検索
 ====================
 
 .. One of the features of Docker is that a lot of people have created Docker images for a variety of purposes. Many of these have been uploaded to Docker Hub. You can search these images on the Docker Hub website.
 
-Docker の特長の１つは、様々な目的の Docker イメージが多くの方によって作られています。大部分が `Docker Hub <https://hub.docker.com/>`_ にアップロードされています。これらのイメージは `Docker Hub のウェブサイト <https://hub.docker.com/explore/>`_ から検索できます。
+Docker の特長の１つとして、様々な目的の Docker イメージが多くの方によって作られています。大部分が `Docker Hub <https://hub.docker.com/>`_ にアップロードされています。これらのイメージは `Docker Hub のウェブサイト <https://hub.docker.com/explore/>`_ から検索できます。
 
 .. image:: search.png
 
 .. You can also search for images on the command line using the docker search command. Suppose your team wants an image with Ruby and Sinatra installed on which to do our web application development. You can search for a suitable image by using the docker search command to find all the images that contain the term sinatra.
 
-イメージの検索のためには、コマンドライン上で ``docker search`` コマンドを使う方法もあります。チームでウェブ・アプリケーションの開発のために Ruby と Sinatra をインストールしたイメージが必要と想定します。``docker search`` コマンドを使うことで、文字列 ``sinatra`` を含む全てのイメージを表示して、適切なイメージを探せます。
+イメージを検索するには、コマンドライン上で ``docker search`` コマンドを使う方法もあります。チームでウェブ・アプリケーションの開発のために Ruby と Sinatra をインストールしたイメージが必要と仮定します。``docker search`` コマンドを使うことで、文字列 ``sinatra`` を含む全てのイメージを表示して、適切なイメージを探せます。
 
 .. code-block:: bash
 
@@ -173,15 +179,15 @@ Docker の特長の１つは、様々な目的の Docker イメージが多く�
 
 .. You can see the command returns a lot of images that use the term sinatra. You’ve received a list of image names, descriptions, Stars (which measure the social popularity of images - if a user likes an image then they can “star” it), and the Official and Automated build statuses. Official Repositories are a carefully curated set of Docker repositories supported by Docker, Inc. Automated repositories are Automated Builds that allow you to validate the source and content of an image.
 
-コマンドを実行すると、``sinatra`` を含む多くのイメージが表示されます。表示されるのは、イメージ名の一覧、スター（イメージがソーシャル上で有名かどうか測るものです。利用者はイメージを気に入れば"スター"を付けられます ）、公式（OFFICIAL）か、自動構築（AUTOMATED）といった状態です。:doc:`公式レポジトリ </docker-hub/official_repos>` とは、Docker 社のサポートよって丁寧に精査されている Docker レポジトリです。:ref:`自動構築（Automated Build） <automated-builds>` とは、有効なソースとイメージ内容によって自動構築されたレポジトリです。
+コマンドを実行すると、``sinatra`` を含む多くのイメージが表示されます。表示されるのは、イメージ名の一覧、スター（イメージがソーシャル上で有名かどうか測るものです。利用者はイメージを気に入れば"スター"を付けられます ）、公式（OFFICIAL）か、自動構築（AUTOMATED）といった状態です。:doc:`公式レポジトリ </docker-hub/official_repos>` とは、Docker 社のサポートよって丁寧に精査されている Docker レポジトリです。:ref:`自動構築（Automated Build） <automated-builds>` とは有効なソースコードを元に、イメージ内容が自動構築されたレポジトリです。
 
 .. You’ve reviewed the images available to use and you decided to use the training/sinatra image. So far you’ve seen two types of images repositories, images like ubuntu, which are called base or root images. These base images are provided by Docker Inc and are built, validated and supported. These can be identified by their single word names.
 
-利用可能なイメージをレビューして、``training/sinatra`` イメージの使用を決めます。これまで２種類のイメージ・レポジトリが表示されました。``ubuntu`` のようなイメージはベース・イメージまたはルート・イメージと呼ばれます。このベース・イメージは Docker 社によって提供、構築、認証、サポートされています。これらは単一の単語名として表示されています。
+利用可能なイメージの内容を確認します。ここでは ``training/sinatra`` イメージを使うことにします。これまで２種類のイメージ・レポジトリが表示されました。``ubuntu`` のようなイメージはベース・イメージまたはルート・イメージと呼ばれます。このベース・イメージは Docker 社によって提供、構築、認証、サポートされています。これらは単一の単語名として表示されています。
 
 .. You’ve also seen user images, for example the training/sinatra image you’ve chosen. A user image belongs to a member of the Docker community and is built and maintained by them. You can identify user images as they are always prefixed with the user name, here training, of the user that created them.
 
-また、``training/sinatra`` イメージのようなユーザ・イメージも表示されます。ユーザ・イメージとは Docker コミュニティのメンバーに属するもので、メンバーによって公徳、メンテナンスされます。ユーザ・イメージは、常にユーザ名がイメージの前に付きます。この例のイメージは、``training`` というユーザによって作成されました。
+また、``training/sinatra`` イメージのようなユーザ・イメージも表示されます。ユーザ・イメージとは Docker コミュニティのメンバーに属するもので、メンバーによって構築、メンテナンスされます。ユーザ・イメージは、常にユーザ名がイメージの前に付きます。この例のイメージは、``training`` というユーザによって作成されました。
 
 .. Pulling our image
 
@@ -216,7 +222,7 @@ Docker の特長の１つは、様々な目的の Docker イメージが多く�
 
 .. The team has found the training/sinatra image pretty useful but it’s not quite what they need and you need to make some changes to it. There are two ways you can update and create images.
 
-チームでは ``training/sinatra`` イメージが使いやすいことがわかりました。しかし、イメージを私達が必要なものにするには、いくつかの変更が必要です。イメージの更新や作成には２つの方法があります。
+チームでは ``training/sinatra`` イメージが使いやすいことがわかりました。しかし、イメージを私達が使えるようにするには、いくつかの変更が必要です。イメージの更新や作成には２つの方法があります。
 
 ..
     You can update a container created from an image and commit the results to an image.
@@ -245,7 +251,7 @@ Docker の特長の１つは、様々な目的の Docker イメージが多く�
 
 .. note::
 
-   作成したコンテナ ID 、ここでは ``0b2616b0e5a8`` をメモしておきます。このあと直ぐ使います。
+   作成したコンテナ ID 、ここでは ``0b2616b0e5a8`` をメモしておきます。この後すぐ使います。
 
 .. Inside our running container let’s add the json gem.
 
@@ -271,7 +277,7 @@ Docker の特長の１つは、様々な目的の Docker イメージが多く�
 
 .. Here you’ve used the docker commit command. You’ve specified two flags: -m and -a. The -m flag allows us to specify a commit message, much like you would with a commit on a version control system. The -a flag allows us to specify an author for our update.
 
-ここで ``docker commit`` コマンドを使いました。２つのフラグ ``-m`` と ``-a`` を指定しました。``-m`` フラグはコミット・メッセージを指定するもので、バージョン・コントロール・システムのようにコミットできます。``-a`` フラグは更新を行った担当者を指定できます。
+ここで ``docker commit`` コマンドを使いました。２つのフラグ ``-m`` と ``-a`` を指定しています。``-m`` フラグはコミット・メッセージを指定するもので、バージョン・コントロール・システムのようにコミットできます。``-a`` フラグは更新を行った担当者を指定できます。
 
 .. You’ve also specified the container you want to create this new image from, 0b2616b0e5a8 (the ID you recorded earlier) and you’ve specified a target for the image:
 
@@ -283,7 +289,7 @@ Docker の特長の１つは、様々な目的の Docker イメージが多く�
 
 .. Break this target down. It consists of a new user, ouruser, that you’re writing this image to. You’ve also specified the name of the image, here you’re keeping the original image name sinatra. Finally you’re specifying a tag for the image: v2.
 
-こちらの詳細を見ていきましょう。``ouruse`` は新しいユーザ名であり、このイメージを書いた人です。また、イメージに対して特定の名前も指定します。ここではオリジナルのイメージ名 ``sinatra`` をそのまま使います。最後に、イメージに対するタグ ``v2`` を指定します。
+こちらの詳細を見ていきましょう。``ouruse`` は新しいユーザ名であり、このイメージを書いた人です。また、イメージに対して何らかの名前も指定します。ここではオリジナルのイメージ名 ``sinatra`` をそのまま使います。最後に、イメージに対するタグ ``v2`` を指定します。
 
 .. You can then look at our new ouruser/sinatra image using the docker images command.
 
@@ -315,7 +321,7 @@ Docker の特長の１つは、様々な目的の Docker イメージが多く�
 
 .. Using the docker commit command is a pretty simple way of extending an image but it’s a bit cumbersome and it’s not easy to share a development process for images amongst a team. Instead you can use a new command, docker build, to build new images from scratch.
 
-``docker commit`` コマンドの使用は、イメージを簡単に拡張する方法です。しかし、少々面倒なものであり、チーム内の開発プロセスでイメージを共有するのは簡単ではありません。これにかわり、新しいコマンド ``docker build`` を使うと、イメージをスクラッチ（ゼロ）から作成します。
+``docker commit`` コマンドの使用は、イメージを簡単に拡張する方法です。しかし、少々面倒なものであり、チーム内の開発プロセスでイメージを共有するのは簡単ではありません。これにかわり、新しいコマンド ``docker build`` を使い構築する方法や、イメージをスクラッチ（ゼロ）から作成する方法があります。
 
 .. To do this you create a Dockerfile that contains a set of instructions that tell Docker how to build our image.
 
@@ -581,7 +587,7 @@ Windows で Docker Machine を使っている場合、ホスト・ディレク�
 
 .. note::
 
-   ここではイメージ作成の簡単な概要を紹介しました。他にも利用可能な命令がありますが、省略しています。ガイドの後半を見ていただくと、``Dockerfile`` のレファレンスから、コマンド毎に更なる詳細や例を参照いただけます。``Dockerfile`` を明らかに、読めるように、管理できるようにするため、``Dockerfile`` :doc:`ベストプラクティス・ガイド </engine/userguide/eng-image/dockerfile_best-practice>` もお読みください。
+   ここではイメージ作成の簡単な概要を紹介しました。他にも利用可能な命令がありますが、省略しています。ガイドの後半を見ていただくと、``Dockerfile`` のリファレンスから、コマンド毎に更なる詳細や例を参照いただけます。``Dockerfile`` を明らかに、読めるように、管理できるようにするため、``Dockerfile`` :doc:`ベストプラクティス・ガイド </engine/userguide/eng-image/dockerfile_best-practice>` もお読みください。
 
 .. Setting tag on an image
 
@@ -690,7 +696,7 @@ Docker ホスト上で、`コンテナの削除 <usingdocker>`と同じように
 
 .. note::
 
-   ホストからイメージを削除する時は、どのコンテナも対象となるイメージを元していないことを確認してください。
+   ホストからイメージを削除する時は、どのコンテナも対象となるイメージを利用していないことを確認してください。
 
 .. Next steps
 
@@ -704,6 +710,11 @@ Docker ホスト上で、`コンテナの削除 <usingdocker>`と同じように
 .. Go to Network containers.
 
 :doc:`コンテナのネットワーク <networkingcontainers>`  に移動します。
+
+.. seealso:: 
+
+   Build your own images
+      https://docs.docker.com/engine/userguide/containers/dockerimages/
 
 
 

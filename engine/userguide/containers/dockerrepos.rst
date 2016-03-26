@@ -16,6 +16,12 @@
 イメージをDocker Hubに保管
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. So far you’ve learned how to use the command line to run Docker on your local host. You’ve learned how to pull down images to build containers from existing images and you’ve learned how to create your own images.
 
 これまではローカル・ホスト上の Docker を、コマンドラインで操作する方法を学びました。 :doc:`イメージを取得 <usingdocker>` し、既存のイメージからコンテナを構築する方法と、 :doc:`自分自身でイメージを作成する <dockerimages>` 方法を学びました。
@@ -127,7 +133,7 @@ Docker Hub への貢献
 
 .. Anyone can pull public images from the Docker Hub registry, but if you would like to share your own images, then you must register first.
 
-誰でも `Docker Hub <https://hub.docker.com/>`_ レジストリから公開イメージを取得（pull）できますが、自分自身のレジストリをイメージを共有したい場合、まず登録が必要です。
+誰でも `Docker Hub <https://hub.docker.com/>`_ レジストリから公開イメージを取得（pull）できますが、自分自身のレジストリにイメージを共有したい場合、まず登録が必要です。
 
 .. Pushing a repository to Docker Hub
 
@@ -226,7 +232,7 @@ Docker Hub の機能
 
 .. You can create multiple Automated Builds per repository and configure them to point to specific Dockerfile’s or Git branches.
 
-レポジトリ毎に複数の自動構築を設定したり、特定の Dockerfile や Git ブランチの指定も可能です。
+レポジトリごとに複数の自動構築設定や、特定の Dockerfile や Git ブランチの指定も可能です。
 
 .. Build triggers
 
@@ -258,3 +264,8 @@ Docker Hub の URL を経由しても、自動構築のトリガにできます�
 .. Go and use Docker!
 
 さぁ Docker を使いましょう！
+
+.. seealso:: 
+
+   Store images on Docker Hub
+      https://docs.docker.com/engine/userguide/containers/dockerrepos/

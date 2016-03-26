@@ -16,13 +16,19 @@
 コンテナでデータを管理する
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. So far we’ve been introduced to some basic Docker concepts, seen how to work with Docker images as well as learned about networking and links between containers. In this section we’re going to discuss how you can manage data inside and between your Docker containers.
 
-これまでは導入として、:doc:`基本的な Docker の概念 <usingdocker>` や、:doc:`Docker イメージ <dockerimages>` の動作に加え、 :doc:`コンテナのネットワーク <networkingcontainers>` について学びました。このセクションでは、どのようにコンテナ内やコンテナ間でデータを管理できるかを議論します。
+これまでは導入として、:doc:`基本的な Docker の概念 <usingdocker>` や、:doc:`Docker イメージ <dockerimages>` の動作に加え、 :doc:`コンテナのネットワーク <networkingcontainers>` について学びました。このセクションでは、どのようにコンテナ内やコンテナ間でデータを管理できるかを検討します。
 
 .. We’re going to look at the two primary ways you can manage data in Docker.
 
-データを Docker で管理する、２つの主な手法を見ていきます。
+データを Docker で管理するための、２つの主な手法を見ていきます。
 
 .. 
     Data volumes, and
@@ -362,5 +368,7 @@ SELinux のようなラベリング・システムでは、コンテナ内にマ
 
 :doc:`Docker Hub の操作 <dockerrepos>` に移動します。
 
+.. seealso:: 
 
-
+   Manage data in containers
+      https://docs.docker.com/engine/userguide/containers/dockervolumes/
