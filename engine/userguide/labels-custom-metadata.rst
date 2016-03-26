@@ -12,6 +12,12 @@
 カスタム・メタデータ追加
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. You can apply metadata to your images, containers, or daemons via labels. Labels serve a wide range of uses, such as adding notes or licensing information to an image, or to identify a host.
 
 イメージ、コンテナ、デーモンに対してラベルを通してメタデータを追加できます。ラベルには様々な使い方があります。例えば、メモの追加、イメージに対するライセンス情報の追加、ホストを識別するためです。
@@ -296,3 +302,8 @@ Docker が推奨するのは、複数のラベルを１つの ``LABEL`` 命令�
    Labels:
     com.example.environment=production
     com.example.storage=ssd
+
+.. seealso:: 
+
+   Apply custom metadata
+      https://docs.docker.com/engine/userguide/labels-custom-metadata/

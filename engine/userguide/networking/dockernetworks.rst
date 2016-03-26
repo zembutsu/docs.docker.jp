@@ -14,6 +14,12 @@
 Docker コンテナ・ネットワークの理解
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. To build web applications that act in concert but do so securely, use the Docker networks feature. Networks, by definition, provide complete isolation for containers. So, it is important to have control over the networks your applications run on. Docker container networks give you that control.
 
 ウェブ・アプリケーションの構築は、安全についての考慮が必要であり、そのために Docker ネットワーク機能を使います。ネットワークとは、定義上、コンテナのために完全な分離(isolation)を提供するものです。そして、アプリケーションの実行にあたり、ネットワーク管理は重要であることを意味します。Docker コンテナ・ネットワークは、これらを管理するものです。
@@ -61,7 +67,7 @@ Docker をインストールした全ての環境には、 ``docker0`` と表示
 
 .. The none network adds a container to a container-specific network stack. That container lacks a network interface. Attaching to such a container and looking at it’s stack you see this:
 
-ネットワーク層にを何も追加しない ``none`` ネットワークをコンテナを追加したとします。そのコンテナはネットワーク・インターフェースが欠如しています。コンテナに接続（アタッチ）すると、次のようにスタックが表示されます。
+ネットワーク層に何も追加しない ``none`` ネットワークをコンテナを追加したとします。そのコンテナはネットワーク・インターフェースが欠如しています。コンテナに接続（アタッチ）すると、次のようにスタックが表示されます。
 
 .. code-block:: bash
 
@@ -592,4 +598,8 @@ Docker ネットワーク機能より以前は、Docker リンク機能を使い
 * :doc:`Docker Swarm 概要 </swarm/index>`
 * `LibNetwork プロジェクトの詳細 <https://github.com/docker/libnetwork>`_
 
+.. seealso:: 
+
+   Understand Docker container networks
+      https://docs.docker.com/engine/userguide/networking/dockernetworks/
 

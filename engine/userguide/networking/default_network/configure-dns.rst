@@ -14,6 +14,12 @@
 コンテナの DNS を設定
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. The information in this section explains configuring container DNS within the Docker default bridge. This is a bridge network named bridge created automatically when you install Docker.
 
 このセクションでは Docker のデフォルト・ブリッジ内でコンテナの DNS を設定する方法を紹介します。ここでの ``bridge`` という名称の ``bridge`` ネットワークは、Docker インストール時に自動的に作成されるものです。
@@ -107,3 +113,8 @@ host ファイルが変更されるとき、 ``resolv.conf`` を持っている�
 .. note::
 
    ``/etc/resolv.conf`` の更新機能が実装されているのは、Docker 1.5.0 以降に作られたコンテナです。つまり、以前のコンテナはホスト側の ``resolv.conf``  の変更が発生しても検出できません。Docker 1.5 以降に作成されたコンテナのみ、上記の自動更新機能が使えます。
+
+.. seealso:: 
+
+   Configure container DNS
+      https://docs.docker.com/engine/userguide/networking/default_network/configure-dns/

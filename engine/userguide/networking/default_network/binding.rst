@@ -14,6 +14,12 @@
 コンテナのポートをホストに割り当て
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. The information in this section explains binding container ports within the Docker default bridge. This is a bridge network named bridge created automatically when you install Docker.
 
 このセクションでは、 Docker のデフォルト・ブリッジ内にあるコンテナに対して、ポートを割り当てる方法を説明します。このネットワークは ``bridge`` という名称の ``bridge`` ネットワークであり、Docker インストール時に自動的に作成されるものです。
@@ -105,3 +111,8 @@ Docker はこれらコンテナ側のポートを ``0.0.0.0`` 、つまりワイ
 * :doc:`/engine/userguide/networking/dockernetworks`
 * :doc:`/engine/userguide/networking/work-with-networks`
 * :doc:`dockerlinks`
+
+.. seealso:: 
+
+   Bind container ports to the host
+      https://docs.docker.com/engine/userguide/networking/default_network/binding/

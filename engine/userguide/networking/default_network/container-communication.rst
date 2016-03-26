@@ -14,9 +14,15 @@
 コンテナ通信の理解
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. The information in this section explains container communication within the Docker default bridge. This is a bridge network named bridge created automatically when you install Docker.
 
-このセクションでは、Docker デフォルト・ブリッッジ内部のコンテナ通信について説明します。このネットワークは ``bridge`` という名称の ``bridge`` ネットワークであり、Docker インストール時に自動的に作成されるものです。
+このセクションでは、Docker デフォルト・ブリッジ内部のコンテナ通信について説明します。このネットワークは ``bridge`` という名称の ``bridge`` ネットワークであり、Docker インストール時に自動的に作成されるものです。
 
 .. Note: The Docker networks feature allows you to create user-defined networks in addition to the default bridge network.
 
@@ -88,7 +94,7 @@ Docker のデフォルト転送ルールは、全ての外部ソースの IP ア
 
 .. It is a strategic question whether to leave --icc=true or change it to --icc=false so that iptables will protect other containers – and the main host – from having arbitrary ports probed or accessed by a container that gets compromised.
 
-``--icc=true`` のままにしておくか、あるいは ``--icc=false`` にすべきかという方針の検討には、 ``iptables`` を他のコンテナやメインのホストから守るかどうかです。たとえば、恣意的ななポート探査やコンテナに対するアクセスは、問題を引き起こすかもしれません。
+``--icc=true`` のままにしておくか、あるいは ``--icc=false`` にすべきかという方針の検討には、 ``iptables`` を他のコンテナやメインのホストから守るかどうかです。たとえば、恣意的なポート探査やコンテナに対するアクセスは、問題を引き起こすかもしれません。
 
 .. If you choose the most secure setting of --icc=false, then how can containers communicate in those cases where you want them to provide each other services? The answer is the --link=CONTAINER_NAME_or_ID:ALIAS option, which was mentioned in the previous section because of its effect upon name services. If the Docker daemon is running with both --icc=false and --iptables=true then, when it sees docker run invoked with the --link= option, the Docker server will insert a pair of iptables ACCEPT rules so that the new container can connect to the ports exposed by the other container – the ports that it mentioned in the EXPOSE lines of its Dockerfile.
 
@@ -137,5 +143,10 @@ Docker ホスト上で ``iptables`` コマンドを実行すると、 ``FORWARD`
 .. note::
 
   ホストを広範囲にわたって公開する ``iptables`` のルールは、各コンテナが持つ実際の IP アドレスを通して公開されますのでご注意ください。そのため、あるコンテナから別のコンテナに対する接続は、前者のコンテナ自身が持っている IP アドレスからの接続に見えるでしょう。
-  
+
+.. seealso:: 
+
+   Understand container communication
+      https://docs.docker.com/engine/userguide/networking/default_network/container-communication/
+
   
