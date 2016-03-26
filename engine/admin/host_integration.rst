@@ -16,6 +16,12 @@
 コンテナの自動起動
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. As of Docker 1.2, restart policies are the built-in Docker mechanism for restarting containers when they exit. If set, restart policies will be used when the Docker daemon starts up, as typically happens after a system boot. Restart policies will ensure that linked containers are started in the correct order.
 
 Docker 1.2 から :ref:`再起動ポリシー <restart-policies-restart>` Docker の機能に組み込まれました。これはコンテナ終了時に再起動するための仕組みです。再起動ポリシーを設定しておけば、Docker デーモンの起動時、典型的なのはシステムの起動時に自動的にコンテナを開始します。リンクされたコンテナであっても、再起動ポリシーは適切な順番で起動します。
@@ -106,3 +112,7 @@ redis コンテナに（ ``--env`` のような）オプションを渡したい
    ExecStop=/usr/bin/docker stop -t 2 redis_server ; /usr/bin/docker rm -f redis_server
    ...
 
+.. seealso:: 
+
+   Automatically start containers
+      https://docs.docker.com/engine/admin/host_integration/

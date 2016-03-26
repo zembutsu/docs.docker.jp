@@ -14,6 +14,12 @@
 アンバサダを経由したリンク
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Introduction
 
 はじめに
@@ -220,3 +226,7 @@ svendowideit/ambassador Dockerfile
    
    CMD env | grep _TCP= | sed 's/.*_PORT_\([0-9]*\)_TCP=tcp:\/\/\(.*\):\(.*\)/socat -t 100000000 TCP4-LISTEN:\1,fork,reuseaddr TCP4:\2:\3 \&/' && echo wait) | sh
 
+.. seealso:: 
+
+   Link via an ambassador container
+      https://docs.docker.com/engine/admin/ambassador_pattern_linking/

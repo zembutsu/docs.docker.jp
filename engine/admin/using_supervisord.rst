@@ -16,6 +16,12 @@
 Supervisor を Docker で使う
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 ..    Note: - If you don’t like sudo then see Giving non-root access
 
 .. note::
@@ -150,3 +156,8 @@ Supervisor コンテナを実行
 .. We’ve launched a new container interactively using the docker run command. That container has run Supervisor and launched the SSH and Apache daemons with it. We’ve specified the -p flag to expose ports 22 and 80. From here we can now identify the exposed ports and connect to one or both of the SSH and Apache daemons.
 
 ``docker run`` コマンドを実行することで、新しいコンテナをインタラクティブに起動しました。このコンテナは Supervisor を実行し、一緒に SSH と Apache デーモンを起動します。 ``-p`` フラグを指定し、ポート 22 と 80 を公開します。ここで、SSH と Apache デーモンの両方に接続できるようにするため、公開ポートを個々に指定しています。
+
+.. seealso:: 
+
+   Using Supervisor with Docker
+      https://docs.docker.com/engine/admin/using_supervisord/

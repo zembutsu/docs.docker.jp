@@ -12,6 +12,17 @@
 ローカルの Registry でミラーするには
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. The original content was deprecated. An archived version is available in the 1.7 documentation. For information about configuring mirrors with the latest Docker Registry version, please file a support request with the Distribution project.
 
 オリジナルの内容は廃止されています。ドキュメントのバージョン 1.7 以降では、 `アーカイブされたバージョン（英語） <https://docs.docker.com/v1.6/articles/registry_mirror>`_ をご覧ください。Docker Registry の最新バージョンでミラー設定を行いたい場合は、 `派生プロジェクト <https://github.com/docker/distribution/issues>`_ にサポートをリクエストしてください。
+
+.. seealso:: 
+
+   Run a local registry mirror
+      https://docs.docker.com/engine/admin/registry_mirror/

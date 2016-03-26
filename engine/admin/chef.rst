@@ -16,6 +16,12 @@
 Chef を使う
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Note: Please note this is a community contributed installation path.
 
 .. note::
@@ -100,4 +106,8 @@ Chef を使う
      subscribes :redeploy, 'docker_image[nginx]'
    end
 
+.. seealso:: 
+
+   Quickstart Docker Engine
+      https://docs.docker.com/engine/quickstart/
 

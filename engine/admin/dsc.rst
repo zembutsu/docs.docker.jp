@@ -14,6 +14,12 @@
 PowerShell DSC で使う
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Windows PowerShell Desired State Configuration (DSC) is a configuration management tool that extends the existing functionality of Windows PowerShell. DSC uses a declarative syntax to define the state in which a target should be configured. More information about PowerShell DSC can be found at http://technet.microsoft.com/en-us/library/dn249912.aspx.
 
 Windows PowerShell DSC (Desired State Configuration) は設定管理ツールです。これは Windows PowerShell の機能を拡張します。DSC は宣言型の構文を使いターゲットがどのような状態になるかを設定します。PowerShell DSC に関する詳しい情報は、 `Microsoft 社のサイト <https://technet.microsoft.com/ja-jp/library/dn249912.aspx?f=255&mspperror=-2147217396>`_ をご覧ください。
@@ -227,3 +233,7 @@ Docker インストール
    $containerProps = @{Name="web"; Image="node:latest"; Port="80:80"; `
    Env="PORT=80"; Link="db:db"; Command="grunt"}
 
+.. seealso:: 
+
+   Using PowerShell DSC
+      https://docs.docker.com/engine/admin/dsc/
