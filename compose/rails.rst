@@ -75,6 +75,7 @@
          - "3000:3000"
        depends_on:
          - db
+   
 
 .. Build the project
 
@@ -207,7 +208,5 @@ Compose の更なるドキュメント
 * :doc:`/compose/wordpress`
 * :doc:`/compose/reference/index`
 * :doc:`/compose/compose-file`
-
-
 
 
