@@ -14,6 +14,12 @@
 イメージ、コンテナ、ストレージ・ドライバの理解
 ==================================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. To use storage drivers effectively, you must understand how Docker builds and stores images. Then, you need an understanding of how these images are used in containers. Finally, you’ll need a short introduction to the technologies that enable both images and container operations.
 
 .. To use storage drivers effectively, you must understand how Docker builds and stores images. Then, you need an understanding of how these images are used by containers. Finally, you’ll need a short introduction to the technologies that enable both images and container operations.
@@ -415,7 +421,7 @@ Docker バージョン 1.10 より低いバージョンまでは、各レイヤ�
 
 .. Notice the new changed-ubuntu image does not have its own copies of every layer. As can be seen in the diagram below, the new image is sharing it’s four underlying layers with the ubuntu:15.04 image.
 
-新しい ``changed-ubuntu`` イメージは各レイヤのコピーを自分自身で持っていないことをに注意してください。下図にあるように、``ubuntu:15.04`` イメージの下にある４つのレイヤを、新しいイメージでも共有しているのです。
+新しい ``changed-ubuntu`` イメージは各レイヤのコピーを自分自身で持っていないことに注意してください。下図にあるように、``ubuntu:15.04`` イメージの下にある４つのレイヤを、新しいイメージでも共有しているのです。
 
 .. image:: ./images/saving-space.png
    :scale: 60%
@@ -593,3 +599,8 @@ Docker のコピー・オン・ライト方式により、コンテナによる�
 * :doc:`aufs-driver`
 * :doc:`btrfs-driver`
 * :doc:`device-mapper-driver`
+
+.. seealso:: 
+
+   Understand images, containers, and storage drivers
+      https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/

@@ -14,6 +14,12 @@
 ZFS ストレージを使う
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. ZFS is a next generation filesystem that supports many advanced storage technologies such as volume management, snapshots, checksumming, compression and deduplication, replication and more.
 
 ZFS は次世代のファイルシステムです。ボリューム管理、スナップショット、チェックサム処理、圧縮、重複除外（deduplication）、レプリケーションなどの高度なストレージ技術をサポートしています。
@@ -378,3 +384,7 @@ Docker で ``zfs`` ストレージ・ドライバを使うにあたり、パフ�
 
 * **データ・ボリュームの使用** 。データ・ボリュームは最上かつ最も予測可能な性能を提供します。これは、ストレージ・ドライバを迂回し、シン・プロビジョニングやコピー・オン・ライト処理を行わないためです。そのため、データ・ボリューム上で重たい書き込みを場合に使うべきでしょう。
 
+.. seealso:: 
+
+   Docker and ZFS in practice
+      https://docs.docker.com/engine/userguide/storagedriver/zfs-driver/

@@ -14,6 +14,12 @@
 Device Mapper ストレージ・ドライバを使う
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Device Mapper is a kernel-based framework that underpins many advanced volume management technologies on Linux. Docker’s devicemapper storage driver leverages the thin provisioning and snapshotting capabilities of this framework for image and container management. This article refers to the Device Mapper storage driver as devicemapper, and the kernel framework as Device Mapper.
 
 Device Mapper は、Linux 上で多くの高度なボリューム管理技術を支えるカーネル・ベースのフレームワークです。Docker の ``devicemapper`` ストレージ・ドライバは、シン・プロビジョニングとスナップショット機能のために、イメージとコンテナ管理にこのフレームワークを活用します。この記事では、Device Mapper ストレージ・ドライバを ``devicemapper`` とし、カーネルのフレームワークを ``Device Mapper`` として言及します。
@@ -441,7 +447,7 @@ Docker ホストは ``devicemapper`` ストレージ・ドライバを、デフ�
 
 .. Because Device Mapper operates at the block level it is more difficult to see diffs between image layers and containers. However, there are two key directories. The /var/lib/docker/devicemapper/mnt directory contains the mount points for images and containers. The /var/lib/docker/devicemapper/metadata directory contains one file for every image and container snapshot. The files contain metadata about each snapshot in JSON format.
 
-Device Mapper はブロック・レベルで処理を行うため、イメージ・レイヤとコンテナ間の差分を見るのは、少し大変です。しかしながら、２つの鍵となるディレクトリがあります。 ``/var/lib/docker/devicemapper/mnt`` ディレクトリには、イメージとコンテナのマウント・ポントがあります。 ``/var/lib/docker/devicemapper/metadata`` ディレクトリには、それぞれのイメージとコンテナのスナップショットを格納する１つのファイルがあります。このファイルには、各スナップショットのメタデータが JSON 形式で含まれています。
+Device Mapper はブロック・レベルで処理を行うため、イメージ・レイヤとコンテナ間の差分を見るのは、少し大変です。しかしながら、２つの鍵となるディレクトリがあります。 ``/var/lib/docker/devicemapper/mnt`` ディレクトリには、イメージとコンテナのマウント・ポイントがあります。 ``/var/lib/docker/devicemapper/metadata`` ディレクトリには、それぞれのイメージとコンテナのスナップショットを格納する１つのファイルがあります。このファイルには、各スナップショットのメタデータが JSON 形式で含まれています。
 
 .. Device Mapper and Docker performance
 
@@ -467,7 +473,7 @@ Device Mapper と Docker 性能
 
 .. All blocks are 64KB. A write that uses less than 64KB still results in a single 64KB block being allocated. Writing more than 64KB of data uses multiple 64KB blocks. This can impact container performance, especially in containers that perform lots of small writes. However, once a block is allocated to a container subsequent reads and writes can operate directly on that block.
 
-全てのブロックは 64KB です。64KB より小さな書き込みの場合でも、64Kb のブロックが１つ割り当てられます。これがコンテナの性能に影響を与えます。特にコンテナ内で多数の小さなファイルを書き込む場合に影響があるでしょう。しかしながら、一度ブロックがコンテナに対して割り当てらたら、以降の読み込みは対象のブロックを直接処理できます。
+全てのブロックは 64KB です。64KB より小さな書き込みの場合でも、64Kb のブロックが１つ割り当てられます。これがコンテナの性能に影響を与えます。特にコンテナ内で多数の小さなファイルを書き込む場合に影響があるでしょう。しかしながら、一度ブロックがコンテナに対して割り当てられたら、以降の読み込みは対象のブロックを直接処理できます。
 
 .. Copy-on-write performance impact
 
@@ -529,3 +535,8 @@ Device Mapper の性能に対するその他の考慮
 * :doc:`selectadriver`
 * :doc:`aufs-driver`
 * :doc:`btrfs-driver`
+
+.. seealso:: 
+
+   Docker and the Device Mapper storage driver
+      https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/
