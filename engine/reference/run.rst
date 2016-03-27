@@ -93,7 +93,7 @@ Docker は隔離されたコンテナでプロセスを実行します。コン�
 
 * :ref:`デタッチド vs フォアグラウンド <detached-vs-foreground>`
 
- * :ref:`デタッチド(-d) <detached-d>`
+ * :ref:`デタッチド(-d) <detached-d>` 
  * :ref:`フォアグラウンド <foreground>`
 
 * :ref:`コンテナの識別 <container-identification>`
@@ -335,7 +335,7 @@ UTS 名前空間とは、プロセスを実行する名前空間上で見える�
 
 .. _ipc-settings-ipc:
 
-IPC 設定（--ipc）
+IPC 設定（--ipc） 
 ====================
 
 .. --ipc=""  : Set the IPC mode for the container,
@@ -1595,9 +1595,9 @@ EXPOSE （受信用のポート）
 
 コンテナ内のポート番号（サービスがリッスンしているポート番号）は、コンテナの外に露出するポート番号（クライアントが接続する番号）と一致させる必要がありません。たとえば、コンテナ内の HTTP サービスがポート 80 をリッスンしているとします（そして、イメージ開発者は Dockerfile で ``EXPOSE 80`` を指定しているでしょう ）。実行する時に、ホスト側のポート 42800 以上が使われます。公開用ポートがホスト側のどのポートに割り当てられたかを確認するには、 ``docker port`` コマンドを使います。
 
-.. If the operator uses --link when starting a new client container, then the client container can access the exposed port via a private networking interface.
-Linking is a legacy feature that is only supported on the default bridge network.
-You should prefer the Docker networks feature instead.
+.. If the operator uses --link when starting a new client container, then the client container can access the exposed port via a private networking interface. 
+Linking is a legacy feature that is only supported on the default bridge network. 
+You should prefer the Docker networks feature instead. 
 For more information on this feature, see the Docker network overview””).
 
 .. If the operator uses --link when starting a new client container in the default bridge network, then the client container can access the exposed port via a private networking interface. If --link is used when starting a container in a user-defined network as described in Docker network overview””), it will provide a named alias for the container being linked to.

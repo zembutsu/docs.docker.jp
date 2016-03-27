@@ -107,7 +107,7 @@ BinPack ストラテジの例
    
    $ docker tcp://<manager_ip:manager_port> ps
    CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
-   f8b693db9cd6        mysql:latest        "mysqld"            Less than a second ago   running             192.168.0.42:49178->3306/tcp    node-1      db
+   f8b693db9cd6        mysql:latest        "mysqld"            Less than a second ago   running             192.168.0.42:49178->3306/tcp    node-1      db   
 
 .. Now, you start another container, asking for 1G of RAM again.
 
@@ -146,7 +146,7 @@ Docker Swarm ドキュメント目次
 * :doc:`Swarm API </swarm/swarm-api>`
 
 
-.. seealso::
+.. seealso:: 
 
    Docker Swarm strategies
       https://docs.docker.com/swarm/scheduler/strategy/

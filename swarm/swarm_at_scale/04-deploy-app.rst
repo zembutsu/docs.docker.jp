@@ -88,7 +88,7 @@
 
 .. code-block:: bash
 
-   $ cat Dockerfile
+   $ cat Dockerfile  
    # Using official python runtime base image
    FROM python:2.7
    # Set the application directory
