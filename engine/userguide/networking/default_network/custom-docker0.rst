@@ -14,6 +14,12 @@
 Docker0 ブリッジのカスタマイズ
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. The information in this section explains how to customize the Docker default bridge. This is a bridge network named bridge created automatically when you install Docker.
 
 このセクションでは Docker のデフォルト・ブリッジをどのようにカスタマイズするか説明します。``bridge`` という名称の ``bridge`` ネットワークは、Docker インストール時に自動的に作成されるものです。
@@ -86,3 +92,8 @@ Docker は ``docker0`` の IP アドレス、ネットマスク、IP 割り当�
 .. Remember that the Docker host will not be willing to forward container packets out on to the Internet unless its ip_forward system setting is 1 – see the section above on Communication between containers for details
 
 Docker はホスト側の ``ip_forward`` システム設定が ``1`` でなければ、Docker ホストはコンテナのパケットをインターネット側に転送できないので注意してください。詳細については :ref:`communicating-to-the-outside-world` をご覧ください。
+
+.. seealso:: 
+
+   Customize the docker0 bridge
+      https://docs.docker.com/engine/userguide/networking/default_network/custom-docker0/

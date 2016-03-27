@@ -14,6 +14,12 @@
 自分でブリッジを作成
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. This section explains how to build your own bridge to replace the Docker default bridge. This is a bridge network named bridge created automatically when you install Docker.
 
 このセクションでは、Docker のデフォルト・ブリッジを自分自身で構築したブリッジに置き換える方法を説明します。``bridge`` という名称の ``bridge`` ネットワークは、Docker インストール時に自動的に作成されるものです。
@@ -76,3 +82,9 @@
 .. You can use the brctl show command to see Docker add and remove interfaces from the bridge as you start and stop containers, and can run ip addr and ip route inside a container to see that it has been given an address in the bridge’s IP address range and has been told to use the Docker host’s IP address on the bridge as its default gateway to the rest of the Internet.
 
 ``brctl show`` コマンドを使うと、コンテナの開始・停止時に Docker がブリッジを追加・削除してるのがわかります。そして、コンテナの中で ``ip addr``  と ``ip route`` を実行すると、IP アドレスがブリッジの IP アドレス範囲内にあることがわかります。そして他のインターネットへのデフォルト・ゲートウェイとして、Docker ホストの IP アドレスをブリッジするのに使われます。
+
+.. seealso:: 
+
+   Build your own bridge
+      https://docs.docker.com/engine/userguide/networking/default_network/build-bridges/
+

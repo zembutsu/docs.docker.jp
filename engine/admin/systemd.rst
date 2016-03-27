@@ -14,6 +14,12 @@
 systemd で Docker の管理・設定
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Many Linux distributions use systemd to start the Docker daemon. This document shows a few examples of how to customise Docker’s settings.
 
 多くの Linux ディストリビューションが systemd を使って Docker デーモンを起動します。このドキュメントは、様々な Docker の設定例を紹介します。
@@ -241,3 +247,8 @@ systemd ユニットファイルの手動作成
 .. When installing the binary without a package, you may want to integrate Docker with systemd. For this, simply install the two unit files (service and socket) from the github repository to /etc/systemd/system.
 
 パッケージを使わずにバイナリをインストールした場合でも、Docker と systemd を統合したくなるでしょう。簡単に実現するには、単純に `GitHub レポジトリ <https://github.com/docker/docker/tree/master/contrib/init/systemd>`_ にある２つのユニットファイル（サービスとソケット用）を ``/etc/systemd/system`` に置くだけです。
+
+.. seealso:: 
+
+   Quickstart Docker Engine
+      https://docs.docker.com/engine/quickstart/

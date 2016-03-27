@@ -16,6 +16,12 @@
 Puppet を使う
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 ..    Note: Please note this is a community contributed installation path. The only official installation is using the Ubuntu installation path. This version may sometimes be out of date.
 
 .. note::
@@ -144,3 +150,7 @@ Puppet を使う
 
    ``ports`` 、 ``env`` 、 ``dns`` 、 ``volumes``  の属性を文字で指定するか、先ほどの配列の値で指定します。
 
+.. seealso:: 
+
+   Using Puppet
+      https://docs.docker.com/engine/admin/puppet/

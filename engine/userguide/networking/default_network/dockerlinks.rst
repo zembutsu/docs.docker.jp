@@ -14,6 +14,12 @@
 過去のコンテナ・リンク機能
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. The information in this section explains legacy container links within the Docker default bridge. This is a bridge network named bridge created automatically when you install Docker.
 
 このセクションで説明する情報は、Docker のデフォルト・ブリッジ内で扱える、過去のコンテナ・リンク機能に関してです。これは ``bridge`` という名称の ``bridge`` ネットワークであり、Docker をインストールすると自動的に作成されます。
@@ -441,3 +447,8 @@ Docker 環境変数に関する重要な注意
    172.17.0.9  db
 
 .. Related information
+
+.. seealso:: 
+
+   Legacy container links
+      https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/

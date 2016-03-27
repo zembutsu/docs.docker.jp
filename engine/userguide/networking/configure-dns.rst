@@ -10,8 +10,15 @@
 
 .. _embedded-dns-server-in-user-defined-networks:
 
+===================================================
 ユーザ定義ネットワーク用の内蔵 DNS サーバ
 ===================================================
+
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
 
 .. The information in this section covers the embedded DNS server operation for containers in user-defined networks. DNS lookup for containers connected to user-defined networks works differently compared to the containers connected to default bridge network.
 
@@ -51,3 +58,8 @@ Docker 1.10 では、docker デーモンに内蔵 DNS サーバが実装され�
 .. note::
 
    ホスト側のローカルホストにあるリゾルバにアクセスするには、コンテナ内から DNS サーバに到達可能になるように、ローカルホスト以外からも接続可能になるよう、リッスンする必要があります。
+
+.. seealso:: 
+
+   Embedded DNS server in user-defined networks
+      https://docs.docker.com/engine/userguide/networking/configure-dns/

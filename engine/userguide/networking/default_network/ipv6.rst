@@ -14,6 +14,12 @@
 Docker と IPv6
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. The information in this section explains IPv6 with the Docker default bridge. This is a bridge network named bridge created automatically when you install Docker.
 
 このセクションでは Docker のデフォルト・ブリッジ上の IPv6 を説明します。``bridge`` という名称の ``bridge`` ネットワークは、Docker インストール時に自動的に作成されるものです。
@@ -271,3 +277,8 @@ Docker コンテナのサブネットは、少なくとも ``/80`` 以上の大�
 .. Every configuration in the diagram that is visualized below the dashed line is handled by Docker: The docker0 bridge IP address configuration, the route to the Docker subnet on the host, the container IP addresses and the routes on the containers. The configuration above the line is up to the user and can be adapted to the individual environment.
 
 図における各種の設定のうち、点線以下は Docker によって管理されます。 ``docker0``  ブリッジの IP アドレス設定は、コンテナの IP アドレスを持つ Docker のサブネットに対する経路です。線から上の設定は、ユーザが個々の環境に合わせて書き換えられます。
+
+.. seealso:: 
+
+   IPv6 with Docker
+      https://docs.docker.com/engine/userguide/networking/default_network/ipv6/

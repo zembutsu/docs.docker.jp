@@ -28,7 +28,7 @@ Docker ネットワーク機能の導入部では、自分自身で定義した�
 
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
 
    container-communication
    dockerlinks
@@ -37,4 +37,9 @@ Docker ネットワーク機能の導入部では、自分自身で定義した�
    configure-dns
    custom-docker0
    ipv6
+
+.. seealso:: 
+
+   Docker default bridge network
+      https://docs.docker.com/engine/userguide/networking/default_network/
 

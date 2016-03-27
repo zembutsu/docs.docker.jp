@@ -16,6 +16,12 @@
 CFEngine でプロセス管理
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Create Docker containers with managed processes.
 
 プロセスを管理する Docker コンテナを作成します。
@@ -181,3 +187,7 @@ CFEngine は ``ENTRYPOINT`` で指定したコマンドの ``ベースネーム`
 * 上記の Dockerfile を使い、 ``apache2`` と ``sshd`` のかわりに自分のアプリケーションをインストールします。
 * ``docker run`` でコンテナを開始する時のために、 ``apache2`` と ``sshd`` ではなく、自分のアプリケーション向けのコマンドライン上の引数を指定します。
 
+.. seealso:: 
+
+   Process management with CFEngine
+      https://docs.docker.com/engine/admin/cfengine_process_management/

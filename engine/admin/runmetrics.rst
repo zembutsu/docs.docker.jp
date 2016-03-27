@@ -14,6 +14,12 @@
 ランタイム・メトリクス
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. You can use the docker stats command to live stream a container’s runtime metrics. The command supports CPU, memory usage, memory limit, and network IO metrics.
 
 コンテナのラインタイム・メトリクス（訳注；コンテナ実行時の、様々なリソース指標や数値データ）をライブ（生）で表示するには、 ``docker stats`` コマンドを使います。コマンドがサポートしているのは、CPU 、メモリ使用率、メモリ上限、ネットワーク I/O のメトリクスです。
@@ -420,3 +426,7 @@ Docker は ``lxc-start`` に依存しており、終了時は丁寧に自分自�
 
 最後に、自分のプロセスをルート・コントロール・グループに移動し、コンテナのコントロール・グループを削除します。コントロール・グループの削除は、ディレクトリを ``rmdir`` するだけです。感覚的にディレクトリに対する ``rmdir`` は、まだ中にファイルのではと思うかもしれませんが、これは疑似ファイルシステムのため、通常のルールは適用されません。クリーンアップが完了すると、これで収集プロセスは安全に終了できました。
 
+.. seealso:: 
+
+   Runtime metrics
+      https://docs.docker.com/engine/admin/runmetrics/

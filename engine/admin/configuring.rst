@@ -16,6 +16,12 @@
 様々なディストリビューションにおける Docker の設定と実行
 ============================================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. After successfully installing Docker, the docker daemon runs with its default configuration.
 
 Docker のインストールに成功したら、 ``docker`` デーモンはデフォルトの設定で動いています。
@@ -397,3 +403,8 @@ systemd は自身で journal と呼ばれるロギング・システムを持っ
 .. note::
 
    journal の使い方や設定方法は高度なトピックのため、この記事の範囲では扱いません。
+
+.. seealso:: 
+
+   Configuring and running Docker on various distributions
+      https://docs.docker.com/engine/admin/configuring/
