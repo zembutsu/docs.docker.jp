@@ -68,7 +68,7 @@ Docker のインストールや ``sudo`` 設定については、各オペレー
 * ``DOCKER_NOWARN_KERNEL_VERSION`` Docker に対応していない Linux カーネルで警告を出さない。
 * ``DOCKER_RAMDISK`` 'pivot_root' を無効に設定。
 * ``DOCKER_TLS_VERIFY`` Docker で TLS とリモート認証を使う。
-* ``DOCKER_CONTENT_TRUST`` Docker でイメージの署名・確認用のために Notary 使用時に設定。これは、build、craete、pull、push、run で ``--disable-content-trust=false`` を実行するのと同等
+* ``DOCKER_CONTENT_TRUST`` Docker でイメージの署名・確認用のために Notary 使用時に設定。これは、build、create、pull、push、run で ``--disable-content-trust=false`` を実行するのと同等
 * ``DOCKER_CONTENT_TRUST_SERVER`` Notary サーバが使う URL  を指定。デフォルトはレジストリと同じ URL 。
 * ``DOCKER_TMPDIR`` 一時 Docker ファイルの場所。
 
@@ -125,7 +125,7 @@ Docker は設定ディレクトリにある殆どのファイルを管理して�
 
 .. Once attached to a container, users detach from it and leave it running using the using CTRL-p CTRL-q key sequence. This detach key sequence is customizable using the detachKeys property. Specify a <sequence> value for the property. The format of the <sequence> is a comma-separated list of either a letter [a-Z], or the ctrl- combined with any of the following:
 
-コンテナにアタッチ後は、 ``CTRL-p CTRL-q`` キー・シーケンスで使ってデタッチできます。このデタッチ用キー・シーケンスは ``detachKyes`` 属性を使ってカスタマイズできます。 ``<シーケンス>`` 値の属性を指定します。 ``<シーケンス>`` の書式は [a-Z] までの文字列をカンマ区切りにしたリストにするか、 ``ctrl-`` に以下のいずれかを組み合わせます。
+コンテナにアタッチ後は、 ``CTRL-p CTRL-q`` キー・シーケンスで使ってデタッチできます。このデタッチ用キー・シーケンスは ``detachKeys`` 属性を使ってカスタマイズできます。 ``<シーケンス>`` 値の属性を指定します。 ``<シーケンス>`` の書式は [a-Z] までの文字列をカンマ区切りにしたリストにするか、 ``ctrl-`` に以下のいずれかを組み合わせます。
 
 ..    a-z (a single lowercase alpha character )
     @ (at sign)

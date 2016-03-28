@@ -25,7 +25,7 @@ attach
 
 .. The docker attach command allows you to attach to a running container using the container’s ID or name, either to view its ongoing output or to control it interactively. You can attach to the same contained process multiple times simultaneously, screen sharing style, or quickly view the progress of your detached process.
 
-``docker attach`` コマンドは、コンテナ ID や名前を使って実行中のコンテナにアタッチ（attach；装着/取り付けの意味）します。処理中の出力を表示するだけでなく、インタラクティブ（双方向）の管理もできます。同じコンテナ化されたプロセスに対して、画面を共有する形式として擬似的に複数回のアタッチが可能ですし、デタッチ（dettach；分離の意味）したプロセスの迅速な表示もできます。
+``docker attach`` コマンドは、コンテナ ID や名前を使って実行中のコンテナにアタッチ（attach；装着/取り付けの意味）します。処理中の出力を表示するだけでなく、インタラクティブ（双方向）の管理もできます。同じコンテナ化されたプロセスに対して、画面を共有する形式として擬似的に複数回のアタッチが可能ですし、デタッチ（detach；分離の意味）したプロセスの迅速な表示もできます。
 
 .. You can detach from the container and leave it running with CTRL-p CTRL-q (for a quiet exit) or with CTRL-c if --sig-proxy is false.
 .. コンテナを実行したままデタッチして離れるには、 ``CTRL-p CTRL-q`` （静かに終了）するか、 ``--sig-proxy`` が false であれば ``CTRL-c`` を使います。

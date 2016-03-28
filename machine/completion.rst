@@ -22,7 +22,7 @@ Docker Machine は bash シェルで `コマンド補完 <https://en.wikipedia.o
 
 .. Installing Command Completion
 
-.. _instlaling-command-completion-machine:
+.. _installing-command-completion-machine:
 
 コマンド補完のインストール
 ==============================

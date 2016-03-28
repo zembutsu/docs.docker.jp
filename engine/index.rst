@@ -127,7 +127,7 @@ Docker ユーザガイド
 Docker の詳細を学び、使い方や実装に関する疑問を解消するには、 :doc:`Docker ユーザガイド </engine/userguide/index>` をご確認ください。
 
 
-.. Relesae note
+.. Release note
 
 リリースノート
 ====================

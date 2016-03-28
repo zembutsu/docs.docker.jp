@@ -90,7 +90,7 @@ Docker が準備した最小イメージ ``scratch`` を、コンテナの構築
 これはチュートリアルで使用する hello-world イメージを作成する例です。テストしたい場合は、 `イメージ・レポジトリ <https://github.com/docker-library/hello-world>`_ から複製できます。
 
 
-.. More resoruces
+.. More resources
 
 更なる詳細について
 ===================

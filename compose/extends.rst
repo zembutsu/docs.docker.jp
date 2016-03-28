@@ -136,7 +136,7 @@ Compose は２つのファイルを共有方法をサポートしています。
 
 .. This deploys all three services using the configuration in docker-compose.yml and docker-compose.prod.yml (but not the dev configuration in docker-compose.override.yml).
 
-３つの全サービスがデプロイに使う設定が `docker-compose.yml` と `docker-compose.prod.yml` に含まれています（ `docker-compose.overide.yaml` に含まれる開発環境はありません）。
+３つの全サービスがデプロイに使う設定が `docker-compose.yml` と `docker-compose.prod.yml` に含まれています（ `docker-compose.override.yaml` に含まれる開発環境はありません）。
 
 .. See production for more information about Compose in production.
 

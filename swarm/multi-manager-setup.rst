@@ -246,6 +246,6 @@ Docker Swarm の **Swarm マネージャ** は、クラスタ全体に対する�
 
 .. seealso:: 
 
-   High availabilit in Docker Swarm
+   High availability in Docker Swarm
       https://docs.docker.com/swarm/multi-manager-setup/
 

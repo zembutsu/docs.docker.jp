@@ -65,7 +65,7 @@ OpenStack
 * ``--openstack-ip-version`` : IPv4 か IPv6 アドレスのどちらかのバージョンを選びます。何も指定されなければ、 ``4`` が使われます。
 * ``--openstack-net-name`` または ``--openstack-net-id`` : マシンに接続するプライベートなネットワークを指定します。OpenStack プロジェクトにプライベート・ネットワークがあれば、自動的に使われます。
 * ``--openstack-password`` : ユーザ・パスワード。環境変数 ``OS_PASSWORD`` が設定されれば、そちらから流用します。
-* ``--openstack-private-key-file`` : ``--openstack-keypari-name`` と同時に使い、キーペアに対応するプライベート・キーを関連づける。
+* ``--openstack-private-key-file`` : ``--openstack-keypair-name`` と同時に使い、キーペアに対応するプライベート・キーを関連づける。
 * ``--openstack-region`` : 実行するリージョンを指定します。OpenStack 上に１つのリージョンしかなければ、そちらを使います。
 * ``--openstack-sec-groups`` : OpenStack 上でセキュリティ・グループが利用可能であれば、マシンが使う環境をカンマ区切りで指定できる（例： ``secgrp001,secgrp002`` ）。
 * ``--openstack-username`` : 認証時に識別するユーザ名。

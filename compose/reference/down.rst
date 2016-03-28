@@ -9,7 +9,7 @@
 
 .. down
 
-.. _compse-down:
+.. _compose-down:
 
 =======================================
 down

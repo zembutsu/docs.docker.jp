@@ -33,7 +33,7 @@
 
 .. Docker images are a series of read-only layers that are stacked on top of each other to form a single unified view. The first image in the stack is called a base image and all the other layers are stacked on top of this layer. The diagram below shows the Ubuntu 15:04 image comprising 4 stacked image layers.
 
-Docker イメージは読み込み専用（read-only）のレイヤが組（セット）になっているもので、それぞれのレイヤが層（スタック）として積み重なり、１つに統合された形に見えるものです。この１番目の層を *ベース・イメージ (base imae)* と呼び、他の全てのレイヤは、このベース・イメージのレイヤ上に積み重なります。次の図は、 Ubuntu 15:04 イメージが４つのイメージ・レイヤを組みあわせて構成されているのが分かります。
+Docker イメージは読み込み専用（read-only）のレイヤが組（セット）になっているもので、それぞれのレイヤが層（スタック）として積み重なり、１つに統合された形に見えるものです。この１番目の層を *ベース・イメージ (base image)* と呼び、他の全てのレイヤは、このベース・イメージのレイヤ上に積み重なります。次の図は、 Ubuntu 15:04 イメージが４つのイメージ・レイヤを組みあわせて構成されているのが分かります。
 
 .. image:: ./images/image-layers.png
    :scale: 60%

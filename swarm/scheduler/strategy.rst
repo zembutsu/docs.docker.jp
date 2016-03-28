@@ -17,7 +17,7 @@ Docker Swarm ストラテジ
 
 .. The Docker Swarm scheduler features multiple strategies for ranking nodes. The strategy you choose determines how Swarm computes ranking. When you run a new container, Swarm chooses to place it on the node with the highest computed ranking for your chosen strategy.
 
-Docker Swarm スケジューラは、複数のストラテジ（stragegy；方針）機能でノードを順位付けします。選択したストラテジによって、 Swarm が順位を算出します。Swarm で新しいコンテナを作成するときは、選択したストラテジに従って、コンテナを置くために最も順位の高いノードを算出します。
+Docker Swarm スケジューラは、複数のストラテジ（strategy；方針）機能でノードを順位付けします。選択したストラテジによって、 Swarm が順位を算出します。Swarm で新しいコンテナを作成するときは、選択したストラテジに従って、コンテナを置くために最も順位の高いノードを算出します。
 
 .. To choose a ranking strategy, pass the --strategy flag and a strategy value to the swarm manage command. Swarm currently supports these values:
 

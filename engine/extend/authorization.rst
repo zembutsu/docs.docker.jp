@@ -8,7 +8,7 @@
 
 .. Create an authorization plugin
 
-.. _create-an-autohrization-plugin:
+.. _create-an-authorization-plugin:
 
 ==================================================
 認証プラグインの作成

@@ -1,6 +1,6 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/builder/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/biulder.md
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/builder.md
    doc version: 1.10
       https://github.com/docker/docker/commits/master/docs/reference/builder.md
 .. check date: 2016/02/15
@@ -661,7 +661,7 @@ Docker は以下の再起動ポリシーをサポートしています。
 
    --rm=false: Automatically remove the container when it exits (incompatible with -d)
 
-..     Note: When you set the --rm flag, Docker also removes the volumes associated with the container when the container is removed. This is similar to running docker rm -v my-container. Only volumes that are specified without a name are removed. For example, with docker run --rm -v /foo -v awesome:/bar busybox top, the volume for /foo will be removed, but the volume for /bar will not. Volumes inheritted via --volumes-from will be removed with the same logic -- if the original volume was specified with a name it will not be removed.
+..     Note: When you set the --rm flag, Docker also removes the volumes associated with the container when the container is removed. This is similar to running docker rm -v my-container. Only volumes that are specified without a name are removed. For example, with docker run --rm -v /foo -v awesome:/bar busybox top, the volume for /foo will be removed, but the volume for /bar will not. Volumes inherited via --volumes-from will be removed with the same logic -- if the original volume was specified with a name it will not be removed.
 
 .. note::
 
@@ -986,7 +986,7 @@ MLS であれば、次のような例になります。
 
 .. By default, a container’s kernel can swap out a percentage of anonymous pages. To set this percentage for a container, specify a --memory-swappiness value between 0 and 100. A value of 0 turns off anonymous page swapping. A value of 100 sets all anonymous pages as swappable. By default, if you are not using --memory-swappiness, memory swappiness value will be inherited from the parent.
 
-デフォルトでは、コンテナのカーネルは、アノニマス・ページ・メモリ上の何パーセントかをスワップ・アウトします。コンテナ向けのこのパーセントを指定するには ``--memory-swappiness`` で 0 ～ 100 までの値を設定します。この値が 0 であればアノニマス・ページのスワッピング（anonymous page swapping）を無効にします。値を 100 にすると全てのページがスワップ可能となります。デフォルトでは、 ``--memory-swappiness`` を指定しなければ、メモリのスワップ回避（swapiness）は親の値を継承します。
+デフォルトでは、コンテナのカーネルは、アノニマス・ページ・メモリ上の何パーセントかをスワップ・アウトします。コンテナ向けのこのパーセントを指定するには ``--memory-swappiness`` で 0 ～ 100 までの値を設定します。この値が 0 であればアノニマス・ページのスワッピング（anonymous page swapping）を無効にします。値を 100 にすると全てのページがスワップ可能となります。デフォルトでは、 ``--memory-swappiness`` を指定しなければ、メモリのスワップ回避（swappiness）は親の値を継承します。
 
 .. For example, you can set:
 
@@ -1317,7 +1317,7 @@ Docker コンテナのプロセスを実行できるのは、デフォルトで�
    * - AUDIT_CONTROL
      - カーネルの監査（ auditing ）を有効化。監査フィルタルールの変更や、監査状態やフィルタリング・ルールの読み出し
    * - MAC_OVERRIDE
-     - MAc 設定や状態の変更。Smack LSM 用の実装
+     - MAC 設定や状態の変更。Smack LSM 用の実装
    * - MAC_ADMIN
      - Mandatory アクセス・コントロール（MAC）の上書き。Smack Linux Security Module (LSM) 用の実装
    * - NET_ADMIN
@@ -1676,7 +1676,7 @@ TMPFS （tmfps ファイルシステムのマウント）
 
 .. code-block:: bash
 
-   $ docker run -d --tmpfs /run:rw,noexec,nosuid,size=65536k my_imaage
+   $ docker run -d --tmpfs /run:rw,noexec,nosuid,size=65536k my_image
 
 
 .. VOLUME (shared filesystems)

@@ -9,7 +9,7 @@
 
 .. build
 
-.. _compse-build:
+.. _compose-build:
 
 =======================================
 build

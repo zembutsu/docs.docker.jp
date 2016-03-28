@@ -9,7 +9,7 @@
 
 .. Learn the application architecture
 
-.. _learn-the-application-architecure:
+.. _learn-the-application-architecture:
 
 =======================================
 アプリケーションのアーキテクチャを学ぶ
@@ -132,7 +132,7 @@ Swarm クラスタのアーキテクチャ
 * ``store`` ：
 
   * コンテナ：Postgres（pg）
-  * コンテナ：resluts アプリ（results-app）
+  * コンテナ：results アプリ（results-app）
 
 .. After you deploy the application, you’ll configure your local system so that you can test the application from your local browser. In production, of course, this step wouldn’t be needed.
 

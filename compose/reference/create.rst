@@ -9,7 +9,7 @@
 
 .. create
 
-.. _compse-create:
+.. _compose-create:
 
 =======================================
 create

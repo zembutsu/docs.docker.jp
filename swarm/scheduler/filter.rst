@@ -118,7 +118,7 @@ constraint （制限）フィルタを使う
 
 .. To specify custom label for a node, pass a list of --label options at docker startup time. For instance, to start node-1 with the storage=ssd label:
 
-ノードに対してカスタム・ラベルを指定するには、 ``docker`` 起動時に ``--lable`` オプションのリストを指定します。例として、 ``node-1`` に ``storage=ssd`` ラベルを付けて起動します。
+ノードに対してカスタム・ラベルを指定するには、 ``docker`` 起動時に ``--label`` オプションのリストを指定します。例として、 ``node-1`` に ``storage=ssd`` ラベルを付けて起動します。
 
 .. code-block:: bash
 
@@ -180,7 +180,7 @@ constraint （制限）フィルタを使う
 
 .. Finally, build args can be used to apply node constraints to a docker build. Again, you'll avoid flash drives.
 
-最後に、 ``docker biuld`` の構築時の引数としてもノード制限を利用できます。今度もフラッシュ・ドライブを避けてみましょう。
+最後に、 ``docker build`` の構築時の引数としてもノード制限を利用できます。今度もフラッシュ・ドライブを避けてみましょう。
 
 .. code-block:: bash
 
@@ -681,7 +681,7 @@ Soft アフィニティ・制約の設定
 関連情報
 ========================================
 
-* :doc:`Docker Sarm ユーザ・ガイド </swarm/index>`
+* :doc:`Docker Swarm ユーザ・ガイド </swarm/index>`
 * :doc:`/swarm/discovery`
 * :doc:`スケジュール・ストラテジ </swarm/scheduler/strategy>`
 * :doc:`Swarm API </swarm/swarm-api>`

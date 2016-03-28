@@ -563,7 +563,7 @@ image
 
 .. note::
 
-   :ref:`バージョン１のファイル形式 <compose-file-version-1>` では、 ``biuld`` と ``image`` を同時に使えません。実行しようとしてもエラーが出ます。
+   :ref:`バージョン１のファイル形式 <compose-file-version-1>` では、 ``build`` と ``image`` を同時に使えません。実行しようとしてもエラーが出ます。
 
 .. _compose-file-labels:
 
@@ -655,7 +655,7 @@ links
 
 .. note::
 
-   ``docker-compse up`` で立ち上げた場合、 ``docker-compose logs`` コマンドでログを表示できるのは ``json-file`` ドライバを指定した時のみです。他のドライバを指定すると logs コマンドを実行しても画面に表示されません。
+   ``docker-compose up`` で立ち上げた場合、 ``docker-compose logs`` コマンドでログを表示できるのは ``json-file`` ドライバを指定した時のみです。他のドライバを指定すると logs コマンドを実行しても画面に表示されません。
 
 .. Specify logging options for the logging driver with the options key, as with the --log-opt option for docker run.
 
@@ -894,7 +894,7 @@ security_opt
 
 .. Override the default labeling scheme for each container.
 
-各コンテナに対するデフォルトのラベリング・スキーマ（labering scheme）を上書きします。
+各コンテナに対するデフォルトのラベリング・スキーマ（labeling scheme）を上書きします。
 
 .. code-block:: yaml
 
@@ -1294,7 +1294,7 @@ Compose ファイル形式には２つのバージョンがあります。
 
 ..    The structure and permitted configuration keys
     The minimum Docker Engine version you must be running
-    Compose’s behaviour with regards to networkin
+    Compose’s behaviour with regards to networking
 
 * 構造と利用可能な設定キー
 * 実行に必要な Docker Engine の最低バージョン
@@ -1502,7 +1502,7 @@ net: "container:abc12345"   ->  network_mode: "container:abc12345"
 
 .. volumes with named volumes: these must now be explicitly declared in a top-level volumes section of your Compose file. If a service mounts a named volume called data, you must declare a data volume in your top-level volumes section. The whole file might look like this:
 
-* ``voluems`` を使う名前付きボリューム：Compose ファイル上で、トップレベルの ``volumes`` セクションとして明示する必要があります。 ``data`` という名称のボリュームにサービスがマウントする必要がある場合、トップレベルの ``volumes`` セクションで ``data`` ボリュームを宣言する必要があります。記述は以下のような形式です。
+* ``volumes`` を使う名前付きボリューム：Compose ファイル上で、トップレベルの ``volumes`` セクションとして明示する必要があります。 ``data`` という名称のボリュームにサービスがマウントする必要がある場合、トップレベルの ``volumes`` セクションで ``data`` ボリュームを宣言する必要があります。記述は以下のような形式です。
 
 .. code-block:: yaml
 

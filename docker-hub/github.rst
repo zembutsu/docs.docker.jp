@@ -177,7 +177,7 @@ GitHub プライベート・サブモジュール
 
 .. Normally, the Docker Hub sets up a deploy key in your GitHub repository. Unfortunately, GitHub only allows a repository deploy key to access a single repository.
 
-通常、Docker Hub は GitHub レポジトリ上でデプロイ・キーをセットアップします。しかしながら、GitHUb は１つのレポジトリに対するデプロイ・キーにしかアクセスできません。
+通常、Docker Hub は GitHub レポジトリ上でデプロイ・キーをセットアップします。しかしながら、GitHub は１つのレポジトリに対するデプロイ・キーにしかアクセスできません。
 
 .. To work around this, you can create a dedicated user account in GitHub and attach the automated build’s deploy key that account. This dedicated build account can be limited to read-only access to just the repositories required to build.
 
@@ -224,7 +224,7 @@ GitHub ユーザからの自動構築レポジトリを作成するとき、「P
 
 Docker Hub からリンクする GitHub アカウントが「Limited Access」であれば、サービス・フックは手動で追加する必要があります。
 
-.. To add, confirm, or modify the service hook, log in to GitHub, then navigate to the repository, click “Settings” (the gear), then select “Webhooks & Services”. You must have Administrator privilegdes on the repository to view or modfy this setting.
+.. To add, confirm, or modify the service hook, log in to GitHub, then navigate to the repository, click “Settings” (the gear), then select “Webhooks & Services”. You must have Administrator privilegdes on the repository to view or modify this setting.
 
 サービス・フックの追加・確認・変更は、GitHub にログイン後、レポジトリに移動し、「Settings」（歯車マーク）をクリックし、それから「Webhook & Services」を選びます。この設定を参照・編集するには、レポジトリに対する管理権限が必要です。
 
@@ -244,5 +244,5 @@ Docker Hub からリンクする GitHub アカウントが「Limited Access」�
 
 .. seealso:: 
 
-   Auomated Builds from GitHub
+   Automated Builds from GitHub
       https://docs.docker.com/docker-hub/github/

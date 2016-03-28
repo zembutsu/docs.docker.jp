@@ -9,7 +9,7 @@
 
 .. kill
 
-.. _compse-kill:
+.. _compose-kill:
 
 =======================================
 kill

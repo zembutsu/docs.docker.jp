@@ -59,7 +59,7 @@ Chef を使う
     Use resources shipped in cookbook in a recipe, the same way you’d use core Chef resources (file, template, directory, package, etc).
 
 * 自分の cookbook の metadata.rb に ``depends 'docker', '~> 2.0'`` を追加します。
-* cookbook のレシピに送信するリソースを指定します。同様にコア Cherf リソースも使えます（file、template、directory、package 等）。
+* cookbook のレシピに送信するリソースを指定します。同様にコア Chef リソースも使えます（file、template、directory、package 等）。
 
 .. code-block:: bash
 

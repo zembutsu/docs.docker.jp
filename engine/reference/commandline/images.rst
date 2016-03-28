@@ -31,7 +31,7 @@ images
 
 .. Docker images have intermediate layers that increase reusability, decrease disk usage, and speed up docker build by allowing each step to be cached. These intermediate layers are not shown by default.
 
-Docker イメージは中間レイヤ（intermidiate layer）を持っています。これは再利用性を高め、ディスク容量を減らし、 ``docker build`` は各ステップがキャッシュされるので速度を向上します。デフォルトでは、これらの中間レイヤは表示されません。
+Docker イメージは中間レイヤ（intermediate layer）を持っています。これは再利用性を高め、ディスク容量を減らし、 ``docker build`` は各ステップがキャッシュされるので速度を向上します。デフォルトでは、これらの中間レイヤは表示されません。
 
 .. The SIZE is the cumulative space taken up by the image and all its parent images. This is also the disk space used by the contents of the Tar file created when you docker save an image.
 

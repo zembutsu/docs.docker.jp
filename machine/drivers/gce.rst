@@ -9,7 +9,7 @@
 
 .. Google Compute Engine
 
-.. _driver-gogle-compute-engine:
+.. _driver-google-compute-engine:
 
 =======================================
 Google Compute Engine

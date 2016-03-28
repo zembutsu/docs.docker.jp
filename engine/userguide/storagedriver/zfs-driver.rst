@@ -53,7 +53,7 @@ Docker ``zfs`` ストレージ・ドライバは、３種類の豊富な ZFS デ
     snapshots
     clones
 
-* ファイルシステム（filesytems）
+* ファイルシステム（filesystems）
 * スナップショット（snapshots）
 * クローン（clones）
 

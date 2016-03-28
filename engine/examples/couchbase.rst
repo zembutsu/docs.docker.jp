@@ -8,7 +8,7 @@
 
 .. Dockerizing a Couchbase service
 
-.. _dockerizing-a-counchbase-service:
+.. _dockerizing-a-couchbase-service:
 
 ========================================
 Couchbase サービスの Docker 化

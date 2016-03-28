@@ -9,7 +9,7 @@
 
 .. start
 
-.. _compse-start:
+.. _compose-start:
 
 =======================================
 start

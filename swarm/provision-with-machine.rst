@@ -9,7 +9,7 @@
 
 .. Provision a Swarm cluster with Docker Machine
 
-.. _provison-a-swarm-cluster-with-docker-machine:
+.. _provision-a-swarm-cluster-with-docker-machine:
 
 ==================================================
 Docker Machine で Swarm クラスタをプロビジョン
@@ -17,7 +17,7 @@ Docker Machine で Swarm クラスタをプロビジョン
 
 .. You can use Docker Machine to provision a Docker Swarm cluster. Machine is the Docker provisioning tool. Machine provisions the hosts, installs Docker Engine on them, and then configures the Docker CLI client. With Machine’s Swarm options, you can also quickly configure a Swarm cluster as part of this provisioning.
 
-Docker Machine を使って Docker Swarm クラスタをプロビジョン（自動構築）できます。Docker Machine とは Docker のプロビジョニング・ツールです。Machine はホストをプロビジョンし、そこに Docker Engine をインストールし、Docker CLI クライアント用の設定を行います。Mahcine で Swarm 用のオプションを指定すると、プロビジョニングの過程で Swarm クラスタ用の設定も迅速に行えます。
+Docker Machine を使って Docker Swarm クラスタをプロビジョン（自動構築）できます。Docker Machine とは Docker のプロビジョニング・ツールです。Machine はホストをプロビジョンし、そこに Docker Engine をインストールし、Docker CLI クライアント用の設定を行います。Machine で Swarm 用のオプションを指定すると、プロビジョニングの過程で Swarm クラスタ用の設定も迅速に行えます。
 
 .. This page explains the commands you need to provision a basic Swarm cluster on a local Mac or Windows computer using Machine. Once you understand the process, you can use it to setup a Swarm cluster on a cloud provider, or inside your company’s data center.
 

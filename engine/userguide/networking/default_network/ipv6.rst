@@ -190,7 +190,7 @@ Docker IPv6 クラスタ
 
 .. Switched network environment
 
-.. _switched-network-environemnt:
+.. _switched-network-environment:
 
 ネットワーク環境の切り替え
 ------------------------------

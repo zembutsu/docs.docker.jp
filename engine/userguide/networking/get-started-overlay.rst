@@ -76,7 +76,7 @@ Docker マルチホスト・ネットワーキング機能を使うのに、Dock
 
 ..    Provision a VirtualBox machine called mh-keystore.
 
-2. ``mh-keysotre`` という名前の VirtualBox マシンを作成します。
+2. ``mh-keystore`` という名前の VirtualBox マシンを作成します。
 
 .. code-block:: bash
 

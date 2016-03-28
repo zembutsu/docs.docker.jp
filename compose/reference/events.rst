@@ -9,7 +9,7 @@
 
 .. events
 
-.. _compse-events:
+.. _compose-events:
 
 =======================================
 events

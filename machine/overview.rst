@@ -48,7 +48,7 @@ Machine のコマンドライン上で管理対象のホストを参照するよ
 
 .. Why should I use it?
 
-.. _why-shoud-i-use-it:
+.. _why-should-i-use-it:
 
 なぜ使うべきですか？
 =====================

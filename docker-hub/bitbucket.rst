@@ -72,7 +72,7 @@ Bitbucket サービス・フック
 
 自動構築レポジトリを作成すると、 ``POST`` サービス・フックが自動的に Bitbucket レポジトリに追加されます。
 
-.. To confirm or modify the service hook log in to Bitbucket, then navigate to the repository, click “Settings” (the gear), then select “Services”. You must have Administrator privilegdes on the repository to view or modfy this setting.
+.. To confirm or modify the service hook log in to Bitbucket, then navigate to the repository, click “Settings” (the gear), then select “Services”. You must have Administrator privilegdes on the repository to view or modify this setting.
 
 Bitbucket のサービス・フック・ログを確認・変更するには、レポジトリに移動し、「Settings」（歯車マーク）をクリックし、「Webhooks」を選びます。この設定を変更したり表示するには、レポジトリに対する管理権限が必要です。
 
@@ -89,5 +89,5 @@ Bitbucket のサービス・フック・ログを確認・変更するには、�
 
 .. seealso:: 
 
-   Auomated Builds with Bitbucket
+   Automated Builds with Bitbucket
       https://docs.docker.com/docker-hub/bitbucket/

@@ -69,7 +69,7 @@ Docker Engine のインストールや ``sudo`` 設定に関しては、 :doc:`�
 
 .. note::
 
-   イメージのダウンロードに成功すると、12文字のハッシュ ``539c0211cd76: Download complete`` が表示されます。これはイメージ ID を短くしたものです。この短いイメージ ID（short image ID）は、完全イメージ ID （full iamge ID）の始めから12文字です。完全イメージ ID を確認するには ``docker inspect`` や ``docker images --no-trunc=true`` を実行します。
+   イメージのダウンロードに成功すると、12文字のハッシュ ``539c0211cd76: Download complete`` が表示されます。これはイメージ ID を短くしたものです。この短いイメージ ID（short image ID）は、完全イメージ ID （full image ID）の始めから12文字です。完全イメージ ID を確認するには ``docker inspect`` や ``docker images --no-trunc=true`` を実行します。
 
 .. To display a list of downloaded images, run docker images.
 
@@ -94,7 +94,7 @@ Ubuntu イメージの対話型シェルを使うには、次のように実行�
 
 .. To detach the tty without exiting the shell, use the escape sequence Ctrl-p + Ctrl-q. The container will continue to exist in a stopped state once exited. To list all containers, stopped and running, use the docker ps -a command.
 
-シェルを終了せずに ``tty`` をデタッチ（取り外し）するには、エスケープ・シーケンス ``Ctrl-p`` + ``Ctrp-q`` を使います。コンテナから出たあとも、停止するまでコンテナは存在し続けます。
+シェルを終了せずに ``tty`` をデタッチ（取り外し）するには、エスケープ・シーケンス ``Ctrl-p`` + ``Ctrl-q`` を使います。コンテナから出たあとも、停止するまでコンテナは存在し続けます。
 
 .. Bind Docker to another host/port or a Unix socket
 
@@ -276,7 +276,7 @@ TCP ポートにサービスを割り当て
    # ネットワーク接続の動作を確認
    $ echo "Daemon received: $(docker logs $JOB)"
 
-.. Commiting (saving) a container state
+.. Committing (saving) a container state
 
 コンテナの状態をコミット（保存）
 ========================================

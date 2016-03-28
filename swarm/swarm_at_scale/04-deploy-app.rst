@@ -107,9 +107,9 @@
 
 ご覧の通り、このイメージは公式の ``Python:1.7`` とタグ付けされたイメージをベースにします。 ``/app`` ディレクトリに必要なファイルを追加し、依存関係のあるものをインストールし、構築コンテクストに含めるファイルをコンテナ内にコピーし、コンテナのコマンド実行時にポート ``80`` を公開するよう命令しています。
 
-..    Spend time investigating the other parts of the application by viewing the results-app/Dockefile and the vote-worker/Dockerfile in the application.
+..    Spend time investigating the other parts of the application by viewing the results-app/Dockerfile and the vote-worker/Dockerfile in the application.
 
-5. 投票アプリケーションの他のパーツも、 ``results-app/Dockefile`` と ``vote-worker/Dockerfile`` を時間をかけて確認します。
+5. 投票アプリケーションの他のパーツも、 ``results-app/Dockerfile`` と ``vote-worker/Dockerfile`` を時間をかけて確認します。
 
 .. Step 2. Build custom images
 
@@ -244,7 +244,7 @@
 
 .. Step 4. Start the voting application
 
-.. _step-4-start-the-voting-applicaiton:
+.. _step-4-start-the-voting-application:
 
 ステップ４：投票用アプリケーションを起動
 ========================================
@@ -295,7 +295,7 @@
    $ docker run --restart=unless-stopped --env="constraint:node==frontend02" -p 6379:6379 --name redis02 --net mynet -d redis
    $ docker -H tcp://192.168.33.21:2375 ps
 
-..    These two commands are issued against the Swarm cluster. The commands specify node constraints, forcing Swarm to start the contaienrs on frontend01 and frontend02. Port 6379 on each instance is mapped to port 6379 inside of each container for debugging purposes. The command also applies the --restart=unless-stopped policy to the containers and attaches them to the mynet overlay network.
+..    These two commands are issued against the Swarm cluster. The commands specify node constraints, forcing Swarm to start the containers on frontend01 and frontend02. Port 6379 on each instance is mapped to port 6379 inside of each container for debugging purposes. The command also applies the --restart=unless-stopped policy to the containers and attaches them to the mynet overlay network.
 
 Swarm クラスタに対して２つのコマンドを実行します。このコマンドはノード制約（code constrains）を指定し、Swarm に ``frontend01`` と ``frontend02`` でコンテナを起動するよう指定しています。また、デバッグ目的のために各コンテナのポート 6379 を各インスタンスのポート 6379 に割り当てます。さらにコンテナに対する ``--restart=unless-stopped `` ポリシーと、コンテナを ``mynet`` オーバレイ・ネットワークに接続する設定を行っています。
 
@@ -315,7 +315,7 @@ Swarm クラスタに対して２つのコマンドを実行します。この�
 
    $ docker run --restart=unless-stopped --env="constraint:node==frontend02" -d -p 5000:80 -e WEB_VOTE_NUMBER='02' --name frontend02 --net mynet --hostname votingapp.local web-vote-app
 
-..    These two commands are issued against the Swarm cluster. The commands specify node constraints, forcing Swarm to start the contaienrs on frontend01 and frontend02. Port 5000 on each node is mapped to port 80 inside of each container. This allows connections to come in to each node on port 5000 and be forwarded to port 80 inside of each container.
+..    These two commands are issued against the Swarm cluster. The commands specify node constraints, forcing Swarm to start the containers on frontend01 and frontend02. Port 5000 on each node is mapped to port 80 inside of each container. This allows connections to come in to each node on port 5000 and be forwarded to port 80 inside of each container.
 
 Swarm クラスタに対して２つのコマンドを実行します。このコマンドはノード制約（code constrains）を指定し、Swarm に ``frontend01`` と ``frontend02`` でコンテナを起動するよう指定しています。また、各コンテナのポート ``80`` を各インスタンスのポート ``5000`` に割り当てます。これは各ノード上のポート ``5000`` に接続すると、各コンテナのポート ``80`` に転送されます。
 

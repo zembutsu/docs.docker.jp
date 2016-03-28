@@ -160,7 +160,7 @@ Swarm ノードを作成する前に、 :doc:`ディスカバリ・トークン�
 
 .. --delay — Add a random delay in [0s,delay] to avoid synchronized registration
 
-``--delay`` - 一斉登録しないようランダム遅延を [0s,dealy] で指定
+``--delay`` - 一斉登録しないようランダム遅延を [0s,delay] で指定
 ----------------------------------------------------------------------
 
 .. Use --delay "<interval>s" to specify the maximum interval for a random delay, in seconds, before the node registers with the discovery backend. If you deploy a large number of nodes simultaneously, the random delay spreads registrations out over the interval and avoids saturating the discovery backend.

@@ -10,7 +10,7 @@
 
 .. Process management with CFEngine
 
-.. _process-managemnet-with-cfengine
+.. _process-management-with-cfengine
 
 =======================================
 CFEngine でプロセス管理

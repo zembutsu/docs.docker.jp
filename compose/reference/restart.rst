@@ -9,7 +9,7 @@
 
 .. restart
 
-.. _compse-restart:
+.. _compose-restart:
 
 =======================================
 restart

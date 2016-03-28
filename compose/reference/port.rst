@@ -9,7 +9,7 @@
 
 .. port
 
-.. _compse-port:
+.. _compose-port:
 
 =======================================
 port

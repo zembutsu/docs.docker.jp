@@ -232,7 +232,7 @@ Build Setting ページでは、既存の自動構築設定の管理や、新し
 
 .. At the top of the Build Dialog is a list of configured builds. You can build from a code branch or by build tag.
 
-Build Settigs の一番上にダイアログがあります。ここで指定したコードのブランチや構築時のタグを使い構築できます。
+Build Settings の一番上にダイアログがあります。ここで指定したコードのブランチや構築時のタグを使い構築できます。
 
 .. Build or tag
 

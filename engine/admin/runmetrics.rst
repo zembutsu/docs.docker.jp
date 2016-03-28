@@ -73,7 +73,7 @@ Linux はプロセス・グループの追跡だけでなく、CPU・メモリ�
 
 .. You can look into /proc/cgroups to see the different control group subsystems known to the system, the hierarchy they belong to, and how many groups they contain.
 
-``/proc/cgoups`` を調べると、システム上の様々に異なるコントロール・グループのサブシステムが見えます。それぞれに階層がサブシステムに相当しており、多くのグループが見えるでしょう。
+``/proc/cgroups`` を調べると、システム上の様々に異なるコントロール・グループのサブシステムが見えます。それぞれに階層がサブシステムに相当しており、多くのグループが見えるでしょう。
 
 .. You can also look at /proc/<pid>/cgroup to see which control groups a process belongs to. The control group will be shown as a path relative to the root of the hierarchy mountpoint; e.g., / means “this process has not been assigned into a particular group”, while /lxc/pumpkin means that the process is likely to be a member of a container named pumpkin.
 
@@ -277,7 +277,7 @@ IPtables を使うことで（というよりも、インターフェースに�
 
 .. For instance, you can setup a rule to account for the outbound HTTP traffic on a web server:
 
-例えば、ウェブサーバの外側に対する(outbund) HTTP トラフィックの計算のために、次のようなルールを作成できます。
+例えば、ウェブサーバの外側に対する(outbound) HTTP トラフィックの計算のために、次のようなルールを作成できます。
 
 .. code-block:: bash
 

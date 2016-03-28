@@ -95,7 +95,7 @@ Registry を通してキャッシュしたイメージを取得できるよう�
 
 .. Multiple registry caches can be deployed over the same back-end. A single registry cache will ensure that concurrent requests do not pull duplicate data, but this property will not hold true for a registry cache cluster.
 
-おなじバックエンド上に複数の Regisry キャッシュをデプロイ可能です。１つめの Registry はリクエストを処理するだけでデータを取得しません。他の Registry のキャッシュ・クラスタが適切にデータを取り扱います。
+おなじバックエンド上に複数の Registry キャッシュをデプロイ可能です。１つめの Registry はリクエストを処理するだけでデータを取得しません。他の Registry のキャッシュ・クラスタが適切にデータを取り扱います。
 
 .. Configuring the cache
 
@@ -104,7 +104,7 @@ Registry を通してキャッシュしたイメージを取得できるよう�
 
 .. To configure a Registry to run as a pull through cache, the addition of a proxy section is required to the config file.
 
-Regisry が取得（pull）する時、キャッシュを通すように設定します。設定ファイルに ``proxy`` セクションを追加する必要があります。
+Registry が取得（pull）する時、キャッシュを通すように設定します。設定ファイルに ``proxy`` セクションを追加する必要があります。
 
 .. In order to access private images on the Docker Hub, a username and password can be supplied.
 

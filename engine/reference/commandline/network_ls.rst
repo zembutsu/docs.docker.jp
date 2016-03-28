@@ -59,7 +59,7 @@ Docker エンジンの ``daemon`` が把握している全てのネットワー�
 
 .. The filtering flag (-f or --filter) format is a key=value pair. If there is more than one filter, then pass multiple flags (e.g. --filter "foo=bar" --filter "bif=baz"). Multiple filter flags are combined as an OR filter. For example, -f type=custom -f type=builtin returns both custom and builtin networks.
 
-フィルタリング・フラグ（ ``-f`` または ``--flter`` ）の書式は ``key=value`` のペアです。フィルタを何回もしたい場合は、複数のフラグを使います（例： ``-filter "foo=bar" --filter "bif=baz"`` ）。複数のフィルタを指定すると、 ``OR`` （同一条件）フィルタとして連結されます。例えば、 ``-f type=custom -f type=builtin`` は ``custom`` と ``builtin``  ネットワークの両方を返します。
+フィルタリング・フラグ（ ``-f`` または ``--filter`` ）の書式は ``key=value`` のペアです。フィルタを何回もしたい場合は、複数のフラグを使います（例： ``-filter "foo=bar" --filter "bif=baz"`` ）。複数のフィルタを指定すると、 ``OR`` （同一条件）フィルタとして連結されます。例えば、 ``-f type=custom -f type=builtin`` は ``custom`` と ``builtin``  ネットワークの両方を返します。
 
 .. The currently supported filters are:
 

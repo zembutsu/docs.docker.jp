@@ -41,7 +41,7 @@
      - lasote/docker_client
      - http://www.biicode.com/lasote/docker_client
      - Active
-   * - Elang
+   * - Erlang
      - erldocker
      - https://github.com/proger/erldocker
      - Active

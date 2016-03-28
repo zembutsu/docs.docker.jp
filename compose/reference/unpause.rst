@@ -9,7 +9,7 @@
 
 .. unpause
 
-.. _compse-unpause:
+.. _compose-unpause:
 
 =======================================
 unpause

@@ -8,7 +8,7 @@
 .. check date: 2016/02/10
 .. ----------------------------------------------------------------------------
 
-.. Bulid your own images
+.. Build your own images
 
 .. _build-your-own-images:
 

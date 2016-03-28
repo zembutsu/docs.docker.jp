@@ -29,7 +29,7 @@ OverlayFS は最近の *ユニオン・ファイルシステム* であり、 AU
     is potentially faster
 
 * よりシンプルな設計
-* LInux カーネルのバージョン 3.18 からメインラインに取り込まれている
+* Linux カーネルのバージョン 3.18 からメインラインに取り込まれている
 * より速い可能性
 
 .. As a result, OverlayFS is rapidly gaining popularity in the Docker community and is seen by many as a natural successor to AUFS. As promising as OverlayFS is, it is still relatively young. Therefore caution should be taken before using it in production Docker environments.
@@ -50,7 +50,7 @@ Docker の ``overlay`` ストレージ・ドライバは、ディスク上でイ
 
 .. _image-layering-and-sharing-with-overlayfs:
 
-OvarlayFS でイメージのレイヤ化と共有
+OverlayFS でイメージのレイヤ化と共有
 ========================================
 
 .. OverlayFS takes two directories on a single Linux host, layers one on top of the other, and provides a single unified view. These directories are often referred to as layers and the technology used to layer them is known as a union mount. The OverlayFS terminology is “lowerdir” for the bottom layer and “upperdir” for the top layer. The unified view is exposed through its own directory called “merged”.
@@ -218,7 +218,7 @@ overlay でコンテナの読み書き
 
 ..    Deleting files and directories. When files are deleted within a container a whiteout file is created in the containers “upperdir”. The version of the file in the image layer (“lowerdir”) is not deleted. However, the whiteout file in the container obscures it.
 
-* **ファイルをディレクトリを削除する場合** 。コンテナ内のファイル削除では、 *ホワイトアウト・ファイル（wihteout file）* がコンテナ内のディレクトリ（「upperdir」）に作成されます。イメージ・レイヤ（「lowerdier」）にあるバージョンのファイルは削除されません。しかし、コンテナ内のホワイトアウト・ファイルが見えなくします。
+* **ファイルをディレクトリを削除する場合** 。コンテナ内のファイル削除では、 *ホワイトアウト・ファイル（whiteout file）* がコンテナ内のディレクトリ（「upperdir」）に作成されます。イメージ・レイヤ（「lowerdier」）にあるバージョンのファイルは削除されません。しかし、コンテナ内のホワイトアウト・ファイルが見えなくします。
 
 ..    Deleting a directory in a container results in opaque directory being created in the “upperdir”. This has the same effect as a whiteout file and effectively masks the existence of the directory in the image’s “lowerdir”.
 

@@ -9,7 +9,7 @@
 
 .. config
 
-.. _compse-config:
+.. _compose-config:
 
 =======================================
 config

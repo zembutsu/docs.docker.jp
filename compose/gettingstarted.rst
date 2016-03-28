@@ -26,7 +26,7 @@ Compose を始めましょう
 
 既に :doc:`Docker Engine と Docker Compose がインストール済み </compose/install>` なのを確認します。Python をインストールする必要はなく、Docker イメージのものを使います。
 
-.. Step 1: Steup
+.. Step 1: Setup
 
 ステップ１：セットアップ
 ==============================

@@ -243,7 +243,7 @@ fluentd オプション
 
 .. _specify-amazon-cloudwatch-logs-options:
 
-Amaxon CloudWatch Logs オプションの指定
+Amazon CloudWatch Logs オプションの指定
 ========================================
 
 .. The Amazon CloudWatch Logs logging driver supports the following options:

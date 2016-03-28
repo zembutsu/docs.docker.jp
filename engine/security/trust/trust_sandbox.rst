@@ -8,7 +8,7 @@
 
 .. Plain in a content trust sandbox
 
-.. _plai-in-a-content-trust-sandbox:
+.. _plain-in-a-content-trust-sandbox:
 
 ==================================================
 コンテント・トラストをサンドボックスで使う

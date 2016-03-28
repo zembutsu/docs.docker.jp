@@ -15,7 +15,7 @@
 
 .. You can use Docker Compose to easily run WordPress in an isolated environment built with Docker containers. This quick-start guide demonstrates how to use Compose to set up and run WordPress. Before starting, you’ll need to have Compose installed.
 
-Docker Compose を使えば、Dockdr コンテナで構築した WordPress の独立した環境を簡単に実行できます。このクイックスタート・ガイドでは、Compose のセットアップ方法と WordPress の実行方法を紹介します。その前に、 :doc:`Compose のインストール </compose/install>` が必要です。
+Docker Compose を使えば、Docker コンテナで構築した WordPress の独立した環境を簡単に実行できます。このクイックスタート・ガイドでは、Compose のセットアップ方法と WordPress の実行方法を紹介します。その前に、 :doc:`Compose のインストール </compose/install>` が必要です。
 
 .. Define the project
 
@@ -36,7 +36,7 @@ Docker Compose を使えば、Dockdr コンテナで構築した WordPress の�
 
 .. Next, inside that directory, create a Dockerfile, a file that defines what environment your app is going to run in. For more information on how to write Dockerfiles, see the Docker user guide and the Dockerfile reference. In this case, your Dockerfile should be:
 
-次に、ディレクトリに入り、 ``Dockerfile`` を作成します。このファイルでは、どのような環境でアプリケーションを実行しようとしているかを定義します。Dockerfile の書き方は、 :ref:`Docker ユーザガイド <building-an-image-from-a-dockerfile>` と :doc:`Dockerfile リファレンス</engine/reference/builder>` をお読みください。この例では、Dockefile を次のようにします：
+次に、ディレクトリに入り、 ``Dockerfile`` を作成します。このファイルでは、どのような環境でアプリケーションを実行しようとしているかを定義します。Dockerfile の書き方は、 :ref:`Docker ユーザガイド <building-an-image-from-a-dockerfile>` と :doc:`Dockerfile リファレンス</engine/reference/builder>` をお読みください。この例では、Dockerfile を次のようにします：
 
 .. code-block:: yaml
 

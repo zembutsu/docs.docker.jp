@@ -80,7 +80,7 @@ label と env
 
 .. The labels and env options each take a comma-separated list of keys. If there is collision between label and env keys, the value of the env takes precedence. Both options add additional metadata in the journal with each message.
 
-``label`` と ``env`` オプションは、どちらもカンマ区切りでキーを指定できます。 ``label`` と ``env`` キーが重複する場合は、 ``env`` の値が優先されます。どちらのオプションもロギング・メッセージの特別属性（extra attibutes）に追加フィールドを加えます。
+``label`` と ``env`` オプションは、どちらもカンマ区切りでキーを指定できます。 ``label`` と ``env`` キーが重複する場合は、 ``env`` の値が優先されます。どちらのオプションもロギング・メッセージの特別属性（extra attributes）に追加フィールドを加えます。
 
 .. Note regarding container names
 
@@ -128,7 +128,7 @@ journalctl でログメッセージを表示
 
 .. _retrieving-log-messages-wiht-the-journal-api:
 
-jounal API でログメッセージを表示
+journal API でログメッセージを表示
 ========================================
 
 .. This example uses the systemd Python module to retrieve container logs:

@@ -76,7 +76,7 @@
        depends_on:
          - db
    
-.. Build the proejct
+.. Build the project
 
 プロジェクトの構築
 ====================
@@ -112,7 +112,7 @@ Compose はまず、``Dockerfile`` を使い ``web`` サービスのイメージ
 
 .. Uncomment the line in your new Gemfile which loads therubyracer, so you’ve got a Javascript runtime:
 
-新しい ``Gemfile`` から``therubyracer`` を読み込む行をアンコメントします。これは Javascrip のランタイムを入手したからです。
+新しい ``Gemfile`` から ``therubyracer`` を読み込む行をアンコメントします。これは Javascript のランタイムを入手したからです。
 
 .. code-block:: ruby
 

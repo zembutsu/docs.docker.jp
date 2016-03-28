@@ -333,7 +333,7 @@ Dockerfile の指定（-f）
 
 .. These two docker build commands do the exact same thing. They both use the contents of the debug file instead of looking for a Dockerfile and will use /home/me/myapp as the root of the build context. Note that debug is in the directory structure of the build context, regardless of how you refer to it on the command line.
 
-２つの ``docker bulid`` コマンドは同じ事をしています。いずれの ``Dockerfile`` にも ``debug`` ファイルが含まれており、構築コンテキストのルートとして ``/home/me/myapp`` を使います。なお注意点として、 ``debug`` は構築コンテキストのサブディレクトリにあるもので、先ほどのコマンドライン上では指定の必要がありませんでした。
+２つの ``docker build`` コマンドは同じ事をしています。いずれの ``Dockerfile`` にも ``debug`` ファイルが含まれており、構築コンテキストのルートとして ``/home/me/myapp`` を使います。なお注意点として、 ``debug`` は構築コンテキストのサブディレクトリにあるもので、先ほどのコマンドライン上では指定の必要がありませんでした。
 
 ..    Note: docker build will return a no such file or directory error if the file or directory does not exist in the uploaded context. This may happen if there is no context, or if you specify a file that is elsewhere on the Host system. The context is limited to the current directory (and its children) for security reasons, and to ensure repeatable builds on remote Docker hosts. This is also the reason why ADD ../file will not work.
 

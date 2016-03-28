@@ -9,7 +9,7 @@
 
 .. logs
 
-.. _compse-logs:
+.. _compose-logs:
 
 =======================================
 logs

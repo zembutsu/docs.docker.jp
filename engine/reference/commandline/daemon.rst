@@ -470,7 +470,7 @@ Docker デーモンが ``udev`` 同期をサポートしているかどうかは
 
 ..    When this value is true, the devicemapper continues and simply warns you the errors are happening.
 
-この値が ``true`` の場合、 ``devicemaper`` はエラーが発生しても簡単に警告を表示するだけで、処理を継続します。
+この値が ``true`` の場合、 ``devicemapper`` はエラーが発生しても簡単に警告を表示するだけで、処理を継続します。
 
 ..        Note: The ideal is to pursue a docker daemon and environment that does support synchronizing with udev. For further discussion on this topic, see docker#4036. Otherwise, set this flag for migrating existing Docker daemons to a daemon with a supported environment.
 
@@ -683,7 +683,7 @@ Ulimits のデフォルト
 
 .. --default-ulimit allows you to set the default ulimit options to use for all containers. It takes the same options as --ulimit for docker run. If these defaults are not set, ulimit settings will be inherited, if not set on docker run, from the Docker daemon. Any --ulimit options passed to docker run will overwrite these defaults.
 
-``--default-uliit`` を使い、全てのコンテナに対するデフォルトの ``ulimit`` オプションを指定できます。 ``docker run`` 時に ``--ulimit`` オプションを指定するのと同じです。デフォルトを設定しなければ、 ``ulimit`` 設定は継承されます。 ``docker run`` 時に設定されなければ、Docker デーモンから継承します。``docker run`` 時のあらゆる ``--ulimit`` オプションは、デフォルトを上書きします。
+``--default-ulimit`` を使い、全てのコンテナに対するデフォルトの ``ulimit`` オプションを指定できます。 ``docker run`` 時に ``--ulimit`` オプションを指定するのと同じです。デフォルトを設定しなければ、 ``ulimit`` 設定は継承されます。 ``docker run`` 時に設定されなければ、Docker デーモンから継承します。``docker run`` 時のあらゆる ``--ulimit`` オプションは、デフォルトを上書きします。
 
 .. Be careful setting nproc with the ulimit flag as nproc is designed by Linux to set the maximum number of processes available to a user, not to a container. For details please check the run reference.
 
@@ -770,7 +770,7 @@ Docker のアクセス認証は認証プラグインの拡張であり、組織�
 
 .. Daemon user namespace option
 
-.. _daemon-user-namespce-option:
+.. _daemon-user-namespace-option:
 
 デーモンのユーザ名前空間オプション
 ========================================
@@ -791,7 +791,7 @@ Linux カーネルの `ユーザ名前空間(user namespace)サポート <http:/
    
 .. Starting the daemon with user namespaces enabled
 
-.. _starting-the-daemon-with-user-namespaces-enableed:
+.. _starting-the-daemon-with-user-namespaces-enabled:
 
 ユーザ名前空間を有効にしてデーモンを起動
 ----------------------------------------
@@ -1017,4 +1017,4 @@ cgroup はスラッシュ記号（ ``/`` ）で始まるルート cgroup の下�
     labels: it replaces the daemon labels with a new set of labels.
 
 * ``debug`` ：true を設定すると、デーモンをデバッグ・モードにします。
-* ``lables`` ：デーモンのラベルを新しく設定したものに変えます。
+* ``labels`` ：デーモンのラベルを新しく設定したものに変えます。

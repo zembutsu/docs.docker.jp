@@ -5,7 +5,7 @@
 .. check date: 2016/03/12
 .. -------------------------------------------------------------------
 
-.. Notificaitons
+.. Notifications
 
 .. _notifications:
 
@@ -15,7 +15,7 @@
 
 .. The Registry supports sending webhook notifications in response to events happening within the registry. Notifications are sent in response to manifest pushes and pulls and layer pushes and pulls. These actions are serialized into events. The events are queued into a registry-internal broadcast system which queues and dispatches events to Endpoints.
 
-Registry は webhook 通知をサポートしています。レジストリ内で何らかのイベントが発生したら、それに対応して通知を送れます。通知はマニフェストの送受信とレイヤの送受信に対応しています。これらのアクションはイベント後とに処理されます。イベントはレジストリの内部ブロードキャスト・システムの中にキュー（保留）されます。これは :ref:`エンドポイント <endpoint>` 
+Registry は webhook 通知をサポートしています。レジストリ内で何らかのイベントが発生したら、それに対応して通知を送れます。通知はマニフェストの送受信とレイヤの送受信に対応しています。これらのアクションはイベント後とに処理されます。イベントはレジストリの内部ブロードキャスト・システムの中にキュー（保留）されます。これは :ref:`エンドポイント <endpoint>`
 
 .. Endpoints
 

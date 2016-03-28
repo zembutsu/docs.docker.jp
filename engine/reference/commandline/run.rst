@@ -584,7 +584,7 @@ Docker の ``--restart`` はコンテナの *再起動ポリシー* を指定し
 
 .. _add-entries-to-container-hosts-file:
 
-コンテナの hoss ファイルにエントリ追加（--add-host）
+コンテナの host ファイルにエントリ追加（--add-host）
 ------------------------------------------------------------
 
 .. You can add other hosts into a container’s /etc/hosts file by using one or more --add-host flags. This example adds a static address for a host named docker:

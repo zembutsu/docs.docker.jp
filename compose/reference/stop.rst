@@ -9,7 +9,7 @@
 
 .. stop
 
-.. _compse-stop:
+.. _compose-stop:
 
 =======================================
 stop

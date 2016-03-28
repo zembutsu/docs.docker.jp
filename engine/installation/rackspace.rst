@@ -24,7 +24,7 @@ Rackspace が提供する Ubuntu に Docker をインストールするのは、
 
 .. Rackspace boots their servers using grub’s menu.lst and does not like non virtual packages (e.g., Xen compatible) kernels there, although they do work. This results in update-grub not having the expected result, and you will need to set the kernel manually.
 
-Rackspace はサーバを grub の ``menu.lst`` からブートします。しかし ``virtual`` のような kernel パッケージではないため（例：Xen 互換）、別の作業を行います。``update-grup`` は期待通りの動作をしないため、カーネルを手動で設定する必要があります。
+Rackspace はサーバを grub の ``menu.lst`` からブートします。しかし ``virtual`` のような kernel パッケージではないため（例：Xen 互換）、別の作業を行います。``update-grub`` は期待通りの動作をしないため、カーネルを手動で設定する必要があります。
 
 .. Do not attempt this on a production machine!
 

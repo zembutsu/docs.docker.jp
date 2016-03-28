@@ -41,7 +41,7 @@ Docker デーモンに ``--log-driver`` オプションを使い、デフォル�
 
 .. Amazon CloudWatch Logs options
 
-.. _amazon-cloudwath-logs-options:
+.. _amazon-cloudwatch-logs-options:
 
 Amazon CloudWatch ログのオプション
 ========================================

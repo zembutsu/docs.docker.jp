@@ -162,7 +162,7 @@ Compose は Compose ファイル中で、変数の使用をサポートしてい
 
 Compose ファイルは ``extends`` フィールドを使うことで、複数の Compose ファイルを作成できるように拡張できます。詳細は :doc:`extends <extends>` をご覧ください。
 
-.. Commpon Use Cases
+.. Common Use Cases
 
 .. _compose-common-use-cases:
 

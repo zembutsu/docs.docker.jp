@@ -116,7 +116,7 @@ Docker デーモンはユーザのコンテナが指定したパスに対し、�
 
 .. Delete the specified volume from disk. This request is issued when a user invokes docker rm -v to remove volumes associated with a container.
 
-ディスクから特定のボリュームを削除します。このリクエストはユーザから ``doker rm -v`` を呼び出されたとき、コンテナに関連するボリュームを削除します。
+ディスクから特定のボリュームを削除します。このリクエストはユーザから ``docker rm -v`` を呼び出されたとき、コンテナに関連するボリュームを削除します。
 
 .. Response:
 

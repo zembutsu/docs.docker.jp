@@ -127,7 +127,7 @@ Device Mapper は Linux カーネルのバージョン 2.6.9 以降、メイン�
 
 .. _reads-with-the-devicemapper:
 
-devicemappr からの読み込み
+devicemapper からの読み込み
 ==============================
 
 .. Let’s look at how reads and writes occur using the devicemapper storage driver. The diagram below shows the high level process for reading a single block (0x44f) in an example container.
@@ -477,7 +477,7 @@ Device Mapper と Docker 性能
 
 .. Copy-on-write performance impact
 
-.. _copy-on-write-performnace-impact:
+.. _copy-on-write-performance-impact:
 
 コピー・オン・ライトが性能に与える影響
 ----------------------------------------

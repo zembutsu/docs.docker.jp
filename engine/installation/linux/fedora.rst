@@ -55,7 +55,7 @@ Docker は 64bit でインストールされた何らかの Fedora バージョ�
 
 .. There are two ways to install Docker Engine. You can install with the dnf package manager. Or you can use curl with the get.docker.com site. This second method runs an installation script which also installs via the dnf package manager.
 
-Docker エンジンをインストールするには２つの方法があります。 ``dnf`` パッケージ・マネージャを使い、直接自分でインストールできます。あるいは、 ``crul`` で ``get.docker.com`` を使う方法があります。２つめの方法はインストール用のスクリプトを実行すると、 ``dnf``  パッケージ・マネージャを通してセットアップします。
+Docker エンジンをインストールするには２つの方法があります。 ``dnf`` パッケージ・マネージャを使い、直接自分でインストールできます。あるいは、 ``curl`` で ``get.docker.com`` を使う方法があります。２つめの方法はインストール用のスクリプトを実行すると、 ``dnf``  パッケージ・マネージャを通してセットアップします。
 
 .. Install with DNF
 

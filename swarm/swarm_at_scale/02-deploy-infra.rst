@@ -34,7 +34,7 @@
 
 .. To deploy on an AWS infrastructure, you first build a VPC and then apply apply the CloudFormation template prepared for you. The template describes the hosts in the example’s stack. While you could create the entire VPC and all instances via a CloudFormation template, splitting the deployment into two steps lets you use the CloudFormation template to build the stack on an existing VPCs.
 
-AWS 基盤にデプロイする時に必要なのは、まず VPC を準備し、それから `CloudFourmation <https://github.com/docker/swarm-microservice-demo-v1/blob/master/AWS/cloudformation.json>`_ 用テンプレートを適用します。テンプレートにはサンプル・スタックで使うホストの詳細が記述されています。VPC を作成したあとは、CloudFormation テンプレートを通して全てのインスタンスを VPC 上に構築するように、デプロイを２つの手順に分けています。
+AWS 基盤にデプロイする時に必要なのは、まず VPC を準備し、それから `CloudFormation <https://github.com/docker/swarm-microservice-demo-v1/blob/master/AWS/cloudformation.json>`_ 用テンプレートを適用します。テンプレートにはサンプル・スタックで使うホストの詳細が記述されています。VPC を作成したあとは、CloudFormation テンプレートを通して全てのインスタンスを VPC 上に構築するように、デプロイを２つの手順に分けています。
 
 .. The diagram below shows the VPC infrastructure required to run the CloudFormation template.
 
@@ -178,7 +178,7 @@ AWS が VPC を構築すると **VPC Successfully Created** ページが表示�
 
 .. In this step, you use CloudFormation template to build a stack on AWS. Before you begin, make sure you have the prerequisites:
 
-このステップは CloudFourmation テンプレートを使い AWS 上にスタックを構築します。始める前に、動作条件を確認します。
+このステップは CloudFormation テンプレートを使い AWS 上にスタックを構築します。始める前に、動作条件を確認します。
 
 ..    access to a private key pair associated with your AWS account.
     a clone or download of the the example code on your local machine.
@@ -228,7 +228,7 @@ AWS が VPC を構築すると **VPC Successfully Created** ページが表示�
 
 ..    Select the publicSwarm for the Subnetid dropdown menu.
 
-8. **Subntid** ドロップダウン・メニューから ``publicSwarm`` を選びます。
+8. **Subnetid** ドロップダウン・メニューから ``publicSwarm`` を選びます。
 
 ..    Select swarm-scale from the Vpcid dropdown menu.
 

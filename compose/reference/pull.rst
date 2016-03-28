@@ -9,7 +9,7 @@
 
 .. pull
 
-.. _compse-pull:
+.. _compose-pull:
 
 =======================================
 pull

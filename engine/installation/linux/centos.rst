@@ -59,7 +59,7 @@ Docker は 64bit でインストールされた何らかの CentOS バージョ�
 
 .. There are two ways to install Docker Engine. You can install using the yum package manager. Or you can use curl with the get.docker.com site. This second method runs an installation script which also installs via the yum package manager.
 
-Docker エンジンをインストールするには２つの方法があります。１つは ``yum`` パッケージ・マネージャを使ってインストールする方法です。あるいは ``crul`` コマンドで ``get.docker.com`` を取得します。これがもう１つの方法であり、内容は ``yum``  パッケージ・マネージャを通してセットアップするための命令が書かれたスクリプトです。
+Docker エンジンをインストールするには２つの方法があります。１つは ``yum`` パッケージ・マネージャを使ってインストールする方法です。あるいは ``curl`` コマンドで ``get.docker.com`` を取得します。これがもう１つの方法であり、内容は ``yum``  パッケージ・マネージャを通してセットアップするための命令が書かれたスクリプトです。
 
 .. Install with yum
 

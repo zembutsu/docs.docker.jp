@@ -156,7 +156,7 @@ Docker Hub にレポジトリの送信
 
 対象のイメージをアップロードすると、あなたの同僚やコミュニティにおいても利用可能になります。
 
-.. Deatures of Docker Hub
+.. Features of Docker Hub
 
 Docker Hub の機能
 ====================
@@ -212,7 +212,7 @@ Docker Hub の機能
 1. `Docker Hub アカウント <https://hub.docker.com/>`_ を作成してログインします。
 2. `Linked Accounts & Services <https://hub.docker.com/account/authorized-services/>`_ （アカウントとサービスのリンク）から自分の GitHub もしくは Bitbucket アカウントをリンクします。
 3. `自動構築の設定 <https://hub.docker.com/add/automated-build/github/orgs/>`_ を行います。
-4. 選択した GitHub もしくは BitHubket プロジェクト上で、構築内容を ``Dockerfile`` にまとめます。
+4. 選択した GitHub もしくは Bitbucket プロジェクト上で、構築内容を ``Dockerfile`` にまとめます。
 5. 必要があれば構築時のブランチを指定します（デフォルトは ``master`` ブランチです）。
 6. 自動構築名を指定します。
 7. 構築時に追加するオプションの Docker タグを指定します。

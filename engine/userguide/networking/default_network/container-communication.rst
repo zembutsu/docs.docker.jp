@@ -43,7 +43,7 @@
 
 .. IP packet forwarding is governed by the ip_forward system parameter. Packets can only pass between containers if this parameter is 1. Usually you will simply leave the Docker server at its default setting --ip-forward=true and Docker will go set ip_forward to 1 for you when the server starts up. If you set --ip-forward=false and your system’s kernel has it enabled, the --ip-forward=false option has no effect. To check the setting on your kernel or to turn it on manually:
 
-IP パケット転送は、 ``ip_forward`` システム・パラメータで管理されます。このパラメータが ``1`` の時のみ、パケットは通信出来ます。通常、Docker サーバはデフォルトの設定のままでも ``--ip-forward=true`` であり、Docker はサーバの起動時に ``ip_forward`` を ``1`` にします。もし ``--ip-foward=false`` をセットし、システム・カーネルが有効な場合は、この ``--ip-forward=false`` オプションは無効化されます。カーネルの設定を確認は、手動で行います。
+IP パケット転送は、 ``ip_forward`` システム・パラメータで管理されます。このパラメータが ``1`` の時のみ、パケットは通信出来ます。通常、Docker サーバはデフォルトの設定のままでも ``--ip-forward=true`` であり、Docker はサーバの起動時に ``ip_forward`` を ``1`` にします。もし ``--ip-forward=false`` をセットし、システム・カーネルが有効な場合は、この ``--ip-forward=false`` オプションは無効化されます。カーネルの設定を確認は、手動で行います。
 
 .. code-block:: bash
 

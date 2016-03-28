@@ -150,15 +150,15 @@ Docker Machine ドライバ・プラグインは多くのクラウド・プラ�
 
 .. Step 4. Use Machine to Create the Droplet
 
-.. _step4-use-machine-to-craete-the-droplet:
+.. _step4-use-machine-to-create-the-droplet:
 
 ステップ４：Machine でドロップレットの作成
 ==================================================
 
 ..    Run docker-machine create with the digitalocean driver and pass your key to the --digitalocean-access-token flag, along with a name for the new cloud server.
 
-1. ``docker-machine create`` で ``digitalocean`` ドライバを指定します。また、 
-``--digital-cean-access-token`` フラグでトークンの指定と、新しいクラウド・サーバの名前も指定します。
+1. ``docker-machine create`` で ``digitalocean`` ドライバを指定します。また、
+``--digitalocean-access-token`` フラグでトークンの指定と、新しいクラウド・サーバの名前も指定します。
 
 ..    For this example, we’ll call our new Droplet “docker-sandbox”.
 
@@ -305,7 +305,7 @@ create コマンドのデフォルト・オプションを理解する
 
 .. For convenience, docker-machine will use sensible defaults for choosing settings such as the image that the server is based on, but you override the defaults using the respective flags (e.g. --digitalocean-image). This is useful if, for example, you want to create a cloud server with a lot of memory and CPUs (by default docker-machine creates a small server). For a full list of the flags/settings available and their defaults, see the output of docker-machine create -h at the command line. See also Driver options and operating system defaults and information about the create command in the Docker Machine documentation.
 
-利便性を高めるため、 ``docker-machine`` には各サーバを起動するために、イメージ名の指定など実用的なデフォルト・オプションを適用しています。しかし、オプションはそれぞれのフラグ（例： ``--digitalocean`` ）を指定して上書きできます。クラウドサーバに多くのメモリや CPU を使いたい時に便利です（デフォルトの ``docker-machine`` は小さなホストを作成します）。利用可能なフラグや設定の詳細に関しては、Docker Machne ドキュメントの  :doc:`/machine/drivers/os-base` や :doc:`/machine/reference/create` をご覧ください。
+利便性を高めるため、 ``docker-machine`` には各サーバを起動するために、イメージ名の指定など実用的なデフォルト・オプションを適用しています。しかし、オプションはそれぞれのフラグ（例： ``--digitalocean`` ）を指定して上書きできます。クラウドサーバに多くのメモリや CPU を使いたい時に便利です（デフォルトの ``docker-machine`` は小さなホストを作成します）。利用可能なフラグや設定の詳細に関しては、Docker Machine ドキュメントの  :doc:`/machine/drivers/os-base` や :doc:`/machine/reference/create` をご覧ください。
 
 .. Step 5. Use Machine to remove the Droplet
 

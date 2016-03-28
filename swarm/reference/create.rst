@@ -26,7 +26,7 @@ create - ディスカバリ・トークンの作成
 
 .. Later, when you use manage or join to create Swarm managers and nodes, you use the discovery token in the <discovery> argument (e.g., token://86222732d62b6868d441d430aee4f055). The discovery backend registers each new Swarm manager and node that uses the token as a member of your cluster.
 
-あとは Swarm マネージャやノード作成時に ``maanage`` あるいは ``join`` コマンドで、このディスカバリ・トークンを ``<discovery>`` の引数として使います（例： ``token://86222732d62b6868d441d430aee4f055`` ）。ディスカバリ・サービス・バックエンドを通して、Swarm マネージャはクラスタ上のノードを認識するために利用します。
+あとは Swarm マネージャやノード作成時に ``manage`` あるいは ``join`` コマンドで、このディスカバリ・トークンを ``<discovery>`` の引数として使います（例： ``token://86222732d62b6868d441d430aee4f055`` ）。ディスカバリ・サービス・バックエンドを通して、Swarm マネージャはクラスタ上のノードを認識するために利用します。
 
 .. Some documentation also refers to the discovery token as a cluster_id.
 

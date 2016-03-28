@@ -9,7 +9,7 @@
 
 .. scale
 
-.. _compse-scale:
+.. _compose-scale:
 
 =======================================
 scale

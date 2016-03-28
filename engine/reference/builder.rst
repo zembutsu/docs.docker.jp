@@ -1,6 +1,6 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/builder/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/biulder.md
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/builder.md
    doc version: 1.10
       https://github.com/docker/docker/commits/master/docs/reference/builder.md
 .. check date: 2016/02/15
@@ -51,7 +51,7 @@ Docker は ``Dockerfile`` から命令を読み込み、自動的にイメージ
 
 .. To use a file in the build context, the Dockerfile refers to the file specified in an instruction, for example, a COPY instruction. To increase the build’s performance, exclude files and directories by adding a .dockerignore file to the context directory. For information about how to create a .dockerignore file see the documentation on this page.
 
-コンテキスト（内容物の意味）の構築にあたり、``Dockefile`` を参照し、例えば、 ``COPY`` 命令などファイルで命令を指定するために使います。構築パフォーマンスの控除湯のため、 ``.dockerignore`` ファイルにファイルやディレクトリを追加し、コンテキスト・ディレクトリから除外できます。より詳しい情報は、 :ref:`.dockerignore ファイルの作成 <dockerignore-file>` をご覧ください。
+コンテキスト（内容物の意味）の構築にあたり、``Dockerfile`` を参照し、例えば、 ``COPY`` 命令などファイルで命令を指定するために使います。構築パフォーマンスの控除湯のため、 ``.dockerignore`` ファイルにファイルやディレクトリを追加し、コンテキスト・ディレクトリから除外できます。より詳しい情報は、 :ref:`.dockerignore ファイルの作成 <dockerignore-file>` をご覧ください。
 
 .. Traditionally, the Dockerfile is called Dockerfile and located in the root of the context. You use the -f flag with docker build to point to a Dockerfile anywhere in your file system.
 
@@ -306,7 +306,7 @@ README を含むファイル以外は、``README-secret.md`` も含め、残り�
 
 .. All of the README files are included. The middle line has no effect because !README*.md matches README-secret.md and comes last.
 
-README を含む全てのファイル除外します。真ん中の行 ``README-secrect.md`` は最終行の ``!README*.md`` に一致するため、何の影響もありません。
+README を含む全てのファイル除外します。真ん中の行 ``README-secret.md`` は最終行の ``!README*.md`` に一致するため、何の影響もありません。
 
 .. You can even use the .dockerignore file to exclude the Dockerfile and .dockerignore files. These files are still sent to the daemon because it needs them to do its job. But the ADD and COPY commands do not copy them to the image.
 
@@ -671,7 +671,7 @@ ENV
 
 .. note::
 
-   環境変数の一貫性は予期しない影響を与える場合があります。例えば、 ``ENV DEBIAN_FRONTEND noninteractive`` が設定されていると、Debian ベースのイメージで apt-get の利用者が混乱するかもしれません。１つのコマンドだけで値を設定するには、 ``RUN <key>=<valume> <コマンド>`` を使います。
+   環境変数の一貫性は予期しない影響を与える場合があります。例えば、 ``ENV DEBIAN_FRONTEND noninteractive`` が設定されていると、Debian ベースのイメージで apt-get の利用者が混乱するかもしれません。１つのコマンドだけで値を設定するには、 ``RUN <key>=<value> <コマンド>`` を使います。
 
 .. _add:
 

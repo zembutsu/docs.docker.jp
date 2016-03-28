@@ -54,7 +54,7 @@ Docker エンジンのインストール
 
 .. There are two ways to install Docker Engine. You can install with the yum package manager directly yourself. Or you can use curl with the get.docker.com site. This second method runs an installation script which installs via the yum package manager.
 
-Docker エンジンをインストールするには２つの方法があります。 ``yum`` パッケージ・マネージャを使い、直接自分でインストールできます。あるいは、 ``crul`` で ``get.docker.com`` を使う方法があります。２つめの方法はインストール用のスクリプトを実行し、 ``yum``  パッケージ・マネージャを通してセットアップします。
+Docker エンジンをインストールするには２つの方法があります。 ``yum`` パッケージ・マネージャを使い、直接自分でインストールできます。あるいは、 ``curl`` で ``get.docker.com`` を使う方法があります。２つめの方法はインストール用のスクリプトを実行し、 ``yum``  パッケージ・マネージャを通してセットアップします。
 
 .. Install with yum
 

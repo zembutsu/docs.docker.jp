@@ -66,7 +66,7 @@ Docker レジストリ の理解
 
 .. You can find out more about the various Docker commands dealing with images in the official Docker engine documentation.
 
-Dokcer がイメージをやりとりするコマンドの詳細については、 :doc:`公式の Docker engine ドキュメント </reference/commandline/cli>` をご覧ください。
+Docker がイメージをやりとりするコマンドの詳細については、 :doc:`公式の Docker engine ドキュメント </reference/commandline/cli>` をご覧ください。
 
 .. Use cases
 

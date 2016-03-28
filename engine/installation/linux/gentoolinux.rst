@@ -43,12 +43,12 @@ Gentoo Linux に Docker をインストールするには、２つの方法が�
 
 .. docker-overlay way
 
-docker-overay の方法
+docker-overlay の方法
 ====================
 
 .. If you’re looking for a -bin ebuild, a live ebuild, or a bleeding edge ebuild, use the provided overlay, docker-overlay which can be added using app-portage/layman. The most accurate and up-to-date documentation for properly installing and using the overlay can be found in the overlay.
 
-``-bin`` ebuild、live ebuild、bleeding edge ebuild を探している場合は、オーバレイとして `docker-overay <https://github.com/tianon/docker-overlay>`_  を提供しています。これは ``app-portage/layman`` を使えるようにしたものです。適切にインストールするための、最も正確かつ最新のドキュメントと、overlay の使い方は `overlay <https://github.com/tianon/docker-overlay/blob/master/README.md#using-this-overlay>`_ をご覧ください。
+``-bin`` ebuild、live ebuild、bleeding edge ebuild を探している場合は、オーバレイとして `docker-overlay <https://github.com/tianon/docker-overlay>`_  を提供しています。これは ``app-portage/layman`` を使えるようにしたものです。適切にインストールするための、最も正確かつ最新のドキュメントと、overlay の使い方は `overlay <https://github.com/tianon/docker-overlay/blob/master/README.md#using-this-overlay>`_ をご覧ください。
 
 .. If any issues arise from this ebuild or the resulting binary, including and especially missing kernel configuration flags or dependencies, open an issue on the docker-overlay repository or ping tianon directly in the #docker IRC channel on the Freenode network.
 

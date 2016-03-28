@@ -101,7 +101,7 @@ Docker は ``Dockerfile`` の命令を読み込み、自動的にイメージを
 
 .. Here’s an example from the buildpack-deps image:
 
-以下は ``buidpack-deps`` `イメージ <https://github.com/docker-library/buildpack-deps>`_ の記述例です。
+以下は ``buildpack-deps`` `イメージ <https://github.com/docker-library/buildpack-deps>`_ の記述例です。
 
 .. code-block:: bash
 
@@ -194,7 +194,7 @@ RUN
 
 .. Always combine RUN apt-get update with apt-get install in the same RUN statement, for example:
 
-``RUN apt-get updaate`` と ``apt-get install`` は常に同じ ``RUN`` 命令文で連結します。以下は実行例です。
+``RUN apt-get update`` と ``apt-get install`` は常に同じ ``RUN`` 命令文で連結します。以下は実行例です。
 
 .. code-block:: bash
 
@@ -571,7 +571,7 @@ ONBUILD
 
 .. An ONBUILD command executes after the current Dockerfile build completes. ONBUILD executes in any child image derived FROM the current image. Think of the ONBUILD command as an instruction the parent Dockerfile gives to the child Dockerfile.
 
-``ONBULID`` コマンドは ``Dockerfile`` による構築後に実行されます。 ``ONBUILD`` は ``FROM`` から現在に至るあらゆる子イメージで実行できます。 ``ONBUILD`` コマンドは親の ``Dockerfile`` が子 ``Dockefile``  を指定する命令としても考えられます。
+``ONBULID`` コマンドは ``Dockerfile`` による構築後に実行されます。 ``ONBUILD`` は ``FROM`` から現在に至るあらゆる子イメージで実行できます。 ``ONBUILD`` コマンドは親の ``Dockerfile`` が子 ``Dockerfile``  を指定する命令としても考えられます。
 
 .. A Docker build executes ONBUILD commands before any command in a child Dockerfile.
 
