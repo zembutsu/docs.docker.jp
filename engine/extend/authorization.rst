@@ -14,5 +14,15 @@
 認証プラグインの作成
 ==================================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
 
 (ToDo)
+
+.. seealso:: 
+
+   Create an authorization plugin
+      https://docs.docker.com/engine/extend/authorization/

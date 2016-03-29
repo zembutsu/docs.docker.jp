@@ -11,6 +11,12 @@
 Docker ネットワーク・プラグイン
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Docker network plugins enable Docker deployments to be extended to support a wide range of networking technologies, such as VXLAN, IPVLAN, MACVLAN or something completely different. Network driver plugins are supported via the LibNetwork project. Each plugin is implemented asa “remote driver” for LibNetwork, which shares plugin infrastructure with Docker. Effectively, network driver plugins are activated in the same way as other plugins, and use the same kind of protocol.
 
 Docker ネットワーク・プラグインは、Docker が広範囲のネットワーク技術のサポートによりデプロイできるように拡張されています。XVLAN、IPVLAN、MACVLAN 、あるいはこれらとも全く異なります。ネットワーク・ドライバ・プラグインは LibNetwork プロジェクトによってサポートされています。各ネットワーク・プラグインは LibNetwork の「リモート・ドライバ」であり、これは Docker とプラグイン基盤を共有するものです。効果的なのは、プラグイン基盤の共有によって、他のプラグインを同じように扱え、かつ同様のプロトコルを扱えることです。
@@ -83,3 +89,7 @@ Docker メンテナや他のユーザと対話するには、IRC チャンネル
 * :doc:`Docker ネットワーク機能の概要 </engine/userguide/networking/index>`
 * `LibNetwork <https://github.com/docker/libnetwork>`_ プロジェクト
 
+.. seealso:: 
+
+   Engine network driver plugins
+      https://docs.docker.com/engine/extend/plugins_network/

@@ -11,6 +11,12 @@
 Docker ボリューム・プラグインを書く
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Docker volume plugins enable Docker deployments to be integrated with external storage systems, such as Amazon EBS, and enable data volumes to persist beyond the lifetime of a single Docker host. See the plugin documentation for more information.
 
 Docker ボリューム・プラグインとは、Amazon EBS のような外部のストレージ・システムと統合した環境に Docker をデプロイできるようにします。そして、単一の Docker ホスト上で、データ・ボリュームを使う間はその一貫性をもたらします。詳しい情報は :doc:`プラグインのドキュメント <plugins>` をご覧ください。
@@ -36,11 +42,11 @@ Docker ボリューム・プラグインとは、Amazon EBS のような外部�
 
 .. By having the user specify a volumename, a plugin can associate the volume with an external volume beyond the lifetime of a single container or container host. This can be used, for example, to move a stateful container from one server to another.
 
-ユーザが ``volumename`` を指定すると、プラグインは１つのコンテナが稼働しつづける間、あるいはコンテナのホスト上における外部ボリュームをプラグインに関連づけます。これを使うと、たとえばステートフルなコンテナを、あるサーバから別のサーバに移せます。
+ユーザが ``volumename`` を指定すると、プラグインは１つのコンテナが稼働しつづける間、あるいはコンテナのホスト上における外部ボリュームをプラグインに関連づけます。これを使えば、たとえばステートフルなコンテナを、あるサーバから別のサーバに移せます。
 
 .. By specifying a volumedriver in conjunction with a volumename, users can use plugins such as Flocker to manage volumes external to a single host, such as those on EBS.
 
-``volumename`` と ``volumedriver`` を同時に使うよう指定すると、ユーザは `Flocker <https://clusterhq.com/docker-plugin/>`_ のような外部プラグインで単一ホスト上のボリュームや EBS のようなボリュームを管理します。
+``volumename`` と ``volumedriver`` を同時に使うよう指定したら、ユーザは `Flocker <https://clusterhq.com/docker-plugin/>`_ のような外部プラグインで単一ホスト上のボリュームや EBS のようなボリュームを管理します。
 
 .. Create a VolumeDriver
 
@@ -145,7 +151,7 @@ Docker デーモンはユーザのコンテナが指定したパスに対し、�
 
 .. Docker requires the plugin to provide a volume, given a user specified volume name. This is called once per container start. If the same volume_name is requested more than once, the plugin may need to keep track of each new mount request and provision at the first mount request and deprovision at the last corresponding unmount request.
 
-Docker でプラグインがボリュームを必要とする場合は、ユーザがボリューム名を指定する必要があります。これは、コンテナが開始される度に必要です。既に作成されているボリューム名で呼び出されると、プラグインは既にマウントされている箇所に対して、新しいマウント・リクエストとプロビジョンが行われると、アンマウント・リクエストが呼び出されれでプロビジョニングが取り消されるまで追跡します。
+Docker でプラグインがボリュームを必要とする場合は、ユーザがボリューム名を指定する必要があります。これは、コンテナが開始される度に必要です。既に作成されているボリューム名で呼び出されると、プラグインは既にマウントされている箇所に対して、新しいマウント・リクエストとプロビジョンが行われると、アンマウント・リクエストが呼び出され、プロビジョニングが取り消されるまで追跡します。
 
 .. Response:
 
@@ -160,7 +166,7 @@ Docker でプラグインがボリュームを必要とする場合は、ユー�
 
 .. Respond with the path on the host filesystem where the volume has been made available, and/or a string error if an error occurred.
 
-ボリュームが利用可能になったり、あるいはエラーが発生した場合には、ホスト・ファイルシステム上のパスを返します。
+ボリュームが利用可能になったり、あるいはエラーが発生したりする場合には、ホスト・ファイルシステム上のパスを返します。
 
 /VolumeDriver.Path
 --------------------
@@ -226,3 +232,8 @@ Docker ホストに指定した名前のボリュームを使わないことを�
 .. Respond with a string error if an error occurred.
 
 エラーが発生したら、エラー文字列を返します。
+
+.. seealso:: 
+
+   Write a volume plugin
+      https://docs.docker.com/engine/extend/plugins_volume/

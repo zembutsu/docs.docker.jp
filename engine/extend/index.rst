@@ -14,6 +14,12 @@
 Docker の拡張
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Currently, you can extend Docker by adding a plugin. This section contains the following topics:
 
 現在、プラグインを追加することにより Docker を拡張できます。このセクションは以下の話題を扱います。
@@ -24,4 +30,8 @@ Docker の拡張
 * :doc:`authorization`
 * :doc:`plugin_api`
 
+.. seealso:: 
+
+   Extending Docker Engine
+      https://docs.docker.com/engine/extend/
 

@@ -11,6 +11,12 @@
 Docker プラグインの理解
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. You can extend the capabilities of the Docker Engine by loading third-party plugins. This page explains the types of plugins and provides links to several volume and network plugins for Docker.
 
 サードパーティー製のプラグインを読み込むことで、Docker エンジンの能力を拡張できます。このページではプラグインの種類についてと、いくつかの Docker 向けボリュームとネットワークのプラグインのリンクを紹介します。
@@ -24,7 +30,7 @@ Docker プラグインの理解
 
 .. Plugins extend Docker’s functionality. They come in specific types. For example, a volume plugin might enable Docker volumes to persist across multiple Docker hosts and a network plugin might provide network plumbing.
 
-プラグインは Docker の機能性を拡張します。いくつかの種類があります。たとえば、 :doc:`volume plugin <plugins_volume>` は複数のホストにまたがり存在する Docker ボリュームを有功にし、 :doc:`network plugin <plugins_network>` はネットワークの管を提供するでしょう。
+プラグインは Docker の機能性を拡張します。拡張機能には複数の種類があります。たとえば、 :doc:`volume plugin <plugins_volume>` は複数のホストを横断して存在する Docker ボリュームを有功にします。 :doc:`network plugin <plugins_network>` はネットワークの管（plumbing）を提供するでしょう。
 
 .. Currently Docker supports volume and network driver plugins. In the future it will support additional plugin types.
 
@@ -54,7 +60,7 @@ Docker プラグインの理解
 
 ..    The Blockbridge plugin is a volume plugin that provides access to an extensible set of container-based persistent storage options. It supports single and multi-host Docker environments with features that include tenant isolation, automated provisioning, encryption, secure deletion, snapshots and QoS.
 
-* `Blockbridge plugin <https://github.com/blockbridge/blockbridge-docker-volume>`_ はボリューム・プラグインです。コンテナをベースとした持続型のストレージ向けオプション、その拡張セットへのアクセスをを提供します。１つまたは複数の Docker 環境で、テナントの分離、自動プロビジョニング、暗号化、安全な削除、スナップショット、QoS といった機能を提供します。
+* `Blockbridge plugin <https://github.com/blockbridge/blockbridge-docker-volume>`_ はボリューム・プラグインです。コンテナをベースとした持続型のストレージ向けオプション、その拡張セットへのアクセスを提供します。１つまたは複数の Docker 環境で、テナントの分離、自動プロビジョニング、暗号化、安全な削除、スナップショット、QoS といった機能を提供します。
 
 ..    The Convoy plugin is a volume plugin for a variety of storage back-ends including device mapper and NFS. It’s a simple standalone executable written in Go and provides the framework to support vendor-specific extensions such as snapshots, backups and restore.
 
@@ -62,11 +68,11 @@ Docker プラグインの理解
 
 ..    The Flocker plugin is a volume plugin which provides multi-host portable volumes for Docker, enabling you to run databases and other stateful containers and move them around across a cluster of machines.
 
-* `Flocker plugin <https://clusterhq.com/docker-plugin/>`_ は Docker 対応の複数ホストで、ボリュームをポータブルに持ち運ぶためのプラグインです。これにより、データベースや他のステートルフなコンテナを、クラスタ上のマシンにまたがって実行できるようにします。
+* `Flocker plugin <https://clusterhq.com/docker-plugin/>`_ は Docker 対応の複数ホストで、ボリュームをポータブルに持ち運ぶためのプラグインです。これにより、データベースや他のステートフル（状態を持たない）なコンテナを、クラスタ上のマシンにまたがって実行できるようにします。
 
 ..    The GlusterFS plugin is another volume plugin that provides multi-host volumes management for Docker using GlusterFS.
 
-* `GlusterFS plugin <https://github.com/calavera/docker-volume-glusterfs>`_ は、Docker が GlusterFS を使って複数ホストのボリュームを管理できるようにするプラグインです。
+* `GlusterFS plugin <https://github.com/calavera/docker-volume-glusterfs>`_ は、Docker が GlusterFS を使って複数ホストのボリュームを管理可能にするプラグインです。
 
 ..    The Keywhiz plugin is a plugin that provides credentials and secret management using Keywhiz as a central repository.
 
@@ -78,7 +84,7 @@ Docker プラグインの理解
 
 ..    The OpenStorage Plugin is a cluster aware volume plugin that provides volume management for file and block storage solutions. It implements a vendor neutral specification for implementing extensions such as CoS, encryption, and snapshots. It has example drivers based on FUSE, NFS, NBD and EBS to name a few.
 
-* `OpenStorage Plugin <https://github.com/libopenstorage/openstorage>`_ はクラスタ検出ボリューム・プラグインであり、ファイルやブロック・ストレージにおけるボリューム管理ソリューションを提供します。扱えるのは、ベンダー中立の拡張機能であり、たとえば CoS、暗号化、スナップショットです。サンプル・ドライバがベースにしているのは、FUSE、NFS、NBD、EBS などです。
+* `OpenStorage Plugin <https://github.com/libopenstorage/openstorage>`_ はクラスタ検出ボリューム・プラグインであり、ファイルやブロック・ストレージにおけるボリューム管理ソリューションを提供します。扱えるのは、ベンダー中立の拡張機能です。たとえば CoS、暗号化、スナップショットです。サンプル・ドライバがベースにしているのは、FUSE、NFS、NBD、EBS などです。
 
 ..    The Pachyderm PFS plugin is a volume plugin written in Go that provides functionality to mount Pachyderm File System (PFS) repositories at specific commits as volumes within Docker containers.
 
@@ -109,7 +115,7 @@ Docker プラグインの理解
 
 .. If you are having problems with Docker after loading a plugin, ask the authors of the plugin for help. The Docker team may not be able to assist you.
 
-プラグインを読み込んだ後で Docker に問題が起こったら、プラグインの作者に助けを求めてください。Docker チームはあなたを手助けできません。
+プラグインを読み込んだ後で Docker に問題が起こったら、プラグインの作者に助けを求めてください。Docker チームはあなたを助けられません（訳者注：Docker コミュニティ外のツールのため）。
 
 .. Writing a plugin
 
@@ -120,6 +126,10 @@ Docker プラグインの理解
 
 .. If you are interested in writing a plugin for Docker, or seeing how they work under the hood, see the docker plugins reference.
 
-Docker プラグインを書くことに興味があれば、あるいは、水面下でどのような処理がされているか興味があれば、 `docker プラグイン・リファレンス <plugin_api>`_ をご覧ください。
+Docker プラグインを書くことに興味があれば、あるいは、水面下でどのような処理がされているかに興味があれば、 `docker プラグイン・リファレンス <plugin_api>`_ をご覧ください。
 
+.. seealso:: 
+
+   Understand Engine plugins
+      https://docs.docker.com/engine/extend/plugins/
 
