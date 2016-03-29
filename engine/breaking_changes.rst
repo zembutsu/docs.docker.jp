@@ -11,9 +11,15 @@
 破壊的変更と非互換性
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Every Engine release strives to be backward compatible with its predecessors. In all cases, the policy is that feature removal is communicated two releases in advance and documented as part of the deprecated features page.
 
-各 Engine をリリースする度に、前のバージョンとの下位互換性を持つように努めています。全てのケースにおいて、機能を廃止するのは２つ先のバージョンというポリシーを持っており、 :doc:`廃止機能 <deprecated>` のページでドキュメント化します。
+各 Engine をリリースする度に、前のバージョンとの下位互換性を持つように努めています。全てのケースにおいて、機能を廃止するのは２つ先のバージョンというポリシーを持っており、 :doc:`廃止機能 <deprecated>` のページでドキュメント化しています。
 
 .. Unfortunately, Docker is a fast moving project, and newly introduced features may sometime introduce breaking changes and/or incompatibilities. This page documents these by Engine version.
 
@@ -57,3 +63,8 @@ Docker Content Trust
 .. Engine older than the current 1.10 cannot pull images from repositories that have enabled key delegation. Key delegation is a feature which requires a manual action to enable.
 
 現在の Engine 1.10 よりも古いバージョンでは、key delegation（鍵の権限委譲）のためレポジトリからイメージを取得（pull）できません。key delegation 機能は手動で有効化する必要があります。
+
+.. seealso:: 
+
+   Breaking changes and incompatibilities
+      https://docs.docker.com/engine/breaking_changes/

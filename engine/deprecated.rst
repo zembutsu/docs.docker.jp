@@ -7,13 +7,6 @@
 .. Commits on Mar 18, 2016 
 .. -----------------------------------------------------------------------------
 
-.. sidebar:: 目次
-
-   .. contents:: 
-       :depth: 2
-       :local:
-
-
 .. Deprecated Features
 
 .. _deprecated-features:
@@ -21,6 +14,12 @@
 =======================================
 廃止機能
 =======================================
+
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 2
+       :local:
 
 .. The following list of features are deprecated.
 

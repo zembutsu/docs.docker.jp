@@ -11,6 +11,12 @@
 Engine 1.10 への移行
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Starting from version 1.10 of Docker Engine, we completely change the way image data is addressed on disk. Previously, every image and layer used a randomly assigned UUID. In 1.10 we implemented a content addressable method using an ID, based on a secure hash of the image and layer data.
 
 Docker Engine バージョン 1.10 以降は、ディスク上にイメージ・データを割り当てる方式が完全に変わります。従来は、各イメージとレイヤに対してランダムな UUID を割り当てていました。バージョン 1.10 からは、イメージとレイヤ・データの安全なハッシュ値を元にした ID を使い、中身を指定できる手法を実装しました。
@@ -42,7 +48,7 @@ Docker Engine バージョン 1.10 以降は、ディスク上にイメージ・
 
 .. All your current images, tags and containers are automatically migrated to the new foundation the first time you start Docker Engine 1.10. Before loading your container, the daemon will calculate all needed checksums for your current data, and after it has completed, all your images and tags will have brand new secure IDs.
 
-Docker Engine 1.10 の初回起動時は、現時点における全てのイメージ、タグ、コンテナが自動的に新しい基盤上へ移行されます。コンテナを読み込む前に、デーモンは現時点のデータに対するチェックサムを全て計算する必要があります。計算が終わったら、全てのイメージとタグは新しい安全な ID に更新されます。
+Docker Engine 1.10 の初回起動時は、現時点における全てのイメージ、タグ、コンテナが自動的に新しい基盤上に移行します。そのため、コンテナを読み込む前に、デーモンは現時点のデータに対するチェックサムを全て計算する必要があります。計算が終わったら、全てのイメージとタグは新しい安全な ID に更新されます。
 
 .. While this is simple operation, calculating SHA256 checksums for your files can take time if you have lots of image data. On average you should assume that migrator can process data at a speed of 100MB/s. During this time your Docker daemon won’t be ready to respond to requests.
 
@@ -78,3 +84,8 @@ Docker Engine 1.10 の初回起動時は、現時点における全てのイメ�
 .. If you use the devicemapper storage driver, you also need to pass the flag --privileged to give the tool access to your storage devices.
 
 devicemapper ストレージ・ドライバを使っている場合は、 ``--privileged`` フラグを指定することで、ツールがストレージ・デバイスにアクセス可能となります。
+
+.. seealso:: 
+
+   Migrate to Engine 1.10
+      https://docs.docker.com/engine/migration/
