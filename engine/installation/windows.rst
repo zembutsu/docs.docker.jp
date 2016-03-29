@@ -14,6 +14,12 @@
 Windows
 ==============================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 ..    Note: This release of Docker deprecates the Boot2Docker command line in favor of Docker Machine. Use the Docker Toolbox to install Docker Machine as well as the other Docker tools.
 
 .. note::
@@ -632,3 +638,7 @@ Docker Toolbox は Windows の標準手順でプログラムのダウンロー�
 
 :doc:`Docker ユーザガイド </engine/userguide/index>` を読み続けられます。 Kitematic GUI の使用に興味があれば、 :doc:`Kitematic ユーザガイド </kitematic/userguide/index>` をご覧ください。
 
+.. seealso:: 
+
+   Installation on Windows
+      https://docs.docker.com/engine/installation/windows/
