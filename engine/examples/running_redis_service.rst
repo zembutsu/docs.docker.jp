@@ -14,6 +14,12 @@
 Redis サービスの Docker 化
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Very simple, no frills, Redis service attached to a web application using a link.
 
 非常にシンプルで飾り気のない Redis サービスを、リンク機能を使ってウェブ・アプリケーションにアタッチします。
@@ -123,3 +129,8 @@ Redis 用の Docker コンテナを作成
 .. We could easily use this or other environment variables in our web application to make a connection to our redis container.
 
 ウェブ・アプリケーションが ``redis`` コンテナに接続するために、この環境変数や他の環境変数を利用できます。
+
+.. seealso:: 
+
+   Dockerizing a Redis service
+      https://docs.docker.com/engine/examples/running_redis_service/

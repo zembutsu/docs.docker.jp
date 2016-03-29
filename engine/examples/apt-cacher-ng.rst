@@ -14,6 +14,12 @@
 apt-cacher-ng サービスの Docker 化
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 ..     Note: - If you don’t like sudo then see Giving non-root access. - If you’re using OS X or docker via TCP then you shouldn’t use sudo.
 
    ``sudo`` が好きでなければ、 :ref:`giving-non-root-access` をご覧ください。OS X を使っている場合や docker を TCP 経由で使っている場合は、 sudo を使う必要がありません。
@@ -174,4 +180,8 @@ apt-cacher-ng はレポジトリを管理するのと同じツールを持って
    $ docker rm test_apt_cacher_ng
    $ docker rmi eg_apt_cacher_ng
 
+.. seealso:: 
+
+   Dockerizing an apt-cacher-ng service
+      https://docs.docker.com/engine/examples/apt-cacher-ng/
 

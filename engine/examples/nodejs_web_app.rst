@@ -14,13 +14,19 @@
 Node.js ウェブ・アプリの Docker 化
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 ..    Note: - If you don’t like sudo then see Giving non-root access
 
    ``sudo`` が好きでなければ、 :ref:`giving-non-root-access` をご覧ください。
 
 .. The goal of this example is to show you how you can build your own Docker images from a parent image using a Dockerfile . We will do that by making a simple Node.js hello world web application running on CentOS. You can get the full source code athttps://github.com/enokd/docker-node-hello/.
 
-この例のゴールは、 ``Dockerfile`` を使い、親イメージから自分の Docker イメージを構築できるようにする方法をみていきます。ここでは CentOS 上で簡単な Node.js の hello world ウェブ・アプリケーションを実行します。ソースコード全体は https://github.com/enokd/docker-node-hello/ から入手できます。
+この例のゴールは、 ``Dockerfile`` を使い、親イメージから自分の Docker イメージを構築できるようにする方法を理解します。ここでは CentOS 上で簡単な Node.js の hello world ウェブ・アプリケーションを実行します。ソースコード全体は https://github.com/enokd/docker-node-hello/ から入手できます。
 
 .. Create Node.js app
 
@@ -68,7 +74,7 @@ Node.js アプリの作成
 
 In the next steps, we’ll look at how you can run this app inside a CentOS container using Docker. First, you’ll need to build a Docker image of your app.
 
-次のステップでは、Docker が CentOS コンテナの中で、どのようにこのアプリを実行するかをみていきます。まず、自分のアプリを動かす Docker イメージを作成します。
+次のステップでは、Docker が CentOS コンテナの中で、どのようにこのアプリを実行するかを理解していきます。まず、自分のアプリを動かす Docker イメージを作成します。
 
 .. Creating a Dockerfile
 
@@ -99,7 +105,7 @@ Dockerfile の作成
 
 .. Since we’re building a Node.js app, you’ll have to install Node.js as well as npm on your CentOS image. Node.js is required to run your app and npm is required to install your app’s dependencies defined in package.json. To install the right package for CentOS, we’ll use the instructions from the Node.js wiki:
 
-Node.js アプリを作りたいので、CentOS イメージ上に Node.js と npm のインストールをします。アプリケーションの実行に Node.js が必要です。また、 ``package.json`` で定義したアプリケーションをインストールするために npm も必要です。CentOS 用の適切なパッケージをインストールするため、 `Node.js wiki <https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager#rhelcentosscientific-linux-6>`_ の指示に従って作業します。
+Node.js アプリを作りたいため、CentOS イメージ上に Node.js と npm のインストールをします。アプリケーションの実行に Node.js が必要です。また、 ``package.json`` で定義したアプリケーションをインストールするために npm も必要です。CentOS 用の適切なパッケージをインストールするため、 `Node.js wiki <https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager#rhelcentosscientific-linux-6>`_ の指示に従って作業します。
 
 .. code-block:: bash
 
@@ -273,3 +279,8 @@ OS X 上で Docker Machine を使っているのであれば、ポートが実�
 .. We hope this tutorial helped you get up and running with Node.js and CentOS on Docker. You can get the full source code at https://github.com/enokd/docker-node-hello/.
 
 私たちはこのチュートリアルが Docker 上で Node.js と CentOS を動かすための手助けになればと望んでいます。全てのソースコードは https://github.com/enokd/docker-node-hello/ にあります。
+
+.. seealso:: 
+
+   Dockerizing a Node.js web app
+      https://docs.docker.com/engine/examples/nodejs_web_app/

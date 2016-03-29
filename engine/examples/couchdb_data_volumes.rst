@@ -14,6 +14,12 @@
 CouchDB サービスの Docker 化
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 ..    Note: - If you don’t like sudo then see Giving non-root access
 
    ``sudo`` が好きでなければ、 :ref:`giving-non-root-access` をご覧ください。
@@ -85,3 +91,8 @@ Docker ホストは到達可能な ``localhost`` を想定しています。も�
 .. Congratulations, you are now running two Couchdb containers, completely isolated from each other except for their data.
 
 おめでとうございます。２つの Couchdb コンテナを実行し、お互いのデータを完全に隔離しました。
+
+.. seealso:: 
+
+   Dockerizing a CouchDB service
+      https://docs.docker.com/engine/examples/couchdb_data_volumes/

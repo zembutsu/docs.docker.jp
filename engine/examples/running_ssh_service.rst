@@ -11,8 +11,14 @@
 .. _dockerizing-a-ssh-service
 
 =======================================
-SSH デーモンの Docker 化
+SSH デーモン用サービスの Docker 化
 =======================================
+
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
 
 .. Build an eg_sshd image
 
@@ -65,7 +71,7 @@ SSH デーモンの Docker 化
 
 .. Then run it. You can then use docker port to find out what host port the container’s port 22 is mapped to:
 
-次は実行します。 ``docker port`` を使うと、コンテナのポート 22 がホスト側のどのポートに割り当て（マップ）されているか確認できます。
+次は実行します。 ``docker port`` を使い、コンテナのポート 22 がホスト側のどのポートに割り当て（マップ）されているか確認できます。
 
 .. code-block:: bash
 
@@ -119,4 +125,8 @@ SSH デーモンの Docker 化
    $ docker rm test_sshd
    $ docker rmi eg_sshd
 
+.. seealso:: 
+
+   Dockerizing an SSH daemon service
+      https://docs.docker.com/engine/examples/running_ssh_service/
 

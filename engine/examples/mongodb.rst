@@ -14,19 +14,25 @@
 MongoDB の Docker 化
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. In this example, we are going to learn how to build a Docker image with MongoDB pre-installed. We’ll also see how to push that image to the Docker Hub registry and share it with others!
 
-この例では、MongoDB がインストール済みの Docker イメージを、どのようにして構築するか学びます。また、イメージを `Docker Hub レジストリ <https://hub.docker.com/>`_ に ``push`` して他人と共有する方法も分かるようになります。
+この例では、MongoDB がインストール済みの Docker イメージを、どのようにして構築するかを学びます。また、イメージを `Docker Hub レジストリ <https://hub.docker.com/>`_ に ``push`` して他人と共有する方法も理解します。
 
 ..    Note: This guide will show the mechanics of building a MongoDB container, but you will probably want to use the official image on Docker Hub
 
 .. note::
 
-   このガイドでは MongoDB の構築方法を紹介しますが、 `Docker Hub <https://registry.hub.docker.com/_/mongo/>`__ の公式イメージを使っても構いません。
+   このガイドでは MongoDB コンテナを構築する仕組みを紹介しますが、 `Docker Hub <https://registry.hub.docker.com/_/mongo/>`__ の公式イメージを使っても構いません。
 
 .. Using Docker and containers for deploying MongoDB instances will bring several benefits, such as:
 
-Docker を使い `MongoDB <https://www.mongodb.org/>`_ インスタンスをデプロイすると、次のようなメリットがあります。
+Docker を使い `MongoDB <https://www.mongodb.org/>`_ インスタンスをデプロイすると、次のメリットがあります。
 
 ..    Easy to maintain, highly configurable MongoDB instances;
     Ready to run and start working within milliseconds;
@@ -52,7 +58,7 @@ MongoDB 用の Dockerfile を作成
 
 .. Let’s create our Dockerfile and start building it:
 
-構築するための ``Dockerfile`` を作成しましょう。
+構築用の ``Dockerfile`` を作成しましょう。
 
 .. code-block:: bash
 
@@ -72,7 +78,7 @@ MongoDB 用の Dockerfile を作成
 
 .. tip::
 
-   ``Dockerfile`` は柔軟性がありますが、特定の書式に従う必要があります。まず最初に必要になるのは、これから作成する *MongoDB を Docker 化* したイメージの親にあたるイメージの名前の定義です。
+   ``Dockerfile`` は柔軟性がありますが、特定の書式に従う必要があります。最初に必要になるのは、これから作成する *MongoDB を Docker 化* したイメージの親にあたるイメージ名の定義です。
 
 .. We will build our image using the latest version of Ubuntu from the Docker Hub Ubuntu repository.
 
@@ -263,3 +269,7 @@ MongoDB イメージを使う
 * :doc:`/engine/admin/ambassador_pattern_linking`
 * :doc:`/docker-hub/builds`
 
+.. seealso:: 
+
+   Dockerizing MongoDB Introduction
+      https://docs.docker.com/engine/examples/mongodb/

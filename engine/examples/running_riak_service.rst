@@ -10,6 +10,12 @@
 
 .. _dockerizing-a-riak-service
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 =======================================
 Riak の Docker 化
 =======================================
@@ -162,3 +168,8 @@ Riak 用の Docker イメージを構築
 .. Riak is a distributed database. Many production deployments consist of at least five nodes. See the docker-riak project details on how to deploy a Riak cluster using Docker and Pipework.
 
 Riak は分散データベースです。多くのプロダクションへのデプロイには、 `少なくとも５ノード <http://basho.com/why-your-riak-cluster-should-have-at-least-five-nodes/>`_ が必要と考えられています。 `docker-riak <https://github.com/hectcastro/docker-riak>`_ プロジェクトに、Docker と Pipework を使った Riak クラスタのデプロイ方法の詳細があります。
+
+.. seealso:: 
+
+   Dockerizing a Riak service
+      https://docs.docker.com/engine/examples/running_riak_service/
