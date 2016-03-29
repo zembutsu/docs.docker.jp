@@ -136,7 +136,7 @@ Compose は２つのファイルを共有方法をサポートしています。
 
 .. This deploys all three services using the configuration in docker-compose.yml and docker-compose.prod.yml (but not the dev configuration in docker-compose.override.yml).
 
-３つの全サービスがデプロイに使う設定が `docker-compose.yml` と `docker-compose.prod.yml` に含まれています（ `docker-compose.override.yaml` に含まれる開発環境はありません）。
+３つの全サービスがデプロイに使う設定が `docker-compose.yml` と `docker-compose.prod.yml` に含まれています（ `docker-compose.override.yml` に含まれる開発環境はありません）。
 
 .. See production for more information about Compose in production.
 
@@ -217,7 +217,7 @@ extends 設定の理解
 
 .. This instructs Compose to re-use the configuration for the webapp service defined in the common-services.yml file. Suppose that common-services.yml looks like this:
 
-これは ``common-services.yml`` ファイルで定義した ``webapp`` サービスの設定を、Compose に再利用するよう命令しています。ここでの ``common-services.yaml`` は、次のようなものと仮定します。
+これは ``common-services.yml`` ファイルで定義した ``webapp`` サービスの設定を、Compose に再利用するよう命令しています。ここでの ``common-services.yml`` は、次のようなものと仮定します。
 
 .. code-block:: yaml
 
@@ -230,7 +230,7 @@ extends 設定の理解
 
 .. In this case, you’ll get exactly the same result as if you wrote docker-compose.yml with the same build, ports and volumes configuration values defined directly under web.
 
-この例のように、同様の ``docker-compose.yaml`` の記述を行えば、``web`` サービスに対する ``build`` 、 ``ports`` 、 ``volumes`` 設定が常に同じになります。
+この例のように、同様の ``docker-compose.yml`` の記述を行えば、``web`` サービスに対する ``build`` 、 ``ports`` 、 ``volumes`` 設定が常に同じになります。
 
 .. You can go further and define (or re-define) configuration locally in docker-compose.yml:
 
