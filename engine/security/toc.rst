@@ -9,11 +9,11 @@
 .. _engine-security-toc:
 
 ========================================
-Engine を安全に
+安全な Engine
 ========================================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
 
    index.rst
    security.rst

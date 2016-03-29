@@ -14,9 +14,15 @@
 Docker デーモンのソケットを守る
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. By default, Docker runs via a non-networked Unix socket. It can also optionally communicate using a HTTP socket.
 
-デフォルトでは、Docker はネットワークを通さない Unix ソケットで操作します。オプションで HTTP ソケットを使った通信も可能です。
+デフォルトでは、ネットワークを通さない Unix ソケットで Docker を操作します。オプションで HTTP ソケットを使った通信も可能です。
 
 .. If you need Docker to be reachable via the network in a safe manner, you can enable TLS by specifying the tlsverify flag and pointing Docker’s tlscacert flag to a trusted CA certificate.
 
@@ -104,7 +110,7 @@ OpenSL で CA （サーバとクライアントの鍵）を作成
 
 .. Since TLS connections can be made via IP address as well as DNS name, they need to be specified when creating the certificate. For example, to allow connections using 10.10.10.20 and 127.0.0.1:
 
-TLS 接続は DNS 名と同様に、IP アドレスでも通信可能にします。その場合は、証明書に情報を追加する必要があります。例えば、 ``10.10.10.20`` と ``127.0.0.1`` を使う場合は次のようにします。
+TLS 接続は DNS 名と同様に、IP アドレスでも通信可能にできます。その場合は、証明書に情報を追加する必要があります。例えば、 ``10.10.10.20`` と ``127.0.0.1`` を使う場合は次のようにします。
 
 .. code-block:: bash
 
@@ -132,7 +138,7 @@ TLS 接続は DNS 名と同様に、IP アドレスでも通信可能にしま�
 
 .. To make the key suitable for client authentication, create an extensions config file:
 
-クライアント認証用の鍵を実装にするには、追加設定ファイルを作成します。
+クライアント認証用の鍵を実装するには、追加設定ファイルを作成します。
 
 .. code-block:: bash
 
@@ -165,7 +171,7 @@ TLS 接続は DNS 名と同様に、IP アドレスでも通信可能にしま�
 
 ..    In order to protect your keys from accidental damage, you will want to remove their write permissions. To make them only readable by you, change file modes as follows:
 
-アクシデントによる影響から自分の鍵を守るため、書き込みパーミッションを削除します。自分だけしか読み込めないようにするには、ファイルモードを次のように変更します。
+何らかのアクシデントにから自分の鍵を守るため、書き込みパーミッションを削除します。自分だけしか読み込めないようにするには、ファイルモードを次のように変更します。
 
 .. code-block:: bash
 
@@ -307,3 +313,8 @@ Docker クライアントの接続をデフォルトで安全にしたい場合�
 
 * :doc:`certificates`
 * :doc:`trust/indexl`
+
+.. seealso:: 
+
+   Protect the Docker daemon socket
+      https://docs.docker.com/engine/security/https/
