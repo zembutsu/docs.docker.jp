@@ -12,6 +12,12 @@
 ロギング・ドライバの設定
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. The container can have a different logging driver than the Docker daemon. Use the --log-driver=VALUE with the docker run command to configure the container’s logging driver. The following options are supported:
 
 コンテナには、 Docker デーモンよりも多くの異なるロギング（ログ保存）ドライバがあります。ロギング・ドライバを指定するには、 ``docker run``  コマンドで ``--log-driver=VALUE`` を使います。以下のオプションをサポートしています。
@@ -260,4 +266,8 @@ Amazon CloudWatch ロギングドライバは、以下のオプションをサ�
 
 このロギング・ドライバの動作に関する詳細情報は :doc:`awslogs ロギング・ドライバ <awslogs>` をご覧ください。
 
+.. seealso:: 
+
+   Configuring Logging Drivers
+      https://docs.docker.com/engine/admin/logging/overview/
 

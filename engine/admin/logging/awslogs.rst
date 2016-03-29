@@ -12,6 +12,12 @@
 Amazon CloudWatch Logs ロギング・ドライバ
 =========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. The awslogs logging driver sends container logs to Amazon CloudWatch Logs. Log entries can be retrieved through the AWS Management Console or the AWS SDKs and Command Line Tools.
 
 ``awslogs`` ロギングドライバは、コンテナのログを `Amazon CloudWatch ログ <https://aws.amazon.com/cloudwatch/details/#log-monitoring>`_ に送信します。ログのエントリは、 `AWS マネジメント・コンソール <https://console.aws.amazon.com/cloudwatch/home#logs:>`_ や `AWS SDK やコマンドライン・ツール <http://docs.aws.amazon.com/cli/latest/reference/logs/index.html>`_ を通して確認できます。
@@ -119,4 +125,10 @@ Docker デーモンが ``awslogs`` ロギング・ドライバを使う時は、
        }
      ]
    }
-   
+
+
+.. seealso:: 
+
+   Amazon CloudWatch Logs logging driver
+      https://docs.docker.com/engine/admin/logging/awslogs/
+

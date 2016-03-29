@@ -12,6 +12,12 @@
 Fluentd ロギング・ドライバ
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. The fluentd logging driver sends container logs to the Fluentd collector as structured log data. Then, users can use any of the various output plugins of Fluentd to write these logs to various destinations.
 
 ``fluentd`` ロギング・ドライバは、コンテナのログを `Fluentd <http://www.fluentd.org/>`_ コレクタに構造化したログ・データとして送信します。それから、ユーザは `Fluentd の様々な出力プラグイン <http://www.fluentd.org/plugins>`_ を使い、ログを様々な送信先に送れます。
@@ -26,7 +32,7 @@ Fluentd ロギング・ドライバ
 .. source 	stdout or stderr
 
 .. list-table::
-   :headers-rows: 1
+   :header-rows: 1
    
    * - フィールド
      - 説明
@@ -181,5 +187,8 @@ Docker と Fluentd デーモンの管理
 
    $ docker run --log-driver=fluentd your/application
 
+.. seealso:: 
 
+   Fluentd logging driver
+      https://docs.docker.com/engine/admin/logging/fluentd/
 

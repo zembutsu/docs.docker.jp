@@ -14,6 +14,12 @@
 Splunk ロギング・ドライバ
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. The splunk logging driver sends container logs to HTTP Event Collector in Splunk Enterprise and Splunk Cloud.
 
 ``splunk`` ロギング・ドライバは、コンテナのログを Splunk Enterprise もしくは Splunk Cloud の `HTTP Event Collector <http://dev.splunk.com/view/event-collector/SP-CAAAE6M>`_ に送ります。
@@ -111,3 +117,8 @@ Splunnk ロギング・ドライバでは、``--log-opt 名前=値`` フラグ�
        --env "TEST=false"
        --label location=west
        your/application
+
+.. seealso:: 
+
+   Splunk logging driver
+      https://docs.docker.com/engine/admin/logging/splunk/

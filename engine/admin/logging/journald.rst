@@ -12,6 +12,12 @@
 Journald ロギング・ドライバ
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. The journald logging driver sends container logs to the systemd journal. Log entries can be retrieved using the journalctl command, through use of the journal API, or using the docker logs command.
 
 ``journald`` ロギング・ドライバは、コンテナログを `systemd journal <http://www.freedesktop.org/software/systemd/man/systemd-journald.service.html>`_ に送信します。ログエントリは、 ``journalctl`` コマンドを使ってログエントリを確認できます。使うには journal API か ``docker logs`` コマンドを通します。
@@ -145,4 +151,8 @@ journal API でログメッセージを表示
    for msg in reader:
      print '{CONTAINER_ID_FULL}: {MESSAGE}'.format(**msg)
 
+.. seealso:: 
+
+   Journald logging driver
+      https://docs.docker.com/engine/admin/logging/journald/
 

@@ -8,6 +8,12 @@
 
 .. Log Tags
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 =======================================
 ログ用のタグ
 =======================================
@@ -72,3 +78,7 @@ Docker はタグの値を指定するための特別なテンプレート・マ�
 
    ドライバがログのオプション ``syslog-tag`` 、 ``fluentd-tag`` 、 ``gelf-tag`` を指定しても後方互換性があります。ですが、これらの代わりに、標準化のため一般的な ``tag`` ログ・オプションを使うべきです。
 
+.. seealso:: 
+
+   Log tags for logging driver
+      https://docs.docker.com/engine/admin/logging/log_tags/
