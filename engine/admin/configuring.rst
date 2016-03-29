@@ -115,7 +115,7 @@ Ubuntu
 
 .. After successfully installing Docker for Ubuntu, you can check the running status using Upstart in this way:
 
-:doc:`Ubuntu で Docker のインストール </engine/installation/ubuntulinux>` に成功すると、Upstart を使って稼働状態を確認するには、次のようにします。
+:doc:`Ubuntu で Docker のインストール </engine/installation/linux/ubuntulinux>` に成功すると、Upstart を使って稼働状態を確認するには、次のようにします。
 
 .. code-block:: bash
 
@@ -245,7 +245,7 @@ CentOS と RHEL の ``7.x`` 以降では、プロセス・マネージャに ``s
 
 .. After successfully installing Docker for CentOS/Red Hat Enterprise Linux/Fedora, you can check the running status in this way:
 
-:doc:`CentOS </engine/installation/centos>` 、 :doc:`Red Hat Enterprise Linux </engine/installation/rhel>` 、 :doc:`Fedora </engine/installation/fedora>` に Docker をインストール後は、次のように稼働状態を確認できます。
+:doc:`CentOS </engine/installation/linux/centos>` 、 :doc:`Red Hat Enterprise Linux </engine/installation/linux/rhel>` 、 :doc:`Fedora </engine/installation/linux/fedora>` に Docker をインストール後は、次のように稼働状態を確認できます。
 
 .. code-block:: bash
 

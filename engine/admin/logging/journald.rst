@@ -43,7 +43,7 @@ Journald ロギング・ドライバ
    * - ``CONTAINER_NAME``
      - 開始時のコンテナ名。 ``docker rename`` でコンテナの名称を変えても、新しい名前は journal エントリに反映されない。
    * - ``CONTAINER_TAG``
-     - コンテナのタグ（ :doc:`ログのタグに関するドキュメント <log_tags.md>` ）
+     - コンテナのタグ（ :doc:`ログのタグに関するドキュメント <log_tags>` ）
 
 .. Usage
 
