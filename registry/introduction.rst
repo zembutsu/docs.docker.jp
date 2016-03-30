@@ -11,6 +11,12 @@
 Docker レジストリ の理解
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. A registry is a storage and content delivery system, holding named Docker images, available in different tagged versions.
 
 レジストリ（registry）とは、ストレージとコンテント配送システムであり、Docker イメージの名前を異なったタグを付けられたバージョンで保持します。

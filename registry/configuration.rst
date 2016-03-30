@@ -13,6 +13,12 @@
 Registry 設定リファレンス
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. The Registry configuration is based on a YAML file, detailed below. While it comes with sane default values out of the box, you are heavily encouraged to review it exhaustively before moving your systems to production.
 
 Registry の設定は YAML 形式のファイルをベースとしており、詳細は以下をご覧ください。特に気にしなくても適切な初期値が設定されています。そのため、システムをプロダクションに移行する場合、多大なレビューをしなくても良いでしょう。

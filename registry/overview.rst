@@ -13,6 +13,12 @@
 Docker Registry ドキュメント概要
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. caution::
 
    訳者注：Docker Registry は今後 Docker Distribution https://github.com/docker/distribution に統合予定です。そのため、ドキュメントの更新は停止しており、将来的にここに書かれている情報が古くなる可能性があります。

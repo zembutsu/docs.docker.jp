@@ -13,6 +13,12 @@
 通知
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. The Registry supports sending webhook notifications in response to events happening within the registry. Notifications are sent in response to manifest pushes and pulls and layer pushes and pulls. These actions are serialized into events. The events are queued into a registry-internal broadcast system which queues and dispatches events to Endpoints.
 
 Registry は webhook 通知をサポートしています。レジストリ内で何らかのイベントが発生したら、それに対応して通知を送れます。通知はマニフェストの送受信とレイヤの送受信に対応しています。これらのアクションはイベント後とに処理されます。イベントはレジストリの内部ブロードキャスト・システムの中にキュー（保留）されます。これは :ref:`エンドポイント <endpoint>`
@@ -27,6 +33,8 @@ Notifications are sent to endpoints via HTTP requests. Each configured endpoint 
 Configuration
 
 To setup a registry instance to send notifications to endpoints, one must add them to the configuration. A simple example follows:
+
+::
 
   notifications:
     endpoints:

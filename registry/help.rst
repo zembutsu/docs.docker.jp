@@ -13,6 +13,12 @@
 ヘルプを得るには
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. If you need help, or just want to chat, you can reach us:
 
 ヘルプが必要であれば、あるいは会話が必要であれば、私たちにご連絡ください。

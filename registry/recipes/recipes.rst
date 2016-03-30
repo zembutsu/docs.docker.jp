@@ -13,6 +13,12 @@
 レシピ
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. You will find here a list of “recipes”, end-to-end scenarios for exotic or otherwise advanced use-cases.
 
 ここでは魅力的あるいは高度な利用例といった、様々な実際の利用シナリオを「レシピ」として一覧にしたものです。

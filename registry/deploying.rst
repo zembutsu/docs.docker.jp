@@ -13,6 +13,12 @@
 レジストリ・サーバのデプロイ
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. You need to install Docker version 1.6.0 or newer.
 
 :doc:`Docker 1.6.0 以上のインストール </engine/installation/index>` が必要です。
