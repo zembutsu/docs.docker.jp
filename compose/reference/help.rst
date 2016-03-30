@@ -24,3 +24,7 @@ help
 
 コマンドのヘルプと使い方の指示を表示します。
 
+.. seealso:: 
+
+   help
+      https://docs.docker.com/compose/reference/help/

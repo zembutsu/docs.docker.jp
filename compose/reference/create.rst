@@ -32,3 +32,7 @@ create
 
 サービス用のコンテナを作成します。
 
+.. seealso:: 
+
+   create
+      https://docs.docker.com/compose/reference/create/

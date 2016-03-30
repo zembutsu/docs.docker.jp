@@ -46,3 +46,8 @@ Compose CLI リファレンス
 
 * :doc:`CLI 環境変数 </compose/reference/overview>`
 * :doc:`コマンドライン・リファレンス </compose/reference/index>`
+
+.. seealso:: 
+
+   Compose command-line reference
+      https://docs.docker.com/compose/reference/

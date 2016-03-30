@@ -83,3 +83,8 @@ run
 .. code-block:: bash
 
    $ docker-compose run --no-deps web python manage.py shell
+
+.. seealso:: 
+
+   run
+      https://docs.docker.com/compose/reference/run/

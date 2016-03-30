@@ -13,6 +13,12 @@
 サービスの拡張と Compose ファイル
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Compose supports two methods of sharing common configuration:
 
 Compose は２つのファイルを共有方法をサポートしています。
@@ -432,11 +438,15 @@ Compose のドキュメント
     Compose file reference
 
 * :doc:`ユーザガイド </index>`
-* :doc:`</compose/gettingstarted>`
-* :doc:`</compose/django>`
-* :doc:`</compose/rails>`
-* :doc:`</compose/wordpress>`
-* :doc:`</compose/reference>`
-* :doc:`</compose/compose-file>`
+* :doc:`/compose/gettingstarted`
+* :doc:`/compose/django`
+* :doc:`/compose/rails`
+* :doc:`/compose/wordpress`
+* :doc:`/compose/reference/index`
+* :doc:`/compose/compose-file`
 
+.. seealso:: 
+
+   Extending services and Compose files
+      https://docs.docker.com/compose/extends/
 

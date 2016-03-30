@@ -15,6 +15,12 @@
 よくある質問と回答
 ==============================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. If you don’t see your question here, feel free to drop by #docker-compose on freenode IRC and ask the community.
 
 あなたの質問がここになければ、freenode IRC の ``#docker-compose`` にあるコミュニティに、質問を気軽に投げてください。
@@ -153,4 +159,9 @@ Compose ドキュメント
 * :doc:`wordpress`
 * :doc:`reference/index`
 * :doc:`compose-file`
+
+.. seealso:: 
+
+   Frequently asked questions
+      https://docs.docker.com/compose/faq/
 

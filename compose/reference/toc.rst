@@ -16,9 +16,8 @@
    :maxdepth: 3
 
    index.rst
-   envvars.rst
    overview.rst
-   docker-compose.rst
+   envvars.rst
    build.rst
    config.rst
    create.rst

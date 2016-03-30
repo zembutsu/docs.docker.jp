@@ -15,13 +15,19 @@
 Swarm で Compose を使う
 ==============================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Docker Compose and Docker Swarm aim to have full integration, meaning you can point a Compose app at a Swarm cluster and have it all just work as if you were using a single Docker host.
 
 Docker Compose と :doc:`Docker Swarm </swarm/overview>` は完全な統合を目指しています。つまり、Compose アプリケーションを Swarm クラスタに適用すると、単一の Docker ホスト上で展開するのと同じように動作します。
 
 .. The actual extent of integration depends on which version of the Compose file format you are using:
 
-使用する :ref:`Compose ファイル形式のバージョン <compose-versioning>` によって、統合できる範囲が異なります。
+使用する :ref:`Compose ファイル形式のバージョン <compose-file-versioning>` によって、統合できる範囲が異なります。
 
 ..     If you’re using version 1 along with links, your app will work, but Swarm will schedule all containers on one host, because links between containers do not work across hosts with the old networking system.
 
@@ -249,4 +255,9 @@ Swarm にはコンテナをどこに配置するかを制御できるように�
 .. For the full set of available filters and expressions, see the Swarm documentation.
 
 利用可能なフィルタと表現については、:doc:`Swarm のドキュメント </swarm/scheduler/filter>` をご覧ください。
+
+.. seealso:: 
+
+   Using Compose with Swarm
+      https://docs.docker.com/compose/swarm/
 

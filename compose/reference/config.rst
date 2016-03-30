@@ -28,3 +28,7 @@ config
 
 Compose ファイルを確認・表示します。
 
+.. seealso:: 
+
+   config
+      https://docs.docker.com/compose/reference/config/

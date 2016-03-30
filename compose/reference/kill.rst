@@ -29,3 +29,8 @@ kill
 .. code-block:: bash
 
    $ docker-compose kill -s SIGINT
+
+.. seealso:: 
+
+   kill
+      https://docs.docker.com/compose/reference/kill/

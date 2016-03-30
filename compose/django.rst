@@ -9,9 +9,15 @@
 
 .. Quickstart Guide: Docker Compose and Django
 
-=================================================
+==================================================
 クイックスタート・ガイド：Docker Compose と Django
-=================================================
+==================================================
+
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
 
 .. This quick-start guide demonstrates how to use Docker Compose to set up and run a simple Django/PostgreSQL app. Before starting, you’ll need to have Compose installed.
 
@@ -272,5 +278,10 @@ Compose の更なるドキュメント
 * :doc:`/compose/wordpress`
 * :doc:`/compose/reference/index`
 * :doc:`/compose/compose-file`
+
+.. seealso:: 
+
+   Quicks
+      https://docs.docker.com/machine/reference/
 
 

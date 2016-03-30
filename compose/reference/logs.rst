@@ -26,4 +26,8 @@ logs
 
 サービスからのログ出力を表示します。
 
+.. seealso:: 
+
+   logs
+      https://docs.docker.com/compose/reference/logs/
 

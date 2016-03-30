@@ -31,4 +31,8 @@ down
                        don't have an custom name set by the `image` field
        -v, --volumes   Remove data volumes
 
+.. seealso:: 
+
+   down
+      https://docs.docker.com/compose/reference/down/
 

@@ -15,11 +15,17 @@
 Compose のネットワーク機能
 ==============================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Note: This document only applies if you’re using version 2 of the Compose file format. Networking features are not supported for version 1 (legacy) Compose files.
 
 .. note::
 
-   このドキュメントが適用されるのは :ref:`Compose ファイル・フォーマットのバージョン２ <compose-versioning>` を使う場合です。ネットワーク機能はバージョン１（過去）の Compose ファイルではサポートされていません。
+   このドキュメントが適用されるのは :ref:`Compose ファイル・フォーマットのバージョン２ <compose-file-versioning>` を使う場合です。ネットワーク機能はバージョン１（過去）の Compose ファイルではサポートされていません。
 
 .. By default Compose sets up a single network for your app. Each container for a service joins the default network and is both reachable by other containers on that network, and discoverable by them at a hostname identical to the container name.
 
@@ -95,14 +101,14 @@ Docker のリンク（link）は、一方通行の単一ホスト上における
 
 .. code-block:: yaml
 
-version: '2'
-   services:
-     web:
-       build: .
-       links:
-         - "db:database"
-     db:
-       image: postgres
+   version: '2'
+      services:
+        web:
+          build: .
+          links:
+            - "db:database"
+        db:
+          image: postgres
 
 .. See the links reference for more information.
 
@@ -230,6 +236,10 @@ Swarm クラスタのセットアップの仕方は、 :doc:`複数のホスト�
          name: my-pre-existing-network
 
 .. Instead of attemping to create a network called [projectname]_default, Compose will look for a network called my-pre-existing-network and connect your app’s containers to it.
-On this page:
 
 ``[プロジェクト名]_default`` という名称のネットワークを作成しようとしなくても、Compose は ``my-pre-existing-network`` という名称のネットワークを探し出し、コンテナのアプリケーションを接続できます。
+
+.. seealso:: 
+
+   Networking in Compose
+      https://docs.docker.com/compose/networking/

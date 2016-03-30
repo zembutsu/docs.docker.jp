@@ -23,4 +23,8 @@ unpause
 
 停止中（paused）のサービスを再開します。
 
+.. seealso:: 
+
+   unpause
+      https://docs.docker.com/compose/reference/unpause/
 

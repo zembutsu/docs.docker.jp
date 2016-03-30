@@ -15,6 +15,12 @@
 Compose をプロダクションで使う
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Compose is still primarily aimed at development and testing environments. Compose may be used for smaller production deployments, but is probably not yet suitable for larger deployments.
 
 .. note
@@ -110,5 +116,10 @@ Compose のドキュメント
 * :doc:`Compose のインストール </compose/install>`
 * :doc:`コマンドライン・リファレンス </compose/reference/index>`
 * :doc:`Compose ファイル・リファレンス </compose/compose-file>`
+
+.. seealso:: 
+
+   Using Compose in production
+      https://docs.docker.com/compose/production/
 
 

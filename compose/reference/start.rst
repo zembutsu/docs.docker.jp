@@ -23,3 +23,7 @@ start
 
  コンテナをサービスとして存在するように起動します。
 
+.. seealso:: 
+
+   start
+      https://docs.docker.com/compose/reference/start/

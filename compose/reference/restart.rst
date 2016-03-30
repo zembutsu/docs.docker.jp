@@ -25,3 +25,8 @@ restart
 .. Restarts services.
 
 サービスを再起動します。
+
+.. seealso:: 
+
+   restart
+      https://docs.docker.com/compose/reference/restart/

@@ -9,9 +9,15 @@
 
 .. Quickstart Guide: Docker Compose and WordPress
 
-=================================================
+=====================================================
 クイックスタート・ガイド：Docker Compose と Wordpress
-=================================================
+=====================================================
+
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
 
 .. You can use Docker Compose to easily run WordPress in an isolated environment built with Docker containers. This quick-start guide demonstrates how to use Compose to set up and run WordPress. Before starting, you’ll need to have Compose installed.
 
@@ -134,4 +140,8 @@ Compose の更なるドキュメント
 * :doc:`/compose/reference/index`
 * :doc:`/compose/compose-file`
 
+.. seealso:: 
+
+   Quickstart: Docker Compose and WordPress
+      https://docs.docker.com/compose/wordpress/
 

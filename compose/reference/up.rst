@@ -56,3 +56,8 @@ up
 .. If you want to force Compose to stop and recreate all containers, use the --force-recreate flag.
 
 もしも Compose で処理時、強制的に全てのコンテナを停止・再作成するには ``--force-recreate`` フラグを使います。
+
+.. seealso:: 
+
+   up
+      https://docs.docker.com/compose/reference/up/

@@ -15,6 +15,12 @@
 CLI 環境変数
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Several environment variables are available for you to configure the Docker Compose command-line behaviour.
 
 Docker Compose のコマンドラインでの動作を設定するために、複数の環境変数を利用可能です。
@@ -116,3 +122,9 @@ Compose が Docker デーモンに対する処理が失敗（fail）したとみ
 * :doc:`ユーザ・ガイド </compose/index>`
 * :doc:`Compose のインストール </compose/install>`
 * :doc:`Compose ファイルのリファレンス </compose/compose-file>`
+
+.. seealso:: 
+
+   CLI Environment Variables
+      https://docs.docker.com/compose/reference/envvars/
+

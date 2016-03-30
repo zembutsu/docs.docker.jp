@@ -28,3 +28,7 @@ port
 
 ポートを割り当てる公開用のポートを表示します。
 
+.. seealso:: 
+
+   port
+      https://docs.docker.com/compose/reference/port/

@@ -25,3 +25,8 @@ stop
 .. Stops running containers without removing them. They can be started again with docker-compose start.
 
 稼働中のコンテナを停止しますが、削除しません。 ``docker-compose start`` コマンドで、再起動できます。
+
+.. seealso:: 
+
+   stop
+      https://docs.docker.com/compose/reference/stop/

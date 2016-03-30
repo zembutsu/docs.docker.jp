@@ -13,6 +13,12 @@
 コマンドライン補完
 ==============================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Compose comes with command completion for the bash and zsh shell.
 
 Compose は bash と zsh シェル向けの `コマンド補完 <https://en.wikipedia.org/wiki/Command-line_completion>`_ を搭載しています。
@@ -102,3 +108,9 @@ Zsh
 .. Enjoy working with Compose faster and with less typos!
 
 Compose をより速く・入力ミス（typo）なく楽しんで使いましょう！
+
+.. seealso:: 
+
+   Command-line Completion
+      https://docs.docker.com/compose/completion/
+

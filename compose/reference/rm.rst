@@ -35,3 +35,7 @@ rm
 
 （明示的に削除しなければ）ボリューム内にあるデータは失われません。
 
+.. seealso:: 
+
+   rm
+      https://docs.docker.com/compose/reference/rm/

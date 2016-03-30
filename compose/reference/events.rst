@@ -40,3 +40,7 @@ events
        "time": "2015-11-20T18:01:03.615550",
    }
 
+.. seealso:: 
+
+   events
+      https://docs.docker.com/compose/reference/events/

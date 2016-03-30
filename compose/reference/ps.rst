@@ -26,3 +26,7 @@ ps
 
 コンテナ一覧を表示します。
 
+.. seealso:: 
+
+   ps
+      https://docs.docker.com/compose/reference/ps/

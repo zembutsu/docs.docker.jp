@@ -26,4 +26,8 @@ pull
 
 サービス用イメージを取得します。
 
+.. seealso:: 
+
+   pull
+      https://docs.docker.com/compose/reference/pull/
 

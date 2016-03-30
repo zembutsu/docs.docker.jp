@@ -15,6 +15,12 @@
 Docker Compose 概要
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a Compose file to configure your application’s services. Then, using a single command, you create and start all the services from your configuration. To learn more about all the features of Compose see the list of features.
 
 Compose とは、複数のコンテナを使う Docker アプリケーションを、定義・実行するツールです。Compose はアプリケーションのサービスの設定に、Compose ファイルを使います。そして、コマンドを１つ実行するだけで、設定した全てのサービスを作成・起動します。Compose の全ての機能一覧について学ぶには、 :ref:`機能一覧 <compose-features>` をご覧ください。
@@ -129,7 +135,7 @@ Compose は別々の環境の分離にプロジェクト名を使います。こ
 
 .. The default project name is the basename of the project directory. You can set a custom project name by using the -p command line option or the COMPOSE_PROJECT_NAME environment variable.
 
-標準のプロジェクト名は、プロジェクトが存在するディレクトリ名です。プロジェクト名を変更するには、 :doc:`コマンドラインのオプション </compose/reference/docker-compose>` で ``-p`` を指定するか、 :ref:`環境変数 <compose-project-name>` で ``COMPOSE_PROJECT_NAME`` を指定します。
+標準のプロジェクト名は、プロジェクトが存在するディレクトリ名です。プロジェクト名を変更するには、 :doc:`コマンドラインのオプション </compose/reference/overview>` で ``-p`` を指定するか、 :ref:`環境変数 <compose-project-name>` で ``COMPOSE_PROJECT_NAME`` を指定します。
 
 .. _preserve-volume-data-when-containers-are-created:
 
@@ -156,7 +162,7 @@ Compose はコンテナ作成時に使う設定情報をキャッシュします
 
 .. Compose supports variables in the Compose file. You can use these variables to customize your composition for different environments, or different users. See Variable substitution for more details.
 
-Compose は Compose ファイル中で、変数の使用をサポートしています。環境変数を使い、別々の環境や別々のユーザ向けに構成をカスタマイズできます。詳細は :ref:`環境変数 <variable-substitution>` をご覧ください。
+Compose は Compose ファイル中で、変数の使用をサポートしています。環境変数を使い、別々の環境や別々のユーザ向けに構成をカスタマイズできます。詳細は :ref:`環境変数 <compose-file-variable-substitution>` をご覧ください。
 
 .. You can extend a Compose file using the extends field or by creating multiple Compose files. See extends for more details.
 
@@ -249,3 +255,7 @@ Docker Compose は活発に開発中です。ヘルプが必要な場合、貢�
 
 より詳細な情報やリソースについては、私たちの `ヘルプ用ページ（英語） <https://docs.docker.com/project/get-help/>`_ をご覧ください。
 
+.. seealso:: 
+
+   Overview of Docker Compose
+      https://docs.docker.com/compose/overview/

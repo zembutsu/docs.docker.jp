@@ -15,6 +15,12 @@
 Compose ファイル・リファレンス
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. The Compose file is a YAML file defining services, networks and volumes. The default path for a Compose file is ./docker-compose.yml.
 
 Compose ファイルは `YAML <http://yaml.org/>`_ ファイルであり、 :ref:`サービス（services） <service-configuration-reference>` 、 :ref:`ネットワーク（networks） <network-configuration-reference>` 、 :ref:`ボリューム（volumes） <volume-configuration-reference>` を定義します。Compose ファイルのデフォルトのパスは ``./docker-compose.yml`` です。
@@ -639,7 +645,7 @@ links
 
 .. The driver name specifies a logging driver for the service’s containers, as with the --log-driver option for docker run (documented here).
 
-``driver`` にはコンテナのサービスに使うロギング・ドライバを指定します。これは docker run コマンドにおける ``--log-driver`` オプションと同じです （ :doc:`ドキュメントはこちら </engine/reference/logging/overview>` ）。
+``driver`` にはコンテナのサービスに使うロギング・ドライバを指定します。これは docker run コマンドにおける ``--log-driver`` オプションと同じです （ :doc:`ドキュメントはこちら </engine/admin/logging/overview>` ）。
 
 .. The default value is json-file.
 
@@ -724,7 +730,7 @@ net
 
 .. Network mode. Use the same values as the docker client --net parameter. The container:... form can take a service name instead of a container name or id.
 
-ネットワーク・モードを指定します。これは docker クライアントで ``--net`` パラメータを指定するのと同じものです。コンテナ名や ID の代わりに、 ``container:... `` で指定した名前が使えます。
+ネットワーク・モードを指定します。これは docker クライアントで ``--net`` パラメータを指定するのと同じものです。コンテナ名や ID の代わりに、 ``container:...`` で指定した名前が使えます。
 
 .. code-block:: yaml
 
@@ -1060,7 +1066,7 @@ cpu_shares、 cpuset、 domainname、 entrypoint、 hostname、 ipc、 mac_addre
 .. driver
 
 driver
-^^^^^^^^^^
+----------
 
 .. Specify which volume driver should be used for this volume. Defaults to local. The Docker Engine will return an error if the driver is not available.
 
@@ -1073,7 +1079,7 @@ driver
 .. driver_opts
 
 driver_opts
-^^^^^^^^^^^
+--------------------
 
 .. Specify a list of options as key-value pairs to pass to the driver for this volume. Those options are driver-dependent - consult the driver’s documentation for more information. Optional.
 
@@ -1143,7 +1149,7 @@ external
 .. driver
 
 driver
-^^^^^^^^^^
+----------
 
 .. Specify which driver should be used for this network.
 
@@ -1164,7 +1170,7 @@ driver
 .. driver_opts
 
 driver_opts
-^^^^^^^^^^^
+--------------------
 
 .. Specify a list of options as key-value pairs to pass to the driver for this network. Those options are driver-dependent - consult the driver’s documentation for more information. Optional.
 
@@ -1592,3 +1598,9 @@ Compose に関するドキュメント
 * :doc:`/compose/rails`
 * :doc:`/compose/wordpress`
 * :doc:`/compose/reference/index`
+
+.. seealso:: 
+
+   Compose file reference
+      https://docs.docker.com/compose/compose-file/
+

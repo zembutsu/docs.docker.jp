@@ -32,3 +32,7 @@ Compose は複数のコンテナを使う Docker アプリケーションを定�
 
 Docker Compose の最新リリースや過去の変更に関する詳細は、 `CHANGELOG <https://github.com/docker/compose/blob/master/CHANGELOG.md>`_ をご覧ください。
 
+.. seealso:: 
+
+   Docker Compose
+      https://docs.docker.com/compose/

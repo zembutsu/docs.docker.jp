@@ -31,3 +31,7 @@ scale
 
    $ docker-compose scale web=2 worker=3
 
+.. seealso:: 
+
+   scale
+      https://docs.docker.com/compose/reference/scale/

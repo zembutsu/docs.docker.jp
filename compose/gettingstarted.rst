@@ -13,6 +13,12 @@
 Compose を始めましょう
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. On this page you build a simple Python web application running on Compose. The application uses the Flask framework and increments a value in Redis. While the sample uses Python, the concepts demonstrated here should be understandable even if you’re not familiar with it.
 
 このページでは、簡単な Python ウェブ・アプリケーションを Docker Compose で実行しましょう。アプリケーションは Flask フレームワークを使い、Redis の値を増やします。サンプルでは Python を使いますが、ここでの動作概念は Python に親しくなくても理解可能です。
@@ -285,3 +291,7 @@ Compose を ``docker-compose up -d`` で起動した場合は、次のように�
 * :doc:`/compose/reference/index`
 * :doc:`/compose/compose-file`
 
+.. seealso:: 
+
+   Getting Started
+      https://docs.docker.com/compose/gettingstarted/
