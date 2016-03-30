@@ -98,3 +98,7 @@ DigitalOcean ドライバは、 ``ubuntu-15-10-x64`` をデフォルトのイメ
      - ``DIGITALOCEAN_SSH_KEY_FINGERPRINT``
      - 
 
+.. seealso:: 
+
+   Digial Ocean
+      https://docs.docker.com/machine/drivers/digital-ocean/

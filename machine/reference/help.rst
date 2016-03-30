@@ -42,3 +42,9 @@ help
    Options:
    
       --swarm      Display the Swarm config instead of the Docker daemon
+
+.. seealso:: 
+
+   help
+      https://docs.docker.com/machine/reference/help/
+

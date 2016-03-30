@@ -15,6 +15,12 @@
 Boot2Docker から Docker Machine への移行
 ==================================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. If you were using Boot2Docker previously, you have a pre-existing Docker boot2docker-vm VM on your local system. To allow Docker Machine to manage this older VM, you must migrate it.
 
 これまで Boot2Docker を使っていた場合は、既に Dockerの ``boot2docker-vm`` 仮想マシンがローカルシステム上に存在しています。Docker Machine で古い仮想マシンを管理する場合は、移行が必要です。
@@ -95,3 +101,7 @@ Boot2Docker から Docker Machine への移行
      - upgrade
      - マシン上の Docker クライアントを最新安定版に更新
 
+.. seealso:: 
+
+   Migrate from Boot2Docker to Docker Machine
+      https://docs.docker.com/machine/migrate-to-machine/

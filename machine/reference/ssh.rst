@@ -15,6 +15,12 @@
 ssh
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Log into or run a command on a machine using SSH.
 
 SSH でマシンにログインするか、コマンドを実行します。
@@ -100,3 +106,8 @@ Docker Machine が呼び出される時、伝統的な ``ssh`` バイナリが�
 .. There are some variations in behavior between the two methods, so please report any issues or inconsistencies if you come across them.
 
 ２つの手法は様々なパターンを伴いますので、何らかの問題や一貫性が無い場合があれば、ご報告ください。
+
+.. seealso:: 
+
+   ssh
+      https://docs.docker.com/machine/reference/ssh/

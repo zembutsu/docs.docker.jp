@@ -33,3 +33,7 @@ restart
    $ docker-machine restart dev
    Waiting for VM to start...
 
+.. seealso:: 
+
+   restart
+      https://docs.docker.com/machine/reference/restart/

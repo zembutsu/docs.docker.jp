@@ -84,3 +84,8 @@
 
 プロバイダ用のベース・イメージを変更する時、SSH ユーザの変更も必要になる場合があります。例えば、 EC2 上のデフォルト Red Hat AMI の SSH ユーザは ``ec2-user`` なので、 ``--amazonec2-ssh-user ec2-user`` と指定する必要があります。
 
+.. seealso:: 
+
+   Driver options and operating system defaults
+      https://docs.docker.com/machine/drivers/os-base/
+

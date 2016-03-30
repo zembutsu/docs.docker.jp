@@ -121,4 +121,8 @@ SoftLayer ドライバは、デフォルトで ``UBUNTU_LATEST`` イメージ・
      - ``SOFTLAYER_PRIVATE_VLAN_ID``
      - ``0``
 
+.. seealso:: 
+
+   IBM Softlayer
+      https://docs.docker.com/machine/drivers/soft-layer/
 

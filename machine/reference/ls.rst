@@ -15,6 +15,12 @@
 ls
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. code-block:: bash
 
    Usage: docker-machine ls [OPTIONS] [arg...]
@@ -69,7 +75,7 @@ ls
 
 * driver（ドライバ名）
 * swarm（swarm のマスタ名）
-* state （状態： ``Running`` | ``Paused`` | ``Saved`` | ``Stopped`` | ``Stopping`` | ``Starting`` |``Error`` ）
+* state （状態： ``Running`` | ``Paused`` | ``Saved`` | ``Stopped`` | ``Stopping`` | ``Starting`` | ``Error`` ）
 * name（ドライバが返すマシン名であり、 `Go 言語形式 <https://github.com/google/re2/wiki/Syntax>`_ の正規表現をサポート ）
 * label（マシンを ``--engine-label`` オプションで作成すると、 ``label=<key>[=<value>]`` 形式でフィルタできる ）
 
@@ -166,3 +172,8 @@ ls
    NAME     DRIVER
    default  virtualbox
    ec2      amazonec2
+
+.. seealso:: 
+
+   ls
+      https://docs.docker.com/machine/reference/ls/

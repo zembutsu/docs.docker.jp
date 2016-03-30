@@ -46,3 +46,8 @@ scp
 .. In the case of transferring files from machine to machine, they go through the local host’s filesystem first (using scp’s -3 flag).
 
 マシンからマシンへファイルを転送する場合は、ローカル・ホスト上のファイルシステムを経由する必要があります（ ``scp`` の ``-3`` フラグ）を使います。
+
+.. seealso:: 
+
+   scp
+      https://docs.docker.com/machine/reference/scp/

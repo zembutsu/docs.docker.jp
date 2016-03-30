@@ -15,6 +15,12 @@
 Docker Machine 概要
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. You can use Docker Machine to:
 
 Docker Machine を使うと、以下の操作ができます。
@@ -132,3 +138,8 @@ Docker Engine と Docker Machine の違いは何ですか？
 * :doc:`Docker Machine ドライバ・リファレンス </machine/drivers/index>`
 * :doc:`Docker Machine サブコマンド・リファレンス </machine/reference/index>`
 * :doc:`migrate-to-machine`
+
+.. seealso:: 
+
+   Docker Machine Overview
+      https://docs.docker.com/machine/overview/

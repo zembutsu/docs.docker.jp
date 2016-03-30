@@ -15,6 +15,12 @@
 create
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Create a machine. Requires the --driver flag to indicate which provider (VirtualBox, DigitalOcean, AWS, etc.) the machine should be created on, and an argument to indicate the name of the created machine.
 
 マシンを作成します。どのプロバイダ（VirtualBox、DigitalOcean、AWS等）でマシンを作成するかを ``--driver`` フラグで指定します。さらに、引数で作成するマシンの名前も指定します。
@@ -257,3 +263,8 @@ Docker Machine は、デーモンに対するパラメータを単にセット�
 .. .If this pre-create check succeeds, Docker Machine will proceed with the creation as normal. If the pre-create check fails, the Docker Machine process will exit with status code 3 to indicate that the source of the non-zero exit was the pre-create check failing.
 
 事前確認が成功すると、Docker Machine は通常通り作成手順を進行します。事前確認に失敗すると、 Docker Machine のプロセスは終了コード 3 で終了します。つまり、ゼロ以外の終了コードを返す場合は、事前作成に失敗したのが分かります。
+
+.. seealso:: 
+
+   create
+      https://docs.docker.com/machine/reference/create/

@@ -15,6 +15,12 @@
 コマンドライン補完
 ==================================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Docker Machine comes with command completion for the bash shell.
 
 Docker Machine は bash シェルで `コマンド補完 <https://en.wikipedia.org/wiki/Command-line_completion>`_ が使えます。
@@ -50,3 +56,8 @@ bash 補完（bash completion) がインストールされているかどうか�
 .. Completion will be available upon next login.
 
 次回ログイン時から補完機能が使えます。
+
+.. seealso:: 
+
+   Command-line Completion
+      https://docs.docker.com/machine/completion/

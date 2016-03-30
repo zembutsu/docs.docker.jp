@@ -27,4 +27,8 @@ ip
    192.168.99.104
    192.168.99.105
 
+.. seealso:: 
+
+   ip
+      https://docs.docker.com/machine/reference/ip/
 

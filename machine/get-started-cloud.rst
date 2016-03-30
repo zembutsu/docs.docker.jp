@@ -15,6 +15,12 @@
 Docker Machine をクラウド・プロバイダで使う
 ==================================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Docker Machine driver plugins are available for many cloud platforms, so you can use Machine to provision cloud hosts. When you use Docker Machine for provisioning, you create cloud hosts with Docker Engine installed on them.
 
 Docker Machine は様々なクラウド・プラットフォーオムに対応したプラグインを扱えます。このプラグインに対応したドライバを使うと、Machine でクラウド・ホストを自動作成します。自動構築に Docker Machine を使えば、作成されるホスト上に Docker Engine も自動インストールできます。
@@ -96,7 +102,7 @@ docker-machine create コマンド
 
 .. For a full list of the flags/settings available and their defaults, see the output of docker-machine create -h at the command line, the create command in the Machine command line reference, and driver options and operating system defaults in the Machine driver reference.
 
-デフォルトの値、あるいは利用可能なフラグや設定を全て確認したい場合は、コマンドラインで `docker-machine create -h`` を使います。他にも、Machine :doc:`コマンドライン・リファレンス </machine/reference/index>` の :doc:`create < /machine/reference/create>` コマンドや、Machine ドライバ・リファレンスの :doc:`/machine/drivers/os-base`  をご覧ください。
+デフォルトの値、あるいは利用可能なフラグや設定を全て確認したい場合は、コマンドラインで `docker-machine create -h`` を使います。他にも、Machine :doc:`コマンドライン・リファレンス </machine/reference/index>` の :doc:`create </machine/reference/create>` コマンドや、Machine ドライバ・リファレンスの :doc:`/machine/drivers/os-base`  をご覧ください。
 
 .. Drivers for cloud providers
 
@@ -175,4 +181,8 @@ Docker Machine を使えば :doc:`Docker Swarm </swarm/overview>` クラスタ�
 * :doc:`Docker Machine サブコマンド・リファレンス </machine/reference/index>`
 * :doc:`/swarm/provision-with-machine` 
 
+.. seealso:: 
+
+   Use Docker Machine to provision hosts on cloud providers
+      https://docs.docker.com/machine/get-started-cloud/
 

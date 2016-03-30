@@ -40,3 +40,7 @@ TLS 証明書を再作成し、新しい証明書を使うようにマシンの�
    Regenerate TLS machine certs?  Warning: this is irreversible. (y/n): y
    Regenerating TLS certificates
 
+.. seealso:: 
+
+   regenerate-certs
+      https://docs.docker.com/machine/reference/regenerate-certs/

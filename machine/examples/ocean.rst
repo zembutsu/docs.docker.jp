@@ -13,6 +13,12 @@
 Digital Ocean の例
 ==================================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Follow along with this example to create a Dockerized Digital Ocean Droplet (cloud host).
 
 以下の例では Docker に対応した `Digital Ocean <https://digitalocean.com/>`_ ドロップレット（クラウド・ホスト）を作成します。
@@ -221,3 +227,7 @@ Docker Machine は作成したホストは、クラウド・プロバイダの�
 * :doc:`/machine/reference/index`
 * :doc:`/swarm/provision-with-machine`
 
+.. seealso:: 
+
+   Digital Ocean example
+      https://docs.docker.com/machine/examples/ocean/

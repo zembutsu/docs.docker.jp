@@ -15,6 +15,12 @@
 汎用(generic)ドライバ
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Create machines using an existing VM/Host with SSH.
 
 既存の仮想マシン/ホストを、SSH 経由で Docker Machine が扱えるマシンにします。
@@ -130,3 +136,7 @@ sudo 権限
      - ``GENERIC_SSH_PORT``
      - ``22``
 
+.. seealso:: 
+
+   Generic
+      https://docs.docker.com/machine/drivers/generic/

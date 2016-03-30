@@ -13,6 +13,12 @@
 Amazon Web Services (AWS) EC2 の例
 ==================================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Follow along with this example to create a Dockerized Amazon Web Services (AWS) EC2 instance.
 
 以下の例では Docker に対応した `Amazon Web Services (AWS) <https://aws.amazon.com/>`_ EC2 インスタンスを作成します。
@@ -227,4 +233,9 @@ AWS に IAM 証明書でログインし、EC2 実行中のインスタンスの�
 * :doc:`/machine/drivers/index`
 * :doc:`/machine/reference/index`
 * :doc:`/swarm/provision-with-machine`
+
+.. seealso:: 
+
+   Amazon Web Services (AWS) EC2 example
+      https://docs.docker.com/machine/examples/aws/
 

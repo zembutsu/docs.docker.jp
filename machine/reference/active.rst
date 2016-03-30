@@ -30,3 +30,7 @@ active
    $ docker-machine active
    staging
 
+.. seealso:: 
+
+   active
+      https://docs.docker.com/machine/reference/active/

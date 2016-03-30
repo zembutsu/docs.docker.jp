@@ -15,6 +15,12 @@
 Google Compute Engine
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Create machines on Google Compute Engine. You will need a Google account and a project id. See https://cloud.google.com/compute/docs/projects for details on projects.
 
 `Google Compute Engine <https://cloud.google.com/compute/>`_ 上にマシンを作成します。Google アカウントとプロジェクト ID が必要になるでしょう。プロジェクトの詳細については https://cloud.google.com/compute/docs/projects をご覧ください。
@@ -134,3 +140,9 @@ GCE ドライバは、イメージの指定がなければ ``ubuntu-1510-wily-v2
    * - ``--google-use-internal-ip``
      - ``GOOGLE_USE_INTERNAL_IP``
      - -
+
+.. seealso:: 
+
+   Google Compute Engine
+      https://docs.docker.com/machine/drivers/gce/
+

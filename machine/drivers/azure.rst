@@ -15,6 +15,12 @@
 Microsoft Azure
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Create machines on Microsoft Azure.
 
 `Microsoft Azure <http://azure.microsoft.com/>`_ 上にマシンを作成します。
@@ -113,4 +119,9 @@ OS を確実に更新するためには、仮想マシンに SSH でログイン
    * - ``--azure-username``
      - -
      - ``ubuntu``
+
+.. seealso:: 
+
+   Microsoft Azure
+      https://docs.docker.com/machine/drivers/azure/
 

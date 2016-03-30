@@ -15,6 +15,12 @@
 Docker Machine をローカル VM で始めるには
 =========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Prerequisites
 
 .. _machine-prerequisites:
@@ -208,7 +214,7 @@ Docker ホスト上でポート番号が利用可能な IP アドレスを確認
 
 ..    Run a webserver (nginx) in a container with the following command:
 
-3. コンテナでウェブサーバ（ `https://www.nginx.com/`_ ）を実行するため、次のコマンドを実行します。
+3. コンテナでウェブサーバ（ https://www.nginx.com/ ）を実行するため、次のコマンドを実行します。
 
 .. code-block:: bash
 
@@ -381,3 +387,8 @@ Docker ホスト上でポート番号が利用可能な IP アドレスを確認
 * :doc:`concepts`
 * :doc:`Docker Machine ドライバ・リファレンス </machine/drivers/index>`
 * :doc:`Docker Machine サブコマンド・リファレンス </machine/reference/index>`
+
+.. seealso:: 
+
+   Get started with Docker Machine and a local VM
+      https://docs.docker.com/machine/get-started/

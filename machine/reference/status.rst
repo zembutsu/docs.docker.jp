@@ -33,3 +33,7 @@ status
    $ docker-machine status dev
    Running
 
+.. seealso:: 
+
+   status
+      https://docs.docker.com/machine/reference/status/

@@ -12,6 +12,12 @@
 Oracle VirtualBox
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Create machines locally using VirtualBox. This driver requires VirtualBox 5+ to be installed on your host. Using VirtualBox 4+ should work but will give you a warning. Older versions will refuse to work.
 
 `VirtualBox <https://www.virtualbox.org/>`_ を使い、ローカルにマシンを作成します。このドライバを使うには、ホスト上に VirtualBox 5 以上のインストールが必要です。VirtualBox 4 の場合は動作するかもしれませんが、警告が出ます。それよりも古いバージョンは実行できません。
@@ -121,3 +127,8 @@ Vboxfs は `longstanding bug <https://www.virtualbox.org/ticket/9069>`_ によ�
 .. This will often cause problems when using a web server such as nginx to serve static files from a shared volume. For development environments, a good workaround is to disable sendfile in your server configuration.
 
 これにより、nginx のようなウェブ・サーバが共有ボリュームから静的ファイルを読み込むとき、問題を引き起こしがちです。開発環境では、サーバの設定で sendfile を無効化するのが良いでしょう。
+
+.. seealso:: 
+
+   Quicks
+      https://docs.docker.com/machine/reference/

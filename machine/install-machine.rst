@@ -13,6 +13,12 @@
 Docker Machine のインストール
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. On OS X and Windows, Machine is installed along with other Docker products when you install the Docker Toolbox. For details on installing Docker Toolbox, see the Mac OS X installation instructions or Windows installation instructions.
 
 OS X と Windows の場合、Docker Toolbox をインストールすることで、他の Docker プロダクトと一緒にインストールされます。Docker Toolbox の詳細は、:doc:`Mac OS X インストールガイド</engine/installation/mac>`  か :doc:`Windows インストールガイド</engine/installation/windows>` をご覧ください。
@@ -107,3 +113,8 @@ Machine 用のレポジトリには次の機能を持つ ``bash`` スクリプ�
 * 複数の machine を :doc:`クラウド・プロバイダ </machine/get-started-cloud/>` にインストール
 * :doc:`Docker Machine ドライバ・リファレンス </machine/drivers/index>`
 * :doc:`Docker Machine サブコマンド・リファレンス </machine/reference/index>`
+
+.. seealso:: 
+
+   Install Docker Machine
+      https://docs.docker.com/machine/install-machine/

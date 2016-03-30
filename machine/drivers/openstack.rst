@@ -158,3 +158,8 @@ OpenStack
    * - ``--openstack-username``
      - ``OS_USERNAME``
      - -
+
+.. seealso:: 
+
+   OpenStack
+      https://docs.docker.com/machine/drivers/openstack/

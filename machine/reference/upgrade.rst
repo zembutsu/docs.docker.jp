@@ -38,3 +38,7 @@ upgrade
 
    もし ``--virtualbox-boot2docker-url`` を使いカスタム boot2docker ISO を使っているか、同等のフラグを使っている場合、upgrade の実行とは、Docker Machine によって ISO イメージを最新の「vanilla」boot2docker ISO イメージに完全に置き換えるものです。
 
+.. seealso:: 
+
+   upgrade
+      https://docs.docker.com/machine/reference/upgrade/

@@ -30,3 +30,8 @@ start
 
    $ docker-machine start dev
    Starting VM...
+
+.. seealso:: 
+
+   start
+      https://docs.docker.com/machine/reference/start/

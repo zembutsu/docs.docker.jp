@@ -31,3 +31,9 @@ Docker Machine サブコマンド
 * :doc:`stop`
 * :doc:`upgrade`
 * :doc:`url`
+
+.. seealso:: 
+
+   Docker Machine command line reference
+      https://docs.docker.com/machine/reference/
+

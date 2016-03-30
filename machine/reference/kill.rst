@@ -38,4 +38,8 @@ kill
    NAME   ACTIVE   DRIVER       STATE     URL
    dev    *        virtualbox   Stopped
 
+.. seealso:: 
+
+   kill
+      https://docs.docker.com/machine/reference/kill/
 

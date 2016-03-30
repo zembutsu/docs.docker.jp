@@ -75,3 +75,7 @@ rm
    About to remove foo
    Successfully removed foo
 
+.. seealso:: 
+
+   rm
+      https://docs.docker.com/machine/reference/rm/

@@ -15,6 +15,12 @@
 env
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Set environment variables to dictate that docker should run a command against a particular machine.
 
 ``docker`` コマンドの実行時に、特定のマシンを指し示せるような環境変数を表示します。
@@ -133,3 +139,9 @@ env コマンドは ``--no-proxy`` フラグをサポートしています。こ
 .. You may also want to visit the documentation on setting HTTP_PROXY for the created daemon using the --engine-env flag for docker-machine create.
 
 また、 :ref:`設定ドキュメント <specifying-configuration-options-for-the-created-docker-engine>` から、 ``docker-machine create`` コマンド作成時に ``--engine-env`` フラグでデーモンの ``HTTP_PROXY`` を指定する方法も参考になるでしょう。
+
+.. seealso:: 
+
+   env
+      https://docs.docker.com/machine/reference/env/
+

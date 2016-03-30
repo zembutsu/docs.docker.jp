@@ -24,3 +24,7 @@ url
    $ docker-machine url dev
    tcp://192.168.99.109:2376
 
+.. seealso:: 
+
+   url
+      https://docs.docker.com/machine/reference/url/

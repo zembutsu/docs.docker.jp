@@ -80,3 +80,7 @@ Microsoft Hyper-V
      - ``HYPERV_VLAN_ID``
      - *未定義*
 
+.. seealso:: 
+
+   Microsoft Hyper-V
+      https://docs.docker.com/machine/drivers/hyper-v/

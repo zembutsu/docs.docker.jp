@@ -42,3 +42,8 @@ config
    --tlscert="/Users/ehazlett/.docker/machines/dev/cert.pem"
    --tlskey="/Users/ehazlett/.docker/machines/dev/key.pem"
    -H tcp://192.168.99.103:2376
+
+.. seealso:: 
+
+   config
+      https://docs.docker.com/machine/reference/config/

@@ -15,6 +15,12 @@
 inspect
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. code-block:: bash
 
    Usage: docker-machine inspect [OPTIONS] [arg...]
@@ -119,4 +125,8 @@ json 形式は使い易いのですが、人間にとって非常に読み辛い
        "SwarmMaster": false
    }
 
+.. seealso:: 
+
+   inspect
+      https://docs.docker.com/machine/reference/inspect/
 

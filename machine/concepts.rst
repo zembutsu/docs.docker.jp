@@ -13,6 +13,12 @@
 Machine 概念の理解と手助け
 ==================================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Docker Machine allows you to provision Docker machines in a variety of environments, including virtual machines that reside on your local system, on cloud providers, or on bare metal servers (physical computers). Docker Machine creates a Docker host, and you use the Docker Engine client as needed to build images and create containers on the host.
 
 Docker Machine を使えば、様々な環境・様々な仮想マシン上で Docker が動くマシンを自動作成できます。これはローカルのシステム上だけでなく、クラウド・プロバイダ上でも、ベアメタル・サーバ（物理コンピュータ）上でも可能です。Docker Machine で Docker ホストを作成すると、Docker Engine クライアントを使えば、ホスト上でイメージの構築やコンテナ作成が必要に応じて可能になります。
@@ -117,3 +123,8 @@ Docker Machine は開発途上であり、積極的に開発が行われてい�
 * :doc:`クラウド・プロバイダ上に </machine/get-started-cloud>` 複数の Docker ホストを自動構築する
 * :doc:`Docker Machine ドライバ・リファレンス </machine/drivers/index>`
 * :doc:`Docker Machine サブコマンド・リファレンス </machine/reference/index>`
+
+.. seealso:: 
+
+   Understand Machine concepts and get help
+      https://docs.docker.com/machine/concepts/

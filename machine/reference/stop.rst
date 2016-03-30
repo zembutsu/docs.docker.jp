@@ -38,3 +38,7 @@ stop
    NAME   ACTIVE   DRIVER       STATE     URL
    dev    *        virtualbox   Stopped
 
+.. seealso:: 
+
+   stop
+      https://docs.docker.com/machine/reference/stop/

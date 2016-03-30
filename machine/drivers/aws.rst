@@ -15,6 +15,12 @@
 Amazon Web Services
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Create machines on Amazon Web Services. 
 
 `Amazon Web Services <http://aws.amazon.com/>`_ 上にマシンを作成します。
@@ -31,7 +37,11 @@ Amazon Web Services
 ====================
 
 .. Before using the amazonec2 driver, ensure that you’ve configured credentials.
-AWS credential file
+
+.. AWS credential file
+
+AWS 認証情報ファイル
+--------------------
 
 amazonec2 ドライバを使う前に、認証情報の設定が必要です。
 
@@ -114,10 +124,10 @@ amazonec2 ドライバを使う前に、認証情報の設定が必要です。
 * ``--amazonec2-instance-type``: 実行するインスタンス・タイプです。
 * ``--amazonec2-device-name``: 実行するデバイス名です。
 * ``--amazonec2-root-size`` : インスタンスのルート・ディスク容量（単位：GB）。
-ｊ* ``--amazonec2-volume-type``: インスタンスにアタッチする Amazon EBS の種類を指定。
+* ``--amazonec2-volume-type``: インスタンスにアタッチする Amazon EBS の種類を指定。
 * ``--amazonec2-iam-instance-profile`` : インスタンスのプロフィールに使われる AWS IAM ロール名。
 * ``--amazonec2-ssh-user`` : SSH ログイン・ユーザ名です。ここには AMI が使うデフォルトの SSH ユーザを一致する必要があります。
-``--amazonec2-request-spot-instance`` : スポット・インスタンスを使用。
+* ``--amazonec2-request-spot-instance`` : スポット・インスタンスを使用。
 * ``--amazonec2-spot-price`` : スポット・インスタンスの bid 価格（単位：ドル）。 ``--amazonec2-request-spot-instance`` フラグが必要です。
 * ``--amazonec2-use-private-addressce`` : docker-machine の通信にプライベート IP アドレスを使います。ですがパブリックな IP アドレスも作成されます。
 * ``--amazonec2-private-address-only`` : プライベート・アドレスのみ使います。
@@ -322,3 +332,7 @@ VPC ID を確認するには：
 
 ``--amazonec2-ami`` で指定した AMI が必要とする SSH ユーザ名を ``--amazonec2-ssh-user``  で指定します。
 
+.. seealso:: 
+
+   Amazon Web Services
+      https://docs.docker.com/machine/drivers/aws/
