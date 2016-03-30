@@ -15,6 +15,12 @@
 アプリケーションのデプロイ
 ==============================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. You’ve built a Swarm cluster so now you are ready to build and deploy the voting application itself.
 
 :doc:`Swarm クラスタを構築 <03-create-cluster>` しましたので、投票アプリケーションを構築・デプロイする準備が整いました。

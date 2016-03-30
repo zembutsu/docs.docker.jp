@@ -15,6 +15,12 @@
 Docker Swarm の入手方法
 ==============================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. You can create a Docker Swarm cluster using the swarm executable image from a container or using an executable swarm binary you install on your system. This page introduces the two methods and discusses their pros and cons.
 
 Docker Swarm クラスタを作成するには、 ``swarm`` を実行可能なイメージをコンテナとして使うか、あるいは、実行可能な ``swarm`` バイナリをシステム上にインストールする方法があります。このページは２つの方法を紹介し、各々の賛否を議論します。

@@ -14,6 +14,12 @@
 Docker Swarm の TLS 設定
 ==============================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. In this procedure you create a two-node Swarm cluster, a Docker Engine CLI, a Swarm Manager, and a Certificate Authority as shown below. All the Docker Engine hosts (client, swarm, node1, and node2) have a copy of the CA’s certificate as well as their own key-pair signed by the CA.
 
 この手順では下図のように、 Swarm クラスタに２つのノードを作成し、Swarm マネージャ、認証局をします。全ての Docker Engine ホスト（ ``client`` 、 ``swarm`` 、 ``node1``  、 ``node2``  ）は、認証局の証明書のコピーと、自分自身で認証局の署名をしたキーペアのコピーも持ちます。

@@ -15,6 +15,12 @@
 クラスタ・リソースのセットアップ
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Now that your underlying network infrastructure is built, you can deploye and configure the Swarm cluster. A host in a Swarm cluster is called a node. So, these instructions refer to each AWS EC2 instances as a node and refers to each node by the Name it appears as in your EC2 Dashboard**.
 
 :doc:`基礎となるネットワーク基盤を構築 <02-deploy-infra>` できましたので、Swarm クラスタの構築と設定を行う準備が整いました。以後、Swarm クラスタ上のホストを *ノード* と呼びます。そのため、AWS EC2 インスタンスをノードとして言及し、それぞれのノードを EC2 ダッシュボード上に表示されるノードの **名前** で呼びます。

@@ -13,6 +13,12 @@
 プロダクション用の Swarm クラスタ構築
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. This example shows you how to deploy a high-availability Docker Swarm cluster. Although this example uses the Amazon Web Services (AWS) platform, you can deploy an equivalent Docker Swarm cluster on many other platforms.
 
 高い可用性を持つ Docker Swarm クラスタのデプロイ方法を紹介します。この例では Amazon Web Services (AWS) をプラットフォームとして使いますが、他のプラットフォーム上でも Docker Swarm クラスタを同じようにデプロイできます。

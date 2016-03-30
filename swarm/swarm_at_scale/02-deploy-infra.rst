@@ -13,6 +13,12 @@
 インフラのデプロイ
 ====================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. In this step, you create an AWS Virtual Private Cloud (VPC) to run your application stack on. Before you continue, make sure you have taken the time to learn the application architecture.
 
 このステップでは、AWS バーチャル・プライベート・クラウド (VPC) 上にアプリケーション・スタックを走らせます。このまま進める前に、 :doc:`アプリケーション・アーキテクチャを学ぶ <01-about>` 必要があります。

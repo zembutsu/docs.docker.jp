@@ -13,6 +13,12 @@
 Docker Swarm の高可用性
 ==============================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. In Docker Swarm, the Swarm manager is responsible for the entire cluster and manages the resources of multiple Docker hosts at scale. If the Swarm manager dies, you must create a new one and deal with an interruption of service.
 
 Docker Swarm の **Swarm マネージャ** は、クラスタ全体に対する責任を持ち、スケール時は複数 *Docker ホスト* のリソースを管理します。もし Swarm マネージャが停止したら、新しいマネージャを作成し、サービス中断に対処しなくてはいけません。

@@ -15,6 +15,12 @@
 Swarm を検証環境で試すには
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. This getting started example shows you how to create a Docker Swarm, the native clustering tool for Docker.
 
 この導入ガイドでは、Docker Swarm という Docker 用のネイティブなクラスタリング・ツールを使う方法を紹介します。
@@ -115,9 +121,9 @@ Docker Engine で３つの VM を作成
 
 各 create コマンドの実行時、 boot2docker.iso と呼ばれる VM イメージの *最新版* がローカルにコピーされているかどうか確認します。利用できなければ、Docker Machine は Docker Hub からイメージをダウンロードします。それから Docker Machine は boot2docker.iso を使い、Docker Engine を自動的に実行する VM を作成します。
 
-.. note::
-
 .. Troubleshooting: If your computer or hosts cannot reach Docker Hub, the docker-machine or docker run commands that pull images may fail. In that case, check the Docker Hub status page for service availability. Then, check whether your computer is connected to the Internet. Finally, check whether VirtualBox’s network settings allow your hosts to connect to the Internet.
+
+.. note::
 
    トラブルシューティング：コンピュータやホストが Docker Hub にアクセスできなければ、 ``docker-machine`` や ``docker run`` コマンドは失敗します。そのような場合、サービスが利用可能かどうか `Docker Hub ステータス・ページ <http://status.docker.com/>`_ を確認します。その次は、自分のコンピュータがインターネットに接続しているか確認します。あとは VirtualBox のネットワーク設定で、ホストがインターネット側に接続可能かどうかを確認してください。
 

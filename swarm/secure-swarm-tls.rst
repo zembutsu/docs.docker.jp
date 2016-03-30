@@ -15,6 +15,12 @@
 Swarm と TLS の概要
 ==============================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. All nodes in a Swarm cluster must bind their Docker daemons to a network port. This has obvious security implications. These implications are compounded when the network in question is untrusted such as the internet. To mitigate these risks, Docker Swarm and the Docker Engine daemon support Transport Layer Security (TLS).
 
 Swam クラスタの全てのノードでは、それぞれの Docker デーモンが通信用のポートを公開（バインド）する必要があります。そのため、これがセキュリティ上の懸念となるのは明らかです。インターネットのような信頼を疑うべきネットワークにおいて、懸念は倍増します。これらのリスクを減らすため、Docker Swarm と Docker Engine のデーモンは TLS （Transport Layer Security；トランスポート・レイヤ・セキュリティ）をサポートしています。

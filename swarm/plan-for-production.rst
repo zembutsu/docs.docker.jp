@@ -15,6 +15,12 @@
 プロダクションで Swarm 利用時の考慮
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. This article provides guidance to help you plan, deploy, and manage Docker Swarm clusters in business critical production environments. The following high level topics are covered:
 
 この記事は Docker Swarm クラスタを計画・デプロイ・管理の手助けになるガイダンスを提供します。想定しているのは、ビジネスにおいてクリティカルなプロダクション環境です。次のハイレベルな項目を扱います。
@@ -386,7 +392,7 @@ Engine のコンテナ・ネットワークは Linux カーネルの 3.16 以上
     High availability in Docker Swarm
     Universal Control plane
 
-* :doc:`swarm_at_scale`
+* :doc:`swarm_at_scale/index`
 * :doc:`networking`
 * :doc:`multi-manager-setup`
 * `ユニバーサル・コントロール・プレーン（英語） <https://www.docker.com/products/docker-universal-control-plane>`_

@@ -15,6 +15,12 @@
 Docker Swarm ディスカバリ
 ==============================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Docker Swarm comes with multiple discovery backends. You use a hosted discovery service with Docker Swarm. The service maintains a list of IPs in your swarm. This page describes the different types of hosted discovery available to you. These are:
 
 Docker Swarm は複数のディスカバリ・バックエンドに対応しています。Docker Swarm にはホステット・ディスカバリ・サービス（hosted discovery service）が利用可能です。このサービスは Swarm の IP アドレスの一覧を保持します。このページでは利用可能な様々なホステット・ディスカバリを紹介します。
@@ -118,21 +124,21 @@ libkv についてやサポートしているバックエンドに対する技�
 .. code-block:: bash
 
    swarm list etcd://<etcd_addr1>,<etcd_addr2>/<optional path prefix>
-<node_ip:2375>
+   <node_ip:2375>
 
 **Consul:**
 
 .. code-block:: bash
 
    swarm list consul://<consul_addr>/<optional path prefix>
-<node_ip:2375>
+   <node_ip:2375>
 
 **ZooKeeper:**
 
 .. code-block:: bash
 
    swarm list zk://<zookeeper_addr1>,<zookeeper_addr2>/<optional path prefix>
-<node_ip:2375>
+   <node_ip:2375>
 
 .. Use TLS with distributed key/value discovery
 
