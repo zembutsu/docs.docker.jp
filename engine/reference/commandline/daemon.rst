@@ -12,6 +12,12 @@
 daemon
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. code-block:: bash
 
    Usage: docker daemon [OPTIONS]
@@ -94,11 +100,11 @@ Docker デーモンは :doc:`Docker リモート API </engine/reference/api/dock
 
 .. By default, a unix domain socket (or IPC socket) is created at /var/run/docker.sock, requiring either root permission, or docker group membership.
 
-デフォルトでは ``unix`` ドメイン・ソケット（あるいは IPC ソケット）が ``/var/run/docker.sock`` に作成されるため、 ``root`` パーミッションか ``docker`` グループへの所属が必要です。
+デフォルトでは ``unix`` ドメイン・ソケット（あるいは IPC ソケット）が ``/var/run/docker.sock`` に作成されるため、 ``root`` 権限か ``docker`` グループへの所属が必要です。
 
 .. If you need to access the Docker daemon remotely, you need to enable the tcp Socket. Beware that the default setup provides un-encrypted and un-authenticated direct access to the Docker daemon - and should be secured either using the built in HTTPS encrypted socket, or by putting a secure web proxy in front of it. You can listen on port 2375 on all network interfaces with -H tcp://0.0.0.0:2375, or on a particular network interface using its IP address: -H tcp://192.168.59.103:2375. It is conventional to use port 2375 for un-encrypted, and port 2376 for encrypted communication with the daemon.
 
-Docker デーモンにリモートからの接続を考えているのであれば、 ``tcp`` ソケットを有効にする必要があります。デフォルトのセットアップでは、Docker デーモンとの暗号化や認証機能はありませんのでご注意ください。そして、安全に使うには :doc:`内蔵の HTTP 暗号化ソケット </engine/security/https>` を使うべきです。あるいは安全なウェブ・プロキシをフロントに準備してください。ポート ``2375`` をリッスンしている場合は、全てのネットワークインターフェースで ``-H tcp://0.0.0.0:2375`` を使うか、あるいは IP アドレスを ``-H tcp://192.168.59.103:2375`` のように指定します。習慣として、デーモンとの通信が暗号化されていない場合はポート ``2375`` を、暗号化されている場合はポート ``2376`` を使います。
+Docker デーモンにリモートからの接続を考えているのであれば、 ``tcp`` ソケットを有効にする必要があります。デフォルトのセットアップでは、Docker デーモンとの暗号化や認証機能はありませんのでご注意ください。そして、安全に使うには :doc:`内蔵の HTTP 暗号化ソケット </engine/security/https>` を使うべきです。あるいは安全なウェブ・プロキシをフロントに準備してください。ポート ``2375`` をリッスンしている場合は、全てのネットワークインターフェースで ``-H tcp://0.0.0.0:2375`` を使うか、あるいは IP アドレスを ``-H tcp://192.168.59.103:2375`` のように指定します。慣例として、デーモンとの通信が暗号化されていない場合はポート ``2375`` を、暗号化されている場合はポート ``2376`` を使います。
 
 ..    Note: If you’re using an HTTPS encrypted socket, keep in mind that only TLS1.0 and greater are supported. Protocols SSLv3 and under are not supported anymore for security reasons.
 
@@ -159,11 +165,11 @@ Docker デーモンは様々に異なるイメージ・レイヤ・ストレー�
 
 .. The aufs driver is the oldest, but is based on a Linux kernel patch-set that is unlikely to be merged into the main kernel. These are also known to cause some serious kernel crashes. However, aufs is also the only storage driver that allows containers to share executable and shared library memory, so is a useful choice when running thousands of containers with the same program or libraries.
 
-``aufs`` ドライバは最も古いものですが、Linux カーネルに対するパッチ群が基になっています。ここにはメイン・カーネルにマージされなかったものも含まれます。そのため、深刻なカーネルのクラッシュを引き起こすことも分かっています。しかしながら、 ``aufs`` はコンテナの共有実行と共有ライブラリ・メモリが使える唯一のストレージ・ドライバでもあります。そのため、同じプログラムやライブラリで数千ものコンテナを実行する時は便利な選択でしょう。
+``aufs`` ドライバは最も古いものですが、Linux カーネルに対するパッチ群が基になっています。ドライバにはメイン・カーネルにマージされなかったものも含まれます。そのため、深刻なカーネルのクラッシュを引き起こすことも分かっています。しかしながら、 ``aufs`` はコンテナの共有実行と共有ライブラリ・メモリが使える唯一のストレージ・ドライバでもあります。そのため、同じプログラムやライブラリで数千ものコンテナを実行する時は便利な選択でしょう。
 
 .. The devicemapper driver uses thin provisioning and Copy on Write (CoW) snapshots. For each devicemapper graph location – typically /var/lib/docker/devicemapper – a thin pool is created based on two block devices, one for data and one for metadata. By default, these block devices are created automatically by using loopback mounts of automatically created sparse files. Refer to Storage driver options below for a way how to customize this setup. ~jpetazzo/Resizing Docker containers with the Device Mapper plugin article explains how to tune your existing setup without the use of options.
 
-``devicemapper`` ドライバはシン・プロビジョニング（thin provisioning）とコピー・オン・ライト（Copy on Write）スナップショットを使います。各 devicemapper が位置する場所は、典型的なのは ``/var/lib/docker/devicemapper``  です。シン（thin）プールは２つのブロックデバイス上に作られます。１つはデータであり、もう１つはメタデータです。デフォルトでは、これらのブロック・デバイスは、別々のファイルとして自動されたループバックのマウントをもとに、自動的に作成されます。セットアップのカスタマイズ方法は、以下にある :ref:`ストレージ・ドライバのオプション <storage-driver-options>` をご覧ください。 `jpetazzo/Resizing Docker containers with the Device Mapper plugin <http://jpetazzo.github.io/2014/01/29/docker-device-mapper-resize/>`_ の記事に、オプションを使わない調整のしかたについて説明があります。
+``devicemapper`` ドライバはシン・プロビジョニング（thin provisioning）とコピー・オン・ライト（Copy on Write）スナップショットを使います。各 devicemapper が位置する場所は、 ``/var/lib/docker/devicemapper`` が典型的です。シン（thin）プールは２つのブロックデバイス上に作られます。１つはデータであり、もう１つはメタデータです。デフォルトでは、これらのブロック・デバイスは、別々のファイルとして自動されたループバックのマウントをもとに、自動的に作成されます。セットアップのカスタマイズ方法は、以下にある :ref:`ストレージ・ドライバのオプション <storage-driver-options>` をご覧ください。 `jpetazzo/Resizing Docker containers with the Device Mapper plugin <http://jpetazzo.github.io/2014/01/29/docker-device-mapper-resize/>`_ の記事に、オプションを使わない設定方法の説明があります。
 
 .. The btrfs driver is very fast for docker build - but like devicemapper does not share executable memory between devices. Use docker daemon -s btrfs -g /mnt/btrfs_partition.
 
@@ -181,7 +187,7 @@ Docker デーモンは様々に異なるイメージ・レイヤ・ストレー�
 
 .. note::
 
-   前途有望な ``overlay`` は、機能がまだ若く、プロダクションで使うべきではありません。とりわけ、 ``overlay`` を使うと過度の inode 消費を引き起こしますし（特にイメージが大きく成長すると）、RPM との互換性がありません。
+   前途有望な ``overlay`` ですが、機能がまだ若く、プロダクションで使うべきではありません。特に  ``overlay`` を使うと過度の inode 消費を引き起こします（特にイメージが大きく成長する場合）。また、RPM との互換性がありません。
 
 ..    Note: It is currently unsupported on btrfs or any Copy on Write filesystem and should only be used over ext4 partitions.
 
@@ -233,7 +239,7 @@ Docker デーモンは様々に異なるイメージ・レイヤ・ストレー�
 
 ..    Specifies the size to use when creating the base device, which limits the size of images and containers. The default value is 100G. Note, thin devices are inherently “sparse”, so a 100G device which is mostly empty doesn’t use 100 GB of space on the pool. However, the filesystem will use more space for the empty case the larger the device is.
 
-ベース・デバイス作成時の容量を指定します。これはイメージとコンテナのサイズの上限にあたります。デフォルトの値は 10GB です。シン・デバイスは本質的に「希薄」（sparse）なのを覚えて置いてください。そのため、10GB のデバイスの大半がカラッポで未使用だったとしても、10GB の領域がプールされます。しかしながら、ファイルシステムがより大きなデバイスであれば、カラッポだとしても多くの容量を使うでしょう。
+ベース・デバイス作成時の容量を指定します。これはイメージとコンテナのサイズの上限にあたります。デフォルトの値は 10GB です。シン・デバイスは本質的に「希薄」（sparse）なのを覚えて置いてください。そのため、10GB のデバイスの大半がカラッポで未使用だったとしても、10GB の領域がプールされます。しかしながら、ファイルシステムがより大きなデバイスであれば、カラッポだとしても多くの容量を使う可能性があるでしょう。
 
 .. The base device size can be increased at daemon restart which will allow all future images and containers (based on those new images) to be of the new base device size.
 
@@ -636,7 +642,7 @@ IP アドレスが 127.0.0.0/8 の範囲にあるローカルのレジストリ�
 
 .. Enabling --insecure-registry, i.e., allowing un-encrypted and/or untrusted communication, can be useful when running a local registry. However, because its use creates security vulnerabilities it should ONLY be enabled for testing purposes. For increased security, users should add their CA to their system’s list of trusted CAs instead of enabling --insecure-registry.
 
-``--insecure-registry`` を有効にするとは、暗号化されていない、あるいは信頼できない通信を可能にします。そのため、ローカルでのレジストリ実行には便利でしょう。しかし、セキュリティ上の脆弱性を生み出してしまうため、テスト目的のみで使うべきです。セキュリティを高めるには、 ``--insecure-registry`` を有効にするのではなく、信頼できる CA 機関が発行する CA を使うべきです。
+``--insecure-registry`` を有効にするとは、暗号化されていない、あるいは信頼できない通信を可能にします。そのため、ローカル環境でのレジストリ実行には便利でしょう。しかし、セキュリティ上の脆弱性を生み出してしまうため、テスト目的のみで使うべきです。セキュリティを高めるには、 ``--insecure-registry`` を有効にするのではなく、信頼できる CA 機関が発行する CA を使うべきです。
 
 .. Legacy Registries
 
@@ -664,7 +670,7 @@ LAN の内部で ``HTTPS`` プロキシを使う場合、Docker Hub の証明書
 
 ..    Ask your network admin for the proxy’s CA certificate and append them to /etc/pki/tls/certs/ca-bundle.crt
 
-2. ネットワーク管理者にプロキシの CA 証明書を訊き、 ``/etc/pki/tls/certs/ca-bundle.crt`` に追加します。
+2. ネットワーク管理者にプロキシの CA 証明書を訊ね、 ``/etc/pki/tls/certs/ca-bundle.crt`` に追加します。
 
 ..    Then start your Docker daemon with HTTPS_PROXY=http://username:password@proxy:port/ docker daemon. The username: and password@ are optional - and are only needed if your proxy is set up to require authentication.
 
@@ -807,7 +813,7 @@ Linux カーネルの `ユーザ名前空間(user namespace)サポート <http:/
 
 .. If numeric IDs are provided, translation back to valid user or group names will occur so that the subordinate uid and gid information can be read, given these resources are name-based, not id-based. If the numeric ID information provided does not exist as entries in /etc/passwd or /etc/group, daemon startup will fail with an error message.
 
-整数値の ID が指定されると、有効なユーザ名かグループ名に交換されます。これにより、従属 uid と gid の情報が読み込まれ、指定されたこれらのリソースは ID ベースではなく名前ベースでとなります。 ``/etc/passwd`` や ``/etc/group`` にエントリが無い数値 ID 情報が指定された場合は、docker は起動せずにエラーを表示します。
+整数値の ID を指定すると、有効なユーザ名かグループ名に交換されます。これにより、従属 uid と gid の情報が読み込まれ、指定されたこれらのリソースは ID ベースではなく名前ベースでとなります。 ``/etc/passwd`` や ``/etc/group`` にエントリが無い数値 ID 情報が指定された場合は、docker は起動せずにエラーを表示します。
 
 .. Example: starting with default Docker user management:
 
@@ -820,7 +826,7 @@ Linux カーネルの `ユーザ名前空間(user namespace)サポート <http:/
 
 .. When default is provided, Docker will create - or find the existing - user and group named dockremap. If the user is created, and the Linux distribution has appropriate support, the /etc/subuid and /etc/subgid files will be populated with a contiguous 65536 length range of subordinate user and group IDs, starting at an offset based on prior entries in those files. For example, Ubuntu will create the following range, based on an existing user named user1 already owning the first 65536 range:
 
-``default`` が指定されると、 Docker は ``dockermap`` というユーザ名とグループ名が存在しているかどうか確認し、なければ作成します。ユーザが作成されると、 Linux ディストリビューションは ``/etc/subuid`` と ``/etc/subgid`` ファイルの使用をサポートします。これは従属ユーザ ID と従属グループ ID を 65536 まで数える（カウントする）もので、これらは既存のファイルへのエントリをオフセットに使います。例えば、Ubuntu は次のような範囲を作成します。既存の ``user1`` という名前のユーザは、既に 65536 までの範囲を持っています。
+``default`` を指定すると、 Docker は ``dockermap`` というユーザ名とグループ名が存在しているかどうか確認し、なければ作成します。ユーザが作成されると、 Linux ディストリビューションは ``/etc/subuid`` と ``/etc/subgid`` ファイルの使用をサポートします。これは従属ユーザ ID と従属グループ ID を 65536 まで数える（カウントする）もので、これらは既存のファイルへのエントリをオフセットに使います。例えば、Ubuntu は次のような範囲を作成します。既存の ``user1`` という名前のユーザは、既に 65536 までの範囲を持っています。
 
 .. code-block:: bash
 
@@ -1018,3 +1024,8 @@ cgroup はスラッシュ記号（ ``/`` ）で始まるルート cgroup の下�
 
 * ``debug`` ：true を設定すると、デーモンをデバッグ・モードにします。
 * ``labels`` ：デーモンのラベルを新しく設定したものに変えます。
+
+.. seealso:: 
+
+   daemon
+      https://docs.docker.com/engine/reference/commandline/daemon/

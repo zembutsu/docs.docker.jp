@@ -1,4 +1,4 @@
-*- coding: utf-8 -*-
+.. *- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/network_connect/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/network_connect.md
    doc version: 1.10
@@ -11,6 +11,12 @@
 =======================================
 network connect
 =======================================
+
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
 
 .. code-block:: bash
 
@@ -113,3 +119,7 @@ network connect
 * :doc:`network rm <network_rm>`
 * :doc:`Docker コンテナ・ネットワークの理解 </engine/userguide/networking/dockernetworks>`
 
+.. seealso:: 
+
+   network connect
+      https://docs.docker.com/engine/reference/commandline/network_connect/

@@ -12,6 +12,13 @@
 attach
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
+
 .. code-block:: bash
 
    Usage: docker attach [OPTIONS] CONTAINER
@@ -34,7 +41,7 @@ attach
 
 .. To stop a container, use CTRL-c. This key sequence sends SIGKILL to the container. If --sig-proxy is true (the default),CTRL-c sends a SIGINT to the container. You can detach from a container and leave it running using the using CTRL-p CTRL-q key sequence.
 
-コンテナを停止するには、 ``CTRL-c`` を使います。このキー・シーケンスはコンテナに対して ``SIGKILL`` を送信します。もしも ``--sig-proxy`` が true であれば（デフォルト）、 ``CTRL-c`` はコンテナに対して ``SIGINT`` を送信します。 ``CTRL-p CTRL-q`` キー・シーケンスを使うと、実行中のコンテナからデタッチして離れられます。
+コンテナを停止するには、 ``CTRL-c`` を使います。このキー・シーケンスはコンテナに対して ``SIGKILL`` を送信します。もしも ``--sig-proxy`` が true であれば（デフォルト）、 ``CTRL-c`` はコンテナに対して ``SIGINT`` を送信します。 ``CTRL-p CTRL-q`` キー・シーケンスを使えば、実行中のコンテナからデタッチして離れられます。
 
 ..    Note: A process running as PID 1 inside a container is treated specially by Linux: it ignores any signal with the default action. So, the process will not terminate on SIGINT or SIGTERM unless it is coded to do so.
 
@@ -55,7 +62,7 @@ tty を有効化したコンテナにアタッチした状態（例： ``-t`` �
 
 .. If you want, you can configure a override the Docker key sequence for detach. This is is useful if the Docker default sequence conflicts with key squence you use for other applications. There are two ways to defines a your own detach key sequence, as a per-container override or as a configuration property on your entire configuration.
 
-必要であれば、デタッチ用の Docker キー・シーケンスの設定を上書きできます。Docker デフォルトのキー・シーケンスが他のアプリケーションと重複している場合に役立ちます。デタッチ用キー・シーケンスを指定するには、２つの方法があります。１つはコンテナ毎に設定を行うか、あるいは全体に対してのプロパティを設定します。
+必要であれば、デタッチ用の Docker キー・シーケンスの設定を上書きできます。Docker デフォルトのキー・シーケンスが他のアプリケーションと重複している場合に役立ちます。デタッチ用キー・シーケンスを指定するには、２つの方法があります。１つはコンテナごとに設定するか、あるいは全体に対してのプロパティを設定します。
 
 .. To override the sequence for an individual container, use the --detach-keys="<sequence>" flag with the docker attach command. The format of the <sequence> is either a letter [a-Z], or the ctrl- combined with any of the following:
 
@@ -136,5 +143,7 @@ tty を有効化したコンテナにアタッチした状態（例： ``-t`` �
    13
    $ docker ps -a | grep test
    275c44472aeb        debian:7            "/bin/bash"         26 seconds ago      Exited (13) 17 seconds ago                         test
-   
-   
+   .. seealso:: 
+
+   attach
+      https://docs.docker.com/engine/reference/commandline/attach/

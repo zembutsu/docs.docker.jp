@@ -30,3 +30,8 @@ kill
 .. note::
 
    ``ENTRYPOINT`` と ``CMD`` を *シェル* 形式で実行している場合は、 ``/bin/sh -c`` のサブコマンドとして実行されていますので、シグナルを受け取ることができません。つまり、（シェル形式では）コンテナの PID 1 は Unix シグナルを受け取りません。
+
+.. seealso:: 
+
+   kill
+      https://docs.docker.com/engine/reference/commandline/kill/

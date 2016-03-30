@@ -55,3 +55,8 @@ login
 .. note::
 
    ``sudo docker login`` を実行すると、証明書は ``/root/.docker/config.json`` に保管されます。
+
+.. seealso:: 
+
+   login
+      https://docs.docker.com/engine/reference/commandline/login/

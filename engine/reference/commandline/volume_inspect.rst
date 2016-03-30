@@ -13,6 +13,12 @@
 volume inspect
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. code-block:: bash
 
    Usage: docker volume inspect [OPTIONS] VOLUME [VOLUME...]
@@ -54,3 +60,7 @@ volume inspect
 * :doc:`volume_rm`
 * :doc:`/engine/userguide/containers/dockervolumes`
 
+.. seealso:: 
+
+   volume inspect
+      https://docs.docker.com/engine/reference/commandline/volume_inspect/

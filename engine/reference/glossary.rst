@@ -14,6 +14,12 @@
 用語集
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. A list of terms used around the Docker project.
 
 Docker プロジェクト界隈で使われる用語の一覧です。
@@ -95,7 +101,7 @@ Compose
 
 .. Compose is a tool for defining and running complex applications with Docker. With compose, you define a multi-container application in a single file, then spin your application up in a single command which does everything that needs to be done to get it running.
 
-:doc:`Compose </compose/index>` （コンポーズ）は、Docker で複雑なアプリケーションの実行と定義をするツールです。Compose を使えば、１つのファイルに複数のコンテナ・アプリケーションを定義しておき、コマンド１つジッコウするだけで、アプリケーションを使うために必要な全てを実行します。
+:doc:`Compose </compose/index>` （コンポーズ）は、Docker で複雑なアプリケーションの実行と定義をするツールです。Compose を使えば、１つのファイルに複数のコンテナ・アプリケーションを定義しておき、コマンドを１つ実行するだけで、アプリケーションを使うために必要な全てを実行します。
 
 .. Also known as : docker-compose, fig
 
@@ -137,7 +143,7 @@ Docker コンテナの概念は、輸送用のコンテナから拝借したも�
 
 .. A data volume is a specially-designated directory within one or more containers that bypasses the Union File System. Data volumes are designed to persist data, independent of the container’s life cycle. Docker therefore never automatically delete volumes when you remove a container, nor will it “garbage collect” volumes that are no longer referenced by a container.
 
-データ・ボリューム（data volume）は、コンテナ内部でユニオン・ファイル・システムを迂回するため特別に設計されたディレクトリです。データ・ボリュームは長期的なデータの保管のために設計されており、コンテナのライフサイクルからは独立しています。そのため、コンテナを削除してもボリュームが自動的に消されることは有り得ませんし、コンテナから参照されなくなったボリュームが「掃除」（garbage collect）されることもありません。
+データ・ボリューム（data volume）は、コンテナ内部でユニオン・ファイル・システムを迂回するため特別に設計されたディレクトリです。データ・ボリュームは長期的なデータ保管のために設計されており、コンテナのライフサイクルからは独立しています。そのため、コンテナを削除してもボリュームが自動的に消されることは有り得ませんし、コンテナから参照されなくなったボリュームが「掃除」（garbage collect）されることもありません。
 
 .. Docker
 
@@ -348,7 +354,7 @@ Swarm
 
 .. note::
 
-   ここでのラベルとは、docker デーモン用のキー・バリューで設定するラベルとは関係がありｍさえん。
+   ここでのラベルとは、docker デーモン用のキー・バリューで設定するラベルとは関係がありません。
 
 .. Toolbox
 
@@ -390,3 +396,9 @@ Docker Toolbox（ツールボックス）は Mac あるいは Windows ユーザ�
 .. Also known as : VM
 
 *別名：VM*
+
+.. seealso:: 
+
+   Glossary
+      https://docs.docker.com/engine/reference/glossary/
+

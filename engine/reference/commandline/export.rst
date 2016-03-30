@@ -47,3 +47,8 @@ export
 .. code-block:: bash
 
    $ docker export --output="latest.tar" red_panda
+
+.. seealso:: 
+
+   export
+      https://docs.docker.com/engine/reference/commandline/export/

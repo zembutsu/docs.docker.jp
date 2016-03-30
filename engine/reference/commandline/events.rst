@@ -12,6 +12,12 @@
 events
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. code-block:: bash
 
    Usage: docker events [OPTIONS]
@@ -203,3 +209,8 @@ Docker ネットワークは以下のイベントを報告します。
    2014-05-10T17:42:14.999999999Z07:00 4386fb97867d: (from ubuntu-1:14.04) stop
    2014-05-10T17:42:14.999999999Z07:00 7805c1d35632: (from redis:2.8) die
    2014-09-03T15:49:29.999999999Z07:00 7805c1d35632: (from redis:2.8) stop
+
+.. seealso:: 
+
+   events
+      https://docs.docker.com/engine/reference/commandline/events/

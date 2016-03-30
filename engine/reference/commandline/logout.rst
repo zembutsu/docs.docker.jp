@@ -28,3 +28,8 @@ logout
 .. code-block:: bash
 
    $ docker logout localhost:8080
+
+.. seealso:: 
+
+   logout
+      https://docs.docker.com/engine/reference/commandline/logout/

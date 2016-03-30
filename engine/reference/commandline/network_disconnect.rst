@@ -51,5 +51,9 @@ network disconnect
 * :doc:`network rm <network_rm>`
 * :doc:`Docker コンテナ・ネットワークの理解 </engine/userguide/networking/dockernetworks>`
 
+.. seealso:: 
+
+   network disconnect
+      https://docs.docker.com/engine/reference/commandline/network_disconnect/
 
 

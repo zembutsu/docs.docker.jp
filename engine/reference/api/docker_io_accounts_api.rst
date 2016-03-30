@@ -15,6 +15,12 @@
 docker.io アカウント API
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Get a single user
 
 .. _get-a-single-user:
@@ -424,3 +430,7 @@ JSON パラメータ：
     HTTP/1.1 204 NO CONTENT
     Content-Length: 0
 
+.. seealso:: 
+
+   docker.io accounts API
+      https://docs.docker.com/engine/reference/api/docker_io_accounts_api/

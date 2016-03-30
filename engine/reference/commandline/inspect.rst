@@ -111,4 +111,8 @@ inspect
 
    $ docker inspect --format='{{json .config}}' $INSTANCE_ID
 
+.. seealso:: 
+
+   inspect
+      https://docs.docker.com/engine/reference/commandline/inspect/
 

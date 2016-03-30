@@ -12,6 +12,12 @@
 commit
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. code-block:: bash
 
    Usage: docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
@@ -101,5 +107,9 @@ commit
    c3f279d17e0a        ubuntu:12.04        /bin/bash               7 days ago          Up 25 hours
    197387f1b436        ubuntu:12.04        /bin/bash               7 days ago          Up 25 hours
 
+.. seealso:: 
+
+   commit
+      https://docs.docker.com/engine/reference/commandline/commit/
 
 

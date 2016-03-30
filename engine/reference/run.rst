@@ -14,13 +14,19 @@
 Docker run リファレンス
 ========================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. Docker runs processes in isolated containers. A container is a process which runs on a host. The host may be local or remote. When an operator executes docker run, the container process that runs is isolated in that it has its own file system, its own networking, and its own isolated process tree separate from the host.
 
-Docker は隔離されたコンテナでプロセスを実行します。コンテナはホスト上で動くプロセスです。ホストとはローカルかリモートです。作業者が ``docker run`` を実行すると、コンテナのプロセスが隔離されて実行されます。ここではコンテナ自身のファイルシステムを持ち、自身のネットワークを持ち、ホスト上の他のプロセス・ツリーからは隔離されています。
+Docker は隔離されたコンテナでプロセスを実行します。コンテナはホスト上で動くプロセスです。ホストとはローカルまたはリモートの環境です。オペレータが ``docker run`` を実行すると、コンテナのプロセスを隔離して実行します。コンテナは自身ファイルシステムとネットワークを持ち、ホスト上の他のプロセス・ツリーからは隔離されています。
 
 .. This page details how to use the docker run command to define the container’s resources at runtime.
 
-このページでは、コンテナ実行時のリソースを指定するために、 ``docker run`` コマンドの使い方の詳細を説明します。
+このページではコンテナ実行時にリソースを指定できるよう、 ``docker run`` コマンドの使い方の詳細を説明します。
 
 .. General form
 
@@ -39,7 +45,7 @@ Docker は隔離されたコンテナでプロセスを実行します。コン�
 
 .. The docker run command must specify an IMAGE to derive the container from. An image developer can define image defaults related to:
 
-``docker run`` コマンドはコンテナを形成する元になる :ref:`イメージ <image>` の指定が必須です。イメージの開発者はイメージに関連するデフォルト値を定義できます。
+``docker run`` コマンドはコンテナを形成する元になる :ref:`イメージ <image>` の指定が必要です。イメージの開発者はイメージに関連するデフォルト値を定義できます。
 
 ..    detached or foreground running
     container identification
@@ -136,7 +142,7 @@ Docker コンテナの起動時には、まず、コンテナをバックグラ�
 
 .. Do not pass a service x start command to a detached container. For example, this command attempts to start the nginx service.
 
-デタッチドのコンテナでは ``service x start`` コマンドは受け付けられません。例えば、次のコマンドは ``nginx`` サービスの起動を試みるものです。
+デタッチドのコンテナでは ``service x start`` コマンドは受け付けられません。例えば、次のコマンドは ``nginx`` サービスの起動を試みます。
 
 .. code-block:: bash
 
@@ -144,7 +150,7 @@ Docker コンテナの起動時には、まず、コンテナをバックグラ�
 
 .. This succeeds in starting the nginx service inside the container. However, it fails the detached container paradigm in that, the root process (service nginx start) returns and the detached container stops as designed. As a result, the nginx service is started but could not be used. Instead, to start a process such as the nginx web server do the following:
 
-コンテナ内で ``nginx`` サービスの起動は成功します。しかしながら、デタッチド・コンテナの枠組みにおいては処理が失敗します。これはルート・プロセス（ ``service nginx start`` ）が戻るので、デタッチド・コンテナを停止させようとします。その結果、 ``nginx`` サービスは実行されますが、実行し続けることができません。そのかわり、 ``nginx``  ウェブ・サーバのプロセスを実行するには、次のようにします。
+コンテナ内で ``nginx`` サービスの起動は成功します。しかしながら、デタッチド・コンテナの枠組み内では処理に失敗します。これはルート・プロセス（ ``service nginx start`` ）が終了するため、デタッチド・コンテナを停止させようとします。その結果、 ``nginx`` サービスは実行されますが、実行し続けることができません。この方法以外で  ``nginx``  ウェブ・サーバのプロセスを実行するには、次のようにします。
 
 .. code-block:: bash
 
@@ -186,7 +192,7 @@ Docker コンテナの起動時には、まず、コンテナをバックグラ�
 
 .. For interactive processes (like a shell), you must use -i -t together in order to allocate a tty for the container process. -i -t is often written -it as you’ll see in later examples. Specifying -t is forbidden when the client standard output is redirected or piped, such as in: echo test | docker run -i busybox cat.
 
-（シェルのような）インタラクティブなプロセスでは、コンテナのプロセスに対して tty を割り当てるため、 ``-i -t`` を一緒に使う必要があります。 ``-i -t`` は ``-it`` としても書くことができます。後ろの例で出てきます。 ``-t`` を指定すると、クライアント側の出力を ``echo test | docker run -i busybox cat`` のようにリダイレクトやパイプできます。
+（シェルのような）インタラクティブなプロセスでは、コンテナのプロセスに対して tty を割り当てるために、 ``-i -t`` を一緒に使う必要があります。 ``-i -t`` は ``-it`` と書くこともできます。後の例で出てきます。 ``-t`` を指定すると、クライアント側の出力を ``echo test | docker run -i busybox cat`` のようにリダイレクトやパイプできます。
 
 ..     Note: A process running as PID 1 inside a container is treated specially by Linux: it ignores any signal with the default action. So, the process will not terminate on SIGINT or SIGTERM unless it is coded to do so.
 
@@ -239,7 +245,7 @@ PID 相当
 
 .. Finally, to help with automation, you can have Docker write the container ID out to a file of your choosing. This is similar to how some programs might write out their process ID to a file (you’ve seen them as PID files):
 
-あとは、自動処理を簡単にするため、任意に選択したファイルに対して Docker はコンテナ ID を書き出せます。これは、プログラムがプロセス ID をファイルに書き出す（いわゆる PID ファイルのことです）のに似ています。
+あとは、自動処理を簡単にするため、Docker は任意に選択したファイルに対してコンテナ ID を書き出せます。これは、プログラムがプロセス ID をファイルに書き出す（いわゆる PID ファイルのことです）のに似ています。
 
 .. code-block:: bash
 
@@ -299,7 +305,7 @@ PID 名前空間はプロセスの分離をもたらします。PID 名前空間
 
 .. This command would allow you to use strace inside the container on pid 1234 on the host.
 
-このコマンドはホスト上の pid 1234 として、コンテナの中で ``strace`` を使うものです。
+これはホスト上の pid 1234 にあるコンテナ内で ``strace`` を使うコマンドです。
 
 .. UTS settings (–uts)
 
@@ -319,7 +325,7 @@ UTS 設定（--uts）
 
 .. The UTS namespace is for setting the hostname and the domain that is visible to running processes in that namespace. By default, all containers, including those with --net=host, have their own UTS namespace. The host setting will result in the container using the same UTS namespace as the host.
 
-UTS 名前空間とは、プロセスを実行する名前空間上で見えるホスト名とドメイン名を設定するものです。デフォルトでは、全てのコンテナは ``--uts=host`` の指定により、自身の UTS 名前空間を持っています。 ``host`` には、ホスト名として同じ UTS 名前空間をコンテナで使えるようにする設定をします。
+UTS 名前空間とは、プロセスを実行する名前空間上で見えるホスト名とドメイン名を設定するものです。デフォルトでは、全てのコンテナは ``--uts=host`` の指定により、自身の UTS 名前空間を持っています。 ``host`` には、ホスト名として同じ UTS 名前空間をコンテナで使えるよう設定します。
 
 .. You may wish to share the UTS namespace with the host if you would like the hostname of the container to change as the hostname of the host changes. A more advanced use case would be changing the host’s hostname from a container.
 
@@ -350,7 +356,7 @@ IPC 設定（--ipc）
 
 .. By default, all containers have the IPC namespace enabled.
 
-デフォルトでは、全てのコンテナが有功な IPC 名前空間を持っています。
+デフォルトでは、全てのコンテナが有効な IPC 名前空間を持っています。
 
 .. IPC (POSIX/SysV IPC) namespace provides separation of named shared memory segments, semaphores and message queues.
 
@@ -358,7 +364,7 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
 .. Shared memory segments are used to accelerate inter-process communication at memory speed, rather than through pipes or through the network stack. Shared memory is commonly used by databases and custom-built (typically C/OpenMPI, C++/using boost libraries) high performance applications for scientific computing and financial services industries. If these types of applications are broken into multiple containers, you might need to share the IPC mechanisms of the containers.
 
-プロセス間通信はネットワーク・スタックをパイプするか通過するよりも、共有メモリ・セグメントはメモリの速度まで加速します。共有メモリとは、一般的にデータベースや、科学計算や緊急サービス産業向けの高性能アプリケーション向けカスタム・ビルド（典型的なのは、C/OpenMPI、C++ の高速化ライブラリ）に用いられます。この種のアプリケーションが複数のコンテナに分割される場合は、コンテナの IPC 機構を使って共有する必要があるでしょう。
+プロセス間通信は共有メモリ・セグメントはメモリの速度まで（ネットワーク・スタックをパイプするか通過するよりも速く）加速します。共有メモリとは、一般的にデータベースや、科学計算や緊急サービス産業向けの高性能アプリケーション向けカスタム・ビルド（典型的なのは、C/OpenMPI、C++ の高速化ライブラリ）に用いられます。この種のアプリケーションが複数のコンテナに分割される場合は、コンテナの IPC 機構を使って共有する必要があるでしょう。
 
 .. Network settings
 
@@ -434,7 +440,7 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
 .. With the network is none a container will not have access to any external routes. The container will still have a loopback interface enabled in the container but it does not have any routes to external traffic.
 
-コンテナのネットワークを ``none`` に指定すると、外部の経路に対してアクセスできなくなくなります。それでもコンテナは ``loopback`` インターフェースが有効なものの、外部のトラフィックに対する経路がありません。
+コンテナのネットワークを ``none`` に指定すると、外部の経路に対してアクセスできなくなくなります。それでもコンテナは ``loopback`` （ループバック）インターフェースが有効ですが、外部のトラフィックに対する経路がなくなります。
 
 .. Network: bridge
 
@@ -552,7 +558,7 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
 .. note::
 
-   Docker がコンテナの ``/etc/hosts`` ファイルをリアルタイムに更新するかもしれません。そのため、コンテナ内のプロセスが ``/etc/hosts`` ファイルを読み込もうとしても空だったり、あるいは最後まで読み込めない場合が有り得ます。殆どの場合、再度読み込もうとすることで、問題を解決するでしょう。
+   Docker がコンテナの ``/etc/hosts`` ファイルをリアルタイムに更新するかもしれません。そのため、コンテナ内のプロセスが ``/etc/hosts`` ファイルを読み込もうとしても空だったり、あるいは最後まで読み込めなかったりする場合が有り得ます。ほとんどの場合、再度読み込もうとすることで、問題を解決するでしょう。
 
 .. Restart policies (–restart)
 
@@ -911,7 +917,7 @@ MLS であれば、次のような例になります。
 
 .. The container has unlimited memory which can cause the host to run out memory and require killing system processes to free memory.
 
-コンテナは無制限にメモリを使えるため、ホスト上のメモリを使い果たしたら、空きメモリ確保の為にシステム・プロセスを停止する必要が出てきます。
+コンテナは無制限にメモリを使えるため、ホスト上のメモリを使い果たしたら、空きメモリ確保のために、システム・プロセスを停止する必要が出てきます。
 
 .. Kernel memory constraints
 
@@ -1770,3 +1776,8 @@ WORKDIR
 .. code-block:: bash
 
    -w="": Working directory inside the container
+
+.. seealso:: 
+
+   Docker run reference
+      https://docs.docker.com/engine/quickstart/

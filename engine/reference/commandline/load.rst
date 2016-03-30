@@ -42,4 +42,8 @@ load
    fedora              heisenbug           58394af37342        7 weeks ago         385.5 MB
    fedora              latest              58394af37342        7 weeks ago         385.5 MB
    
+.. seealso:: 
+
+   load
+      https://docs.docker.com/engine/reference/commandline/load/
 

@@ -49,5 +49,8 @@ tar 化されたレポジトリを、標準出力のストリームに出力し�
 
    $ docker save -o ubuntu.tar ubuntu:lucid ubuntu:saucy
 
+.. seealso:: 
 
+   save
+      https://docs.docker.com/engine/reference/commandline/save/
 

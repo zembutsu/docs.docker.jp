@@ -24,3 +24,8 @@ tag
 .. You can group your images together using names and tags, and then upload them to Share Images via Repositories.
 
 自分のイメージを名前やタグを使ってグループ化し、 :ref:`レポジトリを通してイメージを共有 <contributing-to-docker-hub>` するためアップロードできます。
+
+.. seealso:: 
+
+   tag
+      https://docs.docker.com/engine/reference/commandline/tag/

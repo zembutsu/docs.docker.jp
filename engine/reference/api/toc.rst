@@ -15,7 +15,6 @@ API リファレンス
 .. toctree::
    :maxdepth: 3
 
-   index.rst
    docker_remote_api.rst
    docker_api_client_libraries.rst
    docker_io_accounts_api.rst

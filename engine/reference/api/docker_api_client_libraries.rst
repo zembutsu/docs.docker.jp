@@ -7,13 +7,6 @@
 .. Commits on Feb 9, 2016 47dbb59e5b5d3472f9391e965131015d83d614a4
 .. -------------------------------------------------------------------
 
-
-.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/reference/api/remote_api_client_libraries/
-.. doc version: 1.9
-.. check date: 2016/1/14
-.. -----------------------------------------------------------------------------
-
 .. Docker Remote API client libraries
 
 .. _docker-remote-api-client-libraries:
@@ -21,6 +14,12 @@
 =======================================
 リモート API クライアント・ライブラリ
 =======================================
+
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
 
 .. These libraries have not been tested by the Docker maintainers for compatibility. Please file issues with the library owners. If you find more library implementations, please list them in Docker doc bugs and we will add the libraries here.
 
@@ -173,3 +172,9 @@
      - reactive-docker
      - https://github.com/almoehi/reactive-docker
      - Active
+
+.. seealso:: 
+
+   Docker Remote API client libraries
+      https://docs.docker.com/engine/reference/api/remote_api_client_libraries/
+

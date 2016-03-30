@@ -13,6 +13,12 @@
 restart
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. code-block:: bash
 
    Usage: docker restart [OPTIONS] CONTAINER [CONTAINER...]
@@ -22,4 +28,8 @@ restart
      --help             Print usage
      -t, --time=10      Seconds to wait for stop before killing the container
 
+.. seealso:: 
+
+   restart
+      https://docs.docker.com/engine/reference/commandline/resatart/
 

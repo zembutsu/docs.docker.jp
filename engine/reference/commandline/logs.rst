@@ -1,4 +1,4 @@
-*- coding: utf-8 -*-
+.. *- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/logs/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/logs.md
    doc version: 1.10
@@ -49,3 +49,8 @@ logs
 .. The --since option shows only the container logs generated after a given date. You can specify the date as an RFC 3339 date, a UNIX timestamp, or a Go duration string (e.g. 1m30s, 3h). Docker computes the date relative to the client machine’s time. You can combine the --since option with either or both of the --follow or --tail options.
 
 ``--since`` オプションは指定した日時以降のログを表示します。指定できる日付は RFC 3339 date、UNIX タイムスタンプ、Go 言語の期間文字（例： ``1m30s`` 、 ``3h`` ）です。Docker はクライアント側のマシン上からの相対時間を計算します。 ``--since`` オプションは ``--follow`` と ``--tail`` と同時に使えます。
+
+.. seealso:: 
+
+   logs
+      https://docs.docker.com/engine/reference/commandline/logs/

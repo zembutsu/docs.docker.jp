@@ -52,3 +52,7 @@ diff
    A /go/src/github.com/docker/docker/.git
    ....
 
+.. seealso:: 
+
+   diff
+      https://docs.docker.com/engine/reference/commandline/diff/

@@ -13,6 +13,12 @@
 pause
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. code-block:: bash
 
    Usage: docker pause [OPTIONS] CONTAINER [CONTAINER...]
@@ -29,3 +35,7 @@ pause
 
 更に詳しい詳細については `cgroup freezer ドキュメント <https://www.kernel.org/doc/Documentation/cgroups/freezer-subsystem.txt>`_ をご覧ください。
 
+.. seealso:: 
+
+   pause
+      https://docs.docker.com/engine/reference/commandline/pause/

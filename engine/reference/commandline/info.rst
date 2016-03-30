@@ -67,3 +67,7 @@ info
 
 issue レポートを送信するときは、私たちがどのような設定がされているか知るため、 ``docker version`` と ``docker -D info`` をお知らせください。
 
+.. seealso:: 
+
+   info
+      https://docs.docker.com/engine/reference/commandline/info/

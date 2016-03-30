@@ -38,3 +38,7 @@ search
 
    検索結果は 25 件までしか表示しません。
 
+.. seealso:: 
+
+   search
+      https://docs.docker.com/engine/reference/commandline/search/

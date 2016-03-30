@@ -12,6 +12,12 @@
 build
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. code-block:: bash
 
    Usage: docker build [OPTIONS] PATH | URL | -
@@ -42,15 +48,15 @@ build
 
 .. Builds Docker images from a Dockerfile and a “context”. A build’s context is the files located in the specified PATH or URL. The build process can refer to any of the files in the context. For example, your build can use an ADD instruction to reference a file in the context.
 
-Docker イメージは Dockerfile と「コンテキスト」（context）を使って構築します。構築のコンテキストとは、特定の ``PATH`` や ``URL`` の場所にあるファイルのことです。構築の手順では、対象のコンテキスト内のファイルを参照できます。
+Docker イメージは Dockerfile と「コンテクスト」（context）を使って構築します。構築のコンテクストとは、特定の ``PATH`` や ``URL`` の場所にあるファイルのことです。構築の手順では、対象のコンテクスト内のファイルを参照できます。
 
 .. The URL parameter can specify the location of a Git repository; the repository acts as the build context. The system recursively clones the repository and its submodules using a git clone --depth 1 --recursive command. This command runs in a temporary directory on your local host. After the command succeeds, the directory is sent to the Docker daemon as the context. Local clones give you the ability to access private repositories using local user credentials, VPNs, and so forth.
 
-``URL`` パラメータは Git レポジトリの場所を指定できます。つまり、レポジトリの内容をコンテキストとして構築できます。システムでレポジトリの再帰的なクローンを作成するには ``git clone --depth 1 --recursive`` コマンドを使います。このコマンドはローカルホスト上の一時ディレクトリで実行されます。コマンドが成功すると、ディレクトリは Docker デーモンにコンテキストとして送信されます。ローカルのクローンであれば、ローカルなユーザ認証や VPN などを使うプライベートなレポジトリへのアクセスも可能にします。
+``URL`` パラメータは Git レポジトリの場所を指定できます。つまり、レポジトリの内容をコンテクストとして構築できます。システムでレポジトリの再帰的なクローンを作成するには ``git clone --depth 1 --recursive`` コマンドを使います。このコマンドはローカルホスト上の一時ディレクトリで実行されます。コマンドが成功すると、ディレクトリは Docker デーモンにコンテクストとして送信されます。ローカルのクローンであれば、ローカルなユーザ認証や VPN などを使うプライベートなレポジトリへのアクセスも可能にします。
 
 .. Git URLs accept context configuration in their fragment section, separated by a colon :. The first part represents the reference that Git will check out, this can be either a branch, a tag, or a commit SHA. The second part represents a subdirectory inside the repository that will be used as a build context.
 
-Git の URL は、コロン ``:`` をコンテキストのセクションを分割する設定に使えます。１つめの場所は Git が調査用に参照します。これはブランチ、タグ、コミット SHA が使えます。２つめの場所はレポジトリ内にあるサブディレクトリであり、構築時のコンテキストとして使われます。
+Git の URL は、コロン ``:`` をコンテクストのセクションを分割する設定に使えます。１つめの場所は Git が調査用に参照します。これはブランチ、タグ、コミット SHA が使えます。２つめの場所はレポジトリ内にあるサブディレクトリであり、構築時のコンテクストとして使われます。
 
 .. For example, run this command to use a directory called docker in the branch container:
 
@@ -62,14 +68,14 @@ Git の URL は、コロン ``:`` をコンテキストのセクションを分�
 
 .. The following table represents all the valid suffixes with their build contexts:
 
-次の表は構築コンテキストで有効なサフィックスの一覧です。
+次の表は構築コンテクストで有効なサフィックスの一覧です。
 
 .. list-table::
    :header-rows: 1
    
    * - 構築構文のサフィックス
      - コミットに利用
-     - 構築コンテキストに使用
+     - 構築コンテクストに使用
    * - ``myrepo.git``
      - ``refs/heads/master``
      - ``/``
@@ -100,7 +106,7 @@ Git の URL は、コロン ``:`` をコンテキストのセクションを分�
 
 .. Instead of specifying a context, you can pass a single Dockerfile in the URL or pipe the file in via STDIN. To pipe a Dockerfile from STDIN:
 
-コンテキストを指定する代わりに、Dockerfile の ``URL`` や ``STDIN`` （標準入力）のファイルをパイプできます。 ``STDIN`` から Dockerfile をパイプするには：
+コンテクストを指定する代わりに、Dockerfile の ``URL`` や ``STDIN`` （標準入力）のファイルをパイプできます。 ``STDIN`` から Dockerfile をパイプするには：
 
 .. code-block:: bash
 
@@ -108,11 +114,11 @@ Git の URL は、コロン ``:`` をコンテキストのセクションを分�
 
 .. If you use STDIN or specify a URL, the system places the contents into a file called Dockerfile, and any -f, --file option is ignored. In this scenario, there is no context.
 
-STDIN や ``URL`` を指定すると、システムはコンテキストを ``Dockerfile`` という名称のファイルに入れられるため、 ``-f`` および ``--file`` オプションは無視されます。今回の例では、コンテキストは指定していません。
+STDIN や ``URL`` を指定すると、システムはコンテクストを ``Dockerfile`` という名称のファイルに入れられるため、 ``-f`` および ``--file`` オプションは無視されます。今回の例では、コンテクストは指定していません。
 
 .. By default the docker build command will look for a Dockerfile at the root of the build context. The -f, --file, option lets you specify the path to an alternative file to use instead. This is useful in cases where the same set of files are used for multiple builds. The path must be to a file within the build context. If a relative path is specified then it must to be relative to the current directory.
 
-デフォルトの ``docker build`` コマンドは、構築コンテキストのルートにある ``Dockerfile`` を探します。 ``-f`` および ``--file`` オプションは、内容が含まれている代替ファイルのパスを指定します。これは複数のファイル群を使って、複数の構築をする場合に便利です。パスには構築コンテキスト用のファイルが必要です。相対パスを指定するときは、現在のディレクトリに対する相対パスを指定する必要があります。
+デフォルトの ``docker build`` コマンドは、構築コンテクストのルートにある ``Dockerfile`` を探します。 ``-f`` および ``--file`` オプションは、内容が含まれている代替ファイルのパスを指定します。これは複数のファイル群を使って、複数の構築をする場合に便利です。パスには構築コンテクスト用のファイルが必要です。相対パスを指定するときは、現在のディレクトリに対する相対パスを指定する必要があります。
 
 .. In most cases, it’s best to put each Dockerfile in an empty directory. Then, add to that directory only the files needed for building the Dockerfile. To increase the build’s performance, you can exclude files and directories by adding a .dockerignore file to that directory as well. For information on creating one, see the .dockerignore file.
 
@@ -205,11 +211,11 @@ PATH で構築
 
 .. This example specifies that the PATH is ., and so all the files in the local directory get tard and sent to the Docker daemon. The PATH specifies where to find the files for the “context” of the build on the Docker daemon. Remember that the daemon could be running on a remote machine and that no parsing of the Dockerfile happens at the client side (where you’re running docker build). That means that all the files at PATH get sent, not just the ones listed to ADD in the Dockerfile.
 
-この例では ``PATH`` に ``.`` を指定しています。このローカルディレクトリにある全てのファイルは ``tar`` 化され、Docker デーモンに送られます。 ``PATH`` が示すのは、Docker デーモンが構築時に使う「コンテキスト」（内容物）としてのファイルを見つけるための場所です。デーモンはリモート上のマシンでも操作できるのを思い出してください。これは、クライアント側（ ``docker build`` コマンドを実行した場所 ）では Dockerfile は何らパース（解析）されません。つまり、 ``PATH`` に含まれる *すべて* のファイルが送信されるだけでなく、Dockerfile の :ref:`ADD <add>` 命令で追加した場所も含みます。
+この例では ``PATH`` に ``.`` を指定しています。このローカルディレクトリにある全てのファイルは ``tar`` 化され、Docker デーモンに送られます。 ``PATH`` が示すのは、Docker デーモンが構築時に使う「コンテクスト」（内容物）としてのファイルを見つけるための場所です。デーモンはリモート上のマシンでも操作できるのを思い出してください。これは、クライアント側（ ``docker build`` コマンドを実行した場所 ）では Dockerfile は何らパース（解析）されません。つまり、 ``PATH`` に含まれる *すべて* のファイルが送信されるだけでなく、Dockerfile の :ref:`ADD <add>` 命令で追加した場所も含みます。
 
 .. The transfer of context from the local machine to the Docker daemon is what the docker client means when you see the “Sending build context” message.
 
-ローカルのマシンから Docker デーモンにコンテキストを送信時、docker クライアントには「Sending build context（構築コンテキストの送信中）」メッセージが表示されます。
+ローカルのマシンから Docker デーモンにコンテクストを送信時、docker クライアントには「Sending build context（構築コンテクストの送信中）」メッセージが表示されます。
 
 .. If you wish to keep the intermediate containers after the build is complete, you must use --rm=false. This does not affect the build cache.
 
@@ -228,7 +234,7 @@ URL で構築
 
 .. This will clone the GitHub repository and use the cloned repository as context. The Dockerfile at the root of the repository is used as Dockerfile. Note that you can specify an arbitrary Git repository by using the git:// or git@ schema.
 
-これは GitHub レポジトリのクローンを作成し、クローンしたレポジトリをコンテキストとして利用します。レポジトリのルートにある Dockerfile を、構築時の Dockerfile として使います。 ``git://`` や ``git@`` など、その他の Git レポジトリのスキーマを使っても指定可能です。
+これは GitHub レポジトリのクローンを作成し、クローンしたレポジトリをコンテクストとして利用します。レポジトリのルートにある Dockerfile を、構築時の Dockerfile として使います。 ``git://`` や ``git@`` など、その他の Git レポジトリのスキーマを使っても指定可能です。
 
 .. Build with -
 
@@ -243,7 +249,7 @@ URL で構築
 
 .. This will read a Dockerfile from STDIN without context. Due to the lack of a context, no contents of any local directory will be sent to the Docker daemon. Since there is no context, a Dockerfile ADD only works if it refers to a remote URL.
 
-これはコンテキストを使わずに ``STDIN`` から Dockerfile を読み込みます。コンテキストが無く、内容物のないローカルのディレクトリが Docker デーモンに送信されます。コンテキストがありませんので、 Dockerfile の ``ADD`` はリモートの URL の参照に使えます。
+これはコンテクストを使わずに ``STDIN`` から Dockerfile を読み込みます。コンテクストが無く、内容物のないローカルのディレクトリが Docker デーモンに送信されます。コンテクストがありませんので、 Dockerfile の ``ADD`` はリモートの URL の参照に使えます。
 
 .. code-block:: bash
 
@@ -251,7 +257,7 @@ URL で構築
 
 .. This will build an image for a compressed context read from STDIN. Supported formats are: bzip2, gzip and xz.
 
-これは ``STDIN`` から圧縮されたコンテキストを読み込み、イメージを構築しています。サポートしているフォーマットは、bzip2、gzip、xz です。
+これは ``STDIN`` から圧縮されたコンテクストを読み込み、イメージを構築しています。サポートしているフォーマットは、bzip2、gzip、xz です。
 
 .. Usage of .dockerignore
 
@@ -284,7 +290,7 @@ URL で構築
 
 .. This example shows the use of the .dockerignore file to exclude the .git directory from the context. Its effect can be seen in the changed size of the uploaded context. The builder reference contains detailed information on creating a .dockerignore file
 
-この例で表示しているのは、 ``.dockerignore`` ファイルを使い、コンテキストから ``.git`` ディレクトリを除外しています。この効果により、アップロードされるコンテキストの容量を小さくしています。構築時のリファレンス :ref:`.dockerignore ファイルの作成 <dockerignore-file>` に、より詳しい情報があります。
+この例で表示しているのは、 ``.dockerignore`` ファイルを使い、コンテクストから ``.git`` ディレクトリを除外しています。この効果により、アップロードされるコンテクストの容量を小さくしています。構築時のリファレンス :ref:`.dockerignore ファイルの作成 <dockerignore-file>` に、より詳しい情報があります。
 
 .. Tag image (-t)
 
@@ -323,7 +329,7 @@ Dockerfile の指定（-f）
 
 .. The above commands will build the current build context (as specified by the .) twice, once using a debug version of a Dockerfile and once using a production version.
 
-上記のコマンドは、どちらも現在のディレクトリにあるコンテント（ ``.`` で場所を指定 ）を使い構築するものです。デバッグ用とプロダクション用で別々の ``Dockerfile`` を使いますが、コンテキストは同じです。
+上記のコマンドは、どちらも現在のディレクトリにあるコンテント（ ``.`` で場所を指定 ）を使い構築するものです。デバッグ用とプロダクション用で別々の ``Dockerfile`` を使いますが、コンテクストは同じです。
 
 .. code-block:: bash
 
@@ -333,13 +339,13 @@ Dockerfile の指定（-f）
 
 .. These two docker build commands do the exact same thing. They both use the contents of the debug file instead of looking for a Dockerfile and will use /home/me/myapp as the root of the build context. Note that debug is in the directory structure of the build context, regardless of how you refer to it on the command line.
 
-２つの ``docker build`` コマンドは同じ事をしています。いずれの ``Dockerfile`` にも ``debug`` ファイルが含まれており、構築コンテキストのルートとして ``/home/me/myapp`` を使います。なお注意点として、 ``debug`` は構築コンテキストのサブディレクトリにあるもので、先ほどのコマンドライン上では指定の必要がありませんでした。
+２つの ``docker build`` コマンドは同じ事をしています。いずれの ``Dockerfile`` にも ``debug`` ファイルが含まれており、構築コンテクストのルートとして ``/home/me/myapp`` を使います。なお注意点として、 ``debug`` は構築コンテクストのサブディレクトリにあるもので、先ほどのコマンドライン上では指定の必要がありませんでした。
 
 ..    Note: docker build will return a no such file or directory error if the file or directory does not exist in the uploaded context. This may happen if there is no context, or if you specify a file that is elsewhere on the Host system. The context is limited to the current directory (and its children) for security reasons, and to ensure repeatable builds on remote Docker hosts. This is also the reason why ADD ../file will not work.
 
 .. note::
 
-   ``docker build`` が ``no such file or directory`` エラーを返すのは、アップロードすべきコンテキストとしてのファイルやディレクトリが存在しない時です。これは、コンテキストが存在しないか、指定したファイルがホストシステム上に存在していない可能性があります。コンテキストはカレント・ディレクトリ（と、その子ディレクトリ）のみに安全上の理由で制限されています。これはリモートの Docker ホスト上でも、繰り返し構築できるようにするためです。これが ``ADD ../file`` が動作しない理由でもあります。
+   ``docker build`` が ``no such file or directory`` エラーを返すのは、アップロードすべきコンテクストとしてのファイルやディレクトリが存在しない時です。これは、コンテクストが存在しないか、指定したファイルがホストシステム上に存在していない可能性があります。コンテクストはカレント・ディレクトリ（と、その子ディレクトリ）のみに安全上の理由で制限されています。これはリモートの Docker ホスト上でも、繰り返し構築できるようにするためです。これが ``ADD ../file`` が動作しない理由でもあります。
 
 .. Optional parent cgroup (–cgroup-parent)
 
@@ -390,3 +396,7 @@ Dockerfile の``ENV`` 命令を使い、変数を定義できます。これら�
 
 ``ARG`` と ``ENV`` 命令の詳細については、 :doc:`Dockerfile リファレンス </engine/reference/builder>` をご覧ください。
 
+.. seealso:: 
+
+   build
+      https://docs.docker.com/engine/reference/commandline/build/

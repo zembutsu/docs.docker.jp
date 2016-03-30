@@ -20,3 +20,8 @@ wait
    Block until a container stops, then print its exit code.
    
      --help          Print usage
+
+.. seealso:: 
+
+   wait
+      https://docs.docker.com/engine/reference/commandline/wait/

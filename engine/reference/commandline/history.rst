@@ -51,5 +51,9 @@ history
    c69cab00d6ef        5 months ago        /bin/sh -c #(nop) MAINTAINER Lokesh Mandvekar   0 B
    511136ea3c5a        19 months ago                                                       0 B                 Imported from -
 
+.. seealso:: 
+
+   history
+      https://docs.docker.com/engine/reference/commandline/history/
 
 

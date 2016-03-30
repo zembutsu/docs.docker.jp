@@ -37,3 +37,8 @@ volume rm
 * :doc:`volume_inspect`
 * :doc:`volume_ls`
 * :doc:`/engine/userguide/containers/dockervolumes`
+
+.. seealso:: 
+
+   volume rm
+      https://docs.docker.com/engine/reference/commandline/volume_rm/

@@ -13,6 +13,12 @@
 rm
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. code-block:: bash
 
    Usage: docker rm [OPTIONS] CONTAINER [CONTAINER...]
@@ -82,3 +88,8 @@ rm
 .. In this example, the volume for /foo will remain intact, but the volume for /bar will be removed. The same behavior holds for volumes inherited with --volumes-from.
 
 この例では、ボリューム ``/foo`` は残り続けますが、ボリューム ``/bar`` は削除されます。同様に ``--volumes-from`` で継承関係にあるボリュームも保持されます。
+
+.. seealso:: 
+
+   rm
+      https://docs.docker.com/engine/reference/commandline/rm/

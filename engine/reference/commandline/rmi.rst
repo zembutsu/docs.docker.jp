@@ -93,4 +93,8 @@ digest を使ってイメージを削除するには、次のようにします�
    Deleted: ea13149945cb6b1e746bf28032f02e9b5a793523481a0a18645fc77ad53c4ea2
    Deleted: df7546f9f060a2268024c8a230d8639878585defcc1bc6f79d2728a13957871b
 
+.. seealso:: 
+
+   rmi
+      https://docs.docker.com/engine/reference/commandline/rmi/
 

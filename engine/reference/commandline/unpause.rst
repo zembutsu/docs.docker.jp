@@ -29,3 +29,7 @@ unpause
 
 より詳細については `cgroups freezer ドキュメント <https://www.kernel.org/doc/Documentation/cgroups/freezer-subsystem.txt>`_ をご覧ください。
 
+.. seealso:: 
+
+   unpause
+      https://docs.docker.com/engine/reference/commandline/unpause/

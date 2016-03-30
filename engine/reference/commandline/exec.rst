@@ -52,7 +52,7 @@ exec
 
 .. Examples
 
-.. _examples:
+.. _exec-examples:
 
 例
 ==========
@@ -81,3 +81,7 @@ exec
 
 こちらは ``ubuntu_bash`` コンテナ内に新しい Bash セッションを作成します。
 
+.. seealso:: 
+
+   exec
+      https://docs.docker.com/engine/reference/commandline/exec/
