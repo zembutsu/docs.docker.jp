@@ -364,7 +364,7 @@ Docker Hub のホステッド・ディスカバリ
 
 .. You can contribute a new discovery backend to Swarm. For information on how to do this, see our discovery README in the Docker Swarm repository.
 
-あなたは Swarm 向けに新しいディスカバリ・バックエンドに貢献できます。どのようにするかは、 `Docker Swarm レポジトリにある discovery README <https://github.com/docker/swarm/blob/master/discovery/README.md>`_ をお読みください。
+あなたは Swarm 向けに新しいディスカバリ・バックエンドに貢献できます。どのようにするかは、 `Docker Swarm リポジトリにある discovery README <https://github.com/docker/swarm/blob/master/discovery/README.md>`_ をお読みください。
 
 .. Docker Swarm documentation index
 

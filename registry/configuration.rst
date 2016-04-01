@@ -758,7 +758,7 @@ middleware
 
 .. The middleware option is optional. Use this option to inject middleware at named hook points. All middleware must implement the same interface as the object they’re wrapping. This means a registry middleware must implement the distribution.Namespace interface, repository middleware must implement distribution.Repository, and storage middleware must implement driver.StorageDriver.
 
-``middleware`` オプションは **オプション** です。このオプションはフック・ポイント（hook point）に投入するミドルウェアの名前指定に使います。全てのミドルウェアはラッピング可能なオブジェクトとして、同じインターフェースを使って実行する必要があります。つまりレジストリのミドルウェアは ``distribution.Namespace`` インターフェースとして実行する必要があり、レポジトリのミドルウェアは必ず ``distribution.Repository`` として実行する必要があり、また、ストレージ/ミドルウェアは ``driver.StorageDriver`` として実行する必要があります。
+``middleware`` オプションは **オプション** です。このオプションはフック・ポイント（hook point）に投入するミドルウェアの名前指定に使います。全てのミドルウェアはラッピング可能なオブジェクトとして、同じインターフェースを使って実行する必要があります。つまりレジストリのミドルウェアは ``distribution.Namespace`` インターフェースとして実行する必要があり、リポジトリのミドルウェアは必ず ``distribution.Repository`` として実行する必要があり、また、ストレージ/ミドルウェアは ``driver.StorageDriver`` として実行する必要があります。
 
 .. Currently only one middleware, cloudfront, a storage middleware, is supported in the registry implementation.
 

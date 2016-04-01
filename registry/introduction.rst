@@ -47,7 +47,7 @@ Docker レジストリ の理解
 
 .. The Registry GitHub repository includes additional information about advanced authentication and authorization methods. Only very large or public deployments are expected to extend the Registry in this way.
 
-レジストリの GitHub レポジトリには、高度な認証や認証手法に関する情報があります。そこでの手法を使えば、とても大きな、あるいはパブリックへのデプロイといった拡張が期待ｄけいるでしょう。
+レジストリの GitHub リポジトリには、高度な認証や認証手法に関する情報があります。そこでの手法を使えば、とても大きな、あるいはパブリックへのデプロイといった拡張が期待ｄけいるでしょう。
 
 .. Finally, the Registry ships with a robust notification system, calling webhooks in response to activity, and both extensive logging and reporting, mostly useful for large installations that want to collect metrics.
 
@@ -106,7 +106,7 @@ Docker に完全に慣れ親しんでいる必要があります。特にイメ�
 
 .. Also, while just starting a registry is fairly easy, operating it in a production environment requires operational skills, just like any other service. You are expected to be familiar with systems availability and scalability, logging and log processing, systems monitoring, and security 101. Strong understanding of http and overall network communications, plus familiarity with golang are certainly useful as well for advanced operations or hacking.
 
-また、レポジトリの作成をかなり簡単に行えるようにしていますが、プロダクション環境においては他のサービスと同じように運用スキルが必要です。システムの可用性、スケーラビリティ、ログ記録とログ設定、システム群のモニタリング、セキュリティなどにも慣れている必要があります。高度な運用やハッキングには、http に対する高い理解と、ネットワーク通信全般の理解に加え、Go 言語に慣れているのが望ましいでしょう。
+また、リポジトリの作成をかなり簡単に行えるようにしていますが、プロダクション環境においては他のサービスと同じように運用スキルが必要です。システムの可用性、スケーラビリティ、ログ記録とログ設定、システム群のモニタリング、セキュリティなどにも慣れている必要があります。高度な運用やハッキングには、http に対する高い理解と、ネットワーク通信全般の理解に加え、Go 言語に慣れているのが望ましいでしょう。
 
 .. Next
 

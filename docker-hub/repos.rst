@@ -15,17 +15,17 @@
 
 .. Docker Hub repositories let you share images with co-workers, customers, or the Docker community at large. If you’re building your images internally, either on your own Docker daemon, or using your own Continuous integration services, you can push them to a Docker Hub repository that you add to your Docker Hub user or organization account.
 
-Docker Hub レポジトリは自分のイメージを同僚や顧客と共有するだけでなく、世界中の Docker コミュニティに対して公開します。イメージと内部向けに構築している場合、自分の Docker デーモンか自分たちの継続的インテグレーション・サービスを使い、Docker Hub レポジトリにイメージを送信するでしょう。このとき、Docker Hub のユーザもしくは組織のアカウントで追加できます。
+Docker Hub リポジトリは自分のイメージを同僚や顧客と共有するだけでなく、世界中の Docker コミュニティに対して公開します。イメージと内部向けに構築している場合、自分の Docker デーモンか自分たちの継続的インテグレーション・サービスを使い、Docker Hub リポジトリにイメージを送信するでしょう。このとき、Docker Hub のユーザもしくは組織のアカウントで追加できます。
 
 .. Alternatively, if the source code for your Docker image is on GitHub or Bitbucket, you can use an “Automated build” repository, which is built by the Docker Hub services. See the automated builds documentation to read about the extra functionality provided by those services.
 
-あるいは、Docker イメージのソース・コードが GitHub か Bitbucket に置かれているなら、「自動構築（Automated build）」レポジトリが使えます。これは Docker Hub サービスによって自動構築されるものです。これらのサービスが提供する更なる機能については、 :doc:`自動構築のドキュメント <builds>` をご覧ください。
+あるいは、Docker イメージのソース・コードが GitHub か Bitbucket に置かれているなら、「自動構築（Automated build）」リポジトリが使えます。これは Docker Hub サービスによって自動構築されるものです。これらのサービスが提供する更なる機能については、 :doc:`自動構築のドキュメント <builds>` をご覧ください。
 
 .. repositories
 
 .. image:: ./images/repos.png
    :scale: 60%
-   :alt: レポジトリ
+   :alt: リポジトリ
 
 .. Searching for images
 
@@ -49,7 +49,7 @@ Docker Hub レポジトリは自分のイメージを同僚や顧客と共有す
 
 .. There you can see two example results: centos and ansible/centos7-ansible. The second result shows that it comes from the public repository of a user, named ansible/, while the first result, centos, doesn’t explicitly list a repository which means that it comes from the top-level namespace for Official Repositories. The / character separates a user’s repository from the image name.
 
-``centos`` と ``ansible/centos7-ansible`` という、２種類の結果が表示されました。１番目の ``centos`` にはレポジトリ名がありません。つまり、これは :doc:`公式レポジトリ <official_repos>` 向けのトップ・レベル名前空間を意味します。２番目の結果は、 ``ansible/`` という公開レポジトリ名のユーザによるものです。文字 ``/`` によって、ユーザのレポジトリ名とイメージ名を分けています。
+``centos`` と ``ansible/centos7-ansible`` という、２種類の結果が表示されました。１番目の ``centos`` にはリポジトリ名がありません。つまり、これは :doc:`公式リポジトリ <official_repos>` 向けのトップ・レベル名前空間を意味します。２番目の結果は、 ``ansible/`` という公開リポジトリ名のユーザによるものです。文字 ``/`` によって、ユーザのリポジトリ名とイメージ名を分けています。
 
 .. Once you’ve found the image you want, you can download it with docker pull <imagename>:
 
@@ -74,12 +74,12 @@ Docker Hub レポジトリは自分のイメージを同僚や顧客と共有す
 
 .. _viewing-repository-tags:
 
-レポジトリ・タグの表示
+リポジトリ・タグの表示
 ==============================
 
 .. Docker Hub’s repository “Tags” view shows you the available tags and the size of the associated image.
 
-Docker Hub のレポジトリで「Tags」を表示すると、利用可能なタグや関連づけられるイメージの容量が表示されます。
+Docker Hub のリポジトリで「Tags」を表示すると、利用可能なタグや関連づけられるイメージの容量が表示されます。
 
 .. Image sizes are the cumulative space taken up by the image and all its parent images. This is also the disk space used by the contents of the Tar file created when you docker save an image.
 
@@ -93,39 +93,39 @@ Docker Hub のレポジトリで「Tags」を表示すると、利用可能な�
 
 .. _creating-a-new-repository-on-docker-hub:
 
-Docker Hub 上に新しいレポジトリを作成
+Docker Hub 上に新しいリポジトリを作成
 ========================================
 
 .. When you first create a Docker Hub user, you will have a “Get started with Docker Hub.” screen, from which you can click directly into “Create Repository”. You can also use the “Create ▼” menu to “Create Repository”.
 
-Docker Hub ユーザを作成すると、「Get started with Docker Hub」画面が表示されます。ここから「Create Repository」（レポジトリの作成）をクリックします。あるいは「Create ▼」メニューから「Create Repository」を選びます。
+Docker Hub ユーザを作成すると、「Get started with Docker Hub」画面が表示されます。ここから「Create Repository」（リポジトリの作成）をクリックします。あるいは「Create ▼」メニューから「Create Repository」を選びます。
 
 .. When creating a new repository, you can choose to put it in your Hub account’s namespace, or that of any organization that you are in the “Owners” team. The Repository Name will need to be unique in that namespace, can be two to 255 characters, and can only contain lowercase letters, numbers or - and _.
 
-新しいレポジトリを作成すると、アカウントの名前空間をそこに使うか、あるいは :doc:`組織 <orgs>` の指定でチームが「所有」するかを選べます。レポジトリ名はユニークな名前空間である必要があり、2文字から255文字までの小文字・数字・ ``-`` ・ ``_`` が利用できます。
+新しいリポジトリを作成すると、アカウントの名前空間をそこに使うか、あるいは :doc:`組織 <orgs>` の指定でチームが「所有」するかを選べます。リポジトリ名はユニークな名前空間である必要があり、2文字から255文字までの小文字・数字・ ``-`` ・ ``_`` が利用できます。
 
 .. The “Short Description” of 100 characters will be used in the search results, while the “Full Description” can be used as the Readme for the repository, and can use Markdown to add simple formatting.
 
-「Short Description」（短い説明）の100文字は、検索結果に表示されます。「Full Description」（全ての説明）はレポジトリの Readme に表示されるもので、マークダウンを使って書式を追加できます。
+「Short Description」（短い説明）の100文字は、検索結果に表示されます。「Full Description」（全ての説明）はリポジトリの Readme に表示されるもので、マークダウンを使って書式を追加できます。
 
 .. After you hit the “Create” button, you then need to docker push images to that Hub based repository.
 
-「Create」ボタンを実行した後、 ``docker push`` コマンドでイメージを Docker Hub レポジトリに送信する必要があります。
+「Create」ボタンを実行した後、 ``docker push`` コマンドでイメージを Docker Hub リポジトリに送信する必要があります。
 
 .. Pushing a repository image to Docker Hub
 
 .. _pushing-a-repository-image-to-docker-hub:
 
-レポジトリのイメージを Docker Hub に送信
+リポジトリのイメージを Docker Hub に送信
 ========================================
 
 .. In order to push a repository to the Docker Hub, you need to name your local image using your Docker Hub username, and the repository name that you created in the previous step. You can add multiple images to a repository, by adding a specific :<tag> to it (for example docs/base:testing). If its not specified, the tag defaults to latest. You can name your local images either when you build it, using docker build -t <hub-user>/<repo-name>[:<tag>], by re-tagging an existing local image docker tag <existing-image> <hub-user>/<repo-name>[:<tag>], or by using docker commit <exiting-container> <hub-user>/<repo-name>[:<tag>] to commit changes. See Working with Docker images for a detailed description.
 
-Docker Hub にレポジトリを送信するには、自分のローカル・イメージが Docker Hub のユーザ名を使い、かつ、そのレポジトリ名は前のステップで作成したものである必要があります。これはイメージに対して ``:<タグ>`` を追加することで、レポジトリに複数のイメージを追加できます（例： ``docs/base::testing`` ）。もし指定されなければ、デフォルトのタグは ``latest`` になります。ローカルのイメージに名前を付けるには、 ``docker build -t <Docker Hub ユーザ名>/<レポジトリ名>[:<タグ>]`` の形式になるよう既存のローカル・イメージを ``docker tag <既存イメージ> <docker Hub ユーザ名>/<レポジトリ名>[:<タグ>]`` で再度タグ付けします。あるいは、 ``docker commit <既存のコンテナ名> <Docker Hub ユーザ名>/<レポジトリ名>[:<タグ>]`` でコミットを変更します。詳細については :doc:`Docker イメージの働き </engine/userguide/containers/dockerimages>`  をご覧ください。
+Docker Hub にリポジトリを送信するには、自分のローカル・イメージが Docker Hub のユーザ名を使い、かつ、そのリポジトリ名は前のステップで作成したものである必要があります。これはイメージに対して ``:<タグ>`` を追加することで、リポジトリに複数のイメージを追加できます（例： ``docs/base::testing`` ）。もし指定されなければ、デフォルトのタグは ``latest`` になります。ローカルのイメージに名前を付けるには、 ``docker build -t <Docker Hub ユーザ名>/<リポジトリ名>[:<タグ>]`` の形式になるよう既存のローカル・イメージを ``docker tag <既存イメージ> <docker Hub ユーザ名>/<リポジトリ名>[:<タグ>]`` で再度タグ付けします。あるいは、 ``docker commit <既存のコンテナ名> <Docker Hub ユーザ名>/<リポジトリ名>[:<タグ>]`` でコミットを変更します。詳細については :doc:`Docker イメージの働き </engine/userguide/containers/dockerimages>`  をご覧ください。
 
 .. Now you can push this repository to the registry designated by its name or tag.
 
-これで任意のレジストリに対し、このレポジトリを名前かタグで送信（push）できます。
+これで任意のレジストリに対し、このリポジトリを名前かタグで送信（push）できます。
 
 .. code-block:: bash
 
@@ -144,7 +144,7 @@ Docker Hub にレポジトリを送信するには、自分のローカル・イ
 
 .. Your repositories can be starred and you can star repositories in return. Stars are a way to show that you like a repository. They are also an easy way of bookmarking your favorites.
 
-レポジトリはスターされることができ、あなたがお返しにレポジトリをスターすることもできます。スターはあなたが好きなレポジトリを公開する手法です。また、好きなものをブックマークするのにも簡単な方法です。
+リポジトリはスターされることができ、あなたがお返しにリポジトリをスターすることもできます。スターはあなたが好きなリポジトリを公開する手法です。また、好きなものをブックマークするのにも簡単な方法です。
 
 .. Comments
 
@@ -155,7 +155,7 @@ Docker Hub にレポジトリを送信するには、自分のローカル・イ
 
 .. You can interact with other members of the Docker community and maintainers by leaving comments on repositories. If you find any comments that are not appropriate, you can flag them for review.
 
-レポジトリにコメントを残すことで、Docker コミュニティの他のメンバやメンテナと、やりとりできます。適切ではないコメントがあれば、削除用のフラグも付けられます。
+リポジトリにコメントを残すことで、Docker コミュニティの他のメンバやメンテナと、やりとりできます。適切ではないコメントがあれば、削除用のフラグも付けられます。
 
 .. Collaborators and their role
 
@@ -166,13 +166,13 @@ Docker Hub にレポジトリを送信するには、自分のローカル・イ
 
 .. A collaborator is someone you want to give access to a private repository. Once designated, they can push and pull to your repositories. They will not be allowed to perform any administrative tasks such as deleting the repository or changing its status from private to public.
 
-コラボレータ（collaborator）とは、プライベート・レポジトリに対するアクセスを与えたい人です。かつてはレポジトリに対して ``push`` や ``pull`` するために設計されました。コラボレータはレポジトリの削除といった管理用のタスクは行えず、プライベートからパブリックにステータスの変更もできません。
+コラボレータ（collaborator）とは、プライベート・リポジトリに対するアクセスを与えたい人です。かつてはリポジトリに対して ``push`` や ``pull`` するために設計されました。コラボレータはリポジトリの削除といった管理用のタスクは行えず、プライベートからパブリックにステータスの変更もできません。
 
 ..    Note: A collaborator cannot add other collaborators. Only the owner of the repository has administrative access.
 
 .. note::
 
-   コラボレータは他のコラボレータを追加できません。レポジトリの所有者のみが、管理アクセスを持っています。
+   コラボレータは他のコラボレータを追加できません。リポジトリの所有者のみが、管理アクセスを持っています。
 
 .. You can also assign more granular collaborator rights (“Read”, “Write”, or “Admin”) on Docker Hub by using organizations and teams. For more information see the organizations documentation.
 
@@ -180,34 +180,34 @@ Docker Hub にレポジトリを送信するには、自分のローカル・イ
 
 .. Private repositories
 
-プライベート・レポジトリ
+プライベート・リポジトリ
 ==============================
 
 .. Private repositories allow you to have repositories that contain images that you want to keep private, either to your own account or within an organization or team.
 
-プライベート・レポジトリとは、自分のアカウントや組織・チームの中で、プライベートなままにしておきたいイメージを置けるレポジトリです。
+プライベート・リポジトリとは、自分のアカウントや組織・チームの中で、プライベートなままにしておきたいイメージを置けるリポジトリです。
 
 .. To work with a private repository on Docker Hub, you will need to add one via the Add Repository button. You get one private repository for free with your Docker Hub user account (not usable for organizations you’re a member of). If you need more accounts you can upgrade your Docker Hub plan.
 
-`Docker Hub <https://hub.docker.com/>`__ 上でプライベート・レポジトリを使うには、 `Add Repository <https://hub.docker.com/add/repository/>`_ ボタンから追加する必要があります。Docker Hub ユーザ・アカウントは１つのプライベート・レポジトリを無料で利用できます（あなたが組織の一員であれば使いづらいでしょう）。さらにアカウントが必要であれば、 `Docker Hub <https://hub.docker.com/account/billing-plans/>`_ プランのアップグレードをご検討ください。
+`Docker Hub <https://hub.docker.com/>`__ 上でプライベート・リポジトリを使うには、 `Add Repository <https://hub.docker.com/add/repository/>`_ ボタンから追加する必要があります。Docker Hub ユーザ・アカウントは１つのプライベート・リポジトリを無料で利用できます（あなたが組織の一員であれば使いづらいでしょう）。さらにアカウントが必要であれば、 `Docker Hub <https://hub.docker.com/account/billing-plans/>`_ プランのアップグレードをご検討ください。
 
 .. Once the private repository is created, you can push and pull images to and from it using Docker.
 
-プライベート・レポジトリが作成されたら、 Docker を使ってイメージの ``push`` と ``pull`` ができるようになります。
+プライベート・リポジトリが作成されたら、 Docker を使ってイメージの ``push`` と ``pull`` ができるようになります。
 
 ..    Note: You need to be signed in and have access to work with a private repository.
 
 .. note::
 
-   プライベート・レポジトリにアクセスして操作するには、Docker Hub にログインしている必要があります。
+   プライベート・リポジトリにアクセスして操作するには、Docker Hub にログインしている必要があります。
 
 .. Private repositories are just like public ones. However, it isn’t possible to browse them or search their content on the public registry. They do not get cached the same way as a public repository either.
 
-プライベート・レポジトリはパブリック・レポジトリのように見えます。しかし、パブリック・レポジトリの検索結果には表示されません。同様にパブリック・レポジトリと同じように取得することもできません。
+プライベート・リポジトリはパブリック・リポジトリのように見えます。しかし、パブリック・リポジトリの検索結果には表示されません。同様にパブリック・リポジトリと同じように取得することもできません。
 
 .. It is possible to give access to a private repository to those whom you designate (i.e., collaborators) from its “Settings” page. From there, you can also switch repository status (public to private, or vice-versa). You will need to have an available private repository slot open before you can do such a switch. If you don’t have any available, you can always upgrade your Docker Hub plan.
 
-プライベート・レポジトリにアクセスできるようにするには、「Settings」ページから対象者を指定（例： collaborators）する必要があります。それから、レポジトリの状態を変更します（パブリックをプライベートにしたり、あるいはその逆です）。プライベート・レポジトリに切り替えられるのは、空きスロット分だけです。もし足りない場合は、 `Docker Hub <https://hub.docker.com/account/billing-plans/>`_ プランのアップグレードをご検討ください。
+プライベート・リポジトリにアクセスできるようにするには、「Settings」ページから対象者を指定（例： collaborators）する必要があります。それから、リポジトリの状態を変更します（パブリックをプライベートにしたり、あるいはその逆です）。プライベート・リポジトリに切り替えられるのは、空きスロット分だけです。もし足りない場合は、 `Docker Hub <https://hub.docker.com/account/billing-plans/>`_ プランのアップグレードをご検討ください。
 
 .. Webhooks
 
@@ -218,11 +218,11 @@ Docker Hub にレポジトリを送信するには、自分のローカル・イ
 
 .. A webhook is an HTTP call-back triggered by a specific event. You can use a Hub repository webhook to notify people, services, and other applications after a new image is pushed to your repository (this also happens for Automated builds). For example, you can trigger an automated test or deployment to happen as soon as the image is available.
 
-webhook は特定のイベントによって HTTP コールバックを行います（トリガします）。Docker Hub レポジトリの webhook を使って、人々、サービス、他のアプリケーションに対して、自分のレポジトリに新しいイメージが送信されたと知らせることができます（さらに、自動構築も行えます）。例えば、自動テストのトリガとしたり、イメージが利用可能になったらすぐデプロイする使い方です。
+webhook は特定のイベントによって HTTP コールバックを行います（トリガします）。Docker Hub リポジトリの webhook を使って、人々、サービス、他のアプリケーションに対して、自分のリポジトリに新しいイメージが送信されたと知らせることができます（さらに、自動構築も行えます）。例えば、自動テストのトリガとしたり、イメージが利用可能になったらすぐデプロイする使い方です。
 
 .. To get started adding webhooks, go to the desired repository in the Hub, and click “Webhooks” under the “Settings” box. A webhook is called only after a successful push is made. The webhook calls are HTTP POST requests with a JSON payload similar to the example shown below.
 
-webhook を追加するには、Docker Hub 上の任意のレポジトリに移動し、「Setting」ボックスの下にある「Webhooks」をクリックします。webhook が呼び出されるのは、イメージの ``push`` が完了したときです。 webhook コールは JSON 形式の HTTP POST リクエストであり、次のようなものです。
+webhook を追加するには、Docker Hub 上の任意のリポジトリに移動し、「Setting」ボックスの下にある「Webhooks」をクリックします。webhook が呼び出されるのは、イメージの ``push`` が完了したときです。 webhook コールは JSON 形式の HTTP POST リクエストであり、次のようなものです。
 
 .. Example webhook JSON payload:
 

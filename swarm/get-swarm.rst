@@ -193,7 +193,7 @@ Swarm バイナリの実行
 ..    Docker Swarm official image repository on Docker Hub
     Provision a Swarm with Docker Machine
 
-* Docker Hub 上の `Docker Swarm 公式イメージ <https://hub.docker.com/_/swarm/>`_ レポジトリ
+* Docker Hub 上の `Docker Swarm 公式イメージ <https://hub.docker.com/_/swarm/>`_ リポジトリ
 * :doc:`provision-with-machine`
 
 .. seealso:: 

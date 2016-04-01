@@ -551,7 +551,7 @@ image
 
 .. Specify the image to start the container from. Can either be a repository/tag or a partial image ID.
 
-コンテナを実行時に元となるイメージを指定します。レポジトリ名・タグあるいはイメージ ID の一部を指定できます。
+コンテナを実行時に元となるイメージを指定します。リポジトリ名・タグあるいはイメージ ID の一部を指定できます。
 
 .. code-block:: yaml
 

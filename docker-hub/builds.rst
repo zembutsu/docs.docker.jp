@@ -15,19 +15,19 @@ Docker Hub の自動構築
 
 .. You can build your images automatically from a build context stored in a repository. A build context is a Dockerfile and any files at specific location. For an automated build, the build context is a repository containing a Dockerfile. Automated Builds have several advantages:
 
-レポジトリに構築コンテキスト（内容物）を保管しておくと、自動的にイメージを構築できます。 *構築コンテキスト（build context）* とは、特定の場所にある Dockerfile と、あらゆるファイルです。自動構築において、構築コンテキストとは Dockerfile が含まれているレポジトリのことです。自動構築は複数の利点があります。
+リポジトリに構築コンテキスト（内容物）を保管しておくと、自動的にイメージを構築できます。 *構築コンテキスト（build context）* とは、特定の場所にある Dockerfile と、あらゆるファイルです。自動構築において、構築コンテキストとは Dockerfile が含まれているリポジトリのことです。自動構築は複数の利点があります。
 
 ..    Images built in this way are built exactly as specified.
     The Dockerfile is available to anyone with access to your Docker Hub repository.
     You repository is kept up-to-date with code changes automatically.
 
 * イメージの構築は、指定した通り確実に行われます。
-* ``Dockerfile`` は Docker Hub レポジトリの誰もがアクセス可能です。
-* コード画変更されると、レポジトリも自動的に更新されます。
+* ``Dockerfile`` は Docker Hub リポジトリの誰もがアクセス可能です。
+* コード画変更されると、リポジトリも自動的に更新されます。
 
 .. Automated Builds are supported for both public and private repositories on both GitHub and Bitbucket.
 
-自動構築はパブリック・プライベートの各レポジトリでサポートされており、 `GitHub <http://github.com/>`_ と `Bitbucket <https://bitbucket.org/>`_ 上で利用できます。
+自動構築はパブリック・プライベートの各リポジトリでサポートされており、 `GitHub <http://github.com/>`_ と `Bitbucket <https://bitbucket.org/>`_ 上で利用できます。
 
 .. Prerequisites
 
@@ -38,11 +38,11 @@ Docker Hub の自動構築
 
 .. Use of automated builds requires that you have an account on Docker Hub and on the hosted repository provider (GitHub or Bitbucket). If you have previously linked your Github or Bitbucket account, you must have chosen the Public and Private connection type. To view your current connection settings, from your Docker Hub account choose Profile > Settings > Linked Accounts & Services.
 
-自動構築のためには、 :doc:`Docker Hub のアカウント <accounts>` と、ホステッド・レポジトリ・プロバイダ（GitHub か Bitbucket）が必要です。既に GitHub や Bitbucket アカウントにリンクしているのであれば、パブリックもしくはプライベートかの接続タイプを選ぶ必要があります。現在の接続状態を確認するには、Docker Hub アカウント上で `Profile > Settings > Linked Accounts & Services <https://hub.docker.com/account/authorized-services/>`_ をお選びください。
+自動構築のためには、 :doc:`Docker Hub のアカウント <accounts>` と、ホステッド・リポジトリ・プロバイダ（GitHub か Bitbucket）が必要です。既に GitHub や Bitbucket アカウントにリンクしているのであれば、パブリックもしくはプライベートかの接続タイプを選ぶ必要があります。現在の接続状態を確認するには、Docker Hub アカウント上で `Profile > Settings > Linked Accounts & Services <https://hub.docker.com/account/authorized-services/>`_ をお選びください。
 
 .. Link to a hosted repository service
 
-ホステッド・レポジトリ・サービスとリンク
+ホステッド・リポジトリ・サービスとリンク
 ==================================================
 
 ..    Log into Docker Hub.
@@ -75,7 +75,7 @@ Docker Hub の自動構築
 
 ..    After you grant access to your code repository, the system returns you to Docker Hub and the link is complete.
 
-コード・レポジトリに対する権限が追加された後は、システムは Docker Hub に戻してくれます。これでリンク設定が完了しました。
+コード・リポジトリに対する権限が追加された後は、システムは Docker Hub に戻してくれます。これでリンク設定が完了しました。
 
 ..    Linked account
 
@@ -87,12 +87,12 @@ Docker Hub の自動構築
 
 .. _create-an-automated-build:
 
-自動構築レポジトリの作成
+自動構築リポジトリの作成
 ==============================
 
 .. Automated build repositories rely entirely on the integration with your code repository. You cannot push to these image repositories using the docker push command. You can only change the image by committing to your code repository. If you want to do both, docker push and an automated build, you would create a regular repository for the docker push and an automated build repository.
 
-自動構築レポジトリ（automated build repository）が完全に依存しているのは、コード・レポジトリとの統合です。この自動構築イメージ・レポジトリに対しては ``docker push`` コマンドで送信できません。コード・レポジトリにコミットすることによってのみ、イメージを変更できます。もしも ``docker push`` と自動構築の両方を使いたい場合は、 ``docker push`` 用の通常レポジトリと、自動構築用のレポジトリを作ることになるでしょう。
+自動構築リポジトリ（automated build repository）が完全に依存しているのは、コード・リポジトリとの統合です。この自動構築イメージ・リポジトリに対しては ``docker push`` コマンドで送信できません。コード・リポジトリにコミットすることによってのみ、イメージを変更できます。もしも ``docker push`` と自動構築の両方を使いたい場合は、 ``docker push`` 用の通常リポジトリと、自動構築用のリポジトリを作ることになるでしょう。
 
 ..    Select Create > Create Automated Build from Docker Hub.
 
@@ -100,7 +100,7 @@ Docker Hub の自動構築
 
 ..    The system prompts you with a list of User/Organizations and code repositories.
 
-システム上に Users/Organizations とコード・レポジトリの一覧が表示されます。
+システム上に Users/Organizations とコード・リポジトリの一覧が表示されます。
 
 ..    Select from the User/Organizations.
 
@@ -108,7 +108,7 @@ Docker Hub の自動構築
 
 ..    Optionally, type to filter the repository list.
 
-3. オプションで、レポジトリ一覧をフィルタできます。
+3. オプションで、リポジトリ一覧をフィルタできます。
 
 ..    Pick the project to build.
 
@@ -126,7 +126,7 @@ Docker Hub の自動構築
 
 ..    The dialog assumes some defaults which you can customize. By default, Docker builds images for each branch in your repository. It assumes the Dockerfile lives at the root of your source. When it builds an image, Docker tags it with the branch name.
 
-ダイアログには変更可能なものがデフォルトで入っています。デフォルトでは、Docker はレポジトリのブランチ毎にイメージを構築します。また、ソースのルート・ディレクトリに Dockerfile があると想定していますが、カスタマイズにより変更可能です。イメージを構築する時は、ブランチ名で Docker がタグ付けします。
+ダイアログには変更可能なものがデフォルトで入っています。デフォルトでは、Docker はリポジトリのブランチ毎にイメージを構築します。また、ソースのルート・ディレクトリに Dockerfile があると想定していますが、カスタマイズにより変更可能です。イメージを構築する時は、ブランチ名で Docker がタグ付けします。
 
 ..    Customize the automated build by pressing the Click here to customize this behavior link.
 
@@ -164,7 +164,7 @@ Docker Hub の自動構築
 
 ..    Within GitHub, a Docker integration appears in your repositories Settings > Webhooks & services page.
 
-GitHub を使っている場合、レポジトリの Settings > Webhooks & Services ページに Docker との統合が表示されます。
+GitHub を使っている場合、リポジトリの Settings > Webhooks & Services ページに Docker との統合が表示されます。
 
 ..    GitHub
 
@@ -174,7 +174,7 @@ GitHub を使っている場合、レポジトリの Settings > Webhooks & Servi
 
 ..    A similar page appears in Bitbucket if you use that code repository.Be careful to leave the Docker integration in place. Removing it causes your automated builds to stop.
 
-Bitbucket のコード・レポジトリを使っている場合も、同様にページが表示されます。Docker 統合を外す時は注意してください。統合を削除することにより、自動構築はできなくなります。
+Bitbucket のコード・リポジトリを使っている場合も、同様にページが表示されます。Docker 統合を外す時は注意してください。統合を削除することにより、自動構築はできなくなります。
 
 .. Understand the build process
 
@@ -185,7 +185,7 @@ Bitbucket のコード・レポジトリを使っている場合も、同様に�
 
 .. The first time you create a new automated build, Docker Hub builds your image. In a few minutes, you should see your new build on the image dashboard. The Build Details page shows a log of your build systems:
 
-新しい自動構築レポジトリを作ると、Docker Hub はイメージを構築します。数分すると、イメージのダッシュボード上に新しいイメージが構築されるのが見えるでしょう。「Build Details」のページで、構築システムのログが確認できます。
+新しい自動構築リポジトリを作ると、Docker Hub はイメージを構築します。数分すると、イメージのダッシュボード上に新しいイメージが構築されるのが見えるでしょう。「Build Details」のページで、構築システムのログが確認できます。
 
 .. Pending
 
@@ -195,11 +195,11 @@ Bitbucket のコード・レポジトリを使っている場合も、同様に�
 
 .. During the build process, Docker copies the contents of your Dockerfile to Docker Hub. The Docker community (for public repositories) or approved team members/orgs (for private repositories) can then view the Dockerfile on your repository page.
 
-構築プロセス中、Docker は ``Dockerfile`` の内容を Docker Hub にコピーします。Docker コミュニティ（パブリック・レポジトリ用）か、適切なチームメンバ／組織（プライベート・レポジトリ用）かにより、レポジトリ・ページ上の Dockerfile の見え方が異なります。
+構築プロセス中、Docker は ``Dockerfile`` の内容を Docker Hub にコピーします。Docker コミュニティ（パブリック・リポジトリ用）か、適切なチームメンバ／組織（プライベート・リポジトリ用）かにより、リポジトリ・ページ上の Dockerfile の見え方が異なります。
 
 .. The build process looks for a README.md in the same directory as your Dockerfile. If you have a README.md file in your repository, it is used in the repository as the full description. If you change the full description after a build, is overwritten the next time the Automated Build runs. To make changes, modify the README.md in your Git repository.
 
-構築プロセスは ``Dockerfile`` と同じディレクトリにある ``README.md`` を探します。レポジトリに ``README.md`` があれば、レポジトリ用の full description として使われます。構築後に full description を書き換えても、次に自動実行が処理されると上書きされます。変更したい場合は Git レポジトリにある ``README.md`` を編集してください。
+構築プロセスは ``Dockerfile`` と同じディレクトリにある ``README.md`` を探します。リポジトリに ``README.md`` があれば、リポジトリ用の full description として使われます。構築後に full description を書き換えても、次に自動実行が処理されると上書きされます。変更したい場合は Git リポジトリにある ``README.md`` を編集してください。
 
 .. You can only trigger one build at a time and no more than one every five minutes. If you already have a build pending, or if you recently submitted a build request, Docker ignores new requests.
 
@@ -214,7 +214,7 @@ Build Settings ページを使う
 
 .. The Build Settings page allows you to manage your existing automated build configurations and add new ones. By default, when new code is merged into your source repository, it triggers a build of your DockerHub image.
 
-Build Setting ページでは、既存の自動構築設定の管理や、新しい設定を追加できます。デフォルトでは、ソース・レポジトリに新しいコードがマージされたら、DockerHub イメージを構築するトリガになります。
+Build Setting ページでは、既存の自動構築設定の管理や、新しい設定を追加できます。デフォルトでは、ソース・リポジトリに新しいコードがマージされたら、DockerHub イメージを構築するトリガになります。
 
 ..  Default checkbox
 
@@ -238,7 +238,7 @@ Build Settings の一番上にダイアログがあります。ここで指定�
 
 .. Docker builds everything listed whenever a push is made to the code repository. If you specify a particular branch or tag, you can manually build that image by pressing the Trigger. If you use a regular expression syntax (regex) to define your build branch or tag, Docker does not give you the option to manually build. To add a new build:
 
-Docker はコード・レポジトリに対して push で変更が加えられると、毎回構築を行います特定のブランチやタグを指定すると、イメージの構築を手動で行えます。構築ブランチやタグに正規表現構文（regex）を使うと、Docker は手動構築のオプションが使えなくなります。新しい構築を追加するには、次のようにします。
+Docker はコード・リポジトリに対して push で変更が加えられると、毎回構築を行います特定のブランチやタグを指定すると、イメージの構築を手動で行えます。構築ブランチやタグに正規表現構文（regex）を使うと、Docker は手動構築のオプションが使えなくなります。新しい構築を追加するには、次のようにします。
 
 ..    Press the + (plus sign).
 
@@ -286,12 +286,12 @@ Docker はコード・レポジトリに対して push で変更が加えられ�
 
 .. _repository-links:
 
-レポジトリへのリンク
+リポジトリへのリンク
 ====================
 
 .. Repository links let you link one Automated Build with another. If one Automated Build gets updated, Docker triggers a build of the other. This makes it easy to ensure that related images are kept in sync. You can link more than one image repository. You only need to link one side of two related builds. Linking both sides causes an endless build loop.
 
-レポジトリへのリンク（Repository Links）は、他と連携する自動構築です。ある自動構築レポジトリが更新されると、この他のレポジトリの更新をトリガとして Docker が自動構築します。つまり、関連するイメージと同期し続けます。１つ以上のイメージ・レポジトリが指定できます。必要になるのは、関連する２つのイメージの片方だけです。もし、双方に設定してしまうと、構築が永久ループしてしまいます。
+リポジトリへのリンク（Repository Links）は、他と連携する自動構築です。ある自動構築リポジトリが更新されると、この他のリポジトリの更新をトリガとして Docker が自動構築します。つまり、関連するイメージと同期し続けます。１つ以上のイメージ・リポジトリが指定できます。必要になるのは、関連する２つのイメージの片方だけです。もし、双方に設定してしまうと、構築が永久ループしてしまいます。
 
 .. To add a link:
 
@@ -299,15 +299,15 @@ Docker はコード・レポジトリに対して push で変更が加えられ�
 
 ..    Go to the Build Settings for an automated build repository.
 
-1. 自動構築レポジトリの Build Settings に移動します。
+1. 自動構築リポジトリの Build Settings に移動します。
 
 ..    In the Repository Links section, enter an image repository name.
 
-2. Repository Links の箇所で、イメージのレポジトリ名を入力します。
+2. Repository Links の箇所で、イメージのリポジトリ名を入力します。
 
 ..    A remote repository name should be either an official repository name such as ubuntu or a public repository name namespace/repoName.
 
-リモートのレポジトリ名は ``ubuntu`` のような公式レポジトリ名か、 ``namespace/repoName``  のようなパブリック・レポジトリ名である必要があります。
+リモートのリポジトリ名は ``ubuntu`` のような公式リポジトリ名か、 ``namespace/repoName``  のようなパブリック・リポジトリ名である必要があります。
 
 ..    Press Add.
 
@@ -317,7 +317,7 @@ Docker はコード・レポジトリに対して push で変更が加えられ�
 
 .. image:: ./images/repo-links.png
    :scale: 60%
-   :alt: レポジトリへのリンク
+   :alt: リポジトリへのリンク
 
 .. Remote Build triggers
 

@@ -40,7 +40,7 @@ VirtualBox 仮想マシンの中で `boot2docker <http://boot2docker.io/>`_ を�
 
 .. Using the method described here, you install and compile your own from the git repository and run it as an OS X agent.
 
-ここで説明する手法は git レポジトリから取得してコンパイルおよびインストールする方法であり、 OS X 上でエージェントとして実行します。
+ここで説明する手法は git リポジトリから取得してコンパイルおよびインストールする方法であり、 OS X 上でエージェントとして実行します。
 
 捕捉
 ----------

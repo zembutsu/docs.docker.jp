@@ -77,7 +77,7 @@ bash 補完スクリプトのインストール
 
 .. The Machine repository supplies several bash scripts that add features such as:
 
-Machine 用のレポジトリには次の機能を持つ ``bash`` スクリプトがあります。
+Machine 用のリポジトリには次の機能を持つ ``bash`` スクリプトがあります。
 
 ..    command completion
     a function that displays the active machine in your shell prompt

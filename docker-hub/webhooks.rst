@@ -15,7 +15,7 @@
 
 .. If you have created an automated build, you have the option of using Webhooks with it. You can use a webhook to cause an action in another application in response to an event in your automated build repository. Currently, your webhook fires when an image is built in, or a new tag added to, your automated build repository.
 
-自動構築（automated build）の設定を作成するとき、オプションで webhook の設定もできます。webhook の設定を使えば、レポジトリで他のアプリケーションによるアクションが、自動構築リポジトリにイベントを発生させます。現時点の webhook ファイルは、自動構築リポジトリに対するイメージの構築か、新しいタグの追加を扱います。
+自動構築（automated build）の設定を作成するとき、オプションで webhook の設定もできます。webhook の設定を使えば、リポジトリで他のアプリケーションによるアクションが、自動構築リポジトリにイベントを発生させます。現時点の webhook ファイルは、自動構築リポジトリに対するイメージの構築か、新しいタグの追加を扱います。
 
 .. With your webhook, you specify a target URL and a JSON payload to deliver. The webhook below generates an HTTP POST that delivers a JSON payload:
 

@@ -15,7 +15,7 @@
 
 .. You can search for Docker images and pull them from Docker Hub without signing in or even having an account. However, in order to push images, leave comments, or to star a repository, you are going to need a Docker Hub account.
 
-`Docker Hub <https://hub.docker.com/>`__ から Docker イメージの ``search`` （検索）や ``pull`` （取得）は、アカウントを持っていなくても可能です。しかし、イメージの ``push`` （送信）やコメントを残したり、レポジトリにスターを付けるには、 `Docker Hub <https://hub.docker.com/>`__ アカウントが必要です。
+`Docker Hub <https://hub.docker.com/>`__ から Docker イメージの ``search`` （検索）や ``pull`` （取得）は、アカウントを持っていなくても可能です。しかし、イメージの ``push`` （送信）やコメントを残したり、リポジトリにスターを付けるには、 `Docker Hub <https://hub.docker.com/>`__ アカウントが必要です。
 
 .. Once you have a personal Docker Hub account, you can also create or join Docker Hub Organizations and Teams.
 
@@ -59,7 +59,7 @@ Docker Hub アカウントを作成する別の方法は、コマンドライン
 
 .. This will prompt you for a user name, which will become the public namespace for your public repositories. Docker will prompt you to enter a password and your email address. It will then automatically log you in until you run docker logout.
 
-実行するとユーザ名を訊ねてきます。ユーザ名は自分のパブリック・レポジトリにおける公開名前空間になります。Docker はパスワードとメールアドレスの入力も促します。あとは ``docker logout`` を実行するまで、自動的にログインした状態になります。
+実行するとユーザ名を訊ねてきます。ユーザ名は自分のパブリック・リポジトリにおける公開名前空間になります。Docker はパスワードとメールアドレスの入力も促します。あとは ``docker logout`` を実行するまで、自動的にログインした状態になります。
 
 .. Login
 
@@ -105,7 +105,7 @@ Docker Hub アカウントを作成する別の方法は、コマンドライン
 
 .. Free Hub accounts include one private registry. If you need more private registries, you can upgrade your account to a paid plan directly from the Hub.
 
-無料の Docker Hub アカウントは、プライベート・レジストリを１つ利用できます。多くのプライベート・レポジトリが必要な場合は、Docker Hub 上の `アカウントのアップグレード（英語） <https://hub.docker.com/account/billing-plans/>`__ から支払いプランを選べます。
+無料の Docker Hub アカウントは、プライベート・レジストリを１つ利用できます。多くのプライベート・リポジトリが必要な場合は、Docker Hub 上の `アカウントのアップグレード（英語） <https://hub.docker.com/account/billing-plans/>`__ から支払いプランを選べます。
 
 .. Password reset process
 

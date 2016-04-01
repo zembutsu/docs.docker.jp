@@ -46,7 +46,7 @@ Compose をインストールするには、次のように実行します。
 
 .. Go to the Compose repository release page on GitHub.
 
-3. `GitHub 上にある Compose レポジトリのリリース・ページ <https://github.com/docker/compose/releases>`_ に移動します。
+3. `GitHub 上にある Compose リポジトリのリリース・ページ <https://github.com/docker/compose/releases>`_ に移動します。
 
 .. Follow the instructions from the release page and run the curl command, which the release page specifies, in your terminal.
 
