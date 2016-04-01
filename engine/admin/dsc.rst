@@ -35,7 +35,7 @@ Windows PowerShell DSC (Desired State Configuration) は設定管理ツールで
 
 .. The included DSC configuration script also uses the official PPA so only an Ubuntu target is supported. The Ubuntu target must already have the required OMI Server and PowerShell DSC for Linux providers installed. More information can be found at https://github.com/MSFTOSSMgmt/WPSDSCLinux. The source repository listed below also includes PowerShell DSC for Linux installation and init scripts along with more detailed installation information.
 
-DSC 設定に含まれるスクリプトは、公式では Ubuntu ターゲットのみサポートされています。 Ubuntu ターゲットは OMI サーバと PowerShell DSC for Linux providers のインストールが必要です。詳しい情報は https://github.com/MSFTOSSMgmt/WPSDSCLinux をご覧ください。ソース・レポジトリの一覧に、PowerShell DSC for Linux のインストール方法や、初期化スクリプトに関するより詳しい情報があります。
+DSC 設定に含まれるスクリプトは、公式では Ubuntu ターゲットのみサポートされています。 Ubuntu ターゲットは OMI サーバと PowerShell DSC for Linux providers のインストールが必要です。詳しい情報は https://github.com/MSFTOSSMgmt/WPSDSCLinux をご覧ください。ソース・リポジトリの一覧に、PowerShell DSC for Linux のインストール方法や、初期化スクリプトに関するより詳しい情報があります。
 
 .. Installation
 
@@ -44,7 +44,7 @@ DSC 設定に含まれるスクリプトは、公式では Ubuntu ターゲッ�
 
 .. The DSC configuration example source is available in the following repository: https://github.com/anweiss/DockerClientDSC. It can be cloned with:
 
-DSC 設定例のソースは次のレポジトリ https://github.com/anweiss/DockerClientDSC で利用可能です。クローンも可能です。
+DSC 設定例のソースは次のリポジトリ https://github.com/anweiss/DockerClientDSC で利用可能です。クローンも可能です。
 
 .. code-block:: bash
 
@@ -57,7 +57,7 @@ DSC 設定例のソースは次のレポジトリ https://github.com/anweiss/Doc
 
 .. The DSC configuration utilizes a set of shell scripts to determine whether or not the specified Docker components are configured on the target node(s). The source repository also includes a script (RunDockerClientConfig.ps1) that can be used to establish the required CIM session(s) and execute the Set-DscConfiguration cmdlet.
 
-DSC 設定はシェルスクリプトのセットを使い、どこに Docker の構成物を置くかや、ターゲット・ノードの設定を行います。ソース・レポジトリはスクリプト（ ``RunDockerClientConfig.ps1`` があり）、CIM セッションに必要な接続と、 ``Set-DscConfiguration`` cmdlet の実行に使います。
+DSC 設定はシェルスクリプトのセットを使い、どこに Docker の構成物を置くかや、ターゲット・ノードの設定を行います。ソース・リポジトリはスクリプト（ ``RunDockerClientConfig.ps1`` があり）、CIM セッションに必要な接続と、 ``Set-DscConfiguration`` cmdlet の実行に使います。
 
 .. More detailed usage information can be found at https://github.com/anweiss/DockerClientDSC.
 

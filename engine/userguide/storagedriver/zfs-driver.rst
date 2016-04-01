@@ -200,7 +200,7 @@ Ubuntu 14.04 LTS に Zfs をインストール
 
 ..    Get the latest package lists for all registered repositories and package archives.
 
-4. 全ての登録レポジトリとパッケージ・アーカイブから、最新のパッケージ一覧を取得します。
+4. 全ての登録リポジトリとパッケージ・アーカイブから、最新のパッケージ一覧を取得します。
 
 .. code-block:: bash
 

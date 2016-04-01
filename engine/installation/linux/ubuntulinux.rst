@@ -37,7 +37,7 @@ Docker は以下のオペレーティング・システムをサポートして�
 
 .. note::
 
-   Ubuntu Utopic 14.10 には Docker の ``apt`` レポジトリが存在しますが、公式にサポートしていないものです。
+   Ubuntu Utopic 14.10 には Docker の ``apt`` リポジトリが存在しますが、公式にサポートしていないものです。
 
 .. Prerequisites
 
@@ -65,7 +65,7 @@ Docker は 64bit でインストールされた何らかの Ubuntu バージョ�
 
 .. note::
 
-   以前に Docker を ``apt`` でインストールしていた場合は、 ``apt`` ソースを新しい Docker レポジトリに更新してください。
+   以前に Docker を ``apt`` でインストールしていた場合は、 ``apt`` ソースを新しい Docker リポジトリに更新してください。
 
 .. Update your apt sources
 
@@ -74,7 +74,7 @@ apt ソースの更新
 
 .. Docker’s apt repository contains Docker 1.7.1 and higher. To set apt to use packages from the new repository:
 
-Docker 1.7.1 以上は Docker の ``apt`` レポジトリに保管されています。 ``apt`` が新しいレポジトリにあるパッケージを使えるように設定します。
+Docker 1.7.1 以上は Docker の ``apt`` リポジトリに保管されています。 ``apt`` が新しいリポジトリにあるパッケージを使えるように設定します。
 
 .. Log into your machine as a user with `sudo` or `root` privileges.
 
@@ -167,7 +167,7 @@ Docker 1.7.1 以上は Docker の ``apt`` レポジトリに保管されてい�
 
 ..    Purge the old repo if it exists.
 
-10. 古いレポジトリが残っているのなら、パージします。
+10. 古いリポジトリが残っているのなら、パージします。
 
 .. code-block:: bash
 
@@ -175,7 +175,7 @@ Docker 1.7.1 以上は Docker の ``apt`` レポジトリに保管されてい�
 
 ..    Verify that apt is pulling from the right repository.
 
-11. ``apt`` が正しいレポジトリから取得できるか確認します。
+11. ``apt`` が正しいリポジトリから取得できるか確認します。
 
 .. code-block:: bash
 
@@ -183,7 +183,7 @@ Docker 1.7.1 以上は Docker の ``apt`` レポジトリに保管されてい�
 
 ..    From now on when you run apt-get upgrade, apt pulls from the new repository.
 
-これで ``apt-get update`` を実行すると、 ``apt`` は新しいレポジトリから取得します。
+これで ``apt-get update`` を実行すると、 ``apt`` は新しいリポジトリから取得します。
 
 .. Prerequisites by Ubuntu Version
 

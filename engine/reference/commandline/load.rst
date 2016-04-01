@@ -23,7 +23,7 @@ load
    
 .. Loads a tarred repository from a file or the standard input stream. Restores both images and tags.
 
-ファイルか標準入力のストリームから tar 化されたレポジトリを読み込み（load）ます。イメージとタグを復元します。
+ファイルか標準入力のストリームから tar 化されたリポジトリを読み込み（load）ます。イメージとタグを復元します。
 
 .. code-block:: bash
 

@@ -39,11 +39,11 @@ pull
 
 .. It is also possible to manually specify the path of a registry to pull from. For example, if you have set up a local registry, you can specify its path to pull from it. A repository path is similar to a URL, but does not contain a protocol specifier (https://, for example).
 
-また、手動でレジストリのパスを指定し、そこから取得することも可能です。例えば、ローカルにレジストリをセットアップしている場合、そのパスを指定して、そこから pull できます。レポジトリのパスは、 URL に似た形式ですが、プロトコルの指定は含みません（例： ``https://`` ）。
+また、手動でレジストリのパスを指定し、そこから取得することも可能です。例えば、ローカルにレジストリをセットアップしている場合、そのパスを指定して、そこから pull できます。リポジトリのパスは、 URL に似た形式ですが、プロトコルの指定は含みません（例： ``https://`` ）。
 
 .. To download a particular image, or set of images (i.e., a repository), use docker pull:
 
-特定のイメージやイメージの集まり（例：レポジトリ）をダウンロードするには、 ``docker pull`` を使います。
+特定のイメージやイメージの集まり（例：リポジトリ）をダウンロードするには、 ``docker pull`` を使います。
 
 .. code-block:: bash
 

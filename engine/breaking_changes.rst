@@ -62,7 +62,7 @@ Docker Content Trust
 
 .. Engine older than the current 1.10 cannot pull images from repositories that have enabled key delegation. Key delegation is a feature which requires a manual action to enable.
 
-現在の Engine 1.10 よりも古いバージョンでは、key delegation（鍵の権限委譲）のためレポジトリからイメージを取得（pull）できません。key delegation 機能は手動で有効化する必要があります。
+現在の Engine 1.10 よりも古いバージョンでは、key delegation（鍵の権限委譲）のためリポジトリからイメージを取得（pull）できません。key delegation 機能は手動で有効化する必要があります。
 
 .. seealso:: 
 

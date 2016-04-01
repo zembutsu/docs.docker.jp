@@ -80,7 +80,7 @@ yum でインストール
 
 ..    Add the yum repo.
 
-3. yum レポジトリを追加します。
+3. yum リポジトリを追加します。
 
 .. code-block:: bash
 
@@ -171,7 +171,7 @@ yum でインストール
 
 .. This script adds the docker.repo repository and installs Docker.
 
-このスクリプトは ``docker.repo`` レポジトリを追加し、Docker をインストールします。
+このスクリプトは ``docker.repo`` リポジトリを追加し、Docker をインストールします。
 
 ..    Start the Docker daemon.
 

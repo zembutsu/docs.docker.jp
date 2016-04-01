@@ -145,7 +145,7 @@ Debian をベースとしたコンテナで proxy を使うには、以下のオ
 
 .. Apt-cacher-ng has some tools that allow you to manage the repository, and they can be used by leveraging the VOLUME instruction, and the image we built to run the service:
 
-apt-cacher-ng はレポジトリを管理するのと同じツールを持っており、 ``VOLUME`` 命令を使い、サービスを実行するイメージを構築します。
+apt-cacher-ng はリポジトリを管理するのと同じツールを持っており、 ``VOLUME`` 命令を使い、サービスを実行するイメージを構築します。
 
 .. code-block:: bash
 

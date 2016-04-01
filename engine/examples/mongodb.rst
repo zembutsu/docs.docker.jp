@@ -82,11 +82,11 @@ MongoDB 用の Dockerfile を作成
 
 .. We will build our image using the latest version of Ubuntu from the Docker Hub Ubuntu repository.
 
-`Docker Hub Ubuntu <https://registry.hub.docker.com/_/ubuntu/>`_ レポジトリにある Ubuntu の最新（latest）バージョンを使い、イメージを構築します。
+`Docker Hub Ubuntu <https://registry.hub.docker.com/_/ubuntu/>`_ リポジトリにある Ubuntu の最新（latest）バージョンを使い、イメージを構築します。
 
 .. code-block:: bash
 
-   # 書式：FROM    レポジトリ[:バージョン]
+   # 書式：FROM    リポジトリ[:バージョン]
    FROM       ubuntu:latest
 
 .. Continuing, we will declare the MAINTAINER of the Dockerfile:
@@ -106,7 +106,7 @@ MongoDB 用の Dockerfile を作成
 
 .. We will begin with importing the MongoDB public GPG key. We will also create a MongoDB repository file for the package manager.
 
-MongoDB 公開 GPG 鍵を取り込みます。また、パッケージ・マネージャ用に MongoDB レポジトリ・ファイルも作成します。
+MongoDB 公開 GPG 鍵を取り込みます。また、パッケージ・マネージャ用に MongoDB リポジトリ・ファイルも作成します。
 
 .. code-block:: bash
 
@@ -177,7 +177,7 @@ MongoDB Docker イメージの構築
 
 .. code-block:: bash
 
-   # 書式：docker build --tag/-t <ユーザ名>/<レポジトリ>
+   # 書式：docker build --tag/-t <ユーザ名>/<リポジトリ>
    # 例
    $ docker build --tag my/repo .
 
@@ -194,7 +194,7 @@ MongoDB イメージを Docker Hub に送信
 
 .. All Docker image repositories can be hosted and shared on Docker Hub with the docker push command. For this, you need to be logged-in.
 
-全ての Docker イメージ・レポジトリを `Docker Hub <https://hub.docker.com/>`_ で保管・共有できるようにするには、 ``docker push`` コマンドを使います。この場合は、ログインする必要があります。
+全ての Docker イメージ・リポジトリを `Docker Hub <https://hub.docker.com/>`_ で保管・共有できるようにするには、 ``docker push`` コマンドを使います。この場合は、ログインする必要があります。
 
 .. code-block:: bash
 
@@ -204,7 +204,7 @@ MongoDB イメージを Docker Hub に送信
    ..
    
    # イメージを送信
-   # 書式：docker push <ユーザ名>/<レポジトリ>
+   # 書式：docker push <ユーザ名>/<リポジトリ>
    $ docker push my/repo
    The push refers to a repository [my/repo] (len: 1)
    Sending image list
@@ -225,11 +225,11 @@ MongoDB イメージを使う
 .. code-block:: bash
 
    # 基本的な方法
-   # 使い方：docker run --name <コンテナ名> -d <ユーザ名>/<レポジトリ>
+   # 使い方：docker run --name <コンテナ名> -d <ユーザ名>/<リポジトリ>
    $ docker run -p 27017:27017 --name mongo_instance_001 -d my/repo
    
    # Docker 化した Mongo DB 、学び理解しました！
-   # 使い方：docker run --name <コンテナ名> -d <ユーザ名>/<レポジトリ> --noprealloc --smallfiles
+   # 使い方：docker run --name <コンテナ名> -d <ユーザ名>/<リポジトリ> --noprealloc --smallfiles
    $ docker run -p 27017:27017 --name mongo_instance_001 -d my/repo --smallfiles
    
    # MongoDB コンテナのログを確認

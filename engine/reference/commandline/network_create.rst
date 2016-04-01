@@ -86,7 +86,7 @@ network create
 
 .. Network names must be unique. The Docker daemon attempts to identify naming conflicts but this is not guaranteed. It is the user’s responsibility to avoid name conflicts.
 
-ネットワーク名はユニークにする必要があります。Docker デーモンは名前の衝突を避けようとしますが、保証されません。ユーザ・レポジトリも名前の衝突を避けようとします。
+ネットワーク名はユニークにする必要があります。Docker デーモンは名前の衝突を避けようとしますが、保証されません。ユーザ・リポジトリも名前の衝突を避けようとします。
 
 .. Connect containers
 

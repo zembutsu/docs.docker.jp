@@ -303,7 +303,7 @@ OverlayFS は、他のファイルシステムに対する `ユニオン・マ�
 
 .. A Registry is a hosted service containing repositories of images which responds to the Registry API.
 
-レジストリ（registry）とは :ref:`イメージ <image>` を持つ :ref:`レポジトリ <repository>` を預かるサービス（ホステッド・サービス）であり、レジストリ API に応答します。
+レジストリ（registry）とは :ref:`イメージ <image>` を持つ :ref:`リポジトリ <repository>` を預かるサービス（ホステッド・サービス）であり、レジストリ API に応答します。
 
 .. The default registry can be accessed using a browser at Docker Hub or using the docker search command.
 
@@ -313,16 +313,16 @@ OverlayFS は、他のファイルシステムに対する `ユニオン・マ�
 
 .. _repository:
 
-レポジトリ（repository）
+リポジトリ（repository）
 ==============================
 
 .. A repository is a set of Docker images. A repository can be shared by pushing it to a registry server. The different images in the repository can be labeled using tags.
 
-レポジトリ（repository）とは Docker イメージの集まりです。レポジトリは :ref:`レジストリ <registry>` サーバに送信すると、共有されるようにできます。レポジトリの中では、イメージの違いを :ref:`タグ <tag>` でラベル付けします。
+リポジトリ（repository）とは Docker イメージの集まりです。リポジトリは :ref:`レジストリ <registry>` サーバに送信すると、共有されるようにできます。リポジトリの中では、イメージの違いを :ref:`タグ <tag>` でラベル付けします。
 
 .. Here is an example of the shared nginx repository and its tags
 
-共有 `Nginx レポジトリ <https://registry.hub.docker.com/_/nginx/>`_ と `タグ <https://registry.hub.docker.com/_/nginx/tags/manage/>`_ の例です。
+共有 `Nginx リポジトリ <https://registry.hub.docker.com/_/nginx/>`_ と `タグ <https://registry.hub.docker.com/_/nginx/tags/manage/>`_ の例です。
 
 .. Swarm
 
@@ -348,7 +348,7 @@ Swarm
 
 .. A tag is a label applied to a Docker image in a repository. tags are how various images in a repository are distinguished from each other.
 
-タグ（tag）は :ref:`レポジトリ <repository>` 上の Docker イメージに割り当てるラベルです。タグを使い、レポジトリ上のイメージを互いに識別します。
+タグ（tag）は :ref:`リポジトリ <repository>` 上の Docker イメージに割り当てるラベルです。タグを使い、リポジトリ上のイメージを互いに識別します。
 
 .. Note : This label is not related to the key=value labels set for docker daemon
 

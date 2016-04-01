@@ -167,7 +167,7 @@ FROM
 
 .. Whenever possible, use current Official Repositories as the basis for your image. We recommend the Debian image since it’s very tightly controlled and kept extremely minimal (currently under 100 mb), while still being a full distribution.
 
-可能であれば、自分のイメージの元として現在の公式レポジトリを使います。私たちは `Debian イメージ <https://registry.hub.docker.com/_/debian/>`_ を推奨します。これは、非常にしっかりと管理されており、ディストリビューションの中でも最小（現在は 100 MB 以下）になるよう維持されているからです。
+可能であれば、自分のイメージの元として現在の公式リポジトリを使います。私たちは `Debian イメージ <https://registry.hub.docker.com/_/debian/>`_ を推奨します。これは、非常にしっかりと管理されており、ディストリビューションの中でも最小（現在は 100 MB 以下）になるよう維持されているからです。
 
 .. RUN
 
@@ -591,7 +591,7 @@ Docker は ``ONBUILD`` コマンドを処理する前に、あらゆる子 ``Doc
 
 .. Examples for Official Repositories
 
-公式レポジトリの例
+公式リポジトリの例
 ====================
 
 .. These Official Repositories have exemplary Dockerfiles:
@@ -621,7 +621,7 @@ Docker は ``ONBUILD`` コマンドを処理する前に、あらゆる子 ``Doc
 * :doc:`Dockerfile リファレンス </engine/reference/builder>`
 * :doc:`ベース・イメージの詳細 <baseimages>`
 * :doc:`自動構築の詳細 </docker-hub/builds>`
-* :doc:`公式レポジトリ作成のガイドライン </docker-hub/official_repos>`
+* :doc:`公式リポジトリ作成のガイドライン </docker-hub/official_repos>`
 
 .. seealso:: 
 

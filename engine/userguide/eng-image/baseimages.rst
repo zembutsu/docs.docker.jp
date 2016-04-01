@@ -56,7 +56,7 @@ Ubuntu ベース・イメージの作成は、次のように簡単にできま�
 
 .. There are more example scripts for creating base images in the Docker GitHub Repo:
 
-Docker の GitHub レポジトリ上に、ベース・イメージ作成のためのサンプル・スクリプトがあります。
+Docker の GitHub リポジトリ上に、ベース・イメージ作成のためのサンプル・スクリプトがあります。
 
 ..    BusyBox
     CentOS / Scientific Linux CERN (SLC) on Debian/Ubuntu or on CentOS/RHEL/SLC/etc.
@@ -77,7 +77,7 @@ Docker が準備した最小イメージ ``scratch`` を、コンテナの構築
 
 .. While scratch appears in Docker’s repository on the hub, you can’t pull it, run it, or tag any image with the name scratch. Instead, you can refer to it in your Dockerfile. For example, to create a minimal container using scratch:
 
-``scratch`` は Docker Hub 上のレポジトリからは見えません。そのため、取得（pull）や実行や、イメージを ``scratch`` という名前でタグ付けできません。そのかわり、``Dockerfile`` で参照可能です。例えば、 ``scratch`` を使って最小コンテナを作成するには、次のようにします。
+``scratch`` は Docker Hub 上のリポジトリからは見えません。そのため、取得（pull）や実行や、イメージを ``scratch`` という名前でタグ付けできません。そのかわり、``Dockerfile`` で参照可能です。例えば、 ``scratch`` を使って最小コンテナを作成するには、次のようにします。
 
 .. code-block:: dockerfile
 
@@ -87,7 +87,7 @@ Docker が準備した最小イメージ ``scratch`` を、コンテナの構築
 
 .. This example creates the hello-world image used in the tutorials. If you want to test it out, you can clone the image repo
 
-これはチュートリアルで使用する hello-world イメージを作成する例です。テストしたい場合は、 `イメージ・レポジトリ <https://github.com/docker-library/hello-world>`_ から複製できます。
+これはチュートリアルで使用する hello-world イメージを作成する例です。テストしたい場合は、 `イメージ・リポジトリ <https://github.com/docker-library/hello-world>`_ から複製できます。
 
 
 .. More resources
@@ -105,7 +105,7 @@ Docker が準備した最小イメージ ``scratch`` を、コンテナの構築
 
 * ``Dockerfile`` リファレンス・セクションには、 :doc:`利用可能な命令の全ガイド </engine/reference/builder>` があります。
 * 作成した ``Dockerfile`` を、より綺麗に、読みやすく、メンテナンスしやすいように、 :doc:`ベスト・プラクティス・ガイド <dockerfile_best-practice>` を書きました。
-* もし自分で新しい公式レポジトリを作成するのが目標であれば、Docker の :doc:`公式レポジトリについて </docker-hub/official_repos/>` をお読みください。
+* もし自分で新しい公式リポジトリを作成するのが目標であれば、Docker の :doc:`公式リポジトリについて </docker-hub/official_repos/>` をお読みください。
 
 
 .. seealso:: 

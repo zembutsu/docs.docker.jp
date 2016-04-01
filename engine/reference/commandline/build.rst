@@ -52,11 +52,11 @@ Docker イメージは Dockerfile と「コンテクスト」（context）を使
 
 .. The URL parameter can specify the location of a Git repository; the repository acts as the build context. The system recursively clones the repository and its submodules using a git clone --depth 1 --recursive command. This command runs in a temporary directory on your local host. After the command succeeds, the directory is sent to the Docker daemon as the context. Local clones give you the ability to access private repositories using local user credentials, VPNs, and so forth.
 
-``URL`` パラメータは Git レポジトリの場所を指定できます。つまり、レポジトリの内容をコンテクストとして構築できます。システムでレポジトリの再帰的なクローンを作成するには ``git clone --depth 1 --recursive`` コマンドを使います。このコマンドはローカルホスト上の一時ディレクトリで実行されます。コマンドが成功すると、ディレクトリは Docker デーモンにコンテクストとして送信されます。ローカルのクローンであれば、ローカルなユーザ認証や VPN などを使うプライベートなレポジトリへのアクセスも可能にします。
+``URL`` パラメータは Git リポジトリの場所を指定できます。つまり、リポジトリの内容をコンテクストとして構築できます。システムでリポジトリの再帰的なクローンを作成するには ``git clone --depth 1 --recursive`` コマンドを使います。このコマンドはローカルホスト上の一時ディレクトリで実行されます。コマンドが成功すると、ディレクトリは Docker デーモンにコンテクストとして送信されます。ローカルのクローンであれば、ローカルなユーザ認証や VPN などを使うプライベートなリポジトリへのアクセスも可能にします。
 
 .. Git URLs accept context configuration in their fragment section, separated by a colon :. The first part represents the reference that Git will check out, this can be either a branch, a tag, or a commit SHA. The second part represents a subdirectory inside the repository that will be used as a build context.
 
-Git の URL は、コロン ``:`` をコンテクストのセクションを分割する設定に使えます。１つめの場所は Git が調査用に参照します。これはブランチ、タグ、コミット SHA が使えます。２つめの場所はレポジトリ内にあるサブディレクトリであり、構築時のコンテクストとして使われます。
+Git の URL は、コロン ``:`` をコンテクストのセクションを分割する設定に使えます。１つめの場所は Git が調査用に参照します。これはブランチ、タグ、コミット SHA が使えます。２つめの場所はリポジトリ内にあるサブディレクトリであり、構築時のコンテクストとして使われます。
 
 .. For example, run this command to use a directory called docker in the branch container:
 
@@ -234,7 +234,7 @@ URL で構築
 
 .. This will clone the GitHub repository and use the cloned repository as context. The Dockerfile at the root of the repository is used as Dockerfile. Note that you can specify an arbitrary Git repository by using the git:// or git@ schema.
 
-これは GitHub レポジトリのクローンを作成し、クローンしたレポジトリをコンテクストとして利用します。レポジトリのルートにある Dockerfile を、構築時の Dockerfile として使います。 ``git://`` や ``git@`` など、その他の Git レポジトリのスキーマを使っても指定可能です。
+これは GitHub リポジトリのクローンを作成し、クローンしたリポジトリをコンテクストとして利用します。リポジトリのルートにある Dockerfile を、構築時の Dockerfile として使います。 ``git://`` や ``git@`` など、その他の Git リポジトリのスキーマを使っても指定可能です。
 
 .. Build with -
 
@@ -305,7 +305,7 @@ URL で構築
 
 .. This will build like the previous example, but it will then tag the resulting image. The repository name will be vieux/apache and the tag will be 2.0
 
-これまでの例のように構築していますが、作成されるイメージに対してタグ付けをしています。レポジトリ名は ``vieux/apache`` になり、タグは ``2.0`` にないます。
+これまでの例のように構築していますが、作成されるイメージに対してタグ付けをしています。リポジトリ名は ``vieux/apache`` になり、タグは ``2.0`` にないます。
 
 .. Specify Dockerfile (-f)
 

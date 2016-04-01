@@ -312,7 +312,7 @@ TCP ポートにサービスを割り当て
     Review Command Line
 
 * :doc:`Docker ユーザ・ガイド <userguide/index>` の中に進む
-* :doc:`レポジトリを通したイメージの共有 <userguide/containers/dockerrepos>` について読む
+* :doc:`リポジトリを通したイメージの共有 <userguide/containers/dockerrepos>` について読む
 * :doc:`コマンドラインの練習 <reference/commandline/cli>` を参照
 
 .. seealso:: 

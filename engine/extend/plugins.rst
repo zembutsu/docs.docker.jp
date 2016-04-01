@@ -76,7 +76,7 @@ Docker プラグインの理解
 
 ..    The Keywhiz plugin is a plugin that provides credentials and secret management using Keywhiz as a central repository.
 
-* `Kyewhiz plugin <https://github.com/calavera/docker-volume-keywhiz>`_ は、Keywhiz を中央レポジトリとして、証明書やシークレット（秘密情報）の管理を提供するプラグインです。
+* `Kyewhiz plugin <https://github.com/calavera/docker-volume-keywhiz>`_ は、Keywhiz を中央リポジトリとして、証明書やシークレット（秘密情報）の管理を提供するプラグインです。
 
 ..    The Netshare plugin is a volume plugin that provides volume management for NFS ¾, AWS EFS and CIFS file systems.
 
@@ -88,7 +88,7 @@ Docker プラグインの理解
 
 ..    The Pachyderm PFS plugin is a volume plugin written in Go that provides functionality to mount Pachyderm File System (PFS) repositories at specific commits as volumes within Docker containers.
 
-* `Pachyderm PFS plugin <https://github.com/pachyderm/pachyderm/tree/master/src/cmd/pfs-volume-driver>`_ は Go 言語で書かれたボリューム・プラグインです。PFS (Pachyderm File System) レポジトリにマウントできる機能を提供します。Docker コンテナがなくても、ボリュームに対するコミットを行えるようにします。
+* `Pachyderm PFS plugin <https://github.com/pachyderm/pachyderm/tree/master/src/cmd/pfs-volume-driver>`_ は Go 言語で書かれたボリューム・プラグインです。PFS (Pachyderm File System) リポジトリにマウントできる機能を提供します。Docker コンテナがなくても、ボリュームに対するコミットを行えるようにします。
 
 ..    The REX-Ray plugin is a volume plugin which is written in Go and provides advanced storage functionality for many platforms including EC2, OpenStack, XtremIO, and ScaleIO.
 

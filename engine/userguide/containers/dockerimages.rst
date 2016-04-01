@@ -70,7 +70,7 @@ Docker はダウンロードしたイメージを Docker ホスト上に保管�
     The tags for each image, for example 14.04.
     The image ID of each image.
 
-* どのレポジトリから取得したのか（例：``ubuntu``）
+* どのリポジトリから取得したのか（例：``ubuntu``）
 * 各イメージのタグ（例：``14.04``）
 * イメージごとのイメージ ID
 
@@ -82,7 +82,7 @@ Docker はダウンロードしたイメージを Docker ホスト上に保管�
 
 .. A repository potentially holds multiple variants of an image. In the case of our ubuntu image you can see multiple variants covering Ubuntu 10.04, 12.04, 12.10, 13.04, 13.10 and 14.04. Each variant is identified by a tag and you can refer to a tagged image like so:
 
-レポジトリによっては複数の種類をイメージを持つ場合があります。先ほどの ``ubuntu`` イメージの場合は、Ubuntu 10.04、12.04、12.10、13.03、13.10 という、複数の異なったものがあります。それぞれの違いをタグ (tag) によって識別し、次のようにイメージに対するタグとして参照できます。
+リポジトリによっては複数の種類をイメージを持つ場合があります。先ほどの ``ubuntu`` イメージの場合は、Ubuntu 10.04、12.04、12.10、13.03、13.10 という、複数の異なったものがあります。それぞれの違いをタグ (tag) によって識別し、次のようにイメージに対するタグとして参照できます。
 
 .. code-block:: bash
 
@@ -179,11 +179,11 @@ Docker の特長の１つとして、様々な目的の Docker イメージが�
 
 .. You can see the command returns a lot of images that use the term sinatra. You’ve received a list of image names, descriptions, Stars (which measure the social popularity of images - if a user likes an image then they can “star” it), and the Official and Automated build statuses. Official Repositories are a carefully curated set of Docker repositories supported by Docker, Inc. Automated repositories are Automated Builds that allow you to validate the source and content of an image.
 
-コマンドを実行すると、``sinatra`` を含む多くのイメージが表示されます。表示されるのは、イメージ名の一覧、スター（イメージがソーシャル上で有名かどうか測るものです。利用者はイメージを気に入れば"スター"を付けられます ）、公式（OFFICIAL）か、自動構築（AUTOMATED）といった状態です。:doc:`公式レポジトリ </docker-hub/official_repos>` とは、Docker 社のサポートよって丁寧に精査されている Docker レポジトリです。:ref:`自動構築（Automated Build） <automated-builds>` とは有効なソースコードを元に、イメージ内容が自動構築されたレポジトリです。
+コマンドを実行すると、``sinatra`` を含む多くのイメージが表示されます。表示されるのは、イメージ名の一覧、スター（イメージがソーシャル上で有名かどうか測るものです。利用者はイメージを気に入れば"スター"を付けられます ）、公式（OFFICIAL）か、自動構築（AUTOMATED）といった状態です。:doc:`公式リポジトリ </docker-hub/official_repos>` とは、Docker 社のサポートよって丁寧に精査されている Docker リポジトリです。:ref:`自動構築（Automated Build） <automated-builds>` とは有効なソースコードを元に、イメージ内容が自動構築されたリポジトリです。
 
 .. You’ve reviewed the images available to use and you decided to use the training/sinatra image. So far you’ve seen two types of images repositories, images like ubuntu, which are called base or root images. These base images are provided by Docker Inc and are built, validated and supported. These can be identified by their single word names.
 
-利用可能なイメージの内容を確認します。ここでは ``training/sinatra`` イメージを使うことにします。これまで２種類のイメージ・レポジトリが表示されました。``ubuntu`` のようなイメージはベース・イメージまたはルート・イメージと呼ばれます。このベース・イメージは Docker 社によって提供、構築、認証、サポートされています。これらは単一の単語名として表示されています。
+利用可能なイメージの内容を確認します。ここでは ``training/sinatra`` イメージを使うことにします。これまで２種類のイメージ・リポジトリが表示されました。``ubuntu`` のようなイメージはベース・イメージまたはルート・イメージと呼ばれます。このベース・イメージは Docker 社によって提供、構築、認証、サポートされています。これらは単一の単語名として表示されています。
 
 .. You’ve also seen user images, for example the training/sinatra image you’ve chosen. A user image belongs to a member of the Docker community and is built and maintained by them. You can identify user images as they are always prefixed with the user name, here training, of the user that created them.
 
@@ -548,7 +548,7 @@ Windows で Docker Machine を使っている場合、ホスト・ディレク�
    
 .. You’ve specified our docker build command and used the -t flag to identify our new image as belonging to the user ouruser, the repository name sinatra and given it the tag v2.
 
-``docker build`` コマンドで  ``-t`` フラグを指定し、新しいイメージがユーザ ``ouruser`` に属していること、レポジトリ名が ``sinatra`` 、タグを ``v2`` に指定します。
+``docker build`` コマンドで  ``-t`` フラグを指定し、新しいイメージがユーザ ``ouruser`` に属していること、リポジトリ名が ``sinatra`` 、タグを ``v2`` に指定します。
 
 .. You’ve also specified the location of our Dockerfile using the . to indicate a Dockerfile in the current directory.
 
@@ -606,7 +606,7 @@ Windows で Docker Machine を使っている場合、ホスト・ディレク�
 
 .. The docker tag command takes the ID of the image, here 5db5f8471261, and our user name, the repository name and the new tag.
 
-``docker tag`` コマンドはイメージの ID を使います。ここでは ``5db5f8471261`` です。そしてユーザ名、レポジトリ名、新しいタグを指定します。
+``docker tag`` コマンドはイメージの ID を使います。ここでは ``5db5f8471261`` です。そしてユーザ名、リポジトリ名、新しいタグを指定します。
 
 .. Now, see your new tag using the docker images command.
 
@@ -659,7 +659,7 @@ v2 以上のフォーマットのイメージには、内容に対して ``diges
 
 .. Once you’ve built or created a new image you can push it to Docker Hub using the docker push command. This allows you to share it with others, either publicly, or push it into a private repository.
 
-イメージを構築・作成したあとは、``docker push`` コマンドを使って `Docker Hub <https://hub.docker.com/>`_ に送信できます。これにより、イメージを他人と共有したり、パブリックに共有したり、あるいは `プライベート・レポジトリ <https://registry.hub.docker.com/plans/>`_ にも送信できます。
+イメージを構築・作成したあとは、``docker push`` コマンドを使って `Docker Hub <https://hub.docker.com/>`_ に送信できます。これにより、イメージを他人と共有したり、パブリックに共有したり、あるいは `プライベート・リポジトリ <https://registry.hub.docker.com/plans/>`_ にも送信できます。
 
 .. code-block:: bash
 

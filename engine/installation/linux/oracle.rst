@@ -72,7 +72,7 @@ Docker は Oracle Linux 6 と 7 をサポートします。Docker Linux に Dock
 
 ..    Add the yum repo yourself.
 
-3. yum レポジトリを手動で追加します。
+3. yum リポジトリを手動で追加します。
 
 バージョン６の場合：
 

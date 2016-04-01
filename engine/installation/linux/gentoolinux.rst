@@ -52,7 +52,7 @@ docker-overlay の方法
 
 .. If any issues arise from this ebuild or the resulting binary, including and especially missing kernel configuration flags or dependencies, open an issue on the docker-overlay repository or ping tianon directly in the #docker IRC channel on the Freenode network.
 
-カーネルの設定フラグが無い場合や依存関係など、ebuild に関する何らかの問題が起こったら ``docker-overlay`` レポジトリ上で `issue <https://github.com/tianon/docker-overlay/issues>`_ 開くか、Freenode ネットワークの ``#docker`` IRC チャンネルで ``tianon`` に直接お訊ねください。
+カーネルの設定フラグが無い場合や依存関係など、ebuild に関する何らかの問題が起こったら ``docker-overlay`` リポジトリ上で `issue <https://github.com/tianon/docker-overlay/issues>`_ 開くか、Freenode ネットワークの ``#docker`` IRC チャンネルで ``tianon`` に直接お訊ねください。
 
 .. Installation
 

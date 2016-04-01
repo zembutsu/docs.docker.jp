@@ -48,7 +48,7 @@ login
 
 .. You can log into any public or private repository for which you have credentials. When you log in, the command stores encoded credentials in $HOME/.docker/config.json on Linux or %USERPROFILE%/.docker/config.json on Windows.
 
-証明書（credential）があれば、あらゆるパブリックないしプライベートなレポジトリにログインできます。ログインすると、コマンドは符号化（エンコード）した証明書を Linux であれば ``$HOME/.docker/config.json`` に、Windows であれば ``%USERPROFILE%/.docker/config.json`` に保管します。
+証明書（credential）があれば、あらゆるパブリックないしプライベートなリポジトリにログインできます。ログインすると、コマンドは符号化（エンコード）した証明書を Linux であれば ``$HOME/.docker/config.json`` に、Windows であれば ``%USERPROFILE%/.docker/config.json`` に保管します。
 
 ..    Note: When running sudo docker login credentials are saved in /root/.docker/config.json.
 

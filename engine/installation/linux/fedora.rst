@@ -76,7 +76,7 @@ dnf でインストール
 
 ..    Add the yum repo yourself.
 
-3. yum レポジトリを手動で追加します。
+3. yum リポジトリを手動で追加します。
 
 .. code-block:: bash
 
@@ -167,7 +167,7 @@ dnf でインストール
 
 .. This script adds the docker.repo repository and installs Docker.
 
-このスクリプトは ``docker.repo`` レポジトリを追加し、Docker をインストールします。
+このスクリプトは ``docker.repo`` リポジトリを追加し、Docker をインストールします。
 
 ..    Start the Docker daemon.
 

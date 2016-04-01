@@ -53,7 +53,7 @@ Dockerfile の作成
 
 .. After that, we install the curl which is used to download the repository setup script and we download the setup script and run it.
 
-それから、 curl をインストールします。curl はレポジトリのセットアップ・スクリプトをダウンロードし、実行するためです。
+それから、 curl をインストールします。curl はリポジトリのセットアップ・スクリプトをダウンロードし、実行するためです。
 
 .. code-block:: bash
 

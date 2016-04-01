@@ -32,7 +32,7 @@ Docker は以下の Debian バージョンをサポートしています。
 
 .. note::
 
-   以前に Docker を ``apt`` でインストールしていた場合は、 ``apt`` ソースを新しい Docker レポジトリに更新してください。
+   以前に Docker を ``apt`` でインストールしていた場合は、 ``apt`` ソースを新しい Docker リポジトリに更新してください。
 
 .. Prerequisites
 
@@ -62,7 +62,7 @@ apt ソースの更新
 
 .. Docker’s apt repository contains Docker 1.7.1 and higher. To set apt to use packages from the new repository:
 
-Docker 1.7.1 以上は Docker の ``apt`` レポジトリに保管されています。 ``apt`` が新しいレポジトリにあるパッケージを使えるように設定します。
+Docker 1.7.1 以上は Docker の ``apt`` リポジトリに保管されています。 ``apt`` が新しいリポジトリにあるパッケージを使えるように設定します。
 
 ..    If you haven’t already done so, log into your Debian instance as a privileged user.
 
@@ -74,7 +74,7 @@ Docker 1.7.1 以上は Docker の ``apt`` レポジトリに保管されてい�
 
 .. Purge any older repositories.
 
-3. 古いレポジトリをパージします。
+3. 古いリポジトリをパージします。
 
 .. code-block:: bash
 
@@ -151,7 +151,7 @@ Docker 1.7.1 以上は Docker の ``apt`` レポジトリに保管されてい�
 
 ..    Verify that APT is pulling from the right repository.
 
-10. ``APT`` が正しいレポジトリから取得しているか確認します。
+10. ``APT`` が正しいリポジトリから取得しているか確認します。
 
 .. code-block:: bash
 
@@ -159,7 +159,7 @@ Docker 1.7.1 以上は Docker の ``apt`` レポジトリに保管されてい�
 
 ..    From now on when you run apt-get upgrade, apt pulls from the new repository.
 
-これで ``apt-get update`` を実行すると、 ``APT`` は新しいレポジトリから取得します。
+これで ``apt-get update`` を実行すると、 ``APT`` は新しいリポジトリから取得します。
 
 .. Install Docker
 
@@ -168,7 +168,7 @@ Docker インストール
 
 .. Before installing Docker, make sure you have set your APT repository correctly as described in the prerequisites.
 
-Docker インストール前に、必要条件で説明した通り、 ``APT`` レポジトリを正しく設定してください。
+Docker インストール前に、必要条件で説明した通り、 ``APT`` リポジトリを正しく設定してください。
 
 ..    Update your APT package index.
 

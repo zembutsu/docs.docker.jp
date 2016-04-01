@@ -80,7 +80,7 @@ AUR パッケージは次のように実行します。
 
 .. The instructions here assume yaourt is installed. See Arch User Repository for information on building and installing packages from the AUR if you have not done so before.
 
-このコマンドは **yaourt** のインストール済みを想定しています。インストールしていなければ、あらかじめ `Arch ユーザ・レポジトリ <https://wiki.archlinux.org/index.php/Arch_User_Repository#Installing_packages>`_ の構築と AUR でパッケージをインストールする情報をご覧ください。
+このコマンドは **yaourt** のインストール済みを想定しています。インストールしていなければ、あらかじめ `Arch ユーザ・リポジトリ <https://wiki.archlinux.org/index.php/Arch_User_Repository#Installing_packages>`_ の構築と AUR でパッケージをインストールする情報をご覧ください。
 
 .. Starting Docker
 

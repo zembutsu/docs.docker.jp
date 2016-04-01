@@ -46,7 +46,7 @@ openSUSE
 
 .. Docker is part of the official openSUSE repositories starting from 13.2. No additional repository is required on your system.
 
-Docker は openSUSE 13.2 以降、公式レポジトリの一つです。システム上に追加レポジトリは不要です。
+Docker は openSUSE 13.2 以降、公式リポジトリの一つです。システム上に追加リポジトリは不要です。
 
 .. SUSE Linux Enterprise
 
@@ -71,11 +71,11 @@ SUSE Linux Enterprise 12 以降、Docker は正式にサポートされていま
 
 ..    From the list of available extensions and modules, select Container Module and click Next. The containers module and its repositories are added to your system.
 
-4. 利用可能な extensions と modules の中から、 *Container Module* を選び、 *Next* をクリックします。container モジュールとレポジトリがシステムに追加されます。
+4. 利用可能な extensions と modules の中から、 *Container Module* を選び、 *Next* をクリックします。container モジュールとリポジトリがシステムに追加されます。
 
 ..    If you use Subscription Management Tool, update the list of repositories at the SMT server.
 
-5. Subscription Management Tool を使っている場合、SMT サーバのレポジトリ・リストを更新します。
+5. Subscription Management Tool を使っている場合、SMT サーバのリポジトリ・リストを更新します。
 
 .. Otherwise execute the following command:
 

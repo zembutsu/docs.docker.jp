@@ -44,7 +44,7 @@ Redis 用の Docker コンテナを作成
 
 .. Next we build an image from our Dockerfile. Replace <your username> with your own user name.
 
-次に、 ``Dockerfile`` からイメージを構築します。 ``<自分の名前>`` の場所は、自分自身のレポジトリ名に置き換えてください。
+次に、 ``Dockerfile`` からイメージを構築します。 ``<自分の名前>`` の場所は、自分自身のリポジトリ名に置き換えてください。
 
 .. code-block:: bash
 

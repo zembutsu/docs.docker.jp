@@ -33,7 +33,7 @@ images
 
 .. The default docker images will show all top level images, their repository and tags, and their size.
 
-標準の ``docker image`` は全てのトップ・レベルのイメージと、レポジトリ・タグ・容量を表示します。
+標準の ``docker image`` は全てのトップ・レベルのイメージと、リポジトリ・タグ・容量を表示します。
 
 .. Docker images have intermediate layers that increase reusability, decrease disk usage, and speed up docker build by allowing each step to be cached. These intermediate layers are not shown by default.
 
@@ -45,7 +45,7 @@ Docker イメージは中間レイヤ（intermediate layer）を持っていま�
 
 .. An image will be listed more than once if it has multiple repository names or tags. This single image (identifiable by its matching IMAGE ID) uses up the SIZE listed only once.
 
-イメージ一覧では、複数のレポジトリ名やタグが表示されます。イメージ（ ``IMAGE ID`` が一致するもの ）ごとの ``SIZE`` が複数表示されますが、実際に対象としている容量は１つだけです。
+イメージ一覧では、複数のリポジトリ名やタグが表示されます。イメージ（ ``IMAGE ID`` が一致するもの ）ごとの ``SIZE`` が複数表示されますが、実際に対象としている容量は１つだけです。
 
 .. Listing the most recently created images
 
@@ -78,11 +78,11 @@ Docker イメージは中間レイヤ（intermediate layer）を持っていま�
 
 .. The docker images command takes an optional [REPOSITORY[:TAG]] argument that restricts the list to images that match the argument. If you specify REPOSITORYbut no TAG, the docker images command lists all images in the given repository.
 
-``docker images`` コマンドは、オプションで ``[レポジトリ[:タグ]]`` を指定できます。これはイメージ一覧から条件が一致するものだけ表示します。 ``レポジトリ`` は ``タグ`` を指定しなくても使えるので、 ``docker images`` で対象となるレポジトリの全イメージのみ表示します。
+``docker images`` コマンドは、オプションで ``[リポジトリ[:タグ]]`` を指定できます。これはイメージ一覧から条件が一致するものだけ表示します。 ``リポジトリ`` は ``タグ`` を指定しなくても使えるので、 ``docker images`` で対象となるリポジトリの全イメージのみ表示します。
 
 .. For example, to list all images in the “java” repository, run this command :
 
-例えば、「java」レポジトリにあるイメージを表示するには、次のコマンドを実行します。
+例えば、「java」リポジトリにあるイメージを表示するには、次のコマンドを実行します。
 
 .. code-block:: bash
 
@@ -94,11 +94,11 @@ Docker イメージは中間レイヤ（intermediate layer）を持っていま�
 
 .. The [REPOSITORY[:TAG]] value must be an “exact match”. This means that, for example, docker images jav does not match the image java.
 
-``[レポジトリ[:タグ]]`` 値は「完全一致」の必要があります。つまり、 ``docker images jav`` は ``java`` イメージに一致しません。
+``[リポジトリ[:タグ]]`` 値は「完全一致」の必要があります。つまり、 ``docker images jav`` は ``java`` イメージに一致しません。
 
 .. If both REPOSITORY and TAG are provided, only images matching that repository and tag are listed. To find all local images in the “java” repository with tag “8” you can use:
 
-``レポジトリ`` と ``タグ`` の両方が指定された場合は、レポジトリとタグが一致するイメージのみ表示します。ローカルにある「java」レポジトリで、タグが「8」のイメージを表示するには、次のように実行します。
+``リポジトリ`` と ``タグ`` の両方が指定された場合は、リポジトリとタグが一致するイメージのみ表示します。ローカルにある「java」リポジトリで、タグが「8」のイメージを表示するには、次のように実行します。
 
 .. code-block:: bash
 
@@ -108,7 +108,7 @@ Docker イメージは中間レイヤ（intermediate layer）を持っていま�
 
 .. If nothing matches REPOSITORY[:TAG], the list is empty.
 
-もし一致する ``[レポジトリ[:タグ]]`` がなければ、何も表示しません。
+もし一致する ``[リポジトリ[:タグ]]`` がなければ、何も表示しません。
 
 .. code-block:: bash
 
@@ -197,7 +197,7 @@ v2 移行の形式を使うイメージには、 ``digest`` と呼ばれる識�
 
 .. This will display untagged images, that are the leaves of the images tree (not intermediary layers). These images occur when a new build of an image takes the repo:tag away from the image ID, leaving it untagged. A warning will be issued if trying to remove an image when a container is presently using it. By having this flag it allows for batch cleanup.
 
-これはタグ付けされておらず、イメージ・ツリーから離れた（中間レイヤではない）イメージを表示します。これらのタグがないイメージは、イメージを使って新しく構築しようとしても ``レポジトリ:タグ`` の形式が利用できないため、その場合はイメージ ID を使います。コンテナが利用中であれば、イメージを削除しようとしても警告が表示されます。バッチ処理でクリーンアップするときに、このフラグが使えます。
+これはタグ付けされておらず、イメージ・ツリーから離れた（中間レイヤではない）イメージを表示します。これらのタグがないイメージは、イメージを使って新しく構築しようとしても ``リポジトリ:タグ`` の形式が利用できないため、その場合はイメージ ID を使います。コンテナが利用中であれば、イメージを削除しようとしても警告が表示されます。バッチ処理でクリーンアップするときに、このフラグが使えます。
 
 .. Ready for use by docker rmi ..., like:
 

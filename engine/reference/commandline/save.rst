@@ -24,7 +24,7 @@ save
 
 .. Produces a tarred repository to the standard output stream. Contains all parent layers, and all tags + versions, or specified repo:tag, for each argument provided.
 
-tar 化されたレポジトリを、標準出力のストリームに出力します。ここには全ての親レイヤが含まれ、全てのタグとバージョンだけでなく、 ``repo:tag`` が指定されれば、それぞれの引数に応じて出力します。
+tar 化されたリポジトリを、標準出力のストリームに出力します。ここには全ての親レイヤが含まれ、全てのタグとバージョンだけでなく、 ``repo:tag`` が指定されれば、それぞれの引数に応じて出力します。
 
 .. It is used to create a backup that can then be used with docker load
 
@@ -43,7 +43,7 @@ tar 化されたレポジトリを、標準出力のストリームに出力し�
 
 .. It is even useful to cherry-pick particular tags of an image repository
 
-イメージのレポジトリで適切なタグを指定する場合も便利でしょう。
+イメージのリポジトリで適切なタグを指定する場合も便利でしょう。
 
 .. code-block:: bash
 

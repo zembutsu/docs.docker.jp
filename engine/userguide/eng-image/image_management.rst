@@ -45,7 +45,7 @@ Docker Hub
     Tokenization
 
 * ウェブ UI
-* メタ・データの保管（コメント、スター数、公開レポジトリの一覧）
+* メタ・データの保管（コメント、スター数、公開リポジトリの一覧）
 * 認証サービス
 * トークン化
 
@@ -77,7 +77,7 @@ Docker Hub はハブのように自身のレジストリを持ち、Docker 社�
 
 .. When transferring data among networked systems, trust is a central concern. In particular, when communicating over an untrusted medium such as the internet, it is critical to ensure the integrity and publisher of all of the data a system operates on. You use Docker to push and pull images (data) to a registry. Content trust gives you the ability to both verify the integrity and the publisher of all the data received from a registry over any channel.
 
-ネットワーク・システム上でデータを転送するときは、 *信頼性* が懸念事項の中心です。特にインターネットのような信頼できない環境を経由する時、とりわけ重要なのが、システムが操作する全てのデータの安全性と提供者を保証することです。Docker を使い、イメージ（データ）をレポジトリに送信・受信できます。コンテント・トラストは、レジストリがどの経路をたどっても、全てのデータの安全性と提供者の両方を保証するものです。
+ネットワーク・システム上でデータを転送するときは、 *信頼性* が懸念事項の中心です。特にインターネットのような信頼できない環境を経由する時、とりわけ重要なのが、システムが操作する全てのデータの安全性と提供者を保証することです。Docker を使い、イメージ（データ）をリポジトリに送信・受信できます。コンテント・トラストは、レジストリがどの経路をたどっても、全てのデータの安全性と提供者の両方を保証するものです。
 
 .. Content trust is currently only available for users of the public Docker Hub. It is currently not available for the Docker Trusted Registry or for private registries.
 

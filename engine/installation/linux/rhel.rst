@@ -75,7 +75,7 @@ yum でインストール
 
 ..    Add the yum repo yourself.
 
-3. yum レポジトリを手動で追加します。
+3. yum リポジトリを手動で追加します。
 
 .. code-block:: bash
 

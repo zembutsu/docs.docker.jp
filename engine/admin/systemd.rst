@@ -246,7 +246,7 @@ systemd ユニットファイルの手動作成
 
 .. When installing the binary without a package, you may want to integrate Docker with systemd. For this, simply install the two unit files (service and socket) from the github repository to /etc/systemd/system.
 
-パッケージを使わずにバイナリをインストールした場合でも、Docker と systemd を統合したくなるでしょう。簡単に実現するには、単純に `GitHub レポジトリ <https://github.com/docker/docker/tree/master/contrib/init/systemd>`_ にある２つのユニットファイル（サービスとソケット用）を ``/etc/systemd/system`` に置くだけです。
+パッケージを使わずにバイナリをインストールした場合でも、Docker と systemd を統合したくなるでしょう。簡単に実現するには、単純に `GitHub リポジトリ <https://github.com/docker/docker/tree/master/contrib/init/systemd>`_ にある２つのユニットファイル（サービスとソケット用）を ``/etc/systemd/system`` に置くだけです。
 
 .. seealso:: 
 

@@ -248,7 +248,7 @@ Ubuntu の Docker インストール方法は http://docs.docker.jp/engine/insta
 
 ..    From now on when you run apt-get upgrade, apt pulls from the new repository.
 
-``apt-get update`` や ``apt`` を実行すると、新しいレポジトリから取得します。
+``apt-get update`` や ``apt`` を実行すると、新しいリポジトリから取得します。
 
 .. Step 4. Install recommended prerequisites for the OS
 
