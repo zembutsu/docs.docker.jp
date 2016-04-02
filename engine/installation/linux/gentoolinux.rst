@@ -44,7 +44,7 @@ Gentoo Linux に Docker をインストールするには、２つの方法が�
 .. docker-overlay way
 
 docker-overlay の方法
-====================
+==============================
 
 .. If you’re looking for a -bin ebuild, a live ebuild, or a bleeding edge ebuild, use the provided overlay, docker-overlay which can be added using app-portage/layman. The most accurate and up-to-date documentation for properly installing and using the overlay can be found in the overlay.
 

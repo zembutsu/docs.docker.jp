@@ -72,7 +72,7 @@ webhook の連鎖
 
 .. Validating a callback
 
-.. _validating-a-callback:
+.. _validating-a-callback-hook:
 
 コールバックの確認
 ===================

@@ -25,7 +25,7 @@
 
 .. How much does Docker cost?
 
-.. _how-much-does-docker-cost?
+.. _how-much-does-docker-cost:
 
 Docker を使うには、どれだけの費用がかかりますか？
 ==================================================
@@ -47,7 +47,7 @@ Apache License Version 2.0 を使っています。こちらをご覧くださ�
 
 .. Does Docker run on Mac OS X or Windows?
 
-.. _does-docker-run-on-mac-os-x-or-windows?
+.. _does-docker-run-on-mac-os-x-or-windows:
 
 Mac OS X や Windows で Docker は動きますか？
 ==================================================

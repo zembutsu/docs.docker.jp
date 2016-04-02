@@ -127,6 +127,7 @@ Debian をベースとしたコンテナで proxy を使うには、以下のオ
 **オプション４** ：Debian コンテナを proxy サーバに次のコマンドでリンクします。
 
 .. code-block:: bash
+
    $ docker run -i -t --link test_apt_cacher_ng:apt_proxy -e http_proxy=http://apt_proxy:3142/ debian bash
 
 .. **Option 5** creates a custom network of APT proxy server and Debian-based containers:
