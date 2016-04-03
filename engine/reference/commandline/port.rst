@@ -1,4 +1,4 @@
-.. *- coding: utf-8 -*-
+.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/port/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/port.md
    doc version: 1.10

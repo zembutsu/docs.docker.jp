@@ -1,4 +1,4 @@
-.. *- coding: utf-8 -*-
+.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/reference/down/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/reference/down.md
    doc version: 1.10

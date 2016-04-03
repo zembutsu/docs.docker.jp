@@ -1,4 +1,4 @@
-.. *- coding: utf-8 -*-
+.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/swarm/get-swarm/
 .. SOURCE: https://github.com/docker/swarm/blob/master/docs/get-swarm.md
    doc version: 1.10

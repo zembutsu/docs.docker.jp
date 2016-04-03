@@ -1,4 +1,4 @@
-.. *- coding: utf-8 -*-
+.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/swarm/install-w-machine/
 .. SOURCE: https://github.com/docker/swarm/blob/master/docs/install-w-machine.md
    doc version: 1.10

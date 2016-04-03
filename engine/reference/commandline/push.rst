@@ -1,4 +1,4 @@
-.. *- coding: utf-8 -*-
+.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/push/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/push.md
    doc version: 1.10

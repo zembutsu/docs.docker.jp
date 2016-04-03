@@ -1,4 +1,4 @@
-.. *- coding: utf-8 -*-
+.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/api/remote_api_client_libraries/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/api/remote_api_client_libraries.md
    doc version: 1.10

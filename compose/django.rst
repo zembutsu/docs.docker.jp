@@ -1,4 +1,4 @@
-.. *- coding: utf-8 -*-
+.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/django/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/django.md
    doc version: 1.10

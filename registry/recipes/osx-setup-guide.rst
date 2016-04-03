@@ -1,4 +1,4 @@
-.. *- coding: utf-8 -*-
+.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/registry/osx-setup-guide/
 .. SOURCE: 
    doc version: 1.10

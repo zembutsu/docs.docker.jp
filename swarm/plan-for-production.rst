@@ -1,4 +1,4 @@
-.. *- coding: utf-8 -*-
+.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/swarm/plan-for-production/
 .. SOURCE: https://github.com/docker/swarm/blob/master/docs/plan-for-production.md
    doc version: 1.10

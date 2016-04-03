@@ -1,4 +1,4 @@
-.. *- coding: utf-8 -*-
+.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/network_inspect/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/network_inspect.md
    doc version: 1.10

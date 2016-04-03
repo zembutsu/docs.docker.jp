@@ -1,4 +1,4 @@
-.. *- coding: utf-8 -*-
+.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/swarm/install-manual/
 .. SOURCE: https://github.com/docker/swarm/blob/master/docs/install-manual.md
    doc version: 1.10

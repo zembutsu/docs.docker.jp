@@ -1,4 +1,4 @@
-.. *- coding: utf-8 -*-
+.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/link-env-deprecated/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/link-env-deprecated.md
    doc version: 1.10

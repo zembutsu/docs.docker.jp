@@ -1,4 +1,4 @@
-.. *- coding: utf-8 -*-
+.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/version/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/version.md
    doc version: 1.10

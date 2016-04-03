@@ -1,4 +1,4 @@
-.. *- coding: utf-8 -*-
+.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/rmi/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/rmi.md
    doc version: 1.10
