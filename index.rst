@@ -105,11 +105,10 @@ Doc v1.10 目次
    machine/index.rst
 
 .. toctree::
-   :caption: Kitematic
+   :caption: Docker Toolbox
    :hidden:
 
-   kitematic/toc.rst
-
+   Docker Toolbox <toolbox/index.rst>
 
 .. toctree::
    :caption: コンポーネント・プロジェクト
