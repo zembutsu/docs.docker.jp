@@ -28,7 +28,7 @@ Docker は ``Dockerfile`` の命令を読み込み、自動的にイメージを
 
 .. This document covers the best practices and methods recommended by Docker, Inc. and the Docker community for creating easy-to-use, effective Dockerfiles. We strongly suggest you follow these recommendations (in fact, if you’re creating an Official Image, you must adhere to these practices).
 
-このドキュメントは Docker 社が推奨するベストプラクティスや手法を扱っており、Docker コミュニティが簡単かつ効率的に ``Dockerfile`` を作成できるようにします。この推奨方法に従うことを強く勧めます（実際、公式イメージを作成すｒには、これらのプラクティスに従う *必要* があります）。
+このドキュメントは Docker 社が推奨するベストプラクティスや手法を扱っており、Docker コミュニティが簡単かつ効率的に ``Dockerfile`` を作成できるようにします。この推奨方法に従うことを強く勧めます（実際、公式イメージを作成するには、これらのプラクティスに従う *必要* があります）。
 
 .. You can see many of these practices and recommendations in action in the buildpack-deps Dockerfile.
 
