@@ -1482,7 +1482,7 @@ Dockerfile イメージのデフォルトより優先
 
 .. Four of the Dockerfile commands cannot be overridden at runtime: FROM, MAINTAINER, RUN, and ADD. Everything else has a corresponding override in docker run. We’ll go through what the developer might have set in each Dockerfile instruction and how the operator can override that setting.
 
-実行時に４つのコマンド ``FORM`` 、 ``MAINTAINER`` 、 ``RUN`` 、 ``ADD``  は上書きできません。それ以外のコマンド全ては ``docker run`` で上書きできます。開発者が Dockerfile で個々の命令を設定していたとしても、オペレータはその設定を上書きして操作できます。
+実行時に４つのコマンド ``FROM`` 、 ``MAINTAINER`` 、 ``RUN`` 、 ``ADD``  は上書きできません。それ以外のコマンド全ては ``docker run`` で上書きできます。開発者が Dockerfile で個々の命令を設定していたとしても、オペレータはその設定を上書きして操作できます。
 
 ..    CMD (Default Command or Options)
     ENTRYPOINT (Default Command to Execute at Runtime)
