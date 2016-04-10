@@ -16,4 +16,5 @@ Docker for Window
    
    index.rst
    step_one.rst
+   step_two.rst
 
