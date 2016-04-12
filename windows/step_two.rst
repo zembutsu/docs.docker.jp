@@ -57,7 +57,7 @@ Docker イメージによっては、様々な処理ができます。データ�
 
 .. See, that was quick wasn’t it? Now, you are ready to do some really fun stuff with Docker. Go on to the next part to find and run the whalesay image.
 
-ほら、迅速でしょう。これで Docker を使って何か面白いことをする準備が整いました。次の :doc:`part_three` に進みましょう。
+ほら、迅速でしょう。これで Docker を使って何か面白いことをする準備が整いました。次の :doc:`step_three` に進みましょう。
 
 .. seealso:: 
 
