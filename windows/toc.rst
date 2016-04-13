@@ -19,4 +19,7 @@ Docker for Window
    step_two.rst
    step_three.rst
    step_four.rst
+   step_five.rst
+   step_six.rst
+   last_page.rst
 
