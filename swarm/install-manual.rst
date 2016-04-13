@@ -224,7 +224,7 @@ consul ディスカバリ・バックエンドのセットアップ
 
 .. code-block:: bash
 
-   $ docker run -d -p 8500:8500 —name=consul progrium/consul -server -bootstrap
+   $ docker run -d -p 8500:8500 --name=consul progrium/consul -server -bootstrap
 
 .. Then, use SSH to connect to the “manager0 & consul0” instance. At the command line, enter ifconfig. From the output, copy the eth0 IP address from inet addr.
 
