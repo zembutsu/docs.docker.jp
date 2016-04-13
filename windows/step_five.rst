@@ -120,7 +120,7 @@ Docker Hub で新しいリポジトリを作成しました。
 
 .. Where to go next
 
-次はどこへ行きますか
+次は何をしますか
 ====================
 
 .. On this page, you opened an account on Docker Hub and created a new repository. In the next section, you populate the repository by tagging and pushing the image you created earlier.

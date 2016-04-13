@@ -366,7 +366,7 @@ Docker は次の行に移ります。 ``apt-get`` パッケージ・マネージ
 
 .. Where to go next
 
-次はどこへ行きますか
+次は何をしますか
 ====================
 
 .. On this page, you learned to build an image by writing your own Dockerfile. You ran your image in a container. You also just used Linux from your Windows yet again. In the next section, you take the first step in sharing your image by creating a Docker Hub account.

@@ -266,7 +266,7 @@ Docker クイックスタート・ターミナルを開いていなければ、�
 
 .. Where to go next
 
-次はどこへいきますか
+次は何をしますか
 ====================
 
 .. You’ve done a lot, you’ve done all of the following fundamental Docker tasks.

@@ -52,7 +52,7 @@ Docker イメージによっては、様々な処理ができます。データ�
 
 .. Where to go next
 
-次はどこへ行きますか
+次は何をしますか
 ====================
 
 .. See, that was quick wasn’t it? Now, you are ready to do some really fun stuff with Docker. Go on to the next part to find and run the whalesay image.

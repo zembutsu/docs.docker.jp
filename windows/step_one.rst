@@ -106,7 +106,7 @@ Microsoft の `Hardware-Assisted Virtualization Detection Tool <https://www.micr
 .. _step2-install-docker-toolbox:
 
 ステップ２：Docker Toolbox のインストール
---------------------------------------------------
+=========================================
 
 .. In this section, you install the Docker Toolbox software and several “helper” applications. The installation adds the following software to your machine:
 
@@ -179,7 +179,7 @@ Windows セキュリティのダイアログが表示されたら、プログラ
 .. _step3-verify-your-installation:
 
 ステップ３：インストールの確認
-------------------------------
+==============================
 
 .. The installer places Docker Toolbox and VirtualBox in your Applications folder. In this step, you start Docker Toolbox and run a simple Docker command.
 
@@ -258,7 +258,7 @@ Windows セキュリティのダイアログが表示されたら、プログラ
 .. Looking for troubleshooting help?
 
 問題解決のヘルプをお探しですか？
-----------------------------------------
+========================================
 
 .. Typically, the above steps work out-of-the-box, but some scenarios can cause problems. If your docker run hello-world didn’t work and resulted in errors, check out Troubleshooting for quick fixes to common problems.
 
@@ -270,8 +270,8 @@ NDIS6 ホスト・ネットワーク・フィルタ・ドライバの使用時�
 
 .. Where to go next
 
-次はどこへ行きますか
---------------------
+次は何をしますか
+====================
 
 .. At this point, you have successfully installed the Docker software. Leave the Docker Quickstart Terminal window open. Now, go to the next page to read a very short introduction Docker images and containers.
 
