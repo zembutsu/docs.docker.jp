@@ -6,15 +6,15 @@
 
 .. Get Started with Docker toc
 
-以下は初心者向けの導入ガイドです。通常インストール用の詳細ドキュメントは :doc:`こちらのページ</engine/installation/windows>` をご覧ください。
+以下は初心者向けの導入ガイドです。通常インストール用の詳細ドキュメントは :doc:`こちらのページ</engine/installation/linux/index>` をご覧ください。
 
 ========================================
-Window
+Linux
 ========================================
 
 .. toctree::
    :maxdepth: 1
-   :caption: Docker for Windows 目次
+   :caption: Docker Engine for Linux  目次
    
    index.rst
    step_one.rst

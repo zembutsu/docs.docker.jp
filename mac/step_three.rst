@@ -1,12 +1,12 @@
 ﻿.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/windows/step_three/
+.. https://docs.docker.com/mac/step_three/
 .. doc version: 1.10
-.. check date: 2016/4/12
+.. check date: 2016/4/13
 .. -----------------------------------------------------------------------------
 
 .. Find and run the whalesay image
 
-.. _find-and-run-the-whalesay-image:
+.. _find-and-run-the-whalesay-image-mac:
 
 ========================================
 whalesay イメージの実行
@@ -24,7 +24,7 @@ whalesay イメージの実行
 
 .. Step 1: Locate the whalesay image
 
-.. _step-1-locate-the-whalesay-image:
+.. _step-1-locate-the-whalesay-image-mac:
 
 ステップ１：whalesay イメージを探す
 ========================================
@@ -73,7 +73,7 @@ Docker Hub には皆さんのような個人で作成したイメージと、何
 
 .. Step 2: Run the whalesay image
 
-.. _step-2-run-the-whalesay-image:
+.. _step-2-run-the-whalesay-image-mac:
 
 ステップ２：whaysay イメージの実行
 ==================================
@@ -82,13 +82,9 @@ Docker Hub には皆さんのような個人で作成したイメージと、何
 
 Docker クイックスタート・ターミナルを開いていなければ、今から開きます。
 
-..    From the Desktop and locate the Docker Quickstart Terminal icon.
+.. Open the Launchpad and locate the Docker Quickstart Terminal icon.
 
-1. デスクトップ上で Docker Quickstart Terminal アイコンを探します。
-
-.. image:: /tutimg/icon_set.png
-   :scale: 60%
-   :alt: デスクトップ
+1. Launchpad を開き、Docker Quickstart Terminal アイコンを探します。
 
 ..    Click the icon to launch a Docker Quickstart Terminal.
 
@@ -192,11 +188,11 @@ Docker クイックスタート・ターミナルを開いていなければ、�
 次は何をしますか
 ====================
 
-.. On this page, you learned to search for images on Docker Hub. You used your command line to run an image. Think about it, effectively you ran a piece of Linux software on your Windows computer. You learned that running an image copies it on your computer. Now, you are ready to create your own Docker image. Go on to the next part to build your own image.
+.. On this page, you learned to search for images on Docker Hub. You used your command line to run an image. Think about it, effectively you ran a piece of Linux software on your Mac computer. You learned that running an image copies it on your computer. Now, you are ready to create your own Docker image. Go on to the next part to build your own image.
 
-このページでは Docker Hub 上のイメージを探す方法を学びました。そして、コマンドを使ってイメージを実行しました。Windows コンピュータ上で Linux ソフトウェアの一部を実行するのに効果的だと思いませんか。自分のコンピュータ上にイメージをコピーし、実行する方法を学びました。次は自分で Docker イメージを作ってみましょう。次の :doc:`step_four` に進みます。
+このページでは Docker Hub 上のイメージを探す方法を学びました。そして、コマンドを使ってイメージを実行しました。Mac コンピュータ上で Linux ソフトウェアの一部を実行するのに効果的だと思いませんか。自分のコンピュータ上にイメージをコピーし、実行する方法を学びました。次は自分で Docker イメージを作ってみましょう。次の :doc:`step_four` に進みます。
 
 .. seealso:: 
 
    Find and run the whalesay image
-      https://docs.docker.com/windows/step_three/
+      https://docs.docker.com/mac/step_three/

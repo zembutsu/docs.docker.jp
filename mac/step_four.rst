@@ -1,12 +1,12 @@
 ﻿.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/windows/step_four/
+.. https://docs.docker.com/mac/step_four/
 .. doc version: 1.10
 .. check date: 2016/4/13
 .. -----------------------------------------------------------------------------
 
 .. Build your own image
 
-.. _build-your-own-image:
+.. _build-your-own-image-mac:
 
 ========================================
 自分でイメージを構築
@@ -32,73 +32,56 @@
 
 .. Step 1: Open a Docker Quickstart Terminal
 
-.. _step-1-open-a-docker-quickstart-terminal:
+.. _step-1-open-a-docker-quickstart-terminal-mac:
 
 ステップ１：Docker クイックスタート・ターミナルを開く
 ============================================================
 
+.. In this step, you use the Mac TextEdit program to write a short Dockerfile. A Dockerfile describes the software that is “baked” into an image. It isn’t just ingredients tho, it can tell the software what environment to use or what commands to run. Your recipe is going to be very short.
+
+このステップでは、Mac のテキストエディット・プログラムを使い短い Dockerfile を書きます。Dockerfile にはイメージを構成するソフトウェア要素を記述します。Dockerfile は単に素材を記述するだけではありません。どのような環境を使うかや、コンテナの中で実行するコマンドも記述できます。今回の Dockerfile は非常に短いものです。
+
 .. If you don’t already have a terminal open, open one now:
 
-ターミナルを開いていなければ、新しいものを開きます：
+ターミナルを開いていなければ、新しいものを開きます。
 
-1. デスクトップ上で Docker Quickstart Terminal アイコンを探します。
+.. Open the Launchpad and locate the Docker Quickstart Terminal icon.
 
-.. image:: /tutimg/icon_set.png
-   :scale: 60%
-   :alt: デスクトップ
+1. Launchpad を起動し、Docker クイックスタート・ターミナルのアイコンを探します。
 
 ..    Click the icon to launch a Docker Quickstart Terminal.
 
 2. アイコンをクリックし、 Docker クイックスタート・ターミナルを起動します。
 
-.. Just leave the terminal open on your desktop, you’ll be using it in a moment.
+.. Place your cursor at the prompt in the Docker Quickstart Terminal.
 
-デスクトップ上にターミナルが開くまで暫く待ちます。
+3. Docker クイックスタート・ターミナルのプロンプトにカーソルを合わせます。
 
-.. Step 2: Write a Dockerfile
+.. Make a new directory by typing mkdir mydockerbuild and pressing RETURN.
 
-.. _step-2-write-a-dockerfile:
-
-ステップ２：Dockerfile を書く
-==============================
-
-.. In this step, you use the Windows Notepad application to write a short Dockerfile. A Dockerfile describes the software elements that make up an image. It isn’t just elements though, a Dockerfile can describe what environment to use or what commands to run in the container. Your Dockerfile is going to be very short.
-
-このステップでは Windows メモ帳アプリケーションを使い、短い Dockerfile を書きます。Dockerfile にはイメージを構成するソフトウェア要素を記述します。Dockerfile は単に素材を記述するだけではありません。どのような環境を使うかや、コンテナの中で実行するコマンドも記述できます。今回の Dockerfile は非常に短いものです。
-
-..    Place your cursor at the prompt in the Docker Quickstart Terminal.
-
-1. Docker クイックスタート・ターミナル上にカーソルを合わせます。
-
-..    Change to your Desktop.
-
-2. デスクトップに移動します。
+4. 新しいディレクトリを作成するため、 ``mkdir mydockerbuild`` を入力してリターンキーを押します。
 
 .. code-block:: bash
 
-   $ cd Desktop
+   $ mkdir mydockerbuild
 
-..    From the command line, create a folder called testdocker on your Desktop.
+.. This directory serves as the “context” for your build. The context just means it contains all the things you need to build your image.
 
-3. コマンドラインで、デスクトップ上に ``testdocker`` という名前のフォルダを作成します。
+このディレクトリは構築時の「コンテクスト」（context；内容物）の役割があります。このコンテクストとは、イメージを構築するために必要な全てを指します。
 
-.. code-block:: bash
+..    Change to your new directory.
 
-   $ mkdir testdocker
+5. 新しいディレクトリに移動します。
 
-..    Change into the testdocker folder.
+    $ cd mydockerbuild
 
-4. ``testdocker`` フォルダに移動します。
+.. Right now the directory is empty.
 
-    $ cd testdocker
+この時点でディレクトリには何もありません。
 
 ..    Create a Dockerfile in the current directory by typing touch Dockerfile and pressing RETURN.
 
-5. ``touch Dockerfile`` と入力してエンターキーを押すと、現在のディレクトリに Dockerfile を作成します。
-
-..    Make sure you use a capital D in the file name. Linux file names are case sensitive.
-
-ファイル名の ``D`` が大文字なので注意します。Linux のファイル名は大文字と小文字を区別します。
+6. ``touch Dockerfile`` と入力してエンターキーを押すと、現在のディレクトリに Dockerfile を作成します。
 
 .. code-block:: bash
 
@@ -113,25 +96,17 @@
    $ ls Dockerfile
    Dockerfile
 
-..    Now, type the notepad Dockerfile& to open the file in Window’s Notepad (don’t forget the & ampersand).
+.. Now, type the open -e Dockerfile to open the file in Mac’s TextEdit program.
 
-6. 次は ``notepad Dockerfile&`` を実行し、Windows のメモ帳を開きます（最後に ``&`` アンド記号を忘れないでください）。
+7. 次は ``open -e Dockerfile`` を実行し、Mac のテキストエディット・プログラムを開きます。
 
-..    ampersand
+.. Your Mac opens the TextEdit program with the empty Dockerfile.
 
-.. image:: /tutimg/ampersand.png
-   :alt: ＆記号
-
-..    Your system opens the Notepad program with the empty Dockerfile.
-
-システムはメモ帳プログラムを実行し、空の Dockerfile を開きます。
-
-.. image:: /tutimg/note-pad1.png
-   :alt: メモ帳を編集
+Mac はテキストエディット・プログラムを起動し、空の Dockerfile を開きます。
 
 ..    Type FROM docker/whalesay:latest line into the open file.
 
-7. 開いたファイルの中に ``FROM docker/whalesay:latest`` と入力します。
+8. 開いたファイルの中に ``FROM docker/whalesay:latest`` と入力します。
 
 ..    Now, it should look like this.
 
@@ -139,8 +114,9 @@
 
 ..    Line one
 
-.. image:: /tutimg/note-pad2.png
-   :alt: １行目
+.. code-block:: bash
+
+   FROM docker/whalesay:latest
 
 ..    The FROM keyword tells Docker which image your image is based on. You are basing your new work on the existing whalesay image.
 
@@ -148,12 +124,15 @@
 
 ..    Now, add the fortunes program to the image.
 
-8. 次はイメージに ``fortunes`` プログラムを追加します。
+9. 次はイメージに ``fortunes`` プログラムを追加します。
 
 ..    Line two
 
-.. image:: /tutimg/note-pad3.png
-   :alt: ２行目
+.. code-block:: bash
+
+   FROM docker/whalesay:latest
+   
+   RUN apt-get -y update && apt-get install -y fortunes
 
 ..    The fortunes program has a command that prints out wise sayings for our whale to say. So, the first step is to install it. This line adds the fortune program using the apt-get program. If these sound all very cryptic to you, don’t worry. As long as you type the words correctly, they will work for you!
 
@@ -161,30 +140,35 @@
 
 ..    Once the image has the software it needs, you instruct the software to run when the image is loaded.
 
-9. イメージに必要なソフトウェアをインストールしたら、イメージの読み込み時に実行するソフトウェアを命令します。
+10. イメージに必要なソフトウェアをインストールしたら、イメージの読み込み時に実行するソフトウェアを命令します。
 
 ..    Line two
 
-.. image:: /tutimg/note-pad4.png
-   :alt: ３行目
+.. code-block:: bash
+
+   FROM docker/whalesay:latest
+   
+   RUN apt-get -y update && apt-get install -y fortunes
+   
+   CMD /usr/games/fortune -a | cowsay
 
 ..    This line tells the fortune program to send its nifty quotes to the cowsay program.
 
 この行は ``fortune`` プログラム（の結果）を、気の利いたことを喋る ``cowsay`` プログラムに送ります。
 
-..    Save your work and the Dockerfile by choosing File > Save from the Notepad menu.
+.. Save your work and the Dockerfile by choosing File > Save from the TextEdit menu or by pressing CMD + S on your keyboard
 
-10. 編集した Dockerfile プログラムを保存します。メモ帳のメニューで、ファイル(F) > 上書き保存(S) を選びます。
+10. 編集した Dockerfile プログラムを保存します。テキストエディットのメニューから保存を選ぶか、キーボード上で CMD +S を押します。
 
 ..    At this point, you have all your software ingredients and behaviors described in a Dockerfile. You are ready to build a new image.
 
 以上で Dockerfile 中にソフトウエア全ての要素と挙動を記述しました。これで新しいイメージを構築する準備が整いました。
 
-.. Step 3: Build an image from your Dockerfile
+.. Step 2: Build an image from your Dockerfile
 
-.. _step-3-build-an-image-from-your-dockerfile:
+.. _step-2-build-an-image-from-your-dockerfile-mac:
 
-ステップ３：Dockerfile を使ってイメージ構築
+ステップ２：Dockerfile を使ってイメージ構築
 ==================================================
 
 ..    Place your cursor back in your Docker Quickstart Terminal.
@@ -220,11 +204,11 @@
 
 このコマンドを実行すると、結果が出るまで数秒ほどかかります。この新しいイメージを使う前に、Dockerfile の構築時の流れを学びましょう。
 
-.. Step 4: Learn about the build process
+.. Step 3: Learn about the build process
 
-.. _step-4-learn-about-the-build-process:
+.. _step-3-learn-about-the-build-process-mac:
 
-ステップ４：構築時の流れを学ぶ
+ステップ３：構築時の流れを学ぶ
 ==============================
 
 .. The docker build -t docker-whale . command takes the Dockerfile in the current directory, and builds an image called docker-whale on your local machine. The command takes about a minute and its output looks really long and complex. In this section, you learn what each message means.
@@ -306,11 +290,11 @@ Docker は次の行に移ります。 ``apt-get`` パッケージ・マネージ
    Removing intermediate container a8e6faa88df3
    Successfully built 7d9495d03763
 
-.. Step 5: Run your new docker-whale
+.. Step 4: Run your new docker-whale
 
-.. _step-5-run-your-new-docker-whale:
+.. _step-4-run-your-new-docker-whale-mac:
 
-ステップ５：新しい docker-whale を実行
+ステップ４：新しい docker-whale を実行
 ========================================
 
 .. In this step, you verify the new images is on your computer and then you run your new image.
@@ -369,11 +353,11 @@ Docker は次の行に移ります。 ``apt-get`` パッケージ・マネージ
 次は何をしますか
 ====================
 
-.. On this page, you learned to build an image by writing your own Dockerfile. You ran your image in a container. You also just used Linux from your Windows yet again. In the next section, you take the first step in sharing your image by creating a Docker Hub account.
+.. On this page, you learned to build an image by writing your own Dockerfile. You ran your image in a container. You also just used Linux from your Mac yet again. In the next section, you take the first step in sharing your image by creating a Docker Hub account.
 
-このページでは自分で Dockerfile を記述してイメージを構築する方法を学びました。そして、自分のイメージを使ってコンテナを実行しました。また、まだ Windows 上の Linux システムを使っています。次のセクションではイメージを共有する第一歩として、 :doc:`Docker Hub アカウントを作成 <step_five>` します。
+このページでは自分で Dockerfile を記述してイメージを構築する方法を学びました。そして、自分のイメージを使ってコンテナを実行しました。また、まだ Mac 上の Linux システムを使っています。次のセクションではイメージを共有する第一歩として、 :doc:`Docker Hub アカウントを作成 <step_five>` します。
 
 .. seealso:: 
 
    Biuld your own image
-      https://docs.docker.com/windows/step_four/
+      https://docs.docker.com/mac/step_four/

@@ -75,11 +75,13 @@ Doc v1.10 目次
 ====================
 
 .. toctree::
-   :caption: 始めましょう
+   :caption: Docker を始めましょう - 導入ガイド
    :hidden:
 
+   linux/toc.rst
    windows/toc.rst
-
+   mac/toc.rst
+ 
 .. toctree::
    :caption: Docker Engine
    :hidden:
