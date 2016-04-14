@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. doc version: 1.10
-.. check date: 2016/02/08
+.. doc version: 1.11
+.. check date: 2016/04/14
 .. -----------------------------------------------------------------------------
 
 .. Welcome to Docker-docs-ja's documentation!
@@ -14,6 +14,10 @@ Docker ドキュメント日本語化プロジェクト
 
 * :doc:`about`
 * :doc:`guide`
+
+.. caution::
+
+   Docker 1.10 → 1.11 への移行作業中が進行中です。バージョンの違いにご注意ください。
 
 ----
 
@@ -71,7 +75,7 @@ Docker ドキュメントへようこそ！
 
 ----
 
-Doc v1.10 目次
+Doc v1.11 目次
 ====================
 
 .. toctree::
@@ -145,6 +149,7 @@ Docs archive
    :maxdepth: 1
    :caption: Docs アーカイブ
    
+   v1.10 <http://docs.docker.jp/v1.10/>
    v1.9 <http://docs.docker.jp/v1.9/>
 
 
