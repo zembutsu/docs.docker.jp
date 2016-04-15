@@ -1,15 +1,13 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/installation/binaries/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/binaries.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/installation/binaries.md
-   doc version: 1.9
-      https://github.com/docker/docker/commits/release/v1.9/docs/installation/binaries.md
-.. check date: 2016/03/26
-.. Commits on Jan 27, 2016 e310d070f498a2ac494c6d3fde0ec5d6e4479e14
+.. check date: 2016/04/16
+.. Commits on Apr 13, 2016 f5336c737086a4c1807bb2b6ab57116b5ed9d769
 .. -----------------------------------------------------------------------------
 
-.. Binaries
+.. Installation from binaries
 
 ==============================
 バイナリをインストール
@@ -100,38 +98,16 @@ Linux ディストリビューションが AppArmor か SELinuxをサポート�
 
 .. warning:: 何らかのセキュリティ機構を有効にしている場合、Docker やコンテナが実行できようにするため無効化すべきではありません。無効化は環境のセキュリティを低下させ、システムはディストリビューション・ベンダからのサポートを受けられなくなります。さらに、極めて管理された環境においては、規則やセキュリティポリシー違反にもなるでしょう。
 
-.. Get the Docker binary
+.. Get the Docker Engine binary
 
-Docker バイナリの入手
+Docker Engine バイナリの入手
 ==============================
 
-.. You can download either the latest release binary or a specific version. After downloading a binary file, you must set the file’s execute bit to run it.
+.. You can download either the latest release binaries or a specific version. To get the list of stable release version numbers from GitHub, view the docker/docker releases page. You can get the MD5 and SHA256 hashes by appending .md5 and .sha256 to the URLs respectively
 
-最新版や特定バージョンのバイナリをダウンロードできます。バイナリ・ファイルをダウンロード後、ファイルを実行するために実行権限の設定が必要です。
+最新版や特定バージョンのバイナリをダウンロードできます。GitHub 上から安定リリース版の一覧を確認するには ``docker/docker`` `リリース・ページ <https://github.com/docker/docker/releases>`_ をご覧ください。MD5 と SHA256 ハッシュを取得するには、URL に対応する .md5 と .sha256 をご覧ください。
 
-.. To set the file’s execute bit on Linux and OS X:
-
-Linux と Mac OS でファイル実行権限を設定：
-
-.. code-block:: bash
-
-   $ chmod +x docker
-
-.. To get the list of stable release version numbers from GitHub, view the docker/docker releases page.
-
-GitHub で安定リリース・バージョンの一覧を確認できます。 ``docker/docker`` `リリース・ページ <https://github.com/docker/docker/releases>`_ をご覧ください。
-
-..    Note
-..    1) You can get the MD5 and SHA256 hashes by appending .md5 and .sha256 to the URLs respectively
-..    2) You can get the compressed binaries by appending .tgz to the URLs
-
-.. note:
-
-   1) MD5 と SHA256 ハッシュは、先ほどの URL の .md5 と .sha256 から取得できます。
-   2) URL の .tgz から圧縮したバイナリを取得できます。
-
-
-.. Get the Linux binary
+.. Get the Linux binaries
 
 Linux バイナリの入手
 ------------------------------
@@ -142,8 +118,8 @@ Linux の最新バージョンは、以下の URL からダウンロードしま
 
 .. code-block:: bash
 
-   https://get.docker.com/builds/Linux/i386/docker-latest
-   https://get.docker.com/builds/Linux/x86_64/docker-latest
+   https://get.docker.com/builds/Linux/i386/docker-latest.tgz
+   https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz
 
 .. To download a specific version for Linux, use the following URL patterns:
 
@@ -151,17 +127,82 @@ Linux 用の特定バージョンをダウンロードするには、次の URL 
 
 .. code-block:: bash
 
-   https://get.docker.com/builds/Linux/i386/docker-<version>
-   https://get.docker.com/builds/Linux/x86_64/docker-<version>
+   https://get.docker.com/builds/Linux/i386/docker-<version>.tgz
+   https://get.docker.com/builds/Linux/x86_64/docker-<version>.tgz
 
 .. For example:
 
-実行例：
+例：
 
 .. code-block:: bash
 
-   https://get.docker.com/builds/Linux/i386/docker-1.6.0
-   https://get.docker.com/builds/Linux/x86_64/docker-1.6.0
+   https://get.docker.com/builds/Linux/i386/docker-1.11.0.tgz
+   https://get.docker.com/builds/Linux/x86_64/docker-1.11.0.tgz
+
+.. Note These instructions are for Docker Engine 1.11 and up. Engine 1.10 and under consists of a single binary, and instructions for those versions are different. To install version 1.10 or below, follow the instructions in the 1.10 documentation.
+
+.. note::
+
+   以下の手順は Docker Engine 1.11 以上を対象にしています。Engine 1.10 以下は単一のバイナリであり、インストール方法が異なります。バージョン 1.10 以下のインストール方法は、 `1.10 ドキュメント <http://docs.docker.jp/v1.10/engine/installation/binaries.html>`_ をご覧ください。
+
+.. Install the Linux binaries
+
+.. _instlall-the-linux-binaries:
+
+Linux バイナリのインストール
+------------------------------
+
+.. After downloading, you extract the archive, which puts the binaries in a directory named docker in your current location.
+
+ダウンロード後、アーカイブを展開します。現在の場所より下にある ``docker`` ディレクトリにバイナリを置きます。
+
+.. code-block:: bash
+
+   $ tar -xvzf docker-latest.tgz
+   
+   docker/
+   docker/docker-containerd-ctr
+   docker/docker
+   docker/docker-containerd
+   docker/docker-runc
+   docker/docker-containerd-shim
+
+.. Engine requires these binaries to be installed in your host’s $PATH. For example, to install the binaries in /usr/bin:
+
+Engine は、これらバイナリをホスト上の ``$PATH`` の場所に置く必要があります。例えば、バイナリを ``/usr/bin`` にインストールするには、次のようにします。
+
+.. code-block:: bash
+
+   $ mv docker/* /usr/bin/
+
+..    Note: If you already have Engine installed on your host, make sure you stop Engine before installing (killall docker), and install the binaries in the same location. You can find the location of the current installation with dirname $(which docker).
+
+.. note::
+
+   既にホスト上で Engine をインストールしている場合は、インストール前に Engine を停止（ ``killall docker`` ）し、それから同じ場所にバイナリをインストールします。現在のインストール場所は ``dirname $(which docker)``  で確認できます。
+
+.. Run the Engine daemon on Linux
+
+.. _run-the-engine-daemon-on-linux:
+
+Linux 上で engine デーモンを実行
+----------------------------------------
+
+.. You can manually start the Engine in daemon mode using:
+
+Engine をデーモン・モードとして手動で実行できます：
+
+.. code-block:: bash
+
+   $ sudo docker daemon &
+
+.. The GitHub repository provides samples of init-scripts you can use to control the daemon through a process manager, such as upstart or systemd. You can find these scripts in the contrib directory.
+
+デーモンを upstart や systemd のようなプロセス・マネージャを通して管理できるよう、GitHub リポジトリにはサンプルの init スクリプトがあります。スクリプトは `contrib ディレクトリ <https://github.com/docker/docker/tree/master/contrib/init>`_  をご覧ください。
+
+.. For additional information about running the Engine in daemon mode, refer to the daemon command in the Engine command line reference.
+
+Engine をデーモン・モードで実行する時の詳しい情報は、Engine コマンド・リファレンスの :doc:`daemon コマンド </engine/reference/commandline/daemon>` をご覧ください。
 
 .. Get the Mac OS X binary
 
@@ -174,8 +215,7 @@ Mac OS X ではクライアント用のバイナリが提供されています�
 
 .. code-block:: bash
 
-   https://get.docker.com/builds/Darwin/i386/docker-latest
-   https://get.docker.com/builds/Darwin/x86_64/docker-latest
+   https://get.docker.com/builds/Darwin/x86_64/docker-latest.tgz
 
 .. To download a specific version for Mac OS X, use the following URL patterns:
 
@@ -183,31 +223,33 @@ Mac OS X 用の特定バージョンをダウンロードするには、次の U
 
 .. code-block:: bash
 
-   https://get.docker.com/builds/Darwin/i386/docker-<version>
-   https://get.docker.com/builds/Darwin/x86_64/docker-<version>
+   https://get.docker.com/builds/Darwin/x86_64/docker-<version>.tgz
 
 .. For example:
 
-実行例：
+例：
 
 .. code-block:: bash
 
-   https://get.docker.com/builds/Darwin/i386/docker-1.6.0
-   https://get.docker.com/builds/Darwin/x86_64/docker-1.6.0
+   https://get.docker.com/builds/Darwin/x86_64/docker-1.11.0.tgz
+
+.. You can extract the downloaded archive either by double-clicking the downloaded .tgz or on the command line, using tar -xvzf docker-1.11.0.tgz. The client binary can be executed from any location on your filesystem.
+
+ダウンロードしたアーカイブを展開するには、ダウンロードした ``.tgz`` をダブルクリックするか、コマンドライン上で ``tar -xvzf docker-1.11.0.tgz`` を実行します。クライアントのバイナリはファイルシステム上のあらゆる場所で実行できます。
 
 .. Get the Windows binary
 
 Windows バイナリの入手
 ------------------------------
 
-.. You can only download the Windows client binary for version 1.6.0 onwards. Moreover, the binary is only a client, you cannot use it to run the docker daemon. To download the latest version for Windows, use the following URLs:
+.. You can only download the Windows binary for version 1.9.1 onwards. Moreover, the 32-bit (i386) binary is only a client, you cannot use it to run the docker daemon. The 64-bit binary (x86_64) is both a client and daemon.
 
-Windows クライアントのバイナリは、バージョン 1.6.0 以降をダウンロードできます。ただし、バイナリはクライアントのみであり、docker デーモンを実行できません。以下の URL から Windows の最新バージョンをダウンロードします。
+Windows クライアントのバイナリは、バージョン 1.9.1 以降をダウンロードできます。ただし、バイナリは 32 ビット(i386)のクライアントのみであり、docker デーモンを実行できません。以下の URL から 64 ビットのバイナリ（クライアントとデーモン）をダウンロードします。
 
 .. code-block:: bash
 
-   https://get.docker.com/builds/Windows/i386/docker-latest.exe
-   https://get.docker.com/builds/Windows/x86_64/docker-latest.exe
+   https://get.docker.com/builds/Windows/i386/docker-latest.zip
+   https://get.docker.com/builds/Windows/x86_64/docker-latest.zip
 
 .. To download a specific version for Windows, use the following URL pattern:
 
@@ -215,34 +257,33 @@ Windows 用の特定バージョンをダウンロードするには、次の UR
 
 .. code-block:: bash
 
-   https://get.docker.com/builds/Windows/i386/docker-<version>.exe
-   https://get.docker.com/builds/Windows/x86_64/docker-<version>.exe
+   https://get.docker.com/builds/Windows/i386/docker-<version>.zip
+   https://get.docker.com/builds/Windows/x86_64/docker-<version>.zip
 
 .. For example:
 
-実行例：
+例：
 
 .. code-block:: bash
 
-   https://get.docker.com/builds/Windows/i386/docker-1.6.0.exe
-   https://get.docker.com/builds/Windows/x86_64/docker-1.6.0.exe
+   https://get.docker.com/builds/Windows/i386/docker-1.11.0.zip
+   https://get.docker.com/builds/Windows/x86_64/docker-1.11.0.zip
 
-.. Run the Docker daemon
 
-Docker デーモンの実行
-==============================
+.. Note These instructions are for Engine 1.11 and up. Instructions for older versions are slightly different. To install version 1.10 or below, follow the instructions in the 1.10 documentation.
 
-.. code-block:: bash
+.. note::
 
-   # start the docker in daemon mode from the directory you unpacked
-   $ sudo ./docker daemon &
+   以下の手順は Docker Engine 1.11 以上を対象にしています。Engine 1.10 以下は単一のバイナリであり、インストール方法が異なります。バージョン 1.10 以下のインストール方法は、 `1.10 ドキュメント <http://docs.docker.jp/v1.10/engine/installation/binaries.html>`_ をご覧ください。
+
+
 
 .. Giving non-root access
 
 .. _giving-non-root-access:
 
 root 以外のアクセス
---------------------
+====================
 
 .. The docker daemon always runs as the root user, and the docker daemon binds to a Unix socket instead of a TCP port. By default that Unix socket is owned by the user root, and so, by default, you can access it with sudo.
 
@@ -258,10 +299,10 @@ root 以外のアクセス
 
    *docker* グループ（あるいは ``-G`` でグループを指定）は root と同等です。詳細は :ref:`docker-daemon-attack-surface` をご覧ください。
 
-.. Upgrades
+.. Upgrade Docker Engine
 
-アップグレード
-====================
+Docker Engine のアップグレード
+==============================
 
 .. To upgrade your manual installation of Docker, first kill the docker daemon:
 
@@ -275,18 +316,10 @@ root 以外のアクセス
 
 以降は通常のインストール手順と同じです。
 
-.. Run your first container!
+.. Next steps
 
-はじめてのコンテナ実行！
-==============================
-
-.. code-block:: bash
-
-   # docker バージョンの確認
-   $ sudo ./docker version
-   
-   # コンテナを実行し、コンテナ内のシェルをインタラクティブに開きます
-   $ sudo ./docker run -i -t ubuntu /bin/bash
+次のステップ
+====================
 
 .. Continue with the User Guide.
 
@@ -294,6 +327,6 @@ root 以外のアクセス
 
 .. seealso:: 
 
-   Binaries
+   Installation from binaries
       https://docs.docker.com/engine/installation/binaries/
 

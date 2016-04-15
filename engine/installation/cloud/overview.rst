@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/installation/cloud/overview/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/cloud/overview.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/installation/cloud/overview.md
-.. check date: 2016/03/25
+.. check date: 2016/04/16
 .. Commits on Feb 2, 2016 4e9e95fe8d9ba177ec77727b6fca558a0ba8f01f
 .. -----------------------------------------------------------------------------
 

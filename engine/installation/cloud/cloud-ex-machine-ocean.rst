@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/installation/cloud/cloud-ex-machine-ocean/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/cloud/cloud-ex-machine-ocean.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/installation/cloud/cloud-ex-machine-ocean.md
-.. check date: 2016/03/25
-.. Commits on Feb 2, 2016 4e9e95fe8d9ba177ec77727b6fca558a0ba8f01f
+.. check date: 2016/04/16
+.. Commits on Feb 11, 2016 4e9e95fe8d9ba177ec77727b6fca558a0ba8f01f
 .. -----------------------------------------------------------------------------
 
 .. Example: Use Docker Machine to provision cloud hosts
