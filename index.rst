@@ -17,7 +17,7 @@ Docker ドキュメント日本語化プロジェクト
 
 .. caution::
 
-   Docker 1.10 → 1.11 への移行作業中が進行中です。バージョンの違いにご注意ください。
+   Docker 1.10 → 1.11 への移行作業中が進行中です。バージョンの違いにご注意ください(2016/04/14)。
 
 ----
 
@@ -26,23 +26,13 @@ Docker ドキュメント日本語化プロジェクト
 Docker ドキュメントへようこそ！
 ==========================================
 
-.. Docker Engine or “Docker” creates and runs Docker containers. Install Docker on Ubuntu, Mac OS X, or Windows. Or use the Install menu to choose from others. 
+.. Docker Toolbox delivers all the Docker tools such as Engine, Machine, and Compose to your Mac OS X or Windows desktop. This is a great way to set up a local development environment.
+
+**Docker Toolbox (ツールボックス)** は :doc:`Mac OS X </engine/installation/mac>` や :doc:`Windows </engine/installation/windows>` デスクトップ上に Docker Engine 、Machine、Compose といった Docker ツールを提供します。
 
 .. Docker Engine provides the core functions you need to create Docker images and run Docker containers. Install Engine on Ubuntu or see the full list of others to choose from. 
 
 **Docker Engine (エンジン)** は、Docker イメージの作成と Docker コンテナの実行に必要なコア機能を提供します。Engine を :doc:`Ubuntu </engine/installation/linux/ubuntulinux>` にインストールする方法や、 :doc:`その他の一覧リスト </engine/installation/index>` をご覧ください。
-
-.. Docker Toolbox delivers all the Docker tools such as Engine, Machine, Compose, and Kitematic to your Mac OS X or Windows desktop. 
-
-**Docker Toolbox (ツールボックス)** は :doc:`Mac OS X </engine/installation/mac>` や :doc:`Windows </engine/installation/windows>` デスクトップ上に Docker Engine 、Machine、Compose 、 :doc:`Kitematic </kitematic/index>` のような Docker ツールを提供します。
-
-.. Docker Hub is our hosted registry service for managing your images. There is nothing to install. You just sign up!
-
-**Docker Hub (ハブ)** はイメージを管理するためのホステッド・レジストリ・サービス [#f1]_ です。インストール不要です。`サインアップ <https://hub.docker.com/>`_ するだけです。
-
-.. Docker Trusted Registry (DTR) supplies a private dedicated image registry. To learn about DTR for your team, see the overview.
-
-**Docker Trusted Registry (トラステッド・レジストリ)** (DTR) はプライベートな専用イメージ・レジストリを提供します。チームでの DTR の使い方を学ぶには、:doc:`概要 <docker-trusted-registry/index>` をご覧ください。
 
 .. Docker Machine automates container provisioning on your network or in the cloud. Install machine on Windows, Mac OS X, or Linux.
 
@@ -56,9 +46,24 @@ Docker ドキュメントへようこそ！
 
 **Docker Compose (コンポーズ)** は複数のコンテナを使うアプリケーションを定義します。Docker Compose を :doc:`Ubuntu、Mac OS X や、その他のシステム </compose/install>` にインストールできます。
 
-.. Docker Registry provides open source Docker image distribution. See the registry deployment documentation for more information. 
+.. Docker Hub is our hosted registry service for managing your images. Docker Hub and Docker Cloud use free Docker ID. Sign up here!
 
-**Docker Registry (レジストリ)** はオープンソースの Docker イメージ配布を提供します。詳細な情報は :doc:`レジストリのデプロイ </registry/deploying>` をご覧ください。
+.. Docker Hub is our hosted registry service for managing your images. There is nothing to install. You just sign up!
+
+**Docker Hub (ハブ)** はイメージを管理するためのホステッド・レジストリ・サービス [#f1]_ です。Docker Hub と Docker Cloud では無料の Docker ID を使います。`サインアップはこちらから <https://hub.docker.com/>`_ です。
+
+.. Docker Cloud is our hosted service for building, testing, and deploying Docker images to your hosts. Check out our Getting Started tutorial and deploy your first service!
+
+**Docker Cloud (クラウド)** は Docker イメージを自分のホスト上で構築・テスト・デプロイするためのホステッド・サービスです。 :doc:`導入チュートリアル </docker-cloud/getting-started>` を確認し、初めてのサービスをデプロイしましょう。
+
+.. Docker Trusted Registry (DTR) supplies a private dedicated image registry. To learn about DTR for your team, see the overview.
+
+**Docker Trusted Registry (トラステッド・レジストリ)** (DTR) はプライベートな専用イメージ・レジストリを提供します。チームでの DTR の使い方を学ぶには、:doc:`概要 <docker-trusted-registry/index>` をご覧ください。
+
+.. Docker Universal Control Plane (UCP) helps you deploy and manage Dockerized applications on-premises, behind your firewall. To learn about see the overview.
+
+**Docker Universal Control Plane** (UCP) は Docker 対応アプリケーションのデプロイや管理を、オンプレミス上やファイアウォールの後ろでも行えるよう支援するツールです。詳しくは :doc:`概要 </ucp/overview.rst>` をご覧ください。
+
 
 .. New Navigation!
 
