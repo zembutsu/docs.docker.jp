@@ -1,11 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/installation/linux/gentoolinux/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/linux/gentoolinux.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/installation/linux/gentoolinux.md
-   doc version: 1.9
-      https://github.com/docker/docker/commits/release/v1.9/docs/installation/gentoolinux.md
-.. check date: 2016/02/09
+.. check date: 2016/04/16
+.. Commits on Mar 9, 2016 cdd8d3999ffd9f7eeb764f52e21577e0900d7b5c
 .. ----------------------------------------------------------------------------
 
 .. Gentoo

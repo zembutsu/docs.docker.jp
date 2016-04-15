@@ -1,11 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/installation/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/index.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/installation/index.md
-   doc version: 1.9
-      https://github.com/docker/docker/commits/release/v1.9/docs/installation/index.md
-.. check date: 2016/02/09
+.. check date: 2016/04/16
+.. Commits on Feb 11, 2016 4e9e95fe8d9ba177ec77727b6fca558a0ba8f01f
 .. -----------------------------------------------------------------------------
 
 .. Install Docker Engine

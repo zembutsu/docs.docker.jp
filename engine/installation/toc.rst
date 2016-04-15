@@ -1,7 +1,7 @@
 .. -*- coding: utf-8 -*-
 .. 
-.. doc version: 1.10
-.. check date: 2016/02/09
+.. doc version: 1.11
+.. check date: 2016/04/16
 .. -----------------------------------------------------------------------------
 
 .. engine installation toc

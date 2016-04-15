@@ -1,11 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/installation/mac/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/mac.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/installation/mac.md
-   doc version: 1.9
-      https://github.com/docker/docker/commits/release/v1.9/docs/installation/mac.md
-.. check date: 2016/02/09
+.. check date: 2016/04/16
+.. Commits on Mar 18, 2016 3c6aa163a3fd04c344a2072ab379f0778734b269
 .. -----------------------------------------------------------------------------
 
 .. Mac OS X
@@ -518,7 +517,7 @@ Mac OS X の Docker 実行例
 .. image:: ./images/bad_host.png
    :alt: エラー画面
 
-..    This didn’t work. The reason it doesn’t work is your DOCKER_HOST address is not the localhost address (0.0.0.0) but is instead the address of the your Docker VM.
+.. This didn’t work. The reason it doesn’t work is your DOCKER_HOST address is not the localhost address (0.0.0.0) but is instead the address of your Docker VM.
 
 これは動作しません。理由は、 ``DOCKER_HOST`` のアドレスはローカルホストのアドレス（0.0.0.0）ではないためです。そのかわり Docker 仮想マシンのアドレスを使います。
 

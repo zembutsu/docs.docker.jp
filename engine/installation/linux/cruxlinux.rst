@@ -1,11 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/installation/linux/cruxlinux/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/linux/cruxlinux.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/installation/linux/cruxlinux.md
-   doc version: 1.9
-      https://github.com/docker/docker/commits/release/v1.9/docs/installation/cruxlinux.md
-.. check date: 2016/02/09
+.. check date: 2016/04/16
+.. Commits on Mar 4, 2016 69004ff67eed6525d56a92fdc69466c41606151a
 .. ----------------------------------------------------------------------------
 
 .. CRUX Linux
@@ -111,7 +110,7 @@ Docker 用の rc スクリプトが作られます。Docker サービスを開�
 
 .. There are also user contributed CRUX based image(s) on the Docker Hub.
 
-Docker Hub には、他にもユーザが貢献した `CRUX ベース・イメージ <https://registry.hub.docker.com/repos/crux/>`_ があります。
+Docker Hub には、他にもユーザが貢献した `CRUX ベース・イメージ <https://hub.docker.com/_/crux/>`_ があります。
 
 .. Uninstallation
 

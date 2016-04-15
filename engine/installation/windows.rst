@@ -3,9 +3,8 @@
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/windows.md
    doc version: 1.10
       https://github.com/docker/docker/commits/master/docs/installation/windows.md
-   doc version: 1.9
-      https://github.com/docker/docker/commits/release/v1.9/docs/installation/windows.md
-.. check date: 2016/02/09
+.. check date: 2016/04/16
+.. Commits on Mar 1, 2016 0b882cc0140bc03dfe79462c5cdf77b972c94067
 .. -----------------------------------------------------------------------------
 
 .. Windows

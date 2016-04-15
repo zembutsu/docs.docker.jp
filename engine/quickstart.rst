@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/quickstart/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/quickstart.md
-.. doc version: 1.10
+.. doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/quickstart.md
-.. check date: 2016/03/12
+.. check date: 2016/04/16
 .. Commits on Mar 1, 2016 0b882cc0140bc03dfe79462c5cdf77b972c94067
 .. -----------------------------------------------------------------------------
 
@@ -42,7 +42,7 @@ Docker Engine のシステム設定によっては、各 ``docker`` コマンド
 
 .. For more information about installing Docker Engine or sudo configuration, refer to the installation instructions for your operating system.
 
-Docker Engine のインストールや ``sudo`` 設定に関しては、 :doc:`インストール <engine/installation/index>` を参照ください。
+Docker Engine のインストールや ``sudo`` 設定に関しては、 :doc:`インストール </engine/installation/index>` を参照ください。
 
 
 .. Download a pre-built image

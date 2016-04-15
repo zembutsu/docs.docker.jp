@@ -1,11 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/installation/linux/ubuntulinux/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/linux/ubuntulinux.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/installation/linux/ubuntulinux.md
-   doc version: 1.9
-      https://github.com/docker/docker/commits/release/v1.9/docs/installation/ubuntulinux.md
-.. check date: 2016/02/09
+.. check date: 2016/04/16
+.. Commits on Mar 26, 2016 62e7fde80fde2efda14d2b60061106ea48715c50
 .. ----------------------------------------------------------------------------
 
 .. Ubuntu
@@ -24,8 +23,8 @@ Ubuntu
 
 Docker は以下のオペレーティング・システムをサポートしています。
 
+* Ubuntu Xenial 16.04 (LTS)
 * Ubuntu Wily 15.10
-* Ubuntu Vivid 15.04
 * Ubuntu Trusty 14.04 (LTS)
 * Ubuntu Precise 12.04 (LTS)
 
@@ -33,11 +32,11 @@ Docker は以下のオペレーティング・システムをサポートして�
 
 このページは、Docker が管理しているパッケージとインストール手順で作業します。Docker が提供する最新リリースのパッケージを使えるようにします。もし Ubuntu が管理するパッケージを使いたい場合は、Ubuntu のドキュメントをお調べください。
 
-..    Note: Ubuntu Utopic 14.10 exists in Docker’s apt repository but it is no longer officially supported.
+..    Note: Ubuntu Utopic 14.10 and 15.04 exist in Docker’s APT repository but are no longer officially supported.
 
 .. note::
 
-   Ubuntu Utopic 14.10 には Docker の ``apt`` リポジトリが存在しますが、公式にサポートしていないものです。
+   Ubuntu Utopic 14.10 と 15.04 には Docker の ``apt`` リポジトリが存在しますが、（Dockerが）公式にサポートしていないものです。
 
 .. Prerequisites
 
@@ -78,7 +77,7 @@ Docker 1.7.1 以上は Docker の ``apt`` リポジトリに保管されてい�
 
 .. Log into your machine as a user with `sudo` or `root` privileges.
 
-1. マシンに ``sudo `` もしくは ``root`` 特権のあるユーザでログインします。
+1. マシンに ``sudo`` もしくは ``root`` 特権のあるユーザでログインします。
 
 ..    Open a terminal window.
 
@@ -137,14 +136,6 @@ Docker 1.7.1 以上は Docker の ``apt`` リポジトリに保管されてい�
 
    deb https://apt.dockerproject.org/repo ubuntu-trusty main
 
-..        On Ubuntu Vivid 15.04
-
-* Ubuntu Vivid 15.04
-
-.. code-block:: bash
-
-   deb https://apt.dockerproject.org/repo ubuntu-vivid main
-
 ..        Ubuntu Wily 15.10
 
 * Ubuntu Wily 15.10
@@ -152,6 +143,20 @@ Docker 1.7.1 以上は Docker の ``apt`` リポジトリに保管されてい�
 .. code-block:: bash
 
    deb https://apt.dockerproject.org/repo ubuntu-wily main
+
+..        Ubuntu Xenial 16.04 (LTS)
+
+* Ubuntu Xenial 16.04 (LTS)
+
+.. code-block:: bash
+
+   deb https://apt.dockerproject.org/repo ubuntu-xenial main
+
+.. Note: Docker does not provide packages for all architectures. You can find nightly built binaries in https://master.dockerproject.org. To install docker on a multi-architecture system, add an [arch=...] clause to the entry. Refer to the Debian Multiarch wiki for details.
+
+.. note::
+
+   Docker のパッケージは全てのアーキテクチャに対応していません。しかし、毎晩構築（nightly build）のバイナリは https://master.dockerproject.org/ にあります。Docker をマルチ・アーキテクチャのシステムにインストールするには、 ``[arch=...]`` エントリの項目を追加します。詳細は `Debian Multiarch wiki <https://wiki.debian.org/Multiarch/HOWTO#Setting_up_apt_sources>`_ をご覧ください。
 
 ..    Save and close the /etc/apt/sources.list.d/docker.list file.
 
@@ -190,13 +195,13 @@ Docker 1.7.1 以上は Docker の ``apt`` リポジトリに保管されてい�
 Ubuntu バージョン固有の動作条件
 ----------------------------------------
 
+* Ubuntu Xenial 16.04 (LTS)
 * Ubuntu Wily 15.10
-* Ubuntu Vivid 15.04
 * Ubuntu Trusty 14.04 (LTS)
 
-.. For Ubuntu Trusty, Vivid, and Wily, it’s recommended to install the linux-image-extra kernel package. The linux-image-extra package allows you use the aufs storage driver.
+.. For Ubuntu Trusty, Wily, and Xenial, it’s recommended to install the linux-image-extra kernel package. The linux-image-extra package allows you use the aufs storage driver.
 
-Ubuntu Trusty・Vivid・Wily では、 ``linux-image-extra`` カーネル・パッケージのインストールを推奨します。この ``linux-image-extra`` は ``aufs`` ストレージ・ドライバを利用可能にします。
+Ubuntu Trusty・Wily・Xenial では、 ``linux-image-extra`` カーネル・パッケージのインストールを推奨します。この ``linux-image-extra`` は ``aufs`` ストレージ・ドライバを利用可能にします。
 
 .. To install the linux-image-extra package for your kernel version:
 
