@@ -13,7 +13,7 @@ Docker Engine について
 
 .. sidebar:: 目次
 
-   .. contents:: 
+   .. contents::
        :depth: 3
        :local:
 
@@ -111,7 +111,7 @@ Docker は次の内容で構成されています。
 * Docker がハイレベルでどのように動作するのか
 * Docker のアーキテクチャの理解
 * Docker の機能確認
-* Docker と仮想亜真の違いを知る
+* Docker と仮想化の違いを知る
 * 一般的な使い方を知る
 
 .. Installation guides
@@ -168,7 +168,7 @@ Docker において、既存の機能を削除したり、新しい機能に置�
 
 Docker は Apache License, Version 2.0 でライセンスされています。ライセンス条項の詳細は  `LICENSE <https://github.com/docker/docker/blob/master/LICENSE>`_ をご覧ください。
 
-.. seealso:: 
+.. seealso::
 
    About Docker Engine
       https://docs.docker.com/engine/
