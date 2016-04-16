@@ -1,11 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/containers/dockervolumes/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/containers/dockervolumes.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/userguide/containers/dockervolumes.md
-   doc version: 1.9
-      https://github.com/docker/docker/commits/release/v1.9/docs/userguide/dockervolumes.md
-.. check date: 2016/02/10
+.. check date: 2016/04/16
+.. Commits on Mar 31, 2016 0f70f53826ac311ca1653827c0d6bc170f300e84
 .. ----------------------------------------------------------------------------
 
 .. _dockervolumes:
@@ -22,20 +21,20 @@
        :depth: 3
        :local:
 
-.. So far we’ve been introduced to some basic Docker concepts, seen how to work with Docker images as well as learned about networking and links between containers. In this section we’re going to discuss how you can manage data inside and between your Docker containers.
+.. So far you’ve been introduced to some basic Docker concepts, seen how to work with Docker images as well as learned about networking and links between containers. In this section you’re going to learn how you can manage data inside and between your Docker containers.
 
 これまでは導入として、:doc:`基本的な Docker の概念 <usingdocker>` や、:doc:`Docker イメージ <dockerimages>` の動作に加え、 :doc:`コンテナのネットワーク <networkingcontainers>` について学びました。このセクションでは、どのようにコンテナ内やコンテナ間でデータを管理できるかを検討します。
 
-.. We’re going to look at the two primary ways you can manage data in Docker.
+.. You’re going to look at the two primary ways you can manage data with Docker Engine.
 
-データを Docker で管理するための、２つの主な手法を見ていきます。
+それでは、Docker Engine でデータを管理するための、２つの主な手法を見ていきます。
 
 .. 
-    Data volumes, and
-    Data volume containers.
+    Data volumes
+    Data volume containers
 
-* データ・ボリュームと、
-* データ・ボリューム・コンテナです。
+* データ・ボリューム
+* データ・ボリューム・コンテナ
 
 .. Data volumes
 
@@ -67,7 +66,7 @@
 データ・ボリュームの追加
 ------------------------------
 
-.. You can add a data volume to a container using the -v flag with the docker create and docker run command. You can use the -v multiple times to mount multiple data volumes. Let’s mount a single volume now in our web application container.
+.. You can add a data volume to a container using the -v flag with the docker create and docker run command. You can use the -v multiple times to mount multiple data volumes. Now, mount a single volume in your web application container.
 
 ``docker create`` か ``docker run`` コマンドで ``-v`` フラグを使うと、コンテナにデータ・ボリュームを追加できます。``-v`` を複数回使うことで、複数のデータ・ボリュームをマウントできます。それでは、ウェブ・アプリケーションのコンテナに対して、ボリュームを１つ割り当ててみましょう。
 
@@ -114,14 +113,15 @@ Docker はボリュームを、標準では読み書き可能な状態でマウ�
 .. code-block:: bash
 
    ...
-   Mounts": [
+   "Mounts": [
        {
            "Name": "fac362...80535",
            "Source": "/var/lib/docker/volumes/fac362...80535/_data",
            "Destination": "/webapp",
            "Driver": "local",
            "Mode": "",
-           "RW": true
+           "RW": true,
+           "Propagation": ""
        }
    ]
    ...
@@ -137,9 +137,9 @@ Docker はボリュームを、標準では読み書き可能な状態でマウ�
 データ・ボリュームとしてホスト上のディレクトリをマウント
 ------------------------------------------------------------
 
-.. In addition to creating a volume using the -v flag you can also mount a directory from your Docker daemon’s host into a container.
+.. In addition to creating a volume using the -v flag you can also mount a directory from your Engine daemon’s host into a container.
 
-``-v`` フラグを使ってボリュームを作成することに加え、Docker デーモンのホスト上にあるディレクトリも、コンテナにマウント可能です。
+``-v`` フラグを使ってボリュームを作成することに加え、Docker Engine デーモンのホスト上にあるディレクトリも、コンテナにマウント可能です。
 
 .. code-block:: bash
 
@@ -157,9 +157,9 @@ Docker はボリュームを、標準では読み書き可能な状態でマウ�
 
 ``名前`` の値は、アルファベットの文字で開始する必要があります。具体的には、 ``a-z0-9`` 、``_`` （アンダースコア）、 ``.`` （ピリオド）、 ``-`` （ハイフン）です。絶対パスの場合は ``/`` （スラッシュ）で始めます。
 
-.. For example, you can specify either /foo or foo for a host-dir value. If you supply the /foo value, Docker creates a bind-mount. If you supply the foo specification, Docker creates a named volume.
+.. For example, you can specify either /foo or foo for a host-dir value. If you supply the /foo value, Engine creates a bind-mount. If you supply the foo specification, Engine creates a named volume.
 
-例えば、``ホスト側ディレクトリ`` に ``/foo`` または ``foo`` を 指定可能です。``/foo`` 値を指定すると、Docker は（ディレクトリに）拘束したマウントを作成します。``foo`` を指定すると、Docker はその名前のボリュームを作成します。
+例えば、``ホスト側ディレクトリ`` に ``/foo`` または ``foo`` を 指定可能です。``/foo`` 値を指定すると、Docker は（ディレクトリに）拘束したマウントを作成します。``foo`` を指定すると、Docker Engine はその名前のボリュームを作成します。
 
 .. If you are using Docker Machine on Mac or Windows, your Docker daemon has only limited access to your OS X or Windows filesystem. Docker Machine tries to auto-share your /Users (OS X) or C:\Users (Windows) directory. So, you can mount files or directories on OS X using.
 
@@ -181,9 +181,9 @@ Windows 上でも、同様にディレクトリのマウントが使えます。
 
 パスには、仮想マシンのファイルシステム上にある全てのパスを指定できます。もし VirtualBox などでフォルダの共有機能を使っているのであれば、追加の設定が必要です。VirtualBox の場合は、ホスト上のフォルダを共有フォルダとして登録する必要があります。それから、Docker の ``-v`` フラグを使ってマウントできます。
 
-.. Mounting a host directory can be useful for testing. For example, you can mount source code inside a container. Then, change the source code and see its effect on the application in real time. The directory on the host must be specified as an absolute path and if the directory doesn’t exist Docker will automatically create it for you. This auto-creation of the host path has been deprecated.
+.. Mounting a host directory can be useful for testing. For example, you can mount source code inside a container. Then, change the source code and see its effect on the application in real time. The directory on the host must be specified as an absolute path and if the directory doesn’t exist the Engine daemon will automatically creates it for you. This auto-creation of the host path has been deprecated.
 
-ホスト上のディレクトリをマウントするのは、テストに便利かもしれません。例えば、ソースコードをコンテナの中にマウントしたとします。次にソースコードに変更を加え、アプリケーションにどのような影響があるのか、リアルタイムで確認できます。ホスト側のディレクトリは絶対パスで指定する必要があります。もしディレクトリが存在しない場合、Docker は自動的にディレクトリを作成します。このホスト・パスの自動生成機能は廃止予定です。
+ホスト上のディレクトリをマウントするのは、テストに便利かもしれません。例えば、ソースコードをコンテナの中にマウントしたとします。次にソースコードに変更を加え、アプリケーションにどのような影響があるのか、リアルタイムで確認できます。ホスト側のディレクトリは絶対パスで指定する必要があります。もしディレクトリが存在しない場合、Docker Engine のデーモンは自動的にディレクトリを作成します。このホスト・パスの自動生成機能は廃止予定です。
 
 .. Docker volumes default to mount in read-write mode, but you can also set it to be mounted read-only.
 
@@ -193,7 +193,7 @@ Docker ボリュームは、デフォルトで読み書き可能なモードで�
 
    $ docker run -d -P --name web -v /src/webapp:/opt/webapp:ro training/webapp python app.py
 
-.. Here we’ve mounted the same /src/webapp directory but we’ve added the ro option to specify that the mount should be read-only.
+.. Here you’ve mounted the same /src/webapp directory but we’ve added the ro option to specify that the mount should be read-only.
 
 ここでは同じ ``/src/webapp`` ディレクトリをマウントしていますが、読み込み専用を示す ``ro`` オプションを指定しています。
 
@@ -206,6 +206,55 @@ Docker ボリュームは、デフォルトで読み書き可能なモードで�
 .. note::
 
    ホスト・ディレクトリとは、ホストに依存する性質があります。そのため、ホストディレクトリを ``Dockerfile`` でマウント出来ません。なぜなら、イメージの構築はポータブル（どこでも実行可能な状態の意味）であるべきだからです。全てのホスト環境でホスト・ディレクトリを使えるとは限りません。
+
+.. Mount a shared-storage volume as a data volume
+
+.. _mount-a-shared-storage-volume-as-a-data-volume:
+
+共有ストレージをデータ・ボリュームとしてマウント
+--------------------------------------------------
+
+.. In addition to mounting a host directory in your container, some Docker volume plugins allow you to provision and mount shared storage, such as iSCSI, NFS, or FC.
+
+コンテナにホスト側ディレクトリをマウントできることに加え、いくつかの Docker :doc:`ボリューム・プラグイン </engine/extend/plugins_volume>` は iSCSI、NFS、FC のような共有ストレージにプロビジョニングやマウントが可能です。
+
+.. A benefit of using shared volumes is that they are host-independent. This means that a volume can be made available on any host that a container is started on as long as it has access to the shared storage backend, and has the plugin installed.
+
+共有ボリュームを使う利点は、ホストに依存しない点です。つまり、あらゆるホスト上で利用可能なボリュームを扱えます。共有ストレージ・バックエンドにアクセス可能なホストと、プラグインさえインストールされていれば、コンテナがどこで動いてもボリュームを利用可能です。
+
+.. One way to use volume drivers is through the docker run command. Volume drivers create volumes by name, instead of by path like in the other examples.
+
+``docker run`` コマンドでボリューム・ドライバを使う方法は１つです。ボリューム・ドライバでボリュームの作成時、他の例のようにパスで指定するのではなく、ボリューム名を指定します。
+
+.. The following command creates a named volume, called my-named-volume, using the flocker volume driver, and makes it available within the container at /opt/webapp:
+
+次のコマンドは ``my-named-volume`` という名前付きのボリュームを作成するコマンドです。作成には ``flocker`` ボリューム・ドライバを使い、コンテナからは ``/opt/webapp`` で利用できるようにします。
+
+.. code-block:: bash
+
+   $ docker run -d -P \
+     --volume-driver=flocker \
+     -v my-named-volume:/opt/webapp \
+     --name web training/webapp python app.py
+
+.. You may also use the docker volume create command, to create a volume before using it in a container.
+
+あるいは、コンテナを作成する前でも、コンテナが使うボリュームを  ``docker volume create`` コマンドで作成できます。
+
+.. The following example also creates the my-named-volume volume, this time using the docker volume create command.
+
+次の例は ``my-named-volume`` ボリュームを作成し、 ``docker volume create`` コマンドで使います。
+
+.. code-block:: bash
+
+   $ docker volume create -d flocker --name my-named-volume -o size=20GB
+   $ docker run -d -P \
+     -v my-named-volume:/opt/webapp \
+     --name web training/webapp python app.py
+
+.. A list of available plugins, including volume plugins, is available here.
+
+ボリューム・プラグインを含む利用可能なプラグインの一覧は :doc:`こちら </engine/extend/plugins>`
 
 .. Volume labels
 
@@ -310,7 +359,7 @@ SELinux のようなラベリング・システムでは、コンテナ内にマ
 データ・ボリュームのバックアップ・修復・移行
 ==================================================
 
-.. Another useful function we can perform with volumes is use them for backups, restores or migrations. We do this by using the --volumes-from flag to create a new container that mounts that volume, like so:
+.. Another useful function we can perform with volumes is use them for backups, restores or migrations. You do this by using the --volumes-from flag to create a new container that mounts that volume, like so:
 
 ボリュームを使った他の便利な機能に、バックアップや修復、移行があります。これらの作業を使うには、新しいコンテナを作成するときに ``--volumes-from`` フラグを使い、次のようにボリュームをマウントします。
 
@@ -318,7 +367,7 @@ SELinux のようなラベリング・システムでは、コンテナ内にマ
 
    $ docker run --volumes-from dbdata -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /dbdata
 
-.. Here we’ve launched a new container and mounted the volume from the dbdata container. We’ve then mounted a local host directory as /backup. Finally, we’ve passed a command that uses tar to backup the contents of the dbdata volume to a backup.tar file inside our /backup directory. When the command completes and the container stops we’ll be left with a backup of our dbdata volume.
+.. Here you’ve launched a new container and mounted the volume from the dbdata container. You’ve then mounted a local host directory as /backup. Finally, you’ve passed a command that uses tar to backup the contents of the dbdata volume to a backup.tar file inside our /backup directory. When the command completes and the container stops we’ll be left with a backup of our dbdata volume.
 
 ここでは新しいコンテナを起動し、``dbdata`` コンテナからボリュームをマウントします。そして、ローカルのホスト上のディレクトリを ``/backup`` としてマウントします。最終的に、``dbdata`` ボリュームに含まれる内容をバックアップするため、  ``tar`` コマンドを使い ``/backup`` ディレクトリの中にあるファイルを  ``backup.tar`` に通します。コマンドの実行が完了すると、コンテナは停止し、``dbdata`` ボリュームのバックアップが完了します。
 
@@ -360,9 +409,9 @@ SELinux のようなラベリング・システムでは、コンテナ内にマ
 次のステップ
 ====================
 
-.. Now we’ve learned a bit more about how to use Docker we’re going to see how to combine Docker with the services available on Docker Hub including Automated Builds and private repositories.
+.. Now you’ve learned a bit more about how to use Docker we’re going to see how to combine Docker with the services available on Docker Hub including Automated Builds and private repositories.
 
-これまでは、どのように Docker を使うのか、少々学んできました。次は Docker と `Docker Hub <https://hub.docker.com/>`_ で利用可能なサービスを連携し、自動構築（Automated Build）やプライベート・リポジトリ（private repository）について学びます。
+これまでは、どのようにして Docker を使うのかを少々学びました。次は Docker と `Docker Hub <https://hub.docker.com/>`_ で利用可能なサービスを連携し、自動構築（Automated Build）やプライベート・リポジトリ（private repository）について学びます。
 
 .. Go to Working with Docker Hub.
 

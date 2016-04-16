@@ -1,11 +1,10 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/containers/dockerimages/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/containers/dockerimages.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/userguide/containers/dockerimages.md
-   doc version: 1.9
-      https://github.com/docker/docker/commits/release/v1.9/docs/userguide/dockerimages.md
-.. check date: 2016/02/10
+.. check date: 2016/04/16
+.. Commits on a Mar 4, 2016 69004ff67eed6525d56a92fdc69466c41606151a
 .. ----------------------------------------------------------------------------
 
 .. Build your own images
@@ -28,7 +27,7 @@ Docker イメージはコンテナの土台（基盤）です。``docker run`` �
 
 .. You also discovered that Docker stores downloaded images on the Docker host. If an image isn’t already present on the host then it’ll be downloaded from a registry: by default the Docker Hub Registry.
 
-Docker はダウンロードしたイメージを Docker ホスト上に保管しており、それらを見ることができます。もしホスト上にイメージがなければ、Docker はレジストリからイメージをダウンロードします。標準のレジストリは `Docker Hub レジストリ <https://registry.hub.docker.com/>`_ です。
+Docker はダウンロードしたイメージを Docker ホスト上に保管しており、それらを見ることができます。もしホスト上にイメージがなければ、Docker はレジストリからイメージをダウンロードします。標準のレジストリは `Docker Hub レジストリ <https://hub.docker.com/>`_ です。
 
 .. In this section you’re going to explore Docker images a bit more including:
 
@@ -42,7 +41,7 @@ Docker はダウンロードしたイメージを Docker ホスト上に保管�
 
 * ローカルの Docker ホスト上にあるイメージの管理と操作
 * 基本イメージの作成
-* イメージを `Docker Hub レジストリ <https://registry.hub.docker.com/>`_ にアップロード
+* イメージを `Docker Hub レジストリ <https://hub.docker.com/>`_ にアップロード
 
 .. Listing images on the host
 
@@ -564,7 +563,7 @@ Windows で Docker Machine を使っている場合、ホスト・ディレク�
 
 これで構築プロセスが進行します。まず Docker が行うのは構築コンテキスト（訳者注：環境の意味）のアップロードです。典型的なコンテキストとは、構築時のディレクトリです。この指定によって、Docker デーモンが実際のイメージ構築にあたり、ローカルのコンテキストをそこに入れるために必要とします。
 
-.. Next you can see each instruction in the Dockerfile being executed step-by-step. You can see that each step creates a new container, runs the instruction inside that container and then commits that change - just like the docker commit work flow you saw earlier. When all the instructions have executed you’re left with the 97feabe5d2ed image (also helpfully tagged as ouruser/sinatra:v2) and all intermediate containers will get removed to clean things up.
+.. Next you can see each instruction in the Dockerfile being executed step-by-step. You can see that each step creates a new container, runs the instruction inside that container and then commits that change - just like the docker commit work flow you saw earlier. When all the instructions have executed you’re left with the 97feabe5d2ed image (also helpfuly tagged as ouruser/sinatra:v2) and all intermediate containers will get removed to clean things up.
 
 次は ``Dockerfile`` の命令を一行ずつ実行します。それぞれのステップで、新しいコンテナを作成し、コンテナの中で命令を実行し、変更に対してコミットするのが見えるでしょう。これは先ほど ``docker commit`` のワークフローで見てきたものです。全ての命令を実行すると、イメージ ``97feabe5d2ed `` が残されます（扱いやすいよう ``ouruser/sinatra:v2`` とタグ付けもされています）。そして、作業中に作成された全てのコンテナを削除し、綺麗に片付けています。
 
@@ -659,7 +658,7 @@ v2 以上のフォーマットのイメージには、内容に対して ``diges
 
 .. Once you’ve built or created a new image you can push it to Docker Hub using the docker push command. This allows you to share it with others, either publicly, or push it into a private repository.
 
-イメージを構築・作成したあとは、``docker push`` コマンドを使って `Docker Hub <https://hub.docker.com/>`_ に送信できます。これにより、イメージを他人と共有したり、パブリックに共有したり、あるいは `プライベート・リポジトリ <https://registry.hub.docker.com/plans/>`_ にも送信できます。
+イメージを構築・作成したあとは、``docker push`` コマンドを使って `Docker Hub <https://hub.docker.com/>`_ に送信できます。これにより、イメージを他人と共有したり、パブリックに共有したり、あるいは `プライベート・リポジトリ <https://hub.docker.com/plans/>`_ にも送信できます。
 
 .. code-block:: bash
 

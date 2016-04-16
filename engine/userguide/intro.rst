@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/intro/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/intro.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/userguide/intro.md
-.. check date: 2016/03/26
+.. check date: 2016/04/16
 .. Commits on Mar 5, 2016 3b74be8ab7d93a70af3e0ac6418627c1de72228b
 .. ----------------------------------------------------------------------------
 
@@ -105,7 +105,7 @@ Docker の使い方を学んだら、次のステップに進みます。Docker 
 
 .. Networking containers
 
-.. _networking-containers:
+.. _networking-containers-intro:
 
 コンテナのネットワーク
 =============================

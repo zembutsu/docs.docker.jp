@@ -3,9 +3,8 @@
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/containers/dockerrepos.md
    doc version: 1.10
       https://github.com/docker/docker/commits/master/docs/userguide/containers/dockerrepos.md
-   doc version: 1.9
-      https://github.com/docker/docker/commits/release/v1.9/docs/userguide/dockerrepos.md
-.. check date: 2016/02/10
+.. check date: 2016/04/16
+.. Commits on Mar 14, 2016 d2aa521822135009168fe5a13d372fbc6969dc91
 .. ----------------------------------------------------------------------------
 
 .. Store images on Docker Hub
@@ -48,17 +47,18 @@ Docker は、自分自身が Docker Hub のサービスに ``docker search`` 、
 アカウントの作成とログイン
 ------------------------------
 
-.. Typically, you’ll want to start by creating an account on Docker Hub (if you haven’t already) and logging in. You can create your account directly on Docker Hub, or by running:
+.. Typically, you’ll want to start by creating an account on Docker Hub (if you haven’t already) and logging in. You can create your account directly on Docker Hub.:
 
-例によって、Docker Hub を使い始めるには（未作成であれば）アカウントを作成し、ログインします。 `Docker Hub 上で <https://hub.docker.com/account/signup/>`_ アカウントを作成するか、次のように実行します。
+例によって、Docker Hub を使い始めるには（未作成であれば）アカウントを作成し、ログインします。 `Docker Hub 上で <https://hub.docker.com/account/signup/>`_ アカウントを作成します。
 
 .. code-block:: bash
 
    $ docker login
 
-.. This will prompt you for a user name, which will become the public namespace for your public repositories. If your user name is available, Docker will prompt you to enter a password and your e-mail address. It will then automatically log you in. You can now commit and push your own images up to your repos on Docker Hub.
+.. You can now commit and push your own images up to your repos on Docker Hub.
 
-このプロンプトでは、ユーザ名を入力します。これは、公開の名前空間（ネームスペース）であり、自分の公開リポジトリとして表示します。もしユーザ名が利用可能であれば、Docker はパスワードとメールアドレスの入力を促すプロンプトを表示します。あとは、自動的にログインします。あとは、自分自身のイメージのコミットや、Docker Hub 上の自分のリポジトリにイメージを送信できます。
+これでコミットしたイメージを、自分の Docker Hub リポジトリ上に、アップロード（push）できます。
+
 
 ..    Note: Your authentication credentials will be stored in the ~/.docker/config.json authentication file in your home directory.
 

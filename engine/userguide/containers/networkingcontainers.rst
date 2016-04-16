@@ -3,14 +3,13 @@
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/containers/networkingcontainers.md
    doc version: 1.10
       https://github.com/docker/docker/commits/master/docs/userguide/containers/networkingcontainers.md
-   doc version: 1.9
-      https://github.com/docker/docker/commits/release/v1.9/docs/userguide/networkingcontainers.md
-.. check date: 2016/02/10
+.. check date: 2016/04/16
+.. Commits on Apr 10, 2016 a609c2c48b5d504120777db2ac1ba83bfe355b66
 .. ----------------------------------------------------------------------------
 
 .. Networking containers
 
-.. _networking-containers:
+.. _networking-containers-guide:
 
 =======================================
 コンテナのネットワーク
@@ -51,7 +50,7 @@
 
    $ docker run -d -P --name web training/webapp python app.py
 
-.. Use the docker ps command to see check the name:
+.. Use the docker ps command to check the name:
 
 ``docker ps`` コマンドで名前を確認します。
 
@@ -268,8 +267,7 @@ PostgreSQL データベースを実行するコンテナを起動します。``-
 .. code-block:: bash
 
    $ docker inspect --format='{{json .NetworkSettings.Networks}}'  db
-   {"my-bridge-network":{"NetworkID":"7d86d31b1478e7cca9ebed7e73aa0fdeec46c5ca29497431d3007d2d9e15ed99",
-"EndpointID":"508b170d56b2ac9e4ef86694b0a76a22dd3df1983404f7321da5649645bf7043","Gateway":"172.18.0.1","IPAddress":"172.18.0.2","IPPrefixLen":16,"IPv6Gateway":"","GlobalIPv6Address":"","GlobalIPv6PrefixLen":0,"MacAddress":"02:42:ac:11:00:02"}}
+   {"my-bridge-network":{"NetworkID":"7d86d31b1478e7cca9ebed7e73aa0fdeec46c5ca29497431d3007d2d9e15ed99","EndpointID":"508b170d56b2ac9e4ef86694b0a76a22dd3df1983404f7321da5649645bf7043","Gateway":"172.18.0.1","IPAddress":"172.18.0.2","IPPrefixLen":16,"IPv6Gateway":"","GlobalIPv6Address":"","GlobalIPv6PrefixLen":0,"MacAddress":"02:42:ac:11:00:02"}}
 
 .. Now, go ahead and start your by now familiar web application. This time leave off the -P flag and also don’t specify a network.
 
@@ -286,8 +284,7 @@ PostgreSQL データベースを実行するコンテナを起動します。``-
 .. code-block:: bash
 
    $ docker inspect --format='{{json .NetworkSettings.Networks}}'  web
-   {"bridge":{"NetworkID":"7ea29fc1412292a2d7bba362f9253545fecdfa8ce9a6e37dd10ba8bee7129812",
-"EndpointID":"508b170d56b2ac9e4ef86694b0a76a22dd3df1983404f7321da5649645bf7043","Gateway":"172.17.0.1","IPAddress":"172.17.0.2","IPPrefixLen":16,"IPv6Gateway":"","GlobalIPv6Address":"","GlobalIPv6PrefixLen":0,"MacAddress":"02:42:ac:11:00:02"}}
+   {"bridge":{"NetworkID":"7ea29fc1412292a2d7bba362f9253545fecdfa8ce9a6e37dd10ba8bee7129812","EndpointID":"508b170d56b2ac9e4ef86694b0a76a22dd3df1983404f7321da5649645bf7043","Gateway":"172.17.0.1","IPAddress":"172.17.0.2","IPPrefixLen":16,"IPv6Gateway":"","GlobalIPv6Address":"","GlobalIPv6PrefixLen":0,"MacAddress":"02:42:ac:11:00:02"}}
 
 .. Then, get the IP address of your web
 

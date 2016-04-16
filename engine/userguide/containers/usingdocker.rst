@@ -1,11 +1,10 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/containers/usingdocker/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/containers/usingdocker.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/userguide/containers/usingdocker.md
-   doc version: 1.9
-      https://github.com/docker/docker/commits/release/v1.9/docs/userguide/usingdocker.md
-.. check date: 2016/02/10
+.. check date: 2016/04/16
+.. Commits on Jan 27, 2016 e310d070f498a2ac494c6d3fde0ec5d6e4479e14
 .. ----------------------------------------------------------------------------
 
 .. _usingdocker:
