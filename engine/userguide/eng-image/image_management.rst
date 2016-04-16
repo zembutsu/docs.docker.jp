@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/eng-image/image_management/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/eng-image/image_management.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/userguide/eng-image/image_management.md
-.. check date: 2016/02/10
+.. check date: 2016/04/16
+.. Commits on Mar 14, 2016 d2aa521822135009168fe5a13d372fbc6969dc91
 .. ---------------------------------------------------------------------------
 
 .. Image management

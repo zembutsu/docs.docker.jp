@@ -1,11 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/eng-image/dockerfile_best-practices.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/userguide/eng-image/dockerfile_best-practices.md
-   doc version: 1.9
-      https://github.com/docker/docker/commits/release/v1.9/docs/articles/dockerfile_best-practices.md
-.. check date: 2016/02/10
+.. check date: 2016/04/16
+.. Commits on Mar 15, 2016 2f634e4691d13616cf8c714ec7653616ec3b121a
 .. ---------------------------------------------------------------------------
 
 .. Best practices for writing Dockerfile
@@ -165,9 +164,9 @@ FROM
 
 :ref:`Dockerfile リファレンスの FROM 命令 <from>`
 
-.. Whenever possible, use current Official Repositories as the basis for your image. We recommend the Debian image since it’s very tightly controlled and kept extremely minimal (currently under 100 mb), while still being a full distribution.
+.. Whenever possible, use current Official Repositories as the basis for your image. We recommend the Debian image since it’s very tightly controlled and kept minimal (currently under 150 mb), while still being a full distribution.
 
-可能であれば、自分のイメージの元として現在の公式リポジトリを使います。私たちは `Debian イメージ <https://registry.hub.docker.com/_/debian/>`_ を推奨します。これは、非常にしっかりと管理されており、ディストリビューションの中でも最小（現在は 100 MB 以下）になるよう維持されているからです。
+可能であれば、自分のイメージの元として現在の公式リポジトリを使います。私たちは `Debian イメージ <https://hub.docker.com/_/debian/>`_ を推奨します。これは、非常にしっかりと管理されており、ディストリビューションの中でも小さくなるよう（現在は 150 MB 以下に）維持されているからです。
 
 .. RUN
 
@@ -445,7 +444,7 @@ ENTRYPOINT
 
 .. For example, the Postgres Official Image uses the following script as its ENTRYPOINT:
 
-例えば、 `Postgres <https://registry.hub.docker.com/_/postgres/>`_ 公式イメージは次のスクリプトを ``ENTRYPOINT`` に使います。
+例えば、 `Postgres <https://hub.docker.com/_/postgres/>`_ 公式イメージは次のスクリプトを ``ENTRYPOINT`` に使います。
 
 .. code-block:: bash
 
@@ -603,10 +602,10 @@ Docker は ``ONBUILD`` コマンドを処理する前に、あらゆる子 ``Doc
     Hy
     Rails
 
-* `Go <https://registry.hub.docker.com/_/golang/>`_
-* `Perl <https://registry.hub.docker.com/_/perl/>`_
-* `Hy <https://registry.hub.docker.com/_/hylang/>`_
-* `Rails <https://registry.hub.docker.com/_/rails>`_
+* `Go <https://hub.docker.com/_/golang/>`_
+* `Perl <https://hub.docker.com/_/perl/>`_
+* `Hy <https://hub.docker.com/_/hylang/>`_
+* `Rails <https://hub.docker.com/_/rails>`_
 
 .. Additional resources:
 
