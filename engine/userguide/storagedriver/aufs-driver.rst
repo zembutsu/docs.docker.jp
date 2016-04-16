@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/storagedriver/aufs-driver/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/storagedriver/aufs-driver.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/userguide/storagedriver/aufs-driver.md
-.. check date: 2016/02/12
+.. check date: 2016/04/16
+.. Commits on Feb 23, 2016 2264bd95b681d1336b167c8ecd9b2ce65b963071
 .. ---------------------------------------------------------------------------
 
 .. Docker and AUFS in practice
@@ -192,9 +193,10 @@ As the docker daemon runs with the AUFS driver, the driver stores images and con
    :alt: AUFS メタデータ
 
 .. Inspecting the contents of the file relating to the top layer of the image shows the three image layers below it. They are listed in the order they are stacked.
+
 ..イメージの最上位レイヤのファイル内容を調べると、下層にある３つのイメージ・レイヤに関する情報が含まれています。これらは積み重ねられた順番で並べられています。
 
-.. The command below shows the contents of a metadata file in /var/lib/docker/aufs/layers/ that lists the the three directories that are stacked below it in the union mount. Remember, these directory names do no map to image layer IDs with Docker 1.10 and higher.
+.. The command below shows the contents of a metadata file in /var/lib/docker/aufs/layers/ that lists the three directories that are stacked below it in the union mount. Remember, these directory names do no map to image layer IDs with Docker 1.10 and higher.
 
 以下のコマンドは、 ``/var/lib/docker/aufs/layers/`` にあるメタデータ・ファイルを表示しています。ここで表示されるディレクトリの一覧は、ユニオン・マウントに積み重ねられている（スタックしている）ものです。ただし、覚えておかなくてはいけないのは、Docker 1.10 以上ではディレクトリ名とイメージ・レイヤ ID が一致しなくなりました。
 

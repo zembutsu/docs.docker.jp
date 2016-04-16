@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/storagedriver/btrfs-driver/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/storagedriver/btrfs-driver.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/userguide/storagedriver/btrfs-driver.md
-.. check date: 2016/02/12
+.. check date: 2016/04/16
+.. Commits on Mar 17, 2016 ca64269165fb30765d7ea0b0b231674df8da157b
 .. ---------------------------------------------------------------------------
 
 .. Docker and Btrfs in practice
