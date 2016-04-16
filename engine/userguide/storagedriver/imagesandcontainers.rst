@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/storagedriver/imagesandcontainers.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/userguide/storagedriver/imagesandcontainers.md
-.. check date: 2016/02/12
+.. check date: 2016/04/16
+.. Commits on Feb 18, 2016 a9c73b1a7ebe4ccd6893f37d2515be94000d081a
 .. ---------------------------------------------------------------------------
 
 .. Understand images, containers, and storage driver
@@ -143,7 +144,7 @@ Docker 社が提供している移行ツールは、コンテナとして実行�
    centos              latest              c8a648134623        4 weeks ago         196.6 MB
    ubuntu              15.04               c8be1ac8145a        7 weeks ago         131.3 MB
    
-   $ du -hs /var/lib/docker
+   $ sudo du -hs /var/lib/docker
    2.0G    /var/lib/docker
    
    $ time docker run --rm -v /var/lib/docker:/var/lib/docker docker/v1.10-migrator
@@ -316,23 +317,17 @@ Docker バージョン 1.10 より低いバージョンまでは、各レイヤ�
 
 これで、自分自身で実例を示して説明できるでしょう。 ``ubuntu:15.04`` イメージを使うため、まずは取得（pull）し、変更を加え、その変更に基づく新しいイメージを構築します。この作業を行う方法の１つが、 Dockerfile と ``docker build`` コマンドを使う方法です。
 
-.. In an empty directory, create a simple Dockerfile that starts with the
-.. ubuntu:15.04 image.
+.. In an empty directory, create a simple Dockerfile that starts with the ubuntu:15.04 image.
 
-1. 空っぽのディレクトリに、 ``Dockerfile`` を作成します。
-
-2. ubuntu:15.04 イメージから始める記述をします。
+1. 空っぽのディレクトリに、 ``Dockerfile`` を作成します。 ubuntu:15.04 イメージから始める記述をします。
 
 .. code-block:: bash
 
    FROM ubuntu:15.04
 
-..    Add a new file called “newfile” in the image’s /tmp directory with the
-.. text “Hello world” in it.
+.. Add a new file called “newfile” in the image’s /tmp directory with the text “Hello world” in it.
 
-3. 「newfile」 という名称の新規ファイルを、イメージの ``/tmp``  ディレクトリに作成します。
-
-4. ファイル内には「Hello world」の文字も入れます。
+2. 「newfile」 という名称の新規ファイルを、イメージの ``/tmp``  ディレクトリに作成します。ファイル内には「Hello world」の文字も入れます。
 
 .. When you are done, the Dockerfile contains two lines:
 
@@ -346,14 +341,11 @@ Docker バージョン 1.10 より低いバージョンまでは、各レイヤ�
 
 ..    Save and close the file.
 
-5. ファイルを保存して閉じます。
+3. ファイルを保存して閉じます。
 
-..    From a terminal in the same folder as your Dockerfile, run the following
-..  command:
+..    From a terminal in the same folder as your Dockerfile, run the following command:
 
-6. ターミナルから、作成した ``Dockerfile`` と同じディレクトリ上に移動します。
-
-7. 以下のコマンドを実行します。
+4. ターミナルから、作成した ``Dockerfile`` と同じディレクトリ上に移動し、以下のコマンドを実行します。
 
 .. code-block:: bash
 
@@ -540,7 +532,7 @@ BTFS、ZFS 、その他のドライバは、コピー・オン・ライトを異
 
 Docker のコピー・オン・ライト方式により、コンテナによるディスク容量の消費を減らすだけではなく、コンテナ起動時の時間も短縮します。起動時に、Docker は各コンテナごとに薄い書き込み可能なレイヤを作成します。次の図は ``changed-ubuntu`` イメージの読み込み専用のコピーを、５つのコンテナで共有しているものです。
 
-（翻訳者注：上記コマンドは、`/var/lib/docker`ディレクトリで実行してください。）
+（翻訳者注：上記コマンドは、 ``/var/lib/docker`` ディレクトリで実行してください。）
 
 .. If Docker had to make an entire copy of the underlying image stack each time it started a new container, container start times and disk space used would be significantly increased.
 

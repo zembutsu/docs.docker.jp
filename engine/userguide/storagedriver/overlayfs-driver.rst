@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/storagedriver/overlayfs-driver.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/userguide/storagedriver/overlayfs-driver.md
-.. check date: 2016/02/12
+.. check date: 2016/04/16
+.. Commits on Mar 17, 2016 ca64269165fb30765d7ea0b0b231674df8da157b
 .. ---------------------------------------------------------------------------
 
 .. Docker and OverlayFS in practice
@@ -102,7 +103,7 @@ OverlayFS は２つのレイヤだけ扱います。つまり、複数にレイ�
    Digest: sha256:457b05828bdb5dcc044d93d042863fba3f2158ae249a6db5ae3934307c757c54
    Status: Downloaded newer image for ubuntu:latest
 
-.. Each image layer has it’s own directory under /var/lib/docker/overlay/. This is where the the contents of each image layer are stored.
+.. Each image layer has it’s own directory under /var/lib/docker/overlay/. This is where the contents of each image layer are stored.
 
 ``/var/lib/docker/overlay`` 以下のディレクトリに、各イメージ・レイヤを置くディレクトリがあります。ここが、各イメージ・レイヤの内容が保管される場所です。
 

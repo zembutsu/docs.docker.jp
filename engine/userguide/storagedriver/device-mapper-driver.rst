@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/storagedriver/device-mapper-driver.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/userguide/storagedriver/device-mapper-driver.md
-.. check date: 2016/02/12
+.. check date: 2016/04/16
+.. Commits on Apr 13, 2016 783ebebff40ebdae27dc72b4c8c5151a01220a87
 .. ---------------------------------------------------------------------------
 
 .. Docker and the Device Mapper storage driver
@@ -110,7 +111,7 @@ Device Mapper は Linux カーネルのバージョン 2.6.9 以降、メイン�
    :scale: 60%
    :alt: ベース・デバイス
 
-.. If you look closely at the diagram you’ll see that it’s snapshots all the way down. Each image layer is a snapshot of the layer below it. The lowest layer of each image is a snapshot of the the base device that exists in the pool. This base device is a Device Mapper artifact and not a Docker image layer.
+.. If you look closely at the diagram you’ll see that it’s snapshots all the way down. Each image layer is a snapshot of the layer below it. The lowest layer of each image is a snapshot of the base device that exists in the pool. This base device is a Device Mapper artifact and not a Docker image layer.
 
 細かく図をみていくと、スナップショットは全体的に下っているのが分かるでしょう。各イメージ・レイヤは下にあるレイヤのスナップショットです。各イメージの最も下にあるレイヤは、プール上に存在するベース・デバイスのスナップショットです。このベース・デバイスとは ``Device Mapper`` のアーティファクト（成果物）であり、Docker イメージ・レイヤではありません。
 
@@ -283,124 +284,191 @@ Docker ホストは ``devicemapper`` ストレージ・ドライバを、デフ�
 
 プロダクションへのデプロイに適した設定は ``direct lvm`` です。このモードはシン・プールの作成にブロック・デバイスを使います。以下の手順は、Docker ホストが ``devicemapper`` ストレージ・ドライバを ``direct-lvm`` 設定を使えるようにします。
 
-..    Caution: If you have already run the Docker daemon on your Docker host and have images you want to keep, push them Docker Hub or your private Docker Trusted Registry before attempting this procedure.
+..    Caution: If you have already run the Engine daemon on your Docker host and have images you want to keep, push them Docker Hub or your private Docker Trusted Registry before attempting this procedure.
 
 .. caution::
 
-  既に Docker ホスト上で Docker デーモンを使っている場合は、イメージを維持する必要がありますので、処理を進める前に、それらのイメージを Docker Hub やプライベート Docker Trusted Registry に ``push`` しておきます。
+  既に Docker ホスト上で Docker Engine デーモンを使っている場合は、イメージを維持する必要がありますので、処理を進める前に、それらのイメージを Docker Hub やプライベート Docker Trusted Registry に ``push`` しておきます。
 
-.. The procedure below will create a 90GB data volume and 4GB metadata volume to use as backing for the storage pool. It assumes that you have a spare block device at /dev/xvdf with enough free space to complete the task. The device identifier and volume sizes may be be different in your environment and you should substitute your own values throughout the procedure. The procedure also assumes that the Docker daemon is in the stopped state.
+.. The procedure below will create a 90GB data volume and 4GB metadata volume to use as backing for the storage pool. It assumes that you have a spare block device at /dev/sdd with enough free space to complete the task. The device identifier and volume sizes may be be different in your environment and you should substitute your own values throughout the procedure. The procedure also assumes that the Docker daemon is in the stopped state.
 
-以下の手順は 90GB のデータ・ボリュームと 4GB のメタデータ・ボリュームを作成し、ストレージ・プールの基礎として使います。ここでは別のブロック・デバイス ``/dev/xvdf`` を持っており、処理するための十分な空き容量があると想定しています。デバイスの識別子とボリューム・サイズは皆さんの環境とは異なるかもしれません。手順を勧めるときは、自分の環境にあわせて適切に置き換えてください。また、手順は Docker デーモンが ``stop`` （停止）した状態から始めることを想定しています。
+以下の手順は 90GB のデータ・ボリュームと 4GB のメタデータ・ボリュームを作成し、ストレージ・プールの基礎として使います。ここでは別のブロック・デバイス ``/dev/sdd`` を持っており、処理するための十分な空き容量があると想定しています。デバイスの識別子とボリューム・サイズは皆さんの環境とは異なるかもしれません。手順を勧めるときは、自分の環境にあわせて適切に置き換えてください。また、手順は Docker デーモンが ``stop`` （停止）した状態から始めることを想定しています。
 
-..    Log in to the Docker host you want to configure and stop the Docker daemon.
+.. Log in to the Docker host you want to configure.
 
-1. Docker ホストにログインし、設定対象の Docker デーモンを停止します。
+1. 設定対象の Docker ホストにログインします。
 
-..    If it exists, delete your existing image store by removing the /var/lib/docker directory.
+.. If it is running, stop the Engine daemon.
 
-2. 終了したら、 ``/var/lib/docker`` ディレクトリに保管されている既存のイメージを削除します。
+2. Engine のデーモンが実行中であれば、停止します。
 
-.. code-block:: bash
+.. Install the logical volume management version 2.
 
-   $ sudo rm -rf /var/lib/docker
-
-..    Create an LVM physical volume (PV) on your spare block device using the pvcreate command.
-
-3. もう１つのブロックデバイス上で ``pvcreate`` コマンドを使い、 LVM 物理ボリューム（PV; Physical Volume）を作成します。
+3. LVM（論理ボリューム・マネジメント）のバージョン２をインストールします。
 
 .. code-block:: bash
 
-   $ sudo pvcreate /dev/xvdf
-   Physical volume `/dev/xvdf` successfully created
+   $ yum install lvm2
 
-..    The device identifier may be different on your system. Remember to substitute your value in the command above.
+.. Create a physical volume replacing /dev/sdd with your block device.
 
-このデバイス識別子は、皆さんの環境によって異なります。このコマンドを実行する時は、適切な値に書き換えてください。
-
-..    Create a new volume group (VG) called vg-docker using the PV created in the previous step.
-
-4. 先の手順で作成した物理ボリュームを使い、 ``vg-docker`` という名称の新しいボリューム・グループ（VG; Volume Group）を作成します。
+4. 物理ボリュームにブロック・デバイス ``/dev/sdd`` を作成します。
 
 .. code-block:: bash
 
-   $ sudo vgcreate vg-docker /dev/xvdf
-   Volume group `vg-docker` successfully created
+   $ pvcreate /dev/sdd
 
-..    Create a new 90GB logical volume (LV) called data from space in the vg-docker volume group.
+.. Create a ‘docker’ volume group.
 
-5. ``vg-docker`` ボリューム・グループ上の領域に、 ``data``  という名所の新しい 90GB の論理ボリューム（LV; Logical Volume）を作成します。
-
-.. code-block:: bash
-
-   $ sudo lvcreate -L 90G -n data vg-docker
-   Logical volume `data` created.
-
-..    The command creates an LVM logical volume called data and an associated block device file at /dev/vg-docker/data. In a later step, you instruct the devicemapper storage driver to use this block device to store image and container data.
-
-このコマンドは ``data`` と呼ばれる LVM 論理ボリュームを作成し、 ``/dev/vg-docker/data`` にであるブロック・デバイス・ファイルに関連づけます。後の手順で、 ``devicemapper`` ストレージ・ドライバがこのブロックデバイスを使い、イメージやコンテナのデータを保管するように指示します。
-
-..    If you receive a signature detection warning, make sure you are working on the correct devices before continuing. Signature warnings indicate that the device you’re working on is currently in use by LVM or has been used by LVM in the past.
-
-署名に関する警告が表示される場合は、作業を続ける前に、正しいデバイスが動作しているかどうか確認します。署名の警告が意味するのは、作業対象が LVM によって既に使われているか、あるいは過去に使われていたかです。
-
-..    Create a new logical volume (LV) called metadata from space in the vg-docker volume group.
-
-6. ``vg-docker`` ボリューム・グループ上の領域に、 ``metadata`` と呼ばれる新しい論議ボリューム(LV)を作成します。
+5. 'docker' ボリューム・グループを作成します。
 
 .. code-block:: bash
 
-   $ sudo lvcreate -L 4G -n metadata vg-docker
-   Logical volume `metadata` created.
+   $ vgcreate docker /dev/sdd
 
-..    This creates an LVM logical volume called metadata and an associated block device file at /dev/vg-docker/metadata. In the next step you instruct the devicemapper storage driver to use this block device to store image and container metadata.
+..    Create a thin pool named thinpool.
 
-これは ``metadata`` という名称の LVM 論理ボリュームを作成し、 ``/dev/vg-docker/metadata`` にあるブロック・デバイス・ファイルに関連づけられます。次のステップで、  ``devicemapper`` ストレージ・ドライバがこのブロックデバイスを使い、イメージやコンテナのデータを保管するように指示します。
+6. ``thinpool`` という名前のシン・プール（thin pool）を作成します。
 
-..    Start the Docker daemon with the devicemapper storage driver and the --storage-opt flags.
+..    In this example, the data logical is 95% of the ‘docker’ volume group size. Leaving this free space allows for auto expanding of either the data or metadata if space runs low as a temporary stopgap.
 
-7. Docker デーモンが ``devicemapper`` ストレージ・ドライバを使って起動するため、 ``--storage-opt`` フラグを使います。
-
-..    The data and metadata devices that you pass to the --storage-opt options were created in the previous steps.
-
-先ほどの手順で作成した ``data`` と ``metadata`` デバイスを ``--storage-opt`` オプションで指定します。
+この例では、「docker」ボリューム・グループの論理データ（data logical）は 95% の大きさとします。残りの容量は、データもしくはメタデータによって空き容量が少なくなったときの一時的な退避用に使います。
 
 .. code-block:: bash
 
-     $ sudo docker daemon --storage-driver=devicemapper --storage-opt dm.datadev=/dev/vg-docker/data --storage-opt dm.metadatadev=/dev/vg-docker/metadata &
-     [1] 2163
-     [root@ip-10-0-0-75 centos]# INFO[0000] Listening for HTTP on unix (/var/run/docker.sock)
-     INFO[0027] Option DefaultDriver: bridge
-     INFO[0027] Option DefaultNetwork: bridge
-     <出力を省略>
-     INFO[0027] Daemon has completed initialization
-     INFO[0027] Docker daemon commit=0a8c2e3 execdriver=native-0.2 graphdriver=devicemapper version=1.8.2
+   $ lvcreate --wipesignatures y -n thinpool docker -l 95%VG
+   $ lvcreate --wipesignatures y -n thinpoolmeta docker -l 1%VG
 
-..    It is also possible to set the --storage-driver and --storage-opt flags in the Docker config file and start the daemon normally using the service or systemd commands.
+..    Convert the pool to a thin pool.
 
-また、 ``--storage-driver`` と ``--storage-opt`` フラグは Docker の設定ファイルか、デーモンの起動に使う ``service`` や ``systemd`` コマンドでも指定できます。
-
-..    Use the docker info command to verify that the daemon is using data and metadata devices you created.
-
-8. ``docker info`` コマンドを使い、デーモンが先ほど作成した ``data`` と ``metadata`` デバイスが使われていることを確認します。
+7. プールをシン・プールに変換します。
 
 .. code-block:: bash
 
-   $ sudo docker info
-   INFO[0180] GET /v1.20/info
-   Containers: 0
-   Images: 0
-   Storage Driver: devicemapper
-    Pool Name: docker-202:1-1032-pool
-    Pool Blocksize: 65.54 kB
-    Backing Filesystem: xfs
-    Data file: /dev/vg-docker/data
-    Metadata file: /dev/vg-docker/metadata
-   [...]
+   $ lvconvert -y --zero n -c 512K --thinpool docker/thinpool --poolmetadata docker/thinpoolmeta
 
-..    The output of the command above shows the storage driver as devicemapper. The last two lines also confirm that the correct devices are being used for the Data file and the Metadata file.
+..    Configure autoextension of thin pools via an lvm profile.
 
-このコマンドの出力から、ストレージ・ドライバが ``devicemapper`` であることが分かります。最後の２行から、適切なデバイスが ``Datafile`` と ``Metadata file`` を使っていることも分かります。
+8. ``lvm`` プロフィールを経由してシン・プールを自動拡張するよう設定します。
+
+.. code-block:: bash
+
+   $ vi /etc/lvm/profile/docker-thinpool.profile
+
+..    Specify ‘thin_pool_autoextend_threshold’ value.
+
+9. 「thin_pool_autoextend_threshold」値を指定します。
+
+..    The value should be the percentage of space used before lvm attempts to autoextend the available space (100 = disabled).
+
+ここで指定する値は、先ほどの ``lvm`` の領域がどの程度まで到達すると、領域をどこまで自動拡張するかをパーセントで指定します（100 = 無効化です）。
+
+.. code-block:: bash
+
+   thin_pool_autoextend_threshold = 80
+
+..    Modify the thin_pool_autoextend_percent for when thin pool autoextension occurs.
+
+10. シン・プールの自動拡張が発生するタイミングを指定します。
+
+..    The value’s setting is the perentage of space to increase the thin pool (100 = disabled)
+
+シン・プールの領域を増やす空き容量のタイミングをパーセントで指定します（100 = 無効化です）。
+
+.. code-block:: bash
+
+   thin_pool_autoextend_percent = 20
+
+..    Check your work, your docker-thinpool.profile file should appear similar to the following:
+
+11. 確認をします。 ``docker-thinpool.profile`` は次のように表示されます。
+
+..    An example /etc/lvm/profile/docker-thinpool.profile file:
+
+``/etc/lvm/profile/docker-thinpool.profile`` ファイルの例：
+
+::
+
+   activation {
+       thin_pool_autoextend_threshold=80
+       thin_pool_autoextend_percent=20
+   }
+
+..    Apply your new lvm profile
+
+12. 新しい lvm プロフィールを適用します。
+
+.. code-block:: bash
+
+   $ lvchange --metadataprofile docker-thinpool docker/thinpool
+
+..    Verify the lv is monitored.
+
+13. ``lv`` をモニタしていることを確認します。
+
+   $ lvs -o+seg_monitor
+
+..    If Engine was previously started, clear your graph driver directory.
+
+14. Docker Engine を起動している場合は、グラフ・ドライバを直接クリアします。
+
+..    Clearing your graph driver removes any images and containers in your Docker installation.
+
+Docker インストール時のイメージとコンテナからグラフ・ドライバをクリアします。
+
+.. code-block:: bash
+
+   $ rm -rf /var/lib/docker/*
+
+..    Configure the Engine daemon with specific devicemapper options.
+
+15. Engine デーモンが devicemapper オプションを使うように設定します。
+
+..    There are two ways to do this. You can set options on the commmand line if you start the daemon there:
+
+設定には２つの方法があります。デーモンの起動時にオプションを指定するには、次のようにします。
+
+.. code-block:: bash
+
+   --storage-driver=devicemapper --storage-opt=dm.thinpooldev=/dev/mapper/docker-thinpool --storage-opt dm.use_deferred_removal=true
+
+..    You can also set them for startup in the daemon.json configuration, for example:
+
+あるいは ``daemon.json`` 設定ファイルで起動時に指定することもできます。例：
+
+::
+
+    {
+            "storage-driver": "devicemapper",
+            "storage-opts": [
+                    "dm.thinpooldev=/dev/mapper/docker-thinpool",
+                    "dm.use_deferred_removal=true"
+            ]
+    }
+
+..    Start the Engine daemon.
+
+16. Docker Engine デーモンを起動します。
+
+.. code-block:: bash
+
+   $ systemctl start docker
+
+.. After you start the Engine daemon, ensure you monitor your thin pool and volume group free space. While the volume group will auto-extend, it can still fill up. To monitor logical volumes, use lvs without options or lvs -a to see tha data and metadata sizes. To monitor volume group free space, use the vgs command.
+
+Docker Engine デーモンを起動したら、シン・プールとボリューム・グループの空き容量を確認します。ボリューム・グループは自動拡張しますので、容量を使い尽くす可能性があります。論理ボリュームを監視するには、オプションを指定せず ``lvs`` を使うか、 ``lvs -a`` でデータとメタデータの大きさを確認します。ボリューム・グループの空き容量を確認するには ``vgs`` コマンドを使います。
+
+.. Logs can show the auto-extension of the thin pool when it hits the threshold, to view the logs use:
+
+先ほど設定したシン・プールの閾値を越えたかどうかを確認するには、次のようにログを表示します。
+
+.. code-block:: bash
+
+   journalctl -fu dm-event.service
+
+.. If you run into repeated problems with thin pool, you can use the dm.min_free_space option to tune the Engine behavior. This value ensures that operations fail with a warning when the free space is at or near the minimum. For information, see the storage driver options in the Engine daemon reference.
+
+シン・プールで問題を繰り返す場合は、 ``dm.min_free_spaces`` オプションで Engine の挙動を調整できます。この値は最小値に近づいたとき、警告を出して操作させなくするものです。詳しい情報は :ref:`storage-driver-options` をご覧ください。
 
 .. Examine devicemapper structures on the host
 
@@ -535,6 +603,7 @@ Device Mapper の性能に対するその他の考慮
 * :doc:`selectadriver`
 * :doc:`aufs-driver`
 * :doc:`btrfs-driver`
+* :ref:`storage-driver-options`
 
 .. seealso:: 
 

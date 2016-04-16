@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/storagedriver/zfs-driver/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/storagedriver/zfs-driver.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/userguide/storagedriver/zfs-driver.md
-.. check date: 2016/02/12
+.. check date: 2016/04/16
+.. Commits on Feb 29, 2016 30c2770a736e6c731f4046431f0f4275dadbd536
 .. ---------------------------------------------------------------------------
 
 .. Docker and ZFS in practice
@@ -179,7 +180,7 @@ Ubuntu 14.04 LTS に Zfs をインストール
 
 .. code-block:: bash
 
-   $ sudo apt-get install software-properties-common
+   $ sudo apt-get install -y software-properties-common
    Reading package lists... Done
    Building dependency tree
    <出力を省略>
