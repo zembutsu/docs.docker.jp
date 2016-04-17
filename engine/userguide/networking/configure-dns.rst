@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/networking/configure-dns/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/configure-dns.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/userguide/networking/configure-dns.md
-.. check date: 2016/02/13
+.. check date: 2016/04/17
+.. Commits on Mar 1, 2016 9f8f28684f196ff3790ff1c738e81743821fc860
 .. ---------------------------------------------------------------------------
 
 .. Embedded DNS server in user-defined networks
@@ -24,7 +25,7 @@
 
 このセクションで扱う情報は、内蔵 DNS サーバ（embedded DNS server）をユーザ定義ネットワーク上で操作する方法です。ユーザ定義ネットワークに接続したコンテナは、 DNS の名前解決の仕方がデフォルトの ``bridge`` ネットワークとは異なります。
 
-..    Note: In order to maintain backward compatibility, the DNS configuration in default bridge network is retained with no behaviorial change. Please refer to the DNS in default bridge network for more information on DNS configuration in the default bridge network.
+..    Note: In order to maintain backward compatibility, the DNS configuration in default bridge network is retained with no behavioral change. Please refer to the DNS in default bridge network for more information on DNS configuration in the default bridge network.
 
 .. note::
 
@@ -49,7 +50,7 @@ Docker 1.10 では、docker デーモンに内蔵 DNS サーバが実装され�
 
 ``--dns=IPアドレス...`` 、 ``--dns-search=ドメイン名...`` 、 ``--dns-opt=オプション...`` の指定がなければ、 Docker はホストマシン上（ ``docker`` デーモンの実行環境 ）の ``/etc/resolv.conf`` を使います。この時、Docker デーモンは、ホスト上のオリジナル・ファイル上にある ``nameserver`` のエントリ、ここにある localhost の IP アドレス全てをフィルタします。
 
-.. Filtering is necessary because all localhost addresses on the host are unreachable from the container’s network. After this filtering, if there are no more nameserver entries left in the container’s /etc/resolv.conf file, the daemon adds public Google DNS nameservers (8.8.8.8 and 8.8.4.4) to the container’s DNS configuration. If IPv6 is enabled on the daemon, the public IPv6 Google DNS nameservers will also be added (2001:4860:4860::8888 and 2001:4860:4860::8844).
+. Filtering is necessary because all localhost addresses on the host are unreachable from the container’s network. After this filtering, if there are no more nameserver entries left in the container’s /etc/resolv.conf file, the daemon adds public Google DNS nameservers (8.8.8.8 and 8.8.4.4) to the container’s DNS configuration. If IPv6 is enabled on the daemon, the public IPv6 Google DNS nameservers will also be added (2001:4860:4860::8888 and 2001:4860:4860::8844).
 
 フィルタリングが必要なのは、コンテナのネットワークから、ホスト上の localhost のアドレス全てに到達できるとは限らないためです。フィルタリング後は、コンテナ内の ``/etc/resolv.conf`` ファイルに ``nameserver`` のエントリは一切無くなります。そしてデーモンはコンテナの DNS 設定にパブリックな Google DNS ネームサーバ（ 8.8.8.8 と 8.8.4.4 ）を追加します。デーモンで IPv6 が有効であれば、パブリックな Google の IPv6 DNS ネームサーバ（ 2001:4860:4860::8888 と 2001:4860:4860::8844 ）を追加します。
 

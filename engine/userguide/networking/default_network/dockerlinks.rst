@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/default_network/dockerlinks.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/userguide/networking/default_network/dockerlinks.md
-.. check date: 2016/02/13
+.. check date: 2016/04/17
+.. Commits on Feb 2, 2016 6f863cfa18f30d1df2f1f81b2b4f456dee2a73b8
 .. ---------------------------------------------------------------------------
 
 .. Legacy container links
@@ -136,6 +137,12 @@
 
 リンクしているシステムに接続
 ==============================
+
+.. Note: This section covers the legacy link feature in the default bridge network. Please refer to linking containers in user-defined networks for more information on links in user-defined networks.
+
+.. note::
+
+   このセクションが扱うのはデフォルトの ``bridge`` ネットワークにおけるレガシーのリンク機能です。ユーザ定義ネットワーク上での詳しい情報は、:ref:`ユーザ定義ネットワークにおけるコンテナのリンクの仕方 <linking-containers-in-user-defined-networks>` をご覧ください。
 
 .. Network port mappings are not the only way Docker containers can connect to one another. Docker also has a linking system that allows you to link multiple containers together and send connection information from one to another. When containers are linked, information about a source container can be sent to a recipient container. This allows the recipient to see selected data describing aspects of the source container.
 

@@ -183,7 +183,7 @@ Btrfs を使うと、沢山の小さなファイルの書き込みと更新は�
 .. _configuring-docker-with-btrfs:
 
 Docker で Btrfs を設定
-====================
+==============================
 
 .. The btrfs storage driver only operates on a Docker host where /var/lib/docker is mounted as a Btrfs filesystem. The following procedure shows how to configure Btrfs on Ubuntu 14.04 LTS.
 

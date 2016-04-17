@@ -3,7 +3,7 @@
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/get-started-overlay.md
    doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/userguide/networking/get-started-overlay.md
-.. check date: 2016/04/16
+.. check date: 2016/04/17
 .. Commits on Feb 25, 2016 db5ded0dfc28c71276acf8500fabe3c64c15fbe1
 .. ---------------------------------------------------------------------------
 
@@ -81,28 +81,29 @@ Docker マルチホスト・ネットワーキング機能を使うのに、Dock
 
 新しいマシンを作成すると、この手順で Docker エンジンがホスト上に追加されます。つまりこれは、Consul を手動でインストールするのではなく、 `Docker Hub 上の consul イメージ <https://hub.docker.com/r/progrium/consul/>`_ を使用するインスタンスの作成を意味します。インストールは次の手順で行います。
 
-..    Start a progrium/consul container running on the mh-keystore machine.
+.. Set your local environment to the mh-keystore machine.
 
-3. 実行中の ``mh-keystore`` マシン上で ``progrium/consul`` コンテナを起動します。
-
-.. code-block:: bash
-
-   $  docker $(docker-machine config mh-keystore) run -d \
-       -p "8500:8500" \
-       -h "consul" \
-       progrium/consul -server -bootstrap
-
-..    A bash expansion $(docker-machine config mh-keystore) is used to pass the connection configuration to the docker run command. The client starts a progrium/consul image running in the mh-keystore machine. The server is called consul and is listening on port 8500.
-
-``docker run`` コマンドを実行するとき、bash 変数展開 ``$(docker-machine config mh-keystore)`` を使い、接続と設定を行います。実行中の ``mh-keystore`` マシン上で 、クライアントは ``progrium/consul`` イメージを開始します。このサーバは ``consul`` と呼ばれており、ポート ``8500`` を開きます。
-
-..    Set your local environment to the mh-keystore machine.
-
-4. ローカルに ``mh-keystore`` マシンの環境変数を設定します。
+3. ローカルの環境変数を ``mh-keystore`` マシンに設定します。
 
 .. code-block:: bash
 
    $  eval "$(docker-machine env mh-keystore)"
+
+
+.. Start a progrium/consul container running on the mh-keystore machine.
+
+4. ``mh-keystore`` マシン上で ``progrium/consul`` コンテナを起動します。
+
+.. code-block:: bash
+
+   $  docker run -d \
+       -p "8500:8500" \
+       -h "consul" \
+       progrium/consul -server -bootstrap
+
+..    The client starts a progrium/consul image running in the mh-keystore machine. The server is called consul and is listening on port 8500.
+
+実行中の ``mh-keystore`` マシン上で 、クライアントは ``progrium/consul`` イメージを開始します。このサーバは ``consul`` と呼ばれており、ポート ``8500`` を開きます。
 
 ..    Run the docker ps command to see the consul container.
 

@@ -3,7 +3,8 @@
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/default_network/container-communication.md
    doc version: 1.10
       https://github.com/docker/docker/commits/master/docs/userguide/networking/default_network/container-communication.md
-.. check date: 2016/02/13
+.. check date: 2016/04/17
+.. Commits on Apr 13, 2016 30859c34569b900d3d798ad55f48f3d4fd7dc32c
 .. ---------------------------------------------------------------------------
 
 .. Understand container communication
@@ -72,6 +73,10 @@ Docker のデフォルト転送ルールは、全ての外部ソースの IP ア
 .. code-block:: bash
 
    $ iptables -I DOCKER -i ext_if ! -s 8.8.8.8 -j DROP
+
+.. where ext_if is the name of the interface providing external connectivity to the host.
+
+*ext_if* の場所は、インターフェースが提供するホスト側に接続できる名前です。
 
 .. Communication between containers
 

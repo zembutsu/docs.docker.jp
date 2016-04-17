@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/networking/default_network/build-bridges/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/default_network/build-bridges.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/userguide/networking/default_network/build-bridges.md
-.. check date: 2016/02/13
+.. check date: 2016/04/17
+.. Commits on Jan 12, 2016 0ba6a128eeee3f1519fa3842a6847402a7eafa05
 .. ---------------------------------------------------------------------------
 
 .. Build your own bridge

@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/networking/default_network/ipv6/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/default_network/ipv6.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/userguide/networking/default_network/ipv6.md
-.. check date: 2016/02/13
+.. check date: 2016/04/17
+.. Commits on Nov 3, 2016 9ef855f9e5fa8077468bda5ce43155318c58e60e
 .. ---------------------------------------------------------------------------
 
 .. IPv6 with Docker
