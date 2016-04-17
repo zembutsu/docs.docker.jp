@@ -492,7 +492,7 @@ CMD
 
 .. The main purpose of a CMD is to provide defaults for an executing container. These defaults can include an executable, or they can omit the executable, in which case you must specify an ENTRYPOINT instruction as well.
 
-``CMD`` の主な目的は、 ** コンテナ実行時のデフォルトを提供します** 。 デフォルトには、実行可能なコマンドが含まれているか、あるいは省略されるかもしれません。省略時は ``ENTRYPOINT`` 命令で同様に指定する必要があります。
+``CMD`` の主な目的は、 **コンテナ実行時のデフォルトを提供します** 。 デフォルトには、実行可能なコマンドが含まれているか、あるいは省略されるかもしれません。省略時は ``ENTRYPOINT`` 命令で同様に指定する必要があります。
 
 ..     Note: If CMD is used to provide default arguments for the ENTRYPOINT instruction, both the CMD and ENTRYPOINT instructions should be specified with the JSON array format.
 
