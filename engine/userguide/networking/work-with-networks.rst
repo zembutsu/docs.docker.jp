@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/networking/work-with-networks/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/work-with-networks.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/userguide/networking/work-with-networks.md
-.. check date: 2016/02/13
+.. check date: 2016/04/16
+.. Commits on Mar 29, 2016 a4d4243b9105d03b1e519729e8e8fd4b16084760
 .. ---------------------------------------------------------------------------
 
 .. Work with network commands
@@ -97,7 +98,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 また、必要がなくても Docker Swarm をクラスタ管理用にインストールするのも良い考えでしょう。Swarm はクラスタの設定を手助けするために、洗練されたディスカバリとサーバ管理機能を持っています。
 
-.. When you create a network, Engine creates a non-overlapping subnetwork for the network by default. You can override this default and specify a subnetwork directly using the the --subnet option. On a bridge network you can only create a single subnet. An overlay network supports multiple subnets.
+.. When you create a network, Engine creates a non-overlapping subnetwork for the network by default. You can override this default and specify a subnetwork directly using the --subnet option. On a bridge network you can only create a single subnet. An overlay network supports multiple subnets.
 
 デフォルトではネットワーク作成時、エンジンはサブネットが重複しないネットワークを作成します。このデフォルトの挙動は変更できます。特定のサブネットワークを直接指定するには ``--subnet`` オプションを使います。 ``bridge`` ネットワーク上では１つだけサブネットを作成できます。 ``overlay`` ネットワークでは、複数のサブネットをサポートしています。
 
@@ -107,9 +108,9 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
    ネットワークの作成時は ``--subnet`` オプションの指定を強く推奨します。 ``--subnet`` を指定しなければ、docker デーモンはネットワークに対してサブネットを自動的に割り当てます。そのとき、Docker が管理していない基盤上の別サブネットと重複する可能性が有り得ます。このような重複により、コンテナがネットワークに接続するときに問題や障害を引き起こします。
 
-.. In addition to the --subnetwork option, you also specify the --gateway --ip-range and --aux-address options.
+.. In addition to the --subnet option, you also specify the --gateway --ip-range and --aux-address options.
 
-``--subnetwork`` オプションの他にも、 ``--gateway`` ``--ip-range`` ``--aux-address`` オプションが指定可能です。
+``--subnet`` オプションの他にも、 ``--gateway`` ``--ip-range`` ``--aux-address`` オプションが指定可能です。
 
 .. code-block:: bash
 
@@ -150,9 +151,23 @@ Docker エンジンをインストールすると、Docker エンジンは自動
    * - ``com.docker.network.mtu``
      - ``--mtu``
      - コンテナのネットワーク MTU を設定
-   * - ``com.docker.network.enable_ipv6``
+
+.. The following arguments can be passed to docker network create for any network driver.
+
+``docker network create`` 実行時、以下の引数をあらゆるネットワーク・ドライバで指定できます。
+
+.. list-table:
+   :header-rows: 1
+
+   * - 引数
+     - 同等
+     - 説明
+   * - ``--internal``
+     - －
+     - ネットワークから外部へのアクセスを制限
+   * - ``--ipv6``
      - ``--ipv6``
-     - IPv6 ネットワークの有効化
+     - IPv6 ネットワーク機能の有効化
 
 .. For example, now let’s use -o or --opt options to specify an IP address binding when publishing ports:
 

@@ -1,16 +1,11 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/networking/get-started-overlay/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/get-started-overlay.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/userguide/networking/get-started-overlay.md
-.. check date: 2016/02/13
+.. check date: 2016/04/16
+.. Commits on Feb 25, 2016 db5ded0dfc28c71276acf8500fabe3c64c15fbe1
 .. ---------------------------------------------------------------------------
-
-
-.. -*- coding: utf-8 -*-
-.. https://docs.docker.com/engine/userguide/networking/get-started-overlay/
-.. doc version: 1.9
-.. check date: 2016/01/03
 
 .. Get started with multi-host networking
 
