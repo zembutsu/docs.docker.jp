@@ -1,7 +1,7 @@
 .. -*- coding: utf-8 -*-
 .. 
-.. doc version: 1.10
-.. check date: 2016/02/06
+.. doc version: 1.11
+.. check date: 2016/04/17
 .. -----------------------------------------------------------------------------
 
 .. engine admin toc
@@ -16,6 +16,7 @@
    :maxdepth: 3
    :caption: 管理
 
+   formatting.rst
    host_integration.rst
    systemd.rst
    dsc.rst
