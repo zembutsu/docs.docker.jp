@@ -163,11 +163,11 @@ VirtualBox を実行中の場合、インストーラを実行する前に停止
 
 ..    install Docker Toolbox by double-clicking the installer.
 
-3. インストーラーをダブルクリックして、Docker Toolbox をインストールします。
+3. インストーラをダブルクリックして、Docker Toolbox をインストールします。
 
 ..    The installer launches the “Setup -  Docker Toolbox” dialog.
 
-インストーラーは「Setup - Docker Toolbox」ダイアログを開きます。
+インストーラは「Setup - Docker Toolbox」ダイアログを開きます。
 
 .. image:: ./images/win-welcome.png
    :alt: Docker Toolbox のインストール
@@ -213,7 +213,7 @@ VirtualBox を実行中の場合、インストーラを実行する前に停止
 
 .. When it completes, the installer provides you with some information you can use to complete some common tasks.
 
-完了すると、インストーラーは一般的な作業に関する表示を行います。
+完了すると、インストーラは一般的な作業に関する表示を行います。
 
 .. image:: ./images/windows-finish.png
    :alt: すべて完了です。

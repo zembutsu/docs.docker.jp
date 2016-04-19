@@ -107,7 +107,7 @@ VirtualBox を実行中の場合、インストーラを実行する前に停止
 
 ..    The installer launches the “Install Docker Toolbox” dialog.
 
-インストーラーは「Docker Toolbox のインストール」ダイアログを開きます。
+インストーラは「Docker Toolbox のインストール」ダイアログを開きます。
 
 .. image:: ./images/mac-welcome-page.png
    :alt: Docker Toolbox のインストール
@@ -155,7 +155,7 @@ VirtualBox を実行中の場合、インストーラを実行する前に停止
 
 ..  When it completes, the installer provides you with some information you can use to complete some common tasks.
 
-完了すると、インストーラーは一般的な作業に関する表示を行います。
+完了すると、インストーラは一般的な作業に関する表示を行います。
 
 .. image:: ./images/mac-page-finished.png
    :alt: すべて完了です。
