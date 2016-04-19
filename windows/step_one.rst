@@ -38,7 +38,7 @@ Windows ユーザは Docker ツールボックス（Toolbox）を使って Docke
 
 .. Because the Docker Engine daemon uses Linux-specific kernel features, you can’t run Docker Engine natively in Windows. Instead, you must use the Docker Machine command, docker-machine, to create and attach to a small Linux VM on your machine. This VM hosts Docker Engine for you on your Windows system.
 
-Docker Engine デーモンは LInux 固有の kernel 機能を使います。そのため、Windows では Docker Engine をネイティブに扱えません。その代わりに ``docker-machine`` コマンドを使い、自分のマシン上に小さな Linux 仮想マシンを作成し、そこに接続します。この仮想マシンは Windows システム上で Docker Engine を動かします。
+Docker Engine デーモンは Linux 固有の kernel 機能を使います。そのため、Windows では Docker Engine をネイティブに扱えません。その代わりに ``docker-machine`` コマンドを使い、自分のマシン上に小さな Linux 仮想マシンを作成し、そこに接続します。この仮想マシンは Windows システム上で Docker Engine を動かします。
 
 .. Step 1: Check your version
 
