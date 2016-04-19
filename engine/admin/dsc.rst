@@ -1,11 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/admin/dsc/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/dsc.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/admin/dsc.md
-   doc version: 1.9
-      https://github.com/docker/docker/commits/master/docs/articles/dsc.md
-.. check date: 2016/02/13
+.. check date: 2016/04/19
+.. Commits on Jan 27, 2016 e310d070f498a2ac494c6d3fde0ec5d6e4479e14
 .. ---------------------------------------------------------------------------
 
 .. Using PowerShell DSC

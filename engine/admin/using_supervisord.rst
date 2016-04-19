@@ -1,16 +1,15 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/admin/using_supervisord/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/using_supervisord.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/admin/using_supervisord.md
-   doc version: 1.9
-      https://github.com/docker/docker/commits/master/docs/articles/using_supervisord.md
-.. check date: 2016/02/13
+.. check date: 2016/04/19
+.. Commits on Jan 27, 2016 e310d070f498a2ac494c6d3fde0ec5d6e4479e14
 .. ---------------------------------------------------------------------------
 
 .. Using Supervisor with Docker
 
-.. _using-pupet:
+.. _using-supervisor-with-docker:
 
 =======================================
 Supervisor を Docker で使う

@@ -1,12 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/admin/configuring/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/configuring.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/admin/configuring.md
-   doc version: 1.9
-      https://github.com/docker/docker/commits/master/docs/articles/configuring.md
-.. check date: 2016/02/13
-.. ---------------------------------------------------------------------------
+.. check date: 2016/04/19
+.. Commits on Mar 22, 2016 8af4f89cba09105f3d581926aca6e231326f7054.. ---------------------------------------------------------------------------
 
 .. Configuring and running Docker on various distributions
 
@@ -103,6 +101,27 @@ docker デーモンを直接設定
 .. The command line reference has the complete list of daemon flags with explanations.
 
 :doc:`デーモンのフラグ一覧 </engine/reference/commandline/daemon>` にコマンドライン・リファレンスと説明があります。
+
+.. Daemon debugging
+
+.. _daemon-debugging:
+
+デーモンのデバッグ
+--------------------
+
+.. As noted above, setting the log level of the daemon to “debug” or enabling debug mode with -D allows the administrator or operator to gain much more knowledge about the runtime activity of the daemon. If faced with a non-responsive daemon, the administrator can force a full stack trace of all threads to be added to the daemon log by sending the SIGUSR1 signal to the Docker daemon. A common way to send this signal is using the kill command on Linux systems. For example, kill -USR1 <daemon-pid> sends the SIGUSR1 signal to the daemon process, causing the stack dump to be added to the daemon log.
+
+上記に捕捉すると、管理者やオペレータがデーモンの実行時の挙動に関して更に詳細な情報を得るには、デーモンのログレベルを「debug」に設定するか、 ``-D`` オプションを付けてデバッグ・モードにします。デーモンからの応答が無くても、Docker デーモンに対して ``SIGUSR1``  シグナルを送信することで、デーモンのログに追加された全てのスレッドを強制的に追跡します。Linux システム上でシグナルを送る一般的な方法は ``kill`` シグナルを使います。例えば ``kill -USR1 <デーモンのpid>`` を実行すると、デーモンのプロセスに ``SIGUSR1`` シグナルを送信し、スタック・ダンプをデーモンのログに追加します。
+
+..    Note: The log level setting of the daemon must be at least “info” level and above for the stack trace to be saved to the logfile. By default the daemon’s log level is set to “info”.
+
+.. note::
+
+  スタック・トレースをログに保存するには、 デーモンのログレベルの設定は少なくとも「info」レベル以上にする必要があります。デフォルトのデーモンのログレベルは「info」に設定されています。
+
+.. The daemon will continue operating after handling the SIGUSR1 signal and dumping the stack traces to the log. The stack traces can be used to determine the state of all goroutines and threads within the daemon.
+
+デーモンは ``SIGUSR1`` シグナルを受け取った後、スタック・トレースをダンプしてログに出力します。スタック・トレースはデーモン内部の全ての goroutine の状態とスレッドの把握に使えます。
 
 .. Ubuntu
 
@@ -229,7 +248,7 @@ Upstart ジョブのログは、デフォルトでは ``/var/log/upstart`` に�
 
    $ tail -f /var/log/upstart/docker.log
    INFO[0000] Loading containers: done.
-   INFO[0000] docker daemon: 1.6.0 4749651; execdriver: native-0.2; graphdriver: aufs
+   INFO[0000] Docker daemon commit=1b09a95-unsupported graphdriver=aufs version=1.11.0-dev
    INFO[0000] +job acceptconnections()
    INFO[0000] -job acceptconnections() = OK (0)
    INFO[0000] Daemon has completed initialization
@@ -394,7 +413,7 @@ systemd は自身で journal と呼ばれるロギング・システムを持っ
    May 06 00:22:06 localhost.localdomain docker[2495]: time="2015-05-06T00:22:06Z" level="info" msg="-job init_networkdriver() = OK (0)"
    May 06 00:22:06 localhost.localdomain docker[2495]: time="2015-05-06T00:22:06Z" level="info" msg="Loading containers: start."
    May 06 00:22:06 localhost.localdomain docker[2495]: time="2015-05-06T00:22:06Z" level="info" msg="Loading containers: done."
-   May 06 00:22:06 localhost.localdomain docker[2495]: time="2015-05-06T00:22:06Z" level="info" msg="docker daemon: 1.5.0-dev fc0329b/1.5.0; execdriver: native-0.2; graphdriver: devicemapper"
+   May 06 00:22:06 localhost.localdomain docker[2495]: time="2015-05-06T00:22:06Z" level="info" msg="Docker daemon commit=1b09a95-unsupported graphdriver=aufs version=1.11.0-dev""
    May 06 00:22:06 localhost.localdomain docker[2495]: time="2015-05-06T00:22:06Z" level="info" msg="+job acceptconnections()"
    May 06 00:22:06 localhost.localdomain docker[2495]: time="2015-05-06T00:22:06Z" level="info" msg="-job acceptconnections() = OK (0)"
 

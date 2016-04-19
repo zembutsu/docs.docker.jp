@@ -1,11 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/admin/systemd/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/systemd.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/admin/systemd.md
-   doc version: 1.9
-      https://github.com/docker/docker/commits/master/docs/articles/systemd.md
-.. check date: 2016/02/13
+.. check date: 2016/04/19
+.. Commits on Mar 28, 2016 ea1d8d6f82ee76f35b98b6ce2e3c543f24cf4b6c
 .. ---------------------------------------------------------------------------
 
 .. Control and configure Docker with systemd
@@ -89,7 +88,7 @@ Docker デーモンの設定を変更するには、多くのフラグを使う�
 
 .. code-block:: bash
 
-   $ sudo systemctl show docker | grep EnvironmentFile
+   $ systemctl show docker | grep EnvironmentFile
    EnvironmentFile=-/etc/sysconfig/docker (ignore_errors=yes)
 
 .. Alternatively, find out where the service file is located:
@@ -98,9 +97,9 @@ Docker デーモンの設定を変更するには、多くのフラグを使う�
 
 .. code-block:: bash
 
-   $ sudo systemctl status docker | grep Loaded
-      Loaded: loaded (/usr/lib/systemd/system/docker.service; enabled)
-   $ sudo grep EnvironmentFile /usr/lib/systemd/system/docker.service
+   $ systemctl status docker | grep Loaded
+   FragmentPath=/usr/lib/systemd/system/docker.service
+   $ grep EnvironmentFile /usr/lib/systemd/system/docker.service
    EnvironmentFile=-/etc/sysconfig/docker
 
 .. You can customize the Docker daemon options using override files as explained in the HTTP Proxy example below. The files located in /usr/lib/systemd/system or /lib/systemd/system contain the default options and should not be edited.
@@ -226,7 +225,7 @@ HTTP プロキシサーバの背後にいる場合、ここでは会社で設定
 
 .. code-block:: bash
 
-   $ sudo systemctl show docker --property Environment
+   $ systemctl show --property=Environment docker
    Environment=HTTP_PROXY=http://proxy.example.com:80/
 
 .. Restart Docker:
