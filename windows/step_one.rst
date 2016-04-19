@@ -262,7 +262,7 @@ Windows セキュリティのダイアログが表示されたら、プログラ
 
 .. Typically, the above steps work out-of-the-box, but some scenarios can cause problems. If your docker run hello-world didn’t work and resulted in errors, check out Troubleshooting for quick fixes to common problems.
 
-通常、これらの手順は特に何も考えなくても実行できますが、もしかしたら問題が発生する場合があるかもしれません。 ```docker run hello-world`` が実行できずエラーになる場合は、一般的な問題を解決するための :doc:`トラブルシューティング </toolbox/troubleshoot>` をご覧ください。
+通常、これらの手順は特に何も考えなくても実行できますが、もしかしたら問題が発生する場合があるかもしれません。 ``docker run hello-world`` が実行できずエラーになる場合は、一般的な問題を解決するための :doc:`トラブルシューティング </toolbox/troubleshoot>` をご覧ください。
 
 .. A Windows specific problem you might encounter has to do with the NDIS6 host network filter driver, which is known to cause issues on some Windows versions. For Windows Vista systems and newer, VirtualBox installs NDIS6 driver by default. Issues can range from system slowdowns to networking problems for the virtual machine (VM). If you notice problems, re-run the Docker Toolbox installer, and select the option to install VirtualBox with the NDIS5 driver.
 

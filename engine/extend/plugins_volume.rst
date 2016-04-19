@@ -38,7 +38,7 @@ Docker ボリューム・プラグインとは、Amazon EBS のような外部�
 
 .. This command passes the volumename through to the volume plugin as a user-given name for the volume. The volumename must not begin with a /.
 
-このコマンドは、ユーザがボリュームで使う名前を ``volumename`` としてボリューム・プラグインに渡しています。 ```volumename`` は ``/`` で始まってはいけません。
+このコマンドは、ユーザがボリュームで使う名前を ``volumename`` としてボリューム・プラグインに渡しています。 ``volumename`` は ``/`` で始まってはいけません。
 
 .. By having the user specify a volumename, a plugin can associate the volume with an external volume beyond the lifetime of a single container or container host. This can be used, for example, to move a stateful container from one server to another.
 

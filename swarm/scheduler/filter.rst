@@ -69,7 +69,7 @@ Swarm フィルタ
 
 .. When creating a container or building an image, you use a constraint or health filter to select a subset of nodes to consider for scheduling.
 
-コンテナ作成時とイメージ構築時に、 ```constraint`` か ``health`` フィルタを使い、コンテナをスケジューリングするノード群を選択できます。
+コンテナ作成時とイメージ構築時に、 ``constraint`` か ``health`` フィルタを使い、コンテナをスケジューリングするノード群を選択できます。
 
 .. Use a constraint Filter
 

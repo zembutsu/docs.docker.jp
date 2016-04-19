@@ -33,7 +33,7 @@ Swarm マネージャを作成するには、以下の構文を使います。
 
 .. For example, you can use manage to create a Swarm manager in a high-availability cluster with other managers:
 
-例えば、Swarm マネージャを ```manage` で作成時に、他のマネージャと高可用性クラスタを形成するには、次のように実行します。
+例えば、Swarm マネージャを ``manage`` で作成時に、他のマネージャと高可用性クラスタを形成するには、次のように実行します。
 
 .. code-block:: bash
 

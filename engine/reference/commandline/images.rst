@@ -155,7 +155,7 @@ v2 移行の形式を使うイメージには、 ``digest`` と呼ばれる識�
 
 .. When pushing or pulling to a 2.0 registry, the push or pull command output includes the image digest. You can pull using a digest value. You can also reference by digest in create, run, and rmi commands, as well as the FROM image reference in a Dockerfile.
 
-2.0 レジストリに対して送信（push） や取得（pull ）する場合は、 ```push`` と ``pull`` コマンドの出力にイメージの digest も含まれます。digest 値を使っても ``pull`` できます。digest 値が使えるのは ``create`` 、 ``run`` 、 ``rmi`` の各コマンドと、 Dockerfile のイメージを参照する ``FROM`` でも同様です。
+2.0 レジストリに対して送信（push） や取得（pull ）する場合は、 ``push`` と ``pull`` コマンドの出力にイメージの digest も含まれます。digest 値を使っても ``pull`` できます。digest 値が使えるのは ``create`` 、 ``run`` 、 ``rmi`` の各コマンドと、 Dockerfile のイメージを参照する ``FROM`` でも同様です。
 
 .. Filtering
 

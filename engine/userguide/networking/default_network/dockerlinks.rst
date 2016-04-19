@@ -310,7 +310,7 @@ Docker はリンクするコンテナに対する様々な環境変数を作成�
 
 .. Docker sets an <alias>_NAME environment variable for each target container listed in the --link parameter. For example, if a new container called web is linked to a database container called db via --link db:webdb, then Docker creates a WEBDB_NAME=/web/webdb variable in the web container.
 
-Docker は ``--list`` パラメータで指定したターゲットコンテナごとに ``<エイリアス>_名前`` 環境変数を作成します。たとえば、新しいコンテナ ``web`` がデータベース・コンテナ ``db`` とリンクするのに ```--link db:webdb` を指定します。それから Docker は ``web`` コンテナ内で ``WEBDB_NAME=/web/webdb`` 環境変数を作成します。
+Docker は ``--list`` パラメータで指定したターゲットコンテナごとに ``<エイリアス>_名前`` 環境変数を作成します。たとえば、新しいコンテナ ``web`` がデータベース・コンテナ ``db`` とリンクするのに ``--link db:webdb`` を指定します。それから Docker は ``web`` コンテナ内で ``WEBDB_NAME=/web/webdb`` 環境変数を作成します。
 
 .. Docker also defines a set of environment variables for each port exposed by the source container. Each variable has a unique prefix in the form:
 
