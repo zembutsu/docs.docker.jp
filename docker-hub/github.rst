@@ -153,7 +153,7 @@ organization の管理者は、organization の「Settings」画面にある「T
 * リポジトリの Docker Hub ユーザか組織の名前空間は、Docker Hub のアカウント名か、自分のアカウントが所属している Docker Hub グループ名のどちらです。
 * イメージを構築する Docker リポジトリ名。
 * リポジトリに対する説明。
-* Docker リポジトリに対する「Public」または「Private」の可視性。このアクセス権の変更は、リポジトリ作成後でも可能です。プライベート・リポジトリを Docker Hub の名前空間に使うと、自分とコラボレータ（collaborators）のみに見えるようになり、これらのユーザのみリポジトリからイメージの表示や取得が可能になります。チームのユーザや異なったユーザに対して異なったイメージ・タグを許可するなど、より細かなアクセス権限の設定ができます。おｓのためには、Docker Hub のプライベート・リポジトリの管理権限を持つユーザによって、権限を付与する必要があります。
+* Docker リポジトリに対する「Public」または「Private」の可視性。このアクセス権の変更は、リポジトリ作成後でも可能です。プライベート・リポジトリを Docker Hub の名前空間に使うと、自分とコラボレータ（collaborators）のみに見えるようになり、これらのユーザのみリポジトリからイメージの表示や取得が可能になります。チームのユーザや異なったユーザに対して異なったイメージ・タグを許可するなど、より細かなアクセス権限の設定ができます。そのためには、Docker Hub のプライベート・リポジトリの管理権限を持つユーザによって、権限を付与する必要があります。
 * GitHub リポジトリにコミットが push されたとき、Docker イメージの再構築を有功化・無効化します。
 
 .. You can also select one or more: - The git branch/tag, - A repository sub-directory to use as the context, - The Docker image tag name

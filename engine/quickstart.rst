@@ -300,7 +300,7 @@ TCP ポートにサービスを割り当て
 
 .. You now have an image state from which you can create new instances.
 
-コミットによって新しいイメージを手に入れました。これを使い、新しいインスタンス（訳者注：コンテナのこと）を作成可能でうｓ。
+コミットによって新しいイメージを手に入れました。これを使い、新しいインスタンス（訳者注：コンテナのこと）を作成可能です。
 
 .. Where to go next
 
