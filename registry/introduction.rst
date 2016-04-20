@@ -47,7 +47,7 @@ Docker レジストリ の理解
 
 .. The Registry GitHub repository includes additional information about advanced authentication and authorization methods. Only very large or public deployments are expected to extend the Registry in this way.
 
-レジストリの GitHub リポジトリには、高度な認証や認証手法に関する情報があります。そこでの手法を使えば、とても大きな、あるいはパブリックへのデプロイといった拡張が期待ｄけいるでしょう。
+レジストリの GitHub リポジトリには、高度な認証や認証手法に関する情報があります。そこでの手法を使えば、とても大きな、あるいはパブリックへのデプロイといった拡張が期待できるでしょう。
 
 .. Finally, the Registry ships with a robust notification system, calling webhooks in response to activity, and both extensive logging and reporting, mostly useful for large installations that want to collect metrics.
 
