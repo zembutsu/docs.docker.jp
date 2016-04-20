@@ -506,7 +506,7 @@ maintenance
 
 .. Currently upload purging and read-only mode are the only maintenance functions available. These and future maintenance functions which are related to storage can be configured under the maintenance section.
 
-現時点では、メンテナンス機能としてアップロード・パージング（upload purging）とリードオンリー・モードが利用できます。これらはストレージに関連するメンテナンス機能を提供するもので、maintenance セクション以下で設定しｍさう。
+現時点では、メンテナンス機能としてアップロード・パージング（upload purging）とリードオンリー・モードが利用できます。これらはストレージに関連するメンテナンス機能を提供するもので、maintenance セクション以下で設定します。
 
 .. Upload Purging
 
