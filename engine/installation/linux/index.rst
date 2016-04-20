@@ -9,7 +9,7 @@
 .. _install-docker-engine-on-linux:
 
 ========================================
-Dockre Engine を Linux にインストール
+Docker Engine を Linux にインストール
 ========================================
 
 .. Docker Engine is supported on several Linux distributions. Installation instructions are available for the following:
