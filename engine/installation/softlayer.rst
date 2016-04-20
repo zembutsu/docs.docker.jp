@@ -54,5 +54,5 @@ IBM SoftLayer
 
 ..    Then continue with the Ubuntu instructions.
 
-10. 以降は :doc:`Ubuntu </engine/installation/ubuntulinux>` の手順に従います。
+10. 以降は :doc:`Ubuntu </engine/installation/linux/ubuntulinux>` の手順に従います。
 

@@ -12,7 +12,7 @@ Rackspace Cloud
 
 .. Installing Docker on Ubuntu provided by Rackspace is pretty straightforward, and you should mostly be able to follow the Ubuntu installation guide.
 
-Rackspace が提供する Ubuntu に Docker をインストールするのは、かなり単純です。ほとんどの場合、:doc:`Ubuntu </engine/installation/ubuntulinux>` インストール・ガイドの後に読むべきでしょう。
+Rackspace が提供する Ubuntu に Docker をインストールするのは、かなり単純です。ほとんどの場合、:doc:`Ubuntu </engine/installation/linux/ubuntulinux>` インストール・ガイドの後に読むべきでしょう。
 
 .. However, there is one caveat:
 
@@ -106,4 +106,4 @@ Rackspace はサーバを grub の ``menu.lst`` からブートします。し�
 
 .. Now you can finish with the Ubuntu instructions.
 
-終わったら :doc:`Ubuntu </engine/installation/ubuntulinux>` の手順に進みます。
+終わったら :doc:`Ubuntu </engine/installation/linux/ubuntulinux>` の手順に進みます。
