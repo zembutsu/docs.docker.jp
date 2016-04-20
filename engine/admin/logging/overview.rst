@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/logging/overview/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/logging/overview.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/admin/logging/overview.md
-.. check date: 2016/02/13
+.. check date: 2016/04/20
+.. Commits on Jan 27, 2016 e310d070f498a2ac494c6d3fde0ec5d6e4479e14
 .. -------------------------------------------------------------------
 
 .. Configure logging drivers
@@ -30,22 +31,30 @@
 .. fluentd 	Fluentd logging driver for Docker. Writes log messages to fluentd (forward input).
 .. awslogs 	Amazon CloudWatch Logs logging driver for Docker. Writes log messages to Amazon CloudWatch Logs.
 
+
 .. list-table::
    
    * - ``none``
-    - コンテナ用のロギング・ドライバを無効化します。このドライバを指定すると ``docker logs`` は無効化されます。
+     - コンテナ用のロギング・ドライバを無効化します。このドライバを指定すると ``docker logs`` は無効化されます。
    * - ``json-file``
-    - Docker 用のデフォルト・ロギング・ドライバです。JSON メッセージをファイルに記録します。
+     - Docker 用のデフォルト・ロギング・ドライバです。JSON メッセージをファイルに記録します。
    * - ``syslog``
-    - Docker 用の syslog ロギング・ドライバです。ログ・メッセージを syslog に記録します。
+     - Docker 用の syslog ロギング・ドライバです。ログ・メッセージを syslog に記録します。
    * - ``journald``
-    - Docker 用の journald ロギング・ドライバです。ログ・メッセージを ``journald`` に記録します。
+     - Docker 用の journald ロギング・ドライバです。ログ・メッセージを ``journald`` に記録します。
    * - ``gelf``
-    - Docker 用の Graylog Extendef ログ・フォーマット（GELF）ロギング・ドライバです。ログ・メッセージを Graylog のエンドポイントや Logstash に記録します。
+     - Docker 用の Graylog Extendef ログ・フォーマット（GELF）ロギング・ドライバです。ログ・メッセージを Graylog のエンドポイントや Logstash に記録します。
    * - ``fluentd``
-    - Docker 用の fluentd ロギング・ドライバです。ログ・メッセージを ``fluentd`` に記録します（forward input）。
+     - Docker 用の fluentd ロギング・ドライバです。ログ・メッセージを ``fluentd`` に記録します（forward input）。
    * - ``awslogs``
-    - Docker 用の Amazon CloudWatch Logs ロギング・ドライバです。ログ・メッセージを Amazon CloudWatch Logs に記録します。
+     - Docker 用の Amazon CloudWatch Logs ロギング・ドライバです。ログ・メッセージを Amazon CloudWatch Logs に記録します。
+   * - ``splunk``
+     - Docker 用の Splunk ロギング・ドライバです。HTTP イベント・コレクタを使いログを ``splunk`` に書き込みます。
+   * - ``etwlogs``
+     - Docker 用の ETW ロギング・ドライバです。ログメッセージを ETW イベントとして書き込みます。
+   * - ``gcplogs``
+     - Docker 用の Google Cloud ロギング・ドライバです。ログメッセージを Google Cloud Logging に書き込みます。
+
 
 .. The docker logscommand is available only for the json-file and journald logging drivers.
 
@@ -122,10 +131,15 @@ syslog のオプション
 
 .. code-block:: bash
 
-   --log-opt syslog-address=[tcp|udp]://host:port
+   --log-opt syslog-address=[tcp|udp|tcp+tls]://host:port
    --log-opt syslog-address=unix://path
    --log-opt syslog-facility=daemon
+   --log-opt syslog-tls-ca-cert=/etc/ca-certificates/custom/ca.pem
+   --log-opt syslog-tls-cert=/etc/ca-certificates/custom/cert.pem
+   --log-opt syslog-tls-key=/etc/ca-certificates/custom/key.pem
+   --log-opt syslog-tls-skip-verify=true
    --log-opt tag="mailer"
+   --log-opt syslog-format=[rfc5424|rfc3164] 
 
 .. syslog-address specifies the remote syslog server address where the driver connects to. If not specified it defaults to the local unix socket of the running system. If transport is either tcp or udp and port is not specified it defaults to 514 The following example shows how to have the syslog driver connect to a syslog remote server at 192.168.0.42 on port 123
 
@@ -160,9 +174,29 @@ syslog のオプション
 * ``local6``
 * ``local7``
 
+.. syslog-tls-ca-cert specifies the absolute path to the trust certificates signed by the CA. This option is ignored if the address protocol is not tcp+tls.
+
+``syslog-tls-ca-cert`` は CA によって署名された信頼できる証明書への絶対パスを指定します。このオプションは ``tcp+tls`` 意外のプロトコルを使う場合は無視されます。
+
+.. syslog-tls-cert specifies the absolute path to the TLS certificate file. This option is ignored if the address protocol is not tcp+tls.
+
+``syslog-tls-cert`` は TLS 証明書用ファイルに対する絶対パスです。このオプションは ``tcp+tls`` 意外のプロトコルを使う場合は無視されます。
+
+.. syslog-tls-key specifies the absolute path to the TLS key file. This option is ignored if the address protocol is not tcp+tls.
+
+``syslog-tls-key`` は TLS 鍵ファイルに対する絶対パスを指定します。このオプションは ``tcp+tls`` 意外のプロトコルを使う場合は無視されます。
+
+.. syslog-tls-skip-verify configures the TLS verification. This verification is enabled by default, but it can be overriden by setting this option to true. This option is ignored if the address protocol is not tcp+tls.
+
+``syslog-tls-skip-verify`` は TLS 認証を設定します。デフォルトでは認証が有効ですが、オプションの値を ``true`` に指定すると、この設定を上書きします。このオプションは ``tcp+tls`` 意外のプロトコルを使う場合は無視されます。
+
 .. By default, Docker uses the first 12 characters of the container ID to tag log messages. Refer to the log tag option documentation for customizing the log tag format.
 
 デフォルトでは、Docker はコンテナ ID の始めの 12 文字だけログ・メッセージにタグ付けします。タグ・フォーマットの記録方式をカスタマイズするには、 :doc:`log tag オプションのドキュメント <log_tags>` をご覧ください。
+
+.. syslog-format specifies syslog message format to use when logging. If not specified it defaults to the local unix syslog format without hostname specification. Specify rfc3164 to perform logging in RFC-3164 compatible format. Specify rfc5424 to perform logging in RFC-5424 compatible format
+
+``syslog-format`` は syslog メッセージを書き込むときの書式を指定します。何も指定しなければ、デフォルトではホスト名を指定しないローカルの unix syslog 形式です。rfc3164 を指定すると、RFC-3164 互換形式でログを記録します。rfc5424 を指定すると RFC-5424 互換形式で記録します。
 
 .. journald options
 
@@ -230,8 +264,12 @@ fluentd オプション
 ..    fluentd-address: specify host:port to connect [localhost:24224]
     tag: specify tag for fluentd message,
 
-* ``fluentd-address`` ： 接続先を ``host:port`` の形式で指定。例： ``localhost:24224``
+* ``fluentd-address`` ： 接続先を ``host:port`` の形式で指定。[localhost:24224]
 * ``tag`` ： ``fluentd`` メッセージのタグを指定。
+* ``fluentd-buffer-limit`` ： fluentd ログバッファの最大サイズを指定します。 [8MB]
+* ``fluentd-retry-wait`` ： 接続リトライ前の初回遅延時間です（以降は指数関数的に増えます） [1000ms]　
+* ``fluentd-max-retries`` ： docker で不意の障害が発生したとき、最大のリトライ数を指定します。 [1073741824]
+* ``fluentd-async-connect`` ： 初期接続をブロックするかどうかを指定します。 [false]
 
 .. For example, to specify both additional options:
 
@@ -265,6 +303,44 @@ Amazon CloudWatch ロギングドライバは、以下のオプションをサ�
 .. For detailed information on working with this logging driver, see the awslogs logging driver reference documentation.
 
 このロギング・ドライバの動作に関する詳細情報は :doc:`awslogs ロギング・ドライバ <awslogs>` をご覧ください。
+
+.. ETW logging driver options
+
+.. _etw-logging-driver-options:
+
+ETW ロギング・ドライバのオプション
+========================================
+
+.. The etwlogs logging driver does not require any options to be specified. This logging driver will forward each log message as an ETW event. An ETW listener can then be created to listen for these events.
+
+etwlogs ロギング・ドライバには必須のオプションはありません。このロギング・ドライバは各ログメッセージを ETW イベントとして転送します。ETW 受信側（リスナー）は受信したイベントを作成できます。
+
+.. For detailed information on working with this logging driver, see the ETW logging driver reference documentation.
+
+このロギング・ドライバの動作に関する詳細情報は :doc:`ETW ロギング・ドライバ <etwlogs>` をご覧ください。
+
+.. Google Cloud Logging
+
+.. _google-cloud-logging:
+
+Google Cloud ロギング
+==============================
+
+.. The Google Cloud Logging driver supports the following options:
+
+Google Cloud ロギング・ドライバはいかのオプションをサポートしています。
+
+.. code-block:: bash
+
+   --log-opt gcp-project=<gcp_projext>
+   --log-opt labels=<label1>,<label2>
+   --log-opt env=<envvar1>,<envvar2>
+   --log-opt log-cmd=true
+
+.. For detailed information about working with this logging driver, see the Google Cloud Logging driver. reference documentation.
+
+このロギング・ドライバの動作に関する詳細情報は :doc:`Google Cloud ロギング・ドライバ <gpclogs>` をご覧ください。
+
 
 .. seealso:: 
 
