@@ -334,7 +334,7 @@ Swarm マネージャを作成する前に、 :doc:`ディスカバリ・トー�
 
 .. Use --heartbeat "<interval>s" to specify the interval, in seconds, between heartbeats the manager sends to the primary manager. These heartbeats indicate that the manager is healthy and reachable. By default, the interval is 60 seconds.
 
-``--heartbeat "<間隔>s"`` をｔ迂回、マネージャとプライマリ・マネージャ間のハードビート間隔を秒単位で指定します。ハードビートとはマネージャが正常で到達可能であるかを確認します。デフォルトでは、この間隔は 60 秒です。
+``--heartbeat "<間隔>s"`` を使い、マネージャとプライマリ・マネージャ間のハードビート間隔を秒単位で指定します。ハードビートとはマネージャが正常で到達可能であるかを確認します。デフォルトでは、この間隔は 60 秒です。
 
 .. --api-enable-cors, --cors — Enable CORS headers in the remote API
 
