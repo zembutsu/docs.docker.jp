@@ -100,7 +100,7 @@ Swarm API
 
 .. The Docker Swarm API is compatible with the Docker remote API, and extends it with some new endpoints.
 
-:doc:`Docker Swarm API </swarm/api/swarm-api>` は :doc:`Docker リモート API </reference/api/docker_remote_api>` と互換性があるため、新しいエンドポイントが追加されると、同時に拡張されます。
+:doc:`Docker Swarm API </swarm/swarm-api>` は :doc:`Docker リモート API </engine/reference/api/docker_remote_api>` と互換性があるため、新しいエンドポイントが追加されると、同時に拡張されます。
 
 .. Getting help
 
