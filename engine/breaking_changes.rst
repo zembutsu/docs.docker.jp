@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/breaking_changes/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/breaking_changes.md
-.. doc version: 1.10
-.. check date: 2016/02/08
+   doc version: 1.11
+      https://github.com/docker/docker/commits/master/docs/breaking_changes.md
+.. check date: 2016/04/21
+.. Commits on Feb 4, 2016 f0df677913ce9bc6da5253dcca62690917923a3c
 .. -----------------------------------------------------------------------------
 
 .. Breaking changes and incompatibilities

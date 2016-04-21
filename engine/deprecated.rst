@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/deprecated/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/deprecated.md
-.. doc version: 1.10
+.. doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/deprecated.md
-.. check date: 2016/03/25
-.. Commits on Mar 18, 2016 
+.. check date: 2016/04/21
+.. Commits on Mar 31, 2016 0f70f53826ac311ca1653827c0d6bc170f300e84
 .. -----------------------------------------------------------------------------
 
 .. Deprecated Features
@@ -260,28 +260,6 @@ Docker ps の「before」「since」オプション
    docker ps --before-id
    docker search --trusted
 
-.. Auto-creating missing host paths for bind mounts
-
-.. _auto-creating-missing-host-paths-for-bind-mounts:
-
-マウント割り当て用ホスト・パス喪失時の自動作成
-==================================================
-
-.. Deprecated in Release: v1.9
-
-**廃止リリース：v1.9**
-
-.. Target for Removal in Release: 1.11
-
-**削除目標リリース：v1.11**
-
-.. When creating a container with a bind-mounted volume– docker run -v /host/path:/container/path – docker was automatically creating the /host/path if it didn’t already exist.
-
-ボリューム ``docker run -v /host/path:/container/path`` をマウントするコンテナを作成時、``/host/path`` が存在しなければ docker は自動的に作成していました。
-
-.. This auto-creation of the host path is deprecated and docker will error out if the path does not exist.
-
-ホスト・パス上のディレクトリ自動作成を廃止するので、パスが存在しなければエラーを表示します。
 
 .. Interacting with V1 registries
 

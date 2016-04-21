@@ -1,8 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/migration/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/migration.md
-.. doc version: 1.10
-.. check date: 2016/02/08
+   doc version: 1.11
+      https://github.com/docker/docker/commits/master/docs/migration.md
+.. check date: 2016/04/21
+.. Commits on Feb 5, 2016 0a6e0c43d9442926691cd7a842dcf55fc555c505
 .. -----------------------------------------------------------------------------
 
 .. Migrate to Engine 1.10
