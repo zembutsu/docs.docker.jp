@@ -16,7 +16,7 @@ Engine の拡張
    :maxdepth: 3
 
    index.rst
-   authorization.rst
+   plugins_authorization.rst
    plugins.rst
    plugins_network.rst
    plugins_volume.rst
