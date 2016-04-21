@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/extend/examples/nodejs_web_app/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/examples/nodejs_web_app.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/examples/nodejs_web_app.md
-.. check date: 2016/02/15
+.. check date: 2016/04/21
+.. Commits on Mar 4, 2016 69004ff67eed6525d56a92fdc69466c41606151a
 .. ---------------------------------------------------------------
 
 .. Dockerizing a Node.js web app
@@ -122,7 +123,7 @@ Node.js アプリを作りたいため、CentOS イメージ上に Node.js と n
 
    # Install app dependencies
    COPY package.json /src/package.json
-   RUN cd /src; npm install
+   RUN cd /src; npm install --production
 
 .. To bundle your app’s source code inside the Docker image, use the COPY instruction:
 
@@ -164,7 +165,7 @@ Node.js アプリを作りたいため、CentOS イメージ上に Node.js と n
    
    # Install app dependencies
    COPY package.json /src/package.json
-   RUN cd /src; npm install
+   RUN cd /src; npm install --production
    
    # Bundle app source
    COPY . /src

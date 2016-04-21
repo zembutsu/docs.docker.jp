@@ -1,14 +1,15 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/extend/examples/running_riak_service/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/examples/running_riak_service.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/examples/running_riak_service.md
-.. check date: 2016/02/15
+.. check date: 2016/04/21
+.. Commits on Mar 4, 2016 69004ff67eed6525d56a92fdc69466c41606151a
 .. ---------------------------------------------------------------
 
 .. Dockerizing a Riak service
 
-.. _dockerizing-a-riak-service
+.. _dockerizing-a-riak-service:
 
 .. sidebar:: 目次
 
@@ -39,7 +40,7 @@ Dockerfile の作成
 
 .. Next, define the parent image you want to use to build your image on top of. We’ll use Ubuntu (tag: trusty), which is available on Docker Hub:
 
-次に、自分のイメージを構築するにあたり、元になる親イメージを定義します。ここでは `Docker Hub <https://hub.docker.com/>`_ で利用可能な `Ubuntu <https://registry.hub.docker.com/_/ubuntu/>`_ （タグ： ``trusty`` ）を使います。
+次に、自分のイメージを構築するにあたり、元になる親イメージを定義します。ここでは `Docker Hub <https://hub.docker.com/>`_ で利用可能な `Ubuntu <https://hub.docker.com/_/ubuntu/>`_ （タグ： ``trusty`` ）を使います。
 
 .. code-block:: bash
 

@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/extend/examples/mongodb/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/examples/mongodb.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/examples/mongodb.md
-.. check date: 2016/02/15
+.. check date: 2016/04/21
+.. Commits on Mar 4, 2016 e310d070f498a2ac494c6d3fde0ec5d6e4479e14
 .. ---------------------------------------------------------------
 
 .. Dockerizing MongoDB
@@ -28,7 +29,7 @@ MongoDB の Docker 化
 
 .. note::
 
-   このガイドでは MongoDB コンテナを構築する仕組みを紹介しますが、 `Docker Hub <https://registry.hub.docker.com/_/mongo/>`__ の公式イメージを使っても構いません。
+   このガイドでは MongoDB コンテナを構築する仕組みを紹介しますが、 `Docker Hub <https://hub.docker.com/_/mongo/>`__ の公式イメージを使っても構いません。
 
 .. Using Docker and containers for deploying MongoDB instances will bring several benefits, such as:
 
@@ -82,7 +83,7 @@ MongoDB 用の Dockerfile を作成
 
 .. We will build our image using the latest version of Ubuntu from the Docker Hub Ubuntu repository.
 
-`Docker Hub Ubuntu <https://registry.hub.docker.com/_/ubuntu/>`_ リポジトリにある Ubuntu の最新（latest）バージョンを使い、イメージを構築します。
+`Docker Hub Ubuntu <https://hub.docker.com/_/ubuntu/>`_ リポジトリにある Ubuntu の最新（latest）バージョンを使い、イメージを構築します。
 
 .. code-block:: bash
 
