@@ -34,7 +34,7 @@ run
 
 .. Runs a one-time command against a service. For example, the following command starts the web service and runs bash as its command.
 
-サービスに対して１回コマンドを実行します。例えば、次のコマンドは ```web`` サービスを開始するためのコマンドで、サービス内で ``bash`` としてコマンドを実行します。
+サービスに対して１回コマンドを実行します。例えば、次のコマンドは ``web`` サービスを開始するためのコマンドで、サービス内で ``bash`` としてコマンドを実行します。
 
 .. code-block:: bash
 

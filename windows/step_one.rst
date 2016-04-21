@@ -38,7 +38,7 @@ Windows ユーザは Docker ツールボックス（Toolbox）を使って Docke
 
 .. Because the Docker Engine daemon uses Linux-specific kernel features, you can’t run Docker Engine natively in Windows. Instead, you must use the Docker Machine command, docker-machine, to create and attach to a small Linux VM on your machine. This VM hosts Docker Engine for you on your Windows system.
 
-Docker Engine デーモンは LInux 固有の kernel 機能を使います。そのため、Windows では Docker Engine をネイティブに扱えません。その代わりに ``docker-machine`` コマンドを使い、自分のマシン上に小さな Linux 仮想マシンを作成し、そこに接続します。この仮想マシンは Windows システム上で Docker Engine を動かします。
+Docker Engine デーモンは Linux 固有の kernel 機能を使います。そのため、Windows では Docker Engine をネイティブに扱えません。その代わりに ``docker-machine`` コマンドを使い、自分のマシン上に小さな Linux 仮想マシンを作成し、そこに接続します。この仮想マシンは Windows システム上で Docker Engine を動かします。
 
 .. Step 1: Check your version
 
@@ -262,7 +262,7 @@ Windows セキュリティのダイアログが表示されたら、プログラ
 
 .. Typically, the above steps work out-of-the-box, but some scenarios can cause problems. If your docker run hello-world didn’t work and resulted in errors, check out Troubleshooting for quick fixes to common problems.
 
-通常、これらの手順は特に何も考えなくても実行できますが、もしかしたら問題が発生する場合があるかもしれません。 ```docker run hello-world`` が実行できずエラーになる場合は、一般的な問題を解決するための :doc:`トラブルシューティング </toolbox/troubleshoot>` をご覧ください。
+通常、これらの手順は特に何も考えなくても実行できますが、もしかしたら問題が発生する場合があるかもしれません。 ``docker run hello-world`` が実行できずエラーになる場合は、一般的な問題を解決するための :doc:`トラブルシューティング </toolbox/troubleshoot>` をご覧ください。
 
 .. A Windows specific problem you might encounter has to do with the NDIS6 host network filter driver, which is known to cause issues on some Windows versions. For Windows Vista systems and newer, VirtualBox installs NDIS6 driver by default. Issues can range from system slowdowns to networking problems for the virtual machine (VM). If you notice problems, re-run the Docker Toolbox installer, and select the option to install VirtualBox with the NDIS5 driver.
 

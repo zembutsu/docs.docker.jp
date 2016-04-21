@@ -278,7 +278,7 @@ Docker コマンドを再度試します。これで Docker も Kitematic も適
 
 .. Here is an example of creating a default machine with proxies set to http://example.com:8080 and https://example.com:8080, and a N0_PROXY setting for the server example2.com.
 
-次の例は ``default`` マシンの作成時、PROXY として ``http://example.com:8080`` と ``https://example.com:8080``  を指定し、 ```NO_PROXY` として ``example2.com``  を指定しています。
+次の例は ``default`` マシンの作成時、PROXY として ``http://example.com:8080`` と ``https://example.com:8080``  を指定し、 ``NO_PROXY`` として ``example2.com``  を指定しています。
 
 .. code-block:: bash
 

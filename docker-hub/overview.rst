@@ -82,7 +82,7 @@ Docker コマンドと Docker Hub
 
 .. Docker itself provides access to Docker Hub services via the docker search, pull, login, and push commands.
 
-Docker 自身で Docker Hub サーバにアクセスするために、 ```docker search`` 、 ``pull`` 、``login`` 、 ``push`` コマンドを経由します。
+Docker 自身で Docker Hub サーバにアクセスするために、 ``docker search`` 、 ``pull`` 、``login`` 、 ``push`` コマンドを経由します。
 
 ..  Explore repositories
 

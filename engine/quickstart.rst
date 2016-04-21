@@ -34,7 +34,7 @@ Docker Engine クイックスタート
 
 .. If you have a successful install, the system information appears. If you get docker: command not found or something like /var/lib/docker/repositories: permission denied you may have an incomplete Docker installation or insufficient privileges to access Engine on your machine. With the default installation of Engine docker commands need to be run by a user that is in the docker group or by the root user.
 
-インストールに成功しているのであれば、システム情報が表示されます。もしも ``docker: command not found`` （訳：docker コマンドが見つかりません）や ``/var/lib/docker/repositories: permission denied`` （訳：権限がありませんｎ）のような表示が出る場合は、Docker のインストールが不完全か、コマンドでマシン上の Docker Engine にアクセスする権限がありません。Docker Engine の標準インストールでは、``docker`` コマンドを実行するには ``docker`` グループに所属するユーザ、もしくは ``root`` の必要があります。
+インストールに成功しているのであれば、システム情報が表示されます。もしも ``docker: command not found`` （訳：docker コマンドが見つかりません）や ``/var/lib/docker/repositories: permission denied`` （訳：権限がありません）のような表示が出る場合は、Docker のインストールが不完全か、コマンドでマシン上の Docker Engine にアクセスする権限がありません。Docker Engine の標準インストールでは、``docker`` コマンドを実行するには ``docker`` グループに所属するユーザ、もしくは ``root`` の必要があります。
 
 .. Depending on your Engine system configuration, you may be required to preface each docker command with sudo. One way to avoid having to use sudo with the docker commands is to create a Unix group called docker and add users that will be entering docker commands to the ‘docker’ group.
 
@@ -300,7 +300,7 @@ TCP ポートにサービスを割り当て
 
 .. You now have an image state from which you can create new instances.
 
-コミットによって新しいイメージを手に入れました。これを使い、新しいインスタンス（訳者注：コンテナのこと）を作成可能でうｓ。
+コミットによって新しいイメージを手に入れました。これを使い、新しいインスタンス（訳者注：コンテナのこと）を作成可能です。
 
 .. Where to go next
 

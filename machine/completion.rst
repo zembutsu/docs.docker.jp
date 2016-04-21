@@ -44,7 +44,7 @@ bash 補完（bash completion) がインストールされているかどうか�
 
 .. Place the completion scripts in /etc/bash_completion.d/ (`brew --prefix`/etc/bash_completion.d/ on a Mac), using e.g.
 
-補完スクリプトを ``/etc/bash_completion.d/`` に置きます（ Mac の場合は ```brew --prefix`/etc/bash_completion.d/`` ）。例：
+補完スクリプトを ``/etc/bash_completion.d/`` に置きます（ Mac の場合は ``brew --prefix`/etc/bash_completion.d/`` ）。例：
 
 .. code-block:: bash
 

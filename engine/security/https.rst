@@ -312,7 +312,7 @@ Docker クライアントの接続をデフォルトで安全にしたい場合�
     Use trusted images
 
 * :doc:`certificates`
-* :doc:`trust/indexl`
+* :doc:`trust/index`
 
 .. seealso:: 
 

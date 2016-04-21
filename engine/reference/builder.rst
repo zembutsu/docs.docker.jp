@@ -1441,7 +1441,7 @@ ONBUILD
 
 ..    Later the image may be used as a base for a new build, using the FROM instruction. As part of processing the FROM instruction, the downstream builder looks for ONBUILD triggers, and executes them in the same order they were registered. If any of the triggers fail, the FROM instruction is aborted which in turn causes the build to fail. If all triggers succeed, the FROM instruction completes and the build continues as usual.
 
-3. このイメージは後で何らかのイメージの元になｒます。そのときは ``FROM`` 命令で呼び出されます。 ``FROM`` 命令の処理の一部として、ダウンストリームのビルダーは ``ONBULID`` トリガを探し、登録された順番で実行します。もしトリガが失敗すると、 ``FROM`` 命令は処理を中断し、ビルドを失敗とします。もし全てのトリガが成功すると、 ``FROM`` 命令は完了し、以降は通常の構築が進みます。
+3. このイメージは後で何らかのイメージの元になります。そのときは ``FROM`` 命令で呼び出されます。 ``FROM`` 命令の処理の一部として、ダウンストリームのビルダーは ``ONBULID`` トリガを探し、登録された順番で実行します。もしトリガが失敗すると、 ``FROM`` 命令は処理を中断し、ビルドを失敗とします。もし全てのトリガが成功すると、 ``FROM`` 命令は完了し、以降は通常の構築が進みます。
 
 ..    Triggers are cleared from the final image after being executed. In other words they are not inherited by “grand-children” builds.
 

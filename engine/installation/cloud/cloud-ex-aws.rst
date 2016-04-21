@@ -316,7 +316,7 @@ Ubuntu Trusty （と古いバージョンのいくつか）では ``linux-image-
 
 ..    Verify Docker Engine is installed correctly by running docker run hello-world.
 
-4. ``docker run hello-world`` おｗ実行し、Docker Engine が正常にインストールされていることを確認します。
+4. ``docker run hello-world`` を実行し、Docker Engine が正常にインストールされていることを確認します。
 
 .. code-block:: bash
 

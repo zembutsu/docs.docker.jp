@@ -258,7 +258,7 @@ Docker コンテナを実行するには：
 
 .. Typically, the above steps work out-of-the-box, but some scenarios can cause problems. If your docker run hello-world didn’t work and resulted in errors, check out Troubleshooting for quick fixes to common problems.
 
-通常、これらの手順は特に何も考えなくても実行できますが、もしかしたら問題が発生する場合があるかもしれません。 ```docker run hello-world`` が実行できずエラーになる場合は、一般的な問題を解決するための :doc:`トラブルシューティング </toolbox/troubleshoot>` をご覧ください。
+通常、これらの手順は特に何も考えなくても実行できますが、もしかしたら問題が発生する場合があるかもしれません。 ``docker run hello-world`` が実行できずエラーになる場合は、一般的な問題を解決するための :doc:`トラブルシューティング </toolbox/troubleshoot>` をご覧ください。
 
 
 .. Where to go next
