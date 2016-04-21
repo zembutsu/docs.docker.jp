@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/logging/journald/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/logging/journald.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/admin/logging/journald.md
-.. check date: 2016/02/13
+.. check date: 2016/04/21
+.. Commits on Jan 27, 2016 5a3351883b254d3690e9dcc5b89293bcee474493
 .. -------------------------------------------------------------------
 
 .. Journald logging driver
@@ -78,6 +79,16 @@ Journald ロギング・ドライバ
 .. Users can use the --log-opt NAME=VALUE flag to specify additional journald logging driver options.
 
 ``--log-opt NAME=VALUE`` フラグで journald ロギング・ドライバのオプションを追加できます。
+
+.. tag
+
+タグ
+----------
+
+.. Specify template to set CONTAINER_TAG value in journald logs. Refer to log tag option documentation for customizing the log tag forma
+
+journald のログに ``CONTAINER_TAG`` 値でテンプレートを指定します。ログのタグ形式をカスタマイズするには :doc:`ログ用タグのオプションについてのドキュメント <log_tags>` をご覧ください。
+
 
 .. labels and env
 

@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/logging/fluentd/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/logging/fluentd.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/admin/logging/fluentd.md
-.. check date: 2016/02/13
+.. check date: 2016/04/21
+.. Commits on Mar 21, 2016 13086f387b28ceea5aff5924e430f41608884a9b
 .. ---------------------------------------------------------------------------
 
 .. Fluentd logging driver
@@ -94,7 +95,7 @@ Fluentd ロギング・ドライバ
 
 .. Options
 
-.. _fluentd-options:
+.. _fluentd-logging-options:
 
 オプション
 ==========
@@ -133,6 +134,15 @@ label と env
 .. The labels and env options each take a comma-separated list of keys. If there is collision between label and env keys, the value of the env takes precedence. Both options add additional fields to the extra attributes of a logging message.
 
 ``label`` と ``env`` オプションは、どちらもカンマ区切りでキーを指定できます。 ``label`` と ``env`` キーが重複する場合は、 ``env`` の値が優先されます。どちらのオプションもロギング・メッセージの特別属性（extra attributes）に追加フィールドを加えます。
+
+.. fluentd-async-connect
+
+.. Docker connects to Fluentd in the background. Messages are buffered until the connection is established.
+
+fluentd-acync-connect
+------------------------------
+
+Docker は Fluentd にバックグラウンドで接続します。接続が確立できるまでメッセージはバッファされます。
 
 .. Fluentd daemon management with Docker
 

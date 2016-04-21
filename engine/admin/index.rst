@@ -37,7 +37,9 @@
    logging/overview.rst
    logging/awslogs.rst
    logging/log_tags.rst
+   logging/etwlogs.rst
    logging/fluentd.rst
+   logging/gcplogs.rst
    logging/splunk.rst
    logging/journald.rst
 

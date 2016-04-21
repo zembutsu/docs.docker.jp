@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/logging/log_tags/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/logging/log_tags.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/admin/logging/log_tags.md
-.. check date: 2016/02/13
+.. check date: 2016/04/21
+.. Commits on Apr 9, 2016 f67b7112775fd9957cc156cc4483e11b8c0c981a
 .. -------------------------------------------------------------------
 
 .. Log Tags
@@ -71,6 +72,29 @@ Docker はタグの値を指定するための特別なテンプレート・マ�
 .. For advanced usage, the generated tag’s use go templates and the container’s logging context.
 
 高度な使い方は、 `go テンプレート <http://golang.org/pkg/text/template/>`_ のタグ生成や、コンテナの `ログ内容 <https://github.com/docker/docker/blob/master/daemon/logger/context.go>`_ をご覧ください。
+
+.. As an example of what is possible with the syslog logger:
+
+以下は syslog ロガーを使う例です：
+
+.. code-block:: bash
+
+   $ docker run -it --rm \
+       --log-driver syslog \
+       --log-opt tag="{{ (.ExtraAttributes nil).SOME_ENV_VAR }}" \
+       --log-opt env=SOME_ENV_VAR \
+       -e SOME_ENV_VAR=logtester.1234 \
+       flyinprogrammer/logtester
+
+.. Results in logs like this:
+
+ログの結果は次のようになります。
+
+.. code-block:: bash
+
+   Apr  1 15:22:17 ip-10-27-39-73 docker/logtester.1234[45499]: + exec app
+   Apr  1 15:22:17 ip-10-27-39-73 docker/logtester.1234[45499]: 2016-04-01 15:22:17.075416751 +0000 UTC stderr msg: 1
+
 
 ..    Note:The driver specific log options syslog-tag, fluentd-tag and gelf-tag still work for backwards compatibility. However, going forward you should standardize on using the generic tag log option instead.
 
