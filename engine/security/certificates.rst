@@ -1,11 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/security/certificates/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/security/certificates.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/security/certificates.md
-   doc version: 1.9
-      https://github.com/docker/docker/commits/release/v1.9/docs/articles/certificates.md
-.. check date: 2016/02/15
+.. check date: 2016/04/21
+.. Commits on Jan 27, 2016 e310d070f498a2ac494c6d3fde0ec5d6e4479e14
 .. -------------------------------------------------------------------
 
 .. Using certificates for repository client verification

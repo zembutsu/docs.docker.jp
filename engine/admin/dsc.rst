@@ -3,7 +3,7 @@
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/dsc.md
    doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/admin/dsc.md
-.. check date: 2016/04/19
+.. check date: 2016/04/21
 .. Commits on Jan 27, 2016 e310d070f498a2ac494c6d3fde0ec5d6e4479e14
 .. ---------------------------------------------------------------------------
 

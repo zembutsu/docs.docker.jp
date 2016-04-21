@@ -1,11 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/security/security/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/security/security.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/security/security.md
-   doc version: 1.9
-      https://github.com/docker/docker/commits/release/v1.9/docs/articles/security.md
-.. check date: 2016/02/15
+.. check date: 2016/04/21
+.. Commits on Apr 15, 2016 ea8f9c972393e0929e643190573412410bf39c6a
 .. -------------------------------------------------------------------
 
 .. Docker Security
@@ -97,9 +96,9 @@ Docker を使ったコンテナ（とアプリケーション）を実行する�
 
 これはセキュリティに重大な影響を及ぼします。例えば、Docker の API を通してウェブ・サーバ用コンテナをプロビジョンしたいとします。通常通りパラメータの確認に注意を払うべきです。ここでは、悪意のあるユーザが手の込んだパラメータを使い、Docker が余分なコンテナを作成できないようにしてください。
 
-.. For this reason, the REST API endpoint (used by the Docker CLI to communicate with the Docker daemon) changed in Docker 0.5.2, and now uses a UNIX socket instead of a TCP socket bound on 127.0.0.1 (the latter being prone to cross-site-scripting attacks if you happen to run Docker directly on your local machine, outside of a VM). You can then use traditional UNIX permission checks to limit access to the control socket.
+.. For this reason, the REST API endpoint (used by the Docker CLI to communicate with the Docker daemon) changed in Docker 0.5.2, and now uses a UNIX socket instead of a TCP socket bound on 127.0.0.1 (the latter being prone to cross-site request forgery attacks if you happen to run Docker directly on your local machine, outside of a VM). You can then use traditional UNIX permission checks to limit access to the control socket.
 
-この理由により、REST API エンドポイント（Docker CLI が Docker デーモンとの通信に使います）が Docker 0.5.2 で変更されました。現在は 127.0.0.1 上の TCP ソケットの代わりに UNIX ソケットを使います（最近はローカルのマシン上の Docker に対して、仮想マシンの外から直接クロスサイト・スクリプティング攻撃を行う傾向があります）。伝統的な Unix パーミッションを確認し、ソケットに対するアクセスを制限するような管理が必要です。
+この理由により、REST API エンドポイント（Docker CLI が Docker デーモンとの通信に使います）が Docker 0.5.2 で変更されました。現在は 127.0.0.1 上の TCP ソケットの代わりに UNIX ソケットを使います（最近はローカルのマシン上の Docker に対して、仮想マシンの外から直接クロスサイト・リクエスト・フォージェリ、CSRF を行う傾向があります）。伝統的な Unix パーミッションを確認し、ソケットに対するアクセスを制限するような管理が必要です。
 
 .. You can also expose the REST API over HTTP if you explicitly decide to do so. However, if you do that, being aware of the above mentioned security implication, you should ensure that it will be reachable only from a trusted network or VPN; or protected with e.g., stunnel and client SSL certificates. You can also secure them with HTTPS and certificates.
 
@@ -223,17 +222,30 @@ Docker はケーパビリティの追加と削除をサポートしますので�
 
 Docker コンテナと連携する多くのサードパーティー製ツールが提供されています。例えば、特別なネットワーク・トポロジーや共有ファイルシステムです。これらは Docker のコアの影響をうけず、既存の Docker コンテナを堅牢にするものです。
 
+.. （1.11で削除）
 .. Recent improvements in Linux namespaces will soon allow to run full-featured containers without root privileges, thanks to the new user namespace. This is covered in detail here. Moreover, this will solve the problem caused by sharing filesystems between host and guest, since the user namespace allows users within containers (including the root user) to be mapped to other users in the host system.
 
-直近の Linux 名前空間に対する改良によって、新しいユーザ名前空間の力を使い、まもなく root 特権無しに全てのコンテナ機能が使えるようになるでしょう。詳細は `こちら <http://s3hh.wordpress.com/2013/07/19/creating-and-using-containers-without-privilege/>`_ で扱っています。さらに、これはホストとゲストに関する共用ファイルシステムによって引き起こされる問題も解決できるかもしれません。これはユーザ名前空間がコンテナ内のユーザをホスト上のユーザ（rootも含まれます）に割り当て（マッピング）できるようにするためです。
+.. 直近の Linux 名前空間に対する改良によって、新しいユーザ名前空間の力を使い、まもなく root 特権無しに全てのコンテナ機能が使えるようになるでしょう。詳細は `こちら <http://s3hh.wordpress.com/2013/07/19/creating-and-using-containers-without-privilege/>`_ で扱っています。さらに、これはホストとゲストに関する共用ファイルシステムによって引き起こされる問題も解決できるかもしれません。これはユーザ名前空間がコンテナ内のユーザをホスト上のユーザ（rootも含まれます）に割り当て（マッピング）できるようにするためです。
 
+.. （1.11で削除）
 .. Today, Docker does not directly support user namespaces, but they may still be utilized by Docker containers on supported kernels, by directly using the clone syscall, or utilizing the ‘unshare’ utility. Using this, some users may find it possible to drop more capabilities from their process as user namespaces provide an artificial capabilities set. Likewise, however, this artificial capabilities set may require use of ‘capsh’ to restrict the user-namespace capabilities set when using ‘unshare’.
 
-今日、Docker はユーザ名前空間を直接サポートしていません。しかし、Docker コンテナの実行をサポートしているカーネルでは利用可能なものです。直接使うには syscall をクローンするか、 'unshare' ユーティリティを使います。これらを使い、ユーザ名前空間が提供するアーティフィカル・ケーパビリティ・セット（artificial capabilities set）から、特定のユーザに対するケーパビリティを無効化できることが分かるでしょう。しかしながら、このアーティフィカル・ケーパビリティ・セットを `unshare` で使う時は、ユーザ名前空間で制限するために 'capsh' が必要になるかもしれません。
+.. 今日、Docker はユーザ名前空間を直接サポートしていません。しかし、Docker コンテナの実行をサポートしているカーネルでは利用可能なものです。直接使うには syscall をクローンするか、 'unshare' ユーティリティを使います。これらを使い、ユーザ名前空間が提供するアーティフィカル・ケーパビリティ・セット（artificial capabilities set）から、特定のユーザに対するケーパビリティを無効化できることが分かるでしょう。しかしながら、このアーティフィカル・ケーパビリティ・セットを `unshare` で使う時は、ユーザ名前空間で制限するために 'capsh' が必要になるかもしれません。
 
+.. （1.11で削除）
 .. Eventually, it is expected that Docker will have direct, native support for user-namespaces, simplifying the process of hardening containers.
 
-最終的には、Docker が直接ユーザ名前空間をサポートし、コンテナ上のプロセス堅牢化を簡単に行えるようになるでしょう。
+.. 最終的には、Docker が直接ユーザ名前空間をサポートし、コンテナ上のプロセス堅牢化を簡単に行えるようになるでしょう。
+
+.. （1.11 で追加）
+.. As of Docker 1.10 User Namespaces are supported directly by the docker daemon. This feature allows for the root user in a container to be mapped to a non uid-0 user outside the container, which can help to mitigate the risks of container breakout. This facility is available but not enabled by default.
+
+Docker 1.10 以降は Docker デーモンがユーザ名前空間（User Namespaces）を直接サポートしました。この機能により、コンテナ内の root ユーザをコンテナ外の uid 0 以外のユーザに割り当て（マッピング）できるようになります。コンテナからブレイクアウト（脱獄）する危険性を軽減する手助けとなるでしょう。この実装は利用可能ですが、デフォルトでは有効ではありません。
+
+.. （1.11 で追加）
+.. Refer to the daemon command in the command line reference for more information on this feature. Additional information on the implementation of User Namespaces in Docker can be found in this blog post.
+
+こちらの機能に関するより詳しい情報は :ref:`daemon コマンド <daemon-user-namespace-options>` のリファレンスをご覧ください。Docker におけるユーザ名前空間の実装に関する詳細情報は `こちらのブログ投稿 <https://integratedcode.us/2015/10/13/user-namespaces-have-arrived-in-docker/>`_  をご覧ください。
 
 .. Conclusions
 

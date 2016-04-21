@@ -1,11 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/security/https/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/security/https.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/security/https.md
-   doc version: 1.9
-      https://github.com/docker/docker/commits/release/v1.9/docs/articles/https.md
-.. check date: 2016/02/15
+.. check date: 2016/04/21
+.. Commits on Jan 23, 2016 4c76c665b73dbd0beb0cb465caa921cbeb1cf61f
 .. -------------------------------------------------------------------
 
 .. Protect the Docker daemon socket
