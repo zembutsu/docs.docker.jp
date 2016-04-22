@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/builder/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/builder.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/builder.md
-.. check date: 2016/02/15
+.. check date: 2016/04/21
+.. Commits on Feb 5, 2016 0a6e0c43d9442926691cd7a842dcf55fc555c505
 .. -------------------------------------------------------------------
 
 .. Dockerfile reference
@@ -314,7 +315,7 @@ README を含むファイル以外は、``README-secret.md`` も含め、残り�
 
 README を含む全てのファイル除外します。真ん中の行 ``README-secret.md`` は最終行の ``!README*.md`` に一致するため、何の影響もありません。
 
-.. You can even use the .dockerignore file to exclude the Dockerfile and .dockerignore files. These files are still sent to the daemon because it needs them to do its job. But the ADD and COPY commands do not copy them to the image.
+.. You can even use the .dockerignore file to exclude the Dockerfile and .dockerignore files. These files are still sent to the daemon because it needs them to do its job. But the ADD and COPY commands do not copy them to image.
 
 ``.dockerignore`` ファイルは ``Dockerfile`` と ``.dockerignore`` ファイルの除外にも使えます。それでも、これらのファイルはジョブを処理するためデーモンに送信されます。しかし ``ADD`` と ``COPY`` コマンドは、これらをイメージ内にコピーしません。
 
@@ -718,7 +719,7 @@ Add は２つの形式があります。
 .. code-block:: bash
 
    ADD test relativeDir/          # "test" を `WORKDIR`/relativeDir/ （相対ディレクトリ）に追加
-   ADD test /absoluteDir          # "test" を /absoluteDir （絶対ディレクトリ）に追加
+   ADD test /absoluteDir/          # "test" を /absoluteDir/ （絶対ディレクトリ）に追加
 
 .. All new files and directories are created with a UID and GID of 0.
 
@@ -782,7 +783,7 @@ Add は２つの形式があります。
 1. 送信先のパスが存在しているかどうか
 2. ファイル単位の原則に従って、ソース・ツリーの内容と衝突しないかどうか「2」を繰り返す
 
-.. Note: Whether a file is identified as a recognized compression format or not is done soley based on the contents of the file, not the name of the file. For example, if an empty file happens to end with .tar.gz this will not be recognized as a compressed file and will not generate any kind of decompression error message, rather the file will simply be copied to the destination.
+.. Note: Whether a file is identified as a recognized compression format or not is done solely based on the contents of the file, not the name of the file. For example, if an empty file happens to end with .tar.gz this will not be recognized as a compressed file and will not generate any kind of decompression error message, rather the file will simply be copied to the destination.
 
 .. note::
 
@@ -845,7 +846,7 @@ COPY は２つの形式があります。
 .. code-block:: bash
 
    COPY test relativeDir/   # "test" を `WORKDIR`/relativeDir/ （相対ディレクトリ）に追加
-   COPY test /absoluteDir   # "test" を /absoluteDir （絶対ディレクトリ）に追加
+   COPY test /absoluteDir/   # "test" を /absoluteDir/ （絶対ディレクトリ）に追加
 
 .. All new files and directories are created with a UID and GID of 0.
 
@@ -1161,6 +1162,61 @@ exec 形式の ENTRYPOINT 例
    user    0m 0.04s
    sys 0m 0.03s
 
+.. Understand how CMD and ENTRYPOINT interact
+
+.. _understand-how-cmd-and-entrypoint-interact:
+
+CMD と ENTRYPOINT がどのように作用するか学ぶ
+==================================================
+
+.. Both CMD and ENTRYPOINT instructions define what command gets executed when running a container. There are few rules that describe their co-operation.
+
+``CMD`` と ``ENTRYPOINT`` 命令はコンテナ実行時に実行するコマンドを定義します。両方を記述するとき、動作には複数のルールがあります。
+
+..    Dockerfile should specify at least one of CMD or ENTRYPOINT commands.
+
+1. Dockerfile には少なくとも１つの ``CMD`` または ``ENTRYPOINT`` 命令を含むべきです。
+
+..    ENTRYPOINT should be defined when using the container as an executable.
+
+2. ``ENTRYPOINT`` は実行可能なコンテナとして定義するときに使うべきです。
+
+..    CMD should be used as a way of defining default arguments for an ENTRYPOINT command or for executing an ad-hoc command in a container.
+
+3. コンテナをアドホック（その場その場）で実行するコマンドを ``ENTRYPOINT`` にする場合、そのデフォルトの引数の指定として ``CMD`` を指定すべきです。
+
+..    CMD will be overridden when running the container with alternative arguments.
+
+4. ``CMD`` はコンテナ実行時に引数を指定すると上書きされます。
+
+.. The table below shows what command is executed for different ENTRYPOINT / CMD combinations:
+
+以下の表は ``ENTRYPOINT`` / ``CMD`` を組みあわせたコマンドの実行結果です。
+
+.. list-table::
+   :header-rows: 1
+   
+   * - 
+     - ENTRYPOINT なし
+     - ENTRYPOINT exec_entry p1_entry
+     - ENTRYPOINT [“exec_entry”, “p1_entry”]
+   * - **CMD なし"**
+     - エラー。実行できない。
+     - /bin/sh -c exec_entry p1_entry
+     - exec_entry p1_entry
+   * - **CMD [“exec_cmd”, “p1_cmd”]"**
+     - exec_cmd p1_cmd
+     - /bin/sh -c exec_entry p1_entry exec_cmd p1_cmd
+     - exec_entry p1_entry exec_cmd p1_cmd
+   * - **CMD [“p1_cmd”, “p2_cmd”]"**
+     - p1_cmd p2_cmd
+     - /bin/sh -c exec_entry p1_entry p1_cmd p2_cmd
+     - exec_entry p1_entry p1_cmd p2_cmd
+   * - **CMD exec_cmd p1_cmd"**
+     - /bin/sh -c exec_cmd p1_cmd
+     - /bin/sh -c exec_entry p1_entry /bin/sh -c exec_cmd p1_cmd
+     - exec_entry p1_entry /bin/sh -c exec_cmd p1_cmd
+
 .. _volume:
 
 VOLUME
@@ -1223,9 +1279,9 @@ WORKDIR
 
    WORKDIR /path/to/workdir
 
-.. The WORKDIR instruction sets the working directory for any RUN, CMD, ENTRYPOINT, COPY and ADD instructions that follow it in the Dockerfile.
+.. The WORKDIR instruction sets the working directory for any RUN, CMD, ENTRYPOINT, COPY and ADD instructions that follow it in the Dockerfile. If the WORKDIR doesn't exist, it will be created even if its not used in any subsequent `Dockerfile` instruction.
 
-``WORKDIR`` 命令セットは ``Dockerfile`` で ``RUN`` 、 ``CMD`` 、 ``ENTRYPOINT`` 、 ``COPY`` 、 ``ADD`` 命令実行時の作業ディレクトリ（working directory）を指定します。
+``WORKDIR`` 命令セットは ``Dockerfile`` で ``RUN`` 、 ``CMD`` 、 ``ENTRYPOINT`` 、 ``COPY`` 、 ``ADD`` 命令実行時の作業ディレクトリ（working directory）を指定します。もし ``WORKDIR`` が存在しなければ、 ``Dockerfile`` 命令内で使用しなくてもディレクトリを作成します。
 
 .. It can be used multiple times in the one Dockerfile. If a relative path is provided, it will be relative to the path of the previous WORKDIR instruction. For example:
 
@@ -1395,6 +1451,56 @@ Docker は Dockerfile に対応する ``ARG`` 命令がなくても、既定の 
 .. To use these, simply pass them on the command line using the --build-arg <varname>=<value> flag.
 
 これらを使うには、コマンドラインで ``--build-arg <変数名>=<値>`` フラグを単に渡すだけです。
+
+.. Impact on build caching
+
+.. _impact-on-build-caching:
+
+構築キャッシュの影響
+--------------------
+
+.. ARG variables are not persisted into the built image as ENV variables are. However, ARG variables do impact the build cache in similar ways. If a Dockerfile defines an ARG variable whose value is different from a previous build, then a “cache miss” occurs upon first use of the ARG variable. The declaration of the ARG variable does not count as a use.
+
+``ARG`` 変数はイメージ構築時の ``ENV`` 変数のように残り続けません。しかし、 ``ARG`` 変数は構築キャッシュで似たような方法として扱えます。もし Dockerfile で ``ARG`` 変数を定義すると、この値が以前の値と違うときは、以降で ``ARG`` 変数が出たとき「キャッシュ・ミス」を発生します。
+
+.. For example, consider these two Dockerfile:
+
+::
+
+   1 FROM ubuntu
+   2 ARG CONT_IMG_VER
+   3 RUN echo $CONT_IMG_VER
+
+::
+
+   1 FROM ubuntu
+   2 ARG CONT_IMG_VER
+   3 RUN echo hello
+
+.. If you specify --build-arg CONT_IMG_VER=<value> on the command line, in both cases, the specification on line 2 does not cause a cache miss; line 3 does cause a cache miss.ARG CONT_IMG_VER causes the RUN line to be identified as the same as running CONT_IMG_VER=<value> echo hello, so if the <value> changes, we get a cache miss.
+
+.. Consider another example under the same command line:
+
+::
+
+   1 FROM ubuntu
+   2 ARG CONT_IMG_VER
+   3 ENV CONT_IMG_VER $CONT_IMG_VER
+   4 RUN echo $CONT_IMG_VER
+
+.. In this example, the cache miss occurs on line 3. The miss happens because the variable’s value in the ENV references the ARG variable and that variable is changed through the command line. In this example, the ENV command causes the image to include the value.
+
+.. If an ENV instruction overrides an ARG instruction of the same name, like this Dockerfile:
+
+::
+
+   1 FROM ubuntu
+   2 ARG CONT_IMG_VER
+   3 ENV CONT_IMG_VER hello
+   4 RUN echo $CONT_IMG_VER
+
+.. Line 3 does not cause a cache miss because the value of CONT_IMG_VER is a constant (hello). As a result, the environment variables and values used on the RUN (line 4) doesn’t change between builds.
+
 
 .. _onbuild:
 
