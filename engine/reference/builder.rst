@@ -3,7 +3,7 @@
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/builder.md
    doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/builder.md
-.. check date: 2016/04/21
+.. check date: 2016/04/23
 .. Commits on Feb 5, 2016 0a6e0c43d9442926691cd7a842dcf55fc555c505
 .. -------------------------------------------------------------------
 
@@ -1490,7 +1490,11 @@ Docker は Dockerfile に対応する ``ARG`` 命令がなくても、既定の 
 
 .. In this example, the cache miss occurs on line 3. The miss happens because the variable’s value in the ENV references the ARG variable and that variable is changed through the command line. In this example, the ENV command causes the image to include the value.
 
+この例では、キャッシュミスが３行目で発生します。ミスが起こるのは ``ENV`` 変数が ``ARG`` 変数を参照しているのと、この変数がコマンドラインで変わるためです。例における ``ENV`` コマンドはイメージの中で処理されるものです。
+
 .. If an ENV instruction overrides an ARG instruction of the same name, like this Dockerfile:
+
+もし ``ENV`` 命令を同じ名前の ``ARG`` 命令で、次のように上書きしたらどうでしょう。
 
 ::
 
@@ -1500,6 +1504,8 @@ Docker は Dockerfile に対応する ``ARG`` 命令がなくても、既定の 
    4 RUN echo $CONT_IMG_VER
 
 .. Line 3 does not cause a cache miss because the value of CONT_IMG_VER is a constant (hello). As a result, the environment variables and values used on the RUN (line 4) doesn’t change between builds.
+
+３行目はキャッシュミスを引き起こしません。 ``CONT_IMG_VAR`` は固定（ ``hello`` ）だからです。そのため、環境変数と値は ``RUN``  （４行目）で使われますが、構築時に変わりません。
 
 
 .. _onbuild:
