@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/glossary/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/glossary.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/glossary.md
-.. check date: 2016/02/17
+.. check date: 2016/04/24
+.. Commits on Mar 4, 2016 69004ff67eed6525d56a92fdc69466c41606151a
 .. -------------------------------------------------------------------
 
 .. Glossary
@@ -322,7 +323,7 @@ OverlayFS は、他のファイルシステムに対する `ユニオン・マ�
 
 .. Here is an example of the shared nginx repository and its tags
 
-共有 `Nginx リポジトリ <https://registry.hub.docker.com/_/nginx/>`_ と `タグ <https://registry.hub.docker.com/_/nginx/tags/manage/>`_ の例です。
+共有 `Nginx リポジトリ <https://hub.docker.com/r/library/nginx/tags>`_ と `タグ <https://hub.docker.com/r/library/nginx/tags>`_ の例です。
 
 .. Swarm
 
