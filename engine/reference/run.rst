@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/engine/reference/builder/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/builder.md
-   doc version: 1.10
-      https://github.com/docker/docker/commits/master/docs/reference/builder.md
-.. check date: 2016/02/15
+.. URL: https://docs.docker.com/engine/reference/run/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/run.md
+   doc version: 1.11
+      https://github.com/docker/docker/commits/master/docs/reference/run.md
+.. check date: 2016/04/25
+.. Commits on Apr 22, 2016 9b00817dc692458f9e27e375a870ecd0dcbd0b75
 .. -------------------------------------------------------------------
 
 .. Docker run reference
@@ -327,15 +328,14 @@ UTS 設定（--uts）
 
 UTS 名前空間とは、プロセスを実行する名前空間上で見えるホスト名とドメイン名を設定するものです。デフォルトでは、全てのコンテナは ``--uts=host`` の指定により、自身の UTS 名前空間を持っています。 ``host`` には、ホスト名として同じ UTS 名前空間をコンテナで使えるよう設定します。
 
+
+The UTS namespace is for setting the hostname and the domain that is visible to running processes in that namespace. By default, all containers, including those with --net=host, have their own UTS namespace. The host setting will result in the container using the same UTS namespace as the host. Note that --hostname is invalid in host UTS mode.
+
+UTS 名前空間とは、プロセスを実行する名前空間上で見えるホスト名とドメイン名を設定するものです。デフォルトでは、全てのコンテナは ``--uts=host`` の指定により、自身の UTS 名前空間を持っています。  ``host`` には、ホスト名として同じ UTS 名前空間をコンテナで使えるよう設定します。なお、 ``host`` UTS モードでは ``--hostname`` の指定ができないため、ご注意ください。
+
 .. You may wish to share the UTS namespace with the host if you would like the hostname of the container to change as the hostname of the host changes. A more advanced use case would be changing the host’s hostname from a container.
 
 ホスト上と UTS 名前空間を共有したい場合もあるでしょう。例えば、コンテナを動かすホストがホスト名を変更してしまい、コンテナのホスト名も変更したい場合です。より高度な使い方としては、コンテナからホスト側のホスト名の変更を行うケースです。
-
-..    Note: --uts="host" gives the container full access to change the hostname of the host and is therefore considered insecure.
-
-.. note::
-
-   ``--uts="host"`` 設定をすると、ホスト上のホスト名の変更に対するフル・アクセスをもたらすため、安全ではないと考えられます。
 
 .. IPC settings (–ipc)
 
@@ -392,7 +392,7 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
 デフォルトでは、全てのコンテナはネットワーク機能を持っており、外部に対する接続を可能とします。オペレータはネットワークを無効化したいのであれば ``docker run --net=none`` を指定することで、内側と外側の両方のネットワーク機能を無効化します。このような指定をすると、 I/O 処理はファイルに対してか、 ``STDIN`` と ``STDOUT`` のみになります。
 
-.. Publishing ports and linking to other containers only works with the the default (bridge). The linking feature is a legacy feature. You should always prefer using Docker network drivers over linking.
+.. Publishing ports and linking to other containers only works with the default (bridge). The linking feature is a legacy feature. You should always prefer using Docker network drivers over linking.
 
 公開用のポートを他のコンテナとリンクできるのは、デフォルト（ブリッジ）のみです。リンク機能はレガシー（過去の）機能です。リンク機能を使うよりも、常に Docker ネットワーク機能を使うべきです。
 
@@ -400,9 +400,9 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
 コンテナは、デフォルトではホストと同じ DNS サーバを使いますが、 ``--dns`` で上書きできます。
 
-.. By default, the MAC address is generated using the IP address allocated to the container. You can set the container’s MAC address explicitly by providing a MAC address via the --mac-address parameter (format:12:34:56:78:9a:bc).
+.. By default, the MAC address is generated using the IP address allocated to the container. You can set the container’s MAC address explicitly by providing a MAC address via the --mac-address parameter (format:12:34:56:78:9a:bc). Be aware that Docker does not check if manually specified MAC addresses are unique.
 
-デフォルトでは、コンテナに割り当てられる IP アドレスを使って、Mac アドレスが生成されます。コンテナの Mac アドレスの指定は、 ``--mac-address`` パラメータ（書式： ``12:34:56:78:9a:bc`` ）を使い MAC アドレスを指定できます。
+デフォルトでは、コンテナに割り当てられる IP アドレスを使って、Mac アドレスが生成されます。コンテナの Mac アドレスの指定は、 ``--mac-address`` パラメータ（書式： ``12:34:56:78:9a:bc`` ）を使い MAC アドレスを指定できます。 Docker は Mac アドレスがユニークかどうか（重複しているかどうか）を確認する仕組みがないため、ご注意ください。
 
 .. Supported networks :
 
@@ -464,9 +464,9 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 ネットワーク：host
 --------------------
 
-.. With the network set to host a container will share the host’s network stack and all interfaces from the host will be available to the container. The container’s hostname will match the hostname on the host system. Note that --add-host --hostname --dns --dns-search --dns-opt and --mac-address are invalid in host netmode.
+.. With the network set to host a container will share the host’s network stack and all interfaces from the host will be available to the container. The container’s hostname will match the hostname on the host system. Note that --add-host --hostname --dns --dns-search --dns-opt and --mac-address are invalid in host netmode. Even in host network mode a container has its own UTS namespace by default. As such --hostname is allowed in host network mode and will only change the hostname inside the container.
 
-``host`` ネットワークをコンテナに設定すると、ホスト側のネットワーク・スタックと、全てのホスト上のインターフェースがコンテナ上でも共有できます。コンテナのホスト名はホストシステム上のホスト名と一致します。 ``host`` ネットワーク・モードでは、 ``--add-host`` 、 ``--hostname`` 、 ``--dns`` 、 ``--dns-search`` 、 ``--dns-opt`` 、 ``--mac-address`` が無効になるのでご注意ください。
+``host`` ネットワークをコンテナに設定すると、ホスト側のネットワーク・スタックと、全てのホスト上のインターフェースがコンテナ上でも共有できます。コンテナのホスト名はホストシステム上のホスト名と一致します。 ``host`` ネットワーク・モードでは、 ``--add-host`` 、 ``--hostname`` 、 ``--dns`` 、 ``--dns-search`` 、 ``--dns-opt`` 、 ``--mac-address`` が無効になるのでご注意ください。 たとえ ``host``  ネットワーク・モードだとしても、コンテナは自身の UTS 名前空間をデフォルトで持ちます。そのため、  ``host`` ネットワーク・モードで ``--hostname`` が許可されるのは、コンテナの中でホスト名を変えるだけです。
 
 .. Compared to the default bridge mode, the host mode gives significantly better networking performance since it uses the host’s native networking stack whereas the bridge has to go through one level of virtualization through the docker daemon. It is recommended to run containers in this mode when their networking performance is critical, for example, a production Load Balancer or a High Performance Web Server.
 
@@ -652,12 +652,66 @@ Docker は以下の再起動ポリシーをサポートしています。
 
 こちらの例は、 **失敗したら (on-failure)** 10回カウントするまで再起動を行うポリシーで ``redis`` コンテナを起動しています。もし ``redis`` コンテナが 0 以外の状態で終了すると、Docker はコンテナの再起動を１０回続けて試みます。再起動の上限を設定できるのは、 **on-failure** ポリシーを有効にした場合のみです。
 
+.. Exit Status
+
+.. _exit-status:
+
+終了ステータス（exit status）
+==============================
+
+.. The exit code from docker run gives information about why the container failed to run or why it exited. When docker run exits with a non-zero code, the exit codes follow the chroot standard, see below:
+
+``docker run`` の終了コードから得られる情報は、なぜコンテナが実行に失敗したかや、何故終了したかです。 ``docker run`` がゼロ以外のコードで終了するとき、以下の終了コードは ``chroot`` 標準に従っています。
+
+.. 125 if the error is with Docker daemon itself
+
+**125** は Docker デーモン **自身** のエラー発生です。
+
+.. code-block:: bash
+
+   $ docker run --foo busybox; echo $?
+   # 定義されていない --foo フラグを指定したため 
+     See 'docker run --help'.
+     125
+
+.. 126 if the contained command cannot be invoked
+
+**126** は **コンテナ内のコマンド** が実行できない場合のエラーです。
+
+.. code-block:: bash
+
+   $ docker run busybox /etc; echo $?
+   # "/etc" には実行権限がありません 
+     docker: Error response from daemon: Contained command could not be invoked
+     126
+
+.. 127 if the contained command cannot be found
+
+**127** は **コンテナ内のコマンド** が見つからない場合です。
+
+.. code-block:: bash
+
+   $ docker run busybox foo; echo $?
+   # 環境変数 $PATH の中に "foo" 実行ファイルが見つかりません。
+     docker: Error response from daemon: Contained command not found or does not exist
+     127
+
+.. Exit code of contained command otherwise
+
+**コンテナ内のコマンド** の **終了コード** は上書きできます。
+
+.. code-block:: bash
+
+   $ docker run busybox /bin/sh -c 'exit 3'
+   # 3
+
+
 .. Clean up (–rm)
 
 .. _clean-up-rm:
 
 クリーンアップ（--rm）
-----------------------
+==============================
 
 .. By default a container’s file system persists even after the container exits. This makes debugging a lot easier (since you can inspect the final state) and you retain all your data by default. But if you are running short-term foreground processes, these container file systems can really pile up. If instead you’d like Docker to automatically clean up the container and remove the file system when the container exits, you can add the --rm flag:
 
@@ -682,13 +736,17 @@ Docker は以下の再起動ポリシーをサポートしています。
 
 .. code-block:: bash
 
-   --security-opt="label:user:USER"   : Set the label user for the container
-   --security-opt="label:role:ROLE"   : Set the label role for the container
-   --security-opt="label:type:TYPE"   : Set the label type for the container
-   --security-opt="label:level:LEVEL" : Set the label level for the container
-   --security-opt="label:disable"     : Turn off label confinement for the container
-   --security-opt="apparmor:PROFILE"  : Set the apparmor profile to be applied
+   --security-opt="label=user:USER"   : Set the label user for the container
+   --security-opt="label=role:ROLE"   : Set the label role for the container
+   --security-opt="label=type:TYPE"   : Set the label type for the container
+   --security-opt="label=level:LEVEL" : Set the label level for the container
+   --security-opt="label=disable"     : Turn off label confinement for the container
+   --security-opt="apparmor=PROFILE"  : Set the apparmor profile to be applied
                                         to the container
+   --security-opt="no-new-privileges" : Disable container processes from gaining
+                                        new privileges
+   --security-opt="seccomp=unconfined": Turn off seccomp confinement for the container
+   --security-opt="seccomp=profile.json: White listed syscalls seccomp Json file to be used as a seccomp filter
 
 .. You can override the default labeling scheme for each container by specifying the --security-opt flag. For example, you can specify the MCS/MLS level, a requirement for MLS systems. Specifying the level in the following command allows you to share the same content between containers.
 
@@ -696,7 +754,7 @@ Docker は以下の再起動ポリシーをサポートしています。
 
 .. code-block:: bash
 
-   $ docker run --security-opt label:level:s0:c100,c200 -i -t fedora bash
+   $ docker run --security-opt label=level:s0:c100,c200 -i -t fedora bash
 
 .. An MLS example might be:
 
@@ -704,7 +762,7 @@ MLS であれば、次のような例になります。
 
 .. code-block:: bash
 
-   $ docker run --security-opt label:level:TopSecret -i -t rhel7 bash
+   $ docker run --security-opt label=level:TopSecret -i -t rhel7 bash
 
 .. To disable the security labeling for this container versus running with the --permissive flag, use the following command:
 
@@ -712,19 +770,31 @@ MLS であれば、次のような例になります。
 
 .. code-block:: bash
 
-   $ docker run --security-opt label:disable -i -t fedora bash
+   $ docker run --security-opt label=disable -i -t fedora bash
 
 .. If you want a tighter security policy on the processes within a container, you can specify an alternate type for the container. You could run a container that is only allowed to listen on Apache ports by executing the following command:
 
 コンテナ内のプロセスに対して、何らかのセキュリティ・ポリシーを適用するには、コンテナに対して何らかのタイプを指定します。コンテナを実行する時、Apache のポートのみがリッスンできるようにするには、次のように実行します。
 
-.. $ docker run --security-opt label:type:svirt_apache_t -i -t centos bash
+.. $ docker run --security-opt label=type:svirt_apache_t -i -t centos bash
 
 ..    Note: You would have to write policy defining a svirt_apache_t type.
 
 .. note::
 
    ここでは ``svirt_apache_t`` タイプ に対する書き込みポリシーがあるものと想定しています。
+
+.. If you want to prevent your container processes from gaining additional privileges, you can execute the following command:
+
+コンテナのプロセスに特権を追加できないようにするには、次のコマンドを実行します。
+
+.. code-block:: bash
+
+   $ docker run --security-opt no-new-privileges -it centos bash
+
+.. For more details, see kernel documentation.
+
+より詳しい情報は、 `カーネルのドキュメント <https://www.kernel.org/doc/Documentation/prctl/no_new_privs.txt>`_ をご覧ください。
 
 .. Specifying custom cgroups
 
@@ -1182,7 +1252,7 @@ CPU クォータ制限
 
 .. code-block:: bash
 
-   --group-add: Add Linux capabilities
+   --group-add: Add additional groups to run as
 
 .. By default, the docker container process runs with the supplementary groups looked up for the specified user. If one wants to add more to that list of groups, then one can use this flag:
 
@@ -1212,7 +1282,7 @@ Docker コンテナのプロセスを実行できるのは、デフォルトで�
 
 .. note::
 
-   Docker 1.10 以降では、デフォルトの seccomp プロフィールでは、コンテナに対して ``--cap-add`` を指定しても、システムコールをブロックします。このような場合に私たちが推奨するのは、私たちの `デフォルト <https://github.com/docker/docker/blob/master/profiles/seccomp/default.json>`_ プロフィールを元に書き換える方法です。あるいはデフォルトの seccomp プロファイルを使いたくないのであれば、実行時に ``--security-opt=seccomp:unconfined`` を指定できます。
+   Docker 1.10 以降では、デフォルトの seccomp プロフィールでは、コンテナに対して ``--cap-add`` を指定しても、システムコールをブロックします。このような場合に私たちが推奨するのは、私たちの `デフォルト <https://github.com/docker/docker/blob/master/profiles/seccomp/default.json>`_ プロフィールを元に書き換える方法です。あるいはデフォルトの seccomp プロファイルを使いたくないのであれば、実行時に ``--security-opt=seccomp=unconfined`` を指定できます。
 
 .. By default, Docker containers are “unprivileged” and cannot, for example, run a Docker daemon inside a Docker container. This is because by default a container is not allowed to access any devices, but a “privileged” container is given access to all devices (see lxc-template.go and documentation on cgroups devices).
 
@@ -1690,17 +1760,27 @@ VOLUME（共有ファイルシステム）
 .. code-block:: bash
 
    -v=[]: Create a bind mount with: [host-dir:]container-dir[:<options>], where
-   options are comma delimited and selected from [rw|ro] and [z|Z].
-          If 'host-dir' is missing, then docker creates a new volume.
-          If neither 'rw' or 'ro' is specified then the volume is mounted
-          in read-write mode.
+   options are comma delimited and selected from [rw|ro] and [z|Z],
+         [[r]shared|[r]slave|[r]private], and [nocopy].
+
+.. The 'host-src' is an absolute path or a name value.
+
+``host-src`` は絶対パスもしくは名前を値にします。
+
+.. If neither 'rw' or 'ro' is specified then the volume is mounted in read-write mode.
+
+``rw`` （読み書き）または ``ro`` （読み込み専用）の指定が無ければ、読み書き可能なモードでマウントします。
+
+.. The `nocopy` modes is used to disable automatic copying requested volume path in the container to the volume storage location. For named volumes, `copy` is the default mode. Copy modes are not supported for bind-mounted volumes.
+
+``nocopy`` モードを指定すると、コンテナ内に要求したボリューム・パスに対して、ボリュームを保存している場所からの自動コピーを無効にします。名前付きボリュームの場合は、 ``copy`` がデフォルトのモードです。コピー・モードではバインド・マウント（bind-mounted）したボリュームに対するコピーをサポートしていません。
+
+.. code-block:: bash
+
    --volumes-from="": Mount all volumes from the given container(s)
 
 ..    Note: The auto-creation of the host path has been deprecated.
-
-.. note::
-
-   ホスト側のパスを自動作成する機能は :ref:`廃止 <auto-creating-missing-host-paths-for-bind-mounts>` されました。
+..   ホスト側のパスを自動作成する機能は :ref:`廃止 <auto-creating-missing-host-paths-for-bind-mounts>` されました。
 
 .. Note: When using systemd to manage the Docker daemon’s start and stop, in the systemd unit file there is an option to control mount propagation for the Docker daemon itself, called MountFlags. The value of this setting may cause Docker to not see mount propagation changes made on the mount point. For example, if this value is slave, you may not be able to use the shared or rshared propagation on a volume.
 
