@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/cli/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/cli.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/commandline/cli.md
-.. check date: 2016/02/15
+.. check date: 2016/04/25
+.. Commits on Mar 12, 2016 219e5fdda36a18104f7593da9ed8ca097a60aab3
 .. -------------------------------------------------------------------
 
 .. Use the Docker command line
@@ -41,7 +42,7 @@ Docker のインストールや ``sudo`` 設定については、各オペレー
 
 .. Environment variables
 
-.. _environment-variables:
+.. _environment-variables-cli:
 
 環境変数
 ====================
@@ -93,7 +94,7 @@ Docker は「Go」言語で開発されているので、「Go」ランタイム
 
 .. By default, the Docker command line stores its configuration files in a directory called .docker within your HOME directory. However, you can specify a different location via the DOCKER_CONFIG environment variable or the --config command line option. If both are specified, then the --config option overrides the DOCKER_CONFIG environment variable. For example:
 
-Docker コマンドラインは、ホームディレクトリにある ``.docker`` ディレクトリ内に保管されている設定ファイルを、デフォルトで使います。しかし、 ``DOCKER_CONFIG`` 環境変数や ``--config`` コマンドライン・オプションを使い、異なった場所を指定できます。両方が指定された場合は ``--config`` オプションが ``DOCKER_CONFIG`` 環境変数を上書きします。例：
+Docker コマンドラインは、ホームディレクトリ ``$HOME`` にある ``.docker`` ディレクトリ内に保管されている設定ファイルを、デフォルトで使います。しかし、 ``DOCKER_CONFIG`` 環境変数や ``--config`` コマンドライン・オプションを使い、異なった場所を指定できます。両方が指定された場合は ``--config`` オプションが ``DOCKER_CONFIG`` 環境変数を上書きします。例：
 
 .. code-block:: bash
 

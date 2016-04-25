@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/daemon/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/daemon.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/commandline/daemon.md
-.. check date: 2016/02/19
+.. check date: 2016/04/25
+.. Commits on Apr 21, 2016 e3eb24fc21fa6f6002eef081278333f9e5e16614
 .. -------------------------------------------------------------------
 
 .. daemon
@@ -37,12 +38,16 @@ daemon
      --cluster-advertise=""                 Address of the daemon instance on the cluster
      --cluster-store-opt=map[]              Set cluster options
      --config-file=/etc/docker/daemon.json  Daemon configuration file
+     --containerd                           Path to containerd socket
+     -D, --debug                            Enable debug mode
+     --default-gateway=""                   Container default gateway IPv4 address
+     --default-gateway-v6=""                Container default gateway IPv6 address
      --dns=[]                               DNS server to use
      --dns-opt=[]                           DNS options to use
      --dns-search=[]                        DNS search domains to use
      --default-ulimit=[]                    Set default ulimit settings for containers
-     --exec-opt=[]                          Set exec driver options
-     --exec-root="/var/run/docker"          Root of the Docker execdriver
+     --exec-opt=[]                          Set runtime execution options
+     --exec-root="/var/run/docker"          Root directory for execution state files
      --fixed-cidr=""                        IPv4 subnet for fixed IPs
      --fixed-cidr-v6=""                     IPv6 subnet for fixed IPs
      -G, --group="docker"                   Group for the unix socket
@@ -218,13 +223,13 @@ Docker デーモンは様々に異なるイメージ・レイヤ・ストレー�
 
 ブロック・デバイスをデバイスマッパー・ストレージに使う場合、``lvm`` を使った thin プール・ボリュームの作成・管理がベストです。その後、このボリュームは Docker により、イメージまたはコンテナで、排他的なスナップショット用ボリュームを作成するために使われます。
 
-..    Managing the thin-pool outside of Docker makes for the most feature-rich method of having Docker utilize device mapper thin provisioning as the backing storage for Docker’s containers. The highlights of the lvm-based thin-pool management feature include: automatic or interactive thin-pool resize support, dynamically changing thin-pool features, automatic thinp metadata checking when lvm activates the thin-pool, etc.
+..    Managing the thin-pool outside of Engine makes for the most feature-rich method of having Docker utilize device mapper thin provisioning as the backing storage for Docker containers. The highlights of the lvm-based thin-pool management feature include: automatic or interactive thin-pool resize support, dynamically changing thin-pool features, automatic thinp metadata checking when lvm activates the thin-pool, etc.
 
-シン・プールの管理を Docker の外で行うため、最も機能豊富な手法をもたらします。Docker コンテナの背後にあるストレージとして、Docker はデバイスマッパーによる シン・プロビジョニングを活用するからです。lvm をベースにしたシン・プール管理機能に含まれるハイライトは、自動もしくはインタラクティブなシン・プールの容量変更のサポートです。動的にシン・プールを変更する機能とは、lvm が シン・プールをアクティブにする時、自動的にメタデータのチェックを行います。
+シン・プールの管理を Docker Engine の外で行うため、最も機能豊富な手法をもたらします。Docker コンテナの背後にあるストレージとして、Docker はデバイスマッパーによる シン・プロビジョニングを活用するからです。lvm をベースにしたシン・プール管理機能に含まれるハイライトは、自動もしくはインタラクティブなシン・プールの容量変更のサポートです。動的にシン・プールを変更する機能とは、lvm が シン・プールをアクティブにする時、自動的にメタデータのチェックを行います。
 
-..    As a fallback if no thin pool is provided, loopback files will be created. Loopback is very slow, but can be used without any pre-configuration of storage. It is strongly recommended that you do not use loopback in production. Ensure your Docker daemon has a --storage-opt dm.thinpooldev argument provided.
+..    As a fallback if no thin pool is provided, loopback files are created. Loopback is very slow, but can be used without any pre-configuration of storage. It is strongly recommended that you do not use loopback in production. Ensure your Engine daemon has a --storage-opt dm.thinpooldev argument provided.
 
-シン・プールが割り当てられなければフェイルバックします。このとき、ループバックのファイルが作成されます。ループバックは非常に遅いものですが、ストレージの再設定を行わなくても利用可能になります。プロダクション環境においては、ループバックを使わない事を強く推奨します。Docker デーモンで ``--storage-opt dm.thinpooldev`` が指定されていること確認してください。
+シン・プールが割り当てられなければフェイルバックします。このとき、ループバックのファイルが作成されます。ループバックは非常に遅いものですが、ストレージの再設定を行わなくても利用可能になります。プロダクション環境においては、ループバックを使わない事を強く推奨します。Docker Engine デーモンで ``--storage-opt dm.thinpooldev`` が指定されていること確認してください。
 
 ..    Example use:
 
@@ -532,6 +537,32 @@ Docker デーモンが ``udev`` 同期をサポートしているかどうかは
 
 通常、安全のためにデフォルトでこのオプションを有効化すべきです。複数のマウント名前空間にまたがり、マウントポイントの意図しないリークが発生したときに役立つでしょう。
 
+* ``dm.min_free_space``
+
+..    Specifies the min free space percent in a thin pool require for new device creation to succeed. This check applies to both free data space as well as free metadata space. Valid values are from 0% - 99%. Value 0% disables free space checking logic. If user does not specify a value for this option, the Engine uses a default value of 10%.
+
+シン・プールが新しいデバイスを正常に作成するために必要な最小ディスク空き容量を、パーセントで指定します。チェックはデータ領域とメタデータ領域の両方に適用します。有効な値は 0% ~ 99% です。値を 0% に指定すると空き領域のチェック機構を無効にします。ユーザがオプションの値を指定しなければ、Engine はデフォルト値の 10% を使います。
+
+..    Whenever a new a thin pool device is created (during docker pull or during container creation), the Engine checks if the minimum free space is available. If sufficient space is unavailable, then device creation fails and any relevant docker operation fails.
+
+新しいシン・プール用デバイスを作成すると（ ``docker pull`` 時やコンテナの作成時 ）、すぐに Engine は最小空き容量を確認します。十分な領域がなければデバイスの作成は失敗し、対象の ``docker`` オプションは失敗します。
+
+..    To recover from this error, you must create more free space in the thin pool to recover from the error. You can create free space by deleting some images and containers from the thin pool. You can also add more storage to the thin pool.
+
+このエラーから復帰するには、エラーが出なくなるようシン・プール内の空き容量を増やす必要があります。シン・プールかにある同じイメージやコンテナを削除することで、空き容量を増やせます。
+
+..    To add more space to a LVM (logical volume management) thin pool, just add more storage to the volume group container thin pool; this should automatically resolve any errors. If your configuration uses loop devices, then stop the Engine daemon, grow the size of loop files and restart the daemon to resolve the issue.
+
+LVM (Logical Volume Management；論理ボリューム管理) シン・プールの容量を増やすには、コンテナのシン・プールのボリューム・グループに対する領域を追加します。そうすると、エラーはでなくなります。もしループ・デバイスを使う設定であれば、Engine デーモンは停止します。この問題を解決するにはデーモンを再起動してループ・ファイルの容量を増やします。
+
+..    Example use:
+
+指定例：
+
+.. code-block:: bash
+
+   $ docker daemon --storage-opt dm.min_free_space=10%
+
 .. Currently supported options of zfs:
 
 現時点で ``zfs`` がサポートしているオプション：
@@ -550,43 +581,56 @@ Docker が自身のデータセットとして、どの zfs ファイルシス�
 
    $ docker daemon -s zfs --storage-opt zfs.fsname=zroot/docker
 
-.. Docker execdriver option
+.. Docker runtime execution option
 
-.. _docker-execdriver-option:
+.. _docker-runtime-execution-option:
 
-Docker 実行ドライバのオプション
+Docker ランタイム実行オプション
 ========================================
 
-.. The Docker daemon uses a specifically built libcontainer execution driver as its interface to the Linux kernel namespaces, cgroups, and SELinux.
+.. The Docker daemon relies on a OCI compliant runtime (invoked via the containerd daemon) as its interface to the Linux kernel namespaces, cgroups, and SELinux.
 
-Docker デーモンは Linux カーネルの ``namespaces`` 、 ``cgroups`` 、 ``SELinux`` に対するインターフェースとして、特別に作られた ``libcontainer`` 実行ドライバを使います。
+Docker デーモンは `OCI <https://github.com/opencontainers/specs>`_ 基準のランタイム（containerd デーモンが呼び出す）に基づいています。これに従いながらLinux カーネルの ``namespaces`` 、 ``cgroups`` 、 ``SELinux`` に対するインターフェースとして動作します。
 
-.. There is still legacy support for the original LXC userspace tools via the lxc execution driver, however, this is not where the primary development of new functionality is taking place. Add -e lxc to the daemon flags to use the lxc execution driver.
+.. Options for the runtime
 
-``lxc`` 実行ドライバを通して、オリジナルの `LXC 名前空間ツール <https://linuxcontainers.org/>`_ もレガシーとしてサポートします。しかし、新機能を追加するための重要な開発対象ではなくなっています。 ``-e lxc`` をデーモンのフラグに追加し、 ``lxc`` 実行ドライバを使えます。
+.. _options-for-the-runtime:
 
-.. Options for the native execdriver
-
-.. _options-for-the-native-execdriver:
-
-ネイティブ実行ドライバのオプション
+ランタイム用のオプション
 ========================================
 
-.. You can configure the native (libcontainer) execdriver using options specified with the --exec-opt flag. All the flag’s options have the native prefix. A single native.cgroupdriver option is available.
+.. You can configure the runtime using options specified with the --exec-opt flag. All the flag’s options have the native prefix. A single native.cgroupdriver option is available.
 
-``native`` (libcontainer) 実行ドライバは、 ``--exec-opt`` フラグを使ってオプションを指定できます。全てのオプションのフラグには、先頭に ``native`` が付きます。 ``native.cgroupdriver`` オプションが利用可能です。
+ランタイムにオプションを指定するには ``--exec-opt`` フラグでオプションを指定できます。全てのオプションのフラグには、先頭に ``native`` が付きます。 ``native.cgroupdriver`` オプションが利用可能です。
 
-.. The native.cgroupdriver option specifies the management of the container’s cgroups. You can specify cgroupfs or systemd. If you specify systemd and it is not available, the system uses cgroupfs. By default, if no option is specified, the execdriver first tries systemd and falls back to cgroupfs. This example sets the execdriver to cgroupfs:
+.. The native.cgroupdriver option specifies the management of the container’s cgroups. You can specify only specify cgroupfs or systemd. If you specify systemd and it is not available, the system errors out. If you omit the native.cgroupdriver option,cgroupfs is used.
 
-``native.cgroupdriver`` オプションはコンテナの cgroups 管理を指定します。 ``systemd`` の ``cgroupfs`` で指定可能です。 ``systemd`` で指定した時、対象が利用可能でなければ、システムは ``cgroupfs`` を使います。デフォルトでは、オプションの指定がない場合、実行ドライバはまず ``systemd`` と ``cgroupfs`` のフェイルバックを試みます。次の例は ``cgroupfs`` を実行ドライバに設定します。
+``native.cgroupdriver`` オプションはコンテナの cgroups 管理を指定します。 ``systemd`` の ``cgroupfs`` で指定可能です。 ``systemd`` で指定した時、対象が利用可能でなければ、システムはエラーを返します。 ``native.cgroupdriver`` オプションを指定しなければ ``cgroupfs`` を使います。
+
+.. This example sets the cgroupdriver to systemd:
+
+次の例は ``systemd`` に ``cgroupdriver``  を指定しています。
 
 .. code-block:: bash
 
-   $ sudo docker daemon --exec-opt native.cgroupdriver=cgroupfs
+   $ sudo docker daemon --exec-opt native.cgroupdriver=systemd
 
 .. Setting this option applies to all containers the daemon launches.
 
 このオプション設定は、デーモンが起動した全てのコンテナに対して適用されます。
+
+.. Also Windows Container makes use of --exec-opt for special purpose. Docker user can specify default container isolation technology with this, for example:
+
+また、Windows コンテナであれば特別な目的のために ``--exec-opt`` を使えます。Docker がデフォルトで使うコンテナの分離技術の指定です。指定例：
+
+.. code-block:: bash
+
+   $ docker daemon --exec-opt isolation=hyperv
+
+.. Will make hyperv the default isolation technology on Windows, without specifying isolation value on daemon start, Windows isolation technology will default to process.
+
+この指定は Windows 上のデフォルト分離技術として ``hyperv`` を使う指定です。デーモン起動時に分離技術の指定が無ければ、デフォルトでは Windows の分離技術として ``process`` を使います。
+
 
 .. Daemon DNS options
 
@@ -772,7 +816,7 @@ Docker のアクセス認証は認証プラグインの拡張であり、組織�
 
 .. For information about how to create an authorization plugin, see authorization plugin section in the Docker extend section of this documentation.
 
-認証プラグインの作成方法については、この Docker ドキュメントの拡張に関するセクションにある :doc:`認証プラグイン </engine/extend/authorization>` をご覧ください。
+認証プラグインの作成方法については、この Docker ドキュメントの拡張に関するセクションにある :doc:`認証プラグイン </engine/extend/plugins_authorization>` をご覧ください。
 
 .. Daemon user namespace option
 
@@ -815,6 +859,12 @@ Linux カーネルの `ユーザ名前空間(user namespace)サポート <http:/
 
 整数値の ID を指定すると、有効なユーザ名かグループ名に交換されます。これにより、従属 uid と gid の情報が読み込まれ、指定されたこれらのリソースは ID ベースではなく名前ベースでとなります。 ``/etc/passwd`` や ``/etc/group`` にエントリが無い数値 ID 情報が指定された場合は、docker は起動せずにエラーを表示します。
 
+.. Note: On Fedora 22, you have to touch the /etc/subuid and /etc/subgid files to have ranges assigned when users are created. This must be done before the --userns-remap option is enabled. Once these files exist, the daemon can be (re)started and range assignment on user creation works properly.
+
+.. note::
+
+   Fedora 22 では、ユーザ作成時に範囲を割り当てるために必要な ``/etc/subuid`` と ``/etc/subgid``  ファイルを ``touch`` コマンドで作成する必要があります。この作業は ``--usernsremap``  オプションを有効にする前に行わなくてはいけません。ファイルが存在していると、ユーザが作成した処理が範囲で処理が適切に行われるよう、デーモンを（再）起動できます。
+
 .. Example: starting with default Docker user management:
 
 例：default の Docker ユーザ管理
@@ -834,11 +884,6 @@ Linux カーネルの `ユーザ名前空間(user namespace)サポート <http:/
    user1:100000:65536
    dockremap:165536:65536
 
-.. Note: On a fresh Fedora install, we had to touch the /etc/subuid and /etc/subgid files to have ranges assigned when users were created. Once these files existed, range assignment on user creation worked properly.
-
-.. note::
-
-   Fedora の新規インストール時であれば、ユーザが作成時に範囲を割り当てるために ``/etc/subuid`` と ``/etc/subguid`` ファイルを ``touch`` コマンドで作成する必要があります。ファイルが作成されていれば、ユーザ作成時に適切な範囲が割り当てられます。
 
 .. If you have a preferred/self-managed user with subordinate ID mappings already configured, you can provide that username or uid to the --userns-remap flag. If you have a group that doesn’t match the username, you may provide the gid or group name as well; otherwise the username will be used as the group name when querying the system for the subordinate group ID range.
 
@@ -853,20 +898,43 @@ Linux カーネルの `ユーザ名前空間(user namespace)サポート <http:/
 
 .. Given potential advanced use of the subordinate ID ranges by power users, the following paragraphs define how the Docker daemon currently uses the range entries found within the subordinate range files.
 
-パワーユーザであれば、従属 ID の範囲変更という高度な使い方があります。以下では、現在どのようにして Docker デーモンが従属範囲のファイルから範囲を決めているかの定義を扱います。
-
-(ToDo)
+パワーユーザであれば、従属 ID の範囲変更という高度な使い方があります。以下で扱うのは、現在どのようにして Docker デーモンが従属範囲のファイルから範囲を決めているかの定義です。
 
 .. The simplest case is that only one contiguous range is defined for the provided user or group. In this case, Docker will use that entire contiguous range for the mapping of host uids and gids to the container process. This means that the first ID in the range will be the remapped root user, and the IDs above that initial ID will map host ID 1 through the end of the range.
 
+最も簡単なケースは、ユーザとグループに対する近接範囲（contiguous range）を１つだけ指定する場合です。この例では、Docker はコンテナのプロセスに対し、ホスト側の uid と gid のすべてを近接範囲として割り当て（マッピングし）ます。つまり、範囲において一番始めに割り当てるのが root ユーザです。この ID が初期 ID として、（ホスト側）範囲における最後をホスト ID 1 として（コンテナ側に）割り当てます。
+
 .. From the example /etc/subuid content shown above, the remapped root user would be uid 165536.
+
+先ほど取り上げた ``/etc/subuid`` の例では、root ユーザに再割り当てする uid は 165536 になります。
 
 .. If the system administrator has set up multiple ranges for a single user or group, the Docker daemon will read all the available ranges and use the following algorithm to create the mapping ranges:
 
+システム管理者は単一のユーザまたはグループに対して複数の範囲を設定できます。Docker デーモンは利用可能な範囲から、以下のアルゴリズムに基づき範囲を割り当てます。
 
 ..    The range segments found for the particular user will be sorted by start ID ascending.
+
+1. 特定ユーザに対する範囲のセグメント（区分）が見つかると、開始 ID を昇順でソートします。
+
 ..    Map segments will be created from each range in increasing value with a length matching the length of each segment. Therefore the range segment with the lowest numeric starting value will be equal to the remapped root, and continue up through host uid/gid equal to the range segment length. As an example, if the lowest segment starts at ID 1000 and has a length of 100, then a map of 1000 -> 0 (the remapped root) up through 1100 -> 100 will be created from this segment. If the next segment starts at ID 10000, then the next map will start with mapping 10000 -> 101 up to the length of this second segment. This will continue until no more segments are found in the subordinate files for this user.
+
+2. セグメントの割り当てには、各セグメントの長さに一致するよう、範囲の値を増やします。そうすると、セグメントの範囲は最も低い数値から始まり、これを root として再割り当てし、あとはホスト側の uid/gid と一致する範囲まで繰り返します。例えば、最小セグメントの ID が 1000 から始まり、長さが 100 とすると、 1000 を 0 にマップし（root として再マップ）ます。これを対象セグメントでは 1100 が 100 にマップするまで続けます。次のセグメントは ID 10000 から始まる場合、次は 10000 が 101 にマップし、その長さの分だけ処理します。この処理を対象ユーザのサボーディネート（従属）ファイルに空きセグメントがなくなるまで繰り返します。
+
 ..    If more than five range segments exist for a single user, only the first five will be utilized, matching the kernel’s limitation of only five entries in /proc/self/uid_map and proc/self/gid_map.
+
+3. ユーザ向けのセグメント範囲が無くなった場合は、カーネルので５つまで使えるよう制限されているエントリ ``/proc/self/uid_map`` と ``/proc/self/gid_map`` が使えます。
+
+.. Disable user namespace for a container
+
+.. _disable-user-namespace-for-a-container:
+
+コンテナ用のユーザ名前空間を無効化
+----------------------------------------
+
+.. If you enable user namespaces on the daemon, all containers are started with user namespaces enabled. In some situations you might want to disable this feature for a container, for example, to start a privileged container (see user namespace known restrictions). To enable those advanced features for a specific container use --userns=host in the run/exec/create command. This option will completely disable user namespace mapping for the container’s user.
+
+デーモンでユーザ名前空間を有効にすると、全てのコンテナはユーザ名前空間が有効な状態で起動します。状況によってはコンテナに対するユーザ名前空間を無効化したい時があるでしょう。例えば、特権コンテナ（privileged container）の起動時です（詳細は  :ref:`user-namespace-known-restrictions` をご覧ください ）。これらの高度な機能を使うには、コンテナの ``run`` ``exec`` ``create`` コマンド実行時に ``--userns=host`` を指定します。このオプションを使えばコンテナの利用者に対するユーザ名前空間の割り当てを完全に無効化します。
+
 
 .. User namespace known restrictions:
 
@@ -875,21 +943,27 @@ Linux カーネルの `ユーザ名前空間(user namespace)サポート <http:/
 ユーザ名前空間と既知の制限
 ------------------------------
 
-(ToDo)
-
 .. The following standard Docker features are currently incompatible when running a Docker daemon with user namespaces enabled:
 
+Docker デーモンのユーザ名前空間を有効にした状態では、以下の Docker 標準機能は互換性がありません。
+
 ..    sharing PID or NET namespaces with the host (--pid=host or --net=host)
-    sharing a network namespace with an existing container (--net=container:*other*)
-    sharing an IPC namespace with an existing container (--ipc=container:*other*)
     A --readonly container filesystem (this is a Linux kernel restriction against remounting with modified flags of a currently mounted filesystem when inside a user namespace)
     external (volume or graph) drivers which are unaware/incapable of using daemon user mappings
-    Using --privileged mode flag on docker run
+    Using --privileged mode flag on docker run (unless also specifying --userns=host)
+
+* ホスト・モードにおける PID または NET 名前空間（ ``--pid=host`` あるいは ``--net=host`` ）
+* ``--readonly`` コンテナ・ファイルシステム（ユーザ名前空間内において、現在のマウント・ファイルシステムのフラグを変更してリマウントすることは、Linux カーネルの制約によりできません）
+* デーモンが知らない／機能を持たない外部ドライバ（ボリュームやグラフ）をユーザ名前空間内で実行
+* ``docker run`` で ``--privileged`` モードのフラグを指定（また ``--userns=host`` も指定できません ）
 
 .. In general, user namespaces are an advanced feature and will require coordination with other capabilities. For example, if volumes are mounted from the host, file ownership will have to be pre-arranged if the user or administrator wishes the containers to have expected access to the volume contents.
 
+一般的に、ユーザ名前空間は高度な機能であり、他の機能との調整を必要とします。例えば、ホストにボリュームをマウントするときは、ファイルの所有者はユーザもしくは管理者がボリューム・コンテナにアクセスできるよう、あらかじめ調整しておきます。
+
 .. Finally, while the root user inside a user namespaced container process has many of the expected admin privileges that go along with being the superuser, the Linux kernel has restrictions based on internal knowledge that this is a user namespaced process. The most notable restriction that we are aware of at this time is the inability to use mknod. Permission will be denied for device creation even as container root inside a user namespace.
 
+最後に、ユーザ名前空間に対応したコンテナ・プロセス内の ``root`` ユーザとは、多くの管理特権を持っていると考えるかもしれません。ですが、Linux カーネルは内部情報に基づきユーザ名前空間内のプロセスとして制限をかけます。現時点で最も注意が必要な制約は ``mknod`` の使用です。コンテナ内のユーザ名前空間では ``root`` であったとしてもデバイス作成の権限がありません。
 
 .. Miscellaneous options
 
@@ -932,6 +1006,10 @@ cgroup はスラッシュ記号（ ``/`` ）で始まるルート cgroup の下�
 
 デーモンが cgroup ``daemoncgroup`` で実行されており、``--cgroup-parent=/foobar`` で ``/sys/fs/cgroup/memory/foobar`` の中に cgroup を作成すると仮定すると、 ``--cgroup-parent=foobar`` は ``/sys/fs/cgroup/memory/daemoncgroup/foobar`` に cgroup を作成します。
 
+.. The systemd cgroup driver has different rules for --cgroup-parent. Systemd represents hierarchy by slice and the name of the slice encodes the location in the tree. So --cgroup-parent for systemd cgroups should be a slice name. A name can consist of a dash-separated series of names, which describes the path to the slice from the root slice. For example, --cgroup-parent=user-a-b.slice means the memory cgroup for the container is created in /sys/fs/cgroup/memory/user.slice/user-a.slice/user-a-b.slice/docker-<id>.scope.
+
+systemd cgroup ドライバは ``--cgroup-parent`` と異なるルールです。Systemd のリソース階層は、スライス（訳者注：systemd における CPU やメモリなどのリソースを分割する単位のこと）とツリー上でスライスをエンコードする場所の名前で表します。そのため systemd cgroups 向けの ``--cgroup-parent`` はスライス名と同じにすべきです。名前はダッシュ句切りの名前で構成します。つまりルート・スライスからのスタイスに対するパスです。例えば ``--cgroup-parent=user-a-b.slice `` が意味するのは、コンテナ用の cgroup を ```/sys/fs/cgroup/memory/user.slice/user-a.slice/user-a-b.slice/docker-<id>.scope`` に割り当てるのを意味します。
+
 .. This setting can also be set per container, using the --cgroup-parent option on docker create and docker run, and takes precedence over the --cgroup-parent option on the daemon.
 
 これらの指定はコンテナに対しても可能です。 ``docker create`` と ``docker run`` の実行時に ``--cgroup-parent`` を使うと、デーモンのオプションで指定した ``--cgroup-parent`` よりも優先されます。
@@ -965,7 +1043,7 @@ cgroup はスラッシュ記号（ ``/`` ）で始まるルート cgroup の下�
    	"exec-opts": [],
    	"exec-root": "",
    	"storage-driver": "",
-   	"storage-opts": "",
+   	"storage-opts": [],
    	"labels": [],
    	"log-driver": "",
    	"log-opts": [],
@@ -1001,7 +1079,11 @@ cgroup はスラッシュ記号（ ``/`` ）で始まるルート cgroup の下�
           "fixed-cidr-v6": "",
           "default-gateway": "",
           "default-gateway-v6": "",
-          "icc": false
+          "icc": false,
+          "raw-logs": false,
+          "registry-mirrors": [],
+          "insecure-registries": [],
+          "disable-legacy-registry": false
    }
 
 .. Configuration reloading
@@ -1020,10 +1102,20 @@ cgroup はスラッシュ記号（ ``/`` ）で始まるルート cgroup の下�
 現時点で変更可能なオプションは以下の通りです。
 
 ..    debug: it changes the daemon to debug mode when set to true.
+   cluster-store: it reloads the discovery store with the new address.
+   cluster-store-opts: it uses the new options to reload the discovery store.
+   cluster-advertise: it modifies the address advertised after reloading.
     labels: it replaces the daemon labels with a new set of labels.
 
 * ``debug`` ：true を設定すると、デーモンをデバッグ・モードにします。
+* ``cluster-store`` ：新しいアドレスにディスカバリ・ストアを読み込み直します。
+* ``cluster-store-opts`` ：ディスカバリ・ストアをお見込むときの新しいオプションを指定します。
+* ``cluster-advertise`` ：再起動後のアドバタイズド・アドレスを指定します。
 * ``labels`` ：デーモンのラベルを新しく設定したものに変えます。
+
+.. Updating and reloading the cluster configurations such as --cluster-store, --cluster-advertise and --cluster-store-opts will take effect only if these configurations were not previously configured. If --cluster-store has been provided in flags and cluster-advertise not, cluster-advertise can be added in the configuration file without accompanied by --cluster-store Configuration reload will log a warning message if it detects a change in previously configured cluster configurations.
+
+``--cluster-store`` 、 ``--cluster-advertise`` 、 ``--cluster-store-opts`` のようなクラスタ設定情報の更新や再読込が反映できるのは、これまでに指定しない項目に対してのみです。フラグで ``--cluster-store`` を指定しても ``cluster-advertise`` を指定していなければ、 ``cluster-advertise`` は ``--cluster-store`` を一緒に指定しなくても反映します。既に設定済みのクラスタ設定に対して変更を試みると、設定読み込み時に警告メッセージをログに残します。
 
 .. seealso:: 
 

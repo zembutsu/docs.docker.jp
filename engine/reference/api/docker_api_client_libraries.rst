@@ -1,7 +1,7 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/api/remote_api_client_libraries/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/api/remote_api_client_libraries.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/api/remote_api_client_libraries.md
 .. check date: 2016/02/25
 .. Commits on Feb 9, 2016 47dbb59e5b5d3472f9391e965131015d83d614a4
