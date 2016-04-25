@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/attach/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/attach.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/commandline/attach.md
-.. check date: 2016/02/19
+.. check date: 2016/04/25
+.. Commits on Feb 6, 2016 7f275315edc73027b3d144da439b00fa6565baec
 .. -------------------------------------------------------------------
 
 .. attach

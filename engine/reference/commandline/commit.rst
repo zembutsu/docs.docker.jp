@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/commit/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/commit.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/commandline/commit.md
-.. check date: 2016/02/19
+.. check date: 2016/04/25
+.. Commits on Feb 19, 2016 cdc7f26715fbf0779a5283354048caf9faa1ec4a
 .. -------------------------------------------------------------------
 
 .. commit
@@ -38,9 +39,9 @@ commit
 
 コンテナ内でマウントされているボリュームに含まれるデータは、コミット作業に含まれません。
 
-.. By default, the container being committed and its processes will be paused while the image is committed. This reduces the likelihood of encountering data corruption during the process of creating the commit. If this behavior is undesired, set the ‘p’ option to false.
+.. By default, the container being committed and its processes will be paused while the image is committed. This reduces the likelihood of encountering data corruption during the process of creating the commit. If this behavior is undesired, set the ‘--pause’ option to false.
 
-デフォルトでは、コンテナをコミットする時、その過程のいてイメージをコミットする間は一時的に停止します。これはコミットする糧において、データ破損が発生する可能性を減らします。この動作を理解しているのであれば、 ``-p`` オプションを使って無効化もできます。
+デフォルトでは、コンテナをコミットする時、その過程のいてイメージをコミットする間は一時的に停止します。これはコミットする糧において、データ破損が発生する可能性を減らします。この動作を理解しているのであれば、 ``--pause`` オプションを使って無効化もできます。
 
 .. The --change option will apply Dockerfile instructions to the image that is created. Supported Dockerfile instructions: CMD|ENTRYPOINT|ENV|EXPOSE|LABEL|ONBUILD|USER|VOLUME|WORKDIR
 
@@ -59,10 +60,10 @@ commit
    ID                  IMAGE               COMMAND             CREATED             STATUS              PORTS
    c3f279d17e0a        ubuntu:12.04        /bin/bash           7 days ago          Up 25 hours
    197387f1b436        ubuntu:12.04        /bin/bash           7 days ago          Up 25 hours
-   $ docker commit c3f279d17e0a  svenDowideit/testimage:version3
+   $ docker commit c3f279d17e0a  svendowideit/testimage:version3
    f5283438590d
    $ docker images
-   REPOSITORY                        TAG                 ID                  CREATED             VIRTUAL SIZE
+   REPOSITORY                        TAG                 ID                  CREATED             SIZE
    svendowideit/testimage            version3            f5283438590d        16 seconds ago      335.7 MB
 
 .. Commit a container with new configurations

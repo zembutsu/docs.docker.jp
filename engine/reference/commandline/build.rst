@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/build/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/build.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/commandline/build.md
-.. check date: 2016/02/19
+.. check date: 2016/04/25
+.. Commits on Mar 31, 2016 28d3c22e55259281c70fd90780a1b0d388450ddf
 .. -------------------------------------------------------------------
 
 .. build
@@ -36,6 +37,7 @@ build
      --force-rm                      Always remove intermediate containers
      --help                          Print usage
      --isolation=""                  Container isolation technology
+     --label=[]                      Set metadata for an image
      -m, --memory=""                 Memory limit for all build containers
      --memory-swap=""                A positive integer equal to memory plus swap. Specify -1 to enable unlimited swap.
      --no-cache                      Do not use cache when building the image
