@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/inspect/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/inspect.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/commandline/inspect.md
-.. check date: 2016/02/19
+.. check date: 2016/04/26
+.. Commits on Jan 22, 2016 b0873c2c5009d4b2f758ea49477b55a2b5600c90
 .. -------------------------------------------------------------------
 
 .. inspect

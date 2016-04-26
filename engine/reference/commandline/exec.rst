@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/exec/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/exec.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/commandline/exec.md
-.. check date: 2016/02/19
+.. check date: 2016/04/26
+.. Commits on Jan 4, 2016 cdc7f26715fbf0779a5283354048caf9faa1ec4a
 .. -------------------------------------------------------------------
 
 .. exec

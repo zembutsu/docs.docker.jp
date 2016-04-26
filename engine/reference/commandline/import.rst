@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/import/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/import.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/commandline/import.md
-.. check date: 2016/02/19
+.. check date: 2016/04/26
+.. Commits on Feb 19, 2016 cdc7f26715fbf0779a5283354048caf9faa1ec4a
 .. -------------------------------------------------------------------
 
 .. import
@@ -63,7 +64,7 @@ import
 
    $ cat exampleimage.tgz | docker import - exampleimagelocal:new
 
-.. Import with a commit message
+.. Import with a commit message.
 
 コミット・メッセージを付けて取り込みます。
 

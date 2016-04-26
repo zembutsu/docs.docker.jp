@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/cp/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/cp.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/commandline/cp.md
-.. check date: 2016/02/19
+.. check date: 2016/04/26
+.. Commits on Mar 4, 2016 889d06178adef05d9f9d34a2098f0e6023b84bed
 .. -------------------------------------------------------------------
 
 .. cp
@@ -29,13 +30,13 @@ cp
 
 ２つめの概要は、 ``ローカルパス`` （あるいは ``STDIN`` で ``-`` で指定した tar アーカイブを流し込み）に含まれる内容を、ローカルマシン上から ``コンテナ`` のファイルシステム上の ``パス`` にコピーします。
 
-.. You can copy to or from either a running or stopped container. The PATH can be a file or directory. The docker cp command assumes all CONTAINER:PATH values are relative to the / (root) directory of the container. This means supplying the initial forward slash is optional; The command sees compassionate_darwin:/tmp/foo/myfile.txt and compassionate_darwin:tmp/foo/myfile.txt as identical. If a LOCALPATH value is not absolute, is it considered relative to the current working directory.
+.. You can copy to or from either a running or stopped container. The PATH can can be a file or directory. The docker cp command assumes all CONTAINER:PATH values are relative to the / (root) directory of the container. This means supplying the initial forward slash is optional; The command sees compassionate_darwin:/tmp/foo/myfile.txt and compassionate_darwin:tmp/foo/myfile.txt as identical. If a LOCALPATH value is not absolute, is it considered relative to the current working directory.
 
 コピーはコンテナが実行中でも停止中でも可能です。 ``パス`` とはファイルまたはディレクトリです。 ``docker cp`` コマンドは、全ての ``コンテナ:パス`` 値はコンテナ内の ``/`` （ルート）ディレクトリとみなします。つまり、転送先の冒頭にスラッシュを付けるのはオプションです。つまり、コマンド ``compassionate_darwin:/tmp/foo/myfile.txt`` と ``compassionate_darwin:tmp/foo/myfile.txt`` は同一です。 ``ローカルパス`` の値は絶対パスで歯無く、現在の作業ディレクトリからの相対パスとみなされます。
 
-.. Behavior is similar to the common Unix utility cp -a in that directories are copied recursively with permissions preserved if possible. Ownership is set to the user and primary group on the receiving end of the transfer. For example, files copied to a container will be created with UID:GID of the root user. Files copied to the local machine will be created with the UID:GID of the user which invoked the docker cp command.
+.. Behavior is similar to the common Unix utility cp -a in that directories are copied recursively with permissions preserved if possible. Ownership is set to the user and primary group on the receiving end of the transfer. For example, files copied to a container will be created with UID:GID of the root user. Files copied to the local machine will be created with the UID:GID of the user which invoked the docker cp command. If you specify the -L option, docker cp follows any symbolic link in the SRC_PATH. docker cp does not create parent directories for DEST_PATH if they do not exist.
 
-動作は一般的な Unix ユーティリティ ``cp -a`` に似ています。可能であればパーミッションと一緒に、ディレクトリは再帰的にコピーされます。所有者の権限は、転送終了時にユーザとプライマリ・グループが指定されます。例えば、ファイルをコンテナにコピーすると、 ``UID:GID`` は root ユーザとして作成されます。ファイルをローカルのマシン上にコピーするときは、 ``docker cp`` コマンドを実行したユーザの ``UID:GID`` が作成されます。
+動作は一般的な Unix ユーティリティ ``cp -a`` に似ています。可能であればパーミッションと一緒に、ディレクトリは再帰的にコピーされます。所有者の権限は、転送終了時にユーザとプライマリ・グループが指定されます。例えば、ファイルをコンテナにコピーすると、 ``UID:GID`` は root ユーザとして作成されます。ファイルをローカルのマシン上にコピーするときは、 ``docker cp`` コマンドを実行したユーザの ``UID:GID`` が作成されます。もしも ``docker cp`` で ``-L`` オプションを指定すると、 ``送信元パス`` のシンボリック・リンクをフォローします。 ``docker cp`` は ``送信先パス`` が存在しなければ、親ディレクトリを作成しません。
 
 .. Assuming a path separator of /, a first argument of SRC_PATH and second argument of DST_PATH, the behavior is as follows:
 
@@ -115,13 +116,13 @@ cp
 
 ``/proc`` 、 ``/sys`` 、 ``/dev`` 配下にあるリソースのような特定のシステムファイルはコピーできません。これらはコンテナの中にマウントされます。
 
+.. Using - as the SRC_PATH streams the contents of STDIN as a tar archive. The command extracts the content of the tar to the DEST_PATH in container’s filesystem. In this case, DEST_PATH must specify a directory. Using - as the DEST_PATH streams the contents of the resource as a tar archive to STDOUT.
+
+``送信元のパス`` に ``-`` を使うと、 ``STDIN`` （標準入力）を tar アーカイブの内容として流し込みます。このコマンドにより、対象となるコンテナ上にあるファイルシステムの  ``送信先パス`` に展開します。この場合、 ``送信先パス`` にはディレクトリを指定する必要があります。 ``送信先パス`` に ``-`` を使うと、
+
 .. Using - as the first argument in place of a LOCALPATH will stream the contents of STDIN as a tar archive which will be extracted to the PATH in the filesystem of the destination container. In this case, PATH must specify a directory.
 
-``ローカルパス`` の１番目の引数に ``-`` を使うと、tar アーカイブからの内容を ``STDIN`` （標準入力）としてストリーム（流し込み）ます。これにより、対象となるコンテナのファイルシステムにある ``パス`` に展開します。
-
-.. Using - as the second argument in place of a LOCALPATH will stream the contents of the resource from the source container as a tar archive to STDOUT.
-
-``ローカルパス`` の２番目の引数に ``-`` を使うと、基となるコンテナのリソースに含まれる内容が、tar アーカイブとして ``STDOUT`` （標準出力）にストリーム出力します。
+``ローカルパス`` の１番目の引数に ``-`` を使うと、tar アーカイブからの内容を ``STDIN`` （標準入力）としてストリーム（流し込み）ます。これにより、対象となるコンテナのファイルシステムにある ``パス`` に展開します。元となるコンテナのリソースに含まれる内容が、tar アーカイブとして ``STDOUT`` （標準出力）にストリーム出力します。
 
 .. seealso:: 
 
