@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/network_connect/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/network_connect.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/commandline/network_connect.md
-.. check date: 2016/02/20
+.. check date: 2016/04/27
+.. Commits on Feb 12, 2015 99a396902f0ea9d81ef87a683489b2435408f415
 .. -------------------------------------------------------------------
 
 .. network connect
