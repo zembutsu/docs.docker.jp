@@ -24,6 +24,7 @@ Docker Compose
    django.rst
    rails.rst
    wordpress.rst
+   env-file.rst
    extends.rst
    networking.rst
    production.rst
