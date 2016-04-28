@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/swarm/install-w-machine/
 .. SOURCE: https://github.com/docker/swarm/blob/master/docs/install-w-machine.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/swarm/commits/master/docs/install-w-machine.md
-.. check date: 2016/02/26
-.. Commits on Feb 25, 2016 b9f7b8a91a0cbd04f91bac4a7b5172443476d205
+.. check date: 2016/04/29
+.. Commits on Mar 13, 2016 aa70529d3f4bac701818f85d63934f72b62da258
 .. -------------------------------------------------------------------
 
 .. Evaluate Swarm in a sandbox
@@ -60,7 +60,7 @@ Docker Toolbox のインストール
 * VirtualBox: Docker Machine を使い、仮想マシンのホストをデプロイします。
 * Docker クライアント: ローカルのコンピュータから仮想マシン上の Docker エンジンに接続します。それと、docker コマンドで Swarm クラスタを作成します。
 
-.. The following sections provide more information on each of these tools. The rest of the document uses the abbreviation, VM, for virtual machine.
+.. The following sections provide more information each of these tools. The rest of the document uses the abbreviation, VM, for virtual machine.
 
 以下のセクションでは各ツールの詳細を説明します。移行のドキュメントでは仮想マシン（Virtual Machine）のことを VM と省略します。
 
