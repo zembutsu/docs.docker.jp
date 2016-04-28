@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/machine/drivers/generic/
 .. SOURCE: https://github.com/docker/machine/blob/master/docs/drivers/generic.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/machine/commits/master/docs/drivers/generic.md
-.. check date: 2016/03/09
-.. Commits on Feb 19, 2016 742c87ee3f1af146b6c3e18fe4a4f6c2da976170
+.. check date: 2016/04/28
+.. Commits on Apr 20, 2016 90cb223610b4113f4ad1400e32156598c22270d1
 .. ----------------------------------------------------------------------------
 
 .. Generic
@@ -104,6 +104,7 @@ sudo 権限
     --generic-ssh-user: SSH username used to connect.
     --generic-ssh-port: Port to use for SSH.
 
+* ``--generic-engine-port`` : Docker デーモンが使うポート番号（メモ：このフラグは boot2docker では機能しません）
 * ``--generic-ip-address`` : **必須** ホストの IP アドレス
 * ``--generic-ssh-key`` : SSH ユーザのプライベート鍵のパス
 * ``--generic-ssh-user`` : 接続に使う SSH ユーザ名
@@ -123,9 +124,12 @@ sudo 権限
    * - コマンドライン・オプション
      - 環境変数
      - デフォルト値
+   * - ``--generic-engine-port``
+     - ``GENERIC_ENGINE_PORT``
+     - ``2376``
    * - ``--generic-ip-address``
      - ``GENERIC_IP_ADDRESS``
-     - -
+     - ―
    * - ``--generic-ssh-key``
      - ``GENERIC_SSH_KEY``
      - （ ``ssh-agent`` に従う ）

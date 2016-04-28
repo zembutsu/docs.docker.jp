@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/machine/drivers/soft-layer/
 .. SOURCE: https://github.com/docker/machine/blob/master/docs/drivers/soft-layer.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/machine/commits/master/docs/drivers/soft-layer.md
-.. check date: 2016/03/09
+.. check date: 2016/04/28
 .. Commits on Jan 26, 2016 75f138949aa465dd4b3da1df75abba44ff197cdf
 .. ----------------------------------------------------------------------------
 

@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/machine/drivers/os-base/
 .. SOURCE: https://github.com/docker/machine/blob/master/docs/drivers/os-base.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/machine/commits/master/docs/drivers/os-base.md
-.. check date: 2016/03/09
-.. Commits on Nov 27, 2015 68e6e3f905856bc1d93cb5c1e99cc3b3ac900022
+.. check date: 2016/04/28
+.. Commits on Apr 23, 2016 c9c6bc45f0e91c9b99129c0a16d0641cd7a266e9
 .. ----------------------------------------------------------------------------
 
 .. Driver options and operating system defaults

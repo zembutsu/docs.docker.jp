@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/machine/drivers/hyper-v/
 .. SOURCE: https://github.com/docker/machine/blob/master/docs/drivers/hyper-v.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/machine/commits/master/docs/drivers/hyper-v.md
-.. check date: 2016/03/09
+.. check date: 2016/04/28
 .. Commits on Feb 4, 2016 a8625397bc0b3526a3177303a1e39dac25e68850
 .. ----------------------------------------------------------------------------
 

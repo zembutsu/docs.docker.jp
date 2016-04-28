@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/machine/drivers/openstack/
 .. SOURCE: https://github.com/docker/machine/blob/master/docs/drivers/openstack.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/machine/commits/master/docs/drivers/openstack.md
-.. check date: 2016/03/09
-.. Commits on Feb 4, 2016 a8625397bc0b3526a3177303a1e39dac25e68850
+.. check date: 2016/04/28
+.. Commits on Jan 26, 2016 75f138949aa465dd4b3da1df75abba44ff197cdf
 .. ----------------------------------------------------------------------------
 
 .. OpenStack

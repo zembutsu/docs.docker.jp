@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/machine/drivers/digital-ocean/
 .. SOURCE: https://github.com/docker/machine/blob/master/docs/drivers/digital-ocean.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/machine/commits/master/docs/drivers/digital-ocean.md
-.. check date: 2016/03/09
+.. check date: 2016/04/28
 .. Commits on Mar 3, 2016 17c6578583e61b144eb6071a900b589a3a9d26eb
 .. ----------------------------------------------------------------------------
 

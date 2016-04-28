@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/machine/drivers/gce/
 .. SOURCE: https://github.com/docker/machine/blob/master/docs/drivers/gce.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/machine/commits/master/docs/drivers/gce.md
-.. check date: 2016/03/09
-.. Commits on Jan 11, 2016 52bd740ad353a6b1a582668f4da76b8b38a9c89f
+.. check date: 2016/04/28
+.. Commits on Mar 2, 2016 e67c78899ddfff2b333ad422c0eac8109a21a371
 .. ----------------------------------------------------------------------------
 
 .. Google Compute Engine
@@ -87,6 +87,7 @@ Google ドライバは Google API を呼び出して使うために、 `Applicat
 * ``--google-preemptible`` : インスタンスの先行取得（preemptibility） 。
 * ``--google-tags`` : インスタンスのタグ（カンマ区切り）。
 * ``--google-use-internal-ip`` : 作成時にこのオプションを指定すると、docker-machine はパブリックの NAT 化された IP ではなく内部の IP を使う。フラグは常に一貫しており、マシン作成時の IP アドレスを保持します。これは Swarm をデプロイするなど、同じネットワーク上の複数のマシンを Docker Machine で管理するときに便利です。
+* ``--google-use-existing`` : 新しい仮想マシンを作成せず、既存のものを使います。自分で Docker が動く仮想マシンのプロビジョンには便利かもしれませんが、ドライバを使って作成時のオプションはサポートされていません。
 
 .. The GCE driver will use the ubuntu-1510-wily-v20151114 instance image unless otherwise specified. To obtain a list of image URLs run:
 
@@ -106,7 +107,7 @@ GCE ドライバは、イメージの指定がなければ ``ubuntu-1510-wily-v2
      - デフォルト値
    * - ``--google-project``
      - ``GOOGLE_PROJECT``
-     - -
+     - ―
    * - ``--google-zone``
      - ``GOOGLE_ZONE``
      - ``us-central1-a``
@@ -130,16 +131,19 @@ GCE ドライバは、イメージの指定がなければ ``ubuntu-1510-wily-v2
      - ``pd-standard``
    * - ``--google-address``
      - ``GOOGLE_ADDRESS``
-     - -
+     - ―
    * - ``--google-preemptible``
      - ``GOOGLE_PREEMPTIBLE``
-     - -
+     - ―
    * - ``--google-tags``
      - ``GOOGLE_TAGS``
-     - -
+     - ―
    * - ``--google-use-internal-ip``
      - ``GOOGLE_USE_INTERNAL_IP``
-     - -
+     - ―
+   * - ``--google-use-existing``
+     - ``GOOGLE_USE_EXISTING``
+     - ―
 
 .. seealso:: 
 

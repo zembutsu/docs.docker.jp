@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/machine/drivers/aws/
 .. SOURCE: https://github.com/docker/machine/blob/master/docs/drivers/aws.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/machine/commits/master/docs/drivers/aws.md
-.. check date: 2016/03/09
-.. Commits on Feb 10, 2016 c568bb8805ab49de7009f699d4da8f2bfac54725
+.. check date: 2016/04/28
+.. Commits on Mar 16, 2016 ab559c542f2a3a4534b14b4c16300344412a93a3
 .. ----------------------------------------------------------------------------
 
 .. Amazon Web Services
@@ -57,9 +57,14 @@ amazonec2 ドライバを使う前に、認証情報の設定が必要です。
 
 .. You can learn more about the credentials file from this blog post.
 
-このファイルの詳細な使い方は、こちらの `ブログ投稿 <http://blogs.aws.amazon.com/security/post/Tx3D6U6WSFGOK2H/A-New-and-Standardized-Way-to-Manage-Credentials-in-the-AWS-SDKs>`_  をご覧ください。
+.. このファイルの詳細な使い方は、こちらの `ブログ投稿 <http://blogs.aws.amazon.com/security/post/Tx3D6U6WSFGOK2H/A-New-and-Standardized-Way-to-Manage-Credentials-in-the-AWS-SDKs>`_  をご覧ください。
 
-.. This is the simplest case, you can then create a new machine with:
+
+.. On Mac OS or various flavors of Linux you can install the AWS Command Line Interface (aws cli) in the terminal and use the aws configure command which guides you through the creation of the credentials file.
+
+Mac や Linux ディストリビューションでは、 `AWS コマンドライン・インターフェース <http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-quick-configuration>`_ （ ``aws cli`` ）をターミナルにインストールし、 ``aws configure`` コマンドで認証情報ファイルを作成します。
+
+.. This is the simplest method, you can then create a new machine with:
 
 これが最も簡単にマシンを作成できる方法です。
 
@@ -312,6 +317,32 @@ VPC ID を確認するには：
 .. This example assumes the VPC ID was found in the a availability zone. Use the--amazonec2-zone flag to specify a zone other than the a zone. For example, --amazonec2-zone c signifies us-east1-c.
 
 この例では、 VPC ID が ``a`` アベイラビリティ・ゾーンに存在しているものと想定されます。 ``a`` ゾーン以外を指定するには、 ``--amazonec2-zone`` フラグを使います。例えば、 ``--amazonec2-zone c`` は ``us-east1-c`` を表しています。
+
+.. VPC Connectivity
+
+.. _vpc-connectivity:
+
+VPC の接続性
+====================
+
+.. Machine uses SSH to complete the set up of instances in EC2 and requires the ability to access the instance directly.
+
+Machine は SSH を使い EC2 インスタンス上にセットアップします。その時、インスタンスに直接接続できるようにする必要があります。
+
+.. If you use the flag --amazonec2-private-address-only, you will need to ensure that you have some method of accessing the new instance from within the internal network of the VPC (e.g. a corporate VPN to the VPC, a VPN instance inside the VPC or using Docker-machine from an instance within your VPC).
+
+フラグ ``--amazonec2-private-address-only``  を使うときは、VPC の内部ネットワーク内で新しいインスタンスを作成できるようにする必要があります（例：社内の VPN から VPC の接続、VPC 内の VPN インスタンス、VPC 内で DOcker Machine インスタンスを使う）。
+
+.. VPC Set up
+
+.. _vpc-set-up:
+
+VPC セットアップ
+====================
+
+.. Configuration of VPCs is beyond the scope of this guide, however the first step in troubleshooting is ensuring if you are using private subnets that you follow the design guidance in the AWS VPC User Guide and have some form of NAT available so that the set up process can access the internet to complete set up.
+
+VPC の設定はこのドキュメントの範囲外ですが、トラブルシューティングの始めのステップとして、 `AWS VPC ユーザガイド <http://docs.aws.amazon.com/ja_jp/AmazonVPC/latest/UserGuide/VPC_Scenario2.html>`_ のガイダンスから、NAT の利用に関する情報をご覧ください。インターネットに接続するためのセットアップに関する、全ての手順が書かれています。
 
 .. Custom AMI and SSH username
 

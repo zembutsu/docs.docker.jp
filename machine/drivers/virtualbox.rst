@@ -1,7 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. https://docs.docker.com/machine/drivers/virtualbox/
-.. doc version: 1.9
-.. check date: 2016/01/25
+.. SOURCE: https://github.com/docker/machine/blob/master/docs/drivers/virtualbox.md
+   doc version: 1.11
+      https://github.com/docker/machine/commits/master/docs/drivers/virtualbox.md
+.. check date: 2016/04/28
+.. Commits on Mar 16, 2016 ab559c542f2a3a4534b14b4c16300344412a93a3
 .. -----------------------------------------------------------------------------
 
 .. Oracle VirtualBox
@@ -60,7 +63,8 @@ Oracle VirtualBox
 * ``--virtualbox-hostonly-nictype`` :  ホストオンリー・ネットワーク・アダプタのタイプを指定。値は ``82540EM`` (Intel PRO/1000)、 ``Am79C973`` (PCnet-FAST III) 、``virtio-net`` 準仮想化ネットワーク・アダプタのいずれか。
 * ``--virtualbox-hostonly-nicpromisc`` : ホスト・オンリー・ネットワーク・アダプタのプロミスキャス・モードを指定。オプションは deny、allow-vms、allow-all のいずれか。
 * ``--virtualbox-no-share`` : ホーム・ディレクトリのマウントを無効化。
-* ``--virtualbox-dns-proxy`` : 全ての DNS リクエストをホスト側にプロキシする（　Boolean 値で、デフォルトは false）。
+* ``--virtualbox-no-dns-proxy`` : 全ての DNS リクエストをホスト側にプロキシしない（　Boolean 値で、デフォルトは false）。
+* ``--virtualbox-no-vtx-check`` : 仮想マシンを起動する前にハードウェア仮想化が利用可能かどうかを確認。
 
 .. The --virtualbox-boot2docker-url flag takes a few different forms. By default, if no value is specified for this flag, Machine will check locally for a boot2docker ISO. If one is found, that will be used as the ISO for the created machine. If one is not found, the latest ISO release available on boot2docker/boot2docker will be downloaded and stored locally for future use. Note that this means you must run docker-machine upgrade deliberately on a machine if you wish to update the “cached” boot2docker ISO.
 
@@ -113,6 +117,12 @@ Oracle VirtualBox
      - ``deny``
    * - ``--virtualbox-no-share``
      - ``VIRTUALBOX_NO_SHARE``
+     - ``false``
+   * - ``--virtualbox-no-dns-prox``
+     - ``VIRTUALBOX_NO_DNS_PROXY``
+     - ``false``
+   * - ``--virtualbox-no-vtx-check``
+     - ``VIRTUALBOX_NO_VTX_CHECK``
      - ``false``
 
 .. Known Issues
