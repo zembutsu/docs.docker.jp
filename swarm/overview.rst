@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/swarm/overview/
 .. SOURCE: https://github.com/docker/swarm/blob/master/docs/overview.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/swarm/commits/master/docs/overview.md
-.. check date: 2016/02/25
-.. Commits on Feb 4, 2016 b88cb64358908b8e0c3fddd402d23088ed633ef9
+.. check date: 2016/04/29
+.. Commits on Mar 4, 2016 4b8ed91226a9a49c2acb7cb6fb07228b3fe10007
 .. -------------------------------------------------------------------
 
 .. Docker Swarm overview
@@ -36,30 +36,30 @@ Docker Swarm は Docker に対応するネイティブなクラスタリング�
 
 他の Docker プロジェクトのように、Docker Swarm は "swap, plug, and play"（交換して、取り付けて、実行）の原理に従います。開発初期においては、API はバックエンドと接続可能（pluggable）なように、開発することに落ち着きました。つまり、スケジューリングのバックエンドを任意なものから、Docker Swarm に置き換えられることを意味します。Swarm は交換可能な設計です。そのため、多くのユース・ケース（事例）において、スムーズに独創的な経験を提供します。また、Mesos のような、より強力なバックエンドに取り替えて、大規模なプロダクション（本番環境）へのデプロイもできるようになります。
 
-.. Understand swarm creation
+.. Understand Swarm cluster creation
 
-.. _understand-swarm-creation:
+.. _understand-swarm-cluster-creation:
 
-クラスタ作成の理解
-====================
+Swarm クラスタ作成の理解
+==============================
 
-.. The first step to creating a swarm on your network is to pull the Docker Swarm image. Then, using Docker, you configure the swarm manager and all the nodes to run Docker Swarm. This method requires that you:
+.. The first step to creating a Swarm cluster on your network is to pull the Docker Swarm image. Then, using Docker, you configure the Swarm manager and all the nodes to run Docker Swarm. This method requires that you:
 
-自分のネットワーク上で Swarm クラスタ（訳注；原文では"swarm"=群れ、と書かれていますが、日本語では抽象的なため、以下"Swarm クラスタ"と訳しています）を形成するには、まず Docker Swarm イメージを取得します。それから Docker を使い、swarm manager を設定し、Docker Swarm を実行したい全てのノードを設定します。この手順で次のものが必要です。
+自分のネットワーク上で Swarm クラスタ（訳注；"Swarm"=群れ、の意味）を形成するには、まず Docker Swarm イメージを取得します。それから Docker を使い、Swarm マネージャを設定し、Docker Swarm を実行したい全てのノードを設定します。この作業には以下の手順が必要です。
 
-..    open a TCP port on each node for communication with the swarm manager
+..    open a TCP port on each node for communication with the Swarm manager
     install Docker on each node
-    create and manage TLS certificates to secure your swarm
+    create and manage TLS certificates to secure your cluster
 
-* swarm manager と各々のノードと通信ができるよう TCP ポートを開く
+* Swarm マネージャと各々のノードと通信ができるよう TCP ポートを開く
 * 各々のノードに Docker をインストールする
 * クラスタを安全にするため、TLS 証明書を作成・管理する
 
-.. As a starting point, the manual method is best suited for experienced administrators or programmers contributing to Docker Swarm. The alternative is to use docker-machine to install a swarm.
+.. As a starting point, the manual method is best suited for experienced administrators or programmers contributing to Docker Swarm. The alternative is to use docker-machine to install a cluster.
 
-使い始めるにあたり、管理者向けの経験のためや、プログラマが Docker Swarm に貢献するために、手動でのインストール手法は最適でしょう。あるいは、``docker-machine`` を使って Swarm をインストールする方法があります。
+これから使い始めるにあたり、管理者が経験するためや、プログラマが Docker Swarm に貢献するために、手動でのインストール手法は最適でしょう。あるいは、``docker-machine`` を使って Swarm をインストールする方法があります。
 
-.. Using Docker Machine, you can quickly install a Docker Swarm on cloud providers or inside your own data center. If you have VirtualBox installed on your local machine, you can quickly build and explore Docker Swarm in your local environment. This method automatically generates a certificate to secure your swarm.
+.. Using Docker Machine, you can quickly install a Docker Swarm on cloud providers or inside your own data center. If you have VirtualBox installed on your local machine, you can quickly build and explore Docker Swarm in your local environment. This method automatically generates a certificate to secure your cluster.
 
 Docker Machine を使えば、Docker Swarm をクラウド・プロバイダや自分のデータセンタに素早くインストールできます。ローカルのマシン上に VirtualBox をインストールしていれば、ローカル環境上で Docker Swarm を素早く構築し、試すことができます。Docker Machine はクラスタを安全にするため、自動的に証明書を生成します。
 
