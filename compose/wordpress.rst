@@ -28,84 +28,67 @@ Docker Compose を使えば、Docker コンテナで構築した WordPress の�
 プロジェクトの定義
 ====================
 
-.. First, Install Compose and then download WordPress into the current directory:
+..    Create an empty project directory.
 
-まず、 :doc:`Compose をインストール </compose/install>` し、現在のディレクトリに WordPress をダウンロードします。
+1. プロジェクト用の空のディレクトリを作成します。
+
+..    You can name the directory something easy for you to remember. This directory is the context for your application image. The directory should only contain resources to build that image.
+
+覚えやすい名前のディレクトリを作成します。このディレクトリがアプリケーション・イメージの内容（コンテクスト）となるものです。ディレクトリには、イメージ構築に関するリソースのみ置くべきです。
+
+.. This project directory will contain a docker-compose.yaml file which will be complete in itself for a good starter wordpress project.
+
+プロジェクト用ディレクトリには ``docker-compose.yml`` ファイルを置きます。このファイル自身が wordpress プロジェクトの良いスタートを切ります。
+
+.. Change directories into your project directory.
+
+2. ディレクトリをプロジェクト用ディレクトリに変更します。
+
+.. For example, if you named your directory my_wordpress:
+
+例えば、ディレクトリ名が ``my_wordpress`` の場合は：
 
 .. code-block:: bash
 
-   $ curl https://wordpress.org/latest.tar.gz | tar -xvzf -
+   $ cd my-wordpress/
 
-.. This will create a directory called wordpress. If you wish, you can rename it to the name of your project.
+.. Create a docker-compose.yml file that will start your Wordpress blog and a separate MySQL instance with a volume mount for data persistence:
 
-これにより ``wordpress`` という名称のディレクトリを作成しました。必要であれば名前を変更し、プロジェクト名を変更できます。
-
-.. Next, inside that directory, create a Dockerfile, a file that defines what environment your app is going to run in. For more information on how to write Dockerfiles, see the Docker user guide and the Dockerfile reference. In this case, your Dockerfile should be:
-
-次に、ディレクトリに入り、 ``Dockerfile`` を作成します。このファイルでは、どのような環境でアプリケーションを実行しようとしているかを定義します。Dockerfile の書き方は、 :ref:`Docker ユーザガイド <building-an-image-from-a-dockerfile>` と :doc:`Dockerfile リファレンス</engine/reference/builder>` をお読みください。この例では、Dockerfile を次のようにします：
-
-.. code-block:: yaml
-
-   FROM orchardup/php5
-   ADD . /code
-
-.. This tells Docker how to build an image defining a container that contains PHP and WordPress.
-
-これは Docker に対して、イメージの構築方法を伝えます。そのイメージとは、PHP と Wordpress を含むコンテナを定義したものです。
-
-.. Next you’ll create a docker-compose.yml file that will start your web service and a separate MySQL instance:
-
-次に、 ``docker-compose.yml`` ファイルを作成します。これはウェブ・サービスと MySQL インスタンスを分けて起動するものです。
+3. ``docker-compose.yml`` ファイルを作成します。このファイルは ``wordpress`` ブログと ``MySQL`` インスタンスを個別に起動します。 ``MySQL`` インスタンスはデータを保持するためにボリュームをマウントします。
 
 .. code-block:: yaml
 
    version: '2'
    services:
-     web:
-       build: .
-       command: php -S 0.0.0.0:8000 -t /code/wordpress/
-       ports:
-         - "8000:8000"
+     db:
+       image: mysql:5.7
+       volumes:
+         - "./.data/db:/var/lib/mysql"
+       restart: always
+       environment:
+         MYSQL_ROOT_PASSWORD: wordpress
+         MYSQL_DATABASE: wordpress
+         MYSQL_USER: wordpress
+         MYSQL_PASSWORD: wordpress
+   
+     wordpress:
        depends_on:
          - db
-       volumes:
-         - .:/code
-     db:
-       image: orchardup/mysql
+       image: wordpress:latest
+       links:
+         - db
+       ports:
+         - "8000:80"
+       restart: always
        environment:
-         MYSQL_DATABASE: wordpress
+         WORDPRESS_DB_HOST: db:3306
+         WORDPRESS_DB_PASSWORD: wordpress
 
-.. A supporting file is needed to get this working. wp-config.php is the standard WordPress config file with a single change to point the database configuration at the db container:
+.. NOTE: The folder ./.data/db will be automatically created in the project directory alongside the docker-compose.yml which will persist any updates made by wordpress to the database.
 
-動かすためには、ファイル編集が必要です。``wp-config.php`` という通常の WordPress の設定ファイルです。このファイルの１箇所だけ、データベースの接続先を ``db`` コンテナに書き換えます。
+.. note::
 
-.. code-block:: php
-
-   <?php
-   define('DB_NAME', 'wordpress');
-   define('DB_USER', 'root');
-   define('DB_PASSWORD', '');
-   define('DB_HOST', "db:3306");
-   define('DB_CHARSET', 'utf8');
-   define('DB_COLLATE', '');
-   
-   define('AUTH_KEY',         'put your unique phrase here');
-   define('SECURE_AUTH_KEY',  'put your unique phrase here');
-   define('LOGGED_IN_KEY',    'put your unique phrase here');
-   define('NONCE_KEY',        'put your unique phrase here');
-   define('AUTH_SALT',        'put your unique phrase here');
-   define('SECURE_AUTH_SALT', 'put your unique phrase here');
-   define('LOGGED_IN_SALT',   'put your unique phrase here');
-   define('NONCE_SALT',       'put your unique phrase here');
-   
-   $table_prefix  = 'wp_';
-   define('WPLANG', '');
-   define('WP_DEBUG', false);
-   
-   if ( !defined('ABSPATH') )
-       define('ABSPATH', dirname(__FILE__) . '/');
-   
-   require_once(ABSPATH . 'wp-settings.php');
+   ``docker-compose.yml`` があるプロジェクトのディレクトリ内に  ``./.data/db`` ディレクトリを自動的に作成します。wordpress がデータベースに対して更新したあらゆるデータは、このディレクトリで保持します。
 
 
 .. Build the project
@@ -113,10 +96,65 @@ Docker Compose を使えば、Docker コンテナで構築した WordPress の�
 プロジェクトの構築
 ====================
 
-.. With those four files in place, run docker-compose up inside your WordPress directory and it’ll pull and build the needed images, and then start the web and database containers. If you’re using Docker Machine, then docker-machine ip MACHINE_VM gives you the machine address and you can open http://MACHINE_VM_IP:8000 in a browser.
+.. Now, run docker-compose up -d from your project directory.
 
-ここに４つのファイルができています。Wordpress ディレクトリの中で、``docker-compose up`` を実行すると、必要なイメージを取得・構築し、ウェブとデータベースのコンテナを起動します。 :doc:`Docker Machine </machine/index>` を使っている場合は、``docker-machine ip 仮想マシン名`` を実行することで、マシンの IP アドレスを取得します。それからブラウザで ``http://仮想マシンのIP:8000`` を開きます。
+あとは、プロジェクト用ディレクトリで ``docker-compose up -d`` を実行します。
 
+.. This pulls the needed images, and starts the wordpress and database containers, as shown in the example below.
+
+必要なイメージを取得し、wordpress とデータベースのコンテナを起動します。次のように画面に表示します。
+
+.. code-block:: bash
+
+   $ docker-compose up -d
+   Creating network "my_wordpress_default" with the default driver
+   Pulling db (mysql:5.7)...
+   5.7: Pulling from library/mysql
+   efd26ecc9548: Pull complete
+   a3ed95caeb02: Pull complete
+   ...
+   Digest: sha256:34a0aca88e85f2efa5edff1cea77cf5d3147ad93545dbec99cfe705b03c520de
+   Status: Downloaded newer image for mysql:5.7
+   Pulling wordpress (wordpress:latest)...
+   latest: Pulling from library/wordpress
+   efd26ecc9548: Already exists
+   a3ed95caeb02: Pull complete
+   589a9d9a7c64: Pull complete
+   ...
+   Digest: sha256:ed28506ae44d5def89075fd5c01456610cd6c64006addfe5210b8c675881aff6
+   Status: Downloaded newer image for wordpress:latest
+   Creating my_wordpress_db_1
+   Creating my_wordpress_wordpress_1
+
+.. Bring up WordPress in a web browser
+
+.. _bring-up-wordpress-in-a-web-browser:
+
+ウェブ・ブラウザで WordPress を開く
+========================================
+
+.. If you're using Docker Machine, then docker-machine ip MACHINE_VM gives you the machine address and you can open http://MACHINE_VM_IP:8000 in a browser.
+
+:doc:`Docker Machine </machine/index>` を使っている場合は、 ``docker-machine ip マシン名`` を実行するとマシンの IP アドレスが表示します。そしてブラウザで ``http://マシンのIP:8000`` を開きます。
+
+.. At this point, WordPress should be running on port 8000 of your Docker Host, and you can complete the "famous five-minute installation" as a WordPress administrator.
+
+この時点では WordPress は Docker ホスト上のポート 8000 で動作しています。そして、WordPress の管理者にとっては「有名な５分間のインストール」を行うだけです。
+
+.. NOTE: The Wordpress site will not be immediately available on port 8000 because the containers are still being initialized and may take a couple of minutes before the first load.
+
+.. note::
+
+   WordPress のサイトはポート 8000 で即時利用可能になりません。なぜなら、初回読み込み時にはコンテナの初期化のために２~３分ほど必要な場合があるためです。
+
+.. image:: ./images/wordpress-lang.png
+   :scale: 60%
+   :alt: WordPress 言語選択
+   
+
+.. image:: ./images/wordpress-welcome.png
+   :scale: 60%
+   :alt: WordPress 初期設定
 
 .. More Compose documentation
 

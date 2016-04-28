@@ -34,11 +34,11 @@
 
 ..    Create an empty project directory.
 
-1. プロジェクト用の空のディレクトリを作成。
+1. プロジェクト用の空のディレクトリを作成します。
 
 ..    You can name the directory something easy for you to remember. This directory is the context for your application image. The directory should only contain resources to build that image.
 
-覚えやすい名前のディレクトリを作成します。このディレクトリがアプリケーション・イメージの内容となるものです。ディレクトリには、イメージ構築に関するリソースのみ置きます。
+覚えやすい名前のディレクトリを作成します。このディレクトリがアプリケーション・イメージの内容（コンテクスト）となるものです。ディレクトリには、イメージ構築に関するリソースのみ置くべきです。
 
 ..    Create a new file called Dockerfile in your project directory.
 
