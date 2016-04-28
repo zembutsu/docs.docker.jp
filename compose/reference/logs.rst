@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/reference/logs/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/reference/logs.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/reference/logs.md
-.. check date: 2016/03/07
-.. Commits on Jul 28, 2015 7eabc06df5ca4a1c2ad372ee8e87012de5429f05
+.. check date: 2016/04/28
+.. Commits on Mar 2, 2016 9b36dc5c540f9c88bdf6cb5e5b8e7e7b745d3c8f
 .. -------------------------------------------------------------------
 
 .. logs
@@ -20,7 +20,11 @@ logs
    Usage: logs [options] [SERVICE...]
    
    Options:
-   --no-color  Produce monochrome output.
+   --no-color          Produce monochrome output.
+   -f, --follow        Follow log output
+   -t, --timestamps    Show timestamps
+   --tail              Number of lines to show from the end of the logs
+                       for each container.
 
 .. Displays log output from services.
 

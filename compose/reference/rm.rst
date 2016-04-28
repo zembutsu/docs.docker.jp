@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/reference/rm/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/reference/rm.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/reference/rm.md
-.. check date: 2016/03/07
-.. Commits on Dec 18, 2015 2e9a49b4eb48d7611543bf5cb34130e8f5448dff
+.. check date: 2016/04/28
+.. Commits on Apr 12, 2016 3722bb38c66b3c3500e86295a43aafe14a050b50
 .. -------------------------------------------------------------------
 
 .. rm
@@ -20,16 +20,24 @@ rm
    Usage: rm [options] [SERVICE...]
    
    Options:
-   -f, --force   Don't ask to confirm removal
-   -v            Remove volumes associated with containers
+       -f, --force   Don't ask to confirm removal
+       -v            Remove any anonymous volumes attached to containers
+       -a, --all     Also remove one-off containers created by
+                     docker-compose run
 
 .. Removes stopped service containers.
 
 停止済みのサービス・コンテナを削除します。
 
+.. (1.10)
 .. By default, volumes attached to containers will not be removed. You can see all volumes with docker volume ls.
+.. デフォルトでは、コンテナにアタッチしているボリュームは削除されません。全てのボリュームは ``docker volume ls`` で確認できます。
 
-デフォルトでは、コンテナにアタッチしているボリュームは削除されません。全てのボリュームは ``docker volume ls`` で確認できます。
+.. (1.11)
+.. By default, anonymous volumes attached to containers will not be removed. You can override this with -v. To list all volumes, use docker volume ls.
+
+デフォルトでは、コンテナにアタッチしている匿名ボリューム（anonymous volume）を削除しません。ボリュームを削除するには ``-v`` オプションを使います。全てのボリュームを表示するには ``docker volume ls`` を使います。
+
 
 .. Any data which is not in a volume will be lost.
 

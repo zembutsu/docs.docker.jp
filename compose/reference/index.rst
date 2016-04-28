@@ -1,7 +1,7 @@
 .. -*- coding: utf-8 -*-
 .. https://docs.docker.com/compose/reference/
-.. doc version: 1.9
-.. check date: 2016/01/18
+.. doc version: 1.11
+.. check date: 2016/04/28
 .. -----------------------------------------------------------------------------
 
 .. Compose CLI reference

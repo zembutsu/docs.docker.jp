@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/reference/up/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/reference/up.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/reference/up.md
-.. check date: 2016/03/07
-.. Commits on Jan 13, 2016 bf48a781dbc4d82e8b9fa940522b68b78e4c12e3
+.. check date: 2016/04/28
+.. Commits on Mar 16, 2016 20c29f7e47ade7567ee35f3587790f6235d17d59
 .. -------------------------------------------------------------------
 
 .. up
@@ -20,22 +20,25 @@ up
    Usage: up [options] [SERVICE...]
    
    Options:
-   -d                         Detached mode: Run containers in the background,
-                              print new container names.
-                              Incompatible with --abort-on-container-exit.
-   --no-color                 Produce monochrome output.
-   --no-deps                  Don't start linked services.
-   --force-recreate           Recreate containers even if their configuration
-                              and image haven't changed.
-                              Incompatible with --no-recreate.
-   --no-recreate              If containers already exist, don't recreate them.
-                              Incompatible with --force-recreate.
-   --no-build                 Don't build an image, even if it's missing
-   --abort-on-container-exit  Stops all containers if any container was stopped.
-                              Incompatible with -d.
-   -t, --timeout TIMEOUT      Use this timeout in seconds for container shutdown
-                              when attached or when containers are already
-                              running. (default: 10)
+       -d                         Detached mode: Run containers in the background,
+                                  print new container names.
+                                  Incompatible with --abort-on-container-exit.
+       --no-color                 Produce monochrome output.
+       --no-deps                  Don't start linked services.
+       --force-recreate           Recreate containers even if their configuration
+                                  and image haven't changed.
+                                  Incompatible with --no-recreate.
+       --no-recreate              If containers already exist, don't recreate them.
+                                  Incompatible with --force-recreate.
+       --no-build                 Don't build an image, even if it's missing.
+       --build                    Build images before starting containers.
+       --abort-on-container-exit  Stops all containers if any container was stopped.
+                                  Incompatible with -d.
+       -t, --timeout TIMEOUT      Use this timeout in seconds for container shutdown
+                                  when attached or when containers are already
+                                  running. (default: 10)
+       --remove-orphans           Remove containers for services not defined in
+                                  the Compose file
 
 .. Builds, (re)creates, starts, and attaches to containers for a service.
 

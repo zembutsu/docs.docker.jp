@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/reference/overview/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/reference/overview.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/reference/overview.md
-.. check date: 2016/03/07
-.. Commits on Mar 3, 2016 53a3d14046e00b6489ae4aadeb0e3325cb5169b1
+.. check date: 2016/04/28
+.. Commits on Mar 24, 2016 8282bb1b24cc0f51210ffd94a55edf8876bcb814
 .. -------------------------------------------------------------------
 
 .. Overview of docker-compose CLI
@@ -34,10 +34,20 @@ docker-compose コマンド概要
      docker-compose -h|--help
    
    Options:
-     -f, --file FILE           Specify an alternate compose file (default: docker-compose.yml)
-     -p, --project-name NAME   Specify an alternate project name (default: directory name)
-     --verbose                 Show more output
-     -v, --version             Print version and exit
+     -f, --file FILE             Specify an alternate compose file (default: docker-compose.yml)
+     -p, --project-name NAME     Specify an alternate project name (default: directory name)
+     --verbose                   Show more output
+     -v, --version               Print version and exit
+     -H, --host HOST             Daemon socket to connect to
+   
+     --tls                       Use TLS; implied by --tlsverify
+     --tlscacert CA_PATH         Trust certs signed only by this CA
+     --tlscert CLIENT_CERT_PATH  Path to TLS certificate file
+     --tlskey TLS_KEY_PATH       Path to TLS key file
+     --tlsverify                 Use TLS and verify the remote
+     --skip-hostname-check       Don't check the daemon's hostname against the name specified
+                                 in the client certificate (for example if your docker host
+                                 is an IP address)
    
    Commands:
      build              Build or rebuild services

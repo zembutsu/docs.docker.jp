@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/reference/run/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/reference/run.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/reference/run.md
-.. check date: 2016/03/07
-.. Commits on Jan 7, 2016 4e75ed42319b372ac79c7b8762c5fec794afa841
+.. check date: 2016/04/28
+.. Commits on Mar 16, 2016 658803edf885f490168e223d07b2b1a2cbd22aae
 .. -------------------------------------------------------------------
 
 .. run
@@ -31,6 +31,7 @@ run
    -p, --publish=[]      Publish a container's port(s) to the host
    --service-ports       Run command with the service's ports enabled and mapped to the host.
    -T                    Disable pseudo-tty allocation. By default `docker-compose run` allocates a TTY.
+   -w, --workdir=""      Working directory inside the container
 
 .. Runs a one-time command against a service. For example, the following command starts the web service and runs bash as its command.
 

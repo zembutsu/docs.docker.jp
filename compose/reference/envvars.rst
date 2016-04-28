@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/reference/envvars/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/reference/envvars.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/reference/envvars.md
-.. check date: 2016/03/07
-.. Commits on Mar 3, 2016 53a3d14046e00b6489ae4aadeb0e3325cb5169b1
+.. check date: 2016/04/28
+.. Commits on Mar 25, 2016 dcdcf4869b6df77e16e243ace9e49c136d336b78
 .. -------------------------------------------------------------------
 
 .. CLI Environment Variables
@@ -28,6 +28,13 @@ Docker Compose のコマンドラインでの動作を設定するために、�
 .. Variables starting with DOCKER_ are the same as those used to configure the Docker command-line client. If you’re using docker-machine, then the eval "$(docker-machine env my-docker-vm)" command should set them to their correct values. (In this example, my-docker-vm is the name of a machine you created.)
 
 ``DOCKER_`` で始まる環境変数は、Docker コマンドライン・クライアントで用いられている設定と同じです。もしも ``docker-machine`` を使っているのであれば、 ``eval "$(docker-machine env my-docker-vm)"`` コマンドで適切な環境変数の値が設定されます（この例では、 ``my-docker-vm`` は Docker Machine で作成したマシンの名前です ）。
+
+.. Note: Some of these variables can also be provided using an environment file
+
+.. note::
+
+   :doc:`環境ファイル </compose/env-file>` を使っても変数を指定できます。
+
 
 .. COMPOSE_PROJECT_NAME
 
@@ -122,6 +129,7 @@ Compose が Docker デーモンに対する処理が失敗（fail）したとみ
 * :doc:`ユーザ・ガイド </compose/index>`
 * :doc:`Compose のインストール </compose/install>`
 * :doc:`Compose ファイルのリファレンス </compose/compose-file>`
+* :doc:`/compose/env-file`
 
 .. seealso:: 
 
