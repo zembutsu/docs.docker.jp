@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/machine/reference/env/
 .. SOURCE: https://github.com/docker/machine/blob/master/docs/reference/env.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/machine/commits/master/docs/reference/env.md
-.. check date: 2016/03/09
+.. check date: 2016/04/29
 .. Commits on Jan 9, 2016 b585ca631b53fb54591b044764198f863b490816
 .. ----------------------------------------------------------------------------
 

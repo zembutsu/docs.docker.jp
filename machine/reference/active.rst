@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/machine/reference/active/
 .. SOURCE: https://github.com/docker/machine/blob/master/docs/reference/active.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/machine/commits/master/docs/reference/active.md
-.. check date: 2016/03/09
+.. check date: 2016/04/28
 .. Commits on Jan 20, 2016 cda5d00bd8d898d07d1b41c0a8e8250fd4a34a50
 .. ----------------------------------------------------------------------------
 

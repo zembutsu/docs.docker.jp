@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/machine/reference/rm/
 .. SOURCE: https://github.com/docker/machine/blob/master/docs/reference/rm.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/machine/commits/master/docs/reference/rm.md
-.. check date: 2016/03/09
+.. check date: 2016/04/28
 .. Commits on Jan 9, 2016 b585ca631b53fb54591b044764198f863b490816
 .. ----------------------------------------------------------------------------
 

@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/machine/reference/inspect/
 .. SOURCE: https://github.com/docker/machine/blob/master/docs/reference/inspect.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/machine/commits/master/docs/reference/inspect.md
-.. check date: 2016/03/09
+.. check date: 2016/04/28
 .. Commits on Nov 27, 2015 68e6e3f905856bc1d93cb5c1e99cc3b3ac900022
 .. ----------------------------------------------------------------------------
 

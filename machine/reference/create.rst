@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/machine/reference/create/
 .. SOURCE: https://github.com/docker/machine/blob/master/docs/reference/create.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/machine/commits/master/docs/reference/create.md
-.. check date: 2016/03/09
-.. Commits on Feb 21, 2016 d7e97d04436601da26d24b199532652abe78770e
+.. check date: 2016/04/28
+.. Commits on Feb 14, 2016 1eaf5a464f44066e57628218995c8b7d80c825cd
 .. ----------------------------------------------------------------------------
 
 .. create
@@ -60,11 +60,13 @@ create
    
    Run 'docker-machine create --driver name' to include the create flags for that driver in the help text.
    
+   Options:
+   
       --driver, -d "none"                                                                                  Driver to create machine with.
       --engine-install-url "https://get.docker.com"                                                        Custom URL to use for engine installation [$MACHINE_DOCKER_INSTALL_URL]
       --engine-opt [--engine-opt option --engine-opt option]                                               Specify arbitrary flags to include with the created engine in the form flag=value
       --engine-insecure-registry [--engine-insecure-registry option --engine-insecure-registry option]     Specify insecure registries to allow with the created engine
-      --engine-registry-mirror [--engine-registry-mirror option --engine-registry-mirror option]           Specify registry mirrors to use
+      --engine-registry-mirror [--engine-registry-mirror option --engine-registry-mirror option]           Specify registry mirrors to use [$ENGINE_REGISTRY_MIRROR]
       --engine-label [--engine-label option --engine-label option]                                         Specify labels for the created engine
       --engine-storage-driver                                                                              Specify a storage driver to use with the engine
       --engine-env [--engine-env option --engine-env option]                                               Specify environment variables to set in the engine
@@ -75,7 +77,9 @@ create
       --swarm-strategy "spread"                                                                            Define a default scheduling strategy for Swarm
       --swarm-opt [--swarm-opt option --swarm-opt option]                                                  Define arbitrary flags for swarm
       --swarm-host "tcp://0.0.0.0:3376"                                                                    ip/socket to listen on for Swarm master
-      --swarm-addr      
+      --swarm-addr                                                                                         addr to advertise for Swarm (default: detect and use the machine IP)
+      --swarm-experimental                 
+
 
 .. Additionally, drivers can specify flags that Machine can accept as part of their plugin code. These allow users to customize the provider-specific parameters of the created machine, such as size (--amazonec2-instance-type m1.medium), geographical region (--amazonec2-region us-west-1), and so on.
 
@@ -102,11 +106,12 @@ create
       --engine-install-url "https://get.docker.com"                                                        Custom URL to use for engine installation [$MACHINE_DOCKER_INSTALL_URL]
       --engine-label [--engine-label option --engine-label option]                                         Specify labels for the created engine
       --engine-opt [--engine-opt option --engine-opt option]                                               Specify arbitrary flags to include with the created engine in the form flag=value
-      --engine-registry-mirror [--engine-registry-mirror option --engine-registry-mirror option]           Specify registry mirrors to use
+      --engine-registry-mirror [--engine-registry-mirror option --engine-registry-mirror option]           Specify registry mirrors to use [$ENGINE_REGISTRY_MIRROR]
       --engine-storage-driver                                                                              Specify a storage driver to use with the engine
       --swarm                                                                                              Configure Machine with Swarm
       --swarm-addr                                                                                         addr to advertise for Swarm (default: detect and use the machine IP)
       --swarm-discovery                                                                                    Discovery service to use with Swarm
+      --swarm-experimental                                                                                 Enable Swarm experimental features
       --swarm-host "tcp://0.0.0.0:3376"                                                                    ip/socket to listen on for Swarm master
       --swarm-image "swarm:latest"                                                                         Specify Docker image to use for Swarm [$MACHINE_SWARM_IMAGE]
       --swarm-master                                                                                       Configure Machine to be a Swarm master
@@ -122,7 +127,8 @@ create
       --virtualbox-hostonly-nictype "82540EM"                                                              Specify the Host Only Network Adapter Type [$VIRTUALBOX_HOSTONLY_NIC_TYPE]
       --virtualbox-import-boot2docker-vm                                                                   The name of a Boot2Docker VM to import
       --virtualbox-memory "1024"                                                                           Size of memory for host in MB [$VIRTUALBOX_MEMORY_SIZE]
-      --virtualbox-no-share  
+      --virtualbox-no-share   
+
 
 .. You may notice that some flags specify environment variables that they are associated with as well (located to the far left hand side of the row). If these environment variables are set when docker-machine create is invoked, Docker Machine will use them for the default value of the flag.
 
@@ -225,9 +231,9 @@ Docker Machine は、デーモンに対するパラメータを単にセット�
 マシン作成時に Docker Swarm オプションを指定
 ==================================================
 
-.. In addition to being able to configure Docker Engine options as listed above, you can use Machine to specify how the created Swarm master should be configured). There is a --swarm-strategy flag, which you can use to specify the scheduling strategy which Docker Swarm should use (Machine defaults to the spread strategy). There is also a general purpose --swarm-opt option which works similar to how the aforementioned --engine-opt option does, except that it specifies options for the swarm manage command (used to boot a master node) instead of the base command. You can use this to configure features that power users might be interested in, such as configuring the heartbeat interval or Swarm’s willingness to over-commit resources.
+.. In addition to being able to configure Docker Engine options as listed above, you can use Machine to specify how the created Swarm master should be configured. There is a --swarm-strategy flag, which you can use to specify the scheduling strategy which Docker Swarm should use (Machine defaults to the spread strategy). There is also a general purpose --swarm-opt option which works similar to how the aforementioned --engine-opt option does, except that it specifies options for the swarm manage command (used to boot a master node) instead of the base command. You can use this to configure features that power users might be interested in, such as configuring the heartbeat interval or Swarm’s willingness to over-commit resources. There is also the --swarm-experimental flag, that allows you to access experimental features in Docker Swarm.
 
-先ほどの Docker Engine オプションの設定を指定できるだけではありません。Docker Machine を使えば、 Swarm マスタをどのように作成するかも指定できます。 ``--swarm-strategy`` フラグを使うと、Docker Swarm が使うべき :doc:`スケジューリング・ストラテジ </swarm/scheduler/strategy>` （デフォルトは ``spread`` ストラテジ ）を指定できます。また前述した ``--engine-opt`` オプションで指定したように、 ``--swarm-opt`` オプションで一般的なオプションを設定できますが、違いは ``swarm manage`` コマンドに対するオプション（マスタ・ノードの起動時に使用）を指定するものです。これらの機能設定を使うことで、パワーユーザであれば heartbeat 間隔の調整や、Swarm のオーバーコミット・リソースの調整に活用できるでしょう。
+先ほどの Docker Engine オプションの設定を指定できるだけではありません。Docker Machine を使えば、 Swarm マスタをどのように作成するかも指定できます。 ``--swarm-strategy`` フラグを使うと、Docker Swarm が使うべき :doc:`スケジューリング・ストラテジ </swarm/scheduler/strategy>` （デフォルトは ``spread`` ストラテジ ）を指定できます。また前述した ``--engine-opt`` オプションで指定したように、 ``--swarm-opt`` オプションで一般的なオプションを設定できますが、違いは ``swarm manage`` コマンドに対するオプション（マスタ・ノードの起動時に使用）を指定するものです。これらの機能設定を使うことで、パワーユーザであれば heartbeat 間隔の調整や、Swarm のオーバーコミット・リソースの調整に活用できるでしょう。また、 ``--swarm-experimental`` フラグを使えば Docker Swarm の `実験的機能 <https://github.com/docker/swarm/tree/master/experimental>`_ が利用可能になります。
 
 .. If you’re not sure how to configure these options, it is best to not specify configuration at all. Docker Machine will choose sensible defaults for you and you won’t have to worry about it.
 

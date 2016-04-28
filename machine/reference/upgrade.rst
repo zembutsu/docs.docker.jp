@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/machine/reference/upgrade/
 .. SOURCE: https://github.com/docker/machine/blob/master/docs/reference/upgrade.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/machine/commits/master/docs/reference/upgrade.md
-.. check date: 2016/03/09
+.. check date: 2016/04/28
 .. Commits on Feb 28, 2016 1331811dca44b95216dcdd011f2de3551d1dd8e9
 .. ----------------------------------------------------------------------------
 
