@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/link-env-deprecated/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/link-env-deprecated.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/link-env-deprecated.md
-.. check date: 2016/03/07
+.. check date: 2016/04/28
 .. Commits on Feb 3, 2016 cf24c36c5549a2a87952da27c6e3d35974687e1c
 .. ----------------------------------------------------------------------------
 

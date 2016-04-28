@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/production/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/production.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/production.md
-.. check date: 2016/03/06
-.. Commits on Feb 20, 2016 520c695bf4f4fa7c41a0febb00234f21be776d43
+.. check date: 2016/04/28
+.. Commits on Mar 11, 2016 1485a56c758ff77ea5bab07bf9d4b0ac3efb2472
 .. ----------------------------------------------------------------------------
 
 .. Using Compose in Production
@@ -23,19 +23,37 @@ Compose をプロダクションで使う
 
 .. Compose is still primarily aimed at development and testing environments. Compose may be used for smaller production deployments, but is probably not yet suitable for larger deployments.
 
-.. note
-
-   まだ Compose は、主として開発またはテスト環境向けです。Compose は小規模なプロダクションのデプロイに使えるかもしれませんが、まだ大規模なデプロイに適していないかもしれません。
+.. .. note
+..   まだ Compose は、主として開発またはテスト環境向けです。Compose は小規模なプロダクションのデプロイに使えるかもしれませんが、まだ大規模なデプロイに適していないかもしれません。
 
 .. When deploying to production, you’ll almost certainly want to make changes to your app configuration that are more appropriate to a live environment. These changes may include:
 
-プロダクションへのデプロイ時は、多くの場合、アプリケーションを適切に実行できるようにするために変更を加えるでしょう。変更とは次のようなものです。
+.. プロダクションへのデプロイ時は、多くの場合、アプリケーションを適切に実行できるようにするために変更を加えるでしょう。変更とは次のようなものです。
+
+.. When you define your app with Compose in development, you can use this definition to run your application in different environments such as CI, staging, and productio
+
+開発環境で Compose を使ってアプリケーションを定義しておけば、その設定を使い、アプリケーションを CI 、ステージング、プロダクションのような異なった環境で実行できます。
 
 ..    Removing any volume bindings for application code, so that code stays inside the container and can’t be changed from outside
     Binding to different ports on the host
     Setting environment variables differently (e.g., to decrease the verbosity of logging, or to enable email sending)
     Specifying a restart policy (e.g., restart: always) to avoid downtime
     Adding extra services (e.g., a log aggregator)
+
+.. The easiest way to deploy an application is to run it on a single server, similar to how you would run your development environment. If you want to scale up your application, you can run Compose apps on a Swarm cluster.
+
+アプリケーションをデプロイする最も簡単な方法は、単一サーバ上での実行です。これは開発環境で実行する方法と似ています。アプリケーションをスケールアップしたい場合には、Compose アプリを Swarm クラスタ上で実行できます。
+
+.. Modify your Compose file for production
+
+.. _modify-your-compose-file-for-production:
+
+Compose ファイルをプロダクション向けに書き換え
+--------------------------------------------------
+
+.. You’ll almost certainly want to make changes to your app configuration that are more appropriate to a live environment. These changes may include:
+
+アプリケーションの設定を実際の環境に適用するには、ほとんどの場合で書き換えることになるでしょう。以下のような変更が必要になるかもしれません：
 
 * コンテナのコードを外から変更できなくするため、アプリケーション・コード用に割り当てたボリュームを削除する。
 * ホストに異なったポートを割り当てる。
@@ -99,9 +117,14 @@ Swarm クラスタで Compose を実行する
 
 :doc:`Docker Swarm </swarm/overview>` とは、Docker 独自のクラスタリング・システムで、単一の Docker ホスト向けと同じ API を持っています。つまり、Compose を Swarm インスタンスも同様に扱えるので、アプリケーションを複数のホスト上で実行できることを意味します。
 
+.. (v1.10)
 .. Compose/Swarm integration is still in the experimental stage, and Swarm is still in beta, but if you’d like to explore and experiment, check out the integration guide.
+.. Compose と Swarm の連携は、まだ実験的な段階です。ですが、調べたり使ってみたい場合は :doc:`統合ガイド </compose/swarm>` をお読みください。
 
-Compose と Swarm の連携は、まだ実験的な段階です。ですが、調べたり使ってみたい場合は :doc:`統合ガイド </compose/swarm>` をお読みください。
+.. (v1.11+)
+.. Read more about the Compose/Swarm integration in the [integration guide](swarm.md).
+
+Compose と Swarm の連携は、 :doc:`統合ガイド </compose/swarm>` をお読みください。
 
 
 .. Compose documentation

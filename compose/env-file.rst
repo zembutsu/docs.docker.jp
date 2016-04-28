@@ -37,7 +37,7 @@ Compose は環境ファイルの各行を ``変数=値`` 形式とみなしま�
 
 .. Those environment variables will be used for variable substitution in your Compose file, but can also be used to define the following CLI variables:
 
-これらの環境変数は Compose ファイル内で :ref:`変数展開 <variable-substitution>` のために使いますが、以下のように :doc:`CLI 変数 </compose/reference/envvars>` 用にも使えます。
+これらの環境変数は Compose ファイル内で :ref:`変数展開 <compose-file-variable-substitution>` のために使いますが、以下のように :doc:`CLI 変数 </compose/reference/envvars>` 用にも使えます。
 
 * ``COMPOSE_API_VERSION``
 * ``COMPOSE_FILE``

@@ -3,7 +3,7 @@
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/startup-order.md
    doc version: 1.10
       https://github.com/docker/compose/commits/master/docs/startup-order.md
-.. check date: 2016/03/07
+.. check date: 2016/04/28
 .. Commits on Mar 3, 2016 aa7b862f4c7f10337fc0b586d70aae5392b51f6c
 .. ----------------------------------------------------------------------------
 

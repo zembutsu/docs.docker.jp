@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/compose-file/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/compose-file.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/compose-file.md
-.. check date: 2016/03/06
-.. Commits on Mar 3, 2016 aa7b862f4c7f10337fc0b586d70aae5392b51f6c
+.. check date: 2016/04/28
+.. Commits on Apr 21, 2016 55fcd1c3e32ccbd71caa14462a6239d4bf7a1685
 .. ----------------------------------------------------------------------------
 
 .. Compose file reference
@@ -356,6 +356,28 @@ DNS の検索ドメインを変更します。単一の値、もしくはリス�
    dns_search:
      - dc1.example.com
      - dc2.example.com
+
+
+.. tmpfs
+
+.. _copmose-file-tmpfs:
+
+tmpfs
+----------
+
+.. Mount a temporary file system inside the container. Can be a single value or a list.
+
+コンテナ内にテンポラリ・ファイルシステムおをマウントします。単一の値もしくはリストです。
+
+.. code-block:: yaml
+
+   tmpfs: /run
+   tmpfs:
+     - /run
+     - /tmp
+
+
+
 
 .. _compose-file-entrypoint:
 
@@ -783,9 +805,11 @@ networks
 
 .. code-block:: yaml
 
-   networks:
-     - some-network
-     - other-network
+   services:
+     some-service:
+       networks:
+        - some-network
+        - other-network
 
 .. _compose-file-aliases:
 
@@ -812,14 +836,16 @@ aliases
 
 .. code-block:: yaml
 
-   networks:
-     some-network:
-       aliases:
-         - alias1
-         - alias3
-     other-network:
-       aliases:
-         - alias2
+   services:
+     some-service:
+       networks:
+         some-network:
+           aliases:
+            - alias1
+            - alias3
+         other-network:
+           aliases:
+            - alias2
 
 .. In the example below, three services are provided (web, worker, and db), along with two networks (new and legacy). The db service is reachable at the hostname db or database on the new network, and at db or mysql on the legacy network.
 
@@ -827,7 +853,7 @@ aliases
 
 .. code-block:: yaml
 
-   version: 2
+   version: '2'
    
    services:
      web:
@@ -853,6 +879,53 @@ aliases
    networks:
      new:
      legacy:
+
+
+.. ipv4_address, ipv6_address
+
+.. _ipv4-address-ipv6-address:
+
+IPv4 アドレス、IPv6 アドレス
+------------------------------
+
+.. Specify a static IP address for containers for this service when joining the network.
+
+サービスをネットワークに追加する時、コンテナに対して静的な IP アドレスを割り当てます。
+
+.. The corresponding network configuration in the top-level networks section must have an ipam block with subnet and gateway configurations covering each static address. If IPv6 addressing is desired, the com.docker.network.enable_ipv6 driver option must be set to true.
+
+:ref:`トップレベルのネットワーク・セクション <network-configuration-reference>` において、適切なネットワーク設定には ``ipam`` ブロックが必要です。ここで各静的アドレスが扱うサブネットやゲートウェイを定義します。 IPv6 アドレスが必要であれば、 ``com.docker.network.enable_ipv6`` ドライバ・オプションを ``true`` にする必要があります。
+
+.. An example:
+
+例：
+
+.. code-block:: yaml
+
+   version: '2'
+   
+   services:
+     app:
+       image: busybox
+       command: ifconfig
+       networks:
+         app_net:
+           ipv4_address: 172.16.238.10
+           ipv6_address: 2001:3984:3989::10
+   
+   networks:
+     app_net:
+       driver: bridge
+       driver_opts:
+         com.docker.network.enable_ipv6: "true"
+       ipam:
+         driver: default
+         config:
+         - subnet: 172.16.238.0/24
+           gateway: 172.16.238.1
+         - subnet: 2001:3984:3989::/64
+           gateway: 2001:3984:3989::1
+
 
 .. _compose-file-pid:
 
@@ -1539,22 +1612,24 @@ net: "container:abc12345"   ->  network_mode: "container:abc12345"
 変数の置き換え
 ====================
 
-.. Your configuration options can contain environment variables. Compose uses the variable values from the shell environment in which docker-compose is run. For example, suppose the shell contains POSTGRES_VERSION=9.3 and you supply this configuration:
+.. Your configuration options can contain environment variables. Compose uses the variable values from the shell environment in which docker-compose is run. For example, suppose the shell contains EXTERNAL_PORT=8000 and you supply this configuration:
 
-設定オプションでは環境変数も含めることができます。シェル上の Compose は ``docker-compose`` の実行時に環境変数を使えます。例えば、シェルで ``POSTGRES_VERSION=9.3`` という変数を設定ファイルで扱うには、次のようにします。
+設定オプションでは環境変数も含めることができます。シェル上の Compose は ``docker-compose`` の実行時に環境変数を使えます。例えば、シェルで ``EXTERNAL_PORT=8000`` という変数を設定ファイルで扱うには、次のようにします。
 
 .. code-block:: yaml
 
-   db:
-     image: "postgres:${POSTGRES_VERSION}"
+   web:
+     build: .
+     ports:
+       - "${EXTERNAL_PORT}:5000"
 
-.. When you run docker-compose up with this configuration, Compose looks for the POSTGRES_VERSION environment variable in the shell and substitutes its value in. For this example, Compose resolves the image to postgres:9.3 before running the configuration.
+.. When you run docker-compose up with this configuration, Compose looks for the EXTERNAL_PORT environment variable in the shell and substitutes its value in. For this example, Compose resolves the port mapping to "8000:5000" before creating the `web` container.
 
-この設定で``docker-compose up`` を実行すると、Compose は ``POSTGRES_VERSION`` 環境変数をシェル上で探し、それを値と置き換えます。この例では、Compose が設定ファイルを実行する前に、 ``image`` に対して ``postgres:9.3`` を与えます。
+この設定で``docker-compose up`` を実行すると、Compose は ``EXTERNAL_PORT`` 環境変数をシェル上で探し、それを値と置き換えます。この例では、Compose が ``web`` コンテナを作成する前に "8000:5000" のポート割り当てをします。
 
-.. If an environment variable is not set, Compose substitutes with an empty string. In the example above, if POSTGRES_VERSION is not set, the value for the image option is postgres:.
+.. If an environment variable is not set, Compose substitutes with an empty string. In the example above, if EXTERNAL_PORT is not set, the value for port mapping is `:5000` (which is of course an invalid port mapping, and will result in an error when attempting to create the container).
 
-環境変数が設定されていなければ、Compose は空の文字列に置き換えます。先の例では、 ``POSTGRES_VERSION`` が設定されなければ、 ``image`` オプションは ``postgres:`` となります。
+環境変数が設定されていなければ、Compose は空の文字列に置き換えます。先の例では、 ``EXTERNAL_PORT`` が設定されなければ、 ポートの割り当ては ``:5000`` になります（もちろん、これは無効なポート割り当てなため、コンテナを作成しようとしてもエラーになります）。
 
 .. Both $VARIABLE and ${VARIABLE} syntax are supported. Extended shell-style features, such as ${VARIABLE-default} and ${VARIABLE/foo/bar}, are not supported.
 

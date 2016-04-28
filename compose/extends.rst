@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/extends/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/extends.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/extends.md
-.. check date: 2016/03/05
-.. Commits on Feb 26, 2016 2cd1b94dd3a16688e8be2442c35ac1f03d62cacb
+.. check date: 2016/04/28
+.. Commits on Mar 19, 2016 85c7d3e5ce821c7e8d6a7c85fc0b786f3a60ec93
 .. ----------------------------------------------------------------------------
 
 .. Extending Services and Compose files
@@ -378,9 +378,9 @@ build がイメージを置き換える例：
    # 結果
    build: .
 
-.. For the multi-value options ports, expose, external_links, dns and dns_search, Compose concatenates both sets of values:
+.. For the multi-value options ports, expose, external_links, dns and dns_search, and tmpfs, Compose concatenates both sets of values:
 
-**複数の値を持つオプション**、``ports`` 、 ``expose`` 、 ``external_links`` 、 ``dns`` 、 ``dns_search`` の場合、Compose は両方の値を連結します。
+**複数の値を持つオプション**、``ports`` 、 ``expose`` 、 ``external_links`` 、 ``dns`` 、 ``dns_search`` 、 ``tmpfs`` の場合、Compose は両方の値を連結します。
 
 .. code-block:: yaml
 

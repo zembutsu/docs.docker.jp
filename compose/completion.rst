@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/completion/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/completion.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/completion.md
-.. check date: 2016/03/07
+.. check date: 2016/04/28
 .. Commits on Jan 28, 2016 3fc72038c56482e63dbb2e1341f8475cf6bb5350
 .. ----------------------------------------------------------------------------
 

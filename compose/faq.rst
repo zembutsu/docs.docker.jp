@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/faq/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/faq.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/faq.md
-.. check date: 2016/03/04
-.. Commits on Feb 17, 2016 53a3d14046e00b6489ae4aadeb0e3325cb5169b1
+.. check date: 2016/04/28
+.. Commits on Mar 3, 2016 aa7b862f4c7f10337fc0b586d70aae5392b51f6c
 .. -------------------------------------------------------------------
 
 .. Frequently asked questions
@@ -25,9 +25,20 @@
 
 あなたの質問がここになければ、freenode IRC の ``#docker-compose`` にあるコミュニティに、質問を気軽に投げてください。
 
-.. Why do my services take 10 seconds to stop?
+.. Can I control service startup order?
 
-サービスが停止するのに10秒かかるのはどうして？
+.. _can-i-control-service-startup-order:
+
+サービスの起動順番を制御できますか？
+========================================
+
+.. Yes - see Controlling startup order.
+
+はい、詳細は :doc:`startup-order` をご覧ください。
+
+.. Why do my services take 10 seconds to recreate or stop?
+
+サービスの再作成や停止に10秒かかるのはどうして？
 ==================================================
 
 .. Compose stop attempts to stop a container by sending a SIGTERM. It then waits for a default timeout of 10 seconds. After the timeout, a SIGKILL is sent to the container to forcefully kill it. If you are waiting for this timeout, it means that your containers aren’t shutting down when they receive the SIGTERM signal.

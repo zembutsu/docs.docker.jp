@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/networking/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/networking.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/networking.md
-.. check date: 2016/03/05
-.. Commits on Feb 3, 2016 520c695bf4f4fa7c41a0febb00234f21be776d43
+.. check date: 2016/04/28
+.. Commits on Mar 24, 2016 d1ea4d72ac81aa7bda7384ce6ee80a6fc6d62de8
 .. ----------------------------------------------------------------------------
 
 .. Networking in Compose
@@ -178,6 +178,10 @@ Swarm クラスタのセットアップの仕方は、 :doc:`複数のホスト�
        driver_opts:
          foo: "1"
          bar: "2"
+
+.. Networks can be configured with static IP addresses by setting the ipv4_address and/or ipv6_address for each attached network.
+
+ネットワークでは、接続したネットワーク上で :ref:`IPv4 アドレスと IPv6 アドレスの両方、またはいずれか <ipv4-address-ipv6-address>` を設定できます。
 
 .. For full details of the network configuration options available, see the following references:
 
