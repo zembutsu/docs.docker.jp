@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/machine/examples/aws/
 .. SOURCE: https://github.com/docker/machine/blob/master/docs/examples/aws.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/machine/commits/master/docs/examples/aws.md
-.. check date: 2016/03/09
-.. Commits on Feb 11, 2016 8c186370b73b97348fcb06ebbdbefede87e888ba
+.. check date: 2016/04/28
+.. Commits on Apr 1, 2016 5d92f351de71ff4d842fd39b42e8fda738458965
 .. ----------------------------------------------------------------------------
 
 .. Amazon Web Services (AWS) EC2 example
@@ -143,9 +143,9 @@ AWS に IAM 証明書でログインし、EC2 実行中のインスタンスの�
    NAME             ACTIVE   DRIVER         STATE     URL                         SWARM   DOCKER        ERRORS      
    aws-sandbox      *        amazonec2      Running   tcp://52.90.113.128:2376            v1.10.0       
    default          -        virtualbox     Running   tcp://192.168.99.100:2376           v1.10.0-rc4   
-   docker-sandbox   -        digitalocean   Running   tcp://104.131.43.236:2376           v1.9.1        
+   aws-sandbox      -        digitalocean   Running   tcp://104.131.43.236:2376           v1.9.1        
 
-    The new aws-sandbox instance is running, and it is the active host as indicated by the asterisk (*). When you create a new machine, your command shell automatically connects it. If for some reason your new machine is not the active host, you’ll need to run docker-machine env aws-sandbox, followed by eval $(docker-machine env aws-sandbox) to connect to it.
+    The new aws-sandbox instance is running, and it is the active host as indicated by the asterisk (*). When you create a new machine, your command shell automatically connects to it. If for some reason your new machine is not the active host, you’ll need to run docker-machine env aws-sandbox, followed by eval $(docker-machine env aws-sandbox) to connect to it.
 
 新しい ``aws-sandbox`` マシンが実行されています。そして、アクティブなホストはアスタリスク（*）印が付いています。新しいマシンを作成すると、コマンド・シェルから自動的に接続できます。何らかの理由により、新しいマシンがアクティブなホストでない場合は ``docker-machine env aws-sandbox`` を実行し、反映するためには ``eval $(docker-machine env aws-sandbox)`` の実行が必要です。
 
@@ -181,9 +181,9 @@ AWS に IAM 証明書でログインし、EC2 実行中のインスタンスの�
 
 ``docker run hello-world`` のような基本的なコマンドを、新しいリモート・マシン上で実行します。あるいは、より面白いテストとなるよう Docker に対応したウェブサーバを実行します。
 
-..    In this example, the -p option is used to expose port 80 from the nginx container and make it accessible on port 8000 of the docker-sandbox host.
+..    In this example, the -p option is used to expose port 80 from the nginx container and make it accessible on port 8000 of the aws-sandbox host.
 
-次の例は ``-p`` オプションで ``nginx`` コンテナのポート 80 を公開できるようにし、それを ``docker-sandbox`` ホスト上のポート ``8000``  に割り当てます。
+次の例は ``-p`` オプションで ``nginx`` コンテナのポート 80 を公開できるようにし、それを ``aws-sandbox`` ホスト上のポート ``8000``  に割り当てます。
 
 .. code-block:: bash
 
@@ -216,7 +216,7 @@ AWS に IAM 証明書でログインし、EC2 実行中のインスタンスの�
 
    $ docker-machine stop aws-sandbox
    $ docker-machine rm aws-sandbox
-   Do you really want to remove "docker-sandbox"? (y/n): y
+   Do you really want to remove "aws-sandbox"? (y/n): y
    Successfully removed aws-sandbox
 
 .. Where to go next

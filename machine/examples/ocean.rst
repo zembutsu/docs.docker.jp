@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/machine/examples/ocean/
 .. SOURCE: https://github.com/docker/machine/blob/master/docs/examples/ocean.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/machine/commits/master/docs/examples/ocean.md
-.. check date: 2016/03/09
-.. Commits on Feb 11, 2016 0eb405f1d7ea3ad4c3595fb2c97d856d3e2d9c5c
+.. check date: 2016/04/28
+.. Commits on Apr 1, 2016 5d92f351de71ff4d842fd39b42e8fda738458965
 .. ----------------------------------------------------------------------------
 
 .. Digital Ocean example
@@ -121,7 +121,7 @@ Droplet が作成されると、Docker はユニークな SSH 鍵を生成し、
    default          -        virtualbox     Running   tcp://192.168.99.100:2376
    docker-sandbox   *        digitalocean   Running   tcp://45.55.139.48:2376
 
-..    The new docker-sandbox machine is running, and it is the active host as indicated by the asterisk (*). When you create a new machine, your command shell automatically connects it. If for some reason your new machine is not the active host, you’ll need to run docker-machine env aws-sandbox, followed by eval $(docker-machine env docker-sandbox) to connect to it.
+..    The new docker-sandbox machine is running, and it is the active host as indicated by the asterisk (*). When you create a new machine, your command shell automatically connects to it. If for some reason your new machine is not the active host, you’ll need to run docker-machine env docker-sandbox, followed by eval $(docker-machine env docker-sandbox) to connect to it.
 
 新しい ``docker-sandbox`` マシンが実行されています。そして、アクティブなホストはアスタリスク（*）印が付いています。新しいマシンを作成すると、コマンド・シェルから自動的に接続できます。何らかの理由により、新しいマシンがアクティブなホストでない場合は ``docker-machine env docker-sandbox`` を実行し、反映するためには ``eval $(docker-machine env docker-sandbox)`` の実行が必要です。
 
@@ -208,7 +208,7 @@ Droplet が作成されると、Docker はユニークな SSH 鍵を生成し、
 
 コマンドを実行後に Digital Ocean コンソールを確認すると、すぐにドロップレットが停止し、削除されるのが分かるでしょう。
 
-.. If you create a host with Docker Machine, but remove it through the cloud provider console, Machine will lose track of the server status. So please use the docker-machine rm command for hosts you create with docker-machine --create.
+.. If you create a host with Docker Machine, but remove it through the cloud provider console, Machine will lose track of the server status. So please use the docker-machine rm command for hosts you create with docker-machine create.
 
 Docker Machine は作成したホストは、クラウド・プロバイダのコンソールからも削除できます。ただし Machine は状況が追跡できなくなります。そのため、 ``docker-machine create`` で作成したホストは ``docker-machine rm`` をお使いください。
 
