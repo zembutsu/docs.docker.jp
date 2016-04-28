@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/swarm/plan-for-production/
 .. SOURCE: https://github.com/docker/swarm/blob/master/docs/plan-for-production.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/swarm/commits/master/docs/plan-for-production.md
-.. check date: 2016/02/26
-.. Commits on Feb 8, 2016 c48aa79979ef9f60b8e7e5d086e21a4cd3b28333
+.. check date: 2016/04/29
+.. Commits on Apr 13, 2016 ce1dffa58aaa881db0f5b41ee5032f259acaa303
 .. -------------------------------------------------------------------
 
 .. Plan for Swarm in production
@@ -90,27 +90,27 @@ Swarm に TLS 設定を行うための詳しい情報は、 :doc:`secure-swarm-t
 プロダクションにおけるネットワークは複雑であり、通常は特定のトラフィックのみがネットワーク上に流れるように固定されます。以下のリストは Swarm クラスタの各コンポーネントが公開しているポート情報です。ファイアウォールや、他のネットワーク・アクセス管理リストの設定に、これらが使えるでしょう。
 
 ..    Swarm manager.
-        Inbound 80/tcp (HTTP). This is allows docker pull commands to work. If you will be pulling from Docker Hub you will need to allow connections on port 80 from the internet.
+        Inbound 80/tcp (HTTP). This allows docker pull commands to work. If you plan to pull image from Docker Hub you must allow Internet connections through port 80 from the internet.
         Inbound 2375/tcp. This allows Docker Engine CLI commands direct to the Engine daemon.
         Inbound 3375/tcp. This allows Engine CLI commands to the Swarm manager.
         Inbound 22/tcp. This allows remote management via SSH
 
 * **Swarm マネージャ** ：
 
-  * **Inbound 80/tcp (HTTP)**： ``docker pull`` コマンドで使います。Docker Hub から取得するためには、インターネット側のポート 80 からの通信を許可する必要があります。
+  * **Inbound 80/tcp (HTTP)**： ``docker pull`` コマンドが動作するために使います。Docker Hub からイメージを取得するためには、インターネット側のポート 80 を通す通信の許可が必要です。
   * **Inbound 2375/tcp** ：Docker Engine CLI が Engine デーモンと直接通信します。 
   * **Inbound 3375/tcp** ：Docker Engine CLI が Swarm マネージャと通信します。 
   * **Inbound 22/tcp** ：SSH を経由したリモート管理を行います。 
 
 * **サービス・ディスカバリ** ：
 
-  * **Inbound 80/tcp (HTTP)** ： ``docker pull`` コマンドで使います。Docker Hub から取得するためには、インターネット側のポート 80 からの通信を許可する必要があります。 
+  * **Inbound 80/tcp (HTTP)** ： ``docker pull`` コマンドが動作するために使います。Docker Hub からイメージを取得するためには、インターネット側のポート 80 を通す通信の許可が必要です。
   * **Inbound 「ディスカバリ・サービス用のポート」** ：バックエンド・ディスカバリ・サービス（consul、etcd、zookeeper）が公開するポートの設定が必要です。 
   * **Inbound 22/tcp** ：SSH を経由したリモート管理を行います。 
 
 * **Swarm  ノード** ：
 
-  * **Inbound 80/tcp (HTTP)** ： ``docker pull`` コマンドで使います。Docker Hub から取得するためには、インターネット側のポート 80 からの通信を許可する必要があります。 
+  * **Inbound 80/tcp (HTTP)** ： ``docker pull`` コマンドが動作するために使います。Docker Hub からイメージを取得するためには、インターネット側のポート 80 を通す通信の許可が必要です。
   * **Inbound 2375/tcp** ：Docker Engine CLI が Engine デーモンと直接通信します。
   * **Inbound 22/tcp** ：SSH を経由したリモート管理を行います。
 
@@ -368,7 +368,7 @@ Engine のコンテナ・ネットワークは Linux カーネルの 3.16 以上
 
 所有者が誰なのかというのは、プロダクション環境において極めて重要です。Swarm クラスタでプロダクションの計画、ドキュメントか、デプロイに至る全てにおける熟慮と合意が重要になります。
 
-..    Who’s budget does the production Swarm infrastructure come out of?
+..    Whose budget does the production Swarm infrastructure come out of?
     Who owns the accounts that can administer and manage the production Swarm cluster?
     Who is responsible for monitoring the production Swarm infrastructure?
     Who is responsible for patching and upgrading the production Swarm infrastructure?

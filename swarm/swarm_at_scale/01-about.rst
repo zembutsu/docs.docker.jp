@@ -30,7 +30,7 @@
 サンプルの背景を学ぶ
 ====================
 
-.. Your company is a pet food company that has bought an commercial during the Superbowl. The commercial drives viewers to a web survey that asks users to vote – cats or dogs. You are developing the web survey.
+.. Your company is a pet food company that has bought a commercial during the Superbowl. The commercial drives viewers to a web survey that asks users to vote – cats or dogs. You are developing the web survey.
 
 あなたの会社はペットフード会社であり、スーパーボウルのコマーシャル枠を購入しようとしています。コマーシャルでは、視聴者に対して調査のために犬か猫かの投票を呼びかけます。あなたはウェブ投票システムを開発します。
 
