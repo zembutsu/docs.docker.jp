@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/swarm/get-swarm/
 .. SOURCE: https://github.com/docker/swarm/blob/master/docs/get-swarm.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/swarm/commits/master/docs/get-swarm.md
-.. check date: 2016/02/26
-.. Commits on Feb 4, 2016 a1e183c4bd9658f91b2d435ebba5a61a82cebd0e
+.. check date: 2016/04/29
+.. Commits on Mar 13, 2016 e7ce927e9da7243adba1bc1618fea3db81659710
 .. -------------------------------------------------------------------
 
 .. How to get Docker Swarm
@@ -109,7 +109,7 @@ Mac か Windows を使っている場合は、Docker Machine コマンドで Doc
    
    Run 'swarm COMMAND --help' for more information on a command.
 
-.. In this example, the swarm image did not exist on the Engine host, so the Engine downloaded it. After it downloaded, the image executed the help subcommand to display the help text. After displaying the help, the swarm image exits and returns your to your terminal command line.
+.. In this example, the swarm image did not exist on the Engine host, so the Engine downloaded it. After it downloaded, the image executed the help subcommand to display the help text. After displaying the help, the swarm image exits and returns you to your terminal command line.
 
 この例では ``swarm`` イメージは Engine ホスト上に存在していないため、Engine はイメージをダウンロードします。ダウンロード後、イメージは ``help`` サブコマンドを実行し、ヘルプ・テキストを表示します。ヘルプを表示した後、 ``swarm`` イメージは終了し、ターミナル上のコマンドラインに戻ります。
 
