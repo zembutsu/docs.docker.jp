@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/machine/overview/
 .. SOURCE: https://github.com/docker/machine/blob/master/docs/overview.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/machine/commits/master/docs/overview.md
-.. check date: 2016/03/07
+.. check date: 2016/04/28
 .. Commits on Feb 11, 2016 0eb405f1d7ea3ad4c3595fb2c97d856d3e2d9c5c
 .. -------------------------------------------------------------------
 
@@ -73,7 +73,9 @@ Docker Machine は主に２つの使い方があります。
 
 .. Docker Machine on Mac and Windows
 
-(ToDo: イメージの追加)
+.. image:: ./img/machine-mac-win.png
+   :scale: 60%
+   :alt: Docker Machine
 
 .. If you work primarily on a Mac or Windows laptop or desktop, you need Docker Machine in order to “run Docker” (that is, Docker Engine) locally. Installing Docker Machine on a Mac or Windows box provisions a local virtual machine with Docker Engine, gives you the ability to connect it, and run docker commands.
 
@@ -86,7 +88,9 @@ Docker Machine は主に２つの使い方があります。
 
 .. Docker Machine for provisioning multiple systems
 
-(ToDo: イメージの追加)
+.. image:: ./img/provision-use-case.png
+   :scale: 60%
+   :alt: プロビジョン例
 
 .. Docker Engine runs natively on Linux systems. If you have a Linux box as your primary system, and want to run docker commands, all you need to do is download and install Docker Engine. However, if you want an efficient way to provision multiple Docker hosts on a network, in the cloud or even locally, you need Docker Machine.
 
@@ -117,8 +121,9 @@ Docker Engine と Docker Machine の違いは何ですか？
 
 **Docker Machine** は Docker ホスト（Docker Engine がホスト上で動いている環境）のプロビジョニングと管理をするためのツールです。一般的には Docker Machine を自分のローカルシステム上にインストールします。Docker Machine とは ``docker-machine`` というコマンド・ラインのクライアントと ``docker`` という Docker Engine のクライアントです。Docker Machine を使えば仮想システム上に Docker Engine をインストールできます。仮想システムとはローカル（Machine を使い、Mac または Windows 上の VirtualBox に Docker Engine をインストール、実行します）でも、リモート（Machine を使い、クラウド・プロバイダ上に Docker をプロビジョン）でも構いません。Docker に対応したホストが何であろうとも、常に 「 **マシン** 」として管理できるのです（訳者注：Docker Machine の管理対象のホストは、ローカルでもクラウド上でも「マシン」という概念で抽象化できる、という意味）。
 
-.. (ToDo: イメージの追加)
-
+.. image:: ./img/machine.png
+   :scale: 60%
+   :alt: Docker Machine
 
 .. Where to go next
 

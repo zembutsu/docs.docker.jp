@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/machine/completion/
 .. SOURCE: https://github.com/docker/machine/blob/master/docs/completion.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/machine/commits/master/docs/completion.md
-.. check date: 2016/03/09
-.. Commits on Feb 11, 2016 0eb405f1d7ea3ad4c3595fb2c97d856d3e2d9c5c
+.. check date: 2016/04/28
+.. Commits on Feb 4, 2016 63f8f1fb482bb4f99007b2763e3893fa4eababa5
 .. -------------------------------------------------------------------
 
 .. Command-line Completion

@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/machine/install-machine/
 .. SOURCE: https://github.com/docker/machine/blob/master/docs/install-machine.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/machine/commits/master/docs/install-machine.md
-.. check date: 2016/03/08
-.. Commits on Feb 4, 2016 63f8f1fb482bb4f99007b2763e3893fa4eababa5
+.. check date: 2016/04/28
+.. Commits on Apr 22, 2016 a3af149774645d61187ab0989d1e5f103bf667ad
 .. -------------------------------------------------------------------
 
 .. Install Docker Machine
@@ -46,7 +46,7 @@ Mac OS X もしくは Windows の場合：
 
 .. code-block:: bash
 
-   $ curl -L https://github.com/docker/machine/releases/download/v0.6.0/docker-machine-`uname -s`-`uname -m` > /usr/local/bin/docker-machine && \
+   $ curl -L https://github.com/docker/machine/releases/download/v0.7.0/docker-machine-`uname -s`-`uname -m` > /usr/local/bin/docker-machine && \
    chmod +x /usr/local/bin/docker-machine
 
 Windows 上の git bash の場合：
@@ -54,7 +54,7 @@ Windows 上の git bash の場合：
 .. code-block:: bash
 
    $ if [[ ! -d "$HOME/bin" ]]; then mkdir -p "$HOME/bin"; fi && \
-   curl -L https://github.com/docker/machine/releases/download/v0.6.0/docker-machine-Windows-x86_64.exe > "$HOME/bin/docker-machine.exe" && \
+   curl -L https://github.com/docker/machine/releases/download/v0.7.0/docker-machine-Windows-x86_64.exe > "$HOME/bin/docker-machine.exe" && \
    chmod +x "$HOME/bin/docker-machine.exe"
 
 .. Otherwise, download one of the releases from the docker/machine release page directly.
@@ -68,7 +68,7 @@ Windows 上の git bash の場合：
 .. code-block:: bash
 
    $ docker-machine version
-   docker-machine version 0.6.0, build 61388e9
+   docker-machine version 0.7.0, build 61388e9
 
 .. Installing bash completion scripts
 

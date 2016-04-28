@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/machine/get-started/
 .. SOURCE: https://github.com/docker/machine/blob/master/docs/get-started.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/machine/commits/master/docs/get-started.md
-.. check date: 2016/03/08
-.. Commits on Feb 23, 2016 7e7c6b5ee4194cc5a859437aa7b35fe90c6b36c8k
+.. check date: 2016/04/28
+.. Commits on Apr 23, 2016 c9c6bc45f0e91c9b99129c0a16d0641cd7a266e9
 .. -------------------------------------------------------------------
 
 .. _get-started:
