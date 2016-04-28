@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/rails/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/rails.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/rails.md
-.. check date: 2016/03/05
-.. Commits on Feb 24, 2016 e6797e116648fb566305b39040d5fade83aacffc
+.. check date: 2016/04/28
+.. Commits on Mar 28, 2016 93901ec4805b0a72ba71ae910d3214e4856cd876
 .. ----------------------------------------------------------------------------
 
 .. Quickstart Guide: Compose and Rails
@@ -35,7 +35,7 @@
 .. code-block:: dockerfile
 
    FROM ruby:2.2.0
-   RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
+   RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
    RUN mkdir /myapp
    WORKDIR /myapp
    ADD Gemfile /myapp/Gemfile

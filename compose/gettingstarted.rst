@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/gettingstarted/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/gettingstarted.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/gettingstarted.md
-.. check date: 2016/03/05
+.. check date: 2016/04/28
 .. Commits on Feb 24, 2016 e6797e116648fb566305b39040d5fade83aacffc
 .. -------------------------------------------------------------------
 

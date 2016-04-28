@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/swarm/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/swarm.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/swarm.md
-.. check date: 2016/03/05
-.. Commits on Feb 3, 2016 520c695bf4f4fa7c41a0febb00234f21be776d43
+.. check date: 2016/04/28
+.. Commits on Mar 24, 2016 d1ea4d72ac81aa7bda7384ce6ee80a6fc6d62de8
 .. -------------------------------------------------------------------
 
 .. Using Compose with Swarm

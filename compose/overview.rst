@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/overview/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/overview.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/overview.md
-.. check date: 2016/03/04
-.. Commits on Feb 17, 2016 53a3d14046e00b6489ae4aadeb0e3325cb5169b1
+.. check date: 2016/04/28
+.. Commits on Mar 8, 2016 88a719b4b685be62a4bcc354a07f9ecd42e1282f
 .. -------------------------------------------------------------------
 
 .. Overview of Docker Compose

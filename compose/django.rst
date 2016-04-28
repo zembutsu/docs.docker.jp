@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/django/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/django.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/django.md
-.. check date: 2016/03/05
-.. Commits on Feb 24, 2016 e6797e116648fb566305b39040d5fade83aacffc
+.. check date: 2016/04/28
+.. Commits on Apr 9, 2016 e6797e116648fb566305b39040d5fade83aacffc
 .. -------------------------------------------------------------------
 
 .. Quickstart Guide: Docker Compose and Django

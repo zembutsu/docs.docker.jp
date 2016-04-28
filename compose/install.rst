@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/install/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/install.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/install.md
-.. check date: 2016/03/05
-.. Commits on Feb 26, 2016 c72e9b3843c2a286e6478dde445fe3de99d88239
+.. check date: 2016/04/28
+.. Commits on Mar 18, 2016 50fe014ba9f6af3dc75cb5f5548dcf0c9825cd05
 .. -------------------------------------------------------------------
 
 .. Install Docker Compose
@@ -21,13 +21,13 @@ Docker Compose のインストール
        :depth: 3
        :local:
 
-.. You can run Compose on OS X and 64-bit Linux. It is currently not supported on the Windows operating system. To install Compose, you’ll need to install Docker first.
+.. You can run Compose on OS X, Windows and 64-bit Linux. To install it, you’ll need to install Docker first.
 
-Compose を OS X、64-bit Linux、Windows で実行可能です。Compose のインストールには、まず Docker のインストールが必要です。
+Compose を OS X、Windows、64-bit Linux で実行可能です。Compose をインストールするには、まず Docker のインストールが必要です。
 
 .. To install Compose, do the following:
 
-Compose をインストールするには、次のように実行します。
+Compose のインストールは、次のように実行します。
 
 ..    Install Docker Engine version 1.7.1 or greater:
         Mac OS X installation (Toolbox installation includes both Engine and Compose)
@@ -41,8 +41,11 @@ Compose をインストールするには、次のように実行します。
    * :doc:`その他システムへのインストール </engine/installation/index>`
 
 .. Mac OS X users are done installing. Others should continue to the next step.
+.. 2. Mac OS X ユーザと Windows ユーザはインストールが完了しています。他の環境は次のステップに進みます。
 
-2. Mac OS X ユーザと Windows ユーザはインストールが完了しています。他の環境は次のステップに進みます。
+.. The Docker Toolbox installation includes both Engine and Compose, so Mac and Windows users are done installing. Others should continue to the next step.
+
+2. Docker Toolbox は Engine と Compose の両方をインストールします。そのため、 Mac および Windows ユーザは、これでインストール完了です。次のステップに進んでも構いません。
 
 .. Go to the Compose repository release page on GitHub.
 

@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/wordpress/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/wordpress.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/wordpress.md
-.. check date: 2016/03/05
-.. Commits on Feb 24, 2016 e6797e116648fb566305b39040d5fade83aacffc
+.. check date: 2016/04/28
+.. Commits on Apr 9, 2016 4192a009da5cbae5c811b3b965e4ecb4572c95f6
 .. ----------------------------------------------------------------------------
 
 .. Quickstart Guide: Docker Compose and WordPress
