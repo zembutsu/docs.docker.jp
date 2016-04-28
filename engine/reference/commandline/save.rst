@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/save/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/save.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/commandline/save.md
-.. check date: 2016/02/25
-.. Commits on Dec 24, 2015 e6115a6c1c02768898b0a47e550e6c67b433c436
+.. check date: 2016/04/28
+.. Commits on Mar 22, 2016 5a701c3e4cd63f0b17b4fe9ab13c8cbe0ea5d353
 .. -------------------------------------------------------------------
 
 .. save
@@ -17,7 +17,7 @@ save
 
    Usage: docker save [OPTIONS] IMAGE [IMAGE...]
    
-   Save an image(s) to a tar archive (streamed to STDOUT by default)
+   Save one ore more images to a tar archive (streamed to STDOUT by default)
    
      --help             Print usage
      -o, --output=""    Write to a file, instead of STDOUT

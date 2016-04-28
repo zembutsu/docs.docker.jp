@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/volume_rm/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/volume_rm.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/commandline/volume_rm.md
-.. check date: 2016/02/25
-.. Commits on Feb 10, 2016 910ea8adf6c2c94fdb3748893e5b1e51a6b8c431
+.. check date: 2016/04/28
+.. Commits on Feb 19, 2016 910ea8adf6c2c94fdb3748893e5b1e51a6b8c431
 .. -------------------------------------------------------------------
 
 .. volume rm

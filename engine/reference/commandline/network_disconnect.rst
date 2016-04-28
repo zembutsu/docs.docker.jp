@@ -1,10 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/network_disconnect/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/network_disconnect.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/commandline/network_disconnect.md
-.. Commits on Jan 14, 2016
-.. b464f1d78cdfa2a4124e083b8f7b0f2353f12de3
+.. Commits on Jan 14, 2016 b464f1d78cdfa2a4124e083b8f7b0f2353f12de3
 .. -------------------------------------------------------------------
 
 .. network disconnect

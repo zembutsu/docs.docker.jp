@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/run/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/run.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/commandline/run.md
-.. check date: 2016/02/25
-.. Commits on Feb 16, 2016 1ab7d76f30f3cf693c986eb827ad49a6554d806d
+.. check date: 2016/04/28
+.. Commits on Apr 26, 2016 8df2066341931d9b7ba552afa902e2ef12e5eed5
 .. -------------------------------------------------------------------
 
 .. run
@@ -34,6 +34,7 @@ run
      --cap-drop=[]                 Drop Linux capabilities
      --cgroup-parent=""            Optional parent cgroup for the container
      --cidfile=""                  Write the container ID to the file
+     --cpu-percent=0               Limit percentage of CPU available for execution by the container. Windows daemon only.
      --cpu-period=0                Limit CPU CFS (Completely Fair Scheduler) period
      --cpu-quota=0                 Limit CPU CFS (Completely Fair Scheduler) quota
      --cpuset-cpus=""              CPUs in which to allow execution (0-3, 0,1)
@@ -69,6 +70,15 @@ run
      --log-opt=[]                  Log driver specific options
      -m, --memory=""               Memory limit
      --mac-address=""              Container MAC address (e.g. 92:d0:c6:0a:29:33)
+     --io-maxbandwidth=""          Maximum IO bandwidth limit for the system drive
+                                   (Windows only). The format is `<number><unit>`.
+                                   Unit is optional and can be `b` (bytes per second),
+                                   `k` (kilobytes per second), `m` (megabytes per second),
+                                   or `g` (gigabytes per second). If you omit the unit,
+                                   the system uses bytes per second.
+                                   --io-maxbandwidth and --io-maxiops are mutually exclusive options.
+     --io-maxiops=0                Maximum IO per second limit for the system drive (Windows only).
+                                   --io-maxbandwidth and --io-maxiops are mutually exclusive options.
      --memory-reservation=""       Memory soft limit
      --memory-swap=""              A positive integer equal to memory plus swap. Specify -1 to enable unlimited swap.
      --memory-swappiness=""        Tune a container's memory swappiness behavior. Accepts an integer between 0 and 100.
@@ -85,6 +95,7 @@ run
      -P, --publish-all             Publish all exposed ports to random ports
      -p, --publish=[]              Publish a container's port(s) to the host
      --pid=""                      PID namespace to use
+     --pids-limit=-1                Tune container pids limit (set -1 for unlimited), kernel >= 4.3
      --privileged                  Give extended privileges to this container
      --read-only                   Mount the container's root filesystem as read only
      --restart="no"                Restart policy (no, on-failure[:max-retry], always, unless-stopped)
@@ -93,16 +104,21 @@ run
      --security-opt=[]             Security Options
      --sig-proxy=true              Proxy received signals to the process
      --stop-signal="SIGTERM"       Signal to stop a container
+     --storage-opt=[]              Set storage driver options per container
+     --sysctl[=*[]*]]              Configure namespaced kernel parameters at runtime
      -t, --tty                     Allocate a pseudo-TTY
      -u, --user=""                 Username or UID (format: <name|uid>[:<group|gid>])
+     --userns=""                   Container user namespace
+                                   'host': Use the Docker host user namespace
+                                   '': Use the Docker daemon user namespace specified by `--userns-remap` option.
      --ulimit=[]                   Ulimit options
      --uts=""                      UTS namespace to use
      -v, --volume=[host-src:]container-dest[:<options>]
                                    Bind mount a volume. The comma-delimited
-                                   `options` are [rw|ro], [z|Z], or
-                                   [[r]shared|[r]slave|[r]private]. The
-                                   'host-src' is an absolute path or a name
-                                   value.
+                                   `options` are [rw|ro], [z|Z],
+                                   [[r]shared|[r]slave|[r]private], and
+                                   [nocopy]. The 'host-src' is an absolute path
+                                   or a name value.
      --volume-driver=""            Container's volume driver
      --volumes-from=[]             Mount volumes from the specified container(s)
      -w, --workdir=""              Working directory inside the container
@@ -200,7 +216,24 @@ run
 
 ``-w`` は、指定したディレクトリの中でコマンドを実行します。この例では ``/path/to/dir`` で実行します。コンテナ内にパスが存在しなければ、作成されます。
 
+.. Set storage driver options per container
+
+.. _set-storage-driver-options-per-container:
+
+コンテナごとにストレージ・オプションを指定
+--------------------------------------------------
+
+.. code-block:: bash
+
+   $ docker create -it --storage-opt size=120G fedora /bin/bash
+
+.. This (size) will allow to set the container rootfs size to 120G at creation time.  User cannot pass a size less than the Default BaseFS Size.
+
+これ（容量）はコンテナの作成時にルート・ファイルシステムの容量を 120GB に指定しています。ただし、デフォルトの BaseFS 容量よりも小さく指定できません。
+
 .. Mount tmpfs (--tmpfs)
+
+.. _mount-tmpfs:
 
 tmpfs のマウント（--tmpfs）
 ------------------------------
@@ -683,6 +716,105 @@ IPv6 は ``-4`` フラグにかわって ``-6`` を指定します。他のネ�
 .. The --stop-signal flag sets the system call signal that will be sent to the container to exit. This signal can be a valid unsigned number that matches a position in the kernel’s syscall table, for instance 9, or a signal name in the format SIGNAME, for instance SIGKILL.
 
 ``--stop-signal`` フラグは、システムコールのシグナルを設定します。これは、コンテナを終了するときに送るものです。このシグナルはカーネルの syscall テーブルにある適切な数値と一致する必要があります。例えば 9 や、SIGNAME のような形式のシグナル名（例：SIGKILL）です。
+
+.. Specify isolation technology for container (--isolation)
+
+コンテナの分離技術を指定（--isolation）
+----------------------------------------
+
+.. This option is useful in situations where you are running Docker containers on Microsoft Windows. The --isolation <value> option sets a container’s isolation technology. On Linux, the only supported is the default option which uses Linux namespaces. These two commands are equivalent on Linux:
+
+このオプションは Docker コンテナを Microsoft Windows 上で使う状況で便利です。 ``--isolation <値>`` オプションでコンテナの分離（isolation）技術を指定します。 Linux 上では Linux 名前空間（namespaces）を使う ``default`` しかサポートしていません。Linux 上では次の２つのコマンドが同等です。
+
+.. code-block:: bash
+
+   $ docker run -d busybox top
+   $ docker run -d --isolation default busybox top
+
+.. On Microsoft Windows, can take any of these values:
+   Value 	Description
+   default 	Use the value specified by the Docker daemon’s --exec-opt . If the daemon does not specify an isolation technology, Microsoft Windows uses process as its default value.
+   process 	Namespace isolation only.
+   hyperv 	Hyper-V hypervisor partition-based isolation.
+
+.. list-table:
+   :header-rows: 1
+   
+   * - 値
+     - 説明
+   * - ``default``
+     - Docker デーモンの ``--exec-opt`` 値を使います。分離技術に ``daemon`` を指定しなければ、Microsoft Windows はデフォルト値の ``process`` を使います。
+   * - ``process``
+     - 名前空間（namespace）の分離のみです。
+   * - ``hyperv``
+     - Hyper-V ハイパーバイザをベースとする分離です。
+
+.. In practice, when running on Microsoft Windows without a daemon option set, these two commands are equivalent:
+
+特に Microsoft Windows 上で ``daemon`` オプションを指定していなければ、次の２つのコマンドは同等です。
+
+.. code-block:: bash
+
+   $ docker run -d --isolation default busybox top
+   $ docker run -d --isolation process busybox top
+
+.. If you have set the --exec-opt isolation=hyperv option on the Docker daemon, any of these commands also result in hyperv isolation:
+
+Docker ``daemon`` 上で ``--exec-opt isolation=hyperv`` オプションを指定すると、各コマンドの実行に ``hyperv`` 分離を使った結果を表示します。
+
+.. code-block:: bash
+
+   $ docker run -d --isolation default busybox top
+   $ docker run -d --isolation hyperv busybox top
+
+.. Configure namespaced kernel parameters (sysctls) at runtime
+
+.. _configure-namespaced-kernel-parameters-at-runtime:
+
+実行時に名前空間のカーネル・パラメータ（sysctl）を設定
+------------------------------------------------------------
+
+.. The --sysctl sets namespaced kernel parameters (sysctls) in the container. For example, to turn on IP forwarding in the containers network namespace, run this command:
+
+``--sysctl`` はコンテナ内の名前空間におけるカーネル・パラメータ（sysctl）を設定します。例えば、コンテナのネットワーク名前空間で IP 転送を有効にするには、次のようにコマンドを実行します。
+
+.. code-block:: bash
+
+   $ docker run --sysctl net.ipv4.ip_forward=1 someimage
+
+..    Note: Not all sysctls are namespaced. docker does not support changing sysctls inside of a container that also modify the host system. As the kernel evolves we expect to see more sysctls become namespaced.
+
+.. note::
+
+   全ての sysctl が名前空間で使えるわけではありません。Docker はコンテナ内の sysctl の変更をサポートしません。つまり、コンテナ内だけでなくホスト側も変更します。カーネルが改良されれば、更に多くの sysctl を名前空間内で利用可能になると考えています。
+
+.. Currently supported sysctls
+
+.. _currently-supprted-sysctls:
+
+サポート中の sysctl
+^^^^^^^^^^^^^^^^^^^^
+
+.. IPC Namespace:
+
+``IPC 名前空間`` ：
+
+.. kernel.msgmax, kernel.msgmnb, kernel.msgmni, kernel.sem, kernel.shmall, kernel.shmmax, kernel.shmmni, kernel.shm_rmid_forced Sysctls beginning with fs.mqueue.*
+
+kernel.msgmax、 kernel.msgmnb、 kernel.msgmni、 kernel.sem、 kernel.shmall、 kernel.shmmax、 kernel.shmmni、 kernel.shm_rmid_forced、 fs.mqueue.* で始まる sysctl 。
+
+.. If you use the --ipc=host option these sysctls will not be allowed.
+
+``--ipc=host`` オプションを使う場合は、これら sysctl のオプション指定が許可されません。
+
+.. Network Namespace: Sysctls beginning with net.*
+
+``ネットワーク名前空間`` ： net.* で始まる sysctl
+
+.. If you use the --net=host option using these sysctls will not be allowed.
+
+``--ipc=host`` オプションを使う場合は、これら sysctl のオプション指定が許可されません。
+
 
 .. seealso:: 
 

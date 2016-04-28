@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/network_create/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/network_create.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/commandline/network_create.md
-.. check date: 2016/02/22
-.. ebd1f70165faf1c19325f930b866365cab8e765b
+.. check date: 2016/04/28
+.. Commits on Mar 26, 2016 995e5beda74b99dfc920f6a79aee977ff5a15a72
 .. -------------------------------------------------------------------
 
 .. network create
@@ -188,9 +188,33 @@ network create
    * - ``com.docker.network.bridge.mtu``
      - ``--mtu``
      - コンテナのネットワーク MTU を指定
-   * - ``com.docker.network.bridge.enable_ipv6``
+
+.. The following arguments can be passed to docker network create for any network driver, again with their approximate equivalents to docker daemon.
+
+以下の引数は ``docker network create`` 実行時、あらゆるネットワーク・ドライバで指定できます。ほとんどが ``docker daemon`` で指定する項目と同等です。
+
+.. list-table::
+   :header-rows: 1
+   
+   * - オプション
+     -  同等
+     - 説明
+
+   * - ``--geteway``
+     - ―
+     - マスタ・サブネットに対する IPv4 または IPv6 ゲートウェイ
+   * - ``--ip-range``
+     - ``--fixed-cidr``
+     - 範囲内で割り当てる IP アドレス
+   * - ``--internal``
+     - ―
+     - 外部ネットワークに対する接続を制限
+   * - ``--ipv6``
      - ``--ipv6``
      - IPv6 ネットワーク機能を有効化
+   * - ``--subnet``
+     - ``--bip``
+     - ネットワーク用のサブネット
 
 .. For example, let’s use -o or --opt options to specify an IP address binding when publishing ports:
 

@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/tag/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/tag.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/commandline/tag.md
-.. check date: 2016/02/25
+.. check date: 2016/04/28
 .. Commits on Jan 27, 2016 e310d070f498a2ac494c6d3fde0ec5d6e4479e14
 .. -------------------------------------------------------------------
 

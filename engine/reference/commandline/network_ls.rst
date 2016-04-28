@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/network_ls/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/network_ls.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/commandline/network_ls.md
-.. check date: 2016/02/25
-.. Commits on Feb 19, 2016 cdc7f26715fbf0779a5283354048caf9faa1ec4a
+.. check date: 2016/04/28
+.. Commits on Apr 18, 2016 f812b55692f5d50d427684216ad6c806bac5a702
 .. -------------------------------------------------------------------
 
 .. network ls
@@ -72,75 +72,14 @@ Docker エンジンの ``daemon`` が把握している全てのネットワー�
 現時点でサポートされているフィルタは、次の通りです。
 
 ..    id (network’s id)
+    label (label=<key> or label=<key>=<value>)
     name (network’s name)
     type (custom|builtin)
 
 * ID （ネットワークID）
+* ラベル（ ``labe=<キー>`` または ``label=<キー>=<値>`` ）
 * 名前（ネットワーク名）
 * タイプ（custom|builtin）
-
-.. Type
-
-type
-==========
-
-.. The type filter supports two values; builtin displays predefined networks (bridge, none, host), whereas custom displays user defined networks.
-
-``type`` フィルタは２つの値をサポートしています。 ``builtin`` は定義済みネットワーク（ ``bridge`` 、``none`` 、 ``host`` ）を表示します。 ``custom`` はユーザ定義ネットワークを表示します。
-
-.. The following filter matches all user defined networks:
-
-以下のフィルタはユーザ定義ネットワークを全て表示します。
-
-.. code-block:: bash
-
-   $ docker network ls --filter type=custom
-   NETWORK ID          NAME                DRIVER
-   95e74588f40d        foo                 bridge
-   63d1ff1f77b0        dev                 bridge
-
-.. By having this flag it allows for batch cleanup. For example, use this filter to delete all user defined networks:
-
-このフラグを指定すると、バッチ処理でクリーンアップできます。例えば、全てのユーザ定義をネットワークを削除するには、次のようにします。
-
-.. code-block:: bash
-
-   $ docker network rm `docker network ls --filter type=custom -q`
-
-.. A warning will be issued when trying to remove a network that has containers attached.
-
-コンテナがアタッチされているネットワークを削除しようとすると、警告が表示されます。
-
-.. Name
-
-name
-----------
-
-.. The name filter matches on all or part of a network’s name.
-
-``name`` フィルタはネットワーク名の一部もしくは全体に一致します。
-
-.. The following filter matches all networks with a name containing the foobar string.
-
-以下のフィルタは ``foobar`` 文字列を含む全てのネットワーク名でフィルタします。
-
-.. code-block:: bash
-
-   $ docker network ls --filter name=foobar
-   NETWORK ID          NAME                DRIVER
-   06e7eef0a170        foobar              bridge
-
-.. You can also filter for a substring in a name as this shows:
-
-次のように、部分一致でもフィルタできます。
-
-.. code-block:: bash
-
-   $ docker network ls --filter name=foo
-   NETWORK ID          NAME                DRIVER
-   95e74588f40d        foo                 bridge
-   06e7eef0a170        foobar              bridge
-
 
 .. ID
 
@@ -174,6 +113,100 @@ id
    $ docker network ls --filter id=95e
    NETWORK ID          NAME                DRIVER
    95e74588f40d        foo                 bridge
+
+.. Label
+
+Label
+----------
+
+.. The label filter matches containers based on the presence of a label alone or a label and a value.
+
+``label`` フィルタは ``label`` だけ、あるいは ``label`` と値に一致する条件でフィルタします。
+
+.. The following filter matches networks with the usage label regardless of its value.
+
+以下のフィルタはラベルの値が ``usage`` に一致するネットワークを表示します。
+
+.. code-block:: bash
+
+   $ docker network ls -f "label=usage"
+   NETWORK ID          NAME                DRIVER
+   db9db329f835        test1               bridge              
+   f6e212da9dfd        test2               bridge
+
+.. The following filter matches containers with the usage label with the prod value.
+
+以下のフィルタは ``usage`` ラベルの値が ``prod`` の値に一致するコンテナを表示します。
+
+.. code-block:: bash
+
+   $ docker network ls -f "label=usage=prod"
+   NETWORK ID          NAME                DRIVER
+   f6e212da9dfd        test2               bridge
+
+.. Name
+
+name
+----------
+
+.. The name filter matches on all or part of a network’s name.
+
+``name`` フィルタはネットワーク名の一部もしくは全体に一致します。
+
+.. The following filter matches all networks with a name containing the foobar string.
+
+以下のフィルタは ``foobar`` 文字列を含む全てのネットワーク名でフィルタします。
+
+.. code-block:: bash
+
+   $ docker network ls --filter name=foobar
+   NETWORK ID          NAME                DRIVER
+   06e7eef0a170        foobar              bridge
+
+.. You can also filter for a substring in a name as this shows:
+
+次のように、部分一致でもフィルタできます。
+
+.. code-block:: bash
+
+   $ docker network ls --filter name=foo
+   NETWORK ID          NAME                DRIVER
+   95e74588f40d        foo                 bridge
+   06e7eef0a170        foobar              bridge
+
+.. Type
+
+type
+==========
+
+.. The type filter supports two values; builtin displays predefined networks (bridge, none, host), whereas custom displays user defined networks.
+
+``type`` フィルタは２つの値をサポートしています。 ``builtin`` は定義済みネットワーク（ ``bridge`` 、``none`` 、 ``host`` ）を表示します。 ``custom`` はユーザ定義ネットワークを表示します。
+
+.. The following filter matches all user defined networks:
+
+以下のフィルタはユーザ定義ネットワークを全て表示します。
+
+.. code-block:: bash
+
+   $ docker network ls --filter type=custom
+   NETWORK ID          NAME                DRIVER
+   95e74588f40d        foo                 bridge
+   63d1ff1f77b0        dev                 bridge
+
+.. By having this flag it allows for batch cleanup. For example, use this filter to delete all user defined networks:
+
+このフラグを指定すると、バッチ処理でクリーンアップできます。例えば、全てのユーザ定義をネットワークを削除するには、次のようにします。
+
+.. code-block:: bash
+
+   $ docker network rm `docker network ls --filter type=custom -q`
+
+.. A warning will be issued when trying to remove a network that has containers attached.
+
+コンテナがアタッチされているネットワークを削除しようとすると、警告が表示されます。
+
+
 
 .. Related information
 

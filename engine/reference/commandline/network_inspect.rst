@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/network_inspect/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/network_inspect.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/commandline/network_inspect.md
-.. check date: 2016/02/23
-.. Commits on Jan 15, 2016 c199506b59f60ac456cb0448ddd86e6dec92bc0a
+.. check date: 2016/04/28
+.. Commits on Mar 14, 2016 2ef00ba89fc04b0a7571aa050d8a11c06f758d9b
 .. -------------------------------------------------------------------
 
 .. network inspect
@@ -34,9 +34,9 @@ network inspect
    $ sudo docker run -itd --name=container2 busybox
    bda12f8922785d1f160be70736f26c1e331ab8aaf8ed8d56728508f2e2fd4727
 
-.. The network inspect command shows the containers, by id, in its results.
+.. The network inspect command shows the containers, by id, in its results. For networks backed by multi-host network driver, such as Overlay, this command also shows the container endpoints in other hosts in the cluster. These endpoints are represented as “ep-{endpoint-id}” in the output. You can specify an alternate format to execute a given template for each result. Go’s text/template package describes all the details of the format.
 
-``network inspect`` コマンドで、その結果からコンテナの情報を確認します。
+``network inspect`` コマンドで、その結果からコンテナの情報を確認します。ネットワーク・バックエンドが Overlay のようなマルチホスト・ネットワーク・ドライバの場合は、コマンドはクラスタ上の他のホストに対するコンテナのエンドポイントも表示します。これらのエンドポイントは  “ep-{エンドポイント-id}” として表示されます。あるいは、結果表示の時に別のフォーマットも指定できます。フォーマットの詳細は Go 言語の `text/template <http://golang.org/pkg/text/template/>`_ パッケージで指定します。
 
 .. code-block:: bash
 

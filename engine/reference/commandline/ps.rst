@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/ps/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/ps.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/commandline/ps.md
-.. check date: 2016/02/25
-.. Commits on Feb 24, 2016 bd4fb00fb6241d35537b460a2d9f48256111ae7a
+.. check date: 2016/04/28
+.. Commits on Mar 15, 2016 b1619766c0131a02774c7ec2b158c2fdf7206d05
 .. -------------------------------------------------------------------
 
 .. ps
@@ -35,6 +35,7 @@ ps
                            - before=(<container-name>|<container-id>)
                            - since=(<container-name>|<container-id>)
                            - ancestor=(<image-name>[:tag]|<image-id>|<image@digest>) - containers created from an image or a descendant.
+                           - volume=(<volume-name>|<mount-point>)
      --format=[]           Pretty-print containers using a Go template
      --help                Print usage
      -l, --latest          Show the latest created container (includes all states)

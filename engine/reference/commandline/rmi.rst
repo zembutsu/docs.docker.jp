@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/rmi/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/rmi.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/commandline/rmi.md
-.. check date: 2016/02/25
+.. check date: 2016/04/28
 .. Commits on Feb 2, 2016 1ab7d76f30f3cf693c986eb827ad49a6554d806d
 .. -------------------------------------------------------------------
 

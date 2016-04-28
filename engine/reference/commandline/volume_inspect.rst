@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/volume_inspect/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/volume_inspect.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/docker/commits/master/docs/reference/commandline/volume_inspect.md
-.. check date: 2016/02/25
-.. Commits on Feb 10, 2016 910ea8adf6c2c94fdb3748893e5b1e51a6b8c431
+.. check date: 2016/04/28
+.. Commits on Apr 15, 2016 36a1c56cf555f8fe9ceabeebb8fc956e05863fc7
 .. -------------------------------------------------------------------
 
 .. volume inspect
@@ -45,7 +45,8 @@ volume inspect
      {
          "Name": "85bffb0677236974f93955d8ecc4df55ef5070117b0e53333cc1b443777be24d",
          "Driver": "local",
-         "Mountpoint": "/var/lib/docker/volumes/85bffb0677236974f93955d8ecc4df55ef5070117b0e53333cc1b443777be24d/_data"
+         "Mountpoint": "/var/lib/docker/volumes/85bffb0677236974f93955d8ecc4df55ef5070117b0e53333cc1b443777be24d/_data",
+         "Status": null
      }
    ]
    
