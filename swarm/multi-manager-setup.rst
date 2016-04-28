@@ -71,7 +71,7 @@ Docker Swarm の **Swarm マネージャ** は、クラスタ全体に対する�
    [...]
 
 
-.. The --replication flag tells swarm that the manager is part of a multi-manager configuration and that this primary manager competes with other manager instances for the primary role. The primary manager has the authority to manage cluster, replicate logs, and replicate events happening inside the cluster.
+.. The --replication flag tells Swarm that the manager is part of a multi-manager configuration and that this primary manager competes with other manager instances for the primary role. The primary manager has the authority to manage cluster, replicate logs, and replicate events happening inside the cluster.
 
 ``--replication`` フラグは、Swarm に対して複数のマネージャ設定における一部であると伝えます。また、このプライマリ・マネージャは、他のプライマリの役割を持つマネージャ・インスタンスと競合します。プライマリ・マネージャとは、クラスタ管理の権限を持ち、ログを複製し、クラスタ内で発生したイベントを複製します。
 
@@ -112,7 +112,7 @@ Docker Swarm の **Swarm マネージャ** は、クラスタ全体に対する�
    INFO[0000] New leader elected: 192.168.42.200:4000
    [...]
 
-.. Once you have established your primary manager and the replicas, create swarm agents as you normally would.
+.. Once you have established your primary manager and the replicas, create Swarm agents as you normally would.
 
 プライマリ・マネージャとレプリカを構成した後は、通常通りに **Swarm エージェント** を作成できます。
 

@@ -21,9 +21,9 @@ Docker Swarm ディスカバリ
        :depth: 3
        :local:
 
-.. Docker Swarm comes with multiple discovery backends. You use a hosted discovery service with Docker Swarm. The service maintains a list of IPs in your swarm. This page describes the different types of hosted discovery available to you. These are:
+.. Docker Swarm comes with multiple discovery backends. You use a hosted discovery service with Docker Swarm. The service maintains a list of IPs in your cluster. This page describes the different types of hosted discovery available to you. These are:
 
-Docker Swarm は複数のディスカバリ・バックエンドに対応しています。Docker Swarm にはホステット・ディスカバリ・サービス（hosted discovery service）が利用可能です。このサービスは Swarm の IP アドレスの一覧を保持します。このページでは利用可能な様々なホステット・ディスカバリを紹介します。
+Docker Swarm は複数のディスカバリ・バックエンドに対応しています。Docker Swarm にはホステット・ディスカバリ・サービス（hosted discovery service）が利用可能です。このサービスは クラスタ上の IP アドレスの一覧を保持します。このページでは利用可能な様々なホステット・ディスカバリを紹介します。
 
 .. Using a distributed key/value store
 
@@ -59,9 +59,9 @@ libkv についてやサポートしているバックエンドに対する技�
 
 1. 各ノードで Swarm エージェントを起動します。
 
-..    The node IP address doesn’t have to be public as long as the swarm manager can access it. In a large cluster, the nodes joining swarm may trigger request spikes to discovery. For example, a large number of nodes are added by a script, or recovered from a network partition. This may result in discovery failure. You can use --delay option to specify a delay limit. Swarm join will add a random delay less than this limit to reduce pressure to discovery.
+..    The node IP address doesn’t have to be public as long as the Swarm manager can access it. In a large cluster, the nodes joining swarm may trigger request spikes to discovery. For example, a large number of nodes are added by a script, or recovered from a network partition. This may result in discovery failure. You can use --delay option to specify a delay limit. Swarm join will add a random delay less than this limit to reduce pressure to discovery.
 
-ノード IP アドレスは Swarm マネージャがアクセス可能であれば十分であり、パブリックな IP アドレスを持つ必要はありません。大きなクラスタになると、Swarm に対するノードの参加が、ディスカバリ時に過負荷となる可能性があります。例えば、沢山のノードをスクリプトで登録する場合や、ネットワーク障害から復旧する時です。この影響によりディスカバリが失敗するかもしれません。そのような場合は、 ``--delay`` オプションで遅延上限を指定できます。そうすると、Swarm への登録がランダムに遅延して行われますが、指定した時間を上回ることはありません。
+ノード の IP アドレスは Swarm マネージャがアクセス可能であれば十分であり、パブリックな IP アドレスを持つ必要はありません。大きなクラスタになると、Swarm に対するノードの参加が、ディスカバリ時に過負荷となる可能性があります。例えば、沢山のノードをスクリプトで登録する場合や、ネットワーク障害から復旧する時です。この影響によりディスカバリが失敗するかもしれません。そのような場合は、 ``--delay`` オプションで遅延上限を指定できます。そうすると、Swarm への登録がランダムに遅延して行われますが、指定した時間を上回ることはありません。
 
 **Etcd:**
 
@@ -335,9 +335,9 @@ Docker Hub のホステッド・ディスカバリ
 
    $ swarm manage -H tcp://<swarm_ip:swarm_port> token://<cluster_id>
 
-.. Use regular Docker commands to interact with your swarm
+.. Use regular Docker commands to interact with your cluster.
 
-4. 通常の Docker コマンドで Swarm と通信します。
+4. 通常の Docker コマンドでクラスタと通信します。
 
 .. code-block:: bash
 

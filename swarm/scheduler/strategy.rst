@@ -31,9 +31,9 @@ Docker Swarm スケジューラは、複数のストラテジ（strategy；方�
 
 ``spread`` と ``binpack`` ストラテジは、ノードで利用可能な CPU 、RAM 、実行中のコンテナ数から順位を算出します。 ``random`` ストラテジは計算をしません。ノードをランダムに選択するもので、主にデバッグ用に使います。
 
-.. Your goal in choosing a strategy is to best optimize your swarm according to your company’s needs.
+.. Your goal in choosing a strategy is to best optimize your cluster according to your company’s needs.
 
-ストラテジを選択する目的は、あなたの会社の必要性に従い、Swarm を最適化するためです。
+あなたの会社の必要性に従いってクラスタを最適化するのが、ストラテジを選択する目的（ゴール）です。
 
 .. Under the spread strategy, Swarm optimizes for the node with the least number of running containers. The binpack strategy causes Swarm to optimize for the node which is most packed. The random strategy, like it sounds, chooses nodes at random regardless of their available CPU or RAM.
 

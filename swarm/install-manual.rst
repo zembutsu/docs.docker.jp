@@ -261,9 +261,9 @@ consul ノードを立ち上げて実行すると、クラスタ用のディス�
 
    $ docker run -d -p 4000:4000 swarm manage -H :4000 --replication --advertise 172.30.0.161:4000  consul://172.30.0.161:8500
 
-.. Enter docker ps. From the output, verify that both a swarm and an consul container are running. Then, disconnect from the “manager0 & consul0” instance.
+.. Enter docker ps. From the output, verify that both a Swarm cluster and an consul container are running. Then, disconnect from the “manager0 & consul0” instance.
 
-``docker ps`` を実行します。出力結果から swarm と consul コンテナが動いているのを確認します。それから「manager0 & consul0」インスタンスから切断します。
+``docker ps`` を実行します。出力結果から Swarm クラスタと consul コンテナが動いているのを確認します。それから「manager0 & consul0」インスタンスから切断します。
 
 .. Connect to the “manager1” instance and use ifconfig to get its IP address. Then, enter the following command, replacing <manager1_ip>. For example:
 

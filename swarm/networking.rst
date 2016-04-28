@@ -55,7 +55,7 @@ Swarm の各ノード上にあるデーモンの設定変更・再起動を行�
 ネットワークの一覧
 ====================
 
-.. This example assumes there are two nodes node-0 and node-1 in the cluster. From a swarm node, list the networks:
+.. This example assumes there are two nodes node-0 and node-1 in the cluster. From a Swarm node, list the networks:
 
 以下は、クラスタ上に２のノード ``node-0`` と ``node-1`` がある場合の例です。Swarm ノードからネットワーク一覧を表示しています。
 
@@ -81,9 +81,9 @@ Swarm の各ノード上にあるデーモンの設定変更・再起動を行�
 ネットワークの作成
 ====================
 
-.. By default, swarm is using the overlay network driver, a global scope driver. A global-scope network driver creates a network across an entire swarm. When you create an overlay network under Swarm, you can omit the -d option:
+.. By default, swarm is using the overlay network driver, a global scope driver. A global-scope network driver creates a network across an entire Swarm cluster. When you create an overlay network under Swarm, you can omit the -d option:
 
-デフォルトでは、Swarm はネットワーク全体を範囲とする ``overlay`` ネットワーク・ドライバを使います。ネットワーク全体を範囲とするドライバを使えば、Swarm クラスタ全体を横断するネットワークを作成できます。Swarm で ``overlay`` ネットワークを作成する時には ``-d`` オプションを省略できます。
+デフォルトの Swarm クラスタは、ネットワーク全体を範囲とする ``overlay`` ネットワーク・ドライバを使います。ネットワーク全体を範囲とするドライバを使えば、Swarm クラスタ全体を横断するネットワークを作成できます。Swarm で ``overlay`` ネットワークを作成する時には ``-d`` オプションを省略できます。
 
 .. code-block:: bash
 
@@ -100,9 +100,9 @@ Swarm の各ノード上にあるデーモンの設定変更・再起動を行�
    6382abccd23d        node-1/none            null
    42131321acab        node-1/swarm_network   overlay
 
-.. As you can see here, both the node-0/swarm_network and the node-1/swarm_network have the same ID. This is because when you create a network on the swarm, it is accessible from all the nodes.
+.. As you can see here, both the node-0/swarm_network and the node-1/swarm_network have the same ID. This is because when you create a network on the cluster, it is accessible from all the nodes.
 
-ここで表示されているように、２つのノード上に ``node-0/swarm_network`` と ``node-1/swarm_network`` という同じ ID を持つネットワークがあります。これは Swarm によって作成されたネットワークであり、全てのノード上でアクセス可能なものです。
+ここで表示されているように、２つのノード上に ``node-0/swarm_network`` と ``node-1/swarm_network`` という同じ ID を持つネットワークがあります。これはクラスタに作成したネットワークであり、全てのノード上でアクセス可能なものです。
 
 .. If you want to want to create a local scope network (for example with the bridge driver) you should use <node>/<name> otherwise your network will be created on a random node.
 

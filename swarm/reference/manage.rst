@@ -232,7 +232,7 @@ Swarm マネージャを作成する前に、 :doc:`ディスカバリ・トー�
 ``--advertise`` , ``--addr`` - Docker Engine のアドバタイズ用 IP とポート番号
 --------------------------------------------------------------------------------
 
-.. Use --advertise <ip>:<port> or --addr <ip>:<port> to advertise the IP address and port number of the Docker Engine. For example, --advertise 172.30.0.161:4000. Other swarm managers MUST be able to reach this swarm manager at this address.
+.. Use --advertise <ip>:<port> or --addr <ip>:<port> to advertise the IP address and port number of the Docker Engine. For example, --advertise 172.30.0.161:4000. Other Swarm managers MUST be able to reach this Swarm manager at this address.
 
 ``--advertise <ip>:<ポート>`` か ``--addr <ip>:<ポート>`` を使い Docker Engine のアドバタイズ（Advertise; 周知用） IP アドレスとポート番号を指定します。例： ``--advertise 172.30.0.161:4000``  。他の Swarm マネージャは、対象の Swarm マネージャに接続するため、ここで指定した IP アドレスとポート番号を使う必要があります。
 

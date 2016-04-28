@@ -65,7 +65,7 @@ Swarm ノードを作成するには、次の構文を使います。
 
 Swarm ノードを作成する前に、 :doc:`ディスカバリ・トークンの作成 <create>` と :doc:`ディスカバリ・バックエンドのセットアップ </swarm/discovery>` が必要です。
 
-.. When you create the swarm node, use the <discovery> argument to specify one of the following discovery backends:
+.. When you create the Swarm node, use the <discovery> argument to specify one of the following discovery backends:
 
 `Swarm ノードの作成時、 ``<discovery>`` 引数を使って以下のバックエンドを指定可能です。
 
