@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/swarm/scheduler/filter/
 .. SOURCE: https://github.com/docker/swarm/blob/master/docs/scheduler/filter.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/swarm/commits/master/docs/scheduler/filter.md
-.. check date: 2016/03/11
-.. Commits on Mar 3, 2016 03b8481f0103eb07934491dacf26f2e65266671b
+.. check date: 2016/04/29
+.. Commits on Apr 6, 2016 2a778b36009db0c495f65c3e7aabfaf3b0cd3044
 .. -------------------------------------------------------------------
 
 .. Swarm filters
@@ -134,13 +134,13 @@ constraint （制限）フィルタを使う
    $ docker -d --label storage=disk
    $ swarm join --advertise=192.168.0.43:2375 token://XXXXXXXXXXXXXXXXXX
 
-.. Once the nodes are joined to a cluster, the Swarm master pulls their respective tags. Moving forward, the master takes the tags into account when scheduling new containers.
+.. Once the nodes are joined to a cluster, the Swarm manager pulls their respective tags. Moving forward, the manager takes the tags into account when scheduling new containers.
 
-ノードがクラスタに登録されると、Swarm マスタは個々のタグを取得します。マスタは新しいコンテナをスケジューリングする時に、ここで取得下タグの情報を使って処理します。
+ノードがクラスタに登録されると、Swarm マネージャは個々のタグを取得します。マネージャは新しいコンテナをスケジューリングする時に、ここで取得下タグの情報を使って処理します。
 
-.. Once the nodes are registered with the cluster, the master pulls their respective tags and will take them into account when scheduling new containers.
+.. Once the nodes are registered with the cluster, the manager pulls their respective tags and will take them into account when scheduling new containers.
 
-ノードがクラスタに登録されると、マスタは各々のタグを取得し、新しいコンテナをスケジューリングするときにそれらを反映します。
+ノードがクラスタに登録されると、マネージャは各々のタグを取得し、新しいコンテナをスケジューリングするときにそれらを反映します。
 
 .. Continuing the previous example, assuming your cluster with node-1 and node-2, you can run a MySQL server container on the cluster. When you run the container, you can use a constraint to ensure the database gets good I/O performance. You do this by filtering for nodes with flash drives:
 
@@ -152,12 +152,12 @@ constraint （制限）フィルタを使う
    f8b693db9cd6
    
    $ docker tcp://<manager_ip:manager_port>  ps
-   CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
-   f8b693db9cd6        mysql:latest        "mysqld"            Less than a second ago   running             192.168.0.42:49178->3306/tcp    node-1      db
+   CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NAMES
+   f8b693db9cd6        mysql:latest        "mysqld"            Less than a second ago   running             192.168.0.42:49178->3306/tcp    node-1/db
 
-.. In this example, the master selected all nodes that met the storage=ssd constraint and applied resource management on top of them. Only node-1 was selected because it's the only host running flash.
+.. In this example, the manager selected all nodes that met the storage=ssd constraint and applied resource management on top of them. Only node-1 was selected because it's the only host running flash.
 
-この例では、マスタは全てのノードの中から ``storage-ssd`` 制限に一致するノードを探し、そこに対してリソース管理を適用します。ここではホストがフラッシュ上で動いている ``node-1`` のみが選ばれました。
+この例では、マネージャは全てのノードの中から ``storage-ssd`` 制限に一致するノードを探し、そこに対してリソース管理を適用します。ここではホストがフラッシュ上で動いている ``node-1`` のみが選ばれました。
 
 .. Suppose you want to run an Nginx frontend in a cluster. In this case, you wouldn't want flash drives because the frontend mostly writes logs to disk.
 
@@ -170,9 +170,9 @@ constraint （制限）フィルタを使う
    963841b138d8
    
    $ docker tcp://<manager_ip:manager_port> ps
-   CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
-   963841b138d8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.43:49177->80/tcp      node-2      frontend
-   f8b693db9cd6        mysql:latest        "mysqld"            Up About a minute        running             192.168.0.42:49178->3306/tcp    node-1      db
+   CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NAMES
+   963841b138d8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.43:49177->80/tcp      node-2/frontend
+   f8b693db9cd6        mysql:latest        "mysqld"            Up About a minute        running             192.168.0.42:49178->3306/tcp    node-1/db
 
 .. The scheduler selected node-2 since it was started with the storage=disk label.
 
@@ -209,8 +209,8 @@ constraint （制限）フィルタを使う
    Successfully built cd70495a1514
    
    $ docker images
-   REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-   dockerswarm/swarm   master              8c2c56438951        2 days ago          795.7 MB
+   REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+   dockerswarm/swarm   manager             8c2c56438951        2 days ago          795.7 MB
    ouruser/sinatra     v2                  cd70495a1514        35 seconds ago      318.7 MB
    ubuntu              14.04               a5a467fddcb8        11 days ago         187.9 MB
 
@@ -280,8 +280,8 @@ health フィルタを使う
    87c4376856a8
    
    $ docker tcp://<manager_ip:manager_port> ps
-   CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
-   87c4376856a8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:80->80/tcp         node-1      frontend
+   CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NAMES
+   87c4376856a8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:80->80/tcp         node-1/frontend
 
 .. Then, using -e affinity:container==frontend flag schedule a second container to locate and run next to frontend.
 
@@ -293,9 +293,9 @@ health フィルタを使う
    87c4376856a8
    
    $ docker tcp://<manager_ip:manager_port> ps
-   CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
-   87c4376856a8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:80->80/tcp         node-1      frontend
-    963841b138d8        logger:latest       "logger"            Less than a second ago   running                                             node-1      logger
+   CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NAMES
+   87c4376856a8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:80->80/tcp         node-1/frontend
+    963841b138d8        logger:latest       "logger"            Less than a second ago   running                                             node-1/logger
 
 .. Because of name affinity, the logger container ends up on node-1 along with the frontend container. Instead of the frontend name you could have supplied its ID as follows:
 
@@ -338,15 +338,15 @@ health フィルタを使う
    $ docker tcp://<manager_ip:manager_port> run -d --name redis8 -e affinity:image==redis redis
    
    $ docker tcp://<manager_ip:manager_port> ps
-   CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
-   87c4376856a8        redis:latest        "redis"             Less than a second ago   running                                             node-1      redis1
-   1212386856a8        redis:latest        "redis"             Less than a second ago   running                                             node-1      redis2
-   87c4376639a8        redis:latest        "redis"             Less than a second ago   running                                             node-3      redis3
-   1234376856a8        redis:latest        "redis"             Less than a second ago   running                                             node-1      redis4
-   86c2136253a8        redis:latest        "redis"             Less than a second ago   running                                             node-3      redis5
-   87c3236856a8        redis:latest        "redis"             Less than a second ago   running                                             node-3      redis6
-   87c4376856a8        redis:latest        "redis"             Less than a second ago   running                                             node-3      redis7
-   963841b138d8        redis:latest        "redis"             Less than a second ago   running                                             node-1      redis8
+   CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NAMES
+   87c4376856a8        redis:latest        "redis"             Less than a second ago   running                                             node-1/redis1
+   1212386856a8        redis:latest        "redis"             Less than a second ago   running                                             node-1/redis2
+   87c4376639a8        redis:latest        "redis"             Less than a second ago   running                                             node-3/redis3
+   1234376856a8        redis:latest        "redis"             Less than a second ago   running                                             node-1/redis4
+   86c2136253a8        redis:latest        "redis"             Less than a second ago   running                                             node-3/redis5
+   87c3236856a8        redis:latest        "redis"             Less than a second ago   running                                             node-3/redis6
+   87c4376856a8        redis:latest        "redis"             Less than a second ago   running                                             node-3/redis7
+   963841b138d8        redis:latest        "redis"             Less than a second ago   running                                             node-1/redis8
 
 .. As you can see here, the containers were only scheduled on nodes that had the redis image. Instead of the image name, you could have specified the image ID.
 
@@ -375,8 +375,8 @@ health フィルタを使う
    87c4376856a8
    
    $ docker tcp://<manager_ip:manager_port> ps  --filter "label=com.example.type=frontend"
-   CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
-   87c4376856a8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:80->80/tcp         node-1      trusting_yonath
+   CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NAMES
+   87c4376856a8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:80->80/tcp         node-1/trusting_yonath
 
 .. Then, use -e affinity:com.example.type==frontend to schedule a container next to the container with the com.example.type==frontend label.
 
@@ -388,9 +388,9 @@ health フィルタを使う
    87c4376856a8
    
    $ docker tcp://<manager_ip:manager_port> ps
-   CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
-   87c4376856a8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:80->80/tcp         node-1      trusting_yonath
-   963841b138d8        logger:latest       "logger"            Less than a second ago   running                                             node-1      happy_hawking
+   CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NAMES
+   87c4376856a8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:80->80/tcp         node-1/trusting_yonath
+   963841b138d8        logger:latest       "logger"            Less than a second ago   running                                             node-1/happy_hawking
 
 .. The logger container ends up on node-1 because its affinity with the com.example.type==frontend label.
 
@@ -426,7 +426,7 @@ Swarm は依存関係のあるコンテナを同じノード上に置こうと�
 port フィルタを使う
 --------------------
 
-.. When the port filter is enabled, a container's port configuration is used as a unique constraint. Docker Swarm selects a node where a particular port is available and unoccupied by another container or process. Required ports may be specified by mapping a host port, or using the host networking an exposing a port using the container configuration.
+.. When the port filter is enabled, a container's port configuration is used as a unique constraint. Docker Swarm selects a node where a particular port is available and unoccupied by another container or process. Required ports may be specified by mapping a host port, or using the host networking and exposing a port using the container configuration.
 
 ``port`` フィルタが有効であれば、コンテナのポート利用がユニークになるよう設定します。Docker Swarm は対象のポートが利用可能であり、他のコンテナのプロセスにポートが専有されていないノードを選びます。ホスト側にポート番号を割り当てたい場合や、ホスト・ネットワーキング機能を使っている場合は、対象ポートの明示が必要になるかもしれません。
 
@@ -447,8 +447,8 @@ port フィルタを使う
    87c4376856a8
   
    $ docker tcp://<manager_ip:manager_port> ps
-   CONTAINER ID    IMAGE               COMMAND         PORTS                       NODE        NAMES
-   87c4376856a8    nginx:latest        "nginx"         192.168.0.42:80->80/tcp     node-1      prickly_engelbart
+   CONTAINER ID    IMAGE               COMMAND         PORTS                       NAMES
+   87c4376856a8    nginx:latest        "nginx"         192.168.0.42:80->80/tcp     node-1/prickly_engelbart
 
 ..  Docker Swarm selects a node where port 80 is available and unoccupied by another container or process, in this case node-1. Attempting to run another container that uses the host port 80 results in Swarm selecting a different node, because port 80 is already occupied on node-1:
 
@@ -460,9 +460,9 @@ Docker Swarm はポート ``80`` が利用可能であり他のコンテナ・�
    963841b138d8
    
    $ docker tcp://<manager_ip:manager_port> ps
-   CONTAINER ID        IMAGE          COMMAND        PORTS                           NODE        NAMES
-   963841b138d8        nginx:latest   "nginx"        192.168.0.43:80->80/tcp         node-2      dreamy_turing
-   87c4376856a8        nginx:latest   "nginx"        192.168.0.42:80->80/tcp         node-1      prickly_engelbart
+   CONTAINER ID        IMAGE          COMMAND        PORTS                           NAMES
+   963841b138d8        nginx:latest   "nginx"        192.168.0.43:80->80/tcp         node-2/dreamy_turing
+   87c4376856a8        nginx:latest   "nginx"        192.168.0.42:80->80/tcp         node-1/prickly_engelbart
 
 .. Again, repeating the same command will result in the selection of node-3, since port 80 is neither available on node-1 nor node-2:
 
@@ -474,10 +474,10 @@ Docker Swarm はポート ``80`` が利用可能であり他のコンテナ・�
    963841b138d8
    
    $ docker tcp://<manager_ip:manager_port> ps
-   CONTAINER ID   IMAGE               COMMAND        PORTS                           NODE        NAMES
-   f8b693db9cd6   nginx:latest        "nginx"        192.168.0.44:80->80/tcp         node-3      stoic_albattani
-   963841b138d8   nginx:latest        "nginx"        192.168.0.43:80->80/tcp         node-2      dreamy_turing
-   87c4376856a8   nginx:latest        "nginx"        192.168.0.42:80->80/tcp         node-1      prickly_engelbart
+   CONTAINER ID   IMAGE               COMMAND        PORTS                           NAMES
+   f8b693db9cd6   nginx:latest        "nginx"        192.168.0.44:80->80/tcp         node-3/stoic_albattani
+   963841b138d8   nginx:latest        "nginx"        192.168.0.43:80->80/tcp         node-2/dreamy_turing
+   87c4376856a8   nginx:latest        "nginx"        192.168.0.42:80->80/tcp         node-1/prickly_engelbart
 
 .. Finally, Docker Swarm will refuse to run another container that requires port 80, because it is not available on any node in the cluster:
 
