@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/swarm/swarm_at_scale/
 .. SOURCE: https://github.com/docker/swarm/blob/master/docs/swarm_at_scale/index.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/swarm/commits/master/docs/swarm_at_scale/index.md
-.. check date: 2016/03/03
-.. Commits on Feb 28, 2016 ec8ceae209c54091065c8f9e50439bd76255b022
+.. check date: 2016/04/29
+.. Commits on Apr 14, 2016 70a180cb30ea4593b8f69d14c544cf278bf54ddd
 .. -------------------------------------------------------------------
 
 .. Try Swarm at scale
@@ -30,11 +30,10 @@ swarm のスケールを試す
 .. toctree::
    :maxdepth: 3
 
-   01-about.rst
-   02-deploy-infra.rst
-   03-create-cluster.rst
-   04-deploy-app.rst
-   05-troubleshoot.rst
+   about.rst
+   deploy-infra.rst
+   deploy-app.rst
+   troubleshoot.rst
 
 .. seealso:: 
 
