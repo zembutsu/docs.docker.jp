@@ -1,6 +1,11 @@
-.. https://docs.docker.com/swarm/api/swarm-api/
-.. doc version: 1.9
-.. check date: 2015/12/16
+.. -*- coding: utf-8 -*-
+.. URL: https://docs.docker.com/swarm/swarm-api/
+.. SOURCE: https://github.com/docker/swarm/blob/master/docs/swarm-api.md
+   doc version: 1.11
+      https://github.com/docker/swarm/commits/master/docs/swarm-api.md
+.. check date: 2016/04/29
+.. Commits on Mar 4, 2016 4b8ed91226a9a49c2acb7cb6fb07228b3fe10007
+.. -------------------------------------------------------------------
 
 .. Docker Swarm API
 
