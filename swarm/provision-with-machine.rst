@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/swarm/provision-with-machine/
 .. SOURCE: https://github.com/docker/swarm/blob/master/docs/provision-with-machine.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/swarm/commits/master/docs/provision-with-machine.md
-.. check date: 2016/03/10
-.. Commits on Feb 4, 2016 b88cb64358908b8e0c3fddd402d23088ed633ef9
+.. check date: 2016/04/29
+.. Commits on Mar 23, 2016 4b0b029ce2b1a69ad14ae48e148b737cd0723d3a
 .. -------------------------------------------------------------------
 
 .. Provision a Swarm cluster with Docker Machine
@@ -113,9 +113,9 @@ Swarm の設定を始める前に、Docker Engine の動くホストをプロビ
 Swarm ノードのプロビジョン
 ==============================
 
-.. All Swarm nodes in a cluster must have Engine installed. With Machine and the SWARM_CLUSTER_TOKEN you can provision a host with Engine and configure it as a Swarm node with one Machine command. To create a Swarm master node on a new VM called swarm-master, you do the following:
+.. All Swarm nodes in a cluster must have Engine installed. With Machine and the SWARM_CLUSTER_TOKEN you can provision a host with Engine and configure it as a Swarm node with one Machine command. To create a Swarm manager node on a new VM called swarm-manager, you do the following:
 
-クラスタの全てのノードは Engine をインストールしている必要があります。Machine で ``SWARM_CLUSTER_TOKEN`` を使えば、Machine でコマンドを１つ実行するだけで、Engine のホストをプロビジョニングし、Swarm のノードとして設定された状態にします。新しい仮想マシンを Swarm マスタ・ノードの``swarm-master`` として作成します。
+クラスタの全てのノードは Engine をインストールしている必要があります。Machine で ``SWARM_CLUSTER_TOKEN`` を使えば、Machine でコマンドを１つ実行するだけで、Engine のホストをプロビジョニングし、Swarm のノードとして設定された状態にします。新しい仮想マシンを Swarm マネージャ・ノードの``swarm-manager`` として作成します。
 
 .. code-block:: bash
 
@@ -124,9 +124,9 @@ Swarm ノードのプロビジョン
        --swarm \
        --swarm-master \
        --swarm-discovery token://SWARM_CLUSTER_TOKEN \
-       swarm-master
+       swarm-manager
 
-.. Then, provision additional an additional node. You must supply the SWARM_CLUSTER_TOKEN and a unique name for each host node, HOST_NODE_NAME.
+.. Then, provision an additional node. You must supply the SWARM_CLUSTER_TOKEN and a unique name for each host node, HOST_NODE_NAME.
 
 次に追加用のノードをプロビジョニングします。ここでも ``SWARM_CLUSTER_TOKEN`` を指定する必要があります。そして、各ホストには ``HOST_NODE_NAME`` でユニークな名前を付ける必要があります。
 
@@ -173,18 +173,18 @@ Docker Machine には、 ``env`` コマンドで Swarm ノードに接続する�
    docker-machine env --swarm HOST_NODE_NAME
    export DOCKER_TLS_VERIFY="1"
    export DOCKER_HOST="tcp://192.168.99.101:3376"
-   export DOCKER_CERT_PATH="/Users/mary/.docker/machine/machines/swarm-master"
-   export DOCKER_MACHINE_NAME="swarm-master"
+   export DOCKER_CERT_PATH="/Users/mary/.docker/machine/machines/swarm-manager"
+   export DOCKER_MACHINE_NAME="swarm-manager"
    # Run this command to configure your shell:
    # eval $(docker-machine env --swarm HOST_NODE_NAME)
 
-.. To set your SHELL connect to a Swarm node called swarm-master, you would do this:
+.. To set your SHELL connect to a Swarm node called swarm-manager, you would do this:
 
-シェル上の操作を ``swarm-master`` という名称の Swarm ノードに切り替えるには、次のように実行します。
+シェル上の操作を ``swarm-manager`` という名称の Swarm ノードに切り替えるには、次のように実行します。
 
 .. code-block:: bash
 
-   eval "$(docker-machine env --swarm swarm-master)"
+   eval "$(docker-machine env --swarm swarm-manager)"
 
 .. Now, you can use the Docker CLI to query and interact with your cluster.
 
@@ -199,7 +199,7 @@ Docker Machine には、 ``env`` コマンドで Swarm ノードに接続する�
    Strategy: spread
    Filters: health, port, dependency, affinity, constraint
    Nodes: 1
-    swarm-master: 192.168.99.101:2376
+    swarm-manager: 192.168.99.101:2376
      └ Status: Healthy
      └ Containers: 2
      └ Reserved CPUs: 0 / 1
@@ -207,7 +207,7 @@ Docker Machine には、 ``env`` コマンドで Swarm ノードに接続する�
      └ Labels: executiondriver=native-0.2, kernelversion=4.1.13-boot2docker, operatingsystem=Boot2Docker 1.9.1 (TCL 6.4.1); master : cef800b - Fri Nov 20 19:33:59 UTC 2015, provider=virtualbox, storagedriver=aufs
    CPUs: 1
    Total Memory: 1.021 GiB
-   Name: swarm-master
+   Name: swarm-manager
 
 .. Related information
 
