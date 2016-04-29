@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/swarm/scheduler/strategy/
 .. SOURCE: https://github.com/docker/swarm/blob/master/docs/scheduler/strategy.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/swarm/commits/master/docs/scheduler/strategy.md
-.. check date: 2016/03/11
+.. check date: 2016/04/29
 .. Commits on Feb 2, 2016 4b8ed91226a9a49c2acb7cb6fb07228b3fe10007
 .. -------------------------------------------------------------------
 
@@ -70,8 +70,8 @@ Spread ストラテジの例
    f8b693db9cd6
    
    $ docker tcp://<manager_ip:manager_port> ps
-   CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
-   f8b693db9cd6        mysql:latest        "mysqld"            Less than a second ago   running             192.168.0.42:49178->3306/tcp    node-1      db
+   CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NAMES
+   f8b693db9cd6        mysql:latest        "mysqld"            Less than a second ago   running             192.168.0.42:49178->3306/tcp    node-1/db
 
 .. Now, we start another container and ask for 1G of RAM again.
 
@@ -83,9 +83,9 @@ Spread ストラテジの例
    963841b138d8
    
    $ docker tcp://<manager_ip:manager_port> ps
-   CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
-   963841b138d8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:49177->80/tcp      node-2      frontend
-   f8b693db9cd6        mysql:latest        "mysqld"            Up About a minute        running             192.168.0.42:49178->3306/tcp    node-1      db
+   CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NAMES
+   963841b138d8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:49177->80/tcp      node-2/frontend
+   f8b693db9cd6        mysql:latest        "mysqld"            Up About a minute        running             192.168.0.42:49178->3306/tcp    node-1/db
 
 .. The container frontend was started on node-2 because it was the node the least loaded already. If two nodes have the same amount of available RAM and CPUs, the spread strategy prefers the node with least containers running.
 
@@ -106,8 +106,8 @@ BinPack ストラテジの例
    f8b693db9cd6
    
    $ docker tcp://<manager_ip:manager_port> ps
-   CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
-   f8b693db9cd6        mysql:latest        "mysqld"            Less than a second ago   running             192.168.0.42:49178->3306/tcp    node-1      db   
+   CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NAMES
+   f8b693db9cd6        mysql:latest        "mysqld"            Less than a second ago   running             192.168.0.42:49178->3306/tcp    node-1/db   
 
 .. Now, you start another container, asking for 1G of RAM again.
 
@@ -119,9 +119,9 @@ BinPack ストラテジの例
    963841b138d8
    
    $ docker tcp://<manager_ip:manager_port> ps
-   CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NODE        NAMES
-   963841b138d8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:49177->80/tcp      node-1      frontend
-   f8b693db9cd6        mysql:latest        "mysqld"            Up About a minute        running             192.168.0.42:49178->3306/tcp    node-1      db
+   CONTAINER ID        IMAGE               COMMAND             CREATED                  STATUS              PORTS                           NAMES
+   963841b138d8        nginx:latest        "nginx"             Less than a second ago   running             192.168.0.42:49177->80/tcp      node-1/frontend
+   f8b693db9cd6        mysql:latest        "mysqld"            Up About a minute        running             192.168.0.42:49178->3306/tcp    node-1/db
 
 .. The system starts the new frontend container on node-1 because it was the node the most packed already. This allows us to start a container requiring 2G of RAM on node-2.
 
