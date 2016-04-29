@@ -80,7 +80,7 @@ Doc v1.11 目次
 
 .. toctree::
    :caption: Docker を始めましょう - 導入ガイド
-   :hidden:
+   :maxdepth: 1
 
    linux/toc.rst
    windows/toc.rst
@@ -88,43 +88,43 @@ Doc v1.11 目次
  
 .. toctree::
    :caption: Docker Engine
-   :hidden:
+   :maxdepth: 2
 
    engine/toc.rst
 
 .. toctree::
    :caption: Docker Swarm
-   :hidden:
+   :maxdepth: 2
 
    swarm/toc.rst
 
 .. toctree::
    :caption: Docker Compose
-   :hidden:
+   :maxdepth: 2
 
    compose/toc.rst
 
 .. toctree::
    :caption: Docker Hub
-   :hidden:
+   :maxdepth: 2
 
    docker-hub/index.rst
 
 .. toctree::
    :caption: Docker Machine
-   :hidden:
+   :maxdepth: 2
 
    machine/index.rst
 
 .. toctree::
    :caption: Docker Toolbox
-   :hidden:
+   :maxdepth: 2
 
    Docker Toolbox <toolbox/index.rst>
 
 .. toctree::
    :caption: コンポーネント・プロジェクト
-   :hidden:
+   :maxdepth: 2
 
    registry/toc.rst
 
