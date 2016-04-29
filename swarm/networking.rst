@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/swarm/networking/
 .. SOURCE: https://github.com/docker/swarm/blob/master/docs/networking.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/swarm/commits/master/docs/networking.md
-.. check date: 2016/03/10
+.. check date: 2016/04/29
 .. Commits on Mar 4, 2016 4b8ed91226a9a49c2acb7cb6fb07228b3fe10007
 .. -------------------------------------------------------------------
 
