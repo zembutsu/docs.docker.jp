@@ -15,11 +15,6 @@ Docker ドキュメント日本語化プロジェクト
 * :doc:`about`
 * :doc:`guide`
 
-.. caution::
-
-   Docker 1.10 → 1.11 への移行作業中が進行中です。バージョンの違いにご注意ください(2016/04/14)。
-
-----
 
 .. Welcome Friends to the Docker Docs!
 
