@@ -20,6 +20,7 @@
    :maxdepth: 3
 
    フィルタ <filter.rst>
+   再スケジュール <rescheduling.rst>
    ストラテジ <strategy.rst>
 
 .. seealso:: 
