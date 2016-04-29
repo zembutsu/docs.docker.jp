@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/swarm/multi-manager-setup/
 .. SOURCE: https://github.com/docker/swarm/blob/master/docs/multi-manager-setup.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/swarm/commits/master/docs/multi-manager-setup.md
-.. check date: 2016/03/10
-.. Commits on Mar 4, 2016 4b8ed91226a9a49c2acb7cb6fb07228b3fe10007
+.. check date: 2016/04/29
+.. Commits on Mar 12, 2016 2d7c5942702d7cd383d25ee5cec96314b1d67c0a
 .. -------------------------------------------------------------------
 
 .. High availability in Docker Swarm
