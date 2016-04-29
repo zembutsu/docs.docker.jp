@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/swarm/reference/create/
 .. SOURCE: https://github.com/docker/swarm/blob/master/docs/reference/create.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/swarm/commits/master/docs/reference/create.md
-.. check date: 2016/03/10
+.. check date: 2016/04/29
 .. Commits on Feb 25, 2016 e8fad3d657f23aea08b3d03eab422ae89cfa3442
 .. -------------------------------------------------------------------
 

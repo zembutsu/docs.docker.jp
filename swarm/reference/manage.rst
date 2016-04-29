@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/swarm/reference/manage/
 .. SOURCE: https://github.com/docker/swarm/blob/master/docs/reference/manage.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/swarm/commits/master/docs/reference/manage.md
-.. check date: 2016/03/11
-.. Commits on Feb 25, 2016 e8fad3d657f23aea08b3d03eab422ae89cfa3442
+.. check date: 2016/04/29
+.. Commits on Mar 4, 2016 4b8ed91226a9a49c2acb7cb6fb07228b3fe10007
 .. -------------------------------------------------------------------
 
 .. manage — Create a Swarm manager
