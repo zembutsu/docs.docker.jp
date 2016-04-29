@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/swarm/secure-swarm-tls/
 .. SOURCE: https://github.com/docker/swarm/blob/master/docs/secure-swarm-tls.md
-   doc version: 1.10
+   doc version: 1.11
       https://github.com/docker/swarm/commits/master/docs/secure-swarm-tls.md
-.. check date: 2016/03/10
-.. Commits on Mar 4, 2016 4b8ed91226a9a49c2acb7cb6fb07228b3fe10007
+.. check date: 2016/04/29
+.. Commits on Apr 19, 2016 7e119761d4405e46d208f63d2895264722680c0e
 .. -------------------------------------------------------------------
 
 .. Overview Swarm with TLS
@@ -42,7 +42,7 @@ TLS の概念を学ぶ
 
 進む前に、TLS と PKI (Public Key Infrastructure；公開鍵基盤) の基本概念を理解しておくことが重要です。
 
-.. Public key infrastructure is a combination of security-related technologies, policies, and procedures, that are used to create and manage digital certificates. These certificates and infrastructure secure digital communication using mechanisms such as authentication and encryption.
+.. Public key infrastructure is a combination of security related technologies, policies, and procedures, that are used to create and manage digital certificates. These certificates and infrastructure secure digital communication using mechanisms such as authentication and encryption.
 
 公開鍵基盤はセキュリティに関連する技術・ポリシー・手続きを組みあわせたものです。これらが電子証明書の作成や管理に使われます。認証や暗号化のような仕組みにおいて、これらの証明書とインフラの安全なデジタル通信が使われます。
 
@@ -63,7 +63,7 @@ TLS の概念を学ぶ
            Not After : Jan 15 09:42:16 2026 GMT
        Subject: CN=swarm
 
-.. This certificate identifies a computer called swarm. The certificate is valid between January 2016 and January 2026 and was issued by Docker Inc based in the state of California in the US.
+.. This certificate identifies a computer called swarm. The certificate is valid between January 2016 and January 2026 and was issued by Docker Inc. based in the state of California in the US.
 
 この証明書は **swarm** という名称のコンピュータを識別します。証明書の有効期間は 2016年1月から2026年1月までです。そしてこれを発行したのは米国カリフォルニア州を拠点としている Docker, Inc. です。
 
@@ -99,28 +99,28 @@ Docker Engine で TLS 認証を使うには
 
 このセクションは Docker Engine と Swarm のセキュリティを高めるために、 PKI と証明書を使う方法を学びます。
 
-.. You can configure both the Docker Engine CLI and the Engine daemon to require TLS for authentication. Configuring TLS means that all communications between the Engine CLI and the Engine daemon must be accompanied with, and signed by a trusted digital certificate. The Engine CLI must provide its digital certificate before the Engine daemon will accept incoming commands from it.
+.. You can configure both the Docker Engine CLI and the Docker Engine daemon to require TLS for authentication. Configuring TLS means that all communications between the Docker Engine CLI and the Docker Engine daemon must be accompanied with, and signed by a trusted digital certificate. The Engine CLI must provide its digital certificate before the Engine daemon will accept incoming commands from it.
 
-TLS 認証を使うためには、 Docker Engine CLI と Docker デーモンの両方で設定が必要です。TLS の設定を行うというのは、Engine CLI と Engine デーモン間の全ての通信を、信頼のある電子証明書で署名された状態で行うことを意味します。Engine CLI は Engine デーモンと通信する前に、電子証明書の提出が必要です。
+TLS 認証を使うためには、 Docker Engine CLI と Docker Engine デーモンの両方で設定が必要です。TLS の設定を行うというのは、Docker Engine CLI と Docker Engine デーモン間の全ての通信を、信頼のある電子証明書で署名された状態で行うことを意味します。Docker Engine CLI は Docker Engine デーモンと通信する前に、電子証明書の提出が必要です。
 
-.. The Engine daemon must also trust the certificate that the Engine CLI uses. This trust is usually established by way of a trusted third party. The Engine CLI and daemon in the diagram below are configured to require TLS authentication.
+.. The Docker Engine daemon must also trust the certificate that the Docker Engine CLI uses. This trust is usually established by way of a trusted third party. The Docker Engine CLI and daemon in the diagram below are configured to require TLS authentication.
 
-また、Engine デーモンも Engine CLI が使う証明証を信頼する必要があります。信頼とは、通常は第三者の信頼機関によって担保されます。下図は Engine CLI とデーモンが TLS 通信に必要となる設定です。
+また、Docker Engine デーモンも Docker Engine CLI が使う証明証を信頼する必要があります。信頼とは、通常は第三者の信頼機関によって担保されます。下図は Docker Engine CLI とデーモンが TLS 通信に必要となる設定です。
 
 .. image:: ./images/trust-diagram.png
    :scale: 60%
 
-.. The trusted third party in this diagram is the the Certificate Authority (CA) server. Like the country in the passport example, a CA creates, signs, issues, revokes certificates. Trust is established by installing the CA’s root certificate on the host running the Engine daemon. The Engine CLI then requests its own certificate from the CA server, which the CA server signs and issues to the client.
+.. The trusted third party in this diagram is the the Certificate Authority (CA) server. Like the country in the passport example, a CA creates, signs, issues, revokes certificates. Trust is established by installing the CA’s root certificate on the host running the Docker Engine daemon. The Engine CLI then requests its own certificate from the CA server, which the CA server signs and issues to the client.
 
-図中における信頼できる第三者とは認証局（CA; Certificate Authority）サーバです。CA とは、パスポートを例にすると国に相当します。認証局（CA）は証明証を作成・署名・発行・無効化します。Docker Engine デーモンを実行するホスト上では、信頼を確立するために、認証局のルート証明書をインストールします。Engine CLI は認証局のサーバに対して証明書を要求します。認証局サーバはクライアントに対して証明書の署名・発行を行います。
+図中における信頼できる第三者とは認証局（CA; Certificate Authority）サーバです。CA とは、パスポートを例にすると国に相当します。認証局（CA）は証明証を作成・署名・発行・無効化します。Docker Engine デーモンを実行するホスト上では、信頼を確立するために、認証局のルート証明書をインストールします。Docker Engine CLI は認証局のサーバに対して証明書を要求します。認証局サーバはクライアントに対して証明書の署名・発行を行います。
 
-.. The Engine CLI sends its certificate to the Engine daemon before issuing commands. The daemon inspects the certificate, and because daemon trusts the CA, the daemon automatically trusts any certificates signed by the CA. Assuming the certificate is in order (the certificate has not expired or been revoked etc.) the Engine daemon accepts commands from this trusted Engine CLI.
+.. The Engine CLI sends its certificate to the Docker Engine daemon before issuing commands. The daemon inspects the certificate, and because daemon trusts the CA, the daemon automatically trusts any certificates signed by the CA. Assuming the certificate is in order (the certificate has not expired or been revoked etc.) the Docker Engine daemon accepts commands from this trusted Docker Engine CLI.
 
-Engine CLI は、コマンドを実行する前に、この（CA で署名された）証明書を Engine デーモンに送ります。デーモンは証明書を調査します。その証明書がデーモンの信頼する認証局が署名したものであれば、デーモンは自動的に信頼します。証明書が適切であるとみなすと（証明書が有効期間内であり、破棄されたものでないと分かれば）、Engine デーモンは信頼できる Engine CLI からの要求とみなしコマンドを受け付けます。
+Docker Engine CLI は、コマンドを実行する前に、この（CA で署名された）証明書を Docker Engine デーモンに送ります。デーモンは証明書を調査します。その証明書がデーモンの信頼する認証局が署名したものであれば、デーモンは自動的に信頼します。証明書が適切であるとみなすと（証明書が有効期間内であり、破棄されたものでないと分かれば）、Docker Engine デーモンは信頼できる Engine CLI からの要求とみなしコマンドを受け付けます。
 
-.. The Docker Engine CLI is simply a client that uses the Docker Remote API to communicate with the Engine daemon. Any client that uses this Docker Remote API can use TLS. For example, other Engine clients such as Docker Universal Control Plane (UCP) have TLS support built-in. Other, third party products, that use Docker’s Remote API, can also be configured this way.
+.. The Docker Engine CLI is simply a client that uses the Docker Remote API to communicate with the Docker Engine daemon. Any client that uses this Docker Remote API can use TLS. For example, other Engine clients such as Docker Universal Control Plane (UCP) have TLS support built-in. Other, third party products, that use Docker’s Remote API, can also be configured this way.
 
-Docker Engine CLI は、シンプルなクライアントです。Engine デーモンと通信するために Docker リモート API を使います。Docker リモート API を利用可能なクライアントであれば、どれも TLS が使えます。例えば、TLS をサポートしている Docker ユニバーサル・コントロール・プレーン (UCP) に他のクライアントからもアクセス可能です。他のというのは、Docker リモート API を使うサードパーティー製のプロダクトでも、同様な設定ができます。
+Docker Engine CLI は、シンプルなクライアントです。Docker Engine デーモンと通信するために Docker リモート API を使います。Docker リモート API を利用可能なクライアントであれば、どれも TLS が使えます。例えば、TLS をサポートしている Docker ユニバーサル・コントロール・プレーン (UCP) に他のクライアントからもアクセス可能です。他のというのは、Docker リモート API を使うサードパーティー製のプロダクトでも、同様な設定ができます。
 
 .. TLS modes with Docker and Swarm
 
@@ -129,9 +129,9 @@ Docker Engine CLI は、シンプルなクライアントです。Engine デー�
 Docker と Swarm の TLS モード
 ==============================
 
-.. Now that you know how certificates are used by Docker Engine for authentication, it’s important to be aware of the three TLS configurations possible with Docker Engine and its clients:
+.. Now that you know how certificates are used by the Docker Engine daemon for authentication, it’s important to be aware of the three TLS configurations possible with Docker Engine daemon and its clients:
 
-Docker Engine が認証に使う証明書について学んできました。重要なのは、Docker Engine とクライアントで利用できる TLS 設定には３種類あることに注意すべきです。
+Docker Engine デーモンが認証に使う証明書について学んできました。重要なのは、Docker Engine デーモンとクライアントで利用できる TLS 設定には３種類あることに注意すべきです。
 
 ..    External 3rd party CA
     Internal corporate CA
@@ -188,7 +188,7 @@ Docker Engine が認証に使う証明書について学んできました。重
 
 その名前の通り、自己署名した証明書とは、信頼できる認証局のかわりに、自分自身の秘密鍵で署名するものです。これは低いコストかつ簡単に使えるものです。もし自分自身で署名した証明書を適切に運用したいのであれば、証明書を使わないのも良い方法かもしれません。
 
-.. Because self-signed certificates lack of a full-blown PKI, they do not scale well and lack many of the advantages offered by the other options. One of their disadvantages is you cannot revoke self-signed certificates. Due to this, and other limitations, self-signed certificates are considered the least secure of the three options. Self-signed certificates are not recommended for public facing production workloads exposed to untrusted networks.
+.. Because self-signed certificates lack of a full-blown PKI, they do not scale well and lack many of the advantages offered by the other options. One of their disadvantages is that cannot revoke self-signed certificates. Due to this, and other limitations, self-signed certificates are considered the least secure of the three options. Self-signed certificates are not recommended for public facing production workloads exposed to untrusted networks.
 
 なぜならば、自己署名した証明書が本来の PKI を損ねる可能性があるためです。この手法はスケールしませんし、他の選択肢に比べると、多くの点で不利です。不利な点の１つに、自分自身で自己署名した証明書を無効化できません。これだけでなく、他にも制限があるため、自己署名の証明書は、この３つの選択肢の中で最低のセキュリティと考えられます。信頼できないネットワーク上でプロダクション用のワークロードを公開する必要があれば、自己署名の証明書の利用は推奨されません。
 
