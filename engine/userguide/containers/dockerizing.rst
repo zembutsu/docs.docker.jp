@@ -61,8 +61,6 @@ Hello world の実行
 
 * ``docker run`` でコンテナを実行します（runは「実行」の意味）。
 
-* ubuntu is the image you run, for example the Ubuntu operating system image. When you specify an image, Docker looks first for the image on your Docker host. If the image does not exist locally, then the image is pulled from the public image registry Docker Hub.
-
 * ``ubuntu`` は実行するイメージです。この例では Ubuntu オペレーティング・システムのイメージです。イメージを指定すると、Docker はまずホスト上にイメージがあるかどうか確認します。イメージがローカルに存在していなければ、パブリック・イメージ・レジストリである `Docker Hub <https://hub.docker.com/>`_ からイメージを取得（pull）します。
 
 * ``/bin/echo`` は新しいコンテナの中で実行するコマンドです。
