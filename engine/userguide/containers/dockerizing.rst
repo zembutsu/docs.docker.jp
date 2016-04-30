@@ -212,7 +212,7 @@ Docker 化した Hello world の起動
 
 * ``1e5535038e28`` はコンテナ ID の短いバージョンです。
 * ``ubuntu`` は使用したイメージです。
-* コマンド、状態、割り当てられた名前は``insane_babbage`` です。
+* コマンド、状態、割り当てられた名前は ``insane_babbage`` です。
 
 .. Note: Docker automatically generates names for any containers started. We’ll see how to specify your own names a bit later.
 
