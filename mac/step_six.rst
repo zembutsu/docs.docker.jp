@@ -51,7 +51,7 @@
 
 ..    Type docker images to list the images you currently have:
 
-4. ``docker image`` を入力し、現在手許にあるイメージの一覧を表示します。
+4. ``docker images`` を入力し、現在手許にあるイメージの一覧を表示します。
 
 .. code-block:: bash
 
