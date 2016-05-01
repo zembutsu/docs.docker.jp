@@ -61,8 +61,6 @@ Hello world の実行
 
 * ``docker run`` でコンテナを実行します（runは「実行」の意味）。
 
-* ubuntu is the image you run, for example the Ubuntu operating system image. When you specify an image, Docker looks first for the image on your Docker host. If the image does not exist locally, then the image is pulled from the public image registry Docker Hub.
-
 * ``ubuntu`` は実行するイメージです。この例では Ubuntu オペレーティング・システムのイメージです。イメージを指定すると、Docker はまずホスト上にイメージがあるかどうか確認します。イメージがローカルに存在していなければ、パブリック・イメージ・レジストリである `Docker Hub <https://hub.docker.com/>`_ からイメージを取得（pull）します。
 
 * ``/bin/echo`` は新しいコンテナの中で実行するコマンドです。
@@ -214,7 +212,7 @@ Docker 化した Hello world の起動
 
 * ``1e5535038e28`` はコンテナ ID の短いバージョンです。
 * ``ubuntu`` は使用したイメージです。
-* コマンド、状態、割り当てられた名前は``insane_babbage`` です。
+* コマンド、状態、割り当てられた名前は ``insane_babbage`` です。
 
 .. Note: Docker automatically generates names for any containers started. We’ll see how to specify your own names a bit later.
 
