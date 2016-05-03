@@ -1,8 +1,8 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/swarm/swarm_at_scale/01-about/
-.. SOURCE: https://github.com/docker/swarm/blob/master/docs/swarm_at_scale/01-about.md
+.. URL: https://docs.docker.com/swarm/swarm_at_scale/about/
+.. SOURCE: https://github.com/docker/swarm/blob/master/docs/swarm_at_scale/about.md
    doc version: 1.11
-      https://github.com/docker/swarm/commits/master/docs/swarm_at_scale/01-about.md
+      https://github.com/docker/swarm/commits/master/docs/swarm_at_scale/about.md
 .. check date: 2016/04/29
 .. Commits on Apr 14, 2016 70a180cb30ea4593b8f69d14c544cf278bf54ddd
 .. -------------------------------------------------------------------
