@@ -296,3 +296,13 @@ texinfo_documents = [
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
 
+# -- for Microsoft Word output with sphinx-docxbuilder
+# for sphinx-docxbuilder ( To output document with Microsoft Word Format )
+extensions = ['sphinx-docxbuilder']
+docx_title = u'Docker-docs-ja'
+docx_subject = 'Version 1.11.0'
+docx_descriptions = 'https://github.com/zembutsu/docs.docker.jp'
+docx_creator = 'Masahito Zembutsu <m.zembutsu@gmail.com> (@zembutsu)'
+docx_keywords = ['Sphinx', 'OpenXML']
+docx_style= '/home/zembutsu/Desktop/docs.docker.jp/sphinx/style.docx'
+
