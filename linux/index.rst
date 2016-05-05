@@ -55,7 +55,7 @@ Linux への Docker Engine 導入ガイド
 
 .. This getting started uses Docker Engine CLI commands entered on the commandline of a terminal window. You don’t need to be experienced using a command line, but you should be familiar with how to open one and type commands.
 
-この導入ガイドでは、Docker エンジンのコマンドライン・ツール（CLI）を Windows 端末上で使います。コマンドラインを使ったことがなくても構いませんが、コマンドラインの開き方やコマンドの入力方法に慣れておいた方が良いでしょう。
+この導入ガイドでは、Docker エンジンのコマンドライン・ツール（CLI）を端末ウインドウ上で使います。コマンドラインを使ったことがなくても構いませんが、コマンドラインの開き方やコマンドの入力方法に慣れておいた方が良いでしょう。
 
 .. Go to the next page to install.
 
