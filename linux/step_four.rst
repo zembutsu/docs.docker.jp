@@ -20,7 +20,7 @@
 
 .. The whalesay image could be improved. It would be nice if you didn’t have to think of something to say. And you type a lot to get whalesay to talk.
 
-``whalesay`` イメージは更に改良できます。もしかすると、何も喋らせたくないかもしれません。あるいは、もっと喋らせることもできます。
+``whalesay`` イメージを更に改良できます。もしかすると、何も喋らせたくないかもしれません。あるいは、もっと喋らせることもできます。
 
 .. code-block:: bash
 
@@ -28,7 +28,7 @@
 
 .. In this next section, you will improve the whalesay image by building a new version that “talks on its own” and requires fewer words to run.
 
-このセクションでは ``whalesay`` イメージを改良します。（オプションを指定しなくても）「自分で何かシャベル」新しいバージョンのイメージを作成します。実行に必要なのは、ほんの少しの単語です。
+このセクションでは ``whalesay`` イメージを改良します。（オプションを指定しなくても）「自分で何かを喋る」新しいバージョンのイメージを作成します。実行に必要となるのは、ほんの少しの単語です。
 
 .. Step 1: Open a Docker Quickstart Terminal
 
@@ -55,7 +55,7 @@
 
 .. This directory serves as the “context” for your build. The context just means it contains all the things you need to build your image.
 
-このディレクトリは構築時の「コンテクスト」（context；内容物）の役割があります。このコンテクストとは、イメージを構築するために必要な全てを指します。
+このディレクトリは構築時の「コンテクスト」（context；内容物）としての役割があります。このコンテクストとは、イメージを構築するために必要な全てを指します。
 
 ..    Change to your new directory.
 
@@ -101,7 +101,7 @@
 
 .. The fortunes program has a command that prints out wise sayings for our whale to say. So, the first step is to install it. This line installs the software into the image.
 
-``fortunes`` プログラムは賢そうなことを表示するプログラムです。これを今回のこの鯨プログラムに喋らせます。そのため、最初のステップはソフトウェアのインストールです。
+``fortunes`` プログラムは賢そうな言葉を表示するプログラムです。これを今回のこの鯨プログラムに喋らせます。そのための最初のステップは、ソフトウェアのインストールです。この行はイメージ内にソフトウェアをインストールします。
 
 ..    Once the image has the software it needs, you instruct the software to run when the image is loaded.
 
@@ -117,7 +117,7 @@
 
 .. Check your work, your file should look like this:
 
-9. これまでの作業内容を確認します。ファイルは次のようになっているでしょう。
+9. これまでの作業内容を確認します。ファイル内容は次の通りでしょう。
 
 .. code-block:: bash
 
@@ -131,7 +131,7 @@
 
 ..    At this point, you have all your software ingredients and behaviors described in a Dockerfile. You are ready to build a new image.
 
-以上で Dockerfile 中にソフトウエア全ての要素と挙動を記述しました。これで新しいイメージを構築する準備が整いました。
+以上で Dockerfile 中にソフトウェア全ての要素と挙動を記述しました。これで新しいイメージを構築する準備が整いました。
 
 .. Step 2: Build an image from your Dockerfile
 
@@ -142,7 +142,7 @@
 
 ..    Now, build your new image by typing the docker build -t docker-whale . command in your terminal (don’t forget the . period).
 
-1. 次は新しいイメージを構築するため ``docker build -t docker-whale .`` コマンドをターミナル上で実行します（最後にピリオド ``.`` を忘れないでください）。
+1. 次は新しいイメージを構築するため ``docker build -t docker-whale .`` コマンドをターミナル上で実行します（最後のピリオド ``.`` を忘れないでください）。
 
 .. code-block:: bash
 
@@ -154,7 +154,7 @@
 
 ..    The command takes several seconds to run and reports its outcome. Before you do anything with the new image, take a minute to learn about the Dockerfile build process.
 
-このコマンドを実行すると、結果が出るまで数秒ほどかかります。この新しいイメージを使う前に、Dockerfile の構築時の流れを学びましょう。
+このコマンドを実行後、結果が出るまで数秒ほどかかります。この新しいイメージを使う前に、Dockerfile 構築時の流れを学びましょう。
 
 .. Step 3: Learn about the build process
 
@@ -165,7 +165,7 @@
 
 .. The docker build -t docker-whale . command takes the Dockerfile in the current directory, and builds an image called docker-whale on your local machine. The command takes about a minute and its output looks really long and complex. In this section, you learn what each message means.
 
-``docker build -t docker-whale .`` コマンドは現在のディレクトリ内にある ``Dockerfile`` を使います。そして、自分のマシン上に ``docker-whale`` という名称のイメージを構築します。コマンドの処理には少し時間がかかります。処理結果の表示は少し複雑に見えるでしょう。このセクションでは、各メッセージの意味を学びます。
+``docker build -t docker-whale .`` コマンドは、現在のディレクトリ内にある ``Dockerfile`` を使います。そして、自分のマシン上に ``docker-whale`` という名称のイメージを構築します。コマンドの処理には少し時間がかかります。処理結果の表示は少し複雑に見えるでしょう。このセクションでは、各メッセージの意味を学びます。
 
 .. First Docker checks to make sure it has everything it needs to build.
 
@@ -204,7 +204,7 @@ Docker は次の行に移ります。 ``apt-get`` パッケージ・マネージ
 
 .. Then, Docker installs the new fortunes software.
 
-それから、Docker は新しい ``fortunes`` ソフトウエアをインストールします。
+それから、Docker は新しい ``fortunes`` ソフトウェアをインストールします。
 
 .. code-block:: bash
 
@@ -232,7 +232,7 @@ Docker は次の行に移ります。 ``apt-get`` パッケージ・マネージ
 
 .. Finally, Docker finishes the build and reports its outcome.
 
-最後に Docker は構築の終了を画面に表示します。
+最後に Docker は構築終了を画面に表示します。
 
 .. code-block:: bash
 
@@ -298,7 +298,7 @@ Docker は次の行に移ります。 ``apt-get`` パッケージ・マネージ
 
 .. As you can see, you’ve made the whale a lot smarter. It finds its own things to say and the command line is a lot shorter! You may also notice that Docker didn’t have to download anything. That is because the image was built locally and is already available.
 
-ご覧の通り、少し賢くなった鯨プログラムを作りました。コマンドラインで何かを自分で指定すると、それの表示もできます！ Docker は何もダウンロードしないことにも注目します。これはイメージをローカルで構築しており、ダウンロードする必要がないからです。
+ご覧の通り、少し賢くなった鯨プログラムを作りました。コマンドラインで何かを自分で指定すると、その表示もできます！  そして、Docker は何もダウンロードしないことにも注目します。これはイメージをローカルで構築しており、ダウンロードする必要がないからです。
 
 .. Where to go next
 
@@ -307,7 +307,7 @@ Docker は次の行に移ります。 ``apt-get`` パッケージ・マネージ
 
 .. On this page, you learned to build an image by writing your own Dockerfile. You ran your image in a container. In the next section, you take the first step in sharing your image by creating a Docker Hub account.
 
-このページでは自分で Dockerfile を記述してイメージを構築する方法を学びました。そして、自分のイメージを使ってコンテナを実行しました。次のセクションではイメージを共有する第一歩として、 :doc:`Docker Hub アカウントを作成 <step_five>` します。
+このページでは自分で Dockerfile を記述し、イメージを構築する方法を学びました。そして、自分のイメージを使ってコンテナを実行しました。次のセクションではイメージを共有する第一歩として、 :doc:`Docker Hub アカウントを作成 <step_five>` します。
 
 .. seealso:: 
 

@@ -20,7 +20,7 @@ Docker Hub アカウントとリポジトリの作成
 
 .. You’ve built something really cool, you should share it. In this next section, you’ll do just that. You’ll need a Docker Hub account. Then, you’ll push your image up to it so other people with Docker Engine can run it.
 
-良い感じに構築できましたので、次は共有しましょう。このセクションでは共有を扱います。そのためには Docker Hub アカウントが作成です。そしてイメージをアップロードすると、Docker Engine を持つ他の人も実行できるようになります。
+良い感じにイメージを構築できました。次はイメージ共有しましょう。このセクションでは共有を扱います。共有するには Docker Hub アカウントが必要です。イメージをアップロードしたら、Docker Engine を持つ他の人も実行できるようになります。
 
 .. Step 1: Sign up for an account
 
@@ -86,7 +86,7 @@ Docker Hub は無料で使えます。登録にはユーザ名、パスワード
 
 ..    The browser opens Docker Hub to your profile page.
 
-ブラウザで Docker Hub のページを開くと、自分のプロフィール・ページが表示されます。
+ブラウザで Docker Hub のページを開くと、自分のプロフィール・ページを表示します。
 
 ..    Choose Create Repository.
 
@@ -116,7 +116,7 @@ Docker Hub は無料で使えます。登録にはユーザ名、パスワード
 
 ..    Docker Hub creates your new repository.
 
-Docker Hub で新しいリポジトリを作成しました。
+Docker Hub に自分の新しいリポジトリを作成しました。
 
 .. Where to go next
 

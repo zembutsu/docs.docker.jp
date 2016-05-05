@@ -20,7 +20,7 @@ Docker のインストール
 
 .. This installation procedure is written for users who are unfamiliar with package managers. If you are comfortable with package managers, prefer not to use curl, or have problems installing and want to troubleshoot, please use our apt and yum repositories instead for your installation.
 
-以下の手順はパッケージ・マネージャに不慣れな方向けの内容です。パッケージ・マネージャに使い慣れているのであれば、 ``curl`` を使うことでインストールやトラブルシューティングの問題になるかもしれません。その場合は ``apt`` や ``yum`` の :doc:`リポジトリを使うインストール方法 </engine/installation/index>` をご覧ください。
+以下のインストール手順はパッケージ・マネージャに不慣れな方向けです。パッケージ・マネージャに使い慣れているのであれば、 ``curl`` の使用がインストールやトラブルシューティング上の問題になるかもしれません。その場合は ``apt`` や ``yum`` の :doc:`リポジトリを使うインストール方法 </engine/installation/index>` をご覧ください。
 
 ..    Log into your Ubuntu installation as a user with sudo privileges.
 
@@ -28,7 +28,7 @@ Docker のインストール
 
 ..    Verify that you have curl installed.
 
-2. ``curl`` がインストールされているか確認します。
+2. ``curl`` がインストールされているかを確認します。
 
 .. code-block:: bash
 
@@ -36,7 +36,7 @@ Docker のインストール
 
 ..    If curl isn’t installed, install it after updating your manager:
 
-もしも ``curl`` が入っていなければ、マネージャの更新後にインストールします。
+もしも ``curl`` が入っていなければ、マネージャのパッケージ情報を更新後、インストールします。
 
 .. code-block:: bash
 
@@ -53,7 +53,7 @@ Docker のインストール
 
 ..    The system prompts you for your sudo password. Then, it downloads and installs Docker and its dependencies.
 
-``sudo`` パスワードの入力を求めるシステム・プロンプトが表示します。入力すると、 Docker と、その依存関係にあるパッケージをインストールします。
+``sudo`` パスワードの入力を求めるシステム・プロンプトが表示します。入力したら、 Docker と依存関係があるパッケージのダウンロードとインストールが始まります。
 
 ..        Note: If your company is behind a filtering proxy, you may find that the apt-key command fails for the Docker repo during installation. To work around this, add the key directly using the following:
 
@@ -67,7 +67,7 @@ Docker のインストール
 
 ..    Verify docker is installed correctly.
 
-4. ``docker`` が正常にインストールされたことを確認します。
+4. ``docker`` のインストールが正常かどうかを確認します。
 
 .. code-block:: bash
 

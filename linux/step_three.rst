@@ -1,7 +1,7 @@
 ﻿.. -*- coding: utf-8 -*-
 .. https://docs.docker.com/linux/step_three/
-.. doc version: 1.10
-.. check date: 2016/4/13
+.. doc version: 1.11
+.. check date: 2016/5/5
 .. -----------------------------------------------------------------------------
 
 .. Find and run the whalesay image
@@ -9,7 +9,7 @@
 .. _find-and-run-the-whalesay-image-linux:
 
 ========================================
-whalesay イメージの実行
+whalesay イメージの検索と実行
 ========================================
 
 .. sidebar:: 目次
@@ -20,9 +20,7 @@ whalesay イメージの実行
 
 .. People all over the world create Docker images. You can find these images by browsing the Docker Hub. In this next section,  you’ll do just that to find the image to use in the rest of this getting started.
 
- you’ll do just that to find the image to use in the rest of this getting started.  
-
-世界中の皆さんが Docker イメージを作成しています。これらのイメージを Docker Hub 上で閲覧できます。このセクションではイメージを使って見ましょう。
+世界中の皆さんが Docker イメージを作成しています。公開されたイメージは Docker Hub 上で閲覧できます。このセクションではイメージを探し出し、そのイメージを使い始めましょう。
 
 .. Step 1: Locate the whalesay image
 
@@ -41,19 +39,19 @@ whalesay イメージの実行
 
 ..    The Docker Hub contains images from individuals like you and official images from organizations like RedHat, IBM, Google, and a whole lot more.
 
-Docker Hub には皆さんのような個人で作成したイメージと、何らかの組織、例えば RedHat、IBM、Googole 等が作成した公式イメージ（オフィシャル・イメージ）があります。
+Docker Hub には皆さんのような個人で作成したイメージと、何らかの組織、例えば Red Hat、IBM、Google 等が作成した公式イメージ（オフィシャル・イメージ）があります。
 
 ..    Click Browse & Search.
 
-2. ``Search`` をクリックします。
+2. 検索フォーム ``Search`` をクリックします。
 
 ..    The browser opens the search page.
 
-ブラウザで検索ページを開きます。
+.. ブラウザで検索ページを開きます。
 
 ..    Enter the word whalesay in the search bar.
 
-3. 検索バーに ``whalesay`` を入力します（訳者注： whalesay とは whale say = 鯨が話す、という意味です）。
+3. 検索バーに ``whalesay`` と入力します（訳者注： whalesay とは whale say = 鯨が話す、という意味です）。
 
 .. image:: /tutimg/image_found.png
    :scale: 60%
@@ -71,7 +69,7 @@ Docker Hub には皆さんのような個人で作成したイメージと、何
 
 ..    Each image repository contains information about an image. It should include information such as what kind of software the image contains and how to use it. You may notice that the whalesay image is based on a Linux distribution called Ubuntu. In the next step, you run the whalesay image on your machine.
 
-各イメージ・リポジトリにはイメージに関する情報が掲載されています。この中にはイメージにどのような種類のソフトウェアが入っているかや、どのように使うかについての説明があるでしょう。ここでは whalesay イメージが Ubuntu と呼ばれる Linux ディストリビューションをベースにしていることを覚えておきます。次のステップでは、自分のマシン上で whalesay イメージを実行しましょう。
+各イメージのリポジトリにはイメージに関する情報を掲載していいます。この中には、イメージにどのような種類のソフトウェアが入っているかや、使い方の説明があるでしょう。この時点で覚えておくのは、 whalesay イメージとは Ubuntu と呼ばれる Linux ディストリビューションをベースにしていることです。次のステップでは、自分のマシン上で whalesay イメージを実行しましょう。
 
 .. Step 2: Run the whalesay image
 
@@ -90,7 +88,7 @@ Docker Hub には皆さんのような個人で作成したイメージと、何
 
 ..    This command runs the whalesay image in a container. Your terminal should look like the following:
 
-コマンドを実行すると、コンテナ内で whalesay イメージを実行します。ターミナル上では、次のように表示されるでしょう。
+これはコンテナ内の whalesay イメージにあるコマンドを実行します。ターミナル上では、次のように表示されるでしょう。
 
 .. code-block:: bash
 
@@ -126,15 +124,15 @@ Docker Hub には皆さんのような個人で作成したイメージと、何
 
 ..    The first time you run a software image, the docker command looks for it on your local system. If the image isn’t there, then docker gets it from the hub.
 
-``docker`` コマンドを手許（ローカル）のシステム上でソフトウエア・イメージを初めて実行しました。イメージが手許になければ、 ``docker`` は Docker Hub から取得します。
+``docker`` コマンドを手元（ローカル）のシステム上でソフトウェア・イメージを初めて実行しました。イメージが手元になければ、 ``docker`` は Docker Hub から取得します。
 
 ..    While still in the terminal, type docker images command and press RETURN.
 
-3. ターミナルを開いたまま ``docker images`` コマンドを入力してリターンキーを押します。
+3. ターミナルを開いたまま ``docker images`` コマンドを入力し、リターンキーを押します。
 
 ..    The command lists all the images on your local system. You should see docker/whalesay in the list.
 
-このコマンドは手許のシステム上にある全イメージを表示します。一覧に ``docker/whalesay`` イメージが見えるでしょう。
+このコマンドは手元のシステム上にある全イメージを表示します。イメージの一覧に ``docker/whalesay`` イメージが見えるでしょう。
 
 .. code-block:: bash
 
@@ -145,7 +143,7 @@ Docker Hub には皆さんのような個人で作成したイメージと、何
 
 ..    When you run an image in a container, Docker downloads the image to your computer. This local copy of the image saves you time. Docker only downloads the image again if the image’s source changes on the hub. You can, of course, delete the image yourself. You’ll learn more about that later. Let’s leave the image there for now because we are going to use it later.
 
-コンテナ内でイメージを実行する時、Docker は手許のコンピュータ上にイメージをダウンロードします。イメージのコピーを手許に作成するため、時間の節約になります。Docker がイメージをダウンロードするのは、 Docker Hub 上の元イメージに変更が加わった時のみです。もちろん、イメージは自分で削除もできます。詳細は後ほど学びます。この後もイメージを使うため、今はこのままにしておきます。
+コンテナ内でイメージの実行時、Docker は手元のコンピュータ上にイメージをダウンロードします。イメージのコピーを手元に作成するため、以降の作業で時間を節約します。Docker が再びイメージをダウンロードするのは、 Docker Hub 上の元イメージに変更が加わった時のみです。もちろん、イメージは自分で削除もできます。詳細は後ほど学びます。この後でもイメージを使うため、今はこのままにしておきます。
 
 ..    Take a moment to play with the whalesay container a bit.
 
@@ -153,7 +151,7 @@ Docker Hub には皆さんのような個人で作成したイメージと、何
 
 ..    Try running the whalesay image again with a word or phrase. Try a long or short phrase. Can you break the cow?
 
-``whalesay`` イメージを再度使いますが、今度は言葉を変えてみましょう。長い、もしくは短いフレーズに置き換えます。何かしら喋らせましたか？
+``whalesay`` イメージを再度使いますが、今度は言葉を換えてみましょう。長い、もしくは短いフレーズに置き換えます。何かを話せたでしょうか。
 
 .. code-block:: bash
 
@@ -180,7 +178,7 @@ Docker Hub には皆さんのような個人で作成したイメージと、何
 
 .. On this page, you learned to search for images on Docker Hub. You used your command line to run an image. You learned that running an image copies it on your computer. Now, you are ready to create your own Docker image. Go on to the next part to build your own image.
 
-このページでは Docker Hub 上のイメージを探す方法を学びました。そして、コマンドを使ってイメージを実行しました。自分のコンピュータ上にイメージをコピーし、実行する方法を学びました。次は自分で Docker イメージを作ってみましょう。次の :doc:`step_four` に進みます。
+このページでは Docker Hub 上のイメージを探す方法を学びました。コマンドを使ってイメージを実行しました。おして、自分のコンピュータ上にイメージをコピーし、実行する方法を学びました。次は自分で Docker イメージを作りましょう。次の :doc:`step_four` に進みます。
 
 .. seealso:: 
 
