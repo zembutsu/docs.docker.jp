@@ -10,6 +10,10 @@
 Linux への Docker Engine 導入ガイド
 ========================================
 
+.. tip::
+
+   導入ガイドの PDF 版は `こちらからダウンロード <http://docker.jp/PDF/docker-getting-started-guide-for-linux.pdf>`_ できます。
+
 .. sidebar:: 目次
 
    .. contents:: 
