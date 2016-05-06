@@ -36,7 +36,7 @@ Docker は以下のオペレーティング・システムをサポートして�
 
 .. note::
 
-   Ubuntu Utopic 14.10 と 15.04 には Docker の ``apt`` リポジトリが存在しますが、（Dockerが）公式にサポートしていないものです。
+   Ubuntu Utopic 14.10 と 15.04 には Docker の ``apt`` リポジトリが存在しますが、（Dockerが）公式にサポートしていません。
 
 .. Prerequisites
 
@@ -45,7 +45,7 @@ Docker は以下のオペレーティング・システムをサポートして�
 
 .. Docker requires a 64-bit installation regardless of your Ubuntu version. Additionally, your kernel must be 3.10 at minimum. The latest 3.10 minor version or a newer maintained version are also acceptable.
 
-Docker は 64bit でインストールされた何らかの Ubuntu バージョンを必要とします。さらに、kernel は少なくとも 3.10 以上が必要です。最新の 3.10 マイナーバージョンか、それよりも新しいバージョンを利用可能です。
+Docker は 64 bit でインストールされた何らかの Ubuntu バージョンを必要とします。加えて、kernel は少なくとも 3.10 以上が必要です。最新の 3.10 マイナーバージョンか、それよりも新しいバージョンを利用可能です。
 
 .. Kernels older than 3.10 lack some of the features required to run Docker containers. These older versions are known to have bugs which cause data loss and frequently panic under certain conditions.
 
@@ -102,7 +102,7 @@ Docker 1.7.1 以上は Docker の ``apt`` リポジトリに保管されてい�
 
 ..    Open the /etc/apt/sources.list.d/docker.list file in your favorite editor.
 
-5. ``/etc/apt/sources.list.d/docker.list`` ファイルを好みのエディタで開きます。
+5. ``/etc/apt/sources.list.d/docker.list`` ファイルを任意のエディタで開きます。
 
 ..    If the file doesn’t exist, create it.
 
@@ -188,7 +188,7 @@ Docker 1.7.1 以上は Docker の ``apt`` リポジトリに保管されてい�
 
 ..    From now on when you run apt-get upgrade, apt pulls from the new repository.
 
-これで ``apt-get update`` を実行すると、 ``apt`` は新しいリポジトリから取得します。
+これで ``apt-get update`` を実行したら、 ``apt`` は新しいリポジトリから取得します。
 
 .. Prerequisites by Ubuntu Version
 
@@ -238,7 +238,7 @@ Ubuntu Precise 12.04 (LTS)
 
 .. For Ubuntu Precise, Docker requires the 3.13 kernel version. If your kernel version is older than 3.13, you must upgrade it. Refer to this table to see which packages are required for your environment:
 
-Ubuntu Precise では、Docker は カーネル・バージョン 3.13 が必要です。カーネルのバージョンが 3.13 の場合、更新が必要です。環境に応じてどのパッケージが必要になるかは、次の表を参照ください。
+Ubuntu Precise では、Docker は カーネル・バージョン 3.13 が必要です。カーネルのバージョンが 3.13 よりも古い場合は、更新が必要です。環境に応じてどのパッケージが必要になるかは、次のリストをご覧ください。
 
 .. linux-image-generic-lts-trusty 	Generic Linux kernel image. This kernel has AUFS built in. This is required to run Docker.
 .. linux-headers-generic-lts-trusty 	Allows packages such as ZFS and VirtualBox guest additions which depend on them. If you didn’t install the headers for your existing kernel, then you can skip these headers for the”trusty” kernel. If you’re unsure, you should include this package for safety.
@@ -248,7 +248,7 @@ Ubuntu Precise では、Docker は カーネル・バージョン 3.13 が必要
 
 * ``linux-image-generic-lts-trusty``… generic の Linux カーネル・イメージ。このカーネルは AUFS が組み込み済み。Docker 実行に必要。
 * ``linux-headers-generic-lts-trusty`` … ZFS と VirtualBox のゲスト追加に依存するようなパッケージを利用可能にします。既存のカーネルに対して headers をインストールしなければ、"trusty" カーネル向けのヘッダをスキップします。自信がなければ、安全のためにこのパッケージを導入すべきです。
-* ``xserver-xorg-lts-trusty`` , ``libgl1-mesa-glx-lts-trusty`` … Unity/Xorg の無い（グラフィカルでは無い）環境向けのオプションです。Docker をグラフィカルな環境で実行する時に **必要** です。これらのパッケージが必要な理由は、バックポートされたカーネルに関するインストール手順をご覧ください。 `LTS Enablement Stack <https://wiki.ubuntu.com/Kernel/LTSEnablementStack>`_ の note 5 にある各バージョンをご覧ください。
+* ``xserver-xorg-lts-trusty`` , ``libgl1-mesa-glx-lts-trusty`` … Unity/Xorg を持たない（グラフィカルではない）環境向けのオプションです。Docker をグラフィカルな環境で実行する時に **必要** です。これらのパッケージが必要な理由は、バックポートされたカーネルに関するインストール手順をご覧ください。 `LTS Enablement Stack <https://wiki.ubuntu.com/Kernel/LTSEnablementStack>`_ の note 5 にある各バージョンをご覧ください。
 
 .. To upgrade your kernel and install the additional packages, do the following:
 
@@ -297,7 +297,7 @@ Ubuntu Precise では、Docker は カーネル・バージョン 3.13 が必要
 
 .. Make sure you have installed the prerequisites for your Ubuntu version. Then, install Docker using the following:
 
-インストール前に、各 Ubuntu のバージョンごとの作業を終えてください。それから、以降の手順で Docker をインストールします。
+インストール前に、各 Ubuntu バージョン固有の作業を終えてください。それから、以降の手順で Docker をインストールします。
 
 ..    Log into your Ubuntu installation as a user with sudo privileges.
 
@@ -329,7 +329,7 @@ Ubuntu Precise では、Docker は カーネル・バージョン 3.13 が必要
 
 ..    Verify docker is installed correctly.
 
-5. ``docker`` が正常にインストールされたか確認します。
+5. ``docker`` を正常にインストールしたかを確認します。
 
 .. code-block:: bash
 
@@ -337,7 +337,7 @@ Ubuntu Precise では、Docker は カーネル・バージョン 3.13 が必要
 
 ..    This command downloads a test image and runs it in a container. When the container runs, it prints an informational message. Then, it exits.
 
-このコマンドは、テストイメージをダウンロードし、コンテナとして実行します。コンテナを実行すると、メッセージ情報を表示して、終了します。
+このコマンドは、テストイメージをダウンロードし、コンテナとして実行します。コンテナを実行時にメッセージ情報を表示して、それから終了します。
 
 .. Optional configurations
 
@@ -363,11 +363,11 @@ docker グループの作成
 
 .. The docker daemon binds to a Unix socket instead of a TCP port. By default that Unix socket is owned by the user root and other users can access it with sudo. For this reason, docker daemon always runs as the root user.
 
-``docker`` デーモンは TCP ポートの替わりに Unix ソケットをバインドします。デフォルトでは、Unix ソケットは ``root`` ユーザによって所有されており、他のユーザは ``sudo`` でアクセスできます。このため、 ``docker`` デーモンは常に ``root`` ユーザとして実行されています。
+``docker`` デーモンは TCP ポートの代わりに Unix ソケットをバインドします。デフォルトでは、Unix ソケットは ``root`` ユーザによって所有されており、他のユーザは ``sudo`` でアクセスできます。このため、 ``docker`` デーモンは常に ``root`` ユーザとして実行されています。
 
 .. To avoid having to use sudo when you use the docker command, create a Unix group called docker and add users to it. When the docker daemon starts, it makes the ownership of the Unix socket read/writable by the docker group.
 
-``docker`` コマンド利用時に ``sudo`` を使わないようにするには、 ``docker`` という名称のグループを作成し、そこにユーザを追加します。 ``docker`` デーモンが起動すると、``docker`` グループの所有者により Unix ソケットの読み書きが可能になります。
+``docker`` コマンド利用時に ``sudo`` を使わないようにするには、 ``docker`` という名称のグループを作成し、そこにユーザを追加します。 ``docker`` デーモンが起動したら、``docker`` グループの所有者により Unix ソケットの読み書きが可能になります。
 
 ..    Warning: The docker group is equivalent to the root user; For details on how this impacts security in your system, see Docker Daemon Attack Surface for details.
 
@@ -385,7 +385,7 @@ docker グループの作成
 
 ..    This procedure assumes you log in as the ubuntu user.
 
-ログイン時のユーザ名は ``ubuntu`` ユーザかもしれません。
+ログイン時のユーザ名は ``ubuntu`` ユーザかも知れません。
 
 ..    Create the docker group and add your user.
 
@@ -405,7 +405,7 @@ docker グループの作成
 
 ..    Verify your work by running docker without sudo.
 
-4. ``sudo`` を使わずに ``docker`` が実行できることを確認します。
+4. ``sudo`` を使わずに ``docker`` の実行を確認します。
 
 .. code-block:: bash
 
@@ -430,7 +430,7 @@ docker グループの作成
 
 .. When users run Docker, they may see these messages when working with an image:
 
-ユーザが Docker を実行する時、イメージ実行時に次のようなメッセージがでる場合があります。
+ユーザが Docker を実行する時、イメージ実行時に次のメッセージを表示する場合があります。
 
 .. code-block:: bash
 
@@ -439,7 +439,7 @@ docker グループの作成
 
 .. To prevent these messages, enable memory and swap accounting on your system. Enabling memory and swap accounting does induce both a memory overhead and a performance degradation even when Docker is not in use. The memory overhead is about 1% of the total available memory. The performance degradation is roughly 10%.
 
-このメッセージを出さないようにするには、システム上でメモリとスワップの利用量（アカウンティング）を設定します。メモリとスワップ利用量の設定を有効にすると、Docker を使っていない時、メモリのオーバヘッドとパフォーマンスの低下を減らします。メモリのオーバヘッドは利用可能な全メモリの１％程度です。パフォーマンス低下は、おおよそ10%です。
+このメッセージを出さないようにするには、システム上でメモリとスワップの利用量（アカウンティング）を設定します。メモリとスワップ利用量の設定を有効にしますと、Docker を使っていない時、メモリのオーバヘッドとパフォーマンスの低下を減らします。メモリのオーバヘッドは利用可能な全メモリの１％程度です。パフォーマンス低下は、おおよそ10%です。
 
 .. To enable memory and swap on system using GNU GRUB (GNU GRand Unified Bootloader), do the following:
 
@@ -488,7 +488,7 @@ Docker を実行するホスト上で `UFW (Uncomplicated Firewall) <https://hel
 
 .. Also, UFW’s default set of rules denies all incoming traffic. If you want to reach your containers from another host allow incoming connections on the Docker port. The Docker port defaults to 2376 if TLS is enabled or 2375 when it is not. If TLS is not enabled, communication is unencrypted. By default, Docker runs without TLS enabled.
 
-また、UFW のデフォルト設定は incoming トラフィックを全て拒否します。他のホストからコンテナに接続したい場合、Docker のポートに対する incoming トラフィックを許可する設定をします。Docker のポートは TLS が有効であれば ``2376`` であり、そうでなければ ``2375`` です。デフォルトでは、TLS が有効でなければ通信は暗号化されません。Docker のデフォルトは、TLS が有効ではありません。
+また、UFW のデフォルト設定は incoming トラフィックを全て拒否します。他のホストからコンテナに接続したい場合、Docker のポートに対する incoming トラフィックを許可する設定をします。Docker のポートは TLS が有効であれば ``2376`` であり、そうでなければ ``2375`` です。デフォルトでは、TLS が有効でなければ通信は暗号化しません。Docker のデフォルトは、TLS が有効ではありません。
 
 .. To configure UFW and allow incoming connections on the Docker port:
 
@@ -549,11 +549,11 @@ Docker が使う DNS サーバの設定
 
 .. Systems that run Ubuntu or an Ubuntu derivative on the desktop typically use 127.0.0.1 as the default nameserver in /etc/resolv.conf file. The NetworkManager also sets up dnsmasq to use the real DNS servers of the connection and sets up nameserver 127.0.0.1 in /etc/resolv.conf.
 
-Ubuntu や Ubuntu 派生システムのデスクトップを動かすシステムは、デフォルトで ``/etc/resolv.conf`` ファイルで使用する ``nameserver`` は ``127.0.0.1`` です。NetworkManager も ``dnsmasq`` をセットアップする時、 ``/etc/resolv.conf`` を ``nameserver 127.0.0.1`` に設定します。
+Ubuntu や Ubuntu 派生システムのデスクトップを動かすシステムは、デフォルトで ``/etc/resolv.conf`` ファイルで使用する ``nameserver`` は ``127.0.0.1`` です。NetworkManager も ``dnsmasq`` をセットアップする時は、 ``/etc/resolv.conf`` を ``nameserver 127.0.0.1`` に設定します。
 
 .. When starting containers on desktop machines with these configurations, Docker users see this warning:
 
-デスクトップ・マシンでコンテナを起動時、このような設定であれば、次のような警告が出ます。
+デスクトップ・マシンでコンテナを起動時、このような設定であれば、次の警告が出ます。
 
 .. code-block:: bash
 
@@ -566,7 +566,7 @@ Ubuntu や Ubuntu 派生システムのデスクトップを動かすシステ�
 
 .. To avoid this warning, you can specify a DNS server for use by Docker containers. Or, you can disable dnsmasq in NetworkManager. Though, disabling dnsmasq might make DNS resolution slower on some networks.
 
-警告が出ないようにするには、Docker コンテナが使うための DNS サーバを指定します。あるいは、NetworkManager で ``dnsmasq``  を無効にもできます。 ``dnsmasq`` を無効にすると、同一ネットワークの DNS 名前解決が遅くなるかもしれません。
+警告を出ないようにするには、Docker コンテナが使うための DNS サーバを指定します。あるいは、NetworkManager で ``dnsmasq``  を無効にもできます。 ``dnsmasq`` を無効にすると、同一ネットワークの DNS 名前解決が遅くなるかも知れません。
 
 .. To specify a DNS server for use by Docker:
 
@@ -594,7 +594,7 @@ Docker が使う DNS サーバの指定方法は、次の通りです。
 
 ..    Replace 8.8.8.8 with a local DNS server such as 192.168.1.1. You can also specify multiple DNS servers. Separated them with spaces, for example:
 
-``8.8.8.8`` を ``192.168.1.1`` のようなローカルの DNS サーバに置き換えます。複数の DNS サーバも指定できます。次の例のように、スペースで分離します。
+``8.8.8.8`` を ``192.168.1.1`` のようなローカルの DNS サーバに置き換えます。複数の DNS サーバも指定できます。その場合は、次の例のようにスペースで分離します。
 
 .. code-block:: bash
 
@@ -612,7 +612,7 @@ Docker が使う DNS サーバの指定方法は、次の通りです。
 
 ..    Restart the Docker daemon.
 
-Docker デーモンを再起動します。
+5. Docker デーモンを再起動します。
 
 .. code-block:: bash
 
@@ -621,7 +621,7 @@ Docker デーモンを再起動します。
 
 .. Or, as an alternative to the previous procedure, disable dnsmasq in NetworkManager (this might slow your network).
 
-**あるいは、先ほどの手順とは別の方法として**、NetworkManager で ``dnsmasq`` を無効化する方法もあります（ネットワークが遅くなるかもしれません）。
+**あるいは、先ほどの手順とは別の方法として**、NetworkManager で ``dnsmasq`` を無効化する方法もあります（ネットワークが遅くなるかも知れません）。
 
 ..    Open the /etc/NetworkManager/NetworkManager.conf file for editing.
 
@@ -654,7 +654,7 @@ Docker デーモンを再起動します。
 
 .. Configure Docker to start on boot
 
-ブート時の Docker 開始設定
+ブート時の Docker 起動設定
 ------------------------------
 
 .. Ubuntu uses systemd as its boot and service manager 15.04 onwards and upstart for versions 14.10 and below.
@@ -701,7 +701,7 @@ Docker パッケージをアンインストールします。
 
 .. To uninstall the Docker package and dependencies that are no longer needed:
 
-Docker パッケージと必要の無い依存関係をアンインストールします。
+Docker パッケージと必要のない依存関係をアンインストールします。
 
 .. code-block:: bash
 

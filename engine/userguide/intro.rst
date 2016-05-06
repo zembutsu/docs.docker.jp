@@ -33,7 +33,7 @@ Docker Engine ユーザ・ガイド
     And a whole lot more!
 
 * アプリケーションの Docker 化 (Dockerize)
-* 自分自身のコンテナを実行
+* 自分自身でコンテナを実行
 * Docker イメージの構築
 * Docker イメージを他人と共有
 * 他にも多くのことを！
@@ -76,7 +76,7 @@ Docker Engine は、アプリケーションを強力にするコンテナ化プ
 
 .. Once you get a grip on running your applications in Docker containers, you’ll learn how to manage those containers. To find out about how to inspect, monitor and manage containers:
 
-アプリケーションを Docker コンテナで実行できるようになったら、これらのコンテナの管理方法を学びます。コンテナの調査、監視、管理の方法を見ていきます。
+アプリケーションを Docker コンテナで実行できるようになったら、これらのコンテナの管理方法を学びます。コンテナの調査、監視、管理の仕方を理解します。
 
 .. Go to Working With Containers.
 
@@ -112,7 +112,7 @@ Docker の使い方を学んだら、次のステップに進みます。Docker 
 
 .. Until now we’ve seen how to build individual applications inside Docker containers. Now learn how to build whole application stacks with Docker networking.
 
-これまで Docker コンテナの中に個々のアプリケーションを構築する方法をみてきました。次は Docker ネットワークでアプリケーション・スタックを構築する方法を学びます。
+これまで Docker コンテナの中に個々のアプリケーションを構築する方法を理解しました。次は Docker ネットワークでアプリケーション・スタックを構築する方法を学びます。
 
 .. Go to Networking Containers.
 
@@ -128,7 +128,7 @@ Docker の使い方を学んだら、次のステップに進みます。Docker 
 
 .. Now we know how to link Docker containers together the next step is learning how to manage data, volumes and mounts inside our containers.
 
-Docker コンテナ間を接続する方法を学びました。次はコンテナの中にあるデータ、ボリューム、マウントに関する管理方法を学びます。
+Docker コンテナ間を接続する方法を学んだら、次はコンテナの中にあるデータ、ボリューム、マウントに関する管理方法を学びます。
 
 .. Go to Managing Data in Containers.
 
@@ -201,7 +201,7 @@ Docker Swarm
 
 .. Docker Swarm pools several Docker Engines together and exposes them as a single virtual Docker Engine. It serves the standard Docker API, so any tool that already works with Docker can now transparently scale up to multiple hosts.
 
-Docker Swarm は複数の Docker Engine をまとめて、１つの仮想的な Docker Engine のように見せます。標準 Docker API に対応しているため、Docker で利用可能なツールであれば、複数のホスト上に透過的なスケールアップが可能です。
+Docker Swarm は複数の Docker Engine をまとめて、１つの仮想的な Docker Engine のように振る舞います。標準 Docker API に対応しているため、Docker で利用可能なツールであれば、複数のホスト上に透過的なスケールアップが可能です。
 
 .. Go to Docker Swarm user guide.
 

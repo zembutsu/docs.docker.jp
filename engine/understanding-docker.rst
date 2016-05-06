@@ -212,7 +212,7 @@ Docker イメージの役割は？
 
 .. One of the reasons Docker is so lightweight is because of these layers. When you change a Docker image—for example, update an application to a new version— a new layer gets built. Thus, rather than replacing the whole image or entirely rebuilding, as you may do with a virtual machine, only that layer is added or updated. Now you don’t need to distribute a whole new image, just the update, making distributing Docker images faster and simpler.
 
-Docker が軽量な理由の１つが、これらのレイヤによるものです。Docker イメージに変更を加えたとしましょう。例えば、アプリケーションを新しいバージョンに更新すると仮定します。この更新時に新しいレイヤを構築します。つまり、仮想マシン上で何らかの作業をした結果、イメージが置き換えられたり完全に再構築されるというよりは、単純にレイヤを追加するか更新するだけなのです。この新しいイメージの配布に関する心配は不要です。新しい Docker イメージを速く簡単に配布するには、単に更新されたレイヤを配布するだけです。
+Docker が軽量な理由の１つが、これらのレイヤによるものです。Docker イメージに変更を加えたとしましょう。例えば、アプリケーションを新しいバージョンに更新すると仮定します。この更新時に新しいレイヤを構築します。つまり、仮想マシン上で何らかの作業をした結果、イメージの入れ替えや完全な再構築ではなく、単純にレイヤを追加するか更新するだけなのです。この新しいイメージの、配布に関する心配は不要です。新しい Docker イメージを速く簡単に配布するには、単に更新されたレイヤを配布するだけです。
 
 .. Every image starts from a base image, for example ubuntu, a base Ubuntu image, or fedora, a base Fedora image. You can also use images of your own as the basis for a new image, for example if you have a base Apache image you could use this as the base of all your web application images.
 
@@ -240,7 +240,7 @@ Docker が軽量な理由の１つが、これらのレイヤによるもので�
 
 .. These instructions are stored in a file called a Dockerfile. Docker reads this Dockerfile when you request a build of an image, executes the instructions, and returns a final image.
 
-これらの命令を ``Dockerfile`` と呼ぶファイルに保管します。Docker にイメージの構築を要求すると、Docker はこの ``Dockerfile`` を読み込み、命令を実行し、最終的なイメージを返します。
+これらの命令を ``Dockerfile`` と呼ぶファイルに保管します。Docker にイメージの構築を要求したら、Docker はこの ``Dockerfile`` を読み込み、命令を実行し、最終的なイメージを返します。
 
 .. How does a Docker registry work?
 
