@@ -178,7 +178,7 @@ Docker Hub には皆さんのような個人で作成したイメージと、何
 
 .. On this page, you learned to search for images on Docker Hub. You used your command line to run an image. You learned that running an image copies it on your computer. Now, you are ready to create your own Docker image. Go on to the next part to build your own image.
 
-このページでは Docker Hub 上のイメージを探す方法を学びました。コマンドを使ってイメージを実行しました。おして、自分のコンピュータ上にイメージをコピーし、実行する方法を学びました。次は自分で Docker イメージを作りましょう。次の :doc:`step_four` に進みます。
+このページでは Docker Hub 上のイメージを探す方法を学びました。コマンドを使ってイメージを実行しました。そして、自分のコンピュータ上にイメージをコピーし、実行する方法を学びました。次は自分で Docker イメージを作りましょう。次の :doc:`step_four` に進みます。
 
 .. seealso:: 
 

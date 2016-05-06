@@ -68,7 +68,7 @@
 
 ..    In this example, the id is 7d9495d03763.
 
-この例では ID は ``7d9495d03763`` です。
+この例の ID は ``7d9495d03763`` です。
 
 ..    Notice that currently, the REPOSITORY shows the repo name docker-whale but not the namespace. You need to include the namespace for Docker Hub to associate it with your account. The namespace is the same as your Docker Hub account name. You need to rename the image to YOUR_DOCKERHUB_NAME/docker-whale.
 
@@ -80,7 +80,7 @@
 
 ..    The command you type looks like this:
 
-入力するコマンドは、次のような意味があります。
+入力するコマンドには、次の意味があります。
 
 .. image:: /tutimg/tagger.png
 
@@ -112,7 +112,7 @@
 
 ..    The format for the login command is:
 
-ログインコマンドの書式は次の通りです：
+ログインコマンドの書式は次の通りです。
 
 .. code-block:: bash
 
@@ -120,7 +120,7 @@
 
 ..    When prompted, enter your password and press enter. So, for example:
 
-入力を促すプロンプトが表示された、パスワードを入力してエンターを押します。実行例：
+入力を促すプロンプトが表示されたら、パスワードを入力してエンターを押します。実行例：
 
 .. code-block:: bash
 
@@ -154,7 +154,7 @@
 
 ..    Return to your profile on Docker Hub to see your new image.
 
-10. 自分の Docker Hub のプロフィールページに戻ると、新しいイメージの情報が表示されます。
+10. 自分の Docker Hub のプロフィールページに戻ります。新しいイメージの情報が表示されています。
 
 .. image:: /tutimg/new_image.png
    :scale: 60%
@@ -168,11 +168,11 @@
 
 .. In this last section, you’ll pull the image you just pushed to hub. Before you do that though, you’ll need to remove the original image from your local machine. If you left the original image on your machine. Docker would not pull from the hub — why would it? The two images are identical.
 
-この最後のセクションでは、Docker Hub に送信(push)したイメージを取得(pull)します。作業を進める前に、これまでローカルマシン上で作成したオリジナルのイメージを削除します。マシン上にオリジナルのイメージを残しておいたままでは、Docker は Docker Hub からイメージを取得しません。これは両方のイメージが同一と認識されるためです。
+最後のセクションでは、Docker Hub に送信(push)したイメージを取得(pull)します。作業を進める前に、これまでローカルマシン上で作成したオリジナルのイメージを削除します。マシン上にオリジナルのイメージを残しておいたままでは、Docker は Docker Hub からイメージを取得しません。これは両方のイメージが同じと認識されるためです。
 
 ..    Place your cursor at the prompt in the Docker Quickstart Terminal window.
 
-1. Docker クイックスタート・ターミナルのウインドウ上のプロンプトにカーソルを合わせます。
+1. ターミナルのウインドウ上のプロンプトに、カーソルを合わせます。
 
 ..    Type docker images to list the images you currently have on your local machine.
 
@@ -295,7 +295,7 @@
 
 .. You’ve only scratched the surface of what Docker can do. Go to the next page to learn more.
 
-Docker ができることを詳しく知りたくありませんか。次のページから :doc:`より詳細を学びましょう <last_page>` 。
+Docker ができることを詳しく知りたくありませんか。次のページから :doc:`より詳しく学びましょう <last_page>` 。
 
 .. seealso:: 
 

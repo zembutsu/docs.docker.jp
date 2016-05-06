@@ -20,7 +20,7 @@ Docker for Windows のインストール
 
 .. Windows users use Docker Toolbox to install Docker software. Docker Toolbox includes the following Docker tools:
 
-Windows ユーザは Docker ツールボックス（Toolbox）を使って Docker のソフトウェアをインストールできます。Docker ツールボックスには、以下の Docker ツールが含まれます。
+Windows ユーザは Docker ツールボックス（Toolbox）を使い、 Docker のソフトウェアをインストールできます。Docker ツールボックスには、以下の Docker ツール群が入っています。
 
 ..    Docker CLI client for running Docker Engine to create images and containers
     Docker Machine so you can run Docker Engine commands from Windows terminals
@@ -29,16 +29,16 @@ Windows ユーザは Docker ツールボックス（Toolbox）を使って Docke
     the Docker QuickStart shell preconfigured for a Docker command-line environment
     Oracle VM VirtualBox
 
-* Docker CLI クライアントは Docker Engine（エンジン）でコンテナやイメージを作成します。
-* Docker Machine（マシン）は Windows 端末から Docker Engine に命令できます。
-* Docker Compose（コンポーズ）は ``docker-compose`` コマンドを実行します。
-* Kitematic（カイトマティック）は Docker の GUI です。
-* Docker QuickStart（クイックスタート）は Docker コマンドライン環境を設定済みのシェルです。
+* Docker CLI クライアントは Docker Engine（エンジン）でコンテナやイメージを作成。
+* Docker Machine（マシン）は Windows 端末から Docker Engine に命令。
+* Docker Compose（コンポーズ）は ``docker-compose`` コマンドを実行。
+* Kitematic（カイトマティック）は Docker の GUI。
+* Docker QuickStart（クイックスタート）は Docker コマンドライン環境を設定済みのシェル。
 * Oracle VM VirtualBox
 
 .. Because the Docker Engine daemon uses Linux-specific kernel features, you can’t run Docker Engine natively in Windows. Instead, you must use the Docker Machine command, docker-machine, to create and attach to a small Linux VM on your machine. This VM hosts Docker Engine for you on your Windows system.
 
-Docker Engine デーモンは Linux 固有の kernel 機能を使います。そのため、Windows では Docker Engine をネイティブに扱えません。その代わりに ``docker-machine`` コマンドを使い、自分のマシン上に小さな Linux 仮想マシンを作成し、そこに接続します。この仮想マシンは Windows システム上で Docker Engine を動かします。
+Docker Engine デーモンは Linux 特有の kernel 機能を使います。そのため、Windows では Docker Engine を直接操作できません。その代わりに ``docker-machine`` コマンドで自分のマシン上に小さな Linux 仮想マシンを作成し、そこに接続します。この仮想マシンのホストを使い、  Windows システム上で Docker Engine を動かします。
 
 .. Step 1: Check your version
 
@@ -49,11 +49,11 @@ Docker Engine デーモンは Linux 固有の kernel 機能を使います。そ
 
 .. To run Docker, your machine must have a 64-bit operating system running Windows 7 or higher. Additionally, you must make sure that virtualization is enabled on your machine. To verify your machine meets these requirements, do the following:
 
-Docker を実行するには、Windows 7 以上の 64 bit オペレーティング・システムが必要です。また、マシン上で仮想化機能を有効にする必要もあります。マシンが条件を満たしているかどうかを確認するには、以下の手順を進めます。
+Docker を実行するには、Windows 7 以上の 64 bit オペレーティング・システムが必要です。また、マシン上で仮想化機能を有効にする必要もあります。マシンが条件を満たしているかどうかの確認は、次の手順を進めます。
 
 ..    Right click the windows message and choose System.
 
-1. Windows メッセージを右クリックし、システムを選びます。
+1. Windows アイコンまたはスタートメニュー（画面の左下）を右クリックし、システムを選びます。
 
 ..    Which version
 
@@ -67,7 +67,7 @@ Docker を実行するには、Windows 7 以上の 64 bit オペレーティン�
 
 ..    Make sure your Windows system supports Hardware Virtualization Technology and that virtualization is enabled.
 
-2. Windows システムがハードウェア仮想化テクノロジをサポートしていることと、仮想化機能が有効なことを確認します。
+2. Windows システムがハードウェア仮想化テクノロジをサポートするのを確認します。また、仮想化機能が有効なのも確認します。
 
 ..    For Windows 8 or 8.1
 
@@ -76,13 +76,13 @@ Windows 8 または 8.1
 
 ..    Choose Start > Task Manager and navigate to the Performance tab. Under CPU you should see the following:
 
-スタートメニューからタスク・マネージャを選び、パフォーマンス・タブに移動します。CPU の下で Virtualization が Enabled になっています。
+スタートメニューからタスク・マネージャを選び、パフォーマンス・タブに移動します。CPU の下にある項目 Virtualization が Enabled になっています。
 
 ..    Release page　（画像）
 
 ..    If virtualization is not enabled on your system, follow the manufacturer’s instructions for enabling it.
 
-システム上で Virtualization が有効でない場合は、製造元の取扱説明書をお読みになり、有効にします。
+システム上で Virtualization が有効でない場合は、製造元の取り扱い説明書をお読みになった後、有効にします。
 
 ..    For Windows 7
 
@@ -95,7 +95,7 @@ Microsoft の `Hardware-Assisted Virtualization Detection Tool <https://www.micr
 
 ..    Verify your Windows OS is 64-bit (x64)
 
-3. Windows OS が 64 ビット（x64）なのを確認します。
+3. Windows OS が 64 ビット（x64）で動いているのを確認します。
 
 .. How you do this verification depends on your Windows version. For details, see the Windows article How to determine whether a computer is running a 32-bit version or 64-bit version of the Windows operating system.
 
@@ -118,13 +118,13 @@ Microsoft の `Hardware-Assisted Virtualization Detection Tool <https://www.micr
     Git MSYS-git UNIX tools
 
 * Windows 用 Docker クライアント
-* Docker Toolbox 管理ツールと ISO
+* Docker Toolbox 管理ツールと ISO（マシン・イメージ）
 * Oracle VM VirtualBox
 * Git MSYS-git UNIX ツール
 
 .. If you have a previous version of VirtualBox installed, do not reinstall it with the Docker Toolbox installer. When prompted, uncheck it.
 
-既に古いバージョンの VirtualBox をインストールしている場合は、Docker Toolbox インストーラで再インストールしないでください。インストール画面で選択肢が表示されたら、対象からチェックを外します。
+既に古いバージョンの VirtualBox をインストール済みの場合は、Docker Toolbox インストーラで再インストールしないでください（新しいバージョンをインストールするため、不整合が発生する可能性があります）。インストール画面で選択肢が表示されたら、対象からチェックを外します。
 
 .. If you have Virtual Box running, you must shut it down before running the installer.
 
@@ -158,7 +158,7 @@ Windows セキュリティのダイアログが表示されたら、プログラ
 
 ..    Accept all the installer defaults. The installer takes a few minutes to install all the components:
 
-インストーラをデフォルトにすると、全てのインストールが終わるまで数分かかります。
+インストーラをデフォルトした場合、全てのインストールが終わるまで数分かかります。
 
 ..    When notified by Windows Security the installer will make changes, make sure you allow the installer to make the necessary changes.
 
@@ -166,7 +166,7 @@ Windows セキュリティのダイアログが表示されたら、プログラ
 
 ..    When it completes, the installer reports it was successful:
 
-作業が終わると、インストールが完了したと画面に表示されます。
+作業後は、インストールが完了したと画面に表示されます。
 
 ..    Success..
 
@@ -187,9 +187,11 @@ Windows セキュリティのダイアログが表示されたら、プログラ
 
 ..    On your Desktop, find the Docker Toolbox icon.
 
-1. デスクトップ上の Docker Toolbox アイコンを見つけます。
+1. デスクトップ上の Docker Toolbox アイコンを探します。
 
 ..    Desktop
+
+.. image:: /tutimg/icon_set.png
 
 ..    Click the icon to launch a Docker Toolbox terminal.
 
@@ -205,9 +207,11 @@ Windows セキュリティのダイアログが表示されたら、プログラ
 
 ..    Desktop
 
+.. image:: /tutimg/terminal.png
+
 ..    The terminal runs a special bash environment instead of the standard Windows command prompt. The bash environment is required by Docker.
 
-標準の  Windows コマンドライン・プロンプトにかわり、特別な ``bash`` 環境をターミナル上で実行します。
+標準の  Windows コマンドライン・プロンプトにかわり、特別な ``bash`` 環境をターミナル上で実行します。Docker には ``bash`` 環境が必要です。
 
 ..    Make the terminal active by click your mouse next to the $ prompt.
 
@@ -227,7 +231,7 @@ Windows セキュリティのダイアログが表示されたら、プログラ
 
 ..    The command does some work for you, if everything runs well, the command’s output looks like this:
 
-以下のコマンドは、何らかの処理を行うものです。正常に実行すると、画面には次のように表示されます。
+以下のコマンドは、何らかの処理を行うものです。正常に終われば、画面には次のように表示されます。
 
 .. code-block:: bash
 
@@ -266,7 +270,7 @@ Windows セキュリティのダイアログが表示されたら、プログラ
 
 .. A Windows specific problem you might encounter has to do with the NDIS6 host network filter driver, which is known to cause issues on some Windows versions. For Windows Vista systems and newer, VirtualBox installs NDIS6 driver by default. Issues can range from system slowdowns to networking problems for the virtual machine (VM). If you notice problems, re-run the Docker Toolbox installer, and select the option to install VirtualBox with the NDIS5 driver.
 
-NDIS6 ホスト・ネットワーク・フィルタ・ドライバの使用時は、Windows 固有の問題に遭遇するかもしれません。これは特定の Windows バージョンで発生する事がわかっています。Windows Vista 以上のバージョンでは、VirtualBox が NDIS6 ドライバをデフォルトでインストールします。問題が発生する範囲名h、仮想マシンを停止するときネットワークに問題が発生するかもしれません。もし問題が発生したら、Docker Toolbox インストーラを再実行し、VirtualBox を NDIS6 ドライバを一緒にインストールするようオプションをお選びください。
+NDIS6 ホスト・ネットワーク・フィルタ・ドライバの使用時は、Windows 固有の問題に遭遇するかもしれません。これは特定 Windows バージョンでの発生が判明しています。Windows Vista 以上のバージョンでは、VirtualBox が NDIS6 ドライバをデフォルトでインストールします。問題が発生する範囲は、仮想マシンの停止時に、ネットワークで問題が発生するかもしれません。もし問題が発生したら、Docker Toolbox インストーラを再実行し、VirtualBox を NDIS6 ドライバを一緒にインストールするようオプションをお選びください。
 
 .. Where to go next
 

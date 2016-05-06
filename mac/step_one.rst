@@ -20,7 +20,7 @@ Mac OS X に Docker Toolbox のインストール
 
 .. Mac OS X users use Docker Toolbox to install Docker software. Docker Toolbox includes the following Docker tools:
 
-Mac OS X ユーザは Docker ツールボックス（Toolbox）を使って Docker のソフトウェアをインストールできます。Docker ツールボックスには、以下の Docker ツールが含まれます。
+Mac OS X ユーザは Docker ツールボックス（Toolbox）を使い、Docker のソフトウェアをインストールできます。Docker ツールボックスには、以下の Docker ツール群が入っています。
 
 ..    Docker CLI client for running Docker Engine to create images and containers
     Docker Machine so you can run Docker Engine commands from Mac OS X terminals
@@ -29,16 +29,16 @@ Mac OS X ユーザは Docker ツールボックス（Toolbox）を使って Dock
     the Docker QuickStart shell preconfigured for a Docker command-line environment
     Oracle VM VirtualBox
 
-* Docker CLI クライアントは Docker Engine（エンジン）でコンテナやイメージを作成します。
-* Docker Machine（マシン）は Mac OS X 端末から Docker Engine に命令できます。
-* Docker Compose（コンポーズ）は ``docker-compose`` コマンドを実行します。
-* Kitematic（カイトマティック）は Docker の GUI です。
-* Docker QuickStart（クイックスタート）は Docker コマンドライン環境を設定済みのシェルです。
+* Docker CLI クライアントは Docker Engine（エンジン）でコンテナやイメージを作成。
+* Docker Machine（マシン）は Mac OS X 端末から Docker Engine に命令。
+* Docker Compose（コンポーズ）は ``docker-compose`` コマンドを実行。
+* Kitematic（カイトマティック）は Docker の GUI。
+* Docker QuickStart（クイックスタート）は Docker コマンドライン環境を設定済みのシェル。
 * Oracle VM VirtualBox
 
 .. Because the Docker Engine daemon uses Linux-specific kernel features, you can’t run Docker Engine natively in OS X. Instead, you must use the Docker Machine command, docker-machine, to create and attach to a small Linux VM on your machine. This VM hosts Docker Engine for you on your OS X system.
 
-Docker Engine デーモンは LInux 固有の kernel 機能を使います。そのため、Windows では Docker Engine をネイティブに扱えません。その代わりに ``docker-machine`` コマンドを使い、自分のマシン上に小さな Linux 仮想マシンを作成し、そこに接続します。この仮想マシンは Mac システム上で Docker Engine を動かします。
+Docker Engine デーモンは LInux 特有の kernel 機能を使います。そのため、Windows では Docker Engine を直接操作できません。その代わりに ``docker-machine`` コマンドで自分のマシン上に小さな Linux 仮想マシンを作成し、そこに接続します。この仮想マシンは Mac システム上で Docker Engine を動かします。
 
 .. Step 1: Check your version
 
@@ -53,7 +53,7 @@ Mac で Docker ソフトウェアを実行するには OS X 10.8 「Mountain Lio
 
 ..    Choose About this Mac from the Apple menu.
 
-1. アップルのメニューからこの Mac についてをクリックします。
+1. アップルのメニュー（画面左上の林檎マーク）から「この Mac について」をクリックします。
 
 ..    The version number appears directly below the words OS X.
 
@@ -100,13 +100,13 @@ Mac で Docker ソフトウェアを実行するには OS X 10.8 「Mountain Lio
 
 .. By default, the standard Docker Toolbox installation:
 
-デフォルトでは、標準的な Docker Toolbox のインストールです。
+デフォルトは、標準的な Docker Toolbox のインストールです。
 
 ..    installs binaries for the Docker tools in /usr/local/bin
     makes these binaries available to all users
     updates any existing Virtual Box installation
 
-* Docker tool  のバイナリを ``/usr/local/bin`` にインストールします。
+* Docker ツール群のバイナリを ``/usr/local/bin`` にインストールします。
 * これらのバイナリを、全てのユーザで利用可能にします。
 * 既存の Virtual Box がインストールされていれば、更新します。
 
@@ -199,9 +199,9 @@ Docker コンテナを実行するには：
    
    The Docker Quick Start Terminal is configured to use Docker with the “default” VM.
 
-3. Click your mouse in the terminal window to make it active.
+.. Click your mouse in the terminal window to make it active.
 
-ターミナル・ウインドウをマウスでクリックし、アクティブにします。
+3. ターミナル・ウインドウをマウスでクリックし、アクティブにします。
 
 .. If you aren’t familiar with a terminal window, here are some quick tips.
 

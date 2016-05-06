@@ -46,7 +46,7 @@ Linux への Docker Engine 導入ガイド
 
 .. The getting started was user tested to reduce the chance of users having problems. For the best chance of success, follow the steps as written the first time before exploring on your own. It takes approximately 45 minutes to complete.
 
-この導入ガイドでは、Docker エンジンのコマンドライン・ツール（CLI）を Windows 端末上で使います。コマンドラインの利用経験がなくても構いません。ですが、コマンドラインの開き方や、コマンドの入力方法には慣れておいた方が良いでしょう。
+進める上で発生する問題が減るように、この導入ガイドは利用者テストを経ています。個人で色々試すよりも、導入ガイドを進める方が、最も成功に至るチャンスです。なお、ガイドを終えるまでにかかる時間は約45分です。
 
 .. Make sure you understand…
 
