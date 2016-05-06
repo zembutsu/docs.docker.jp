@@ -26,11 +26,11 @@ Docker とは何か？
 
 .. Docker is an open platform for developing, shipping, and running applications. Docker is designed to deliver your applications faster. With Docker you can separate your applications from your infrastructure and treat your infrastructure like a managed application. Docker helps you ship code faster, test faster, deploy faster, and shorten the cycle between writing code and running code.
 
-Docker はアプリケーションを開発（developing）・移動（shipping）・実行（running）するための、オープンなプラットフォームです。Docker は皆さんのアプリケーションをより速く運ぶために設計されています。Docker を使うことで、アプリケーションをインフラから分離し、アプリケーションを管理するようにインフラを扱えるようにします。Dockerはコードの移動をより速く、テストを速く、デプロイを速く、コードの記述とコードの実行におけるサイクルを短くします。
+Docker はアプリケーションを開発（developing）・移動（shipping）・実行（running）するための、オープンなプラットフォームです。Docker は皆さんのアプリケーションをより速く運ぶために設計されています。Docker を使うことで、アプリケーションをインフラから分離し、アプリケーションを管理するようにインフラを扱えるようにします。Dockerはコードの移動をより速く、テストを速く、デプロイを速くし、コードの記述とコードの実行におけるサイクルを短くします。
 
 .. Docker does this by combining kernel containerization features with workflows and tooling that help you manage and deploy your applications
 
-Docker は、カーネルのコンテナ化機能（containerization；コンテナライゼーション）がもたらすワークフローと手法（ツール）を組みあわせます。そのため、アプリケーションの管理とデプロイの手助けになるでしょう。
+Docker はこれを実現するために、カーネルのコンテナ化機能（containerization；コンテナライゼーション）がもたらすワークフローと手法（ツール）を組みあわせます。それゆえ、アプリケーション管理とデプロイの手助けになるでしょう。
 
 .. At its core, Docker provides a way to run almost any application securely isolated in a container. The isolation and security allow you to run many containers simultaneously on your host. The lightweight nature of containers, which run without the extra load of a hypervisor, means you can get more out of your hardware.
 
@@ -64,7 +64,7 @@ Docker は 開発のライフサイクルの手助けに最適です。Docker �
 
 .. For example, your developers write code locally and share their development stack via Docker with their colleagues. When they are ready, they push their code and the stack they are developing onto a test environment and execute any required tests. From the testing environment, you can then push the Docker images into production and deploy your code.
 
-例えば、開発者がローカルでコードを書き、Docker 上の開発スタックを同僚と共有します。準備が整えば、コードとスタックを開発環境からテスト環境に移動し、開発環境のスタックをテスト環境に移動し、必要なテストを実行します。テスト環境のあとで、Docker イメージをプロダクションに送信し、コードをデプロイできるのです。
+例えば、開発者がローカルでコードを書き、Docker 上の開発スタックを同僚と共有します。準備が整えば、コードとスタックを開発環境からテスト環境に移動し、開発環境のスタックをテスト環境に移動し、必要なテストを実行します。テスト環境のあとで、Docker イメージをプロダクション環境に送信し、コードをデプロイできるのです。
 
 .. Deploying and scaling more easily
 
@@ -73,7 +73,7 @@ Docker は 開発のライフサイクルの手助けに最適です。Docker �
 
 .. Docker’s container-based platform allows for highly portable workloads. Docker containers can run on a developer’s local host, on physical or virtual machines in a data center, or in the Cloud.
 
-Docker のコンテナを基盤としたプラットフォームは、ワークロードの高い可用性をもたらします。Docker コンテナは開発者のローカルホスト上で実行できるだけでなく、データセンタの物理環境や仮想マシン上、クラウド上でも実行できます。
+Docker のコンテナを基盤としたプラットフォームは、ワークロードの高い可用性をもたらします。Docker コンテナは開発者のローカルホスト上で実行できるだけでなく、データセンタの物理環境や仮想マシン上や、クラウド上でも実行できます。
 
 .. Docker’s portability and lightweight nature also make dynamically managing workloads easy. You can use Docker to quickly scale up or tear down applications and services. Docker’s speed means that scaling can be near real time.
 
@@ -86,7 +86,7 @@ Docker のコンテナを基盤としたプラットフォームは、ワーク�
 
 .. Docker is lightweight and fast. It provides a viable, cost-effective alternative to hypervisor-based virtual machines. This is especially useful in high density environments: for example, building your own Cloud or Platform-as-a-Service. But it is also useful for small and medium deployments where you want to get more out of the resources you have.
 
-Docker は軽量かつ高速です。これはハイパーバイザーをベースとした仮想化マシンより費用対効果を高くします。これが特に使いやすいのは高密度の環境でしょう。例えば、自分たちのクラウドや PaaS（プラットフォーム・アズ・ア・サービス）においてです。しかし、自分たちが持っているリソースを、より活用したいとする中小規模のデプロイにも便利です。
+Docker は軽量かつ高速です。これはハイパーバイザーをベースとした仮想化マシンよりも、費用対効果を高くします。これが特に使いやすいのは高密度の環境でしょう。例えば、自分たちのクラウドや PaaS（プラットフォーム・アズ・ア・サービス）においてです。しかし、自分たちが持っているリソースを、より活用したいとする中小規模のデプロイにも便利です。
 
 .. What are the major Docker components?
 
@@ -101,13 +101,13 @@ Docker は２つの主要コンポーネントを持ちます。
     Docker Hub: our Software-as-a-Service platform for sharing and managing Docker containers.
 
 * Docker：オープンソースのコンテナ仮想化プラットフォーム
-* `Docker Hub <https://hub.docker.com/>`_ Docker コンテナを共有・管理する私たちの SaaS プラットフォームです。
+* `Docker Hub <https://hub.docker.com/>`_ ：Docker コンテナを共有・管理する私たちの SaaS プラットフォームです。
 
 ..    Note: Docker is licensed under the open source Apache 2.0 license.
 
 .. note::
 
-   Docker はオープンソースの Apache 2.0 ライセンスの元で提供されています。
+   Docker はオープンソースの Apache 2.0 ライセンスの下で提供されています。
 
 .. What is Docker’s architecture?
 
@@ -116,7 +116,7 @@ Docker のアーキテクチャとは？
 
 .. Docker uses a client-server architecture. The Docker client talks to the Docker daemon, which does the heavy lifting of building, running, and distributing your Docker containers. Both the Docker client and the daemon can run on the same system, or you can connect a Docker client to a remote Docker daemon. The Docker client and daemon communicate via sockets or through a RESTful API.
 
-Docker はクライアント・サーバ型のアーキテクチャです。Docker *クライアント* が Docker コンテナの構築・実行・配布といった力仕事をするには、 Docker *デーモン* と通信します。 Docker クライアントとデーモンのいずれも、同じシステム上でも実行できます。あるいは、Docker クライアントはリモートの Docker デーモンに接続することも可能です。Docker クライアントとデーモンは、お互いにソケットもしくは RESTful API を経由して通信します。
+Docker はクライアント・サーバ型のアーキテクチャです。Docker *クライアント* が Docker コンテナの構築・実行・配布といった力仕事をするには、 Docker *デーモン* と通信します。 Docker クライアントとデーモンは、どちらも同じシステム上でも実行できます。あるいは、Docker クライアントはリモートの Docker デーモンに接続するのも可能です。Docker クライアントとデーモンは、お互いにソケットもしくは RESTful API を経由して通信します。
 
 .. image:: ./article-img/architecture.png
    :scale: 60%
@@ -129,7 +129,7 @@ Docker デーモン
 
 .. As shown in the diagram above, the Docker daemon runs on a host machine. The user does not directly interact with the daemon, but instead through the Docker client.
 
-先ほどの図で見たように、Docker デーモンはホストマシン上で動きます。ユーザは直接デーモンと通信せず、Docker クライアントを通して行います。
+上図で見たように、Docker デーモンはホストマシン上で動きます。ユーザは直接デーモンと通信せず、Docker クライアントを通して行います。
 
 .. The Docker client
 
@@ -138,7 +138,7 @@ Docker クライアント
 
 .. The Docker client, in the form of the docker binary, is the primary user interface to Docker. It accepts commands from the user and communicates back and forth with a Docker daemon.
 
-Docker クライアントは ``docker`` バイナリの形式です。これは主にユーザが Docker との通信に使います。ユーザからのコマンドを受け付けると、その先にある Docker デーモンと通信し返します。
+Docker クライアントは ``docker`` バイナリの形式です。これは主にユーザが Docker との通信に使います。ユーザからのコマンドを受け付けたら、その先にある Docker デーモンが通信を返します。
 
 .. Inside Docker
 
@@ -147,7 +147,7 @@ Docker の内部
 
 .. To understand Docker’s internals, you need to know about three components:
 
-Docker 内部の理解には、３つのコンポーネントを知る必要があります。
+Docker 内部を理解するには、３つのコンポーネントを知る必要があります。
 
 * Docker イメージ（image）
 * Docker レジストリ（registry）
@@ -160,7 +160,7 @@ Docker イメージ
 
 .. A Docker image is a read-only template. For example, an image could contain an Ubuntu operating system with Apache and your web application installed. Images are used to create Docker containers. Docker provides a simple way to build new images or update existing images, or you can download Docker images that other people have already created. Docker images are the build component of Docker.
 
-Docker イメージとは、読み込み専用（read-only）なテンプレートです。例えば、イメージには Ubuntu オペレーティング・システムに Apache とウェブ・アプリケーションが含まれるでしょう。イメージは Docker コンテナの作成時に使います。Docker は新しいイメージの構築や、既存イメージを更新します。あるいは、他の人が既に作成した Docker イメージをダウンロードすることも可能です。Docker イメージとは Docker における **構築（build）** コンポーネントです。
+Docker イメージとは、読み込み専用（read-only）のテンプレートです。例えば、あるイメージは Ubuntu オペレーティング・システム上に、Apache とウェブ・アプリケーションをインストールするでしょう。イメージは Docker コンテナの作成時に使います。Docker は新しいイメージの構築や、既存イメージを更新します。あるいは、他の人が既に作成した Docker イメージをダウンロードすることも可能です。Docker イメージとは Docker における **構築（build）** コンポーネントです。
 
 .. Docker registries
 
@@ -169,7 +169,7 @@ Docker レジストリ
 
 .. Docker registries hold images. These are public or private stores from which you upload or download images. The public Docker registry is provided with the Docker Hub. It serves a huge collection of existing images for your use. These can be images you create yourself or you can use images that others have previously created. Docker registries are the distribution component of Docker.
 
-Docker レジストリはイメージを保管します。パブリックもしくはプライベートに保管されているイメージのアップロードやダウンロードを行えます。パブリックな Docker レジストリとして `Docker Hub <http://hub.docker.com/>`__ が提供されています。たくさんの利用可能なイメージが提供されています。イメージを自分自身で作れるだけでなく、他人が作成したイメージも利用できます。Docker レジストリとは Docker における **配布（distribution）** コンポーネントです。
+Docker レジストリはイメージを保管します。パブリックもしくはプライベートに保管するイメージの、アップロードやダウンロードが可能です。パブリックな Docker レジストリとして `Docker Hub <http://hub.docker.com/>`__ が提供されています。そこでは利用可能なイメージがたくさん提供されています。イメージを自分自身で作れるだけでなく、他人が作成したイメージも利用できます。Docker レジストリとは Docker における **配布（distribution）** コンポーネントです。
 
 .. Docker containers
 
@@ -178,12 +178,12 @@ Docker コンテナ
 
 .. Docker containers are similar to a directory. A Docker container holds everything that is needed for an application to run. Each container is created from a Docker image. Docker containers can be run, started, stopped, moved, and deleted. Each container is an isolated and secure application platform. Docker containers are the run component of Docker.
 
-Docker コンテナはディレクトリと似ています。Docker コンテナにはアプリケーションの実行に必要な全てが含まれています。各コンテナは Docker イメージによって作られます。Docker コンテナは実行・開始・停止・移動・削除できます。各コンテナは分離されており、安全なアプリケーションのプラットフォームです。Docker コンテナとは Docker における **実行（run）** コンポーネントです。
+Docker コンテナはディレクトリと似ています。Docker コンテナはアプリケーションの実行に必要な全てを含みます。各コンテナは Docker イメージによって作られます。Docker コンテナは実行・開始・停止・移動・削除できます。各コンテナは分離されており、安全なアプリケーションのプラットフォームです。Docker コンテナとは Docker における **実行（run）** コンポーネントです。
 
 .. So how does Docker work?
 
-では、どのように Docker は動作しますか？
-========================================
+では、どのようにして Docker は動作しますか？
+==================================================
 
 .. So far, we’ve learned that:
 
@@ -199,7 +199,7 @@ Docker コンテナはディレクトリと似ています。Docker コンテナ
 
 .. Let’s look at how these elements combine together to make Docker work.
 
-それでは、Docker が動作するために、それぞれの要素をどのように連携させているのか見ていきます。
+それでは、Docker が動作するために、それぞれの要素をどのように連携させているのか理解しましょう。
 
 .. How does a Docker image work?
 
@@ -208,15 +208,15 @@ Docker イメージの役割は？
 
 .. We’ve already seen that Docker images are read-only templates from which Docker containers are launched. Each image consists of a series of layers. Docker makes use of union file systems to combine these layers into a single image. Union file systems allow files and directories of separate file systems, known as branches, to be transparently overlaid, forming a single coherent file system.
 
-これまで分かったのは、Docker イメージとは読み込み専用のテンプレートであり、これを使って Docker コンテナを起動します。各イメージはレイヤの積み重ねで構成されています。Docker は `union ファイルシステム（UnionFS） <https://ja.wikipedia.org/wiki/UnionFS>`_ を使い、これらのレイヤを単一のイメージに連結します。ユニオン・ファイルシステムは、ブランチとしても知られています。これは透過的な重ね合わせ（overlaid）と、互いに密着した（coherent）ファイルシステムを形成します。
+これまで分かったのは、Docker イメージとは読み込み専用のテンプレートであり、これを使って Docker コンテナを起動します。各イメージはレイヤの積み重ねで構成されています。Docker は `ユニオン・ファイルシステム（UnionFS） <https://ja.wikipedia.org/wiki/UnionFS>`_ を使い、これらのレイヤを単一のイメージに連結します。ユニオン・ファイルシステムは、ブランチとしても知られています。これは透過的な重ね合わせ（overlaid）と、互いに密着した（coherent）ファイルシステムを形成します。
 
 .. One of the reasons Docker is so lightweight is because of these layers. When you change a Docker image—for example, update an application to a new version— a new layer gets built. Thus, rather than replacing the whole image or entirely rebuilding, as you may do with a virtual machine, only that layer is added or updated. Now you don’t need to distribute a whole new image, just the update, making distributing Docker images faster and simpler.
 
-Docker が軽量な理由の１つが、これらのレイヤによるものです。Docker イメージに変更を加えたとしましょう。例えば、アプリケーションを新しいバージョンに更新したとします。そうすると、新しいレイヤが構築されます。つまり、仮想マシン上で何か作業をした結果、イメージが置き換えられたり完全に再構築されるというよりは、単純にレイヤーが追加されるか更新されるだけなのです。この新しいイメージの配布に関する心配は不要です。新しい Docker イメージを速く簡単に配布するには、単に更新されたレイヤを配布するだけです。
+Docker が軽量な理由の１つが、これらのレイヤによるものです。Docker イメージに変更を加えたとしましょう。例えば、アプリケーションを新しいバージョンに更新すると仮定します。この更新時に新しいレイヤを構築します。つまり、仮想マシン上で何らかの作業をした結果、イメージが置き換えられたり完全に再構築されるというよりは、単純にレイヤを追加するか更新するだけなのです。この新しいイメージの配布に関する心配は不要です。新しい Docker イメージを速く簡単に配布するには、単に更新されたレイヤを配布するだけです。
 
 .. Every image starts from a base image, for example ubuntu, a base Ubuntu image, or fedora, a base Fedora image. You can also use images of your own as the basis for a new image, for example if you have a base Apache image you could use this as the base of all your web application images.
 
-各イメージはベース・イメージ（base image）から作られます。例えば、 ``ubuntu``  は ベース Ubuntu イメージですし、 ``fedora`` は ベース Fedora イメージです。また、自分自身で新しいイメージの元も作れます。たとえば、自分でベース Apache イメージを作れば、これをつかって自分用のウェブ・アプリケーション・イメージのベース（基礎）として使えます。
+各イメージはベース・イメージ（base image）から作られます。例えば、 ``ubuntu``  は ベース Ubuntu イメージですし、 ``fedora`` は ベース Fedora イメージです。また、自分自身で新しいイメージの元も作れます。例えば、自分でベース Apache イメージを作れば、これを自分用のウェブ・アプリケーション・イメージのベース（基礎）として使えます。
 
 ..     Note: Docker usually gets these base images from Docker Hub.
 
@@ -226,7 +226,7 @@ Docker が軽量な理由の１つが、これらのレイヤによるもので�
 
 .. Docker images are then built from these base images using a simple, descriptive set of steps we call instructions. Each instruction creates a new layer in our image. Instructions include actions like:
 
-Docker イメージは、これらのベース・イメージから構築できるようにするために、簡単な手順を記述した集まりを *命令 (instructions)* と呼びます。それぞれの命令はイメージ上に新しいレイヤを作成します。命令は次のような動作をします。
+これらのベース・イメージからシンプルに構築できるようにするため、Docker イメージには *命令 (instructions)* と呼ぶ構築手順を簡単に記述した集まりがあります。それぞれの命令ごとに、イメージ上に新しいレイヤを作成します。命令は次のような動作をします。
 
 ..     Run a command.
     Add a file or directory.
@@ -236,11 +236,11 @@ Docker イメージは、これらのベース・イメージから構築でき�
 * コマンドの実行
 * ファイルやディレクトリの追加
 * 環境変数の作成
-* 対象イメージを使ってコンテナを起動するとき、どのプロセスを実行するか
+* 対象イメージを使ってコンテナを起動する時、どのプロセスを実行するか
 
 .. These instructions are stored in a file called a Dockerfile. Docker reads this Dockerfile when you request a build of an image, executes the instructions, and returns a final image.
 
-これらの命令は ``Dockerfile`` と呼ばれるファイルに保管します。Docker にイメージの構築を依頼すると、Docker はこの ``Dockerfile`` を読み込み、命令を実行し、最終的なイメージを返します。
+これらの命令を ``Dockerfile`` と呼ぶファイルに保管します。Docker にイメージの構築を要求すると、Docker はこの ``Dockerfile`` を読み込み、命令を実行し、最終的なイメージを返します。
 
 .. How does a Docker registry work?
 
@@ -249,15 +249,15 @@ Docker イメージは、これらのベース・イメージから構築でき�
 
 .. The Docker registry is the store for your Docker images. Once you build a Docker image you can push it to a public registry such as the one provided by Docker Hub or to your own registry running behind your firewall.
 
-Docker レジストリは Docker イメージを保管します。Docker イメージを構築後、 `Docker Hub <https://hub.docker.com/>`__ のような公開レジストリに *送信(push)* するか、あるいはファイアウォール背後にある自分のレジストリに送信できます。
+Docker レジストリは Docker イメージを保管します。Docker イメージを構築後、 `Docker Hub <https://hub.docker.com/>`__ のような公開レジストリに *送信(push)* します。あるいはファイアウォール背後にある自分のレジストリにも送信できます。
 
 .. Using the Docker client, you can search for already published images and then pull them down to your Docker host to build containers from them.
 
-Docker クライアントを使い、公開済みのイメージを検索できます。そして、自分の Docker ホスト上にイメージをダウンロード(pull)し、これを使ってコンテナを構築できます。
+Docker クライアントを使い、公開済みのイメージを検索できます。そして、自分の Docker ホスト上にイメージを取得(pull)、つまりダウンロードし、これを使ってコンテナを構築できます。
 
 .. Docker Hub provides both public and private storage for images. Public storage is searchable and can be downloaded by anyone. Private storage is excluded from search results and only you and your users can pull images down and use them to build containers. You can sign up for a storage plan here.
 
-`Docker Hub <https://hub.docker.com/>`__ はイメージを保管するために、パブリックとプライベートなストレージを提供しています。パブリック・ストレージは誰でも検索可能でダウンロードできるものです。プライベート・ストレージは検索結果から除外され、自分もしくは許可されたユーザだけがイメージを取得し、コンテナを構築できるようにします。 `ストレージのプランはこちらでサインアップ <https://hub.docker.com/plans>`_  できます。
+`Docker Hub <https://hub.docker.com/>`__ はイメージを保管するために、パブリックとプライベートなストレージの利用をサポートしています。パブリック・ストレージとは誰でも検索可能でダウンロードできるものです。プライベート・ストレージとは検索結果から除外され、自分もしくは許可されたユーザだけがイメージを取得し、コンテナを構築できるようにします。 `ストレージの料金プランと契約はこちらから <https://hub.docker.com/plans>`_  できます。
 
 .. How does a container work?
 
@@ -266,7 +266,7 @@ Docker クライアントを使い、公開済みのイメージを検索でき�
 
 .. A container consists of an operating system, user-added files, and meta-data. As we’ve seen, each container is built from an image. That image tells Docker what the container holds, what process to run when the container is launched, and a variety of other configuration data. The Docker image is read-only. When Docker runs a container from an image, it adds a read-write layer on top of the image (using a union file system as we saw earlier) in which your application can then run.
 
-コンテナに含まれているのは、オペレーティング・システム、ユーザが追加したファイル、メタデータです。これまで見てきたように、各コンテナはイメージから構築されます。そのイメージは、 Docker に対してどのコンテナの中に何があるか、コンテナ起動時に何のプロセスを実行するか、その他のデータに関する設定確認をします。Docker イメージは読み込み専用です。Docker がイメージからコンテナを実行する時、読み書き可能なレイヤを既存イメージ上に追加し（先ほど見たとおり、ユニオン・ファイルシステムを使います）、アプリケーションを実行できるようにします。
+コンテナに含まれているのは、オペレーティング・システム、ユーザが追加したファイル、メタデータです。これまで見てきたように、各コンテナはイメージから構築します。そのイメージは、 Docker に対してどのコンテナの中に何があるか、コンテナ起動時に何のプロセスを実行するか、その他のデータに関する設定確認をします。Docker イメージは読み込み専用です。Docker がイメージからコンテナを実行する時、読み書き可能なレイヤを既存イメージ上に追加し（先ほど見た通り、ユニオン・ファイルシステムを使います）、アプリケーションを実行できるようにします。
 
 .. What happens when you run a container?
 
@@ -288,8 +288,8 @@ Docker クライアントを使い、公開済みのイメージを検索でき�
 ..    What Docker image to build the container from, here ubuntu, a base Ubuntu image;
 ..    The command you want to run inside the container when it is launched, here /bin/bash, to start the Bash shell inside the new container.
 
-* コンテナが何の Docker イメージで構築されるのか。ここでは ``ubuntu`` というベース Ubuntu イメージを使い、
-* コンテナを起動したら、その中で何のコマンドを実行したいのか、ここでは ``/bin/bash`` を指定し、新しいコンテナの中で Bash シェルを開始します。
+* コンテナを何の Docker イメージで構築するのか。ここでは ``ubuntu`` というベース Ubuntu イメージを使用
+* コンテナを起動したら、その中で何のコマンドを実行したいのか、ここでは ``/bin/bash`` を指定し、新しいコンテナの中で Bash シェルを開始
 
 .. So what happens under the hood when we run this command?
 
@@ -307,17 +307,17 @@ Docker の処理内容を、順番に見ていきます。
     Executes a process that you specify: Runs your application, and;
     Captures and provides application output: Connects and logs standard input, outputs and errors for you to see how your application is running.
 
-* **ubuntu イメージの取得** ：Docker は ``ubuntu`` イメージの存在を確認し、もしローカルホスト上に存在しなければ、 `Docker Hub <https://hub.docker.com/>`__ からダウンロードします。イメージが既にあれば、Docker はこれを新しいコンテナのために使います。
-* **新しいコンテナを作成** ：Docker がイメージを入手した後、それを使ってコンテナを作成します。
-* **ファイルシステムを割り当て、読み書き可能なレイヤをマウント** ：コンテナを新しいファイルシステム上に作成し、読み込み可能な（イメージの）レイヤをイメージに追加します。
-* **ネットワークとブリッジインターフェースの割り当て** ：Docker コンテナがローカルホストと通信できるようにするためのネットワーク・インターフェースを作成します。
-* **IP アドレスを設定** ：プールされている範囲内で利用可能な IP アドレスを探して（コンテナに）追加します。
+* **ubuntu イメージの取得** ：Docker は ``ubuntu`` イメージの存在を確認し、もしローカルホスト上に存在しなければ、 `Docker Hub <https://hub.docker.com/>`__ からダウンロードする。イメージが既にあれば、Docker はこれを新しいコンテナのために使う。
+* **新しいコンテナを作成** ：Docker がイメージを入手したあと、それを使ってコンテナを作成する。
+* **ファイルシステムを割り当て、読み書き可能なレイヤをマウント** ：コンテナを新しいファイルシステム上に作成し、読み込み可能な（イメージの）レイヤをイメージに追加する。
+* **ネットワークとブリッジインターフェースの割り当て** ：Docker コンテナがローカルホストと通信できるようにするため、ネットワーク・インターフェースを作成する。
+* **IP アドレスを設定** ：プールされている範囲内で利用可能な IP アドレスを探して（コンテナに）追加する。
 * **指定したプロセスを実行** ：アプリケーションを実行し、そして、
-* **アプリケーションの出力を収集・表示** ：コンテナに接続し、アプリケーションを実行したことによる標準入力・標準出力・エラーを記録・表示します。
+* **アプリケーションの出力を収集・表示** ：コンテナに接続し、アプリケーションを実行したことによる標準入力・標準出力・エラーを記録・表示する。
 
 .. You now have a running container! From here you can manage your container, interact with your application and then, when finished, stop and remove your container.
 
-これでコンテナが動きました！ 以降は自分でコンテナを管理し、アプリケーションと双方向にやりとりし、利用し終えたらコンテナを停止・削除できます。
+これでコンテナが動きました！ 以降は自分でコンテナを管理し、アプリケーションと双方向でやりとりをし、利用し終えたらコンテナを停止・削除できます。
 
 .. The underlying technology
 
@@ -335,7 +335,7 @@ Docker は Go 言語で書かれており、これまで見てきた機能は、
 
 .. Docker takes advantage of a technology called namespaces to provide the isolated workspace we call the container. When you run a container, Docker creates a set of namespaces for that container.
 
-Docker は名前空間（ネームスペース）と呼ばれる技術を利用し、*コンテナ （container）* と呼ぶワークスペース（作業空間）の分離をもたらします。Docker はコンテナ毎に *名前空間* の集まりを作成します。
+Docker は名前空間（ネームスペース）と呼ばれる技術を利用し、*コンテナ （container）* と呼ぶワークスペース（作業空間）の分離をもたらします。Docker はコンテナごとに *名前空間* の集まりを作成します。
 
 .. This provides a layer of isolation: each aspect of a container runs in its own namespace and does not have access outside it.
 
@@ -364,7 +364,7 @@ Docker が使う Linux 上の名前空間は、次の通りです。
 
 .. Docker on Linux also makes use of another technology called cgroups or control groups. A key to running applications in isolation is to have them only use the resources you want. This ensures containers are good multi-tenant citizens on a host. Control groups allow Docker to share available hardware resources to containers and, if required, set up limits and constraints. For example, limiting the memory available to a specific container.
 
-Linux 上の Docker は、 ``cgroup``  やコントロール・グループと呼ばれる技術を使います。アプリケーション実行の鍵となるのは、自身が必要なリソースのみを分離することです。この機能があるため、ホスト上で複数の利用者がいても、コンテナを使えます。また、コントロール・グループにより、Docker はコンテナに対して利用可能なハードウェア・リソースを共有し、必要があればコンテナが必要なリソース上限を設定できます。例えば、特定のコンテナに対する利用可能なメモリに制限を加えます。
+Linux 上の Docker は、 ``cgroup``  やコントロール・グループと呼ばれる技術を使います。アプリケーション実行の鍵となるのは、自身が必要なリソースのみを分離します。この機能があるため、ホスト上で複数の利用者がいても、コンテナを使えます。また、コントロール・グループにより、Docker はコンテナに対して利用可能なハードウェア・リソースを共有し、必要があればコンテナが必要なリソース上限を設定できます。例えば、特定のコンテナに対する利用可能なメモリに制限を加えます。
 
 .. Union file systems
 
@@ -373,7 +373,7 @@ Linux 上の Docker は、 ``cgroup``  やコントロール・グループと�
 
 .. Union file systems, or UnionFS, are file systems that operate by creating layers, making them very lightweight and fast. Docker uses union file systems to provide the building blocks for containers. Docker can make use of several union file system variants including: AUFS, btrfs, vfs, and DeviceMapper.
 
-ユニオン・ファイル・システム、あるいは UnionFS はファイルシステムです。これは作成されたレイヤーを操作することで、非常に軽量かつ高速です。Docker はコンテナ毎にブロックを構築するためにユニオン・ファイル・システムを使います。Docker は AUFS、btrfs、vfs、DeviceMapper を含む複数のユニオン・ファイル・システムの派生を利用できます。
+ユニオン・ファイル・システム、あるいは UnionFS はファイルシステムです。これは作成したレイヤを操作しますので、非常に軽量かつ高速です。Docker はコンテナ毎にブロックを構築するため、ユニオン・ファイル・システムを使います。Docker は AUFS、btrfs、vfs、DeviceMapper を含む複数のユニオン・ファイル・システムの派生を利用できます。
 
 .. Container format
 
@@ -382,7 +382,7 @@ Linux 上の Docker は、 ``cgroup``  やコントロール・グループと�
 
 .. Docker combines these components into a wrapper we call a container format. The default container format is called libcontainer. In the future, Docker may support other container formats, for example, by integrating with BSD Jails or Solaris Zones.
 
-Docker はこれらのコンポーネントを連結し、包み込んでいます。これをコンテナ形式（フォーマット）と読んでいます。デフォルトのコンテナ形式は ``libcontainer`` と呼ばれています。いずれ、Docker は他のコンテナ形式、例えば BSD Jail や Solaris Zone との統合をサポートするかもしれません。
+Docker はこれらのコンポーネントを連結し、包み込んでいます。これをコンテナ形式（フォーマット）と呼びます。デフォルトのコンテナ形式は ``libcontainer`` と呼ばれています。いずれ、Docker は他のコンテナ形式、例えば BSD Jail や Solaris Zone との統合をサポートするかも知れません。
 
 .. Next steps
 
@@ -400,12 +400,12 @@ Docker インストール
 
 .. The Docker user guide
 
-Docker ユーザ・ガイド
+Docker ユーザガイド
 ------------------------------
 
 .. Learn Docker in depth.
 
-:doc:`さらに深く学びましょう。 </engine/userguide/index>` 
+:doc:`より深く学びましょう。 </engine/userguide/index>` 
 
 .. seealso:: 
    Understand the architecture
