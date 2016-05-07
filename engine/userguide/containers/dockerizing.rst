@@ -27,7 +27,7 @@
 
 .. Docker allows you to run applications, worlds you create, inside containers. Running an application inside a container takes a single command: docker run.
 
-Docker はアプリケーションをコンテナ内に作成した世界で実行可能にします。コンテナ内でアプリケーションを実行するには、``docker run`` コマンドを実行するだけです。
+Docker はコンテナ内に作成した世界で、アプリケーションを実行可能にします。コンテナ内でアプリケーションを実行するには、``docker run`` コマンドを実行するだけです。
 
 .. Note: Depending on your Docker system configuration, you may be required to preface each docker command on this page with sudo. To avoid this behavior, your system administrator can create a Unix group called docker and add users to it.
 
@@ -57,17 +57,17 @@ Hello world の実行
 
 .. In this example:
 
-この例は：
+この例では以下の作業を行いました。
 
 * ``docker run`` でコンテナを実行します（runは「実行」の意味）。
 
-* ``ubuntu`` は実行するイメージです。この例では Ubuntu オペレーティング・システムのイメージです。イメージを指定すると、Docker はまずホスト上にイメージがあるかどうか確認します。イメージがローカルに存在していなければ、パブリック・イメージ・レジストリである `Docker Hub <https://hub.docker.com/>`_ からイメージを取得（pull）します。
+* ``ubuntu`` は実行するイメージです。この例では Ubuntu オペレーティング・システムのイメージです。イメージを指定したら、Docker はまずホスト上にイメージがあるかどうか確認します。イメージがローカルに存在していなければ、パブリック・イメージ・レジストリである `Docker Hub <https://hub.docker.com/>`_ からイメージを取得（pull）します。
 
-* ``/bin/echo`` は新しいコンテナの中で実行するコマンドです。
+* ``/bin/echo`` は新しいコンテナ内で実行するコマンドです。
 
 .. The container launches. Docker creates a new Ubuntu environment and executes the /bin/echo command inside it and then prints out:
 
-コンテナを起動します。Docker は新しい Ubuntu 環境を作成し、その中で ``/bin/echo`` コマンドを実行し、その結果を出力します。
+コンテナを起動するとは、Docker が新しい Ubuntu 環境を作成し、その中で ``/bin/echo`` コマンドを実行し、その結果を出力します。
 
 .. code-block:: bash
 
@@ -75,7 +75,7 @@ Hello world の実行
 
 .. So what happened to the container after that? Well, Docker containers only run as long as the command you specify is active. Therefore, in the above example, the container stops once the command is executed.
 
-それでは、表示した後のコンテナはどのような状況でしょうか。Docker コンテナが実行されていたのは、指定したコマンドを処理していた間のみです。この例では、コマンドを実行した後、直ちにコンテナが停止しました。
+それでは、表示後のコンテナはどのような状況でしょうか。Docker コンテナが実行されていたのは、指定したコマンドを処理していた間のみです。この例では、コマンドを実行したのち、直ちにコンテナが停止しました。
 
 .. Run an interactive container
 .. _run-an-interactive-container:
@@ -94,7 +94,7 @@ Hello world の実行
 
 .. In this examples:
 
-この例では：
+この例は、次の処理を行います。
 
 .. docker run runs a container.
     ubuntu is the image you would like to run.
@@ -105,12 +105,12 @@ Hello world の実行
 * ``docker run`` コマンドでコンテナを実行します。
 * ``ubuntu`` イメージを使って起動します。
 * ``-t`` フラグは新しいコンテナ内に疑似ターミナル (pseudo-tty) を割り当てます。
-* ``-i`` フラグはコンテナの標準入力 (``STDIN``)を取得し、双方向に接続できるようにします。
+* ``-i`` フラグはコンテナの標準入力 (``STDIN``)を取得し、双方向に接続できるようにします（訳者注：正確には標準エラー STDOUT も含めた標準入出力を扱います）。
 * ``/bin/bash`` はコンテナ内で Bash シェルを起動します。
 
 .. The container launches. We can see there is a command prompt inside it:
 
-コンテナを起動すると、次のようなコマンド・プロンプトが表示されます。
+コンテナを起動したら、次のようなコマンド・プロンプトが表示されます。
 
 .. code-block:: bash
 
@@ -121,12 +121,12 @@ Hello world の実行
 
 この例は：
 
-* ``pwd`` を実行し、現在のディレクトリが表示されます。ここでは ``/`` ルートディレクトリにいることがわかります。
+* ``pwd`` を実行し、現在のディレクトリが表示されます。ここでは ``/`` ルート・ディレクトリにいることが分かります。
 * ``ls`` はルートディレクトリ以下のディレクトリ一覧を表示します。典型的な Linux ファイル・システムのように見えます。
 
 .. Now, you can play around inside this container. When completed, run the exit command or enter Ctrl-D to exit the interactive shell.
 
-これで、コンテナ内で遊ぶことができます。終わった後は ``exit`` コマンドか ``Ctrl-D`` を入力して終了できます。
+これで、コンテナ内で遊べます。終わったら ``exit`` コマンドまたは ``Ctrl-D`` を入力して終了できます。
 
 .. code-block:: bash
 
@@ -186,7 +186,7 @@ Docker 化した Hello world の起動
 
 .. note::
 
-   コンテナ ID は長くて扱いにくいものです。後ほどより短い ID を扱いします。こちらを使えば、コンテナをより簡単に操作できます。
+   コンテナ ID は長くて扱いにくいものです。あとで短い ID を扱います。こちらを使えば、コンテナをより簡単に操作できます。
 
 .. We can use this container ID to see what’s happening with our hello world daemon.
 
@@ -212,7 +212,7 @@ Docker 化した Hello world の起動
 
 * ``1e5535038e28`` はコンテナ ID の短いバージョンです。
 * ``ubuntu`` は使用したイメージです。
-* コマンド、状態、割り当てられた名前は ``insane_babbage`` です。
+* コマンド、状態、コンテナに自動で割り当てられた名前は ``insane_babbage`` です。
 
 .. Note: Docker automatically generates names for any containers started. We’ll see how to specify your own names a bit later.
 
@@ -222,11 +222,11 @@ Docker 化した Hello world の起動
 
 .. Now, we know the container is running. But is it doing what we asked it to do? To see this we’re going to look inside the container using the docker logs command.
 
-これでコンテナは実行中だと分かりました。しかし、実行時に指定した処理が正しく行われているでしょうか。コンテナの中でどのような処理が行われているか確認するには、``docker logs`` を使います。
+これでコンテナが実行中だと分かりました。しかし、実行時に指定した処理が正しく行われているでしょうか。コンテナの中でどのような処理が行われているか確認するには、``docker logs`` を使います。
 
 .. Let’s use the container name insane_babbage.
 
-コンテナ名 ``insane_babbage`` を使いましょう。
+コンテナ名 ``insane_babbage`` を指定しましょう。
 
 .. code-block:: bash
 
@@ -242,11 +242,11 @@ Docker 化した Hello world の起動
 
 ..    docker logs looks inside the container and returns hello world.
 
-* ``docker logs`` でコンテナ内を見ると、 ``hello world`` を返します。
+* ``docker logs`` でコンテナ内をのぞき込んだら、 ``hello world`` を返します。
 
 .. Awesome! The daemon is working and you have just created your first Dockerized application!
 
-すばらしい！ デーモンとして動いています。初めて Docker 化（Dockerized）したアプリケーションを作成しました！
+すばらしいです！ デーモンとして動いています。初めて Docker 化（Dockerized）したアプリケーションを作成しました！
 
 .. Next, run the docker stop command to stop our detached container.
 
@@ -259,7 +259,7 @@ Docker 化した Hello world の起動
 
 .. The docker stop command tells Docker to politely stop the running container and returns the name of the container it stopped.
 
-``docker stop`` コマンドは、Docker に対して丁寧にコンテナを停止するよう命令します。処理が成功すると、停止したコンテナ名を表示します。
+``docker stop`` コマンドは、Docker に対して丁寧にコンテナを停止するよう命令します。処理が成功したら、停止したコンテナ名を表示します。
 
 .. Let’s check it worked with the docker ps command.
 
@@ -272,7 +272,7 @@ Docker 化した Hello world の起動
 
 .. Excellent. Out container is stopped.
 
-素晴らしいです。コンテナが停止しました。
+素晴らしいですね。コンテナが停止しました。
 
 
 .. Next steps
@@ -282,7 +282,7 @@ Docker 化した Hello world の起動
 
 .. So far, you launched your first containers using the docker run command. You ran an interactive container that ran in the foreground. You also ran a detached container that ran in the background. In the process you learned about several Docker commands:
 
-ここまでは ``docker run`` コマンドを使い、初めてのコンテナを起動しました。フォアグラウンドで動作する双方向に操作可能なコンテナを実行しました。また、バックグラウンドで動作するデタッチド・コンテナも実行しました。この過程で、複数の Docker コマンドを学びました。
+ここまでは ``docker run`` コマンドを使い、初めてのコンテナを起動しました。フォアグラウンドで動作する、双方向に操作可能なコンテナを実行しました。また、バックグラウンドで動作するデタッチド・コンテナも実行しました。この過程で、複数の Docker コマンドを学びました。
 
 .. 
     docker ps - Lists containers.

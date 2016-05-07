@@ -25,7 +25,7 @@
 
 .. In the “Hello world in a container“ you launched your first containers using the docker run command. You ran an interactive container that ran in the foreground. You also ran a detached container that ran in the background. In the process you learned about several Docker commands:
 
-「 :doc:`dockerizing` 」では、``docker run`` コマンドを使い、初めてのコンテナを起動しました。そして、フォアグラウンドで *インタラクティブなコンテナ (interactive container)* を実行しました。また、バックグラウンドで *デタッチド・コンテナ (detached container)* を実行しました。この過程で複数の Docker コマンドを学びました：
+「 :doc:`dockerizing` 」では、``docker run`` コマンドを使い、初めてのコンテナを起動しました。そして、フォアグラウンドで *双方向なコンテナ (interactive container)* を実行しました。また、バックグラウンドで *デタッチド・コンテナ (detached container)* を実行しました。この過程で複数の Docker コマンドを学びました。
 
 .. 
     docker ps - Lists containers.
@@ -45,7 +45,7 @@ Docker クライアントについて学ぶ
 
 .. If you didn’t realize it yet, you’ve been using the Docker client each time you typed docker in your Bash terminal. The client is a simple command line client also known as a command-line interface (CLI). Each action you can take with the client is a command and each command can take a series of flags and arguments.
 
-気が付いていないかもしれませんが、Bash ターミナル上で毎回 ``docker`` と入力することで、既に Docker クライアントを利用していました。クライアントとはシンプルなコマンドライン・クライアントであり、コマンドライン・インターフェース（CLI）とも呼びます。クライアントを使った各種の動作にはコマンド（命令）を使います。各コマンドには一連のフラグや引数を持ちます。
+気が付いていないかも知れませんが、Bash ターミナル上で毎回 ``docker`` と入力し、既に Docker クライアントを利用していました。クライアントとはシンプルなコマンドライン・クライアントであり、コマンドライン・インターフェース（CLI）とも呼びます。クライアントを使った各種の動作にはコマンド（命令）を使います。各コマンドには一連のフラグや引数を持ちます。
 
 .. code-block:: bash
 
@@ -63,7 +63,7 @@ Docker クライアントについて学ぶ
 
 .. This command will not only provide you the version of Docker client and daemon you are using, but also the version of Go (the programming language powering Docker).
 
-このコマンドは使用している Docker クライアントとデーモンのバージョンを表示するだけではありません。Go 言語のバージョン（Docker を動かすプログラミング言語）も表示します。
+このコマンドは使用している Docker クライアントとデーモンのバージョンを表示するだけではありません。Go 言語（Docker を動かすプログラミング言語）のバージョンも表示します。
 
 .. code-block:: bash
 
@@ -101,7 +101,7 @@ Docker コマンドの使い方を表示
 
 .. To see usage for a specific command, specify the command with the --help flag:
 
-コマンドラインで ``--help`` フラグを指定するのが典型的な使い方です。
+一般的な使い方は、コマンドラインで ``--help`` フラグを指定します。
 
 .. code-block:: bash
 
@@ -131,11 +131,11 @@ Docker でウェブ・アプリケーションを実行
 
 .. So now you’ve learned a bit more about the docker client you can move onto the important stuff: running more containers. So far none of the containers you’ve run did anything particularly useful, so you can change that by running an example web application in Docker.
 
-ここまでは ``docker`` クライアントについて少しだけ学びました。次は多くのコンテナの実行という、より重要なことを学びます。これまで実行したコンテナのほとんどは、いずれも何かに役に立つ処理を行うものではありませんでした。今度は、Docker を使ったウェブ・アプリケーションの実行に移ります。
+ここまでは ``docker`` クライアントについて少しだけ学びました。次は多くのコンテナの実行という、より重要なことを学びます。これまで実行したコンテナのほとんどは、いずれも何かに役に立つ処理を行いませんでした。今度は、Docker を使ったウェブ・アプリケーションの実行に移ります。
 
 .. For our web application we’re going to run a Python Flask application. Start with a docker run command.
 
-ウェブ・アプリケーションとして、Python の Flask アプリケーションを実行します。``docker run`` コマンドから始めます。
+ウェブ・アプリケーションとして、Python の Flask アプリケーションを実行します。``docker run`` コマンドで開始します。
 
 .. code-block:: bash
 
@@ -143,7 +143,7 @@ Docker でウェブ・アプリケーションを実行
 
 .. Review what the command did. You’ve specified two flags: -d and -P. You’ve already seen the -d flag which tells Docker to run the container in the background. The -P flag is new and tells Docker to map any required network ports inside our container to our host. This lets us view our web application.
 
-コマンドの実行内容を精査します。``-d`` と ``-P`` という２つのフラグを指定しました。``-d`` フラグは既出であり、コンテナをバックグラウンドで実行するよう Docker に命令します。``-P`` は新しいフラグで、コンテナ内部のネットワークで必要なポートを、ホスト側にマップする（割り当てる）よう Docker に命令します。これにより、ウェブ・アプリケーションを観られるようになります。
+コマンドの実行内容を精査します。``-d`` と ``-P`` という２つのフラグを指定しました。``-d`` フラグは既出であり、コンテナをバックグラウンドで実行するよう Docker に命令します。``-P`` は新しいフラグで、コンテナ内部のネットワークで必要なポートを、ホスト側にマップする（割り当てる）よう Docker に命令します。これにより、ウェブ・アプリケーションを参照できます。
 
 .. You’ve specified an image: training/webapp. This image is a pre-built image you’ve created that contains a simple Python Flask web application.
 
@@ -189,7 +189,7 @@ Docker でウェブ・アプリケーションを実行
 
 .. We can see the same details we saw when we first Dockerized a container with one important addition in the PORTS column.
 
-:doc:`始めて Docker 化したコンテナ <dockerizing>` で見てきた詳細に加え、重要な ``PORTS`` 列に情報が追加されています。
+:doc:`始めて Docker 化したコンテナ <dockerizing>` で見てきた詳細に加え、 ``PORTS`` 列に重要な情報が追加されています。
 
 .. code-block:: bash
 
@@ -198,13 +198,13 @@ Docker でウェブ・アプリケーションを実行
 
 .. When we passed the -P flag to the docker run command Docker mapped any ports exposed in our image to our host.
 
-``docker run`` コマンドに ``-P`` フラグを渡すと、Docker はイメージからホスト側に対して、必要なポートを公開 (expose) します。
+``docker run`` コマンドに ``-P`` フラグを渡したら、Docker はイメージからホスト側に対して、必要なポートを露出 (expose) します。
 
 .. Note: We’ll learn more about how to expose ports in Docker images when we learn how to build images.
 
 .. note::
 
-   Docker イメージで公開ポートの指定方法については、 :doc:`イメージの構築方法 <dockerimages>` で学びます。
+   Docker イメージで露出ポートを指定する方法は、 :doc:`イメージの構築方法 <dockerimages>` で学びます。
 
 .. In this case Docker has exposed port 5000 (the default Python Flask port) on port 49155.
 
@@ -220,11 +220,11 @@ Docker は、ネットワーク・ポートの割り当て設定を変更可能�
 
 .. This would map port 5000 inside our container to port 80 on our local host. You might be asking about now: why wouldn’t we just want to always use 1:1 port mappings in Docker containers rather than mapping to high ports? Well 1:1 mappings have the constraint of only being able to map one of each port on your local host.
 
-これはローカルホスト上のポート 80 を、コンテナ内のポート 5000 に割り当てます。もしかすると、次の疑問を持つかもしれません。Docker コンテナをハイポートにマッピングするのではなく、常に 1:1 のポート割り当てを使わないのかと。これは、ローカルホスト上の各ポートに 1:1 で割り当て可能なポートは１つだけだからです。
+これはローカルホスト上のポート 80 を、コンテナ内のポート 5000 に割り当てます。もしかすると、次の疑問を持つでしょう。Docker コンテナをハイポートにマッピングするのではなく、常に 1:1 のポート割り当てを使わないのかと。ですが、ローカルホスト上の各ポートに 1:1 で割り当て可能なポートは１つだけだからです。
 
 .. Suppose you want to test two Python applications: both bound to port 5000 inside their own containers. Without Docker’s port mapping you could only access one at a time on the Docker host.
 
-例えば２つの Python アプリケーションを実行したいとします。いずれもコンテナの中でポート 5000 を使うものです。この場合 Docker のホスト上で、ポート 5000 にアクセスできるコンテナは常に１つだけです。
+例えば、２つの Python アプリケーションを実行したいとします。いずれもコンテナの中でポート 5000 を使うものです。この場合 Docker のホスト上で、ポート 5000 にアクセスできるコンテナは常に１つだけです。
 
 .. So you can now browse to port 49155 in a web browser to see the application.
 
@@ -254,12 +254,12 @@ Python アプリケーションが動いています！
 
 .. _a-network-port-shortcut:
 
-ネットワーク・ポートのショートカット
+network port でショートカット
 =======================================
 
 .. Using the docker ps command to return the mapped port is a bit clumsy so Docker has a useful shortcut we can use: docker port. To use docker port we specify the ID or name of our container and then the port for which we need the corresponding public-facing port.
 
-``docker ps`` コマンドを使い、割り当てたポートを確認するのは、少々面倒です。そこで、 Docker の ``docker port`` という便利なソートカットを使います。``docker port`` でコンテナ ID や名前を指定すると、公開ポートに割り当てられているポート番号が分かります。
+割り当てたポートを確認するのに ``docker ps`` コマンドを使うのは少々面倒です。そこで、 Docker の ``docker port`` という便利なソートカットを使いしょう。``docker port`` でコンテナ ID や名前を指定したら、公開ポートに割り当てられているポート番号が分かります。
 
 .. code-block:: bash
 
@@ -268,7 +268,7 @@ Python アプリケーションが動いています！
 
 .. In this case you’ve looked up what port is mapped externally to port 5000 inside the container.
 
-この例では、コンテナ内のポート 5000 が、外部の何番ポートに割り当てられたか確認します。
+この例では、コンテナ内のポート 5000 が、外部の何番ポートに割り当てられたか分かります。
 
 .. Viewing the web application's log
 
@@ -296,12 +296,12 @@ Python アプリケーションが動いています！
 
 .. _looking-at-our-web-application-containers-processes:
 
-アプリケーション・コンテナのプロセスを見る
+アプリケーション・コンテナのプロセスを表示
 =================================================
 
 .. In addition to the container’s logs we can also examine the processes running inside it using the docker top command.
 
-コンテナのログに加え、``docker top`` コマンドを使い、内部で実行しているプロセスを確認できます。
+コンテナのログに加え、``docker top`` コマンドを使えば、内部で実行しているプロセスを確認できます。
 
 .. code-block:: bash
 
@@ -311,7 +311,7 @@ Python アプリケーションが動いています！
 
 .. Here we can see our python app.py command is the only process running inside the container.
 
-ここでは ``python app.py`` コマンドのみ、コンテナ内のプロセスとして動作していることが分かります。
+ここでは ``python app.py`` コマンドだけが、コンテナ内のプロセスとして動作していることが分かります。
 
 .. Inspecting our web application container
 
@@ -330,7 +330,7 @@ Python アプリケーションが動いています！
 
 .. You can see a sample of that JSON output.
 
-実行すると、次のような JSON 出力例を表示します。
+実行後、次のような JSON 出力例を表示します。
 
 .. code-block:: json
 
@@ -349,7 +349,7 @@ Python アプリケーションが動いています！
 
 .. We can also narrow down the information we want to return by requesting a specific element, for example to return the container’s IP address we would:
 
-または、必要となる特定の情報のみ表示するように、情報を絞り込めます。次の例では、コンテナの IP アドレスのみ表示します。
+あるいは、必要となる特定の情報のみ表示するように、情報を絞り込めます。次の例では、コンテナの IP アドレスのみ表示します。
 
 .. code-block:: bash
 
@@ -389,7 +389,7 @@ Python アプリケーションが動いています！
 
 .. Oops! Just after you stopped the container you get a call to say another developer needs the container back. From here you have two choices: you can create a new container or restart the old one. Look at starting your previous container back up.
 
-おっと！ コンテナを停止した後、他の開発者がコンテナを元に戻してと言ってきました。ここでは２つの選択肢があります。新しいコンテナを起動するか、あるいは古いものを再起動するかです。先ほどのコンテナを元に戻してみましょう。
+おっと！ コンテナの停止後に、他の開発者がコンテナを元に戻して欲しいと言ってきました。ここでは２つの選択肢があります。新しいコンテナを起動するか、あるいは古いものを再起動するかです。先ほどのコンテナを元に戻してみましょう。
 
 .. code-block:: bash
 
@@ -398,7 +398,7 @@ Python アプリケーションが動いています！
 
 .. Now quickly run docker ps -l again to see the running container is back up or browse to the container’s URL to see if the application responds.
 
-ここで素早く ``docker ps -l`` を再度実行すると、実行していたコンテナが復帰し、コンテナの URL をブラウザで開くと、アプリケーションが応答します。
+ここで素早く ``docker ps -l`` を再度実行したら、実行していたコンテナが復帰し、コンテナの URL をブラウザで開けば、アプリケーションが応答します。
 
 ..    Note: Also available is the docker restart command that runs a stop and then start on the container.
 
@@ -415,9 +415,9 @@ Python アプリケーションが動いています！
 
 .. Your colleague has let you know that they’ve now finished with the container and won’t need it again. Now, you can remove it using the docker rm command.
 
-同僚から作業を終えたので、コンテナをもう必要としないとの連絡がありました。これで、``docker rm`` コマンドを使って削除できます。
+同僚は作業を終え、コンテナがもう不要との連絡がありました。これで、``docker rm`` コマンドを使い削除できます。
 
-.. code-block: bash
+.. code-block:: bash
 
    $ docker rm nostalgic_morse
    Error: Impossible to remove a running container, please stop it first or use -f
@@ -425,7 +425,7 @@ Python アプリケーションが動いています！
 
 .. What happened? We can’t actually remove a running container. This protects you from accidentally removing a running container you might need. You can try this again by stopping the container first.
 
-何が起こったのでしょうか？ 実行中かもしれないコンテナを間違って削除しないように、保護されています。先にコンテナを停止してから、再び実行します。
+何が起こったのでしょうか？ 実行中かもしれないコンテナを間違って削除しないように、保護されているからです。先にコンテナを停止してから、再び実行します。
 
 .. code-block:: bash
 
