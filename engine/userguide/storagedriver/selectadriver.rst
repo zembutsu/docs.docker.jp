@@ -22,11 +22,11 @@
 
 .. This page describes Docker’s storage driver feature. It lists the storage driver’s that Docker supports and the basic commands associated with managing them. Finally, this page provides guidance on choosing a storage driver.
 
-このページは Docker のストレージ・ドライバ機能を説明します。Docker がサポートしているストレージ・ドライバの一覧と、ドライバ管理に関連する基本的なコマンドをみていきます。ページの最後では、ストレージ・ドライバの選び方のガイドを提供します。
+このページは Docker のストレージ・ドライバ機能を説明します。Docker がサポートしているストレージ・ドライバの一覧と、ドライバ管理に関連する基本的なコマンドを扱います。ページの最後では、ストレージ・ドライバの選び方のガイドを提供します。
 
 .. The material on this page is intended for readers who already have an understanding of the storage driver technology.
 
-このページは、既に :doc:`ストレージ・ドライバ技術を理解 <imagesandcontainers>` している読者を想定しています。
+なお、このページは、既に :doc:`ストレージ・ドライバ技術を理解 <imagesandcontainers>` している読者を想定しています。
 
 .. A pluggable storage driver architecture
 
@@ -37,7 +37,7 @@
 
 .. The Docker has a pluggable storage driver architecture. This gives you the flexibility to “plug in” the storage driver is best for your environment and use-case. Each Docker storage driver is based on a Linux filesystem or volume manager. Further, each storage driver is free to implement the management of image layers and the container layer in it’s own unique way. This means some storage drivers perform better than others in different circumstances.
 
-Docker は接続可能な（pluggable）ストレージ・ドライバ構造を持っています。そのため、自分の環境や使い方に応じて、ベストなストレージ・ドライバを「プラグイン」（接続）できるので、柔軟さをもたらします。各 Docker のストレージ・ドライバは、 Linux ファイルシステムやボリューム・マネージャに基づいています。そのうえ、各ストレージ・ドライバはイメージ・レイヤとコンテナ・レイヤの管理を、各々の独自手法により自由に管理方法を実装できます。つまり、同じストレージ・ドライバであっても、異なった状況では性能が良くなるのを意味します。
+Docker は接続可能な（pluggable）ストレージ・ドライバ構造を持っています。そのため、自分の環境や使い方に応じて、ベストなストレージ・ドライバを「プラグイン」（接続）として選べます。これが柔軟さをもたらします。Docker の各ストレージ・ドライバは、 Linux ファイルシステムやボリューム・マネージャの技術に基づいています。そのうえ、各ストレージ・ドライバはイメージ・レイヤとコンテナ・レイヤの管理を、各々の独自手法により自由に管理方法を実装できます。つまり、同じストレージ・ドライバであっても、異なった状況では性能が良くなるのを意味します。
 
 .. Once you decide which driver is best, you set this driver on the Docker daemon at start time. As a result, the Docker daemon can only run one storage driver, and all containers created by that daemon instance use the same storage driver. The table below shows the supported storage driver technologies and their driver names:
 
@@ -71,7 +71,7 @@ Docker は接続可能な（pluggable）ストレージ・ドライバ構造を�
 
 .. To find out which storage driver is set on the daemon , you use the docker info command:
 
-デーモンで何のストレージ・ドライバが設定されているか確認するには、 ``docker info`` コマンドを使います。
+デーモンで何のストレージ・ドライバが設定されているかを確認するには、 ``docker info`` コマンドを使います。
 
 .. code-block:: bash
 
@@ -88,11 +88,11 @@ Docker は接続可能な（pluggable）ストレージ・ドライバ構造を�
 
 .. The info subcommand reveals that the Docker daemon is using the overlay storage driver with a Backing Filesystem value of extfs. The extfs value means that the overlay storage driver is operating on top of an existing (ext) filesystem. The backing filesystem refers to the filesystem that was used to create the Docker host’s local storage area under /var/lib/docker.
 
-``info`` サブコマンドで分かるのは、Docker デーモンが ``overlay`` ストレージ・ドライバを使い、``Backing Filesystem`` を ``extfs`` の値にしています。 ``extfs`` の値は、 ``overlay`` ストレージ・ドライバの押す差を既存の（ext）ファイルシステム上で行うという意味があります。
+``info`` サブコマンドで分かるのは、Docker デーモンが ``overlay`` ストレージ・ドライバを使い、``Backing Filesystem`` を ``extfs`` の値にしています。 ``extfs`` の値は、 ``overlay`` ストレージ・ドライバを、既存の（ext）ファイルシステム上で行うという意味があります。
 
 .. Which storage driver you use, in part, depends on the backing filesystem you plan to use for your Docker host’s local storage area. Some storage drivers can operate on top of different backing filesystems. However, other storage drivers require the backing filesystem to be the same as the storage driver. For example, the btrfs storage driver on a Btrfs backing filesystem. The following table lists each storage driver and whether it must match the host’s backing file system:
 
-自分がどのストレージ・ドライバを使うかの選択にあたり、部分的に、Docker ホストのローカル・ストレージ領域で使おうとするファイルシステムに依存します。いくつかのストレージ・ドライバは、異なったファイルシステム技術の上でも操作できます。しかしながら、特定のストレージ・ドライバは特定のファイルシステム技術を必要とします。例えば、 ``btrfs`` ストレージ・ドライバを使うには ``btrfs`` ファイルシステム技術を使う必要があります。以下の表は、各ストレージ・ドライバが、それぞれホスト上の何のファイルシステム技術をサポートしているかの一覧です。
+自分がどのストレージ・ドライバを使うか選ぶにあたり、Docker ホストのローカル・ストレージ領域で使おうとするファイルシステムに一部依存します。いくつかのストレージ・ドライバは、異なったファイルシステム技術の上でも操作できます。しかしながら、特定のストレージ・ドライバは特定のファイルシステム技術を必要とします。例えば、 ``btrfs`` ストレージ・ドライバを使うには ``btrfs`` ファイルシステム技術を使う必要があります。以下の表は、各ストレージ・ドライバが、それぞれホスト上の何のファイルシステム技術をサポートしているかの一覧です。
 
 .. list-table::
    :header-rows: 1
@@ -118,7 +118,7 @@ Docker は接続可能な（pluggable）ストレージ・ドライバ構造を�
 
 .. The following command shows how to start the Docker daemon with the devicemapper storage driver using the docker daemon command:
 
-以下のコマンドは Docker デーモンを起動するとき、 ``docker daemon`` コマンドで ``devicemapper`` ストレージ・ドライバを指定しています。
+以下のコマンドは Docker デーモンの起動時、 ``docker daemon`` コマンドで ``devicemapper`` ストレージ・ドライバを指定しています。
 
 .. code-block:: bash
 
@@ -163,19 +163,19 @@ Docker は接続可能な（pluggable）ストレージ・ドライバ構造を�
 
 .. Many enterprises consume storage from shared storage systems such as SAN and NAS arrays. These often provide increased performance and availability, as well as advanced features such as thin provisioning, deduplication and compression.
 
-多くのエンタープライズでは、SAN や NAS アレイのような共有ストレージ・システムをストレージ容量に使います。性能や安定性を向上させるためだけでなく、プロビジョニング・冗長化・圧縮など、高度な機能を提供します。
+多くの商用システムでは、SAN や NAS アレイのような共有ストレージ・システムをストレージ容量に使います。性能や安定性を向上させるためだけでなく、プロビジョニング・冗長化・圧縮など、高度な機能を提供します。
 
 .. The Docker storage driver and data volumes can both operate on top of storage provided by shared storage systems. This allows Docker to leverage the increased performance and availability these systems provide. However, Docker does not integrate with these underlying systems.
 
-Docker ストレージ・ドライバとデータ・ボリュームは、共有ストレージ・システムが提供するストレージ上でも操作可能です。そのため、これらの提供されるシステムによって、Docker の性能と可用性が増大させられます。しかしながら、 Docker はこれら基盤システムとは統合できません。
+Docker ストレージ・ドライバとデータ・ボリュームは、共有ストレージ・システムが提供するストレージ上でも操作可能です。そのため、これらの提供されるシステムによって、Docker の性能と可用性を増大できます。しかしながら、 Docker はこれら基盤システムとは統合できません。
 
 .. Remember that each Docker storage driver is based on a Linux filesystem or volume manager. Be sure to follow existing best practices for operating your storage driver (filesystem or volume manager) on top of your shared storage system. For example, if using the ZFS storage driver on top of XYZ shared storage system, be sure to follow best practices for operating ZFS filesystems on top of XYZ shared storage system.
 
-各ストレージ・ドライバは Linux ファイルシステムやボリューム・マネージャを基盤としているのを覚えておいてください。自分の共有ストレージ・システム上でストレージ・ドライバ（ファイルシステムやボリューム）を操作するベストプラクティスを理解してください。例えば、ZFS ストレージ・ドライバを XYZ 共有ストレージ・システム上で使うのであれば、XYZ 共有ストレージ・システム上の ZFS ファイルシステムの操作のベストプラクティスを理解すべきです。
+各ストレージ・ドライバは Linux ファイルシステムやボリューム・マネージャを基盤としているのを覚えておいてください。自分の共有ストレージ・システム上で、ストレージ・ドライバ（ファイルシステムやボリューム）を操作するベスト・プラクティスを理解してください。例えば、ZFS ストレージ・ドライバを XYZ 共有ストレージ・システム上で使うのであれば、XYZ 共有ストレージ・システム上の ZFS ファイルシステムの操作のベストプラクティスを理解すべきです。
 
 .. Which storage driver should you choose?
 
-どのストレージ・ドライバを選ぶべきか？
+望ましいストレージ・ドライバの選択
 ========================================
 
 .. ※以下 v1.9 用ドキュメントのため、削除予定 @zembutsu
@@ -191,7 +191,7 @@ Docker ストレージ・ドライバとデータ・ボリュームは、共有�
 
 .. Several factors influence the selection of a storage driver. However, these two facts must be kept in mind:
 
-ストレージ・ドライバの選択に影響を与える複数の要素があります。しかしながら、２つの事実を覚え続けなくてはけません。
+ストレージ・ドライバの選択には、複数の要素が影響を与えます。しかしながら、２つの事実を覚え続けなくてはけません。
 
 ..    No single driver is well suited to every use-case
     Storage drivers are improving and evolving all of the time
@@ -216,11 +216,11 @@ Docker の利用にあたり、最も安定かつ手間がかからないとい�
 
 ..    Use the default storage driver for your distribution. When Docker installs, it chooses a default storage driver based on the configuration of your system. Stability is an important factor influencing which storage driver is used by default. Straying from this default may increase your chances of encountering bugs and nuances.
 
-* **ディストリビューションの標準ストレージ・ドライバを使います** 。Docker をインストールすると気、システム上の設定に応じてデフォルトのストレージ・ドライバが選択されます。デフォルトのストレージ・ドライバを使うことは、安定性に対する重要な要素になります。デフォルトのものを使わないと、バグや微妙な差違に遭遇する可能性が増えるかもしれません。
+* **ディストリビューションの標準ストレージ・ドライバを使います** 。Docker をインストールする時、システム上の設定に応じてデフォルトのストレージ・ドライバを選択します。デフォルトのストレージ・ドライバの使用は、安定性に対する重要な要素になります。デフォルトのものを使わなければ、バグや微妙な差違に遭遇する可能性が増えるかもしれません。
 
 ..    Follow the configuration specified on the CS Engine compatibility matrix. The CS Engine is the commercially supported version of the Docker Engine. It’s code-base is identical to the open source Engine, but it has a limited set of supported configurations. These supported configurations use the most stable and mature storage drivers. Straying from these configurations may also increase your chances of encountering bugs and nuances.
 
-* **CS Engine 互換表の詳細内容をご確認ください** （ `互換表 <https://www.docker.com/compatibility-maintenance>`_ ）。CS Engine とは Docker Engine の商用サポート版です。コード基盤はオープンソース版の Engine と同じですが、特定範囲の設定がサポートされています。これら *サポートされている設定の範囲* では、最も安定かつ成熟したストレージ・ドライバを使います。これらの設定から外れると、バグや微妙な差違に遭遇する可能性が増えるかもしれません。
+* **CS Engine 互換表の詳細内容をご確認ください** （ `互換表 <https://www.docker.com/compatibility-maintenance>`_ ）。CS Engine とは商用サポート版の Docker Engine です。コード基盤はオープンソース版の Docker Engine と同じですが、ある範囲における設定をサポートしてます。これら *サポートしている設定の範囲* では、最も安定かつ成熟したストレージ・ドライバを使います。これらの設定から外れれば、バグや微妙な差違に遭遇する可能性が増えるかもしれません。
 
 .. Experience and expertise
 
@@ -231,11 +231,11 @@ Docker の利用にあたり、最も安定かつ手間がかからないとい�
 
 .. Choose a storage driver that you and your team/organization have experience with. For example, if you use RHEL or one of its downstream forks, you may already have experience with LVM and Device Mapper. If so, you may wish to use the devicemapper driver.
 
-ストレージ・ドライバの選択には、あなたと皆さんのチーム・組織で使ったことがあるものを選びます。たとえば、RHEL や下流の分岐したものを使っている場合は、既に LVM と Device Mapper の使用経験があるでしょう。その場合は、 ``devicemapper`` ドライバの使用が望ましいでしょう。
+ストレージ・ドライバの選択には、あなたと皆さんのチーム・組織で使ったことがあるものを選びます。例えば、RHEL や派生ディストリビューションを使っている場合は、既に LVM と Device Mapper の使用経験があるでしょう。その場合は、 ``devicemapper`` ドライバの使用が望ましいでしょう。
 
 .. If you do not feel you have expertise with any of the storage drivers supported by Docker, and you want an easy-to-use stable Docker experience, you should consider using the default driver installed by your distribution’s Docker package.
 
-Docker がサポートしているストレージ・ドライバの利用経験が無いのであれば、どうしたらよいでしょうか。簡単に使える安定した Docker を使いたいのであれば、ディストリビューションが提供する Docker パッケージを使い、そこで使われているデフォルトのドライバ使用を検討すべきでしょう。
+Docker がサポートしているストレージ・ドライバの利用経験がないのであれば、どうしたら良いでしょうか。簡単に使える安定した Docker を使いたいのであれば、ディストリビューションが提供する Docker パッケージを使い、そこで使われているデフォルトのドライバの使用を検討すべきでしょう。
 
 .. Future-proofing
 
@@ -246,7 +246,7 @@ Docker がサポートしているストレージ・ドライバの利用経験�
 
 .. Many people consider OverlayFS as the future of the Docker storage driver. However, it is less mature, and potentially less stable than some of the more mature drivers such as aufs and devicemapper. For this reason, you should use the OverlayFS driver with caution and expect to encounter more bugs and nuances than if you were using a more mature driver.
 
-多くの方が OverlayFS は Docker ストレージ・ドライバの未来だと考えています。ですが、まだ成熟しておらず、安定性に関しては ``aufs`` や ``devicemapper`` のような成熟したドライバより劣るかもしれません。そのため、OverlayFS を注意して使用すべきであり、成熟したドライバを使うよりも多くのバグや差違に遭遇することが予想されます。
+多くの方が OverlayFS こそが Docker ストレージ・ドライバの未来だと考えています。ですが、まだ成熟しておらず、安定性に関しては ``aufs`` や ``devicemapper`` のような成熟したドライバより劣るかもしれません。そのため、OverlayFS を注意して使用すべきであり、成熟したドライバを使うよりも多くのバグや差違に遭遇することが予想されます。
 
 .. The following diagram lists each storage driver and provides insight into some of their pros and cons. When selecting which storage driver to use, consider the guidance offered by the table below along with the points mentioned above.
 

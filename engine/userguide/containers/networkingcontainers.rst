@@ -32,7 +32,7 @@
 
 .. You’ve already seen that each container you create has an automatically created name; indeed you’ve become familiar with our old friend nostalgic_morse during this guide. You can also name containers yourself. This naming provides two useful functions:
 
-これまで作成してきたコンテナは、自動的にコンテナ名が作成されました。このガイドでは  ``nostalgic_morse`` という古い友人のような名前でした。自動で歯無く自分でもコンテナに名前を付けられます。コンテナに名前を付けると、２つの便利な機能が使えます。
+これまで作成してきたコンテナは、自動的にコンテナ名が作成されました。このガイドでは  ``nostalgic_morse`` という古い友人のような名前でした。自動ではなく、自分でもコンテナに名前を付けられます。コンテナに名前があれば、２つの便利な機能が使えます。
 
 ..    You can name containers that do specific functions in a way that makes it easier for you to remember them, for example naming a container containing a web application web.
 
@@ -44,7 +44,7 @@
 
 .. You name your container by using the --name flag, for example launch a new container called web:
 
-コンテナに名前を付けるには、``--name`` フラグを使います。例えば、新しく起動するコンテナを web と呼ぶには：
+コンテナに名前を付けるには、``--name`` フラグを使います。例えば、新しく起動するコンテナを web と呼ぶには、次のように実行します。
 
 .. code-block:: bash
 
@@ -176,7 +176,7 @@ Docker Engine は、自動的に３つのデフォルト・ネットワークを
 
 .. You can remove a container from a network by disconnecting the container. To do this, you supply both the network name and the container name. You can also use the container id. In this example, though, the name is faster.
 
-コンテナを切断（disconnect）することにより、ネットワークからコンテナを取り外せます。切断にはネットワーク名とコンテナ名を指定します。あるいは、コンテナ ID も使えます。この例では、名前を指定する方が速いです。
+コンテナを切断（disconnect）し、ネットワークからコンテナを取り外せます。切断にはネットワーク名とコンテナ名を指定します。あるいは、コンテナ ID も使えます。この例では、名前を指定する方が速いです。
 
 .. code-block:: bash
 
@@ -184,7 +184,7 @@ Docker Engine は、自動的に３つのデフォルト・ネットワークを
 
 .. While you can disconnect a container from a network, you cannot remove the builtin bridge network named bridge. Networks are natural ways to isolate containers from other containers or other networks. So, as you get more experienced with Docker, you’ll want to create your own networks.
 
-コンテナからネットワークから切断しようとしても、 ``bridge`` という名前で組み込まれている ``bridge`` ネットワークの削除はできません。ネットワークとはコンテナを他のコンテナやネットワークを隔離する一般的な手法です。そのため、Docker を使い込み、自分自身でネットワークの作成も可能です。
+コンテナをネットワークから切断しようとしても、 ``bridge`` という名前で組み込まれている ``ブリッジ`` ネットワークを削除できません。ネットワークとはコンテナを他のコンテナやネットワークを隔離する一般的な手法です。そのため、Docker を使い込み、自分自身でネットワークの作成も可能です。
 
 .. Create your own bridge network
 
@@ -216,7 +216,7 @@ Docker に対して新しいネットワークで使用する ``bridge`` ドラ�
 
 .. If you inspect the network, you’ll find that it has nothing in it.
 
-このネットワークを調査すると、中にはコンテナが無いことがわかります。
+このネットワークを調査しても、中にはコンテナが存在しないのが分かります。
 
 .. code-block:: bash
 
@@ -250,7 +250,7 @@ Docker に対して新しいネットワークで使用する ``bridge`` ドラ�
 
 .. To build web applications that act in concert but do so securely, create a network. Networks, by definition, provide complete isolation for containers. You can add containers to a network when you first run a container.
 
-ウェブ・アプリケーションの構築にあたり、安全性を高めるためにネットワークを作成します。ネットワークとは、コンテナの完全な分離を提供するものと定義します。コンテナを実行する時に、コンテナをネットワークに追加出来ます。
+ウェブ・アプリケーションの構築にあたり、安全性を高めるためにネットワークを作成します。ネットワークとは、コンテナの完全な分離を提供するものと定義します。コンテナを実行する時に、コンテナをネットワークに追加できます。
 
 .. Launch a container running a PostgreSQL database and pass it the --net=my-bridge-network flag to connect it to your new network:
 
@@ -262,7 +262,7 @@ PostgreSQL データベースを実行するコンテナを起動します。``-
 
 .. If you inspect your my-bridge-network you’ll see it has a container attached. You can also inspect your container to see where it is connected:
 
-``my-bridge-network`` を調べると、コンテナがアタッチ（接続）されていることが分かります。同様にコンテナを調べても、どこに接続しているのか分かります。
+``my-bridge-network`` を調べると、コンテナがアタッチ（接続）しているのが分かります。同様にコンテナを調べても、どこに接続しているのか分かります。
 
 .. code-block:: bash
 
@@ -279,7 +279,7 @@ PostgreSQL データベースを実行するコンテナを起動します。``-
 
 .. Which network is your web application running under? Inspect the application and you’ll find it is running in the default bridge network.
 
-ウェブ・アプリケーションはどのネットワーク上で実行しているのでしょうか。アプリケーションを調査すると、標準の ``bridge`` ネットワークで実行していることが分かります。
+ウェブ・アプリケーションはどのネットワーク上で実行しているのでしょうか。アプリケーションを調査したら、標準の ``bridge`` ネットワークで実行していることが分かります。
 
 .. code-block:: bash
 
@@ -311,7 +311,7 @@ PostgreSQL データベースを実行するコンテナを起動します。``-
 
 .. After a bit, use `CTRL-C` to end the `ping` and you'll find the ping failed. That is because the two containers are running on different networks. You can fix that. Then, use the `exit` command to close the container.
 
-少し経ってから CTRL-C を使って ``ping`` を終了します。ping が通らないことが分かりました。これは、２つのコンテナが異なるネットワークで実行しているからです。これを修正しましょう。次に ``exit`` を使って、コンテナから出ます。
+少したってから CTRL-C を使って ``ping`` を終了します。ping が通らないことが分かりました。これは、２つのコンテナが異なるネットワークで実行しているからです。これを修正しましょう。次に ``exit`` を使って、コンテナから出ます。
 
 .. Docker networking allows you to attach a container to as many networks as you like. You can also attach an already running container. Go ahead and attach your running web app to the my-bridge-network.
 
@@ -347,7 +347,7 @@ Docker のネットワーク機能は、必要に応じてコンテナに対し�
 
 .. Now that you know how to network containers, see how to manage data in containers.
 
-コンテナのネットワークについて学びましたので、次は :doc:`コンテナにおけるデータ管理 <dockervolumes>` を見ていきます。
+コンテナのネットワークについて学びましたので、次は :doc:`コンテナにおけるデータ管理 <dockervolumes>` を理解していきます。
 
 .. seealso:: 
 

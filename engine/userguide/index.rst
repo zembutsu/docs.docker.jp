@@ -36,7 +36,7 @@ Docker Engine ユーザガイド
    containers/dockervolumes.rst
    containers/dockerrepos.rst
 
-イメージを使う
+イメージの活用
 ====================
 
 .. toctree::

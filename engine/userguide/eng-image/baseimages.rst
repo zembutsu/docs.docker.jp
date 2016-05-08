@@ -27,7 +27,7 @@
 
 .. The specific process will depend heavily on the Linux distribution you want to package. We have some examples below, and you are encouraged to submit pull requests to contribute new ones.
 
-パッケージ化の対象により、Linux ディストリビューションによっては、重度に依存する手順を踏みます。以下の例では、皆さんが新しいイメージのコントリビュート（貢献）にあたり、プル・リクエストを送信するのを勇気づけるでしょう。
+Linux ディストリビューションによっては、パッケージ化の対象により、重度に依存する手順を踏みます。以下の例では、皆さんが新しいイメージのコントリビュート（貢献）にあたり、プル・リクエストの送信を勇気づけるでしょう。
 
 .. Create a full image using tar
 
@@ -40,7 +40,7 @@
 
 .. It can be as simple as this to create an Ubuntu base image:
 
-Ubuntu ベース・イメージの作成は、次のように簡単にできます。
+Ubuntu ベース・イメージを作成するには、次のように簡単にできます。
 
 .. code-block:: bash
 
@@ -76,7 +76,7 @@ Docker が準備した最小イメージ ``scratch`` を、コンテナの構築
 
 .. While scratch appears in Docker’s repository on the hub, you can’t pull it, run it, or tag any image with the name scratch. Instead, you can refer to it in your Dockerfile. For example, to create a minimal container using scratch:
 
-``scratch`` は Docker Hub 上のリポジトリからは見えません。そのため、取得（pull）や実行や、イメージを ``scratch`` という名前でタグ付けできません。そのかわり、``Dockerfile`` で参照可能です。例えば、 ``scratch`` を使って最小コンテナを作成するには、次のようにします。
+``scratch`` は Docker Hub 上のリポジトリからは見えません。そのため、取得（pull）の実行や、イメージを ``scratch`` という名前でタグ付けできません。そのかわり、``Dockerfile`` で参照可能です。例えば、 ``scratch`` を使って最小コンテナを作成するには、次のようにします。
 
 .. code-block:: dockerfile
 
@@ -86,7 +86,7 @@ Docker が準備した最小イメージ ``scratch`` を、コンテナの構築
 
 .. This example creates the hello-world image used in the tutorials. If you want to test it out, you can clone the image repo
 
-これはチュートリアルで使用する hello-world イメージを作成する例です。テストしたい場合は、 `イメージ・リポジトリ <https://github.com/docker-library/hello-world>`_ から複製できます。
+これはチュートリアルで使用する hello-world イメージを作成する例です。テストしたい場合は、 この `イメージ・リポジトリ <https://github.com/docker-library/hello-world>`_ から複製できます。
 
 
 .. More resources
@@ -96,14 +96,14 @@ Docker が準備した最小イメージ ``scratch`` を、コンテナの構築
 
 .. There are lots more resources available to help you write your ‘Dockerfile`.
 
-多くの情報が ``Dockerfile`` を書くにあたり、手助けになるでしょう。
+``Dockerfile`` を書くにあたり、多くの情報が手助けになるでしょう。
 
 ..    There’s a complete guide to all the instructions available for use in a Dockerfile in the reference section.
     To help you write a clear, readable, maintainable Dockerfile, we’ve also written a Dockerfile Best Practices guide.
     If your goal is to create a new Official Repository, be sure to read up on Docker’s Official Repositories.
 
 * ``Dockerfile`` リファレンス・セクションには、 :doc:`利用可能な命令の全ガイド </engine/reference/builder>` があります。
-* 作成した ``Dockerfile`` を、より綺麗に、読みやすく、メンテナンスしやすいように、 :doc:`ベスト・プラクティス・ガイド <dockerfile_best-practice>` を書きました。
+* 作成した ``Dockerfile`` を、より綺麗に、読みやすく、メンテナンスしやすいように、 :doc:`ベスト・プラクティス・ガイド <dockerfile_best-practice>` が役立ちます。
 * もし自分で新しい公式リポジトリを作成するのが目標であれば、Docker の :doc:`公式リポジトリについて </docker-hub/official_repos/>` をお読みください。
 
 

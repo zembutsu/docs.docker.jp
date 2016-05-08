@@ -39,7 +39,7 @@ AUFS は Docker に使われた初めてのストレージ・ドライバです�
 
 .. The following sections examine some AUFS features and how they relate to Docker.
 
-以下のセクションでは、AUFS 機能と Docker とどのように連携するか紹介します。
+以下のセクションでは、AUFS 機能と Docker がどのように連携するか紹介します。
 
 .. Image layering and sharing with AUFS
 
