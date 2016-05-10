@@ -23,7 +23,7 @@
 
 .. This section explains how to build your own bridge to replace the Docker default bridge. This is a bridge network named bridge created automatically when you install Docker.
 
-このセクションでは、Docker のデフォルト・ブリッジを自分自身で構築したブリッジに置き換える方法を説明します。``bridge`` という名称の ``bridge`` ネットワークは、Docker インストール時に自動的に作成されるものです。
+このセクションでは、Docker のデフォルト・ブリッジを自分自身で構築したブリッジに置き換える方法を説明します。``bridge`` という名称の ``ブリッジ`` ネットワークは、Docker インストール時に自動的に作成されるものです。
 
 ..    Note: The Docker networks feature allows you to create user-defined networks in addition to the default bridge network.
 
@@ -33,7 +33,7 @@
 
 .. You can set up your own bridge before starting Docker and use -b BRIDGE or --bridge=BRIDGE to tell Docker to use your bridge instead. If you already have Docker up and running with its default docker0 still configured, you can directly create your bridge and restart Docker with it or want to begin by stopping the service and removing the interface:
 
-自分自身のブリッジをセットアップするには、Docker を起動する前に Docker に対して ``-b BRIDGE`` か ``--bridge=BRIDGE`` を使い、替わりのブリッジを指定します。既に Docker を起動している場合は、既にデフォルトの ``docker0`` で実行されていますが、自分でブリッジを作成できます。必要があれば、サービスを停止してインターフェースの削除も可能です。
+自分自身のブリッジをセットアップするには、Docker を起動する前に Docker に対して ``-b ブリッジ名`` か ``--bridge=ブリッジ名`` を使い、特定のブリッジを指定します。既に Docker を起動している場合は、デフォルトの ``docker0`` がありますが、自分でもブリッジを作成できます。必要があれば、サービスを停止してインターフェースの削除も可能です。
 
 .. code-block:: bash
 

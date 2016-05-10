@@ -27,7 +27,7 @@ Docker コンテナ・ネットワークの理解
 
 .. This section provides an overview of the default networking behavior that Docker Engine delivers natively. It describes the type of networks created by default and how to create your own, user–defined networks. It also describes the resources required to create networks on a single host or across a cluster of hosts.
 
-このセクションでは、Docker Engine ドライバ固有の標準ネットワーク機能について、その概要を扱います。ここでは標準のネットワーク・タイプについてと、どのようにして自分自身でユーザ定義ネットワークを使うのかを説明します。また、単一ホストまたはクラスタ上をまたがるホストにネットワークを作成するために必要なリソースについても説明します。
+このセクションでは、Docker Engine ドライバ固有の標準ネットワーク機能について、その概要を扱います。ここでは標準のネットワーク・タイプについてと、どのようにして自分自身でユーザ定義ネットワークを使うのかを説明します。また、単一ホストまたはクラスタ上をまたがるホスト間で、ネットワークを作成するために必要なリソースについても説明します。
 
 .. Default Networks
 
@@ -36,7 +36,7 @@ Docker コンテナ・ネットワークの理解
 
 .. When you install Docker, it creates three networks automatically. You can list these networks using the docker network ls command:
 
-Docker をインストールすると、自動的に３つのネットワークを作成します。ネットワーク一覧を表示するには ``docker network ls`` コマンドを使います。
+Docker のインストールは、自動的に３つのネットワークを作成します。ネットワーク一覧を表示するには ``docker network ls`` コマンドを使います。
 
 .. code-block:: bash
 
@@ -48,11 +48,11 @@ Docker をインストールすると、自動的に３つのネットワーク�
 
 .. Historically, these three networks are part of Docker’s implementation. When you run a container you can use the --net flag to specify which network you want to run a container on. These three networks are still available to you.
 
-これまで、３つのネットワークが Docker の一部として実装されています。コンテナを実行するネットワークを指定したいときは、 ``-net`` フラグを使うことができました。これらの３つのネットワークは、まだ今も利用可能です。
+これまで、３つのネットワークが Docker の一部として実装されました。コンテナを実行するネットワークは ``--net`` フラグで指定できます。それでも、これらの３つのネットワークは今も利用可能です。
 
 .. The bridge network represents the docker0 network present in all Docker installations. Unless you specify otherwise with the docker run --net=<NETWORK> option, the Docker daemon connects containers to this network by default. You can see this bridge as part of a host’s network stack by using the ifconfig command on the host.
 
-Docker をインストールした全ての環境には、 ``docker0`` と表示される ``bridge`` ネットワークが現れます。オプションで ``docker run --net=<ネットワーク名>`` を指定しない限り、Docker デーモンはデフォルトでこのネットワークにコンテナを接続します。ホスト上で ``ifconfig`` コマンドを使うことで、ホストネットワーク上のスタックの一部として、このブリッジを見ることができます。
+Docker をインストールした全ての環境には、 ``docker0`` と表示されるブリッジ（ ``bridge`` ）ネットワークが現れます。オプションで ``docker run --net=<ネットワーク名>`` を指定しない限り、Docker デーモンはデフォルトでこのネットワークにコンテナを接続します。ホスト上で ``ifconfig`` コマンドを使えば、ホストネットワーク上のスタックの一部として、このブリッジを見ることができます。
 
 .. code-block:: bash
 
@@ -68,7 +68,7 @@ Docker をインストールした全ての環境には、 ``docker0`` と表示
 
 .. The none network adds a container to a container-specific network stack. That container lacks a network interface. Attaching to such a container and looking at it’s stack you see this:
 
-ネットワーク層に何も追加しない ``none`` ネットワークをコンテナを追加したとします。そのコンテナはネットワーク・インターフェースが欠如しています。コンテナに接続（アタッチ）すると、次のようにスタックが表示されます。
+コンテナにネットワーク層を追加したい場合は、 ``none`` ネットワークを指定します。そのコンテナはネットワーク・インターフェースが欠如します。コンテナに接続（アタッチ）すると、次のようなネットワーク情報を表示します。
 
 .. code-block:: bash
 
@@ -101,11 +101,11 @@ Docker をインストールした全ての環境には、 ``docker0`` と表示
 
 .. The host network adds a container on the hosts network stack. You’ll find the network configuration inside the container is identical to the host.
 
-ホスト・ネットワーク・スタック上のコンテナに ``host`` ネットワークを追加したとします。コンテナ内のネットワーク設定が、ホスト上と同じであるように見えるでしょう。
+今度はホスト側の（ ``host`` ）ネットワーク・スタックにコンテナに接続します。コンテナ内のネットワーク設定が、ホスト上と同じに見えるでしょう。
 
 .. With the exception of the bridge network, you really don’t need to interact with these default networks. While you can list and inspect them, you cannot remove them. They are required by your Docker installation. However, you can add your own user-defined networks and these you can remove when you no longer need them. Before you learn more about creating your own networks, it is worth looking at the default network a bit.
 
-``bridge`` ネットワーク使用時をのぞき、これらデフォルト・ネットワークと実際に通信する必要はありません。このように一覧を表示したり調べたりしても、これらを削除できません。これらは Docker のインストールに必要とされているためです。しかしながら、自分自身でユーザ定義ネットワークを追加することができ、また、必要が無いものを削除できます。自分自身のネットワークについて学ぶ前に、デフォルトのネットワークについて少しだけ見ておきましょう。
+``bridge`` ネットワークの使用時をのぞけば、これらデフォルト・ネットワークと実際に通信する必要はありません。このように一覧を表示したり調べたりできますが、削除できません。これらは Docker の導入に必要だからです。一方、ユーザ定義ネットワークであれば自分で追加、あるいは必要なければを削除できます。自分でネットワークを作る前に、デフォルトのネットワークについて少しだけ見ておきましょう。
 
 .. The default bridge network in detail
 
@@ -149,7 +149,7 @@ Docker ホスト上の全てのデフォルト・ネットワーク・ブリッ�
 
 .. The Engine automatically creates a Subnet and Gateway to the network. The docker run command automatically adds new containers to this network.
 
-Engine は自動的にネットワーク上に ``Subnet`` と ``Gateway`` を作成します。 ``docker run`` コマンドは新しいコンテナにたいして自動的にこのネットワークを割り当てます。
+Docker Engine は自動的にネットワークの ``Subnet`` と ``Gateway`` を作成します。 ``docker run`` コマンドは新しいコンテナに対して、自動的にこのネットワークを割り当てます。
 
 .. code-block:: bash
 
@@ -212,7 +212,7 @@ Engine は自動的にネットワーク上に ``Subnet`` と ``Gateway`` を作
 
 .. You can attach to a running container and investigate its configuration:
 
-実行しているコンテナに ``attach`` することにより、設定を調査できます。
+実行しているコンテナに接続（ ``attach`` ）すると、設定を調査できます。
 
 .. code-block:: bash
 
@@ -316,7 +316,7 @@ Engine は自動的にネットワーク上に ``Subnet`` と ``Gateway`` を作
 
 .. The default docker0 bridge network supports the use of port mapping and docker run --link to allow communications between containers in the docker0 network. These techniques are cumbersome to set up and prone to error. While they are still available to you as techniques, it is better to avoid them and define your own bridge networks instead.
 
-デフォルトの ``docker0`` ブリッジ・ネットワークは、ポート・マッピングの使用と、 ``docker run --link`` によって ``docker0`` ネットワーク上にあるコンテナ間の通信を可能とするものです。これらの技術はセットアップが面倒であり、間違いしがちです。この技術はまだ利用可能ですが、これらを使わず、その代わりに自分自身でブリッジ・ネットワークを定義するほうが望ましいです。
+デフォルトの ``docker0`` ブリッジ・ネットワークは、ポート・マッピング（割り当て）機能の使用と、 ``docker run --link`` によって ``docker0`` ネットワーク上にあるコンテナ間の通信を可能とします。これらの技術はセットアップが面倒であり、間違いしがちです。この技術はまだ利用可能ですが、これらを使わず、その代わりに自分自身でブリッジ・ネットワークを定義するのが望ましいです。
 
 .. User-defined networks
 
@@ -325,15 +325,15 @@ Engine は自動的にネットワーク上に ``Subnet`` と ``Gateway`` を作
 
 .. You can create your own user-defined networks that better isolate containers. Docker provides some default network drivers for use creating these networks. You can create a new bridge network or overlay network. You can also create a network plugin or remote network written to your own specifications.
 
-コンテナのより優れた分離のために、自分自身でユーザ定義ネットワーク(user-defined networks)を作成できます。Docker はこれらネットワークを作成するための、複数の **ネットワーク・ドライバ** を標準提供しています。新しい **ブリッジ・ネットワーク** や **オーバレイ・ネットワーク** を作成できます。また、**ネットワーク・プラグイン** や **リモート・ネットワーク** を書くことで、自分自身でも定義できます。
+コンテナのより優れた分離のために、自分でユーザ定義ネットワーク(user-defined network)を作成できます。Docker はこれらネットワークを作成するための、複数の **ネットワーク・ドライバ** を標準提供しています。新しい **ブリッジ・ネットワーク** や **オーバレイ・ネットワーク** を作成できます。また、自分で **ネットワーク・プラグイン** を書き、 **リモート・ネットワーク** を定義できます。
 
 .. You can create multiple networks. You can add containers to more than one network. Containers can only communicate within networks but not across networks. A container attached to two networks can communicate with member containers in either network.
 
-ネットワークは複数作成できます。コンテナを１つ以上のネットワークに追加できます。コンテナの通信はネットワーク内だけでなく、ネットワークを交差できます。コンテナが２つのネットワークにアタッチされている場合、どちらのネットワークに対しても通信可能です。
+ネットワークは複数作成できます。コンテナを１つ以上のネットワークに追加できます。コンテナの通信はネットワーク内だけでなく、ネットワーク間を横断できます。コンテナが２つのネットワークにアタッチする時、どちらのネットワークに対しても通信可能です。
 
 .. The next few sections describe each of Docker’s built-in network drivers in greater detail.
 
-次のいくつかのセクションでは、各 Docker 内蔵ネットワーク・ドライバに関するより詳細を扱います。
+以降のセクションでは、各 Docker 内蔵ネットワーク・ドライバに関するより詳細を扱います。
 
 
 .. A bridge network
@@ -380,7 +380,7 @@ Engine は自動的にネットワーク上に ``Subnet`` と ``Gateway`` を作
 
 .. After you create the network, you can launch containers on it using the docker run --net=<NETWORK> option.
 
-ネットワークを作成したら、接続のために、コンテナ起動時に ``docker run --net=<ネットワーク名>`` オプションを使います。
+ネットワークを作成したら、コンテナ起動時に ``docker run --net=<ネットワーク名>`` オプションを指定して接続できます。
 
 .. code-block:: bash
 
@@ -414,21 +414,21 @@ Engine は自動的にネットワーク上に ``Subnet`` と ``Gateway`` を作
 
 .. The containers you launch into this network must reside on the same Docker host. Each container in the network can immediately communicate with other containers in the network. Though, the network itself isolates the containers from external networks.
 
-このネットワークの中で起動したコンテナは、Docker ホスト上の他のコンテナとは分離されています。ネットワーク内の各コンテナは速やかに通信が可能です。しかし、コンテナ自身が含まれるネットワークは外部のネットワークと分離されています。
+このネットワーク内で起動したコンテナは、Docker ホスト上の他のコンテナとは独立しています。ネットワーク内の各コンテナは速やかに通信が可能です。しかし、コンテナ自身が含まれるネットワークは外部のネットワークから独立しています。
 
 .. image:: ./images/bridge_network.png
    :scale: 60%
 
 .. Within a user-defined bridge network, linking is not supported. You can expose and publish container ports on containers in this network. This is useful if you want to make a portion of the bridge network available to an outside network.
 
-ユーザ定義ブリッジ・ネットワークの内部では、リンク機能はサポートされません。ですが、このネットワーク上にあるコンテナのポートは公開可能です。外側のネットワークを利用するときに、一部としての ``bridge`` ネットワーク作成が役立つでしょう。
+ユーザ定義ブリッジ・ネットワークの内部では、リンク機能はサポートされません。ですが、このネットワーク上にあるコンテナのポートは公開可能です。 ``bridge`` ネットワークの一部を外のネットワークから使う時に便利でしょう。
 
 .. image:: ./images/network_access.png
    :scale: 60%
 
 .. A bridge network is useful in cases where you want to run a relatively small network on a single host. You can, however, create significantly larger networks by creating an overlay network.
 
-ブリッジ・ネットワークは、単一ホスト上で比較的小さなネットワークの実行時に使いやすいです。それだけでなく、とりわけ大きなネットワークでは ``overlay`` ネットワークも作成できます
+ブリッジ・ネットワークは、単一ホスト上で比較的小さなネットワークの実行時に便利です。それだけではありません。 ``overlay`` ネットワークを使うと更に大きなネットワークを作成できます
 
 .. An overlay network
 
@@ -439,11 +439,11 @@ Engine は自動的にネットワーク上に ``Subnet`` と ``Gateway`` を作
 
 .. Docker’s overlay network driver supports multi-host networking natively out-of-the-box. This support is accomplished with the help of libnetwork, a built-in VXLAN-based overlay network driver, and Docker’s libkv library.
 
-Docker の ``overlay`` （オーバレイ）ネットワーク・ドライバは、複数ホストのネットワーキングにネイティブに対応する革新的なものです。このサポートは ``libnetwork``  、 VXLAN を基盤とした内蔵オーバレイ・ネットワーク・ドライバ、Docker の ``libkv`` ライブラリによる成果です。
+Docker の ``overlay`` （オーバレイ）ネットワーク・ドライバは、複数ホストのネットワーキングにネイティブに対応する革新的なものです。この機能のサポートは ``libnetwork``  、 VXLAN を基盤とした内部オーバレイ・ネットワーク・ドライバ、そして Docker の ``libkv`` ライブラリによる成果です。
 
 .. The overlay network requires a valid key-value store service. Currently, Docker’s libkv supports Consul, Etcd, and ZooKeeper (Distributed store). Before creating a network you must install and configure your chosen key-value store service. The Docker hosts that you intend to network and the service must be able to communicate.
 
-``overlay`` ネットワークはキーバリュー・ストア・サービスを必要とします。現時点で Docker の ``libkv`` がサポートしているのは、Consul、Etcd、Zookeeper（分散ストア）です。ネットワークを作成する前に、キーバリュー・ストア・サービスを選び、設定する必要があります。そして、Docker ホストによって、ネットワークとサービスが通信できるようにするでしょう。
+``overlay`` ネットワークはキーバリュー・ストア・サービスが必要です。現時点で Docker の ``libkv`` がサポートしているのは、Consul、Etcd、Zookeeper（分散ストア）です。ネットワークを作成する前に、キーバリュー・ストア・サービスを選び、設定する必要があります。そして、Docker ホスト側では、ネットワークとサービスが通信できるようにします。
 
 .. image:: ./images/key-value.png
    :scale: 60%
@@ -475,11 +475,11 @@ Docker の ``overlay`` （オーバレイ）ネットワーク・ドライバは
 
 .. Your key-value store service may require additional ports. Check your vendor’s documentation and open any required ports.
 
-使用するキーバリュー・ストアによっては、追加ポートが必要になる場合があります。各ベンダーのドキュメントを確認氏、必要なポートを開いてください。
+使用するキーバリュー・ストアによっては、追加ポートが必要になる場合があります。各ベンダーのドキュメントを確認し、必要なポートを開いてください。
 
 .. Once you have several machines provisioned, you can use Docker Swarm to quickly form them into a swarm which includes a discovery service as well.
 
-複数のマシンをプロビジョンしたあとは、Docker Swarm を使って Swarm とディスカバリ・サービスを同様に迅速に入れられます。
+Docker Machine でプロビジョンしたら、Docker Swarm を使うための Swarm とディスカバリ・サービスも同様に迅速に入れられます。
 
 .. To create an overlay network, you configure options on the daemon on each Docker Engine for use with overlay network. There are two options to set:
 
@@ -491,9 +491,9 @@ Docker の ``overlay`` （オーバレイ）ネットワーク・ドライバは
 
    * - オプション
      - 説明
-   * - ``--cluster-store=PROVIDER://URL``
+   * - ``--cluster-store=プロバイダ://URL``
      - キーバリュー・サービスの場所を指定
-   * - ``–cluster-advertise=HOST_IP|HOST_IFACE:PORT``
+   * - ``--cluster-advertise=HOST_IP|HOST_IFACE:PORT``
      - クラスタ用に使うホストのインターフェース用 IP アドレス
    * - ``--cluster-store-opt=KVSのオプション``
      - TLS 証明書やディスカバリ間隔の調整のようなオプション。
@@ -508,7 +508,7 @@ Docker の ``overlay`` （オーバレイ）ネットワーク・ドライバは
 
 .. This results in a single network spanning multiple hosts. An overlay network provides complete isolation for the containers.
 
-この結果、複数のホストをまたぐ１つのネットワークができます。 ``overlay`` ネットワークはコンテナに対して、完全なる分離機能を提供します。
+この結果、複数のホストを横断する１つのネットワークができます。 ``overlay`` ネットワークはコンテナに対して、完全なる独立機能を提供します。
 
 .. image:: ./images/overlay-network.png
    :scale: 60%
@@ -521,14 +521,14 @@ Docker の ``overlay`` （オーバレイ）ネットワーク・ドライバは
 
    $ docker run -itd --net=my-multi-host-network busybox
 
-接続したあと、ネットワーク内の各コンテナ全てにアクセス可能となります。このとき、コンテナがどこのホスト上で起動しているか気にする必要はありません。
+接続したあと、ネットワーク内の各コンテナ全てにアクセス可能となります。この時、コンテナがどこのホスト上で起動しているか気にする必要はありません。
 
 .. image:: ./images/overlay-network-final.png
    :scale: 60%
 
 .. If you would like to try this for yourself, see the Getting started for overlay.
 
-自分自身で試したい場合は、こちらの :doc:`overlay 導入ガイド </engine/userguide/networking/get-started-overlay>` をご覧ください。
+自分で試したい場合は、こちらの :doc:`overlay 導入ガイド </engine/userguide/networking/get-started-overlay>` をご覧ください。
 
 .. Custom network plugin
 
@@ -541,11 +541,11 @@ Docker の ``overlay`` （オーバレイ）ネットワーク・ドライバは
 
 .. Network plugins follow the same restrictions and installation rules as other plugins. All plugins make use of the plugin API. They have a lifecycle that encompasses installation, starting, stopping and activation.
 
-ネットワーク・プラグインは、他のプラグインと同様、いくつかの制約やインストール時のルールがあります。全てのプラグインはプラグイン API を利用します。これらはインストール、開始、停止、有効化といったライフサイクル全般に亘ります。
+ネットワーク・プラグインは、他のプラグインと同様、いくつかの制約やインストール時のルールがあります。全てのプラグインはプラグイン API を利用します。これらはインストール、開始、停止、有効化といったライフサイクル全般に及びます。
 
 .. Once you have created and installed a custom network driver, you use it like the built-in network drivers. For example:
 
-カスタム・ネットワーク・ドライバを作成してインストールした後は、内蔵ネットワーク・ドライバと同じように扱えます。例：
+カスタム・ネットワーク・ドライバを作成してインストールした後は、内部ネットワーク・ドライバと同じように扱えます。例：
 
 .. code-block:: bash
 
@@ -553,7 +553,7 @@ Docker の ``overlay`` （オーバレイ）ネットワーク・ドライバは
 
 .. You can inspect it, add containers too and from it, and so forth. Of course, different plugins may make use of different technologies or frameworks. Custom networks can include features not present in Docker’s default networks. For more information on writing plugins, see Extending Docker and Writing a network driver plugin.
 
-内部を確認できますし、さらにコンテナを追加したり、いろいろできます。もちろん、プラグイン毎に異なった技術やフレームワークを使うこともあるでしょう。カスタム・ネットワークは Docker の標準ネットワークが持たない機能を実装できます。プラグインの書き方に関する詳細情報は、 :doc:`Docker 拡張 </engine/extend/index>` または :doc:`ネットワーク・ドライバ・プラグインの書き方 </engine/extend/plugins_network>` をお読みください。
+必要があれば自分で内部を確認できますし、更なるコンテナを追加など、いろいろ可能ます。もちろん、プラグインごとに異なった技術やフレームワークを使うこともあるでしょう。カスタム・ネットワークは Docker の標準ネットワークが持たない機能を実装できます。プラグインの書き方に関する詳細情報は、 :doc:`Docker 拡張 </engine/extend/index>` または :doc:`ネットワーク・ドライバ・プラグインの書き方 </engine/extend/plugins_network>` をお読みください。
 
 .. Docker embedded DNS server
 
@@ -564,7 +564,7 @@ Docker 内蔵 DNS サーバ
 
 .. Docker daemon runs an embedded DNS server to provide automatic service discovery for containers connected to user defined networks. Name resolution requests from the containers are handled first by the embedded DNS server. If the embedded DNS server is unable to resolve the request it will be forwarded to any external DNS servers configured for the container. To facilitate this when the container is created, only the embedded DNS server reachable at 127.0.0.11 will be listed in the container’s resolv.conf file. More information on embedded DNS server on user-defined networks can be found in the embedded DNS server in user-defined networks
 
-Docker デーモンは内蔵 DNS サーバを実行し、ユーザ定義ネットワーク上でコンテナがサービス・ディスカバリを自動的に行えるようにします。コンテナから名前解決のリクエストがあれば、内蔵 DNS サーバを第一に使います。リクエストがあっても内蔵 DNS サーバが名前解決できなければ、外部の DNS サーバにコンテナからのリクエストを手の鮨ます。割り当てできるのはコンテナの作成時だけです。内蔵 DNS サーバが到達可能なのは ``127.0.0.11`` のみであり、コンテナの ``resolv.conf`` に書かれます。ユーザ定義ネットワーク上の内蔵 DNS サーバに関しては :doc:`configure-dns` をご覧ください。
+Docker デーモンは内蔵 DNS サーバを動かし、ユーザ定義ネットワーク上でコンテナがサービス・ディスカバリを自動的に行えるようにします。コンテナから名前解決のリクエストがあれば、内部 DNS サーバを第一に使います。リクエストがあっても内部 DNS サーバが名前解決できなければ、外部の DNS サーバにコンテナからのリクエストを転送します。割り当てできるのはコンテナの作成時だけです。内部 DNS サーバが到達可能なのは ``127.0.0.11`` のみであり、コンテナの ``resolv.conf`` に書かれます。ユーザ定義ネットワーク上の内部 DNS サーバに関しては :doc:`configure-dns` をご覧ください。
 
 .. links
 
@@ -573,7 +573,7 @@ Docker デーモンは内蔵 DNS サーバを実行し、ユーザ定義ネッ�
 
 .. Before the Docker network feature, you could use the Docker link feature to allow containers to discover each other. With the introduction of Docker networks, containers can be discovered by its name automatically. But you can still create links but they behave differently when used in the default docker0 bridge network compared to user-defined networks. For more information, please refer to Legacy Links for link feature in default bridge network and the linking containers in user-defined networks for links functionality in user-defined networks.
 
-Docker ネットワーク機能より以前は、Docker リンク機能を使いコンテナをお互いに発見したり、特定のコンテナから別のコンテナに安全に情報を送信できました。Docker ネットワークを導入すると、自動的にコンテナは名前で見つけることができます。しかし、デフォルトの ``docker0`` ブリッジ・ネットワークとユーザ定義ネットワークには違いがあるため、まだリンク機能を使うこともできます。より詳しい情報については、 :doc:`古いリンク機能 <default_network/dockerlinks>` のデフォルト ``bridge`` ネットワークのリンク機能をご覧ください。ユーザ定義ネットワークでリンク機能を使うには :ref:`linking-containers-in-user-defined-networks` をご覧ください。
+Docker ネットワーク機能より以前は、Docker リンク機能を使いコンテナの相互発見や、特定のコンテナから別のコンテナに安全に情報を送信できました。Docker ネットワークを導入したら、自動的にコンテナを名前で発見できます。しかし、デフォルトの ``docker0`` ブリッジ・ネットワークとユーザ定義ネットワークには違いがあるため、まだリンク機能を使うこともできます。より詳しい情報については、 :doc:`古いリンク機能 <default_network/dockerlinks>` のデフォルト ``bridge`` ネットワークのリンク機能をご覧ください。ユーザ定義ネットワークでリンク機能を使うには :ref:`linking-containers-in-user-defined-networks` をご覧ください。
 
 .. While links are still supported in this limited capacity, you should avoid them in preference of Docker networks. The link feature is expected to be deprecated and removed in a future release.
 

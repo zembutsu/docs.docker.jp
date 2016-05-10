@@ -12,7 +12,7 @@
 .. _docker-and-zfs-in-practice:
 
 ========================================
-ZFS ストレージを使う
+ZFS ストレージの使用
 ========================================
 
 .. sidebar:: 目次
@@ -37,7 +37,7 @@ ZFS on Linux (ZoL) への移植は正常かつ成熟しています。しかし 
 
 .. note::
 
-   Linux プラットフォーム上では、FUSE で ZFS を実装する方法もあります。Docker とも動作するでしょうが、推奨されません。ネイティブな ZFS ドライバ（ZoL）のほうがよりテストされ、性能も良く、より幅広く使われています。このドキュメントでは、ネイティブな ZoL の移植版について言及することにご注意ください。
+   Linux プラットフォーム上では、FUSE で ZFS を実装する方法もあります。Docker とも動作するでしょうが、推奨されません。ネイティブな ZFS ドライバ（ZoL）の方がよりテストされ、性能も良く、より幅広く使われています。このドキュメントでは、ネイティブな ZoL 移植版について言及してるのでご注意ください。
 
 .. Image layering and sharing with ZFS
 
@@ -72,7 +72,7 @@ ZFS ファイルシステムはシン・プロビジョニング（訳者注：�
 
 .. On Docker hosts using the zfs storage driver, the base layer of an image is a ZFS filesystem. Each child layer is a ZFS clone based on a ZFS snapshot of the layer below it. A container is a ZFS clone based on a ZFS Snapshot of the top layer of the image it’s created from. All ZFS datasets draw their space from a common zpool. The diagram below shows how this is put together with a running container based on a two-layer image.
 
-Docker ホストで ``zfs`` ストレージ・ドライバを使うと、イメージのベース・レイヤは ZFS ファイルシステムになります。それぞれの子レイヤとは、下にあるレイヤの ZFS スナップショットをベースとした ZFS クローンです。コンテナとは、作成するにあたってイメージの最上位レイヤの ZFS スナップショットをベースとした ZFS クローンです。全ての ZFS データセットは、共通の zpool から領域を取り込みます。以下の図は２つのレイヤ・イメージをベースにまとめたもので、コンテナを実行しています。
+Docker ホストで ``zfs`` ストレージ・ドライバを使えば、イメージのベース・レイヤは ZFS ファイルシステムになります。それぞれの子レイヤとは、下にあるレイヤの ZFS スナップショットをベースとした ZFS クローンです。コンテナとは、作成するにあたってイメージの最上位レイヤの ZFS スナップショットをベースとした ZFS クローンです。全ての ZFS データセットは、共通の zpool から領域を取り込みます。以下の図は２つのレイヤ・イメージをベースにまとめたもので、コンテナを実行しています。
 
 .. image:: ./images/zfs-pool.png
    :scale: 60%
@@ -88,7 +88,7 @@ Docker ホストで ``zfs`` ストレージ・ドライバを使うと、イメ�
 
 ..    This filesystem consumes space from the zpool used to create the Docker host’s local storage area at /var/lib/docker.
 
-ファイルシステムが要領を使うのは、Docker ホスト上のローカル・ストレージ領域 ``/var/lib/docker`` に zpool を作成するときです。
+ファイルシステムが要領を使うのは、Docker ホスト上のローカル・ストレージ領域 ``/var/lib/docker`` に zpool を作成する時です。。
 
 ..    Additional image layers are clones of the dataset hosting the image layer directly below it.
 
@@ -100,7 +100,7 @@ Docker ホストで ``zfs`` ストレージ・ドライバを使うと、イメ�
 
 ..    When the container is launched, a read-write layer is added above the image.
 
-3. コンテナが起動すると、そのイメージ上に読み書き可能なレイヤが追加されます。
+3. コンテナが起動したら、そのイメージ上に読み書き可能なレイヤが追加されます。
 
 ..    In the diagram above, the container’s read-write layer is created by making a snapshot of the top layer of the image (Layer 1) and creating a clone from that snapshot.
 
@@ -108,7 +108,7 @@ Docker ホストで ``zfs`` ストレージ・ドライバを使うと、イメ�
 
 ..    As changes are made to the container, space is allocated to it from the zpool via allocate-on-demand operations. By default, ZFS will allocate space in blocks of 128K.
 
-コンテナに対して変更が加えられると、オンデマンドの割り当て（allocate-on-demand）処理によって zpool から領域が割り当てられます。デフォルトでは、ZFS が割り当てる領域は 128KB のブロックです。
+コンテナに対して変更が発生したら、オンデマンドの割り当て（allocate-on-demand）処理によって zpool から領域が割り当てられます。デフォルトでは、ZFS が割り当てる領域は 128KB のブロックです。
 
 .. This process of creating child layers and containers from read-only snapshots allows images to be maintained as immutable objects.
 
@@ -131,7 +131,7 @@ Docker ホストで ``zfs`` ストレージ・ドライバを使うと、イメ�
 
 .. Writing new data to a container is accomplished via an allocate-on-demand operation. Every time a new area of the container needs writing to, a new block is allocated from the zpool. This means that containers consume additional space as new data is written to them. New space is allocated to the container (ZFS Clone) from the underlying zpool.
 
-コンテナに対する新しいデータの書き込みは、オンデマンドの割り当て処理によって完了します。コンテナが書き込みのために新しい領域が必要であれば、その都度、新しいブロックが zpool から割り当てられます。つまりコンテナに対する書き込みによって、新しいデータ用の領域が追加される時のみ、容量を消費します。新しい領域は、根底にある zpool からコンテナ（ZFS クローン）に対して割り当てられるものです。
+コンテナに対する新規データの書き込みは、オンデマンドの割り当て処理によって完了します。コンテナが書き込みのために新しい領域が必要であれば、その都度、新しいブロックが zpool から割り当てられます。つまりコンテナに対する書き込みによって、新しいデータ用の領域が追加される時のみ、容量を消費します。新しい領域は、根底にある zpool からコンテナ（ZFS クローン）に対して割り当てられるものです。
 
 .. Updating existing data in a container is accomplished by allocating new blocks to the containers clone and storing the changed data in those new blocks. The original are unchanged, allowing the underlying image dataset to remain immutable. This is the same as writing to a normal ZFS filesystem and is an implementation of copy-on-write semantics.
 
@@ -155,11 +155,11 @@ Docker で ZFS ストレージ・ドライバを使う設定
 
 .. If you have already used the Docker daemon on your Docker host and have images you want to keep, push them Docker Hub or your private Docker Trusted Registry before attempting this procedure.
 
-既に Docker ホスト上で Docker デーモンを使っている場合は、イメージを維持する必要がありますので、処理を進める前に、それらのイメージを Docker Hub やプライベート Docker Trusted Registry に ``push`` しておきます。
+既に Docker ホスト上で Docker デーモンを使っている場合は、イメージをどこかに保存する必要があります。そのため、処理を進める前に、それらのイメージを Docker Hub やプライベート Docker Trusted Registry に送信しておきます。
 
 .. Stop the Docker daemon. Then, ensure that you have a spare block device at /dev/xvdb. The device identifier may be be different in your environment and you should substitute your own values throughout the procedure.
 
-Docker デーモンを停止します。それから別のブロックデバイス ``/dev/xvdb`` があることを確認します。このデバイス識別子は皆さんの環境によって異なるかもしれません。そのような場合は、以降の処理で適切なものに置き換えてください。
+まず、Docker デーモンを停止します。それから別のブロックデバイス ``/dev/xvdb`` があることを確認します。このデバイス識別子は皆さんの環境によって異なるかもしれません。そのような場合は、以降の処理で適切なものに置き換えてください。
 
 .. Install Zfs on Ubuntu 14.04 LTS
 
@@ -254,7 +254,7 @@ ZFS を Docker に設定
 
 .. Once ZFS is installed and loaded, you’re ready to configure ZFS for Docker.
 
-ZFS をインストールして読み込むと、Docker で ZFS 設定をする準備が整いました。
+ZFS をインストールして読み込んだので、Docker で ZFS 設定をする準備が整いました。
 
 ..    Create a new zpool.
 
@@ -299,7 +299,7 @@ ZFS をインストールして読み込むと、Docker で ZFS 設定をする�
 
 ..    Now that you have a ZFS filesystem mounted to /var/lib/docker, the daemon should automatically load with the zfs storage driver.
 
-これで ZFS ファイルシステムが ``/var/lib/docker`` にマウントされました。デーモンは自動的に ``zfs`` ストレージを読み込むでしょう。
+これで ZFS ファイルシステムを ``/var/lib/docker`` にマウントしました。デーモンは自動的に ``zfs`` ストレージを読み込むでしょう。
 
 ..    Start the Docker daemon.
 
@@ -359,15 +359,15 @@ Docker で ``zfs`` ストレージ・ドライバを使うにあたり、パフ�
 
 ..    ZFS Features. Using ZFS features, such as deduplication, can significantly increase the amount of memory ZFS uses. For memory consumption and performance reasons it is recommended to turn off ZFS deduplication. However, deduplication at other layers in the stack (such as SAN or NAS arrays) can still be used as these do not impact ZFS memory usage and performance. If using SAN, NAS or other hardware RAID technologies you should continue to follow existing best practices for using them with ZFS.
 
-* **ZFS の機能** 。ZFS の機能、たとえば重複削除（deduplication）ではメモリで ZFS が使う容量が明らかに増加します。メモリの消費と性能面から、ZFS 重複削除の機能を無効にすることを推奨します。しかし、別のスタック上（SAN や NAS アレイ）のレイヤに対する重複削除は、ZFS のメモリ使用や性能に関する影響が無いので、利用できるでしょう。もし SAN、NAS、その他のハードウェア RAID 技術を使うのであれば、ZFS の利用にあたり、以下にある既知のベストプラクティスをご利用ください。
+* **ZFS の機能** 。ZFS の機能、例えば重複削除（deduplication）は ZFS が使うメモリ容量が明らかに増加します。メモリの消費と性能面から、ZFS 重複削除の機能を無効にすることを推奨します。しかし、別のスタック上（SAN や NAS アレイ）のレイヤに対する重複削除は、ZFS のメモリ使用や性能に関する影響がありませんので、利用できるでしょう。もし SAN、NAS、その他のハードウェア RAID 技術を使うのであれば、ZFS の利用にあたり、以下にある既知のベストプラクティスをご利用ください。
 
 ..    ZFS Caching. ZFS caches disk blocks in a memory structure called the adaptive replacement cache (ARC). The Single Copy ARC feature of ZFS allows a single cached copy of a block to be shared by multiple clones of a filesystem. This means that multiple running containers can share a single copy of cached block. This means that ZFS is a good option for PaaS and other high density use cases.
 
-* **ZFS キャッシュ** 。ZFS はディスク・ブロックを、アダプティブ・リプレースメント・キャッシュ（ARC; adaptive replacement cache）と呼ばれるメモリ上の構造にキャッシュします。ZFS の *Single Copy ARC* 機能により、ブロックをコピーした単一キャッシュが、ファイルシステムの複数のクローンから共有されます。つまり、複数の実行チュのコンテナは、キャッシュされたブロックのコピーを共有できるのです。これが意味するのは、ZFS は PaaS や他の高密度の利用例にとっては良い選択肢となるでしょう。
+* **ZFS キャッシュ** 。ZFS はディスク・ブロックを、アダプティブ・リプレースメント・キャッシュ（ARC; adaptive replacement cache）と呼ばれるメモリ上の構造にキャッシュします。ZFS の *Single Copy ARC* 機能により、ブロックをコピーした単一キャッシュが、ファイルシステムの複数のクローンから共有されます。つまり、複数の実行中のコンテナは、キャッシュされたブロックのコピーを共有できるのです。これが意味するのは、ZFS は PaaS や他の高密度の利用例にとっては良い選択肢となるでしょう。
 
 ..    Fragmentation. Fragmentation is a natural byproduct of copy-on-write filesystems like ZFS. However, ZFS writes in 128K blocks and allocates slabs (multiple 128K blocks) to CoW operations in an attempt to reduce fragmentation. The ZFS intent log (ZIL) and the coalescing of writes (delayed writes) also help to reduce fragmentation.
 
-* **断片化** 。断片化は ZFS のようなコピー・オン・ライトなファイルシステムにおける、自然な副産物です。ZFS は 128KB のブロックに書き込みますが、slabs（複数の 128KB ブロック）をコピー・オン・ライト処理に割り当てるので、断片化を減らそうとしています。また、 ZFS intent log (ZIL) と書き込みの一体化も断片化を減らすものです。
+* **断片化** 。断片化は ZFS のようなコピー・オン・ライトなファイルシステムにおける、自然な副産物です。ZFS は 128KB のブロックに書き込みますが、slabs（複数の 128KB ブロック）をコピー・オン・ライト処理に割り当てますので、断片化を減らそうとしています。また、 ZFS intent log (ZIL) と書き込みの一体化も断片化を減らすものです。
 
 ..    Use the native ZFS driver for Linux. Although the Docker zfs storage driver supports the ZFS FUSE implementation, it is not recommended when high performance is required. The native ZFS on Linux driver tends to perform better than the FUSE implementation.
 

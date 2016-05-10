@@ -12,7 +12,7 @@
 .. _get-started-with-multi-host-networking:
 
 ========================================
-マルチホスト・ネットワーキングを始める
+マルチホスト・ネットワーク機能を始める
 ========================================
 
 .. sidebar:: 目次
@@ -23,7 +23,7 @@
 
 .. This article uses an example to explain the basics of creating a multi-host network. Docker Engine supports multi-host networking out-of-the-box through the overlay network driver. Unlike bridge networks, overlay networks require some pre-existing conditions before you can create one. These conditions are:
 
-このページでは、マルチホスト・ネットワーキングの基本的な例について説明します。独創的な ``overlay`` ネットワーク・ドライバによって、Docker エンジンはマルチホスト・ネットワーキングをサポートしました。 ``bridge`` ネットワークとは違い、オーバレイ・ネットワークは作成前にいくつかの事前準備が必要です。準備とは次のようなものです。
+このページでは、マルチホスト・ネットワーク機能の基本的な例について説明します。独創的な ``overlay`` ネットワーク・ドライバにより、Docker エンジンはマルチホスト・ネットワーク機能（multi-host networking）をサポートしました。 ``bridge`` ネットワークとは違い、オーバレイ・ネットワークを作成する前に、いくつかの事前準備が必要です。準備とは次のようなものです。
 
 ..    A host with a 3.16 kernel version or higher.
     Access to a key-value store. Docker supports Consul, Etcd, and ZooKeeper (Distributed store) key-value stores.
@@ -34,12 +34,12 @@
 * kernel バージョン 3.16 以上のホスト。
 * キーバリュー・ストアに対するアクセス。エンジンがサポートするキーバリュー・ストアは、Consul、Etcd、Zookeeper（分散ストア）。
 * ホストのクラスタが、キーバリュー・ストアに接続する。
-* Swarm の各ホスト上で動作するエンジン ``daemon`` に、適切な設定を行う。
+* Swarm の各ホスト上で動作するDocker Engine の ``daemon`` に、適切な設定を行う。
 * クラスタ上のホストはユニークなホスト名を持つ必要がある。これは、キーバリュー・ストアがクラスタのメンバをホスト名で識別するため。
 
 .. Though Docker Machine and Docker Swarm are not mandatory to experience Docker multi-host networking, this example uses them to illustrate how they are integrated. You’ll use Machine to create both the key-value store server and the host cluster. This example creates a Swarm cluster.
 
-Docker マルチホスト・ネットワーキング機能を使うのに、Docker Machine と Docker Swarm の使用は強制ではありません。しかし、この例では Machine と Swarm を使用して説明します。Machine を使ってキーバリュー・ストア用のサーバと、ホストのクラスタを作成します。この例では Swarm クラスタを作成します。
+Docker マルチホスト・ネットワーク機能を使うために、Docker Machine と Docker Swarm の使用は強制ではありません。しかし、この例では Machine と Swarm を使用して説明します。Machine を使ってキーバリュー・ストア用のサーバと、ホストのクラスタを作成します。この例では Swarm クラスタを作成します。
 
 .. Prerequisites
 
@@ -48,17 +48,17 @@ Docker マルチホスト・ネットワーキング機能を使うのに、Dock
 
 .. Before you begin, make sure you have a system on your network with the latest version of Docker Engine and Docker Machine installed. The example also relies on VirtualBox. If you installed on a Mac or Windows with Docker Toolbox, you have all of these installed already.
 
-始める前に、自分のネットワーク上のシステムに、最新バージョンの Docker エンジン と Docker Machine がインストールされているか確認してください。この例では VirtualBox を扱います。Mac や Windows で Docker Toolbox を使ってインストールしているのであれば、いずれも最新バージョンがインストールされています。
+始める前に、自分のネットワーク上のシステムに、最新バージョンの Docker Engine と Docker Machine をインストールしているか確認してください。この例では VirtualBox を扱います。Mac や Windows で Docker Toolbox を使ってインストールた場合は、いずれも最新バージョンをインストールしています。
 
 .. If you have not already done so, make sure you upgrade Docker Engine and Docker Machine to the latest versions.
 
-もし準備ができていなければ、Docker エンジンと Docker Machine を最新バージョンに更新してください。
+もし準備ができていなければ、Docker Engine と Docker Machine を最新バージョンに更新してください。
 
 .. Step 1: Set up a key-value store
 
 .. _step1-set-up-a-key-value-store:
 
-手順１：キーバリュー・ストアのセットアップ
+ステップ１：キーバリュー・ストアのセットアップ
 ==================================================
 
 ..  An overlay network requires a key-value store. The key-value store holds information about the network state which includes discovery, networks, endpoints, IP addresses, and more. Docker supports Consul, Etcd, and ZooKeeper key-value stores. This example uses Consul.
@@ -67,7 +67,7 @@ Docker マルチホスト・ネットワーキング機能を使うのに、Dock
 
 ..    Log into a system prepared with the prerequisite Docker Engine, Docker Machine, and VirtualBox software.
 
-1. 必要になる Docker エンジン、Docker Machine、VirtualBox ソフトウェアを準備したシステムにログインします。
+1. 必要な Docker Engine、Docker Machine、VirtualBox ソフトウェアを準備したシステムにログインします。
 
 ..    Provision a VirtualBox machine called mh-keystore.
 
@@ -79,7 +79,7 @@ Docker マルチホスト・ネットワーキング機能を使うのに、Dock
 
 ..     When you provision a new machine, the process adds Docker Engine to the host. This means rather than installing Consul manually, you can create an instance using the consul image from Docker Hub. You’ll do this in the next step.
 
-新しいマシンを作成すると、この手順で Docker エンジンがホスト上に追加されます。つまりこれは、Consul を手動でインストールするのではなく、 `Docker Hub 上の consul イメージ <https://hub.docker.com/r/progrium/consul/>`_ を使用するインスタンスの作成を意味します。インストールは次の手順で行います。
+新しいマシンを作成したら、Docker Engine をホスト上に追加する処理を行います。つまりこれは、Consul を手動でインストールするのではなく、 `Docker Hub 上の consul イメージ <https://hub.docker.com/r/progrium/consul/>`_ を使用するインスタンスの作成を意味します。インストールは次の手順で行います。
 
 .. Set your local environment to the mh-keystore machine.
 
@@ -103,11 +103,11 @@ Docker マルチホスト・ネットワーキング機能を使うのに、Dock
 
 ..    The client starts a progrium/consul image running in the mh-keystore machine. The server is called consul and is listening on port 8500.
 
-実行中の ``mh-keystore`` マシン上で 、クライアントは ``progrium/consul`` イメージを開始します。このサーバは ``consul`` と呼ばれており、ポート ``8500`` を開きます。
+実行中の ``mh-keystore`` マシン上で 、クライアントは ``progrium/consul`` イメージを起動します。このサーバは ``consul`` と呼ばれており、ポート ``8500`` を開きます。
 
 ..    Run the docker ps command to see the consul container.
 
-5. ``docker ps`` コマンドを実行すると、 ``consul`` コンテナが表示されます。
+5. ``docker ps`` コマンドを実行したら、 ``consul`` コンテナが表示されます。
 
 .. code-block:: bash
 
@@ -123,12 +123,12 @@ Docker マルチホスト・ネットワーキング機能を使うのに、Dock
 
 .. _step2-create-a-swarm-cluster:
 
-手順２：Swarm クラスタの作成
+ステップ２：Swarm クラスタの作成
 ==============================
 
 .. In this step, you use docker-machine to provision the hosts for your network. At this point, you won’t actually create the network. You’ll create several machines in VirtualBox. One of the machines will act as the Swarm master; you’ll create that first. As you create each host, you’ll pass the Engine on that machine options that are needed by the overlay network driver.
 
-このステップは、 ``docker-machine`` を使ってネットワーク上にホストを準備します。この時点では実際にネットワークを作成する必用はありません。VirtualBox 内に複数のマシンを作成します。マシンの１つを Swarm マスタとして動かします（これは一番始めに作成するマシンです）。各々のホストを作成した後、マシン上のエンジンで ``overlay`` ネットワーク・ドライバに対応するために必要なオプション設定を追加します。
+このステップは ``docker-machine`` を使い、ネットワーク上にホストを準備します。この時点では実際にネットワークを作成する必用はありません。VirtualBox 内に複数のマシンを作成します。マシンの１つを Swarm マスタとして動かします（これは一番始めに作成するマシンです）。各々のホストを作成した後、マシン上のエンジンで ``overlay`` ネットワーク・ドライバに対応するために必要なオプション設定を追加します。
 
 ..    Create a Swarm master.
 
@@ -146,7 +146,7 @@ Docker マルチホスト・ネットワーキング機能を使うのに、Dock
 
 ..    At creation time, you supply the Engine daemon with the --cluster-store option. This option tells the Engine the location of the key-value store for the overlay network. The bash expansion $(docker-machine ip mh-keystore) resolves to the IP address of the Consul server you created in “STEP 1”. The --cluster-advertise option advertises the machine on the network.
 
-作成時、エンジンの ``daemon`` に対して ``--cluster-store`` オプションを与えます。このオプションは、エンジンに対して ``overlay`` ネットワークのキーバリュー・ストアを伝えます。bash 変数展開 ``$(docker-machine ip mh-keystore)`` は、「STEP 1」で作成した Consul サーバの IP アドレスを割り当てます。 ``--cluster-advertise`` オプションは、ネットワーク上のマシンに対して公表（advertise）するものです。
+作成時、Docker Engine のデーモンに対して ``--cluster-store`` オプションを与えます。このオプションは、Docker Engine に対して ``overlay`` ネットワークのキーバリュー・ストアを伝えます。bash 変数展開 ``$(docker-machine ip mh-keystore)`` は、「ステップ１」で作成した Consul サーバの IP アドレスを割り当てます。 ``--cluster-advertise`` オプションは、ネットワーク上のマシンに対して公表（advertise）するものです。
 
 ..    Create another host and add it to the Swarm cluster.
 
@@ -163,7 +163,7 @@ Docker マルチホスト・ネットワーキング機能を使うのに、Dock
 
 ..    List your machines to confirm they are all up and running.
 
-3. マシン一覧から、全てが起動・実行中であることを確認します。
+3. マシン一覧から、全てのマシンが起動・実行中なのを確認します。
 
 .. code-block:: bash
 
@@ -186,7 +186,7 @@ Docker マルチホスト・ネットワーキング機能を使うのに、Dock
 
 .. _step3-create-the-overlay-network:
 
-手順３：オーバレイ・ネットワークの作成
+ステップ３：オーバレイ・ネットワークの作成
 ========================================
 
 .. To create an overlay network
@@ -203,7 +203,7 @@ Docker マルチホスト・ネットワーキング機能を使うのに、Dock
 
 ..    Using the --swarm flag with docker-machine restricts the docker commands to Swarm information alone.
 
-``docker-machine`` に ``--swarm`` フラグを使うと、 ``docker`` コマンドは Swarm 情報のみ表示します。
+``docker-machine`` に ``--swarm`` フラグを使えば、 ``docker`` コマンドは Swarm 情報のみ表示します。
 
 ..    Use the docker info command to view the Swarm.
 
@@ -234,7 +234,7 @@ Docker マルチホスト・ネットワーキング機能を使うのに、Dock
 
 ..     From this information, you can see that you are running three containers and two images on the Master.
 
-この情報から、３つのコンテナが動作中で、マスタ上には２つのイメージがあることがわかります。
+この情報から、３つのコンテナが動作中で、マスタ上には２つのイメージがあるのが分かります。
 
 ..    Create your overlay network.
 
@@ -252,7 +252,7 @@ Docker マルチホスト・ネットワーキング機能を使うのに、Dock
 
 .. note::
 
-   ネットワークの作成時は ``--subnet`` オプションの指定を強く推奨します。 ``--subnet`` を指定しなければ、docker デーモンはネットワークに対してサブネットを自動的に割り当てます。そのとき、Docker が管理していない基盤上の別サブネットと重複する可能性が有り得ます。このような重複により、コンテナがネットワークに接続するときに問題や障害を引き起こします。
+   ネットワークの作成時は ``--subnet`` オプションの指定を強く推奨します。 ``--subnet`` を指定しなければ、docker デーモンはネットワークに対してサブネットを自動的に割り当てます。その時、Docker が管理していない基盤上の別サブネットと重複する可能性が有り得ます。このような重複により、コンテナがネットワーク接続時に問題や障害を引き起こします。
 
 ..    Check that the network is running:
 
@@ -272,7 +272,7 @@ Docker マルチホスト・ネットワーキング機能を使うのに、Dock
 
 ..    As you are in the Swarm master environment, you see all the networks on all the Swarm agents: the default networks on each engine and the single overlay network. Notice that each NETWORK ID is unique.
 
-Swarm マスタ環境にいるため、このように Swarm エージェントが動作している全てのネットワークが表示されます。各 ``NETWORK ID`` はユニークなことに注意します。各エンジンのデフォルト・ネットワークとオーバレイ・ネットワークが１つ表示されます
+Swarm マスタ環境にいるため、このように Swarm エージェントが動作している全てのネットワークを表示します。各 ``NETWORK ID`` はユニークなことに注意します。各エンジンのデフォルト・ネットワークとオーバレイ・ネットワークが１つ表示されます
 
 ..    Switch to each Swarm agent in turn and list the networks.
 
@@ -303,12 +303,12 @@ Swarm マスタ環境にいるため、このように Swarm エージェント�
 
 .. _step4-run-an-application-on-your-network:
 
-手順４：ネットワークでアプリケーションの実行
+ステップ４：ネットワークでアプリケーションの実行
 ==================================================
 
 .. Once your network is created, you can start a container on any of the hosts and it automatically is part of the network.
 
-ネットワークを作成したあとは、あらゆるホスト上で、自動的にこのネットワークの一部としてコンテナを開始できます。
+ネットワークを作成した後は、あらゆるホスト上で、自動的にこのネットワークの一部としてコンテナを開始できます。
 
 ..    Point your environment to the Swarm master.
 
@@ -373,12 +373,12 @@ Swarm マスタ環境にいるため、このように Swarm エージェント�
 
 .. step5-check-external-connectivity:
 
-手順５：外部への接続性を確認
+ステップ５：外部への疎通を確認
 ==============================
 
 .. As you’ve seen, Docker’s built-in overlay network driver provides out-of-the-box connectivity between the containers on multiple hosts within the same network. Additionally, containers connected to the multi-host network are automatically connected to the docker_gwbridge network. This network allows the containers to have external connectivity outside of their cluster.
 
-これまで見て来たように、Docker 内蔵のオーバレイ・ネットワーク・ドライバによって、複数のホスト上（同じネットワークでなくとも）に存在するコンテナ間で、革新的な接続性をもたらします。さらに、マルチホスト・ネットワークに接続するコンテナは、自動的に ``docker_gwbridge`` ネットワークに接続します。このネットワークはコンテナがクラスタの外部に対する接続性をもたらします。
+これまで見た通り、Docker 内部のオーバレイ・ネットワーク・ドライバによって、複数のホスト上（同じネットワークでなくとも）に存在するコンテナ間に、革新的な接続性をもたらします。更に、マルチホスト・ネットワークに接続するコンテナは、自動的に ``docker_gwbridge`` ネットワークに接続します。このネットワークはコンテナがクラスタの外部に対する疎通（接続性）をもたらします。
 
 ..    Change your environment to the Swarm agent.
 
@@ -451,7 +451,7 @@ Swarm マスタ環境にいるため、このように Swarm エージェント�
 
 .. _step6-extra-credit-with-docker-compose:
 
-手順６：Docker Compose との連係機能
+ステップ６：Docker Compose との連係機能
 ========================================
 
 .. Please refer to the Networking feature introduced in Compose V2 format and execute the multi-host networking scenario in the Swarm cluster used above.

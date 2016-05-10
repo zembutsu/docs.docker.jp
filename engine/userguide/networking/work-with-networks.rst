@@ -32,7 +32,7 @@ network コマンドを使う
 
 .. While not required, it is a good idea to read Understanding Docker network before trying the examples in this section. The examples for the rely on a bridge network so that you can try them immediately. If you would prefer to experiment with an overlay network see the Getting started with multi-host networks instead.
 
-必要としなくても、このセクションの例に取り組む前に、 :doc:`Docker ネットワークの理解 <dockernetworks>` を読むのは良い考えです。例では ``bridge`` ネットワークを使用するため、すぐに試せられます。 ``overlay`` ネットワークを試したいのであれば、 :doc:`マルチホスト・ネットワーキングを始める <get-started-overlay>` をご覧ください。
+このセクションの例に取り組む前に、 :doc:`Docker ネットワークの理解 <dockernetworks>` を読むのは必要ではなくとも良い考えです。なお、この例では ``bridge`` ネットワークを使用するため、すぐに試せます。 ``overlay`` ネットワークを試したいのであれば、 :doc:`マルチホスト・ネットワーキングを始める <get-started-overlay>` をご覧ください。
 
 .. Create networks
 
@@ -43,11 +43,11 @@ network コマンドを使う
 
 .. Docker Engine creates a bridge network automatically when you install Engine. This network corresponds to the docker0 bridge that Engine has traditionally relied on. In addition to this network, you can create your own bridge or overlay network.
 
-Docker エンジンをインストールすると、Docker エンジンは自動的に ``bridge`` ネットワークを作成します。このネットワークは、エンジンが従来使ってきた ``docker0`` ブリッジに相当します。このネットワークに対して付け加えておくと、自分自身で ``bridge`` （ブリッジ）や ``overlay`` （オーバレイ）ネットワークを作成可能です。
+Docker Engine をインストールしたら、Docker Engine は自動的に ``bridge`` ネットワークを作成します。このネットワークとは、Docker Engine が従来使ってきた ``docker0`` ブリッジに相当します。このデフォルトのネットワークだけでなく、自分で ``bridge`` （ブリッジ）ネットワークや ``overlay`` （オーバレイ）ネットワークを作成可能です。
 
 .. A bridge network resides on a single host running an instance of Docker Engine. An overlay network can span multiple hosts running their own engines. If you run docker network create and supply only a network name, it creates a bridge network for you.
 
-``bridge`` ネットワークは Docker エンジンの実行ホスト環境上に存在します。 ``overlay`` ネットワークは、複数のホスト上で動くエンジンをまたがっています。 ``docker network create`` を実行する時、ネットワーク名だけ指定すると、ブリッジ・ネットワークを作成します。
+``bridge`` ネットワークは Docker エンジンの実行ホスト環境上に存在します。 ``overlay`` ネットワークは、複数のホスト上で動くエンジンを横断します。 ``docker network create`` を実行する時、ネットワーク名だけ指定したら、自動的にブリッジ・ネットワークを作成します。
 
 .. code-block:: bash
 
@@ -76,7 +76,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 .. Unlike bridge networks, overlay networks require some pre-existing conditions before you can create one. These conditions are:
 
-ブリッジ・ネットワークとは異なり、 ``overlay`` ネットワークの場合は、作成前に事前準備がいくつか必要です。事前準備とは、次の通りです。
+``overlay`` ネットワークの場合は、ブリッジ・ネットワークとは異なります。作成前にいくつかの事前準備が必要です。事前準備は次の項目です。
 
 ..    Access to a key-value store. Engine supports Consul, Etcd, and ZooKeeper (Distributed store) key-value stores.
     A cluster of hosts with connectivity to the key-value store.
@@ -96,17 +96,17 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 .. It is also a good idea, though not required, that you install Docker Swarm to manage the cluster. Swarm provides sophisticated discovery and server management that can assist your implementation.
 
-また、必要がなくても Docker Swarm をクラスタ管理用にインストールするのも良い考えでしょう。Swarm はクラスタの設定を手助けするために、洗練されたディスカバリとサーバ管理機能を持っています。
+また、必要がなくてもクラスタ管理用に Docker Swarm をインストールするのも良い考えでしょう。Swarm はクラスタの設定を手助けするために、洗練されたディスカバリとサーバ管理機能を持っています。
 
 .. When you create a network, Engine creates a non-overlapping subnetwork for the network by default. You can override this default and specify a subnetwork directly using the --subnet option. On a bridge network you can only create a single subnet. An overlay network supports multiple subnets.
 
-デフォルトではネットワーク作成時、エンジンはサブネットが重複しないネットワークを作成します。このデフォルトの挙動は変更できます。特定のサブネットワークを直接指定するには ``--subnet`` オプションを使います。 ``bridge`` ネットワーク上では１つだけサブネットを作成できます。 ``overlay`` ネットワークでは、複数のサブネットをサポートしています。
+ネットワーク作成時、Docker Engine はデフォルトでサブネットが重複しないネットワークを作成します。このデフォルトの挙動は変更できます。特定のサブネットワークを直接指定するには ``--subnet`` オプションを使います。 ``bridge`` ネットワーク上では１つだけサブネットを作成できます。 ``overlay`` ネットワークでは、複数のサブネットをサポートしています。
 
 .. Note : It is highly recommended to use the --subnet option while creating a network. If the --subnet is not specified, the docker daemon automatically chooses and assigns a subnet for the network and it could overlap with another subnet in your infrastructure that is not managed by docker. Such overlaps can cause connectivity issues or failures when containers are connected to that network.
 
 .. note::
 
-   ネットワークの作成時は ``--subnet`` オプションの指定を強く推奨します。 ``--subnet`` を指定しなければ、docker デーモンはネットワークに対してサブネットを自動的に割り当てます。そのとき、Docker が管理していない基盤上の別サブネットと重複する可能性が有り得ます。このような重複により、コンテナがネットワークに接続するときに問題や障害を引き起こします。
+   ネットワークの作成時は ``--subnet`` オプションの指定を強く推奨します。 ``--subnet`` を指定しなければ、docker デーモンはネットワークに対してサブネットを自動的に割り当てます。その時、Docker が管理していない基盤上の別サブネットと重複する可能性があります。このような重複により、コンテナがネットワークに接続するときに問題や障害を引き起こします。
 
 .. In addition to the --subnet option, you also specify the --gateway --ip-range and --aux-address options.
 
@@ -124,13 +124,13 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 .. Be sure that your subnetworks do not overlap. If they do, the network create fails and Engine returns an error.
 
-サブネットワークが重複しないように注意してください。重複すると、ネットワーク作成が失敗し、エンジンはエラーを返します。
+サブネットワークが重複しないように注意してください。重複したらネットワーク作成が失敗し、Docker Engine はエラーを返します。
 
 .. When creating a custom network, the default network driver (i.e. bridge) has additional options that can be passed. The following are those options and the equivalent docker daemon flags used for docker0 bridge:
 
 カスタム・ネットワークの作成時、デフォルトのネットワーク・ドライバ（例： ``bridge`` ）は追加オプションを指定できます。dokcer0 ブリッジにおいては、Docker デーモンのフラグで指定するのと同等の以下の設定が利用できます。
 
-.. list-table:
+.. list-table::
    :header-rows: 1
 
    * - オプション
@@ -138,7 +138,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
      - 説明
    * - ``com.docker.network.bridge.name``
      - －
-     - Linux ブリッジ作成時に使われるブリッジ名
+     - Linux ブリッジ作成時に使うブリッジ名
    * - ``com.docker.network.bridge.enable_ip_masquerade``
      - ``--ip-masq``
      - IP マスカレードを有効化
@@ -156,7 +156,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 ``docker network create`` 実行時、以下の引数をあらゆるネットワーク・ドライバで指定できます。
 
-.. list-table:
+.. list-table::
    :header-rows: 1
 
    * - 引数
@@ -171,7 +171,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 .. For example, now let’s use -o or --opt options to specify an IP address binding when publishing ports:
 
-例えば、 ``-o`` または ``--opt`` オプションを使ってポートを公開するために割り当てる IP アドレスを指定しましょう。
+例えば、 ``-o`` または ``--opt`` オプションを使い、ポートを公開用に割り当てる IP アドレスを指定しましょう。
 
 .. code-block:: bash
 
@@ -216,7 +216,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 .. You can connect containers dynamically to one or more networks. These networks can be backed the same or different network drivers. Once connected, the containers can communicate using another container’s IP address or name.
 
-コンテナは１つまたは複数のネットワークに対して、動的に接続できます。これらのネットワークは、同じバックエンドの場合もあれば、異なったネットワーク・ドライバの場合もあります。接続すると、コンテナは他のコンテナの IP アドレスか名前で通信できるようになります。
+コンテナは１つまたは複数のネットワークに対して、動的に接続できます。これらのネットワークは、同じネットワーク・ドライバの場合もあれば、異なるバックエンドの場合もあります。接続後は、コンテナから他のコンテナに IP アドレスまたはコンテナ名で通信できるようになります。
 
 .. For overlay networks or custom plugins that support multi-host connectivity, containers connected to the same multi-host network but launched from different hosts can also communicate in this way.
 
@@ -236,7 +236,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 .. Then create a isolated, bridge network to test with.
 
-それから、分離するための ``bridge`` ネットワークを作成します。
+それから、分離用の ``bridge`` ネットワークを作成します。
 
 .. code-block:: bash
 
@@ -281,7 +281,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 .. You can see that the Engine automatically assigns an IP address to container2. Given we specified a --subnet when creating the network, Engine picked an address from that same subnet. Now, start a third container and connect it to the network on launch using the docker run command’s --net option:
 
-エンジンが自動的に ``container2`` に IP アドレスを割り当てているのが分かります。もしもネットワーク作成時に ``--subnet`` を指定しているのであれば、Engine は指定されたサブネットから IP アドレスを取得します。次に３つめのコンテナを起動します。このネットワークに接続するには、 ``docker run`` コマンドで ``--net`` オプションを使います。
+Docker Engineが自動的に ``container2`` に IP アドレスを割り当てているのが分かります。もしもネットワーク作成時に ``--subnet`` を指定していたならば、Docker Engine は指定されたサブネットから IP アドレスを取得します。次に３つめのコンテナを起動します。このネットワークにコンテナを接続するには、 ``docker run`` コマンドで ``--net`` オプションを使います。
  
 .. code-block:: bash
 
@@ -290,7 +290,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 .. As you can see you were able to specify the ip address for your container. As long as the network to which the container is connecting was created with a user specified subnet, you will be able to select the IPv4 and/or IPv6 address(es) for your container when executing docker run and docker network connect commands. The selected IP address is part of the container networking configuration and will be preserved across container reload. The feature is only available on user defined networks, because they guarantee their subnets configuration does not change across daemon reload.
 
-見ての通り、コンテナに対して IP アドレスを指定できました。``docker run`` コマンドでコンテナ作成時に、ユーザが接続先のサブネットを指定すると、任意の IPv4 アドレスと同時あるいは別に IPv6 アドレスも指定できます。また ``docker network connect`` コマンドでも追加出来ます。IP アドレスの指定は、コンテナのネットワーク設定の一部です。そのため、コンテナを再起動しても IP アドレスは維持されるでしょう。将来的にはユーザ定義ネットワーク上でのみ利用可能になります。ユーザ定義ネットワークでなければ、デーモンを再起動してもサブネット設定情報の維持が保証されないためです。
+見ての通り、コンテナに対して IP アドレスを指定できました。``docker run`` コマンドでコンテナ作成時に、ユーザが接続先のサブネットを指定したら、任意の IPv4 アドレスと同時、あるいは別に IPv6 アドレスも指定できます。また 、``docker network connect`` コマンドでも追加できます。IP アドレスの指定は、コンテナのネットワーク設定の一部です。そのため、コンテナを再起動しても IP アドレスは維持されるでしょう。将来的にはユーザ定義ネットワーク上でのみ利用可能になります。ユーザ定義ネットワーク以外では、デーモンを再起動時にサブネット設定情報の維持を保証しないためです。
 
 .. Now, inspect the network resources used by container3.
 
@@ -338,7 +338,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 .. You should find container2 belongs to two networks. The bridge network which it joined by default when you launched it and the isolated_nw which you later connected it to.
 
-``container2`` は２つのネットワークに所属しているのが分かるでしょう。 ``bridge`` ネットワークは起動時にデフォルトで参加したネットワークであり、 ``isolated_nw`` ネットワークは後から自分で接続したものです。
+``container2`` は２つのネットワークに所属しているのが分かります。 ``bridge`` ネットワークは起動時にデフォルトで参加したネットワークであり、 ``isolated_nw`` ネットワークは後から自分で接続したものです。
 
 .. image:: ./images/working.png
    :scale: 60%
@@ -346,7 +346,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 .. In the case of container3, you connected it through docker run to the isolated_nw so that container is not connected to bridge.
 
-``container3`` の場合、 ``docker run`` で ``isolated_nw`` に接続したので、このコンテナは ``bridge`` に接続していません。
+``container3`` の場合は、 ``docker run`` で ``isolated_nw`` に接続しました、そのため、このコンテナは ``bridge`` に接続していません。
 
 .. Use the docker attach command to connect to the running container2 and examine its networking stack:
 
@@ -358,7 +358,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 .. If you look a the container’s network stack you should see two Ethernet interfaces, one for the default bridge network and one for the isolated_nw network.
 
-コンテナのネットワーク・スタックを確認すると、２つのイーサネット・インターフェースが見えます。１つはデフォルトの bridge ネットワークであり、もう１つは ``isolated_nw`` ネットワークです。
+コンテナのネットワーク・スタックを確認したら、２つのイーサネット・インターフェースが見えます。１つはデフォルトの bridge ネットワークであり、もう１つは ``isolated_nw`` ネットワークです。
 
 .. code-block:: bash
 
@@ -392,7 +392,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 .. On the `isolated_nw` which was user defined, the Docker embedded DNS server enables name resolution for other containers in the network.  Inside of `container2` it is possible to ping `container3` by name.
 
-``isolated_nw`` はユーザによって定義されたものであり、Docker 内蔵 DNS サーバがネットワーク上の他のコンテナに対する適切な名前解決を行います。 ``container2`` の内部では、 ``container3`` に対して名前で ping できるでしょう。
+``isolated_nw`` はユーザが定義したネットワークであり、Docker 内部 DNS サーバがネットワーク上の他コンテナに対する適切な名前解決をします。 ``container2`` の内部では、 ``container3`` に対して名前で ping できるでしょう。
 
 .. code-block:: bash
 
@@ -409,7 +409,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 .. This isn’t the case for the default bridge network. Both container2 and container1 are connected to the default bridge network. Docker does not support automatic service discovery on this network. For this reason, pinging container1 by name fails as you would expect based on the /etc/hosts file:
 
-デフォルトの ``bridge`` ネットワークを使っている場合、この名前解決機能を利用できません。 ``containe2`` と ``container1`` は、どちらもデフォルトのブリッジ・ネットワークに接続しています。このデフォルトのネットワーク上では、Docker は自動サービス・ディスカバリをサポートしません。そのため、 ``container1`` に対して名前で ping をしても、 ``/etc/hosts`` ファイルには記述がないため失敗するでしょう。
+ただし、デフォルトの ``bridge`` ネットワークを使う場合は、この名前解決機能を利用できません。 ``container2`` と ``container1`` は、どちらもデフォルトのブリッジ・ネットワークに接続しています。このデフォルトのネットワーク上では、Docker は自動サービス・ディスカバリをサポートしません。そのため、 ``container1`` に対して名前で ping をしても、 ``/etc/hosts`` ファイルに記述しない限り失敗するでしょう。
 
 .. code-block:: bash
 
@@ -435,7 +435,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 .. If you wanted you could connect container1 to container2 with the docker run --link command and that would enable the two containers to interact by name as well as IP.
 
-``container1`` と ``container2`` を接続したい場合は、 ``docker run --link`` コマンドを使い、２つのコンテナが相互に IP アドレスだけでなく、名前で通信できるようになります。
+``container1`` と ``container2`` を接続したい場合は、 ``docker run --link`` コマンドを使います。すると、２つのコンテナは  IP アドレスだけでなく、名前でも相互に通信可能となります。
 
 .. Detach from a container2 and leave it running using CTRL-p CTRL-q.
 
@@ -443,7 +443,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 .. In this example, container2 is attached to both networks and so can talk to container1 and container3. But container3 and container1 are not in the same network and cannot communicate. Test, this now by attaching to container3 and attempting to ping container1 by IP address.
 
-この例では、 ``container2`` は両方のネットワークにアタッチしているため、 ``container1`` と ``container3`` の両方と通信できます。しかし、 ``container3`` と ``container1`` は同じネットワーク上に存在していないため、お互いに通信出来ません。確認のため、 ``container3`` にアタッチし、 ``container1`` の IP アドレスに対して ping を試みましょう。
+この例では、 ``container2`` は両方のネットワークに接続しているため、 ``container1`` と ``container3`` の両方と通信できます。しかし、 ``container3`` と ``container1`` は同じネットワーク上に存在していないため、お互いに通信できません。確認のため、 ``container3`` にアタッチし、 ``container1`` の IP アドレスに対して ping を試みましょう。
 
 .. code-block:: bash
 
@@ -456,7 +456,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 .. You can connect both running and non-running containers to a network. However, docker network inspect only displays information on running containers.
 
-コンテナをネットワークに接続するには、実行中でも停止中でも可能です。しかしながら、 ``docker network inspect`` が表示するのは、実行中のコンテナのみです。
+コンテナをネットワークに接続するには、実行中でも停止中でも可能です。しかし、 ``docker network inspect`` が表示するのは、実行中のコンテナのみです。
 
 .. Linking containers in user-defined networks
 
@@ -467,11 +467,11 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 .. In the above example, container_2 was able to resolve container_3’s name automatically in the user defined network isolated_nw, but the name resolution did not succeed automatically in the default bridge network. This is expected in order to maintain backward compatibility with legacy link.
 
-先の例では、ユーザ定義ネットワーク ``isolated_nw`` において ``container_2`` は自動的に ``container_3`` の名前解決が可能でした。しかし、デフォルトの ``bridge`` ネットワークでは自動的に名前解決が行われません。そのため、後方互換性のある :doc:`レガシーのリンク機能 <default_network/dockerlinks>` を使い続ける必要が予想されます。
+先の例では、ユーザ定義ネットワーク ``isolated_nw`` において、 ``container2`` は自動的に ``container3`` の名前解決が可能でした。しかし、デフォルトの ``bridge`` ネットワークでは自動的に名前解決が行われません。そのため、後方互換性のある :doc:`レガシーのリンク機能 <default_network/dockerlinks>` を使い続ける必要が求められます。
 
 .. The legacy link provided 4 major functionalities to the default bridge network.
 
-``レガシーのリンク`` はデフォルト ``bridge`` ネットワーク上で４つの主な機能を提供します。
+``レガシーのリンク`` は、デフォルト ``bridge`` ネットワーク上で４つの主な機能を提供します。
 
 ..    name resolution
     name alias for the linked container using --link=CONTAINER-NAME:ALIAS
@@ -480,7 +480,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 * 名前解決
 * ``--link=コンテナ名:エイリアス`` の形式で、リンクしたコンテナの別名を指定
-* コンテナの接続性を安全にする（ ``--icc=false`` で隔離する ）
+* コンテナの接続性を安全にする（ ``--icc=false`` で分離する ）
 * 環境変数の挿入
 
 .. Comparing the above 4 functionalities with the non-default user-defined networks such as isolated_nw in this example, without any additional config, docker network provides
@@ -499,7 +499,7 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 .. Continuing with the above example, create another container container_4 in i solated_nw with --link to provide additional name resolution using alias for other containers in the same network.
 
-先ほどの例で説明を続けると、 ``isolated_nw`` において別のコンテナ ``container_4``  を作成します。このとき、 ``--link`` オプションを付けると、同一ネットワーク上の別のコンテナが名前解決に使える別名を指定できます。
+先ほどの例で説明を続けます。 ``isolated_nw`` に別のコンテナ ``container4``  を作成しましょう。この時、 ``--link`` オプションを付ければ、同一ネットワーク上の他コンテナが名前解決に使える別名（エイリアス）を指定できます。
 
 .. code-block:: bash
 
@@ -508,11 +508,11 @@ Docker エンジンをインストールすると、Docker エンジンは自動
 
 .. With the help of --link container4 will be able to reach container5 using the aliased name c5 as well.
 
-``--link`` の助けにより、 ``container4`` は ``container5`` に接続するのに、 ``c5`` という別名でも接続できます。
+``--link`` の助けにより、 ``container4`` が ``container5`` に接続するために、 ``c5`` という別名でも接続できます。
 
 .. Please note that while creating container4, we linked to a container named container5 which is not created yet. That is one of the differences in behavior between the legacy link in default bridge network and the new link functionality in user defined networks. The legacy link is static in nature and it hard-binds the container with the alias and it doesn't tolerate linked container restarts. While the new link functionality in user defined networks are dynamic in nature and supports linked container restarts including tolerating ip-address changes on the linked container.
 
-container 4 の作成時、リンクしようとする ``container5`` という名前のコンテナは、まだ作成されていないに注意してください。これが、デフォルトの ``bridge`` における  ``レガシーのリンク`` 機能と、ユーザ定義ネットワークにおける新しい ``リンク`` 機能における挙動の違いの１つです。 ``レガシーのリンク`` は静的なものです。コンテナに対するエイリアス名は固定されるものであり、リンク対象のコンテナを再起動するのは許容されません。一方のユーザ定義ネットワークにおける新 ``リンク`` 機能であれば、動的な性質を持っています。リンク対象のコンテナの再起動は許容されますし、IP アドレスの変更もできます。
+``container4`` の作成時、リンクしようとする ``container5`` という名前のコンテナは、まだ作成していないに注意してください。これが、デフォルト ``bridge`` における  ``レガシーのリンク`` 機能と、ユーザ定義ネットワークにおける新しい ``リンク`` 機能とで異なる挙動の１つです。 ``レガシーのリンク`` は静的（固定）です。コンテナに対するエイリアス名は固定であり、リンク対象のコンテナを再起動は許容されません。一方のユーザ定義ネットワークにおける新しい ``リンク`` 機能であれば、動的な性質を持っています。リンク対象のコンテナ再起動は許容されますし、IP アドレスの変更もできます。
 
 .. Now let us launch another container named container5 linking container4 to c4.
 
@@ -525,7 +525,7 @@ container 4 の作成時、リンクしようとする ``container5`` という�
 
 .. As expected, container4 will be able to reach container5 by both its container name and its alias c5 and container5 will be able to reach container4 by its container name and its alias c4.
 
-予想通り、 ``container4`` は ``container5`` に対してアクセスできるのは、コンテナ名とエイリアスである c5 の両方です。そして、 ``container5`` は ``container4`` に対しても、コンテナ名とエイリアスである c4 でアクセスできます。
+予想通り、 ``container4`` は ``container5`` に対して接続できるのは、コンテナ名とエイリアス c5 の両方です。そして、 ``container5`` は ``container4`` に対しても、コンテナ名とエイリアスである c4 で接続できます。
 
 .. code-block:: bash
 
@@ -579,11 +579,11 @@ container 4 の作成時、リンクしようとする ``container5`` という�
 
 .. Similar to the legacy link functionality the new link alias is localized to a container and the aliased name has no meaning outside of the container using the --link.
 
-レガシーのリンク機能と新しいリンクのエイリアスは、コンテナに対してエイリアス名を指定するという意味では似ています。しかし、コンテナに ``--link`` を指定しなければ意味がありません。
+レガシーのリンク機能と新しいリンクのエイリアスは、コンテナに対してエイリアス名で接続するという意味では似ています。しかし、レガシーのリンクはコンテナに ``--link`` を指定した範囲でしか機能しません。
 
 .. Also, it is important to note that if a container belongs to multiple networks, the linked alias is scoped within a given network. Hence the containers can be linked to different aliases in different networks.
 
-また、重要な注意点として、コンテナが複数のネットワークに所属している場合、リンクのエイリアス（別名）が有効な範囲は所属ネットワーク全体に適用されます。そのため、別のネットワークでは異なったエイリアスとしてリンクされることがあります。
+加えて、重要な注意点があります。コンテナが複数のネットワークに所属している場合、リンクのエイリアス（別名）が有効な範囲は、所属するネットワーク全体に適用されます。そのため、別のネットワークでは異なるエイリアスとしてリンクされる場合があります。
 
 .. Extending the example, let us create another network named local_alias
 
@@ -659,7 +659,7 @@ container 4 の作成時、リンクしようとする ``container5`` という�
 
 .. One notable missing functionality compared to legacy links is the injection of environment variables. Though very useful, environment variable injection is static in nature and must be injected when the container is started. One cannot inject environment variables into a running container without significant effort and hence it is not compatible with docker network which provides a dynamic way to connect/ disconnect containers to/from a network.
 
-``レガシーのリンク`` 機能と比較すると、環境変数の挿入が、失われた機能の１つとして注目すべきです。環境変数の挿入は非常に便利なものです。しかし、静的な性質であり、コンテナが開始する時に必ず挿入する必要がありました。環境変数を挿入できなかったのは、 ``docker network`` と互換性を保とうとするからです。これはネットワークにコンテナを動的に接続／切断する手法であり、環境変数の挿入は、実行中のコンテナに対して影響を与えてしまうからです。
+``レガシーのリンク`` 機能と比較する場合、失われた機能の１つとして環境変数の挿入を注目すべきです。環境変数の挿入は非常に便利なものです。しかし、静的な性質であり、コンテナが開始する時に必ず挿入する必要がありました。環境変数を挿入できなかったのは、 ``docker network`` との互換性を保つためです。これはネットワークにコンテナを動的に接続／切断する手法であり、環境変数の挿入は、実行中のコンテナに対して影響を与えてしまうからです。
 
 .. Network-scoped alias
 
@@ -670,7 +670,7 @@ container 4 の作成時、リンクしようとする ``container5`` という�
 
 .. While links provide private name resolution that is localized within a container, the network-scoped alias provides a way for a container to be discovered by an alternate name by any other container within the scope of a particular network. Unlike the link alias, which is defined by the consumer of a service, the network-scoped alias is defined by the container that is offering the service to the network.
 
-``リンク`` 機能はコンテナ内におけるプライベートな名前解決を提供します。ネットワークを範囲としたエイリアス（network-scoped alias）とは、特定のネットワークの範囲内でコンテナのエイリアス名を有効にします。
+``リンク`` 機能はコンテナ内におけるプライベートな名前解決を提供します。ネットワーク範囲のエイリアス（network-scoped alias）とは、特定のネットワークの範囲内でコンテナのエイリアス名を有効にします。
 
 .. Continuing with the above example, create another container in isolated_nw with a network alias.
 
@@ -706,7 +706,7 @@ container 4 の作成時、リンクしようとする ``container5`` という�
    4 packets transmitted, 4 packets received, 0% packet loss
    round-trip min/avg/max = 0.070/0.081/0.097 ms
 
-``container6`` を ``local_alias`` ネットワークに接続しますが、異なったネットワーク範囲のエイリアスを指定します。
+``container6`` を ``local_alias`` ネットワークに接続しますが、異なったネットワーク範囲エイリアスを指定します。
 
 .. code-block:: bash
 
@@ -740,7 +740,7 @@ container 4 の作成時、リンクしようとする ``container5`` という�
 
 .. As you can see, the alias is scoped to the network it is defined on and hence only those containers that are connected to that network can access the alias.
 
-ご覧の通り、ネットワークのエイリアス範囲は、ネットワークをエイリアスとしてアクセス可能に定義した範囲内のコンテナのみです。
+ご覧の通り、ネットワーク範囲のエイリアスとは、ネットワークをエイリアスとしてアクセス可能に定義した範囲内のコンテナのみです。
 
 .. In addition to the above features, multiple containers can share the same network-scoped alias within the same network. For example, let’s launch container7 in isolated_nw with the same alias as container6
 
@@ -753,11 +753,11 @@ container 4 の作成時、リンクしようとする ``container5`` という�
 
 .. When multiple containers share the same alias, name resolution to that alias will happen to one of the containers (typically the first container that is aliased). When the container that backs the alias goes down or disconnected from the network, the next container that backs the alias will be resolved.
 
-複数のコンテナが同じエイリアス名を共有するとき、エイリアスの名前解決はコンテナのいずれかで行います（通常は初めてエイリアス指定をしたコンテナです）。コンテナが停止してエイリアスが無効になるか、ネットワークから切断すると、次のコンテナが名前解決のエイリアスに使われます。
+複数のコンテナが同じエイリアス名を共有する時、エイリアスの名前解決はコンテナのいずれかで行います（通常は初めてエイリアス指定をしたコンテナです）。コンテナが停止してエイリアスが無効になるか、ネットワークから切断すれば、次のコンテナが名前解決のエイリアスに使われます。
 
 .. Let us ping the alias app from container4 and bring down container6 to verify that container7 is resolving the app alias.
 
-``container4`` から ``app`` エイリアスに ping をした後、 ``container6`` を停止すると、 ``app`` に対する名前解決が ``container7`` になるのを確認しましょう。
+``container4`` から ``app`` エイリアスに ping をした後、 ``container6`` を停止します。その後、 ``app`` に対する名前解決が ``container7`` になるのを確認しましょう。
 
 .. code-block:: bash
 
@@ -849,7 +849,7 @@ container 4 の作成時、リンクしようとする ``container5`` という�
 
 .. Once a container is disconnected from a network, it cannot communicate with other containers connected to that network. In this example, container2 can no longer talk to container3 on the isolated_nw network.
 
-コンテナがネットワークから切断されると、対象ネットワーク上で接続していたコンテナと通信できなくなります。この例では、 ``container2`` は ``isolated_nw`` ネットワーク上の ``container3`` とは通信できなくなります。
+コンテナがネットワークから切断したら、対象ネットワーク上で接続していたコンテナと通信できなくなります。この例では、 ``container2`` は ``isolated_nw`` ネットワーク上の ``container3`` とは通信できなくなります。
 
 .. code-block:: bash
 
@@ -898,7 +898,7 @@ container 4 の作成時、リンクしようとする ``container5`` という�
 
 .. There are certain scenarios such as ungraceful docker daemon restarts in multi-host network, where the daemon is unable to cleanup stale connectivity endpoints. Such stale endpoints may cause an error container already connected to network when a new container is connected to that network with the same name as the stale endpoint. In order to cleanup these stale endpoints, first remove the container and force disconnect (docker network disconnect -f) the endpoint from the network. Once the endpoint is cleaned up, the container can be connected to the network.
 
-複数ホストのネットワークにおいて、不意に docker デーモンの再起動が発生するシナリオを考えて見ます。デーモンは接続していたエンドポイントとの接続性を解消していないものとします。エンドポイントでは、新しいコンテナがかつてと同じ名前で接続しようとしても ``container already connected to netwok`` （コンテナは既にネットワークに接続している）とエラーがでるかもしれません。エンドポイントの認識が古いのを解消するには、まずはじめにコンテナを削除し、エンドポイントのネットワークから強制的に切断します（ ``docker network disconnect -f`` ）。エンドポイントがクリーンアップされれば、コンテナはネットワークに接続できるようになります。
+複数ホストのネットワークにおいて、不意に docker デーモンの再起動が発生するシナリオを考えます。デーモンは接続していたエンドポイントとの接続性を解消していないものとします。エンドポイントでは、新しいコンテナがかつてと同じ名前で接続しようとしても ``container already connected to network`` （コンテナは既にネットワークに接続している）とエラーが出るかもしれません。エンドポイントの認識が古いのを解消するには、まず最初にコンテナを削除し、エンドポイントのネットワークから強制的に切断します（ ``docker network disconnect -f`` ）。エンドポイントがクリーンアップされれば、コンテナはネットワークに接続できるようになります。
 
 .. code-block:: bash
 
@@ -918,10 +918,11 @@ container 4 の作成時、リンクしようとする ``container5`` という�
 .. _remove-a-network:
 
 ネットワークの削除
+====================
 
 .. When all the containers in a network are stopped or disconnected, you can remove a network.
 
-ネットワーク上の全てのコンテナが停止するか切断すると、ネットワークを削除できます。
+ネットワーク上の全てのコンテナが停止するか切断したら、ネットワークを削除できます。
 
 .. code-block:: bash
 
@@ -954,7 +955,7 @@ container 4 の作成時、リンクしようとする ``container5`` という�
 
 .. List all your networks to verify the isolated_nw was removed:
 
-すべてのネットワーク情報を確認すると、 ``isolated_nw`` が削除されています。
+全てのネットワーク情報を確認したら、 ``isolated_nw`` が削除されています。
 
 .. code-block:: bash
 

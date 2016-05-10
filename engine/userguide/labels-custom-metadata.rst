@@ -25,22 +25,22 @@
 
 .. A label is a <key> / <value> pair. Docker stores the label values as strings. You can specify multiple labels but each <key> must be unique or the value will be overwritten. If you specify the same key several times but with different values, newer labels overwrite previous labels. Docker uses the last key=value you supply.
 
-ラベルは ``<key>`` / ``<value>`` のペアです。Docker はラベルの値を *文字列* として保管します。複数のラベルを指定できますが、 ``<key>`` はユニークである必要があるため、重複時は上書きされます。同じ ``<key>`` を複数回指定すると、古いラベルは新しいラベルに置き換えられるため、都度値が変わります。Docker は常に指定した最新の ``key=value`` を使います。
+ラベルは ``<key>`` / ``<value>`` のペアです。Docker はラベルの値を *文字列* として保管します。複数のラベルを指定できますが、 ``<key>`` はユニークである必要があるため、重複時は上書きされます。同じ ``<key>`` を複数回指定したら、古いラベルは新しいラベルに置き換えられるため、都度値が変わります。Docker は常に指定した最新の ``key=value`` を使います。
 
 ..    Note: Support for daemon-labels was added in Docker 1.4.1. Labels on containers and images are new in Docker 1.6.0
 
 .. note::
 
-   デーモンのラベル機能のサポートは Docker 1.4.1 から追加されました。コンテナとイメージに対するラベルは、Docker 1.6.0 からです。
+   デーモンのラベル機能は Docker 1.4.1 から追加されました。コンテナとイメージに対するラベルは、Docker 1.6.0 からです。
 
 .. Label keys (namespaces)
 
-ラベル・キー（名前空間）
+ラベルのキーと名前空間
 ==============================
 
 .. Docker puts no hard restrictions on the key used for a label. However, using simple keys can easily lead to conflicts. For example, you have chosen to categorize your images by CPU architecture using “architecture” labels in your Dockerfiles:
 
-Docker は ``key`` の使用にあたり、厳密な制約を設けていません。しかしながら、単純な key であれば重複の可能性があります。例えば、Dockerfile の中で「architecture」ラベルを使って CPU アーキテクチャ毎にイメージを分類する場合です。
+Docker は ``key`` の使用にあたり、厳密な制約を設けていません。しかしながら、単純な key であれば重複の可能性があります。例えば、Dockerfile の中で「architecture」ラベルを使い、 CPU アーキテクチャごとにイメージを分類する場合です。
 
 .. code-block:: bash
 
@@ -87,7 +87,7 @@ Docker は ``key`` の使用にあたり、厳密な制約を設けていませ�
 
 .. Store structured data in labels
 
-構造化されたデータをラベルに保存
+構造化したデータをラベルに保存
 ========================================
 
 .. Label values can contain any data type as long as it can be represented as a string. For example, consider this JSON document:

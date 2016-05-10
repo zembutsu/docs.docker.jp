@@ -23,7 +23,7 @@ MongoDB の Docker 化
 
 .. In this example, we are going to learn how to build a Docker image with MongoDB pre-installed. We’ll also see how to push that image to the Docker Hub registry and share it with others!
 
-この例では、MongoDB がインストール済みの Docker イメージを、どのようにして構築するかを学びます。また、イメージを `Docker Hub レジストリ <https://hub.docker.com/>`_ に ``push`` して他人と共有する方法も理解します。
+この例では、MongoDB がインストール済みの Docker イメージを、どのようにして構築するかを学びます。また、イメージを `Docker Hub レジストリ <https://hub.docker.com/>`_ に ``送信`` して、他人と共有する方法も理解します。
 
 ..    Note: This guide will show the mechanics of building a MongoDB container, but you will probably want to use the official image on Docker Hub
 
@@ -33,7 +33,7 @@ MongoDB の Docker 化
 
 .. Using Docker and containers for deploying MongoDB instances will bring several benefits, such as:
 
-Docker を使い `MongoDB <https://www.mongodb.org/>`_ インスタンスをデプロイすると、次のメリットがあります。
+Docker を使い `MongoDB <https://www.mongodb.org/>`_ インスタンスをデプロイしたら、次のメリットがあります。
 
 ..    Easy to maintain, highly configurable MongoDB instances;
     Ready to run and start working within milliseconds;
@@ -129,7 +129,7 @@ MongoDB 公開 GPG 鍵を取り込みます。また、パッケージ・マネ�
 
 .. tip::
 
-   特定のバージョンの MongoDB をインストールできます。そのためには、次の例のようにパッケージのバージョン番号のリストが必要です。
+   MongoDB のバージョンを指定したインストールもできます。そのためには、次の例のようにパッケージのバージョン番号のリストが必要です。
 
 .. code-block:: bash
 
@@ -137,7 +137,7 @@ MongoDB 公開 GPG 鍵を取り込みます。また、パッケージ・マネ�
 
 .. MongoDB requires a data directory. Let’s create it as the final step of our installation instructions.
 
-MongoDB はデータ・ディレクトリが必要です。インストール命令の最後の手順で作成しましょう。
+MongoDB はデータ・ディレクトリが必要です。インストールの最終ステップで作成を命令しましょう。
 
 .. code-block:: bash
 
@@ -146,14 +146,14 @@ MongoDB はデータ・ディレクトリが必要です。インストール命
 
 .. Lastly we set the ENTRYPOINT which will tell Docker to run mongod inside the containers launched from our MongoDB image. And for ports, we will use the EXPOSE instruction.
 
-最後に ``ENTRYPOINT`` を設定します。これは Docker に対して MongoDB イメージでコンテナを起動するとき、コンテナ内で ``mongod`` を実行するよう命令します。そして、ポートを公開するために ``EXPOSE`` 命令を使います。
+最後に ``ENTRYPOINT`` を設定します。これは Docker に対して MongoDB イメージでコンテナを起動する時、コンテナ内で ``mongod`` を実行するよう命令します。そして、ポートを公開するために ``EXPOSE`` 命令を使います。
 
 .. code-block:: bash
 
    # コンテナのポート 27017 をホスト側に露出（EXPOSE)
    EXPOSE 27017
    
-   # usr/bin/mongodb を Docker 化アプリケーションのエントリーポイントに設定
+   # usr/bin/mongod を Docker 化アプリケーションのエントリ・ポイントに設定
    ENTRYPOINT ["/usr/bin/mongod"]
 
 .. Now save the file and let’s build our image.
@@ -163,7 +163,7 @@ MongoDB はデータ・ディレクトリが必要です。インストール命
 ..    Note:
 ..    The full version of this Dockerfile can be found here.
 
-この ``Dockerfile`` の完全版は `こちら <https://github.com/docker/docker/blob/master/docs/examples/mongodb/Dockerfile>`_ をご覧ください。
+この ``Dockerfile`` の完成版は `こちら <https://github.com/docker/docker/blob/master/docs/examples/mongodb/Dockerfile>`_ をご覧ください。
 
 .. Building the MongoDB Docker image
 
@@ -184,7 +184,7 @@ MongoDB Docker イメージの構築
 
 .. Once this command is issued, Docker will go through the Dockerfile and build the image. The final image will be tagged my/repo.
 
-コマンドを実行すると、 Docker は ``Dockerfile`` を処理してイメージを構築します。イメージは最終的に ``my/repo`` とタグ付けされます。
+コマンドを実行したら、 Docker は ``Dockerfile`` を処理してイメージを構築します。イメージは最終的に ``my/repo`` とタグ付けされます。
 
 .. Pushing the MongoDB image to Docker Hub
 
@@ -195,7 +195,7 @@ MongoDB イメージを Docker Hub に送信
 
 .. All Docker image repositories can be hosted and shared on Docker Hub with the docker push command. For this, you need to be logged-in.
 
-全ての Docker イメージ・リポジトリを `Docker Hub <https://hub.docker.com/>`_ で保管・共有できるようにするには、 ``docker push`` コマンドを使います。この場合は、ログインする必要があります。
+全ての Docker イメージ・リポジトリを `Docker Hub <https://hub.docker.com/>`_ で保管・共有できるようにするには、 ``docker push`` コマンドを使います。送信するためには、ログインの必要があります。
 
 .. code-block:: bash
 

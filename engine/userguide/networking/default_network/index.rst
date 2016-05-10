@@ -12,12 +12,12 @@
 .. _docker-default-bridge-network:
 
 =========================================
-Docker デフォルト・ブリッジ・ネットワーク
+Docker デフォルトの bridge ネットワーク
 =========================================
 
 .. With the introduction of the Docker networks feature, you can create your own user-defined networks. The Docker default bridge is created when you install Docker Engine. It is a bridge network and is also named bridge. The topics in this section are related to interacting with that default bridge network.
 
-Docker ネットワーク機能の導入部では、自分自身で定義したネットワークを作成できました。Docker のデフォルト・ブリッジは、Docker エンジンのインストール時に作成されたものです。この ``bridge`` ネットワークは、 ``bridge`` とも呼ばれます。以下のセクションでは、デフォルトの ``bridge`` ネットワークに関連する話題を扱っています。
+Docker ネットワーク機能の導入部では、自分自身で定義したネットワークを作成できました。Docker デフォルトのブリッジ・ネットワークは、Docker Engine のインストール時に作成されたものです。この ``ブリッジ`` ・ネットワークは、単に ``ブリッジ（bridge）`` とも呼ばれます。以下のセクションでは、デフォルトの ``bridge`` ネットワークに関連する話題を扱います。
 
 ..    Understand container communication
     Legacy container links

@@ -12,7 +12,7 @@
 .. _docker-and-overlayfs-in-practice:
 
 ========================================
-OverlayFS ストレージを使う
+OverlayFS ストレージの使用
 ========================================
 
 .. sidebar:: 目次
@@ -35,7 +35,7 @@ OverlayFS は最近の *ユニオン・ファイルシステム* であり、 AU
 
 .. As a result, OverlayFS is rapidly gaining popularity in the Docker community and is seen by many as a natural successor to AUFS. As promising as OverlayFS is, it is still relatively young. Therefore caution should be taken before using it in production Docker environments.
 
-この結果、OverlayFS は Docker コミュニティで急に有名になり、多くの人から AUFS の後継者と自然に思われています。OverlayFS は同じくらい有望ですが、比較的まだ若いです。そのため、プロダクションの Docker 環境で利用する前に、十分に注意を払うべきでしょう。
+この結果、OverlayFS は Docker コミュニティで急に有名になり、多くの人から AUFS の後継者と自然に思われています。OverlayFS は有望ですが、比較的まだ若いストレージ・ドライバです。そのため、プロダクションの Docker 環境で利用する前に、十分に注意を払うべきでしょう。
 
 .. Docker’s overlay storage driver leverages several OverlayFS features to build and manage the on-disk structures of images and containers.
 
@@ -56,7 +56,7 @@ OverlayFS でイメージのレイヤ化と共有
 
 .. OverlayFS takes two directories on a single Linux host, layers one on top of the other, and provides a single unified view. These directories are often referred to as layers and the technology used to layer them is known as a union mount. The OverlayFS terminology is “lowerdir” for the bottom layer and “upperdir” for the top layer. The unified view is exposed through its own directory called “merged”.
 
-OverlayFS は１つの Linux ホスト上で２つのディレクトリを扱います。他のレイヤよりも一番上にあるレイヤにより、１つに統一して見えます。これらのディレクトリは *レイヤ* としてたびたび参照され、レイヤに対しては *ユニオン・マウント（union mount）* と呼ばれる技術が使われています。OverlayFS 技術は「下位ディレクトリ」が下の方のレイヤであり、「上位ディレクトリ」が上のレイヤになります。統一して表示される場所そのものを、「マージされた」（marged）ディレクトリと呼びます。
+OverlayFS は１つの Linux ホスト上で２つのディレクトリを扱います。他のレイヤよりも一番上にあるレイヤにより、１つに統一して見えます。これらのディレクトリは *レイヤ* としてたびたび参照され、レイヤに対しては *ユニオン・マウント（union mount）* と呼ばれる技術が使われています。OverlayFS 技術では「下位ディレクトリ」が下の方のレイヤであり、「上位ディレクトリ」が上のレイヤになります。統一して表示される場所そのものを、「マージされた」（marged）ディレクトリと呼びます。
 
 .. The diagram below shows how a Docker image and a Docker container are layered. The image layer is the “lowerdir” and the container layer is the “upperdir”. The unified view is exposed through a directory called “merged” which is effectively the containers mount point. The diagram shows how Docker constructs map to OverlayFS constructs.
 
@@ -72,11 +72,11 @@ OverlayFS は１つの Linux ホスト上で２つのディレクトリを扱い
 
 .. OverlayFS only works with two layers. This means that multi-layered images cannot be implemented as multiple OverlayFS layers. Instead, each image layer is implemented as its own directory under /var/lib/docker/overlay. Hard links are then used as a space-efficient way to reference data shared with lower layers. As of Docker 1.10, image layer IDs no longer correspond to directory names in /var/lib/docker/
 
-OverlayFS は２つのレイヤだけ扱います。つまり、複数にレイヤ化されたイメージは、複数の OverlayFS レイヤとしては使われません。その代わり、各イメージ・レイヤは ``/var/lib/docker/overlay`` ディレクトリ以下で自身が使われます。下位のレイヤと共有するデータを効率的に参照する手法として、ハードリンクが使われます。Docker 1.10 からは、イメージ・レイヤ ID は ``/var/lib/docker/`` 内のディレクトリ名と一致しなくなりました。
+OverlayFS は２つのレイヤだけ扱います。つまり、複数にレイヤ化されたイメージは、複数の OverlayFS レイヤとしては使われません。そのかわり、各イメージ・レイヤは ``/var/lib/docker/overlay`` ディレクトリ以下で自身が使われます。下位のレイヤと共有するデータを効率的に参照する手法として、ハードリンクが使われます。Docker 1.10 からは、イメージ・レイヤ ID は ``/var/lib/docker/`` 内のディレクトリ名と一致しなくなりました。
 
 .. To create a container, the overlay driver combines the directory representing the image’s top layer plus a new directory for the container. The image’s top layer is the “lowerdir” in the overlay and read-only. The new directory for the container is the “upperdir” and is writable.
 
-コンテナを作成すると、 ``overlay`` ドライバはコンテナのために新しいディレクトリをイメージの最上位レイヤの上に追加し、これらを組みあわせてディレクトリを表示します。イメージの最上位レイヤは、overlay では「下位ディレクトリ」であり、読み込み専用です。コンテナ用の新しいディレクトリは「上位ディレクトリ」であり、書き込み可能です。
+コンテナを作成したら、 ``overlay`` ドライバはコンテナのために新しいディレクトリをイメージの最上位レイヤの上に追加し、これらを組みあわせてディレクトリを表示します。イメージの最上位レイヤは、overlay では「下位ディレクトリ」であり、読み込み専用です。コンテナ用の新しいディレクトリは「上位ディレクトリ」であり、書き込み可能です。
 
 .. Example: Image and container on-disk constructs
 
@@ -105,11 +105,11 @@ OverlayFS は２つのレイヤだけ扱います。つまり、複数にレイ�
 
 .. Each image layer has it’s own directory under /var/lib/docker/overlay/. This is where the contents of each image layer are stored.
 
-``/var/lib/docker/overlay`` 以下のディレクトリに、各イメージ・レイヤを置くディレクトリがあります。ここが、各イメージ・レイヤの内容が保管される場所です。
+``/var/lib/docker/overlay`` 以下のディレクトリに、各イメージ・レイヤを置くディレクトリがあります。ここが、各イメージ・レイヤの内容を保管する場所です。
 
 .. The output of the command below shows the four directories that store the contents of each image layer just pulled. However, as can be seen, the image layer IDs do not match the directory names in /var/lib/docker/overlay. This is normal behavior in Docker 1.10 and later.
 
-以下のコマンドの出力は、取得した各イメージ・レイヤの内容が保管されている４つのディレクトリを表しています。しかしながら、これまで見てきたように、イメージ・レイヤ ID は ``/var/lib/docker/overlay`` にあるディレクトリ名と一致しません。これは Docker 1.10 以降の通常の振る舞いです。
+以下のコマンドの出力は、取得した各イメージ・レイヤの内容が保管されている４つのディレクトリを表しています。しかしながら、これまで見てきたように、イメージ・レイヤ ID は ``/var/lib/docker/overlay`` にあるディレクトリ名と一致しません。これは Docker 1.10 以降の通常の挙動です。
 
 .. code-block:: bash
 
@@ -126,7 +126,7 @@ OverlayFS は２つのレイヤだけ扱います。つまり、複数にレイ�
 
 .. Containers also exist on-disk in the Docker host’s filesystem under /var/lib/docker/overlay/. If you inspect the directory relating to a running container using the ls -l command, you find the following file and directories.
 
-また、コンテナは Docker ホストのファイルシステム上の ``/var/lib/docker/overlay/`` 以下に存在します。実行中のコンテナに関するディレクトリを直接 ``ls -l`` コマンドで調べると、次のようなファイルとディレクトリが見えるでしょう。
+また、コンテナは Docker ホストのファイルシステム上の ``/var/lib/docker/overlay/`` 以下に存在します。実行中のコンテナに関するディレクトリを直接 ``ls -l`` コマンドで調べたら、次のようなファイルとディレクトリが見えるでしょう。
 
 .. code-block:: bash
 
@@ -152,7 +152,7 @@ OverlayFS は２つのレイヤだけ扱います。つまり、複数にレイ�
 
 .. The “merged” directory is effectively the containers mount point. This is where the unified view of the image (“lowerdir”) and container (“upperdir”) is exposed. Any changes written to the container are immediately reflected in this directory.
 
-「marged」（統合）ディレクトリは効率的なコンテナのマウント・ポイントです。これは、イメージ（「lowerdier」）とコンテナ（「upperdir」）を統合して表示する場所です。あらゆるコンテナに対する書き込みは、ただちにこのディレクトリに反映されます。
+「marged」（統合）ディレクトリは効率的なコンテナのマウント・ポイントです。これは、イメージ（「lowerdier」）とコンテナ（「upperdir」）を統合して表示する場所です。あらゆるコンテナに対する書き込みは、直ちにこのディレクトリに反映されます。
 
 .. The “work” directory is required for OverlayFS to function. It is used for things such as copy_up operations.
 
@@ -160,7 +160,7 @@ OverlayFS は２つのレイヤだけ扱います。つまり、複数にレイ�
 
 .. You can verify all of these constructs from the output of the mount command. (Ellipses and line breaks are used in the output below to enhance readability.)
 
-これら全ての構造を確認するには、 ``mount`` コマンドの出力結果から確認できます（以下の出力は読みやすくするため、省略と改行を施していますは）。
+これら全ての構造を確認するには、 ``mount`` コマンドの出力結果から確認できます（以下の出力は読みやすくするため、省略と改行を施しています）。
 
 .. code-block:: bash
 
@@ -170,7 +170,7 @@ OverlayFS は２つのレイヤだけ扱います。つまり、複数にレイ�
    upperdir=/var/lib/docker/overlay/73de7176c223.../upper,
    workdir=/var/lib/docker/overlay/73de7176c223.../work)
 
-..The output reflects the overlay is mounted as read-write (“rw”).
+.. The output reflects the overlay is mounted as read-write (“rw”).
 
 出力結果から、overlay は読み書き可能（「rw」）としてマウントされているのが分かります。
 
@@ -183,7 +183,7 @@ overlay でコンテナの読み書き
 
 .. Consider three scenarios where a container opens a file for read access with overlay.
 
-コンテナのファイルを読み込むために overlay でアクセスする、３つのシナリオを考えます。
+コンテナのファイルを overlay 経由で読み込む、３つのシナリオを考えます。
 
 ..    The file does not exist in the container layer. If a container opens a file for read access and the file does not already exist in the container (“upperdir”) it is read from the image (“lowerdir”). This should incur very little performance overhead.
 
@@ -195,7 +195,7 @@ overlay でコンテナの読み書き
 
 ..    The file exists in the container layer and the image layer. If a container opens a file for read access and the file exists in the image layer and the container layer, the file’s version in the container layer is read. This is because files in the container layer (“upperdir”) obscure files with the same name in the image layer (“lowerdir”).
 
-* **ファイルがコンテナ・レイヤとイメージ・レイヤに存在する場合** 。コンテナがファイルを読み込むためにアクセスするとき、イメージ・レイヤにもコンテナ・レイヤにもファイルが存在する場合は、コンテナ・レイヤにある方のファイルが読み込まれます。これはコンテナ・レイヤ（「upperdir」）のファイルがイメージ・レイヤ（「lowerdir」）にある同名のファイルを隠蔽するからです。
+* **ファイルがコンテナ・レイヤとイメージ・レイヤに存在する場合** 。コンテナがファイルを読み込むためにアクセスする時、イメージ・レイヤにもコンテナ・レイヤにもファイルが存在する場合は、コンテナ・レイヤにある方のファイルが読み込まれます。これはコンテナ・レイヤ（「upperdir」）のファイルがイメージ・レイヤ（「lowerdir」）にある同名のファイルを隠蔽するからです。
 
 .. Consider some scenarios where files in a container are modified.
 
@@ -203,11 +203,11 @@ overlay でコンテナの読み書き
 
 ..    Writing to a file for the first time. The first time a container writes to an existing file, that file does not exist in the container (“upperdir”). The overlay driver performs a copy_up operation to copy the file from the image (“lowerdir”) to the container (“upperdir”). The container then writes the changes to the new copy of the file in the container layer.
 
-* **ファイルに対して初めて書き込む場合** 。コンテナ上に存在するファイルに初めて書き込む時は、ファイルがコンテナ（「upperdir」）に存在しません。 ``overlay`` ドライバはコピーアップ処理を行い、イメージ（「lowerdier」）にあるファイルをコンテナ（「upperdir」）にコピーします。コンテナは、以降の書き込みに対する変更は、コンテナ・レイヤ上に新しくコピーしたファイルに対して行います。
+* **ファイルに対して初めて書き込む場合** 。コンテナ上に存在するファイルに初めて書き込む時は、ファイルがコンテナ（「upperdir」）に存在しません。 ``overlay`` ドライバはコピーアップ処理を行い、イメージ（「lowerdir」）にあるファイルをコンテナ（「upperdir」）にコピーします。コンテナは、以降の書き込みに対する変更は、コンテナ・レイヤ上に新しくコピーしたファイルに対して行います。
 
 ..    However, OverlayFS works at the file level not the block level. This means that all OverlayFS copy-up operations copy entire files, even if the file is very large and only a small part of it is being modified. This can have a noticeable impact on container write performance. However, two things are worth noting:
 
-しかしながら、OverlayFS はファイル・レベルでの処理であり、ブロック・レベルではありません。つまり、全ての OverlayFS のコピーアップ処理はファイル全体をコピーします。これは、非常に大きなファイルの小さな一部分だけを編集する場合でも、全体をコピーします。そのため、コンテナの書き込み性能に対して大きな注意を払う必要があります。
+しかしながら、OverlayFS はファイル・レベルでの処理であり、ブロック・レベルではありません。つまり、全ての OverlayFS のコピーアップ処理はファイル全体をコピーします。これは、非常に大きなファイルのごく一部分だけを編集する場合でも、全体をコピーします。そのため、コンテナの書き込み性能に対して大きな注意を払う必要があります。
 
 ..        The copy_up operation only occurs the first time any given file is written to. Subsequent writes to the same file will operate against the copy of the file already copied up to the container.
 
@@ -215,15 +215,15 @@ overlay でコンテナの読み書き
 
 ですが、次の２つの場合は心配不要です。
  * コピーアップ処理が発生するのは、書き込もうとするファイルを初めて処理する時のみです。以降の書き込み処理は、既にコンテナ上にコピー済みのファイルに対して行われます。
- * OverlayFS が動作するのは２つのレイヤのみです。つまり、性能は AUFS より良くなります。AUFS では、多くのイメージ・レイヤがある場合、そこからファイルを探すのに待ち時間が発生するのを考慮しなくてはいけないためです。
+ * OverlayFS が動作するのは２つのレイヤのみです。つまり、性能は AUFS より良くなります。AUFS では、多くのイメージ・レイヤがある場合、そこからファイルを探すのに待ち時間が発生の考慮が必要だからです。
 
 ..    Deleting files and directories. When files are deleted within a container a whiteout file is created in the containers “upperdir”. The version of the file in the image layer (“lowerdir”) is not deleted. However, the whiteout file in the container obscures it.
 
-* **ファイルをディレクトリを削除する場合** 。コンテナ内のファイル削除では、 *ホワイトアウト・ファイル（whiteout file）* がコンテナ内のディレクトリ（「upperdir」）に作成されます。イメージ・レイヤ（「lowerdier」）にあるバージョンのファイルは削除されません。しかし、コンテナ内のホワイトアウト・ファイルが見えなくします。
+* **ファイルとディレクトリを削除する場合** 。コンテナ内のファイル削除では、 *ホワイトアウト・ファイル（whiteout file）* がコンテナ内のディレクトリ（「upperdir」）に作成されます。イメージ・レイヤ（「lowerdir」）にあるバージョンのファイルは削除されません。しかし、コンテナ内のホワイトアウト・ファイルが見えなくします。
 
 ..    Deleting a directory in a container results in opaque directory being created in the “upperdir”. This has the same effect as a whiteout file and effectively masks the existence of the directory in the image’s “lowerdir”.
 
-コンテナ内のディレクトリを削除すると、「upperdir」で作成されたディレクトリを隠蔽します。これはホワイトアウト・ファイルと同様の効果であり、「lowerdir」イメージのディレクトリを効率的にマスクするものです。
+コンテナ内のディレクトリを削除したら、「upperdir」で作成されたディレクトリを隠蔽します。これはホワイトアウト・ファイルと同様の効果であり、「lowerdir」イメージのディレクトリを効率的にマスクするものです。
 
 .. Configure Docker with the overlay storage driver
 
@@ -234,7 +234,7 @@ Docker で overlay ストレージ・ドライバを使う設定
 
 .. To configure Docker to use the overlay storage driver your Docker host must be running version 3.18 of the Linux kernel (preferably newer) with the overlay kernel module loaded. OverlayFS can operate on top of most supported Linux filesystems. However, ext4 is currently recommended for use in production environments.
 
-Docker が overlay ストレージ・ドライバを使うには、Docker ホスト上の Linux カーネルのバージョンが 3.18 （より新しいほうが望ましい）であり、overlay カーネル・モジュールが読み込まれて実行されている必要があります。OverlayFS は大部分の Linux ファイルシステムで処理できます。しかし、プロダクション環境での利用にあたっては、現時点では ext4 のみが推奨されています。
+Docker が overlay ストレージ・ドライバを使うには、Docker ホスト上の Linux カーネルのバージョンが 3.18 （より新しいバージョンが望ましい）であり、overlay カーネル・モジュールを読み込み実行する必要があります。OverlayFS は大部分の Linux ファイルシステムで処理できます。しかし、プロダクション環境での利用にあたっては、現時点では ext4 のみが推奨されています。
 
 .. The following procedure shows you how to configure your Docker host to use OverlayFS. The procedure assumes that the Docker daemon is in a stopped state.
 
@@ -244,11 +244,11 @@ Docker が overlay ストレージ・ドライバを使うには、Docker ホス
 
 .. caution::
 
-  既に Docker ホスト上で Docker デーモンを使っている場合は、イメージを維持する必要がありますので、処理を進める前に、それらのイメージを Docker Hub やプライベート Docker Trusted Registry に ``push`` しておきます。
+  既に Docker ホスト上で Docker デーモンを使っている場合は、イメージを維持する必要がありますので、処理を進める前に、それらのイメージを Docker Hub やプライベート Docker Trusted Registry に送信しておきます。
 
 ..    If it is running, stop the Docker daemon.
 
-1. 実行中’であれば、Docker ``daemon`` を停止します。
+1. Docker デーモンが実行中であれば、停止します。
 
 ..    Verify your kernel version and that the overlay kernel module is loaded.
 
@@ -278,11 +278,11 @@ Docker が overlay ストレージ・ドライバを使うには、Docker ホス
 
 ..    Alternatively, you can force the Docker daemon to automatically start with the overlay driver by editing the Docker config file and adding the --storage-driver=overlay flag to the DOCKER_OPTS line. Once this option is set you can start the daemon using normal startup scripts without having to manually pass in the --storage-driver flag.
 
-あるいは、Docker デーモンが自動起動時に必ず ``overlay`` ドライバを使うために、Docker の設定ファイルを開き、 ``DOCKER_OPTS`` 行に ``--storage-driver=overlay`` フラグを追加します。このオプションを設定しておけば、Docker デーモンを津風に起動するだけで自動的に適用されるため、手動で ``--storage-driver`` フラグを指定する必要がありません。
+あるいは、Docker デーモンが自動起動時に必ず ``overlay`` ドライバを使うようにします。Docker の設定ファイルを開き、 ``DOCKER_OPTS`` 行に ``--storage-driver=overlay`` フラグを追加します。このオプションを設定しておけば、Docker デーモンを津風に起動するだけで自動的に適用されます。手動で ``--storage-driver`` フラグを指定する必要がありません。
 
 ..    Verify that the daemon is using the overlay storage driver
 
-4. デーモンが ``overlay`` ストレージ・ドライバを使っていることを確認します。
+4. デーモンが ``overlay`` ストレージ・ドライバを使用するのを確認します。
 
 .. code-block:: bash
 
@@ -295,11 +295,11 @@ Docker が overlay ストレージ・ドライバを使うには、Docker ホス
 
 ..    Notice that the Backing filesystem in the output above is showing as extfs. Multiple backing filesystems are supported but extfs (ext4) is recommended for production use cases.
 
-先の出力では、背後のファイルシステムが ``extfs`` なのに注意してください。複数のファイルシステムがサポートされていますが、プロダクションでの使用で推奨されているのは ``extfs`` (ext4) のみです。
+この出力では、背後のファイルシステムが ``extfs`` なのに注意してください。複数のファイルシステムをサポートしていますが、プロダクションでの使用が推奨されているのは ``extfs`` (ext4) のみです。
 
 .. Your Docker host is now using the overlay storage driver. If you run the mount command, you’ll find Docker has automatically created the overlay mount with the required “lowerdir”, “upperdir”, “merged” and “workdir” constructs.
 
-これで Docker ホストは ``overlay`` ストレージ・ドライバを使えるようになりました。``mount`` コマンドを実行すると、Docker が自動的に ``overlay`` マウントを作成し、そこに必要となる構成物「lowerdir」「upperdir」「merged」「workdir」も作っています。
+これで Docker ホストは ``overlay`` ストレージ・ドライバを使えるようになりました。``mount`` コマンドを実行したら、Docker が自動的に ``overlay`` マウントを作成し、そこに必要となる構成物「lowerdir」「upperdir」「merged」「workdir」も作っています。
 
 .. OverlayFS and Docker Performance
 
@@ -310,11 +310,11 @@ OverlayFS と Docker の性能
 
 .. As a general rule, the overlay driver should be fast. Almost certainly faster than aufs and devicemapper. In certain circumstances it may also be faster than btrfs. That said, there are a few things to be aware of relative to the performance of Docker using the overlay storage driver.
 
-一般的に ``overlay`` ドライバは速いでしょう。 ``aufs`` と ``devicemapper`` では、ほとんどの場合に速いはずです。特定の環境においては ``btrfs`` より速いかもしれません。ここでは、Docker が ``overlay`` ストレージ・ドライバを使う時、性能に関して注意すべきことを言及します。
+一般的に ``overlay`` ドライバは速いでしょう。 ``aufs`` と ``devicemapper`` と比べれば、ほとんどの場合に速いはずです。特定の環境においては ``btrfs`` より速いかもしれません。ここでは、Docker が ``overlay`` ストレージ・ドライバを使う時、性能に関して注意すべきことを言及します。
 
 ..    Page Caching. OverlayFS supports page cache sharing. This means multiple containers accessing the same file can share a single page cache entry (or entries). This makes the overlay driver efficient with memory and a good option for PaaS and other high density use cases.
 
-* **ページ・キャッシュ** 。OverlayFS はページキャッシュ共有をサポートします。つまり、複数のコンテナが同じファイルにアクセスする時、１つのページキャッシュ・エントリ（あるいはエントリ群）を共有します。これにより、 ``overlay`` ドライバはメモリを効率的に使うことができ、PaaS や高密度の使い方に適っているでしょう。
+* **ページ・キャッシュ** 。OverlayFS はページキャッシュ共有をサポートします。つまり、複数のコンテナが同じファイルにアクセスする時、１つのページキャッシュ・エントリ（あるいはエントリ群）を共有します。これにより、 ``overlay`` ドライバはメモリを効率的に使うことができ、PaaS や高密度の使い方に適すでしょう。
 
 ..    copy_up. As with AUFS, OverlayFS has to perform copy-up operations any time a container writes to a file for the first time. This can insert latency into the write operation — especially if the file being copied up is large. However, once the file has been copied up, all subsequent writes to that file occur without the need for further copy-up operations.
 
@@ -326,15 +326,15 @@ OverlayFS のコピーアップ処理は AUFS の同じ処理よりも高速で�
 
 ..    RPMs and Yum. OverlayFS only implements a subset of the POSIX standards. This can result in certain OverlayFS operations breaking POSIX standards. One such operation is the copy-up operation. Therefore, using yum inside of a container on a Docker host using the overlay storage driver is unlikely to work without implementing workarounds.
 
-* **RPM と Yum** 。OverlayFS は POSIX 標準のサブセットのみ実装されています。そのため、いくつかの OverlayFS 処理は POSIX 標準を使っていません。そのような処理の１つがコピーアップ処理です。そのため、 Docker ホストが ``overlay`` ストレージ・ドライバを使っている場合、コンテナの中で ``yum`` を使っても動作せず、回避策もありません。
+* **RPM と Yum** 。OverlayFS は POSIX 標準のサブセットのみ実装しています。そのため、いくつかの OverlayFS 処理は POSIX 標準を使っていません。そのような処理の１つがコピーアップ処理です。そのため、 Docker ホストが ``overlay`` ストレージ・ドライバを使っている場合、コンテナの中で ``yum`` を使っても動作せず、回避策もありません。
 
 ..    Inode limits. Use of the overlay storage driver can cause excessive inode consumption. This is especially so as the number of images and containers on the Docker host grows. A Docker host with a large number of images and lots of started and stopped containers can quickly run out of inodes.
 
-* **inode limits** 。 ``overlay`` ストレージ・ドライバの使用によって、過度の inode 消費を引き起こします。これは特に Docker ホストが成長し、多くのイメージとコンテナを持つ場合に起こるでしょう。Docker ホストは多くの inode を持ち、コンテナの開始と停止を多く行うと、すぐに inode を使い尽くします。
+* **iノード消費** 。 ``overlay`` ストレージ・ドライバの使用は、過度の i ノード消費を引き起こします。これは特に Docker ホストが成長し、多くのイメージとコンテナを持つ場合に起こるでしょう。Docker ホストが多くの inode を持っていても、コンテナの開始と停止を多く行えば、すぐに i ノードを使い尽くします。
 
 .. Unfortunately you can only specify the number of inodes in a filesystem at the time of creation. For this reason, you may wish to consider putting /var/lib/docker on a separate device with its own filesystem or manually specifying the number of inodes when creating the filesystem.
 
-残念ながら、inode 数を指定できるのはファイルシステムの作成時のみです。そのため、 ``/var/lib/docker`` を異なったデバイスにすることを検討した方が良いかもしれません。そのデバイスが自身でファイルシステムを持っており、ファイルシステム作成時に手動で inode 数を指定する方法があります。
+残念ながら、i ノード数を指定できるのはファイルシステムの作成時のみです。そのため、 ``/var/lib/docker`` を異なったデバイスにすることを検討した方が良いかもしれません。そのデバイスが自身でファイルシステムを持っており、ファイルシステム作成時に手動で i ノード数を指定する方法があります。
 
 .. The following generic performance best practices also apply to OverlayFS.
 

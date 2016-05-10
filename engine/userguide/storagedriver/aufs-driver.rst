@@ -12,7 +12,7 @@
 .. _docker-and-aufs-in-practice:
 
 ========================================
-AUFS ストレージ・ドライバを使う
+AUFS ストレージ・ドライバの使用
 ========================================
 
 .. sidebar:: 目次
@@ -50,11 +50,11 @@ AUFS でイメージのレイヤ化と共有
 
 .. AUFS is a unification filesystem. This means that it takes multiple directories on a single Linux host, stacks them on top of each other, and provides a single unified view. To achieve this, AUFS uses union mount.
 
-AUFS とは *結合したファイルシステム（unification filesystem）* です。つまり、１つの Linux ホスト上に複数のディレクトリが存在し、それぞれが互いに積み重なり、１つに結合された状態に見えます。これらを実現するため、 AUFS は *ユニオン・マウント（union mount）* を使います。
+AUFS とは *統合ファイルシステム（unification filesystem）* です。つまり、１つの Linux ホスト上に複数のディレクトリが存在し、それぞれが互いに積み重なり、１つに結合された状態に見えます。これらを実現するため、 AUFS は *ユニオン・マウント（union mount）* を使います。
 
 .. AUFS stacks multiple directories and exposes them as a unified view through a single mount point. All of the directories in the stack, as well as the union mount point, must all exist on the same Linux host. AUFS refers to each directory that it stacks as a branch.
 
-AUFS は複数のディレクトリの積み重ねであり、１つのマウントポイントを通して、それらが統合されて見えます。全てのディレクトリが層（スタック）と結合したマウントポイントを形成するので、全てが同一の Linux ホスト上に存在する必要があります。AUFS は各ディレクトリを、 *ブランチ（branch）* という層の積み重ねとして参照します。
+AUFS は複数のディレクトリの積み重ねであり、１つのマウントポイントを通して、それらが統合されて見えます。全てのディレクトリが層（スタック）と結合したマウントポイントを形成しますので、全てが同一の Linux ホスト上に存在する必要があります。AUFS は各ディレクトリを、 *ブランチ（branch）* という層の積み重ねとして参照します。
 
 .. Within Docker, AUFS union mounts enable image layering. The AUFS storage driver implements Docker image layers using this union mount system. AUFS branches correspond to Docker image layers. The diagram below shows a Docker container based on the ubuntu:latest image.
 
@@ -79,11 +79,11 @@ AUFS でコンテナの読み書き
 
 .. Docker leverages AUFS CoW technology to enable image sharing and minimize the use of disk space. AUFS works at the file level. This means that all AUFS CoW operations copy entire files - even if only a small part of the file is being modified. This behavior can have a noticeable impact on container performance, especially if the files being copied are large, below a lot of image layers, or the CoW operation must search a deep directory tree.
 
-Docker は AUFS CoW 技術をテコに、イメージ共有とディスク使用量の最小化をできるようにします。AUFS はファイルレベルで動作します。つまり、AUFS CoW 処理は、ファイル全体をコピーします。それがファイルの一部を変更する場合でもです。この処理はコンテナの性能に大きな影響を与えます。特に、コピーする対象のファイルが大きい場合は、配下のイメージ・レイヤが沢山あったり、あるいは、CoW 処理により深いディレクトリ・ツリーを検索する必要なためです。
+Docker は AUFSのコピー・オン・ライト技術をテコに、イメージ共有とディスク使用量の最小化をできるようにします。AUFS はファイルレベルで動作します。つまり、AUFSのコピー・オン・ライト処理は、ファイル全体をコピーします。それがファイルの一部を変更する場合でもです。この処理はコンテナの性能に大きな影響を与えます。特に、コピーする対象のファイルが大きい場合は、配下のイメージ・レイヤが多くあるか、あるいは、コピー・オン・ライト処理により深いディレクトリ・ツリーを検索する必要なためです。
 
 .. Consider, for example, an application running in a container needs to add a single new value to a large key-value store (file). If this is the first time the file is modified it does not yet exist in the container’s top writable layer. So, the CoW must copy up the file from the underlying image. The AUFS storage driver searches each image layer for the file. The search order is from top to bottom. When it is found, the entire file is copied up to the container’s top writable layer. From there, it can be opened and modified.
 
-考えてみましょう。例えばコンテナで実行しているアプリケーションが、大きなキーバリュー・ストア（ファイル）に新しい値を追加したとします。これが初回であれば、コンテナの一番上の書き込み可能なレイヤに、まだ変更を加えるべきファイルが存在していません。そのため、 CoW 処理は、下部のイメージからファイルを *上にコピー* する必要があります。AUFS ストレージ・ドライバは、各イメージ・レイヤ上でファイルを探します。検索順番は、上から下にかけてです。ファイルが見つかれば、対象のファイルをコンテナの上にある書き込み可能なレイヤに *コピー* （copy up）します。そして、やっとファイルを開き、編集出来るようになります。
+考えてみましょう。例えばコンテナで実行しているアプリケーションが、大きなキーバリュー・ストア（ファイル）に新しい値を追加したとします。これが初回であれば、コンテナの一番上の書き込み可能なレイヤに、まだ変更を加えるべきファイルが存在していません。そのため、 CoW 処理は、下部のイメージからファイルを *上にコピー* する必要があります。AUFS ストレージ・ドライバは、各イメージ・レイヤ上でファイルを探します。検索順番は、上から下にかけてです。ファイルが見つかれば、対象のファイルをコンテナの上にある書き込み可能なレイヤに *コピー* （copy up）します。そして、やっとファイルを開き、編集できるようになります。
 
 .. Larger files obviously take longer to copy up than smaller files, and files that exist in lower image layers take longer to locate than those in higher layers. However, a copy up operation only occurs once per file on any given container. Subsequent reads and writes happen against the file’s copy already copied-up to the container’s top layer.
 
@@ -100,7 +100,7 @@ AUFS ストレージ・ドライバでのファイル削除
 
 .. The AUFS storage driver deletes a file from a container by placing a whiteout file in the container’s top layer. The whiteout file effectively obscures the existence of the file in the read-only image layers below. The simplified diagram below shows a container based on an image with three image layers.
 
-AUFS ストレージ・ドライバでコンテナからファイルを削除すると、コンテナの一番上のレイヤに *ホワイトアウト・ファイル（whiteout file）* が置かれます。読み込み専用のイメージ・レイヤの下にあるファイルを、ホワイトアウト・ファイルが効果的に隠します。以下の単純化した図は、３つのイメージ・レイヤのイメージに基づくコンテナを表しています。
+AUFS ストレージ・ドライバでコンテナからファイルを削除したら、コンテナの一番上のレイヤに *ホワイトアウト・ファイル（whiteout file）* が置かれます。読み込み専用のイメージ・レイヤの下にあるファイルを、ホワイトアウト・ファイルが効果的に隠します。以下の単純化した図は、３つのイメージ・レイヤのイメージに基づくコンテナを表しています。
 
 .. image:: ./images/aufs-delete.png
    :scale: 60%
@@ -145,7 +145,7 @@ AUFS ストレージ・ドライバを使えるのは、AUFS がインストー�
 
 .. Once your daemon is running, verify the storage driver with the docker info command.
 
-デーモンを起動すると、 ``docker info`` コマンドでストレージ・ドライバを確認します。
+デーモンを起動したら、 ``docker info`` コマンドでストレージ・ドライバを確認します。
 
 .. code-block:: bash
 
@@ -171,9 +171,9 @@ AUFS ストレージ・ドライバを使えるのは、AUFS がインストー�
 ローカルのストレージと AUFS
 ==============================
 
-As the docker daemon runs with the AUFS driver, the driver stores images and containers on within the Docker host’s local storage area in the /var/lib/docker/aufs directory.
+.. As the docker daemon runs with the AUFS driver, the driver stores images and containers on within the Docker host’s local storage area in the /var/lib/docker/aufs directory.
 
-``docker daemon`` を AUFS ドライバで実行すると、ドライバは Docker ホスト上のローカル・ストレージ領域である ``/var/lib/docker/aufs`` 内に、イメージとコンテナを保管します。
+``docker daemon`` を AUFS ドライバで実行したら、ドライバは Docker ホスト上のローカル・ストレージ領域である ``/var/lib/docker/aufs`` 内に、イメージとコンテナを保管します。
 
 .. Images
 
@@ -182,11 +182,11 @@ As the docker daemon runs with the AUFS driver, the driver stores images and con
 
 .. Image layers and their contents are stored under /var/lib/docker/aufs/diff/. With Docker 1.10 and higher, image layer IDs do not correspond to directory names
 
-イメージ・レイヤと各コンテナは、 ``/var/lib/docker/aufs/diff/<イメージID>`` ディレクトリ以下に保管されます。Docker 1.10 以降はイメージ・レイヤ ID はディレクトリ名と一致しません。
+イメージ・レイヤと各コンテナは、 ``/var/lib/docker/aufs/diff/<イメージID>`` ディレクトリ以下に保管されます。Docker 1.10 以降では、イメージ・レイヤ ID はディレクトリ名と一致しません。
 
 .. The /var/lib/docker/aufs/layers/ directory contains metadata about how image layers are stacked. This directory contains one file for every image or container layer on the Docker host (though file names no longer match image layer IDs). Inside each file are the names of the directories that exist below it in the stack
 
-``/var/lib/docker/aufs/layers/`` ディレクトリに含まれるのは、どのようにイメージ・レイヤを重ねるかというメタデータです。このディレクトリには、Docker ホスト上のイメージかコンテナ毎に１つのファイルがあります（ファイル名はイメージのレイヤ ID と一致しません）。各ファイルの中にはイメージ・レイヤの名前があります。次の図は１つのイメージが４つのレイヤを持つのを示しています。
+``/var/lib/docker/aufs/layers/`` ディレクトリに含まれるのは、どのようにイメージ・レイヤを重ねるかというメタデータです。このディレクトリには、Docker ホスト上のイメージかコンテナごとに１つのファイルがあります（ファイル名はイメージのレイヤ ID と一致しません）。各ファイルの中にはイメージ・レイヤの名前があります。次の図は１つのイメージが４つのレイヤを持つのを示しています。
 
 .. image:: ./images/aufs-metadata.png
    :scale: 60%
@@ -194,7 +194,7 @@ As the docker daemon runs with the AUFS driver, the driver stores images and con
 
 .. Inspecting the contents of the file relating to the top layer of the image shows the three image layers below it. They are listed in the order they are stacked.
 
-..イメージの最上位レイヤのファイル内容を調べると、下層にある３つのイメージ・レイヤに関する情報が含まれています。これらは積み重ねられた順番で並べられています。
+.. イメージの最上位レイヤのファイル内容を調べると、下層にある３つのイメージ・レイヤに関する情報が含まれています。これらは積み重ねられた順番で並べられています。
 
 .. The command below shows the contents of a metadata file in /var/lib/docker/aufs/layers/ that lists the three directories that are stacked below it in the union mount. Remember, these directory names do no map to image layer IDs with Docker 1.10 and higher.
 
@@ -222,7 +222,7 @@ As the docker daemon runs with the AUFS driver, the driver stores images and con
 
 .. Container metadata and various config files that are placed into the running container are stored in /var/lib/docker/containers/<container-id>. Files in this directory exist for all containers on the system, including ones that are stopped. However, when a container is running the container’s log files are also in this directory.
 
-コンテナのメタデータやコンテナの実行に関する様々な設定ファイルは、 ``/var/lib/docker/containers/<コンテナ ID>`` に保管されます。ディレクトリ内に存在するファイルはシステム上の全コンテナに関するものであり、停止されたものも含みます。しかしながら、コンテナを実行すると、コンテナのログファイルもこのディレクトリに保存されます。
+コンテナのメタデータやコンテナの実行に関する様々な設定ファイルは、 ``/var/lib/docker/containers/<コンテナ ID>`` に保管されます。ディレクトリ内に存在するファイルはシステム上の全コンテナに関するものであり、停止されたものも含みます。しかしながら、コンテナを実行したら、コンテナのログファイルもこのディレクトリに保存されます。
 
 .. A container’s thin writable layer is stored in a directory under /var/lib/docker/aufs/diff/. With Docker 1.10 and higher, container IDs no longer correspond to directory names. However, the containers thin writable layer still exists under here and is stacked by AUFS as the top writable layer and is where all changes to the container are stored. The directory exists even if the container is stopped. This means that restarting a container will not lose changes made to it. Once a container is deleted, it’s thin writable layer in this directory is deleted.
 
@@ -256,7 +256,7 @@ AUFS と Docker の性能
 
 .. One final point. Data volumes provide the best and most predictable performance. This is because they bypass the storage driver and do not incur any of the potential overheads introduced by thin provisioning and copy-on-write. For this reason, you may want to place heavy write workloads on data volumes.
 
-最後に１つだけ。データ・ボリュームは最高かつ最も予想可能な性能をもたらします。これはデータ・ボリュームがストレージ・ドライバを迂回するためであり、シン・プロビジョニングやコピー・オン・ライトによるオーバヘッドの影響を受けないためです。この理由のため、思い書き込み処理を行いたい場合には、データ・ボリュームを使ったほうが良い場合もあるでしょう。
+最後に１つだけ。データ・ボリュームは最高かつ最も予想可能な性能をもたらします。これはデータ・ボリュームがストレージ・ドライバを迂回するためであり、シン・プロビジョニングやコピー・オン・ライトによるオーバヘッドの影響を受けないためです。この理由のため、重い書き込み処理を行いたい場合には、データ・ボリュームの使用が適している場合もあるでしょう。
 
 
 .. Related information
