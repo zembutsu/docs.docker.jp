@@ -25,7 +25,7 @@ Puppet を使う
 
 .. note::
 
-   このインストール方法は、コミュニティによる貢献です。 ``公式の`` インストール方法は `Ubuntu <https://docs.docker.com/engine/installation/ubuntulinux/>`_ を使います。このバージョンは情報が古いかもしれません。
+   このインストール方法は、コミュニティからの貢献です。 ``公式の`` インストール方法は `Ubuntu <https://docs.docker.com/engine/installation/ubuntulinux/>`_ を使います。このバージョンは情報が古いかもしれません。
 
 .. Requirements
 
@@ -38,7 +38,7 @@ Puppet を使う
 
 .. The module also currently uses the official PPA so only works with Ubuntu.
 
-また、現時点の公式 パッケージとして利用できるモジュールは Ubuntu 向けのみです。
+また、現時点の公式パッケージが利用できるモジュールは、 Ubuntu 向けのみです。
 
 .. Installation
 
@@ -47,7 +47,7 @@ Puppet を使う
 
 .. The module is available on the Puppet Forge and can be installed using the built-in module tool.
 
-モジュールは `Puppet Forge <https://forge.puppetlabs.com/garethr/docker/>`_ のものが使えます。内蔵モジュールのツールを使ってインストールします。
+モジュールは `Puppet Forge <https://forge.puppetlabs.com/garethr/docker/>`_ のものが使えます。内部モジュールのツールを使ってインストールします。
 
 .. code-block:: bash
 
@@ -55,7 +55,7 @@ Puppet を使う
 
 .. It can also be found on GitHub if you would rather download the source.
 
-また、ソースをダウンロードするには、 `GitHub <https://github.com/garethr/garethr-docker>` も使えます。
+また、ソースをダウンロードするには、 `GitHub <https://github.com/garethr/garethr-docker>`_  も使えます。
 
 .. Usage
 
@@ -147,7 +147,7 @@ Puppet を使う
 
 .. note::
 
-   ``ports`` 、 ``env`` 、 ``dns`` 、 ``volumes``  の属性を文字で指定するか、先ほどの配列の値で指定します。
+   ``ports`` 、 ``env`` 、 ``dns`` 、 ``volumes``  の属性は文字で指定するか、先ほどの配列の値で指定します。
 
 .. seealso:: 
 
