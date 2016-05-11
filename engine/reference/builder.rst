@@ -528,7 +528,7 @@ CMD
 
 .. If you want to run your <command> without a shell then you must express the command as a JSON array and give the full path to the executable. This array form is the preferred format of CMD. Any additional parameters must be individually expressed as strings in the array:
 
-**<コマンド>をシェルを使わずに実行** したい場合、コマンドを JSON 配列で記述子、実行可能なフルパスで指定する必要があります。 **配列の形式は CMD では望ましい形式です** 。あらゆる追加パラメータは個々の配列の文字列として指定する必要があります。
+**<コマンド>をシェルを使わずに実行** したい場合、コマンドを JSON 配列で記述し、実行可能なフルパスで指定する必要があります。 **配列の形式は CMD では望ましい形式です** 。あらゆる追加パラメータは個々の配列の文字列として指定する必要があります。
 
 .. code-block:: bash
 
