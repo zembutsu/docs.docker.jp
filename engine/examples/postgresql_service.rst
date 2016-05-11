@@ -34,11 +34,11 @@ Docker に PostgreSQL をインストール
 
 .. Assuming there is no Docker image that suits your needs on the Docker Hub, you can create one yourself.
 
-ここでは `Docker Hub <https://registry.hub.docker.com/_/mongo/>`__ で配布されている Docker イメージを使っていますが、自分自身で作成しても構いません。
+ここでは `Docker Hub <https://hub.docker.com/>`__ で配布されている Docker イメージを使いますが、自分自身で作成しても構いません。
 
 .. Start by creating a new Dockerfile:
 
-新しい ``Dockerfile`` を作成します。
+まず、新しい ``Dockerfile`` を作成します。
 
 ..    Note: This PostgreSQL setup is for development-only purposes. Refer to the PostgreSQL documentation to fine-tune these settings so that it is suitably secure.
 
@@ -122,7 +122,7 @@ PostgreSQL サーバに接続するには２つの方法があります。 :doc:
 
 .. note::
 
-   ``--rm`` はコンテナが正常終了すると、コンテナのイメージを自動削除します。
+   ``--rm`` はコンテナが正常終了したら、コンテナのイメージを自動削除します。
 
 .. Using container linking
 
@@ -133,7 +133,7 @@ PostgreSQL サーバに接続するには２つの方法があります。 :doc:
 
 .. Containers can be linked to another container’s ports directly using -link remote_name:local_alias in the client’s docker run. This will set a number of environment variables that can then be used to connect:
 
-クライアントの ``docker run`` 時に ``-link リモート名:ローカル・エイリアス`` を指定すると、コンテナが他のコンテナのポートに直接接続できるようになります。これは接続のために使える複数の環境変数を作成します。
+クライアントの ``docker run`` 時に ``-link リモート名:ローカル・エイリアス`` を指定時、コンテナが他のコンテナのポートに直接接続できるようになります。これは接続のために使える複数の環境変数を作成します。
 
 .. code-block:: bash
 
@@ -168,7 +168,7 @@ postgresql クライアントがインストールされていれば、ホスト
 
 .. Once you have authenticated and have a docker =# prompt, you can create a table and populate it.
 
-認証されると ``docker =#`` プロンプトが表示され、テーブルを作成して処理できます。
+認証すると ``docker =#`` プロンプトが表示され、テーブル作成を処理できます。
 
 .. code-block:: bash
 
@@ -197,7 +197,7 @@ postgresql クライアントがインストールされていれば、ホスト
 
 .. You can use the defined volumes to inspect the PostgreSQL log files and to backup your configuration and data:
 
-PostgreSQL のログファイルの調査や、設定やデータのバックアップのために、ボリュームを定義できます。
+PostgreSQL のログファイル調査や、設定やデータのバックアップのために、ボリュームを定義できます。
 
 .. code-block:: bash
 

@@ -23,7 +23,7 @@ Riak の Docker 化
 
 .. The goal of this example is to show you how to build a Docker image with Riak pre-installed.
 
-この例の目標は、Riak がインストール済みの Docker イメージをどうやって構築するのか紹介します。
+この例は、Riak がインストール済みの Docker イメージを、どのように構築するかを紹介するのが目的です。
 
 .. Creating a Dockerfile
 
@@ -54,7 +54,7 @@ Dockerfile の作成
 
 .. After that, we install the curl which is used to download the repository setup script and we download the setup script and run it.
 
-それから、 curl をインストールします。curl はリポジトリのセットアップ・スクリプトをダウンロードし、実行するためです。
+次は、 curl をインストールします。curl はリポジトリのセットアップ・スクリプトをダウンロードし、実行するためです。
 
 .. code-block:: bash
 
@@ -97,7 +97,7 @@ Dockerfile の作成
 
 .. Then, we expose the Riak Protocol Buffers and HTTP interfaces:
 
-それから、Riak プロトコル・バッファ用と HTTP インターフェースを公開します。
+それから、Riak プロトコル・バッファ用ポートと HTTP インターフェースを公開します。
 
 .. code-block:: bash
 
@@ -159,7 +159,7 @@ Riak 用の Docker イメージを構築
 
 .. code-block:: bash
 
-   $ docker build -t "<yourname>/riak" .
+   $ docker build -t "<自分のユーザ名>/riak" .
 
 .. Next steps
 

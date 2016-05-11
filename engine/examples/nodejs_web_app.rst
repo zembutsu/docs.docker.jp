@@ -38,7 +38,7 @@ Node.js アプリの作成
 
 .. First, create a directory src where all the files would live. Then create a package.json file that describes your app and its dependencies:
 
-まず、すべてのファイルを置く ``src`` ディレクトリを作成します。それから ``package.json``  ファイルを作成し、アプリケーションと依存関係について記述します。
+まず、全てのファイルを置く ``src`` ディレクトリを作成します。それから ``package.json``  ファイルを作成し、アプリケーションと依存関係について記述します。
 
 .. code-block:: json
 
@@ -73,7 +73,7 @@ Node.js アプリの作成
    app.listen(PORT);
    console.log('Running on http://localhost:' + PORT);
 
-In the next steps, we’ll look at how you can run this app inside a CentOS container using Docker. First, you’ll need to build a Docker image of your app.
+.. In the next steps, we’ll look at how you can run this app inside a CentOS container using Docker. First, you’ll need to build a Docker image of your app.
 
 次のステップでは、Docker が CentOS コンテナの中で、どのようにこのアプリを実行するかを理解していきます。まず、自分のアプリを動かす Docker イメージを作成します。
 
@@ -106,7 +106,7 @@ Dockerfile の作成
 
 .. Since we’re building a Node.js app, you’ll have to install Node.js as well as npm on your CentOS image. Node.js is required to run your app and npm is required to install your app’s dependencies defined in package.json. To install the right package for CentOS, we’ll use the instructions from the Node.js wiki:
 
-Node.js アプリを作りたいため、CentOS イメージ上に Node.js と npm のインストールをします。アプリケーションの実行に Node.js が必要です。また、 ``package.json`` で定義したアプリケーションをインストールするために npm も必要です。CentOS 用の適切なパッケージをインストールするため、 `Node.js wiki <https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager#rhelcentosscientific-linux-6>`_ の指示に従って作業します。
+Node.js アプリを作るのために、CentOS イメージ上に Node.js と npm をインストールします。アプリケーションの実行には Node.js が必要です。また、 ``package.json`` で定義したアプリケーションをインストールするために npm も必要です。CentOS 用の適切なパッケージをインストールするため、 `Node.js wiki <https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager#rhelcentosscientific-linux-6>`_ の指示に従って作業します。
 
 .. code-block:: bash
 
@@ -136,7 +136,7 @@ Node.js アプリを作りたいため、CentOS イメージ上に Node.js と n
 
 .. Your app binds to port 8080 so you’ll use the EXPOSE instruction to have it mapped by the docker daemon:
 
-アプリケーションはポート ``8080`` を利用するため、 ``EXPOSE`` 命令を使い ``docker`` デーモンがポートを割り当てるようにします。
+アプリケーションはポート ``8080`` を利用のため、 ``EXPOSE`` 命令を使い ``docker`` デーモンがポートを割り当てるようにします。
 
 .. code-block:: bash
 
@@ -144,7 +144,7 @@ Node.js アプリを作りたいため、CentOS イメージ上に Node.js と n
 
 .. Last but not least, define the command to run your app using CMD which defines your runtime, i.e. node, and the path to our app, i.e. src/index.js (see the step where we added the source to the container):
 
-最後にあと少し、実行時にアプリケーションが実行できるよう ``CMD`` 命令でコマンドを定義します。例えば ``node`` と、アプリケーション、例えば ``src/index.js`` を指定します（ソースファイルは前の手順でコンテナに加えていました）。
+最後にあと少し、実行時にアプリケーションを実行できるよう ``CMD`` 命令でコマンドを定義します。例えば ``node`` と、アプリケーション、例えば ``src/index.js`` を指定します（ソースファイルは前の手順でコンテナに加えていました）。
 
 .. code-block:: bash
 
@@ -180,11 +180,11 @@ Node.js アプリを作りたいため、CentOS イメージ上に Node.js と n
 
 .. Go to the directory that has your Dockerfile and run the following command to build a Docker image. The -t flag lets you tag your image so it’s easier to find later using the docker images command:
 
-``Dockerfile`` のあるディレクトリに移動し、Docker イメージを構築するため次のコマンドを実行します。 ``-t`` フラグを使いイメージにタグを付けておくと、あとから ``docker images`` コマンドで簡単に探せます。
+``Dockerfile`` のあるディレクトリに移動し、Docker イメージを構築するため次のコマンドを実行します。 ``-t`` フラグを使いイメージにタグを付ければ、あとから ``docker images`` コマンドで簡単に探せます。
 
 .. code-block:: bash
 
-   $ docker build -t <your username>/centos-node-hello .
+   $ docker build -t <自分のユーザ名>/centos-node-hello .
 
 .. Your image will now be listed by Docker:
 
@@ -208,11 +208,11 @@ Node.js アプリを作りたいため、CentOS イメージ上に Node.js と n
 
 .. Running your image with -d runs the container in detached mode, leaving the container running in the background. The -p flag redirects a public port to a private port in the container. Run the image you previously built:
 
-イメージに ``-d``  を付けて実行すると、コンテナはデタッチド・モードで動作します。これは、コンテナをバックグラウンドで動作するものです。 ``-p`` フラグで、コンテナ内のプライベートなポートを公開ポートに渡します。
+イメージに ``-d``  を付けて実行したら、コンテナはデタッチド・モードで動作します。これは、コンテナをバックグラウンドで動作するものです。 ``-p`` フラグで、コンテナ内のプライベートなポートを公開ポートに渡します。
 
 .. code-block:: bash
 
-   $ docker run -p 49160:8080 -d <your username>/centos-node-hello
+   $ docker run -p 49160:8080 -d <自分のユーザ名>/centos-node-hello
 
 .. Print the output of your app:
 
@@ -236,7 +236,7 @@ Node.js アプリを作りたいため、CentOS イメージ上に Node.js と n
 テスト
 ==========
 
-To test your app, get the port of your app that Docker mapped:
+.. To test your app, get the port of your app that Docker mapped:
 
 アプリケーションをテストするには、Docker でアプリケーションにポートを割り当てます。
 
@@ -250,11 +250,11 @@ To test your app, get the port of your app that Docker mapped:
 
 .. In the example above, Docker mapped the 8080 port of the container to 49160.
 
-上記の例では、Docker はコンテナのポート ``8080`` をポート ``49160`` に割り当てています。
+この例は、Docker はコンテナのポート ``8080`` をポート ``49160`` に割り当てます。
 
 .. Now you can call your app using curl (install if needed via: sudo apt-get install curl):
 
-これで ``curl`` を使ってアプリケーションを呼び出せます（必要があれば ``sudo apt-get install curl`` でインストールします。 ）。
+これで ``curl`` を使ってアプリケーションを呼び出せます（インストールの必要があれば ``sudo apt-get install curl`` を実行します。 ）。
 
 .. code-block:: bash
 
@@ -271,7 +271,7 @@ To test your app, get the port of your app that Docker mapped:
 
 .. If you use Docker Machine on OS X, the port is actually mapped to the Docker host VM, and you should use the following command:
 
-OS X 上で Docker Machine を使っているのであれば、ポートが実際に割り当てられているのは Docker ホストの VM 側であり、次のコマンドを使う必要があります。
+OS X 上で Docker Machine を使っている場合は、ポートが実際に割り当てられているのは Docker ホストの VM 側であり、次のコマンドを使う必要があります。
 
 .. code-block:: bash
 
@@ -279,7 +279,7 @@ OS X 上で Docker Machine を使っているのであれば、ポートが実�
 
 .. We hope this tutorial helped you get up and running with Node.js and CentOS on Docker. You can get the full source code at https://github.com/enokd/docker-node-hello/.
 
-私たちはこのチュートリアルが Docker 上で Node.js と CentOS を動かすための手助けになればと望んでいます。全てのソースコードは https://github.com/enokd/docker-node-hello/ にあります。
+私たちはこのチュートリアルが、Docker 上で Node.js と CentOS を動かす手助けになるのを望みます。全てのソースコードは https://github.com/enokd/docker-node-hello/ にあります。
 
 .. seealso:: 
 

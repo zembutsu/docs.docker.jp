@@ -82,7 +82,7 @@
 
 .. You can use the brctl show command to see Docker add and remove interfaces from the bridge as you start and stop containers, and can run ip addr and ip route inside a container to see that it has been given an address in the bridge’s IP address range and has been told to use the Docker host’s IP address on the bridge as its default gateway to the rest of the Internet.
 
-``brctl show`` コマンドを使うと、コンテナの開始・停止時に Docker がブリッジを追加・削除してるのがわかります。そして、コンテナの中で ``ip addr``  と ``ip route`` を実行すると、IP アドレスがブリッジの IP アドレス範囲内にあることがわかります。そして他のインターネットへのデフォルト・ゲートウェイとして、Docker ホストの IP アドレスをブリッジするのに使われます。
+``brctl show`` コマンドを使えば、コンテナの開始・停止時に Docker がブリッジを追加・削除してるのが分かります。そして、コンテナの中で ``ip addr``  と ``ip route`` を実行したら、IP アドレスがブリッジの IP アドレス範囲内にあることが分かります。そして他のインターネットへのデフォルト・ゲートウェイとして、Docker ホストの IP アドレスをブリッジするのに使われます。
 
 .. seealso:: 
 

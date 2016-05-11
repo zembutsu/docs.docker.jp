@@ -82,7 +82,7 @@ SSH デーモン用サービスの Docker 化
 
 .. And now you can ssh as root on the container’s IP address (you can find it with docker inspect) or on port 49154 of the Docker daemon’s host IP address (ip address or ifconfig can tell you that) or localhost if on the Docker daemon host:
 
-それから、コンテナに 対して ``root`` として SSH できます。接続先は、 IP アドレス（これは ``docker inspect`` で確認できます ）か、Docker デーモンの IP アドレス（ ``ip address`` や ``ifconfig`` で確認できます ）上のポート ``49154``か、Docker デーモンのホスト ``localhost`` です。 
+それから、コンテナに 対して ``root`` として SSH できます。接続先は、 IP アドレス（これは ``docker inspect`` で確認できます ）か、Docker デーモンの IP アドレス（ ``ip address`` や ``ifconfig`` で確認できます ）上のポート ``49154`` か、Docker デーモンのホスト ``localhost`` です。 
 
 .. code-block:: bash
 
@@ -107,7 +107,7 @@ SSH デーモン用サービスの Docker 化
 
 .. If you need to passdocker run -e ENV=value values, you will need to write a short script to do the same before you start sshd -D and then replace the CMD with that script.
 
-``docker run -e ENV=value`` 値を渡す必要がある場合は、同様の処理を行うスクリプトを準備する必要があります。そのためには ``sshd -D`` を ``CMD`` 命令に置き換え、その準備したスクリプトを実行します。
+``docker run -e ENV=value`` で値を渡す必要がある場合は、同様の処理を行うスクリプトを準備する必要があります。そのためには ``sshd -D`` を ``CMD`` 命令に置き換え、その準備したスクリプトを実行します。
 
 .. Clean up
 
@@ -118,7 +118,7 @@ SSH デーモン用サービスの Docker 化
 
 .. Finally, clean up after your test by stopping and removing the container, and then removing the image.
 
-最後に、テストの後でコンテナの停止と削除をおこない、そのイメージを削除します。
+最後に、テストの後でコンテナの停止と削除をし、そのイメージを削除します。
 
 .. code-block:: bash
 

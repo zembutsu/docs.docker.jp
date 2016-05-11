@@ -38,7 +38,7 @@ CouchDB サービスの Docker 化
 
 .. Note that we’re marking /var/lib/couchdb as a data volume.
 
-``/var/lib/couchdb`` はデータ・ボリュームとして作成しているのを注意してください。
+``/var/lib/couchdb`` をデータ・ボリュームとして作成するのに注意してください。
 
 .. code-block:: bash
 
@@ -80,7 +80,7 @@ Docker ホストは到達可能な ``localhost`` を想定しています。も�
 
 .. _couchdb-browse-data-on-the-second-database
 
-２つめのデータベースのデータを表示する
+２つめのデータベースのデータを表示
 ========================================
 
 .. code-block:: bash

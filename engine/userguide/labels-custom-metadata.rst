@@ -79,7 +79,7 @@ Docker は ``key`` の使用にあたり、厳密な制約を設けていませ�
 
 ..    Keys without namespace (dots) are reserved for CLI use. This allows end- users to add metadata to their containers and images without having to type cumbersome namespaces on the command-line.
 
-* ネームスペース（ドット）が *ない* キーは CLI で使うために予約されています。これにより、エンドユーザはコマンドライン上で各々のコンテナやイメージに対してメタデータを追加するとき、面倒な名前空間を指定する必要がありません。
+* ネームスペース（ドット）が *ない* キーは CLI で使うために予約されています。これにより、エンドユーザはコマンドライン上で各々のコンテナやイメージに対してメタデータを追加する時、面倒な名前空間を指定する必要がありません。
 
 .. These are simply guidelines and Docker does not enforce them. However, for the benefit of the community, you should use namespaces for your label keys.
 
@@ -154,7 +154,7 @@ Docker は ``key`` の使用にあたり、厳密な制約を設けていませ�
 
 .. Long lines can be split up by using a backslash (\) as continuation marker:
 
-長い行は、バックスラッシュ（\）を継続マーカーとして使い、分割できます。
+長い行は、バックスラッシュ（ ``\`` ）を継続マーカーとして使い、分割できます。
 
 .. code-block:: bash
 
@@ -166,7 +166,7 @@ Docker は ``key`` の使用にあたり、厳密な制約を設けていませ�
 
 .. Docker recommends you add multiple labels in a single LABEL instruction. Using individual instructions for each label can result in an inefficient image. This is because each LABEL instruction in a Dockerfile produces a new IMAGE layer.
 
-Docker が推奨するのは、複数のラベルを１つの ``LABEL`` 命令にする方法です。ラベル毎に命令を使うと、非効率なイメージになってしまいます。これは ``Dockerfile`` が ``LABEL`` 命令ごとに新しいイメージ・レイヤを作るためです。
+Docker が推奨するのは、複数のラベルを１つの ``LABEL`` 命令にする方法です。ラベルごとに命令するのでは、非効率なイメージになってしまいます。これは ``Dockerfile`` が ``LABEL`` 命令ごとに新しいイメージ・レイヤを作るためです。
 
 .. You can view the labels via the docker inspect command:
 
@@ -203,7 +203,7 @@ Docker が推奨するのは、複数のラベルを１つの ``LABEL`` 命令�
 
 .. Besides storing metadata, you can filter images and containers by label. To list all running containers that have the com.example.is-beta label:
 
-メタデータの保管とは別に、ラベルによってイメージとコンテナをフィルタ出来ます。 ``com.example.is-beta`` ラベルを持っている実行中のコンテナを全て表示するには、次のようにします。
+メタデータの保管とは別に、ラベルによってイメージとコンテナをフィルタできます。 ``com.example.is-beta`` ラベルを持っている実行中のコンテナを全て表示するには、次のようにします。
 
 .. code-block:: bash
 

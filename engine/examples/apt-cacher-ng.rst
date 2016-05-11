@@ -71,7 +71,7 @@ apt-cacher-ng サービスの Docker 化
 
 .. To see the logfiles that are tailed in the default command, you can use:
 
-ログファイルを参照します。デフォルトのコマンドに ``tailed`` （末尾を表示）オプションを付けます。
+ログファイルを参照します。デフォルトのコマンドに ``ｰf`` （末尾を表示）オプションを付けます。
 
 .. code-block:: bash
 
@@ -79,7 +79,7 @@ apt-cacher-ng サービスの Docker 化
 
 .. To get your Debian-based containers to use the proxy, you have following options
 
-Debian をベースとしたコンテナで proxy を使うには、以下のオプションがあります。
+Debian をベースとしたコンテナで proxy を使うには、以下の手順とオプションを進めます。
 
 ..    Add an apt Proxy setting echo 'Acquire::http { Proxy "http://dockerhost:3142"; };' >> /etc/apt/conf.d/01proxy
     Set an environment variable: http_proxy=http://dockerhost:3142/
@@ -133,7 +133,7 @@ Debian をベースとしたコンテナで proxy を使うには、以下のオ
 
 .. **Option 5** creates a custom network of APT proxy server and Debian-based containers:
 
-**オプション５** ：APT proxy サーバと Debian ベースのコンテナが繋がるカスタム・ネットワークを作成します。
+**オプション５** ：APT proxy サーバと Debian ベースのコンテナが接続するカスタム・ネットワークを作成します。
 
 .. code-block:: bash
 
@@ -147,7 +147,7 @@ Debian をベースとしたコンテナで proxy を使うには、以下のオ
 
 .. Apt-cacher-ng has some tools that allow you to manage the repository, and they can be used by leveraging the VOLUME instruction, and the image we built to run the service:
 
-apt-cacher-ng はリポジトリを管理するのと同じツールを持っており、 ``VOLUME`` 命令を使い、サービスを実行するイメージを構築します。
+apt-cacher-ng はリポジトリを管理するのと同じツールを持っています。 ``VOLUME`` 命令を使い、サービスを実行するイメージを構築します。
 
 .. code-block:: bash
 

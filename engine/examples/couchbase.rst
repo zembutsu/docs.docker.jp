@@ -42,7 +42,7 @@ Couchbase Docker イメージは `Docker Hub <https://hub.docker.com/_/couchbase
 
 .. Start Couchbase server as:
 
-Couchbase サーバを次のように起動します：
+Couchbase サーバは次のように起動します：
 
 .. code-block:: bash
 
@@ -73,7 +73,7 @@ Couchbase サーバを次のように起動します：
 
 .. The logs show that Couchbase console can be accessed at http://192.168.99.100:8091. The default username is Administrator and the password is password.
 
-Couchbase コンソールには http://192.168.99.100:8091 でアクセスできます。デフォルトがユーザ名が ``Administraotr`` 、パスワードが ``password`` です。
+Couchbase コンソールには http://192.168.99.100:8091 でアクセスできます。デフォルトがユーザ名が ``Administrator`` 、パスワードが ``password`` です。
 
 .. Configure Couchbase Docker container
 
@@ -93,7 +93,7 @@ Data と Index サービスのメモリ設定
 
 .. Data, Query and Index are three different services that can be configured on a Couchbase instance. Each service has different operating needs. For example, Query is CPU intensive operation and so requires a faster processor. Index is disk heavy and so requires a faster solid state drive. Data needs to be read/written fast and so requires more memory.
 
-Couchbase インスタンス上では、Data ・ Query ・ Index は別々のサービスです。各サービスは別々の設定が必要です。たとえば、Query は CPU の処理が集中するので、より速い CPU が必要です。 Index はディスクが重いので、速い SSD が必要です。Data は読み書きを速くするため、より多くのメモリが必要です。
+Couchbase インスタンス上では、Data ・ Query ・ Index は別々のサービスです。各サービスは別々の設定が必要です。例えば、Query は CPU の処理が集中するため、より速い CPU が必要です。 Index はディスクが重いため、速い SSD が必要です。Data は読み書きを速くするため、より多くのメモリが必要です。
 
 .. Memory needs to be configured for Data and Index service only.
 
@@ -137,7 +137,7 @@ Data・Query・index サービスの設定
 
 .. All three services, or only one of them, can be configured on each instance. This allows different Couchbase instances to use affinities and setup services accordingly. For example, if Docker host is running a machine with solid-state drive then only Data service can be started.
 
-３つの全サービス、または、１つに対しての設定が可能です。これにより、それぞれのアフィニティ（ハードウェア要件等）、サービスを適切にセットアップします。たとえば、Data サービスが開始できるのは、Docker ホストが SSD マシン上で動作している場所といった指定です。
+３つの全サービス、または、１つに対しての設定が可能です。これにより、それぞれのアフィニティ（ハードウェア要件等）、サービスを適切にセットアップします。例えば、Data サービスが開始できるのは、Docker ホストが SSD マシン上で動作している場所といった指定です。
 
 .. code-block:: bash
 
@@ -176,7 +176,7 @@ Couchbase サーバの認証情報をセットアップ
 
 .. Sets the username and password credentials that will subsequently be used for managing the Couchbase server.
 
-後で Couchbase サーバを管理するため、ユーザ名とパスワードの認証情報を設定します。
+あとで Couchbase サーバを管理するため、ユーザ名とパスワードの認証情報を設定します。
 
 .. code-block:: bash
 
@@ -253,7 +253,7 @@ Couchbase サーバは couchbase インスタンス内で簡単にサンプル�
 
 .. Congratulations, you are now running a Couchbase container, fully configured using the REST API.
 
-おつかれさまでした。Couchbase コンテナの設定を、すべて REST API を使って 行いました。
+おつかれさまでした。Couchbase コンテナの設定を、全て REST API を使って行いました。
 
 .. Query Couchbase using CBQ
 
@@ -278,7 +278,7 @@ CBQ ツールの実行：
 
 .. --engine parameter to CBQ allows to specify the Couchbase server host and port running on the Docker host. For host, typically the host name or IP address of the host where Couchbase server is running is provided. In this case, the container name used when starting the container, db, can be used. 8093 port listens for all incoming queries.
 
-``--engine`` パラメータは、 CBQ に Docker ホスト上で動いている Couchbase サーバのホストとポートを指定します。ホストとは、通常、Couchbase サーバが実行しているホストの名前もしくは IP アドレスです。今回の理恵では、コンテナを起動時に指定したコンテナ名 ``db``  とポート ``8093``  が全てのクエリを受け付けます。
+``--engine`` パラメータは、 CBQ に Docker ホスト上で動いている Couchbase サーバのホストとポートを指定します。ホストとは、通常、Couchbase サーバを実行しているホストの名前もしくは IP アドレスです。今回の例では、コンテナを起動時に指定したコンテナ名 ``db``  とポート ``8093``  が全てのクエリを受け付けます。
 
 .. Couchbase allows to query JSON documents using N1QL. N1QL is a comprehensive, declarative query language that brings SQL-like query capabilities to JSON documents.
 
@@ -333,7 +333,7 @@ http://192.168.99.100:8091/
 
 .. Make sure to replace the IP address with the IP address of your Docker Machine or localhost if Docker is running locally.
 
-この IP アドレスの部分は Docker Machine の IP アドレスか、ローカルで動かしている場合は ``localhost`` になります。
+この IP アドレスの部分は Docker Machine の IP アドレスか、ローカルで動かしている場合は ``localhost`` です。
 
 .. seealso:: 
 

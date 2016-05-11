@@ -54,7 +54,7 @@ Docker コンテナ用のサブネットは、少なくとも ``/80`` を持っ�
 
 .. With the --fixed-cidr-v6 parameter set Docker will add a new route to the routing table. Further IPv6 routing will be enabled (you may prevent this by starting Docker daemon with --ip-forward=false):
 
-``--fixed-cidr-v6`` パラメータを Docker に設定したら、新しい経路のルーティング・テーブルを作成します。さらに IPv6 ルーティング・テーブルも有効化します（有効化したくない場合は、 Docker デーモン起動時に ``--ip-forward=false`` を指定します）。
+``--fixed-cidr-v6`` パラメータを Docker に設定したら、新しい経路のルーティング・テーブルを作成します。更に IPv6 ルーティング・テーブルも有効化します（有効化したくない場合は、 Docker デーモン起動時に ``--ip-forward=false`` を指定します）。
 
 .. code-block:: bash
 
@@ -68,7 +68,7 @@ Docker コンテナ用のサブネットは、少なくとも ``/80`` を持っ�
 
 .. Be aware that IPv6 forwarding may interfere with your existing IPv6 configuration: If you are using Router Advertisements to get IPv6 settings for your host’s interfaces you should set accept_ra to 2. Otherwise IPv6 enabled forwarding will result in rejecting Router Advertisements. E.g., if you want to configure eth0 via Router Advertisements you should set:
 
-IPv6 転送（IPv6 forwarding）は既存の IPv6 設定に干渉する場合があり、注意が必要です。ホスト・インターフェースが IPv6 設定を取得するために、ルータ・アドバタイズメント（Router Advertisement）を使っているのであれば、 ``accept_ra`` を ``2`` に設定すべきです。そうしなければ、IPv6 転送を有効化した結果、ルータ・アドバタイズメントを拒否します。たとえば、 ``eth0`` を経由してルータ・アドバタイズメントを使いたい場合は、次のように設定すべきです。
+IPv6 転送（IPv6 forwarding）は既存の IPv6 設定に干渉する場合があり、注意が必要です。ホスト・インターフェースが IPv6 設定を取得するために、ルータ・アドバタイズメント（Router Advertisement）を使っているのであれば、 ``accept_ra`` を ``2`` に設定すべきです。そうしなければ、IPv6 転送を有効化した結果、ルータ・アドバタイズメントを拒否します。例えば、 ``eth0`` を経由してルータ・アドバタイズメントを使いたい場合は、次のように設定すべきです。
 
 .. code-block:: bash
 
@@ -81,7 +81,7 @@ IPv6 転送（IPv6 forwarding）は既存の IPv6 設定に干渉する場合が
 
 .. Every new container will get an IPv6 address from the defined subnet. Further a default route will be added on eth0 in the container via the address specified by the daemon option --default-gateway-v6 if present, otherwise via fe80::1:
 
-それぞれの新しいコンテナは、定義されたサブネットから IPv6 アドレスを取得します。さらに、デフォルト経路（default route）がコンテナ内の ``eth0`` に追加されます。これはデーモンのオプションで ``--default-gateway-v6`` を指定しました。指定がなければ、 ``fe80::1`` 経由になります。
+それぞれの新しいコンテナは、定義されたサブネットから IPv6 アドレスを取得します。更に、デフォルト経路（default route）がコンテナ内の ``eth0`` に追加されます。これはデーモンのオプションで ``--default-gateway-v6`` を指定しました。指定がなければ、 ``fe80::1`` 経由になります。
 
 .. code-block:: bash
 
@@ -122,7 +122,7 @@ NDP プロキシの使用
 
 .. If your Docker host is only part of an IPv6 subnet but has not got an IPv6 subnet assigned you can use NDP proxying to connect your containers via IPv6 to the internet. For example your host has the IPv6 address 2001:db8::c001, is part of the subnet 2001:db8::/64 and your IaaS provider allows you to configure the IPv6 addresses 2001:db8::c000 to 2001:db8::c00f:
 
-Docker ホストが IPv6 サブネットの範囲にありながら IPv6 サブネットを持たない場合、コンテナが IPv6 を経由してインターネットに接続するには、 NDP プロキシ機能（NDP proxying） を使えます。たとえば、ホストの IPv6 が ``2001:db8::c001`` であり、これはサブネット ``2001:db8::/64`` の一部です。IaaS プロバイダが ``2001:db8::c000`` から ``2001:db8::c00f:`` までの IPv6 設定を許可している場合、次のように表示されます。
+Docker ホストが IPv6 サブネットの範囲にありながら IPv6 サブネットを持たない場合、コンテナが IPv6 を経由してインターネットに接続するには、 NDP プロキシ機能（NDP proxying） を使えます。例えば、ホストの IPv6 が ``2001:db8::c001`` であり、これはサブネット ``2001:db8::/64`` の一部です。IaaS プロバイダが ``2001:db8::c000`` から ``2001:db8::c00f:`` までの IPv6 設定を許可している場合、次のように表示されます。
 
 .. code-block:: bash
 
@@ -146,7 +146,7 @@ Docker ホストが IPv6 サブネットの範囲にありながら IPv6 サブ�
 
 .. You notice the Docker subnet is within the subnet managed by your router that is connected to eth0. This means all devices (containers) with the addresses from the Docker subnet are expected to be found within the router subnet. Therefore the router thinks it can talk to these containers directly.
 
-Docker サブネットには、 ``eth0`` に接続するルータが管理しているサブネットが含まれているのに気をつけてください。つまり、Docker サブネットで公開される全てのデバイス（コンテナ）のアドレスは、ルータ側のサブネットから見つけることができます。つまり、ルータはこれらのコンテナと直接通信できると考えられます。
+Docker サブネットには、 ``eth0`` に接続するルータが管理しているサブネットが含まれているのに気を付けてください。つまり、Docker サブネットで公開される全てのデバイス（コンテナ）のアドレスは、ルータ側のサブネットから見つけることができます。つまり、ルータはこれらのコンテナと直接通信できると考えられます。
 
 .. image:: ./images/ipv6-ndp-proxying.png
    :scale: 60%
@@ -154,7 +154,7 @@ Docker サブネットには、 ``eth0`` に接続するルータが管理して
 
 .. As soon as the router wants to send an IPv6 packet to the first container it will transmit a neighbor solicitation request, asking, who has 2001:db8::c009? But it will get no answer because no one on this subnet has this address. The container with this address is hidden behind the Docker host. The Docker host has to listen to neighbor solicitation requests for the container address and send a response that itself is the device that is responsible for the address. This is done by a Kernel feature called NDP Proxy. You can enable it by executing
 
-ルータは IPv6 パケットを１つめのコンテナに送ろうとしたら、すぐにネイバー・ソリシテーション・リクエスト（neighbor solicitation request）を送信し、誰が ``2001:db8:;c009`` を持っているか訊ねます。サブネット上にアドレスが存在しなければ、だれも応答しません。コンテナはこのアドレスを Docker ホストの後ろに隠します。Docker ホストはコンテナアドレス用のネイバー・ソリシテーション・リクエストを受信したら、自分自身のデバイスがアドレスに対する責任を持っていると応答します。この処理がカーネルの ``NDP Proxy``  と呼ばれる機能です。有効化するには、次のコマンドを実行します。
+ルータは IPv6 パケットを１つめのコンテナに送ろうとしたら、すぐにネイバー・ソリシテーション・リクエスト（neighbor solicitation request）を送信し、誰が ``2001:db8:;c009`` を持っているか訊ねます。サブネット上にアドレスが存在しなければ、誰も応答しません。コンテナはこのアドレスを Docker ホストの後ろに隠します。Docker ホストはコンテナアドレス用のネイバー・ソリシテーション・リクエストを受信したら、自分自身のデバイスがアドレスに対する責任を持っていると応答します。この処理がカーネルの ``NDP Proxy``  と呼ばれる機能です。有効化するには、次のコマンドを実行します。
 
 .. code-block:: bash
 
@@ -162,7 +162,7 @@ Docker サブネットには、 ``eth0`` に接続するルータが管理して
 
 .. Now you can add the container’s IPv6 address to the NDP proxy table:
 
-これでコンテナの IPv6 アドレスを NDP プロキシ・テーブルに追加出来ます。
+これでコンテナの IPv6 アドレスを NDP プロキシ・テーブルに追加できます。
 
 .. code-block:: bash
 
@@ -180,7 +180,7 @@ Docker サブネットには、 ``eth0`` に接続するルータが管理して
 
 .. You have to execute the ip -6 neigh add proxy ... command for every IPv6 address in your Docker subnet. Unfortunately there is no functionality for adding a whole subnet by executing one command. An alternative approach would be to use an NDP proxy daemon such as ndppd.
 
-``ip -6 neigh add proxy ...`` コマンドは、 Docker サブネットの各 IPv6 アドレスごとに実行してきました。残念ながら、サブネットのだれがこのコマンドを実行したか把握する機能はありません。別の方法としては、 `ndppd <https://github.com/DanielAdolfsson/ndppd>`_  のように NDP プロキシ・デーモンを使う方法があります。
+``ip -6 neigh add proxy ...`` コマンドは、 Docker サブネットの各 IPv6 アドレスごとに実行してきました。残念ながら、サブネットの誰がこのコマンドを実行したか把握する機能はありません。別の方法としては、 `ndppd <https://github.com/DanielAdolfsson/ndppd>`_  のように NDP プロキシ・デーモンを使う方法があります。
 
 .. Docker IPv6 cluster
 
@@ -218,7 +218,7 @@ Docker ホストは ``2001:db8:0::/64`` サブネットを持ちます。ホス�
 
 .. Host1 also acts as a router on OSI layer 3. When one of the network clients tries to contact a target that is specified in Host1’s routing table Host1 will forward the traffic accordingly. It acts as a router for all networks it knows: 2001:db8::/64, 2001:db8:1::/64 and 2001:db8:2::/64.
 
-また、ホスト１は OSI レイヤ３のルータとしても動作します。あるネットワーク・クライアントがターゲットに接続しようとするとき、ホスト１のルーティング・テーブルを指定し、ホスト１がトラフィックを指定先に転送します。これはネットワーク ``2001:db8::/64`` 、 ``2001:db8:1::/64`` 、 ``2001:db8:2::/64`` 上におけるルータとしても機能します。
+また、ホスト１は OSI レイヤ３のルータとしても動作します。あるネットワーク・クライアントがターゲットに接続しようとする時、ホスト１のルーティング・テーブルを指定し、ホスト１がトラフィックを指定先に転送します。これはネットワーク ``2001:db8::/64`` 、 ``2001:db8:1::/64`` 、 ``2001:db8:2::/64`` 上におけるルータとしても機能します。
 
 .. On Host2 we have nearly the same configuration. Host2’s containers will get IPv6 addresses from 2001:db8:2::/64. Host2 has three routes configured:
 
@@ -257,7 +257,7 @@ Docker ホストは ``2001:db8:0::/64`` サブネットを持ちます。ホス�
 
 .. In a routed network environment you replace the layer 2 switch with a layer 3 router. Now the hosts just have to know their default gateway (the router) and the route to their own containers (managed by Docker). The router holds all routing information about the Docker subnets. When you add or remove a host to this environment you just have to update the routing table in the router - not on every host.
 
-ネットワーク環境の経路は、レイヤ２スイッチとレイヤ３ルータの関係に置き換えられます。ホストはデフォルト・ゲートウェイ（ルータ）を知っており、（Docker によって管理されている）個々のコンテナに対する経路を処理します。ルータは Docker サブネットに関する全ての経路情報も保持しています。この環境でホストの追加や削除を行うときは、各ホストではなく、ルータ上のルーティング・テーブルを更新しなくてはいけません。
+ネットワーク環境の経路は、レイヤ２スイッチとレイヤ３ルータの関係に置き換えられます。ホストはデフォルト・ゲートウェイ（ルータ）を知っており、（Docker によって管理されている）個々のコンテナに対する経路を処理します。ルータは Docker サブネットに関する全ての経路情報も保持しています。この環境でホストの追加や削除時は、各ホストではなく、ルータ上のルーティング・テーブルを更新しなくてはいけません。
 
 .. image:: ./images/ipv6-routed-network-example.png
    :scale: 60%
@@ -265,7 +265,7 @@ Docker ホストは ``2001:db8:0::/64`` サブネットを持ちます。ホス�
 
 .. In this scenario containers of the same host can communicate directly with each other. The traffic between containers on different hosts will be routed via their hosts and the router. For example packet from Container1-1 to Container2-1 will be routed through Host1, Router and Host2 until it arrives at Container2-1.
 
-このシナリオでは、同じホスト上のコンテナは直接通信可能です。異なったホスト上にあるコンテナ間のトラフィックは、ホストとルータを経由して経路づけられます。例えば、 ``コンテナ1-1`` から ``コンテナ2-1`` に対するパケットは ``ホスト１`` 、 ``ルータ`` 、そして ``ホスト２`` を経由して ``コンテナ2-1`` に到達します。
+このシナリオでは、同じホスト上のコンテナは直接通信可能です。異なったホスト上にあるコンテナ間のトラフィックは、ホストとルータを経由して経路付けられます。例えば、 ``コンテナ1-1`` から ``コンテナ2-1`` に対するパケットは ``ホスト１`` 、 ``ルータ`` 、そして ``ホスト２`` を経由して ``コンテナ2-1`` に到達します。
 
 .. To keep the IPv6 addresses short in this example a /48 network is assigned to every host. The hosts use a /64 subnet of this for its own services and one for Docker. When adding a third host you would add a route for the subnet 2001:db8:3::/48 in the router and configure Docker on Host3 with --fixed-cidr-v6=2001:db8:3:1::/64.
 
