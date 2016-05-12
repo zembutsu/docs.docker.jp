@@ -38,7 +38,7 @@ Docker 1.2 から :ref:`再起動ポリシー <restart-policies-restart>` が Do
 
 .. Docker does not set any restart policies by default, but be aware that they will conflict with most process managers. So don’t set restart policies if you are using a process manager.
 
-デフォルトの Docker は再起動ポリシーを設定しません。しかし、多くのプロセス・マネージャと衝突を引き起こす可能性については知っておいてください。もしプロセス・マネージャを使うのであれば、再起動ポリシーを使わないほうが良いでしょう。
+デフォルトの Docker は再起動ポリシーを設定しません。しかし、多くのプロセス・マネージャと衝突を引き起こす可能性については知っておいてください。もしプロセス・マネージャを使うのであれば、再起動ポリシーを使わない方が良いでしょう。
 
 .. When you have finished setting up your image and are happy with your running container, you can then attach a process manager to manage it. When you run docker start -a, Docker will automatically attach to the running container, or start it if needed and forward all signals so that the process manager can detect when a container stops and correctly restart it.
 

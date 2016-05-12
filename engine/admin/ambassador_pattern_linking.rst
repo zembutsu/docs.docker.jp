@@ -34,7 +34,7 @@
 
 .. Requiring you to restart the consumer to attach it to a different redis service, you can add ambassadors:
 
-``利用者`` が別の ``redis`` サービスに接続するには再起動が必用です。そこで、アンバサダ（「ambassador」＝大使、使節の意味 ）を追加出来ます。
+``利用者`` が別の ``redis`` サービスに接続するには再起動が必用です。そこで、アンバサダ（「ambassador」＝大使、使節の意味 ）を追加できます。
 
 .. code-block:: bash
 
@@ -89,7 +89,7 @@ Docker ホスト上で実際の Redis サーバを開始します。
 
 .. Then on the client-server host, you can use a Redis client container to talk to the remote Redis server, just by linking to the local Redis ambassador.
 
-それから ``client-server`` ホスト上で Redis クライアント・コンテナがリモートの Redis サーバに通信できるようにするため、ローカルの Reds アンバサダにリンクします。
+それから ``client-server`` ホスト上で Redis クライアント・コンテナがリモートの Redis サーバに通信できるようにするため、ローカルの Redis アンバサダにリンクします。
 
 .. code-block:: bash
 
@@ -150,7 +150,7 @@ Docker ホスト（192.168.1.52）上では Redis が実行されています。
 
 .. This environment is used by the ambassador socat script to expose Redis to the world (via the -p 6379:6379 port mapping):
 
-この環境変数は、アンバサダの ``socat`` スクリプトが Redis 公開するために使います（ ``-p 6379:6369`` でポートを割り当てます ）。
+この環境変数は、アンバサダの ``socat`` スクリプトが Redis を公開するために使います（ ``-p 6379:6369`` でポートを割り当てます ）。
 
 .. code-block:: bash
 

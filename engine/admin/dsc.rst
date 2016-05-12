@@ -30,7 +30,7 @@ Windows PowerShell DSC (Desired State Configuration) は設定管理ツールで
 
 .. To use this guide you’ll need a Windows host with PowerShell v4.0 or newer.
 
-このガイドの利用にあたっては、Windows ホストが PowerShell v4.0 以上の必要があります。
+このガイドの利用にあたり、Windows ホストは PowerShell v4.0 以上の必要があります。
 
 .. The included DSC configuration script also uses the official PPA so only an Ubuntu target is supported. The Ubuntu target must already have the required OMI Server and PowerShell DSC for Linux providers installed. More information can be found at https://github.com/MSFTOSSMgmt/WPSDSCLinux. The source repository listed below also includes PowerShell DSC for Linux installation and init scripts along with more detailed installation information.
 
@@ -43,7 +43,7 @@ DSC 設定に含まれるスクリプトは、公式では Ubuntu ターゲッ�
 
 .. The DSC configuration example source is available in the following repository: https://github.com/anweiss/DockerClientDSC. It can be cloned with:
 
-DSC 設定例のソースは次のリポジトリ https://github.com/anweiss/DockerClientDSC で利用可能です。クローンも可能です。
+DSC 設定例のソースは次のリポジトリ https://github.com/anweiss/DockerClientDSC から利用可能です。クローンも可能です。
 
 .. code-block:: bash
 
@@ -125,7 +125,7 @@ Docker インストール
 
 .. Image configuration is equivalent to running: docker pull [image] or docker rmi -f [IMAGE].
 
-次のようにイメージ設定を行います： ``docker pull [image]`` あるいは ``docker rmi -f [IMAGE]`` です。
+イメージ設定とは  ``docker pull [image]`` あるいは ``docker rmi -f [IMAGE]`` 処理と同等です。
 
 .. Using the same steps defined above, execute DockerClient with the Image parameter and apply the configuration:
 
@@ -178,7 +178,7 @@ Docker インストール
 
 .. To create or remove containers, you can use the Container parameter with one or more hashtables. The hashtable(s) passed to this parameter can have the following properties:
 
-コンテナを作成・削除するには、１つまたは複数のバッシュ・テーブルを ``Container`` に使います。ハッシュ・テーブルは次のプロパティのパラメータを指定します。
+コンテナを作成・削除するには、１つまたは複数の ``コンテナ`` をハッシュ・テーブルで指定します。ハッシュ・テーブルは次のプロパティのパラメータを指定します。
 
 ..    Name (required)
     Image (required unless Remove property is set to $true)

@@ -21,7 +21,7 @@ systemd で Docker の管理・設定
 
 .. Many Linux distributions use systemd to start the Docker daemon. This document shows a few examples of how to customise Docker’s settings.
 
-多くの Linux ディストリビューションが systemd を使って Docker デーモンを起動します。このドキュメントは、様々な Docker の設定例を紹介します。
+多くの Linux ディストリビューションは systemd を使って Docker デーモンを起動します。このドキュメントは、様々な Docker の設定例を紹介します。
 
 .. Starting the Docker daemon
 
@@ -63,11 +63,11 @@ Docker デーモンの設定を変更するには、多くのフラグを使う�
 
 .. The recommended way is to use a systemd drop-in file. These are local files in the /etc/systemd/system/docker.service.d directory. This could also be /etc/systemd/system/docker.service, which also works for overriding the defaults from /lib/systemd/system/docker.service.
 
-推奨する方法は、systemd 用のファイルを使うことです。ローカルの設定ファイルは ``/etc/systemd/system/docker.service.d`` ディレクトリにあります。もしかすると ``/etc/systemd/system/docker.service`` かもしれません。これは ``/lib/systemd/system/docker.service.`` にあるデフォルト設定を上書きします。
+推奨する方法は、systemd 用のファイルを使うことです。ローカルの設定ファイルは ``/etc/systemd/system/docker.service.d`` ディレクトリにあります。もしかすると ``/etc/systemd/system/docker.service`` かもしれません。これは ``/lib/systemd/system/docker.service`` にあるデフォルト設定を上書きします。
 
 .. However, if you had previously used a package which had an EnvironmentFile (often pointing to /etc/sysconfig/docker) then for backwards compatibility, you drop a file in the /etc/systemd/system/docker.service.d directory including the following:
 
-一方で、既にパッケージを使ってインストールしていた場合は ``EnvironmentFile`` （通常は ``/etc/sysconfig/docker`` ） があるかもしれません。これは後方互換性のためです。このファイルの内容は、 ``/etc/systemd/system/docker.service.d`` ディレクトリにあるファイルに落とし込めます。
+一方で、既にパッケージを使ってインストールしていた場合は ``環境設定ファイル`` （通常は ``/etc/sysconfig/docker`` ） があるかもしれません。これは後方互換性のためです。このファイルの内容は、 ``/etc/systemd/system/docker.service.d`` ディレクトリにあるファイルに落とし込めます。
 
 .. code-block:: bash
 
@@ -84,7 +84,7 @@ Docker デーモンの設定を変更するには、多くのフラグを使う�
 
 .. To check if the docker.service uses an EnvironmentFile:
 
-``docker.service`` が ``EnvironmentFile`` を使っているか確認します。
+``docker.service`` が ``環境設定ファイル`` を使っているか確認します。
 
 .. code-block:: bash
 
@@ -151,7 +151,7 @@ Docker イメージ、コンテナ、ボリュームを別々のパーティシ�
 
 .. You can also set other environment variables in this file, for example, the HTTP_PROXY environment variables described below.
 
-このファイルに他の環境変数も設定できます。たとえば、 ``HTTP_PROXY`` 環境変数を下に追加することもできるでしょう。
+このファイルに他の環境変数も設定できます。例えば、 ``HTTP_PROXY`` 環境変数を下に追加することもできるでしょう。
 
 .. To modify the ExecStart configuration, specify an empty configuration followed by a new configuration as follows:
 
@@ -184,7 +184,7 @@ HTTP プロキシ
 
 .. If you are behind a HTTP proxy server, for example in corporate settings, you will need to add this configuration in the Docker systemd service file.
 
-HTTP プロキシサーバの背後にいる場合、ここでは会社で設定する例として、Docker の systemd サービス・ファイルに設定を追加する必要があるものとします。
+HTTP プロキシサーバの背後にいる場合、ここではオフィスで設定する例として、Docker の systemd サービス・ファイルに設定を追加する必要があるものとします。
 
 .. First, create a systemd drop-in directory for the docker service:
 
@@ -245,7 +245,7 @@ systemd ユニットファイルの手動作成
 
 .. When installing the binary without a package, you may want to integrate Docker with systemd. For this, simply install the two unit files (service and socket) from the github repository to /etc/systemd/system.
 
-パッケージを使わずにバイナリをインストールした場合でも、Docker と systemd を統合したくなるでしょう。簡単に実現するには、単純に `GitHub リポジトリ <https://github.com/docker/docker/tree/master/contrib/init/systemd>`_ にある２つのユニットファイル（サービスとソケット用）を ``/etc/systemd/system`` に置くだけです。
+パッケージを使わずにバイナリをインストールした場合でも、Docker と systemd を連動したくなるでしょう。簡単に実現するには、単純に `GitHub リポジトリ <https://github.com/docker/docker/tree/master/contrib/init/systemd>`_ にある２つのユニットファイル（サービスとソケット用）を ``/etc/systemd/system`` に置くだけです。
 
 .. seealso:: 
 

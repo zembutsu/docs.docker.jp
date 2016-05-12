@@ -11,7 +11,7 @@
 .. _configuring-and-running Docker on various distributions:
 
 ============================================================
-様々なディストリビューションにおける Docker の設定と実行
+各システムの Docker 設定と実行
 ============================================================
 
 .. sidebar:: 目次
@@ -26,7 +26,7 @@ Docker のインストールに成功したら、 ``docker`` デーモンはデ�
 
 .. In a production environment, system administrators typically configure the docker daemon to start and stop according to an organization’s requirements. In most cases, the system administrator configures a process manager such as SysVinit, Upstart, or systemd to manage the docker daemon’s start and stop.
 
-プロダクション環境では、システム管理者は組織における必要性に従い、 ``docker`` デーモンの設定を変更し、起動・停止するでしょう。ほとんどの場合、システム管理者は ``docker`` デーモンの起動＼停止のために ``SysVinit`` 、 ``Upstart`` 、 ``systemd`` といったプロセス・マネージャを設定するでしょう。
+プロダクション環境では、システム管理者は組織における必要性に従い、 ``docker`` デーモンの設定を変更し、起動・停止するでしょう。ほとんどの場合、システム管理者は ``docker`` デーモンの起動・停止のために ``SysVinit`` 、 ``Upstart`` 、 ``systemd`` といったプロセス・マネージャを設定するでしょう。
 
 .. Running the docker daemon directly
 
@@ -100,7 +100,7 @@ docker デーモンを直接設定
 
 .. The command line reference has the complete list of daemon flags with explanations.
 
-:doc:`デーモンのフラグ一覧 </engine/reference/commandline/daemon>` にコマンドライン・リファレンスと説明があります。
+コマンドライン・リファレンスの :doc:`デーモンのフラグ一覧 </engine/reference/commandline/daemon>` に説明があります。
 
 .. Daemon debugging
 
@@ -111,7 +111,7 @@ docker デーモンを直接設定
 
 .. As noted above, setting the log level of the daemon to “debug” or enabling debug mode with -D allows the administrator or operator to gain much more knowledge about the runtime activity of the daemon. If faced with a non-responsive daemon, the administrator can force a full stack trace of all threads to be added to the daemon log by sending the SIGUSR1 signal to the Docker daemon. A common way to send this signal is using the kill command on Linux systems. For example, kill -USR1 <daemon-pid> sends the SIGUSR1 signal to the daemon process, causing the stack dump to be added to the daemon log.
 
-上記に捕捉すると、管理者やオペレータがデーモンの実行時の挙動に関して更に詳細な情報を得るには、デーモンのログレベルを「debug」に設定するか、 ``-D`` オプションを付けてデバッグ・モードにします。デーモンからの応答が無くても、Docker デーモンに対して ``SIGUSR1``  シグナルを送信することで、デーモンのログに追加された全てのスレッドを強制的に追跡します。Linux システム上でシグナルを送る一般的な方法は ``kill`` シグナルを使います。例えば ``kill -USR1 <デーモンのpid>`` を実行すると、デーモンのプロセスに ``SIGUSR1`` シグナルを送信し、スタック・ダンプをデーモンのログに追加します。
+更に捕捉しますと、管理者やオペレータがデーモンの実行時の挙動に関して、更に詳細な情報を得るには、デーモンのログレベルを「debug」に設定するか、 ``-D`` オプションを付けてデバッグ・モードにします。デーモンからの応答が無くても、Docker デーモンに対して ``SIGUSR1``  シグナルを送信することで、デーモンのログに追加された全てのスレッドを強制的に追跡します。Linux システム上でシグナルを送る一般的な方法は ``kill`` シグナルを使います。例えば ``kill -USR1 <デーモンのpid>`` を実行したら、デーモンのプロセスに ``SIGUSR1`` シグナルを送信し、スタック・ダンプをデーモンのログに追加します。
 
 ..    Note: The log level setting of the daemon must be at least “info” level and above for the stack trace to be saved to the logfile. By default the daemon’s log level is set to “info”.
 
@@ -130,11 +130,11 @@ Ubuntu
 
 .. As of 14.04, Ubuntu uses Upstart as a process manager. By default, Upstart jobs are located in /etc/init and the docker Upstart job can be found at /etc/init/docker.conf.
 
-``14.04`` から、Ubuntu はプロセス・マネージャに Upstart を使います。デフォルトでは、Upstart のジョブは ``/etc/init`` に保管され、 ``docker`` Upstart ジョブは ``/etc/init/docker.conf`` にあります。
+Ubuntu ``14.04`` からはプロセス・マネージャに Upstart を使います。デフォルトでは、Upstart のジョブは ``/etc/init`` に保管され、 ``docker`` Upstart ジョブは ``/etc/init/docker.conf`` にあります。
 
 .. After successfully installing Docker for Ubuntu, you can check the running status using Upstart in this way:
 
-:doc:`Ubuntu で Docker のインストール </engine/installation/linux/ubuntulinux>` に成功すると、Upstart を使って稼働状態を確認するには、次のようにします。
+:doc:`Ubuntu で Docker のインストール </engine/installation/linux/ubuntulinux>` に成功した後、Upstart で稼働状態を確認するには、次のようにします。
 
 .. code-block:: bash
 
@@ -165,7 +165,7 @@ Docker の設定
 
 .. The instructions below depict configuring Docker on a system that uses upstart as the process manager. As of Ubuntu 15.04, Ubuntu uses systemd as its process manager. For Ubuntu 15.04 and higher, refer to control and configure Docker with systemd.
 
-以下の例は、プロセス・マネージャに ``upstart`` を使い Docker システムを設定する方法です。Ubuntu 15.04 以降の Ubuntu はプロセス・マネージャに ``systemd`` を使います。Ubuntu 15.04 以降は、 :doc:`systemd` をご覧ください。
+以下の例は、プロセス・マネージャに ``upstart`` を使い Docker システムを設定する方法です。Ubuntu 15.04 以降はプロセス・マネージャに ``systemd`` を使います。Ubuntu 15.04 以降は、 :doc:`systemd` をご覧ください。
 
 .. You configure the docker daemon in the /etc/default/docker file on your system. You do this by specifying values in a DOCKER_OPTS variable.
 
@@ -193,7 +193,7 @@ Docker オプションの設定を変更するには：
 
 ..    Add a DOCKER_OPTS variable with the following options. These options are appended to the docker daemon’s run command.
 
-4. ``DOCKER_OPTS`` 変数に、次のオプションを指定します。これらのオプションは ``docker`` デーモンを実行する時に追加されるものです。
+4. ``DOCKER_OPTS`` 変数に、次のオプションを指定します。これらのオプションは ``docker`` デーモンを実行する時に追加されます。
 
 .. code-block:: bash
 
@@ -213,7 +213,7 @@ Docker オプションの設定を変更するには：
 
 .. The command line reference has the complete list of daemon flags with explanations.
 
-:doc:`デーモンのフラグ一覧 </engine/reference/commandline/daemon>` にコマンドライン・リファレンスと説明があります。
+コマンドライン・リファレンスの :doc:`デーモンのフラグ一覧 </engine/reference/commandline/daemon>` に説明があります。
 
 ..     Save and close the file.
 
@@ -277,7 +277,7 @@ Docker の実行
 
 .. You can start/stop/restart the docker daemon using
 
-``docker`` デーモンを次のように開始・停止・再起動できます。
+``docker`` デーモンは次のように開始・停止・再起動できます。
 
 .. code-block:: bash
 
@@ -306,11 +306,11 @@ CentOS 7.x と RHEL 7.x では :doc:`systemd で Docker を管理・設定でき
 
 .. Previously, for CentOS 6.x and RHEL 6.x you would configure the docker daemon in the /etc/sysconfig/docker file on your system. You would do this by specifying values in a other_args variable. For a short time in CentOS 7.x and RHEL 7.x you would specify values in a OPTIONS variable. This is no longer recommended in favor of using systemd directly.
 
-以前の CentOS 6.x や RHEL 6.x の場合は、システム上にある ``docker`` デーモンの設定は ``/etc/default/docker`` ファイルを編集し、ここで様々な変数を設定します。CentOS 7.x と RHEL 7.x では、この変数名が ``OPTIONS`` になります。CentOS 6.x と RHEL 6.x では、この変数名は ``other_args`` です。このセクションでは CentOS 7 を例にした ``docker`` デーモンを説明します。
+以前の CentOS 6.x や RHEL 6.x の場合は、システム上にある ``docker`` デーモンの設定は ``/etc/default/docker`` ファイルを編集し、ここで様々な変数を設定します。CentOS 7.x と RHEL 7.x では、この変数名が ``OPTIONS`` になります。CentOS 6.x と RHEL 6.x では、この変数名は ``other_args`` です。このセクションでは CentOS 7 の ``docker`` デーモンを例に説明します。
 
 .. For this section, we will use CentOS 7.x as an example to configure the docker daemon.
 
-このセクションでは、CentOS 7.x で ``docker`` デーモンを設定する例をみていきます。
+.. このセクションでは、CentOS 7.x で ``docker`` デーモンを設定する例をみていきます。
 
 .. To configure Docker options:
 
@@ -364,7 +364,7 @@ Docker オプションの設定を変更するには：
 
 .. The command line reference has the complete list of daemon flags with explanations.
 
-:doc:`デーモンのフラグ一覧 </engine/reference/commandline/daemon>` にコマンドライン・リファレンスと説明があります。
+コマンドライン・リファレンスの :doc:`デーモンのフラグ一覧 </engine/reference/commandline/daemon>` に説明があります。
 
 ..    Save and close the file.
 
@@ -399,9 +399,9 @@ Docker オプションの設定を変更するには：
 ログ
 ----------
 
-systemd has its own logging system called the journal. The logs for the docker daemon can be viewed using journalctl -u docker
+.. systemd has its own logging system called the journal. The logs for the docker daemon can be viewed using journalctl -u docker
 
-systemd は自身で journal と呼ばれるロギング・システムを持っています。 ``docker`` デーモンのログを表示するには ``journalctl -u docker`` を使います。
+systemd は自身で journal と呼ばれるロギング・システムを持っています。 ``docker`` デーモンのログ表示は ``journalctl -u docker`` を使います。
 
 .. code-block:: bash
 

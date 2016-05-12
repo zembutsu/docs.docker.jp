@@ -29,11 +29,11 @@ Supervisor を Docker で使う
 
 .. Traditionally a Docker container runs a single process when it is launched, for example an Apache daemon or a SSH server daemon. Often though you want to run more than one process in a container. There are a number of ways you can achieve this ranging from using a simple Bash script as the value of your container’s CMD instruction to installing a process management tool.
 
-伝統的に Docker コンテナは起動時に１つのプロセスを実行します。たとえば、Apache デーモンや SSH サーバのデーモンです。しかし、コンテナ内で複数のプロセスを起動したいこともあるでしょう。これを実現するにはいくつもの方法があります。プロセス管理ツールをインストールすることで、コンテナの ``CMD`` 命令で単純な Bash スクリプトを使えるようにします。
+伝統的に Docker コンテナは起動時に１つのプロセスを実行します。例えば、Apache デーモンや SSH サーバのデーモンです。しかし、コンテナ内で複数のプロセスを起動したいこともあるでしょう。これを実現するにはいくつもの方法があります。プロセス管理ツールをインストールすることで、コンテナの ``CMD`` 命令で単純な Bash スクリプトを使えるようにします。
 
 .. In this example we’re going to make use of the process management tool, Supervisor, to manage multiple processes in our container. Using Supervisor allows us to better control, manage, and restart the processes we want to run. To demonstrate this we’re going to install and manage both an SSH daemon and an Apache daemon.
 
-この例では、プロセス管理ツール `Supervisor <http://supervisord.org/>`_ を使い、コンテナ内で複数のプロセスを管理します。Supervisor を使うことにより、制御・管理しやすくし、実行したいプロセスを再起動できます。デモンストレーションとして、SSH デーモンと Apache デーモンの両方をインストール・管理します。
+ここでは例としてプロセス管理ツール `Supervisor <http://supervisord.org/>`_ を使い、コンテナ内で複数のプロセスを管理します。Supervisor を使うことにより、制御・管理しやすくし、実行したいプロセスを再起動できます。デモンストレーションとして、SSH デーモンと Apache デーモンの両方をインストール・管理します。
 
 
 .. Creating a Dockerfile
@@ -83,6 +83,8 @@ Supervisor の設定ファイルを追加
 
 .. Let’s see what is inside our supervisord.conf file.
 
+``supervisord.conf`` ファイルの内容を見ましょう。
+
 .. code-block:: bash
 
    [supervisord]
@@ -109,7 +111,7 @@ Supervisor の設定ファイルを追加
 
 .. Now let’s finish our Dockerfile by exposing some required ports and specifying the CMD instruction to start Supervisor when our container launches.
 
-``Dockerfile`` を作り終えるため、コンテナの実行時に、公開に必要なポートや Supervisor 起動のための``CMD`` 命令を追加します。
+``Dockerfile`` を仕上げるには、コンテナの実行時に必要な公開ポートや、 Supervisor 起動のための ``CMD`` 命令を追加します。
 
 .. code-block:: bash
 
