@@ -14,6 +14,8 @@ Docker ドキュメント日本語化プロジェクト
 
 * :doc:`about`
 * :doc:`guide`
+* :doc:`pdf-download`
+
 
 
 .. Welcome Friends to the Docker Docs!
