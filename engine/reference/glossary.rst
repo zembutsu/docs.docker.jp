@@ -23,7 +23,7 @@
 
 .. A list of terms used around the Docker project.
 
-Docker プロジェクト界隈で使われる用語の一覧です。
+Docker プロジェクト界隈で使われている用語の一覧です。
 
 .. aufs
 
@@ -76,7 +76,7 @@ btrfs （B-tree file system；ビー・ツリー・ファイルシステム、�
 
 .. build is the process of building Docker images using a Dockerfile. The build uses a Dockerfile and a “context”. The context is the set of files in the directory in which the image is built.
 
-ビルド（build）とは、 :ref:`Dockerfile` を使って Docker イメージを構築する方法です。構築時には Dockerfile と「コンテキスト」（内容物の意味）を使います。コンテキストとは、イメージ構築に必要なファイル群が置かれているディレクトリです。
+ビルド（build）とは、 :ref:`Dockerfile` を使って Docker イメージを構築する方法です。構築時には Dockerfile と「コンテクスト」（内容物の意味）を使います。コンテクストとは、イメージ構築に必要なファイル群が置かれているディレクトリです。
 
 .. cgroups
 
@@ -182,7 +182,7 @@ Docker Hub
 * Docker イメージを預かる（ホスティング）
 * ユーザ認証
 * イメージの自動構築と、構築トリガ（build triggers）やウェブ・フック（web hooks）のようなワークフロー・ツール
-* GitHub と Bitbucket との統合
+* GitHub 及び Bitbucket との統合
 
 .. Dockerfile
 

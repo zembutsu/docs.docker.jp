@@ -21,64 +21,61 @@ daemon
 
 .. code-block:: bash
 
-   Usage: docker daemon [OPTIONS]
+   使い方: docker daemon [オプション]
    
-   A self-sufficient runtime for linux containers.
+   Linux コンテナの自給自足ランタイム
    
-   Options:
-     --api-cors-header=""                   Set CORS headers in the remote API
-     --authorization-plugin=[]              Set authorization plugins to load
-     -b, --bridge=""                        Attach containers to a network bridge
-     --bip=""                               Specify network bridge IP
-     --cgroup-parent=                       Set parent cgroup for all containers
-     -D, --debug                            Enable debug mode
-     --default-gateway=""                   Container default gateway IPv4 address
-     --default-gateway-v6=""                Container default gateway IPv6 address
-     --cluster-store=""                     URL of the distributed storage backend
-     --cluster-advertise=""                 Address of the daemon instance on the cluster
-     --cluster-store-opt=map[]              Set cluster options
-     --config-file=/etc/docker/daemon.json  Daemon configuration file
-     --containerd                           Path to containerd socket
-     -D, --debug                            Enable debug mode
-     --default-gateway=""                   Container default gateway IPv4 address
-     --default-gateway-v6=""                Container default gateway IPv6 address
-     --dns=[]                               DNS server to use
-     --dns-opt=[]                           DNS options to use
-     --dns-search=[]                        DNS search domains to use
-     --default-ulimit=[]                    Set default ulimit settings for containers
-     --exec-opt=[]                          Set runtime execution options
-     --exec-root="/var/run/docker"          Root directory for execution state files
-     --fixed-cidr=""                        IPv4 subnet for fixed IPs
-     --fixed-cidr-v6=""                     IPv6 subnet for fixed IPs
-     -G, --group="docker"                   Group for the unix socket
-     -g, --graph="/var/lib/docker"          Root of the Docker runtime
-     -H, --host=[]                          Daemon socket(s) to connect to
-     --help                                 Print usage
-     --icc=true                             Enable inter-container communication
-     --insecure-registry=[]                 Enable insecure registry communication
-     --ip=0.0.0.0                           Default IP when binding container ports
-     --ip-forward=true                      Enable net.ipv4.ip_forward
-     --ip-masq=true                         Enable IP masquerading
-     --iptables=true                        Enable addition of iptables rules
-     --ipv6                                 Enable IPv6 networking
-     -l, --log-level="info"                 Set the logging level
-     --label=[]                             Set key=value labels to the daemon
-     --log-driver="json-file"               Default driver for container logs
-     --log-opt=[]                           Log driver specific options
-     --mtu=0                                Set the containers network MTU
-     --disable-legacy-registry              Do not contact legacy registries
-     -p, --pidfile="/var/run/docker.pid"    Path to use for daemon PID file
-     --registry-mirror=[]                   Preferred Docker registry mirror
-     -s, --storage-driver=""                Storage driver to use
-     --selinux-enabled                      Enable selinux support
-     --storage-opt=[]                       Set storage driver options
-     --tls                                  Use TLS; implied by --tlsverify
-     --tlscacert="~/.docker/ca.pem"         Trust certs signed only by this CA
-     --tlscert="~/.docker/cert.pem"         Path to TLS certificate file
-     --tlskey="~/.docker/key.pem"           Path to TLS key file
-     --tlsverify                            Use TLS and verify the remote
-     --userns-remap="default"               Enable user namespace remapping
-     --userland-proxy=true                  Use userland proxy for loopback traffic
+   オプション:
+     --api-cors-header=""                   リモート API の CORS ヘッダをセットする
+     --authorization-plugin=[]              読み込む認証プログインを指定
+     -b, --bridge=""                        コンテナをネットワーク・ブリッジにアタッチ
+     --bip=""                               ネットワーク・ブリッジ IP の指定
+     --cgroup-parent=                       全てのコンテナの親 cgroup を指定
+     --cluster-store=""                     分散ストレージバックエンドの URL
+     --cluster-advertise=""                 クラスタ上のデーモン・インスタンスのアドレス
+     --cluster-store-opt=map[]              クラスタのオプションを指定
+     --config-file=/etc/docker/daemon.json  デーモン設定ファイル
+     --containerd                           containerd ソケットのパス
+     -D, --debug                            デバッグ・モードの有効化
+     --default-gateway=""                   コンテナのデフォルト・ゲートウェイ IPv4 アドレス
+     --default-gateway-v6=""                コンテナのデフォルト・ゲートウェイ IPv6 アドレス
+     --dns=[]                               DNS サーバの指定
+     --dns-opt=[]                           DNS オプションの指定
+     --dns-search=[]                        DNS の検索に使うドメイン（search domain）
+     --default-ulimit=[]                    コンテナのデフォルト ulimit 設定を指定
+     --exec-opt=[]                          実行時のオプションを指定
+     --exec-root="/var/run/docker"          実行ステート・ファイルのルート・ディレクトリ
+     --fixed-cidr=""                        IP アドレスの IPv4 サブネットを固定
+     --fixed-cidr-v6=""                     IP アドレスの IPv6 サブネットを固定
+     -G, --group="docker"                   unix ソケット用のグループ
+     -g, --graph="/var/lib/docker"          Docker 実行時の Docker ルート
+     -H, --host=[]                          接続するデーモンのソケット
+     --help                                 使い方を表示
+     --icc=true                             コンテナ内部通信（inter-container communication）を有効化
+     --insecure-registry=[]                 安全ではないレジストリとの通信を有効化
+     --ip=0.0.0.0                           コンテナのポートがデフォルトでバインドする IP
+     --ip-forward=true                      net.ipv4.ip_forward の有効化
+     --ip-masq=true                         IP マスカレードの有効化
+     --iptables=true                        iptables のルール追加の有効化
+     --ipv6                                  IPv6 ネットワークの有効化
+     -l, --log-level="info"                 ログ記録レベルの設定
+     --label=[]                             デーモンにキー=バリューのラベルを指定
+     --log-driver="json-file"               デフォルトのコンテナのログ記録ドライバ
+     --log-opt=[]                           ログドライバのオプションを指定
+     --mtu=0                                コンテナ・ネットワークの MTU を指定
+     --disable-legacy-registry              レガシーのレジストリには接続しない
+     -p, --pidfile="/var/run/docker.pid"    デーモン PID ファイル用のパス
+     --registry-mirror=[]                   Docker レジストリの優先ミラー
+     -s, --storage-driver=""                使用するストレージ・ドライバ
+     --selinux-enabled                      SELinux サポートの有効化
+     --storage-opt=[]                       ストレージ・ドライバのオプションを指定
+     --tls                                  TLSを使用、--tlsverify を含む
+     --tlscacert="~/.docker/ca.pem"         この CA で署名された証明書のみ信頼
+     --tlscert="~/.docker/cert.pem"         TLS 証明書ファイルのパス
+     --tlskey="~/.docker/key.pem"           TLS 鍵ファイルのパス
+     --tlsverify                            TLS でリモート認証
+     --userns-remap="default"               ユーザ名前空間の再マッピングを有効化
+     --userland-proxy=true                  ループバック通信用に userland プロキシを使う
 
 .. Options with [] may be specified multiple times.
 
@@ -101,15 +98,15 @@ Docker デーモンはコンテナを管理するために常駐するプロセ�
 
 .. The Docker daemon can listen for Docker Remote API requests via three different types of Socket: unix, tcp, and fd.
 
-Docker デーモンは :doc:`Docker リモート API </engine/reference/api/docker_remote_api>` をリッスンできます。３種類のソケット、 ``unix`` 、 ``tcp`` 、 ``fd`` を通して利用できます。
+Docker デーモンは :doc:`Docker リモート API </engine/reference/api/docker_remote_api>` を受信できます。３種類のソケット ``unix`` 、 ``tcp`` 、 ``fd`` を通します。
 
 .. By default, a unix domain socket (or IPC socket) is created at /var/run/docker.sock, requiring either root permission, or docker group membership.
 
-デフォルトでは ``unix`` ドメイン・ソケット（あるいは IPC ソケット）が ``/var/run/docker.sock`` に作成されるため、 ``root`` 権限か ``docker`` グループへの所属が必要です。
+デフォルトでは ``unix`` ドメイン・ソケット（あるいは IPC ソケット）を ``/var/run/docker.sock`` に作成します。そのため、操作には ``root`` 権限または ``docker`` グループへの所属が必要です。
 
 .. If you need to access the Docker daemon remotely, you need to enable the tcp Socket. Beware that the default setup provides un-encrypted and un-authenticated direct access to the Docker daemon - and should be secured either using the built in HTTPS encrypted socket, or by putting a secure web proxy in front of it. You can listen on port 2375 on all network interfaces with -H tcp://0.0.0.0:2375, or on a particular network interface using its IP address: -H tcp://192.168.59.103:2375. It is conventional to use port 2375 for un-encrypted, and port 2376 for encrypted communication with the daemon.
 
-Docker デーモンにリモートからの接続を考えているのであれば、 ``tcp`` ソケットを有効にする必要があります。デフォルトのセットアップでは、Docker デーモンとの暗号化や認証機能はありませんのでご注意ください。そして、安全に使うには :doc:`内蔵の HTTP 暗号化ソケット </engine/security/https>` を使うべきです。あるいは安全なウェブ・プロキシをフロントに準備してください。ポート ``2375`` をリッスンしている場合は、全てのネットワークインターフェースで ``-H tcp://0.0.0.0:2375`` を使うか、あるいは IP アドレスを ``-H tcp://192.168.59.103:2375`` のように指定します。慣例として、デーモンとの通信が暗号化されていない場合はポート ``2375`` を、暗号化されている場合はポート ``2376`` を使います。
+Docker デーモンにリモートからの接続を考えているのであれば、 ``tcp`` ソケットを有効にする必要があります。デフォルトのセットアップでは、Docker デーモンとの暗号化や認証機能がないのでご注意ください。また、安全に使うには :doc:`内部の HTTP 暗号化ソケット </engine/security/https>` を使うべきです。あるいは、安全なウェブ・プロキシをフロントに準備してください。ポート ``2375`` をリッスンしている場合は、全てのネットワークインターフェースで ``-H tcp://0.0.0.0:2375`` を指定するか、あるいは IP アドレスを ``-H tcp://192.168.59.103:2375`` のように指定します。慣例として、デーモンとの通信が暗号化されていない場合はポート ``2375`` を、暗号化されている場合はポート ``2376`` を使います。
 
 ..    Note: If you’re using an HTTPS encrypted socket, keep in mind that only TLS1.0 and greater are supported. Protocols SSLv3 and under are not supported anymore for security reasons.
 
@@ -119,7 +116,7 @@ Docker デーモンにリモートからの接続を考えているのであれ�
 
 .. On Systemd based systems, you can communicate with the daemon via Systemd socket activation, use docker daemon -H fd://. Using fd:// will work perfectly for most setups but you can also specify individual sockets: docker daemon -H fd://3. If the specified socket activated files aren’t found, then Docker will exit. You can find examples of using Systemd socket activation with Docker and Systemd in the Docker source tree.
 
-systemd をベースとするシステムでは、 `Systemd ソケット・アクティベーション <http://0pointer.de/blog/projects/socket-activation.html>`_ を通して、 ``docker damon -H fd://`` で通信が可能です。 ``fd://`` は大部分のセットアップで動作しますが、個々のソケットを ``docker daemon -H fd://3`` のように指定できます。もし指定したソケットが見つからない婆は、Docker は終了します。Docker で Systemd ソケット・アクティベーションを使う例は `Docker のソース・ツリー <https://github.com/docker/docker/tree/master/contrib/init/systemd/>`_ をご覧ください。
+systemd をベースとするシステムでは、 `Systemd ソケット・アクティベーション <http://0pointer.de/blog/projects/socket-activation.html>`_ を通し、 ``docker daemon -H fd://`` で通信が可能です。 ``fd://`` は大部分のセットアップで動作するため、個々のソケットを ``docker daemon -H fd://3`` のように指定できます。もし指定したソケットが見つからない時は、Docker が終了します。Docker で Systemd ソケット・アクティベーションを使う例は `Docker のソース・ツリー <https://github.com/docker/docker/tree/master/contrib/init/systemd/>`_ をご覧ください。
 
 .. You can configure the Docker daemon to listen to multiple sockets at the same time using multiple -H options:
 
@@ -166,23 +163,23 @@ Docker クライアントは ``HTTP_PROXY`` 、 ``HTTPS_PROXY`` 、 ``NO_PROXY``
 
 .. The Docker daemon has support for several different image layer storage drivers: aufs, devicemapper, btrfs, zfs and overlay.
 
-Docker デーモンは様々に異なるイメージ・レイヤ・ストレージ・ドライバをサポートしています。ドライバは、 ``aufs`` 、 ``devicemapper`` 、 ``btrfs`` 、 ``zfs`` 、 ``overlay`` です。
+Docker デーモンはイメージ・レイヤ用途に、様々に異なるストレージ・ドライバの利用をサポートします。ドライバは、 ``aufs`` 、 ``devicemapper`` 、 ``btrfs`` 、 ``zfs`` 、 ``overlay`` です。
 
 .. The aufs driver is the oldest, but is based on a Linux kernel patch-set that is unlikely to be merged into the main kernel. These are also known to cause some serious kernel crashes. However, aufs is also the only storage driver that allows containers to share executable and shared library memory, so is a useful choice when running thousands of containers with the same program or libraries.
 
-``aufs`` ドライバは最も古いものですが、Linux カーネルに対するパッチ群が基になっています。ドライバにはメイン・カーネルにマージされなかったものも含まれます。そのため、深刻なカーネルのクラッシュを引き起こすことも分かっています。しかしながら、 ``aufs`` はコンテナの共有実行と共有ライブラリ・メモリが使える唯一のストレージ・ドライバでもあります。そのため、同じプログラムやライブラリで数千ものコンテナを実行する時は便利な選択でしょう。
+最も古いドライバは ``aufs`` であり、Linux カーネルに対するパッチ群が基になっています。ドライバにはメイン・カーネルにマージされなかったコードも含まれます。そのため、深刻なカーネルのクラッシュを引き起こすのが分かっています。一方で、 ``aufs`` はコンテナの共有実行と共有ライブラリ・メモリが使える唯一のストレージ・ドライバです。そのため、同じプログラムやライブラリで数千ものコンテナを実行する時は便利な選択でしょう。
 
 .. The devicemapper driver uses thin provisioning and Copy on Write (CoW) snapshots. For each devicemapper graph location – typically /var/lib/docker/devicemapper – a thin pool is created based on two block devices, one for data and one for metadata. By default, these block devices are created automatically by using loopback mounts of automatically created sparse files. Refer to Storage driver options below for a way how to customize this setup. ~jpetazzo/Resizing Docker containers with the Device Mapper plugin article explains how to tune your existing setup without the use of options.
 
-``devicemapper`` ドライバはシン・プロビジョニング（thin provisioning）とコピー・オン・ライト（Copy on Write）スナップショットを使います。各 devicemapper が位置する場所は、 ``/var/lib/docker/devicemapper`` が典型的です。シン（thin）プールは２つのブロックデバイス上に作られます。１つはデータであり、もう１つはメタデータです。デフォルトでは、これらのブロック・デバイスは、別々のファイルとして自動されたループバックのマウントをもとに、自動的に作成されます。セットアップのカスタマイズ方法は、以下にある :ref:`ストレージ・ドライバのオプション <storage-driver-options>` をご覧ください。 `jpetazzo/Resizing Docker containers with the Device Mapper plugin <http://jpetazzo.github.io/2014/01/29/docker-device-mapper-resize/>`_ の記事に、オプションを使わない設定方法の説明があります。
+``devicemapper`` ドライバはシン・プロビジョニング（thin provisioning）とコピー・オン・ライト（Copy on Write）スナップショットを使います。devicemapper の各グラフ（graph）がある典型的な場所は ``/var/lib/docker/devicemapper`` です。シン（thin）プールは２つのブロックデバイス上に作ります。１つはデータで、もう１つはメタデータです。デフォルトでは、別々のファイルとして自動作成したループバックのマウントをもとに、これらのブロック・デバイスを自動的に作成します。セットアップのカスタマイズ方法は、以下にある :ref:`ストレージ・ドライバのオプション <storage-driver-options>` をご覧ください。オプションを使わない設定方法は `jpetazzo/Resizing Docker containers with the Device Mapper plugin <http://jpetazzo.github.io/2014/01/29/docker-device-mapper-resize/>`_ の記事に説明があります。
 
 .. The btrfs driver is very fast for docker build - but like devicemapper does not share executable memory between devices. Use docker daemon -s btrfs -g /mnt/btrfs_partition.
 
-``btrfs`` ドライバは ``docker build`` が非常に高速です。しかし、 ``devicemapper`` のようにデバイス間の実行メモリを共有しません。使うには ``docker daemon -s btrfs -g /mnt/btrfs_partition`` とします。
+``btrfs`` ドライバは ``docker build`` が非常に高速です。しかし、 ``devicemapper`` のようにデバイス間の実行メモリを共有しません。使うには ``docker daemon -s btrfs -g /mnt/btrfs_partition`` を実行します。
 
 .. The zfs driver is probably not as fast as btrfs but has a longer track record on stability. Thanks to Single Copy ARC shared blocks between clones will be cached only once. Use docker daemon -s zfs. To select a different zfs filesystem set zfs.fsname option as described in Storage driver options.
 
-``zfs`` ドライバは ``btrfs`` ほど速くありませんが、安定さのためレコードを長く追跡します。 ``Single Copy ARC`` のおかげで、クローン間の共有ブロックが１度キャッシュされます。使うには ``docker daemon -s zfs`` を指定します。異なる zfs ファイルシステムセットを選択するには、 ``zfs.fsname`` オプションを  :ref:`ストレージ・ドライバのオプション <storage-driver-options>` で指定します。
+``zfs`` ドライバは ``btrfs`` ほど速くありませんが、安定さのためレコードを長く追跡します。 ``Single Copy ARC`` のおかげで、クローン間の共有ブロックを１度キャッシュします。使うには ``docker daemon -s zfs`` を指定します。異なる zfs ファイルシステムセットを選択するには、 ``zfs.fsname`` オプションを  :ref:`ストレージ・ドライバのオプション <storage-driver-options>` で指定します。
 
 .. The overlay is a very fast union filesystem. It is now merged in the main Linux kernel as of 3.18.0. Call docker daemon -s overlay to use it.
 
@@ -198,7 +195,7 @@ Docker デーモンは様々に異なるイメージ・レイヤ・ストレー�
 
 .. note::
 
-   現在のサポートされていない ``btrfs`` やコピー・オン・ライトのファイルシステムは、 ``ext4`` パーティション上のみで使うべきです。
+   現時点でサポートされていない ``btrfs`` や他のコピー・オン・ライトのファイルシステムは、 ``ext4`` パーティション上のみで使うべきです。
 
 .. Storage driver options
 
@@ -221,7 +218,7 @@ Docker デーモンは様々に異なるイメージ・レイヤ・ストレー�
 
 ..    If using a block device for device mapper storage, it is best to use lvm to create and manage the thin-pool volume. This volume is then handed to Docker to exclusively create snapshot volumes needed for images and containers.
 
-ブロック・デバイスをデバイスマッパー・ストレージに使う場合、``lvm`` を使った thin プール・ボリュームの作成・管理がベストです。その後、このボリュームは Docker により、イメージまたはコンテナで、排他的なスナップショット用ボリュームを作成するために使われます。
+ブロック・デバイスをデバイスマッパー・ストレージに指定する場合は、``lvm`` を使うシン・プール・ボリュームの作成・管理がベストです。その後、このボリュームは Docker により、イメージまたはコンテナで、排他的なスナップショット用ボリュームを作成するために使われます。
 
 ..    Managing the thin-pool outside of Engine makes for the most feature-rich method of having Docker utilize device mapper thin provisioning as the backing storage for Docker containers. The highlights of the lvm-based thin-pool management feature include: automatic or interactive thin-pool resize support, dynamically changing thin-pool features, automatic thinp metadata checking when lvm activates the thin-pool, etc.
 
@@ -229,7 +226,7 @@ Docker デーモンは様々に異なるイメージ・レイヤ・ストレー�
 
 ..    As a fallback if no thin pool is provided, loopback files are created. Loopback is very slow, but can be used without any pre-configuration of storage. It is strongly recommended that you do not use loopback in production. Ensure your Engine daemon has a --storage-opt dm.thinpooldev argument provided.
 
-シン・プールが割り当てられなければフェイルバックします。このとき、ループバックのファイルが作成されます。ループバックは非常に遅いものですが、ストレージの再設定を行わなくても利用可能になります。プロダクション環境においては、ループバックを使わない事を強く推奨します。Docker Engine デーモンで ``--storage-opt dm.thinpooldev`` が指定されていること確認してください。
+シン・プールが割り当てられなければフェイルバックします。このとき、ループバックのファイルが作成されます。ループバックは非常に遅いものですが、ストレージの再設定を行わなくても利用可能になります。プロダクション環境においては、ループバックを使わないよう強く推奨します。Docker Engine デーモンで ``--storage-opt dm.thinpooldev`` の指定があるのを確認してください。
 
 ..    Example use:
 

@@ -56,7 +56,7 @@ CFEngine は ``ENTRYPOINT`` で指定したコマンドの ``ベースネーム`
 
 .. Note that it is therefore important that the command to start your application leaves a process with the basename of the command. This can be made more flexible by making some minor adjustments to the CFEngine policies, if desired.
 
-したがって重要になるのは、アプリケーションを開始するにあたり、そのプロセスにベースネームが含まれている必要があるため、ご注意ください。
+従って重要になるのは、アプリケーションを開始するにあたり、そのプロセスにベースネームが含まれている必要があるため、ご注意ください。
 
 .. Usage
 
