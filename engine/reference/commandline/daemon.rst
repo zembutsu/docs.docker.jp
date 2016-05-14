@@ -241,7 +241,7 @@ Docker デーモンはイメージ・レイヤ用途に、様々に異なるス�
 
 ..    Specifies the size to use when creating the base device, which limits the size of images and containers. The default value is 100G. Note, thin devices are inherently “sparse”, so a 100G device which is mostly empty doesn’t use 100 GB of space on the pool. However, the filesystem will use more space for the empty case the larger the device is.
 
-ベース・デバイス作成時の容量を指定します。これはイメージとコンテナのサイズの上限にあたります。デフォルトの値は 10GB です。シン・デバイスは本質的に「希薄」（sparse）なのを覚えて置いてください。そのため、10GB のデバイスの大半がカラッポで未使用だったとしても、10GB の領域がプールされます。しかしながら、ファイルシステムがより大きなデバイスであれば、カラッポだとしても多くの容量を使う可能性があるでしょう。
+ベース・デバイス作成時の容量を指定します。これはイメージとコンテナのサイズの上限にあたります。デフォルトの値は 10GB です。シン・デバイスは本質的に「希薄」（sparse）なのを覚えて置いてください。そのため、10GB のデバイスの大半が空白で未使用だったとしても、10GB の領域がプールされます。しかしながら、ファイルシステムがより大きなデバイスであれば、空白としても多くの容量を使う可能性があるでしょう。
 
 .. The base device size can be increased at daemon restart which will allow all future images and containers (based on those new images) to be of the new base device size.
 
@@ -261,7 +261,7 @@ Docker デーモンはイメージ・レイヤ用途に、様々に異なるス�
 
 ..    This value affects the system-wide “base” empty filesystem that may already be initialized and inherited by pulled images. Typically, a change to this value requires additional steps to take effect:
 
-システム全体の「ベース」となるカラッポのファイルシステムに対して、設定値が影響を与えます。これは、既に初期化されているか、取得しているイメージから継承している場合です。とりわけ、この値の変更時には、反映させるために追加の手順が必要です。
+システム全体の「ベース」となる空白のファイルシステムに対して、設定値が影響を与えます。これは、既に初期化されているか、取得しているイメージから継承している場合です。とりわけ、この値の変更時には、反映するにために追加手順が必要です。
 
 .. code-block:: bash
 
@@ -391,11 +391,11 @@ Docker デーモンはイメージ・レイヤ用途に、様々に異なるス�
 
 ..    For best performance the metadata should be on a different spindle than the data, or even better on an SSD.
 
-最も性能の高いメタデータとは、データとは軸が異なる場所にあるもので、あるいは SSD を使うのが望ましいでしょう。
+最も性能の高いメタデータとは、データとは軸が異なる場所にあるものです。 SSD を使うのが望ましいでしょう。
 
 ..    If setting up a new metadata pool it is required to be valid. This can be achieved by zeroing the first 4k to indicate empty metadata, like this:
 
-新しいメタデータ・プールのセットアップには有効化が必要です。次のように、ゼロ値を使い、始めから 4096 までカラッポのメタデータを作ります。
+新しいメタデータ・プールのセットアップには有効化が必要です。次のように、ゼロ値を使い、始めから 4096 まで空白のメタデータを作ります。
 
 .. code-block:: bash
 
@@ -433,7 +433,7 @@ Docker デーモンはイメージ・レイヤ用途に、様々に異なるス�
 
 ..    Disabling this on loopback can lead to much faster container removal times, but will make the space used in /var/lib/docker directory not be returned to the system for other use when containers are removed.
 
-このループバックを無効にすると、コンテナの削除時間がより早くなります。しかし、 ``/var/lib/docker`` ディレクトリで使用している領域量は、コンテナが削除された時点で使っていた領域を返してしまいます。
+このループバックを無効にしたら、コンテナの削除時間がより早くなります。しかし、 ``/var/lib/docker`` ディレクトリで使用している領域量は、コンテナが削除された時点で使っていた領域を返してしまいます。
 
 ..    Example use:
 
@@ -470,7 +470,7 @@ Docker デーモンが ``udev`` 同期をサポートしているかどうかは
 
 ..    To allow the docker daemon to start, regardless of udev sync not being supported, set dm.override_udev_sync_check to true:
 
-``docker`` デーモンを開始するには、 ``udev`` 同期をサポートしているかどうかに関わらず、 ``dm.override_udev_sync_check`` を true にします。
+``docker`` デーモンの起動時に有効にするには、 ``udev`` 同期をサポートしているかどうかに拘わらず、 ``dm.override_udev_sync_check`` を true にします。
 
 .. code-block:: bash
 
@@ -494,11 +494,11 @@ Docker デーモンが ``udev`` 同期をサポートしているかどうかは
 
 ..    Deferred device removal means that if device is busy when devices are being removed/deactivated, then a deferred removal is scheduled on device. And devices automatically go away when last user of the device exits.
 
-デバイス削除の遅延が意味するのは、デバイスを無効化・非アクティブ化しようとしてもビジー（使用中）であれば、デバイス上で遅延削除が予定されます。そして、最後にデバイスを使っているユーザが終了すると、自動的に削除します。
+デバイス削除の遅延が意味するのは、デバイスを無効化・非アクティブ化しようとしてもビジー（使用中）であれば、デバイス上で遅延削除が予定されます。そして、最後にデバイスを使っているユーザが終了したら、自動的に削除します。
 
 ..    For example, when a container exits, its associated thin device is removed. If that device has leaked into some other mount namespace and can’t be removed, the container exit still succeeds and this option causes the system to schedule the device for deferred removal. It does not wait in a loop trying to remove a busy device.
 
-例えば、コンテナを終了すると、関連づけられているシン・デバイスも削除されます。デバイスが他のマウント名前空間も利用しているの場合は、削除できません。コンテナの終了が成功したら、このオプションが有効であれば、システムがデバイスの遅延削除をスケジュールします。使用中のデバイスが削除できるまで、ループを繰り返すことはありません。
+例えば、コンテナを終了したら、関連づけられているシン・デバイスも削除されます。デバイスが他のマウント名前空間も利用しているの場合は、削除できません。コンテナの終了が成功したら、このオプションが有効であれば、システムがデバイスの遅延削除をスケジュールします。使用中のデバイスが削除できるまで、ループを繰り返すことはありません。
 
 ..    Example use:
 
@@ -538,7 +538,7 @@ Docker デーモンが ``udev`` 同期をサポートしているかどうかは
 
 ..    Specifies the min free space percent in a thin pool require for new device creation to succeed. This check applies to both free data space as well as free metadata space. Valid values are from 0% - 99%. Value 0% disables free space checking logic. If user does not specify a value for this option, the Engine uses a default value of 10%.
 
-シン・プールが新しいデバイスを正常に作成するために必要な最小ディスク空き容量を、パーセントで指定します。チェックはデータ領域とメタデータ領域の両方に適用します。有効な値は 0% ~ 99% です。値を 0% に指定すると空き領域のチェック機構を無効にします。ユーザがオプションの値を指定しなければ、Engine はデフォルト値の 10% を使います。
+シン・プールが新しいデバイスを正常に作成するために必要な最小ディスク空き容量を、パーセントで指定します。チェックはデータ領域とメタデータ領域の両方に適用します。有効な値は 0% ~ 99% です。値を 0% に指定すると空き領域のチェック機構を無効にします。ユーザがオプションの値を指定しなければ、Engine はデフォルト値 10% を用います。
 
 ..    Whenever a new a thin pool device is created (during docker pull or during container creation), the Engine checks if the minimum free space is available. If sufficient space is unavailable, then device creation fails and any relevant docker operation fails.
 
@@ -587,7 +587,7 @@ Docker ランタイム実行オプション
 
 .. The Docker daemon relies on a OCI compliant runtime (invoked via the containerd daemon) as its interface to the Linux kernel namespaces, cgroups, and SELinux.
 
-Docker デーモンは `OCI <https://github.com/opencontainers/specs>`_ 基準のランタイム（containerd デーモンが呼び出す）に基づいています。これに従いながらLinux カーネルの ``namespaces`` 、 ``cgroups`` 、 ``SELinux`` に対するインターフェースとして動作します。
+Docker デーモンは `OCI <https://github.com/opencontainers/specs>`_ 基準のランタイム（containerd デーモンの呼び出し）に基づいています。これに従いながら Linux カーネルの ``名前空間（namespaces）`` 、 ``コントロール・グループ（cgroups）`` 、 ``SELinux`` に対するインターフェースとして動作します。
 
 .. Options for the runtime
 
@@ -598,11 +598,11 @@ Docker デーモンは `OCI <https://github.com/opencontainers/specs>`_ 基準�
 
 .. You can configure the runtime using options specified with the --exec-opt flag. All the flag’s options have the native prefix. A single native.cgroupdriver option is available.
 
-ランタイムにオプションを指定するには ``--exec-opt`` フラグでオプションを指定できます。全てのオプションのフラグには、先頭に ``native`` が付きます。 ``native.cgroupdriver`` オプションが利用可能です。
+ランタイムのオプションは ``--exec-opt`` フラグで指定できます。全てのオプションのフラグには、先頭に ``native`` が付きます。（現時点では）唯一 ``native.cgroupdriver`` オプションを利用可能です。
 
 .. The native.cgroupdriver option specifies the management of the container’s cgroups. You can specify only specify cgroupfs or systemd. If you specify systemd and it is not available, the system errors out. If you omit the native.cgroupdriver option,cgroupfs is used.
 
-``native.cgroupdriver`` オプションはコンテナの cgroups 管理を指定します。 ``systemd`` の ``cgroupfs`` で指定可能です。 ``systemd`` で指定した時、対象が利用可能でなければ、システムはエラーを返します。 ``native.cgroupdriver`` オプションを指定しなければ ``cgroupfs`` を使います。
+``native.cgroupdriver`` オプションはコンテナの cgroups 管理を指定します。 ``systemd`` の ``cgroupfs`` で指定可能です。 ``systemd`` で指定時、対象が利用可能でなければ、システムはエラーを返します。 ``native.cgroupdriver`` オプションを指定しなければ ``cgroupfs`` を使います。
 
 .. This example sets the cgroupdriver to systemd:
 
@@ -614,7 +614,7 @@ Docker デーモンは `OCI <https://github.com/opencontainers/specs>`_ 基準�
 
 .. Setting this option applies to all containers the daemon launches.
 
-このオプション設定は、デーモンが起動した全てのコンテナに対して適用されます。
+このオプション設定は、デーモンが起動した全てのコンテナに対して適用します。
 
 .. Also Windows Container makes use of --exec-opt for special purpose. Docker user can specify default container isolation technology with this, for example:
 
@@ -638,11 +638,11 @@ Docker デーモンは `OCI <https://github.com/opencontainers/specs>`_ 基準�
 
 .. To set the DNS server for all Docker containers, use docker daemon --dns 8.8.8.8.
 
-全ての Docker コンテナに向けての DNS サーバを設定するには、 ``docker damon --dns 8.8.8.8`` を使います。
+全ての Docker コンテナ用の DNS サーバを設定するには、 ``docker daemon --dns 8.8.8.8`` を使います。
 
 .. To set the DNS search domain for all Docker containers, use docker daemon --dns-search example.com.
 
-全ての Docker コンテナに向けて DNS 検索ドメインを設定するには、 ``docker daemon --dns-search example.com`` を使います。
+全ての Docker コンテナ用の DNS 検索ドメインを設定するには、 ``docker daemon --dns-search example.com`` を使います。
 
 .. Insecure registries
 
@@ -653,7 +653,7 @@ Docker デーモンは `OCI <https://github.com/opencontainers/specs>`_ 基準�
 
 .. Docker considers a private registry either secure or insecure. In the rest of this section, registry is used for private registry, and myregistry:5000 is a placeholder example for a private registry.
 
-Docker はプライベート・レジストリが安全かそうでないかを確認します。このセクションでは、 *レジストリ* として *プライベート・レジストリ (private registry)* を使い、例としてプライベート・レジストリが ``myregistry:5000`` で動作しているものとします。
+Docker はプライベート・レジストリが安全か否かを確認します。このセクションでは、 *レジストリ* として *プライベート・レジストリ (private registry)* を使い、例としてプライベート・レジストリが ``myregistry:5000`` で動作しているものとします。
 
 .. A secure registry uses TLS and a copy of its CA certificate is placed on the Docker host at /etc/docker/certs.d/myregistry:5000/ca.crt. An insecure registry is either not using TLS (i.e., listening on plain text HTTP), or is using TLS with a CA certificate not known by the Docker daemon. The latter can happen when the certificate was not found under /etc/docker/certs.d/myregistry:5000/, or if the certificate verification failed (i.e., wrong CA).
 
@@ -666,8 +666,8 @@ Docker はプライベート・レジストリが安全かそうでないかを�
 ..    --insecure-registry myregistry:5000 tells the Docker daemon that myregistry:5000 should be considered insecure.
 ..    --insecure-registry 10.1.0.0/16 tells the Docker daemon that all registries whose domain resolve to an IP address is part of the subnet described by the CIDR syntax, should be considered insecure.
 
-* ``--insecure-registry myregistry:5000`` Docker デーモンに対して、myregistry:5000 は安全ではないと考えられると伝えます。
-* ``--insecure-registry 10.1.0.0/16`` は Docker デーモンに対して、ドメインを逆引きすると、CIDR 構文で記述した対象のサブネット上の IP アドレスを持つ全てが安全ではないと伝えます。
+* ``--insecure-registry myregistry:5000`` は、 Docker デーモンに対して myregistry:5000 が安全ではないと考えられると伝えます。
+* ``--insecure-registry 10.1.0.0/16`` は 、Docker デーモンに対して、ドメインの逆引き時、CIDR 構文で記述した対象サブネット上に IP アドレスを持つ全てが安全ではないと伝えます。
 
 .. The flag can be used multiple times to allow multiple registries to be marked as insecure.
 
@@ -694,7 +694,7 @@ IP アドレスが 127.0.0.0/8 の範囲にあるローカルのレジストリ�
 
 .. Enabling --disable-legacy-registry forces a docker daemon to only interact with registries which support the V2 protocol. Specifically, the daemon will not attempt push, pull and login to v1 registries. The exception to this is search which can still be performed on v1 registries.
 
-``--disable-legacy-registry`` を有効にすると、Docker は V2 プロトコルをサポートしているデーモンとしか通信しないように強制します。この指定によって、デーモンは v1 レジストリへの ``push`` 、 ``pull`` 、 ``login`` を阻止します。例外として、v1 レジストリでも ``search`` のみ実行できます。
+``--disable-legacy-registry`` を有効にしたら、Docker は v2 プロトコルをサポートしているデーモンとしか通信しないように強制します。この指定によって、デーモンは v1 レジストリへの ``push`` 、 ``pull`` 、 ``login`` を阻止します。例外として、v1 レジストリでも ``search`` のみ実行できます。
 
 .. Running a Docker daemon behind a HTTPS_PROXY
 
