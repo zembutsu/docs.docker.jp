@@ -698,7 +698,7 @@ IP アドレスが 127.0.0.0/8 の範囲にあるローカルのレジストリ�
 
 .. Running a Docker daemon behind a HTTPS_PROXY
 
-Docker デーモンを HTTPS_PROXY の背後で動かす
+Docker デーモンを HTTPS_PROXY の背後で実行
 ==================================================
 
 .. When running inside a LAN that uses a HTTPS proxy, the Docker Hub certificates will be replaced by the proxy’s certificates. These certificates need to be added to your Docker host’s configuration:
@@ -715,7 +715,7 @@ LAN の内部で ``HTTPS`` プロキシを使う場合、Docker Hub の証明書
 
 ..    Then start your Docker daemon with HTTPS_PROXY=http://username:password@proxy:port/ docker daemon. The username: and password@ are optional - and are only needed if your proxy is set up to require authentication.
 
-3. Docker デーモンに ``HTTPS_PROXY=http://username:password@proxy:port/ docker daemon`` を付けて起動します。 ``username:`` と ``password@`` はオプションです。そして、プロ指揮の認証設定も必要であれば追加します。
+3. Docker デーモンに ``HTTPS_PROXY=http://ユーザ名:パスワード@proxy:port/ docker daemon`` を付けて起動します。 ``ユーザ名:`` と ``パスワード@`` はオプションです。そして、プロ指揮の認証設定も必要であれば追加します。
 
 .. This will only add the proxy and authentication to the Docker daemon’s requests - your docker builds and running containers will need extra configuration to use the proxy
 
@@ -730,7 +730,7 @@ Ulimits のデフォルト
 
 .. --default-ulimit allows you to set the default ulimit options to use for all containers. It takes the same options as --ulimit for docker run. If these defaults are not set, ulimit settings will be inherited, if not set on docker run, from the Docker daemon. Any --ulimit options passed to docker run will overwrite these defaults.
 
-``--default-ulimit`` を使い、全てのコンテナに対するデフォルトの ``ulimit`` オプションを指定できます。 ``docker run`` 時に ``--ulimit`` オプションを指定するのと同じです。デフォルトを設定しなければ、 ``ulimit`` 設定は継承されます。 ``docker run`` 時に設定されなければ、Docker デーモンから継承します。``docker run`` 時のあらゆる ``--ulimit`` オプションは、デフォルトを上書きします。
+``--default-ulimit`` を使い、全てのコンテナに対するデフォルトの ``ulimit`` オプションを指定できます。これは ``docker run`` 時に ``--ulimit`` オプションを指定するのと同じです。デフォルトを設定しなければ、 ``ulimit`` 設定は継承されます。 ``docker run`` 時に設定されなければ、Docker デーモンから継承します。``docker run`` 時のあらゆる ``--ulimit`` オプションは、デフォルトを上書きします。
 
 .. Be careful setting nproc with the ulimit flag as nproc is designed by Linux to set the maximum number of processes available to a user, not to a container. For details please check the run reference.
 
