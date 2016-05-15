@@ -106,11 +106,11 @@ Docker コマンドラインは、ホームディレクトリ ``$HOME`` にあ�
 
 .. Docker manages most of the files in the configuration directory and you should not modify them. However, you can modify the config.json file to control certain aspects of how the docker command behaves.
 
-Docker は設定ディレクトリにある大部分のファイルを管理していますので、これらを自分で変更すべきではありません。しかし、 ``docker`` コマンドの振る舞いを制御するため、 ``config.json`` を *編集できます* 。
+Docker は設定ディレクトリにある大部分のファイルを管理していますので、これらを自分で変更すべきではありません。しかし、 ``docker`` コマンドの居津を制御するため、 ``config.json`` を *編集できます* 。
 
 .. Currently, you can modify the docker command behavior using environment variables or command-line options. You can also use options within config.json to modify some of the same behavior. When using these mechanisms, you must keep in mind the order of precedence among them. Command line options override environment variables and environment variables override properties you specify in a config.json file.
 
-現在、 ``docker`` コマンドの振る舞いを環境変数かコマンドラインのオプションで変更可能です。あるいは、オプションとして ``config.json`` を使い、同じように振る舞いを設定できます。これらの仕組みを使う場合は、優先順位に気をつける必要があります。コマンドラインのオプションは環境変数で上書きされ、環境変数は ``config.json`` ファイルで指定した項目に上書きされます。
+現在、 ``docker`` コマンドの挙動を環境変数かコマンドラインのオプションで変更可能です。あるいは、オプションとして ``config.json`` を使い、同じように挙動を設定できます。これらの仕組みを使う場合は、優先順位に気を付ける必要があります。コマンドラインのオプションは環境変数で上書きされ、環境変数は ``config.json`` ファイルで指定した項目に上書きされます。
 
 .. The config.json file stores a JSON encoding of several properties:
 

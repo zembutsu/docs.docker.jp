@@ -56,7 +56,7 @@ boot2docker
 
 .. boot2docker is a lightweight Linux distribution made specifically to run Docker containers. The boot2docker management tool for Mac and Windows was deprecated and replaced by docker-machine which you can install with the Docker Toolbox.
 
-`boot2docker <http://boot2docker.io/>`_ （ブート・トゥ・ドッカー）は Docker コンテナの実行に特化した Linux ディストリビューションです。Mac および Windows 向けの boot2docker は、Docker Toolbox のインストールに含まれる ``docker-machine`` に置き換えられました。
+`boot2docker <http://boot2docker.io/>`_ （ブート・トゥ・ドッカー）は Docker コンテナの実行に特化した Linux ディストリビューションです。Mac 及び Windows 向けの boot2docker は、Docker Toolbox のインストールに含まれる ``docker-machine`` に置き換えられました。
 
 .. btrfs
 
@@ -256,7 +256,7 @@ libnetwork（リブネットワーク）は Go 言語のネイティブな実装
 
 .. links provide a legacy interface to connect Docker containers running on the same host to each other without exposing the hosts’ network ports. Use the Docker networks feature instead.
 
-リンク機能は同じホスト上で実行している Docker コンテナ間を接続するための、レガシーな（古い）インタフェースです。リンク機能を使うと、ホスト側のネットワーク・ポートを開く必要がありません。現在は、この機能の替わりに Docker ネットワーク機能を使います。
+リンク機能は同じホスト上で実行している Docker コンテナ間を接続するための、レガシーな（古い）インターフェースです。リンク機能を使うと、ホスト側のネットワーク・ポートを開く必要がありません。現在は、この機能の替わりに Docker ネットワーク機能を使います。
 
 .. Machine
 
@@ -392,7 +392,7 @@ Docker Toolbox（ツールボックス）は Mac あるいは Windows ユーザ�
 
 .. Compared to to containers, a Virtual Machine is heavier to run, provides more isolation, gets its own set of resources and does minimal sharing.
 
-コンテナと比べると、仮想マシンの実行は重たいものですが、さらなる隔離を提供し、自身でリソースを持っており、共有は最低限です。
+コンテナと比べると、仮想マシンの実行は重たいものですが、更なる隔離を提供し、自身でリソースを持っており、共有は最低限です。
 
 .. Also known as : VM
 
