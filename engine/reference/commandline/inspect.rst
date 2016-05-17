@@ -15,15 +15,14 @@ inspect
 
 .. code-block:: bash
 
-   Usage: docker inspect [OPTIONS] CONTAINER|IMAGE [CONTAINER|IMAGE...]
+   使い方: docker inspect [オプション] コンテナ|イメージ [コンテナ|イメージ...]
    
-   Return low-level information on a container or image
+   コンテナあるいはイメージの低レベル情報を表示
    
-     -f, --format=""         Format the output using the given go template
-     --help                  Print usage
-     --type=container|image  Return JSON for specified type, permissible
-                             values are "image" or "container"
-     -s, --size=false        Display total file sizes if the type is container
+     -f, --format=""         指定する go テンプレートを使い、出力を整形
+     --help                  使い方を表示
+     --type=container|image  JSON を返すイメージまたはコンテナの種類を指定
+     -s, --size=false        種類がコンテナの場合、合計ファイルサイズを表示
 
 .. By default, this will render all results in a JSON array. If a format is specified, the given template will be executed for each result.
 
@@ -46,7 +45,7 @@ inspect
 
 .. Get an instance’s IP address:
 
-**インスタンスの IP アドレスを取得：**
+**インスタンスの IP アドレスを取得**
 
 .. For the most part, you can pick out any field from the JSON in a fairly straightforward manner.
 
@@ -70,7 +69,7 @@ inspect
 
 .. Get an instance’s log path:
 
-**インスタンスのログ・パスを取得：**
+**インスタンス用ログのパスを取得：**
 
 .. code-block:: bash
 
@@ -82,7 +81,7 @@ inspect
 
 .. One can loop over arrays and maps in the results to produce simple text output:
 
-配列の中をループして、割り当てられている結果を簡単なテキストとして出力します。
+配列の中をループして、割り当てられている結果を簡単な文字で出力します。
 
 .. code-block:: bash
 

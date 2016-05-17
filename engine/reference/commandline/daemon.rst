@@ -106,7 +106,7 @@ Docker デーモンは :doc:`Docker リモート API </engine/reference/api/dock
 
 .. If you need to access the Docker daemon remotely, you need to enable the tcp Socket. Beware that the default setup provides un-encrypted and un-authenticated direct access to the Docker daemon - and should be secured either using the built in HTTPS encrypted socket, or by putting a secure web proxy in front of it. You can listen on port 2375 on all network interfaces with -H tcp://0.0.0.0:2375, or on a particular network interface using its IP address: -H tcp://192.168.59.103:2375. It is conventional to use port 2375 for un-encrypted, and port 2376 for encrypted communication with the daemon.
 
-Docker デーモンにリモートからの接続を考えているのであれば、 ``tcp`` ソケットを有効にする必要があります。デフォルトのセットアップでは、Docker デーモンとの暗号化や認証機能がないのでご注意ください。また、安全に使うには :doc:`内部の HTTP 暗号化ソケット </engine/security/https>` を使うべきです。あるいは、安全なウェブ・プロキシをフロントに準備してください。ポート ``2375`` をリッスンしている場合は、全てのネットワークインターフェースで ``-H tcp://0.0.0.0:2375`` を指定するか、あるいは IP アドレスを ``-H tcp://192.168.59.103:2375`` のように指定します。慣例として、デーモンとの通信が暗号化されていない場合はポート ``2375`` を、暗号化されている場合はポート ``2376`` を使います。
+Docker デーモンにリモートからの接続を考えているのであれば、 ``tcp`` ソケットを有効にする必要があります。デフォルトのセットアップでは、Docker デーモンとの暗号化や認証機能が無いのでご注意ください。また、安全に使うには :doc:`内部の HTTP 暗号化ソケット </engine/security/https>` を使うべきです。あるいは、安全なウェブ・プロキシをフロントに準備してください。ポート ``2375`` をリッスンしている場合は、全てのネットワークインターフェースで ``-H tcp://0.0.0.0:2375`` を指定するか、あるいは IP アドレスを ``-H tcp://192.168.59.103:2375`` のように指定します。慣例として、デーモンとの通信が暗号化されていない場合はポート ``2375`` を、暗号化されている場合はポート ``2376`` を使います。
 
 ..    Note: If you’re using an HTTPS encrypted socket, keep in mind that only TLS1.0 and greater are supported. Protocols SSLv3 and under are not supported anymore for security reasons.
 
@@ -226,7 +226,7 @@ Docker デーモンはイメージ・レイヤ用途に、様々に異なるス�
 
 ..    As a fallback if no thin pool is provided, loopback files are created. Loopback is very slow, but can be used without any pre-configuration of storage. It is strongly recommended that you do not use loopback in production. Ensure your Engine daemon has a --storage-opt dm.thinpooldev argument provided.
 
-シン・プールが割り当てられなければフェイルバックします。この時、ループバックのファイルが作成されます。ループバックは非常に遅いものですが、ストレージの再設定を行わなくても利用可能になります。プロダクション環境においては、ループバックを使わないよう強く推奨します。Docker Engine デーモンで ``--storage-opt dm.thinpooldev`` の指定があるのを確認してください。
+シン・プールが割り当てられ無ければフェイルバックします。この時、ループバックのファイルが作成されます。ループバックは非常に遅いものですが、ストレージの再設定を行わなくても利用可能になります。プロダクション環境においては、ループバックを使わないよう強く推奨します。Docker Engine デーモンで ``--storage-opt dm.thinpooldev`` の指定があるのを確認してください。
 
 ..    Example use:
 
@@ -834,7 +834,7 @@ Linux カーネルの `ユーザ名前空間(user namespace)サポート <http:/
 
 .. note::
 
-   現時点ではデーモンごとに１つしかマッピングしないいう制約があります。これは Engine インスタンス上で実行している全てのコンテナにまたがる共有イメージ・レイヤを Docker が共有しているためです。ファイルの所有者は、レイヤ内容を共有している全てのコンテナで共通の必要があるため、解決策としては ``docker pull`` の処理時、ファイル所有者をデーモンのユーザとグループに割り当てる（マッピングする）ことでした。そのため、イメージ内容をダウンロード後は遅延なくコンテナを起動できました。この設計は同じパフォーマンスを維持するため、 ``docker pull`` と ``docker push`` の実行時には維持されています。
+   現時点ではデーモンごとに１つしかマッピングしないいう制約があります。これは Engine インスタンス上で実行している全てのコンテナにまたがる共有イメージ・レイヤを Docker が共有しているためです。ファイルの所有者は、レイヤ内容を共有している全てのコンテナで共通の必要があるため、解決策としては ``docker pull`` の処理時、ファイル所有者をデーモンのユーザとグループに割り当てる（マッピングする）ことでした。そのため、イメージ内容をダウンロード後は遅延無くコンテナを起動できました。この設計は同じパフォーマンスを維持するため、 ``docker pull`` と ``docker push`` の実行時には維持されています。
    
 .. Starting the daemon with user namespaces enabled
 

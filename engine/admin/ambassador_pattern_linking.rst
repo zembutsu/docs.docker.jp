@@ -81,7 +81,7 @@ Docker ホスト上で実際の Redis サーバを開始します。
 
 .. On the other host, you can set up another ambassador setting environment variables for each remote port we want to proxy to the big-server
 
-別のホスト上で、更にアンバサダーをセットアップできます。ここではプロキシしたい ``big-server`` のリモート・ポートを環境変数に設定します。
+別のホスト上で、更にアンバサダをセットアップできます。ここではプロキシしたい ``big-server`` のリモート・ポートを環境変数に設定します。
 
 .. code-block:: bash
 

@@ -23,7 +23,7 @@ Docker run リファレンス
 
 .. Docker runs processes in isolated containers. A container is a process which runs on a host. The host may be local or remote. When an operator executes docker run, the container process that runs is isolated in that it has its own file system, its own networking, and its own isolated process tree separate from the host.
 
-Docker は隔離されたコンテナでプロセスを実行します。コンテナはホスト上で動くプロセスです。ホストとはローカルまたはリモートの環境です。オペレータが ``docker run`` を実行すると、コンテナのプロセスを隔離して実行します。コンテナは自身ファイルシステムとネットワークを持ち、ホスト上の他のプロセス・ツリーからは隔離されています。
+Docker は隔離（独立）したコンテナでプロセスを実行します。コンテナはホスト上で動くプロセスです。ホストとはローカルまたはリモートの環境です。作業者が ``docker run`` を実行したら、コンテナのプロセスを隔離（独立）して実行します。コンテナは自身ファイルシステムとネットワークを持ち、ホスト上の他のプロセス・ツリーからは隔離されて（独立して）います。
 
 .. This page details how to use the docker run command to define the container’s resources at runtime.
 
@@ -46,7 +46,7 @@ Docker は隔離されたコンテナでプロセスを実行します。コン�
 
 .. The docker run command must specify an IMAGE to derive the container from. An image developer can define image defaults related to:
 
-``docker run`` コマンドはコンテナを形成する元になる :ref:`イメージ <image>` の指定が必要です。イメージの開発者はイメージに関連するデフォルト値を定義できます。
+``docker run`` コマンドは、コンテナ形成の元になる :ref:`イメージ <image>` 指定が必要です。イメージの開発者はイメージに関連するデフォルト値を定義できます。
 
 ..    detached or foreground running
     container identification
@@ -54,7 +54,7 @@ Docker は隔離されたコンテナでプロセスを実行します。コン�
     runtime constraints on CPU and memory
     privileges and LXC configuration
 
-* デタッチ、あるいはフォアグラウンドで実行するか
+* デタッチドあるいはフォアグラウンドで実行
 * コンテナの識別
 * ネットワーク設定
 * 実行時の CPU とメモリの制限
@@ -62,7 +62,7 @@ Docker は隔離されたコンテナでプロセスを実行します。コン�
 
 .. With the docker run [OPTIONS] an operator can add to or override the image defaults set by a developer. And, additionally, operators can override nearly all the defaults set by the Docker runtime itself. The operator’s ability to override image and Docker runtime defaults is why run has more options than any other docker command.
 
-``docker run [オプション]`` では、開発者がイメージに対して行ったデフォルト設定の変更や、設定の追加をオペレータが行えます。そして更に、オペレータは Docker で実行する時、すべてのデフォルト設定を上書きすることもできます。オペレータはイメージと Docker 実行時のデフォルト設定を上書きできるのは、 :doc:`run </engine/reference/commandline/run>` コマンドは他の ``docker`` コマンドより多くのオプションがあるためです。
+``docker run [オプション]`` の実行時、作業者は設定の追加や、開発者がイメージに指定したデフォルト設定を上書き可能です。そして更に、作業者は Docker の実行時、ほぼすべてのデフォルト設定を上書きできます。 :doc:`run </engine/reference/commandline/run>` コマンドは他の ``docker`` コマンドより多くのオプションがあるため、作業者はイメージと Docker 実行時のデフォルト設定を上書きできます。
 
 .. To learn how to interpret the types of [OPTIONS], see Option types.
 
@@ -78,12 +78,12 @@ Docker は隔離されたコンテナでプロセスを実行します。コン�
 
 .. _operator-exclusive-options:
 
-オペレータ専用のオプション
+作業者専用のオプション
 ==============================
 
 .. Only the operator (the person executing docker run) can set the following options.
 
-オペレータ（ ``docker run`` の実行者 ）のみ、以下のオプションを設定できます。
+作業者（ ``docker run`` の実行者 ）のみ、以下のオプションを設定できます。
 
 ..    Detached vs foreground
         Detached (-d)
@@ -98,7 +98,7 @@ Docker は隔離されたコンテナでプロセスを実行します。コン�
     Runtime constraints on resources
     Runtime privilege, Linux capabilities, and LXC configuration
 
-* :ref:`デタッチド vs フォアグラウンド <detached-vs-foreground>`
+* :ref:`デタッチドかフォアグラウンド <detached-vs-foreground>`
 
  * :ref:`デタッチド(-d) <detached-d>` 
  * :ref:`フォアグラウンド <foreground>`
@@ -106,7 +106,7 @@ Docker は隔離されたコンテナでプロセスを実行します。コン�
 * :ref:`コンテナの識別 <container-identification>`
 
  * :ref:`名前 <name-name>`
- * :ref:`PID相当 <pid-equivalent>`
+ * :ref:`PID に相当 <pid-equivalent>`
 
 * :ref:`IPC 設定 <ipc-settings-ipc>`
 * :ref:`ネットワーク設定 <network-settings>`
@@ -119,12 +119,12 @@ Docker は隔離されたコンテナでプロセスを実行します。コン�
 
 .. _detached-vs-foreground:
 
-デタッチド vs フォアグラウンド
+デタッチドまたはフォアグラウンド
 ==============================
 
 .. When starting a Docker container, you must first decide if you want to run the container in the background in a “detached” mode or in the default foreground mode:
 
-Docker コンテナの起動時には、まず、コンテナをバックグラウンドで「デタッチド」モード（detached mode）で実行するか、デフォルトのフォアグラウンド・モード（foreground mode）で実行するかを決める必要があります。
+Docker コンテナの起動時に、まず、コンテナをバックグラウンドで「デタッチド」モード（detached mode）で実行するか、デフォルトのフォアグラウンド・モード（foreground mode）で実行するかを決める必要があります。
 
 .. code-block:: bash
 
@@ -139,11 +139,11 @@ Docker コンテナの起動時には、まず、コンテナをバックグラ�
 
 .. To start a container in detached mode, you use -d=true or just -d option. By design, containers started in detached mode exit when the root process used to run the container exits. A container in detached mode cannot be automatically removed when it stops, this means you cannot use the --rm option with -d option.
 
-コンテナをデタッチド・モードで起動するには、 ``-d=true`` か ``-d`` オプションを使います。設計上、コンテナが実行するルート・プロセスが終了すると、デタッチド・モードで起動したコンテナも終了します。デタッチド・モードのコンテナは停止しても自動的に削除できません。つまり ``-d`` オプションで ``--rm`` を指定できません。
+コンテナをデタッチド・モードで起動するには、 ``-d=true`` か ``-d`` オプションを使います。設計上、コンテナが実行するルート・プロセスが終了したら、デタッチド・モードで起動したコンテナも終了します。デタッチド・モードのコンテナは停止しても自動的に削除できません。つまり ``-d`` オプションでは ``--rm`` を指定できません。
 
 .. Do not pass a service x start command to a detached container. For example, this command attempts to start the nginx service.
 
-デタッチドのコンテナでは ``service x start`` コマンドは受け付けられません。例えば、次のコマンドは ``nginx`` サービスの起動を試みます。
+デタッチドのコンテナでは ``service x start`` コマンドを受け付けません。例えば、次のコマンドは ``nginx`` サービスの起動を試みます。
 
 .. code-block:: bash
 
@@ -151,7 +151,7 @@ Docker コンテナの起動時には、まず、コンテナをバックグラ�
 
 .. This succeeds in starting the nginx service inside the container. However, it fails the detached container paradigm in that, the root process (service nginx start) returns and the detached container stops as designed. As a result, the nginx service is started but could not be used. Instead, to start a process such as the nginx web server do the following:
 
-コンテナ内で ``nginx`` サービスの起動は成功します。しかしながら、デタッチド・コンテナの枠組み内では処理に失敗します。これはルート・プロセス（ ``service nginx start`` ）が終了するため、デタッチド・コンテナを停止させようとします。その結果、 ``nginx`` サービスは実行されますが、実行し続けることができません。この方法以外で  ``nginx``  ウェブ・サーバのプロセスを実行するには、次のようにします。
+コンテナ内で ``nginx`` サービスの起動は成功します。しかしながら、デタッチド・コンテナの枠組み内では処理に失敗します。これはルート・プロセス（ ``service nginx start`` ）が終了するため、デタッチド・コンテナは停止されます。その結果、 ``nginx`` サービスは実行しますが、実行を継続できません。この方法を使わず  ``nginx``  ウェブ・サーバのプロセスを実行するには、次のようにします。
 
 .. code-block:: bash
 
@@ -159,11 +159,11 @@ Docker コンテナの起動時には、まず、コンテナをバックグラ�
 
 .. To do input/output with a detached container use network connections or shared volumes. These are required because the container is no longer listening to the command line where docker run was run.
 
-コンテナの入出力はネットワーク接続や共有ボリュームも扱えます。コマンドラインで ``docker run`` を実行し終わったあとでも、必要になることがあるでしょう。
+コンテナの入出力はネットワーク接続や共有ボリュームも扱えます。コマンドラインで ``docker run`` を実行し終わった後でも、必要になる場合があるでしょう。
 
 .. To reattach to a detached container, use docker attach command.
 
-デタッチド・コンテナに再度アタッチするには、 ``docker`` :doc:`attach </engine/reference/commandline/attach>` コマンドを使います。
+デタッチド・コンテナに再度アタッチ（接続）するには、 ``docker`` :doc:`attach </engine/reference/commandline/attach>` コマンドを使います。
 
 .. Foreground
 
@@ -174,7 +174,7 @@ Docker コンテナの起動時には、まず、コンテナをバックグラ�
 
 .. In foreground mode (the default when -d is not specified), docker run can start the process in the container and attach the console to the process’s standard input, output, and standard error. It can even pretend to be a TTY (this is what most command line executables expect) and pass along signals. All of that is configurable:
 
-フォアグラウンド・モード（ ``-d`` を指定しない場合のデフォルト ）では、 ``docker run`` はコンテナの中でプロセスを開始し、プロセスの標準入出力・標準エラーをコンソールにアタッチします。これは TTY のふりをするだけでなく（TTY は大部分のコマンド・ラインで実行可能なものと想定しています）、シグナルも渡せます。
+フォアグラウンド・モード（ ``-d`` を指定しないデフォルト ）の場合、 ``docker run`` はコンテナの中でプロセスを開始し、プロセスの標準入出力・標準エラーをコンソールにアタッチします。これは TTY の振りをするだけでなく（TTY は大部分のコマンド・ラインで実行可能なものと想定しています）、シグナルも渡せます。
 
 .. code-block:: bash
 
@@ -185,7 +185,7 @@ Docker コンテナの起動時には、まず、コンテナをバックグラ�
 
 .. If you do not specify -a then Docker will attach all standard streams. You can specify to which of the three standard streams (STDIN, STDOUT, STDERR) you’d like to connect instead, as in:
 
-もし Docker で ``-a`` を指定しなければ、Docker は `自動的に全ての標準ストリームをアタッチ <https://github.com/docker/docker/blob/75a7f4d90cde0295bcfb7213004abce8d4779b75/commands.go#L1797>`_ します。３つの標準ストリーム（ ``STDIN`` 、 ``STDOUT`` 、 ``STDERR`` ）のうち、特定のものに対してのみ接続も可能です。
+Docker で ``-a`` を指定しなければ、Docker は `自動的に全ての標準ストリームをアタッチ <https://github.com/docker/docker/blob/75a7f4d90cde0295bcfb7213004abce8d4779b75/commands.go#L1797>`_ します。３つの標準ストリーム（ ``STDIN`` 、 ``STDOUT`` 、 ``STDERR`` ）のうち、特定のものに対してのみ接続も可能です。
 
 .. code-block:: bash
 
@@ -193,13 +193,13 @@ Docker コンテナの起動時には、まず、コンテナをバックグラ�
 
 .. For interactive processes (like a shell), you must use -i -t together in order to allocate a tty for the container process. -i -t is often written -it as you’ll see in later examples. Specifying -t is forbidden when the client standard output is redirected or piped, such as in: echo test | docker run -i busybox cat.
 
-（シェルのような）インタラクティブなプロセスでは、コンテナのプロセスに対して tty を割り当てるために、 ``-i -t`` を一緒に使う必要があります。 ``-i -t`` は ``-it`` と書くこともできます。後の例で出てきます。 ``-t`` を指定すると、クライアント側の出力を ``echo test | docker run -i busybox cat`` のようにリダイレクトやパイプできます。
+（シェルのような）インタラクティブなプロセスでは、コンテナのプロセスに対して tty を割り当てるために、 ``-i -t`` を一緒に使う必要があります。 ``-i -t`` は ``-it`` と書けます。後の例で出てきます。 ``-t`` を指定したら、クライアント側の出力を ``echo test | docker run -i busybox cat`` のようにリダイレクトやパイプできます。
 
 ..     Note: A process running as PID 1 inside a container is treated specially by Linux: it ignores any signal with the default action. So, the process will not terminate on SIGINT or SIGTERM unless it is coded to do so.
 
 .. note::
 
-   コンテナの中で PID 1 として実行しているプロセスは、Linux から特別に扱われます。デフォルトの操作では、あらゆるシグナルを無視します。そのため、プロセスは ``SIGINT`` か ``SIGTERM`` で停止するようにコードを書かない限り、停止できません。
+   コンテナ内で PID 1 として実行しているプロセスは、Linux が特別に扱います。デフォルトの操作では、あらゆるシグナルを無視します。そのため、プロセスは ``SIGINT`` か ``SIGTERM`` で停止するようにコードを書かない限り、停止できません。
 
 .. Container identification
 
@@ -217,36 +217,36 @@ Docker コンテナの起動時には、まず、コンテナをバックグラ�
 
 .. The operator can identify a container in three ways:
 
-オペレータはコンテナを３つの方法で識別できます。
+作業者はコンテナを３つの方法で識別できます。
 
 ..    UUID long identifier (“f78375b1c487e03c9438c729345e54db9d20cfa2ac1fc3494b6eb60872e74778”)
     UUID short identifier (“f78375b1c487”)
     Name (“evil_ptolemy”)
 
-* UUID 長い（ロング）識別子（"f78375b1c487e03c9438c729345e54db9d20cfa2ac1fc3494b6eb60872e74778"）
-* UUID 短い（ショート）識別子（"f78375b1c487"）
+* 長い（ロング） UUID 識別子（"f78375b1c487e03c9438c729345e54db9d20cfa2ac1fc3494b6eb60872e74778"）
+* 短い（ショート）UUID 識別子（"f78375b1c487"）
 * 名前（"evil_ptolemy"）
 
 .. The UUID identifiers come from the Docker daemon. If you do not assign a container name with the --name option, then the daemon generates a random string name for you. Defining a name can be a handy way to add meaning to a container. If you specify a name, you can use it when referencing the container within a Docker network. This works for both background and foreground Docker containers.
 
-UUID 識別子は Docker デーモンから与えられます。コンテナの名前を ``--name`` オプションで割り当てなければ、デーモンはランダムな文字列から名前を生成します。コンテナに対する目的を表すために、 ``name`` を定義するのが簡単な方法でしょう。 ``name`` を指定すると、これは Docker ネットワーク内でコンテナを参照するために使えます。この参照機能は、バックグラウンドでもフォアグラウンドでも、両方の Docker コンテナで動作します。
+UUID 識別子は Docker デーモンから与えられます。コンテナの名前を ``--name`` オプションで割り当てなければ、デーモンはランダムな文字列から名前を生成します。コンテナに対する目的を表すには、 ``name`` の定義が簡単でしょう。 ``name`` を指定したら、これを Docker ネットワーク内でコンテナを参照用に使えます。この参照機能は、バックグラウンドでもフォアグラウンドどちらの Docker コンテナでも動作します。
 
 .. Note: Containers on the default bridge network must be linked to communicate by name.
 
 .. note::
 
-   デフォルト・ブリッジ・ネットワーク内のコンテナは、相互に名前で通信するにはリンクする必要があります。
+   デフォルトのブリッジ・ネットワーク内にあるコンテナの場合は、相互に名前で通信するにはリンクする必要があります。
 
 .. PID equivalent
 
 .. _pid-equivalent:
 
-PID 相当
+PID 相当の機能
 --------------------
 
 .. Finally, to help with automation, you can have Docker write the container ID out to a file of your choosing. This is similar to how some programs might write out their process ID to a file (you’ve seen them as PID files):
 
-あとは、自動処理を簡単にするため、Docker は任意に選択したファイルに対してコンテナ ID を書き出せます。これは、プログラムがプロセス ID をファイルに書き出す（いわゆる PID ファイルのことです）のに似ています。
+あとは、自動処理を簡単にするため、Docker は任意に選択したファイルに対してコンテナ ID を書き出せます。これは、プログラムがプロセス ID をファイルに書き出す（いわゆる PID ファイルです）のに似ています。
 
 .. code-block:: bash
 
@@ -261,6 +261,8 @@ PID 相当
 
 .. While not strictly a means of identifying a container, you can specify a version of an image you’d like to run the container with by adding image[:tag] to the command. For example, docker run ubuntu:14.04.
 
+コンテナ実行時のコマンドで ``イメージ[:タグ]`` を追加すると、イメージのバージョンを厳密に指定できます。例えば ``docker run ubuntu:14.04`` と実行します。
+
 
 .. Image[@digest]
 
@@ -271,7 +273,7 @@ PID 相当
 
 .. Images using the v2 or later image format have a content-addressable identifier called a digest. As long as the input used to generate the image is unchanged, the digest value is predictable and referenceable.
 
-v2 以降のイメージ・フォーマットのイメージを使うと、その中にダイジェスト値（digest）と呼ばれる識別子が、内容に対して割り当てられています。入力に使われたイメージファイルに対する変更がなければ、ダイジェスト値とは予想されうる値であり、参照可能なものです。
+イメージ・形式 v2 以降のイメージを使えば、その中にダイジェスト値（digest）と呼ばれる識別子が、内容に対して割り当てられています。入力に使われたイメージファイルに対する変更がなければ、ダイジェスト値とは予想されうる値であり、参照可能なものです。
 
 .. PID settings (–pid)
 
@@ -290,7 +292,7 @@ PID 設定（--pid）
 
 .. By default, all containers have the PID namespace enabled.
 
-デフォルトでは、全てのコンテナは有功な PID 名前空間を持っています。
+デフォルトでは、全てのコンテナは有効な PID 名前空間を持っています。
 
 .. PID namespace provides separation of processes. The PID Namespace removes the view of the system processes, and allows process ids to be reused including pid 1.
 
@@ -298,7 +300,7 @@ PID 名前空間はプロセスの分離をもたらします。PID 名前空間
 
 .. In certain cases you want your container to share the host’s process namespace, basically allowing processes within the container to see all of the processes on the system. For example, you could build a container with debugging tools like strace or gdb, but want to use these tools when debugging processes within the container.
 
-コンテナがホスト上の特定のプロセス名前空間を共有する場合は、コンテナ内のプロセスが、システム上の全プロセスを基本的に見られるようにします。例えば、 ``strace`` や ``gdb`` のようなデバッグ用ツールを含むコンテナを構築したとき、コンテナ内のデバッグ用プロセスのみツールを使えるように指定する場合です。
+コンテナがホスト上の特定のプロセス名前空間を共有する場合は、コンテナ内のプロセスが、システム上の全プロセスを基本的に見られるようにします。例えば、 ``strace`` や ``gdb`` のようなデバッグ用ツールを含むコンテナを構築した時、コンテナ内のデバッグ用プロセスのみツールを使えるように指定する場合です。
 
 .. code-block:: bash
 
@@ -322,14 +324,14 @@ UTS 設定（--uts）
 .. code-block:: bash
 
    --uts=""  : UTS 名前空間モードをコンテナに設定する
-          'host': コンテナ内でホストの UTS 名前空間を使う
+          'host': コンテナ内でホストの UTS 名前空間を使用
 
 .. The UTS namespace is for setting the hostname and the domain that is visible to running processes in that namespace. By default, all containers, including those with --net=host, have their own UTS namespace. The host setting will result in the container using the same UTS namespace as the host.
 
-UTS 名前空間とは、プロセスを実行する名前空間上で見えるホスト名とドメイン名を設定するものです。デフォルトでは、全てのコンテナは ``--uts=host`` の指定により、自身の UTS 名前空間を持っています。 ``host`` には、ホスト名として同じ UTS 名前空間をコンテナで使えるよう設定します。
+.. UTS 名前空間とは、プロセスを実行する名前空間上で見えるホスト名とドメイン名を設定するものです。デフォルトでは、全てのコンテナは ``--uts=host`` の指定により、自身の UTS 名前空間を持っています。 ``host`` には、ホスト名として同じ UTS 名前空間をコンテナで使えるよう設定します。
 
 
-The UTS namespace is for setting the hostname and the domain that is visible to running processes in that namespace. By default, all containers, including those with --net=host, have their own UTS namespace. The host setting will result in the container using the same UTS namespace as the host. Note that --hostname is invalid in host UTS mode.
+.. The UTS namespace is for setting the hostname and the domain that is visible to running processes in that namespace. By default, all containers, including those with --net=host, have their own UTS namespace. The host setting will result in the container using the same UTS namespace as the host. Note that --hostname is invalid in host UTS mode.
 
 UTS 名前空間とは、プロセスを実行する名前空間上で見えるホスト名とドメイン名を設定するものです。デフォルトでは、全てのコンテナは ``--uts=host`` の指定により、自身の UTS 名前空間を持っています。  ``host`` には、ホスト名として同じ UTS 名前空間をコンテナで使えるよう設定します。なお、 ``host`` UTS モードでは ``--hostname`` の指定ができないため、ご注意ください。
 
@@ -364,7 +366,7 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
 .. Shared memory segments are used to accelerate inter-process communication at memory speed, rather than through pipes or through the network stack. Shared memory is commonly used by databases and custom-built (typically C/OpenMPI, C++/using boost libraries) high performance applications for scientific computing and financial services industries. If these types of applications are broken into multiple containers, you might need to share the IPC mechanisms of the containers.
 
-プロセス間通信は共有メモリ・セグメントはメモリの速度まで（ネットワーク・スタックをパイプするか通過するよりも速く）加速します。共有メモリとは、一般的にデータベースや、科学計算や緊急サービス産業向けの高性能アプリケーション向けカスタム・ビルド（典型的なのは、C/OpenMPI、C++ の高速化ライブラリ）に用いられます。この種のアプリケーションが複数のコンテナに分割される場合は、コンテナの IPC 機構を使って共有する必要があるでしょう。
+プロセス間通信は共有メモリ・セグメントはメモリの速度まで（ネットワーク・スタックをパイプするか通過するよりも速く加速）します。共有メモリとは、一般的にデータベースや、科学計算や緊急サービス産業向けの高性能アプリケーション向けカスタム・ビルド（典型的なのは、C/OpenMPI、C++ の高速化ライブラリ）に用いられます。この種のアプリケーションが複数のコンテナに分割される場合は、コンテナの IPC 機構を使って共有する必要があるでしょう。
 
 .. Network settings
 
@@ -375,22 +377,22 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
 .. code-block:: bash
 
-   --dns=[]         : Set custom dns servers for the container
-   --net="bridge"   : Connects a container to a network
-                       'bridge': creates a new network stack for the container on the docker bridge
-                       'none': no networking for this container
-                       'container:<name|id>': reuses another container network stack
-                       'host': use the host network stack inside the container
-                       'NETWORK': connects the container to user-created network using `docker network create` command
-   --net-alias=[]   : Add network-scoped alias for the container
-   --add-host=""    : Add a line to /etc/hosts (host:IP)
-   --mac-address="" : Sets the container's Ethernet device's MAC address
-   --ip=""          : Sets the container's Ethernet device's IPv4 address
-   --ip6=""         : Sets the container's Ethernet device's IPv6 address
+   --dns=[]         : コンテナ用のカスタム DNS サーバを設定
+   --net="bridge"   : コンテナをネットワークに接続
+                       'bridge': docker ブリッジ上でコンテナ用に新しいネットワーク・スタックを作成
+                       'none': コンテナにネットワーク機能を付けない
+                       'container:<name|id>': 他のコンテナ用ネットワーク・スタックを再利用
+                       'host': コンテナ内でホスト側ネットワーク・スタックを使用
+                       'NETWORK': 「docker network create」コマンドでユーザ作成したネットワークに作成
+   --net-alias=[]   : コンテナにネットワーク内部用のエイリアスを追加
+   --add-host=""    : /etc/hosts に行を追加（ホスト名:IPアドレス）
+   --mac-address="" : コンテナのイーサネット・デバイス Mac アドレスを指定
+   --ip=""          : コンテナのイーサネット・デバイスに IPv4 アドレスを指定
+   --ip6=""         : コンテナのイーサネット・デバイスに IPv6 アドレスを指定
 
 .. By default, all containers have networking enabled and they can make any outgoing connections. The operator can completely disable networking with docker run --net none which disables all incoming and outgoing networking. In cases like this, you would perform I/O through files or STDIN and STDOUT only.
 
-デフォルトでは、全てのコンテナはネットワーク機能を持っており、外部に対する接続を可能とします。オペレータはネットワークを無効化したいのであれば ``docker run --net=none`` を指定することで、内側と外側の両方のネットワーク機能を無効化します。このような指定をすると、 I/O 処理はファイルに対してか、 ``STDIN`` と ``STDOUT`` のみになります。
+デフォルトでは、全てのコンテナはネットワーク機能を持っており、外部に対する接続が可能です。作業者がネットワークを無効化したい場合は ``docker run --net=none`` を指定し、内側と外側の両方のネットワーク機能を無効化します。このように指定したら、 I/O 処理はファイルに対してか、 ``STDIN`` と ``STDOUT`` のみになります。
 
 .. Publishing ports and linking to other containers only works with the default (bridge). The linking feature is a legacy feature. You should always prefer using Docker network drivers over linking.
 
@@ -402,7 +404,7 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
 .. By default, the MAC address is generated using the IP address allocated to the container. You can set the container’s MAC address explicitly by providing a MAC address via the --mac-address parameter (format:12:34:56:78:9a:bc). Be aware that Docker does not check if manually specified MAC addresses are unique.
 
-デフォルトでは、コンテナに割り当てられる IP アドレスを使って、Mac アドレスが生成されます。コンテナの Mac アドレスの指定は、 ``--mac-address`` パラメータ（書式： ``12:34:56:78:9a:bc`` ）を使い MAC アドレスを指定できます。 Docker は Mac アドレスがユニークかどうか（重複しているかどうか）を確認する仕組みがないため、ご注意ください。
+デフォルトでは、コンテナに割り当てられる IP アドレスを使い、MAC アドレスを生成します。コンテナの MAC アドレスの指定は、 ``--mac-address`` パラメータ（書式： ``12:34:56:78:9a:bc`` ）を使い MAC アドレスを指定できます。 Docker は MAC アドレスがユニークかどうか（重複しているかどうか）を確認する仕組みがないため、ご注意ください。
 
 .. Supported networks :
 
@@ -440,7 +442,7 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
 .. With the network is none a container will not have access to any external routes. The container will still have a loopback interface enabled in the container but it does not have any routes to external traffic.
 
-コンテナのネットワークを ``none`` に指定すると、外部の経路に対してアクセスできなくなくなります。それでもコンテナは ``loopback`` （ループバック）インターフェースが有効ですが、外部のトラフィックに対する経路がなくなります。
+コンテナのネットワークを ``none`` に指定したら、外部の経路に対してアクセス不能にします。コンテナ内では ``loopback`` （ループバック）インターフェースが有効ですが、外部のトラフィックに対する経路がなくなります。
 
 .. Network: bridge
 
@@ -451,7 +453,7 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
 .. With the network set to bridge a container will use docker’s default networking setup. A bridge is setup on the host, commonly named docker0, and a pair of veth interfaces will be created for the container. One side of the veth pair will remain on the host attached to the bridge while the other side of the pair will be placed inside the container’s namespaces in addition to the loopback interface. An IP address will be allocated for containers on the bridge’s network and traffic will be routed though this bridge to the container.
 
-コンテナのネットワークを ``bridge`` に指定すると、コンテナは Docker のデフォルト・ネットワーク機能をセットアップします。ブリッジはホスト上で設定されるもので、通常は ``docker0`` と名前が付けられます。そして、 ``veth`` インターフェースのペアがコンテナ用に作成されます。 ``veth`` ペアの片方はホスト側にアタッチされたままとなります。もう一方は、コンテナの名前空間の中で ``loopback`` インターフェースに加えて追加されます。ブリッジ・ネットワーク上で IP アドレスがコンテナに割り当てられ、コンテナに対するトラフィックはこのブリッジを経由します。
+コンテナのネットワークを ``bridge`` に指定したら、コンテナは Docker のデフォルト・ネットワーク機能をセットアップします。ブリッジはホスト上で設定されるもので、通常は ``docker0`` と名前が付けられます。そして、 ``veth`` インターフェースのペアがコンテナ用に作成されます。 ``veth`` ペアの片方はホスト側にアタッチされたままとなります。もう一方は、コンテナの名前空間の中で ``loopback`` インターフェースに加えて追加します。ブリッジ・ネットワーク上で IP アドレスがコンテナに割り当てられ、コンテナに対するトラフィックはこのブリッジを経由します。
 
 .. Containers can communicate via their IP addresses by default. To communicate by name, they must be linked.
 
@@ -466,17 +468,17 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
 .. With the network set to host a container will share the host’s network stack and all interfaces from the host will be available to the container. The container’s hostname will match the hostname on the host system. Note that --add-host --hostname --dns --dns-search --dns-opt and --mac-address are invalid in host netmode. Even in host network mode a container has its own UTS namespace by default. As such --hostname is allowed in host network mode and will only change the hostname inside the container.
 
-``host`` ネットワークをコンテナに設定すると、ホスト側のネットワーク・スタックと、全てのホスト上のインターフェースがコンテナ上でも共有できます。コンテナのホスト名はホストシステム上のホスト名と一致します。 ``host`` ネットワーク・モードでは、 ``--add-host`` 、 ``--hostname`` 、 ``--dns`` 、 ``--dns-search`` 、 ``--dns-opt`` 、 ``--mac-address`` が無効になるのでご注意ください。 たとえ ``host``  ネットワーク・モードだとしても、コンテナは自身の UTS 名前空間をデフォルトで持ちます。そのため、  ``host`` ネットワーク・モードで ``--hostname`` が許可されるのは、コンテナの中でホスト名を変えるだけです。
+``host`` ネットワークをコンテナに設定したら、ホスト側のネットワーク・スタックと、全てのホスト上のインターフェースがコンテナ上でも共有できます。コンテナのホスト名はホストシステム上のホスト名と一致します。 ``host`` ネットワーク・モードでは、 ``--add-host`` 、 ``--hostname`` 、 ``--dns`` 、 ``--dns-search`` 、 ``--dns-opt`` 、 ``--mac-address`` が無効になるのでご注意ください。 たとえ ``host``  ネットワーク・モードだとしても、コンテナは自身の UTS 名前空間をデフォルトで持ちます。そのため、  ``host`` ネットワーク・モードで ``--hostname`` が許可されるのは、コンテナの中でホスト名を変えるだけです。
 
 .. Compared to the default bridge mode, the host mode gives significantly better networking performance since it uses the host’s native networking stack whereas the bridge has to go through one level of virtualization through the docker daemon. It is recommended to run containers in this mode when their networking performance is critical, for example, a production Load Balancer or a High Performance Web Server.
 
-デフォルトの ``bridge`` モードと比較すると、 ``host`` モードは *著しく* ネットワーク性能が良いです。これは、bridge の場合は docker デーモンの仮想化レベルを通過しているのに対して、host の場合はネイティブなネットワーク・スタックを用いるからです。例えば、プロダクションのロードバランサや高性能のウェブサーバのような、ネットワーク性能がクリティカルな環境では、このモードでのコンテナ動作を推奨します。
+デフォルトの ``bridge`` モードと比べ、 ``host`` モードは *著しく* ネットワーク性能が優れます。これは、bridge の場合は docker デーモンの仮想化レベルを通過しているのに対して、host の場合はネイティブなネットワーク・スタックを用いるからです。例えば、プロダクションのロードバランサや高性能のウェブサーバのような、ネットワーク性能がクリティカルな環境では、このモードでのコンテナ動作を推奨します。
 
 ..     Note: --net="host" gives the container full access to local system services such as D-bus and is therefore considered insecure.
 
 .. note::
 
-   ``--net="host"`` を指定すると、コンテナは D-bus のようなローカル・システム・サービスに対してフルアクセスできるので、安全ではないと考えられます。
+   ``--net="host"`` の指定時は、コンテナは D-bus のようなローカル・システム・サービスに対してフルアクセス可能なため、安全ではないと考えられます。
 
 .. Network: container
 
@@ -487,11 +489,11 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
 .. With the network set to container a container will share the network stack of another container. The other container’s name must be provided in the format of --net container:<name|id>. Note that --add-host --hostname --dns --dns-search --dns-opt and --mac-address are invalid in container netmode, and --publish --publish-all --expose are also invalid in container netmode.
 
-``container`` ネットワークをコンテナにセットすると、他のコンテナのネットワーク・スタックを共有します。他のコンテナ名は ``--net container:<名前|id>`` の書式で指定する必要があります。 ``container`` ネットワーク・モードでは、 ``--add-host`` 、 ``--hostname`` 、 ``--dns`` 、 ``--dns-search`` 、 ``--dns-opt`` 、 ``--mac-address`` が無効になるだけでなく、 ``--publish`` 、 ``--publish-all`` 、 ``--expose`` も無効になるのでご注意ください。
+``container`` ネットワークをコンテナに指定したら、他のコンテナのネットワーク・スタックを共有します。他のコンテナ名は ``--net container:<名前|id>`` の書式で指定する必要があります。 ``container`` ネットワーク・モードでは、 ``--add-host`` 、 ``--hostname`` 、 ``--dns`` 、 ``--dns-search`` 、 ``--dns-opt`` 、 ``--mac-address`` が無効になるだけでなく、 ``--publish`` 、 ``--publish-all`` 、 ``--expose`` も無効になるのでご注意ください。
 
 .. Example running a Redis container with Redis binding to localhost then running the redis-cli command and connecting to the Redis server over the localhost interface.
 
-例として、Redis コンテナで Redis が ``localhost`` をバインドしているとき、 ``localhost`` インターフェースを通して Redis サーバに ``redis-cli`` コマンドを実行して接続します。
+次の例は、Redis コンテナで Redis が ``localhost`` をバインドしているとき、 ``localhost`` インターフェースを通して Redis サーバに ``redis-cli`` コマンドを実行して接続します。
 
 .. code-block:: bash
 
@@ -508,7 +510,7 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
 .. You can create a network using a Docker network driver or an external network driver plugin. You can connect multiple containers to the same network. Once connected to a user-defined network, the containers can communicate easily using only another container’s IP address or name.
 
-ネットワークを作成するには、Docker ネットワーク・ドライバか外部のネットワーク・ドライバ・プラグインを使います。同じネットワークに対して、複数のコンテナが接続できます。ユーザ定義ネットワークに接続すると、コンテナはコンテナの名前や IP アドレスを使い、簡単に通信できるようになります。
+ネットワークを作成するには、Docker ネットワーク・ドライバか外部のネットワーク・ドライバ・プラグインを使います。同じネットワークに対して、複数のコンテナが接続できます。ユーザ定義ネットワークに接続したら、コンテナはコンテナの名前や IP アドレスを使い、簡単に通信できるようになります。
 
 .. For overlay networks or custom plugins that support multi-host connectivity, containers connected to the same multi-host network but launched from different Engines can also communicate in this way.
 
@@ -516,7 +518,7 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
 .. The following example creates a network using the built-in bridge network driver and running a container in the created network
 
-以下の例は、内蔵の ``bridge`` ネットワーク・ドライバを使ってネットワークを作成し、作成したネットワーク上でコンテナを実行します。
+以下の例は、内部 ``bridge`` ネットワーク・ドライバを使ってネットワークを作成し、作成したネットワーク上でコンテナを実行します。
 
 .. code-block:: bash
 
@@ -532,7 +534,7 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
 .. Your container will have lines in /etc/hosts which define the hostname of the container itself as well as localhost and a few other common things. The --add-host flag can be used to add additional lines to /etc/hosts.
 
-``/etc/hosts`` には ``localhost`` や一般的な項目と同じように、自分が定義したコンテナのホスト名が追加されます。 ``--add-host`` フラグを使うことで、 ``/etc/hosts`` に行を追加できます。
+``/etc/hosts`` には ``localhost`` や一般的な項目と同じように、自分が定義したコンテナのホスト名を追加できます。  ``/etc/hosts`` に行を追加するには ``--add-host`` フラグを使います。
 
 .. code-block:: bash
 
@@ -558,7 +560,7 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
 .. note::
 
-   Docker がコンテナの ``/etc/hosts`` ファイルをリアルタイムに更新するかもしれません。そのため、コンテナ内のプロセスが ``/etc/hosts`` ファイルを読み込もうとしても空だったり、あるいは最後まで読み込めなかったりする場合が有り得ます。ほとんどの場合、再度読み込もうとすることで、問題を解決するでしょう。
+   Docker がコンテナの ``/etc/hosts`` ファイルをリアルタイムに更新するかもしれません。そのため、コンテナ内のプロセスが ``/etc/hosts`` ファイルを読み込もうとしても空だったり、あるいは最後まで読み込めなかったりする場合が有り得ます。ほとんどの場合、再度読み込みで問題が解決するでしょう。
 
 .. Restart policies (–restart)
 
@@ -569,11 +571,11 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
 .. Using the --restart flag on Docker run you can specify a restart policy for how a container should or should not be restarted on exit.
 
-Docker で実行時に ``--restart`` フラグを使うことで、再起動ポリシーを指定できます。再起動ポリシーとは、コンテナが終了したときに再起動すべきかどうかを定義します。
+Docker で実行時に ``--restart`` フラグを使えば、再起動ポリシーを指定できます。再起動ポリシーとは、コンテナが終了したときに再起動すべきかどうかを定義します。
 
 .. When a restart policy is active on a container, it will be shown as either Up or Restarting in docker ps. It can also be useful to use docker events to see the restart policy in effect.
 
-コンテナの再起動ポリシーが有効な場合、 ``docker ps`` でコンテナを見ると、常に ``Up`` か ``Restarting`` のどちらかです。また、再起動ポリシーが有効かどうかを確認するため、 ``docker events`` を使うのも便利です。
+コンテナの再起動ポリシーが有効な場合、 ``docker ps`` でコンテナを見たら、常に ``Up`` か ``Restarting`` のどちらかです。また、再起動ポリシーが有効かどうかを確認するため、 ``docker events`` を使うのも便利です。
 
 .. Docker supports the following restart policies:
 

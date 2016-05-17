@@ -15,11 +15,11 @@ info
 
 .. code-block:: bash
 
-   Usage: docker info [OPTIONS]
+   使い方: docker info [オプション]
    
-   Display system-wide information
+   システムの広範囲な情報を表示します。
    
-     --help              Print usage
+     --help              使い方を表示。
 
 .. For example:
 
@@ -80,7 +80,7 @@ info
 
 .. When sending issue reports, please use docker version and docker -D info to ensure we know how your setup is configured.
 
-issue レポートを送信するときは、私たちがどのような設定がされているか知るため、 ``docker version`` と ``docker -D info`` をお知らせください。
+issue レポートを送信する時は、私たちがどのような設定がされているか知るため、 ``docker version`` と ``docker -D info`` をお知らせください。
 
 .. seealso:: 
 
