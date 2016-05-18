@@ -120,7 +120,7 @@ Docker は隔離（独立）したコンテナでプロセスを実行します�
 .. _detached-vs-foreground:
 
 デタッチドまたはフォアグラウンド
-==============================
+========================================
 
 .. When starting a Docker container, you must first decide if you want to run the container in the background in a “detached” mode or in the default foreground mode:
 
@@ -611,7 +611,7 @@ Docker は以下の再起動ポリシーをサポートしています。
 
 .. You can specify the maximum amount of times Docker will try to restart the container when using the on-failure policy. The default is that Docker will try forever to restart the container. The number of (attempted) restarts for a container can be obtained via docker inspect. For example, to get the number of restarts for container “my-container”;
 
-**on-failure** ポリシーを使うことで、Docker がコンテナの再起動を試みる最大回数を指定できます。デフォルトでは、Docker はコンテナを永久に再起動し続けます。コンテナの再起動（を試みる）回数は ``docker inspect`` で確認可能です。たとえば、コンテナ「my-container」の再起動数を取得するには、次のようにします。
+**on-failure** ポリシーを使えば、Docker がコンテナの再起動を試みる最大回数を指定できます。デフォルトでは、Docker はコンテナを永久に再起動し続けます。コンテナの再起動（を試みる）回数は ``docker inspect`` で確認可能です。たとえば、コンテナ「my-container」の再起動数を取得するには、次のようにします。
 
 .. code-block:: bash
 
@@ -644,7 +644,7 @@ Docker は以下の再起動ポリシーをサポートしています。
 
 .. This will run the redis container with a restart policy of always so that if the container exits, Docker will restart it.
 
-こちらの例は、 **常に (always)** 再起動するポリシーで ``redis`` コンテナを実行しているので、停止すると Docker は再起動します。
+こちらの例は、 **常に (always)** 再起動するポリシーで ``redis`` コンテナを実行します。そのため、コンテナが停止すると Docker はコンテナを再起動します。
 
 .. code-block:: bash
 
@@ -652,7 +652,7 @@ Docker は以下の再起動ポリシーをサポートしています。
 
 .. This will run the redis container with a restart policy of on-failure and a maximum restart count of 10. If the redis container exits with a non-zero exit status more than 10 times in a row Docker will abort trying to restart the container. Providing a maximum restart limit is only valid for the on-failure policy.
 
-こちらの例は、 **失敗したら (on-failure)** 10回カウントするまで再起動を行うポリシーで ``redis`` コンテナを起動しています。もし ``redis`` コンテナが 0 以外の状態で終了すると、Docker はコンテナの再起動を１０回続けて試みます。再起動の上限を設定できるのは、 **on-failure** ポリシーを有効にした場合のみです。
+こちらの例は、 **失敗したら (on-failure)** 10回カウントするまで再起動を行うポリシーで ``redis`` コンテナを起動しています。もし ``redis`` コンテナが 0 以外の状態で終了したら、Docker はコンテナの再起動を１０回続けて試みます。再起動の上限を設定できるのは、 **on-failure** ポリシーを有効にした場合のみです。
 
 .. Exit Status
 
@@ -663,7 +663,7 @@ Docker は以下の再起動ポリシーをサポートしています。
 
 .. The exit code from docker run gives information about why the container failed to run or why it exited. When docker run exits with a non-zero code, the exit codes follow the chroot standard, see below:
 
-``docker run`` の終了コードから得られる情報は、なぜコンテナが実行に失敗したかや、何故終了したかです。 ``docker run`` がゼロ以外のコードで終了するとき、以下の終了コードは ``chroot`` 標準に従っています。
+``docker run`` の終了コードから得られる情報は、なぜコンテナが実行に失敗したかや、なぜ終了したかです。 ``docker run`` がゼロ以外のコードで終了する時、終了コードは ``chroot`` 標準に従います。
 
 .. 125 if the error is with Docker daemon itself
 
@@ -700,7 +700,7 @@ Docker は以下の再起動ポリシーをサポートしています。
 
 .. Exit code of contained command otherwise
 
-**コンテナ内のコマンド** の **終了コード** は上書きできます。
+**コンテナ内におけるコマンド** の **終了コード** は上書きできます。
 
 .. code-block:: bash
 
@@ -717,7 +717,7 @@ Docker は以下の再起動ポリシーをサポートしています。
 
 .. By default a container’s file system persists even after the container exits. This makes debugging a lot easier (since you can inspect the final state) and you retain all your data by default. But if you are running short-term foreground processes, these container file systems can really pile up. If instead you’d like Docker to automatically clean up the container and remove the file system when the container exits, you can add the --rm flag:
 
-デフォルトではコンテナを終了しても、コンテナのファイルシステム（の内容）を保持し続けます。これにより、多くのデバッグをより簡単にし（最後の状態を確認できるので）、そして、全てのデータを維持し続けるのがデフォルトです。しかし、短い期間だけ **フォアグラウンド** で動かしたとしても、これらのコンテナのファイルシステムが溜まり続けます。そうではなく、 **コンテナが終了した時に、自動的にコンテナをクリーンアップし、ファイルシステムを削除する** には ``--rm`` フラグを追加します。
+デフォルトではコンテナを終了しても、コンテナのファイルシステム（の内容）を保持し続けます。これにより、多くのデバッグをより簡単にします（最後の状態を確認できるため）。そして、全てのデータを維持し続けるのがデフォルトです。しかし、短い期間だけ **フォアグラウンド** で動かしたとしても、これらのコンテナのファイルシステムが溜まり続けます。そうではなく、 **コンテナの終了時に、自動的にコンテナをクリーンアップし、ファイルシステムを削除する** には ``--rm`` フラグを追加します。
 
 .. code-block:: bash
 
@@ -727,7 +727,7 @@ Docker は以下の再起動ポリシーをサポートしています。
 
 .. note::
 
-   ``--rm`` フラグを設定すると、コンテナの削除時、関連するボリュームも削除されます。これは ``docker rm -v my-container`` を実行するのと同様です。ただし、名前を指定しなかったボリュームのみが削除されます。例えば ``docker run --rm -v /foo -v awesome:/bar busybox top`` の場合、 ``/foo`` ボリュームは削除されます。しかし、 ``/bar`` は削除されません。 ``--volume-form`` で継承しているボリュームが削除されないのと同じ仕組みです。このように、オリジナルのボリュームに名前が指定されていれば、そこは削除 **されません** 。
+   ``--rm`` フラグを設定したら、コンテナの削除時、関連するボリュームも削除します。これは ``docker rm -v my-container`` の実行と同じです。ただし、名前を指定しなかったボリュームのみ削除します。例えば ``docker run --rm -v /foo -v awesome:/bar busybox top`` の場合、 ``/foo`` ボリュームを削除します。しかし、 ``/bar`` は削除されません。 ``--volume-form`` で継承しているボリュームが削除されないのと同じ仕組みです。このように、オリジナルのボリュームに名前が指定されていれば、そこは削除 **されません** 。
 
 .. Security configuration
 
@@ -738,21 +738,19 @@ Docker は以下の再起動ポリシーをサポートしています。
 
 .. code-block:: bash
 
-   --security-opt="label=user:USER"   : Set the label user for the container
-   --security-opt="label=role:ROLE"   : Set the label role for the container
-   --security-opt="label=type:TYPE"   : Set the label type for the container
-   --security-opt="label=level:LEVEL" : Set the label level for the container
-   --security-opt="label=disable"     : Turn off label confinement for the container
-   --security-opt="apparmor=PROFILE"  : Set the apparmor profile to be applied
-                                        to the container
-   --security-opt="no-new-privileges" : Disable container processes from gaining
-                                        new privileges
-   --security-opt="seccomp=unconfined": Turn off seccomp confinement for the container
-   --security-opt="seccomp=profile.json: White listed syscalls seccomp Json file to be used as a seccomp filter
+   --security-opt="label=user:USER"   : コンテナの user ラベルを指定
+   --security-opt="label=role:ROLE"   : コンテナの role ラベルを指定
+   --security-opt="label=type:TYPE"   : コンテナの type ラベルを指定
+   --security-opt="label=level:LEVEL" : コンテナの lovel ラベルを指定
+   --security-opt="label=disable"     : コンテナのラベル割り当てを無効化
+   --security-opt="apparmor=PROFILE"  : コンテナに適用する apparmor profile を指定
+   --security-opt="no-new-privileges" : コンテナが新しい権限を得るのを無効化
+   --security-opt="seccomp=unconfined": コンテナ用の seccomp 制限を無効化
+   --security-opt="seccomp=profile.json": sccomp フィルタで使うホワイトリスト syscall seccompo Json ファイルを指定
 
 .. You can override the default labeling scheme for each container by specifying the --security-opt flag. For example, you can specify the MCS/MLS level, a requirement for MLS systems. Specifying the level in the following command allows you to share the same content between containers.
 
-各コンテナに対するデフォルトのラベリング・スキーマ（labeling scheme）は ``--security-opt`` フラグを指定することで上書き可能です。たとえば、MCS/MLS レベルを指定するには MLS システムが必要です。コンテナ間で同じ内容を共有できるようにレベルを指定するには、次のようにコマンドを実行します。
+各コンテナに対するデフォルトのラベリング・スキーマ（labeling scheme）は ``--security-opt`` フラグを指定することで上書き可能です。例えば、MCS/MLS レベルを指定するには MLS システムが必要です。コンテナ間で同じ内容を共有できるようにレベルを指定するには、次のようにコマンドを実行します。
 
 .. code-block:: bash
 
@@ -778,7 +776,9 @@ MLS であれば、次のような例になります。
 
 コンテナ内のプロセスに対して、何らかのセキュリティ・ポリシーを適用するには、コンテナに対して何らかのタイプを指定します。コンテナを実行する時、Apache のポートのみがリッスンできるようにするには、次のように実行します。
 
-.. $ docker run --security-opt label=type:svirt_apache_t -i -t centos bash
+.. code-block:: bash
+
+   $ docker run --security-opt label=type:svirt_apache_t -i -t centos bash
 
 ..    Note: You would have to write policy defining a svirt_apache_t type.
 
@@ -818,7 +818,7 @@ MLS であれば、次のような例になります。
 
 .. The operator can also adjust the performance parameters of the container:
 
-オペレータはコンテナのパフォーマンス・パラメータも調整できます。
+作業者はコンテナのパフォーマンス・パラメータも調整できます。
 
 .. Option 	Description
 .. -m, --memory="" 	Memory limit (format: <number>[<unit>], where unit = b, k, m or g)
@@ -905,7 +905,7 @@ MLS であれば、次のような例になります。
 
 .. We set nothing about memory, this means the processes in the container can use as much memory and swap memory as they need.
 
-メモリを設定していません。これはコンテナ内のプロセスは必要な分だけメモリが使えます。それだけでなく、スワップ・メモリも同様の必要なだけ使えます。
+メモリを設定していません。これはコンテナ内のプロセスは必要な分だけメモリが使えます。それだけでなく、スワップ・メモリも同様に必要なだけ使えます。
 
 .. code-block:: bash
 
@@ -921,7 +921,7 @@ MLS であれば、次のような例になります。
 
 .. We set memory limit only, this means the processes in the container can use 300M memory and 300M swap memory, by default, the total virtual memory size (–memory-swap) will be set as double of memory, in this case, memory + swap would be 2*300M, so processes can use 300M swap memory as well.
 
-メモリの上限のみ設定しました。これはコンテナが 300M のメモリと 300M のスワップ・メモリを使えます。合計の仮想メモリサイズ（total virtual memory size、 --memory-swap で指定）はメモリの２倍に設定されます。今回の例では、メモリ＋スワップは 2×300M なので、プロセスは 300M のスワップ・メモリを利用できます。
+メモリの上限のみ設定しました。これはコンテナが 300M のメモリと 300M のスワップ・メモリを使えます。合計の仮想メモリサイズ（total virtual memory size、 --memory-swap で指定）はメモリの２倍に設定されます。今回の例では、メモリ＋スワップは 2×300M ですので、プロセスは 300M のスワップ・メモリを利用できます。
 
 .. code-block:: bash
 
@@ -929,11 +929,11 @@ MLS であれば、次のような例になります。
 
 .. We set both memory and swap memory, so the processes in the container can use 300M memory and 700M swap memory.
 
-メモリとスワップ・メモリを指定したので、コンテナ内のプロセスは 300M のメモリと 700M のスワップ・メモリを使えます。
+メモリとスワップ・メモリを指定しましたので、コンテナ内のプロセスは 300M のメモリと 700M のスワップ・メモリを使えます。
 
 .. Memory reservation is a kind of memory soft limit that allows for greater sharing of memory. Under normal circumstances, containers can use as much of the memory as needed and are constrained only by the hard limits set with the -m/--memory option. When memory reservation is set, Docker detects memory contention or low memory and forces containers to restrict their consumption to a reservation limit.
 
-メモリ予約（memory reservation）は、メモリに対するある種のソフト・リミットであり、共有メモリを大きくします。通常の状況下であれば、コンテナは必要とするだけ多くのメモリを使うことができます。そして、 ``-m`` か ``--memory`` オプションがあるときのみ、コンテナに対してハード・リミットが設定されます。メモリ予約が設定されると、Docker はメモリのコンテンション（競合）や少ないメモリを検出し、コンテナが予約した上限まで使えるようにします。
+メモリ予約（memory reservation）は、メモリに対するある種のソフト・リミットであり、共有メモリを大きくします。通常の状況下であれば、コンテナは必要とするだけ多くのメモリを使うことができます。そして、 ``-m`` か ``--memory`` オプションがあるときのみ、コンテナに対してハード・リミットが設定されます。メモリ予約が設定したら、Docker はメモリのコンテンション（競合）や少ないメモリを検出し、コンテナが予約した上限まで使えるようにします。
 
 .. Always set the memory reservation value below the hard limit, otherwise the hard limit takes precedence. A reservation of 0 is the same as setting no reservation. By default (without reservation set), memory reservation is the same as the hard memory limit.
 
@@ -969,7 +969,7 @@ MLS であれば、次のような例になります。
 
 .. By default, kernel kills processes in a container if an out-of-memory (OOM) error occurs. To change this behaviour, use the --oom-kill-disable option. Only disable the OOM killer on containers where you have also set the -m/--memory option. If the -m flag is not set, this can result in the host running out of memory and require killing the host’s system processes to free memory.
 
-デフォルトでは、アウト・オブ・メモリ（OOM; out of memory）エラーが発生すると、カーネルはコンテナ内のプロセスを停止（kill）します。この振る舞いを変更するには、 ``--oom-kill-disable`` オプションを使います。また、 ``-m/--memory`` オプションを指定した時のみ、コンテナに対する OOM が無効化できます。もし ``-m`` フラグがセットされなければ、ホスト側でアウト・オブ・メモリ処理が発生します。また、ホスト側のシステム・プロセスが空きメモリを必要とするため、対象のプロセスを停止（kill）します。
+デフォルトでは、アウト・オブ・メモリ（OOM; out of memory）エラーが発生したら、カーネルはコンテナ内のプロセスを停止（kill）します。この振る舞いを変更するには、 ``--oom-kill-disable`` オプションを使います。また、 ``-m/--memory`` オプションを指定した時のみ、コンテナに対する OOM が無効化できます。もし ``-m`` フラグがセットされなければ、ホスト側でアウト・オブ・メモリ処理が発生します。また、ホスト側のシステム・プロセスが空きメモリを必要とするため、対象のプロセスを停止（kill）します。
 
 .. The following example limits the memory to 100M and disables the OOM killer for this container:
 
@@ -1000,7 +1000,7 @@ MLS であれば、次のような例になります。
 
 .. Kernel memory is fundamentally different than user memory as kernel memory can’t be swapped out. The inability to swap makes it possible for the container to block system services by consuming too much kernel memory. Kernel memory includes：
 
-カーネル・メモリはスワップ・アウトできないため、ユーザ・メモリとは根本的に異なります。このスワップができないことにより、システム・サービスがカーネル・メモリを多く使えないように妨害する可能性があります。カーネル・メモリとは、次のものを差します。
+カーネル・メモリはスワップ・アウトできないため、ユーザ・メモリとは根本的に異なります。このスワップができないことにより、システム・サービスがカーネル・メモリを多く使えないように妨害する可能性があります。カーネル・メモリとは、次の項目を指します。
 
 ..    stack pages
     slab pages
@@ -1076,7 +1076,7 @@ MLS であれば、次のような例になります。
 
 .. Setting the --memory-swappiness option is helpful when you want to retain the container’s working set and to avoid swapping performance penalties.
 
-``--memory-swappiness`` オプションが訳に立つのは、コンテナの作業セットを維持し、スワップによるパフォーマンスのペナルティを避ける場合です。
+``--memory-swappiness`` オプションが役立つのは、コンテナの作業セットを維持し、スワップによるパフォーマンスのペナルティを避ける場合です。
 
 .. CPU share constraint
 
@@ -1099,7 +1099,7 @@ CPU 共有制限
 
 .. For example, consider three containers, one has a cpu-share of 1024 and two others have a cpu-share setting of 512. When processes in all three containers attempt to use 100% of CPU, the first container would receive 50% of the total CPU time. If you add a fourth container with a cpu-share of 1024, the first container only gets 33% of the CPU. The remaining containers receive 16.5%, 16.5% and 33% of the CPU.
 
-例えば、３つのコンテナがあるとしましょう。１つめの CPU 共有は 1024 で、残り２つの CPU 共有は 512 とします。もし３つのコンテナが CPU を 100% 使用している状態になれば、１つめのコンテナが合計 CPU 時間の 50% を扱えます。４つめのコンテナを CPU 共有 1024 として追加すると、１つめのコンテナが得られるのは CPU の 33% になります。そして、残りの２つめ以降のコンテナが得られる CPU 時間は、それぞれ 16.5%（２つめ）、16.5%（３つめ）、33% （４つめ）となります。
+例えば、３つのコンテナがあるとしましょう。１つめの CPU 共有は 1024 で、残り２つの CPU 共有は 512 とします。もし３つのコンテナが CPU を 100% 使用している状態になれば、１つめのコンテナが合計 CPU 時間の 50% を扱えます。４つめのコンテナを CPU 共有 1024 として追加したら、１つめのコンテナが得られるのは CPU の 33% になります。そして、残りの２つめ以降のコンテナが得られる CPU 時間は、それぞれ 16.5%（２つめ）、16.5%（３つめ）、33% （４つめ）となります。
 
 .. On a multi-core system, the shares of CPU time are distributed over all CPU cores. Even if a container is limited to less than 100% of CPU time, it can use 100% of each individual CPU core.
 
@@ -1125,7 +1125,7 @@ CPU 周期（period）制約
 
 .. The default CPU CFS (Completely Fair Scheduler) period is 100ms. We can use --cpu-period to set the period of CPUs to limit the container’s CPU usage. And usually --cpu-period should work with --cpu-quota.
 
-デフォルトの CPU CFS（Completely Fair Scheduler）周期は 100 ミリ秒です。コンテナの CPU 使用率を制限するには、 ``--cpu-period`` で CPU の周期を制限します。そして、通常は ``--cpu-period`` は ``--cpu-quota`` と一緒に使われるでしょう。
+デフォルトの CPU CFS（Completely Fair Scheduler）周期は 100 ミリ秒です。コンテナの CPU 使用率を制限するには、 ``--cpu-period`` で CPU の周期を制限します。そして、通常の ``--cpu-period`` は ``--cpu-quota`` と一緒に使われるでしょう。
 
 .. Examples:
 
@@ -1137,7 +1137,7 @@ CPU 周期（period）制約
 
 .. If there is 1 CPU, this means the container can get 50% CPU worth of run-time every 50ms.
 
-もし１ CPU であれば、コンテナは 50 ミリ秒ごとに CPU の 50% を利用できます（訳者注：--cpu-quota のクォータ値が、 --cpu-period の周期の半分のため）。
+もし１ CPU であれば、コンテナは 50 ミリ秒ごとに CPU の 50% を利用できます（訳者注：--cpu-quota のクォータ値が、 --cpu-period 周期の半分のため）。
 
 .. For more information, see the CFS documentation on bandwidth limiting.
 
@@ -1205,7 +1205,7 @@ CPU クォータ制限
 
 .. The --cpu-quota flag limits the container’s CPU usage. The default 0 value allows the container to take 100% of a CPU resource (1 CPU). The CFS (Completely Fair Scheduler) handles resource allocation for executing processes and is default Linux Scheduler used by the kernel. Set this value to 50000 to limit the container to 50% of a CPU resource. For multiple CPUs, adjust the --cpu-quota as necessary. For more information, see the CFS documentation on bandwidth limiting.
 
-``--cpu-quota`` フラグはコンテナの CPU 使用を制限します。デフォルト値 0 の場合、コンテナは CPU リソース（ 1 CPU ）の 100% を扱えます。CFS (Completely Fair Scheduler) がプロセス実行時のリソース割り当てを扱っており、これがカーネルによってデフォルトの Linux スケジューラとして使われています。この値を 50000 に指定すると、コンテナは CPU リソースの 50% までの使用に制限されます。複数の CPU の場合は、 ``--cpu-quota`` の調整が必要です。より詳しい情報については、`CFS ドキュメントの帯域制限について（英語） <https://www.kernel.org/doc/Documentation/scheduler/sched-bwc.txt>`_ をご覧ください。
+``--cpu-quota`` フラグはコンテナの CPU 使用を制限します。デフォルト値 0 の場合、コンテナは CPU リソース（ 1 CPU ）の 100% を扱えます。CFS (Completely Fair Scheduler) がプロセス実行時のリソース割り当てを扱っており、これがカーネルによってデフォルトの Linux スケジューラとして使われています。この値を 50000 に指定したら、コンテナは CPU リソースの 50% までの使用に制限されます。複数の CPU の場合は、 ``--cpu-quota`` の調整が必要です。より詳しい情報については、`CFS ドキュメントの帯域制限について（英語） <https://www.kernel.org/doc/Documentation/scheduler/sched-bwc.txt>`_ をご覧ください。
 
 .. Block IO bandwidth (Blkio) constraint
 
@@ -1254,7 +1254,7 @@ CPU クォータ制限
 
 .. code-block:: bash
 
-   --group-add: Add additional groups to run as
+   --group-add: 実行時のグループを追加
 
 .. By default, the docker container process runs with the supplementary groups looked up for the specified user. If one wants to add more to that list of groups, then one can use this flag:
 
@@ -1274,11 +1274,11 @@ Docker コンテナのプロセスを実行できるのは、デフォルトで�
 
 .. code-block:: bash
 
-   --cap-add: Add Linux capabilities
-   --cap-drop: Drop Linux capabilities
-   --privileged=false: Give extended privileges to this container
-   --device=[]: Allows you to run devices inside the container without the --privileged flag.
-   --lxc-conf=[]: Add custom lxc options
+   --cap-add: Linux ケーパビリティの追加
+   --cap-drop: Linux ケーパビリティの削除（ドロップ）
+   --privileged=false: コンテナに拡張権限を与える
+   --device=[]: --privileged（特権）フラグがないコンテナ内でもデバイスの実行を許可
+   --lxc-conf=[]: カスタム lxc オプションの追加
 
 .. Note: With Docker 1.10 and greater, the default seccomp profile will also block syscalls, regardless of --cap-add passed to the container. We recommend in these cases to create your own custom seccomp profile based off our default. Or if you don’t want to run with the default seccomp profile, you can pass --security-opt=seccomp:unconfined on run.
 
@@ -1292,11 +1292,11 @@ Docker コンテナのプロセスを実行できるのは、デフォルトで�
 
 .. When the operator executes docker run --privileged, Docker will enable to access to all devices on the host as well as set some configuration in AppArmor or SELinux to allow the container nearly all the same access to the host as processes running outside containers on the host. Additional information about running with --privileged is available on the Docker Blog.
 
-オペレータが ``docker run --privileged`` を実行すると、Docker はホスト上の全てのデバイスに対して接続可能になります。この時、 AppArmor や SELinux の設定があれば、ホスト上のコンテナ外のプロセスと同じように、ホスト上の同じアクセス権限が与えられた状態で利用可能になります。 ``--privileged`` の実行に関する追加情報については、 `Docker ブログの投稿（英語） <http://blog.docker.com/2013/09/docker-can-now-run-within-docker/>`_ をご覧ください。
+作業者が ``docker run --privileged`` を実行したら、Docker はホスト上の全てのデバイスに対して接続可能になります。この時、 AppArmor や SELinux の設定があれば、ホスト上のコンテナ外のプロセスと同じように、ホスト上の同じアクセス権限が与えられた状態で利用可能になります。 ``--privileged`` の実行に関する追加情報については、 `Docker ブログの投稿（英語） <http://blog.docker.com/2013/09/docker-can-now-run-within-docker/>`_ をご覧ください。
 
 .. If you want to limit access to a specific device or devices you can use the --device flag. It allows you to specify one or more devices that will be accessible within the container.
 
-特定のデバイスに対する許可だけ加えたいときは、 ``--device`` フラグが使えます。これを指定すると、１つまたは複数のデバイスがコンテナ内から接続できるようになります。
+特定のデバイスに対する許可だけ加えたい時は、 ``--device`` フラグが使えます。これを指定したら、１つまたは複数のデバイスがコンテナ内から接続できるようになります。
 
 .. code-block:: bash
 
@@ -1304,7 +1304,7 @@ Docker コンテナのプロセスを実行できるのは、デフォルトで�
 
 .. By default, the container will be able to read, write, and mknod these devices. This can be overridden using a third :rwm set of options to each --device flag:
 
-デフォルトでは、コンテナはデバイスに対して ``read`` 、 ``write`` 、 ``mknod`` 可能です。それぞれの ``--device`` フラグは、 ``:rwm`` という３つのオプション・セットで上書きできます。
+デフォルトでは、コンテナはデバイスに対して ``read`` 、 ``write`` 、 ``mknod`` が可能です。それぞれの ``--device`` フラグは、 ``:rwm`` という３つのオプション・セットで上書きできます。
 
 .. code-block:: bash
 
@@ -1324,7 +1324,7 @@ Docker コンテナのプロセスを実行できるのは、デフォルトで�
 
 .. In addition to --privileged, the operator can have fine grain control over the capabilities using --cap-add and --cap-drop. By default, Docker has a default list of capabilities that are kept. The following table lists the Linux capability options which can be added or dropped.
 
-``--privileged`` に加え、オペレータは ``--cap-add`` と ``--cap-drop`` を使うことで、機能に対する詳細な制御が可能になります。デフォルトでは、Docker はデフォルト機能の一覧を保持しています。次の表は、追加・削除可能な Linux 機能オプションの一覧です。
+``--privileged`` に加え、作業者は ``--cap-add`` と ``--cap-drop`` を使い、ケーパビリティに対する詳細な制御が可能になります。デフォルトでは、Docker はデフォルトのケーパビリティ一覧を保持しています。次の表は、追加・削除可能な Linux ケーパビリティのオプション一覧です。
 
 .. Capability Key 	Capability Description
 .. SETPCAP 	Modify process capabilities.
@@ -1368,8 +1368,8 @@ Docker コンテナのプロセスを実行できるのは、デフォルトで�
 .. list-table::
    :header-rows: 1
    
-   * - 機能のキー(capability key)
-     - 機能説明
+   * - ケーパビリティのキー(capability key)
+     - ケーパビリティの説明
    * - SETPCAP
      - プロセスの機能を変更
    * - SYS_MODULE
@@ -1447,11 +1447,11 @@ Docker コンテナのプロセスを実行できるのは、デフォルトで�
 
 .. Further reference information is available on the capabilities(7) - Linux man page
 
-よし詳細なリファレンス情報は `Linux man ページの capabilities(7) <http://linux.die.net/man/7/capabilities>`_ をご覧ください。
+より詳細なリファレンス情報は `Linux man ページの capabilities(7) <http://linux.die.net/man/7/capabilities>`_ をご覧ください。
 
 .. Both flags support the value ALL, so if the operator wants to have all capabilities but MKNOD they could use:
 
-オペレータは全ての機能を有効化するため ``ALL`` の値を使えますが 、 ``MKNOD`` だけ除外したい時は次のようにします。
+作業者は全ての機能を有効化するために ``ALL`` 値を使えますが 、 ``MKNOD`` だけ除外したい時は次のようにします。
 
 .. code-block:: bash
 
@@ -1495,13 +1495,13 @@ FUSE を基盤とするファイルシステムをマウントするには、 ``
 
 .. If the Docker daemon was started using the lxc exec-driver (docker daemon --exec-driver=lxc) then the operator can also specify LXC options using one or more --lxc-conf parameters. These can be new parameters or override existing parameters from the lxc-template.go. Note that in the future, a given host’s docker daemon may not use LXC, so this is an implementation-specific configuration meant for operators already familiar with using LXC directly.
 
-Docker デーモンを ``lxc`` 実行ドライバを使って起動する時（ ``docker daemon --exec-driver=lxc`` ）、オペレータは１つまたは複数の LXC オプションを ``--lxc-conf`` パラメータで指定できます。これにより、 `lxc-template.go <https://github.com/docker/docker/blob/master/daemon/execdriver/lxc/lxc_template.go>`_ にある新しいパラメータの追加や既存のパラメータ上書きが可能です。将来的には、Docker ホストによっては LXC が使えなくなるかもしれないので、注意が必要です。そのため、特定の実装に関する設定操作をするため、LXC を直接操作するのに慣れておいた方が良いでしょう。
+Docker デーモンを ``lxc`` 実行ドライバを使って起動する時（ ``docker daemon --exec-driver=lxc`` ）、作業者は１つまたは複数の LXC オプションを ``--lxc-conf`` パラメータで指定できます。これにより、 `lxc-template.go <https://github.com/docker/docker/blob/master/daemon/execdriver/lxc/lxc_template.go>`_ にある新しいパラメータの追加や既存のパラメータ上書きが可能です。将来的には、Docker ホストによっては LXC が使えなくなる可能性があるため、注意が必要です。そのため、特定の実装に関する設定操作をするためには、LXC の直接操作に慣れておいた方が良いでしょう。
 
 ..    Note: If you use --lxc-conf to modify a container’s configuration which is also managed by the Docker daemon, then the Docker daemon will not know about this modification, and you will need to manage any conflicts yourself. For example, you can use --lxc-conf to set a container’s IP address, but this will not be reflected in the /etc/hosts file.
 
 .. note::
 
-   Docker デーモンに管理されているコンテナに対して、``---lxc-conf`` を使いコンテナの設定を変更可能です。しかし Docker デーモンは変更が施されたことを把握できないため、自分自身で管理上の不一致を解決する必要があります。例えば、 ``--lxc-conf`` でコンテナの IP アドレスを設定しても、コンテナ内の ``/etc/hosts`` ファイルには反映されません。
+   Docker デーモンに管理されているコンテナに対して、``--lxc-conf`` を使いコンテナの設定を変更可能です。しかし Docker デーモンは変更が施されたことを把握できないため、自分自身で管理上の不一致を解決する必要があります。例えば、 ``--lxc-conf`` でコンテナの IP アドレスを設定しても、コンテナ内の ``/etc/hosts`` ファイルには反映されません。
 
 .. Logging drivers (–log-driver)
 
