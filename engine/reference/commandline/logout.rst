@@ -15,12 +15,12 @@ logout
 
 .. code-block:: bash
 
-   Usage: docker logout [SERVER]
+   使い方: docker logout [サーバ]
    
-   Log out from a Docker registry, if no server is
-   specified "https://index.docker.io/v1/" is the default.
+   Docker レジストリからログアウトする
+   サーバの指定が無ければデフォルトで "https://index.docker.io/v1/" を使用
    
-     --help          Print usage
+     --help          使い方の表示
 
 .. For example:
 

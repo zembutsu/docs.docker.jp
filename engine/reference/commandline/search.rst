@@ -15,14 +15,14 @@ search
 
 .. code-block:: bash
 
-   Usage: docker search [OPTIONS] TERM
+   使い方: docker search [オプション] 単語
    
-   Search the Docker Hub for images
+   Docker Hub のイメージを検索
    
-     --automated          Only show automated builds
-     --help               Print usage
-     --no-trunc           Don't truncate output
-     -s, --stars=0        Only displays with at least x stars
+     --automated          自動構築 (automated build) のみ表示
+     --help               使い方の表示
+     --no-trunc           トランケート (truncate) を出力しない
+     -s, --stars=0        最低限 x 個のスターがあるイメージのみ表示
 
 .. Search Docker Hub for images
 

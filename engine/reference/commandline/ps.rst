@@ -13,40 +13,41 @@
 ps
 =======================================
 
+.. code-block:: bash
+
+   使い方: docker ps [オプション]
+   
+   コンテナの一覧
+   
+     -a, --all             全てのコンテナを表示 (デフォルトは実行中コンテナのみ表示)
+     -f, --filter=[]       以下の状況に応じて出力をフィルタ:
+                           - exited=<整数> 終了コードを <整数> で指定
+                           - label=<key> または label=<key>=<value>
+                           - status=(created|restarting|running|paused|exited)
+                           - name=<文字列> コンテナ名
+                           - id=<ID> コンテナ ID
+                           - before=(<コンテナ名>|<コンテナID>)
+                           - since=(<コンテナ名>|<コンテナID>)
+                           - ancestor=(<イメージ名>[:タグ]|<イメージID>|<イメージ@ダイジェスト値>) - 特定のイメージや子孫から作成されたコンテナ
+                           - volume=(<ボリューム名>|<マウント・ポイント>)
+     --format=[]           Go テンプレートを使いコンテナの表示を整形
+     --help                使い方の表示
+     -l, --latest          最後に作成したコンテナを表示 (どのような状態でも)
+     -n=-1                 直近で作成した n コンテナを表示 (どのような状態でも)
+     --no-trunc            トランケート (truncate) を出力しない
+     -q, --quiet           整数値の ID のみ表示
+     -s, --size            合計ファイルサイズを表示
+
 .. sidebar:: 目次
 
    .. contents:: 
        :depth: 3
        :local:
 
-.. code-block:: bash
-
-   Usage: docker ps [OPTIONS]
-   
-   List containers
-   
-     -a, --all             Show all containers (default shows just running)
-     -f, --filter=[]       Filter output based on these conditions:
-                           - exited=<int> an exit code of <int>
-                           - label=<key> or label=<key>=<value>
-                           - status=(created|restarting|running|paused|exited)
-                           - name=<string> a container's name
-                           - id=<ID> a container's ID
-                           - before=(<container-name>|<container-id>)
-                           - since=(<container-name>|<container-id>)
-                           - ancestor=(<image-name>[:tag]|<image-id>|<image@digest>) - containers created from an image or a descendant.
-                           - volume=(<volume-name>|<mount-point>)
-     --format=[]           Pretty-print containers using a Go template
-     --help                Print usage
-     -l, --latest          Show the latest created container (includes all states)
-     -n=-1                 Show n last created containers (includes all states)
-     --no-trunc            Don't truncate output
-     -q, --quiet           Only display numeric IDs
-     -s, --size            Display total file sizes
 
 .. Running docker ps --no-trunc showing 2 linked containers.
 
-``docker ps --no-trunc`` を実行すると、リンクされた２つのコンテナが表示されます。
+``docker ps --no-trunc`` を実行すると、リンクされた２つのコンテナを表示します。
 
 .. code-block:: bash
 
@@ -76,7 +77,7 @@ ps
 
 .. The currently supported filters are:
 
-現在、以下のフィルタがサポートされています。
+現在、以下のフィルタをサポートします。
 
 ..    id (container’s id)
     label (label=<key> or label=<key>=<value>)
@@ -104,7 +105,7 @@ label
 
 .. The following filter matches containers with the color label regardless of its value.
 
-次のフィルタは、 ``color`` ラベルがどのような値を持っているかに関わらず、一致するものを表示します。
+次のフィルタは、 ``color`` ラベルがどのような値を持っているかに拘わらず、一致するものを表示します。
 
 .. code-block:: bash
 
@@ -132,7 +133,7 @@ name
 
 .. The name filter matches on all or part of a container’s name.
 
-``name`` フィルタはコンテナ名のすべて、または一部に一致するコンテナを表示します。
+``name`` フィルタはコンテナ名の全て、または一部に一致するコンテナを表示します。
 
 .. The following filter matches all containers with a name containing the nostalgic_stallman string.
 
@@ -226,7 +227,7 @@ ancestor
 
 .. If you don’t specify a tag, the latest tag is used. For example, to filter for containers that use the latest ubuntu image:
 
-``tag`` を指定しなければ、 ``latest`` タグが使われます。例えば、最新（latest）の ``ubuntu`` イメージでフィルタするには：
+``タグ`` を指定しなければ、 ``latest`` タグが使われます。例えば、最新（latest）の ``ubuntu`` イメージでフィルタするには：
 
 .. code-block:: bash
 
@@ -239,7 +240,7 @@ ancestor
 
 .. Match containers based on the ubuntu-c1 image which, in this case, is a child of ubuntu:
 
-``ubuntu-c1`` イメージをベースにするコンテナ、この例では ``ubuntu``  の子供に一致するものを表示するには：
+``ubuntu-c1`` イメージをベースにするコンテナ、この例では ``ubuntu``  の子供に一致するものを表示：
 
 .. code-block:: bash
 
@@ -249,7 +250,7 @@ ancestor
 
 .. Match containers based on the ubuntu version 12.04.5 image:
 
-``ubuntu`` バージョン ``12.04.5``  のイメージをベースとするコンテナをフィルタします：
+``ubuntu`` バージョン ``12.04.5``  のイメージをベースとするコンテナをフィルタ：
 
 .. code-block:: bash
 
@@ -259,7 +260,7 @@ ancestor
 
 .. The following matches containers based on the layer d0e008c6cf02 or an image that have this layer in it’s layer stack.
 
-レイヤー ``d0e008c6cf02`` あるいはイメージをベースにしたコンテナでフィルタします。
+レイヤ ``d0e008c6cf02`` あるいはイメージをベースにしたコンテナでフィルタします。
 
 .. code-block:: bash
 
@@ -295,15 +296,14 @@ Go テンプレートで置き換え可能な一覧は、次の通りです：
    .Labels 	All labels assigned to the container.
    .Label 	Value of a specific label for this container. For example {{.Label "com.docker.swarm.cpu"}}
 
-.. list-table
-   :header-rows: 1
+.. list-table::
    
    * - ``.ID``
      - コンテナ ID
    * - ``.Image``
      - イメージ ID
    * - ``.Command``
-     - Quoted command
+     - クォートされたコマンド
    * - ``.CreatedAt``
      - コンテナが作成された時間
    * - ``.RunningFor``
@@ -323,7 +323,7 @@ Go テンプレートで置き換え可能な一覧は、次の通りです：
 
 .. When using the --format option, the ps command will either output the data exactly as the template declares or, when using the table directive, will include column headers as well.
 
-``ps`` コマンドに ``--format`` オプションを使うと、テンプレートで指定したデータを出力するだけでなく、 ``table`` 命令を使うとカラム（例）ヘッダも同様に表示します。
+``ps`` コマンドに ``--format`` オプションを使えば、テンプレートで指定したデータを出力するだけでなく、 ``table`` 命令を使うとカラム（例）ヘッダも同様に表示します。
 
 .. The following example uses a template without headers and outputs the ID and Command entries separated by a colon for all running containers:
 

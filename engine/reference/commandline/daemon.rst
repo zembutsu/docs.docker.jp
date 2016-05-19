@@ -873,7 +873,7 @@ Linux カーネルの `ユーザ名前空間(user namespace)サポート <http:/
 
 .. When default is provided, Docker will create - or find the existing - user and group named dockremap. If the user is created, and the Linux distribution has appropriate support, the /etc/subuid and /etc/subgid files will be populated with a contiguous 65536 length range of subordinate user and group IDs, starting at an offset based on prior entries in those files. For example, Ubuntu will create the following range, based on an existing user named user1 already owning the first 65536 range:
 
-``default`` を指定したら、 Docker は ``dockermap`` というユーザ名とグループ名が存在しているかどうか確認し、なければ作成します。ユーザを作成したら、 Linux ディストリビューションは ``/etc/subuid`` と ``/etc/subgid`` ファイルの使用をサポートします。これは従属ユーザ ID と従属グループ ID を 65536 まで数える（カウントする）もので、これらは既存のファイルへのエントリをオフセットに使います。例えば、Ubuntu は次のような範囲を作成します。既存の ``user1`` という名前のユーザは、既に 65536 までの範囲を持っています。
+``default`` を指定したら、 Docker は ``dockermap`` というユーザ名とグループ名が存在しているかどうか確認し、無ければ作成します。ユーザを作成したら、 Linux ディストリビューションは ``/etc/subuid`` と ``/etc/subgid`` ファイルの使用をサポートします。これは従属ユーザ ID と従属グループ ID を 65536 まで数える（カウントする）もので、これらは既存のファイルへのエントリをオフセットに使います。例えば、Ubuntu は次のような範囲を作成します。既存の ``user1`` という名前のユーザは、既に 65536 までの範囲を持っています。
 
 .. code-block:: bash
 
@@ -960,7 +960,7 @@ Docker デーモンのユーザ名前空間を有効にした状態では、以�
 
 .. Finally, while the root user inside a user namespaced container process has many of the expected admin privileges that go along with being the superuser, the Linux kernel has restrictions based on internal knowledge that this is a user namespaced process. The most notable restriction that we are aware of at this time is the inability to use mknod. Permission will be denied for device creation even as container root inside a user namespace.
 
-最後に、ユーザ名前空間に対応したコンテナ・プロセス内の ``root`` ユーザとは、多くの管理特権を持っていると考えるかもしれません。ですが、Linux カーネルは内部情報に基づきユーザ名前空間内のプロセスとして制限をかけます。現時点で最も注意が必要な制約は ``mknod`` の使用です。コンテナ内のユーザ名前空間では ``root`` であったとしてもデバイス作成の権限がありません。
+最後に、ユーザ名前空間に対応したコンテナ・プロセス内の ``root`` ユーザとは、多くの管理特権を持っていると考えるかもしれません。ですが、Linux カーネルは内部情報に基づきユーザ名前空間内のプロセスとして制限を施します。現時点で最も注意が必要な制約は ``mknod`` の使用です。コンテナ内のユーザ名前空間では ``root`` であったとしてもデバイス作成の権限がありません。
 
 .. Miscellaneous options
 

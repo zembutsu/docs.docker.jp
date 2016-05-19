@@ -1,4 +1,4 @@
-.. -*- coding: utf-8 -*-
+﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/wait/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/wait.md
    doc version: 1.11
@@ -15,11 +15,11 @@ wait
 
 .. code-block:: bash
 
-   Usage: docker wait [OPTIONS] CONTAINER [CONTAINER...]
+   使い方: docker wait [オプション] コンテナ [コンテナ...]
    
-   Block until a container stops, then print its exit code.
+   コンテナが停止するのを阻止し、終了コードを表示
    
-     --help          Print usage
+     --help          使い方の表示
 
 .. seealso:: 
 

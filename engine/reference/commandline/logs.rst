@@ -15,15 +15,15 @@ logs
 
 .. code-block:: bash
 
-   Usage: docker logs [OPTIONS] CONTAINER
+   使い方: docker logs [オプション] コンテナ
    
-   Fetch the logs of a container
+   コンテナのログを取得
    
-     -f, --follow=false        Follow log output
-     --help                    Print usage
-     --since=""                Show logs since timestamp
-     -t, --timestamps=false    Show timestamps
-     --tail="all"              Number of lines to show from the end of the logs
+     -f, --follow=false        ログの出力をフォロー（表示し続ける）
+     --help                    使い方の表示
+     --since=""                タイムスタンプ以降のログを表示
+     -t, --timestamps=false    タイムスタンプを表示
+     --tail="all"              ログの最後から指定した行数を表示
 
 ..     Note: this command is available only for containers with json-file and journald logging drivers.
 
@@ -41,7 +41,7 @@ logs
 
 .. Passing a negative number or a non-integer to --tail is invalid and the value is set to all in that case.
 
-負の値を指定したり、 ``--tail`` に値を付けなければ、全てのログが表示されます。
+負の値の指定や、 ``--tail`` に値を付けなければ、全てのログを表示します。
 
 .. The docker logs --timestamp commands will add an RFC3339Nano timestamp , for example 2014-09-16T06:17:46.000000000Z, to each log entry. To ensure that the timestamps for are aligned the nano-second part of the timestamp will be padded with zero when necessary.
 

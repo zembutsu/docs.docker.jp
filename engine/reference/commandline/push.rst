@@ -13,20 +13,14 @@
 push
 =======================================
 
-.. sidebar:: 目次
-
-   .. contents:: 
-       :depth: 3
-       :local:
-
 .. code-block:: bash
 
-   Usage: docker push [OPTIONS] NAME[:TAG]
+   使い方: docker push [オプション] 名前[:タグ]
    
-   Push an image or a repository to the registry
+   イメージやリポジトリをレジストリに送信 (push)
    
-     --disable-content-trust=true   Skip image signing
-     --help                         Print usage
+     --disable-content-trust=true   イメージの署名をスキップ
+     --help                         使い方の表示
 
 .. Use docker push to share your images to the Docker Hub registry or to a self-hosted one.
 

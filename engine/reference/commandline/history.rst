@@ -15,18 +15,18 @@ history
 
 .. code-block:: bash
 
-   Usage: docker history [OPTIONS] IMAGE
+   使い方: docker history [オプション] イメージ
    
-   Show the history of an image
+   イメージの履歴を表示
    
-     -H, --human=true     Print sizes and dates in human readable format
-     --help               Print usage
-     --no-trunc=false     Don't truncate output
-     -q, --quiet=false    Only show numeric IDs
+     -H, --human=true     サイズと日付を人が読みやすい形式で表示
+     --help               使い方の表示
+     --no-trunc=false     トランケート（truncate）を出力しない
+     -q, --quiet=false    整数値の ID のみ表示
 
 .. To see how the docker:latest image was built:
 
-``docker:latest`` イメージがどのように構築されたか確認するには：
+``docker:latest`` イメージをどのように構築したかを確認します。
 
 .. code-block:: bash
 
@@ -41,7 +41,7 @@ history
 
 .. To see how the docker:apache image was added to a container’s base image:
 
-``docker:scm`` イメージがコンテナのベース・イメージに何を加えたのか確認するには：
+``docker:scm`` イメージが何のコンテナ・ベース・イメージから作られたかを確認します。
 
 .. code-block:: bash
 

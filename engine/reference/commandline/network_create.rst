@@ -13,32 +13,33 @@
 network create
 =======================================
 
+.. code-block:: bash
+
+   使い方:  docker network create [オプション] ネットワーク名
+   
+   ユーザが名付ける新しいネットワークを作成
+   
+   --aux-address=map[]      ネットワーク・ドライバが使う ipv4 または ipv6 追加アドレス
+   -d --driver=DRIVER       ネットワーク・ブリッジまたはオーバレイを管理するドライバ。デフォルトは bridge
+   --gateway=[]             マスタ・サブネット用の ipv4 または  ipv6 ゲートウェイ
+   --help                   使い方の表示
+   --internal               ネットワークの外部へのアクセスを制限
+   --ip-range=[]            サブ・レンジからコンテナの IP アドレスを割り当て
+   --ipam-driver=default    IP アドレス管理用ドライバ
+   --ipam-opt=map[]         カスタム IPAM ドライバ固有のオプションを指定
+   -o --opt=map[]           カスタムドライバ固有のオプションを指定
+   --subnet=[]              ネットワーク・セグメントを表すサブネットを CIDR 形式で指定
+
+
 .. sidebar:: 目次
 
    .. contents:: 
        :depth: 3
        :local:
 
-.. code-block:: bash
-
-   Usage:  docker network create [OPTIONS] NETWORK-NAME
-   
-   Creates a new network with a name specified by the user
-   
-   --aux-address=map[]      Auxiliary ipv4 or ipv6 addresses used by network driver
-   -d --driver=DRIVER       Driver to manage the Network bridge or overlay. The default is bridge.
-   --gateway=[]             ipv4 or ipv6 Gateway for the master subnet
-   --help                   Print usage
-   --internal               Restricts external access to the network
-   --ip-range=[]            Allocate container ip from a sub-range
-   --ipam-driver=default    IP Address Management Driver
-   --ipam-opt=map[]         Set custom IPAM driver specific options
-   -o --opt=map[]           Set custom driver specific options
-   --subnet=[]              Subnet in CIDR format that represents a network segment
-
 .. Creates a new network. The DRIVER accepts bridge or overlay which are the built-in network drivers. If you have installed a third party or your own custom network driver you can specify that DRIVER here also. If you don’t specify the --driver option, the command automatically creates a bridge network for you. When you install Docker Engine it creates a bridge network automatically. This network corresponds to the docker0 bridge that Engine has traditionally relied on. When launch a new container with docker run it automatically connects to this bridge network. You cannot remove this default bridge network but you can create new ones using the network create command.
 
-新しいネットワークを作成します。 ``DRIVER`` には ``bridge`` か ``overlay`` を指定できます。どちらも内蔵のネットワーク・ドライバです。サードパーティー製のドライバをインストールするか、カスタム・ネットワーク・ドライバを組み込むのであれば、同様に ``DRIVER`` で指定できます。 ``--driver`` オプションを指定しなければ、コマンドは自動的に ``bridge`` ネットワークを作成します。Docker エンジンをインストールすると、 ``bridge`` ネットワークを自動的に構築します。このネットワークは従来の ``docker0`` ブリッジに相当します。新しいコンテナを ``docker run`` で起動すると、自動的にこのブリッジ・ネットワークに接続します。このデフォルト・ブリッジ・ネットワークは削除出来ませんが、新しいブリッジを ``network create`` コマンドで作成できます。
+新しいネットワークを作成します。 ``DRIVER`` には ``bridge`` か ``overlay`` を指定できます。どちらも内蔵のネットワーク・ドライバです。サードパーティー製のドライバをインストールするか、カスタム・ネットワーク・ドライバを組み込むのであれば、同様に ``DRIVER`` で指定できます。 ``--driver`` オプションを指定しなければ、コマンドは自動的に ``bridge`` ネットワークを作成します。Docker エンジンをインストールしたら、 ``bridge`` ネットワークを自動的に構築します。このネットワークは従来の ``docker0`` ブリッジに相当します。新しいコンテナを ``docker run`` で起動したら、自動的にこのブリッジ・ネットワークに接続します。このデフォルト・ブリッジ・ネットワークは削除出来ませんが、新しいブリッジを ``network create`` コマンドで作成できます。
 
 .. code-block:: bash
 
@@ -52,7 +53,7 @@ network create
     A cluster of hosts with connectivity to the key-value store.
     A properly configured Engine daemon on each host in the cluster.
 
-* キーバリュー・ストアにアクセスできること。エンジンがサポートしているキーバリュー・ストアは Consul、Etcd、ZoopKeeper（分散ストア）です。
+* キーバリュー・ストアにアクセスできること。エンジンがサポートしているキーバリュー・ストアは Consul、Etcd、ZooKeeper（分散ストア）です。
 * クラスタの各ホストが、キーバリュー・ストアと接続できること。
 * 各ホスト上の Docker エンジンの ``daemon`` が、クラスタとしての適切な設定をすること。
 

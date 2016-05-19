@@ -13,20 +13,14 @@
 restart
 =======================================
 
-.. sidebar:: 目次
-
-   .. contents:: 
-       :depth: 3
-       :local:
-
 .. code-block:: bash
 
-   Usage: docker restart [OPTIONS] CONTAINER [CONTAINER...]
+   使い方: docker restart [オプション] コンテナ [コンテナ...]
    
-   Restart a container
+   コンテナを再起動
    
-     --help             Print usage
-     -t, --time=10      Seconds to wait for stop before killing the container
+     --help             使い方の表示
+     -t, --time=10      コンテナを停止するまで待機する秒数
 
 .. seealso:: 
 

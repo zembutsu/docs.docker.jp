@@ -1,4 +1,4 @@
-.. -*- coding: utf-8 -*-
+﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/top/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/top.md
    doc version: 1.11
@@ -15,11 +15,11 @@ top
 
 .. code-block:: bash
 
-   Usage: docker top [OPTIONS] CONTAINER [ps OPTIONS]
+   使い方: docker top [オプション] コンテナ [ps オプション]
    
-   Display the running processes of a container
+   コンテナで実行中のプロセスを表示
    
-     --help          Print usage
+     --help          使い方の表示
 
 .. seealso:: 
 

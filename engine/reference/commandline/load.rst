@@ -15,13 +15,13 @@ load
 
 .. code-block:: bash
 
-   Usage: docker load [OPTIONS]
+   使い方: docker load [オプション]
    
-   Load an image from a tar archive or STDIN
+   tar アーカイブまたは STDIN （標準入力）からイメージを読み込む
    
-     --help             Print usage
-     -i, --input=""     Read from a tar archive file, instead of STDIN. The tarball may be compressed with gzip, bzip, or xz
-     -q, --quiet        Suppress the load output. Without this option, a progress bar is displayed.
+     --help             使い方の表示
+     -i, --input=""     STDIN ではなく、tar アーカイブ・ファイルから読み込む。tar は gzip、bzip、 xz で圧縮されている場合がある
+     -q, --quiet        読み込み時に出力を抑制。オプションを指定しなければ、進捗バーを表示
    
 .. Loads a tarred repository from a file or the standard input stream. Restores both images and tags.
 

@@ -13,22 +13,22 @@
 events
 =======================================
 
+.. code-block:: bash
+
+   使い方: docker events [オプション]
+   
+   サーバからリアルタイムのイベントを取得
+   
+     -f, --filter=[]    指定した状態に基づき出力をフィルタ
+     --help             使い方の表示
+     --since=""         タイムスタンプ以降に発生した全てのイベントを表示
+     --until=""         タイムスタンプまで発生したイベントを表示
+
 .. sidebar:: 目次
 
    .. contents:: 
        :depth: 3
        :local:
-
-.. code-block:: bash
-
-   Usage: docker events [OPTIONS]
-   
-   Get real time events from the server
-   
-     -f, --filter=[]    Filter output based on conditions provided
-     --help             Print usage
-     --since=""         Show all events created since timestamp
-     --until=""         Stream events until this timestamp
 
 .. Docker containers report the following events:
 
@@ -79,11 +79,11 @@ Docker ネットワークは以下のイベントを報告します。
 
 .. Using the same filter multiple times will be handled as a OR; for example --filter container=588a23dac085 --filter container=a8f7720b8c22 will display events for container 588a23dac085 OR container a8f7720b8c22
 
-同じフィルタを複数回指定すると、「OR」（または）という条件として処理されます。例えば ``--filter container=588a23dac085 --filter container=a8f7720b8c22`` は、コンテナ 588a23dac085 かコンテナ a8f7720b8c22 のイベントを表示します。
+同じフィルタを複数回指定したら、「OR」（または）という条件として処理します。例えば ``--filter container=588a23dac085 --filter container=a8f7720b8c22`` は、コンテナ 588a23dac085 かコンテナ a8f7720b8c22 のイベントを表示します。
 
 .. Using multiple filters will be handled as a AND; for example --filter container=588a23dac085 --filter event=start will display events for container container 588a23dac085 AND the event type is start
 
-複数のフィルタを使うと、「AND」（および）という条件として処理されます。たとえば、 ``--filter container=588a23dac085 --filter event=start`` は、コンテナ 588a23dac085 のイベントタイプが *start* のイベントのみ表示します。
+複数のフィルタを使えば、「AND」（および）という条件として処理します。例えば ``--filter container=588a23dac085 --filter event=start`` は、コンテナ 588a23dac085 のイベントタイプが *start* のイベントのみ表示します。
 
 .. The currently supported filters are:
 
@@ -120,7 +120,7 @@ Docker ネットワークは以下のイベントを報告します。
 
 .. Shell 2: Start and Stop containers:
 
-**シェル２：コンテナを開始して停止ます**
+**シェル２：コンテナを開始して停止**
 
 .. code-block:: bash
 
@@ -130,7 +130,7 @@ Docker ネットワークは以下のイベントを報告します。
 
 .. Shell 1: (Again .. now showing events):
 
-**シェル１：（再度実行すると、イベントが表示されます）** 
+**シェル１：（再度実行したら、イベントを表示）** 
 
 .. code-block:: bash
 
@@ -142,7 +142,7 @@ Docker ネットワークは以下のイベントを報告します。
 
 .. Show events in the past from a specified time:
 
-**時間を指定すると、過去のイベントを表示：**
+**時間を指定したら、過去のイベントを表示：**
 
 .. code-block:: bash
 

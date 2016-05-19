@@ -15,17 +15,17 @@ stats
 
 .. code-block:: bash
 
-   Usage: docker stats [OPTIONS] [CONTAINER...]
+   使い方: docker stats [オプション] [コンテナ...]
    
-   Display a live stream of one or more containers' resource usage statistics
+   １つまたは複数のコンテナのリソース使用状況をライブで流し続ける
    
-     -a, --all          Show all containers (default shows just running)
-     --help             Print usage
-     --no-stream        Disable streaming stats and only pull the first result
+     -a, --all          全てのコンテナを表示（デフォルトは実行中のものだけ）
+     --help             使い方の表示
+     --no-stream        ストリームを無効化し、初回の結果しか表示しない
 
 .. The docker stats command returns a live data stream for running containers. To limit data to one or more specific containers, specify a list of container names or ids separated by a space. You can specify a stopped container but stopped containers do not return any data.
 
-``docker stats`` コマンドは実行中のコンテナからライブ・データ・ストリームを返します。特定コンテナの情報のみを取得するには、コンテナ名またはコンテナ ID をスペース句切りで追加します。ここでは停止しているコンテナも指定できますが、停止中のコンテナは何も返しません。
+``docker stats`` コマンドは実行中のコンテナからライブ・データ・ストリームを返します。特定コンテナの情報のみを取得するには、コンテナ名またはコンテナ ID をスペース区切りで追加します。ここでは停止しているコンテナも指定できますが、停止中のコンテナは何も返しません。
 
 .. If you want more detailed information about a container’s resource usage, use the /containers/(id)/stats API endpoint.
 

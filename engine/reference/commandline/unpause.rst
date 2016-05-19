@@ -15,15 +15,15 @@ unpause
 
 .. code-block:: bash
 
-   Usage: docker unpause [OPTIONS] CONTAINER [CONTAINER...]
+   使い方: docker unpause [オプション] コンテナ [コンテナ...]
    
-   Unpause all processes within a container
+   コンテナ内の全てのプロセスに対し、一時停止を解除
    
-     --help         Print usage
+     --help         使い方の表示
 
 .. The docker unpause command uses the cgroups freezer to un-suspend all processes in a container.
 
-``docker unpause`` コマンドは、 cgroup freezer を使ってコンテナ内で一時停止している全てのプロセスを再開します。
+``docker unpause`` コマンドは、 cgroup freezer を使ってコンテナ内で一時停止している全プロセスを再開します。
 
 .. See the cgroups freezer documentation for further details.
 

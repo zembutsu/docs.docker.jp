@@ -89,7 +89,7 @@ Docker 管理コマンド
 
 .. _hub-and-registry-command:
 
-Hub ・レジストり用コマンド
+Hub ・レジストリ用コマンド
 ==============================
 
 * :doc:`login <login>`
@@ -114,7 +114,7 @@ Hub ・レジストり用コマンド
 
 .. Shared data volume commands
 
-共有データボリューム用コマンド
+共有データ・ボリューム用コマンド
 ==============================
 
 * :doc:`volume_create <volume_create>`

@@ -15,11 +15,11 @@ diff
 
 .. code-block:: bash
 
-   Usage: docker diff [OPTIONS] CONTAINER
+   使い方: docker diff [オプション] コンテナ
    
-   Inspect changes on a container's filesystem
+   コンテナのファイルシステムに対する変更を調査
    
-     --help              Print usage
+     --help              使い方の表示
 
 .. List the changed files and directories in a container᾿s filesystem There are 3 events that are listed in the diff:
 

@@ -15,12 +15,12 @@ kill
 
 .. code-block:: bash
 
-   Usage: docker kill [OPTIONS] CONTAINER [CONTAINER...]
+   使い方: docker kill [オプション] コンテナ [コンテナ...]
    
-   Kill a running container using SIGKILL or a specified signal
+   実行中のコンテナを SIGKILL か指定したシグナルで停止
    
-     --help                 Print usage
-     -s, --signal="KILL"    Signal to send to the container
+     --help                 使い方の表示
+     -s, --signal="KILL"    コンテナに送信するシグナル
    
 .. The main process inside the container will be sent SIGKILL, or any signal specified with option --signal.
 

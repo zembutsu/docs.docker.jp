@@ -13,22 +13,16 @@
 rm
 =======================================
 
-.. sidebar:: 目次
-
-   .. contents:: 
-       :depth: 3
-       :local:
-
 .. code-block:: bash
 
-   Usage: docker rm [OPTIONS] CONTAINER [CONTAINER...]
+   使い方: docker rm [オプション] コンテナ [コンテナ...]
    
-   Remove one or more containers
+   １つまたは複数のコンテナを削除
    
-     -f, --force            Force the removal of a running container (uses SIGKILL)
-     --help                 Print usage
-     -l, --link             Remove the specified link
-     -v, --volumes          Remove the volumes associated with the container
+     -f, --force            実行中のコンテナを（SIGKILLを使い）強制的に削除
+     --help                 使い方の表示
+     -l, --link             指定したリンクを削除
+     -v, --volumes          コンテナと関連づけられたボリュームを削除
    
 .. Examples
 
@@ -60,7 +54,7 @@ rm
 
 .. The main process inside the container referenced under the link /redis will receive SIGKILL, then the container will be removed.
 
-これは ``/link`` でリンクさているコンテナを ``SIGKILL`` し、コンテナを削除します。
+これは ``/link`` でリンクされているコンテナを ``SIGKILL`` し、コンテナを削除します。
 
 .. code-block:: bash
 
@@ -68,7 +62,7 @@ rm
 
 .. This command will delete all stopped containers. The command docker ps -a -q will return all existing container IDs and pass them to the rm command which will delete them. Any running containers will not be deleted.
 
-このコマンドは停止しているコンテナを全て削除します。コマンド ``docker ps -a -q`` は終了した全てのコンテナ ID を ``rm`` コマンドに渡し、全て削除するものです。実行チュのコンテナは削除されません。
+このコマンドは停止しているコンテナを全て削除します。コマンド ``docker ps -a -q`` は終了した全てのコンテナ ID を ``rm`` コマンドに渡し、全て削除するものです。実行中のコンテナは削除されません。
 
 .. code-block:: bash
 
@@ -77,7 +71,7 @@ rm
 
 .. This command will remove the container and any volumes associated with it. Note that if a volume was specified with a name, it will not be removed.
 
-このコマンドはコンテナと、コンテナに関連付けられた全ボリュームを削除します。ただし、ボリュームに名前を指定していた場合は、このコマンドでは削除されません。
+このコマンドはコンテナと、コンテナに関連づけられた全ボリュームを削除します。ただし、ボリュームに名前を指定していた場合は、このコマンドでは削除されません。
 
 .. code-block:: bash
 
@@ -87,7 +81,7 @@ rm
 
 .. In this example, the volume for /foo will remain intact, but the volume for /bar will be removed. The same behavior holds for volumes inherited with --volumes-from.
 
-この例では、ボリューム ``/foo`` は残り続けますが、ボリューム ``/bar`` は削除されます。同様に ``--volumes-from`` で継承関係にあるボリュームも保持されます。
+この例では、ボリューム ``/foo`` は残り続けますが、ボリューム ``/bar`` は削除します。同様に ``--volumes-from`` で継承関係にあるボリュームも保持します。
 
 .. seealso:: 
 

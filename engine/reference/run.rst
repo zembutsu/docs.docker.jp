@@ -62,7 +62,7 @@ Docker は隔離（独立）したコンテナでプロセスを実行します�
 
 .. With the docker run [OPTIONS] an operator can add to or override the image defaults set by a developer. And, additionally, operators can override nearly all the defaults set by the Docker runtime itself. The operator’s ability to override image and Docker runtime defaults is why run has more options than any other docker command.
 
-``docker run [オプション]`` の実行時、作業者は設定の追加や、開発者がイメージに指定したデフォルト設定を上書き可能です。そして更に、作業者は Docker の実行時、ほぼすべてのデフォルト設定を上書きできます。 :doc:`run </engine/reference/commandline/run>` コマンドは他の ``docker`` コマンドより多くのオプションがあるため、作業者はイメージと Docker 実行時のデフォルト設定を上書きできます。
+``docker run [オプション]`` の実行時、作業者は設定の追加や、開発者がイメージに指定したデフォルト設定を上書き可能です。そして更に、作業者は Docker の実行時、ほぼ全てのデフォルト設定を上書きできます。 :doc:`run </engine/reference/commandline/run>` コマンドは他の ``docker`` コマンドより多くのオプションがあるため、作業者はイメージと Docker 実行時のデフォルト設定を上書きできます。
 
 .. To learn how to interpret the types of [OPTIONS], see Option types.
 
@@ -273,7 +273,7 @@ PID 相当の機能
 
 .. Images using the v2 or later image format have a content-addressable identifier called a digest. As long as the input used to generate the image is unchanged, the digest value is predictable and referenceable.
 
-イメージ・形式 v2 以降のイメージを使えば、その中にダイジェスト値（digest）と呼ばれる識別子が、内容に対して割り当てられています。入力に使われたイメージファイルに対する変更がなければ、ダイジェスト値とは予想されうる値であり、参照可能なものです。
+イメージ・形式 v2 以降のイメージを使えば、その中にダイジェスト値（digest）と呼ばれる識別子が、内容に対して割り当てられています。入力に使われたイメージファイルに対する変更が無ければ、ダイジェスト値とは予想されうる値であり、参照可能なものです。
 
 .. PID settings (–pid)
 
@@ -362,7 +362,7 @@ IPC 設定（--ipc）
 
 .. IPC (POSIX/SysV IPC) namespace provides separation of named shared memory segments, semaphores and message queues.
 
-IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セマフォ、メッセージ・キューとよばれる分離を提供します。
+IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セマフォ、メッセージ・キューと呼ばれる分離を提供します。
 
 .. Shared memory segments are used to accelerate inter-process communication at memory speed, rather than through pipes or through the network stack. Shared memory is commonly used by databases and custom-built (typically C/OpenMPI, C++/using boost libraries) high performance applications for scientific computing and financial services industries. If these types of applications are broken into multiple containers, you might need to share the IPC mechanisms of the containers.
 
@@ -383,7 +383,7 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
                        'none': コンテナにネットワーク機能を付けない
                        'container:<name|id>': 他のコンテナ用ネットワーク・スタックを再利用
                        'host': コンテナ内でホスト側ネットワーク・スタックを使用
-                       'NETWORK': 「docker network create」コマンドでユーザ作成したネットワークに作成
+                       'NETWORK': 「docker network create」コマンドでユーザ作成したネットワークを使用
    --net-alias=[]   : コンテナにネットワーク内部用のエイリアスを追加
    --add-host=""    : /etc/hosts に行を追加（ホスト名:IPアドレス）
    --mac-address="" : コンテナのイーサネット・デバイス Mac アドレスを指定
@@ -404,7 +404,7 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
 .. By default, the MAC address is generated using the IP address allocated to the container. You can set the container’s MAC address explicitly by providing a MAC address via the --mac-address parameter (format:12:34:56:78:9a:bc). Be aware that Docker does not check if manually specified MAC addresses are unique.
 
-デフォルトでは、コンテナに割り当てられる IP アドレスを使い、MAC アドレスを生成します。コンテナの MAC アドレスの指定は、 ``--mac-address`` パラメータ（書式： ``12:34:56:78:9a:bc`` ）を使い MAC アドレスを指定できます。 Docker は MAC アドレスがユニークかどうか（重複しているかどうか）を確認する仕組みがないため、ご注意ください。
+デフォルトでは、コンテナに割り当てられる IP アドレスを使い、MAC アドレスを生成します。コンテナの MAC アドレスの指定は、 ``--mac-address`` パラメータ（書式： ``12:34:56:78:9a:bc`` ）を使い MAC アドレスを指定できます。 Docker は MAC アドレスがユニークかどうか（重複しているかどうか）を確認する仕組みが無いため、ご注意ください。
 
 .. Supported networks :
 
@@ -442,7 +442,7 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
 .. With the network is none a container will not have access to any external routes. The container will still have a loopback interface enabled in the container but it does not have any routes to external traffic.
 
-コンテナのネットワークを ``none`` に指定したら、外部の経路に対してアクセス不能にします。コンテナ内では ``loopback`` （ループバック）インターフェースが有効ですが、外部のトラフィックに対する経路がなくなります。
+コンテナのネットワークを ``none`` に指定したら、外部の経路に対してアクセス不能にします。コンテナ内では ``loopback`` （ループバック）インターフェースが有効ですが、外部のトラフィックに対する経路が無くなります。
 
 .. Network: bridge
 
@@ -493,7 +493,7 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
 .. Example running a Redis container with Redis binding to localhost then running the redis-cli command and connecting to the Redis server over the localhost interface.
 
-次の例は、Redis コンテナで Redis が ``localhost`` をバインドしているとき、 ``localhost`` インターフェースを通して Redis サーバに ``redis-cli`` コマンドを実行して接続します。
+次の例は、Redis コンテナで Redis が ``localhost`` をバインドしている時、 ``localhost`` インターフェースを通して Redis サーバに ``redis-cli`` コマンドを実行して接続します。
 
 .. code-block:: bash
 
@@ -571,7 +571,7 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
 .. Using the --restart flag on Docker run you can specify a restart policy for how a container should or should not be restarted on exit.
 
-Docker で実行時に ``--restart`` フラグを使えば、再起動ポリシーを指定できます。再起動ポリシーとは、コンテナが終了したときに再起動すべきかどうかを定義します。
+Docker で実行時に ``--restart`` フラグを使えば、再起動ポリシーを指定できます。再起動ポリシーとは、コンテナが終了時に再起動すべきかどうかを定義します。
 
 .. When a restart policy is active on a container, it will be shown as either Up or Restarting in docker ps. It can also be useful to use docker events to see the restart policy in effect.
 
@@ -611,7 +611,7 @@ Docker は以下の再起動ポリシーをサポートしています。
 
 .. You can specify the maximum amount of times Docker will try to restart the container when using the on-failure policy. The default is that Docker will try forever to restart the container. The number of (attempted) restarts for a container can be obtained via docker inspect. For example, to get the number of restarts for container “my-container”;
 
-**on-failure** ポリシーを使えば、Docker がコンテナの再起動を試みる最大回数を指定できます。デフォルトでは、Docker はコンテナを永久に再起動し続けます。コンテナの再起動（を試みる）回数は ``docker inspect`` で確認可能です。たとえば、コンテナ「my-container」の再起動数を取得するには、次のようにします。
+**on-failure** ポリシーを使えば、Docker がコンテナの再起動を試みる最大回数を指定できます。デフォルトでは、Docker はコンテナを永久に再起動し続けます。コンテナの再起動（を試みる）回数は ``docker inspect`` で確認可能です。例えば、コンテナ「my-container」の再起動数を取得するには、次のようにします。
 
 .. code-block:: bash
 
@@ -858,7 +858,7 @@ MLS であれば、次のような例になります。
    * - ``--cpu-quota=0``
      - CPU CFS (Completely Fair Scheduler) のクォータを設定
    * - ``--blkio-weight=0``
-     - ブロック I/O ウェイト（相対値）を 10 ～ 1000 までの値でウエイトを設定
+     - ブロック I/O ウエイト（相対値）を 10 ～ 1000 までの値でウエイトを設定
    * - ``--oom-kill-disable=false``
      - コンテナを OOM killer による停止を無効化するかどうか指定
    * - ``--memory-swappiness=""``
@@ -933,7 +933,7 @@ MLS であれば、次のような例になります。
 
 .. Memory reservation is a kind of memory soft limit that allows for greater sharing of memory. Under normal circumstances, containers can use as much of the memory as needed and are constrained only by the hard limits set with the -m/--memory option. When memory reservation is set, Docker detects memory contention or low memory and forces containers to restrict their consumption to a reservation limit.
 
-メモリ予約（memory reservation）は、メモリに対するある種のソフト・リミットであり、共有メモリを大きくします。通常の状況下であれば、コンテナは必要とするだけ多くのメモリを使うことができます。そして、 ``-m`` か ``--memory`` オプションがあるときのみ、コンテナに対してハード・リミットが設定されます。メモリ予約が設定したら、Docker はメモリのコンテンション（競合）や少ないメモリを検出し、コンテナが予約した上限まで使えるようにします。
+メモリ予約（memory reservation）は、メモリに対するある種のソフト・リミットであり、共有メモリを大きくします。通常の状況下であれば、コンテナは必要とするだけ多くのメモリを使うことができます。そして、 ``-m`` か ``--memory`` オプションがある時のみ、コンテナに対してハード・リミットが設定されます。メモリ予約が設定したら、Docker はメモリのコンテンション（競合）や少ないメモリを検出し、コンテナが予約した上限まで使えるようにします。
 
 .. Always set the memory reservation value below the hard limit, otherwise the hard limit takes precedence. A reservation of 0 is the same as setting no reservation. By default (without reservation set), memory reservation is the same as the hard memory limit.
 
@@ -1014,7 +1014,7 @@ MLS であれば、次のような例になります。
 
 .. You can setup kernel memory limit to constrain these kinds of memory. For example, every process consumes some stack pages. By limiting kernel memory, you can prevent new processes from being created when the kernel memory usage is too high.
 
-これらのメモリを制限するため、カーネル・メモリの上限を設定できます。たとえば、各プロセスが同じスタック・ページ（stack page）を使うようにする場合です。カーネル・メモリの制限により、カーネル・メモリの使用量が大きいとき、新しいプロセスの作成を妨げます。
+これらのメモリを制限するため、カーネル・メモリの上限を設定できます。例えば、各プロセスが同じスタック・ページ（stack page）を使うようにする場合です。カーネル・メモリの制限により、カーネル・メモリの使用量が大きい時、新しいプロセスの作成を妨げます。
 
 .. Kernel memory is never completely independent of user memory. Instead, you limit kernel memory in the context of the user memory limit. Assume “U” is the user memory limit and “K” the kernel limit. There are three possible ways to set limits:
 
@@ -1033,7 +1033,7 @@ MLS であれば、次のような例になります。
    * - **U != 0, K = inf** （デフォルト）
      - カーネル・メモリが使う前に、標準的なメモリ制限を設ける仕組み。カーネル・メモリは完全に無視される。
    * - **U != 0, K < U**
-     - カーネル・メモリをユーザ・メモリのサブセットとする。この設定は cgroup ごとに大きな合計メモリ容量をオーバーコミットで割り当て、デプロイする場合に使いやすい。カーネル・メモリ制限のオーバコミットは、全くもって推奨されていない。範囲が再利用できないメモリ領域の場合が有り得るため。この例では、 K を設定したので、全グループの合計は、全メモリ容量を超えられない。そして、システム・サービスの品質のために U を任意に設定できる。
+     - カーネル・メモリをユーザ・メモリのサブセットとする。この設定は cgroup ごとに大きな合計メモリ容量をオーバーコミットで割り当て、デプロイする場合に使いやすい。カーネル・メモリ制限のオーバコミットは、全く推奨されていない。範囲が再利用できないメモリ領域の場合が有り得るため。この例では、 K を設定したので、全グループの合計は、全メモリ容量を超えられない。そして、システム・サービスの品質のために U を任意に設定できる。
    * - **U != 0, K > U**
      - カーネルのメモリを使用するため、コンテナ向けに両方のメモリが、ユーザ・カウンタと再利用トリガに影響を与えます。
 
@@ -1087,15 +1087,15 @@ CPU 共有制限
 
 .. By default, all containers get the same proportion of CPU cycles. This proportion can be modified by changing the container’s CPU share weighting relative to the weighting of all other running containers.
 
-デフォルトでは、全てのコンテナは同じ CPU サイクルの割合を持っています。この割合は変更可能なものであり、コンテナの CPU 共有ウェイトを、実行中の全てのコンテナに対する相対的な値として変更できます。
+デフォルトでは、全てのコンテナは同じ CPU サイクルの割合を持っています。この割合は変更可能なものであり、コンテナの CPU 共有ウエイトを、実行中の全てのコンテナに対する相対的な値として変更できます。
 
 .. To modify the proportion from the default of 1024, use the -c or --cpu-shares flag to set the weighting to 2 or higher. If 0 is set, the system will ignore the value and use the default of 1024.
 
-割合をデフォルトの 1024 から変更するには、 ``-c`` か ``--cpu-shares`` フラグでウェイトを 2 以上の値で設定します。もし 0 を設定しても、システムは値を無視してデフォルトの 1024 を使います。
+割合をデフォルトの 1024 から変更するには、 ``-c`` か ``--cpu-shares`` フラグでウエイトを 2 以上の値で設定します。もし 0 を設定しても、システムは値を無視してデフォルトの 1024 を使います。
 
 .. The proportion will only apply when CPU-intensive processes are running. When tasks in one container are idle, other containers can use the left-over CPU time. The actual amount of CPU time will vary depending on the number of containers running on the system.
 
-割合が適用されるのは　CPU に対する処理が集中するときのみです。あるコンテナのタスクがアイドル（何もしていない待機状態）であれば、他のコンテナは CPU 時間の余剰を利用できます。実際に割り当てられる CPU 時間の量は、システム上で実行するコンテナの下図に非常に依存します。
+割合が適用されるのは　CPU に対する処理が集中する時のみです。あるコンテナのタスクがアイドル（何もしていない待機状態）であれば、他のコンテナは CPU 時間の余剰を利用できます。実際に割り当てられる CPU 時間の量は、システム上で実行するコンテナの下図に非常に依存します。
 
 .. For example, consider three containers, one has a cpu-share of 1024 and two others have a cpu-share setting of 512. When processes in all three containers attempt to use 100% of CPU, the first container would receive 50% of the total CPU time. If you add a fourth container with a cpu-share of 1024, the first container only gets 33% of the CPU. The remaining containers receive 16.5%, 16.5% and 33% of the CPU.
 
@@ -1103,7 +1103,7 @@ CPU 共有制限
 
 .. On a multi-core system, the shares of CPU time are distributed over all CPU cores. Even if a container is limited to less than 100% of CPU time, it can use 100% of each individual CPU core.
 
-複数のコアを持つ（マルチ・コア）システム上では、すべての CPU コアに分散してCPU 時間が共有されます。コンテナが CPU 時間の 100% より低く制限していても、個々の CPU コアでは 100% 利用できます。
+複数のコアを持つ（マルチ・コア）システム上では、全ての CPU コアに分散してCPU 時間が共有されます。コンテナが CPU 時間の 100% より低く制限していても、個々の CPU コアでは 100% 利用できます。
 
 .. For example, consider a system with more than three cores. If you start one container {C0} with -c=512 running one process, and another container {C1} with -c=1024 running two processes, this can result in the following division of CPU shares:
 
@@ -1216,11 +1216,11 @@ CPU クォータ制限
 
 .. By default, all containers get the same proportion of block IO bandwidth (blkio). This proportion is 500. To modify this proportion, change the container’s blkio weight relative to the weighting of all other running containers using the --blkio-weight flag.
 
-デフォルトでは、全てのコンテナはブロック IO 帯域（blkio）を同じ割合で取得します。デフォルトの割合は 500 です。割合を変更するには ``--blkio-weight`` フラグを使い、実行中の全てのコンテナに対する装置亜的な blkio ウェイトを指定します。
+デフォルトでは、全てのコンテナはブロック IO 帯域（blkio）を同じ割合で取得します。デフォルトの割合は 500 です。割合を変更するには ``--blkio-weight`` フラグを使い、実行中の全てのコンテナに対する装置亜的な blkio ウエイトを指定します。
 
 .. The --blkio-weight flag can set the weighting to a value between 10 to 1000. For example, the commands below create two containers with different blkio weight:
 
-``--blkio-weight`` フラグは、 10 ～ 1000 までのウェイト値を設定できます。例えば、次のコマンドは２つのコンテナに対し、別々の blkio ウェイトと設定しています。
+``--blkio-weight`` フラグは、 10 ～ 1000 までのウエイト値を設定できます。例えば、次のコマンドは２つのコンテナに対し、別々の blkio ウエイトと設定しています。
 
 .. code-block:: bash
 
@@ -1237,13 +1237,13 @@ CPU クォータ制限
 
 .. You’ll find that the proportion of time is the same as the proportion of blkio weights of the two containers.
 
-２つのコンテナ間の blkio ウェイトの割合により、処理にかかる時間の割合が変わるのが分かるでしょう。
+２つのコンテナ間の blkio ウエイトの割合により、処理にかかる時間の割合が変わるのが分かるでしょう。
 
 ..    Note: The blkio weight setting is only available for direct IO. Buffered IO is not currently supported.
 
 .. note::
 
-   blkio ウェイトの設定は直接 IO (direct IO) のみです。現時点ではバッファ IO (buffered IO) をサポートしていません。
+   blkio ウエイトの設定は直接 IO (direct IO) のみです。現時点ではバッファ IO (buffered IO) をサポートしていません。
 
 .. Additional groups
 
@@ -1277,7 +1277,7 @@ Docker コンテナのプロセスを実行できるのは、デフォルトで�
    --cap-add: Linux ケーパビリティの追加
    --cap-drop: Linux ケーパビリティの削除（ドロップ）
    --privileged=false: コンテナに拡張権限を与える
-   --device=[]: --privileged（特権）フラグがないコンテナ内でもデバイスの実行を許可
+   --device=[]: --privileged（特権）フラグが無いコンテナ内でもデバイスの実行を許可
    --lxc-conf=[]: カスタム lxc オプションの追加
 
 .. Note: With Docker 1.10 and greater, the default seccomp profile will also block syscalls, regardless of --cap-add passed to the container. We recommend in these cases to create your own custom seccomp profile based off our default. Or if you don’t want to run with the default seccomp profile, you can pass --security-opt=seccomp:unconfined on run.
@@ -1288,7 +1288,7 @@ Docker コンテナのプロセスを実行できるのは、デフォルトで�
 
 .. By default, Docker containers are “unprivileged” and cannot, for example, run a Docker daemon inside a Docker container. This is because by default a container is not allowed to access any devices, but a “privileged” container is given access to all devices (see lxc-template.go and documentation on cgroups devices).
 
-デフォルトでは、Docker コンテナは「unprivileged」（権限がない）ため、Docker コンテナの中で Docker デーモンを動かす等ができません。これは、デフォルトのコンテナはあらゆるデバイスに対して接続できないためであり、「privileged」（特権）コンテナのみが全てのコンテナに接続できます（ `lxc-template.go <https://github.com/docker/docker/blob/master/daemon/execdriver/lxc/lxc_template.go>`_ と `cgroups devices <https://www.kernel.org/doc/Documentation/cgroups/devices.txt>`_ のドキュメントをご覧ください ）
+デフォルトでは、Docker コンテナは「unprivileged」（権限が無い）ため、Docker コンテナの中で Docker デーモンを動かす等ができません。これは、デフォルトのコンテナはあらゆるデバイスに対して接続できないためであり、「privileged」（特権）コンテナのみが全てのコンテナに接続できます（ `lxc-template.go <https://github.com/docker/docker/blob/master/daemon/execdriver/lxc/lxc_template.go>`_ と `cgroups devices <https://www.kernel.org/doc/Documentation/cgroups/devices.txt>`_ のドキュメントをご覧ください ）
 
 .. When the operator executes docker run --privileged, Docker will enable to access to all devices on the host as well as set some configuration in AppArmor or SELinux to allow the container nearly all the same access to the host as processes running outside containers on the host. Additional information about running with --privileged is available on the Docker Blog.
 
@@ -1550,11 +1550,11 @@ Dockerfile イメージのデフォルトより優先
 
 .. When a developer builds an image from a Dockerfile or when she commits it, the developer can set a number of default parameters that take effect when the image starts up as a container.
 
-開発者が :doc:`Dockerfile </engine/reference/builder>` を使ってイメージ構築時やコミット時に、対象のイメージを使ってコンテナを起動するときに有効になる各種パラメータを、開発者自身が設定できます。
+開発者は :doc:`Dockerfile </engine/reference/builder>` を使ってイメージ構築時やコミット時、対象イメージを使ったコンテナを起動時に有効な各種パラメータを、開発者自身が設定できます。
 
 .. Four of the Dockerfile commands cannot be overridden at runtime: FROM, MAINTAINER, RUN, and ADD. Everything else has a corresponding override in docker run. We’ll go through what the developer might have set in each Dockerfile instruction and how the operator can override that setting.
 
-実行時に４つのコマンド ``FROM`` 、 ``MAINTAINER`` 、 ``RUN`` 、 ``ADD``  は上書きできません。それ以外のコマンド全ては ``docker run`` で上書きできます。開発者が Dockerfile で個々の命令を設定していたとしても、オペレータはその設定を上書きして操作できます。
+実行時に４つのコマンド ``FROM`` 、 ``MAINTAINER`` 、 ``RUN`` 、 ``ADD``  は上書きできません。それ以外のコマンド全ては ``docker run`` で上書きできます。開発者が Dockerfile で個々の命令を設定していたとしても、作業者はその設定を上書きして操作できます。
 
 ..    CMD (Default Command or Options)
     ENTRYPOINT (Default Command to Execute at Runtime)
@@ -1590,7 +1590,7 @@ Docker コマンドラインでのオプション ``コマンド`` を取り消�
 
 .. This command is optional because the person who created the IMAGE may have already provided a default COMMAND using the Dockerfile CMD instruction. As the operator (the person running a container from the image), you can override that CMD instruction just by specifying a new COMMAND.
 
-このコマンドはオプションの指定です。 ``イメージ`` の作者が Dockerfile の ``CMD`` 命令を使い、デフォルトの ``コマンド`` を既に設定している場合があるためです。オペレータ（イメージからコンテナを十個売る人のこと）によって、 ``CMD`` 命令を上書きして新しい ``コマンド`` を実行します。
+このコマンドは様々なオプションを指定します。 ``イメージ`` の作者が Dockerfile の ``CMD`` 命令を使い、デフォルトの ``コマンド`` を既に設定している場合があるためです。作業者（イメージからコンテナを実行する人）は、 ``CMD`` 命令を上書きして新しい ``コマンド`` を実行します。
 
 .. If the image also specifies an ENTRYPOINT then the CMD or COMMAND get appended as arguments to the ENTRYPOINT.
 
@@ -1609,7 +1609,7 @@ ENTRYPOINT（実行時に処理するデフォルトのコマンド）
 
 .. The ENTRYPOINT of an image is similar to a COMMAND because it specifies what executable to run when the container starts, but it is (purposely) more difficult to override. The ENTRYPOINT gives a container its default nature or behavior, so that when you set an ENTRYPOINT you can run the container as if it were that binary, complete with default options, and you can pass in more options via the COMMAND. But, sometimes an operator may want to run something else inside the container, so you can override the default ENTRYPOINT at runtime by using a string to specify the new ENTRYPOINT. Here is an example of how to run a shell in a container that has been set up to automatically run something else (like /usr/bin/redis-server):
 
-イメージの ``ENTRYPOINT`` は ``コマンド`` と似ています。これはコンテナを開始する時に実行するコマンドを指定しているためです。しかし、こちらは（意図的に）上書きを難しくしています。 ``ENTRYPOINT`` が提供するのは、コンテナ自身が持つデフォルトの特性や振る舞いです。そのため ``ENTRYPOINT`` を指定しておくと、コンテナ実行時、あたかもコンテナ自身をバイナリのようにして実行することができるようにします。その場合は、デフォルトのオプションを持っているでしょうし、あるいは自分で ``コマンド`` を指定してオプションを指定することも可能です。しかし、時々オペレータはコンテナの中で何らかのコマンドを実行したい場合もあるでしょう。例えば、デフォルトの ``ENTRYPOINT`` のかわりに、自分で ``ENTRYPOINT`` を新たに指定したい場合です。次の例はコンテナ上でシェルを実行するものであり、同様に何らかのもの（ ``/usr/bin/redis-server`` のように ）を自動的に起動できます。
+イメージの ``ENTRYPOINT`` は ``コマンド`` と似ています。これはコンテナを開始する時に実行するコマンドを指定しているためです。しかし、こちらは（意図的に）上書きを難しくしています。 ``ENTRYPOINT`` が提供するのは、コンテナ自身が持つデフォルトの特性や振る舞いです。そのため ``ENTRYPOINT`` を指定しておけば、コンテナ実行時、あたかもコンテナ自身をバイナリのようにして実行可能です。その場合は、デフォルトのオプションを持っているでしょうし、あるいは自分で ``コマンド`` を指定してオプションを指定することも可能です。しかし、時々オペレータはコンテナの中で何らかのコマンドを実行したい場合もあるでしょう。例えば、デフォルトの ``ENTRYPOINT`` の代わりに、自分で ``ENTRYPOINT`` を新たに指定したい場合です。次の例はコンテナ上でシェルを実行するものであり、同様に何らかのもの（ ``/usr/bin/redis-server`` のように ）を自動的に起動できます。
 
 .. code-block:: bash
 
@@ -1628,42 +1628,40 @@ ENTRYPOINT（実行時に処理するデフォルトのコマンド）
 
 .. _expose-incoming-ports:
 
-EXPOSE （受信用のポート）
+EXPOSE （露出用のポート）
 ------------------------------
 
 .. The following run command options work with container networking:
 
-``run`` コマンドには、コンテナのネットワーク対応のために以下のオプションがあります。
+``run`` コマンドには、コンテナのネットワークに対応する以下のオプションがあります。
 
 .. code-block:: bash
 
-   --expose=[]: Expose a port or a range of ports inside the container.
-                These are additional to those exposed by the `EXPOSE` instruction
-   -P=false   : Publish all exposed ports to the host interfaces
-   -p=[]      : Publish a container᾿s port or a range of ports to the host
-                  format: ip:hostPort:containerPort | ip::containerPort | hostPort:containerPort | containerPort
-                  Both hostPort and containerPort can be specified as a
-                  range of ports. When specifying ranges for both, the
-                  number of container ports in the range must match the
-                  number of host ports in the range, for example:
+   --expose=[]: コンテナ内のポートまたはポート範囲を露出する
+                これらは「EXPOSE」命令の露出ポートに追加する
+   -P=false   : 全ての露出ポートをホスト側インターフェースに公開する
+   -p=[]      : コンテナのポートまたはポート範囲をホスト側に公開する
+                  書式: ip:ホスト側ポート:コンテナ側ポート | ip::コンテナ側ポート | ホスト側ポート:コンテナ側ポート | コンテナ側ポート
+                  ホスト側ポートとコンテナ側のポートは、どちらもポート範囲を指定可能です。
+                  両方で範囲を指定した時は、コンテナ側のポート範囲とホスト側のポート範囲が
+                  一致する必要があります。例：
                       -p 1234-1236:1234-1236/tcp
    
-                  When specifying a range for hostPort only, the
-                  containerPort must not be a range.  In this case the
-                  container port is published somewhere within the
-                  specified hostPort range. (e.g., `-p 1234-1236:1234/tcp`)
+                  ホスト側のポート範囲しか指定しない時は、コンテナ側ポートが範囲になるとは限りません。
+                  このような場合、コンテナ側で公開されるポートはホスト側のポート範囲のいずれかです。
+                   (例 -p 1234-1236:1234/tcp )
    
-                  (use 'docker port' to see the actual mapping)
+                  (実際の割り当てを確認するには ``docker port`` を使う)
    
-   --link=""  : Add link to another container (<name or id>:alias or <name or id>)
+   --link=""  : 他のコンテナに対するリンクを追加 (<名前 or id>:エイリアス or <名前 or id>)
 
 .. With the exception of the EXPOSE directive, an image developer hasn’t got much control over networking. The EXPOSE instruction defines the initial incoming ports that provide services. These ports are available to processes inside the container. An operator can use the --expose option to add to the exposed ports.
 
-イメージの開発者は、``EXPOSE`` 命令以外のネットワーク機能に関する管理は行えません。 ``EXPOSE`` 命令が定義するのは、サービスが初期化時に提供する受信用ポートです。このポートはコンテナの中のプロセスが利用可能にします。オペレータは ``--expose`` オプションを使うことで、公開用ポートを追加できます。
+イメージの開発者は、``EXPOSE`` 命令以外のネットワーク機能に関する管理は行えません。 ``EXPOSE`` 命令が定義するのは、サービスが初期化時に提供する受信用ポートです。このポートはコンテナの中のプロセスが利用可能にします。作業者は ``--expose`` オプションを使い、公開用ポートを追加できます。
 
 .. To expose a container’s internal port, an operator can start the container with the -P or -p flag. The exposed port is accessible on the host and the ports are available to any client that can reach the host.
 
-コンテナの内部ポートを公開（expose）するには、オペレータはコンテナ実行時に ``-P``  か ``-p`` フラグを使えます。公開用のポートはホスト上でアクセス可能であり、そのポートはホストに到達可能なクライアントであれば誰でも利用できます。
+コンテナの内部ポートを露出（expose）するために、オペレータはコンテナ実行時に ``-P``  か ``-p`` フラグを使えます。公開用のポートはホスト上でアクセス可能であり、そのポートはホストに到達可能なクライアントであれば誰でも利用できます。
 
 .. The -P option publishes all the ports to the host interfaces. Docker binds each exposed port to a random port on the host. The range of ports are within an ephemeral port range defined by /proc/sys/net/ipv4/ip_local_port_range. Use the -p flag to explicitly map a single port or range of ports.
 
@@ -1671,11 +1669,11 @@ EXPOSE （受信用のポート）
 
 .. The port number inside the container (where the service listens) does not need to match the port number exposed on the outside of the container (where clients connect). For example, inside the container an HTTP service is listening on port 80 (and so the image developer specifies EXPOSE 80 in the Dockerfile). At runtime, the port might be bound to 42800 on the host. To find the mapping between the host ports and the exposed ports, use docker port.
 
-コンテナ内のポート番号（サービスがリッスンしているポート番号）は、コンテナの外に露出するポート番号（クライアントが接続する番号）と一致させる必要がありません。たとえば、コンテナ内の HTTP サービスがポート 80 をリッスンしているとします（そして、イメージ開発者は Dockerfile で ``EXPOSE 80`` を指定しているでしょう ）。実行する時に、ホスト側のポート 42800 以上が使われます。公開用ポートがホスト側のどのポートに割り当てられたかを確認するには、 ``docker port`` コマンドを使います。
+コンテナ内のポート番号（サービスがリッスンしているポート番号）は、コンテナの外に露出するポート番号（クライアントが接続する番号）と一致させる必要がありません。例えば、コンテナ内の HTTP サービスがポート 80 をリッスンしているとします（そして、イメージ開発者は Dockerfile で ``EXPOSE 80`` を指定しているでしょう ）。実行する時に、ホスト側のポート 42800 以上が使われます。公開用ポートがホスト側のどのポートに割り当てられたかを確認するには、 ``docker port`` コマンドを使います。
 
 .. If the operator uses --link when starting a new client container in the default bridge network, then the client container can access the exposed port via a private networking interface. If --link is used when starting a container in a user-defined network as described in Docker network overview””), it will provide a named alias for the container being linked to.
 
-デフォルトのブリッジ・ネットワークにおいて、新しいクライアント・コンテナの起動時にオペレータが ``--link`` を指定すると、クライアント・コンテナはプライベートなネットワーク・インターフェースを経由して公開ポートにアクセスできます。 :doc:`Docker ネットワーク概要 </engine/userguide/networking/index>` にあるユーザ定義ネットワーク上で ``--link`` を指定すると、コンテナをリンクするためのエイリアス名を作成します。
+デフォルトのブリッジ・ネットワークにおいて、新しいクライアント・コンテナの起動時にオペレータが ``--link`` を指定したら、クライアント・コンテナはプライベートなネットワーク・インターフェースを経由して公開ポートにアクセスできます。 :doc:`Docker ネットワーク概要 </engine/userguide/networking/index>` にあるユーザ定義ネットワーク上で ``--link`` を指定したら、コンテナをリンクするためのエイリアス名を作成します。
 
 .. ENV (environment variables)
 
@@ -1701,9 +1699,9 @@ ENV（環境変数）
    * - 変数
      - 値
    * - ``HOME``
-     - ``USER`` の値をベースにセット
+     - ``USER`` の値を元にして指定
    * - ``HOSTNAME``
-     - コンテナに関連づけられるホスト名
+     - コンテナに関連づけるホスト名
    * - ``PATH``
      - ``/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin`` のような一般的なディレクトリを含む
    * - ``TERM``
@@ -1711,7 +1709,7 @@ ENV（環境変数）
 
 .. Additionally, the operator can set any environment variable in the container by using one or more -e flags, even overriding those mentioned above, or already defined by the developer with a Dockerfile ENV:
 
-さらに、オペレータはコンテナに対して **環境変数の組み合わせ** を ``-e`` フラグで追加出来ます。先ほど言及した環境変数や、開発者が Dockerfile の中で ``ENV`` で定義済みの環境変数を上書きできます。
+更に、オペレータはコンテナに対して **環境変数の組み合わせ** を ``-e`` フラグで追加できます。先ほど言及した環境変数や、開発者が Dockerfile の中で ``ENV`` で定義済みの環境変数を上書きできます。
 
 .. code-block:: bash
 
@@ -1739,9 +1737,8 @@ TMPFS （tmfps ファイルシステムのマウント）
 
 .. code-block:: bash
 
-   --tmpfs=[]: Create a tmpfs mount with: container-dir[:<options>],
-               where the options are identical to the Linux
-               'mount -t tmpfs -o' command.
+   --tmpfs=[]: tmpfs マウントを作成: コンテナ側ディレクトリ[:<オプション>],
+               オプションは Linux コマンドの 'mount -t tmpfs -o' オプションと同一形式
 
 .. The example below mounts an empty tmpfs into the container with the rw, noexec, nosuid, and size=65536k options.
 
@@ -1761,9 +1758,8 @@ VOLUME（共有ファイルシステム）
 
 .. code-block:: bash
 
-   -v=[]: Create a bind mount with: [host-dir:]container-dir[:<options>], where
-   options are comma delimited and selected from [rw|ro] and [z|Z],
-         [[r]shared|[r]slave|[r]private], and [nocopy].
+   -v=[]: バインド（拘束）マウントを作成: [ホスト側ディレクトリ:]コンテナ側ディレクトリ[:<オプション>]
+   オプションはカンマ区切りで [rw|ro] または [z|Z]、[[r]shared|[r]slave|[r]private]、そして [nocopy] から選択
 
 .. The 'host-src' is an absolute path or a name value.
 
@@ -1775,11 +1771,11 @@ VOLUME（共有ファイルシステム）
 
 .. The `nocopy` modes is used to disable automatic copying requested volume path in the container to the volume storage location. For named volumes, `copy` is the default mode. Copy modes are not supported for bind-mounted volumes.
 
-``nocopy`` モードを指定すると、コンテナ内に要求したボリューム・パスに対して、ボリュームを保存している場所からの自動コピーを無効にします。名前付きボリュームの場合は、 ``copy`` がデフォルトのモードです。コピー・モードではバインド・マウント（bind-mounted）したボリュームに対するコピーをサポートしていません。
+``nocopy`` モードを指定したら、コンテナ内に要求したボリューム・パスに対して、ボリュームを保存している場所からの自動コピーを無効にします。名前付きボリュームの場合は、 ``copy`` がデフォルトのモードです。コピー・モードではバインド・マウント（bind-mounted）したボリュームに対するコピーをサポートしていません。
 
 .. code-block:: bash
 
-   --volumes-from="": Mount all volumes from the given container(s)
+   --volumes-from="": 指定したコンテナにある全てのボリュームをマウント
 
 ..    Note: The auto-creation of the host path has been deprecated.
 ..   ホスト側のパスを自動作成する機能は :ref:`廃止 <auto-creating-missing-host-paths-for-bind-mounts>` されました。
@@ -1792,11 +1788,11 @@ VOLUME（共有ファイルシステム）
 
 .. The volumes commands are complex enough to have their own documentation in section Managing data in containers. A developer can define one or more VOLUME’s associated with an image, but only the operator can give access from one container to another (or from a container to a volume mounted on the host).
 
-ボリューム関連コマンドは :doc:`/engine/userguide/containers/dockervolumes` セクション自身のドキュメントでも複雑なものです。開発者は１つまたは複数の ``VOLUME`` を作成し、イメージと関連づけることが可能です。しかし、オペレータができるのは、あるコンテナから別のコンテナに対してのみです（あるいは、コンテナからホスト側のボリュームにマウントする場合）。
+ボリューム関連コマンドは :doc:`/engine/userguide/containers/dockervolumes` セクション自身のドキュメントでも複雑なものです。開発者は１つまたは複数の ``VOLUME`` を作成し、イメージと関連づけることが可能です。しかし、作業者ができるのは、あるコンテナから別のコンテナに対してのみです（あるいは、コンテナからホスト側のボリュームにマウントする場合）。
 
 .. The container-dir must always be an absolute path such as /src/docs. The host-dir can either be an absolute path or a name value. If you supply an absolute path for the host-dir, Docker bind-mounts to the path you specify. If you supply a name, Docker creates a named volume by that name.
 
-``コンテナ側ディレクトリ`` は ``/src/docs`` のように常に絶対パスの必要があります。 ``ホスト側ディレクトリ`` は絶対パスか ``名前`` の値を指定できます。 ``ホスト側ディレクトリ`` に絶対パスを指定する場合は、 Docker は指定したパスを拘束マウント（bind-mounts）します。 ``名前`` を指定する場合は、Docker は ``名前`` を持つボリュームを作成します。
+``コンテナ側ディレクトリ`` は ``/src/docs`` のように常に絶対パスの必要があります。 ``ホスト側ディレクトリ`` は絶対パスか ``名前`` を値に指定できます。 ``ホスト側ディレクトリ`` に絶対パスを指定する場合は、 Docker は指定したパスを拘束マウント（bind-mounts）します。 ``名前`` を指定する場合は、Docker は ``名前`` を持つボリュームを作成します。
 
 .. A name value must start with start with an alphanumeric character, followed by a-z0-9, _ (underscore), . (period) or - (hyphen). An absolute path starts with a / (forward slash).
 
@@ -1804,7 +1800,7 @@ VOLUME（共有ファイルシステム）
 
 .. For example, you can specify either /foo or foo for a host-dir value. If you supply the /foo value, Docker creates a bind-mount. If you supply the foo specification, Docker creates a named volume.
 
-例えば、 ``ホスト側ディレクトリ`` の値に ``/foo`` か ``foo`` を指定したとします。 ``/foo`` 値を指定した場合は、Docker はホスト上に拘束マウントを作成します。 ``foo`` を指定すると、Docker は指定された名前でボリュームを作成します。
+例えば、 ``ホスト側ディレクトリ`` の値に ``/foo`` か ``foo`` を指定したとします。 ``/foo`` 値を指定した場合は、Docker はホスト上に拘束マウントを作成します。 ``foo`` を指定したら、Docker は指定された名前でボリュームを作成します。
 
 .. USER
 
@@ -1819,15 +1815,15 @@ USER
 
 .. The developer can set a default user to run the first process with the Dockerfile USER instruction. When starting a container, the operator can override the USER instruction by passing the -u option.
 
-開発者は Dockerfile の ``USER`` 命令を使い、１つめのプロセスを実行する時のユーザを定義できます。コンテナが起動するとき、 ``-u`` オプションを使うと ``USER`` 命令を上書きできます。
+開発者は Dockerfile の ``USER`` 命令を使い、１つめのプロセスを実行する時のユーザを定義できます。コンテナ起動時に ``-u`` オプションを使うと ``USER`` 命令を上書きできます。
 
 .. code-block:: bash
 
-   -u="", --user="": Sets the username or UID used and optionally the groupname or GID for the specified command.
+   -u="", --user="": ユーザ名または UID を指定する命令。オプションでグループ名や GUID を指定
 
 .. The followings examples are all valid:
 
-以下の例は無効です。
+以下は有効な例です。
 
 .. code-block:: bash
 
@@ -1848,11 +1844,11 @@ WORKDIR
 
 .. The default working directory for running binaries within a container is the root directory (/), but the developer can set a different default with the Dockerfile WORKDIR command. The operator can override this with:
 
-コンテナ内でバイナリを実行する時、デフォルトの作業用ディレクトリはルート( ``/`` ) ディレクトリです。しかし開発者は Dockerfile の ``WORKDIR`` コマンドを使い、デフォルトの作業用ディレクトリを変更できます。オペレータが更に設定を上書きするには、次のようにします。
+コンテナ内でバイナリを実行する時、デフォルトの作業用ディレクトリはルート( ``/`` ) ディレクトリです。しかし開発者は Dockerfile の ``WORKDIR`` コマンドを使い、デフォルトの作業用ディレクトリを変更できます。作業者が更に設定を上書きするには、次のようにします。
 
 .. code-block:: bash
 
-   -w="": Working directory inside the container
+   -w="": コンテナ内の作業用（ワーキング）ディレクトリ
 
 .. seealso:: 
 

@@ -13,19 +13,13 @@
 rename
 =======================================
 
-.. sidebar:: 目次
-
-   .. contents:: 
-       :depth: 3
-       :local:
-
 .. code-block:: bash
 
-   Usage: docker rename [OPTIONS] OLD_NAME NEW_NAME
+   使い方: docker rename [オプション] 古い名前 新しい名前
    
-   Rename a container
+   コンテナの名前を変更
    
-     --help          Print usage
+     --help          使い方の表示
 
 .. The docker rename command allows the container to be renamed to a different name
 

@@ -93,7 +93,7 @@ inspect
 
 .. The .Field syntax doesn’t work when the field name begins with a number, but the template language’s index function does. The .NetworkSettings.Ports section contains a map of the internal port mappings to a list of external address/port objects. To grab just the numeric public port, you use index to find the specific port map, and then index 0 contains the first object inside of that. Then we ask for the HostPort field to get the public address.
 
-``.Field`` 構文は数字で始まるフィールド名で使えませんが、テンプレート言語の ``index`` 機能では利用可能です。 ``.NetworkSettings.Prots`` セクションには、内部と外部にあるアドレス/ポートのオブジェクトに対する割り当てリストを含みます。 ``index`` 0 は、そのオブジェクトの１番目の項目です。 ``HostPort`` フィールドからパブリックアドレスを入手するには、次のようにします。
+``.Field`` 構文は数字で始まるフィールド名で使えませんが、テンプレート言語の ``index`` 機能では利用可能です。 ``.NetworkSettings.Prots`` セクションには、内部と外部にあるアドレス/ポートのオブジェクトに対する割り当てリストを含みます。 ``index`` 0 は、そのオブジェクトの１番めの項目です。 ``HostPort`` フィールドからパブリックアドレスを入手するには、次のようにします。
 
 .. code-block:: bash
 

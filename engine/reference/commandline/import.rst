@@ -15,23 +15,23 @@ import
 
 .. code-block:: bash
 
-   Usage: docker import file|URL|- [REPOSITORY[:TAG]]
+   使い方: docker import ファイル|URL|- [リポジトリ[:タグ]]
    
-   Create an empty filesystem image and import the contents of the
-   tarball (.tar, .tar.gz, .tgz, .bzip, .tar.xz, .txz) into it, then
-   optionally tag it.
+   空のファイルシステム・イメージを作成し、tar ボールの内容を読み込む（import）
+   tar ボールの形式は (.tar, .tar.gz, .tgz, .bzip, .tar.xz, .txz)
+   オプションで、取り込み後にタグ付け
    
-     -c, --change=[]     Apply specified Dockerfile instructions while importing the image
-     --help              Print usage
-     -m, --message=      Set commit message for imported image
+     -c, --change=[]     イメージ読み込み時に Dockerfile の命令を追加変更
+     --help              使い方を表示
+     -m, --message=      イメージを取り込み時、コミット用のメッセージを設定
 
 .. You can specify a URL or - (dash) to take data directly from STDIN. The URL can point to an archive (.tar, .tar.gz, .tgz, .bzip, .tar.xz, or .txz) containing a filesystem or to an individual file on the Docker host. If you specify an archive, Docker untars it in the container relative to the / (root). If you specify an individual file, you must specify the full path within the host. To import from a remote location, specify a URI that begins with the http:// or https:// protocol.
 
-``URL`` か ``-`` （ダッシュ）を指定し、 ``STDIN`` （標準入力）から直接データを取り込みます。 ``URL`` はアーカイブ（ .tar、.tar.gz、.tgz、.bzip、.tar.xz、txz）に含まれる圧縮ファイルシステムや、Docker ホスト上の個々のファイルを指定します。アーカイブを指定すると、 Docker はコンテナの ``/`` （ルート）以下の相対パスとして展開します。個々のファイルを指定する場合、ホスト上のフルパスを指定する必要があります。リモートの場所から import する場合、 ``URI`` の形式は、 ``http://`` か ``https://`` プロトコルで始まる必要があります。
+``URL`` か ``-`` （ダッシュ）の指定、あるいは ``STDIN`` （標準入力）から直接データを取り込みます。 ``URL`` はアーカイブ（ .tar、.tar.gz、.tgz、.bzip、.tar.xz、txz）に含まれる圧縮ファイルシステムや、Docker ホスト上の個々のファイルを指定します。アーカイブを指定したら、 Docker はコンテナの ``/`` （ルート）以下の相対パスとして展開します。個々のファイルを指定する場合、ホスト上のフルパスを指定する必要があります。リモートの場所から import する場合、 ``URI`` の形式は、 ``http://`` か ``https://`` プロトコルで始まる必要があります。
 
 .. The --change option will apply Dockerfile instructions to the image that is created. Supported Dockerfile instructions: CMD|ENTRYPOINT|ENV|EXPOSE|ONBUILD|USER|VOLUME|WORKDIR
 
-``--change`` オプションは ``Dockerfile`` 命令でイメージを作成時に適用されます。サポートされている ``Dockerfile`` の命令は ``CMD`` ``ENTRYPOINT`` ``ENV`` ``EXPOSE`` ``ONBUID`` ``USER`` ``VOLUME`` ``WORKDIR`` です。
+``--change`` オプションが適用されるのは ``Dockerfile`` 命令でイメージの作成時です。サポートされている ``Dockerfile`` の命令は、 ``CMD`` ``ENTRYPOINT`` ``ENV`` ``EXPOSE`` ``ONBUID`` ``USER`` ``VOLUME`` ``WORKDIR`` です。
 
 .. Examples
 

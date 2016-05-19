@@ -15,15 +15,15 @@ login
 
 .. code-block:: bash
 
-   Usage: docker login [OPTIONS] [SERVER]
+   使い方: docker login [オプション] [サーバ]
    
-   Register or log in to a Docker registry server, if no server is
-   specified "https://index.docker.io/v1/" is the default.
+   Docker レジストリ・サーバに登録またはログインする
+   サーバの指定が無ければデフォルトで "https://index.docker.io/v1/" を使用
    
-     -e, --email=""       Email
-     --help               Print usage
-     -p, --password=""    Password
-     -u, --username=""    Username
+     -e, --email=""       メールアドレス
+     --help               使い方の表示
+     -p, --password=""    パスワード
+     -u, --username=""    ユーザ名
    
 .. If you want to login to a self-hosted registry you can specify this by adding the server name.
 
@@ -44,7 +44,7 @@ login
 ..    connecting to a remote daemon, such as a docker-machine provisioned docker engine.
 ..    user is added to the docker group. This will impact the security of your system; the docker group is root equivalent. See Docker Daemon Attack Surface for details.
 
-1. ``docker-machine`` を使って ``docker engine`` を自動設定したようなリモート・デーモンに接続時。
+1. ``docker-machine`` を使い、 ``docker engine`` を自動設定したようなリモート・デーモンに接続時。
 2. ``docker`` グループに追加されたユーザ。システム上のセキュリティ・リスクになります。 ``docker`` グループは ``root`` と同等のためです。詳細は :ref:`Docker デーモンが直面する攻撃 <docker-daemon-attack-surface>` をご覧ください。
 
 .. You can log into any public or private repository for which you have credentials. When you log in, the command stores encoded credentials in $HOME/.docker/config.json on Linux or %USERPROFILE%/.docker/config.json on Windows.

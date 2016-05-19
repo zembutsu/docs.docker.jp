@@ -13,27 +13,26 @@
 attach
 =======================================
 
+.. code-block:: bash
+
+   使い方: docker attach [オプション] コンテナ
+   
+   実行中のコンテナにアタッチする
+   
+     --detach-keys="<sequence>"       エスケープ・キー・シーケンスを設定
+     --help                           使い方の表示
+     --no-stdin                       STDIN（標準入力）にアタッチしない
+     --sig-proxy=true                 受信したシグナルをプロセスに全てプロキシする
+
 .. sidebar:: 目次
 
    .. contents:: 
        :depth: 3
        :local:
 
-
-.. code-block:: bash
-
-   Usage: docker attach [OPTIONS] CONTAINER
-   
-   Attach to a running container
-   
-     --detach-keys="<sequence>"       Set up escape key sequence
-     --help                           Print usage
-     --no-stdin                       Do not attach STDIN
-     --sig-proxy=true                 Proxy all received signals to the process
-
 .. The docker attach command allows you to attach to a running container using the container’s ID or name, either to view its ongoing output or to control it interactively. You can attach to the same contained process multiple times simultaneously, screen sharing style, or quickly view the progress of your detached process.
 
-``docker attach`` コマンドは、コンテナ ID や名前を使って実行中のコンテナにアタッチ（attach；装着/取り付けの意味）します。処理中の出力を表示するだけでなく、インタラクティブ（双方向）の管理もできます。同じコンテナ化されたプロセスに対して、画面を共有する形式として擬似的に複数回のアタッチが可能ですし、デタッチ（detach；分離の意味）したプロセスの迅速な表示もできます。
+``docker attach`` コマンドは、コンテナ ID や名前を使って実行中のコンテナにアタッチ（attach；装着/取り付けの意味）します。処理中の出力を表示するだけでなく、インタラクティブ（双方向）の管理もできます。同じコンテナ化されたプロセスに対して、画面を共有する形式として擬似的に複数回のアタッチが可能ですし、デタッチ（detach；分離の意味）したプロセスも迅速に表示できます。
 
 .. You can detach from the container and leave it running with CTRL-p CTRL-q (for a quiet exit) or with CTRL-c if --sig-proxy is false.
 .. コンテナを実行したままデタッチして離れるには、 ``CTRL-p CTRL-q`` （静かに終了）するか、 ``--sig-proxy`` が false であれば ``CTRL-c`` を使います。
@@ -67,7 +66,7 @@ tty を有効化したコンテナにアタッチした状態（例： ``-t`` �
 
 .. To override the sequence for an individual container, use the --detach-keys="<sequence>" flag with the docker attach command. The format of the <sequence> is either a letter [a-Z], or the ctrl- combined with any of the following:
 
-個々のコンテナに対するシーケンスを上書きするには、 ``docker attach`` コマンドに ``--detach-keys="<シーケンス>"`` をしています。 ``<シーケンス>`` の書式は、 [a-Z] までの文字を使うか、 ``ctrl-`` と次の項目を組みあわせます。
+個々のコンテナに対するシーケンスを上書きするには、 ``docker attach`` コマンドに ``--detach-keys="<シーケンス>"`` を指定します。 ``<シーケンス>`` の書式は、 [a-Z] までの文字を使うか、 ``ctrl-`` と次の項目を組み合わせます。
 
 ..    a-z (a single lowercase alpha character )
     @ (at sign)
@@ -131,7 +130,7 @@ tty を有効化したコンテナにアタッチした状態（例： ``-t`` �
 
 .. And in this second example, you can see the exit code returned by the bash process is returned by the docker attach command to its caller too:
 
-この２つめの例は、 ``docker attach`` コマンドで処理された終了コードが、 ``bash`` プロセスに戻ってきても使えることがわかります。
+次の２つめの例は、 ``docker attach`` コマンドで処理された終了コードが、 ``bash`` プロセスに戻ってきても使えることが分かります。
 
 .. code-block:: bash
 
@@ -144,7 +143,9 @@ tty を有効化したコンテナにアタッチした状態（例： ``-t`` �
    13
    $ docker ps -a | grep test
    275c44472aeb        debian:7            "/bin/bash"         26 seconds ago      Exited (13) 17 seconds ago                         test
-   .. seealso:: 
+
+
+.. seealso:: 
 
    attach
       https://docs.docker.com/engine/reference/commandline/attach/

@@ -15,16 +15,16 @@ export
 
 .. code-block:: bash
 
-   Usage: docker export [OPTIONS] CONTAINER
+   使い方: docker export [オプション] コンテナ
    
-   Export the contents of a container's filesystem as a tar archive
+   コンテナのファイルシステム内容を tar アーカイブとして出力
    
-     --help             Print usage
-     -o, --output=""    Write to a file, instead of STDOUT
+     --help             使い方の表示
+     -o, --output=""    STDOUT（標準出力）ではなくファイルに書き出し
 
 .. The docker export command does not export the contents of volumes associated with the container. If a volume is mounted on top of an existing directory in the container, docker export will export the contents of the underlying directory, not the contents of the volume.
 
-``docker export`` コマンドは、コンテナに関連づけられているボリュームに含まれる内容を出力しません。もしボリュームがコンテナ内にある既存ディレクトリの上位にマウントされている場合は、 ``docker export`` は *配下にある* ディレクトリ出力しますが、ボリュームの内容は含みません。
+``docker export`` コマンドは、コンテナに関連づけられているボリュームに含まれる内容を出力しません。もしボリュームがコンテナ内にある既存ディレクトリの上位にマウントされている場合は、 ``docker export`` は *配下にある* ディレクトリを出力しますが、ボリュームの内容は含みません。
 
 .. Refer to Backup, restore, or migrate data volumes in the user guide for examples on exporting data in a volume.
 

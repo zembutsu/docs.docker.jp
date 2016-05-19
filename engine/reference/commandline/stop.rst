@@ -15,13 +15,12 @@ stop
 
 .. code-block:: bash
 
-   Usage: docker stop [OPTIONS] CONTAINER [CONTAINER...]
+   使い方: docker stop [オプション] コンテナ [コンテナ...]
    
-   Stop a container by sending SIGTERM and then SIGKILL after a
-   grace period
+   コンテナに SIGTERM を送信し、一定期間後に SIGKILL を送信
    
-     --help             Print usage
-     -t, --time=10      Seconds to wait for stop before killing it
+     --help             使い方の表示
+     -t, --time=10      kill で停止する前に待機する秒数
 
 .. The main process inside the container will receive SIGTERM, and after a grace period, SIGKILL.
 

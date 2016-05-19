@@ -13,23 +13,17 @@
 network connect
 =======================================
 
-.. sidebar:: 目次
-
-   .. contents:: 
-       :depth: 3
-       :local:
-
 .. code-block:: bash
 
-   Usage:  docker network connect [OPTIONS] NETWORK CONTAINER
+   使い方:  docker network connect [オプション] ネットワーク コンテナ
    
-   Connects a container to a network
+   コンテナをネットワークに接続
    
-     --alias=[]         Add network-scoped alias for the container
-     --help             Print usage
-     --ip               IPv4 Address
-     --ip6              IPv6 Address
-     --link=[]          Add a link to another container
+     --alias=[]         コンテナ用のネットワーク範囲エイリアスを追加
+     --help             使い方の表示
+     --ip               IPv4 アドレス
+     --ip6              IPv6 アドレス
+     --link=[]          他のコンテナに対するリンクを追加
 
 .. Connects a container to a network. You can connect a container by name or by ID. Once connected, the container can communicate with other containers in the same network.
 

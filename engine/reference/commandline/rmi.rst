@@ -15,19 +15,19 @@ rmi
 
 .. code-block:: bash
 
-   Usage: docker rmi [OPTIONS] IMAGE [IMAGE...]
+   使い方: docker rmi [オプション] イメージ [イメージ...]
    
-   Remove one or more images
+   １つまたは複数のイメージを削除
    
-     -f, --force          Force removal of the image
-     --help               Print usage
-     --no-prune           Do not delete untagged parents
+     -f, --force          イメージの共生削除
+     --help               使い方の表示
+     --no-prune           タグが無い親イメージを削除しない
    
 .. You can remove an image using its short or long ID, its tag, or its digest. If an image has one or more tag or digest reference, you must remove all of them before the image is removed.
 
 .. You can remove an image using its short or long ID, its tag, or its digest. If an image has one or more tag referencing it, you must remove all of them before the image is removed. Digest references are removed automatically when an image is removed by tag.
 
-ショート ID かロング ID、タグ、digest を使ってイメージを削除出来ます。イメージがタグによって参照されている場合、イメージを削除する前にそれらの削除が必要です。Digest の参照はイメージのタグを削除するとき、自動的に削除されます。
+ショート ID かロング ID、タグ、digest を使ってイメージを削除できます。イメージがタグによって参照されている場合、イメージを削除する前にそれらの削除が必要です。Digest の参照値はイメージのタグを削除する時、自動的に削除されます。
 
 .. code-block:: bash
 
@@ -55,7 +55,7 @@ rmi
    
 .. If you use the -f flag and specify the image’s short or long ID, then this command untags and removes all images that match the specified ID.
 
-``-f`` フラグでイメージのショート ID かロング ID を指定すると、このコマンドによって対象の ID に一致するイメージは全てタグが外され、削除されます。
+``-f`` フラグでイメージのショート ID かロング ID を指定したら、このコマンド対象の ID に一致するイメージは全てのタグを外し、削除されます。
 
 .. code-block:: bash
 
@@ -73,7 +73,7 @@ rmi
 
 .. An image pulled by digest has no tag associated with it:
 
-取得下イメージがタグ付けされていなくても、digest を確認できます。
+取得したイメージがタグ付けされていなくても、digest を確認できます。
 
 .. code-block:: bash
 

@@ -15,11 +15,11 @@ tag
 
 .. code-block:: bash
 
-   Usage: docker tag [OPTIONS] IMAGE[:TAG] [REGISTRYHOST/][USERNAME/]NAME[:TAG]
+   使い方: docker tag [オプション] イメージ[:タグ] [レジストリのホスト/][ユーザ名/]名前[:タグ]
    
-   Tag an image into a repository
+   リポジトリ内のイメージにタグ付け
    
-     --help               Print usage
+     --help               使い方の表示
 
 .. You can group your images together using names and tags, and then upload them to Share Images via Repositories.
 

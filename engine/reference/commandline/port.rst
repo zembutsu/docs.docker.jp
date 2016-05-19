@@ -13,24 +13,18 @@
 port
 =======================================
 
-.. sidebar:: 目次
-
-   .. contents:: 
-       :depth: 3
-       :local:
-
 .. code-block:: bash
 
-   Usage: docker port [OPTIONS] CONTAINER [PRIVATE_PORT[/PROTO]]
+   使い方: docker port [オプション] コンテナ [プライベート・ポート[/プロトコル]]
    
-   List port mappings for the CONTAINER, or lookup the public-facing port that is
-   NAT-ed to the PRIVATE_PORT
+   コンテナに対するマッピング（割り当て）を一覧表示。
+   あるいは NAT されたプライベート・ポートを探して表示。
    
-     --help          Print usage
+     --help          使い方の表示
 
 .. You can find out all the ports mapped by not specifying a PRIVATE_PORT, or just a specific mapping:
 
-``PRIVATE_PORT`` や、特定の割り当て状況を指定しなければ、全てのポートの割り当て状況（マッピング）を確認できます。
+``プライベート・ポート`` や、特定の割り当て状況を指定しなければ、全てのポートの割り当て状況（マッピング）を確認できます。
 
 .. code-block:: bash
 

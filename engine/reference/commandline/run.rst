@@ -13,123 +13,122 @@
 run
 =======================================
 
+
+.. code-block:: bash
+
+   使い方: docker run [オプション] イメージ [コマンド] [引数...]
+   
+   新しいコンテナを実行する命令
+   
+     -a, --attach=[]               STDIN、STDOUT、STDERR にアタッチする
+     --add-host=[]                 ホストから IP アドレスのマッピングをカスタマイズして追加 (host:ip)
+     --blkio-weight=0              ブロック IO ウエイト (相対ウエイト)
+     --blkio-weight-device=[]      ブロック IO ウエイト (相対デバイス・ウエイト。書式： `デバイス名:ウエイト`)
+     --cpu-shares=0                CPU 共有 (相対ウエイト)
+     --cap-add=[]                  Linux ケーパビリティの追加
+     --cap-drop=[]                 Linux ケーパビリティの削除
+     --cgroup-parent=""            コンテナ用のオプション親 cgroup を指定
+     --cidfile=""                  コンテナ ID をファイルに書き出し
+     --cpu-percent=0               コンテナが実行可能な CPU 使用率のパーセントを制限。Windowsのみ
+     --cpu-period=0                CPU CFS (Completely Fair Scheduler) ペイロードの制限
+     --cpu-quota=0                 CPU CFS (Completely Fair Scheduler) クォータの制限
+     --cpuset-cpus=""              実行を許可する CPU (0-3, 0,1)
+     --cpuset-mems=""              実行を許可するメモリ必要量 (0-3, 0,1)
+     -d, --detach                  コンテナをバックグラウンドで実行し、コンテナ ID を表示
+     --detach-keys                 コンテナのデタッチに使うエスケープ・キー・シーケンスを設定
+     --device=[]                   ホスト・デバイスをコンテナに追加
+     --device-read-bps=[]          デバイスからの読み込みレート (バイト/秒) を制限 (例: --device-read-bps=/dev/sda:1mb)
+     --device-read-iops=[]         デバイスからの読み込みレート (IO/秒) を制限 (例: --device-read-iops=/dev/sda:1000)
+     --device-write-bps=[]         デバイスへの書き込みレート (バイト/秒) を制限  (例: --device-write-bps=/dev/sda:1mb)
+     --device-write-iops=[]        デバイスへの書き込みレート (IO/秒) を制限 (例: --device-write-bps=/dev/sda:1000)
+     --disable-content-trust=true  イメージの認証をスキップ
+     --dns=[]                      カスタム DNS サーバの指定
+     --dns-opt=[]                  カスタム DNS オプションの指定
+     --dns-search=[]               カスタム DNS 検索ドメインの指定
+     -e, --env=[]                  環境変数を指定
+     --entrypoint=""               イメージのデフォルト ENTRYPOINT を上書き
+     --env-file=[]                 ファイルから環境変数を読み込み
+     --expose=[]                   ポートまたはポート範囲を露出
+     --group-add=[]                参加するグループを追加
+     -h, --hostname=""             コンテナのホスト名
+     --help                        使い方の表示
+     -i, --interactive             コンテナの STDIN にアタッチ
+     --ip=""                       コンテナの IPv4 アドレス (例: 172.30.100.104)
+     --ip6=""                      コンテナの IPv6 アドレス (例: 2001:db8::33)
+     --ipc=""                      使用する IPC 名前空間
+     --isolation=""                コンテナの分離（独立）技術
+     --kernel-memory=""            Kernel メモリ上限
+     -l, --label=[]                コンテナにメタデータを指定 (例: --label=com.example.key=value)
+     --label-file=[]               行ごとにラベルを記述したファイルを読み込み
+     --link=[]                     他のコンテナへのリンクを追加
+     --log-driver=""               コンテナ用のログ記録ドライバを追加
+     --log-opt=[]                  ログドライバのオプションを指定
+     -m, --memory=""               メモリ上限
+     --mac-address=""              コンテナの MAC アドレス (例： 92:d0:c6:0a:29:33)
+     --io-maxbandwidth=""          システム・デバイスの IO 帯域に対する上限を指定（Windowsのみ）。
+                                   書式は `<数値><単位>`。単位はオプションで `b` (バイト/秒)、
+                                   `k` (キロバイト/秒)、 `m` (メガバイト/秒)、 `g` (ギガバイト/秒)。
+                                   単位を指定しなければ、システムはバイト/秒とみなす。
+                                   --io-maxbandwidth と --io-maxiops は相互排他オプション
+     --io-maxiops=0                システム・ドライブの最大 IO/秒に対する上限を指定 *Windowsのみ)
+                                   --io-maxbandwidth と --io-maxiops は相互排他オプション
+     --memory-reservation=""       メモリのソフト上限
+     --memory-swap=""              整数値の指定はメモリにスワップ値を追加。-1は無制限スワップを有効化
+     --memory-swappiness=""        コンテナ用メモリのスワップ程度を調整。整数値の 0 から 100 で指定
+     --name=""                     コンテナに名前を割り当て
+     --net="bridge"   : コンテナをネットワークに接続
+                                   'bridge': docker ブリッジ上でコンテナ用に新しいネットワーク・スタックを作成
+                                   'none': コンテナにネットワーク機能を付けない
+                                   'container:<name|id>': 他のコンテナ用ネットワーク・スタックを再利用
+                                   'host': コンテナ内でホスト側ネットワーク・スタックを使用
+                                   'NETWORK': 「docker network create」コマンドでユーザ作成したネットワークを使用
+     --net-alias=[]                コンテナにネットワーク内部用のエイリアスを追加
+     --oom-kill-disable            コンテナの OOM Killer を無効化するかどうか指定
+     --oom-score-adj=0             コンテナに対してホスト側の OOM 優先度を設定 ( -1000 ～ 1000 を指定)
+     -P, --publish-all             全ての露出ポートをランダムならポートに公開
+     -p, --publish=[]              コンテナのポートをホスト側に公開
+     --pid=""                      使用する PID 名前空間
+     --pids-limit=-1                コンテナの pids 制限を調整 (kernel 4.3 以上は -1 で無制限に設定)
+     --privileged                  このコンテナに対して拡張権限を与える
+     --read-only                   コンテナのルート・ファイルシステムを読み込み専用としてマウント
+     --restart="no"                再起動ポリシー (no, on-failure[:max-retry], always, unless-stopped)
+     --rm                          コンテナ終了時、自動的に削除
+     --shm-size=[]                 `/dev/shm` のサイズ。書式は `<数値><単位>`. `数値` は必ず `0` より大きい。単位はオプションで `b` (bytes)、 `k` (kilobytes)、 `m` (megabytes)、 `g` (gigabytes) を指定可能。単位を指定しなければ、システムは bytes を使う。数値を指定しなければ、システムは `64m` を使う
+     --security-opt=[]             セキュリティ・オプション
+     --sig-proxy=true              受信したシグナルをプロセスにプロキシ
+     --stop-signal="SIGTERM"       コンテナの停止シグナル
+     --storage-opt=[]              コンテナごとにストレージ・ドライバのオプションを指定
+     --sysctl[=*[]*]]              実行時に名前空間カーネル・パラメータを調整
+     -t, --tty                     疑似ターミナル (pseudo-TTY) を割り当て
+     -u, --user=""                 ユーザ名または UID
+     --userns=""                   コンテナのユーザ名前空間
+                                   'host': Docker ホストで使うユーザ名前空間
+                                   '': Docker デーモンのユーザ名前空間を指定するには `--userns-remap` オプションを使う
+     --ulimit=[]                   Ulimit オプション
+     --uts=""                      使用する UTS 名前空間
+     -v, --volume=[ホスト側ソース:]コンテナ側送信先[:<オプション>]
+                                   ボリュームを拘束マウント。カンマ区切りで指定
+                                   `オプション` は [rw|ro], [z|Z], [[r]shared|[r]slave|[r]private], [nocopy]
+                                   'ホスト側ソース' は絶対パスまたは名前の値
+     --volume-driver=""            コンテナのボリューム・ドライバ
+     --volumes-from=[]             指定したコンテナからボリュームをマウント
+     -w, --workdir=""              コンテナ内の作業用ディレクトリを指定
+
+
 .. sidebar:: 目次
 
    .. contents:: 
        :depth: 3
        :local:
 
-.. code-block:: bash
-
-   Usage: docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
-   
-   Run a command in a new container
-   
-     -a, --attach=[]               Attach to STDIN, STDOUT or STDERR
-     --add-host=[]                 Add a custom host-to-IP mapping (host:ip)
-     --blkio-weight=0              Block IO weight (relative weight)
-     --blkio-weight-device=[]      Block IO weight (relative device weight, format: `DEVICE_NAME:WEIGHT`)
-     --cpu-shares=0                CPU shares (relative weight)
-     --cap-add=[]                  Add Linux capabilities
-     --cap-drop=[]                 Drop Linux capabilities
-     --cgroup-parent=""            Optional parent cgroup for the container
-     --cidfile=""                  Write the container ID to the file
-     --cpu-percent=0               Limit percentage of CPU available for execution by the container. Windows daemon only.
-     --cpu-period=0                Limit CPU CFS (Completely Fair Scheduler) period
-     --cpu-quota=0                 Limit CPU CFS (Completely Fair Scheduler) quota
-     --cpuset-cpus=""              CPUs in which to allow execution (0-3, 0,1)
-     --cpuset-mems=""              Memory nodes (MEMs) in which to allow execution (0-3, 0,1)
-     -d, --detach                  Run container in background and print container ID
-     --detach-keys                 Specify the escape key sequence used to detach a container
-     --device=[]                   Add a host device to the container
-     --device-read-bps=[]          Limit read rate (bytes per second) from a device (e.g., --device-read-bps=/dev/sda:1mb)
-     --device-read-iops=[]         Limit read rate (IO per second) from a device (e.g., --device-read-iops=/dev/sda:1000)
-     --device-write-bps=[]         Limit write rate (bytes per second) to a device (e.g., --device-write-bps=/dev/sda:1mb)
-     --device-write-iops=[]        Limit write rate (IO per second) to a device (e.g., --device-write-bps=/dev/sda:1000)
-     --disable-content-trust=true  Skip image verification
-     --dns=[]                      Set custom DNS servers
-     --dns-opt=[]                  Set custom DNS options
-     --dns-search=[]               Set custom DNS search domains
-     -e, --env=[]                  Set environment variables
-     --entrypoint=""               Overwrite the default ENTRYPOINT of the image
-     --env-file=[]                 Read in a file of environment variables
-     --expose=[]                   Expose a port or a range of ports
-     --group-add=[]                Add additional groups to run as
-     -h, --hostname=""             Container host name
-     --help                        Print usage
-     -i, --interactive             Keep STDIN open even if not attached
-     --ip=""                       Container IPv4 address (e.g. 172.30.100.104)
-     --ip6=""                      Container IPv6 address (e.g. 2001:db8::33)
-     --ipc=""                      IPC namespace to use
-     --isolation=""                Container isolation technology
-     --kernel-memory=""            Kernel memory limit
-     -l, --label=[]                Set metadata on the container (e.g., --label=com.example.key=value)
-     --label-file=[]               Read in a file of labels (EOL delimited)
-     --link=[]                     Add link to another container
-     --log-driver=""               Logging driver for container
-     --log-opt=[]                  Log driver specific options
-     -m, --memory=""               Memory limit
-     --mac-address=""              Container MAC address (e.g. 92:d0:c6:0a:29:33)
-     --io-maxbandwidth=""          Maximum IO bandwidth limit for the system drive
-                                   (Windows only). The format is `<number><unit>`.
-                                   Unit is optional and can be `b` (bytes per second),
-                                   `k` (kilobytes per second), `m` (megabytes per second),
-                                   or `g` (gigabytes per second). If you omit the unit,
-                                   the system uses bytes per second.
-                                   --io-maxbandwidth and --io-maxiops are mutually exclusive options.
-     --io-maxiops=0                Maximum IO per second limit for the system drive (Windows only).
-                                   --io-maxbandwidth and --io-maxiops are mutually exclusive options.
-     --memory-reservation=""       Memory soft limit
-     --memory-swap=""              A positive integer equal to memory plus swap. Specify -1 to enable unlimited swap.
-     --memory-swappiness=""        Tune a container's memory swappiness behavior. Accepts an integer between 0 and 100.
-     --name=""                     Assign a name to the container
-     --net="bridge"                Connect a container to a network
-                                   'bridge': create a network stack on the default Docker bridge
-                                   'none': no networking
-                                   'container:<name|id>': reuse another container's network stack
-                                   'host': use the Docker host network stack
-                                   '<network-name>|<network-id>': connect to a user-defined network
-     --net-alias=[]                Add network-scoped alias for the container
-     --oom-kill-disable            Whether to disable OOM Killer for the container or not
-     --oom-score-adj=0             Tune the host's OOM preferences for containers (accepts -1000 to 1000)
-     -P, --publish-all             Publish all exposed ports to random ports
-     -p, --publish=[]              Publish a container's port(s) to the host
-     --pid=""                      PID namespace to use
-     --pids-limit=-1                Tune container pids limit (set -1 for unlimited), kernel >= 4.3
-     --privileged                  Give extended privileges to this container
-     --read-only                   Mount the container's root filesystem as read only
-     --restart="no"                Restart policy (no, on-failure[:max-retry], always, unless-stopped)
-     --rm                          Automatically remove the container when it exits
-     --shm-size=[]                 Size of `/dev/shm`. The format is `<number><unit>`. `number` must be greater than `0`.  Unit is optional and can be `b` (bytes), `k` (kilobytes), `m` (megabytes), or `g` (gigabytes). If you omit the unit, the system uses bytes. If you omit the size entirely, the system uses `64m`.
-     --security-opt=[]             Security Options
-     --sig-proxy=true              Proxy received signals to the process
-     --stop-signal="SIGTERM"       Signal to stop a container
-     --storage-opt=[]              Set storage driver options per container
-     --sysctl[=*[]*]]              Configure namespaced kernel parameters at runtime
-     -t, --tty                     Allocate a pseudo-TTY
-     -u, --user=""                 Username or UID (format: <name|uid>[:<group|gid>])
-     --userns=""                   Container user namespace
-                                   'host': Use the Docker host user namespace
-                                   '': Use the Docker daemon user namespace specified by `--userns-remap` option.
-     --ulimit=[]                   Ulimit options
-     --uts=""                      UTS namespace to use
-     -v, --volume=[host-src:]container-dest[:<options>]
-                                   Bind mount a volume. The comma-delimited
-                                   `options` are [rw|ro], [z|Z],
-                                   [[r]shared|[r]slave|[r]private], and
-                                   [nocopy]. The 'host-src' is an absolute path
-                                   or a name value.
-     --volume-driver=""            Container's volume driver
-     --volumes-from=[]             Mount volumes from the specified container(s)
-     -w, --workdir=""              Working directory inside the container
 
 .. The docker run command first creates a writeable container layer over the specified image, and then starts it using the specified command. That is, docker run is equivalent to the API /containers/create then /containers/(id)/start. A stopped container can be restarted with all its previous changes intact using docker start. See docker ps -a to view a list of all containers.
 
-``docker run`` コマンドは、まず指定されたイメージ上に書き込み可能なコンテナ・レイヤを ``create`` （作成）します。それから、指定されたコマンドを使って ``start`` （開始）します。この ``docker run`` は、 API の ``/containers/create`` のあとで ``/containers/(id)/start`` を実行するのと同じです。以前に使っていたコンテナは ``docker start`` で再起動できます。全てのコンテナを表示するには ``docker ps -a`` を使います。
+``docker run`` コマンドは、まず指定されたイメージ上に書き込み可能なコンテナ・レイヤを ``create`` （作成）します。それから、指定されたコマンドを使って ``start`` （開始）します。この ``docker run`` は、 API の ``/containers/create`` の後で ``/containers/(id)/start`` を実行するのと同じです。以前に使っていたコンテナは ``docker start`` で再起動できます。全てのコンテナを表示するには ``docker ps -a`` を使います。
 
 .. The docker run command can be used in combination with docker commit to change the command that a container runs. There is additional detailed information about docker run in the Docker run reference.
 
-``docker run`` コマンドは、 :doc:`コンテナの内容を確定するため <commit>`  ``docker commit`` コマンドと連携して使えます。
+``docker run`` コマンドは、 :doc:`コンテナの内容を確定するため <commit>` に、 ``docker commit`` コマンドと連携して使えます。
 
 .. For information on connecting a container to a network, see the “Docker network overview“.
 
@@ -163,6 +162,7 @@ run
 .. Capture container ID (–cidfile)
 
 コンテナ ID の取得（--cidfile）
+----------------------------------------
 
 .. code-block:: bash
 
@@ -170,13 +170,13 @@ run
 
 .. This will create a container and print test to the console. The cidfile flag makes Docker attempt to create a new file and write the container ID to it. If the file exists already, Docker will return an error. Docker will close this file when docker run exits.
 
-これはコンテナを作成し、コンソール上に ``test`` を表示します。 ``cidfile`` フラグは Docker に新しいファイルを作成させ、そこにコンテナ ID を書かせるものです。もしファイルが既に存在している場合、Docker はエラーを返します。 ``docker run`` を終了すると、Docker はこのファイルを閉じます。
+これはコンテナを作成し、コンソール上に ``test`` を表示します。 ``cidfile`` フラグは Docker に新しいファイルを作成させ、そこにコンテナ ID を書かせるものです。もしファイルが既に存在している場合、Docker はエラーを返します。 ``docker run`` を終了したら、Docker はこのファイルを閉じます。
 
 .. Full container capabilities (–privileged)
 
 .. _full-container-capabilities:
 
-コンテナの完全能力（--privileged）
+コンテナのケーパビリティ（--privileged）
 ----------------------------------------
 
 .. code-block:: bash
@@ -199,7 +199,7 @@ run
 
 .. The --privileged flag gives all capabilities to the container, and it also lifts all the limitations enforced by the device cgroup controller. In other words, the container can then do almost everything that the host can do. This flag exists to allow special use-cases, like running Docker within Docker.
 
-``--privileged`` フラグはコンテナに対して *全ての* 能力を与えます。また、そのために ``device`` cgroup コントローラの制限を昇進します。言い換えると、コンテナはホスト上であらゆる処理が可能となります。このフラグが存在するとき、 Docker の中で Docker を動かすように、特別な使い方ができます。
+``--privileged`` フラグはコンテナに対して *全ての* 能力を与えます。また、そのために ``device`` cgroup コントローラの制限を昇格します。言い換えますと、コンテナはホスト上であらゆる処理が可能となります。このフラグが存在する時、 Docker の中で Docker を動かすといった特別な使い方ができます。
 
 .. Set working directory (-w)
 
@@ -244,7 +244,7 @@ tmpfs のマウント（--tmpfs）
 
 .. The --tmpfs flag mounts an empty tmpfs into the container with the rw, noexec, nosuid, size=65536k options.
 
-``--tmpfs`` フラグはコンテナに対して空っぽの tmfps をマウントします。このとき、オプション ``rw`` 、 ``noexec`` 、``nosuid`` 、 ``size=65536k`` オプションを指定しています。
+``--tmpfs`` フラグはコンテナに対して空の tmfps をマウントします。この時、オプション ``rw`` 、 ``noexec`` 、``nosuid`` 、 ``size=65536k`` オプションを指定しています。
 
 .. Mount volume (-v, –read-only)
 
@@ -259,7 +259,7 @@ tmpfs のマウント（--tmpfs）
 
 .. The -v flag mounts the current working directory into the container. The -w lets the command being executed inside the current working directory, by changing into the directory to the value returned by pwd. So this combination executes the command using the container, but inside the current working directory.
 
-``-v`` フラグは現在の作業ディレクトリをコンテナ内にマウントします。 ``-w`` によって、コマンドは現在の作業用ディレクトリの中で実行されます。ディレクトリとは、 ``pwd`` を実行して得られるディレクトリが該当します。このコマンドを組みあわせてコンテナを実行しても、現在の作業ディレクトリの中で実行されるのです。
+``-v`` フラグは現在の作業ディレクトリをコンテナ内にマウントします。 ``-w`` によって、コマンドは現在の作業用ディレクトリの中で実行されます。ディレクトリとは、 ``pwd`` を実行して得られるディレクトリが該当します。このコマンドを組み合わせててコンテナを実行しても、現在の作業ディレクトリの中で実行されるのです。
 
 .. code-block:: bash
 
@@ -275,7 +275,7 @@ tmpfs のマウント（--tmpfs）
 
 .. Volumes can be used in combination with --read-only to control where a container writes files. The --read-only flag mounts the container’s root filesystem as read only prohibiting writes to locations other than the specified volumes for the container.
 
-ボリュームで ``--read-only`` を指定して使うことで、コンテナの書き込み可能なファイルを制御できます。 ``--read-only`` フラグはコンテナのルート・ファイルシステムを読み込み専用としてマウントし、コンテナで指定したボリューム以外での書き込みを禁止します。
+ボリュームに ``--read-only`` を指定して使うことで、コンテナの書き込み可能なファイルを制御できます。 ``--read-only`` フラグはコンテナのルート・ファイルシステムを読み込み専用としてマウントし、コンテナで指定したボリューム以外での書き込みを禁止します。
 
 .. code-block:: bash
 
@@ -288,6 +288,7 @@ Docker Unix ソケットと docker バイナリ（ https://get.docker.com から
 .. Publish or expose port (-p, –expose)
 
 ポートの公開と露出（-p、--expose）
+----------------------------------------
 
 .. code-block:: bash
 
@@ -318,7 +319,7 @@ Docker Unix ソケットと docker バイナリ（ https://get.docker.com から
 
 .. This sets simple (non-array) environmental variables in the container. For illustration all three flags are shown here. Where -e, --env take an environment variable and value, or if no = is provided, then that variable’s current value is passed through (i.e. $MYVAR1 from the host is set to $MYVAR1 in the container). When no = is provided and that variable is not defined in the client’s environment then that variable will be removed from the container’s list of environment variables. All three flags, -e, --env and --env-file can be repeated.
 
-これはコンテナ内におけるシンプルな（配列ではない）環境変数を設定します。この３つのフラグについて説明します。 ``-e`` と ``--env`` は環境変数と値を指定する場所です。あるいは、もし ``=`` が指定されなければ、現在の環境変数がそのまま送られます（例： ホスト上の ``$MYVAR1`` がコンテナ内の ``$MYVAR1`` にセットされます ）。 ``=`` が指定されず、クライアント側の環境変数がない場合は、コンテナ内の環境変数からは削除されます。この３つのフラグ ``-e`` 、 ``--env`` 、``--env-file`` は何度でも指定できます。
+これはコンテナ内におけるシンプルな（配列ではない）環境変数を設定します。この３つのフラグについて説明します。 ``-e`` と ``--env`` は環境変数と値を指定する場所です。あるいは、もし ``=`` が指定されなければ、現在の環境変数がそのまま送られます（例： ホスト上の ``$MYVAR1`` がコンテナ内の ``$MYVAR1`` にセットされます ）。 ``=`` が指定されず、クライアント側の環境変数が無い場合は、コンテナ内の環境変数からは削除されます。この３つのフラグ ``-e`` 、 ``--env`` 、``--env-file`` は何度でも指定できます。
 
 .. Regardless of the order of these three flags, the --env-file are processed first, and then -e, --env flags. This way, the -e or --env will override variables as needed.
 
@@ -342,7 +343,7 @@ Docker Unix ソケットと docker バイナリ（ https://get.docker.com から
    $ cat ./env.list
    TEST_FOO=BAR
    
-   # this is a comment
+   # ここはコメント
    TEST_APP_DEST_HOST=10.10.0.127
    TEST_APP_DEST_PORT=8888
    _TEST_BAR=FOO
@@ -351,7 +352,7 @@ Docker Unix ソケットと docker バイナリ（ https://get.docker.com から
    123qwe=bar
    org.spring.config=something
    
-   # pass through this variable from the caller
+   # 実行者は環境変数を渡す
    TEST_PASSTHROUGH
    $ TEST_PASSTHROUGH=howdy docker run --env-file ./env.list busybox env
    PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -406,7 +407,7 @@ Docker Unix ソケットと docker バイナリ（ https://get.docker.com から
 
 .. Use the --label-file flag to load multiple labels from a file. Delimit each label in the file with an EOL mark. The example below loads labels from a labels file in the current directory:
 
-``--label-file`` フラグはファイルから複数のラベルを読み込みます。ラベルとしての句切りは各行の EOL マークが現れるまでです。
+``--label-file`` フラグはファイルから複数のラベルを読み込みます。ラベルとしての区切りは各行の EOL マークが現れるまでです。
 
 .. code-block:: bash
 
@@ -461,7 +462,7 @@ label-file の書式は、環境変数の読み込み書式と似ています（
 
 .. You can connect multiple containers to the same network. Once connected, the containers can communicate easily need only another container’s IP address or name. For overlay networks or custom plugins that support multi-host connectivity, containers connected to the same multi-host network but launched from different Engines can also communicate in this way.
 
-同じネットワークに複数のコンテナを接続できます。接続すると、コンテナは別のコンテナの IP アドレスや名前で簡単に通信できるようになります。 ``overlay`` ネットワークやカスタム・プラグインは複数のホストへの接続をサポートしています。異なった Docker エンジンが起動していても、コンテナが同じマルチホスト・ネットワーク上であれば、相互に通信できます。
+同じネットワークに複数のコンテナを接続できます。接続したら、コンテナは別のコンテナの IP アドレスや名前で簡単に通信できるようになります。 ``overlay`` ネットワークやカスタム・プラグインは複数のホストへの接続をサポートしています。異なった Docker エンジンが起動していても、コンテナが同じマルチホスト・ネットワーク上であれば、相互に通信できます。
 
 .. Note: Service discovery is unavailable on the default bridge network. Containers can communicate via their IP addresses by default. To communicate by name, they must be linked.
 
@@ -490,7 +491,7 @@ label-file の書式は、環境変数の読み込み書式と似ています（
 
 .. Labeling systems like SELinux require that proper labels are placed on volume content mounted into a container. Without a label, the security system might prevent the processes running inside the container from using the content. By default, Docker does not change the labels set by the OS.
 
-SELinux のようなラベリング・システムは、コンテナ内にボリューム内容をマウントするにあたり、適切なラベルを必要とします。ラベルがなければ、対象の領域を使ったコンテナの中では、セキュリティ・システムがプロセスの実行を阻止します。デフォルトでは、Docker は OS によってセットされるラベルを変更しません。
+SELinux のようなラベリング・システムは、コンテナ内にボリューム内容をマウントするにあたり、適切なラベルを必要とします。ラベルが無ければ、対象の領域を使ったコンテナの中では、セキュリティ・システムがプロセスの実行を阻止します。デフォルトでは、Docker は OS によってセットされるラベルを変更しません。
 
 .. To change the label in the container context, you can add either of two suffixes :z or :Z to the volume mount. These suffixes tell Docker to relabel file objects on the shared volumes. The z option tells Docker that two containers share the volume content. As a result, Docker labels the content with a shared content label. Shared volume labels allow all containers to read/write content. The Z option tells Docker to label the content with a private unshared label. Only the current container can use a private volume.
 
@@ -547,7 +548,7 @@ STDIN・STDOUT・STDERRのアタッチ（-a）
 
 .. It is often necessary to directly expose devices to a container. The --device option enables that. For example, a specific block storage device or loop device or audio device can be added to an otherwise unprivileged container (without the --privileged flag) and have the application directly access it.
 
-しばしばデバイスをコンテナに直接晒す必要があります。 ``--device`` オプションは、これを可能にします。例えば、特定のブロック・ストレージ・デバイス、ループ・デバイス、オーディオ・デバイスを使うにあたり、コンテナに特権を与えなくても（ ``--privileged`` フラグを使わずに ）追加でき、アプリケーションが直接使えるようになります。
+デバイスをコンテナに直接さらす必要が度々あります。 ``--device`` オプションは、これを可能にします。例えば、特定のブロック・ストレージ・デバイス、ループ・デバイス、オーディオ・デバイスを使うにあたり、コンテナに特権を与えなくても（ ``--privileged`` フラグを使わずに ）追加でき、アプリケーションが直接使えるようになります。
 
 .. By default, the container will be able to read, write and mknod these devices. This can be overridden using a third :rwm set of options to each --device flag:
 
@@ -581,7 +582,7 @@ STDIN・STDOUT・STDERRのアタッチ（-a）
 .. _restart-policies:
 
 再起動ポリシー
-====================
+------------------------------
 
 .. Use Docker’s --restart to specify a container’s restart policy. A restart policy controls whether the Docker daemon restarts a container after exit. Docker supports the following restart policies:
 
@@ -613,7 +614,7 @@ Docker の ``--restart`` はコンテナの *再起動ポリシー* を指定し
 
 .. This will run the redis container with a restart policy of always so that if the container exits, Docker will restart it.
 
-これは ``redis`` コンテナを再起動ポリシー **always** で起動するものであり、コンテナが終了すると Docker がコンテナを再起動します。
+これは ``redis`` コンテナを再起動ポリシー **always** で起動するものです。つまり、コンテナが終了したら Docker がコンテナを再起動します。
 
 .. More detailed information on restart policies can be found in the Restart Policies (–restart) section of the Docker run reference page.
 
@@ -623,7 +624,7 @@ Docker の ``--restart`` はコンテナの *再起動ポリシー* を指定し
 
 .. _add-entries-to-container-hosts-file:
 
-コンテナの host ファイルにエントリ追加（--add-host）
+コンテナの hosts ファイルにエントリ追加（--add-host）
 ------------------------------------------------------------
 
 .. You can add other hosts into a container’s /etc/hosts file by using one or more --add-host flags. This example adds a static address for a host named docker:
@@ -647,7 +648,7 @@ Docker の ``--restart`` はコンテナの *再起動ポリシー* を指定し
 
 .. The flags you pass to ip addr show depend on whether you are using IPv4 or IPv6 networking in your containers. Use the following flags for IPv4 address retrieval for a network device named eth0:
 
-コンテナどの IPv4 ないし IPv6 ネットワークを使っているかは、 ``ip addr show`` の結果次第です。次のフラグは、ネットワーク・デバイス ``eth0`` の IPv4 アドレスを指定します。
+コンテナが何の IPv4 ないし IPv6 ネットワークを使っているかは、 ``ip addr show`` の結果次第です。次のフラグは、ネットワーク・デバイス ``eth0`` の IPv4 アドレスを指定します。
 
 .. code-block:: bash
 
@@ -656,7 +657,7 @@ Docker の ``--restart`` はコンテナの *再起動ポリシー* を指定し
 
 .. For IPv6 use the -6 flag instead of the -4 flag. For other network devices, replace eth0 with the correct device name (for example docker0 for the bridge device).
 
-IPv6 は ``-4`` フラグにかわって ``-6`` を指定します。他のネットワーク・デバイスの場合は ``eth0`` を適切なデバイス名に置き換えます（例えば ``docker0`` ブリッジ・デバイス ）。
+IPv6 は ``-4`` フラグの替わりに ``-6`` を指定します。他のネットワーク・デバイスの場合は ``eth0`` を適切なデバイス名に置き換えます（例えば ``docker0`` ブリッジ・デバイス ）。
 
 .. Set ulimits in container (–ulimit)
 
@@ -678,11 +679,11 @@ IPv6 は ``-4`` フラグにかわって ``-6`` を指定します。他のネ�
 
 .. note::
 
-   ``ハード・リミット`` を指定しなければ、 ``ソフト・リミット`` が両方の値として使われます。 ``ulimits`` が設定されなければ、デーモンのデフォルトの ``ulimits`` が継承されます。 ``as`` オプションは無効化されました。言い換えると、次のようなスクリプトはサポートされていません： ``$ docker run -it --ulimit as=1024 fedora /bin/bash``
+   ``ハード・リミット`` を指定しなければ、 ``ソフト・リミット`` が両方の値として使われます。 ``ulimits`` を指定しなければ、デーモンのデフォルト ``ulimits`` を継承します。 ``as`` オプションは無効化されました。言い換えるますと、次のようなスクリプトはサポートされていません： ``$ docker run -it --ulimit as=1024 fedora /bin/bash``
 
 .. The values are sent to the appropriate syscall as they are set. Docker doesn’t perform any byte conversion. Take this into account when setting the values.
 
-設定されると適切な ``syscall`` が送信されます。Docker は転送に何ら介在しません。値が設定された時のみ処理されます。
+設定したら適切な ``syscall`` が送信されます。Docker は転送に何ら介在しません。値が設定された時のみ処理されます。
 
 .. For nproc usage
 
@@ -693,7 +694,7 @@ IPv6 は ``-4`` フラグにかわって ``-6`` を指定します。他のネ�
 
 .. Be careful setting nproc with the ulimit flag as nproc is designed by Linux to set the maximum number of processes available to a user, not to a container. For example, start four containers with daemon user:
 
-``ulimit`` フラグに ``nproc`` を設定するときは、 ``nproc`` は Linux が利用者が利用可能な最大プロセス数をセットするものであり、コンテナに対してではないので注意してください。次の例は、 ``daemon`` ユーザとして４つのコンテナを起動します。
+``ulimit`` フラグに ``nproc`` を設定する時とは、 ``nproc`` で Linux 利用者が利用可能な最大プロセス数をセットするものであり、コンテナに対してではないので注意してください。次の例は、 ``daemon`` ユーザとして４つのコンテナを起動します。
 
 .. code-block:: bash
 
@@ -704,7 +705,7 @@ IPv6 は ``-4`` フラグにかわって ``-6`` を指定します。他のネ�
 
 .. The 4th container fails and reports “[8] System error: resource temporarily unavailable” error. This fails because the caller set nproc=3 resulting in the first three containers using up the three processes quota set for the daemon user.
 
-４番目のコンテナは失敗し、“[8] System error: resource temporarily unavailable” エラーを表示します。これが失敗するのは、実行時に ``nproc=3`` を指定しているので、３つのコンテナが起動してしまうと、 ``daemon`` ユーザに指定されたプロセスの上限（quota）に達してしまうからです。
+４番めのコンテナは失敗し、“[8] System error: resource temporarily unavailable” エラーを表示します。これが失敗するのは、実行時に ``nproc=3`` を指定したからです。３つのコンテナが起動したら、 ``daemon`` ユーザに指定されたプロセスの上限（quota）に達してしまうからです。
 
 .. Stop container with signal (–stop-signal)
 
@@ -715,7 +716,7 @@ IPv6 は ``-4`` フラグにかわって ``-6`` を指定します。他のネ�
 
 .. The --stop-signal flag sets the system call signal that will be sent to the container to exit. This signal can be a valid unsigned number that matches a position in the kernel’s syscall table, for instance 9, or a signal name in the format SIGNAME, for instance SIGKILL.
 
-``--stop-signal`` フラグは、システムコールのシグナルを設定します。これは、コンテナを終了するときに送るものです。このシグナルはカーネルの syscall テーブルにある適切な数値と一致する必要があります。例えば 9 や、SIGNAME のような形式のシグナル名（例：SIGKILL）です。
+``--stop-signal`` フラグは、システムコールのシグナルを設定します。これは、コンテナを終了する時に送るものです。このシグナルはカーネルの syscall テーブルにある適切な数値と一致する必要があります。例えば 9 や、SIGNAME のような形式のシグナル名（例：SIGKILL）です。
 
 .. Specify isolation technology for container (--isolation)
 
