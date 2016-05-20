@@ -13,21 +13,23 @@
 network ls
 =======================================
 
+
+.. code-block:: bash
+
+   使い方:  docker network ls [オプション]
+   
+   ユーザが作成した全てのネットワークを一覧
+     -f, --filter=[]       指定した状況に応じて出力をフィルタ
+     --help                使い方の表示
+     --no-trunc            出力を省略 (truncate) しない
+     -q, --quiet           整数値の ID のみ表示
+
 .. sidebar:: 目次
 
    .. contents:: 
        :depth: 3
        :local:
 
-.. code-block:: bash
-
-   Usage:  docker network ls [OPTIONS]
-   
-   Lists all the networks created by the user
-     -f, --filter=[]       Filter output based on conditions provided
-     --help                Print usage
-     --no-trunc            Do not truncate the output
-     -q, --quiet           Only display numeric IDs
 
 .. Lists all the networks the Engine daemon knows about. This includes the networks that span across multiple hosts in a cluster, for example:
 
@@ -65,11 +67,11 @@ Docker エンジンの ``daemon`` が把握している全てのネットワー�
 
 .. The filtering flag (-f or --filter) format is a key=value pair. If there is more than one filter, then pass multiple flags (e.g. --filter "foo=bar" --filter "bif=baz"). Multiple filter flags are combined as an OR filter. For example, -f type=custom -f type=builtin returns both custom and builtin networks.
 
-フィルタリング・フラグ（ ``-f`` または ``--filter`` ）の書式は ``key=value`` のペアです。フィルタを何回もしたい場合は、複数のフラグを使います（例： ``-filter "foo=bar" --filter "bif=baz"`` ）。複数のフィルタを指定すると、 ``OR`` （同一条件）フィルタとして連結されます。例えば、 ``-f type=custom -f type=builtin`` は ``custom`` と ``builtin``  ネットワークの両方を返します。
+フィルタリング・フラグ（ ``-f`` または ``--filter`` ）の書式は ``key=value`` のペアです。フィルタを何回もしたい場合は、複数のフラグを使います（例： ``-filter "foo=bar" --filter "bif=baz"`` ）。複数のフィルタを指定したら、 ``OR`` （同一条件）フィルタとして連結されます。例えば、 ``-f type=custom -f type=builtin`` は ``custom`` と ``builtin``  ネットワークの両方を返します。
 
 .. The currently supported filters are:
 
-現時点でサポートされているフィルタは、次の通りです。
+現時点でサポートしているフィルタは、次の通りです。
 
 ..    id (network’s id)
     label (label=<key> or label=<key>=<value>)
@@ -77,7 +79,7 @@ Docker エンジンの ``daemon`` が把握している全てのネットワー�
     type (custom|builtin)
 
 * ID （ネットワークID）
-* ラベル（ ``labe=<キー>`` または ``label=<キー>=<値>`` ）
+* ラベル（ ``label=<キー>`` または ``label=<キー>=<値>`` ）
 * 名前（ネットワーク名）
 * タイプ（custom|builtin）
 
@@ -116,7 +118,7 @@ id
 
 .. Label
 
-Label
+ラベル
 ----------
 
 .. The label filter matches containers based on the presence of a label alone or a label and a value.
@@ -146,7 +148,7 @@ Label
 
 .. Name
 
-name
+名前
 ----------
 
 .. The name filter matches on all or part of a network’s name.
@@ -176,8 +178,8 @@ name
 
 .. Type
 
-type
-==========
+タイプ
+----------
 
 .. The type filter supports two values; builtin displays predefined networks (bridge, none, host), whereas custom displays user defined networks.
 
@@ -196,7 +198,7 @@ type
 
 .. By having this flag it allows for batch cleanup. For example, use this filter to delete all user defined networks:
 
-このフラグを指定すると、バッチ処理でクリーンアップできます。例えば、全てのユーザ定義をネットワークを削除するには、次のようにします。
+このフラグを指定したら、バッチ処理でクリーンアップできます。例えば、全てのユーザ定義ネットワークを削除するには、次のようにします。
 
 .. code-block:: bash
 
@@ -204,7 +206,7 @@ type
 
 .. A warning will be issued when trying to remove a network that has containers attached.
 
-コンテナがアタッチされているネットワークを削除しようとすると、警告が表示されます。
+コンテナがアタッチされているネットワークを削除しようとしたら、警告が表示されます。
 
 
 

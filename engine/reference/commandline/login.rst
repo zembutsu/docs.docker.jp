@@ -49,13 +49,13 @@ login
 
 .. You can log into any public or private repository for which you have credentials. When you log in, the command stores encoded credentials in $HOME/.docker/config.json on Linux or %USERPROFILE%/.docker/config.json on Windows.
 
-証明書（credential）があれば、あらゆるパブリックないしプライベートなリポジトリにログインできます。ログインすると、コマンドは符号化（エンコード）した証明書を Linux であれば ``$HOME/.docker/config.json`` に、Windows であれば ``%USERPROFILE%/.docker/config.json`` に保管します。
+証明書（credential）があれば、あらゆるパブリックないしプライベートなリポジトリにログインできます。ログインしたら、コマンドは符号化（エンコード）した証明書を Linux であれば ``$HOME/.docker/config.json`` に、Windows であれば ``%USERPROFILE%/.docker/config.json`` に保管します。
 
 ..    Note: When running sudo docker login credentials are saved in /root/.docker/config.json.
 
 .. note::
 
-   ``sudo docker login`` を実行すると、証明書は ``/root/.docker/config.json`` に保管されます。
+   ``sudo docker login`` を実行したら、証明書は ``/root/.docker/config.json`` に保管されます。
 
 .. Credentials store
 
@@ -114,7 +114,7 @@ Docker Engine はユーザの証明書（credential）を外部の証明書ス�
 
 .. The helpers always use the first argument in the command to identify the action. There are only three possible values for that argument: store, get, and erase.
 
-ヘルパーはコマンドのアクションを決めるため、常に１番目の引数を使います。ここで利用可能な引数とは ``store``  ``get`` ``erase`` のいずれかです。
+ヘルパーはコマンドのアクションを決めるため、常に１番めの引数を使います。ここで利用可能な引数とは ``store``  ``get`` ``erase`` のいずれかです。
 
 .. The store command takes a JSON payload from the standard input. That payload carries the server address, to identify the credential, the user name, and either a password or an identity token.
 

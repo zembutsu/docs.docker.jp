@@ -35,7 +35,7 @@ network connect
 
 .. You can also use the docker run --net=<network-name> option to start a container and immediately connect it to a network.
 
-あるいは、 ``docker run --net=<ネットワーク名>`` オプションを使うと、コンテナ起動時に、ただちにネットワークに接続します。
+あるいは、 ``docker run --net=<ネットワーク名>`` オプションを使えば、コンテナ起動時に直ちにネットワークに接続します。
 
 .. code-block:: bash
 
@@ -67,11 +67,11 @@ network connect
 
 .. You can pause, restart, and stop containers that are connected to a network. Paused containers remain connected and can be revealed by a network inspect. When the container is stopped, it does not appear on the network until you restart it.
 
-コンテナを中断（pause）・再起動・停止しても、ネットワークに接続したままです。中断したコンテナはネットワークに接続しつづけており、 ``network inspect`` で確認できます。コンテナを停止（stop）すると、再起動するまではネットワーク上に表示されません。
+コンテナを中断（pause）・再起動・停止しても、ネットワークに接続したままです。中断したコンテナはネットワークに接続し続けており、 ``network inspect`` で確認できます。コンテナを停止（stop）すると、再起動するまではネットワーク上に表示されません。
 
 .. If specified, the container’s IP address(es) is reapplied when a stopped container is restarted. If the IP address is no longer available, the container fails to start. One way to guarantee that the IP address is available is to specify an --ip-range when creating the network, and choose the static IP address(es) from outside that range. This ensures that the IP address is not given to another container while this container is not on the network.
 
-停止しているコンテナを再起動するときに IP アドレスを指定できます。もしも IP アドレスが使えなければ、コンテナは起動に失敗します。IP アドレスを確実に割り当てるためには、ネットワーク作成時に ``--ip-range`` （IPアドレスの範囲）を指定しておき、その範囲内外にある静的な IP アドレスを割り当てる方法があります。そうしておけば、コンテナが対象のネットワークに所属していない間でも、他のコンテナに IP アドレスを使われる心配はありません。
+停止しているコンテナを再起動する時に IP アドレスを指定できます。もしも IP アドレスが使えなければ、コンテナは起動に失敗します。IP アドレスを確実に割り当てるためには、ネットワーク作成時に ``--ip-range`` （IPアドレスの範囲）を指定しておき、その範囲内外にある静的な IP アドレスを割り当てる方法があります。そうしておけば、コンテナが対象のネットワークに所属していない間でも、他のコンテナに IP アドレスを使われる心配はありません。
 
 .. code-block:: bash
 
@@ -87,7 +87,7 @@ network connect
 
 .. Once connected in network, containers can communicate using only another container’s IP address or name. For overlay networks or custom plugins that support multi-host connectivity, containers connected to the same multi-host network but launched from different Engines can also communicate in this way.
 
-ネットワークに接続すると、コンテナは他のコンテナの IP アドレスや名前を使って通信できるようになります。 ``overlay`` ネットワークやカスタム・プラグインは複数のホスト間の接続性（multi-host connectivity）をサポートしています。コンテナは同じマルチホスト・ネットワーク上で接続できるだけではありません。異なったエンジンによって起動されていたとしても、同様に通信できます。
+ネットワークに接続したら、コンテナは他のコンテナの IP アドレスや名前を使って通信できるようになります。 ``overlay`` ネットワークやカスタム・プラグインは複数のホスト間の接続性（multi-host connectivity）をサポートしています。コンテナは同じマルチホスト・ネットワーク上で接続できるだけではありません。異なったエンジンによって起動されていたとしても、同様に通信できます。
 
 .. You can connect a container to one or more networks. The networks need not be the same type. For example, you can connect a single container bridge and overlay networks.
 

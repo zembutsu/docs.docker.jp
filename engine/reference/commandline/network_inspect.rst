@@ -15,12 +15,12 @@ network inspect
 
 .. code-block:: bash
 
-   Usage:  docker network inspect [OPTIONS] NETWORK [NETWORK..]
+   使い方:  docker network inspect [オプション] ネットワーク [ネットワーク..]
    
-   Displays detailed information on a network
+   ネットワークの詳細情報を表示
    
-     -f, --format=       Format the output using the given go template.
-     --help             Print usage
+     -f, --format=       go テンプレートで指定したフォーマットで表示
+     --help             使い方の表示
 
 .. Returns information about one or more networks. By default, this command renders all results in a JSON object. For example, if you connect two containers to the default bridge network:
 

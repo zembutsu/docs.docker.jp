@@ -24,12 +24,12 @@ push
 
 .. Use docker push to share your images to the Docker Hub registry or to a self-hosted one.
 
-``docker push`` を使い、イメージを `Docker Hub <https://hub.docker.com/>`_ レジストリや、自分で作成したレジストリで共有できるようになります。
+``docker push`` を使うと、イメージを `Docker Hub <https://hub.docker.com/>`_ レジストリや、自分で作成したレジストリで共有できるようになります。
 
 
 .. Killing the docker push process, for example by pressing CTRL-c while it is running in a terminal, will terminate the push operation.
 
-``docker push`` プロセスを停止するには、ターミナルで実行中に ``CTRL-c`` を押すると、push 処理を中断します。
+``docker push`` プロセスを停止するには、ターミナルで実行中に ``CTRL-c`` を押すと、push 処理を中断します。
 
 .. Registry credentials are managed by docker login.
 

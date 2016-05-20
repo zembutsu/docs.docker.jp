@@ -14,12 +14,12 @@ network disconnect
 
 .. code-block:: bash
 
-   Usage:  docker network disconnect [OPTIONS] NETWORK CONTAINER
+   使い方:  docker network disconnect [オプション] ネットワーク コンテナ
    
-   Disconnects a container from a network
+   ネットワークからコンテナを切断
    
-     -f, --force        Force the container to disconnect from a network
-     --help             Print usage
+     -f, --force        ネットワークからコンテナを強制切断
+     --help             使い方の表示
 
 .. Disconnects a container from a network. The container must be running to disconnect it from the network.
 
