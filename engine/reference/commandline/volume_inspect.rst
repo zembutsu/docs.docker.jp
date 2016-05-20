@@ -13,20 +13,14 @@
 volume inspect
 =======================================
 
-.. sidebar:: 目次
-
-   .. contents:: 
-       :depth: 3
-       :local:
-
 .. code-block:: bash
 
-   Usage: docker volume inspect [OPTIONS] VOLUME [VOLUME...]
+   使い方: docker volume inspect [オプション] ボリューム [ボリューム...]
    
-   Return low-level information on a volume
+   ボリュームの低レベル情報を返す
    
-     -f, --format=       Format the output using the given go template.
-     --help              Print usage
+     -f, --format=       指定した go テンプレートの形式で出力
+     --help              使い方の表示
 
 .. Returns information about a volume. By default, this command renders all results in a JSON array. You can specify an alternate format to execute a given template for each result. Go’s text/template package describes all the details of the format.
 

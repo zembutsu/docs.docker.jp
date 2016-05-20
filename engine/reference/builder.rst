@@ -25,7 +25,7 @@ Docker は ``Dockerfile`` から命令を読み込み、自動的にイメージ
 
 .. This page describes the commands you can use in a Dockerfile. When you are done reading this page, refer to the Dockerfile Best Practices for a tip-oriented guide.
 
-このページでは ``Dockerfile`` 内で利用可能な命令を説明します。ページを読み終えたら、より便利に使うための ``Dockerfile`` の :doc:`ベスト・プラクティス </engine/userguide/eng-image/dockerfile_best-practice>` をご覧ください。
+このページでは ``Dockerfile`` 内で利用可能な命令を説明します。ページを読み終えたら、より便利に使うための ``Dockerfile`` の :doc:`ベスト・プラクティス </engine/userguide/eng-image/dockerfile_best-practice>` もご覧ください。
 
 .. Usage
 
@@ -38,7 +38,7 @@ Docker は ``Dockerfile`` から命令を読み込み、自動的にイメージ
 
 .. A context is processed recursively. So, a PATH includes any subdirectories and the URL includes the repository and its submodules. A simple build command that uses the current directory as context:
 
-コンテクストの処理は再帰的です。そのため、 ``PATH`` にはサブディレクトリを含みます。また ``URL`` であればリポジトリと、そのサブモジュールも含みます。単に build コマンドを実行すると、現在のディレクトリをコンテクストとして使います。
+コンテクストの処理は再帰的です。そのため、 ``PATH`` にはサブディレクトリを含みます。また ``URL`` であればリポジトリと、そのサブモジュールも含みます。単に build コマンドを実行したら、現在のディレクトリをコンテクストとして使います。
 
 .. code-block:: bash
 
@@ -58,7 +58,7 @@ Docker は ``Dockerfile`` から命令を読み込み、自動的にイメージ
 
 .. To use a file in the build context, the Dockerfile refers to the file specified in an instruction, for example, a COPY instruction. To increase the build’s performance, exclude files and directories by adding a .dockerignore file to the context directory. For information about how to create a .dockerignore file see the documentation on this page.
 
-``Dockerfile`` に記述した ``COPY`` 命令などで使うファイルを指定を参照し、コンテクスト（内容物の意味）を構築します。構築パフォーマンスを向上するためには、 ``.dockerignore`` ファイルにファイルやディレクトリを追加し、コンテクスト・ディレクトリから除外できます。より詳しい情報は、 :ref:`.dockerignore ファイルの作成 <dockerignore-file>` をご覧ください。
+``Dockerfile`` に記述した ``COPY`` 命令などで使うファイル指定を参照し、コンテクスト（内容物の意味）を構築します。構築パフォーマンスを向上するためには、 ``.dockerignore`` ファイルにファイルやディレクトリを追加し、コンテクスト・ディレクトリから除外できます。より詳しい情報は、 :ref:`.dockerignore ファイルの作成 <dockerignore-file>` をご覧ください。
 
 .. Traditionally, the Dockerfile is called Dockerfile and located in the root of the context. You use the -f flag with docker build to point to a Dockerfile anywhere in your file system.
 
@@ -70,7 +70,7 @@ Docker は ``Dockerfile`` から命令を読み込み、自動的にイメージ
 
 .. You can specify a repository and tag at which to save the new image if the build succeeds:
 
-新しいイメージの構築に成功するときは、新しいイメージにリポジトリとタグを指定できます。
+新しいイメージの構築に成功する時は、新しいイメージにリポジトリとタグを指定できます。
 
 .. code-block:: bash
 
@@ -107,7 +107,7 @@ Docker は可能であればいつでも中間イメージ（キャッシュ）�
 
 .. When you’re done with your build, you’re ready to look into Pushing a repository to its registry.
 
-構築が終わったら、:doc:`レジストリにリポジトリを送信 </engine/userguide/containers/dockerrepos>` する準備が整いました。
+構築が終わったら、:doc:`レジストリにリポジトリを送信 </engine/userguide/containers/dockerrepos>` する準備が整います。
 
 .. Format
 
@@ -129,7 +129,7 @@ Docker は可能であればいつでも中間イメージ（キャッシュ）�
 
 .. Docker runs the instructions in a Dockerfile in order. The first instruction must be `FROM` in order to specify the Base Image from which you are building.
 
-Docker は ``Dockerfile`` の命令を順番に実行します。イメージ構築にあたり :ref:`ベース・イメージ <base-image>` を指定するため、 **１行目の命令は「FROM」であるべき** です。
+Docker は ``Dockerfile`` の命令を順番に実行します。イメージ構築にあたり :ref:`ベース・イメージ <base-image>` を指定するため、 **１行めの命令は「FROM」であるべき** です。
 
 .. Docker will treat lines that begin with # as a comment. A # marker anywhere else in the line will be treated as an argument. This allows statements like:
 
@@ -153,7 +153,7 @@ Docker は ``#`` で *始まる* 行をコメントとみなします。 ``#`` �
 
 .. Environment variables (declared with the ENV statement) can also be used in certain instructions as variables to be interpreted by the Dockerfile. Escapes are also handled for including variable-like syntax into a statement literally.
 
-環境変数（ :ref:`env 命令 <env>` で宣言）を使うことで、 ``Dockerfile`` で変数を解釈できるようにします。命令文字（ステートメント・リテラル）中では、変数の様な構文でエスケープ・シーケンスも扱えます。
+``Dockerfile`` は環境変数（ :ref:`env 命令 <env>` で宣言）も解釈できます。命令文字（ステートメント・リテラル）中では、変数の様な構文でエスケープ・シーケンスも扱えます。
 
 .. Environment variables are notated in the Dockerfile either with $variable_name or ${variable_name}. They are treated equivalently and the brace syntax is typically used to address issues with variable names with no whitespace, like ${foo}_bar.
 
@@ -166,8 +166,8 @@ Docker は ``#`` で *始まる* 行をコメントとみなします。 ``#`` �
 ..    ${variable:-word} indicates that if variable is set then the result will be that value. If variable is not set then word will be the result.
     ${variable:+word} indicates that if variable is set then word will be the result, otherwise the result is the empty string.
 
-* ``${変数:-文字}`` は、 ``変数`` を設定すると、その値を使うことを意味します。もし ``変数`` がセットされなければ、 ``文字`` が設定されます。
-* ``${変数:+文字}`` は、 ``変数`` を設定すると、``文字`` を使います。 ``変数`` がセットされなければ、空白のままにします。
+* ``${変数:-文字}`` は、 ``変数`` を設定したら、その値を使うことを意味します。もし ``変数`` がセットされ無ければ、 ``文字`` が設定されます。
+* ``${変数:+文字}`` は、 ``変数`` を設定したら、``文字`` を使います。 ``変数`` がセットされなければ、空白のままにします。
 
 .. In all cases, word can be any string, including additional environment variables.
 
@@ -175,7 +175,7 @@ Docker は ``#`` で *始まる* 行をコメントとみなします。 ``#`` �
 
 .. Escaping is possible by adding a \ before the variable: \$foo or \${foo}, for example, will translate to $foo and ${foo} literals respectively.
 
-エスケープするには ``\$foo`` や ``\${foo}`` のように、変数名の前に ``\`` を付けます。たとえば、 ``$foo`` と ``${foo}`` リテラルは別々のものです。
+エスケープするには ``\$foo`` や ``\${foo}`` のように、変数名の前に ``\`` を付けます。例えば、 ``$foo`` と ``${foo}`` リテラルは別々のものです。
 
 .. Example (parsed representation is displayed after the #):
 
@@ -209,17 +209,17 @@ Docker は ``#`` で *始まる* 行をコメントとみなします。 ``#`` �
 
 ..    ONBUILD (when combined with one of the supported instructions above)
 
-* ``ONBLIUD`` （上記の命令と組みあわせて使う場合にサポートされます）
+* ``ONBLIUD`` （上記の命令と組み合わせて使う場合にサポートされます）
 
 ..    Note: prior to 1.4, ONBUILD instructions did NOT support environment variable, even when combined with any of the instructions listed above.
 
 .. note::
 
-   1.4 より前のバージョンでは、環境変数における ``ONBUILD`` 命令と上記の命令の組み合わせはサポート **されていません** 。
+   1.4 より前のバージョンでは、環境変数における ``ONBUILD`` 命令と上記の命令の組み合わせはサポート **していません** 。
 
 .. Environment variable substitution will use the same value for each variable throughout the entire command. In other words, in this example:
 
-環境変数を使う代わりに、各変数をコマンド上で利用できます。すなわち、次の例は、
+環境変数を使う代わりに、各変数をコマンド上で利用できます。次の例を見ましょう。
 
 .. code-block:: bash
 
@@ -229,7 +229,7 @@ Docker は ``#`` で *始まる* 行をコメントとみなします。 ``#`` �
 
 .. will result in def having a value of hello, not bye. However, ghi will have a value of bye because it is not part of the same command that set abc to bye.
 
-この結果、 ``def`` は ``hello`` 値ですが、 ``bye`` ではありません。しかしながら ``ghi`` は ``bye`` 値になります。これは ``abc`` を ``bye`` に設定するのと同じコマンド行ではないためです。
+この結果は、 ``def`` の値が ``hello`` であり、 ``bye`` ではありません。しかしながら ``ghi`` の値は ``bye`` になります。これは ``abc`` を ``bye`` に設定するのと同じコマンド行ではないためです。
 
 .. _dockerignore-file:
 
@@ -268,7 +268,7 @@ CLI は ``.dockerignore`` ファイルを行ごとに隔てて解釈します。
 
 * ``*/temp*`` … ルート以下のあらゆるサブディレクトリを含め、 ``temp`` で始まる名称のファイルとディレクトリを除外します。例えば、テキストファイル ``/somedir/temporary.txt`` は除外しますし、ディレクトリ ``/somedir/temp`` も除外します。
 * ``*/*/temp*`` … ルートから２レベル以下の ``temp`` で 始まる名称のファイルとディレクトリを除外します。例えば ``/somedir/subdir/temporary.txt`` を除外します。
-* ``temp?`` … ルートディレクトリにあるファイル名が ``temp`` と１文字一致するファイルとディレクトリを除外します。例えば、 ``/tempa`` と ``/tempb`` が除外します。
+* ``temp?`` … ルートディレクトリにあるファイル名が ``temp`` と１文字一致するファイルとディレクトリを除外します。例えば、 ``/tempa`` と ``/tempb`` を除外します。
 
 .. Matching is done using Go’s filepath.Match rules. A preprocessing step removes leading and trailing whitespace and eliminates . and .. elements using Go’s filepath.Clean. Lines that are blank after preprocessing are ignored.
 
@@ -303,7 +303,7 @@ README を含むファイル以外は、``README-secret.md`` も含め、残り�
 
 .. Now consider this example:
 
-その次の例を考えて見ましょう。
+その次の例を考えましょう。
 
 .. code-block:: bash
 
@@ -321,7 +321,7 @@ README を含む全てのファイル除外します。真ん中の行 ``README-
 
 .. Finally, you may want to specify which files to include in the context, rather than which to exclude. To achieve this, specify * as the first pattern, followed by one or more ! exception patterns.
 
-最後に、特定のファイルのみコンテクストに含め、他を除外したい場合があるでしょう。実行するには、始めに``*`` パターンに指定し、以下１つまたは複数の ``!`` 例外パターンを記述します。
+最後に、特定のファイルのみコンテクストに含め、他を除外したい場合があるでしょう。実行するには、始めに ``*`` パターンに指定し、以下１つまたは複数の ``!`` 例外パターンを記述します。
 
 .. Note: For historical reasons, the pattern . is ignored.
 
@@ -352,7 +352,7 @@ FROM
 
 .. The FROM instruction sets the Base Image for subsequent instructions. As such, a valid Dockerfile must have FROM as its first instruction. The image can be any valid image – it is especially easy to start by pulling an image from the Public Repositories.
 
-``FROM`` 命令は、 :ref:`ベース・イメージ <base-image>` サブシーケント命令を指定します。あるいは、有効な ``Dockerfile`` は、１行目を ``FROM`` 命令で指定する必要があります。イメージとは、あらゆる有効なものが利用できます。 :doc:`パブリック・リポジトリ </engine/userguide/containers/dockerrepos>` から **イメージを取得する** 方法が一番簡単です。
+``FROM`` 命令は、以降の命令で使う :ref:`ベース・イメージ <base-image>` を指定します。あるいは、有効な ``Dockerfile`` は、１行めを ``FROM`` 命令で指定する必要があります。イメージとは、あらゆる有効なものが利用できます。 :doc:`パブリック・リポジトリ </engine/userguide/containers/dockerrepos>` から **イメージを取得する** 方法が一番簡単です。
 
 ..    FROM must be the first non-comment instruction in the Dockerfile.
 
@@ -364,7 +364,7 @@ FROM
 
 ..    The tag or digest values are optional. If you omit either of them, the builder assumes a latest by default. The builder returns an error if it cannot match the tag value.
 
-* ``タグ`` や ``digest`` 値はオプションです。省略した場合、ビルダーはデフォルトの ``latest`` とみなします。ビルダーは一致する ``tag`` 値がなければエラーを返します。
+* ``タグ`` や ``digest`` 値はオプションです。省略した場合、ビルダーはデフォルトの ``latest`` とみなします。ビルダーは一致する ``tag`` 値が無ければエラーを返します。
 
 .. _maintainer:
 
@@ -373,7 +373,7 @@ MAINTAINER
 
 .. code-block:: bash
 
-    MAINTAINER <name>
+    MAINTAINER <名前>
 
 .. The MAINTAINER instruction allows you to set the Author field of the generated images.
 
@@ -391,16 +391,16 @@ RUN には２つの形式があります。
 ..  RUN <command> (shell form, the command is run in a shell - /bin/sh -c)
     RUN ["executable", "param1", "param2"] (exec form)
 
-* ``RUN <コマンド>``（シェル形式、コマンドをシェル ``/bin/sh -c`` で実行する）
+* ``RUN <コマンド>`` （シェル形式、コマンドをシェル ``/bin/sh -c`` で実行する）
 * ``RUN ["実行バイナリ", "パラメータ１", "パラメータ２"]`` （ *exec* 形式）
 
 .. The RUN instruction will execute any commands in a new layer on top of the current image and commit the results. The resulting committed image will be used for the next step in the Dockerfile.
 
-``RUN`` 命令は既存イメージ上の新しいレイヤーで、あらゆるコマンドを実行し、その結果をコミットする命令です。コミットの結果得られたイメージは、 ``Dockerfile`` の次のステップで使われます。
+``RUN`` 命令は既存イメージ上の新しいレイヤで、あらゆるコマンドを実行し、その結果をコミットする命令です。コミットの結果得られたイメージは、 ``Dockerfile`` の次のステップで使われます。
 
 .. Layering RUN instructions and generating commits conforms to the core concepts of Docker where commits are cheap and containers can be created from any point in an image’s history, much like source control.
 
-``RUN`` 命令の積み重ねとコミットによる生成は Docker の中心となるコンセプト（概念）に従ったものです。コミットは簡単であり、ソース・コントロールのように、イメージの履歴上のあらゆる場所からコンテナを作成可能です。
+``RUN`` 命令の積み重ねとコミットによるイメージ生成は、 Docker の中心となるコンセプト（概念）に従ったものです。コミットは簡単であり、ソース・コントロールのように、イメージの履歴上のあらゆる場所からコンテナを作成可能です。
 
 .. The exec form makes it possible to avoid shell string munging, and to RUN commands using a base image that does not contain /bin/sh.
 
@@ -408,7 +408,7 @@ RUN には２つの形式があります。
 
 .. In the shell form you can use a \ (backslash) to continue a single RUN instruction onto the next line. For example, consider these two lines:
 
-*シェル* 形式では、RUN 命令を ``\`` （バックスラッシュ）を使い、次の行と連結します。例えば、次の２行があるものとします。
+*シェル* 形式では、RUN 命令を ``\`` （バックスラッシュ）を使い、次の行と連結します。例えば、次の２行があるとします。
 
 .. code-block:: bash
 
@@ -443,7 +443,7 @@ RUN には２つの形式があります。
 
 .. The cache for RUN instructions isn’t invalidated automatically during the next build. The cache for an instruction like RUN apt-get dist-upgrade -y will be reused during the next build. The cache for RUN instructions can be invalidated by using the --no-cache flag, for example docker build --no-cache.
 
-次の構築時、``RUN`` 命令によるキャッシュは自動的に無効化できません。 ``RUN apt-get dist-upgrade -y`` のような命令でキャッシュがあれば、次の構築時に再利用されます。 ``RUN`` 命令でキャッシュを使いたくない場合は、 ``--no-cache`` フラグを使います。例： ``docker build --no-cache`` .
+次の構築時、``RUN`` 命令によるキャッシュは自動的に無効化できません。 ``RUN apt-get dist-upgrade -y`` のような命令のキャッシュがあれば、次の構築時に再利用されます。 ``RUN`` 命令でキャッシュを使いたくない場合は、 ``--no-cache`` フラグを使います。例： ``docker build --no-cache`` .
 
 .. See the Dockerfile Best Practices guide for more information.
 
@@ -460,11 +460,11 @@ RUN には２つの形式があります。
 
 ..    Issue 783 is about file permissions problems that can occur when using the AUFS file system. You might notice it during an attempt to rm a file, for example.
 
-* `Issue 783 <https://github.com/docker/docker/issues/783>`_ は、AUFS ファイルシステム使用時、ファイルのパーミッションに関する問題が起こり得ます。たとえば、ファイルを ``rm`` しようとする場合は注意が必要です。
+* `Issue 783 <https://github.com/docker/docker/issues/783>`_ は、AUFS ファイルシステム使用時、ファイルのパーミッションに関する問題が起こり得ます。例えば、ファイルを ``rm`` しようとする場合は注意が必要です。
 
 .. For systems that have recent aufs version (i.e., dirperm1 mount option can be set), docker will attempt to fix the issue automatically by mounting the layers with dirperm1 option. More details on dirperm1 option can be found at aufs man page
 
-最近の aufs バージョンを使っているシステムでは（例： ``dirperm1`` マウント・オプションが利用可能 ）、docker は ``dirperm1`` オプションのレイヤーをマウント時、自動的に問題を修正しようとします。 ``dirperm1`` オプションに関する詳細は、 ``aufs`` `man ページ <http://aufs.sourceforge.net/aufs3/man.html>`_ をご覧ください。
+最近の aufs バージョンを使っているシステムでは（例： ``dirperm1`` マウント・オプションが利用可能 ）、docker は ``dirperm1`` オプションのレイヤをマウント時、自動的に問題を修正しようとします。 ``dirperm1`` オプションに関する詳細は、 ``aufs`` `man ページ <http://aufs.sourceforge.net/aufs3/man.html>`_ をご覧ください。
 
 .. If your system doesn’t have support for dirperm1, the issue describes a workaround.
 
@@ -519,7 +519,7 @@ CMD
 
 .. If you use the shell form of the CMD, then the <command> will execute in /bin/sh -c:
 
-``CMD`` で *シェル* 形式を使うと、 ``<コマンド>`` は ``/bin/sh -c`` で実行されます。
+``CMD`` を *シェル* 形式で使えば、 ``<コマンド>`` は ``/bin/sh -c`` で実行されます。
 
 .. code-block:: bash
 
@@ -528,7 +528,7 @@ CMD
 
 .. If you want to run your <command> without a shell then you must express the command as a JSON array and give the full path to the executable. This array form is the preferred format of CMD. Any additional parameters must be individually expressed as strings in the array:
 
-**<コマンド>をシェルを使わずに実行** したい場合、コマンドを JSON 配列で記述し、実行可能なフルパスで指定する必要があります。 **配列の形式は CMD では望ましい形式です** 。あらゆる追加パラメータは個々の配列の文字列として指定する必要があります。
+**<コマンド>をシェルを使わずに実行** したい場合、コマンドを JSON 配列で記述し、実行可能なフルパスで指定する必要があります。 **配列の形式が CMD では望ましい形式です** 。あらゆる追加パラメータは個々の配列の文字列として指定する必要があります。
 
 .. code-block:: bash
 
@@ -541,7 +541,7 @@ CMD
 
 .. If the user specifies arguments to docker run then they will override the default specified in CMD.
 
-ユーザが ``docker run`` で引数を指定したとき、これらは ``CMD`` で指定したデフォルトを上書きします。
+ユーザが ``docker run`` で引数を指定した時、これらは ``CMD`` で指定したデフォルトを上書きします。
 
 ..    Note: don’t confuse RUN with CMD. RUN actually runs a command and commits the result; CMD does not execute anything at build time, but specifies the intended command for the image.
 
@@ -572,7 +572,7 @@ LABEL
 
 .. An image can have more than one label. To specify multiple labels, Docker recommends combining labels into a single LABEL instruction where possible. Each LABEL instruction produces a new layer which can result in an inefficient image if you use many labels. This example results in a single image layer.
 
-イメージは複数のラベルを持てます。複数のラベルを指定すると、 Docker は可能であれば１つの ``LABEL`` にすることをお勧めします。各 ``LABEL`` 命令は新しいレイヤを準備しますが、多くのラベルを使えば、それだけレイヤを使います。次の例は１つのイメージ・レイヤを使うものです。
+イメージは複数のラベルを持てます。複数のラベルを指定したら、 Docker は可能であれば１つの ``LABEL`` にすることをお勧めします。各 ``LABEL`` 命令は新しいレイヤを準備しますが、多くのラベルを使えば、それだけレイヤを使います。次の例は１つのイメージ・レイヤを使うものです。
 
 .. code-block:: bash
 
@@ -590,7 +590,7 @@ LABEL
 
 .. Labels are additive including LABELs in FROM images. If Docker encounters a label/key that already exists, the new value overrides any previous labels with identical keys.
 
-ラベルには、``FROM`` イメージが使う ``LABEL`` も含まれています。ラベルのキーが既に存在しているとき、Docker は特定のキーを持つラベルの値を上書きします。
+ラベルには、``FROM`` イメージが使う ``LABEL`` も含まれています。ラベルのキーが既に存在している時、Docker は特定のキーを持つラベルの値を上書きします。
 
 .. To view an image’s labels, use the docker inspect command.
 
@@ -645,7 +645,7 @@ ENV
 
 .. The second form, ENV <key>=<value> ..., allows for multiple variables to be set at one time. Notice that the second form uses the equals sign (=) in the syntax, while the first form does not. Like command line parsing, quotes and backslashes can be used to include spaces within values.
 
-２つめの形式は ``ENV <key>=<value> ...`` です。これは一度に複数の変数を指定できます。先ほどと違い、構文の２つめにイコールサイン（=）があるので気をつけてください。コマンドラインの分割、クォート、バックスラッシュは、空白スペースも含めて値になります。
+２つめの形式は ``ENV <key>=<value> ...`` です。これは一度に複数の変数を指定できます。先ほどと違い、構文の２つめにイコールサイン（=）があるので気を付けてください。コマンドラインの分割、クォート、バックスラッシュは、空白スペースも含めて値になります。
 
 .. For example:
 
@@ -672,7 +672,7 @@ ENV
 
 .. The environment variables set using ENV will persist when a container is run from the resulting image. You can view the values using docker inspect, and change them using docker run --env <key>=<value>.
 
-環境変数の設定に ``ENV`` を使うと、作成したイメージを使ってコンテナを実行しても有効です。どのような値が設定されているかは ``docker inspect`` で確認でき、変更するには ``docker run --env <key>=<value>`` を使います。
+環境変数の設定に ``ENV`` を使えば、作成したイメージを使ってコンテナを実行しても有効です。どのような値が設定されているかは ``docker inspect`` で確認でき、変更するには ``docker run --env <key>=<value>`` を使います。
 
 ..    Note: Environment persistence can cause unexpected side effects. For example, setting ENV DEBIAN_FRONTEND noninteractive may confuse apt-get users on a Debian-based image. To set a value for a single command, use RUN <key>=<value> <command>.
 
@@ -701,7 +701,7 @@ Add は２つの形式があります。
 
 .. Multiple <src> resource may be specified but if they are files or directories then they must be relative to the source directory that is being built (the context of the build).
 
-複数の ``<ソース>`` リソースを指定できます。このとき、ファイルやディレクトリはソースディレクトリ（構築時のコンテクスト）からの相対パス上に存在しないと構築できません。
+複数の ``<ソース>`` リソースを指定できます。この時、ファイルやディレクトリはソースディレクトリ（構築時のコンテクスト）からの相対パス上に存在しないと構築できません。
 
 .. Each <src> may contain wildcards and matching will be done using Go’s filepath.Match rules. For example:
 
@@ -745,7 +745,7 @@ Add は２つの形式があります。
 
 .. note::
 
-   ``ADD`` 命令が出てくると、まず ``<ソース>`` に含まれる内容が変更されていれば、以降の ``Dockerfile`` に書かれている命令のキャッシュを全て無効化します。これは ``RUN`` 命令のキャッシュ無効化も含まれます。より詳細な情報については ``Dockerfile`` の :ref:`ベスト・プラクティス・ガイド <build-cache>` をご覧ください。
+   ``ADD`` 命令の処理時、まず ``<ソース>`` に含まれる内容が変更されていれば、以降の ``Dockerfile`` に書かれている命令のキャッシュを全て無効化します。これは ``RUN`` 命令のキャッシュ無効化も含まれます。より詳細な情報については ``Dockerfile`` の :ref:`ベスト・プラクティス・ガイド <build-cache>` をご覧ください。
 
 .. ADD obeys the following rules:
 
@@ -765,7 +765,7 @@ Add は２つの形式があります。
 
 ..    If <src> is a directory, the entire contents of the directory are copied, including filesystem metadata.
 
-* ``<ソース>`` がディレクトリの場合、ディレクトリの内容の全てがコピーされます。これにはファイルシステムのメタデータを含みます。
+* ``<ソース>`` がディレクトリの場合、ディレクトリの内容の全てをコピーします。これにはファイルシステムのメタデータを含みます。
 
 ..    Note: The directory itself is not copied, just its contents.
 
@@ -775,7 +775,7 @@ Add は２つの形式があります。
 
 ..    If <src> is a local tar archive in a recognized compression format (identity, gzip, bzip2 or xz) then it is unpacked as a directory. Resources from remote URLs are not decompressed. When a directory is copied or unpacked, it has the same behavior as tar -x: the result is the union of:
 
-* もし ``<ソース>`` が *ローカル* にある tar アーカイブの場合、圧縮フォーマットを認識します（gzip、bzip2、xz を認識）。それからディレクトリに展開します。 *リモート* の URL が指定された場合は展開 **しません**。ディレクトリにコピーまたは展開するときは、 ``tar -x`` と同じ働きをします。結果は次の処理を同時に行います。
+* もし ``<ソース>`` が *ローカル* にある tar アーカイブの場合、圧縮フォーマットを認識します（gzip、bzip2、xz を認識）。それからディレクトリに展開します。 *リモート* の URL が指定された場合は展開 **しません**。ディレクトリにコピーまたは展開する時は、 ``tar -x`` と同じ働きをします。結果は次の処理を同時に行います。
 
 ..        Whatever existed at the destination path and
 ..        The contents of the source tree, with conflicts resolved in favor of “2.” on a file-by-file basis.
@@ -787,11 +787,11 @@ Add は２つの形式があります。
 
 .. note::
 
-   ファイルが圧縮フォーマットと認識されるか、あるいはファイルの集まりをベースにしているのかは、ファイルの名前では判断しません。例えば、空のファイル名の拡張子が ``.tar.gz`` であれば圧縮ファイルと認識しないため、展開エラーのメッセージを表示 **しません** 。そして単純に送信先にファイルをコピーします。
+   ファイルが圧縮フォーマットと認識するか、あるいはファイルの集まりをベースにしているのかは、ファイルの名前では判断しません。例えば、空のファイル名の拡張子が ``.tar.gz`` だとしても、圧縮ファイルと認識しないため、展開エラーのメッセージを表示 **しません** 。そして単純に送信先にファイルをコピーします。
 
 ..    If <src> is any other kind of file, it is copied individually along with its metadata. In this case, if <dest> ends with a trailing slash /, it will be considered a directory and the contents of <src> will be written at <dest>/base(<src>).
 
-* もし ``<ソース>`` がファイル以外であれば、個々のメタデータと一緒にコピーします。 ``<送信先>`` の末尾がスラッシュ ``/`` で終わる場合は、ディレクトリであるとみなし、 ``ソース`` の内容を ``<送信先>/base(<ソース>)`` に書き込みます。
+* もし ``<ソース>`` がファイル以外であれば、個々のメタデータと一緒にコピーします。 ``<送信先>`` の末尾がスラッシュ ``/`` で終わる場合は、ディレクトリであるとみなし、 ``<ソース>`` の内容を ``<送信先>/base(<ソース>)`` に書き込みます。
 
 ..    If multiple <src> resources are specified, either directly or due to the use of a wildcard, then <dest> must be a directory, and it must end with a slash /.
 
@@ -810,14 +810,12 @@ Add は２つの形式があります。
 COPY
 ==========
 
-COPY has two forms:
+.. COPY has two forms:
 
 COPY は２つの形式があります。
 
 ..    COPY <src>... <dest>
     COPY ["<src>",... "<dest>"] (this form is required for paths containing whitespace)
-
-.. code-block:: bash
 
 * ``COPY <ソース>... <送信先>``
 * ``COPY ["<ソース>",... "<送信先>"]`` （この形式はパスに空白スペースを使う場合に必要）
@@ -828,7 +826,7 @@ COPY は２つの形式があります。
 
 .. Multiple <src> resource may be specified but they must be relative to the source directory that is being built (the context of the build).
 
-複数の ``<ソース>`` リソースを指定できます。このとき、ソースディレクトリ（構築時のコンテクスト）からの相対パス上に存在しないと構築できません。
+複数の ``<ソース>`` リソースを指定できます。この時、ソースディレクトリ（構築時のコンテクスト）からの相対パス上に存在しないと構築できません。
 
 .. Each <src> may contain wildcards and matching will be done using Go’s filepath.Match rules. For example:
 
@@ -868,17 +866,17 @@ COPY は２つの形式があります。
 
 ..    If <src> is a directory, the entire contents of the directory are copied, including filesystem metadata.
 
-* ``<ソース>`` がディレクトリの場合、ディレクトリの内容の全てがコピーされます。これにはファイルシステムのメタデータを含みます。
+* ``<ソース>`` がディレクトリの場合、ディレクトリ内容の全てをコピーします。これにはファイルシステムのメタデータを含みます。
 
 ..    Note: The directory itself is not copied, just its contents.
 
 .. note::
 
-   ディレクトリ自身はコピーされません。ディレクトリは単なるコンテントの入れ物です。
+   ディレクトリ自身はコピーしません。ディレクトリは単なるコンテントの入れ物です。
 
 ..     If <src> is any other kind of file, it is copied individually along with its metadata. In this case, if <dest> ends with a trailing slash /, it will be considered a directory and the contents of <src> will be written at <dest>/base(<src>).
 
-* もし ``<ソース>`` がファイル以外であれば、個々のメタデータと一緒にコピーします。 ``<送信先>`` の末尾がスラッシュ ``/`` で終わる場合は、ディレクトリであるとみなし、 ``ソース`` の内容を ``<送信先>/base(<ソース>)`` に書き込みます。
+* もし ``<ソース>`` がファイル以外であれば、個々のメタデータと一緒にコピーします。 ``<送信先>`` の末尾がスラッシュ ``/`` で終わる場合は、ディレクトリであるとみなし、 ``<ソース>`` の内容を ``<送信先>/base(<ソース>)`` に書き込みます。
 
 ..    If multiple <src> resources are specified, either directly or due to the use of a wildcard, then <dest> must be a directory, and it must end with a slash /.
 
@@ -921,7 +919,7 @@ ENTRYPOINT には２つの形式があります。
 
 .. Command line arguments to docker run <image> will be appended after all elements in an exec form ENTRYPOINT, and will override all elements specified using CMD. This allows arguments to be passed to the entry point, i.e., docker run <image> -d will pass the -d argument to the entry point. You can override the ENTRYPOINT instruction using the docker run --entrypoint flag.
 
-コマンドラインで ``docker run <イメージ>`` コマンドに引数を付けると、*exec* 形式 の ``ENTRYPOINT`` で指定されている全要素の後に追加されます。そして、このとき ``CMD`` を使って指定されていた要素は上書きされます。この動きにより、引数はエントリー・ポイント（訳者注：指定されたバイナリ）に渡されます。例えば、 ``docker run <イメージ> -d`` は、引数 ``-d`` をエントリポイントに渡します。 ``ENTRYPOINT`` 命令を上書きするには、 ``docker run --entrypoint`` フラグを使います。
+コマンドラインで ``docker run <イメージ>`` コマンドに引数を付けますと、*exec* 形式 の ``ENTRYPOINT`` で指定した全要素の後に追加します。そして、この時に ``CMD`` を使って指定していた要素を上書きします。この動きにより、引数はエントリ・ポイント（訳者注：指定されたバイナリ）に渡されます。例えば、 ``docker run <イメージ> -d`` は、引数 ``-d`` をエントリポイントに渡します。 ``ENTRYPOINT`` 命令を上書きするには、 ``docker run --entrypoint`` フラグを使います。
 
 .. The shell form prevents any CMD or run command line arguments from being used, but has the disadvantage that your ENTRYPOINT will be started as a subcommand of /bin/sh -c, which does not pass signals. This means that the executable will not be the container’s PID 1 - and will not receive Unix signals - so your executable will not receive a SIGTERM from docker stop <container>.
 
@@ -929,7 +927,7 @@ ENTRYPOINT には２つの形式があります。
 
 .. Only the last ENTRYPOINT instruction in the Dockerfile will have an effect.
 
-``Dockerfile`` の最後に現れた ``ENTRYPOINT`` 命令のみ有効です。
+なお、 ``Dockerfile`` の最後に現れた ``ENTRYPOINT`` 命令のみ有効です。
 
 .. Exec form ENTRYPOINT example
 
@@ -948,7 +946,7 @@ exec 形式の ENTRYPOINT 例
 
 .. When you run the container, you can see that top is the only process:
 
-コンテナを実行すると、 ``top`` のプロセスが１つだけ見えます。
+コンテナを実行したら、 ``top`` のプロセスが１つだけ見えます。
 
 .. code-block:: bash
 
@@ -1012,7 +1010,7 @@ exec 形式の ENTRYPOINT 例
 
 .. Lastly, if you need to do some extra cleanup (or communicate with other containers) on shutdown, or are co-ordinating more than one executable, you may need to ensure that the ENTRYPOINT script receives the Unix signals, passes them on, and then does some more work:
 
-さいごに、シャットダウン時に何らかの追加クリーンアップ（あるいは、他のコンテナとの通信）が必要な場合や、１つ以上の実行ファイルと連携したい場合、 ``ENTRYPOINT`` のスクリプトが Unix シグナルを受信出来るようにし、それを使って様々な処理を行います。
+もしも、シャットダウン時に何らかの追加クリーンアップ（あるいは、他のコンテナとの通信）が必要な場合や、１つ以上の実行ファイルと連携したい場合は、 ``ENTRYPOINT`` のスクリプトが Unix シグナルを受信出来るようにし、それを使って様々な処理を行います。
 
 .. code-block:: bash
 
@@ -1037,7 +1035,7 @@ exec 形式の ENTRYPOINT 例
 
 .. If you run this image with docker run -it --rm -p 80:80 --name test apache, you can then examine the container’s processes with docker exec, or docker top, and then ask the script to stop Apache:
 
-このイメージを ``docker run -it --rm -p 80:80 --name test apache`` で実行すると、コンテナのプロセス状態を ``docker exec`` や ``docker top`` で調べられます。それから、スクリプトに Apache 停止を依頼します。
+このイメージを ``docker run -it --rm -p 80:80 --name test apache`` で実行したら、コンテナのプロセス状態を ``docker exec`` や ``docker top`` で調べられます。それから、スクリプトに Apache 停止を依頼します。
 
 .. code-block:: bash
 
@@ -1085,7 +1083,7 @@ exec 形式の ENTRYPOINT 例
 
 .. You can specify a plain string for the ENTRYPOINT and it will execute in /bin/sh -c. This form will use shell processing to substitute shell environment variables, and will ignore any CMD or docker run command line arguments. To ensure that docker stop will signal any long running ENTRYPOINT executable correctly, you need to remember to start it with exec:
 
-``ENTRYPOINT`` に文字列を指定すると、 ``/bin/sh -c`` で実行されます。この形式はシェルの処理を使うので、シェル上の環境変数を展開し、 ``CMD`` や ``docker run`` コマンド行の引数を無視します。 ``docker stop`` で ``ENTRYPOINT`` で指定している実行ファイルにシグナルを送りたい場合は、 ``exec`` を使う必要があるのを思い出してください。
+``ENTRYPOINT`` に文字列を指定したら、 ``/bin/sh -c`` で実行されます。この形式はシェルの処理を使いますので、シェル上の環境変数を展開し、 ``CMD`` や ``docker run`` コマンド行の引数を無視します。 ``docker stop`` で ``ENTRYPOINT`` で指定している実行ファイルにシグナルを送りたい場合は、 ``exec`` を使う必要があるのを思い出してください。
 
 .. code-block:: bash
 
@@ -1094,7 +1092,7 @@ exec 形式の ENTRYPOINT 例
 
 .. When you run this image, you’ll see the single PID 1 process:
 
-このイメージを実行すると、単一の ``PID 1`` プロセスが表示されます。
+このイメージを実行したら、単一の ``PID 1`` プロセスが表示されます。
 
 .. code-block:: bash
 
@@ -1171,7 +1169,7 @@ CMD と ENTRYPOINT がどのように作用するか学ぶ
 
 .. Both CMD and ENTRYPOINT instructions define what command gets executed when running a container. There are few rules that describe their co-operation.
 
-``CMD`` と ``ENTRYPOINT`` 命令はコンテナ実行時に実行するコマンドを定義します。両方を記述するとき、動作には複数のルールがあります。
+``CMD`` と ``ENTRYPOINT`` 命令はコンテナ起動時に実行するコマンドを定義します。両方を記述する時、動作には複数のルールがあります。
 
 ..    Dockerfile should specify at least one of CMD or ENTRYPOINT commands.
 
@@ -1179,7 +1177,7 @@ CMD と ENTRYPOINT がどのように作用するか学ぶ
 
 ..    ENTRYPOINT should be defined when using the container as an executable.
 
-2. ``ENTRYPOINT`` は実行可能なコンテナとして定義するときに使うべきです。
+2. ``ENTRYPOINT`` は実行可能なコンテナとして定義する時に使うべきです。
 
 ..    CMD should be used as a way of defining default arguments for an ENTRYPOINT command or for executing an ad-hoc command in a container.
 
@@ -1187,11 +1185,11 @@ CMD と ENTRYPOINT がどのように作用するか学ぶ
 
 ..    CMD will be overridden when running the container with alternative arguments.
 
-4. ``CMD`` はコンテナ実行時に引数を指定すると上書きされます。
+4. ``CMD`` はコンテナ実行時に引数を指定すると上書します。
 
 .. The table below shows what command is executed for different ENTRYPOINT / CMD combinations:
 
-以下の表は ``ENTRYPOINT`` / ``CMD`` を組みあわせたコマンドの実行結果です。
+以下の表は ``ENTRYPOINT`` / ``CMD`` を組み合わせたコマンドの実行結果です。
 
 .. list-table::
    :header-rows: 1
@@ -1200,19 +1198,19 @@ CMD と ENTRYPOINT がどのように作用するか学ぶ
      - ENTRYPOINT なし
      - ENTRYPOINT exec_entry p1_entry
      - ENTRYPOINT [“exec_entry”, “p1_entry”]
-   * - **CMD なし"**
+   * - **CMD なし**
      - エラー。実行できない。
      - /bin/sh -c exec_entry p1_entry
      - exec_entry p1_entry
-   * - **CMD [“exec_cmd”, “p1_cmd”]"**
+   * - **CMD [“exec_cmd”, “p1_cmd”]**
      - exec_cmd p1_cmd
      - /bin/sh -c exec_entry p1_entry exec_cmd p1_cmd
      - exec_entry p1_entry exec_cmd p1_cmd
-   * - **CMD [“p1_cmd”, “p2_cmd”]"**
+   * - **CMD [“p1_cmd”, “p2_cmd”]**
      - p1_cmd p2_cmd
      - /bin/sh -c exec_entry p1_entry p1_cmd p2_cmd
      - exec_entry p1_entry p1_cmd p2_cmd
-   * - **CMD exec_cmd p1_cmd"**
+   * - **CMD exec_cmd p1_cmd**
      - /bin/sh -c exec_cmd p1_cmd
      - /bin/sh -c exec_entry p1_entry /bin/sh -c exec_cmd p1_cmd
      - exec_entry p1_entry /bin/sh -c exec_cmd p1_cmd
@@ -1243,7 +1241,7 @@ VOLUME
 
 .. This Dockerfile results in an image that causes docker run, to create a new mount point at /myvol and copy the greeting file into the newly created volume.
 
-この Dockerfile によって作られたイメージは、 ``docker run`` を実行すると、新しいマウント・ポイント ``/myvol`` を作成し、``greeting`` ファイルを直近で作成したボリュームにコピーします。
+この Dockerfile によって作られたイメージは、 ``docker run`` を実行したら、新しいマウント・ポイント ``/myvol`` を作成し、``greeting`` ファイルを直近で作成したボリュームにコピーします。
 
 ..     Note: If any build steps change the data within the volume after it has been declared, those changes will be discarded.
 
@@ -1268,7 +1266,7 @@ USER
 
 .. The USER instruction sets the user name or UID to use when running the image and for any RUN, CMD and ENTRYPOINT instructions that follow it in the Dockerfile.
 
-``USER`` 命令セットはユーザ名か UID を使います。これはイメージを ``RUN`` 、 ``CMD`` 、 ``ENTRYPOINT`` 命令で実行するときのものであり、 ``Dockerfile`` で指定します。
+``USER`` 命令セットはユーザ名か UID を使います。これはイメージを ``RUN`` 、 ``CMD`` 、 ``ENTRYPOINT`` 命令で実行時のものであり、 ``Dockerfile`` で指定します。
 
 .. _workdir:
 
@@ -1285,7 +1283,7 @@ WORKDIR
 
 .. It can be used multiple times in the one Dockerfile. If a relative path is provided, it will be relative to the path of the previous WORKDIR instruction. For example:
 
-１つの ``Dockerfile`` で複数回の利用が可能です。パスが指定されると、 ``WORKDIER`` 命令は直前に指定した相対パスに切り替えます。例：
+１つの ``Dockerfile`` で複数回の利用が可能です。パスを指定したら、 ``WORKDIR`` 命令は直前に指定した相対パスに切り替えます。例：
 
 .. code-block:: bash
 
@@ -1296,7 +1294,7 @@ WORKDIR
 
 .. The output of the final pwd command in this Dockerfile would be /a/b/c.
 
-この ``Dockerfile`` を使うと、最後の ``pwd`` コマンドの出力は ``/a/b/c`` になります。
+この ``Dockerfile`` を使えば、最後の ``pwd`` コマンドの出力は ``/a/b/c`` になります。
 
 .. The WORKDIR instruction can resolve environment variables previously set using ENV. You can only use environment variables explicitly set in the Dockerfile. For example:
 
@@ -1310,7 +1308,7 @@ WORKDIR
 
 ..    The output of the final pwd command in this Dockerfile would be /path/$DIRNAME
 
-この ``Dockerfile`` を使うと、最後の ``pwd`` コマンドの出力は ``/path/$DIRNAME`` になります。
+この ``Dockerfile`` を使えば、最後の ``pwd`` コマンドの出力は ``/path/$DIRNAME`` になります。
 
 .. _arg:
 
@@ -1319,11 +1317,11 @@ ARG
 
 .. code-block:: bash
 
-   ARG <name>[=<default value>]
+   ARG <名前>[=<デフォルト値>]
 
 .. The ARG instruction defines a variable that users can pass at build-time to the builder with the docker build command using the --build-arg <varname>=<value> flag. If a user specifies a build argument that was not defined in the Dockerfile, the build outputs an error.
 
-``ARG`` 命令は、構築時にビルダーが ``docker build`` コマンドで使う変数、 ``--build-arg <変数名>=<値>`` フラグを定義するものです。ユーザが構築時に引数を指定しても Dockerfile で定義されていなければ、構築時に次のようなエラーが出ます。
+``ARG`` 命令は、構築時に作業者が ``docker build`` コマンドで使う変数、 ``--build-arg <変数名>=<値>`` フラグを定義するものです。ユーザが構築時に引数を指定しても Dockerfile で定義されていなければ、構築時に次のようなエラーが出ます。
 
 .. code-block:: bash
 
@@ -1353,7 +1351,7 @@ Dockerfile の作者は、オプションで ``ARG`` 命令のデフォルト値
 
 .. If an ARG value has a default and if there is no value passed at build-time, the builder uses the default.
 
-``ARG`` がデフォルト値を持っている場合、構築時に値が指定されなければ、ビルダーはこのデフォルト値を使います。
+``ARG`` がデフォルト値を持っている場合、構築時に値の指定が無ければ、このデフォルト値を使います。
 
 .. An ARG variable definition comes into effect from the line on which it is defined in the Dockerfile not from the argument’s use on the command-line or elsewhere. For example, consider this Dockerfile:
 
@@ -1377,7 +1375,7 @@ Dockerfile の作者は、オプションで ``ARG`` 命令のデフォルト値
 
 .. The USER at line 2 evaluates to some_user as the user variable is defined on the subsequent line 3. The USER at line 4 evaluates to what_user as user is defined and the what_user value was passed on the command line. Prior to its definition by an ARG instruction, any use of a variable results in an empty string.
 
-２行目の ``USER`` は ``some_user`` を、３行目サブシーケントで定義された ``user`` 変数として評価します。４行目では ``what_user`` を ``USER`` で定義したものと評価し、 ``what_user`` 値はコマンドラインで指定したものになります。 ``ARG`` 命令で定義するまで、あらゆる変数は空の文字列です。
+２行めの ``USER`` は ``some_user`` を、３行めサブシーケントで定義された ``user`` 変数として評価します。４行めでは ``what_user`` を ``USER`` で定義したものと評価し、 ``what_user`` 値はコマンドラインで指定したものになります。 ``ARG`` 命令で定義するまで、あらゆる変数は空の文字列です。
 
 ..    Note: It is not recommended to use build-time variables for passing secrets like github keys, user credentials etc.
 
@@ -1387,7 +1385,7 @@ Dockerfile の作者は、オプションで ``ARG`` 命令のデフォルト値
 
 .. You can use an ARG or an ENV instruction to specify variables that are available to the RUN instruction. Environment variables defined using the ENV instruction always override an ARG instruction of the same name. Consider this Dockerfile with an ENV and ARG instruction.
 
-``ARG`` や ``ENV`` 命令を ``RUN`` 命令のための環境変数にも利用できます。 ``ENV`` 命令を使った環境変数の定義は、常に同じ名前の ``ARG`` 命令を上書きします。Dockerfile における``ENV`` と ``ARG`` 命令を考えましょう。
+``ARG`` や ``ENV`` 命令を ``RUN`` 命令のための環境変数にも利用できます。 ``ENV`` 命令を使った環境変数の定義は、常に同じ名前の ``ARG`` 命令を上書きします。Dockerfile における ``ENV`` と ``ARG`` 命令を考えましょう。
 
 .. code-block:: bash
 
@@ -1406,11 +1404,11 @@ Dockerfile の作者は、オプションで ``ARG`` 命令のデフォルト値
 
 .. In this case, the RUN instruction uses v1.0.0 instead of the ARG setting passed by the user:v2.0.1 This behavior is similar to a shell script where a locally scoped variable overrides the variables passed as arguments or inherited from environment, from its point of definition.
 
-この例では、 ``RUN`` 命令は ``v1.0.0`` のかわりに、 ``ARG`` でユーザから渡された ``v2.0.1`` を使います。この動作はシェルスクリプトの挙動に似ています。ローカルのスコープにある環境変数が、与えられた引数や上位の環境変数によって上書きするようなものです。
+この例では、 ``RUN`` 命令は ``v1.0.0`` の代わりに、 ``ARG`` でユーザから渡された ``v2.0.1`` を使います。この動作はシェルスクリプトの挙動に似ています。ローカルのスコープにある環境変数が、与えられた引数や上位の環境変数によって上書きするようなものです。
 
 .. Using the example above but a different ENV specification you can create more useful interactions between ARG and ENV instructions:
 
-上記の ``ENV`` 指定の他にも、さらに ``ARG`` と ``ENV`` を使いやすくする指定も可能です。
+上記の ``ENV`` 指定の他にも、更に ``ARG`` と ``ENV`` を使いやすくする指定も可能です。
 
 .. code-block:: bash
 
@@ -1425,11 +1423,11 @@ Dockerfile の作者は、オプションで ``ARG`` 命令のデフォルト値
 
 .. code-block:: bash
 
-.. $ docker build Dockerfile
+   $ docker build Dockerfile
 
 .. Using this Dockerfile example, CONT_IMG_VER is still persisted in the image but its value would be v1.0.0 as it is the default set in line 3 by the ENV instruction.
 
-この Dockerfile の例では、 ``CONT_IMG_VER`` はイメージの中では変わりませんが、３行目の ``ENV`` 命令でデフォルト値を設定することにより、値は ``v1.0.0`` となります。
+この Dockerfile の例では、 ``CONT_IMG_VER`` はイメージの中では変わりませんが、３行めの ``ENV`` 命令でデフォルト値を設定することにより、値は ``v1.0.0`` となります。
 
 .. The variable expansion technique in this example allows you to pass arguments from the command line and persist them in the final image by leveraging the ENV instruction. Variable expansion is only supported for a limited set of Dockerfile instructions.
 
@@ -1437,7 +1435,7 @@ Dockerfile の作者は、オプションで ``ARG`` 命令のデフォルト値
 
 .. Docker has a set of predefined ARG variables that you can use without a corresponding ARG instruction in the Dockerfile.
 
-Docker は Dockerfile に対応する ``ARG`` 命令がなくても、既定の ``ARG`` 変数セットを持っています。
+Docker は Dockerfile に対応する ``ARG`` 命令が無くても、既定の ``ARG`` 変数セットを持っています。
 
 * ``HTTP_PROXY``
 * ``http_proxy``
@@ -1461,7 +1459,7 @@ Docker は Dockerfile に対応する ``ARG`` 命令がなくても、既定の 
 
 .. ARG variables are not persisted into the built image as ENV variables are. However, ARG variables do impact the build cache in similar ways. If a Dockerfile defines an ARG variable whose value is different from a previous build, then a “cache miss” occurs upon first use of the ARG variable. The declaration of the ARG variable does not count as a use.
 
-``ARG`` 変数はイメージ構築時の ``ENV`` 変数のように残り続けません。しかし、 ``ARG`` 変数は構築キャッシュで似たような方法として扱えます。もし Dockerfile で ``ARG`` 変数を定義すると、この値が以前の値と違うときは、以降で ``ARG`` 変数が出たとき「キャッシュ・ミス」を発生します。
+``ARG`` 変数は、イメージ構築時の ``ENV`` 変数のように残り続けません。しかし、 ``ARG`` 変数は構築キャッシュで似たような方法として扱えます。もし Dockerfile で ``ARG`` 変数を定義したら、この値が以前の値と違う時は、以降で ``ARG`` 変数が出た時「キャッシュ・ミス」を発生します。
 
 .. For example, consider these two Dockerfile:
 
@@ -1490,7 +1488,7 @@ Docker は Dockerfile に対応する ``ARG`` 命令がなくても、既定の 
 
 .. In this example, the cache miss occurs on line 3. The miss happens because the variable’s value in the ENV references the ARG variable and that variable is changed through the command line. In this example, the ENV command causes the image to include the value.
 
-この例では、キャッシュミスが３行目で発生します。ミスが起こるのは ``ENV`` 変数が ``ARG`` 変数を参照しているのと、この変数がコマンドラインで変わるためです。例における ``ENV`` コマンドはイメージの中で処理されるものです。
+この例では、キャッシュミスが３行めで発生します。ミスが起こるのは ``ENV`` 変数が ``ARG`` 変数を参照しているのと、この変数がコマンドラインで変わるためです。例における ``ENV`` コマンドはイメージの中で処理されるものです。
 
 .. If an ENV instruction overrides an ARG instruction of the same name, like this Dockerfile:
 
@@ -1505,7 +1503,7 @@ Docker は Dockerfile に対応する ``ARG`` 命令がなくても、既定の 
 
 .. Line 3 does not cause a cache miss because the value of CONT_IMG_VER is a constant (hello). As a result, the environment variables and values used on the RUN (line 4) doesn’t change between builds.
 
-３行目はキャッシュミスを引き起こしません。 ``CONT_IMG_VAR`` は固定（ ``hello`` ）だからです。そのため、環境変数と値は ``RUN``  （４行目）で使われますが、構築時に変わりません。
+３行めはキャッシュミスを引き起こしません。 ``CONT_IMG_VAR`` は固定（ ``hello`` ）だからです。そのため、環境変数と値は ``RUN``  （４行め）で使われますが、構築時に変わりません。
 
 
 .. _onbuild:
@@ -1521,7 +1519,7 @@ ONBUILD
 
 .. The ONBUILD instruction adds to the image a trigger instruction to be executed at a later time, when the image is used as the base for another build. The trigger will be executed in the context of the downstream build, as if it had been inserted immediately after the FROM instruction in the downstream Dockerfile.
 
-イメージは他で構築したイメージをもとにしているとき、``ONBUILD`` 命令はイメージに対して最終的に実行する *トリガ* 命令を追加します。トリガは構築後に行うもので、 ``Dockerfile`` で ``FROM`` 命令のあとに書くことができます。
+イメージは他で構築したイメージを元にしている時、``ONBUILD`` 命令はイメージに対して最終的に実行する *トリガ* 命令を追加します。トリガは構築後に行うもので、 ``Dockerfile`` で ``FROM`` 命令のあとに書くことができます。
 
 .. Any build instruction can be registered as a trigger.
 
@@ -1533,7 +1531,7 @@ ONBUILD
 
 .. For example, if your image is a reusable Python application builder, it will require application source code to be added in a particular directory, and it might require a build script to be called after that. You can’t just call ADD and RUN now, because you don’t yet have access to the application source code, and it will be different for each application build. You could simply provide application developers with a boilerplate Dockerfile to copy-paste into their application, but that is inefficient, error-prone and difficult to update because it mixes with application-specific code.
 
-例えば、イメージが Python アプリケーション・ビルダーを再利用するとき、アプリケーションのソースコードを適切なディレクトリに追加し、その後、構築スクリプトを実行することもあるでしょう。この時点では ``ADD`` と ``RUN`` を呼び出せません。なぜなら、まだアプリケーションのソースコードにアクセスしておらず、個々のアプリケーション構築によって異なるからです。アプリケーションの開発者は、ボイラープレートである ``Dockerfile`` をコピーペーストでアプリケーションを入れるように編集するだけです。ですが、これは効率的ではなく、エラーを引き起こしやすく、アプリケーション固有のコードが混在することで更新が大変になります。
+例えば、イメージが Python アプリケーション・ビルダーを再利用する時、アプリケーションのソースコードを適切なディレクトリに追加し、その後、構築スクリプトを実行することもあるでしょう。この時点では ``ADD`` と ``RUN`` を呼び出せません。なぜなら、まだアプリケーションのソースコードにアクセスしておらず、個々のアプリケーション構築によって異なるからです。アプリケーションの開発者は、ボイラープレートである ``Dockerfile`` をコピーペーストでアプリケーションを入れるように編集するだけです。ですが、これは効率的ではなく、エラーを引き起こしやすく、アプリケーション固有のコードが混在することで更新が大変になります。
 
 .. The solution is to use ONBUILD to register advance instructions to run later, during the next build stage.
 
@@ -1549,11 +1547,11 @@ ONBUILD
 
 ..     At the end of the build, a list of all triggers is stored in the image manifest, under the key OnBuild. They can be inspected with the docker inspect command.
 
-2. 構築が完了すると、すべてのトリガはイメージのマニフェスト内の  ``OnBuild`` キー配下に保管されます。この構築時点では、命令は何ら影響を与えません。
+2. 構築が完了したら、全てのトリガはイメージのマニフェスト内の  ``OnBuild`` キー配下に保管されます。この構築時点では、命令は何ら影響を与えません。
 
 ..    Later the image may be used as a base for a new build, using the FROM instruction. As part of processing the FROM instruction, the downstream builder looks for ONBUILD triggers, and executes them in the same order they were registered. If any of the triggers fail, the FROM instruction is aborted which in turn causes the build to fail. If all triggers succeed, the FROM instruction completes and the build continues as usual.
 
-3. このイメージは後で何らかのイメージの元になります。そのときは ``FROM`` 命令で呼び出されます。 ``FROM`` 命令の処理の一部として、ダウンストリームのビルダーは ``ONBULID`` トリガを探し、登録された順番で実行します。もしトリガが失敗すると、 ``FROM`` 命令は処理を中断し、ビルドを失敗とします。もし全てのトリガが成功すると、 ``FROM`` 命令は完了し、以降は通常の構築が進みます。
+3. このイメージは後で何らかのイメージの元になります。その時は ``FROM`` 命令で呼び出されます。 ``FROM`` 命令の処理の一部として、ダウンストリームのビルダーは ``ONBULID`` トリガを探し、登録された順番で実行します。もしトリガが失敗したら、 ``FROM`` 命令は処理を中断し、ビルドを失敗とします。もし全てのトリガが成功したら、 ``FROM`` 命令は完了し、以降は通常の構築が進みます。
 
 ..    Triggers are cleared from the final image after being executed. In other words they are not inherited by “grand-children” builds.
 
@@ -1593,7 +1591,7 @@ STOPSIGNAL
 
 .. The STOPSIGNAL instruction sets the system call signal that will be sent to the container to exit. This signal can be a valid unsigned number that matches a position in the kernel’s syscall table, for instance 9, or a signal name in the format SIGNAME, for instance SIGKILL.
 
-``STOPSIGNAL`` 命令は、コンテナを終了するときに送信するための、システム・コール・シグナルを設定します。シグナルはカーネルの syscall テーブルと一致する、有効な番号の必要があります。例えば、9 あるいはシグナル名 SIGNAME や、 SIGKILL などです。
+``STOPSIGNAL`` 命令は、コンテナを終了する時に送信するための、システム・コール・シグナルを設定します。シグナルはカーネルの syscall テーブルと一致する、有効な番号の必要があります。例えば、9 あるいはシグナル名 SIGNAME や、 SIGKILL などです。
 
 .. Dockerfile examples
 
@@ -1602,7 +1600,7 @@ Dockerfile の例
 
 .. Below you can see some examples of Dockerfile syntax. If you’re interested in something more realistic, take a look at the list of Dockerization examples.
 
-以下は Dockerfile 構文の例を参照できます。実際の環境に興味があれば、 :doc:`Docker 化の例 </engine/examples/index>` をご覧ください。
+以下で Dockerfile 構文の例を参照できます。実際の環境に興味があれば、 :doc:`Docker 化の例 </engine/examples/index>` をご覧ください。
 
 .. code-block:: bash
 

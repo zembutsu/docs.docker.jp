@@ -15,11 +15,11 @@ volume rm
 
 .. code-block:: bash
 
-   Usage: docker volume rm [OPTIONS] VOLUME [VOLUME...]
+   使い方: docker volume rm [オプション] ボリューム [ボリューム...]
    
-   Remove a volume
-   
-     --help=false       Print usage
+   ボリュームを削除
+  
+     --help=false       使い方の表示
 
 .. Removes one or more volumes. You cannot remove a volume that is in use by a container.
 

@@ -13,23 +13,25 @@
 volume create
 =======================================
 
+.. code-block:: bash
+
+   使い方: docker volume create [オプション]
+   
+   ボリュームを作成
+   
+     -d, --driver=local    ボリューム・ドライバ名を指定
+     --help                使い方の表示
+     --label=[]            ボリューム用のメタデータを指定
+     --name=               ボリューム名を指定
+     -o, --opt=map[]       ドライバ固有のオプションを指定
+
+
 .. sidebar:: 目次
 
    .. contents:: 
        :depth: 3
        :local:
 
-.. code-block:: bash
-
-   Usage: docker volume create [OPTIONS]
-   
-   Create a volume
-   
-     -d, --driver=local    Specify volume driver name
-     --help                Print usage
-     --label=[]            Set metadata for a volume
-     --name=               Specify volume name
-     -o, --opt=map[]       Set driver specific options
 
 .. Creates a new volume that containers can consume and store data in. If a name is not specified, Docker generates a random name. You create a volume and then configure the container to use it, for example:
 
@@ -44,7 +46,7 @@ volume create
 
 .. The mount is created inside the container’s /world directory. Docker does not support relative paths for mount points inside the container.
 
-これはコンテナ内の ``/world`` ディレクトリにマウントが作成されます。Docker はコンテナ内のマウントポイントに、相対パスの指定をサポートしません。
+これはコンテナ内の ``/world`` ディレクトリにマウントを作成します。Docker はコンテナ内のマウントポイントに、相対パスの指定をサポートしません。
 
 .. Multiple containers can use the same volume in the same time period. This is useful if two containers need access to shared data. For example, if one container writes and the other reads the data.
 
