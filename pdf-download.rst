@@ -11,13 +11,18 @@ Docker Engineドキュメント（https://docs.docker.com/）の日本語翻訳�
 
 * 導入ガイド
 
-  * `Linux <http://docker.jp/PDF/docker-getting-started-guide-for-linux.pdf>`_ 
-  * `Windows <http://docker.jp/PDF/docker-getting-started-guide-for-windows.pdf>`_
-  * `Mac OS X <http://docker.jp/PDF/docker-getting-started-guide-for-mac.pdf>`_
+  * `Linux <http://docker.jp/PDF/docker-getting-started-guide-for-linux.pdf>`_  (PDF 0.6MB)
+  * `Windows <http://docker.jp/PDF/docker-getting-started-guide-for-windows.pdf>`_ (PDF 0.6MB)
+  * `Mac OS X <http://docker.jp/PDF/docker-getting-started-guide-for-mac.pdf>`_  (PDF 0.6MB)
 
-* `Docker Engine ユーザガイド基礎編 v1.11 beta1 <http://docker.jp/PDF/docker-engine-basic-userguide-ja-beta1.pdf>`_
+* `Docker Engine ユーザガイド基礎編 v1.11 beta1 <http://docker.jp/PDF/docker-engine-basic-userguide-ja-beta1.pdf>`_ (PDF 3.1MB)
 * Docker Engine ユーザガイド活用編（予定）
-* Docker Engine リファレンス（予定）
+* `Docker Engine リファレンス編 v1.11 beta1 <http://docker.jp/PDF/docker-engine-reference-userguide-ja-beta1.pdf>`_ (PDF 1.2MB)
+
+
+* Docker Machine リファレンス（予定）
+* Docker Swarm リファレンス（予定）
+* Docker Compose リファレンス（予定）
 
 免責事項
 ====================
@@ -29,6 +34,7 @@ Docker Engineドキュメント（https://docs.docker.com/）の日本語翻訳�
 履歴
 ==========
 
+* 2016年5月20日　Engine リファレンス beta1 を公開
 * 2016年5月12日　入門ガイド beta1を公開
 
 
