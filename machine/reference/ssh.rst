@@ -27,7 +27,7 @@ SSH でマシンにログインするか、コマンドを実行します。
 
 .. To login, just run docker-machine ssh machinename:
 
-ログインするには、 ``docker-machine ssh machinename`` を実行するだけです。
+ログインするには、 ``docker-machine ssh マシン名`` を実行するだけです。
 
 .. code-block:: bash
 
@@ -88,7 +88,7 @@ SSH でマシンにログインするか、コマンドを実行します。
 
 .. Different types of SSH
 
-異なったタイプの SSH
+異なる種類の SSH
 ====================
 
 .. When Docker Machine is invoked, it will check to see if you have the venerable ssh binary around locally and will attempt to use that for the SSH commands it needs to run, whether they are a part of an operation such as creation or have been requested by the user directly. If it does not find an external ssh binary locally, it will default to using a native Go implementation from crypto/ssh. This is useful in situations where you may not have access to traditional UNIX tools, such as if you are using Docker Machine on Windows without having msysgit installed alongside of it.

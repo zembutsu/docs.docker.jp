@@ -17,12 +17,12 @@ restart
 
 .. code-block:: bash
 
-   Usage: docker-machine restart [arg...]
+   使い方: docker-machine restart [引数...]
    
-   Restart a machine
+   マシンを再起動
    
-   Description:
-      Argument(s) are one or more machine names.
+   説明:
+      引数は１つまたは複数のマシン名
 
 .. Restart a machine. Oftentimes this is equivalent to docker-machine stop; docker-machine start.
 

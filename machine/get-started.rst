@@ -30,17 +30,17 @@ Docker Machine をローカル VM で始めるには
 
 ..    Make sure you have the latest VirtualBox correctly installed on your system. If you used Toolbox for Mac or Windows to install Docker Machine, VirtualBox is automatically installed.
 
-* システム上に正しくインストールするには、 `最新バージョンの VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_ をインストールする必要があります。 :doc:`Mac </engine/installation/mac>` または :doc:`Windows </engine/installation/windows>` で Docker Machine のインストールに `Docker Toolbox <https://www.docker.com/products/docker-toolbox>`_ を使えば、VirtualBox は自動的にインストールされます。
+* システム上に正しくインストールするには、 `最新バージョンの VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_ をインストールする必要があります。 :doc:`Mac </engine/installation/mac>` または :doc:`Windows </engine/installation/windows>` で Docker Machine のインストールに `Docker Toolbox <https://www.docker.com/products/docker-toolbox>`_ を使えば、VirtualBox を自動的にインストールします。
 
 ..    If you used the Quickstart Terminal to launch your first machine and set your terminal environment to point to it, a default machine was automatically created. If this is the case, you can still follow along with these steps, but create another machine and name it something other than “default” (e.g., staging or sandbox).
 
-* １台目のマシンを Quickstart Terminal で作成すると、ターミナル上で default という名称を持つ環境が自動的に用意されます。この場合、以下の手順をそのまま読み進めても構いませんが、「default」以外の名前（ staging や sandbox）で別のマシンの作成も可能です。
+* １台目のマシンを Quickstart Terminal で作成したら、ターミナル上で default という名称を持つ環境が自動的に用意されます。この場合、以下の手順をそのまま読み進めても構いませんが、「default」以外の名前（ staging や sandbox）で別のマシンの作成も可能です。
 
 .. Use Machine to run Docker containers
 
 .. _use-machine-to-run-docker-containers:
 
-Machine を使って Docker コンテナの実行
+Machine を使って Docker コンテナを実行
 ========================================
 
 .. To run a Docker container, you:
@@ -57,7 +57,7 @@ Docker コンテナを実行するには、
 
 .. Once you create a machine, you can reuse it as often as you like. Like any VirtualBox VM, it maintains its configuration between uses.
 
-Docker Machine で作成したマシンは、必要に応じて何度も再利用できます。マシンは VirtualBox 上の仮想マシンと同等なものであり、どちらでも同じ設定が使われます。
+Docker Machine で作成したマシンは、必要に応じて何度も再利用できます。マシンは VirtualBox 上の仮想マシンと同じ環境であり、どちらでも同じ設定が使われます。
 
 .. The examples here show how to create and start a machine, run Docker commands, and work with containers.
 
@@ -95,7 +95,7 @@ Docker Machine で作成したマシンは、必要に応じて何度も再利�
 
 ..    Run the docker-machine create command, passing the string virtualbox to the --driver flag. The final argument is the name of the machine. If this is your first machine, name it default. If you already have a “default” machine, choose another name for this new machine.
 
-コマンド ``docker-machine create`` を実行するとき、 ``--driver`` フラグに ``virtualbox`` の文字列を指定します。そして、最後の引数がマシン名になります。これが始めてのマシンであれば、名前は ``default`` になります。既に「machine｣という名前のマシンが存在している場合は、別の新しいマシン名を指定します。
+コマンド ``docker-machine create`` の実行時、 ``--driver`` フラグに ``virtualbox`` の文字列を指定します。そして、最後の引数がマシン名になります。これが始めてのマシンであれば、名前を ``default`` にしましょう。既に「default｣という名前のマシンが存在している場合は、別の新しいマシン名を指定します。
 
 .. code-block:: bash
 
@@ -121,11 +121,11 @@ Docker Machine で作成したマシンは、必要に応じて何度も再利�
 
 ..    This command downloads a lightweight Linux distribution ()boot2docker) with the Docker daemon installed, and creates and starts a VirtualBox VM with Docker running.
 
-このコマンドは Docker デーモンをインストールするための軽量 Linux ディストリビューション（ `boot2docker <https://github.com/boot2docker/boot2docker>`_ ）をダウンロードし、Docker を動かすための VirtualBox 仮想マシンを作成・起動します。
+このコマンドは Docker デーモンをインストールする軽量 Linux ディストリビューション（ `boot2docker <https://github.com/boot2docker/boot2docker>`_ ）をダウンロードし、Docker を動かすための VirtualBox 仮想マシンを作成・起動します。
 
 ..    List available machines again to see your newly minted machine.
 
-4. 再び利用可能なマシン一覧表示すると、新しいマシンが出てきます。
+4. 再び利用可能なマシン一覧表示したら、新しいマシンが出てきます。
 
 .. code-block:: bash
 
@@ -163,11 +163,11 @@ Docker Machine で作成したマシンは、必要に応じて何度も再利�
 
 .. note::
 
-   ``fish`` や Powershell あるいは ``cmd.exe`` のような Windows シェルでは、先ほどのコマンドは実行できません。自分の使っているシェルで環境変数を有効にする方法は、 ``env`` :doc:`コマンドのドキュメント </machine/reference/env>` をご覧ください。
+   ``fish`` や Powershell 、あるいは ``cmd.exe`` のような Windows シェルでは、先ほどのコマンドは実行できません。自分の使っているシェルで環境変数を有効にする方法は、 ``env`` :doc:`コマンドのドキュメント </machine/reference/env>` をご覧ください。
 
 ..    This sets environment variables for the current shell that the Docker client will read which specify the TLS settings. You need to do this each time you open a new shell or restart your machine.
 
-このシェル上で指定した環境変数を使うと、クライアントは指定された  TLS 設定を読み込みます。新しいシェルの起動時やマシン再起動時には、再度指定する必要があります。
+このシェル上で指定した環境変数を使えば、クライアントは指定された  TLS 設定を読み込みます。新しいシェルの起動時やマシン再起動時には、再度指定する必要があります。
 
 ..    You can now run Docker commands on this host.
 
@@ -205,7 +205,7 @@ Machine コマンドを使ってコンテナを実行
 
 ..    Any exposed ports are available on the Docker host’s IP address, which you can get using the docker-machine ip command:
 
-Docker ホスト上でポート番号が利用可能な IP アドレスを確認するには、 ``docker-machine ip`` コマンドを使います。
+Docker ホスト上でポート番号が利用可能な IP アドレスの確認は、 ``docker-machine ip`` コマンドを使います。
 
 .. code-block:: bash
 
@@ -222,7 +222,7 @@ Docker ホスト上でポート番号が利用可能な IP アドレスを確認
 
 ..    When the image is finished pulling, you can hit the server at port 8000 on the IP address given to you by docker-machine ip. For instance:
 
-イメージの取得が完了すると、 ``docker-machine ip`` で確認した IP アドレス上のポート 8000 でサーバにアクセスできます。実行例：
+イメージの取得が完了したら、 ``docker-machine ip`` で確認した IP アドレス上のポート 8000 でサーバにアクセスできます。実行例：
 
 .. code-block:: html
 

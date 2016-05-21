@@ -17,13 +17,11 @@ help
 
 .. code-block:: bash
 
-   Usage: docker-machine help [arg...]
+   使い方: docker-machine help [引数...]
    
-   Shows a list of commands or help for one command
+   全てのコマンドを表示するか、１つのコマンドのヘルプを表示
 
-.. Usage: docker-machine help subcommand
-
-使い方：docker-machine help *サブコマンド*
+   使い方: docker-machine help サブコマンド
 
 .. Show help text, for example:
 
@@ -32,16 +30,16 @@ help
 .. code-block:: bash
 
    $ docker-machine help config
-   Usage: docker-machine config [OPTIONS] [arg...]
+   使い方: docker-machine config [オプション] [引数...]
    
-   Print the connection config for machine
+   マシンに接続する設定を表示
    
-   Description:
-      Argument is a machine name.
+   説明:
+      引数はマシン名。
    
-   Options:
+   オプション:
    
-      --swarm      Display the Swarm config instead of the Docker daemon
+      --swarm      Docker デーモンの代わりに Swarm の設定を表示
 
 .. seealso:: 
 

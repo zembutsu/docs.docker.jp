@@ -95,7 +95,7 @@ AWS にある `Amazon EC2 でのセットアップ <http://docs.aws.amazon.com/j
 
 ..    Specifying keys at the command line
 
-**キーをコマンドラインで指定する場合**
+**鍵をコマンドラインで指定する場合**
 
 ..    If you don’t have a credentials file, you can use the flags --amazonec2-access-key and --amazonec2-secret-key on the command line:
 
@@ -145,7 +145,7 @@ AWS に IAM 証明書でログインし、EC2 実行中のインスタンスの�
    default          -        virtualbox     Running   tcp://192.168.99.100:2376           v1.10.0-rc4   
    aws-sandbox      -        digitalocean   Running   tcp://104.131.43.236:2376           v1.9.1        
 
-    The new aws-sandbox instance is running, and it is the active host as indicated by the asterisk (*). When you create a new machine, your command shell automatically connects to it. If for some reason your new machine is not the active host, you’ll need to run docker-machine env aws-sandbox, followed by eval $(docker-machine env aws-sandbox) to connect to it.
+..     The new aws-sandbox instance is running, and it is the active host as indicated by the asterisk (*). When you create a new machine, your command shell automatically connects to it. If for some reason your new machine is not the active host, you’ll need to run docker-machine env aws-sandbox, followed by eval $(docker-machine env aws-sandbox) to connect to it.
 
 新しい ``aws-sandbox`` マシンが実行されています。そして、アクティブなホストはアスタリスク（*）印が付いています。新しいマシンを作成すると、コマンド・シェルから自動的に接続できます。何らかの理由により、新しいマシンがアクティブなホストでない場合は ``docker-machine env aws-sandbox`` を実行し、反映するためには ``eval $(docker-machine env aws-sandbox)`` の実行が必要です。
 

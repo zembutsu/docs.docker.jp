@@ -15,23 +15,18 @@
 inspect
 =======================================
 
-.. sidebar:: 目次
-
-   .. contents:: 
-       :depth: 3
-       :local:
 
 .. code-block:: bash
 
-   Usage: docker-machine inspect [OPTIONS] [arg...]
+   使い方: docker-machine inspect [オプション] [引数...]
    
-   Inspect information about a machine
+   マシンに関する情報を調査
    
-   Description:
-      Argument is a machine name.
+   説明:
+      引数はマシン名。
    
-   Options:
-      --format, -f     Format the output using the given go template.
+   オプション:
+      --format, -f     go template で指定した出力に整形
 
 .. By default, this will render information about a machine as JSON. If a format is specified, the given template will be executed for each result.
 
@@ -56,7 +51,7 @@ Go 言語の `text/template <http://golang.org/pkg/text/template/>`_ パッケ�
 
 .. This is the default usage of inspect.
 
-``inspect`` のデフォルトの使い方はこちらです。
+こちらは ``inspect`` のデフォルトの使い方です。
 
 .. code-block:: bash
 
@@ -74,7 +69,7 @@ Go 言語の `text/template <http://golang.org/pkg/text/template/>`_ パッケ�
        ...
    }
 
-**Get a machine’s IP address:**
+.. **Get a machine’s IP address:**
 
 **マシンの IP アドレスを取得：**
 

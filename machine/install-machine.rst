@@ -21,7 +21,7 @@ Docker Machine のインストール
 
 .. On OS X and Windows, Machine is installed along with other Docker products when you install the Docker Toolbox. For details on installing Docker Toolbox, see the Mac OS X installation instructions or Windows installation instructions.
 
-OS X と Windows の場合、Docker Toolbox をインストールすることで、他の Docker プロダクトと一緒にインストールされます。Docker Toolbox の詳細は、:doc:`Mac OS X インストールガイド</engine/installation/mac>`  か :doc:`Windows インストールガイド</engine/installation/windows>` をご覧ください。
+OS X と Windows の場合は、Docker Toolbox をインストールしたら、他の Docker プロダクトと一緒にインストールします。Docker Toolbox の詳細は、:doc:`Mac OS X インストールガイド</engine/installation/mac>`  か :doc:`Windows インストールガイド</engine/installation/windows>` をご覧ください。
 
 .. If you want only Docker Machine, you can install the Machine binaries directly by following the instructions in the next section. You can find the latest versions of the binaries are on the docker/machine release page on GitHub.
 
@@ -36,11 +36,11 @@ Machine を直接インストール
 
 ..    Install the Docker binary.
 
-1. :doc:`Docker のバイナリ </engine/installation/index>` をインストールします。
+1. :doc:`Docker クライアント（docker という名称のバイナリ・ファイル </engine/installation/index>` をインストールします。
 
 ..    Download the Docker Machine binary and extract it to your PATH.
 
-2. Docker Machine のバイナリをダウンロードし、PATH に展開します。
+2. Docker Machine のバイナリ・ファイル（docker-machine）をダウンロードし、PATH に展開します。
 
 Mac OS X もしくは Windows の場合：
 
@@ -97,7 +97,7 @@ Machine 用のリポジトリには次の機能を持つ ``bash`` スクリプ�
 
 .. You can find additional documentation in the comments at the top of each script.
 
-詳細なドキュメントについては、 `各スクリプト <https://github.com/docker/machine/tree/master/contrib/completion/bash>`_ の文頭にあるコメントをご覧ください。
+詳細なドキュメントは、 `各スクリプト <https://github.com/docker/machine/tree/master/contrib/completion/bash>`_ の文頭にあるコメントをご覧ください。
 
 .. Where to go next
 

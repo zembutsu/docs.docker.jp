@@ -65,8 +65,8 @@ Boot2Docker から Docker Machine への移行
      - ssh
      - コマンドの実行やマシンとの双方向 ssh セッション
    * - save
-     - ー
-     - 利用不可
+     - ―
+     - 使用不可
    * - down
      - stop
      - 実行中のマシンの停止
@@ -95,8 +95,8 @@ Boot2Docker から Docker Machine への移行
      - rm
      - マシンの削除
    * - download
-     - ー
-     - 利用不可
+     - ―
+     - 使用不可
    * - upgrade
      - upgrade
      - マシン上の Docker クライアントを最新安定版に更新

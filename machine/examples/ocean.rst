@@ -61,7 +61,7 @@ Digital Ocean の例
 
 ..    Grab (copy to clipboard) the generated big long hex string and store it somewhere safe.
 
-4. 生成された長いバイナリの文字列を取得し（クリップボードにコピーします）、どこか安全な場所に保管します。
+4. 生成された長いバイナリ文字列を取得し（クリップボードにコピーします）、どこか安全な場所に保管します。
 
 ..    Copy and save personal access token
 
@@ -102,7 +102,7 @@ Digital Ocean の例
 
 ..    When the Droplet is created, Docker generates a unique SSH key and stores it on your local system in ~/.docker/machines. Initially, this is used to provision the host. Later, it’s used under the hood to access the Droplet directly with the docker-machine ssh command. Docker Engine is installed on the cloud server and the daemon is configured to accept remote connections over TCP using TLS for authentication.
 
-Droplet が作成されると、Docker はユニークな SSH 鍵を生成し、自分のローカル・システム上の ``~/.docker/machines`` に保存します。当初、この鍵はホストプロビジョニング用に使われます。後ほど、 ``docker-machine ssh`` コマンドでドロップレットに簡単にアクセスするときにも使います。Docker Engine はクラウド・サーバ上にインストールされます。そして、TCP を通してリモートからの通信を受け付けられるように TLS 認証を使います。
+Droplet が作成されたら、Docker はユニークな SSH 鍵を生成し、自分のローカル・システム上の ``~/.docker/machines`` に保存します。当初、この鍵はホストのプロビジョニング用に使われます。後ほど、 ``docker-machine ssh`` コマンドでドロップレットに簡単にアクセスするときにも使います。Docker Engine はクラウド・サーバ上にインストールされます。そして、TCP を通してリモートからの通信を受け付けられるように TLS 認証を使います。
 
 ..    Go to the Digital Ocean console to view the new Droplet.
 
@@ -123,7 +123,7 @@ Droplet が作成されると、Docker はユニークな SSH 鍵を生成し、
 
 ..    The new docker-sandbox machine is running, and it is the active host as indicated by the asterisk (*). When you create a new machine, your command shell automatically connects to it. If for some reason your new machine is not the active host, you’ll need to run docker-machine env docker-sandbox, followed by eval $(docker-machine env docker-sandbox) to connect to it.
 
-新しい ``docker-sandbox`` マシンが実行されています。そして、アクティブなホストはアスタリスク（*）印が付いています。新しいマシンを作成すると、コマンド・シェルから自動的に接続できます。何らかの理由により、新しいマシンがアクティブなホストでない場合は ``docker-machine env docker-sandbox`` を実行し、反映するためには ``eval $(docker-machine env docker-sandbox)`` の実行が必要です。
+新しい ``docker-sandbox`` マシンが実行されています。そして、アクティブなホストはアスタリスク（*）印が付いています。新しいマシンを作成したら、コマンド・シェルから自動的に接続できます。何らかの理由により、新しいマシンがアクティブなホストでない場合は ``docker-machine env docker-sandbox`` を実行し、反映するためには ``eval $(docker-machine env docker-sandbox)`` の実行が必要です。
 
 .. Step 4. Run Docker commands on the Droplet
 
@@ -132,7 +132,7 @@ Droplet が作成されると、Docker はユニークな SSH 鍵を生成し、
 
 ..    Run some docker-machine commands to inspect the remote host. For example, docker-machine ip <machine> gets the host IP adddress and docker-machine inspect <machine> lists all the details.
 
-1. ``docker-machine`` コマンドを使ってリモート・ホストの上方を確認できます。例えば、 ``docker-machine ip <マシン名>`` はホスト側の IP アドレスを取得します。より詳しい情報は ``docker-machine inspect <マシン名>`` で確認できます。
+1. ``docker-machine`` コマンドを使ってリモート・ホストの情報を確認できます。例えば、 ``docker-machine ip <マシン名>`` はホスト側の IP アドレスを取得します。より詳しい情報は ``docker-machine inspect <マシン名>`` で確認できます。
 
 .. code-block:: bash
 
@@ -180,7 +180,7 @@ Droplet が作成されると、Docker はユニークな SSH 鍵を生成し、
 
 ..    In a web browser, go to http://<host_ip>:8000 to bring up the webserver home page. You got the <host_ip> from the output of the docker-machine ip <machine> command you ran in a previous step. Use the port you exposed in the docker run command.
 
-ウェブブラウザで ``http://<ホストIP>:8000`` を開き、ウェブサーバのホームページを開きます。 ``ホストIP`` の確認は、先ほどの ``docker-machine ip <マシン名>`` コマンドで行いました。 ``docker run`` コマンドを実行すると、指定したポートを開きます。
+ウェブブラウザで ``http://<ホストIP>:8000`` を開き、ウェブサーバのホームページを開きます。 ``ホストIP`` の確認は、先ほどの ``docker-machine ip <マシン名>`` コマンドで行いました。 ``docker run`` コマンドを実行したら、指定したポートを開きます。
 
 ..    nginx webserver
 
@@ -206,11 +206,11 @@ Droplet が作成されると、Docker はユニークな SSH 鍵を生成し、
 
 .. If you monitor the Digital Ocean console while you run these commands, you will see it update first to reflect that the Droplet was stopped, and then removed.
 
-コマンドを実行後に Digital Ocean コンソールを確認すると、すぐにドロップレットが停止し、削除されるのが分かるでしょう。
+コマンドを実行後に Digital Ocean コンソールを確認したら、すぐにドロップレットが停止し、削除されるのが分かるでしょう。
 
 .. If you create a host with Docker Machine, but remove it through the cloud provider console, Machine will lose track of the server status. So please use the docker-machine rm command for hosts you create with docker-machine create.
 
-Docker Machine は作成したホストは、クラウド・プロバイダのコンソールからも削除できます。ただし Machine は状況が追跡できなくなります。そのため、 ``docker-machine create`` で作成したホストは ``docker-machine rm`` をお使いください。
+Docker Machine は作成したホストは、クラウド・プロバイダのコンソールからも削除できます。ただし Machine からは状況が追跡できなくなります。そのため、 ``docker-machine create`` で作成したホストは ``docker-machine rm`` をお使いください。
 
 .. Where to go next
 

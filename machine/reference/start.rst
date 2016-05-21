@@ -17,12 +17,12 @@ start
 
 .. code-block:: bash
 
-   Usage: docker-machine start [arg...]
+   使い方: docker-machine start [引数...]
    
-   Start a machine
+   マシンを起動
    
-   Description:
-      Argument(s) are one or more machine names.
+   説明:
+      引数は１つまたは複数のマシン名
 
 マシンを起動します。
 

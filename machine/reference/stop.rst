@@ -17,12 +17,12 @@ stop
 
 .. code-block:: bash
 
-   Usage: docker-machine stop [arg...]
+   使い方: docker-machine stop [引数...]
    
-   Gracefully Stop a machine
+   マシンを丁寧に (Gracefully) に停止
    
-   Description:
-      Argument(s) are one or more machine names.
+   説明:
+      引数は１つまたは複数のマシン名
 
 .. Gracefully stop a machine.
 

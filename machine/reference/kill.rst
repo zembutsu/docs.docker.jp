@@ -17,12 +17,12 @@ kill
 
 .. code-block:: bash
 
-   Usage: docker-machine kill [arg...]
+   使い方: docker-machine kill [引数...]
    
-   Kill (abruptly force stop) a machine
+   マシンを KILL (強制停止)する。
    
-   Description:
-      Argument(s) are one or more machine names.
+   説明:
+      引数は１つまたは複数のマシン名
 
 .. Kill (abruptly force stop) a machine.
 

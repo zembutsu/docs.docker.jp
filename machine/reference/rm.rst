@@ -23,17 +23,17 @@ rm
 
    $ docker-machine rm --help
    
-   Usage: docker-machine rm [OPTIONS] [arg...]
+   使い方: docker-machine rm [オプション] [引数...]
    
-   Remove a machine
+   マシンを削除
    
-   Description:
-      Argument(s) are one or more machine names.
+   説明:
+      引数は１つまたは複数のマシン名
    
-   Options:
+   オプション:
    
-      --force, -f  Remove local configuration even if machine cannot be removed, also implies an automatic yes (`-y`)
-      -y       Assumes automatic yes to proceed with remove, without prompting further user confirmation
+      --force, -f  マシンを削除できなくても、ローカルの設定を削除する。また確認は自動的に `-y` を選択
+      -y       削除時の確認で、入力プロンプトを表示せず、自動的に yes を選択
 
 例：
 

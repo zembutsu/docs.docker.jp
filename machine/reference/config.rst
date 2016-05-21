@@ -21,16 +21,16 @@ config
 
 .. code-block:: bash
 
-   Usage: docker-machine config [OPTIONS] [arg...]
+   使い方: docker-machine config [オプション] [引数...]
    
-   Print the connection config for machine
+   マシンに接続する設定を表示
    
-   Description:
-      Argument is a machine name.
+   説明:
+      引数はマシン名。
    
-   Options:
+   オプション:
    
-      --swarm      Display the Swarm config instead of the Docker daemon
+      --swarm      Docker デーモンの代わりに Swarm 設定を表示
 
 実行例：
 

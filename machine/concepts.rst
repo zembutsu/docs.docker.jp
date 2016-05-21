@@ -10,7 +10,7 @@
 .. Understand Machine concepts and get help
 
 ==================================================
-Machine 概念の理解と手助け
+Machine の概念に対する理解とヘルプを得る
 ==================================================
 
 .. sidebar:: 目次
@@ -21,7 +21,7 @@ Machine 概念の理解と手助け
 
 .. Docker Machine allows you to provision Docker machines in a variety of environments, including virtual machines that reside on your local system, on cloud providers, or on bare metal servers (physical computers). Docker Machine creates a Docker host, and you use the Docker Engine client as needed to build images and create containers on the host.
 
-Docker Machine を使えば、様々な環境・様々な仮想マシン上で Docker が動くマシンを自動作成できます。これはローカルのシステム上だけでなく、クラウド・プロバイダ上でも、ベアメタル・サーバ（物理コンピュータ）上でも可能です。Docker Machine で Docker ホストを作成すると、Docker Engine クライアントを使えば、ホスト上でイメージの構築やコンテナ作成が必要に応じて可能になります。
+Docker Machine を使えば、様々な環境・様々な仮想マシン上で Docker が動くマシンを自動作成できます。これはローカルのシステム上だけでなく、クラウド・プロバイダ上でも、ベアメタル・サーバ（物理コンピュータ）上でも可能です。Docker Machine で Docker ホストを作成したら、Docker Engine クライアントを使えば、必要に応じてホスト上でイメージの構築やコンテナ作成が可能になります。
 
 .. Drivers for creating machines
 
@@ -39,7 +39,7 @@ Docker Machine を使えば、様々な環境・様々な仮想マシン上で D
 
 .. Since Docker runs on Linux, each VM that Docker Machine provisions relies on a base operating system. For convenience, there are default base operating systems. For the Oracle Virtual Box driver, this base operating system is boot2docker. For drivers used to connect to cloud providers, the base operating system is Ubuntu 12.04+. You can change this default when you create a machine. The Docker Machine reference includes a complete list of supported operating systems.
 
-Docker を Linux 上で動かす場合、Docker Machine のプロビジョニングは仮想マシンのベースとなるオペレーティング・システムに依存します。簡単なのはデフォルトのベース・オペレーティング・システムを使うことです。Oracle Virtual Box ドライバであれば、ベースにするオペレーティング・システムは `boot2docker <https://github.com/boot2docker/boot2docker>`_ です。クラウド・プロバイダを使う場合はベース・オペレーティング・システムは Ubuntu 12.04 以上です。このデフォルトはマシン作成時に変更できます。Docker Machine リファレンスの :doc:` サポートしているオペレーティング・システムの一覧 </machine/drivers/os-base>` をご覧ください。
+Docker を Linux 上で動かす場合、Docker Machine のプロビジョニングは仮想マシンのベースとなるオペレーティング・システムに依存します。簡単なのはデフォルトのベース・オペレーティング・システムを使うことです。Oracle Virtual Box ドライバであれば、ベースにするオペレーティング・システムは `boot2docker <https://github.com/boot2docker/boot2docker>`_ です。クラウド・プロバイダを使う場合はベース・オペレーティング・システムは Ubuntu 12.04 以上です。このデフォルトはマシン作成時に変更できます。Docker Machine リファレンスの :doc:`サポートしているオペレーティング・システムの一覧 </machine/drivers/os-base>` をご覧ください。
 
 .. IP addresses for Docker hosts
 
@@ -57,7 +57,7 @@ CLI の操作対象 Docker ホストを環境変数で指定
 
 .. Before you can run a docker command on a machine, you need to configure your command-line to point to that machine. The docker-machine env <machine-name> subcommand outputs the configuration command you should use.
 
-マシン上で ``docker`` コマンドを実行する前に、コマンドライン上で対象のマシンを指定する必要があります。 ``docker-machine env <マシン名>`` サブコマンドを実行すると、適切な命令が出力されます。
+マシン上で ``docker`` コマンドを実行する前に、コマンドライン上で対象のマシンを指定する必要があります。 ``docker-machine env <マシン名>`` サブコマンドを実行したら、適切な命令を出力します。
 
 .. For a complete list of docker-machine subcommands, see the Docker Machine subcommand reference.
 
@@ -90,7 +90,7 @@ CLI の操作対象 Docker ホストを環境変数で指定
 
 .. Getting help
 
-助けが必要ですか？
+ヘルプが必要ですか？
 ====================
 
 .. Docker Machine is still in its infancy and under active development. If you need help, would like to contribute, or simply want to talk about the project with like-minded individuals, we have a number of open channels for communication.

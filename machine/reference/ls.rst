@@ -15,24 +15,26 @@
 ls
 =======================================
 
+
+.. code-block:: bash
+
+   使い方: docker-machine ls [オプション] [引数...]
+   
+   マシン一覧を表示
+   
+   オプション:
+   
+      --quiet, -q                                  静かな (quite) モードを有効化
+      --filter [--filter option --filter option]  指定した状況に応じてフィルタを出力
+      --timeout, -t "10"                           タイムアウトを秒数で指定。デフォルトは 10 秒
+      --format, -f                                 Go テンプレートに一致する内容で表示
+
 .. sidebar:: 目次
 
    .. contents:: 
        :depth: 3
        :local:
 
-.. code-block:: bash
-
-   Usage: docker-machine ls [OPTIONS] [arg...]
-   
-   List machines
-   
-   Options:
-   
-      --quiet, -q                                  Enable quiet mode
-      --filter [--filter option --filter option]   Filter output based on conditions provided
-      --timeout, -t "10"                           Timeout in seconds, default to 10s
-      --format, -f                                 Pretty-print machines using a Go template
 
 .. Timeout
 

@@ -17,16 +17,16 @@ regenerate-certs
 
 .. code-block:: bash
 
-   Usage: docker-machine regenerate-certs [OPTIONS] [arg...]
+   使い方: docker-machine regenerate-certs [オプション] [引数...]
    
-   Regenerate TLS Certificates for a machine
+   マシン用の TLS 証明書を再作成
    
-   Description:
-      Argument(s) are one or more machine names.
+   説明:
+      引数は１つまたは複数のマシン名
    
-   Options:
+   オプション:
    
-      --force, -f  Force rebuild and do not prompt
+      --force, -f  強制的に再作成し、表示しない
 
 .. Regenerate TLS certificates and update the machine with new certs.
 

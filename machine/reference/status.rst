@@ -17,12 +17,12 @@ status
 
 .. code-block:: bash
 
-   Usage: docker-machine status [arg...]
+   使い方: docker-machine status [引数...]
    
-   Get the status of a machine
+   マシンの状態を取得
    
-   Description:
-      Argument is a machine name.
+   説明:
+      引数はマシン名
 
 .. Get the status of a machine.
 
