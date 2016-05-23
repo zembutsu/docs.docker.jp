@@ -18,9 +18,7 @@ Docker Engineドキュメント（https://docs.docker.com/）の日本語翻訳�
 * `Docker Engine ユーザガイド基礎編 v1.11 beta1 <http://docker.jp/PDF/docker-engine-basic-userguide-ja-beta1.pdf>`_ (PDF 3.1MB)
 * Docker Engine ユーザガイド活用編（予定）
 * `Docker Engine リファレンス編 v1.11 beta1 <http://docker.jp/PDF/docker-engine-reference-userguide-ja-beta1.pdf>`_ (PDF 1.2MB)
-
-
-* Docker Machine リファレンス（予定）
+* `Docker Machine ユーザガイド v0.7 beta1 <http://docker.jp/PDF/docker-machine-userguide-ja-beta1.pdf>`_ PDF (0.7MB)
 * Docker Swarm リファレンス（予定）
 * Docker Compose リファレンス（予定）
 
