@@ -113,11 +113,11 @@ docker-machine create コマンド
 
 .. When you install Docker Machine, you get a set of drivers for various cloud providers (like Amazon Web Services, Digital Ocean, or Microsoft Azure) and local providers (like Oracle VirtualBox, VMWare Fusion, or Microsoft Hyper-V).
 
-Docker Machine をインストールすると、様々なクラウド・プロバイダに対応したドライバ（Amazon Web Services 、 Digital Ocean 、 Microsoft Azure 等）と、ローカルのプロバイダ（Oracle VirtualBox 、VMware Fusion 、Microsoft Hyper-V）が利用可能になります。
+Docker Machine をインストーしたら、様々なクラウド・プロバイダに対応したドライバ（Amazon Web Services 、 Digital Ocean 、 Microsoft Azure 等）と、ローカルのプロバイダ（Oracle VirtualBox 、VMware Fusion 、Microsoft Hyper-V）が利用可能になります。
 
 .. See Docker Machine driver reference for details on the drivers, including required flags and configuration options (which vary by provider).
 
-各ドライバの詳細は :doc:`Docker Machine ドライバ・リファレンス </machine/drivers/index>` から、必要なフラグや設定オプション（プロバイダ毎にかなり違います）をご確認ください。
+各ドライバの詳細は :doc:`Docker Machine ドライバ・リファレンス </machine/drivers/index>` から、必要なフラグや設定オプション（プロバイダごとにかなり違います）をご確認ください。
 
 .. 3rd-party driver plugins
 
@@ -132,7 +132,7 @@ Docker Machine をインストールすると、様々なクラウド・プロ�
 
 .. See Available driver plugins in the docker/machine repo on GitHub.
 
-GItHub の docker/machine リポジトリ上の `利用可能なドライバ・プラグイン <https://github.com/docker/machine/blob/master/docs/AVAILABLE_DRIVER_PLUGINS.md>`_ をご覧ください。
+使うには、GItHub の docker/machine リポジトリ上の `利用可能なドライバ・プラグイン <https://github.com/docker/machine/blob/master/docs/AVAILABLE_DRIVER_PLUGINS.md>`_ をご覧ください。
 
 .. Adding a host without a driver
 
@@ -143,7 +143,7 @@ GItHub の docker/machine リポジトリ上の `利用可能なドライバ・�
 
 .. You can add a host to Docker which only has a URL and no driver. Then you can use the machine name you provide here for an existing host so you don’t have to type out the URL every time you run a Docker command.
 
-Docker の場所を指定すると、ドライバがないホストの追加が可能です。既存のホストに関するマシン名を指定することにより、Docker コマンド使用時に毎回オプションを指定する必要がなくなります。
+Docker の場所を指定したら、ドライバがないホストの追加が可能です。既存のホストに関するマシン名を指定することにより、Docker コマンド使用時に毎回オプションを指定する必要がなくなります。
 
 .. code-block:: bash
 

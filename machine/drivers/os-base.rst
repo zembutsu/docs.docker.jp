@@ -37,7 +37,7 @@
 
 .. In addition to the provider, you have the option of identifying a base operating system. It is an option because Docker Machine has defaults for both local and remote providers. For local providers such as VirtualBox, Fusion, Hyper-V, and so forth, the default base operating system is Boot2Docker. For cloud providers, the base operating system is the latest Ubuntu LTS the provider supports.
 
-プロバイダに加え、ベース・オペレーティング・システム毎に固有のオプションを指定できます。しかし、Docker machine はローカル・リモートの各プロバイダに対するデフォルト指定を持っているため、オプション指定は任意です。VirtualBox、Fusion、Hyper-V 等のようなローカル・プロバイダでは、デフォルトのベース・オペレーティング・システムは Boot2Docker です。クラウド・プロバイダ向けのベース・オペレーティング・システムは、プロバイダが提供している最新の Ubuntu LTS です。
+プロバイダに加え、ベース・オペレーティング・システムごとに固有のオプションを指定できます。しかし、Docker machine はローカル・リモートの各プロバイダに対するデフォルト指定を持っているため、オプション指定は任意です。VirtualBox、Fusion、Hyper-V 等のようなローカル・プロバイダでは、デフォルトのベース・オペレーティング・システムは Boot2Docker です。クラウド・プロバイダ向けのベース・オペレーティング・システムは、プロバイダが提供している最新の Ubuntu LTS です。
 
 .. Operating System 	Version 	Notes
 .. Boot2Docker 	1.5+ 	default for local
@@ -82,7 +82,7 @@
 
 .. If you change the base image for a provider, you may also need to change the SSH user. For example, the default Red Hat AMI on EC2 expects the SSH user to be ec2-user, so you would have to specify this with --amazonec2-ssh-user ec2-user.
 
-プロバイダ用のベース・イメージを変更する時、SSH ユーザの変更も必要になる場合があります。例えば、 EC2 上のデフォルト Red Hat AMI の SSH ユーザは ``ec2-user`` なので、 ``--amazonec2-ssh-user ec2-user`` と指定する必要があります。
+プロバイダ用のベース・イメージを変更する時、SSH ユーザの変更も必要になる場合があります。例えば、 EC2 上のデフォルト Red Hat AMI の SSH ユーザは ``ec2-user`` ですので、 ``--amazonec2-ssh-user ec2-user`` と指定する必要があります。
 
 .. seealso:: 
 

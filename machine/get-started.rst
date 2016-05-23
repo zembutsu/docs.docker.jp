@@ -266,7 +266,7 @@ Docker ホスト上でポート番号が利用可能な IP アドレスの確認
 
 .. If you are finished using a host for the time being, you can stop it with docker-machine stop and later start it again with docker-machine start.
 
-ホストを使い終わり、暫く使わないのであれば、 ``docker-machine stop`` を実行して停止できます。あとで起動したい場合は ``docker-machine start``  を実行します。
+ホストを使い終わり、しばらく使わないのであれば、 ``docker-machine stop`` を実行して停止できます。あとで起動したい場合は ``docker-machine start``  を実行します。
 
 .. code-block:: bash
 
@@ -280,7 +280,7 @@ Docker ホスト上でポート番号が利用可能な IP アドレスの確認
 
 .. Some docker-machine commands will assume that the given operation should be run on a machine named default (if it exists) if no machine name is specified. Because using a local VM named default is such a common pattern, this allows you to save some typing on the most frequently used Machine commands.
 
-いくつかの ``docker-machine`` コマンドは、マシン名が明示されなければ ``default`` という名称のマシン（が存在している場合）に対して処理を行います。そのため、 ``default`` ローカル仮想マシンが一般的なパターンとして、頻繁に利用できるでしょう。
+いくつかの ``docker-machine`` コマンドは、マシン名を明示しれなければ ``default`` という名称のマシン（が存在している場合）に対して処理を行います。そのため、 ``default`` ローカル仮想マシンは一般的なパターンとして、頻繁に利用できるでしょう。
 
 .. For example:
 

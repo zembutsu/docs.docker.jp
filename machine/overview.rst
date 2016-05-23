@@ -23,7 +23,7 @@ Docker Machine 概要
 
 .. You can use Docker Machine to:
 
-Docker Machine を使うと、以下の操作ができます。
+Docker Machine を使いますと、以下の操作ができます。
 
 ..    Install and run Docker on Mac or Windows
     Provision and manage multiple remote Docker hosts
@@ -50,7 +50,7 @@ Docker Machine は仮想マシン上に Docker Engine をインストールす�
 
 .. Point the Machine CLI at a running, managed host, and you can run docker commands directly on that host. For example, run docker-machine env default to point to a host called default, follow on-screen instructions to complete env setup, and run docker ps, docker run hello-world, and so forth.
 
-Machine のコマンドライン上で管理対象のホストを参照するように指定したら、 ``docker`` コマンドが対象ホストを直接管理します。例えば、 ``docker-machine env default`` を実行したら、操作対象のホストは ``default`` という名前のホストにするため、画面上に ``env`` コマンドの指示が表示されます。これを使ってセットアップした後は、 ``docker ps`` や ``docker run hello-world`` コマンドなど、指定したホスト上で直接処理できます。
+Machine のコマンドライン上で管理対象のホストを参照するように指定したら、 ``docker`` コマンドが対象ホストを直接管理します。例えば、 ``docker-machine env default`` を実行したら、操作対象のホストは ``default`` という名前のホストにするため、画面上に ``env`` コマンドの指示が表示されます。これを使ってセットアップしたあとは、 ``docker ps`` や ``docker run hello-world`` コマンドなど、指定したホスト上で直接処理できます。
 
 .. Why should I use it?
 

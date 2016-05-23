@@ -121,15 +121,15 @@ Mac や Linux ディストリビューションでは、 `AWS コマンドライ
 * ``--amazonec2-session-token`` :  自分の Amazon Web Services API 用のセッション・トークンです。
 * ``--amazonec2-ami`` : インスタンスに使用する AMI ID です。
 * ``--amazonec2-region`` : インスタンスを起動するリージョンです。
-* ``--amazonec2-vpc-id`` : *必須*** 起動したインスタンスを置く VPC ID です。
+* ``--amazonec2-vpc-id`` : **必須** 起動したインスタンスを置く VPC ID です。
 * ``--amazonec2-zone`` : インスタンスを置く AWS ゾーンです（例： a, b, c, d, e のいずれか）。
 * ``--amazonec2-subnet-id`` : AWS VPC サブネット ID です。
 * ``--amazonec2-security-group`` : AWS VPC セキュリティ・グループ名です。
 * ``--amazonec2-tags`` : AWS タグをキーバリューのペアで指定します（カンマ区切りです。例： key1,value1,key2,value2）。
-* ``--amazonec2-instance-type``: 実行するインスタンス・タイプです。
-* ``--amazonec2-device-name``: 実行するデバイス名です。
+* ``--amazonec2-instance-type`` : 実行するインスタンス・タイプです。
+* ``--amazonec2-device-name`` : 実行するデバイス名です。
 * ``--amazonec2-root-size`` : インスタンスのルート・ディスク容量（単位：GB）。
-* ``--amazonec2-volume-type``: インスタンスにアタッチする Amazon EBS の種類を指定。
+* ``--amazonec2-volume-type`` : インスタンスにアタッチする Amazon EBS の種類を指定。
 * ``--amazonec2-iam-instance-profile`` : インスタンスのプロフィールに使われる AWS IAM ロール名。
 * ``--amazonec2-ssh-user`` : SSH ログイン・ユーザ名です。ここには AMI が使うデフォルトの SSH ユーザを一致する必要があります。
 * ``--amazonec2-request-spot-instance`` : スポット・インスタンスを使用。
@@ -331,7 +331,7 @@ Machine は SSH を使い EC2 インスタンス上にセットアップしま�
 
 .. If you use the flag --amazonec2-private-address-only, you will need to ensure that you have some method of accessing the new instance from within the internal network of the VPC (e.g. a corporate VPN to the VPC, a VPN instance inside the VPC or using Docker-machine from an instance within your VPC).
 
-フラグ ``--amazonec2-private-address-only``  を使うときは、VPC の内部ネットワーク内で新しいインスタンスを作成できるようにする必要があります（例：社内の VPN から VPC の接続、VPC 内の VPN インスタンス、VPC 内で DOcker Machine インスタンスを使う）。
+フラグ ``--amazonec2-private-address-only``  を使うときは、VPC の内部ネットワーク内で新しいインスタンスを作成できるようにする必要があります（例：社内の VPN から VPC の接続、VPC 内の VPN インスタンス、VPC 内で Docker Machine インスタンスを使う）。
 
 .. VPC Set up
 

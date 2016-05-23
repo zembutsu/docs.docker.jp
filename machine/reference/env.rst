@@ -67,7 +67,7 @@ env
 
 .. If you are using fish and the SHELL environment variable is correctly set to the path where fish is located, docker-machine env name will print out the values in the format which fish expects:
 
-もし ``fish`` を使っており、 ``SHELL`` 環境変数が ``fish`` のパスを適切に設定しているのであれば、 ``docker-machine env マシン名`` を実行すると、 ``fish`` を想定した形式で値が表示されます。
+もし ``fish`` を使っており、 ``SHELL`` 環境変数が ``fish`` のパスを適切に設定しているのであれば、 ``docker-machine env マシン名`` を実行したら、 ``fish`` を想定した形式で値を表示します。
 
 .. code-block:: bash
 
@@ -137,7 +137,7 @@ env コマンドは ``--no-proxy`` フラグをサポートしています。こ
 
 .. You may also want to visit the documentation on setting HTTP_PROXY for the created daemon using the --engine-env flag for docker-machine create.
 
-また、 :ref:`設定ドキュメント <specifying-configuration-options-for-the-created-docker-engine>` から、 ``docker-machine create`` コマンド作成時に ``--engine-env`` フラグでデーモンの ``HTTP_PROXY`` を指定する方法も参考になるでしょう。
+また、 :ref:`create 用の設定ドキュメント <specifying-configuration-options-for-the-created-docker-engine>` では、 ``docker-machine create`` コマンドで作成時に ``--engine-env`` フラグでデーモンの ``HTTP_PROXY`` を指定する方法も参考になるでしょう。
 
 .. seealso:: 
 
