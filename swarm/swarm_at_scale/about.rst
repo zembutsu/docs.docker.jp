@@ -4,7 +4,7 @@
    doc version: 1.11
       https://github.com/docker/swarm/commits/master/docs/swarm_at_scale/about.md
 .. check date: 2016/04/29
-.. Commits on Apr 14, 2016 70a180cb30ea4593b8f69d14c544cf278bf54ddd
+.. Commits on Apr 29, 2016 d2c9f8bc9a674a4f215afe3651a09ee5c42c713c
 .. -------------------------------------------------------------------
 
 .. Learn the application architecture
@@ -45,25 +45,24 @@
 アプリケーションのアーキテクチャを理解
 ========================================
 
-.. The voting application is a dockerized microservice application. It uses a parallel web frontend that sends jobs to asynchronous background workers. The application’s design can accommodate arbitrarily large scale. The diagram below shows the high level architecture of the application.
+.. The voting application is composed of several microservices. It uses a parallel web frontend that sends jobs to asynchronous background workers. The application’s design can accommodate arbitrarily large scale. The diagram below shows the appliation’s high level architecture:
 
-
-投票アプリケーションは Docker 化されたマイクロサービス・アプリケーションです。並列なウェブ・フロントエンドを使い、ジョブを非同期のバックグラウンド・ワーカに送ります。アプリケーションは任意に大きくスケール可能な設計です。次の図はアプリケーションのハイレベルなアーキテクチャです。
+投票アプリケーションは複数のマイクロサービスで構成されます。並列なウェブ・フロントエンドを使い、ジョブを非同期のバックグラウンド・ワーカに送ります。アプリケーションは任意に大きくスケール可能な設計です。次の図はアプリケーションのハイレベルなアーキテクチャです。
 
 .. image:: ../images/app-architecture.png
    :scale: 60%
 
-.. The application is fully Dockerized with all services running inside of containers.
+.. All the servers are running Docker Engine. The entire application is fully “Dockerized” in that all services are running inside of containers.
 
-このアプリケーションは完全に Docker 化（Dockerized）しており、全てのサービスをコンテナ内で実行します。
+全てのサーバで Docker Engine が動いています。アプリケーション全体は完全に Docker 化（Dockerized）しており、全てのサービスをコンテナ内で実行します。
 
-.. The frontend consists of an Interlock load balancer with n frontend web servers and associated queues. The load balancer can handle an arbitrary number of web containers behind it (frontend01- frontendN). The web containers run a simple Python Flask application. Each container accepts votes and queues them to a Redis container on the same node. Each web container and Redis queue pair operates independently.
+.. The frontend consists of an load balancer with N frontend instances. Each frontend consists of a web server and a Redis queue. The load balancer can handle an arbitrary number of web containers behind it (frontend01- frontendN). The web containers run a simple Python application that takes a vote between two options. It queus the votes to a Redist container running on the datastore.
 
-フロントエンドは interlock ロード・バランサと n 台のフロントエンド・ウェブサーバで構成され、クエリを作成します。ロードバランサは任意の数のウェブ・コンテナを背後で扱えます（ ``frontend01`` ～ ``frontendN`` ）。Webコンテナはシンプルな Python Flask アプリケーションです。各コンテナは投票を受け付け、同じノード上の Redis コンテナにキューを渡します。各ウェブ・コンテナと Redis キューのペアは独立して処理されます。
+フロントエンドはロードバランサと N 台のフロントエンド・インスタンスで構成します。各フロントエンドはウェブ・サーバと Redis キューで構成します。ロードバランサは任意の数のウェブ・コンテナを背後で扱えます（ ``frontend01`` ～ ``frontendN`` ）。Webコンテナは２つの選択肢から投票するシンプルな Python アプリケーションです。キューに入った投票は datasotre 上の Redis コンテナに送られます。
 
 .. The load balancer together with the independent pairs allows the entire application to scale to an arbitrary size as needed to meet demand.
 
-このペアはロードバランサと個別に連係できます。そのため、アプリケーション全体を需要に応じて任意の大きさにスケール可能です。
+.. このペアはロードバランサと個別に連係できます。そのため、アプリケーション全体を需要に応じて任意の大きさにスケール可能です。
 
 .. Behind the frontend is a worker tier which runs on separate nodes. This tier:
 
@@ -72,16 +71,21 @@
 ..    scans the Redis containers
     dequeues votes
     deduplicates votes to prevent double voting
-    commits the results to a Postgres container running on a separate node
+    commits the results to a Postgres database
 
 * Redis コンテナをスキャン
 * 投票のキューを回収
 * 重複投票を防ぐために投票結果を複製
-* 別のノードにある PostgreSQL が動いているコンテナに結果をコミットする
+* 結果を Postgres データベースにコミットする
 
-.. Just like the front end, the worker tier can also scale arbitrarily.
 
-フロントエンドと同様に、ワーカー層も任意にスケールできます。
+.. Just like the frontend, the worker tier can also scale arbitrarily. The worker count and frontend count are independent from each other.
+
+フロントエンドと同様に、ワーカ層も任意にスケールできます。ワーカの数とフロントエンドの数は、お互い独立しています。
+
+.. The applications Dockerized microservices are deployed to a container network. Container networks are a feature of Docker Engine that allows communication between multiple containers across multiple Docker hosts.
+
+Docker 化したマイクロサービスのアプリケーションを、コンテナ・ネットワークにデプロイします。コンテナ・ネットワークは Docker Engine の機能です。これは複数の Docker ホスト上を横断して複数のコンテナ間で通信を可能にします。
 
 .. Swarm Cluster Architecture
 
@@ -90,20 +94,20 @@
 Swarm クラスタのアーキテクチャ
 ------------------------------
 
-.. To support the application the design calls for a Swarm cluster that with a single Swarm manager and 4 nodes as shown below.
+.. To support the application, the design calls for a Swarm cluster with a single Swarm manager and four nodes as shown below.
 
-アプリケーションの設計をサポートするのが、１つの Swarm マネージャと４つのノードで構成される Swarm クラスタです。
+アプリケーションをサポートするのは、次の図のように、１つの Swarm マネージャと４つのノードで構成する設計の Swarm クラスタです。
 
 .. image:: ../images/swarm-cluster-arch.png
    :scale: 60%
 
-.. All four nodes in the cluster are running the Docker daemon, as is the Swarm manager and the Interlock load balancer. The Swarm manager exists on a Docker host that is not part of the cluster and is considered out of band for the application. The Interlock load balancer could be placed inside of the cluster, but for this demonstration it is not.
+.. All four nodes in the cluster are running the Docker daemon, as is the Swarm manager and the load balancer. The Swarm manager is part of the cluster and is considered out of band for the application. A single host running the Consul server acts as a keystore for both Swarm discovery and for the container network. The load balancer could be placed inside of the cluster, but for this demonstration it is not.
 
-クラスタの４つのノードすべてで Docker デーモンが動作します。Swarm マネージャと interlock ロードバランサも同様です。Swarm マネージャは Docker ホスト上に存在します。これはクラスタの一部ではなく、アプリケーションの外にあるものと考えます。Interlock ロードバランサはクラスタ内に設置可能ですが、今回のサンプルでは扱いません。
+クラスタの４つのノードすべてで Docker デーモンが動作します。Swarm マネージャと ロードバランサも同様です。Swarm マネージャはクラスタの一部であり、アプリケーションの範囲外であると考えます。１つのホスト上で Consul サーバはキーストア（keystore）として動作します。これは Swarm ディスカバリ用と、コンテナ・ネットワーク用の両方のためです。ロードバランサはクラスタ内に設置可能ですが、今回のサンプルでは扱いません。
 
-.. The diagram below shows the application architecture overlayed on top of the Swarm cluster architecture. After completing the example and deploying your application, this is what your environment should look like.
+.. After completing the example and deploying your application, this is what your environment should look like.
 
-以下の図は Swarm クラスタのアーキテクチャ上に、アプリケーションのアプリケーションを重ねています。このサンプルを終え、アプリケーションをデプロイすると、次のような環境が整います。
+サンプルを終え、アプリケーションをデプロイすると、皆さんの環境は下図のようになります。
 
 .. image:: ../images/final-result.png
    :scale: 60%
@@ -114,46 +118,45 @@ Swarm クラスタのアーキテクチャ
 この図にあるように、クラスタの各ノードでは次のコンテナを実行します。
 
 ..    frontend01:
-        Container: Pyhton flask web app (frontend01)
-        Container: Redis (redis01)
+        Container: voting-app
+        Container: Swarm agent
     frontend02:
-        Container: Python flask web app (frontend02)
-        Container: Redis (redis02)
-    worker01: vote worker app (worker01)
-    store:
-        Container: Postgres (pg)
-        Container: results app (results-app)
+        Container: voting-app
+        Container: Swarm agent
+    worker01:
+        Container: voting-app-worker
+        Container: Swarm agent
+    dbstore:
+        Container: voting-app-result-app
+        Container: db (Postgres 9.4)
+        Container: redis
+        Container: Swarm agent
 
 * ``frontend01`` ：
 
-  * コンテナ：Python flask ウェブアプリ（frontend01）
-  * コンテナ：Redis（redis01）
+  * コンテナ：voitng-app（投票アプリ）
+  * コンテナ：Swarm エージェント
 
 * ``frontend02`` ：
 
-  * コンテナ：Python flask ウェブアプリ（frontend02）
-  * コンテナ：Redis（redis02）
+  * コンテナ：voitng-app（投票アプリ）
+  * コンテナ：Swarm エージェント
 
-* ``worker01`` ：投票ワーカーアプリ（worker01）
-* ``store`` ：
+* ``worker01`` ：
 
-  * コンテナ：Postgres（pg）
-  * コンテナ：results アプリ（results-app）
+  * コンテナ：voitng-app-worker（投票ワーカ・アプリ）
+  * コンテナ：Swarm エージェント
+
+* ``dbstore`` ：
+
+  * コンテナ：voting-app-result-app（投票結果用アプリ）
+  * コンテナ：db (Postgres 9.4)
+  * コンテナ：redis
+  * コンテナ：Swarm エージェント
 
 .. After you deploy the application, you’ll configure your local system so that you can test the application from your local browser. In production, of course, this step wouldn’t be needed.
 
-アプリケーションをデプロイするとき、ローカル・システムを設定するとローカルのブラウザ上でアプリケーションをテスト可能です。プロダクションでは、もちろんこの手順は不要です。
-
-.. The network infrastructure
-
-.. _the-network-infrastructure:
-
-ネットワーク・インフラ
-==============================
-
-.. The example assumes you are deploying the application to a Docker Swarm cluster running on top of Amazon Web Services (AWS). AWS is an example only. There is nothing about this application or deployment that requires it. You could deploy the application to a Docker Swarm cluster running on; a different cloud provider such as Microsoft Azure, on premises in your own physical data center, or in a development environment on your laptop.
-
-このサンプルではアプリケーションを Amazon Web Services (AWS) 上の Swarm クラスタにデプロイします。AWS を使うのは単なる例です。このアプリケーションやデプロイに必要なだけです。皆さん自身で、任意のプラットフォーム上で環境設計を再現可能です。例えば、 Digital Ocean のような別のパブリック・クラウド・プラットフォームや、データセンタ内のオンプレミス上や、ノート PC 上のテスト環境にもアプリケーションをデプロイできます。
+アプリケーションをデプロイするとき、ローカル・システムを設定したら、ローカルのブラウザ上でアプリケーションをテスト可能です。プロダクションでは、もちろんこの手順は不要です。
 
 .. Next step
 
@@ -162,9 +165,12 @@ Swarm クラスタのアーキテクチャ
 
 .. Now that you understand the application architecture, you need to deploy a network configuration that can support it. In the next step, you use AWS to deploy network infrastructure for use in this sample.
 
-これでアプリケーションのアーキテクチャを理解しましたの。デプロイするにあたり、どのようなネットワーク設定をサポートする必要があるのか分かったと思います。次のステップでは、このサンプルを使って AWS 上に :doc:`ネットワーク・インフラをデプロイ <02-deploy-infra>` します。
+.. Now that you understand the application architecture, you need to deploy a network configuration that can support it. In the next step, you deploy network infrastructure for use in this sample.
+
+
+これでアプリケーションのアーキテクチャを理解しましたの。デプロイするにあたり、どのようなネットワーク設定をサポートする必要があるのか分かったと思います。次のステップでは、このサンプルを使って :doc:`ネットワーク・インフラをデプロイ <deploy-infra>` します。
 
 .. seealso:: 
 
    Learn the application architecture
-      https://docs.docker.com/swarm/swarm_at_scale/01-about/
+      https://docs.docker.com/swarm/swarm_at_scale/about/
