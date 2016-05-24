@@ -35,7 +35,7 @@ down
 
 .. Stops containers and removes containers, networks, volumes, and images created by up.
 
-コンテナを停止し、 ``up`` によって作成されたコンテナ、ネットワーク、ボリューム、イメージを削除します。
+コンテナを停止し、 ``up`` で作成したコンテナ、ネットワーク、ボリューム、イメージを削除します。
 
 .. By default, the only things removed are:
 

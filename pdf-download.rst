@@ -20,7 +20,7 @@ Docker Engineドキュメント（https://docs.docker.com/）の日本語翻訳�
 * `Docker Engine リファレンス編 v1.11 beta1 <http://docker.jp/PDF/docker-engine-reference-userguide-ja-beta1.pdf>`_ (PDF 1.2MB)
 * `Docker Machine ユーザガイド v0.7 beta1 <http://docker.jp/PDF/docker-machine-userguide-ja-beta1.pdf>`_ PDF (0.7MB)
 * Docker Swarm リファレンス（予定）
-* Docker Compose リファレンス（予定）
+* `Docker Compose ユーザガイド v1.7 beta1 <http://docker.jp/PDF/docker-compose-userguide-ja-beta1.pdf>`_ PDF (0.8MB)
 
 免責事項
 ====================
@@ -32,7 +32,10 @@ Docker Engineドキュメント（https://docs.docker.com/）の日本語翻訳�
 履歴
 ==========
 
+* 2016年5月24日　Compose ユーザガイド beta1 を公開
+* 2016年5月21日　Machine ユーザガイド beta1 を公開
 * 2016年5月20日　Engine リファレンス beta1 を公開
+* 2016年5月20日　Engine ユーザガイド beta1 を公開
 * 2016年5月12日　入門ガイド beta1を公開
 
 
