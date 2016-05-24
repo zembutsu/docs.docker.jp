@@ -17,10 +17,10 @@ kill
 
 .. code-block:: bash
 
-   Usage: kill [options] [SERVICE...]
+   使い方: kill [オプション] [サービス...]
    
-   Options:
-   -s SIGNAL         SIGNAL to send to the container. Default signal is SIGKILL.
+   オプション:
+   -s SIGNAL         コンテナに送信するシグナル。デフォルトのシグナルは SIGKILL
 
 .. Forces running containers to stop by sending a SIGKILL signal. Optionally the signal can be passed, for example:
 

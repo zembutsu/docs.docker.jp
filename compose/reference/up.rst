@@ -17,28 +17,24 @@ up
 
 .. code-block:: bash
 
-   Usage: up [options] [SERVICE...]
+   使い方: up [オプション] [サービス...]
    
-   Options:
-       -d                         Detached mode: Run containers in the background,
-                                  print new container names.
-                                  Incompatible with --abort-on-container-exit.
-       --no-color                 Produce monochrome output.
-       --no-deps                  Don't start linked services.
-       --force-recreate           Recreate containers even if their configuration
-                                  and image haven't changed.
-                                  Incompatible with --no-recreate.
-       --no-recreate              If containers already exist, don't recreate them.
-                                  Incompatible with --force-recreate.
-       --no-build                 Don't build an image, even if it's missing.
-       --build                    Build images before starting containers.
-       --abort-on-container-exit  Stops all containers if any container was stopped.
-                                  Incompatible with -d.
-       -t, --timeout TIMEOUT      Use this timeout in seconds for container shutdown
-                                  when attached or when containers are already
-                                  running. (default: 10)
-       --remove-orphans           Remove containers for services not defined in
-                                  the Compose file
+   オプション:
+       -d                         デタッチド・モード: バックグラウンドでコンテナを実行し、新しいコンテナ名を表示
+                                  --abort-on-container-exit と同時に使えない
+       --no-color                 白黒で画面に表示
+       --no-deps                  リンクしたサービスを表示しない
+       --force-recreate           設定やイメージに変更がなくても、コンテナを再作成する
+                                  --no-recreate と同時に使えません
+       --no-recreate              コンテナが既に存在していれば、再作成しない
+                                  --force-recreate と同時に使えない
+       --no-build                 イメージが見つからなくても構築しない
+       --build                    コンテナを開始前にイメージを構築する
+       --abort-on-container-exit  コンテナが１つでも停止したら全てのコンテナを停止
+                                  -d と同時に使えない
+       -t, --timeout TIMEOUT      アタッチしている、あるいは既に実行中のコンテナを
+                                  停止する時のタイムアウト秒数を指定 (デフォルト:10 )
+       --remove-orphans           Compose ファイルで定義されていないサービス用のコンテナを削除
 
 .. Builds, (re)creates, starts, and attaches to containers for a service.
 

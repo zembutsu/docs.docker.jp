@@ -17,11 +17,11 @@ start
 
 .. code-block:: bash
 
-   Usage: start [SERVICE...]
+   使い方: start [サービス...]
 
 .. Starts existing containers for a service.
 
- コンテナをサービスとして存在するように起動します。
+既存のコンテナをサービスとして起動します。
 
 .. seealso:: 
 

@@ -27,7 +27,7 @@ Compose ファイルは `YAML <http://yaml.org/>`_ ファイルであり、 :ref
 
 .. A service definition contains configuration which will be applied to each container started for that service, much like passing command-line parameters to docker run. Likewise, network and volume definitions are analogous to docker network create and docker volume create.
 
-サービスの定義では、各コンテナをサービスとして定義できます。このサービスを起動するとき、コマンドラインの ``docker run`` のパラメータのような指定が可能です。同様に、ネットワークやボリュームの定義も ``docker network create`` や ``docker volume create`` と似ています。
+サービスの定義では、各コンテナをサービスとして定義できます。このサービスを起動する時、コマンドラインの ``docker run`` のパラメータのような指定が可能です。同様に、ネットワークやボリュームの定義も ``docker network create`` や ``docker volume create`` と似ています。
 
 .. As with docker run, options specified in the Dockerfile (e.g., CMD, EXPOSE, VOLUME, ENV) are respected by default - you don’t need to specify them again in docker-compose.yml.
 
@@ -52,7 +52,7 @@ Bash の ``${変数}`` の構文のように、環境変数を使って設定を
 
 .. This section contains a list of all configuration options supported by a service definition.
 
-このセクションは、サービスを定義するためにサポートされている設定オプションの一覧を含みます。
+（Docker Composeの）サービス定義用にサポートされている設定オプションの一覧を、このセクションで扱います。
 
 .. build
 
@@ -67,7 +67,7 @@ build
 
 .. build can be specified either as a string containing a path to the build context, or an object with the path specified under context and optionally dockerfile and args.
 
-``build`` で指定できるのは、構築用コンテキストのパスを含む文字列だけでなく、 :ref:`context <compose-file-context>` の配下にある特定の物（オブジェクト）や、 :ref:`dockerfile <compose-file-dockerfile>` のオプションと :ref:`引数 <compose-file-args>` を指定できます。
+``build`` で指定できるのは、構築用コンテクストのパスを含む文字列だけでなく、 :ref:`context <compose-file-context>` の配下にある特定の物（オブジェクト）や、 :ref:`dockerfile <compose-file-dockerfile>` のオプションと :ref:`引数 <compose-file-args>` を指定できます。
 
 .. code-block:: yaml
 
@@ -118,11 +118,11 @@ context
 
 .. Either a path to a directory containing a Dockerfile, or a url to a git repository.
 
-コンテキスト（訳者注：内容物の意味）には Dockerfile があるディレクトリのパスや Git リポジトリの URL を指定します。
+コンテクスト（訳者注：内容物の意味）には Dockerfile があるディレクトリのパスや Git リポジトリの URL を指定します。
 
 .. When the value supplied is a relative path, it is interpreted as relative to the location of the Compose file. This directory is also the build context that is sent to the Docker daemon.
 
-値に相対パスを指定すると、Compose ファイルのある場所を基準とした相対パスとして解釈されます。また、指定したディレクトリが構築コンテキストとなり、Docker デーモンに送信されます。
+値に相対パスを指定したら、Compose ファイルのある場所を基準とした相対パスとして解釈します。また、指定したディレクトリが構築コンテクストとなり、Docker デーモンに送信します。
 
 .. Compose will build and tag it with a generated name, and use that image thereafter.
 
@@ -184,7 +184,7 @@ args
 
    対応しているのは :ref:`バージョン２のファイル形式 <compose-file-version-2>` のみです。
 
-構築時に build のオプション（args）を追加します。配列でも辞書形式（訳者注：「foo=bar」の形式）も指定できます。ブール演算子（true、false、yes、no）を使う場合はクォートで囲む必要があります。そうしないと YAML パーサは True か False か判別できません。
+構築時に build のオプション（args）を追加します。配列でも辞書形式（訳者注：「foo=bar」の形式）も指定できます。ブール演算子（true、false、yes、no）を使う場合はクォートで囲む必要があります。そうしませんと YAML パーサは True か False か判別できません。
 
 .. Build arguments with only a key are resolved to their environment value on the machine Compose is running on.
 
@@ -209,7 +209,7 @@ cap_add, cap_drop
 
 .. Add or drop container capabilities. See man 7 capabilities for a full list.
 
-コンテナの機能（capabilities）を追加・削除します。機能の一覧については ``man 7 capabilities`` をご覧ください。
+コンテナのケーパビリティ（capabilities）を追加・削除します。ケーパビリティの一覧は ``man 7 capabilities`` をご覧ください。
 
 .. code-block:: yaml
 
@@ -268,7 +268,7 @@ container_name
 
 .. Because Docker container names must be unique, you cannot scale a service beyond 1 container if you have specified a custom name. Attempting to do so results in an error.
 
-Docker コンテナ名はユニークである必要があるので、カスタム名を指定すると、サービスは複数のコンテナにスケールできなくなります。
+Docker コンテナ名はユニークである必要があります。そのため、カスタム名を指定時、サービスは複数のコンテナにスケールできなくなります。
 
 .. _compose-file-devices:
 
@@ -291,15 +291,15 @@ depends_on
 
 .. Express dependency between services, which has two effects:
 
-サービス間の依存関係を指定すると、２つの効果があります。
+サービス間の依存関係を指定したら、２つの効果があります。
 
 ..    docker-compose up will start services in dependency order. In the following example, db and redis will be started before web.
 
-* ``docker-compose up`` を実行すると、依存関係のある順番に従ってサービスを起動します。以下の例では、 ``web`` を開始する前に ``db`` と ``rails`` を実行します。
+* ``docker-compose up`` を実行したら、依存関係のある順番に従ってサービスを起動します。以下の例では、 ``web`` を開始する前に ``db`` と ``rails`` を実行します。
 
 ..    docker-compose up SERVICE will automatically include SERVICE’s dependencies. In the following example, docker-compose up web will also create and start db and redis.
 
-* ``docker-compose up サービス`` を実行すると、自動的に ``サービス`` の依存関係を処理します。以下の例では、 ``docker-compose up web`` を実行すると、 ``db`` と ``redis`` も作成・起動します。
+* ``docker-compose up サービス（の名称）`` を実行したら、自動的に ``サービス`` の依存関係を処理します。以下の例では、 ``docker-compose up web`` を実行したら、 ``db`` と ``redis`` も作成・起動します。
 
 .. Simple example:
 
@@ -367,7 +367,7 @@ tmpfs
 
 .. Mount a temporary file system inside the container. Can be a single value or a list.
 
-コンテナ内にテンポラリ・ファイルシステムおをマウントします。単一の値もしくはリストです。
+コンテナ内にテンポラリ・ファイルシステムをマウントします。単一の値もしくはリストです。
 
 .. code-block:: yaml
 
@@ -418,7 +418,7 @@ env_file
 
 .. If you have specified a Compose file with docker-compose -f FILE, paths in env_file are relative to the directory that file is in.
 
-Compose ファイルを ``docker-compose -f ファイル名`` で指定する場合は、 ``env_file`` ファイルは、指定したディレクトリに対する相対パスとみなします。
+Compose ファイルを ``docker-compose -f ファイル名`` で指定する場合は、 ``env_file`` ファイルは指定したディレクトリに対する相対パスとみなします。
 
 .. Environment variables specified in environment override these values.
 
@@ -454,7 +454,7 @@ environment
 
 .. Environment variables with only a key are resolved to their values on the machine Compose is running on, which can be helpful for secret or host-specific values.
 
-キーだけの環境変数は、Compose の実行時にマシン上で指定するもので有り、シークレット（訳注：API鍵などの秘密情報）やホスト固有の値を指定するのに便利です。
+キーだけの環境変数は、Compose の実行時にマシン上で指定するものであり、シークレット（訳注：API鍵などの秘密情報）やホスト固有の値を指定するのに便利です。
 
 .. code-block:: yaml
 
@@ -504,11 +504,11 @@ extends
 
 .. The service the name of the service being extended, for example web or database. The file is the location of a Compose configuration file defining that service.
 
-サービスを拡張する ``service`` の名前とは、たとえば、 ``web`` や ``database`` です。 ``file`` はサービスを定義する Compose 設定ファイルの場所です。
+サービスを拡張する ``service`` の名前とは、たとえば ``web`` や ``database`` です。 ``file`` はサービスを定義する Compose 設定ファイルの場所です。
 
 .. If you omit the file Compose looks for the service configuration in the current file. The file value can be an absolute or relative path. If you specify a relative path, Compose treats it as relative to the location of the current file.
 
-``file`` を省略すると、Compose は現在の設定ファイル上からサービスの定義を探します。 ``file`` の値は相対パスまたは絶対パスです。相対パスを指定すると、Compose はその場所を、現在のファイルからの相対パスとして扱います。
+``file`` を省略したら、Compose は現在の設定ファイル上からサービスの定義を探します。 ``file`` の値は相対パスまたは絶対パスです。相対パスを指定したら、Compose はその場所を、現在のファイルからの相対パスとして扱います。
 
 .. You can extend a service that itself extends another. You can extend indefinitely. Compose does not support circular references and docker-compose returns an error if it encounters one.
 
@@ -540,7 +540,7 @@ external_links
 
    :ref:`バージョン２のファイル形式 <compose-file-version-2>` を使う時、外部に作成したコンテナと接続する必要があれば、接続先のサービスは対象ネットワーク上に少なくとも１つリンクする必要があります。
 
-extra_hosts
+.. extra_hosts
 
 .. _compose-file-extra_hosts:
 
@@ -683,7 +683,7 @@ links
 
 .. note::
 
-   ``docker-compose up`` で立ち上げた場合、 ``docker-compose logs`` コマンドでログを表示できるのは ``json-file`` ドライバを指定した時のみです。他のドライバを指定すると logs コマンドを実行しても画面に表示されません。
+   ``docker-compose up`` で立ち上げた場合、 ``docker-compose logs`` コマンドでログを表示できるのは ``json-file`` ドライバを指定した時のみです。他のドライバを指定したら logs コマンドを実行しても画面に表示されません。
 
 .. Specify logging options for the logging driver with the options key, as with the --log-opt option for docker run.
 
@@ -801,7 +801,7 @@ networks
 
 .. Networks to join, referencing entries under the top-level networks key.
 
-ネットワークに参加するとき、トップ・レベルの ``network`` :ref:`キー <network-configuration-reference>` のエントリを参照します。
+ネットワークに参加する時、トップ・レベルの ``network`` :ref:`キー <network-configuration-reference>` のエントリを参照します。
 
 .. code-block:: yaml
 
@@ -828,7 +828,7 @@ aliases
 
 .. note::
 
-   複数のコンテナだけでなく複数のサービスに退位しても、ネットワーク範囲内でエイリアスが利用できます。ただしその場合、名前解決がどのコンテナに対して名前解決されるのか保証されません。
+   複数のコンテナだけでなく複数のサービスに対しても、ネットワーク範囲内でエイリアスが利用できます。ただしその場合、名前解決がどのコンテナに対して名前解決されるのか保証されません。
 
 .. The general format is shown here.
 
@@ -894,7 +894,7 @@ IPv4 アドレス、IPv6 アドレス
 
 .. The corresponding network configuration in the top-level networks section must have an ipam block with subnet and gateway configurations covering each static address. If IPv6 addressing is desired, the com.docker.network.enable_ipv6 driver option must be set to true.
 
-:ref:`トップレベルのネットワーク・セクション <network-configuration-reference>` において、適切なネットワーク設定には ``ipam`` ブロックが必要です。ここで各静的アドレスが扱うサブネットやゲートウェイを定義します。 IPv6 アドレスが必要であれば、 ``com.docker.network.enable_ipv6`` ドライバ・オプションを ``true`` にする必要があります。
+:ref:`トップレベルのネットワーク・セクション <network-configuration-reference>` では、適切なネットワーク設定に ``ipam`` ブロックが必要です。ここで各静的アドレスが扱うサブネットやゲートウェイを定義します。 IPv6 アドレスが必要であれば、 ``com.docker.network.enable_ipv6`` ドライバ・オプションを ``true`` にする必要があります。
 
 .. An example:
 
@@ -938,7 +938,7 @@ pid
 
 .. Sets the PID mode to the host PID mode. This turns on sharing between container and the host operating system the PID address space. Containers launched with this flag will be able to access and manipulate other containers in the bare-metal machine’s namespace and vise-versa.
 
-PID モードはホストの PID モードを設定します。有効化すると、コンテナとホスト・オペレーティング・システム間で PID アドレス空間を共有します。コンテナにこのフラグを付けて起動すると、他のコンテナからアクセスできるだけでなく、ベアメタル・マシン上の名前空間などから操作できるようになります。
+PID モードはホストの PID モードを設定します。有効化したら、コンテナとホスト・オペレーティング・システム間で PID アドレス空間を共有します。コンテナにこのフラグを付けて起動したら、他のコンテナからアクセスできるだけでなく、ベアメタル・マシン上の名前空間などから操作できるようになります。
 
 .. _compose-file-ports:
 
@@ -953,7 +953,7 @@ ports
 
 .. note::
 
-   ``ホスト側:コンテナ側`` の書式でポートを割り当てる時、コンテナのポートが 60 以下であればエラーが発生します。これは YALM が ``xx:yy`` 形式の指定を、60 進数（60が基準）の数値とみなすからです。そのため、ポートの割り当てには常に文字列として指定することを推奨します（訳者注： " で囲んで文字扱いにする）。
+   ``ホスト側:コンテナ側`` の書式でポートを割り当てる時、コンテナのポートが 60 以下であればエラーが発生します。これは YAML が ``xx:yy`` 形式の指定を、60 進数（60が基準）の数値とみなすからです。そのため、ポートの割り当てには常に文字列として指定することを推奨します（訳者注： " で囲んで文字扱いにする）。
 
 .. code-block:: yaml
 
@@ -988,7 +988,7 @@ stop_signal
 
 .. Sets an alternative signal to stop the container. By default stop uses SIGTERM. Setting an alternative signal using stop_signal will cause stop to send that signal instead.
 
-コンテナに対して別の停止シグナルを設定します。デフォルトでは ``stop`` で SIGTERM を使います。 ``stop_signal`` で別のシグナルを指定すると、 ``stop`` 実行時にそのシグナルが送信されます。
+コンテナに対して別の停止シグナルを設定します。デフォルトでは ``stop`` で SIGTERM を使います。 ``stop_signal`` で別のシグナルを指定したら、 ``stop`` 実行時にそのシグナルを送信します。
 
 .. code-block:: yaml
 
@@ -1018,7 +1018,7 @@ volumes, volume_driver
 
 .. Mount paths or named volumes, optionally specifying a path on the host machine (HOST:CONTAINER), or an access mode (HOST:CONTAINER:ro). For version 2 files, named volumes need to be specified with the top-level volumes key. When using version 1, the Docker Engine will create the named volume automatically if it doesn’t exist.
 
-マウント・パスまたは名前を付けたボリュームは、オプションでホストマシン（ ``ホスト:コンテナ`` ）上のパス指定や、アクセス・モード（ ``ホスト:コンテナ:rw`` ） を指定できます。 :ref:`バージョン２のファイル <compose-file-version-2>` では名前を付けたボリュームを使うにはトップ・レベルの ``volumes`` :ref:`キー <volume-configuration-reference>` を指定する必要があります。 :ref:`バージョン１ <compose-file-version-1>` の場合は、Docker Engine の場合は、ボリュームが存在していなければ自動的に作成します。
+マウント・パスまたは名前を付けたボリュームは、オプションでホストマシン（ ``ホスト:コンテナ`` ）上のパス指定や、アクセス・モード（ ``ホスト:コンテナ:rw`` ） を指定できます。 :ref:`バージョン２のファイル <compose-file-version-2>` では名前を付けたボリュームを使うにはトップ・レベルの ``volumes`` :ref:`キー <volume-configuration-reference>` を指定する必要があります。 :ref:`バージョン１ <compose-file-version-1>` の場合は、ボリュームが存在していなければ Docker Engine が自動的に作成します。
 
 .. You can mount a relative path on the host, which will expand relative to the directory of the Compose configuration file being used. Relative paths should always begin with . or ...
 
@@ -1027,13 +1027,13 @@ volumes, volume_driver
 .. code-block:: yaml
 
    volumes:
-     # パスを指定すると、Engine はボリュームを作成
+     # パスを指定したら、Engine はボリュームを作成
      - /var/lib/mysql
    
      # 絶対パスを指定しての割り当て
      - /opt/data:/var/lib/mysql
    
-     # ホスト上のパスを指定するとき、Compose ファイルからのパスを指定
+     # ホスト上のパスを指定する時、Compose ファイルからのパスを指定
      - ./cache:/tmp/cache
    
      # ユーザの相対パスを使用
@@ -1083,7 +1083,7 @@ volumes_from
 
 .. note::
 
-   ``コンテナ:...`` の形式をサポートしているのは :ref:`バージョン２のファイル形式 <compose-file-version-2>` のみです。 :ref:`バージョン１の場合 <compose-file-version-1>` は、次のようにマークすることなくコンテナ名を使えます。
+   ``コンテナ:...`` の形式をサポートしているのは :ref:`バージョン２のファイル形式 <compose-file-version-2>` のみです。 :ref:`バージョン１の場合 <compose-file-version-1>` は、次のように明示しなくてもコンテナ名を使えます。
    
    - service_name
    - service_name:ro
@@ -1134,7 +1134,7 @@ cpu_shares、 cpuset、 domainname、 entrypoint、 hostname、 ipc、 mac_addre
 
 .. While it is possible to declare volumes on the fly as part of the service declaration, this section allows you to create named volumes that can be reused across multiple services (without relying on volumes_from), and are easily retrieved and inspected using the docker command line or API. See the docker volume subcommand documentation for more information.
 
-サービス宣言の一部として、オンザ・フライでボリュームを宣言できます。このセクションでは名前付きボリューム（named volume）の作成方法を紹介します。このボリュームは複数のサービスを横断して再利用可能なものです（ ``volumes_from`` に依存しません ）。そして docker コマンドラインや API を使って、簡単に読み込みや調査が可能です。 :doc:`docker volumes </engine/reference/commandline/volume_create>` のサブコマンドの詳細から、詳しい情報をご覧ください。
+サービス宣言の一部として、オン・ザ・フライでボリュームを宣言できます。このセクションでは名前付きボリューム（named volume）の作成方法を紹介します。このボリュームは複数のサービスを横断して再利用可能なものです（ ``volumes_from`` に依存しません ）。そして docker コマンドラインや API を使って、簡単に読み込みや調査が可能です。 :doc:`docker volumes </engine/reference/commandline/volume_create>` のサブコマンドの詳細から、詳しい情報をご覧ください。
 
 .. driver
 
@@ -1173,7 +1173,7 @@ external
 
 .. If set to true, specifies that this volume has been created outside of Compose. docker-compose up will not attempt to create it, and will raise an error if it doesn’t exist.
 
-このオプションを ``true`` に設定すると、Compose の外にあるボリュームを作成します（訳者注：Compose が管理していない Docker ボリュームを利用します、という意味）。 ``docker-compose up`` を実行してもボリュームを作成しません。もしボリュームが存在していなければ、エラーを返します。
+このオプションを ``true`` に設定したら、Compose の外にあるボリュームを作成します（訳者注：Compose が管理していない Docker ボリュームを利用します、という意味）。 ``docker-compose up`` を実行してもボリュームを作成しません。もしボリュームが存在していなければ、エラーを返します。
 
 .. external cannot be used in conjunction with other volume configuration keys (driver, driver_opts).
 
@@ -1303,7 +1303,7 @@ external
 
 .. If set to true, specifies that this network has been created outside of Compose. docker-compose up will not attempt to create it, and will raise an error if it doesn’t exist.
 
-このオプションを ``true`` に設定すると、Compose の外にネットワークを作成します（訳者注：Compose が管理していない Docker ネットワークを利用します、という意味）。 ``docker-compose up`` を実行してもネットワークを作成しません。もしネットワークが存在していなければ、エラーを返します。
+このオプションを ``true`` に設定したら、Compose の外にネットワークを作成します（訳者注：Compose が管理していない Docker ネットワークを利用します、という意味）。 ``docker-compose up`` を実行してもネットワークを作成しません。もしネットワークが存在していなければ、エラーを返します。
 
 .. external cannot be used in conjunction with other network configuration keys (driver, driver_opts, ipam).
 
@@ -1346,6 +1346,9 @@ external
 .. Versioning
 
 .. _compose-file-versioning:
+
+バージョン
+--------------------
 
 .. There are two versions of the Compose file format:
 
@@ -1432,7 +1435,7 @@ Compose ファイルでバージョンを宣言しなければ「バージョン
 
 .. Version 2 files are supported by Compose 1.6.0+ and require a Docker Engine of version 1.10.0+.
 
-バージョン２のファイルは **Compose 1.6.0 以上** でサポートされており、実行には Docker Engene **1.10.0 以上** が必要です。
+バージョン２のファイルは **Compose 1.6.0 以上** でサポートされており、実行には Docker Engine **1.10.0 以上** が必要です。
 
 .. Named volumes can be declared under the volumes key, and networks can be declared under the networks key.
 
@@ -1502,7 +1505,7 @@ Compose ファイルでバージョンを宣言しなければ「バージョン
     Add a version: '2' line at the top of the file.
 
 1. 最上位レベルとして ``services:`` キーを追加する。
-2. ファイルの１行目冒頭に ``version: '2'`` を追加する。
+2. ファイルの１行め冒頭に ``version: '2'`` を追加する。
 
 .. It’s more complicated if you’re using particular configuration features:
 
@@ -1510,7 +1513,7 @@ Compose ファイルでバージョンを宣言しなければ「バージョン
 
 ..     dockerfile: This now lives under the build key:
 
-* ``dockerfile`` ： ``build`` キーの次第に移動します。
+* ``dockerfile`` ： ``build`` キー配下に移動します。
 
 .. code-block:: yaml
 
@@ -1567,7 +1570,7 @@ Compose ファイルでバージョンを宣言しなければ「バージョン
 
    net: "container:web"  ->  network_mode: "service:web"
 
-If you’re using net: "container:[container name/id]", the value does not need to change.
+.. If you’re using net: "container:[container name/id]", the value does not need to change.
 
 
 ``net: "コンテナ:[コンテナ名/ID]"`` の場合は変更不要です。
@@ -1614,7 +1617,7 @@ net: "container:abc12345"   ->  network_mode: "container:abc12345"
 
 .. Your configuration options can contain environment variables. Compose uses the variable values from the shell environment in which docker-compose is run. For example, suppose the shell contains EXTERNAL_PORT=8000 and you supply this configuration:
 
-設定オプションでは環境変数も含めることができます。シェル上の Compose は ``docker-compose`` の実行時に環境変数を使えます。例えば、シェルで ``EXTERNAL_PORT=8000`` という変数を設定ファイルで扱うには、次のようにします。
+設定オプションでは環境変数も含めることができます。シェル上の Compose は ``docker-compose`` の実行時に環境変数を使えます。たとえば、シェルで ``EXTERNAL_PORT=8000`` という変数を設定ファイルで扱うには、次のようにします。
 
 .. code-block:: yaml
 
@@ -1625,7 +1628,7 @@ net: "container:abc12345"   ->  network_mode: "container:abc12345"
 
 .. When you run docker-compose up with this configuration, Compose looks for the EXTERNAL_PORT environment variable in the shell and substitutes its value in. For this example, Compose resolves the port mapping to "8000:5000" before creating the `web` container.
 
-この設定で``docker-compose up`` を実行すると、Compose は ``EXTERNAL_PORT`` 環境変数をシェル上で探し、それを値と置き換えます。この例では、Compose が ``web`` コンテナを作成する前に "8000:5000" のポート割り当てをします。
+この設定で ``docker-compose up`` を実行したら、Compose は ``EXTERNAL_PORT`` 環境変数をシェル上で探し、それを値と置き換えます。この例では、Compose が ``web`` コンテナを作成する前に "8000:5000" のポート割り当てをします。
 
 .. If an environment variable is not set, Compose substitutes with an empty string. In the example above, if EXTERNAL_PORT is not set, the value for port mapping is `:5000` (which is of course an invalid port mapping, and will result in an error when attempting to create the container).
 
@@ -1637,7 +1640,7 @@ net: "container:abc12345"   ->  network_mode: "container:abc12345"
 
 .. You can use a $$ (double-dollar sign) when your configuration needs a literal dollar sign. This also prevents Compose from interpolating a value, so a $$ allows you to refer to environment variables that you don’t want processed by Compose.
 
-``$$`` （二重ドル記号）を指定する時は、設定ファイル上でリテラルなドル記号の設定が必要です。Compose は値を補完しないので、 ``$$`` の指定により、 Compose によって処理されずに環境変数を参照します。
+``$$`` （二重ドル記号）を指定する時は、設定ファイル上でリテラルなドル記号の設定が必要です。Compose は値を補完しませんので、 ``$$`` の指定により、 Compose によって処理されずに環境変数を参照します。
 
 .. code-block:: yaml
 
@@ -1647,7 +1650,7 @@ net: "container:abc12345"   ->  network_mode: "container:abc12345"
 
 .. If you forget and use a single dollar sign ($), Compose interprets the value as an environment variable and will warn you:
 
-もしも間違えてドル記号（ ``$`` ）だけにすると、 Compose は環境変数の値を解釈し、次のように警告を表示します。
+もしも間違えてドル記号（ ``$`` ）だけにしたら、 Compose は環境変数の値を解釈し、次のように警告を表示します。
 
 .. The VAR_NOT_INTERPOLATED_BY_COMPOSE is not set. Substituting an empty string.
 

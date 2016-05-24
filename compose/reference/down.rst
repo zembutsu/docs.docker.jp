@@ -18,23 +18,20 @@ down
 .. Stop containers and remove containers, networks, volumes, and images
 .. created by `up`. Only containers and networks are removed by default.
 
-コンテナを停止し、 ``up`` で作成されたコンテナ・ネットワーク・ボリューム・イメージを削除します。デフォルトではコンテナとネットワークのみ削除します。
+コンテナを停止し、 ``up`` で作成したコンテナ・ネットワーク・ボリューム・イメージを削除します。デフォルトではコンテナとネットワークのみ削除します。
 
 
 .. code-block:: bash
 
-   Usage: down [options]
+   使い方: down [オプション]
    
-   Options:
-       --rmi type          Remove images. Type must be one of:
-                           'all': Remove all images used by any service.
-                           'local': Remove only images that don't have a custom tag
-                           set by the `image` field.
-       -v, --volumes       Remove named volumes declared in the `volumes` section
-                           of the Compose file and anonymous volumes
-                           attached to containers.
-       --remove-orphans    Remove containers for services not defined in the
-                           Compose file
+   オプション:
+       --rmi type          イメージの削除。type は次のいずれか: 
+                           'all': あらゆるサービスで使う全イメージを削除
+                           'local': image フィールドにカスタム・タグのないイメージだけ削除
+       -v, --volumes       Compose ファイルの `volumes` セクションの名前付きボリュームを削除
+                           また、コンテナがアタッチしたアノニマス・ボリュームも削除
+       --remove-orphans    Compose ファイルで定義していないサービス用のコンテナも削除
 
 .. Stops containers and removes containers, networks, volumes, and images created by up.
 

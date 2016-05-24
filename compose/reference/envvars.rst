@@ -27,7 +27,7 @@ Docker Compose のコマンドラインでの動作を設定するために、�
 
 .. Variables starting with DOCKER_ are the same as those used to configure the Docker command-line client. If you’re using docker-machine, then the eval "$(docker-machine env my-docker-vm)" command should set them to their correct values. (In this example, my-docker-vm is the name of a machine you created.)
 
-``DOCKER_`` で始まる環境変数は、Docker コマンドライン・クライアントで用いられている設定と同じです。もしも ``docker-machine`` を使っているのであれば、 ``eval "$(docker-machine env my-docker-vm)"`` コマンドで適切な環境変数の値が設定されます（この例では、 ``my-docker-vm`` は Docker Machine で作成したマシンの名前です ）。
+``DOCKER_`` で始まる環境変数は、Docker コマンドライン・クライアントで用いられている設定と同じです。もしも ``docker-machine`` を使っているのであれば、 ``eval "$(docker-machine env my-docker-vm)"`` コマンドで適切な環境変数の値を設定します（この例では、 ``my-docker-vm`` は Docker Machine で作成したマシンの名前です ）。
 
 .. Note: Some of these variables can also be provided using an environment file
 
@@ -45,11 +45,11 @@ COMPOSE_PROJECT_NAME
 
 .. Sets the project name. This value is prepended along with the service name to the container container on start up. For example, if you project name is myapp and it includes two services db and web then compose starts containers named myapp_db_1 and myapp_web_1 respectively.
 
-プロジェクト名を設定します。この値はコンテナの起動時に、コンテナのサービス名の先頭に付けられます。例えば、２つのサービス ``db`` と ``web`` と持つプロジェクトの名前を ``myapp`` とすると、Compose は ``myapp_db_1`` と ``myapp_web_1`` と名前の付いたコンテナをそれぞれ起動します。
+プロジェクト名を設定します。この値はコンテナの起動時に、コンテナのサービス名の先頭に付けられます。たとえば、２つのサービス ``db`` と ``web`` を持つプロジェクトの名前を ``myapp`` としたら、Compose は ``myapp_db_1`` と ``myapp_web_1`` と名前の付いたコンテナをそれぞれ起動します。
 
 .. Setting this is optional. If you do not set this, the COMPOSE_PROJECT_NAME defaults to the basename of the project directory. See also the -p command-line option.
 
-このプロジェクト名の設定はオプションです。設定をしなければ、 ``COMPOSE_PROJECT_NAME`` （Composeのプロジェクト名）が、デフォルトではプロジェクトのディレクトリを ``ベース名`` にします。詳しくは :doc:`コマンドライン・オプション </compose/reference/overview>` ``-p`` をご覧ください。
+このプロジェクト名の設定はオプションです。設定をしなければ、 ``COMPOSE_PROJECT_NAME`` （Composeのプロジェクト名）は、デフォルトではプロジェクトのディレクトリを ``ベース名`` にします。詳しくは :doc:`コマンドライン・オプション </compose/reference/overview>` ``-p`` をご覧ください。
 
 .. COMPOSE_FILE
 
@@ -60,7 +60,7 @@ COMPOSE_FILE
 
 .. Specify the file containing the compose configuration. If not provided, Compose looks for a file named docker-compose.yml in the current directory and then each parent directory in succession until a file by that name is found. See also the -f command-line option.
 
-Compose 設定を含むファイルを指定します。指定しなければ、Compose は現在のディレクトリにある ``docker-compose.yml`` という名称のファイルを探します。あるいや、親ディレクトリにあれば、そちらを使います。詳しくは :doc:`コマンドライン・オプション </compose/reference/overview>` ``-f`` をご覧ください。
+Compose 設定を含むファイルを指定します。指定しなければ、Compose は現在のディレクトリにある ``docker-compose.yml`` という名称のファイルを探します。あるいは、親ディレクトリにあれば、そちらを使います。詳しくは :doc:`コマンドライン・オプション </compose/reference/overview>` ``-f`` をご覧ください。
 
 .. COMPOSE_API_VERSION
 
@@ -79,7 +79,7 @@ Docker API は、明確なバージョンを報告するクライアントに対
 
 .. Running with this variable set and a known mismatch does prevent some Docker features from working properly. The exact features that fail would depend on the Docker client and server versions. For this reason, running with this variable set is only intended as a workaround and it is not officially supported.
 
-この環境変数を設定すると、いくつかの Docker の機能が正常に動作しない可能性があります。実際にどのような挙動になるかは、クライアントとサーバのバージョンによって変わります。そのため、この環境変数を設定するのは、あくまで回避策であって、公式にサポートされている手法ではありません。
+この環境変数を設定したら、いくつかの Docker の機能が正常に動作しない可能性があります。実際にどのような挙動になるかは、クライアントとサーバのバージョンによって変わります。そのため、この環境変数を設定するのは、あくまで回避策であって、公式にサポートされている手法ではありません。
 
 .. If you run into problems running with this set, resolve the mismatch through upgrade and remove this setting to see if your problems resolve before notifying support.
 
@@ -101,7 +101,7 @@ DOCKER_TLS_VERIFY
 
 .. When set to anything other than an empty string, enables TLS communication with the docker daemon.
 
-空白以外の何らかの値をセットすると、 ``docker`` デーモンとの TLS 通信を有効化します。
+空白以外の何らかの値をセットしたら、 ``docker`` デーモンとの TLS 通信を有効化します。
 
 DOCKER_CERT_PATH
 ====================

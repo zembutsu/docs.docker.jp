@@ -17,12 +17,11 @@ config
 
 .. code-block:: bash
 
-   Usage: config [options]
+   使い方: config [オプション]
    
-   Options:
-   -q, --quiet     Only validate the configuration, don't print
-                   anything.
-   --services      Print the service names, one per line.
+   オプション:
+   -q, --quiet     認証設定以外のメッセージを表示しない
+   --services      サービス名を1行で表示
 
 .. Validate and view the compose file.
 

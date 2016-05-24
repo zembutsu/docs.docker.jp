@@ -23,7 +23,7 @@ Compose の起動順番を制御
 
 .. You can control the order of service startup with the depends_on option. Compose always starts containers in dependency order, where dependencies are determined by depends_on, links, volumes_from and network_mode: "service:...".
 
-:ref:`compose-file-depends_on` オプションを使うと、サービスの起動順番を制御できます。Compose は常に依存関係に従ってコンテナを起動しようとします。依存関係とは、 ``depends_on`` 、 ``links`` 、 ``volumes_form`` 、 ``network_mode: "サービス:..."`` が指定されている場合です。
+:ref:`compose-file-depends_on` オプションを使えば、サービスの起動順番を制御できます。Compose は常に依存関係に従ってコンテナを起動しようとします。依存関係とは、 ``depends_on`` 、 ``links`` 、 ``volumes_form`` 、 ``network_mode: "サービス:..."`` を指定している場合です。
 
 .. However, Compose will not wait until a container is “ready” (whatever that means for your particular application) - only until it’s running. There’s a good reason for this.
 
@@ -31,7 +31,7 @@ Compose の起動順番を制御
 
 .. The problem of waiting for a database (for example) to be ready is really just a subset of a much larger problem of distributed systems. In production, your database could become unavailable or move hosts at any time. Your application needs to be resilient to these types of failures.
 
-例えば、データベースの準備が整うまで待とうとすると、そのことが分散システム全体に対する大きな問題になり得ます。プロダクションでは、データベースは利用不可能になったり、あるいは別のホストに移動したりする場合があるでしょう。アプリケーションは、障害発生に対して復旧する必要があるためです。
+たとえば、データベースの準備が整うまで待つのであれば、そのことが分散システム全体に対する大きな問題になり得ます。プロダクションでは、データベースは利用不可能になったり、あるいは別のホストに移動したりする場合があるでしょう。アプリケーションは、障害発生に対して復旧する必要があるためです。
 
 .. To handle this, your application should attempt to re-establish a connection to the database after a failure. If the application retries the connection, it should eventually be able to connect to the database.
 
@@ -65,7 +65,7 @@ Compose の起動順番を制御
 
 ..     Write your own wrapper script to perform a more application-specific health check. For example, you might want to wait until Postgres is definitely ready to accept commands:
 
-* アプリケーションが独自にヘルスチェックを行えるよう、スクリプトをラッパーすることも可能です。例えば、Postgres コマンドが使えるようになるまで待ちたい場合を考えてみましょう。
+* アプリケーションが独自にヘルスチェックを行えるよう、スクリプトをラッパーすることも可能です。たとえば、Postgres コマンドが使えるようになるまで待ちたい場合を考えてみましょう。
 
 .. code-block:: bash
 

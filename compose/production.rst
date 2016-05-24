@@ -84,7 +84,7 @@ Compose ファイルをプロダクション向けに書き換え
 
 .. When you make changes to your app code, you’ll need to rebuild your image and recreate your app’s containers. To redeploy a service called web, you would use:
 
-アプリケーションのコードを変更したときは、イメージを再構築し、アプリケーションのコンテナを作り直す必要があります。``web`` という名称のサービスを再デプロイするには、次のように実行します。
+アプリケーションのコードを変更した時は、イメージを再構築し、アプリケーションのコンテナを作り直す必要があります。``web`` という名称のサービスを再デプロイするには、次のように実行します。
 
 .. code-block:: bash
 
@@ -102,7 +102,7 @@ Compose ファイルをプロダクション向けに書き換え
 
 .. You can use Compose to deploy an app to a remote Docker host by setting the DOCKER_HOST, DOCKER_TLS_VERIFY, and DOCKER_CERT_PATH environment variables appropriately. For tasks like this, Docker Machine makes managing local and remote Docker hosts very easy, and is recommended even if you’re not deploying remotely.
 
-Compose を使い、アプリケーションをリモートの Docker ホスト上にデプロイできます。このとき、適切な環境変数 ``DOCKER_HOST`` 、 ``DOCKER_TLS_VERIFY`` 、 ``DOCKER_CERT_PATH`` を使います。このような処理は、 :doc:`Docker Machine </machine/overview>` を使うことで、ローカルやリモートの Docker ホストの管理を非常に簡単にします。リモートにデプロイする必要がなくても、お勧めです。
+Compose を使い、アプリケーションをリモートの Docker ホスト上にデプロイできます。この時、適切な環境変数 ``DOCKER_HOST`` 、 ``DOCKER_TLS_VERIFY`` 、 ``DOCKER_CERT_PATH`` を使います。このような処理は、 :doc:`Docker Machine </machine/overview>` を使うことで、ローカルやリモートの Docker ホストの管理を非常に簡単にします。リモートにデプロイする必要がなくても、お勧めです。
 
 .. Once you’ve set up your environment variables, all the normal docker-compose commands will work with no further configuration.
 
@@ -115,7 +115,7 @@ Swarm クラスタで Compose を実行する
 
 .. Docker Swarm, a Docker-native clustering system, exposes the same API as a single Docker host, which means you can use Compose against a Swarm instance and run your apps across multiple hosts.
 
-:doc:`Docker Swarm </swarm/overview>` とは、Docker 独自のクラスタリング・システムで、単一の Docker ホスト向けと同じ API を持っています。つまり、Compose を Swarm インスタンスも同様に扱えるので、アプリケーションを複数のホスト上で実行できることを意味します。
+:doc:`Docker Swarm </swarm/overview>` とは、Docker 独自のクラスタリング・システムで、単一の Docker ホスト向けと同じ API を持っています。つまり、Compose を Swarm インスタンスも同様に扱えますので、アプリケーションを複数のホスト上で実行できることを意味します。
 
 .. (v1.10)
 .. Compose/Swarm integration is still in the experimental stage, and Swarm is still in beta, but if you’d like to explore and experiment, check out the integration guide.

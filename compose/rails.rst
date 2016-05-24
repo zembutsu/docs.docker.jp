@@ -21,7 +21,7 @@
 
 .. This quick-start guide demonstrates how to use Docker Compose to set up and run a simple Rails/PostgreSQL app. Before starting, you’ll need to have Compose installed.
 
-このクイックスタート・ガイドは Docker Compose を使い、簡単な Rails/PostgreSQL アプリをセットアップします。その前に、 :doc:`Compose のインストール </compose/install>` が必要です。
+このクイックスタート・ガイドは Docker Compose を使い、簡単な Rails/PostgreSQL アプリをセットアップします。事前に :doc:`Compose のインストール </compose/install>` が必要です。
 
 .. Define the project
 
@@ -30,7 +30,7 @@
 
 .. Start by setting up the three files you’ll need to build the app. First, since your app is going to run inside a Docker container containing all of its dependencies, you’ll need to define exactly what needs to be included in the container. This is done using a file called Dockerfile. To begin with, the Dockerfile consists of:
 
-アプリケーションを構築するため、３つのファイルをセットアップしていきます。第一に、アプリケーションを実行する前に、 Docker コンテナ中には、依存関係のある全ての準備が必要になります。そのため、コンテナ中で何が必要なのかを、正確に定義しなくてはいけません。この定義に使うのが ``Dockerfile`` と呼ばれるファイルです。まずはじめに、Dockerfile は次のような構成です。
+アプリケーションを構築するため、３つのファイルをセットアップしていきます。まずアプリケーションを実行する前に、 Docker コンテナ内には、依存関係のある全ての準備が必要になります。そのため、コンテナ中で何が必要なのかを、正確に定義しなくてはいけません。この定義に使うのが ``Dockerfile`` と呼ばれるファイルです。まずはじめに、Dockerfile は次のような構成です。
 
 .. code-block:: dockerfile
 
@@ -43,7 +43,7 @@
    RUN bundle install
    ADD . /myapp
 
-これはイメージ中にアプリケーションのコードを送るものです。ここでは Ruby イメージを使い、Bundler や内部の依存関係を持つコンテナを作成します。 ``Dockerfile`` の書き方など詳細情報については、 :ref:`Docker ユーザ・ガイド <building-an-image-from-a-dockerfile>` や :doc:`Dockerfile リファレンス </engine//reference/builder>` をご覧ください。
+これはイメージ内にアプリケーションのコードを送ります。ここでは Ruby イメージを使い、Bundler や内部の依存関係を持つコンテナを作成します。 ``Dockerfile`` の書き方など詳細情報については、 :ref:`Docker ユーザ・ガイド <building-an-image-from-a-dockerfile>` や :doc:`Dockerfile リファレンス </engine//reference/builder>` をご覧ください。
 
 .. Next, create a bootstrap Gemfile which just loads Rails. It’ll be overwritten in a moment by rails new.
 
@@ -97,7 +97,7 @@
 
 .. First, Compose will build the image for the web service using the Dockerfile. Then it’ll run rails new inside a new container, using that image. Once it’s done, you should have generated a fresh app:
 
-Compose はまず、``Dockerfile`` を使い ``web`` サービスのイメージを構築します。それからそのイメージを使った新しいコンテナの中で、``rails new`` を実行します。完了すると、次のように新しいアプリが作成されています。
+Compose はまず ``Dockerfile`` を使い ``web`` サービスのイメージを構築します。それからそのイメージを使った新しいコンテナの中で、``rails new`` を実行します。完了すると、次のように新しいアプリが作成されています。
 
 .. code-block:: bash
 
@@ -140,7 +140,7 @@ Compose はまず、``Dockerfile`` を使い ``web`` サービスのイメージ
 
 .. The app is now bootable, but you’re not quite there yet. By default, Rails expects a database to be running on localhost - so you need to point it at the db container instead. You also need to change the database and username to align with the defaults set by the postgres image.
 
-アプリケーションが実行可能になりましたが、まだ足りないものがあります。デフォルトでは、データベースは ``localhost`` で実行するとみなされます。そのため、``db`` コンテナに指示しなくてはいけません。``postgres`` イメージにデフォルトで設定されてる database と username を変更する必要があります。
+アプリケーションが実行可能になりましたが、まだ足りないものがあります。デフォルトでは、データベースは ``localhost`` で実行するとみなされます。そのため、``db`` コンテナに指示しなくてはいけません。``postgres`` イメージにデフォルトで設定されている database と username を変更する必要があります。
 
 .. Replace the contents of config/database.yml with the following:
 

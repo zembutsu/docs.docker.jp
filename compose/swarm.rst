@@ -23,7 +23,7 @@ Swarm で Compose を使う
 
 .. Docker Compose and Docker Swarm aim to have full integration, meaning you can point a Compose app at a Swarm cluster and have it all just work as if you were using a single Docker host.
 
-Docker Compose と :doc:`Docker Swarm </swarm/overview>` は完全な統合を目指しています。つまり、Compose アプリケーションを Swarm クラスタに適用すると、単一の Docker ホスト上で展開するのと同じように動作します。
+Docker Compose と :doc:`Docker Swarm </swarm/overview>` は完全な統合を目指しています。つまり、Compose アプリケーションを Swarm クラスタに適用したら、単一の Docker ホスト上で展開するのと同じように動作します。
 
 .. The actual extent of integration depends on which version of the Compose file format you are using:
 
@@ -74,7 +74,7 @@ Dockerfile を使ったイメージ構築は、Swarm 上では単一ホスト上
 
 .. If you want to use Compose to scale the service in question to multiple nodes, you’ll have to build it yourself, push it to a registry (e.g. the Docker Hub) and reference it from docker-compose.yml:
 
-Compose を複数のノードにスケールさせる課題があるときは、自分自身で構築したレジストリ（例： Docker Hub）にイメージを push し、 ``docker-compose.yml`` で参照させてください。
+Compose を複数のノードにスケールさせる課題がある時は、自分自身で構築したレジストリ（例： Docker Hub）にイメージを push し、 ``docker-compose.yml`` で参照させてください。
 
 .. code-block:: bash
 
@@ -97,7 +97,7 @@ Compose を複数のノードにスケールさせる課題があるときは、
 
 .. If a service has multiple dependencies of the type which force co-scheduling (see Automatic scheduling below), it’s possible that Swarm will schedule the dependencies on different nodes, making the dependent service impossible to schedule. For example, here foo needs to be co-scheduled with bar and baz:
 
-サービスが強制共用スケジューリング（force co-scheduling）型で複数の依存関係がある場合（以下の :ref:`automatic-scheduling` をご覧ください）、 Swarm は異なったノード上でも依存関係を解決できるかもしれません。例えば、以下の例では ``foo`` が必要とする ``bar`` と ``baz`` を一緒にスケジュールします。
+サービスが強制共用スケジューリング（force co-scheduling）型で複数の依存関係がある場合（以下の :ref:`automatic-scheduling` をご覧ください）、 Swarm は異なったノード上でも依存関係を解決できるかもしれません。たとえば、以下の例では ``foo`` が必要とする ``bar`` と ``baz`` を一緒にスケジュールします。
 
 .. code-block:: yaml
 
@@ -189,7 +189,7 @@ Compose でサービスのボリュームに名前を付けるだけでは、Swa
 
 ..     Remove the old container before creating the new one. You will lose any data in the volume.
 
-* 新しいコンテナを作成する前に、古いコンテナを削除すると、ボリュームの中のデータが失われます。
+* 新しいコンテナを作成する前に、古いコンテナを削除したら、ボリュームの中のデータが失われます。
 
 .. code-block:: bash
 
@@ -236,7 +236,7 @@ Compose でサービスのボリュームに名前を付けるだけでは、Swa
 
 .. Swarm offers a rich set of scheduling and affinity hints, enabling you to control where containers are located. They are specified via container environment variables, so you can use Compose’s environment option to set them.
 
-Swarm にはコンテナをどこに配置するかを制御できるようにするための、豊富なスケジューリング群と親和性の示唆（affinity hint；アフィニティ・ヒント）があります。これらはコンテナの環境を通して指定できるので、Compose では ``environment`` オプションを使って設定できます。
+Swarm にはコンテナをどこに配置するかを制御できるようにするための、豊富なスケジューリング群と親和性の示唆（affinity hint；アフィニティ・ヒント）があります。これらはコンテナの環境を通して指定可能です。Compose では ``environment`` オプションを使って設定できます。
 
 .. code-block:: yaml
 

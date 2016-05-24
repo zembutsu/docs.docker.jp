@@ -17,25 +17,24 @@ run
 
 .. code-block:: bash
 
-   Usage: run [options] [-e KEY=VAL...] SERVICE [COMMAND] [ARGS...]
+   使い方: run [オプション] [-e キー=バリュー...] サービス [コマンド] [引数...]
    
-   Options:
-   -d                    Detached mode: Run container in the background, print
-                             new container name.
-   --name NAME           Assign a name to the container
-   --entrypoint CMD      Override the entrypoint of the image.
-   -e KEY=VAL            Set an environment variable (can be used multiple times)
-   -u, --user=""         Run as specified username or uid
-   --no-deps             Don't start linked services.
-   --rm                  Remove container after run. Ignored in detached mode.
-   -p, --publish=[]      Publish a container's port(s) to the host
-   --service-ports       Run command with the service's ports enabled and mapped to the host.
-   -T                    Disable pseudo-tty allocation. By default `docker-compose run` allocates a TTY.
-   -w, --workdir=""      Working directory inside the container
+   オプション:
+   -d                    デタッチド・モード: コンテナをバックグラウンドで実行し、新しいコンテナ名を表示
+   --name NAME           コンテナに名前を割り当て
+   --entrypoint CMD      イメージのエントリーポイントを上書き
+   -e KEY=VAL            環境変数を指定 (複数回指定できる)
+   -u, --user=""         実行時のユーザ名または uid を指定
+   --no-deps             リンクしたサービスを起動しない
+   --rm                  コンテナ実行後に削除お。デタッチド・モードの場合は無視
+   -p, --publish=[]      コンテナのポートをホスト側に公開
+   --service-ports       サービス用のポートを有効化し、ホスト側に割り当て可能にする
+   -T                    疑似ターミナル (pseudo-tty) 割り当てを無効化。デフォルトの `docker-compose run` は TTY を割り当て
+   -w, --workdir=""      コンテナ内のワーキング・ディレクトリを指定
 
 .. Runs a one-time command against a service. For example, the following command starts the web service and runs bash as its command.
 
-サービスに対して１回コマンドを実行します。例えば、次のコマンドは ``web`` サービスを開始するためのコマンドで、サービス内で ``bash`` としてコマンドを実行します。
+サービスに対して１回コマンドを実行します。たとえば、次のコマンドは ``web`` サービスを開始するためのコマンドで、サービス内で ``bash`` としてコマンドを実行します。
 
 .. code-block:: bash
 
@@ -67,7 +66,7 @@ run
 
 .. If you start a service configured with links, the run command first checks to see if the linked service is running and starts the service if it is stopped. Once all the linked services are running, the run executes the command you passed it. So, for example, you could run:
 
-リンク機能を使ってサービスを開始する場合、 ``run`` コマンドはリンク先のサービスが実行中かどうかをまず確認し、サービスが停止していれば起動します。全てのリンク先のサービスが起動したら、指定したコマンドで ``run`` 命令が実行されます。例えば、次のように実行できます。
+リンク機能を使ってサービスを開始する場合、 ``run`` コマンドはリンク先のサービスが実行中かどうかをまず確認し、サービスが停止していれば起動します。全てのリンク先のサービスが起動したら、指定したコマンドで ``run`` 命令が実行されます。たとえば、次のように実行できます。
 
 .. code-block:: bash
 

@@ -29,7 +29,7 @@ Compose のネットワーク機能
 
 .. By default Compose sets up a single network for your app. Each container for a service joins the default network and is both reachable by other containers on that network, and discoverable by them at a hostname identical to the container name.
 
-デフォルトでは、Compose はアプリケーションに対して :doc:`ネットワーク </engine/reference/commandline/network_create>` を１つ設定します。各コンテナ上のサービスはデフォルト・ネットワークに参加すると、同一ネットワーク上の他のコンテナから接続できるようになります。また、ホスト名とコンテナ名でも発見可能になります。
+デフォルトでは、Compose はアプリケーションに対して :doc:`ネットワーク </engine/reference/commandline/network_create>` を１つ設定します。各コンテナ上のサービスはデフォルト・ネットワークに参加したら、同一ネットワーク上の他のコンテナから接続できるようになります。また、ホスト名とコンテナ名でも発見可能になります。
 
 .. Note: Your app’s network is given a name based on the “project name”, which is based on the name of the directory it lives in. You can override the project name with either the --project-name flag or the COMPOSE_PROJECT_NAME environment variable.
 
@@ -59,15 +59,15 @@ Compose のネットワーク機能
     A container is created using web’s configuration. It joins the network myapp_default under the name web.
     A container is created using db’s configuration. It joins the network myapp_default under the name db.
 
-``docker-compose up`` を実行すると、次のように動作します。
+``docker-compose up`` を実行したら、次のように動作します。
 
 1. ``myapp_default`` という名称のネットワークを作成します。
 2. ``web`` 設定を使ったコンテナを作成します。これをネットワーク ``myapp_default`` に対して、``web`` という名称で追加します。
-3. ``db`` 設定を使ったコンテナを作成します。これをネットワーク ``myapp_default`` に対して ``db`` という名称で追加します。
+3. ``db`` 設定を使ったコンテナを作成します。これをネットワーク ``myapp_default`` に対して、 ``db`` という名称で追加します。
 
 .. Each container can now look up the hostname web or db and get back the appropriate container’s IP address. For example, web’s application code could connect to the URL postgres://db:5432 and start using the Postgres database.
 
-各コンテナは、これでホスト名を ``web`` あるいは ``db`` で名前解決することにより、コンテナに割り当てられた IP アドレスが分かります。例えば、``web`` アプリケーションのコードが URL  ``postgres://myapp_db_1:5432`` にアクセスできるようになり、PostgreSQL データベースを利用開始します。
+各コンテナは、これでホスト名を ``web`` あるいは ``db`` で名前解決することにより、コンテナに割り当てられた IP アドレスが分かります。たとえば、``web`` アプリケーションのコードが URL  ``postgres://myapp_db_1:5432`` にアクセスできるようになり、PostgreSQL データベースを利用開始します。
 
 .. Because web explicitly maps a port, it’s also accessible from the outside world via port 8000 on your Docker host’s network interface.
 
@@ -139,7 +139,7 @@ Swarm クラスタのセットアップの仕方は、 :doc:`複数のホスト�
 
 .. Instead of just using the default app network, you can specify your own networks with the top-level networks key. This lets you create more complex topologies and specify custom network drivers and options. You can also use it to connect services to externally-created networks which aren’t managed by Compose.
 
-デフォルトのアプリケーション用のネットワークを使う代わりに、自分で任意のネットワーク指定が可能です。そのためには、トップレベルの ``networks`` キーを（Composeファイルで）使います。これにより、より複雑なトポロジのネットワークの作成や、 :doc:`カスタム・ネットワーク・ドライバ </engine/extend/plugins_network>` やオプションを指定できます。また、Compose によって管理されない、外部に作成したネットワークにサービスも接続できます。
+デフォルトのアプリケーション用のネットワークを使う代わりに、自分で任意のネットワーク指定が可能です。そのためには、トップレベルの ``networks`` キーを（Composeファイルで）使います。これにより、より複雑なトポロジのネットワーク作成や、 :doc:`カスタム・ネットワーク・ドライバ </engine/extend/plugins_network>` やオプションを指定できます。また、Compose によって管理されない、外部に作成したネットワークにサービスも接続できます。
 
 .. Each service can specify what networks to connect to with the service-level networks key, which is a list of names referencing entries under the top-level networks key.
 

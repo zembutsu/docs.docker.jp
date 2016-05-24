@@ -17,10 +17,10 @@ restart
 
 .. code-block:: bash
 
-   Usage: restart [options] [SERVICE...]
+   使い方: restart [オプション] [サービス...]
    
    Options:
-   -t, --timeout TIMEOUT      Specify a shutdown timeout in seconds. (default: 10)
+   -t, --timeout TIMEOUT      シャットダウンのタイムアウト秒数を指定 (デフォルト: 10)
 
 .. Restarts services.
 

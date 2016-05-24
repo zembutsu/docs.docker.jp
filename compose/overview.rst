@@ -23,7 +23,7 @@ Docker Compose 概要
 
 .. Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a Compose file to configure your application’s services. Then, using a single command, you create and start all the services from your configuration. To learn more about all the features of Compose see the list of features.
 
-Compose とは、複数のコンテナを使う Docker アプリケーションを、定義・実行するツールです。Compose はアプリケーションのサービスの設定に、Compose ファイルを使います。そして、コマンドを１つ実行するだけで、設定した全てのサービスを作成・起動します。Compose の全ての機能一覧について学ぶには、 :ref:`機能一覧 <compose-features>` をご覧ください。
+Compose とは、複数のコンテナを使う Docker アプリケーションを、定義・実行するツールです。Compose はアプリケーションのサービスの設定に、Compose ファイルを使います。そして、コマンドを１つ実行するだけで、設定した全てのサービスを作成・起動します。Compose の全機能一覧について学ぶには、 :ref:`機能一覧 <compose-features>` をご覧ください。
 
 .. Compose is great for development, testing, and staging environments, as well as CI workflows. You can learn more about each case in Common Use Cases.
 
@@ -39,11 +39,11 @@ Compose を使うには、基本的に３つのステップを踏みます。
 
 1. アプリケーションの環境を ``Dockerfile`` ファイルで定義します。このファイルは、どこでも再利用可能です。
 2. アプリケーションを構成する各サービスを ``docker-compose.yml`` ファイルで定義します。そうすることで、独立した環境を一斉に実行できるようにします。
-3. 最後に、``docker-compose up`` を実行すると、Compose はアプリケーション全体を起動・実行します。
+3. 最後に、``docker-compose up`` を実行したら、Compose はアプリケーション全体を起動・実行します。
 
 .. A docker-compose.yml looks like this:
 
-``docker-compose.yml`` は次のようなものです。
+``docker-compose.yml`` は次のように記述します。
 
 .. code-block:: yaml
 
@@ -123,19 +123,19 @@ Compose には効率的な機能があります。
 
 .. Compose uses a project name to isolate environments from each other. You can use this project name to:
 
-Compose は別々の環境の分離にプロジェクト名を使います。このプロジェクト名は次のように使えます。
+Compose は別々の環境の分離にプロジェクト名を使います。このプロジェクト名は次の用途で使えます。
 
 ..    on a dev host, to create multiple copies of a single environment (ex: you want to run a stable copy for each feature branch of a project)
     on a CI server, to keep builds from interfering with each other, you can set the project name to a unique build number
     on a shared host or dev host, to prevent different projects which may use the same service names, from interfering with each other
 
-* 開発ホスト上では、１つの環境に対して複数のコピー作成に使います（例：プロジェクトの各機能ブランチごとに、安定版のコピーを実行したい場合）。
+* 開発ホスト上では、１つの環境に対して複数のコピー作成に使います（例：プロジェクトの機能ブランチごとに、安定版のコピーを実行したい場合）。
 * CI サーバ上では、お互いのビルドが干渉しないようにするため、プロジェクト名にユニークなビルド番号をセットできます。
 * 共有ホストまたは開発ホスト上では、異なるプロジェクトが同じサービス名を使わないようにし、お互いを干渉しないようにします。
 
 .. The default project name is the basename of the project directory. You can set a custom project name by using the -p command line option or the COMPOSE_PROJECT_NAME environment variable.
 
-標準のプロジェクト名は、プロジェクトが存在するディレクトリ名です。プロジェクト名を変更するには、 :doc:`コマンドラインのオプション </compose/reference/overview>` で ``-p`` を指定するか、 :ref:`環境変数 <compose-project-name>` で ``COMPOSE_PROJECT_NAME`` を指定します。
+標準のプロジェクト名は、プロジェクトが存在するディレクトリ名です。プロジェクト名を変更するには、 :doc:`コマンドラインのオプション </compose/reference/overview>` で ``-p`` を指定するか、 :ref:`環境変数 <compose-project-name>` の ``COMPOSE_PROJECT_NAME`` を指定します。
 
 .. _preserve-volume-data-when-containers-are-created:
 
@@ -144,7 +144,7 @@ Compose は別々の環境の分離にプロジェクト名を使います。こ
 
 .. Compose preserves all volumes used by your services. When docker-compose up runs, if it finds any containers from previous runs, it copies the volumes from the old container to the new container. This process ensures that any data you’ve created in volumes isn’t lost.
 
-Compose はサービスが使う全てのボリュームを保持（preserve）します。 ``docker-compose up`` を実行するとき、以前に実行したコンテナがあることが分かれば、古いコンテナから新しいコンテナにボリュームをコピーします。この処理こそが、ボリューム内で作成したデータを失わないよう守ります。
+Compose はサービスが使う全てのボリュームを保持（preserve）します。 ``docker-compose up`` を実行時、以前に実行済みのコンテナが見つかれば、古いコンテナから新しいコンテナにボリュームをコピーします。この処理により、ボリューム内で作成したデータを失わないように守ります。
 
 .. _only-recreate-containers-that-have-changed:
 
@@ -190,11 +190,11 @@ Compose は様々な使い方があります。一般的な利用例は、以下
 
 .. The Compose file provides a way to document and configure all of the application’s service dependencies (databases, queues, caches, web service APIs, etc). Using the Compose command line tool you can create and start one or more containers for each dependency with a single command (docker-compose up).
 
-:doc:`Compose ファイル <compose-file>` は、文章化と、アプリケーション全ての依存関係（データベース、キュー、キャッシュ、ウェブ・サービス、API 等）を設定するものです。Compose コマンドライン・ツールを使うと、コマンドを１つ（ ``docker-compose up`` ）実行するだけで、各依存関係に応じて１つまたは複数のコンテナを作成します。
+:doc:`Compose ファイル <compose-file>` は、文章化と、アプリケーション全ての依存関係（データベース、キュー、キャッシュ、ウェブ・サービス、API 等）を設定するものです。Compose コマンドライン・ツールを使えば、コマンドを１つ（ ``docker-compose up`` ）実行するだけで、各依存関係に応じて１つまたは複数のコンテナを作成します。
 
 .. Together, these features provide a convenient way for developers to get started on a project. Compose can reduce a multi-page “developer getting started guide” to a single machine readable Compose file and a few commands.
 
-同時に、開発者がプロジェクトを開始する時に役立つ機能を提供します。Compose は、複数のページにわたる「開発者向け導入ガイド」を減らします。それをマシンが読み込み可能な Compose ファイルと、いくつかのコマンドで実現します。
+同時に、開発者がプロジェクトを開始する時に役立つ機能を提供します。Compose は、複数のページにわたる「開発者向け導入手順書」を減らします。それをマシンが読み込み可能な Compose ファイルと、いくつかのコマンドで実現します。
 
 .. Automated testing environments
 
@@ -219,7 +219,7 @@ Compose は様々な使い方があります。一般的な利用例は、以下
 
 .. Compose has traditionally been focused on development and testing workflows, but with each release we’re making progress on more production-oriented features. You can use Compose to deploy to a remote Docker Engine. The Docker Engine may be a single instance provisioned with Docker Machine or an entire Docker Swarm cluster.
 
-これまでの Compose は、開発やテストにおけるワークフローに注力してきました。しかし各リリース毎に、私たちはプロダクションに対応した機能を実装し続けています。Compose をリモートの Docker Engine におけるデプロイにも利用できます。Docker Engine とは、 :doc:`Docker Machine </machine/index>` で自動作成された単一のマシンかもしれませんし、 :doc:`Docker Swarm </swarm/index>`  クラスタかもしれません。
+これまでの Compose は、開発やテストにおけるワークフローに注力してきました。しかしリリースごとに、私たちはプロダクションに対応した機能を実装し続けています。Compose をリモートの Docker Engine におけるデプロイにも利用できます。Docker Engine とは、 :doc:`Docker Machine </machine/index>` で自動作成された単一のマシンかもしれませんし、 :doc:`Docker Swarm </swarm/index>`  クラスタかもしれません。
 
 .. For details on using production-oriented features, see compose in production in this documentation.
 

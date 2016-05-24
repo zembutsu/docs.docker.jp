@@ -17,12 +17,11 @@ port
 
 .. code-block:: bash
 
-   Usage: port [options] SERVICE PRIVATE_PORT
+   使い方: port [オプション] サービス プライベート_ポート
    
-   Options:
-   --protocol=proto  tcp or udp [default: tcp]
-   --index=index     index of the container if there are multiple
-                     instances of a service [default: 1]
+   オプション:
+   --protocol=proto  tcp or udp [デフォルトｊ: tcp]
+   --index=index     サービスに複数のインスタンスがある場合、コンテナのインデックス数 [デフォルト: 1]
 
 .. Prints the public port for a port binding.
 

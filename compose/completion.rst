@@ -80,7 +80,7 @@ Zsh
 
 .. Then reload your shell
 
-それからシェルを再読込します。
+それからシェルを再読み込みします。
 
 .. code-block:: bash
 
@@ -102,8 +102,8 @@ Zsh
 
 * 利用可能な docker-compose コマンド
 * 個々のコマンドで利用可能なオプション
-* 指定した状態にあるサービス名（例：サービスが実行中、停止中、サービスの基になったイメージ、あるいは Dockerfile の基となるサービス）。``docker-compose scale`` の補完では、サービス名に自動的に "=" を追加します。
-* 選択したオプションに対する引数。例えば ``docker-compose kill -s`` は SIGHUP や SIGUSR1 のようなシグナルを補完します。
+* 指定した状態にあるサービス名（例：サービスが実行中、停止中、サービスの元になったイメージ、あるいは Dockerfile の元となるサービス）。``docker-compose scale`` の補完では、サービス名に自動的に "=" を追加します。
+* 選択したオプションに対する引数。たとえば ``docker-compose kill -s`` は SIGHUP や SIGUSR1 のようなシグナルを補完します。
 
 .. Enjoy working with Compose faster and with less typos!
 

@@ -15,62 +15,55 @@
 docker-compose コマンド概要
 =======================================
 
-.. sidebar:: 目次
-
-   .. contents:: 
-       :depth: 3
-       :local:
-
 .. This page provides the usage information for the docker-compose Command. You can also see this information by running docker-compose --help from the command line.
 
 このページは ``docker-compose`` コマンドの使い方に関する情報を提供します。この情報はコマンドライン上で ``docker-compose --help`` を使っても確認できます。
 
 .. code-block:: bash
 
-   Define and run multi-container applications with Docker.
+   Docker で使う複数コンテナ・アプリケーションの定義と実行
    
-   Usage:
-     docker-compose [-f=<arg>...] [options] [COMMAND] [ARGS...]
+   使い方:
+     docker-compose [-f=<引数>...] [オプション] [コマンド] [引数...]
      docker-compose -h|--help
    
-   Options:
-     -f, --file FILE             Specify an alternate compose file (default: docker-compose.yml)
-     -p, --project-name NAME     Specify an alternate project name (default: directory name)
-     --verbose                   Show more output
-     -v, --version               Print version and exit
-     -H, --host HOST             Daemon socket to connect to
+   オプション:
+     -f, --file FILE             別の compose ファイルを指定 (デフォルト: docker-compose.yml)
+     -p, --project-name NAME     別のプロジェクト名を指定 (デフォルト: directory name)
+     --verbose                   詳細情報を表示
+     -v, --version               バージョンを表示して終了
+     -H, --host HOST             接続先のデーモン・ソケット
    
-     --tls                       Use TLS; implied by --tlsverify
-     --tlscacert CA_PATH         Trust certs signed only by this CA
-     --tlscert CLIENT_CERT_PATH  Path to TLS certificate file
-     --tlskey TLS_KEY_PATH       Path to TLS key file
-     --tlsverify                 Use TLS and verify the remote
-     --skip-hostname-check       Don't check the daemon's hostname against the name specified
-                                 in the client certificate (for example if your docker host
-                                 is an IP address)
+     --tls                       TLS を使う;--tlsverify の指定も含む
+     --tlscacert CA_PATH         この CA で署名した証明書のみ信頼
+     --tlscert CLIENT_CERT_PATH  TLS 証明書ファイルへのパス
+     --tlskey TLS_KEY_PATH       TLS 鍵ファイルへのパス
+     --tlsverify                 TLS を使いリモートを認証
+     --skip-hostname-check       クライアントの証明書で指定されたデーモンのホスト名を確認しない。
+                                 （たとえば、docker ホストが IP アドレスの場合）
    
-   Commands:
-     build              Build or rebuild services
-     config             Validate and view the compose file
-     create             Create services
-     down               Stop and remove containers, networks, images, and volumes
-     events             Receive real time events from containers
-     help               Get help on a command
-     kill               Kill containers
-     logs               View output from containers
-     pause              Pause services
-     port               Print the public port for a port binding
-     ps                 List containers
-     pull               Pulls service images
-     restart            Restart services
-     rm                 Remove stopped containers
-     run                Run a one-off command
-     scale              Set number of containers for a service
-     start              Start services
-     stop               Stop services
-     unpause            Unpause services
-     up                 Create and start containers
-     version            Show the Docker-Compose version information
+   コマンド:
+     build              サービスの構築または再構築
+     config             compose ファイルの確認と表示
+     create             サービスの作成
+     down               コンテナ・ネットワーク・イメージ・ボリュームの停止と削除
+     events             コンテナからリアルタイムにイベントを受信
+     help               コマンド上でヘルプを表示
+     kill               コンテナを kill (強制停止)
+     logs               コンテナの出力を表示
+     pause              サービスを一時停止
+     port               ポートに割り当てる公開用ポートを表示
+     ps                 コンテナ一覧
+     pull               サービス用イメージの取得
+     restart            サービスの再起動
+     rm                 停止中のコンテナを削除
+     run                １度だけコマンドを実行
+     scale              サービス用コンテナの数を指定
+     start              サービスの開始
+     stop               サービスの停止
+     unpause            サービスの再開
+     up                 コンテナの作成と開始
+     version            Docker Compose のバージョン情報を表示
 
 .. The Docker Compose binary. You use this command to build and manage multiple services in Docker containers.
 
@@ -78,11 +71,11 @@ docker-compose コマンド概要
 
 .. Use the -f flag to specify the location of a Compose configuration file. You can supply multiple -f configuration files. When you supply multiple files, Compose combines them into a single configuration. Compose builds the configuration in the order you supply the files. Subsequent files override and add to their successors.
 
-Compose 設定ファイルの場所を指定するには、 ``-f`` フラグを使います。複数の ``-f`` 設定ファイルを指定できます。複数のファイルをしていすると、Compose は１つの設定ファイルに連結します。Compose はファイルを指定した順番で構築します。後に続くファイルは、既に実行したものを上書き・追加します。
+Compose 設定ファイルの場所を指定するには、 ``-f`` フラグを使います。複数の ``-f`` 設定ファイルを指定できます。複数のファイルをシチエしたら、Compose は１つの設定ファイルに連結します。Compose はファイルを指定した順番で構築します。後に続くファイルは、既に実行したものを上書き・追加します。
 
 .. For example, consider this command line:
 
-例えば、次のようなコマンドラインを考えます。
+たとえば、次のようなコマンドラインを考えます。
 
 .. code-block:: bash
 
@@ -103,7 +96,7 @@ Compose 設定ファイルの場所を指定するには、 ``-f`` フラグを�
 
 .. If the docker-compose.admin.yml also specifies this same service, any matching fields will override the previous file. New values, add to the webapp service configuration.
 
-また、 ``docker-compose.admin.yml`` ファイルで同じサービスを指定すると、以前のファイルで指定した同じフィールドの項目があれば、それを上書きします。新しい値があれば、 ``webapp`` サービスの設定に追加します。
+また、 ``docker-compose.admin.yml`` ファイルで同じサービスを指定したら、以前のファイルで指定した同じフィールドの項目があれば、それを上書きします。新しい値があれば、 ``webapp`` サービスの設定に追加します。
 
 .. code-block:: yaml
 
@@ -114,11 +107,11 @@ Compose 設定ファイルの場所を指定するには、 ``-f`` フラグを�
 
 .. Use a -f with - (dash) as the filename to read the configuration from stdin. When stdin is used all paths in the configuration are relative to the current working directory.
 
-``-f`` に ``-`` （ダッシュ）をファイル名として指定すると、標準入力から設定を読み込みます。設定に標準入力を使う場合のパスは、現在の作業用ディレクトリからの相対パスとなります。
+``-f`` に ``-`` （ダッシュ）をファイル名として指定したら、標準入力から設定を読み込みます。設定に標準入力を使う場合のパスは、現在の作業用ディレクトリからの相対パスとなります。
 
 .. The -f flag is optional. If you don’t provide this flag on the command line, Compose traverses the working directory and its subdirectories looking for a docker-compose.yml and a docker-compose.override.yml file. You must supply at least the docker-compose.yml file. If both files are present, Compose combines the two files into a single configuration. The configuration in the docker-compose.override.yml file is applied over and in addition to the values in the docker-compose.yml file.
 
-``-f`` フラグはオプションです。コマンドラインでこのフラグを指定しなければ、Compose は現在の作業用ディレクトリと ``docker-compose.yml`` ファイルと ``docker-compose.override.yml`` ファイルのサブディレクトリを探します。もし、２つのファイルが指定されると、１つの設定ファイルに連結します。 このとき、 ``docker-compose.yml`` ファイルにある値は、 ``docker-compose.override.yml`` ファイルで設定された値で上書きされます。
+``-f`` フラグはオプションです。コマンドラインでこのフラグを指定しなければ、Compose は現在の作業用ディレクトリと ``docker-compose.yml`` ファイルと ``docker-compose.override.yml`` ファイルのサブディレクトリを探します。もし、２つのファイルを指定したら、１つの設定ファイルに連結します。 この時、 ``docker-compose.yml`` ファイルにある値は、 ``docker-compose.override.yml`` ファイルで設定し値で上書きします。
 
 .. See also the COMPOSE_FILE environment variable.
 

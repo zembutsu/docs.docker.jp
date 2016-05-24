@@ -21,7 +21,7 @@
 
 .. Compose supports two methods of sharing common configuration:
 
-Compose は２つのファイルを共有方法をサポートしています。
+Compose は２つのファイル共有方法をサポートしています。
 
 ..    Extending an entire Compose file by using multiple Compose files
     Extending individual services with the extends field
@@ -39,7 +39,7 @@ Compose は２つのファイルを共有方法をサポートしています。
 
 .. Using multiple Compose files enables you to customize a Compose application for different environments or different workflows.
 
-デフォルトでは、Compose は２つのファイルを読み込みます。 ``docker-compose.yml`` と、オプションで ``docker-compose.override.yml`` （上書き）ファイルです。慣例として、``docker-compose.yml`` に基本設定を含みます。上書きファイルとは、その名前が暗に示しているように、既存のサービスを新しいサービスに全て置き換えるものです。
+デフォルトでは、Compose は２つのファイルを読み込みます。 ``docker-compose.yml`` と、オプションの ``docker-compose.override.yml`` （上書き用）ファイルです。慣例として、``docker-compose.yml`` には基本設定を含みます。上書きファイルとは、その名前が暗に示しているように、既存のサービスを新しいサービスに全て置き換えるものです。
 
 .. If a service is defined in both files Compose merges the configurations using the rules described in Adding and overriding configuration.
 
@@ -51,7 +51,7 @@ Compose は２つのファイルを共有方法をサポートしています。
 
 .. When you use multiple configuration files, you must make sure all paths in the files are relative to the base Compose file (the first Compose file specified with -f). This is required because override files need not be valid Compose files. Override files can contain small fragments of configuration. Tracking which fragment of a service is relative to which path is difficult and confusing, so to keep paths easier to understand, all paths must be defined relative to the base file.
 
-複数の設定ファイルを使う場合、全てのパスはベースになる Compose ファイル（ ``-f`` で一番目に指定したファイル）からの相対パスである必要があります。この指定が必要なのは、上書き用のファイルが適切な Compose ファイル形式でなくても構わないからです。上書きファイルは設定の一部だけでも問題ありません。相対パスで指定されたサービス断片の追跡は、難しく、混乱しがちです。そのため、パスが簡単に分かるようにするため、全てのパスの定義を、ベースファイルからの相対パスにする必要があります。
+複数の設定ファイルを使う場合、全てのパスはベースになる Compose ファイル（ ``-f`` で１番めに指定したファイル）からの相対パスである必要があります。この指定が必要なのは、上書き用のファイルが適切な Compose ファイル形式でなくても構わないからです。上書きファイルは設定の一部だけでも問題ありません。相対パスで指定されたサービス断片の追跡は、難しく、混乱しがちです。そのため、パスが簡単に分かるようにするため、全てのパスの定義を、ベースファイルからの相対パスにする必要があります。
 
 .. Example use case
 
@@ -66,7 +66,7 @@ Compose は２つのファイルを共有方法をサポートしています。
 
 .. _different-environments:
 
-異なった環境
+異なる環境
 ^^^^^^^^^^^^^^^^^^^^
 
 .. A common use case for multiple files is changing a development Compose app for a production-like environment (which may be production, staging or CI). To support these differences, you can split your Compose configuration into a few different files:
@@ -115,7 +115,7 @@ Compose は２つのファイルを共有方法をサポートしています。
      ports:
        - 6379:6379
 
-``docker-compose up`` を実行すると、この上書きファイルを自動的に読み込みます。
+``docker-compose up`` を実行したら、この上書きファイルを自動的に読み込みます。
 
 次は、Compose を使ったアプリケーションをプロダクション環境で使えるようにします。そのために別の上書きファイルを作成します（このファイルは、異なる git リポジトリに保管されているか、あるいは異なるチームによって管理されているかもしれません）。
 
@@ -203,7 +203,7 @@ Docker Compose の ``extends`` （拡張）キーワードは、異なったフ�
 
 .. note::
 
-   ``extends`` を使っても ``links`` と ``volumes_form`` はサービスを共有しません。このような例外が存在しているのは、依存性が暗黙のうちに発生しないようにするためです。 ``links`` と ``volumes_from`` は常にローカルで定義すべきです。そうすると、現在のファイルを読み込むときに、依存関係を明確化します。また、参照するファイルを変更したとしても、ローカルで定義する場合は壊れないようにします。
+   ``extends`` を使っても ``links`` と ``volumes_form`` はサービスを共有しません。このような例外が存在しているのは、依存性が暗黙の内に発生しないようにするためです。 ``links`` と ``volumes_from`` は常にローカルで定義すべきです。そうすると、現在のファイルを読み込む時に、依存関係を明確化します。また、参照するファイルを変更したとしても、ローカルで定義する場合は壊れないようにします。
 
 .. Understand the extends configuration
 
@@ -240,7 +240,7 @@ extends 設定の理解
 
 .. You can go further and define (or re-define) configuration locally in docker-compose.yml:
 
-さらに ``docker-compose.yml`` でローカル環境の設定（再設定）も行えます。
+更に ``docker-compose.yml`` でローカル環境の設定（再設定）も行えます。
 
 .. code-block:: yaml
 
@@ -333,7 +333,7 @@ Compose は本来のサービス設定を、（訳者注：extends を使う時�
 
 .. For single-value options like image, command or mem_limit, the new value replaces the old value.
 
-``image`` 、``command`` 、 ``mem_limit`` のような単一の値のオプションは、古い値が新しい値に置き換わります。
+``image`` 、``command`` 、 ``mem_limit`` のような単一値のオプションは、古い値が新しい値に置き換わります。
 
 .. code-block:: yaml
 

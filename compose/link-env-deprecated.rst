@@ -39,7 +39,7 @@ Compose はサービスのコンテナを他に公開するために、 :doc:`Do
 
 .. To see what environment variables are available to a service, run docker-compose run SERVICE env.
 
-どのような環境変数が設定されているかを核にするには、 ``docker-compose run サービス名 env`` を実行します。
+どのような環境変数が設定されているかを確認するには、 ``docker-compose run サービス名 env`` を実行します。
 
 **name_PORT**
 

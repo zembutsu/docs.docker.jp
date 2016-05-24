@@ -18,7 +18,7 @@ help
 
 .. code-block:: bash
 
-   Usage: help COMMAND
+   使い方: help コマンド
 
 .. Displays help and usage instructions for a command.
 

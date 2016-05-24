@@ -17,7 +17,7 @@ pause
 
 .. code-block:: bash
 
-   227584b8640be269f60975d7c7f361e856c9e9f6
+   使い方: pause [サービス...]
 
 .. Pauses running containers of a service. They can be unpaused with docker-compose unpause.
 

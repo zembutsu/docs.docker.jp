@@ -17,7 +17,7 @@ scale
 
 .. code-block:: bash
 
-   Usage: scale [SERVICE=NUM...]
+   使い方: scale [サービス=数値...]
 
 .. Sets the number of containers to run for a service.
 

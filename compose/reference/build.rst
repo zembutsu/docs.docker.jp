@@ -17,16 +17,16 @@ build
 
 .. code-block:: bash
 
-   Usage: build [options] [SERVICE...]
+   使い方: build [オプション] [サービス...]
    
-   Options:
-   --force-rm  Always remove intermediate containers.
-   --no-cache  Do not use cache when building the image.
-   --pull      Always attempt to pull a newer version of the image.
+   オプション:
+   --force-rm  常に中間コンテナを削除
+   --no-cache  構築時にイメージのキャッシュを使わない
+   --pull      常に新しいバージョンのイメージ取得を試みる
 
 .. Services are built once and then tagged as project_service, e.g., composetest_db. If you change a service’s Dockerfile or the contents of its build directory, run docker-compose build to rebuild it.
 
-サービスは ``project_サービス`` として構築時にタグ付けられます。例： ``composetest_db`` 。サービスの Dockerfile や構築ディレクトリの内容に変更を加える場合は、 ``docker-compose build`` で再構築を実行します。
+サービスは ``プロジェクト名_サービス`` として構築時にタグ付けられます。例： ``composetest_db`` 。サービスの Dockerfile や構築ディレクトリの内容に変更を加える場合は、 ``docker-compose build`` で再構築を実行します。
 
 .. seealso:: 
 

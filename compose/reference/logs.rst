@@ -17,14 +17,13 @@ logs
 
 .. code-block:: bash
 
-   Usage: logs [options] [SERVICE...]
+   使い方: logs [オプション] [サービス...]
    
-   Options:
-   --no-color          Produce monochrome output.
-   -f, --follow        Follow log output
-   -t, --timestamps    Show timestamps
-   --tail              Number of lines to show from the end of the logs
-                       for each container.
+   オプション:
+   --no-color          白黒で画面に出力
+   -f, --follow        ログの出力をフォロー（表示しつづける）
+   -t, --timestamps    タイムスタンプの表示
+   --tail              各コンテナのログの最終行から遡った行を表示
 
 .. Displays log output from services.
 

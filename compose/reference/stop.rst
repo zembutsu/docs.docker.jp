@@ -17,10 +17,10 @@ stop
 
 .. code-block:: bash
 
-   Usage: stop [options] [SERVICE...]
+   使い方: stop [オプション] [サービス...]
    
-   Options:
-   -t, --timeout TIMEOUT      Specify a shutdown timeout in seconds (default: 10).
+   オプション:
+   -t, --timeout TIMEOUT      シャットダウンのタイムアウト秒数を指定 (デフォルト: 10).
 
 .. Stops running containers without removing them. They can be started again with docker-compose start.
 

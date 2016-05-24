@@ -17,10 +17,10 @@ ps
 
 .. code-block:: bash
 
-   Usage: ps [options] [SERVICE...]
+   使い方: ps [オプション] [サービス...]
    
-   Options:
-   -q    Only display IDs
+   オプション:
+   -q    ID のみ表示
 
 .. Lists containers.
 

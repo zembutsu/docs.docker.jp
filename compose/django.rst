@@ -21,7 +21,7 @@
 
 .. This quick-start guide demonstrates how to use Docker Compose to set up and run a simple Django/PostgreSQL app. Before starting, you’ll need to have Compose installed.
 
-このクイックスタート・ガイドは Docker Compose を使い、簡単な Django/PostgreSQL アプリをセットアップします。その前に、 :doc:`Compose のインストール </compose/install>` が必要です。
+このクイックスタート・ガイドは Docker Compose を使い、簡単な Django/PostgreSQL アプリをセットアップします。事前に :doc:`Compose のインストール </compose/install>` が必要です。
 
 .. Define the project components
 
@@ -65,7 +65,7 @@ Dockerfile はアプリケーションのイメージ内容に含まれる、１
 
 .. This Dockerfile starts with a Python 2.7 base image. The base image is modified by adding a new code directory. The base image is further modified by installing the Python requirements defined in the requirements.txt file.
 
-この ``Dockerfile`` は Python 2.7 ベース・イメージを使って開始します。ベース・イメージに新しく ``/code`` ディレクトリ追加という変更が行われます。ベース・イメージは、``requirements.txt`` ファイルで定義されている Python 依存関係のインストールという、更なる変更を定義するものです。
+この ``Dockerfile`` は Python 2.7 ベース・イメージを使って開始します。ベース・イメージに新しく ``/code`` ディレクトリ追加という変更が行われます。ベース・イメージは、``requirements.txt`` ファイルで定義されている Python 依存関係のインストールという、更なる変更を定義します。
 
 .. Save and close the Dockerfile.
 
@@ -155,11 +155,11 @@ Django プロジェクトの作成
 
 .. Once the web service image is built, Compose runs it and executes the django-admin.py startproject command in the container. This command instructs Django to create a set of files and directories representing a Django project.
 
-``web`` サービスのイメージが構築されると、Compose はこのイメージを使い、コンテナの中で ``django-admin.py startproject`` を実行します。このコマンドは Django プロジェクトの代表として、Django に対してファイルとディレクトリの作成を命令します。
+``web`` サービスのイメージを構築したら、Compose はこのイメージを使い、コンテナ内で ``django-admin.py startproject`` を実行します。このコマンドは Django プロジェクトの代表として、Django に対してファイルとディレクトリの作成を命令します。
 
 .. After the docker-compose command completes, list the contents of your project.
 
-3. ``docker-compose`` コマンドが完了すると、プロジェクトの内容は次のようになります。
+3. ``docker-compose`` コマンドが完了したら、プロジェクトのディレクトリ内は次のようになります。
 
 .. code-block:: bash
 
@@ -203,7 +203,7 @@ Docker を Mac あるいは Windows 上で動かしている場合は、 ``djang
 
 .. In this section, you set up the database connection for Django.
 
-このセクションでは、Django 向けのデータベースをセットアップします。
+このセクションでは、Django 用のデータベースをセットアップします。
 
 ..    In your project directory, edit the composeexample/settings.py file.
 
@@ -227,7 +227,7 @@ Docker を Mac あるいは Windows 上で動かしている場合は、 ``djang
 
 .. These settings are determined by the postgres Docker image specified in docker-compose.yml.
 
-これらの設定は ``docker-compose.yml`` で指定した `postgres <https://registry.hub.docker.com/_/postgres/>`_ Docker イメージによって決められているものです。
+これらの設定は ``docker-compose.yml`` で指定した `postgres <https://hub.docker.com/_/postgres/>`_ Docker イメージによって決められているものです。
 
 .. Save and close the file.
 

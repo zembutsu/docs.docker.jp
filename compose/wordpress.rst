@@ -21,7 +21,7 @@
 
 .. You can use Docker Compose to easily run WordPress in an isolated environment built with Docker containers. This quick-start guide demonstrates how to use Compose to set up and run WordPress. Before starting, you’ll need to have Compose installed.
 
-Docker Compose を使えば、Docker コンテナで構築した WordPress の独立した環境を簡単に実行できます。このクイックスタート・ガイドでは、Compose のセットアップ方法と WordPress の実行方法を紹介します。その前に、 :doc:`Compose のインストール </compose/install>` が必要です。
+Docker Compose を使えば、Docker コンテナで構築した WordPress の独立した環境を簡単に実行できます。このクイックスタート・ガイドでは、Compose のセットアップ方法と WordPress の実行方法を紹介します。事前に :doc:`Compose のインストール </compose/install>` が必要です。
 
 .. Define the project
 
@@ -46,7 +46,7 @@ Docker Compose を使えば、Docker コンテナで構築した WordPress の�
 
 .. For example, if you named your directory my_wordpress:
 
-例えば、ディレクトリ名が ``my_wordpress`` の場合は：
+たとえば、ディレクトリ名が ``my_wordpress`` の場合は：
 
 .. code-block:: bash
 
@@ -135,7 +135,7 @@ Docker Compose を使えば、Docker コンテナで構築した WordPress の�
 
 .. If you're using Docker Machine, then docker-machine ip MACHINE_VM gives you the machine address and you can open http://MACHINE_VM_IP:8000 in a browser.
 
-:doc:`Docker Machine </machine/index>` を使っている場合は、 ``docker-machine ip マシン名`` を実行するとマシンの IP アドレスが表示します。そしてブラウザで ``http://マシンのIP:8000`` を開きます。
+:doc:`Docker Machine </machine/index>` を使っている場合は、 ``docker-machine ip マシン名`` を実行するとマシンの IP アドレスを表示します。そしてブラウザで ``http://マシンのIP:8000`` を開きます。
 
 .. At this point, WordPress should be running on port 8000 of your Docker Host, and you can complete the "famous five-minute installation" as a WordPress administrator.
 

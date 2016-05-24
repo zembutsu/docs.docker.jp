@@ -17,12 +17,12 @@ rm
 
 .. code-block:: bash
 
-   Usage: rm [options] [SERVICE...]
+   使い方: rm [オプション] [サービス...]
    
-   Options:
-       -f, --force   Don't ask to confirm removal
-       -v            Remove any anonymous volumes attached to containers
-       -a, --all     Also remove one-off containers created by
+   オプション:
+       -f, --force   確認なく削除する
+       -v            コンテナにアタッチしているアノニマス・ボリュームも削除
+       -a, --all     docker-compose run で作成した一度だけのコンテナを全て削除
                      docker-compose run
 
 .. Removes stopped service containers.

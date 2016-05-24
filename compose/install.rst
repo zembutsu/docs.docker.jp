@@ -23,7 +23,7 @@ Docker Compose のインストール
 
 .. You can run Compose on OS X, Windows and 64-bit Linux. To install it, you’ll need to install Docker first.
 
-Compose を OS X、Windows、64-bit Linux で実行可能です。Compose をインストールするには、まず Docker のインストールが必要です。
+Compose は OS X、Windows、64-bit Linux で実行可能です。Compose をインストールするには、まず Docker のインストールが必要です。
 
 .. To install Compose, do the following:
 
@@ -34,7 +34,7 @@ Compose のインストールは、次のように実行します。
         Ubuntu installation
         other system installations
 
-1. Docker エンジン 1.7.1 以上をインストールします。
+1. Docker Engine 1.7.1 以上をインストールします。
 
    * :doc:`Mac OS X へのインストール </engine/installation/mac>`  （Toolbox のインストールに、Engine と Compose が含まれます）
    * :doc:`Ubuntu へのインストール </engine/installation/linux/ubuntulinux>`
@@ -45,7 +45,7 @@ Compose のインストールは、次のように実行します。
 
 .. The Docker Toolbox installation includes both Engine and Compose, so Mac and Windows users are done installing. Others should continue to the next step.
 
-2. Docker Toolbox は Engine と Compose の両方をインストールします。そのため、 Mac および Windows ユーザは、これでインストール完了です。次のステップに進んでも構いません。
+2. Docker Toolbox を使えば、 Engine と Compose の両方をインストールします。そのため、 Mac および Windows ユーザは、これでインストール完了です。次のステップに進んでも構いません。
 
 .. Go to the Compose repository release page on GitHub.
 
@@ -96,7 +96,7 @@ Compose のインストールは、次のように実行します。
 
 .. _alternative-install-option:
 
-代替インストール方法
+他のインストール方法
 ==============================
 
 .. Install using pip
@@ -153,7 +153,7 @@ Compose 1.2 以前からアップグレードする場合、Compose を更新後
 
 .. If Compose detects containers that were created without labels, it will refuse to run so that you don’t end up with two sets of them. If you want to keep using your existing containers (for example, because they have data volumes you want to preserve) you can use compose 1.5.x to migrate them with the following command:
 
-Compose は作成されたコンテナにラベルがないことを検出すると、実行を拒否し、処理停止と表示します。既存のコンテナを compose 1.5.x 以降も使い続けたい場合（例えば、コンテナにデータ・ボリュームがあり、使い続けたい場合）は、次のコマンドで移行できます。
+Compose は作成されたコンテナにラベルがないことを検出したら、実行を拒否し、処理停止と表示します。既存のコンテナを Compose 1.5.x 以降も使い続けたい場合（たとえば、コンテナにデータ・ボリュームがあり、使い続けたい場合）は、次のコマンドで移行できます。
 
 .. code-block:: bash
 

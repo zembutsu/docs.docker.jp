@@ -17,7 +17,7 @@ unpause
 
 .. code-block:: bash
 
-   Usage: unpause [SERVICE...]
+   使い方: unpause [サービス...]
 
 .. Unpauses paused containers of a service.
 

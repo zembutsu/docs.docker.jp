@@ -17,17 +17,14 @@ create
 
 .. code-block:: bash
 
-   create
+   使い方: create [オプション] [サービス...]
    
-   Usage: create [options] [SERVICE...]
-   
-   Options:
-       --force-recreate       Recreate containers even if their configuration and
-                              image haven't changed. Incompatible with --no-recreate.
-       --no-recreate          If containers already exist, don't recreate them.
-                              Incompatible with --force-recreate.
-       --no-build             Don't build an image, even if it's missing.
-       --build                Build images before creating containers.
+   オプション:
+       --force-recreate       設定やイメージに変更がなくてもコンテナを再作成 --no-recreate とは同時に使えない
+       --no-recreate          コンテナが存在していたら、再作成しない
+                              --force-recreate とは同時に使えない
+       --no-build             イメージがなくても構築しない
+       --build                コンテナを作成前にイメージを作成
 
 .. Creates containers for a service.
 

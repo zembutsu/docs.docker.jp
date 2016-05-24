@@ -17,10 +17,10 @@ events
 
 .. code-block:: bash
 
-   Usage: events [options] [SERVICE...]
+   使い方: events [オプション] [サービス...]
    
-   Options:
-       --json      Output events as a stream of json objects
+   オプション:
+       --json      json オブジェクトでイベントの出力をストリーム
 
 .. Stream container events for every container in the project.
 
