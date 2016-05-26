@@ -69,7 +69,7 @@ Docker Hub には皆さんのような個人で作成したイメージと、何
 
 ..    Each image repository contains information about an image. It should include information such as what kind of software the image contains and how to use it. You may notice that the whalesay image is based on a Linux distribution called Ubuntu. In the next step, you run the whalesay image on your machine.
 
-各イメージのリポジトリにはイメージに関する情報を掲載していいます。この中には、イメージにどのような種類のソフトウェアが入っているかや、使い方の説明があるでしょう。この時点で覚えておくのは、 whalesay イメージとは Ubuntu と呼ばれる Linux ディストリビューションをベースにしていることです。次のステップでは、自分のマシン上で whalesay イメージを実行しましょう。
+各イメージのリポジトリにはイメージに関する情報を掲載しています。この中には、イメージにどのような種類のソフトウェアが入っているかや、使い方の説明があるでしょう。この時点で覚えておくのは、 whalesay イメージとは Ubuntu と呼ばれる Linux ディストリビューションをベースにしていることです。次のステップでは、自分のマシン上で whalesay イメージを実行しましょう。
 
 .. Step 2: Run the whalesay image
 
