@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/swarm/swarm_at_scale/05-troubleshoot/
-.. SOURCE: https://github.com/docker/swarm/blob/master/docs/swarm_at_scale/05-troubleshoot.md
-   doc version: 1.10
-      https://github.com/docker/swarm/commits/master/docs/swarm_at_scale/05-troubleshoot.md
-.. check date: 2016/03/09
-.. Commits on Feb 28, 2016 ec8ceae209c54091065c8f9e50439bd76255b022
+.. URL: https://docs.docker.com/swarm/swarm_at_scale/troubleshoot/
+.. SOURCE: https://github.com/docker/swarm/blob/master/docs/swarm_at_scale/troubleshoot.md
+   doc version: 1.11
+      https://github.com/docker/swarm/commits/master/docs/swarm_at_scale/troubleshoot.md
+.. check date: 2016/05/26
+.. Commits on Apr 14, 2016 70a180cb30ea4593b8f69d14c544cf278bf54ddd
 .. -------------------------------------------------------------------
 
 .. Troubleshoot the application
@@ -223,7 +223,8 @@ Swarm クラスタのアベイラビリティ・ゾーンを増やすには：
 
 この設定を反映したものが、次の図です。
 
-(ToDo: 図）
+.. image:: ../images/infrastructure-failures.png
+   :scale: 60%
 
 .. This will allow us to lose an entire AZ and still have our cluster and application operate.
 
@@ -237,8 +238,8 @@ Swarm クラスタのアベイラビリティ・ゾーンを増やすには：
 
 以下の図はアプリケーションとインフラを AWS と Microsoft Azure にデプロイしたものです。ですが、クラウドプロバイダはデータセンタにあるオンプレミスに置き換えても構いません。これらのシナリオでは、ネットワークのレイテンシと信頼性がスムーズに動作させるための鍵となります。
 
-(ToDo: 図）
-
+.. image:: ../images/deployed-across.png
+   :scale: 60%
 
 .. Related information
 

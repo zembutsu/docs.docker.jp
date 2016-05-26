@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/swarm/swarm_at_scale/04-deploy-app/
-.. SOURCE: https://github.com/docker/swarm/blob/master/docs/swarm_at_scale/04-deploy-app.md
-   doc version: 1.10
-      https://github.com/docker/swarm/commits/master/docs/swarm_at_scale/04-deploy-app.md
-.. check date: 2016/03/09
-.. Commits on Feb 28, 2016 ec8ceae209c54091065c8f9e50439bd76255b022
+.. URL: https://docs.docker.com/swarm/swarm_at_scale/deploy-app/
+.. SOURCE: https://github.com/docker/swarm/blob/master/docs/swarm_at_scale/deploy-app.md
+   doc version: 1.11
+      https://github.com/docker/swarm/commits/master/docs/swarm_at_scale/deploy-app.md
+.. check date: 2016/05/26
+.. Commits on Apr 29, 2016 d2c9f8bc9a674a4f215afe3651a09ee5c42c713c
 .. -------------------------------------------------------------------
 
 .. Deploy the application
@@ -21,18 +21,91 @@
        :depth: 3
        :local:
 
-.. You’ve built a Swarm cluster so now you are ready to build and deploy the voting application itself.
+.. You’ve deployed the load balancer, the discovery backend, and a Swarm cluster so now you can build and deploy the voting application itself. You do this by starting a number of “dockerized applications” running in containers.
 
-:doc:`Swarm クラスタを構築 <03-create-cluster>` しましたので、投票アプリケーションを構築・デプロイする準備が整いました。
+これまで :doc:`ロードバランサ、ディスカバリ・バックエンド、Swarm クラスタをデプロイ <deploy-infra>` しました。次は投票アプリケーションをデプロイしましょう。ここで「Docker化したアプリケーション」を起動し始めます。
 
-.. Step 1: Learn about the images
+.. The diagram below shows the final application configuration including the overlay container network, voteapp.
 
-ステップ１：イメージについて学ぶ
-========================================
+次の図は最終的なアプリケーション設定であり、 ``voteapp`` オーバレイ・コンテナ・ネットワークも含みます。
 
-.. Some of the application’s containers are launched form existing images pulled directly from Docker Hub. Other containers are launched from custom images you must build. The list below shows which containers use custom images and which do not:
+.. image:: ../images/final-result.png
+   :scale: 60%
 
-起動するアプリケーション用コンテナのいくつかは、 Docker Hub から既存のイメージを直接取得します。カスタム・イメージを必要とする他のコンテナは、自分で構築する必要があります。どのコンテナがカスタム・イメージを使えるどうか、あるいは構築する必要があるか確認します。
+.. In this procedure you will connect containers to this network. The voteapp network is available to all Docker hosts using the Consul discovery backend. Notice that the interlock, nginx, consul, and swarm manager containers on are not part of the voteapp overlay container network.
+
+この手順ではコンテナをネットワークに接続します。この ``voteapp`` ネットワークは Consul ディスカバリ・バックエンドを使う全ての Docker ホスト上で利用可能です。 ``interlock`` 、 ``nginx`` 、 ``consul`` 、 ``swarm manager`` コンテナは ``voteapp`` オーバレイ・コンテナ・ネットワークの一部なのでご注意ください。
+
+.. Task 1. Set up volume and network
+
+.. _task1-set-up-volume-and-network:
+
+タスク１：ボリュームとネットワークのセットアップ
+==================================================
+
+.. This application relies on both an overlay container network and a container volume. The Docker Engine provides these two features. You’ll create them both on the Swarm manager instance.
+
+このアプリケーションはオーバレイ・コンテナ・ネットワークとコンテナ・ボリュームに依存します。Docker Engine は２つの機能を提供します。どちらの作成も Swarm ``manager`` インスタンスから可能です。
+
+..    Direct your local environmen to the Swarm manager host.
+
+1. ローカル環境を Swarm ``manager`` ホストに向けます。
+
+.. code-block:: bash
+
+   $ eval $(docker-machine env manager)
+
+..    You can create the network on an cluster node at the network is visible on them all.
+
+クラスタ・ノード上でネットワークを作成すると、ネットワーク全体で参照可能になります。
+
+..    Create the voteapp container network.
+
+2. ``voteapp`` コンテナ・ネットワークを作成します。
+
+.. code-block:: bash
+
+   $ docker network create -d overlay voteapp
+
+..    Switch to the db store.
+
+3. db ストアに切り替えます。
+
+.. code-block:: bash
+
+   $ eval $(docker-machine env dbstore)
+
+..    Verify you can see the new network from the dbstore node.
+
+4. db ストア・ノードで新しいネットワークを確認します。
+
+.. code-block:: bash
+
+   $ docker network ls
+   NETWORK ID          NAME                DRIVER
+   e952814f610a        voteapp             overlay
+   1f12c5e7bcc4        bridge              bridge
+   3ca38e887cd8        none                null
+   3da57c44586b        host                host
+
+..    Create a container volume called db-data.
+
+5. ``db-data`` という名称のコンテナ・ボリュームを作成します。
+
+.. code-block:: bash
+
+   $ docker volume create --name db-data
+
+.. Task 2. Start the containerized microservices
+
+.. _task2-start-the-containerized-microservices:
+
+タスク２：コンテナ化したマイクロサービスの起動
+==================================================
+
+.. At this point, you are ready to start the component microservices that make up the application. Some of the application’s containers are launched from existing images pulled directly from Docker Hub. Other containers are launched from custom images you must build. The list below shows which containers use custom images and which do not:
+
+この時点で、マイクロサービスのコンポーネントを起動し、アプリケーションを起動する準備が整いました。アプリケーション・コンテナによっては、Docker Hub にある既存イメージを直接ダウンロードして実行できます。その他、自分でカスタマイズしたイメージを実行したい場合は、構築する必要があります。以下はどのコンテナがカスタム・イメージを使っているか、使っていないかの一覧です。
 
 ..    Load balancer container: stock image (ehazlett/interlock)
     Redis containers: stock image (official redis image)
@@ -41,402 +114,426 @@
     Worker containers: custom built image
     Results containers: custom built image
 
-* ロードバランサ・コンテナ：作成済みイメージ（ ``ehazlett/interlock`` ）
-* Redis コンテナ：作成済みイメージ（公式 ``redis`` イメージ）
-* Postgres ( PostgreSQL ) コンテナ：作成済みイメージ（公式 ``postgres`` イメージ）
-* Web コンテナ：カスタム・イメージを構築
-* Worker コンテナ：カスタム・イメージを構築
-* Results コンテナ：カスタム・イメージを構築
+* ロードバランサ・コンテナ：既存イメージ（ ``ehazlett/interlock`` ）
+* Redis コンテナ：既存イメージ（公式  ``redis`` イメージ）
+* Postgres (PostgreSQL) コンテナ：既存イメージ（公式 ``postgres`` イメージ）
+* Web コンテナ：カスタム構築イメージ
+* Worker コンテナ：カスタム構築イメージ
+* Results コンテナ：カスタム構築イメージ
 
-.. All custom built images are built using Dockerfile’s pulled from the example application’s public GitHub repository.
+.. You can launch these containers from any host in the cluster using the commands in this section. Each command includs a -Hflag so that they execute against the Swarm manager.
 
-カスタム・イメージの構築に必要な Dockerfile は、 `アプリケーションの GitHub 公開リポジトリ <https://github.com/docker/swarm-microservice-demo-v1>`_ から取得できます。
+このセクションでは、これらのコンテナをコマンドを使い、クラスタ上のホストに起動します。 Swarm マネージャに対して命令するため、各コマンドでは ``-H`` フラグを使います。
 
-..    If you haven’t already, ssh into the Swarm manager node.
+.. The commands also all use the -e flag which is a Swarm constraint. The constraint tells the manager to look for a node with a matching function label. You set established the labels when you created the nodes. As you run each command below, look for the value constraint.
 
-1. Swarm``manager`` ノードに ``ssh`` で接続していなければ、接続します。
+コマンドには ``-e`` も含みます。これは Swarm に制限（constraint）を指定するためです。制限はマネージャに対して、機能のラベルに一致するノードを伝えるために使います。ノードを作成時にラベルを設定します。以下のコマンドを実行し、制約の値を確認します。
 
-..    Clone the application’s GitHub repo
+..    Start a Postgres database container.
 
-2. `アプリケーションの GitHub リポジトリ <https://github.com/docker/swarm-microservice-demo-v1>`_ をクローンします。
-
-.. code-block:: bash
-
-   $ git clone https://github.com/docker/swarm-microservice-demo-v1
-   sudo: unable to resolve host master
-   Cloning into 'swarm-microservice-demo-v1'...
-   remote: Counting objects: 304, done.
-   remote: Compressing objects: 100% (17/17), done.
-   remote: Total 304 (delta 5), reused 0 (delta 0), pack-reused 287
-   Receiving objects: 100% (304/304), 2.24 MiB | 2.88 MiB/s, done.
-   Resolving deltas: 100% (132/132), done.
-   Checking connectivity... done.
-
-..    This command creates a new directory structure inside of your working directory. The new directory contains all of the files and folders required to build the voting application images.
-
-このコマンドは、現在のディレクトリ直下に新しいディレクトリ階層を作成します。新しいディレクトリには投票アプリケーション・イメージの構築に必要な全てのファイルとフォルダがあります。
-
-..    The AWS directory contains the cloudformation.json file used to deploy the EC2 instances. The Vagrant directory contains files and instructions required to deploy the application using Vagrant. The results-app, vote-worker, and web-vote-app directories contain the Dockerfiles and other files required to build the custom images for those particular components of the application.
-
-``AWS`` ディレクトリにある ``cloudformation.json`` ファイルは EC2 インスタンスのデプロイに使いました。 ``Vagrant`` ディレクトリにあるファイルや命令は Vagrant を使ってアプリケーションをデプロイする時に必要となります。 ``results-app`` 、 ``vote-worker`` 、 ``web-vote-app`` ディレクトリには Dockerfile が入っています。これは、 アプリケーションの各コンポーネントとして必要になるカスタム・イメージを構築するために必要なファイルです。
-
-..    Change directory into the swarm-microservice-demo-v1/web-vote-app directory.
-
-3. ``swarm-microservice-demo-v1/web-vote-app`` ディレクトリに移動します。
+1. Postgres データベース・コンテナを起動します。
 
 .. code-block:: bash
 
-   $ cd swarm-microservice-demo-v1/web-vote-app/
+   $ docker -H $(docker-machine ip manager):3376 run -t -d \
+   -v db-data:/var/lib/postgresql/data \
+   -e constraint:com.function==dbstore \
+   --net="voteapp" \
+   --name db postgres:9.4
 
-..     View the Dockerfile contents.
+..    Start the Redis container.
 
-4. Dockerfile の内容を確認します。
-
-.. code-block:: bash
-
-   $ cat Dockerfile  
-   # Using official python runtime base image
-   FROM python:2.7
-   # Set the application directory
-   WORKDIR /app
-   # Install our requirements.txt
-   ADD requirements.txt /app/requirements.txt
-   RUN pip install -r requirements.txt
-   # Copy our code from the current folder to /app inside the container
-   ADD . /app
-   # Make port 80 available for links and/or publish
-   EXPOSE 80
-   # Define our command to be run when launching the container
-   CMD ["python", "app.py"]
-
-..    As you can see, the image is based on the official Python:2.7 tagged image, adds a requirements file into the /app directory, installs requirements, copies files from the build context into the container, exposes port 80 and tells the container which command to run.
-
-ご覧の通り、このイメージは公式の ``Python:1.7`` とタグ付けされたイメージをベースにします。 ``/app`` ディレクトリに必要なファイルを追加し、依存関係のあるものをインストールし、構築コンテクストに含めるファイルをコンテナ内にコピーし、コンテナのコマンド実行時にポート ``80`` を公開するよう命令しています。
-
-..    Spend time investigating the other parts of the application by viewing the results-app/Dockerfile and the vote-worker/Dockerfile in the application.
-
-5. 投票アプリケーションの他のパーツも、 ``results-app/Dockerfile`` と ``vote-worker/Dockerfile`` を時間をかけて確認します。
-
-.. Step 2. Build custom images
-
-.. _step-2-build-custom-images:
-
-ステップ２：カスタム・イメージの構築
-========================================
-
-..    If you haven’t already, ssh into the Swarm manager node.
-
-1. Swarm ``manager`` ノードに ``ssh`` で入っていなければ、入ります。
-
-..    Make sure you have DOCKER_HOST set
-
-2. ``DOCKER_HOST`` が設定されているのを確認します。
+2. Redis コンテナを起動します。
 
 .. code-block:: bash
 
-   $ export DOCKER_HOST="tcp://192.168.33.11:3375"
+   $ docker -H $(docker-machine ip manager):3376 run -t -d \
+   -p 6379:6379 \
+   -e constraint:com.function==dbstore \
+   --net="voteapp" \
+   --name redis redis
 
-..    Change to the root of your swarm-microservice-demo-v1 clone.
+..    The redis name is important so don’t change it.
 
-3. ``swarm-microservice-demo-v1`` をクローンしたディレクトリに移動します。
+``redis`` の名前は重要なので、変更しないでください。
 
-..    Build the web-votes-app image both the front end nodes.
+..    Start the worker application
 
-4. 各フロントエンドのノード上で ``web-votes-app`` イメージを構築します。
-
-**frontend01:**
-
-.. code-block:: bash
-
-   $ docker -H tcp://192.168.33.20:2375 build -t web-vote-app ./web-vote-app
-
-**frontend02:**
+3. ワーカ・アプリケーションを起動します。
 
 .. code-block:: bash
 
-   $ docker -H tcp://192.168.33.21:2375 build -t web-vote-app ./web-vote-app
+   $ docker -H $(docker-machine ip manager):3376 run -t -d \
+   -e constraint:com.function==worker01 \
+   --net="voteapp" \
+   --net-alias=workers \
+   --name worker01 docker/example-voting-app-worker
 
-..    These commands build the web-vote-app image on the frontend01 and frontend02 nodes. To accomplish the operation, each command copies the contents of the swarm-microservice-demo-v1/web-vote-app sub-directory from the manager node to each frontend node. The command then instructs the Docker daemon on each frontend node to build the image and store it locally.
+..    Start the results application.
 
-これらのコマンドは ``frontend01`` と ``frontend02`` ノード上に ``web-vote-app`` イメージを構築します。これらのコマンドを実行すると、 ``manager`` ノード上の ``swarm-microservice-demo-v1/web-vote-app`` サブディレクトリの内容が、各フロントエンドのノードにコピーされます。そして、このコマンドは各フロントエンド・ノード内でローカルにイメージを構築・保管します。
-
-..    You’ll notice this example uses a -H flag to pull an image to specific host. This is to help you conceptualize the architecture for this sample. In a production deployment, you’d omit this option and rely on the Swarm manager to distribute the image. The manager would pull the image to every node; so that any node can step in to run the image as needed.
-
-このサンプルでは ``-H`` フラグを使いイメージを取得するホストを指定します。これがこのサンプルのアーキテクチャの概念を理解する手助けになるでしょう。プロダクション環境のデプロイでは、この作業を省略し、Swarm マネージャでイメージを配布させることも可能です。マネージャはイメージを必要とする各ノード上で、個々にイメージを取得（pull）することができます。
-
-..    It may take a minute or so for each image to build. Wait for the builds to finish.
-
-イメージ構築には数分ほど時間がかかるかもしれません。構築完了までお待ち下さい。
-
-..    Build vote-worker image on the worker01 node
-
-5. ``worker01`` ノード上で ``vote-worker`` イメージを構築します。
+4. results アプリケーションを起動します。
 
 .. code-block:: bash
 
-   $ docker -H tcp://192.168.33.200:2375 build -t vote-worker ./vote-worker
+   $ docker -H $(docker-machine ip manager):3376 run -t -d \
+   -p 80:80 \
+   --label=interlock.hostname=results \
+   --label=interlock.domain=myenterprise.com \
+   -e constraint:com.function==dbstore \
+   --net="voteapp" \
+   --name results-app docker/example-voting-app-result-app
 
-..    It may take a minute or so for the image to build. Wait for the build to finish.
+..    Start voting application twice, on each frontend node.
 
-イメージ構築には数分ほど時間がかかるかもしれません。構築完了までお待ち下さい。
-
-..    Build the results-app on the store node
-
-6. ``store`` ノード上で ``results-app`` を構築します。
+5. 各フロントエンド・ノード上に、２つの投票アプリケーションを起動します。
 
 .. code-block:: bash
 
-   $ docker -H tcp://192.168.33.250:2375 build -t results-app ./results-app
+   $ docker -H $(docker-machine ip manager):3376 run -t -d \
+   -p 80:80 \
+   --label=interlock.hostname=vote \
+   --label=interlock.domain=myenterprise.com \
+   -e constraint:com.function==frontend01 \
+   --net="voteapp" \
+   --name voting-app01 docker/example-voting-app-voting-app
 
-.. Each of the custom images required by the application is now built and stored locally on the nodes that will use them.
+..    And again on the other frontend node.
 
-アプリケーションが必要とする各カスタム・イメージを構築し、実行する各ノードのローカルに保管しました。
+そして、別のフロントエンド・ノード上で実行します。
 
-.. Step 3. Pull images from Docker Hub
+.. code-block:: bash
 
-ステップ３：Docker Hub からイメージを取得
+   $ docker -H $(docker-machine ip manager):3376 run -t -d \
+   -p 80:80 \
+   --label=interlock.hostname=vote \
+   --label=interlock.domain=myenterprise.com \
+   -e constraint:com.function==frontend02 \
+   --net="voteapp" \
+   --name voting-app02 docker/example-voting-app-voting-app
+
+.. Task 3. Check your work and update /etc/hosts
+
+.. _task3-check-your-work-and-update-etc-hosts:
+
+タスク３：作業内容の確認と /etc/hosts の更新
 ==================================================
 
-.. For performance reasons, it is always better to pull any required Docker Hub images locally on each instance that needs them. This ensures that containers based on those images can start quickly.
+.. In this step, you check your work to make sure the Nginx configuration recorded the containers correctly. You’ll update your local systems /etc/hosts file to allow you to take advantage of the loadbalancer.
 
-パフォーマンス上の理由により、それぞれのインスタンスの必要性に応じて、Docker Hub からイメージをダウンロードするのは良い方法です。そうすることで、必要とするコンテナを迅速に実行できます。
+このステップでは、 Nginx コンテナの設定が適切に行われているかを確認します。ロードバランサの動作確認のため、ローカルの ``/etc/hosts`` ファイルを変更します。
 
-..    Log into the Swarm manager node.
+..     Change to the loadbalancer node.
 
-1. Swarm ``manager`` ノードにログインします。
-
-..    Pull the redis image to your frontend nodes.
-
-2. フロントエンド・ノード で ``redis`` イメージを取得します。
-
-**frontend01:**
+1. ``loadbalancer`` ノードに変更します。
 
 .. code-block:: bash
 
-   $ docker -H tcp://192.168.33.20:2375 pull redis
+   $ eval $(docker-machine env loadbalancer)
 
-**frontend02:**
+..    Check your work by reviewing the configuration of nginx.
 
-.. code-block:: bash
-
-   $ docker -H tcp://192.168.33.21:2375 pull redis
-
-..    Pull the postgres image to the store node
-
-3. ``store`` ノードに ``postgres`` イメージを取得します。
+2. nginx の設定を表示し、内容を確認します。
 
 .. code-block:: bash
 
-   $ docker -H tcp://192.168.33.250:2375 pull postgres
+   $ docker exec interlock cat /etc/conf/nginx.conf
+   ... output snipped ...
+   
+   upstream results.myenterprise.com {
+       zone results.myenterprise.com_backend 64k;
+   
+       server 192.168.99.111:80;
+   
+   }
+   server {
+       listen 80;
+   
+       server_name results.myenterprise.com;
+   
+       location / {
+           proxy_pass http://results.myenterprise.com;
+       }
+   }
+   upstream vote.myenterprise.com {
+       zone vote.myenterprise.com_backend 64k;
+   
+       server 192.168.99.109:80;
+       server 192.168.99.108:80;
+   
+   }
+   server {
+       listen 80;
+   
+       server_name vote.myenterprise.com;
+   
+       location / {
+           proxy_pass http://vote.myenterprise.com;
+       }
+   }
+   
+   include /etc/conf/conf.d/*.conf;
+   }
 
-..    Pull the ehazlett/interlock image to the interlock node
+.. The http://vote.myenterprise.com site configuration should point to either frontend node. Requests to http://results.myenterprise.com go just to the single dbstore node where the example-voting-app-result-app is running.
 
-4. ``interlock`` ノードに ``ehazlett/interlock`` イメージを取得します。
+``http://vote.myenterprise.com`` サイトの設定は、どちらかのフロントエンド・ノードを指し示します。 ``http://results.myenterprise.com`` にリクエストすると、 ``example-voting-app-result-app`` が稼働している ``dbstore`` ノードに移動します。
+
+..    On your local host, edit /etc/hosts file add the resolution for both these sites.
+
+1. ローカルホスト上で ``/etc/hosts`` ファイルを編集し、これらサイトの名前解決の行を追加します。
+
+..    Save and close the /etc/hosts file.
+
+2. ``/etc/hosts`` ファイルを保存して閉じます。
+
+..    Restart the nginx container.
+
+3. ``nginx`` コンテナの再起動。
+
+..    Manual restart is required because the current Interlock server is not forcing an Nginx configuration reload.
+
+現在の Interlock サーバの設定が Nginx の設定に反映していないので、手動で再起動する必要があります。
 
 .. code-block:: bash
 
-   $ docker -H tcp://192.168.33.12:2375 pull ehazlett/interlock
+   $ docker restart nginx
 
-.. Each node in the cluster, as well as the interlock node, now has the required images stored locally as shown below.
+.. Task 4. Test the application
 
-クラスタ上のノードだけでなく、 ``interlock`` ノードの準備も整いました。これで次のように各ノードで必要なイメージがローカルに保管されている状態です。
+.. _task4-test-the-application:
 
-.. image:: ../images/interlock.png
-   :scale: 60%
-
-.. Now that all images are built, pulled, and stored locally, the next step is to start the application.
-
-これで全てのイメージを構築・取得し、ローカルに保存しました。次のステップはアプリケーションの起動です。
-
-.. Step 4. Start the voting application
-
-.. _step-4-start-the-voting-application:
-
-ステップ４：投票用アプリケーションを起動
+タスク４：アプリケーションのテスト
 ========================================
 
-.. In the following steps, your launch several containers to the voting application.
+.. Now, you can test your application.
 
-以下の手順は、投票用アプリケーションのコンテナを起動します。
+これでアプリケーションをテストできます。
 
-..    If you haven’t already, ssh into the Swarm manager node.
+..    Open a browser and navigate to the http://vote.myenterprise.com site.
 
-1. Swarm ``manager`` ノードに ``ssh`` 接続していなければ、接続します。
+1. ブラウザを開き、サイト ``http://vote.myenterprise.com`` に移動します。
 
-..    Start the interlock container on the interlock node
+..    You should see something similar to the following:
 
-2. ``interlock`` ノードで ``interlock`` コンテナを起動します。
+投票ページ「Cats vs Dogs!」が画面に表示されます。
 
-.. code-block:: bash
+..    Click on one of the two voting options.
 
-   $ docker -H tcp://192.168.33.12:2375 run --restart=unless-stopped -p 80:80 --name interlock -d ehazlett/interlock --swarm-url tcp://192.168.33.11:3375 --plugin haproxy start
+2. ２つの選択肢のうち、どちらかに投票します。
 
-..    This command is issued against the interlock instance and maps port 80 on the instance to port 80 inside the container. This allows the container to load balance connections coming in over port 80 (HTTP). The command also applies the --restart=unless-stopped policy to the container, telling Docker to restart the container if it exits unexpectedly.
+..    Navigate to the http://results.myenterprise.com site to see the results.
 
-このコマンドは ``interlock`` インスタンスのポート 80 をコンテナ内のポート 80 に割り当てます。これにより、コンテナがポート 80 （HTTP）に来たトラフィックを負荷分散できます。また、このコマンドはコンテナに対して ``--restart=unless-stopped`` ポリシーを設定しています。これはコンテナが不意に停止することがあれば、コンテナを（自動的に）再起動します。
+3. サイト ``http://results.myenterprise.com`` に移動し、結果を表示します。
 
-..     Verify the container is running.
+..    Try changing your vote.
 
-3. コンテナが起動していることを確認します。
+4. 他の選択肢に投票します。
 
-.. code-block:: bash
+..    You’ll see both sides change as you switch your vote.
 
-   $ docker -H tcp://192.168.33.12:2375 ps
+投票した結果が画面上に表示されます。
 
-..    Start a redis container on your front end nodes.
+.. Extra Credit: Deployment with Docker Compose
 
-4. フロントエンド・ノード上で ``redis`` コンテナを起動します。
-
-**frontend01:**
-
-.. code-block:: bash
-
-   $ docker run --restart=unless-stopped --env="constraint:node==frontend01" -p 6379:6379 --name redis01 --net mynet -d redis
-   $ docker -H tcp://192.168.33.20:2375 ps
-
-**frontend02:**
-
-.. code-block:: bash
-
-   $ docker run --restart=unless-stopped --env="constraint:node==frontend02" -p 6379:6379 --name redis02 --net mynet -d redis
-   $ docker -H tcp://192.168.33.21:2375 ps
-
-..    These two commands are issued against the Swarm cluster. The commands specify node constraints, forcing Swarm to start the containers on frontend01 and frontend02. Port 6379 on each instance is mapped to port 6379 inside of each container for debugging purposes. The command also applies the --restart=unless-stopped policy to the containers and attaches them to the mynet overlay network.
-
-Swarm クラスタに対して２つのコマンドを実行します。このコマンドはノード制約（code constrains）を指定し、Swarm に ``frontend01`` と ``frontend02`` でコンテナを起動するよう指定しています。また、デバッグ目的のために各コンテナのポート 6379 を各インスタンスのポート 6379 に割り当てます。さらにコンテナに対する ``--restart=unless-stopped `` ポリシーと、コンテナを ``mynet`` オーバレイ・ネットワークに接続する設定を行っています。
-
-..    Start a web-vote-app container the frontend nodes.
-
-5. フロントエンド・ノード上で ``web-vote-app`` コンテナを起動します。
-
-**frontend01:**
-
-.. code-block:: bash
-
-   $ docker run --restart=unless-stopped --env="constraint:node==frontend01" -d -p 5000:80 -e WEB_VOTE_NUMBER='01' --name frontend01 --net mynet --hostname votingapp.local web-vote-app
-
-**frontend02:**
-
-.. code-block:: bash
-
-   $ docker run --restart=unless-stopped --env="constraint:node==frontend02" -d -p 5000:80 -e WEB_VOTE_NUMBER='02' --name frontend02 --net mynet --hostname votingapp.local web-vote-app
-
-..    These two commands are issued against the Swarm cluster. The commands specify node constraints, forcing Swarm to start the containers on frontend01 and frontend02. Port 5000 on each node is mapped to port 80 inside of each container. This allows connections to come in to each node on port 5000 and be forwarded to port 80 inside of each container.
-
-Swarm クラスタに対して２つのコマンドを実行します。このコマンドはノード制約（code constrains）を指定し、Swarm に ``frontend01`` と ``frontend02`` でコンテナを起動するよう指定しています。また、各コンテナのポート ``80`` を各インスタンスのポート ``5000`` に割り当てます。これは各ノード上のポート ``5000`` に接続すると、各コンテナのポート ``80`` に転送されます。
-
-..    Both containers are attached to the mynet overlay network and both containers are given the votingapp-local hostname. The --restart=unless-stopped policy is also applied to these containers.
-
-どちらのコンテナも ``mynet`` オーバレイ・ネットワークに接続し、どちらも ``votingapp-local`` ホスト名を持ちます。コンテナに対して ``--restart=unless-stopped`` ポリシーも指定しています。
-
-..    Start the postgres container on the store node
-
-6. ``store`` ノード上で ``postgres``  コンテナを起動します。
-
-.. code-block:: bash
-
-   $ docker run --restart=unless-stopped --env="constraint:node==store" --name pg -e POSTGRES_PASSWORD=pg8675309 --net mynet -p 5432:5432 -d postgres
-
-..    This command is issued against the Swarm cluster and starts the container on store. It maps port 5432 on the store node to port 5432 inside the container and attaches the container to the mynet overlay network. The command also inserts the database password into the container via the POSTGRES_PASSWORD environment variable and applies the --restart=unless-stopped policy to the container.
-
-このコマンドは Swarm クラスタに対して ``store`` 上でコンテナを起動します。 ``store`` ノード上のポート 5432 をコンテナ内の 5432 に割り当てて、コンテナを ``mynet`` オーバレイ・ネットワークに接続します。
-
-..    Sharing passwords like this is not recommended for production use cases.
-
-プロダクションでの利用ではパスワード共有は推奨されません。
-
-..    Start the worker01 container on the worker01 node
-
-7. ``worker01`` ノード上で ``worker01`` コンテナを起動します。
-
-.. code-block:: bash
-
-   $ docker run --restart=unless-stopped --env="constraint:node==worker01" -d -e WORKER_NUMBER='01' -e FROM_REDIS_HOST=1 -e TO_REDIS_HOST=2 --name worker01 --net mynet vote-worker
-
-..    This command is issued against the Swarm manager and uses a constraint to start the container on the worker01 node. It passes configuration data into the container via environment variables, telling the worker container to clear the queues on frontend01 and frontend02. It adds the container to the mynet overlay network and applies the --restart=unless-stopped policy to the container.
-
-このコマンドは Swarm マネージャに対して ``worker01`` ノード上でコンテナを起動するよう制約（constraint）を使っています。これは環境変数を通して設定用のデータを渡しています。これは worker コンテナに対して、 ``frontend01`` と ``frontend02`` にあるキューをクリアにするよう命令しています。また、コンテナを ``mynet`` オーバレイ・ネットワークに追加し、コンテナに ``--restart=unless-stopped`` ポリシーを適用しています。
-
-..    Start the results-app container on the store node
-
-8. ``store`` ノード上で ``results-app``  コンテナを起動します。
-
-.. code-block:: bash
-
-   $ docker run --restart=unless-stopped --env="constraint:node==store" -p 80:80 -d --name results-app --net mynet results-app
-
-..    This command starts the results-app container on the store node by means of a node constraint. It maps port 80 on the store node to port 80 inside the container. It adds the container to the mynet overlay network and applies the --restart=unless-stopped policy to the container.
-
-このコマンドはノード制約（node constraint）によって ``store`` ノード上に results-app コンテナを起動します。 ``store`` ノードのポート 80 をコンテナ内のポート 80 に割り当てます。コンテナを ``mynet`` オーバレイ・ネットワークに接続し、 ``--restart=unless-stopped`` ポリシーをコンテナに適用します。
-
-.. The application is now fully deployed as shown in the diagram below.
-
-下図の状態となれば、これでアプリケーションのデプロイは完了です。
-
-.. image:: ../images/fully-deployed.png
-   :scale: 60%
-
-.. Step 5. Test the application
-
-.. _step-5-test-the-application:
-
-ステップ５：アプリケーションのテスト
+追加作業：Docker Compose でデプロイ
 ========================================
 
-.. Now that the application is deployed and running, it’s time to test it. To do this, you configure a DNS mapping on the machine where you are running your web browser. This maps the “votingapp.local” DNS name to the public IP address of the interlock node.
+.. Up to this point, you’ve deployed each application container individually. This can be cumbersome espeically because their are several different containers and starting them is order dependent. For example, that database should be running before the worker.
 
-これでアプリケーションはデプロイが終わり、実行中になりました。さぁ、テストの時間です。そのためにはウェブ・ブラウザが実行中のマシンから参照できるよう、DNS 設定を調整する必要があります。そのために「votingapp.local」DNS名を ``interlock`` ノードのパブリック IP アドレスに割り当てます。
+これまでは、各アプリケーションのコンテナを個々に起動しました。しかし、複数コンテナの起動や依存関係の順番に従った起動は、とても煩雑です。たとえば、データベースはワーカが起動する前に動いているべきでしょう。
 
-..    Configure the DNS name resolution on your local machine for browsing.
+.. Docker Compose let’s you define your microservice containers and their dependencies in a Compose file. Then, you can use the Compose file to start all the containers at once. This extra credit
 
-1. ブラウザで参照できるようにするため、ローカルのマシン上の DNS 名前解決の設定を変更します。
+Docker Compose はマイクロサービス・コンテナと依存関係を Compose ファイルで定義します。そして、Compose ファイルを使って全てのコンテナを一斉に起動します。こは追加作業（extra credit）です。
 
-..        On Windows machines this is done by adding votingapp.local <interlock-public-ip> to the C:\Windows\System32\Drivers\etc\hosts file. Modifying this file requires administrator privileges. To open the file with administrator privileges, right-click C:\Windows\System32\notepad.exe and select Run as administrator. Once Notepad is open, click file > open and open the file and make the edit.
-        On OSX machines this is done by adding votingapp.local <interlock-public-ip> to /private/etc/hosts.
-        On most Linux machines this is done by adding votingapp.local <interlock-public-ip> to /etc/hosts.
+..    Before you begin, stop all the containers you started.
 
+1. 始める前に、起動した全てのコンテナを停止します。
 
-* Windows マシンの場合は ``C:\Windows\System32\Drivers\etc\hosts file`` ファイルに ``votingapp.local <interlock-パブリックIP>`` の行を追加します。管理者権限でファイルを開くために ``C:\Windows\System32\notepad.exe`` を右クリックし、 ``管理者として実行`` を選びます。メモ帳が開いたら、 ``ファイル`` → ``開く`` でファイルを開き、編集します。
+..    a. Set the host to the manager.
 
-* OSX マシンの場合は ``votingapp.local <interlock-パブリックIP>`` を ``/private/etc/hosts`` に追加します。
-
-* 殆どの Linux マシン上では  ``votingapp.local <interlock-パブリックIP>`` を ``/etc/hosts`` に追加します。
-
-..    Be sure to replace <interlock-public-ip> with the public IP address of your interlock node. You can find the interlock node’s Public IP by selecting your interlock EC2 Instance from within the AWS EC2 console.
-
-``<interlock-パブリックIP>`` の部分は、各自の ``interlock`` ノードの IP アドレスに置き換えてください。 AWS EC2 コンソール内の ``interlock`` EC2 インスタンスの場所からノードのパブリック IP アドレスを確認できます。
-
-..    Verify the mapping worked with a ping command from your local machine.
-
-2. 正常に名前解決できるか確認するために、自分のマシン上で ``ping`` コマンドを実行します。
+a. （作業対象の）ホストをマネージャに向けます。
 
 .. code-block:: bash
 
-   ping votingapp.local
-   Pinging votingapp.local [54.183.164.230] with 32 bytes of data:
-   Reply from 54.183.164.230: bytes=32 time=164ms TTL=42
-   Reply from 54.183.164.230: bytes=32 time=163ms TTL=42
-   Reply from 54.183.164.230: bytes=32 time=169ms TTL=42
+   $ DOCKER_HOST=$(docker-machine ip manager):3376
 
-..    Point your web browser to http://votingapp.local
+..    b. List all the application continers on the Swarm.
 
-3. ブラウザで http://votingapp.local を開きます。
+b. Swarm 上のアプリケーション全てを一覧します。
 
-..    Notice the text at the bottom of the web page. This shows which web container serviced the request. In the diagram above, this is frontend02. If you refresh your web browser you should see this change as the Interlock load balancer shares incoming requests across both web containers.
+..    c. Stop and remove each container.
 
-ウェブページ上の文字列にご注意ください。ここに表示されているのは、どのウェブ・コンテナ・サービスに対してリクエストしているかです。これが ``frontend02`` であれば、ウェブ・ブラウザを再読込すると、 interlock ロード・バランサは入ってきたリクエストを両方のコンテナに振り分けるのが分かります。
+c. 各コンテナを停止・削除します。
 
-..  To see more detailed load balancer data from the Interlock service, point your web browser to http://stats:interlock@votingapp.local/haproxy?stats
+..    Try to create Compose file on your own by reviewing the tasks in this tutorial.
 
-Interlock サービスの負荷分散に関する詳細なデータは、ブラウザで http://stats:interlock@votingapp.local/haproxy?stats を開きます。
+2. このチュートリアルに従って、自分で Compose ファイルの作成を試みます。
 
-..    Cast your vote. It is recommended to choose “Dogs” ;-)
+..    The version 2 Compose file format is the best to use. Translate each docker run command into a service in the docker-compose.yml file. For example, this command:
 
-4. 投票します。「Dogs」を選ぶことを推奨します ;-)
+Compose ファイルはバージョン２形式を使うのがベストです。各 ``docker run`` コマンドを ``docker-compose.yml``  ファイル内のサービスに置き換えます。例えば、次のコマンドがあるとします。
 
-..    To see the results of the poll, you can point your web browser at the public IP of the store node
+.. code-block:: bash
 
-5. 投票結果を見るには、 ``store`` ノードのパブリック IP アドレスをブラウザで開きます。
+   $ docker -H $(docker-machine ip manager):3376 run -t -d \
+   -e constraint:com.function==worker01 \
+   --net="voteapp" \
+   --net-alias=workers \
+   --name worker01 docker/example-voting-app-worker
+
+..    Becomes this in a Compose file.
+
+これは、次の Compose ファイルに書き換え可能です。
+
+.. code-block:: bash
+
+   worker:
+     image: docker/example-voting-app-worker
+     networks:
+       voteapp:
+         aliases:
+         - workers
+
+..    In general, Compose starts services in reverse order they appear in the file. So, if you want a service to start before all the others, make it the last service in the file file. This applciation relies on a volume and a network, declare those at the bottom of the file.
+
+一般的には Compose はファイルに現れる逆順でサービスの起動を試みます。そのため、あるサービスを他のサービスよりも前に実行するには、ファイル中の最後尾にサービスを記述する必要があります。アプリケーションがボリュームやネットワークを使う場合は、ファイルの末尾で宣言します。
+
+..    Check your work against this result file
+
+3. 結果が `ファイル <https://docs.docker.com/swarm/swarm_at_scale/docker-compose.yml>`_ と一致しているか確認します。
+
+..    When you are satisifed, save the docker-compose.yml file to your system.
+
+4. 問題がなければ、システム上に ``docker-compose.yml``  ファイルを保存します。
+
+..    Set DOCKER_HOST to the Swarm manager.
+
+5. ``DOCKER_HOST`` を Swarm マネージャに向けます。
+
+.. code-block:: bash
+
+   $ DOCKER_HOST=$(docker-machine ip manager):3376
+
+..    In the same directory as your docker-compose.yml file, start the services.
+
+6. ``docker-compose.yml`` と同じディレクトリで、サービスを起動します。
+
+.. code-block:: bash
+
+   $ docker-compose up -d
+   Creating network "scale_voteapp" with the default driver
+   Creating volume "scale_db-data" with default driver
+   Pulling db (postgres:9.4)...
+   worker01: Pulling postgres:9.4... : downloaded
+   dbstore: Pulling postgres:9.4... : downloaded
+   frontend01: Pulling postgres:9.4... : downloaded
+   frontend02: Pulling postgres:9.4... : downloaded
+   Creating db
+   Pulling redis (redis:latest)...
+   dbstore: Pulling redis:latest... : downloaded
+   frontend01: Pulling redis:latest... : downloaded
+   frontend02: Pulling redis:latest... : downloaded
+   worker01: Pulling redis:latest... : downloaded
+   Creating redis
+   Pulling worker (docker/example-voting-app-worker:latest)...
+   dbstore: Pulling docker/example-voting-app-worker:latest... : downloaded
+   frontend01: Pulling docker/example-voting-app-worker:latest... : downloaded
+   frontend02: Pulling docker/example-voting-app-worker:latest... : downloaded
+   worker01: Pulling docker/example-voting-app-worker:latest... : downloaded
+   Creating scale_worker_1
+   Pulling voting-app (docker/example-voting-app-voting-app:latest)...
+   dbstore: Pulling docker/example-voting-app-voting-app:latest... : downloaded
+   frontend01: Pulling docker/example-voting-app-voting-app:latest... : downloaded
+   frontend02: Pulling docker/example-voting-app-voting-app:latest... : downloaded
+   worker01: Pulling docker/example-voting-app-voting-app:latest... : downloaded
+   Creating scale_voting-app_1
+   Pulling result-app (docker/example-voting-app-result-app:latest)...
+   dbstore: Pulling docker/example-voting-app-result-app:latest... : downloaded
+   frontend01: Pulling docker/example-voting-app-result-app:latest... : downloaded
+   frontend02: Pulling docker/example-voting-app-result-app:latest... : downloaded
+   worker01: Pulling docker/example-voting-app-result-app:latest... : downloaded
+   Creating scale_result-app_1
+
+..    Use the docker ps command to see the containers on the Swarm cluster.
+
+7. ``docker ps`` コマンドで Swarm クラスタ上のコマンドを確認します。
+
+.. code-block:: bash
+
+   $ docker -H $(docker-machine ip manager):3376 ps
+   CONTAINER ID        IMAGE                                  COMMAND                  CREATED             STATUS              PORTS                            NAMES
+   b71555033caa        docker/example-voting-app-result-app   "node server.js"         6 seconds ago       Up 4 seconds        192.168.99.104:32774->80/tcp     frontend01/scale_result-app_1
+   cf29ea21475d        docker/example-voting-app-worker       "/usr/lib/jvm/java-7-"   6 seconds ago       Up 4 seconds                                         worker01/scale_worker_1
+   98414cd40ab9        redis                                  "/entrypoint.sh redis"   7 seconds ago       Up 5 seconds        192.168.99.105:32774->6379/tcp   frontend02/redis
+   1f214acb77ae        postgres:9.4                           "/docker-entrypoint.s"   7 seconds ago       Up 5 seconds        5432/tcp                         frontend01/db
+   1a4b8f7ce4a9        docker/example-voting-app-voting-app   "python app.py"          7 seconds ago       Up 5 seconds        192.168.99.107:32772->80/tcp     dbstore/scale_voting-app_1
+
+..    When you started the services manually, you had a voting-app instances running on two frontend servers. How many do you have now?
+
+サービスを手動で起動した時は、 ``voting-app`` インスタンスは２つのフロントエンド・ノード上で動作していました。今回はいくつ起動していますか？
+
+..    Scale your application up by adding some voting-app instances.
+
+8. アプリケーションをスケールするため、``voting-app`` インスタンスを追加します。
+
+.. code-block:: bash
+
+   $ docker-compose scale voting-app=3
+   Creating and starting 2 ... done
+   Creating and starting 3 ... done
+
+..     After you scale up, list the containers on the cluster again.
+
+スケールアップ後は、クラスタ上のコンテナ一覧を再び表示します。
+
+..    Change to the loadbalancer node.
+
+9. ``loadbalancer`` ノードに変更します。
+
+.. code-block:: bash
+
+   $ eval $(docker-machine env loadbalancer)
+
+..    Restart the Nginx server.
+
+10. Nginx サーバを再起動します。
+
+.. code-block:: bash
+
+   $ docker restart nginx
+
+..    Check your work again by visiting the http://vote.myenterprise.com and http://results.myenterprise.com again.
+
+11. ``http://vote.myenterprise.com`` と ``http://results.myenterprise.com`` を再び表示して、投票の動作を確認します。
+
+..    You can view the logs on an indvidual container.
+
+12. 各コンテナのログを表示できます。
+
+.. code-block:: bash
+
+   $ docker logs scale_voting-app_1
+    * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+    * Restarting with stat
+    * Debugger is active!
+    * Debugger pin code: 285-809-660
+   192.168.99.103 - - [11/Apr/2016 17:15:44] "GET / HTTP/1.0" 200 -
+   192.168.99.103 - - [11/Apr/2016 17:15:44] "GET /static/stylesheets/style.css HTTP/1.0" 304 -
+   192.168.99.103 - - [11/Apr/2016 17:15:45] "GET /favicon.ico HTTP/1.0" 404 -
+   192.168.99.103 - - [11/Apr/2016 17:22:24] "POST / HTTP/1.0" 200 -
+   192.168.99.103 - - [11/Apr/2016 17:23:37] "POST / HTTP/1.0" 200 -
+   192.168.99.103 - - [11/Apr/2016 17:23:39] "POST / HTTP/1.0" 200 -
+   192.168.99.103 - - [11/Apr/2016 17:23:40] "POST / HTTP/1.0" 200 -
+   192.168.99.103 - - [11/Apr/2016 17:23:41] "POST / HTTP/1.0" 200 -
+   192.168.99.103 - - [11/Apr/2016 17:23:43] "POST / HTTP/1.0" 200 -
+   192.168.99.103 - - [11/Apr/2016 17:23:44] "POST / HTTP/1.0" 200 -
+   192.168.99.103 - - [11/Apr/2016 17:23:46] "POST / HTTP/1.0" 200 -
+
+.. This log shows the activity on one of the active voting application containers.
+
+このログは、ある投票アプリケーション・コンテナの状況を表示しています。
+
 
 .. Next steps
 
@@ -445,10 +542,10 @@ Interlock サービスの負荷分散に関する詳細なデータは、ブラ�
 
 .. Congratulations. You have successfully walked through manually deploying a microservice-based application to a Swarm cluster. Of course, not every deployment goes smoothly. Now that you’ve learned how to successfully deploy an application at scale, you should learn what to consider when troubleshooting large applications running on a Swarm cluster.
 
-おめでとうございます。マイクロサービスをベースとしたアプリケーションを Swarm クラスタ上に手動でデプロイできました。もちろん、すべてが上手くいくとは限りません。どのようにスケールするアプリケーションをデプロイするかを学びましたので、次は :doc:`Swarm クラスタ上で大規模アプリケーション実行時のトラブルシューティング <05-troubleshoot>` を学ぶべきでしょう。
+おめでとうございます。マイクロサービスをベースとしたアプリケーションを Swarm クラスタ上に手動でデプロイできました。もちろん、すべてが上手くいくとは限りません。どのようにスケールするアプリケーションをデプロイするかを学びましたので、次は :doc:`Swarm クラスタ上で大規模アプリケーション実行時のトラブルシューティング <troubleshoot>` を学ぶべきでしょう。
 
 .. seealso:: 
 
    Deploy the application
-      https://docs.docker.com/swarm/swarm_at_scale/04-deploy-app/
+      https://docs.docker.com/swarm/swarm_at_scale/deploy-app/
 
