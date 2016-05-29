@@ -76,13 +76,13 @@ Windows 8 または 8.1
 
 ..    Choose Start > Task Manager and navigate to the Performance tab. Under CPU you should see the following:
 
-スタートメニューからタスク・マネージャを選び、パフォーマンス・タブに移動します。CPU の下にある項目 Virtualization が Enabled になっています。
+スタートメニューからタスク・マネージャを選び、パフォーマンス・タブに移動します。CPU の下にある項目「仮想化」が「有効」になっていることを確かめます。
 
 ..    Release page　（画像）
 
 ..    If virtualization is not enabled on your system, follow the manufacturer’s instructions for enabling it.
 
-システム上で Virtualization が有効でない場合は、製造元の取り扱い説明書をお読みになった後、有効にします。
+システム上で仮想化が有効でない場合は、製造元の取り扱い説明書をお読みになった後、有効にします。
 
 ..    For Windows 7
 
@@ -158,7 +158,7 @@ Windows セキュリティのダイアログが表示されたら、プログラ
 
 ..    Accept all the installer defaults. The installer takes a few minutes to install all the components:
 
-インストーラをデフォルトした場合、全てのインストールが終わるまで数分かかります。
+インストーラをデフォルトで実行した場合、全てのインストールが終わるまで数分かかります。
 
 ..    When notified by Windows Security the installer will make changes, make sure you allow the installer to make the necessary changes.
 
