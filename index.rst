@@ -142,6 +142,7 @@ About
    engine/reference/glossary.rst
    about.rst
    guide.rst
+   pdf-download.rst
 
 
 Docs archive
