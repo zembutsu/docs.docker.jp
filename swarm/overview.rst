@@ -91,7 +91,7 @@ Docker Machine を使えば、Docker Swarm をクラウド・プロバイダや�
 
 .. To learn more about advanced scheduling, see the strategies and filters documents.
 
-高度なスケジューリングについては、:doc:`strategies（ストラテジ）</swarm/scheduler/strategy>`  と :doc:`filetes（フィルタ ） </swarm/scheduler/filter>` のドキュメントをお読みください。
+高度なスケジューリングについては、:doc:`strategies（ストラテジ） </swarm/scheduler/strategy>`  と :doc:`filters（フィルタ） </swarm/scheduler/filter>` の各ドキュメントをお読みください。
 
 .. Swarm API
 
@@ -100,7 +100,7 @@ Swarm API
 
 .. The Docker Swarm API is compatible with the Docker remote API, and extends it with some new endpoints.
 
-:doc:`Docker Swarm API </swarm/swarm-api>` は :doc:`Docker リモート API </engine/reference/api/docker_remote_api>` と互換性があるため、新しいエンドポイントが追加されると、同時に拡張されます。
+:doc:`Docker Swarm API </swarm/swarm-api>` は :doc:`Docker リモート API </engine/reference/api/docker_remote_api>` と互換性があります。そのため、新しいエンドポイントの追加時には、Swarm も同時にエンドポイントを拡張します。
 
 .. Getting help
 
@@ -109,7 +109,7 @@ Swarm API
 
 .. Docker Swarm is still in its infancy and under active development. If you need help, would like to contribute, or simply want to talk about the project with like-minded individuals, we have a number of open channels for communication.
 
-Docker Swarm は活発に開発中です。ヘルプが必要な場合、貢献したい場合、あるいはプロジェクトの同志と対話したい場合、私たちは多くのコミュニケーションのためのチャンネルを開いています。
+Docker Swarm はまだ開発途上であり、活発に開発中です。ヘルプが必要な場合、貢献したい場合、あるいはプロジェクトの同志と対話したい場合のため、私たちは多くのコミュニケーションのためのチャンネルを開いています。
 
 ..    To report bugs or file feature requests: please use the issue tracker on Github.
 
@@ -121,7 +121,7 @@ Docker Swarm は活発に開発中です。ヘルプが必要な場合、貢献�
 
 ..     To contribute code or documentation changes: please submit a pull request on Github.
 
-* コードやドキュメントの変更に貢献したい場合は、`GitHub にプルリクエスト <https://github.com/docker/swarm/pulls>`_ をお送りください。
+* コードやドキュメントの変更に貢献したい場合は、`GitHub でプルリクエスト <https://github.com/docker/swarm/pulls>`_ をお送りください。
 
 .. For more information and resources, please visit the Getting Help project page.
 
