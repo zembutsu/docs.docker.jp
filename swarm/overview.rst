@@ -21,7 +21,7 @@ Docker Swarm 概要
 
 .. Docker Swarm is native clustering for Docker. It turns a pool of Docker hosts into a single, virtual Docker host. Because Docker Swarm serves the standard Docker API, any tool that already communicates with a Docker daemon can use Swarm to transparently scale to multiple hosts. Supported tools include, but are not limited to, the following:
 
-Docker Swarm は Docker に対応するネイティブなクラスタリング用ツールです。Docker Swarm は標準 Docker API で操作できるため、Docker ホスト群を集めて、一つの仮想 Docker ホストとして扱えます。そのため、既に Docker デーモンと通信可能なツールであれば、Swarm を使うことにより、意識せずに複数のホストにスケールできるようになります。以下のツールがサポートされているものですが、これだけに限りません。
+Docker Swarm は Docker に対応するネイティブなクラスタリング用ツールです。Docker Swarm は標準 Docker API で操作できます。そのため、Docker ホスト群を集め、一つの仮想 Docker ホストとして扱えます。既に Docker デーモンと通信可能なツールであれば、Swarm を使うだけで、意識せずに複数のホストにスケール可能になります。以下のツールをサポートしていますが、これだけに限りません。
 
 * Dokku
 * Docker Compose
@@ -30,22 +30,22 @@ Docker Swarm は Docker に対応するネイティブなクラスタリング�
 
 .. And of course, the Docker client itself is also supported.
 
-そしてもちろん、Docker クライアントを使った Swarm の利用もサポートされています。
+そしてもちろん、swarm は Docker クライアントでの操作もサポートします。
 
 .. Like other Docker projects, Docker Swarm follows the “swap, plug, and play” principle. As initial development settles, an API will develop to enable pluggable backends. This means you can swap out the scheduling backend Docker Swarm uses out-of-the-box with a backend you prefer. Swarm’s swappable design provides a smooth out-of-box experience for most use cases, and allows large-scale production deployments to swap for more powerful backends, like Mesos.
 
-他の Docker プロジェクトのように、Docker Swarm は "swap, plug, and play"（交換して、取り付けて、実行）の原理に従います。開発初期においては、API はバックエンドと接続可能（pluggable）なように、開発することに落ち着きました。つまり、スケジューリングのバックエンドを任意なものから、Docker Swarm に置き換えられることを意味します。Swarm は交換可能な設計です。そのため、多くのユース・ケース（事例）において、スムーズに独創的な経験を提供します。また、Mesos のような、より強力なバックエンドに取り替えて、大規模なプロダクション（本番環境）へのデプロイもできるようになります。
+他の Docker プロジェクトと同様に、Docker Swarm は "swap, plug, and play"（交換して、取り付けて、実行）の原理に従います。開発初期においては、API はバックエンドを取り替え可能（pluggable）となるよう開発する方針に落ち着きました。つまり、Docker Swarm が利用するスケジューリングのバックエンドとは、任意に置き換え可能であるのを意味します。Swarm の取り替え可能な設計により、多くの場面でスムーズかつ独創的な体験を提供します。また、Mesos のような、より強力なバックエンドに取り替えれば、大規模なプロダクション（本番環境）へのデプロイも可能となります。
 
 .. Understand Swarm cluster creation
 
 .. _understand-swarm-cluster-creation:
 
-Swarm クラスタ作成の理解
+Swarm クラスタ作成を理解
 ==============================
 
 .. The first step to creating a Swarm cluster on your network is to pull the Docker Swarm image. Then, using Docker, you configure the Swarm manager and all the nodes to run Docker Swarm. This method requires that you:
 
-自分のネットワーク上で Swarm クラスタ（訳注；"Swarm"=群れ、の意味）を形成するには、まず Docker Swarm イメージを取得します。それから Docker を使い、Swarm マネージャを設定し、Docker Swarm を実行したい全てのノードを設定します。この作業には以下の手順が必要です。
+自分のネットワーク上で Swarm クラスタ（訳注；"Swarm"=群れ、の意味）を形成するには、まず Docker Swarm イメージを取得します。それから Docker で Swarm マネージャを設定し、Docker Swarm を実行したい全てのノードを設定します。この作業には以下の手順が必要です。
 
 ..    open a TCP port on each node for communication with the Swarm manager
     install Docker on each node
@@ -57,15 +57,15 @@ Swarm クラスタ作成の理解
 
 .. As a starting point, the manual method is best suited for experienced administrators or programmers contributing to Docker Swarm. The alternative is to use docker-machine to install a cluster.
 
-これから使い始めるにあたり、管理者が経験するためや、プログラマが Docker Swarm に貢献するために、手動でのインストール手法は最適でしょう。あるいは、``docker-machine`` を使って Swarm をインストールする方法があります。
+管理者が経験を積むため、あるいはプログラマが Docker Swarm に貢献するために、手動でのインストールは最適な方法です。あるいは、``docker-machine`` を使って Swarm をインストールする方法もあります。
 
 .. Using Docker Machine, you can quickly install a Docker Swarm on cloud providers or inside your own data center. If you have VirtualBox installed on your local machine, you can quickly build and explore Docker Swarm in your local environment. This method automatically generates a certificate to secure your cluster.
 
-Docker Machine を使えば、Docker Swarm をクラウド・プロバイダや自分のデータセンタに素早くインストールできます。ローカルのマシン上に VirtualBox をインストールしていれば、ローカル環境上で Docker Swarm を素早く構築し、試すことができます。Docker Machine はクラスタを安全にするため、自動的に証明書を生成します。
+Docker Machine を使えば、Docker Swarm をクラウド・プロバイダや自分のデータセンタに素早くインストールできます。ローカルのマシン上に VirtualBox をインストールしていれば、ローカル環境上で Docker Swarm を素早く構築し、試すことができます。Docker Machine はクラスタを安全にするために、証明書を自動生成します。
 
 .. Using Docker Machine is the best method for users getting started with Swarm for the first time. To try the recommended method of getting started, see Get Started with Docker Swarm.
 
-初めて Docker Swarm を使うのであれば、Docker Machine を使う方法が一番です。この推奨する方法を使うには、 :doc:`install-w-machine` をお読みください。
+初めて Docker Swarm を使うのであれば、Docker Machine を使う方法が一番です。推奨する方法で進めるには、 :doc:`install-w-machine` をお読みください。
 
 .. If you are interested manually installing or interested in contributing, see Build a Swarm cluster for production.
 
