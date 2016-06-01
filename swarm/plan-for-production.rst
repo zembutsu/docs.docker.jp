@@ -23,7 +23,7 @@
 
 .. This article provides guidance to help you plan, deploy, and manage Docker Swarm clusters in business critical production environments. The following high level topics are covered:
 
-この記事は Docker Swarm クラスタを計画・デプロイ・管理の手助けになるガイダンスを提供します。想定しているのは、ビジネスにおいてクリティカルなプロダクション環境です。次のハイレベルな項目を扱います。
+この記事は Docker Swarm クラスタを計画・デプロイ・管理の手助けとなるガイダンスを提供します。想定しているのは、ビジネスにおけるクリティカルなプロダクション環境です。次のハイレベルな項目を扱います。
 
 ..    Security
     High Availability
@@ -67,7 +67,7 @@ Swarm クラスタ内にある全てのノードは、Docker Engine デーモン
 
 .. The Engine daemons, including the Swarm manager, that are configured to use TLS will only accept commands from Docker Engine clients that sign their communications. The Engine and Swarm support external 3rd party Certificate Authorities (CA) as well as internal corporate CAs.
 
-Engine デーモン及び Swarm マネージャは、TLS を使う設定をすることで、署名された Docker Engine クライアントからのみ通信を受け付けるようにできます。Engine と Swarm は組織内部の証明局（CA; Certificate Authorities）だけでなく、外部のサード・パーティ製による証明局もサポートしています。
+Engine デーモンおよび Swarm マネージャは、TLS を使う設定をすることで、署名された Docker Engine クライアントからのみ通信を受け付けるようにできます。Engine と Swarm は組織内部の認証局（CA; Certificate Authorities）だけでなく、外部のサード・パーティ製による認証局もサポートしています。
 
 .. The default Engine and Swarm ports for TLS are:
 
@@ -76,6 +76,8 @@ Engine と Swarm が TLS に使うデフォルトのポート番号：
 ..    Engine daemon: 2376/tcp
     Swarm manager: 3376/tcp
 
+* Engine デーモン：2376/tcp
+* Swarm マネージャ：3376/tcp
 .. For more information on configuring Swarm for TLS, see the Overview Docker Swarm with TLS page.
 
 Swarm に TLS 設定を行うための詳しい情報は、 :doc:`secure-swarm-tls` ページをご覧ください。
@@ -87,7 +89,7 @@ Swarm に TLS 設定を行うための詳しい情報は、 :doc:`secure-swarm-t
 
 .. Production networks are complex, and usually locked down so that only allowed traffic can flow on the network. The list below shows the network ports that the different components of a Swam cluster listen on. You should use these to configure your firewalls and other network access control lists.
 
-プロダクションにおけるネットワークは複雑であり、通常は特定のトラフィックのみがネットワーク上に流れるように固定されます。以下のリストは Swarm クラスタの各コンポーネントが公開しているポート情報です。ファイアウォールや、他のネットワーク・アクセス管理リストの設定に、これらが使えるでしょう。
+プロダクションにおけるネットワークは複雑であり、通常は特定のトラフィックのみがネットワーク上に流れるように固定します。以下のリストは Swarm クラスタの各コンポーネントが公開しているポート情報です。ファイアウォールや、他のネットワーク・アクセス管理リストの設定に、これらが使えるでしょう。
 
 ..    Swarm manager.
         Inbound 80/tcp (HTTP). This allows docker pull commands to work. If you plan to pull image from Docker Hub you must allow Internet connections through port 80 from the internet.
@@ -105,7 +107,7 @@ Swarm に TLS 設定を行うための詳しい情報は、 :doc:`secure-swarm-t
 * **サービス・ディスカバリ** ：
 
   * **Inbound 80/tcp (HTTP)** ： ``docker pull`` コマンドが動作するために使います。Docker Hub からイメージを取得するためには、インターネット側のポート 80 を通す通信の許可が必要です。
-  * **Inbound 「ディスカバリ・サービス用のポート」** ：バックエンド・ディスカバリ・サービス（consul、etcd、zookeeper）が公開するポートの設定が必要です。 
+  * **Inbound （ディスカバリ・サービス用のポート番号）** ：バックエンド・ディスカバリ・サービス（consul、etcd、zookeeper）が公開するポートの設定が必要です。 
   * **Inbound 22/tcp** ：SSH を経由したリモート管理を行います。 
 
 * **Swarm  ノード** ：
@@ -146,7 +148,7 @@ Swarm クラスタのコンポーネントは、別のネットワークに接�
 
 .. All production environments should be highly available, meaning they are continuously operational over long periods of time. To achieve high availability, an environment must the survive failures of its individual component parts.
 
-すべてのプロダクション環境は高可用性（HA; Highly available ）であるべきでしょう。つまり、長期間に亘る継続的な運用を意味します。高可用性を実現するのは、個々のコンポーネントで障害が発生しても切り抜ける環境です。
+全てのプロダクション環境は高可用性（HA; Highly available ）であるべきでしょう。つまり、長期間にわたる継続的な運用を意味します。高可用性を実現するのは、個々のコンポーネントで障害が発生しても切り抜ける環境です。
 
 .. The following sections discuss some technologies and best practices that can enable you to build resilient, highly-available Swarm clusters. You can then use these cluster to run your most demanding production applications and workloads.
 
@@ -165,7 +167,7 @@ Swarm マネージャは Swarm クラスタに対する全ての命令を受け�
 
 .. Swarm provides HA features to mitigate against possible failures of the Swarm manager. You can use Swarm’s HA feature to configure multiple Swarm managers for a single cluster. These Swarm managers operate in an active/passive formation with a single Swarm manager being the primary, and all others being secondaries.
 
-Swarm が提供する HA 機能は、Swarm マネージャで発生しうる障害を緩和します。クラスタ上に複数の Swarm マネージャを設定することで、Swarm の HA 機能を利用できます。３つの Swarm マネージャがアクティブ／パッシブ（活動中／受け身）を形成します。このとき、１つのマネージャが *プライマリ* であり、残りのすべてが *セカンダリ* になります。
+Swarm が提供する HA 機能は、Swarm マネージャで発生しうる障害を緩和します。クラスタ上に複数の Swarm マネージャを設定することで、Swarm の HA 機能を利用できます。３つの Swarm マネージャがアクティブ／パッシブ（活動中／受け身）を形成します。この時、１つのマネージャが *プライマリ* であり、残りの全てが *セカンダリ* になります。
 
 .. Swarm secondary managers operate as warm standby’s, meaning they run in the background of the primary Swarm manager. The secondary Swarm managers are online and accept commands issued to the cluster, just as the primary Swarm manager. However, any commands received by the secondaries are forwarded to the primary where they are executed. Should the primary Swarm manager fail, a new primary is elected from the surviving secondaries.
 
@@ -211,7 +213,7 @@ Swarm は４つのバックエンド・ディスカバリ・サービスをサ�
 
 .. Consul, etcd, and Zookeeper are all suitable for production, and should be configured for high availability. You should use each service’s existing tools and best practices to configure these for HA.
 
-Consul 、 etcd 、 Zookeeper はプロダクションにどれも相応しく、高可用性のために設定されるべきです。HA 向けのベスト・プラクティスを設定するためには、これら各サービスのツールを使うべきでしょう。
+Consul 、 etcd 、 Zookeeper はどれもプロダクションにふさわしく、高可用性のために設定されるべきです。HA 向けのベスト・プラクティスを設定するためには、これら各サービスのツールを使うべきでしょう。
 
 .. For Swarm clusters serving high-demand, line-of-business applications, it is recommended to have 5 or more discovery service instances. This due to the replication/HA technologies they use (such as Paxos/Raft) requiring a strong quorum. Having 5 instances allows you to take one down for maintenance, suffer an unexpected failure, and still be able to achieve a strong quorum.
 
@@ -219,7 +221,7 @@ Consul 、 etcd 、 Zookeeper はプロダクションにどれも相応しく�
 
 .. When creating a highly available Swarm discovery service, you should take care to distribute each discovery service instance over as many failure domains as possible. For example, if your cluster is running in the Ireland Region of Amazon Web Services (eu-west-1) and you configure three discovery service instances, you should place one in each availability zone.
 
-高い可用性を持つ Swarm ディスカバリ・サービスを作成する場合には、各ディスカバリ・サービス・インスタンスを可能な限り障害範囲を重複しないようにすべきでしょう。例えば、クラスタを Amazon Web Service のアイルランド・リージョン（eu-west-1）で動かしているとします。３つのディスカバリ・サービス用インスタンス設定するとき、それぞれを各アベイラビリティ・ゾーンに置くべきです。
+高い可用性を持つ Swarm ディスカバリ・サービスを作成する場合には、各ディスカバリ・サービス・インスタンスを可能な限り障害範囲を重複しないようにすべきでしょう。例えば、クラスタを Amazon Web Service のアイルランド・リージョン（eu-west-1）で動かしているとします。３つのディスカバリ・サービス用インスタンス設定する時、それぞれを各アベイラビリティ・ゾーンに置くべきです。
 
 .. The diagram below shows a Swarm cluster configured for HA. It has three Swarm managers and three discovery service instances spread over three failure domains (availability zones). It also has Swarm nodes balanced across all three failure domains. The loss of two availability zones in the configuration shown below does not cause the Swarm cluster to go down.
 
@@ -248,7 +250,7 @@ Consul 、 etcd 、 Zookeeper はプロダクションにどれも相応しく�
 
 .. While such architectures may appear to provide the ultimate in availability, there are several factors to consider. Network latency can be problematic, as can partitioning. As such, you should seriously consider technologies that provide reliable, high speed, low latency connections into these cloud platforms – technologies such as AWS Direct Connect and Azure ExpressRoute.
 
-このアーキテクチャは究極の可用性を提供しているように見えるかもしれませんが、考慮すべき複数の要素があります。ネットワークのレイテンシ（応答遅延）は問題になりがちです。パーティショニング（分割）も問題になり得るでしょう。クラウド・プラットフォームにおいて信頼性、高スピード、低いレイテンシを実現する技術の考慮が必要となるでしょう。たとえば AWS ダイレクト・コネクトや Azure ExpressRoute といった技術です。
+このアーキテクチャは究極の可用性を提供しているように見えるかもしれませんが、考慮すべき複数の要素があります。ネットワークのレイテンシ（応答遅延）は問題になりがちです。パーティショニング（分割）も問題になりうるでしょう。クラウド・プラットフォームにおいて信頼性、高スピード、低いレイテンシを実現する技術の考慮が必要となるでしょう。例えば AWS ダイレクト・コネクトや Azure ExpressRoute といった技術です。
 
 .. If you are considering a production deployment across multiple infrastructures like this, make sure you have good test coverage over your entire system.
 
@@ -286,7 +288,7 @@ Swarm 基盤が依存するオペレーティング・システムの選択に�
 
 .. When choosing the production operating system to use with your Swarm clusters, you should choose one that closely matches what you have used in development and staging environments. Although containers abstract much of the underlying OS, some things are mandatory. For example, Docker container networks require Linux kernel 3.16 or higher. Operating a 4.x kernel in development and staging and then 3.14 in production will certainly cause issues.
 
-プロダクション向けの Swarm クラスタで使うオペレーティング・システムの選定にあたっては、開発環境とステージング環境で使っているものに近いものを選ぶべきでしょう。コンテナが根本となる OS を抽象化するといえども、避けられない課題があるためです。例えば、Docker コンテナのネットワークには Linux カーネル 3.16 以上が必要です。開発・ステージング環境で Kernel 4.x 系を使っているのに、プロダクションが 3.14 であれば何らかの問題が発生します。
+プロダクション向けの Swarm クラスタで使うオペレーティング・システムの選定にあたっては、開発環境とステージング環境で使っているものに近いものを選ぶべきでしょう。コンテナが根本となる OS を抽象化するといえども、避けられない課題があるためです。例えば、Docker コンテナのネットワークには Linux カーネル 3.16 以上が必要です。開発・ステージング環境でカーネル 4.x 系を使っているのに、プロダクションが 3.14 であれば何らかの問題が発生します。
 
 .. You should also consider procedures and channels for deploying and potentially patching your production operating systems.
 
@@ -343,11 +345,11 @@ Engine のコンテナ・ネットワークは Linux カーネルの 3.16 以上
 
 .. Spread is the default strategy. It attempts to balance the number of containers evenly across all nodes in the cluster. This is a good choice for high performance clusters, as it spreads container workload across all resources in the cluster. These resources include CPU, RAM, storage, and network bandwidth.
 
-**spread** （スプレッド）はデフォルトのストラテジです。クラスタ上の全てのノードにわたり、均一な数のコンテナになるようバランスをとろうとします。高い性能を必要とするクラスタでは良い選択肢です。コンテナのワークロードをクラスタ全体のリソースに展開するからです。リソースには CPU 、メモリ、ストレジ、ネットワーク帯域が含まれます。
+**spread** （スプレッド）はデフォルトのストラテジです。クラスタ上の全てのノードにわたり、均一な数のコンテナになるようバランスを取ろうとします。高い性能を必要とするクラスタでは良い選択肢です。コンテナのワークロードをクラスタ全体のリソースに展開するからです。リソースには CPU 、メモリ、ストレジ、ネットワーク帯域が含まれます。
 
 .. If your Swarm nodes are balanced across multiple failure domains, the spread strategy evenly balance containers across those failure domains. However, spread on its own is not aware of the roles of any of those containers, so has no intelligence to spread multiple instances of the same service across failure domains. To achieve this you should use tags and constraints.
 
-もし Swarm ノードに障害が発生すると、Swarm は障害領域を避けてコンテナを実行するようにバランスを取ります。しかしながら、コンテナの役割には注意が払われないため、関係なく展開されます。そのため、サービスを展開先を複数の領域に分けたくても、Swarm は把握できません。このような操作を行うには、タグと制限（constraint）を使うべきです。
+もし Swarm ノードで障害が発生したら、Swarm は障害領域を避けてコンテナを実行するようにバランスを取ります。しかしながら、コンテナの役割には注意が払われないため、関係なく展開されます。そのため、サービス展開先を複数の領域に分けたくても、Swarm は把握できません。このような操作を行うには、タグと制限（constraint）を使うべきです。
 
 .. The binpack strategy runs as many containers as possible on a node, effectively filling it up, before scheduling containers on the next node.
 
@@ -355,7 +357,7 @@ Engine のコンテナ・ネットワークは Linux カーネルの 3.16 以上
 
 .. This means that binpack does not use all cluster resources until the cluster fills up. As a result, applications running on Swarm clusters that operate the binpack strategy might not perform as well as those that operate the spread strategy. However, binpack is a good choice for minimizing infrastructure requirements and cost. For example, imagine you have a 10-node cluster where each node has 16 CPUs and 128GB of RAM. However, your container workload across the entire cluster is only using the equivalent of 6 CPUs and 64GB RAM. The spread strategy would balance containers across all nodes in the cluster. However, the binpack strategy would fit all containers on a single node, potentially allowing you turn off the additional nodes and save on cost.
 
-つまり、binpack はクラスタを使い切るまで全てのクラスタ・リソースを使いません。そのため、bincack ストラテジの Swarm クラスタ上で動作するアプリケーションによっては、性能が出ないかもしれません。しかしながら、binpack は必要なインフラとコストの最小化のために良い選択肢です。例えば10ノードのクラスタがあり、それぞれ 16 CPU ・128 GB のメモリを持っていると想像してみましょう。コンテナのワークロードが必要になるのは、6 CPU と 64 GB のメモリとします。spread ストラテジであれば、クラスタ上の全てのノードにわたってバランスを取ります。一方、binpack ストラテジであれば、コンテナが１つのノード上を使い切ります。そのため、追加ノードを停止することで、コストの節約ができるかもしれません。
+つまり、binpack はクラスタを使い切るまで全てのクラスタ・リソースを使いません。そのため、binpack ストラテジの Swarm クラスタ上で動作するアプリケーションによっては、性能が出ないかもしれません。しかしながら、binpack は必要なインフラとコストの最小化のために良い選択肢です。例えば10ノードのクラスタがあり、それぞれ 16 CPU ・128 GB のメモリを持っていると想像してみましょう。コンテナのワークロードが必要になるのは、6 CPU と 64 GB のメモリとします。spread ストラテジであれば、クラスタ上の全てのノードにわたってバランスを取ります。一方、binpack ストラテジであれば、コンテナが１つのノード上を使い切ります。そのため、追加ノードを停止することで、コストの節約ができるかもしれません。
 
 .. Ownership of Swarm clusters
 
@@ -382,7 +384,7 @@ Engine のコンテナ・ネットワークは Linux カーネルの 3.16 以上
 
 .. The above is not a complete list, and the answers to the questions will vary depending on how your organization’s and team’s are structured. Some companies are along way down the DevOps route, while others are not. Whatever situation your company is in, it is important that you factor all of the above into the planning, deployment, and ongoing management of your production Swarm clusters.
 
-このリストは完全ではありません。何が答えなのかは、皆さんの組織やチーム構成によって様々に依存します。ある会社は DovOps の流れに従うかもしれませんし、そうではない場合もあるでしょう。重要なのは、皆さんの会社がどのような状況なのかです。プロダクション用 Swarm クラスタの計画、デプロイ、運用管理に至るまで、全ての要素の検討が重要です。
+このリストは完全ではありません。何が答えなのかは、皆さんの組織やチーム構成によって様々に依存します。ある会社は DevOps の流れに従うかもしれませんし、そうではない場合もあるでしょう。重要なのは、皆さんの会社がどのような状況なのかです。プロダクション用 Swarm クラスタの計画、デプロイ、運用管理に至るまで、全ての要素の検討が重要です。
 
 関連情報
 ==========

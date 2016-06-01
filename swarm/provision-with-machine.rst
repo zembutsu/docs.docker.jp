@@ -12,7 +12,7 @@
 .. _provision-a-swarm-cluster-with-docker-machine:
 
 ==================================================
-Docker Machine で Swarm クラスタをプロビジョン
+Docker Machine で Swarm クラスタ構築
 ==================================================
 
 .. sidebar:: 目次
@@ -23,15 +23,15 @@ Docker Machine で Swarm クラスタをプロビジョン
 
 .. You can use Docker Machine to provision a Docker Swarm cluster. Machine is the Docker provisioning tool. Machine provisions the hosts, installs Docker Engine on them, and then configures the Docker CLI client. With Machine’s Swarm options, you can also quickly configure a Swarm cluster as part of this provisioning.
 
-Docker Machine を使って Docker Swarm クラスタをプロビジョン（自動構築）できます。Docker Machine とは Docker のプロビジョニング・ツールです。Machine はホストをプロビジョンし、そこに Docker Engine をインストールし、Docker CLI クライアント用の設定を行います。Machine で Swarm 用のオプションを指定すると、プロビジョニングの過程で Swarm クラスタ用の設定も迅速に行えます。
+Docker Machine を使って Docker Swarm クラスタをプロビジョン（自動構築）できます。Docker Machine とは Docker のプロビジョニング・ツールです。Machine はホストをプロビジョンし、そこに Docker Engine をインストールし、Docker CLI クライアント用の設定を行います。Machine で Swarm 用のオプションを指定したら、プロビジョニングの過程で Swarm クラスタ用の設定も迅速に行えます。
 
 .. This page explains the commands you need to provision a basic Swarm cluster on a local Mac or Windows computer using Machine. Once you understand the process, you can use it to setup a Swarm cluster on a cloud provider, or inside your company’s data center.
 
-このページでは Machine を使い基本的な Swarm クラスタを構築するために必要なコマンドを紹介します。ローカルの Mac もしくは Windows 上に環境を構築します。流れを理解してしまえば、クラウド・プロバイダ上や、あるいは会社のデータセンタ内にも Swarm クラスタをセットアップできるようになるでしょう。
+このページでは、Machine で基本的な Swarm クラスタを構築するために必要なコマンドを紹介します。ローカルの Mac もしくは Windows 上に環境を構築します。流れを理解してしまえば、クラウド・プロバイダ上や、あるいは会社のデータセンタ内にも Swarm クラスタをセットアップできるようになるでしょう。
 
 .. If this is the first time you are creating a Swarm cluster, you should first learn about Swarm and its requirements by installing a Swarm for evaluation or installing a Swarm for production. If this is the first time you have used Machine, you should take some time to understand Machine before continuing.
 
-Swarm クラスタの構築が初めてであれば、ます Swarm について学び、 :doc:`install-w-machine` や :doc:`install-manual` を読んでおく必要があります。Machine を使うのが初めてであれば、ある程度は :doc:`Machine を使う前に理解 </machine/overview>` しておいた方が良いでしょう。
+Swarm クラスタの構築が初めてであれば、まず Swarm について学び、 :doc:`install-w-machine` や :doc:`install-manual` を読んでおく必要があります。Machine を使うのが初めてであれば、 :doc:`Machine を使う前に概要の理解 </machine/overview>` が望ましいでしょう。
 
 .. What you need
 
@@ -50,7 +50,7 @@ Machine を使ったインストールをサポートしているのは、AWS �
 
 .. The Toolbox installation gives you VirtualBox and the boot2docker.iso image you need. It also gives you the ability provision on all the systems Machine supports.
 
-Toolbox をインストールすると VirtualBox と必要に応じて ``boot2docker.iso`` イメージが用意されます。また同時に、Machine がサポートしているあらゆるシステム上にプロビジョンすることも可能です。
+Toolbox をインストールしたら、 VirtualBox と必要に応じて ``boot2docker.iso`` イメージが用意されます。また、Machine がサポートするあらゆるシステム上へプロビジョン可能です。
 
 .. Note:These examples assume you are using Mac OS X or Windows, if you like you can also install Docker Machine directly on a Linux system.
 
@@ -67,7 +67,7 @@ Swarm トークンをホスト上で生成
 
 .. Before you can configure a Swarm, you start by provisioning a host with Engine. Open a terminal on the host where you installed Machine. Then, to provision a host called local, do the following:
 
-Swarm の設定を始める前に、Docker Engine の動くホストをプロビジョニングする必要があります。Machine をインストールしたホスト上のターミナルを開きます。それから ``local`` という名称のホストをプロビジョニングするには、次のように実行します。
+Swarm の設定を始める前に、Docker Engine の動くホストをプロビジョニングする必要があります。Machine をインストールしたホスト上のターミナルを開きます。それから ``local`` という名称のホストをプロビジョニングするため、次のように実行します。
 
 .. code-block:: bash
 
@@ -75,7 +75,7 @@ Swarm の設定を始める前に、Docker Engine の動くホストをプロビ
 
 .. This examples uses VirtualBox but it could easily be DigitalOcean or a host on your data center. The local value is the host name. Once you create it, configure your terminal’s shell environment to interact with the local host.
 
-この例では VirtualBox を指定していますが、DigitalOcean やデータセンタ内のホストでも簡単に作成できます。 ``local`` の値はホスト名です。作成すると、自分のターミナル上で ``local`` ホストと通信できるように、環境変数を指定します。
+この例では VirtualBox を指定していますが、DigitalOcean やデータセンタ内のホストでも簡単に作成できます。 ``local`` の値はホスト名です。作成したら、自分のターミナル上で ``local`` ホストと通信できるように、環境変数を指定します。
 
 .. code-block:: bash
 
@@ -104,7 +104,7 @@ Swarm の設定を始める前に、Docker Engine の動くホストをプロビ
 
 .. The output of the swarm create command is a cluster token. Copy the token to a safe place you will remember. Once you have the token, you can provision the Swarm nodes and join them to the cluster_id. The rest of this documentation, refers to this token as the SWARM_CLUSTER_TOKEN.
 
-``swarm create`` コマンドの出力結果がクラスタ用のトークンです。このトークンを安全な場所にコピーして覚えておきます。このトークンは、Swarm ノードのプロビジョニング時や、そのノードをクラスタに追加する時のクラスタ ID として使います。トークンについては、このドキュメントの後ろの方で ``SWARM_CLUSTER_TOKEN`` としても言及しています。
+``swarm create`` コマンドの出力結果がクラスタ用のトークンです。このトークンを安全な場所にコピーして覚えておきます。このトークンは、Swarm ノードのプロビジョニング時や、そのノードをクラスタに追加する時のクラスタ ID として使います。トークンはこの後で環境変数 ``SWARM_CLUSTER_TOKEN`` として参照します。
 
 .. Provision Swarm nodes
 
@@ -115,7 +115,7 @@ Swarm ノードのプロビジョン
 
 .. All Swarm nodes in a cluster must have Engine installed. With Machine and the SWARM_CLUSTER_TOKEN you can provision a host with Engine and configure it as a Swarm node with one Machine command. To create a Swarm manager node on a new VM called swarm-manager, you do the following:
 
-クラスタの全てのノードは Engine をインストールしている必要があります。Machine で ``SWARM_CLUSTER_TOKEN`` を使えば、Machine でコマンドを１つ実行するだけで、Engine のホストをプロビジョニングし、Swarm のノードとして設定された状態にします。新しい仮想マシンを Swarm マネージャ・ノードの``swarm-manager`` として作成します。
+クラスタの全てのノードは Engine をインストールしている必要があります。Machine で ``SWARM_CLUSTER_TOKEN`` を使えば、Machine でコマンドを１つ実行するだけで、Engine のホストをプロビジョニングし、Swarm のノードとして設定された状態にします。新しい仮想マシンを Swarm マネージャ・ノードの ``swarm-manager`` として作成します。
 
 .. code-block:: bash
 
@@ -146,7 +146,7 @@ Swarm ノードのプロビジョン
 
 .. note::
 
-   ここまで実行したコマンドは Docker Hub が提供している Docker Swarm のホステット・ディスカバリ・サービスに依存しています。もしも Docker Hub あるいはネットワークに問題があれば、これらのコマンド実行に失敗するでしょう。サービスが利用可能かどうか、 `Docker Hub ステータス・ページ <http://status.docker.com/>`_ をご確認ください。Docker Hub で問題がある場合は復旧まで待つか、あるいは、別のディスカバリ・バックエンドの設定をご検討ください。
+   ここまで実行したコマンドは Docker Hub が提供している Docker Swarm のホステッド・ディスカバリ・サービスに依存しています。もしも Docker Hub あるいはネットワークに問題があれば、これらのコマンド実行に失敗するでしょう。サービスが利用可能かどうか、 `Docker Hub ステータス・ページ <http://status.docker.com/>`_ をご確認ください。Docker Hub で問題がある場合は復旧まで待つか、あるいは、別のディスカバリ・バックエンドの設定をご検討ください。
 
 
 .. Connect node environments with Machine
@@ -166,7 +166,7 @@ Machine 接続先のホストを環境変数で指定するには、 ``env`` サ
 
 .. Docker Machine provides a special --swarm flag with its env command to connect to Swarm nodes.
 
-Docker Machine には、 ``env`` コマンドで Swarm ノードに接続するため、特別な ``--swarm`` フラグがあります。
+Docker Machine には、 ``env`` コマンドで Swarm ノードに接続するための、特別な ``--swarm`` フラグがあります。
 
 .. code-block:: bash
 
