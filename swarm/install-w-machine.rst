@@ -27,11 +27,11 @@ Swarm を検証環境で試すには
 
 .. You’ll use Docker Toolbox to install Docker Machine and some other tools on your computer. Then you’ll use Docker Machine to provision a set of Docker Engine hosts. Lastly, you’ll use Docker client to connect to the hosts, where you’ll create a discovery token, create a cluster of one Swarm manager and nodes, and manage the cluster.
 
-Docker Machine がインストールされた Docker Toolbox と、コンピュータ上の他のツールをいくつか使います。Docker Machine は Docker Engine ホスト群をプロビジョン（自動構築）するために使います。そして、Docker クライアントをホストに接続するために使います。ホストとはディスカバリ・トークンの作成や、Swarm マネージャとノードオンクラスタを作成し、クラスタを管理するための場所です。
+作業では、Docker Machine がインストールされた Docker Toolbox と、コンピュータ上の他のツールをいくつか使います。Docker Machine は Docker Engine ホスト群をプロビジョン（自動構築）するために使います。そして、Docker クライアントはホストに接続するために使います。ここでのホストとは、ディスカバリ・トークンを作成する場所であり、Swarm マネージャとノードでクラスタを作成・管理するための場所でもあります。
 
 .. When you finish, you’ll have a Docker Swarm up and running in VirtualBox on your local Mac or Windows computer. You can use this Swarm as personal development sandbox.
 
-準備が完了すると、ローカルの Mac か Windows コンピュータ上で動く VirtualBox に Docker Swarm を起動します。この Swarm 環境は個人的な開発環境（サンドボックス）として使えます。
+準備が完了したら、ローカルの Mac か Windows コンピュータで動く VirtualBox 上で Docker Swarm を起動します。この Swarm 環境は個人的な開発環境（サンドボックス）として使えます。
 
 .. To use Docker Swarm on Linux, see Build a Swarm cluster for production.
 
@@ -50,7 +50,7 @@ Docker Toolbox のインストール
 
 .. The toolbox installs a handful of tools on your local Windows or Mac OS X computer. In this exercise, you use three of those tools:
 
- Toolbox はローカルの Windows や Mac OS X コンピュータ上に便利なツールをインストールします。この練習では、３つのツールを使います。
+Toolbox はローカルの Windows や Mac OS X コンピュータ上に便利なツールをインストールします。この練習では、３つのツールを使います。
 
 ..    Docker Machine: To deploy virtual machines that run Docker Engine.
     VirtualBox: To host the virtual machines deployed from Docker Machine.
@@ -58,11 +58,11 @@ Docker Toolbox のインストール
 
 * Docker Machine: Docker Engine を実行する仮想マシンをデプロイします。
 * VirtualBox: Docker Machine を使い、仮想マシンのホストをデプロイします。
-* Docker クライアント: ローカルのコンピュータから仮想マシン上の Docker エンジンに接続します。それと、docker コマンドで Swarm クラスタを作成します。
+* Docker クライアント: ローカルのコンピュータから仮想マシン上の Docker Engine に接続します。また、docker コマンドで Swarm クラスタを作成します。
 
 .. The following sections provide more information each of these tools. The rest of the document uses the abbreviation, VM, for virtual machine.
 
-以下のセクションでは各ツールの詳細を説明します。移行のドキュメントでは仮想マシン（Virtual Machine）のことを VM と省略します。
+以下のセクションでは各ツールの詳細を説明します。以降は仮想マシン（Virtual Machine）を VM と略します。
 
 .. Create three VMs running Docker Engine
 
@@ -77,7 +77,7 @@ Docker Engine で３つの VM を作成
 
 ..    Open a terminal on your computer. Use Docker Machine to list any VMs in VirtualBox.
 
-1. 自分のコンピュータ上のターミナルを開きます。Docker Machine を使い VirtualBox 上の VM 一覧を表示します。
+1. 自分のコンピュータ上のターミナルを開きます。Docker Machine で VirtualBox 上の VM 一覧を表示します。
 
 .. code-block:: bash
 
@@ -119,13 +119,13 @@ Docker Engine で３つの VM を作成
 
 .. Each create command checks for a local copy of the latest VM image, called boot2docker.iso. If it isn’t available, Docker Machine downloads the image from Docker Hub. Then, Docker Machine uses boot2docker.iso to create a VM that automatically runs Docker Engine.
 
-各 create コマンドの実行時、 boot2docker.iso と呼ばれる VM イメージの *最新版* がローカルにコピーされているかどうか確認します。利用できなければ、Docker Machine は Docker Hub からイメージをダウンロードします。それから Docker Machine は boot2docker.iso を使い、Docker Engine を自動的に実行する VM を作成します。
+各 create コマンドの実行時、 boot2docker.iso と呼ばれる VM イメージの *最新版* がローカルにコピーされているかどうか（自動的に）確認します。ファイルが存在しないか最新版でなければ、Docker Machine は Docker Hub からイメージをダウンロードします。それから Docker Machine は boot2docker.iso を使い、Docker Engine を自動的に実行する VM を作成します。
 
 .. Troubleshooting: If your computer or hosts cannot reach Docker Hub, the docker-machine or docker run commands that pull images may fail. In that case, check the Docker Hub status page for service availability. Then, check whether your computer is connected to the Internet. Finally, check whether VirtualBox’s network settings allow your hosts to connect to the Internet.
 
 .. note::
 
-   トラブルシューティング：コンピュータやホストが Docker Hub にアクセスできなければ、 ``docker-machine`` や ``docker run`` コマンドは失敗します。そのような場合、サービスが利用可能かどうか `Docker Hub ステータス・ページ <http://status.docker.com/>`_ を確認します。その次は、自分のコンピュータがインターネットに接続しているか確認します。あとは VirtualBox のネットワーク設定で、ホストがインターネット側に接続可能かどうかを確認してください。
+   トラブルシューティング：コンピュータやホストが Docker Hub にアクセスできなければ、 ``docker-machine`` や ``docker run`` コマンドは失敗します。そのような場合、サービスが利用可能かどうか `Docker Hub ステータス・ページ <http://status.docker.com/>`_ を確認します。その次は、自分のコンピュータがインターネットに接続しているか確認します。それから VirtualBox のネットワーク設定で、ホストがインターネット側に接続可能かどうかを確認してください。
 
 .. Create a Swarm discovery token
 
@@ -134,7 +134,7 @@ Swarm ディスカバリ・トークンの作成
 
 .. Here you use the discovery backend hosted on Docker Hub to create a unique discovery token for your cluster. This discovery backend is only for low-volume development and testing purposes, not for production. Later on, when you run the Swarm manager and nodes, they register with the discovery backend as members of the cluster that’s associated with the unique token. The discovery backend maintains an up-to-date list of cluster members and shares that list with the Swarm manager. The Swarm manager uses this list to assign tasks to the nodes.
 
-ここでは Docker Hub 上にあるディスカバリ・バックエンドを使い、自分のクラスタのためのユニークなディスカバリ・トークンを作成します。このディスカバリ・バックエンドは、小規模の開発環境やテスト目的のためであり、プロダクション向けではありません。後ほど、Swarm マネージャとノードを起動したら、ディスカバリ・バックエンドにクラスタのメンバとして登録します。クラスタとユニークなトークンを結び付けるのが、このバックエンドです。ディスカバリ・バックエンドはクラスタのメンバのリストを最新情報に更新し続け、その情報を Swarm マネージャと共有します。Swarm マネージャはこのリストを使いノードに対してタスクを割り当てます。
+ここでは Docker Hub 上にあるディスカバリ・バックエンドを使い、自分のクラスタ用のユニークなディスカバリ・トークンを作成します。このディスカバリ・バックエンドは、小規模の開発環境やテスト目的のためであり、プロダクション向けではありません。Swarm マネージャとノードを起動後、ディスカバリ・バックエンドにノードをクラスタのメンバとして登録します。クラスタとユニークなトークンを結び付けるのが、このバックエンドの役割です。ディスカバリ・バックエンドはクラスタのメンバのリストを最新情報に更新し続け、その情報を Swarm マネージャと共有します。Swarm マネージャはこのリストを使いノードに対してタスクを割り当てます。
 
 ..    Connect the Docker Client on your computer to the Docker Engine running on manager.
 
@@ -146,7 +146,7 @@ Swarm ディスカバリ・トークンの作成
 
 ..    The client will send the docker commands in the following steps to the Docker Engine on on manager.
 
-移行の手順では、 クライアント側の ``docker`` コマンドは ``manager`` 上の Docker Engine に送信します。
+以降の手順では、 クライアント側の ``docker`` コマンドは ``manager`` 上の Docker Engine に送信します。
 
 .. Create a unique id for the Swarm cluster.
 
@@ -163,11 +163,11 @@ Swarm ディスカバリ・トークンの作成
 
 .. The docker run command gets the latest swarm image and runs it as a container. The create argument makes the Swarm container connect to the Docker Hub discovery service and get a unique Swarm ID, also known as a “discovery token”. The token appears in the output, it is not saved to a file on the host. The --rm option automatically cleans up the container and removes the file system when the container exits.
 
-``docker run`` コマンドは最新（latest）の ``swarm`` を取得し、コンテナとして実行します。引数 ``create`` は Swarm コンテナを Docker Hub ディスカバリ・サービスに接続し、ユニークな Swarm ID を取得します。この ID を「ディスカバリ・トークン」（discovery token）と呼びます。トークンは出力（アウトプット）されるだけであり、ホスト上のファイルには保管されません。 ``--rm`` オプションは自動的にコンテナを後片付けするもので、コンテナが終了するとファイルシステムを削除します。
+``docker run`` コマンドは最新（latest）の ``swarm`` を取得し、コンテナとして実行します。引数 ``create`` は Swarm コンテナを Docker Hub ディスカバリ・サービスに接続し、ユニークな Swarm ID を取得します。この ID を「ディスカバリ・トークン」（discovery token）と呼びます。トークンは出力（アウトプット）されるだけであり、ホスト上のファイルには保管されません。 ``--rm`` オプションは自動的にコンテナを削除するものです。コンテナが終了したら、コンテナのファイルシステムを自動的に削除します。
 
 .. The discovery service keeps unused tokens for approximately one week.
 
-トークンが使われなくなると、およそ一週間後にディスカバリ・サービスによって削除されます。
+トークンを利用しなければ、およそ一週間後にディスカバリ・サービスによって削除されます。
 
 .. Copy the discovery token from the last line of the previous output to a safe place.
 
@@ -293,7 +293,7 @@ Docker Swarm は標準 Docker API を使うため、Docker クライアントで
 
 .. As you can see, the output displays information about the two agent nodes and the one manager node in the Swarm.
 
-実行すると、Swarm 上にあるマネージャ１つと、エージェント・ノード２つの情報が表示されます。
+実行したら、Swarm 上にあるマネージャ１つと、エージェント・ノード２つの情報を表示します。
 
 .. Check the images currently running on your Swarm.
 
@@ -330,11 +330,11 @@ Docker Swarm は標準 Docker API を使うため、Docker クライアントで
 
 .. In this case, the Swarm ran ‘hello-world’ on the ‘swarm1’.
 
-この例では、 ``swarm1`` 上で ``hello-world`` が動いています。
+この例では、 ``swarm1`` 上で ``hello-world`` が動いていました。
 
 .. By default, Docker Swarm uses the “spread” strategy to choose which node runs a container. When you run multiple containers, the spread strategy assigns each container to the node with the fewest containers.
 
-Docker Swarm がコンテナをどのノードで実行するかを決めるにあたり、デフォルトでは「spread」（スプレッド）ストラテジを使います。複数のコンテナを実行する場合、スプレッド・ストラテジはコンテナの実行数が最も少ないノードに対してコンテナを割り当てます。
+Docker Swarm がコンテナをどのノードで実行するかを決めるには、デフォルトでは「spread」（スプレッド）ストラテジを使います。複数のコンテナを実行する場合、スプレッド・ストラテジはコンテナの実行数が最も少ないノードに対してコンテナを割り当てます。
 
 .. Where to go next
 
@@ -352,7 +352,7 @@ Docker Swarm がコンテナをどのノードで実行するかを決めるに�
 
 .. However, Docker Swarm has many other aspects and capabilities. For more information, visit the Swarm landing page or read the Swarm documentation.
 
-しかしながら、Docker Swarm には多くの特徴や能力があります。より詳しい情報は、 `Swarm のランディング・ページ（英語） <https://www.docker.com/docker-swarm>`_ や :doc:`Swarm ドキュメント </swarm/index>` をご覧ください。
+この他にもDocker Swarm には多くの特徴や能力があります。より詳しい情報は、 `Swarm のランディング・ページ（英語） <https://www.docker.com/docker-swarm>`_ や :doc:`Swarm ドキュメント </swarm/index>` をご覧ください。
 
 .. seealso:: 
 

@@ -23,7 +23,7 @@ Docker Swarm の入手方法
 
 .. You can create a Docker Swarm cluster using the swarm executable image from a container or using an executable swarm binary you install on your system. This page introduces the two methods and discusses their pros and cons.
 
-Docker Swarm クラスタを作成するには、 ``swarm`` を実行可能なイメージをコンテナとして使うか、あるいは、実行可能な ``swarm`` バイナリをシステム上にインストールする方法があります。このページは２つの方法を紹介し、各々の賛否を議論します。
+Docker Swarm クラスタを作成する方法は、 ``swarm`` が実行可能なイメージをコンテナとして使うか、あるいは、実行可能な ``swarm`` バイナリをシステム上にインストールします。このページは２つの方法を紹介し、それぞれの賛否を議論します。
 
 .. Create a cluster with an interactive container
 
@@ -34,11 +34,11 @@ Docker Swarm クラスタを作成するには、 ``swarm`` を実行可能な�
 
 .. You can use the Docker Swarm official image to create a cluster. The image is built by Docker and updated regularly through an automated build. To use the image, you run it a container via the Engine docker run command. The image has multiple options and subcommands you can use to create and manage a Swarm cluster.
 
-Docker Swarm 公式イメージを使ってクラスタを作成できます。イメージは Docker によって構築されたものであり、適切な自動構築を通して定期的に更新されています。イメージを使うには、Docker Engine の ``docker run`` コマンドを通してコンテナを実行します。Swarm を作成・管理するために、イメージには複数のオプションとサブコマンドを持っています。
+クラスタの作成には、Docker Swarm 公式イメージを使えます。イメージは Docker 社が構築したものであり、適切な自動構築を通して定期的に更新しています。イメージを使うには、Docker Engine の ``docker run`` コマンドを通してコンテナを実行します。Swarm クラスタを作成・管理するため、イメージには複数のオプションとサブコマンドがあります。
 
 .. The first time you use any image, Docker Engine checks to see if you already have the image in your environment. By default Docker runs the swarm:latest version but you can also specify a tag other than latest. If you have an image locally but a newer one exists on Docker Hub, Engine downloads it.
 
-イメージを初めて使う時、Docker Engine はイメージが自分の環境に既に存在しているかどうか確認します。Docker はデフォルトで ``swarm:latest`` バージョンを実行しますが、 ``latest`` 以外のタグも指定できます。イメージがローカルにダウンロード済みでも、Docker Hub 上に新しいバージョンが存在していれば Docker Engine はイメージをダウンロードします。
+イメージを初めて使う時、Docker Engine はイメージが自分の環境に既に存在しているかどうか確認します。Docker はデフォルトで ``swarm:latest`` バージョンを実行しますが、 ``latest`` 以外のタグも指定できます。イメージがローカルにダウンロード済みでも、Docker Hub 上に新しいバージョンが存在していれば、 Docker Engine は新しいイメージをダウンロードします。
 
 .. Run the Swarm image from a container
 
@@ -53,7 +53,7 @@ Docker Swarm 公式イメージを使ってクラスタを作成できます。�
 
 .. If you are using Mac or Windows, then you must make sure you have started an Docker Engine host running and pointed your terminal environment to it with the Docker Machine commands. If you aren’t sure, you can verify:
 
-Mac か Windows を使っている場合は、Docker Machine コマンドで Docker Engine ホストを起動し、ターミナルの環境を対象ホストに向ける必要があります。確証がなければ、次のようにして確認します。
+Mac か Windows を使っている場合は、Docker Machine コマンドで Docker Engine ホストを起動し、ターミナルの環境を対象ホストに向ける必要があります。動作確認は次のようにします。
 
 .. code-block:: bash
 
@@ -63,7 +63,7 @@ Mac か Windows を使っている場合は、Docker Machine コマンドで Doc
 
 .. This shows an environment running an Engine host on the default instance.
 
-これは Docker Engine ホスト上で動いている ``default`` インスタンス環境を示しています。
+これは Docker Engine ホスト上で動いている ``default`` インスタンス環境を指し示しています。
 
 .. Use the swarm image to execute a command.
 
@@ -71,7 +71,7 @@ Mac か Windows を使っている場合は、Docker Machine コマンドで Doc
 
 .. The easiest command is to get the help for the image. This command shows all the options that are available with the image.
 
-最も簡単なのはイメージの助けを借りる方法です。次のコマンドはイメージで利用可能なオプションの全てを表示します。
+最も簡単なコマンドはイメージのヘルプ表示です。次のコマンドはイメージで利用可能なオプションの全てを表示します。
 
 .. code-block:: bash
 
@@ -111,7 +111,7 @@ Mac か Windows を使っている場合は、Docker Machine コマンドで Doc
 
 .. In this example, the swarm image did not exist on the Engine host, so the Engine downloaded it. After it downloaded, the image executed the help subcommand to display the help text. After displaying the help, the swarm image exits and returns you to your terminal command line.
 
-この例では ``swarm`` イメージは Engine ホスト上に存在していないため、Engine はイメージをダウンロードします。ダウンロード後、イメージは ``help`` サブコマンドを実行し、ヘルプ・テキストを表示します。ヘルプを表示した後、 ``swarm`` イメージは終了し、ターミナル上のコマンドラインに戻ります。
+この例では ``swarm`` イメージが Engine ホスト上に存在していないため、Engine はイメージをダウンロードします。ダウンロード後、イメージは ``help`` サブコマンドを実行し、ヘルプ・テキストを表示します。ヘルプを表示した後、 ``swarm`` イメージが終了し、ターミナル上のコマンドラインに戻ります。
 
 .. List the running containers on your Engine host.
 
@@ -124,7 +124,7 @@ Mac か Windows を使っている場合は、Docker Machine コマンドで Doc
 
 .. Swarm is no longer running. The swarm image exits after you issue it a command.
 
-Swarm は動作していません。コマンドを実行後、 ``swarm`` イメージが終了したからです。
+Swarm は動作していません。 ``swarm`` イメージはコマンドを実行して終了したからです。
 
 .. Why use the image?
 
@@ -133,7 +133,7 @@ Swarm は動作していません。コマンドを実行後、 ``swarm`` イメ
 
 .. Using a Swarm container has three key benefits over other methods:
 
-他の手法に比べ、Swarm コンテナには３つの重要な利点があります。
+Swarm コンテナを使う方法は、他の手法と比べて３つの重要な利点があります。
 
 ..    You don’t need to install a binary on the system to use the image.
     The single command docker run command gets and run the most recent version of the image every time.
@@ -145,7 +145,7 @@ Swarm は動作していません。コマンドを実行後、 ``swarm`` イメ
 
 .. Running the Swarm image is the recommended way to create and manage your Swarm cluster. All of Docker’s documentation and tutorials use this method.
 
-Swarm イメージの実行は Swarm クラスタの作成・管理のために推奨されている方法です。こちらが Docker の全ドキュメントおよびチュートリアルで使われている手法です。
+Swarm イメージの実行は Swarm クラスタの作成・管理のために推奨されている方法です。こちらが Docker の全ドキュメントおよびチュートリアルで使われている方法がこちらです。
 
 .. Run a Swarm binary
 
@@ -154,7 +154,7 @@ Swarm バイナリの実行
 
 .. Before you run a Swarm binary directly on a host operating system (OS), you compile the binary from the source code or get a trusted copy from another location. Then you run the Swarm binary.
 
-ホストのオペレーティング・システム（OS）上で直接 Swarm バイナリを実行する前に、ソースコードからバイナリをコンパイルするか、信頼できる別の場所からコピーする必要があります。そして Swarm のバイナリを実行します。
+ホストのオペレーティング・システム（OS）上で直接 Swarm バイナリを実行する前に、ソースコードからバイナリをコンパイルするか、信頼できる別の場所からコピーする必要があります。その作業の後、 Swarm のバイナリを実行します。
 
 .. To compile Swarm from source code, refer to the instructions in CONTRIBUTING.md.
 
@@ -167,11 +167,11 @@ Swarm バイナリの実行
 
 .. Using a Swarm binary this way has one key benefit over other methods: If you are a developer who contributes to the Swarm project, you can test your code changes without “containerizing” the binary before you run it.
 
-他の手法に比べ、Swarm バイナリには１つの利点があります。もしあなたが swarm プロジェクトに貢献している開発者であれば、「コンテナ化」したバイナリを実行しなくても、コードに対する変更をテスト出来ます。
+他の方法に比べ、Swarm バイナリには利点が１つあります。もしあなたが swarm プロジェクトに貢献している開発者であれば、「コンテナ化」したバイナリを実行しなくても、コードに対する変更をテスト可能です。
 
 .. Running a Swarm binary on the host OS has disadvantages:
 
-ホスト OS 上で Swarm バイナリを実行する場合は、３つの不利な点があります。
+ホスト OS 上で Swarm バイナリを実行する場合は、不利な点が３つあります。
 
 ..    Compilation from source is a burden.
     The binary doesn’t have the benefits that Docker containers provide, such as isolation.
@@ -183,7 +183,7 @@ Swarm バイナリの実行
 
 .. Lastly, because the Swarm nodes don’t use Engine, you can’t use Docker-based software tools, such as Docker Engine CLI at the node level.
 
-あとは、Swarm ノードは Engine を使わないので、ノード上では Docker Engine CLI のような Docker ベースのソフトウェア・ツールを使えません。
+加えて、Swarm ノードは Engine を使いませんで、ノード上では Docker Engine CLI のような Docker ベースのソフトウェア・ツールで扱えません。
 
 .. Related information
 

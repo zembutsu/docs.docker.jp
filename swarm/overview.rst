@@ -21,7 +21,7 @@ Docker Swarm 概要
 
 .. Docker Swarm is native clustering for Docker. It turns a pool of Docker hosts into a single, virtual Docker host. Because Docker Swarm serves the standard Docker API, any tool that already communicates with a Docker daemon can use Swarm to transparently scale to multiple hosts. Supported tools include, but are not limited to, the following:
 
-Docker Swarm は Docker に対応するネイティブなクラスタリング用ツールです。Docker Swarm は標準 Docker API で操作できます。そのため、Docker ホスト群を集め、一つの仮想 Docker ホストとして扱えます。既に Docker デーモンと通信可能なツールであれば、Swarm を使うだけで、意識せずに複数のホストにスケール可能になります。以下のツールをサポートしていますが、これだけに限りません。
+Docker Swarm は Docker に対応するネイティブなクラスタリング用ツールです。Docker Swarm は標準 Docker API で操作できます。そのため、Docker ホスト群を集め、１つの仮想 Docker ホストとして扱えます。既に Docker デーモンと通信可能なツールであれば、Swarm を使うだけで、意識せずに複数のホストにスケール可能になります。以下のツールをサポートしていますが、これだけに限りません。
 
 * Dokku
 * Docker Compose
@@ -117,7 +117,7 @@ Docker Swarm はまだ開発途上であり、活発に開発中です。ヘル�
 
 ..    To talk about the project with people in real time: please join the #docker-swarm channel on IRC.
 
-* プロジェクトのメンバーとリアルタイムに会話したければ、IRC の ``#docker-swarm`` チャンネルにご参加ください。
+* プロジェクトのメンバとリアルタイムに会話したければ、IRC の ``#docker-swarm`` チャンネルにご参加ください。
 
 ..     To contribute code or documentation changes: please submit a pull request on Github.
 
