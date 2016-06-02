@@ -21,26 +21,26 @@
 
 .. In this step, you create several Docker hosts to run your application stack on. Before you continue, make sure you have taken the time to learn the application architecture
 
-このステップでは、複数の Docker ホストを作成し、そこでアプリケーション・スタックを実行します。続ける前に、 :doc:`アプリケーション・アーキテクチャを学ぶ <about>` 必要があります。
+このステップでは、複数の Docker ホストを作成し、そこでアプリケーション・スタックを実行します。進める前に、 :doc:`アプリケーション・アーキテクチャを学ぶ <about>` 必要があります。
 
 .. About these instructions
 
 .. _about-these-instructions:
 
-これらの手順について
+構築手順について
 ====================
 
 .. This example assumes you are running on a Mac or Windows system and enabling Docker Engine docker commands by provisioning local VirtualBox virtual machines thru Docker Machine. For this evaluation installation, you’ll need 6 (six) VirtualBox VMs.
 
-これらの例を実行するには、Mac あるいは Windows 上のシステムです。そこで Docker Machine を経由して VirtualBox 仮想マシンをローカルにプロビジョニングし、Docker Engine の ``docker`` コマンドを使えるようにします。インストールにあたり、６つの VirtualBox 仮想マシンを使う予定です。
+以降のサンプルを実行する想定システムは、Mac あるいは Windows です。システム上で Docker Machine を経由して VirtualBox 仮想マシンをローカルにプロビジョニングし、Docker Engine の ``docker`` コマンドを使えるようにします。作業は６つの VirtualBox 仮想マシンをインストールします。
 
 .. While this example uses Docker Machine, this is only one example of an infrastructure you can use. You can create the environment design on whatever infrastructure you wish. For example, you could place the application on another public cloud platform such as Azure or DigitalOcean, on premises in your data center, or even in in a test environment on your laptop.
 
-今回のサンプルでは Docker Machine を使いますが、任意のインフラ上で実行できます。希望のインフラ上であれば、どこでも環境を構築できる設計です。たとえば、Azure や DigitalOcean などのようなパブリックのクラウド・プラットフォーム上で実行できるだけでなく、データセンタ上のオンプレミスや、ノート PC 上のテスト環境ですら動かせます。
+今回のサンプルでは Docker Machine を使いますが、任意のインフラ上で実行できます。希望するインフラ上であれば、どこでも環境を構築できる設計です。例えば、Azure や Digital Ocean などのようなパブリックのクラウド・プラットフォーム上で実行できるだけでなく、データセンタ上のオンプレミスや、ノート PC 上のテスト環境ですら動かせます。
 
 .. Finally, these instructions use some common bash command substituion techniques to resolve some values, for example:
 
-あと、これらの手順ではいくつかの値を設定するにあたり、一般的な ``bash`` コマンド代替技術を使います。次のコマンドを例に考えます。
+なお、これら手順では複数の値を設定するにあたり、一般的な ``bash`` コマンド代入技術を使います。次のコマンドを例に考えましょう。
 
 .. code-block:: bash
 
@@ -48,7 +48,7 @@
 
 .. In a Windows environment, these substituation fail. If you are running in Windows, replace the substitution $(docker-machine env keystore) with the actual value.
 
-Windows 環境では、これらの代替指定に失敗します。Widows 上実行する場合は、この ``$(docker-machine env keystore)`` を実際の値に置き換えてください。
+Windows 環境では、このような代入指定に失敗します。Widows 上で実行する場合は、この ``$(docker-machine env keystore)`` を実際の値に置き換えてください。
 
 .. _task1-create-the-keystore-server:
 
@@ -209,8 +209,8 @@ Engine デーモンにオプションを指定するには ``--engine-opt`` フ�
 
 .. _task3-add-the-load-balancer:
 
-ロードバランサの追加
-====================
+タスク３：ロードバランサの追加
+==============================
 
 .. The application uses an Interlock and an Nginx as a loadblancer. Before you build the load balancer host, you’ll create the cnofiguration you’ll use for Nginx.
 
@@ -262,7 +262,7 @@ Engine デーモンにオプションを指定するには ``--engine-opt`` フ�
 
 ..    In the configuration, replace the SWARM_MANAGER_IP with the manager IP you got in Step 4.
 
-5. 設定ファイルにおいて、 ``SWARM_MANAGE_IP`` はステップ４で取得した ``manager`` の IP アドレスに書き換えてください。
+5. 設定ファイルにおいて、 ``SWARM_MANAGE_IP`` は手順３で取得した ``manager`` の IP アドレスに書き換えてください。
 
 ..    You use this value because the load balancer listens on the manager’s event stream.
 
@@ -330,7 +330,7 @@ Engine デーモンにオプションを指定するには ``--engine-opt`` フ�
 
 ..    This error usually means you weren’t starting the docker run from the same config directory where the config.toml fie is. If you run the coammand and get a Conflict error such as:
 
-このエラーであれば、通常は ``config.toml`` ファイルがある同じ ``config`` ディレクトリ内で ``docker run`` を実行したからでしょう。コマンドを実行し、次のような衝突が表示する場合は、
+このエラーであれば、通常は ``config.toml`` ファイルがある同じ ``config`` ディレクトリ内で ``docker run`` を実行したのが原因でしょう。コマンドを実行し、次のような衝突が表示する場合があります。
 
 .. code-block:: bash
 
@@ -338,7 +338,7 @@ Engine デーモンにオプションを指定するには ``--engine-opt`` フ�
 
 ..    Remove the interlock container with the docker rm interlock and try again.
 
-``docker rm interlock`` で interlock コンテナを削除し、再度試みてください。
+このような時は、 ``docker rm interlock`` で interlock コンテナを削除し、再度試みてください。
 
 ..    Start an nginx container on the load balancer.
 
@@ -363,7 +363,7 @@ Engine デーモンにオプションを指定するには ``--engine-opt`` フ�
 
 .. A host in a Swarm cluster is called a node. You’ve already created the manager node. Here, the task is to create each virtual host for each node. There are three commands required:
 
-Swarm クラスタのホストのことを「ノード」と呼びます。既にマネージャ・ノードを作成しました。ここでの作業は、各ノード用の仮想ホストを作成します。３つのコマンドが必要です。
+Swarm クラスタのホストを「ノード」と呼びます。既にマネージャ・ノードを作成しました。ここでの作業は、各ノード用の仮想ホストを作成します。３つのコマンドが必要です。
 
 ..    create the host with Docker Machine
     point the local environmnet to the new host
@@ -375,7 +375,7 @@ Swarm クラスタのホストのことを「ノード」と呼びます。既�
 
 .. If you were building this in a non-Mac/Windows environment, you’d only need to run the join command to add node to Swarm and registers it with the Consul discovery service. When you create a node, you’ll label it also, for example:
 
-Mac あるいは Windows 以外で構築している場合は、swarm ノードに追加するには ``join`` コマンドを実行するだけです。それだけで Consul ディスカバリ・サービスに登録します。また、ノードの作成時には次の例のようにラベルを付けます。
+Mac あるいは Windows 以外で構築している場合、swarm ノードに追加するには ``join`` コマンドを実行するだけです。それだけで Consul ディスカバリ・サービスに登録します。また、ノードの作成時には次の例のようにラベルを付けます。
 
 .. code-block:: bash
 
@@ -443,7 +443,7 @@ Mac あるいは Windows 以外で構築している場合は、swarm ノード�
 
 ..    At this point, you have deployed on the infrastructure you need to run the application. Test this now by listing the running machines:
 
-この時点では、アプリケーションが必要なインフラをデプロイしました。テストは、次のようにマシンが実行しているか一覧表示します。
+この時点では、アプリケーションが必要なインフラをデプロイ完了しました。テストは、次のようにマシンが実行しているか一覧表示します。
 
 .. code-block:: bash
 
@@ -518,7 +518,7 @@ Mac あるいは Windows 以外で構築している場合は、swarm ノード�
 
 ..    The command is acting on the Swarm port, so it returns information about the entire cluster. You have a manager and no nodes.
 
-このコマンドは Swarm ポートに対して処理しているため、クラスタ全体の情報を返します。操作するのはマネージャあり、ノードではありません。
+このコマンドは Swarm ポートに対して処理しているため、クラスタ全体の情報を返します。操作対象Swarm マネージャあり、ノードではありません。
 
 .. Next Step
 

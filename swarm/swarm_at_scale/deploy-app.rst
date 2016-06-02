@@ -45,7 +45,7 @@
 
 .. This application relies on both an overlay container network and a container volume. The Docker Engine provides these two features. You’ll create them both on the Swarm manager instance.
 
-このアプリケーションはオーバレイ・コンテナ・ネットワークとコンテナ・ボリュームに依存します。Docker Engine は２つの機能を提供します。どちらの作成も Swarm ``manager`` インスタンスから可能です。
+このアプリケーションはオーバレイ・コンテナ・ネットワークとコンテナ・ボリュームに依存します。Docker Engine は２つの機能を提供します。Swarm ``manager`` インスタンス上でどちらも作成可能です。
 
 ..    Direct your local environmen to the Swarm manager host.
 
@@ -57,7 +57,7 @@
 
 ..    You can create the network on an cluster node at the network is visible on them all.
 
-クラスタ・ノード上でネットワークを作成すると、ネットワーク全体で参照可能になります。
+クラスタ・ノード上でネットワークを作成したら、ネットワーク全体で参照可能になります。
 
 ..    Create the voteapp container network.
 
@@ -123,11 +123,11 @@
 
 .. You can launch these containers from any host in the cluster using the commands in this section. Each command includs a -Hflag so that they execute against the Swarm manager.
 
-このセクションでは、これらのコンテナをコマンドを使い、クラスタ上のホストに起動します。 Swarm マネージャに対して命令するため、各コマンドでは ``-H`` フラグを使います。
+このセクションではクラスタ上のホストに対して、コマンドでこれらのコンテナを起動します。 Swarm マネージャに対して命令するためには、各コマンドで ``-H`` フラグを使います。
 
 .. The commands also all use the -e flag which is a Swarm constraint. The constraint tells the manager to look for a node with a matching function label. You set established the labels when you created the nodes. As you run each command below, look for the value constraint.
 
-コマンドには ``-e`` も含みます。これは Swarm に制限（constraint）を指定するためです。制限はマネージャに対して、機能のラベルに一致するノードを伝えるために使います。ノードを作成時にラベルを設定します。以下のコマンドを実行し、制約の値を確認します。
+コマンドには ``-e`` も含みます。これは Swarm に制限（constraint）を指定するためです。制限はマネージャに対して、function（機能）のラベルに一致するノードの指定で使います。ラベルはノード作成時に設定します。以降のコマンド実行時に、制約の値を確認します。
 
 ..    Start a Postgres database container.
 
@@ -155,7 +155,7 @@
 
 ..    The redis name is important so don’t change it.
 
-``redis`` の名前は重要なので、変更しないでください。
+``redis`` の名前は重要なため、変更しないでください。
 
 ..    Start the worker application
 
@@ -237,7 +237,7 @@
 .. code-block:: bash
 
    $ docker exec interlock cat /etc/conf/nginx.conf
-   ... output snipped ...
+   ... 出力を省略 ...
    
    upstream results.myenterprise.com {
        zone results.myenterprise.com_backend 64k;
@@ -276,7 +276,7 @@
 
 .. The http://vote.myenterprise.com site configuration should point to either frontend node. Requests to http://results.myenterprise.com go just to the single dbstore node where the example-voting-app-result-app is running.
 
-``http://vote.myenterprise.com`` サイトの設定は、どちらかのフロントエンド・ノードを指し示します。 ``http://results.myenterprise.com`` にリクエストすると、 ``example-voting-app-result-app`` が稼働している ``dbstore`` ノードに移動します。
+``http://vote.myenterprise.com`` サイトの設定は、どちらかのフロントエンド・ノードを指し示します。 ``http://results.myenterprise.com`` にリクエストしたら、 ``example-voting-app-result-app`` が稼働している ``dbstore`` ノードに移動します。
 
 ..    On your local host, edit /etc/hosts file add the resolution for both these sites.
 
@@ -292,7 +292,7 @@
 
 ..    Manual restart is required because the current Interlock server is not forcing an Nginx configuration reload.
 
-現在の Interlock サーバの設定が Nginx の設定に反映していないので、手動で再起動する必要があります。
+現在の Interlock サーバの設定が Nginx の設定を反映していません。そのため、手動で再起動の必要があります。
 
 .. code-block:: bash
 
@@ -340,11 +340,11 @@
 
 .. Up to this point, you’ve deployed each application container individually. This can be cumbersome espeically because their are several different containers and starting them is order dependent. For example, that database should be running before the worker.
 
-これまでは、各アプリケーションのコンテナを個々に起動しました。しかし、複数コンテナの起動や依存関係の順番に従った起動は、とても煩雑です。たとえば、データベースはワーカが起動する前に動いているべきでしょう。
+これまでは、各アプリケーションのコンテナを個々に起動しました。しかし、複数コンテナの起動や依存関係の順番に従った起動は、とても煩雑です。例えば、データベースはワーカが起動する前に動いているべきでしょう。
 
 .. Docker Compose let’s you define your microservice containers and their dependencies in a Compose file. Then, you can use the Compose file to start all the containers at once. This extra credit
 
-Docker Compose はマイクロサービス・コンテナと依存関係を Compose ファイルで定義します。そして、Compose ファイルを使って全てのコンテナを一斉に起動します。こは追加作業（extra credit）です。
+Docker Compose はマイクロサービス・コンテナと依存関係を Compose ファイルで定義します。そして、Compose ファイルを使って全てのコンテナを一斉に起動します。これは追加作業（extra credit）です。
 
 ..    Before you begin, stop all the containers you started.
 
@@ -372,7 +372,7 @@ c. 各コンテナを停止・削除します。
 
 ..    The version 2 Compose file format is the best to use. Translate each docker run command into a service in the docker-compose.yml file. For example, this command:
 
-Compose ファイルはバージョン２形式を使うのがベストです。各 ``docker run`` コマンドを ``docker-compose.yml``  ファイル内のサービスに置き換えます。例えば、次のコマンドがあるとします。
+Compose ファイルはバージョン２形式を使うのがベストです。各 ``docker run`` コマンドを ``docker-compose.yml``  ファイル内のサービスに置き換えます。例えば、次のコマンドがあります。
 
 .. code-block:: bash
 
@@ -397,7 +397,7 @@ Compose ファイルはバージョン２形式を使うのがベストです。
 
 ..    In general, Compose starts services in reverse order they appear in the file. So, if you want a service to start before all the others, make it the last service in the file file. This applciation relies on a volume and a network, declare those at the bottom of the file.
 
-一般的には Compose はファイルに現れる逆順でサービスの起動を試みます。そのため、あるサービスを他のサービスよりも前に実行するには、ファイル中の最後尾にサービスを記述する必要があります。アプリケーションがボリュームやネットワークを使う場合は、ファイルの末尾で宣言します。
+通常、 Compose はファイルに現れる逆順でサービスの起動を試みます。そのため、あるサービスを他のサービスよりも前に実行するには、ファイル中の最後尾にサービスを記述する必要があります。アプリケーションがボリュームやネットワークを使う場合は、ファイルの末尾で宣言します。
 
 ..    Check your work against this result file
 
@@ -405,7 +405,7 @@ Compose ファイルはバージョン２形式を使うのがベストです。
 
 ..    When you are satisifed, save the docker-compose.yml file to your system.
 
-4. 問題がなければ、システム上に ``docker-compose.yml``  ファイルを保存します。
+4. 問題が無ければ、システム上に ``docker-compose.yml``  ファイルを保存します。
 
 ..    Set DOCKER_HOST to the Swarm manager.
 
@@ -542,7 +542,7 @@ Compose ファイルはバージョン２形式を使うのがベストです。
 
 .. Congratulations. You have successfully walked through manually deploying a microservice-based application to a Swarm cluster. Of course, not every deployment goes smoothly. Now that you’ve learned how to successfully deploy an application at scale, you should learn what to consider when troubleshooting large applications running on a Swarm cluster.
 
-おめでとうございます。マイクロサービスをベースとしたアプリケーションを Swarm クラスタ上に手動でデプロイできました。もちろん、すべてが上手くいくとは限りません。どのようにスケールするアプリケーションをデプロイするかを学びましたので、次は :doc:`Swarm クラスタ上で大規模アプリケーション実行時のトラブルシューティング <troubleshoot>` を学ぶべきでしょう。
+おめでとうございます。マイクロサービスをベースとしたアプリケーションを Swarm クラスタ上に手動でデプロイできました。もちろん、全てが上手くいくとは限りません。どのようにスケールするアプリケーションをデプロイするかを学びましたので、次は :doc:`Swarm クラスタ上で大規模アプリケーション実行時のトラブルシューティング <troubleshoot>` を学ぶべきでしょう。
 
 .. seealso:: 
 

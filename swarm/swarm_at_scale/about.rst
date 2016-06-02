@@ -36,7 +36,7 @@
 
 .. Your survey must ensure that millions of people can vote concurrently without your website becoming unavailable. You don’t need real-time results, a company press release announces the results. However, you do need confidence that every vote is counted.
 
-この調査では100万人もの人々が投票してもウェブサイトが止まらないようにする必要があります。結果をリアルタイムで知る必要はなく、結果は会社のプレスリリースで公開します。しかし、どれだけ投票されたかは、投票の度に確実に把握する必要があります。
+この調査では100万人もの人々が投票してもウェブサイトが止まらないようにする必要があります。結果をリアルタイムで知る必要は無く、結果は会社のプレスリリースで公開します。しかし、どれだけ投票されたかは、投票の度に確実に把握する必要があります。
 
 .. Understand the application architecture
 
@@ -66,7 +66,7 @@
 
 .. Behind the frontend is a worker tier which runs on separate nodes. This tier:
 
-フロントエンドの背後にはワーカ層があり、別々のノードが動いています。この層は、
+フロントエンドの背後にはワーカ層があり、別々のノードが動いています。この層は次の機能があります。
 
 ..    scans the Redis containers
     dequeues votes
@@ -103,11 +103,11 @@ Swarm クラスタのアーキテクチャ
 
 .. All four nodes in the cluster are running the Docker daemon, as is the Swarm manager and the load balancer. The Swarm manager is part of the cluster and is considered out of band for the application. A single host running the Consul server acts as a keystore for both Swarm discovery and for the container network. The load balancer could be placed inside of the cluster, but for this demonstration it is not.
 
-クラスタの４つのノードすべてで Docker デーモンが動作します。Swarm マネージャと ロードバランサも同様です。Swarm マネージャはクラスタの一部であり、アプリケーションの範囲外であると考えます。１つのホスト上で Consul サーバはキーストア（keystore）として動作します。これは Swarm ディスカバリ用と、コンテナ・ネットワーク用の両方のためです。ロードバランサはクラスタ内に設置可能ですが、今回のサンプルでは扱いません。
+クラスタの４つのノード全てで Docker デーモンが動作します。Swarm マネージャと ロードバランサも同様です。Swarm マネージャはクラスタの一部であり、アプリケーションの範囲外であると考えます。１つのホスト上で Consul サーバはキーストア（keystore）として動作します。これは Swarm ディスカバリ用と、コンテナ・ネットワーク用の両方のためです。ロードバランサはクラスタ内に設置可能ですが、今回のサンプルでは扱いません。
 
 .. After completing the example and deploying your application, this is what your environment should look like.
 
-サンプルを終え、アプリケーションをデプロイすると、皆さんの環境は下図のようになります。
+サンプルとアプリケーションのデプロイを完了したら、皆さんの環境は下図のようになります。
 
 .. image:: ../images/final-result.png
    :scale: 60%
@@ -156,7 +156,7 @@ Swarm クラスタのアーキテクチャ
 
 .. After you deploy the application, you’ll configure your local system so that you can test the application from your local browser. In production, of course, this step wouldn’t be needed.
 
-アプリケーションをデプロイするとき、ローカル・システムを設定したら、ローカルのブラウザ上でアプリケーションをテスト可能です。プロダクションでは、もちろんこの手順は不要です。
+アプリケーションのデプロイ時、ローカル・システムを設定したら、ローカルのブラウザ上でアプリケーションをテスト可能です。プロダクションでは、もちろんこの手順は不要です。
 
 .. Next step
 
@@ -168,7 +168,7 @@ Swarm クラスタのアーキテクチャ
 .. Now that you understand the application architecture, you need to deploy a network configuration that can support it. In the next step, you deploy network infrastructure for use in this sample.
 
 
-これでアプリケーションのアーキテクチャを理解しましたの。デプロイするにあたり、どのようなネットワーク設定をサポートする必要があるのか分かったと思います。次のステップでは、このサンプルを使って :doc:`ネットワーク・インフラをデプロイ <deploy-infra>` します。
+これでアプリケーションのアーキテクチャを理解しました。デプロイするにあたり、どのようなネットワーク設定をサポートする必要があるのか理解したと思います。次のステップでは、このサンプルが使つ :doc:`ネットワーク・インフラをデプロイ <deploy-infra>` します。
 
 .. seealso:: 
 
