@@ -25,7 +25,7 @@ Docker Swarm API は :doc:`Docker リモート API </engine/reference/api/docker
 
 .. Missing endpoints
 
-エンドポイントがない場合
+エンドポイントが無い場合
 ==============================
 
 .. Some endpoints have not yet been implemented and will return a 404 error.

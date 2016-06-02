@@ -23,7 +23,7 @@ Swarm の再スケジュール・ポリシー
 
 .. You can set recheduling policies with Docker Swarm. A rescheduling policy determines what the Swarm scheduler does for containers when the nodes they are running on fail.
 
-Docker Swarm で再スケジュール・ポリシーを設定できます。再スケジュール・ポリシーとは、コンテナを実行中のノードが落ちたとき、再起動するかどうかを決めます。
+Docker Swarm で再スケジュール・ポリシーを設定できます。再スケジュール・ポリシーとは、コンテナを実行中のノードが落ちた時、再起動するかどうかを決めます。
 
 
 .. Rescheduling policies

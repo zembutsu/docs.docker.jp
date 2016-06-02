@@ -29,7 +29,7 @@ swarm - Docker ネイティブのクラスタリング・システム
 
 .. For example, you use swarm with the manage subcommand to create a Swarm manager in a high-availability cluster with other managers:
 
-例えば、 ``swarm`` で ``manage`` サブコマンドを使えば Swarm マネージャを作成します。この時、クラスタ上にある他のマネジャと可用性を持たせるには：
+例えば、 ``swarm`` で ``manage`` サブコマンドを使えば Swarm マネージャを作成します。この時、クラスタ上にある他のマネージャと可用性を持たせるには：
 
 .. code-block:: bash
 

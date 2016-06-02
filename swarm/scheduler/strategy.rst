@@ -33,7 +33,7 @@ Docker Swarm スケジューラは、複数のストラテジ（strategy；方�
 
 .. Your goal in choosing a strategy is to best optimize your cluster according to your company’s needs.
 
-あなたの会社の必要性に従いってクラスタを最適化するのが、ストラテジを選択する目的（ゴール）です。
+あなたの会社の必要性に従ってクラスタを最適化するのが、ストラテジを選択する目的（ゴール）です。
 
 .. Under the spread strategy, Swarm optimizes for the node with the least number of running containers. The binpack strategy causes Swarm to optimize for the node which is most packed. The random strategy, like it sounds, chooses nodes at random regardless of their available CPU or RAM.
 

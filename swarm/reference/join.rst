@@ -165,7 +165,7 @@ Swarm ノードの作成時、 ``<discovery>`` 引数を使って以下のバッ
 
 .. Use --delay "<interval>s" to specify the maximum interval for a random delay, in seconds, before the node registers with the discovery backend. If you deploy a large number of nodes simultaneously, the random delay spreads registrations out over the interval and avoids saturating the discovery backend.
 
-``--delay "間隔<s>"`` の形式で、ディスカバリバックエンドがノードを登録するまで、ランダムに遅延させる最大秒数を指定します。多数のノードをデプロイするとき、ランダムに登録間隔の遅延を発生する事で、ディスカバリ・バックエンドが飽和しないように（応答しなくならないように）します。
+``--delay "間隔<s>"`` の形式で、ディスカバリバックエンドがノードを登録するまで、ランダムに遅延させる最大秒数を指定します。多数のノードをデプロイする時、ランダムに登録間隔の遅延を発生することで、ディスカバリ・バックエンドが飽和しないように（応答不能にならないように）します。
 
 .. --discovery-opt — Discovery options
 

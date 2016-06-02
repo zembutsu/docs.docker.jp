@@ -93,11 +93,11 @@ list コマンドは引数が１つだけあります。
 
 ..    path (optional) is a path to a key-value store on the discovery backend. When you use a single backend to service multiple clusters, you use paths to maintain separate key-value stores for each cluster.
 
-* ``path`` （オプション）はディスカバリ・バックエンドのキーバリュー・ストアのパスを指定します。複数のクラスタを１つのバックエンドで管理する場合は、各クラスタ毎にキーバリューのペアを記述する必要があります。
+* ``path`` （オプション）はディスカバリ・バックエンドのキーバリュー・ストアのパスを指定します。複数のクラスタを１つのバックエンドで管理する場合は、各クラスタごとにキーバリューのペアを記述する必要があります。
 
 ..     path/to/file is the path to a file that contains a static list of the Swarm managers and nodes that are members the cluster.
 
-* ``path/to/file`` はSwarm マネージャとクラスタのメンバであるノード情報の一覧と、それぞれの静的な IP アドレスのリストをを指定したファイルのパスを指定します。
+* ``path/to/file`` はSwarm マネージャとクラスタのメンバであるノード情報の一覧と、それぞれの静的な IP アドレスのリストを指定したファイルのパスを指定します。
 
 ..    iprange is an IP address or a range of IP addresses followed by a port number.
 
@@ -147,7 +147,7 @@ list コマンドは引数が１つだけあります。
 
 .. Use --discovery-opt <value> to discovery options, such as paths to the TLS files; the CA’s public key certificate, the certificate, and the private key of the distributed K/V store on a Consul or etcd discovery backend. You can enter multiple discovery options. For example:
 
-ディスカバリ・オプションに ``--discovery-opt <value>`` を使い、 TLS 設定によるうファイル（CA 公開鍵証明書、証明書）のパスや、分散キーバリュー・ストアのディスカバリ・バックエンドを指定します。このオプションは複数回利用可能です。例：
+ディスカバリ・オプションに ``--discovery-opt <value>`` を使い、 TLS 設定で使用するファイル（CA 公開鍵証明書、証明書）のパスや、分散キーバリュー・ストアのディスカバリ・バックエンドを指定します。このオプションは複数回利用可能です。例：
 
 .. code-block:: bash
 

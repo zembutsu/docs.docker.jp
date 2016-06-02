@@ -274,7 +274,7 @@ Swarm ノードの作成時、 ``<discovery>`` を使って以下のバックエ
 
 .. Use --tlskey to specify the path and filename of the manager’s private key (signed by the CA). For example, --tlskey=/certs/key.pem.
 
-``--tlskey`` を使いマネジャの秘密鍵（CAによって署名済み）のファイル名とパスを指定します。例： ``--tlskey=/certs/key.pem`` 。
+``--tlskey`` を使いマネージャの秘密鍵（CAによって署名済み）のファイル名とパスを指定します。例： ``--tlskey=/certs/key.pem`` 。
 
 .. --tlsverify — Use TLS and verify the remote
 
@@ -394,8 +394,8 @@ Mesos ドライバの利用に関する詳しい情報は、 `Using Docker Swarm
 * ``swarm.overcommit=0.05``- リソースをオーバー・コミットする割合（パーセント）を指定します。デフォルト値は ``0.05`` であり、５パーセントを意味します。
 * ``swarm.createretry=0`` - コンテナ作成に何度失敗すると障害とみなすかを指定します。デフォルトの値は ``0`` 回の再試行です。
 * ``mesos.address=`` - バインドする Mesos のアドレスを指定します。このオプションは環境変数 ``$SWARM_MESOS_ADDRESS`` でも指定できます。
-* ``mesos.checkpointfailover=false`` - Mesos のチェックポインティング（checkpointing）を有効化します。これは、以前まで使っていたエクゼキュータの状態が復旧すると、スレーブが再接続できるようにします。この時、ディスク I/O を消費します。このオプションは環境変数 ``$SWARM_MESOS_CHECKPOINT_FAILOVER`` でも指定できます。デフォルト値は ``false`` （無効）です。
-* ``mesos.port=`` - Mesos がバインドするポートを指定する。このオプションは環境変数 ``$SWARM_MESOS_PORT`` でも指定できます。
+* ``mesos.checkpointfailover=false`` - Mesos のチェックポインティング（checkpointing）を有効化します。これは、以前まで使っていたエクゼキュータの状態が復旧したら、スレーブが再接続できるようにします。この時、ディスク I/O を消費します。このオプションは環境変数 ``$SWARM_MESOS_CHECKPOINT_FAILOVER`` でも指定できます。デフォルト値は ``false`` （無効）です。
+* ``mesos.port=`` - Mesos がバインドするポートを指定します。このオプションは環境変数 ``$SWARM_MESOS_PORT`` でも指定できます。
 * ``mesos.offertimeout=30s`` - Mesos がタイムアウトと判断する秒を指定します。このオプションは環境変数 ``$SWARM_MESOS_OFFER_TIMEOUT`` でも指定できます。デフォルトの値は ``30s`` です。
 * ``mesos.offerrefusetimeout=5s`` - Mesos がリソースの再利用ができないと判断する秒を指定します。このオプションは環境変数 ``$SWARM_MESOS_OFFER_REFUSE_TIMEOUT`` でも指定できます。デフォルトの値は ``5s`` です。
 * ``mesos.tasktimeout=5s`` - Mesos のタスク作成までのタイムアウトを秒で指定します。このオプションは環境変数 ``$SWARM_MESOS_TASK_TIMEOUT`` でも指定できます。デフォルトの値は ``5s`` です。
