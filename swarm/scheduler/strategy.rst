@@ -37,11 +37,11 @@ Docker Swarm スケジューラは、複数のストラテジ（strategy；方�
 
 .. Under the spread strategy, Swarm optimizes for the node with the least number of running containers. The binpack strategy causes Swarm to optimize for the node which is most packed. The random strategy, like it sounds, chooses nodes at random regardless of their available CPU or RAM.
 
-``spread`` ステラテジの下では、Swarm はノードで実行中のコンテナ数に応じて最適化します。 ``pinback`` ストラテジは利用するノードが最も少なくなるよう最適化します。 ``random`` ストラテジでは、利用可能な CPU やメモリに関わらずランダムにノードを選びます。
+``spread`` ストラテジの下では、Swarm はノードで実行中のコンテナ数に応じて最適化します。 ``pinback`` ストラテジは利用するノードが最も少なくなるよう最適化します。 ``random`` ストラテジでは、利用可能な CPU やメモリに関わらずランダムにノードを選びます。
 
 .. Using the spread strategy results in containers spread thinly over many machines. The advantage of this strategy is that if a node goes down you only lose a few containers.
 
-``spread`` ストラテジを使うと、結果として多くのマシンに幅広く展開します。このストラテジの利点は、ノードがダウンしても、失われるのは小数のコンテナだけです。
+``spread`` ストラテジを使えば、結果として多くのマシンに幅広く展開します。このストラテジの利点は、ノードがダウンしても、失われるのは小数のコンテナだけです。
 
 .. The binpack strategy avoids fragmentation because it leaves room for bigger containers on unused machines. The strategic advantage of binpack is that you use fewer machines as Swarm tries to pack as many containers as it can on a node.
 

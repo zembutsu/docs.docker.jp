@@ -29,7 +29,7 @@ Docker Swarm の **Swarm マネージャ** は、クラスタ全体に対する�
 
 .. A primary manager is the main point of contact with the Docker Swarm cluster. You can also create and talk to replica instance that will act as backups. Requests issued on a replica are automatically proxied to the primary manager. If the primary manager fails, a replica takes away the lead. In this way, you always keep a point of contact with the cluster.
 
-プライマリ・マネージャは、Docker Swarm クラスタとの主な接点です。また、バックアップに用いるレプリカ・インスタンスの作成・通信もできます。レプリカにリクエストすると、プライマリ・マネージャを自動的にプロキシします。プライマリ・マネージャで障害が起こると、レプリカが主導権を取ります。このような方法で、クラスタと通信し続けられます。
+プライマリ・マネージャは、Docker Swarm クラスタとの主な接点です。また、バックアップに用いるレプリカ・インスタンスの作成・通信もできます。レプリカにリクエストすると、プライマリ・マネージャを自動的にプロキシします。プライマリ・マネージャで障害が起これば、レプリカが主導権を取ります。このような方法で、クラスタと通信し続けられます。
 
 .. Setup primary and replicas
 
@@ -60,7 +60,7 @@ Docker Swarm の **Swarm マネージャ** は、クラスタ全体に対する�
 
 .. You use the ``swarm manage`` command with the ``--replication`` and ``--advertise`` flags to create a primary manager.
 
-``swarm manager`` コマンドに ``--replication`` と ``--advertise`` フラグを使い、プライマリ・マネージャを作成します。
+``swarm manager`` コマンドで ``--replication`` と ``--advertise`` フラグを指定し、プライマリ・マネージャを作成します。
 
 .. code-block:: bash
 
@@ -98,7 +98,7 @@ Docker Swarm の **Swarm マネージャ** は、クラスタ全体に対する�
 
 .. This command creates a replica manager on 192.168.42.201:4000 which is looking at 192.168.42.200:4000 as the primary manager.
 
-このコマンドは ``192.168.42.201:4000`` 上にレプリカ・マネージャを作成します。これは ``192.168.42.200:4000`` をプライマリ・マネージャと見なしています。
+このコマンドは ``192.168.42.201:4000`` 上にレプリカ・マネージャを作成します。これは ``192.168.42.200:4000`` をプライマリ・マネージャとみなしています。
 
 .. Create an additional, third manager instance:
 
@@ -123,11 +123,11 @@ Docker Swarm の **Swarm マネージャ** は、クラスタ全体に対する�
 
 .. Typing docker info should give you an output similar to the following:
 
-``docker info`` を実行する事で、次のような出力が得られます。
+``docker info`` を実行したら、次のような出力が得られます。
 
 .. code-block:: bash
 
-   user@my-machine $ export DOCKER_HOST=192.168.42.200:4000 # Points to manager-1
+   user@my-machine $ export DOCKER_HOST=192.168.42.200:4000 # manager-1 を指し示す
    user@my-machine $ docker info
    Containers: 0
    Images: 25
@@ -165,7 +165,7 @@ Docker Swarm の **Swarm マネージャ** は、クラスタ全体に対する�
 
 .. This information shows that manager-1 is the current primary and supplies the address to use to contact this primary.
 
-この情報が示すのは ``manager-1`` が現在のプライマリです。そして、このプライマリへ接続するのに使うアドレスが表示されています。
+この情報は ``manager-1`` が現在のプライマリであると示しています。そして、このプライマリへ接続するのに使うアドレスが表示されています。
 
 .. Test the failover mechanism
 
@@ -174,7 +174,7 @@ Docker Swarm の **Swarm マネージャ** は、クラスタ全体に対する�
 
 .. To test the failover mechanism, you shut down the designated primary manager. Issue a Ctrl-C or kill the current primary manager (manager-1) to shut it down.
 
-フェイルオーバ動作をテストするには、特定のプライマリ・マネージャを停止します。 ``Ctrl-C`` や ``kill`` を実行すると、現在のプライマリ・マネージャ（ ``manager-1`` ）が停止します。
+フェイルオーバ動作をテストするには、特定のプライマリ・マネージャを停止します。 ``Ctrl-C`` や ``kill`` を実行したら、現在のプライマリ・マネージャ（ ``manager-1`` ）は停止します。
 
 .. Wait for automated failover
 
@@ -201,11 +201,11 @@ Docker Swarm の **Swarm マネージャ** は、クラスタ全体に対する�
 
 .. Because the primary manager, manager-1, failed right after it was elected, the replica with the address 192.168.42.201:4000, manager-2, recognized the failure and attempted to take away the lead. Because manager-2 was fast enough, the process was effectively elected as the primary manager. As a result, manager-2 became the primary manager of the cluster.
 
-これはプライマリ・マネージャ ``manager-1`` で障害が発生しました。その後、 ``192.168.42.201:4000`` のアドレスを持つ ``manager-2`` のレプリカが障害を検出したので、（manager-1から）主導権を取り上げてリーダに選出されました。 ``manager-2`` は十分な速さで、プライマリ・マネージャとして選出手続きを実質的に行ったからです。その結果、 ``manager-2`` がクラスタ上のプライマリ・マネージャになりました。
+これはプライマリ・マネージャ ``manager-1`` で障害が発生しました。その後、 ``192.168.42.201:4000`` のアドレスを持つ ``manager-2`` のレプリカが障害を検出したため、主導権を（manager-1から）取り上げてリーダーに選出されました。理由は ``manager-2`` は十分な速さで、プライマリ・マネージャとして選出手続きを実質的に行ったからです。その結果、 ``manager-2`` がクラスタ上のプライマリ・マネージャになりました。
 
 .. If we take a look at manager-3 we should see those logs:
 
-``manager-3`` を見てみると、次のような ログが表示されるでしょう。
+``manager-3`` を見れば、次のような ログが表示されるでしょう。
 
 .. code-block:: bash
 
@@ -248,7 +248,7 @@ Docker Swarm の **Swarm マネージャ** は、クラスタ全体に対する�
 
 .. If you like, you can use custom mechanisms to always point DOCKER_HOST to the current primary manager. Then, you never lose contact with your Docker Swarm in the event of a failover.
 
-好みによって、 何らかの仕組みを使うことにより、``DOCKER_HOST`` が現在のプライマリ・マネージャを常に示すよう にも可能です。そうしておけば、フェイルオーバ発生のたびに、Docker Swarm に対する接続を失うことはないでしょう。
+好みによって、 何らかの仕組みを使うことにより、``DOCKER_HOST`` が現在のプライマリ・マネージャを常に示すよう にも可能です。そうしておけば、フェイルオーバ発生の度に、Docker Swarm に対する接続を失うことは無いでしょう。
 
 .. seealso:: 
 

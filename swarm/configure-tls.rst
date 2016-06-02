@@ -23,7 +23,7 @@ Docker Swarm の TLS 設定
 
 .. In this procedure you create a two-node Swarm cluster, a Docker Engine CLI, a Swarm Manager, and a Certificate Authority as shown below. All the Docker Engine hosts (client, swarm, node1, and node2) have a copy of the CA’s certificate as well as their own key-pair signed by the CA.
 
-この手順では下図のように、 Swarm クラスタに２つのノードを作成し、Swarm マネージャ、認証局をします。全ての Docker Engine ホスト（ ``client`` 、 ``swarm`` 、 ``node1``  、 ``node2``  ）は、認証局の証明書のコピーと、自分自身で認証局の署名をしたキーペアのコピーも持ちます。
+この手順では下図のように、 Swarm クラスタにSwarm マネージャと認証局（CA）の２つのノードを作成します。全ての Docker Engine ホスト（ ``client`` 、 ``swarm`` 、 ``node1``  、 ``node2``  ）は、認証局の証明書のコピーと、自分自身で認証局の署名をしたキーペアのコピーも持ちます。
 
 .. image:: ./images/tls-1.png
    :scale: 60%
@@ -58,7 +58,7 @@ Docker Swarm の TLS 設定
 
 .. To complete this procedure you must stand up 5 (five) Linux servers. These servers can be any mix of physical and virtual servers; they may be on premises or in the public cloud. The following table lists each server name and its purpose.
 
-この手順を進めるには、５つの Linux サーバの起動が必要です。これらのサーバは物理と仮想を組みあわせても構いません。以下の表はサーバ名と役割の一覧です。
+この手順を進めるには、５つの Linux サーバの起動が必要です。これらのサーバは物理と仮想を組み合わせても構いません。以下の表はサーバ名と役割の一覧です。
 
 .. Server name 	Description
    ca 	Acts as the Certificate Authority (CA) server.
@@ -85,7 +85,7 @@ Docker Swarm の TLS 設定
 
 .. Make sure that you have SSH access to all 5 servers and that they can communicate with each other using DNS name resolution. In particular:
 
-５台全てのサーバに SSH 接続が可能なのを確認し、DNS の名前解決でお互いに通信できるようにします。特に、次の２点に気をつけます。
+５台全てのサーバに SSH 接続が可能なのを確認し、DNS の名前解決でお互いに通信できるようにします。特に、次の２点に気を付けます。
 
 ..    Open TCP port 2376 between the Swarm Manager and Swarm nodes
     Open TCP port 3376 between the Docker Engine client and the Swarm Manager
@@ -114,7 +114,7 @@ Docker Swarm の TLS 設定
 
 .. In this step, you configure a Linux server as a CA. You use this CA to create and sign keys. This step included so that readers without access to an existing CA (external or corporate) and certificates can follow along and complete the later steps that require installing and using certificates. It is not intended as a model for how to deploy production-worthy CA.
 
-このステップでは Linux サーバを認証局として設定します。認証局は鍵の作成と署名に使います。読者が既存の（外部または企業の）認証局へのアクセスや証明書がなくても、このステップでは必要な環境のインストールと証明書を使えるようにします。しかし、プロダクションへのデプロイには適切では「ない」モデルです。
+このステップでは Linux サーバを認証局として設定します。認証局は鍵の作成と署名に使います。読者が既存の（外部または企業の）認証局へのアクセスや証明書が無くても、このステップでは必要な環境のインストールと証明書を使えるようにします。しかし、プロダクションへのデプロイには適切では「ない」モデルです。
 
 ..    Logon to the terminal of your CA server and elevate to root.
 
@@ -450,7 +450,7 @@ Docker Swarm の TLS 設定
 
 * node1
 * node2
-* クライアント
+* client
 
 ..    Verify your work.
 
@@ -568,7 +568,7 @@ TCP ポート ``2376`` を指定します。 ``2375`` ではありません。
 
 ..    Join node2 to the cluster.
 
-4. ``node3`` をクラスタに追加します。
+4. ``node2`` をクラスタに追加します。
 
 .. code-block:: bash
 
@@ -677,16 +677,16 @@ TLS を使う Swarm クラスタを構築しました。次は、Docker Engine C
 
 .. _step-9-configure-the-engine-cli-to-use-tls:
 
-ステップ８：TLS を使う Engilne CLI の設定
+ステップ９：TLS を使う Engilne CLI の設定
 ==================================================
 
 .. You can configure the Engine so that you don’t have to pass the TLS options when you issue a command. To do this, you’ll configure the Docker Engine host and TLS settings as defaults on your Docker Engine client.
 
-コマンド実行時に TLS オプションを指定しなくても良いよう、Engine 側に設定できます。設定のためには、Docker Engine クライアントが出おフォルトで ``TLS`` を使うように、Docker Engine のホストの設定をします。
+コマンド実行時に TLS オプションを指定し無くても良いよう、Engine側に設定できます。設定のためには、Docker Engineクライアントがデフォルトで ``TLS`` を使うように、Docker Engine のホストの設定をします。
 
 .. To do this, you place the client’s keys in your ~/.docker configuration folder. If you have other users on your system using the Engine command line, you’ll need to configure their account’s ~/.docker as well. The procedure below shows how to do this for the ubuntu user on your Docker Engine client.
 
-そのためには、クライアントの鍵を自分の ``~/.docker`` 設定ディレクトリに置きます。システム上で他にも Engine コマンドを使っているユーザがいる場合は、それぞれのアカウントでも同様に ``~/.docker`` に設定が必要です。以降は、 ``ubuntu`` ユーザで Docker Engine クライアントを使う手順です。
+そのためには、クライアントの鍵を自分の ``~/.docker`` 設定ディレクトリに置きます。システム上で他にも Engine コマンドを使っているユーザがいる場合は、それぞれのアカウントでも同様に ``~/.docker`` の設定が必要です。以降は、 ``ubuntu`` ユーザで Docker Engine クライアントを使う手順です。
 
 ..    Open a terminal onto your client server.
 

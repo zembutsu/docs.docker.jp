@@ -7,6 +7,7 @@
 .. Commits on Apr 6, 2016 2a778b36009db0c495f65c3e7aabfaf3b0cd3044
 .. -------------------------------------------------------------------
 
+
 .. Swarm filters
 
 .. _swarm-filters:
@@ -14,6 +15,12 @@
 ==============================
 Swarm フィルタ
 ==============================
+
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
 
 .. Filters tell Docker Swarm scheduler which nodes to use when creating and running a container.
 
@@ -28,7 +35,7 @@ Swarm フィルタ
 
 .. Filters are divided into two categories, node filters and container configuration filters. Node filters operate on characteristics of the Docker host or on the configuration of the Docker daemon. Container configuration filters operate on characteristics of containers, or on the availability of images on a host.
 
-フィルタはノード・フィルタ（node filters）とコンテナ設定フィルタ（container configuration filters）の２種類に分けられます。ノード・フィルタは Docker ホストの特徴か Docker デーモンの設定によって処理します。コンテナ設定フィルタはコンテナの特徴か、あるいは、ホスト上で利用可能なイメージによって処理します。
+フィルタはノード・フィルタ（node filter）とコンテナ設定フィルタ（container configuration filter）の２種類に分けられます。ノード・フィルタは Docker ホストの特徴、あるいは Docker デーモンの設定によって処理します。コンテナ設定フィルタはコンテナの特徴、あるいはホスト上で利用可能なイメージによって処理します。
 
 .. Each filter has a name that identifies it. The node filters are:
 
@@ -80,7 +87,7 @@ constraint （制限）フィルタを使う
 
 .. Node constraints can refer to Docker's default tags or to custom labels. Default tags are sourced from docker info. Often, they relate to properties of the Docker host. Currently, the default tags include:
 
-ノード制限（constraint；コンストレイント＝制限・制約の意味）は Docker のデフォルトのタグやカスタム・ラベルを参照します。デフォルトのタグとは ``docker info`` の情報を元にします。しばし Docker ホストの設定状態に関連づけられます。現在以下の項目をデフォルト・タグとして利用できます。
+ノード制限（constraint；コンストレイント＝制限・制約の意味）は Docker のデフォルトのタグやカスタム・ラベルを参照します。デフォルトのタグとは ``docker info`` の情報を元にします。しばし Docker ホストの設定状態に関連付けられます。現在以下の項目をデフォルト・タグとして利用できます。
 
 * ``node`` ノードを参照するための ID もしくは名前
 * ``storagedriver``
@@ -99,14 +106,14 @@ constraint （制限）フィルタを使う
 
 .. Then, when you start a container on the cluster, you can set constraints using these default tags or custom labels. The Swarm scheduler looks for matching node on the cluster and starts the container there. This approach has several practical applications:
 
-そして、クラスタ上でコンテナを起動するときに、これらのデフォルト・タグかカスタム・ラベルを使って制限（constraint）を指定可能です。Swarm スケジューラはクラスタ上に条件が一致するノードを探し、そこでコンテナを起動します。この手法は、いくつもの実践的な機能になります。
+そして、クラスタ上でコンテナの起動時に、これらのデフォルト・タグかカスタム・ラベルを使って制限（constraint）を指定可能です。Swarm スケジューラはクラスタ上に条件が一致するノードを探し、そこでコンテナを起動します。この手法は、いくつもの実践的な機能になります。
 
 ..    Schedule based on specific host properties, for example,storage=ssd schedules containers on specific hardware.
 ..    Force containers to run in a given location, for example region=us-east`.
 ..    Create logical cluster partitions by splitting a cluster into sub-clusters with different properties, for example environment=production.
 
 * ホスト・プロパティを指定した選択（ ``storage=ssd`` のように、特定のハードウェアにコンテナをスケジュールするため）
-* ノードの基盤に、物理的な場所をタグ付けする（ ``region=us-ease`` のように、指定した場所でコンテナを強制的に実行）
+* ノードの基盤に、物理的な場所をタグ付けする（ ``region=us-east`` のように、指定した場所でコンテナを強制的に実行）
 * 論理的なクラスタの分割（ ``environment=production`` のように、プロパティの違いによりクラスタを複数のサブクラスタに分割）
 
 .. Example node constraints
@@ -136,11 +143,11 @@ constraint （制限）フィルタを使う
 
 .. Once the nodes are joined to a cluster, the Swarm manager pulls their respective tags. Moving forward, the manager takes the tags into account when scheduling new containers.
 
-ノードがクラスタに登録されると、Swarm マネージャは個々のタグを取得します。マネージャは新しいコンテナをスケジューリングする時に、ここで取得下タグの情報を使って処理します。
+ノードがクラスタに登録されたら、Swarm マネージャは個々のタグを取得します。マネージャは新しいコンテナをスケジューリングする時に、ここで取得したタグの情報を使って処理します。
 
 .. Once the nodes are registered with the cluster, the manager pulls their respective tags and will take them into account when scheduling new containers.
 
-ノードがクラスタに登録されると、マネージャは各々のタグを取得し、新しいコンテナをスケジューリングするときにそれらを反映します。
+.. ノードがクラスタに登録されたら、マネージャは各々のタグを取得し、新しいコンテナをスケジューリングするときにそれらを反映します。
 
 .. Continuing the previous example, assuming your cluster with node-1 and node-2, you can run a MySQL server container on the cluster. When you run the container, you can use a constraint to ensure the database gets good I/O performance. You do this by filtering for nodes with flash drives:
 
@@ -161,7 +168,7 @@ constraint （制限）フィルタを使う
 
 .. Suppose you want to run an Nginx frontend in a cluster. In this case, you wouldn't want flash drives because the frontend mostly writes logs to disk.
 
-クラスタのフロントエンドとして Nginx の実行をお考えでしょうか。この例では、フロントエンドはディスクのログを記録するだけなので、フラッシュ・ドライブを使いたくないでしょう。
+クラスタのフロントエンドとして Nginx の実行をお考えでしょうか。この例では、フロントエンドはディスクのログを記録するだけですので、フラッシュ・ドライブを使いたくないでしょう。
 
 
 .. code-block:: bash
@@ -272,7 +279,7 @@ health フィルタを使う
 
 .. You can schedule a new container to run next to another based on a container name or ID. For example, you can start a container called frontend running nginx:
 
-新しいコンテナを、既存のコンテナ名や ID を基にしてスケジューリングできます。例えば、 ``frontend`` という名前で ``nginx``  を実行します。
+新しいコンテナを、既存のコンテナ名や ID を元にしてスケジューリングできます。例えば、 ``frontend`` という名前のノードで ``nginx``  を実行します。
 
 .. code-block:: bash
 
@@ -314,7 +321,7 @@ health フィルタを使う
 
 .. You can schedule a container to run only on nodes where a specific image is already pulled.
 
-コンテナを起動するとき、特定のイメージをダウンロード済みのノードのみにスケジュールすることができます。たとえば、２つのホストに ``redis`` イメージをダウンロードし、３つめのホストに ``mysql`` イメージをダウンロードしたい場合があるでしょう。
+コンテナを起動する時、特定のイメージをダウンロード済みのノードのみにスケジュールすることができます。例えば、２つのホストに ``redis`` イメージをダウンロードし、３つめのホストに ``mysql`` イメージをダウンロードしたい場合があるでしょう。
 
 .. code-block:: bash
 
@@ -367,7 +374,7 @@ health フィルタを使う
 
 .. Label affinity allows you to set up an attraction based on a container’s label. For example, you can run a nginx container with the com.example.type=frontend label.
 
-ラベル・アフィニティによって、コンテナのラベルで引き寄せてセットアップできます。例えば、 ``nginx`` コンテナを ``com.example.type=frontend`` ラベルをつけて起動します。
+ラベル・アフィニティによって、コンテナのラベルで引き寄せてたセットアップが可能です。例えば、 ``nginx`` コンテナに ``com.example.type=frontend`` ラベルを付けて起動します。
 
 .. code-block:: bash
 
@@ -380,7 +387,7 @@ health フィルタを使う
 
 .. Then, use -e affinity:com.example.type==frontend to schedule a container next to the container with the com.example.type==frontend label.
 
-それから、 ``-e affinity:com.example.type==frontend`` を使って、 ``com.example.type==fronten`` ラベルを持つコンテナの隣にスケジュールします。
+それから、 ``-e affinity:com.example.type==frontend`` を使って、 ``com.example.type==frontend`` ラベルを持つコンテナの隣にスケジュールします。
 
 .. code-block:: bash
 
@@ -435,7 +442,7 @@ port フィルタを使う
 .. _example-in-bridge-mode:
 
 ブリッジ・モードでの例
-^^^^^^^^E^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. By default, containers run on Docker's bridge network. To use the port filter with the bridge network, you run a container as follows.
 
@@ -466,7 +473,7 @@ Docker Swarm はポート ``80`` が利用可能であり他のコンテナ・�
 
 .. Again, repeating the same command will result in the selection of node-3, since port 80 is neither available on node-1 nor node-2:
 
-同じコマンドを繰り返すと ``node-3`` が選ばれます。これは ``node-1`` と ``node-2`` の両方でポート ``80`` が使用済みのためです。
+同じコマンドを繰り返しますと ``node-3`` が選ばれます。これは ``node-1`` と ``node-2`` の両方でポート ``80`` が使用済みのためです。
 
 .. code-block:: bash
 
@@ -481,7 +488,7 @@ Docker Swarm はポート ``80`` が利用可能であり他のコンテナ・�
 
 .. Finally, Docker Swarm will refuse to run another container that requires port 80, because it is not available on any node in the cluster:
 
-最終的に、Docker Swarm は他のコンテナがポート ``80`` を要求しても拒否するでしょう。クラスタ上のすべてのノードでポートが使えないためです。
+最終的に、Docker Swarm は他のコンテナがポート ``80`` を要求しても拒否するでしょう。クラスタ上の全てのノードでポートが使えないためです。
 
 .. code-block:: bash
 
@@ -490,7 +497,7 @@ Docker Swarm はポート ``80`` が利用可能であり他のコンテナ・�
 
 .. Each container occupies port 80 on its residing node when the container is created and releases the port when the container is deleted. A container in exited state still owns the port. If prickly_engelbart on node-1 is stopped but not deleted, trying to start another container on node-1 that requires port 80 would fail because port 80 is associated with prickly_engelbart. To increase running instances of nginx, you can either restart prickly_engelbart, or start another container after deleting prickly_englbart.
 
-各ノード中のポート ``80`` は、各コンテナによって専有されています。これはコンテナ作成時からのものであり、コンテナを削除するとポートは解放されます。コンテナが ``exited`` （終了）の状態であれば、まだポートを持っている状態です。もし ``node-1`` の ``prickly_engelbart`` が停止したとしても、ポートの情報は削除されないため、 ``node-1`` 上でポート ``80`` を必要とする他のコンテナの起動を試みても失敗します。nginx インスタンスを起動するには、 ``prickly_engelbart`` コンテを再起動するか、あるいは ``prickly_engelbart`` コンテナを削除後に別のコンテナを起動します。
+各ノード中のポート ``80`` は、各コンテナによって専有されています。これはコンテナ作成時からのものであり、コンテナを削除するとポートは解放されます。コンテナが ``exited`` （終了）の状態であれば、まだポートを持っている状態です。もし ``node-1`` の ``prickly_engelbart`` が停止したとしても、ポートの情報は削除されないため、 ``node-1`` 上でポート ``80`` を必要とする他のコンテナの起動を試みても失敗します。nginx インスタンスを起動するには、 ``prickly_engelbart`` コンテナを再起動するか、あるいは ``prickly_engelbart`` コンテナを削除後に別のコンテナを起動します。
 
 .. Note port filter with host networking
 
@@ -501,7 +508,7 @@ Docker Swarm はポート ``80`` が利用可能であり他のコンテナ・�
 
 .. A container running with --net=host differs from the default bridge mode as the host mode does not perform any port binding. Instead, host mode requires that you explicitly expose one or more port numbers. You expose a port using EXPOSE in the Dockerfile or --expose on the command line. Swarm makes use of this information in conjunction with the host mode to choose an available node for a new container.
 
-コンテナ実行時に ``--net=host`` を指定すると、デフォルトの ``bridge`` モードとは違い、 ``host`` モードはどのポートもバインドしません。そのため、 host モードでは公開したいポート番号を明示する必要があります。このポート公開には ``Dockerfile`` で ``EXPOSE``  命令を使うか、コマンドラインで ``--expose`` を指定します。Swarm は ``host`` モードで新しいコンテナを作成しようとする時にも、これらの情報を利用します。
+コンテナ実行時に ``--net=host`` を指定したら、デフォルトの ``bridge`` モードとは違い、 ``host`` モードはどのポートも拘束しません。そのため、 host モードでは公開したいポート番号を明示する必要があります。このポート公開には ``Dockerfile`` で ``EXPOSE``  命令を使うか、コマンドラインで ``--expose`` を指定します。Swarm は ``host`` モードで新しいコンテナを作成しようとする時にも、これらの情報を利用します。
 
 .. For example, the following commands start nginx on 3-node cluster.
 
@@ -539,7 +546,7 @@ Docker Swarm はポート ``80`` が利用可能であり他のコンテナ・�
 
 .. However, port binding to the different value, for example 81, is still allowed.
 
-しかしながら、例えばポート ``81`` のような異なった値のポートをバインドするのであれば、コマンドを実行できます。
+しかしながら、例えばポート ``81`` のように、異なった値のポートをバインドするのであれば、コマンドを実行できます。
 
 .. code-block:: bash
 
@@ -573,15 +580,15 @@ Docker Swarm はポート ``80`` が利用可能であり他のコンテナ・�
 
 .. code-block:: bash
 
-   <filter-type>:<key><operator><value>
+   <フィルタ・タイプ>:<キー><演算子><値>
 
 .. The <filter-type> is either the affinity or the constraint keyword. It identifies the type filter you intend to use.
 
-``<filter-type>`` は ``affinity`` か ``constraint``  のキーワードのどちらかです。使いたいフィルタのタイプによって異なります。
+``<フィルタ・タイプ>`` は ``affinity`` か ``constraint``  のキーワードのどちらかです。使いたいフィルタのタイプによって異なります。
 
 .. The <key> is an alpha-numeric and must start with a letter or underscore. The <key> corresponds to one of the following:
 
-``<key>`` は英数字のパターンであり、先頭はアルファベットかアンダースコアです。 ``<key>`` に相当するのは以下の条件です。
+``<キー>`` は英数字のパターンであり、先頭はアルファベットかアンダースコアです。 ``<キー>`` に相当するのは以下の条件です。
 
 ..     the container keyword
     the node keyword
@@ -599,7 +606,7 @@ Docker Swarm はポート ``80`` が利用可能であり他のコンテナ・�
 
 .. The <value> is an alpha-numeric string, dots, hyphens, and underscores making up one of the following:
 
-``<value>`` は英数時、ドット、ハイフン、アンダースコアと、以下を組みあわせた文字列です。
+``<値>`` は英数時、ドット、ハイフン、アンダースコアと、以下を組み合わせた文字列です。
 
 ..    A globbing pattern, for example, abc*.
     A regular expression in the form of /regexp/. See re2 syntax for the supported regex syntax.

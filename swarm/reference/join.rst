@@ -33,7 +33,7 @@ Swarm ノードを作成するには、次の構文を使います。
 
 .. For example, to create a Swarm node in a high-availability cluster with other managers, enter:
 
-例えば、Swarm ノードを高可用性クラスタを持つマネージャに接続には、次のように実行します。
+例えば、Swarm ノードを高可用性クラスタ対応マネージャに接続するには、次のように実行します。
 
 .. code-block:: bash
 
@@ -67,7 +67,7 @@ Swarm ノードを作成する前に、 :doc:`ディスカバリ・トークン�
 
 .. When you create the Swarm node, use the <discovery> argument to specify one of the following discovery backends:
 
-`Swarm ノードの作成時、 ``<discovery>`` 引数を使って以下のバックエンドを指定可能です。
+Swarm ノードの作成時、 ``<discovery>`` 引数を使って以下のバックエンドを指定可能です。
 
 * ``token://<token>``
 * ``consul://<ip1>/<path>``

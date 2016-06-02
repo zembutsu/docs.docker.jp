@@ -542,7 +542,7 @@ Compose ファイルはバージョン２形式を使うのがベストです。
 
 .. Congratulations. You have successfully walked through manually deploying a microservice-based application to a Swarm cluster. Of course, not every deployment goes smoothly. Now that you’ve learned how to successfully deploy an application at scale, you should learn what to consider when troubleshooting large applications running on a Swarm cluster.
 
-おめでとうございます。マイクロサービスをベースとしたアプリケーションを Swarm クラスタ上に手動でデプロイできました。もちろん、全てが上手くいくとは限りません。どのようにスケールするアプリケーションをデプロイするかを学びましたので、次は :doc:`Swarm クラスタ上で大規模アプリケーション実行時のトラブルシューティング <troubleshoot>` を学ぶべきでしょう。
+おめでとうございます。マイクロサービスをベースとしたアプリケーションを Swarm クラスタ上に手動でデプロイできました。もちろん、全てが上手く行くとは限りません。どのようにスケールするアプリケーションをデプロイするかを学びましたので、次は :doc:`Swarm クラスタ上で大規模アプリケーション実行時のトラブルシューティング <troubleshoot>` を学ぶべきでしょう。
 
 .. seealso:: 
 

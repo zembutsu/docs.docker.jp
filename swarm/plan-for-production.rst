@@ -67,7 +67,7 @@ Swarm クラスタ内にある全てのノードは、Docker Engine デーモン
 
 .. The Engine daemons, including the Swarm manager, that are configured to use TLS will only accept commands from Docker Engine clients that sign their communications. The Engine and Swarm support external 3rd party Certificate Authorities (CA) as well as internal corporate CAs.
 
-Engine デーモンおよび Swarm マネージャは、TLS を使う設定をすることで、署名された Docker Engine クライアントからのみ通信を受け付けるようにできます。Engine と Swarm は組織内部の認証局（CA; Certificate Authorities）だけでなく、外部のサード・パーティ製による認証局もサポートしています。
+Engine デーモンおよび Swarm マネージャは、TLS を使う設定をすることで、署名された Docker Engine クライアントからのみ通信を受け付けるようにできます。Engine と Swarm は組織内部の認証局（CA; Certificate Authorities）だけでなく、外部のサード・パーティー製による認証局もサポートしています。
 
 .. The default Engine and Swarm ports for TLS are:
 
@@ -78,6 +78,7 @@ Engine と Swarm が TLS に使うデフォルトのポート番号：
 
 * Engine デーモン：2376/tcp
 * Swarm マネージャ：3376/tcp
+
 .. For more information on configuring Swarm for TLS, see the Overview Docker Swarm with TLS page.
 
 Swarm に TLS 設定を行うための詳しい情報は、 :doc:`secure-swarm-tls` ページをご覧ください。

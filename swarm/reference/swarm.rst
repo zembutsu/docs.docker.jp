@@ -12,7 +12,7 @@
 .. _swarm-a-docker-native-clustering-system:
 
 ===================================================
-Swarm - Docker ネイティブのクラスタリング・システム
+swarm - Docker ネイティブのクラスタリング・システム
 ===================================================
 
 .. The swarm command runs a Swarm container on a Docker Engine host and performs the task specified by the required subcommand, COMMAND.
@@ -29,7 +29,7 @@ Swarm - Docker ネイティブのクラスタリング・システム
 
 .. For example, you use swarm with the manage subcommand to create a Swarm manager in a high-availability cluster with other managers:
 
-例えば、 ``swarm`` に ``manage`` サブコマンドを使うと Swarm マネージャを作成します。このとき、クラスタ上にある他のマネジャと可用性を持たせるには：
+例えば、 ``swarm`` で ``manage`` サブコマンドを使えば Swarm マネージャを作成します。この時、クラスタ上にある他のマネジャと可用性を持たせるには：
 
 .. code-block:: bash
 

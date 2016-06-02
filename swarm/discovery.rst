@@ -23,7 +23,7 @@ Docker Swarm ディスカバリ
 
 .. Docker Swarm comes with multiple discovery backends. You use a hosted discovery service with Docker Swarm. The service maintains a list of IPs in your cluster. This page describes the different types of hosted discovery available to you. These are:
 
-Docker Swarm は複数のディスカバリ・バックエンドに対応しています。Docker Swarm にはホステット・ディスカバリ・サービス（hosted discovery service）が利用可能です。このサービスは クラスタ上の IP アドレスの一覧を保持します。このページでは利用可能な様々なホステット・ディスカバリを紹介します。
+Docker Swarm は複数のディスカバリ・バックエンドに対応しています。Docker Swarm はホステット・ディスカバリ・サービス（hosted discovery service）が利用可能です。このサービスは クラスタ上の IP アドレスの一覧を保持します。このページでは利用可能な様々なホステット・ディスカバリを紹介します。
 
 .. Using a distributed key/value store
 
@@ -34,7 +34,7 @@ Docker Swarm は複数のディスカバリ・バックエンドに対応して�
 
 .. The recommended way to do node discovery in Swarm is Docker’s libkv project. The libkv project is an abstraction layer over existing distributed key/value stores. As of this writing, the project supports:
 
-Swarm でノードをディスカバリ（発見）するのに推奨される方法は、Docker の libkv プロジェクトの利用です。libkv プロジェクトとは既存の分散キーバリュー・ストア上の抽象化レイヤです。この原稿を書いている時点で、プロジェクトがサポートしているのは次の通りです。
+Swarm でノードをディスカバリ（発見）するのに推奨される方法は、Docker による libkv プロジェクトの利用です。libkv プロジェクトとは既存の分散キーバリュー・ストア上の抽象化レイヤです。この原稿を書いている時点で、プロジェクトがサポートしているのは次の通りです。
 
 ..    Consul 0.5.1 or higher
     Etcd 2.0 or higher
@@ -61,7 +61,7 @@ libkv についてやサポートしているバックエンドに対する技�
 
 ..    The node IP address doesn’t have to be public as long as the Swarm manager can access it. In a large cluster, the nodes joining swarm may trigger request spikes to discovery. For example, a large number of nodes are added by a script, or recovered from a network partition. This may result in discovery failure. You can use --delay option to specify a delay limit. Swarm join will add a random delay less than this limit to reduce pressure to discovery.
 
-ノード の IP アドレスは Swarm マネージャがアクセス可能であれば十分であり、パブリックな IP アドレスを持つ必要はありません。大きなクラスタになると、Swarm に対するノードの参加が、ディスカバリ時に過負荷となる可能性があります。例えば、沢山のノードをスクリプトで登録する場合や、ネットワーク障害から復旧する時です。この影響によりディスカバリが失敗するかもしれません。そのような場合は、 ``--delay`` オプションで遅延上限を指定できます。そうすると、Swarm への登録がランダムに遅延して行われますが、指定した時間を上回ることはありません。
+ノード の IP アドレスは Swarm マネージャがアクセス可能であれば十分であり、パブリックな IP アドレスを持つ必要はありません。大きなクラスタになれば、Swarm に対するノードの参加が、ディスカバリ時に過負荷となる可能性があります。例えば、沢山のノードをスクリプトで登録する場合や、ネットワーク障害から復旧する時です。この影響によりディスカバリが失敗するかもしれません。そのような場合は、 ``--delay`` オプションで遅延上限を指定できます。そうすると、Swarm への登録がランダムに遅延して行われますが、指定した時間を上回ることはありません。
 
 **Etcd:**
 
@@ -177,7 +177,7 @@ libkv についてやサポートしているバックエンドに対する技�
 
 .. Both the static file and the nodes option support a IP address ranges. To specify a range supply a pattern, for example, 10.0.0.[10:200] refers to nodes starting from 10.0.0.10 to 10.0.0.200. For example for the file discovery method.
 
-静的なファイルあるいは ``nodes`` オプションは IP アドレスの範囲指定をサポートしています。特定のパターンで範囲を指定するには、例えば ``10.0.0.[10:200]`` を指定すると、 ``10.0.0.10`` から ``10.0.0.200`` までのノードを探そうとします。以下は ``file`` ディスカバリ手法を使う例です。
+静的なファイルあるいは ``nodes`` オプションは IP アドレスの範囲指定をサポートしています。特定のパターンで範囲を指定するには、例えば ``10.0.0.[10:200]`` を指定したら、 ``10.0.0.10`` から ``10.0.0.200`` までのノードを探そうとします。以下は ``file（ファイル）`` ディスカバリ手法を使う例です。
 
 .. code-block:: bash
 
@@ -187,7 +187,7 @@ libkv についてやサポートしているバックエンドに対する技�
 
 .. Or with node discovery:
 
-あるいはノードでディスカバリするには、次のように実行します。
+あるいはノードの直接指定でディスカバリするには、次のように実行します。
 
 .. code-block:: bash
 
@@ -364,7 +364,7 @@ Docker Hub のホステッド・ディスカバリ
 
 .. You can contribute a new discovery backend to Swarm. For information on how to do this, see our discovery README in the Docker Swarm repository.
 
-あなたは Swarm 向けに新しいディスカバリ・バックエンドに貢献できます。どのようにするかは、 `Docker Swarm リポジトリにある discovery README <https://github.com/docker/swarm/blob/master/discovery/README.md>`_ をお読みください。
+あなたも Swarm 向けに新しいディスカバリ・バックエンドに貢献できます。どのようにするかは、 `Docker Swarm リポジトリにある discovery README <https://github.com/docker/swarm/blob/master/discovery/README.md>`_ をお読みください。
 
 .. Docker Swarm documentation index
 

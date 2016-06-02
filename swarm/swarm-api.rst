@@ -21,7 +21,7 @@ Docker Swarm API
 
 .. The Docker Swarm API is mostly compatible with the Docker Remote API. This document is an overview of the differences between the Swarm API and the Docker Remote API.
 
-Docker Swarm API は :doc:`Docker リモート API </engine/reference/api/docker_remote_api>` と大部分に互換性があります。このドキュメントは、Swarm API と Docker リモート API 間の違いに関する概要です。
+Docker Swarm API は :doc:`Docker リモート API </engine/reference/api/docker_remote_api>` と広範囲の互換性があります。このドキュメントは、Swarm API と Docker リモート API 間の違いに関する概要を説明します。
 
 .. Missing endpoints
 

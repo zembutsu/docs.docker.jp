@@ -42,11 +42,11 @@ Swarm クラスタにカスタム・ネットワークを作成
 
 .. To create a custom network, you must choose a key-value store backend and implement it on your network. Then, you configure the Docker Engine daemon to use this store. Two required parameters, --cluster-store and --cluster-advertise, refer to your key-value store server.
 
-カスタム・ネットワークを作成するには、キーバリュー・ストア・バックエンドを選択肢、自分のネットワーク上に実装する必要があります。それから、Docker Engine デーモンの設定を変更し、キーバリュー・ストアにデータを保管できるようにします。キーバリュー・ストア用のサーバを参照するには ``--cluster-store`` と ``--cluster-advertise`` という２つのパラメータが必要です。
+カスタム・ネットワークを作成するには、キーバリュー・ストア・バックエンドを選択し、自分のネットワーク上に実装する必要があります。それから、Docker Engine デーモンの設定を変更し、キーバリュー・ストアにデータを保管できるようにします。キーバリュー・ストア用のサーバを参照するには ``--cluster-store`` と ``--cluster-advertise`` という２つのパラメータが必要です。
 
 .. Once you’ve configured and restarted the daemon on each Swarm node, you are ready to create a network.
 
-Swarm の各ノード上にあるデーモンの設定変更・再起動を行うと、ネットワーク作成の準備が整います。
+Swarm の各ノード上にあるデーモンの設定変更・再起動を行えば、ネットワーク作成の準備が整います。
 
 .. List networks
 
@@ -83,7 +83,7 @@ Swarm の各ノード上にあるデーモンの設定変更・再起動を行�
 
 .. By default, swarm is using the overlay network driver, a global scope driver. A global-scope network driver creates a network across an entire Swarm cluster. When you create an overlay network under Swarm, you can omit the -d option:
 
-デフォルトの Swarm クラスタは、ネットワーク全体を範囲とする ``overlay`` ネットワーク・ドライバを使います。ネットワーク全体を範囲とするドライバを使えば、Swarm クラスタ全体を横断するネットワークを作成できます。Swarm で ``overlay`` ネットワークを作成する時には ``-d`` オプションを省略できます。
+デフォルトの Swarm クラスタは、ネットワーク全体を範囲とする ``overlay`` ネットワーク・ドライバを使います。ネットワーク全体を範囲とするドライバを使えば、Swarm クラスタ全体を横断するネットワークを作成できます。Swarm で ``overlay`` ネットワーク作成時は ``-d`` オプションを省略できます。
 
 .. code-block:: bash
 

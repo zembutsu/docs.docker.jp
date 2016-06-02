@@ -40,11 +40,11 @@ TLS の概念を学ぶ
 
 .. Before going further, it is important to understand the basic concepts of TLS and public key infrastructure (PKI).
 
-進む前に、TLS と PKI (Public Key Infrastructure；公開鍵基盤) の基本概念を理解しておくことが重要です。
+先に進む前に、TLS と PKI (Public Key Infrastructure；公開鍵基盤) の基本概念を理解しておくことが重要です。
 
 .. Public key infrastructure is a combination of security related technologies, policies, and procedures, that are used to create and manage digital certificates. These certificates and infrastructure secure digital communication using mechanisms such as authentication and encryption.
 
-公開鍵基盤はセキュリティに関連する技術・ポリシー・手続きを組みあわせたものです。これらが電子証明書の作成や管理に使われます。認証や暗号化のような仕組みにおいて、これらの証明書とインフラの安全なデジタル通信が使われます。
+公開鍵基盤はセキュリティに関連する技術・ポリシー・手続きを組み合わせたものです。これらが電子証明書の作成や管理に使われます。認証や暗号化のような仕組みにおいて、これらの証明書とインフラの安全なデジタル通信が使われます。
 
 .. The following analogy may be useful. It is common practice that passports are used to verify an individual’s identity. Passports usually contain a photograph and biometric information that identify the owner. A passport also lists the country that issued it, as well as valid from and valid to dates. Digital certificates are very similar. The text below is an extract from a a digital certificate:
 
@@ -65,11 +65,11 @@ TLS の概念を学ぶ
 
 .. This certificate identifies a computer called swarm. The certificate is valid between January 2016 and January 2026 and was issued by Docker Inc. based in the state of California in the US.
 
-この証明書は **swarm** という名称のコンピュータを識別します。証明書の有効期間は 2016年1月から2026年1月までです。そしてこれを発行したのは米国カリフォルニア州を拠点としている Docker, Inc. です。
+この証明書で **swarm** という名称のコンピュータを識別します。証明書の有効期間は 2016年1月から2026年1月までです。そしてこれを発行したのは米国カリフォルニア州を拠点としている Docker, Inc. です。
 
 .. Just as passports authenticate individuals as they board flights and clear customs, digital certificates authenticate computers on a network.
 
-パスポートを使った個人認証が使われるのは、飛行機の搭乗であったり、板を囲んだだけの税関においてです。電子証明書はネットワーク上のコンピュータを認証するために使います。
+パスポートを使った個人認証が使われるのは、飛行機の搭乗や、板で囲まれた税関においてです。電子証明書はネットワーク上のコンピュータを認証するために使います。
 
 .. Public key infrastructure (PKI) is the combination of technologies, policies, and procedures that work behind the scenes to enable digital certificates. Some of the technologies, policies and procedures provided by PKI include:
 
@@ -112,15 +112,15 @@ TLS 認証を使うためには、 Docker Engine CLI と Docker Engine デーモ
 
 .. The trusted third party in this diagram is the the Certificate Authority (CA) server. Like the country in the passport example, a CA creates, signs, issues, revokes certificates. Trust is established by installing the CA’s root certificate on the host running the Docker Engine daemon. The Engine CLI then requests its own certificate from the CA server, which the CA server signs and issues to the client.
 
-図中における信頼できる第三者とは認証局（CA; Certificate Authority）サーバです。CA とは、パスポートを例にすると国に相当します。認証局（CA）は証明証を作成・署名・発行・無効化します。Docker Engine デーモンを実行するホスト上では、信頼を確立するために、認証局のルート証明書をインストールします。Docker Engine CLI は認証局のサーバに対して証明書を要求します。認証局サーバはクライアントに対して証明書の署名・発行を行います。
+図中における信頼できる第三者とは認証局（CA; Certificate Authority）サーバです。認証局（CA）とは、パスポートを例にすると国に相当します。認証局は証明証を作成・署名・発行・無効化します。Docker Engine デーモンを実行するホスト上では、信頼を確立するために、認証局のルート証明書をインストールします。Docker Engine CLI は認証局のサーバに対して証明書を要求します。認証局サーバはクライアントに対して証明書の署名・発行を行います。
 
 .. The Engine CLI sends its certificate to the Docker Engine daemon before issuing commands. The daemon inspects the certificate, and because daemon trusts the CA, the daemon automatically trusts any certificates signed by the CA. Assuming the certificate is in order (the certificate has not expired or been revoked etc.) the Docker Engine daemon accepts commands from this trusted Docker Engine CLI.
 
-Docker Engine CLI は、コマンドを実行する前に、この（CA で署名された）証明書を Docker Engine デーモンに送ります。デーモンは証明書を調査します。その証明書がデーモンの信頼する認証局が署名したものであれば、デーモンは自動的に信頼します。証明書が適切であるとみなすと（証明書が有効期間内であり、破棄されたものでないと分かれば）、Docker Engine デーモンは信頼できる Engine CLI からの要求とみなしコマンドを受け付けます。
+Docker Engine CLI はコマンドを実行する前に、この（認証局で署名された）証明書を Docker Engine デーモンに送ります。デーモンは証明書を調査します。その証明書がデーモンの信頼する認証局が署名したものであれば、デーモンは自動的に信頼します。証明書が適切であるとみなすと（証明書が有効期間内であり、破棄されたものでないと分かれば）、Docker Engine デーモンは信頼できる Engine CLI からの要求とみなしコマンドを受け付けます。
 
 .. The Docker Engine CLI is simply a client that uses the Docker Remote API to communicate with the Docker Engine daemon. Any client that uses this Docker Remote API can use TLS. For example, other Engine clients such as Docker Universal Control Plane (UCP) have TLS support built-in. Other, third party products, that use Docker’s Remote API, can also be configured this way.
 
-Docker Engine CLI は、シンプルなクライアントです。Docker Engine デーモンと通信するために Docker リモート API を使います。Docker リモート API を利用可能なクライアントであれば、どれも TLS が使えます。例えば、TLS をサポートしている Docker ユニバーサル・コントロール・プレーン (UCP) に他のクライアントからもアクセス可能です。他のというのは、Docker リモート API を使うサードパーティー製のプロダクトでも、同様な設定ができます。
+Docker Engine CLI はシンプルなクライアントです。Docker Engine デーモンと通信するために Docker リモート API を使います。Docker リモート API を利用可能なクライアントであれば、どれも TLS が使えます。例えば、TLS をサポートしている Docker ユニバーサル・コントロール・プレーン (UCP) に他のクライアントからもアクセス可能です。他のクライアントとは、Docker リモート API を使うサードパーティー製のプロダクトでも、同様に設定ができます。
 
 .. TLS modes with Docker and Swarm
 
@@ -158,7 +158,7 @@ Docker Engine デーモンが認証に使う証明書について学んできま
 
 .. When you use an external 3rd party CA, they create, sign, issue, revoke and otherwise manage your certificates. They normally charge a fee for these services, but are considered an enterprise-class scalable solution that provides a high degree of trust.
 
-外部のサードパーティー認証局を使うと、その認証局によって、皆さんの証明書が作成・署名・発行・無効化など管理が行われます。通常はサービスの利用に料金が発生します。しかし、エンタープライズ・クラスの安定したソリューションを考慮した、高度な信頼をもたらすでしょう。
+外部のサードパーティー認証局を使えば、その認証局によって、皆さんの証明書が作成・署名・発行・無効化など管理が行われます。通常はサービスの利用に料金が発生します。しかし、エンタープライズ・クラスの安定したソリューションを考慮した、高度な信頼をもたらすでしょう。
 
 .. Internal corporate CA
 
@@ -169,7 +169,7 @@ Docker Engine デーモンが認証に使う証明書について学んできま
 
 .. Many organizations choose to implement their own Certificate Authorities and PKI. Common examples are using OpenSSL and Microsoft Active Directory. In this case, your company is its own Certificate Authority with all the work it entails. The benefit is, as your own CA, you have more control over your PKI.
 
-多くの組織で、その組織内で認証局や PKI を運用することが選ばれています。そのために OpenSSL もしくは Microsoft Active Directory を使うのが一般的な例です。このような場合、皆さんの会社自身が自信で証明機関を運用しています。この利点は、自分自身が証明局であるので、更なる PKI を管理できる点です。
+多くの組織で、その組織内で認証局や PKI を運用することが選ばれています。そのために OpenSSL もしくは Microsoft Active Directory を使うのが一般的な例です。このような場合、皆さんの会社自身が自信で証明機関を運用しています。この利点は、自分自身が証明局ですのので、更なる PKI を管理できる点です。
 
 .. Running your own CA and PKI requires you to provide all of the services offered by external 3rd party CAs. These include creating, issuing, revoking, and otherwise managing certificates. Doing all of this yourself has its own costs and overheads. However, for a large corporation, it still may reduce costs in comparison to using an external 3rd party service.
 
@@ -190,7 +190,7 @@ Docker Engine デーモンが認証に使う証明書について学んできま
 
 .. Because self-signed certificates lack of a full-blown PKI, they do not scale well and lack many of the advantages offered by the other options. One of their disadvantages is that cannot revoke self-signed certificates. Due to this, and other limitations, self-signed certificates are considered the least secure of the three options. Self-signed certificates are not recommended for public facing production workloads exposed to untrusted networks.
 
-なぜならば、自己署名した証明書が本来の PKI を損ねる可能性があるためです。この手法はスケールしませんし、他の選択肢に比べると、多くの点で不利です。不利な点の１つに、自分自身で自己署名した証明書を無効化できません。これだけでなく、他にも制限があるため、自己署名の証明書は、この３つの選択肢の中で最低のセキュリティと考えられます。信頼できないネットワーク上でプロダクション用のワークロードを公開する必要があれば、自己署名の証明書の利用は推奨されません。
+なぜならば、自己署名した証明書が本来の PKI を損ねる可能性があるためです。この手法はスケールしませんし、他の選択肢に比べますと、多くの点で不利です。不利な点の１つに、自分自身で自己署名した証明書を無効化できません。これだけでなく、他にも制限があるため、自己署名の証明書は、この３つの選択肢の中で最低のセキュリティと考えられます。信頼できないネットワーク上でプロダクション用のワークロードを公開する必要があれば、自己署名の証明書の利用は推奨されません。
 
 .. Related information
 

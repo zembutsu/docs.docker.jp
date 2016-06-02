@@ -69,7 +69,7 @@ Swarm マネージャを作成する前に、 :doc:`ディスカバリ・トー�
 
 .. When you create the swarm node, use the <discovery> argument to specify one of the following discovery backends:
 
-`Swarm ノードの作成時、 ``<discovery>`` 引数を使って以下のバックエンドを指定可能です。
+Swarm ノードの作成時、 ``<discovery>`` を使って以下のバックエンドを指定可能です。
 
 * ``token://<token>``
 * ``consul://<ip1>/<path>``
@@ -92,7 +92,7 @@ Swarm マネージャを作成する前に、 :doc:`ディスカバリ・トー�
 
 ..    path (optional) is a path to a key-value store on the discovery backend. When you use a single backend to service multiple clusters, you use paths to maintain separate key-value stores for each cluster.
 
-* ``path`` （オプション）はディスカバリ・バックエンドのキーバリュー・ストアのパスを指定します。複数のクラスタを１つのバックエンドで管理する場合は、各クラスタ毎にキーバリューのペアを記述する必要があります。
+* ``path`` （オプション）はディスカバリ・バックエンドのキーバリュー・ストアのパスを指定します。複数のクラスタを１つのバックエンドで管理する場合は、各クラスタごとにキーバリューのペアを記述する必要があります。
 
 ..     path/to/file is the path to a file that contains a static list of the Swarm managers and nodes that are members the cluster.
 
@@ -165,7 +165,7 @@ Swarm マネージャを作成する前に、 :doc:`ディスカバリ・トー�
 
 .. Use --filter <value> or -f <value> to tell the Docker Swarm scheduler which nodes to use when creating and running a container.
 
-``--filter <値>`` もしくは ``-f <値>`` で、コンテナを作成・実行時、どのノードを使うか Docker Swarm スケジューラに対して指定します。
+``--filter <値>`` もしくは ``-f <値>`` で、コンテナを作成・実行時、どのノードを使うかを Docker Swarm スケジューラに対して指定します。
 
 .. Where <value> is:
 
@@ -203,7 +203,7 @@ Swarm マネージャを作成する前に、 :doc:`ディスカバリ・トー�
 
 .. Use --host <ip>:<port> or -H <ip>:<port> to specify the IP address and port number to which the manager listens for incoming messages. If you replace <ip> with zeros or omit it altogether, the manager uses the default host IP. For example, --host=0.0.0.0:3376 or -H :4000.
 
-``--host <IP>:<ポート>`` もしくは ``-H <ip>:<ポート>`` を使い、マネージャがメッセージを受信するための IP アドレスとポート番号を指定します。 ``ip`` の部分に 0 を使うか省略すると、manager はデフォルトのホスト IP を使います。例： ``--host=0.0.0.0:3376`` または ``-H :4000`` 。
+``--host <IP>:<ポート>`` もしくは ``-H <ip>:<ポート>`` を使い、マネージャがメッセージを受信するための IP アドレスとポート番号を指定します。 ``ip`` の部分に 0 を使うか省略したら、manager はデフォルトのホスト IP を使います。例： ``--host=0.0.0.0:3376`` または ``-H :4000`` 。
 
 .. The environment variable for --host is $SWARM_HOST.
 
@@ -216,7 +216,7 @@ Swarm マネージャを作成する前に、 :doc:`ディスカバリ・トー�
 
 .. Enable Swarm manager replication between the primary and secondary managers in a high-availability cluster. Replication mirrors cluster information from the primary to the secondary managers so that, if the primary manager fails, a secondary can become the primary manager.
 
-高可用性クラスタでは、プライマリとセカンダリ・マネージャ間で、Swarm マネージャの複製（レプリケーション）を可能にします。プライマリからセカンダリにクラスタ情報のミラーを複製します。つまりプライマリ・マネージャで障害が起こると、セカンダリがプライマリ・マネージャになれます。
+高可用性クラスタでは、プライマリとセカンダリ・マネージャ間で、Swarm マネージャの複製（レプリケーション）を可能にします。プライマリからセカンダリにクラスタ情報のミラーを複製します。つまりプライマリ・マネージャで障害が起これば、セカンダリがプライマリ・マネージャになれます。
 
 .. --replication-ttl — Leader lock release time on failure
 
@@ -256,7 +256,7 @@ Swarm マネージャを作成する前に、 :doc:`ディスカバリ・トー�
 
 .. Use --tlscacert=<path/file> to specify the path and filename of the public key (certificate) from a Certificate Authority (CA). For example, --tlscacert=/certs/ca.pem. When specified, the manager trusts only remotes that provide a certificate signed by the same CA.
 
-``--tlscacert=<path/file>`` を使い証明局（CA）用の公開鍵（証明書）のパスとファイル名を指定します。例： ``--tlscacert=/certs/ca.pem`` 。指定すると、マネージャが信頼するのは、同じ証明局で署名された証明書を使っているリモート環境のみです。
+``--tlscacert=<path/file>`` を使い証明局（CA）用の公開鍵（証明書）のパスとファイル名を指定します。例： ``--tlscacert=/certs/ca.pem`` 。指定したら、マネージャが信頼するのは、同じ証明局で署名された証明書を使っているリモート環境のみです。
 
 .. --tlscert — Path to the node’s TLS certificate file
 
@@ -325,7 +325,7 @@ Swarm マネージャを作成する前に、 :doc:`ディスカバリ・トー�
 
 .. Deprecated; Use --engine-failure-retry instead of --engine-refresh-retry "<number>". The default number is 3 retries.
 
-廃止予定； ``--engine-failure-retry "数値"` の代わりに ``--engine-failure-retry`` を使います。デフォルトは 3 です。
+廃止予定； ``--engine-failure-retry "数値"`` の代わりに ``--engine-failure-retry`` を使います。デフォルトは 3 です。
 
 .. --heartbeat — Period between each heartbeat
 

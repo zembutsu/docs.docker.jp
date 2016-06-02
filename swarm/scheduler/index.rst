@@ -6,7 +6,7 @@
 
 .. Advanced Scheduling
 
-.. _advanced-scheduling:
+.. _advanced-scheduling-guide:
 
 ========================================
 高度なスケジューリング
@@ -14,7 +14,7 @@
 
 .. To learn more about advanced scheduling, see the strategies and filters documents.
 
-高度なスケジューリングを学ぶため、 :doc:`ストラテジ <strategy>` と :doc:`フィルタ <filter>` のドキュメントを学びましょう
+高度なスケジューリングを学ぶためには、 :doc:`ストラテジ <strategy>` と :doc:`フィルタ <filter>` のドキュメントをご覧ください。
 
 .. toctree::
    :maxdepth: 3

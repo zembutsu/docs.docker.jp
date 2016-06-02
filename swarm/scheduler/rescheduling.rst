@@ -11,9 +11,9 @@
 
 .. _swarm-re-scheduling:
 
-==============================
-Swarm の再スケジュール
-==============================
+===================================
+Swarm の再スケジュール・ポリシー
+===================================
 
 .. sidebar:: 目次
 
@@ -70,7 +70,7 @@ Docker Swarm で再スケジュール・ポリシーを設定できます。再�
 
 .. When a container is successfully rescheduled, it generates a message similar to the following:
 
-コンテナの再スケジュールに成功すると、次のようなメッセージを表示します。
+コンテナの再スケジュールに成功したら、次のようなメッセージを表示します。
 
 .. code-block:: bash
 
@@ -79,7 +79,7 @@ Docker Swarm で再スケジュール・ポリシーを設定できます。再�
 
 .. If for some reason, the new container fails to start on the new node, the log contains:
 
-同様に、新しいノード上で新しいコンテナの起動に失敗すると、ログには次のように表示します。
+同様に、新しいノード上で新しいコンテナの起動に失敗したら、ログには次のように表示します。
 
 .. code-block:: bash
 
