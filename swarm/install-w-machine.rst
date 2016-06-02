@@ -338,7 +338,7 @@ Docker Swarm がコンテナをどのノードで実行するかを決めるに�
 
 .. Where to go next
 
-さらに詳しく
+更に詳しく
 ====================
 
 .. At this point, you’ve done the following: - Created a Swarm discovery token. - Created Swarm nodes using Docker Machine. - Managed a Swarm and run containers on it. - Learned Swarm-related concepts and terminology.

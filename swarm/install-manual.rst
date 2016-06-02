@@ -217,7 +217,7 @@ SSH で各ノードに接続し、以下の手順を進めます。
 
 .. Configure and start Docker Engine so it listens for Swarm nodes on port 2375 :
 
-3. Docker エンジンが Swarm ノードのポート 2375 をリッスンできる指定をして起動します。
+3. Docker Engine が Swarm ノードのポート 2375 で通信可能な指定で起動します。
 
 .. code-block:: bash
 
@@ -256,7 +256,7 @@ SSH で各ノードに接続し、以下の手順を進めます。
 
 ..    For this example, don’t create an AMI image from one of your instances running Docker Engine and then re-use it to create the other instances. Doing so will produce errors.
 
-* この例では、Docker Engine を実行するインスタンスのために AMI イメージを使っておらず、既存のインスタンスを再利用する方法ではありません。そのため、エラーが起こった場合は確認してください。
+* この例では、Docker Engine が動作するインスタンスを元にし、他のインスタンス用に使う AMI イメージを作成しません。作成したとしても問題になるでしょう。
 
 ..    If your host cannot reach Docker Hub, the docker run commands that pull container images may fail. In that case, check that your VPC is associated with a security group with a rule that allows inbound traffic (e.g., HTTP/TCP/80/0.0.0.0/0). Also Check the Docker Hub status page for service availability.
 
@@ -311,7 +311,7 @@ SSH で各ノードに接続し、以下の手順を進めます。
 
 .. Your consul node is up and running, providing your cluster with a discovery backend. To increase its reliability, you can create a high-availability cluster using a trio of consul nodes using the link mentioned at the end of this page. (Before creating a cluster of console nodes, update the VPC security group with rules to allow inbound traffic on the required port numbers.)
 
-consul ノードを立ち上げて実行すると、クラスタ用のディスカバリ・バックエンドを提供します。このバックエンドの信頼性を高めるには、３つの consul ノードを使った高可用性クラスタを作成する方法があります。詳細情報へリンクを、このページの一番下をご覧ください（consul ノードのクラスタを作成する前に、VPC セキュリティ・グループに対し、必要なポートに対するインバウンド通信を許可する必要があります）。
+consul ノードを立ち上げて実行することで、クラスタ用のディスカバリ・バックエンドを提供します。このバックエンドの信頼性を高めるには、３つの consul ノードを使った高可用性クラスタを作成する方法があります。詳細情報へリンクを、このページの一番下をご覧ください（consul ノードのクラスタを作成する前に、VPC セキュリティ・グループに対し、必要なポートに対するインバウンド通信を許可する必要があります）。
 
 .. Step 5. Create Swarm cluster
 
@@ -322,7 +322,7 @@ consul ノードを立ち上げて実行すると、クラスタ用のディス�
 
 .. After creating the discovery backend, you can create the Swarm managers. In this step, you are going to create two Swarm managers in a high-availability configuration. The first manager you run becomes the Swarm’s primary manager. Some documentation still refers to a primary manager as a “master”, but that term has been superseded. The second manager you run serves as a replica. If the primary manager becomes unavailable, the cluster elects the replica as the primary manager.
 
-ディスカバリ・バックエンドを作ったあとは、Swarm マネージャを作成できます。このステップでは高い可用性を持つ設定のため、２つの Swarm マネージャを作成します。１つめのマネージャを Swarm の *プライマリ・マネージャ (primary manager) * とします。ドキュメントのいくつかはプライマリを「マスタ」と表現していますが、置き換えてください。２つめのマネージャは *レプリカ（replica）* を提供します。もしもプライマリ・マネージャが利用できなくなれば、クラスタはレプリカからプライマリ・マネージャを選出します。
+ディスカバリ・バックエンドを作った後は、Swarm マネージャを作成できます。このステップでは高い可用性を持つ設定のため、２つの Swarm マネージャを作成します。１つめのマネージャを Swarm の *プライマリ・マネージャ (primary manager)* とします。ドキュメントのいくつかはプライマリを「マスタ」と表現していますが、置き換えてください。２つめのマネージャは *レプリカ（replica）* を提供します。もしもプライマリ・マネージャが利用できなくなれば、クラスタはレプリカからプライマリ・マネージャを選出します。
 
 .. To create the primary manager in a high-availability Swarm cluster, use the following syntax:
 
@@ -334,7 +334,7 @@ consul ノードを立ち上げて実行すると、クラスタ用のディス�
 
 .. Because this is particular manager is on the same “manager0 & consul0” instance as the consul node, replace both <manager0_ip> and <consul_ip> with the same IP address. For example:
 
-特定のマネージャは「manager0 & consul0」インスタンスの consul ノードでもあるので、 ``<manager0_ip>`` と ``<consul_ip>`` と同じ IP アドレスに書き換えます。例：
+特定のマネージャは「manager0 & consul0」インスタンスの consul ノードでもあるので、 ``<manager0_ip>`` と ``<consul_ip>`` を同じ IP アドレスに書き換えます。例：
 
 .. code-block:: bash
 
@@ -397,7 +397,7 @@ b. 各コンテナで、次の構文を使って Swarm コンテナを起動し�
 .. Your small Swarm cluster is up and running on multiple hosts, providing you with a high-availability virtual Docker Engine. To increase its reliability and capacity, you can add more Swarm managers, nodes, and a high-availability discovery backend.
 
 
-あなたの小さな Swarm クラスタが起動し、複数のホスト上で実行中になりました。信頼性や収容能力を高めるには、Swarm マネージャやノードを更に追加し、ディレクトリ・バックエンドの可用性を高めます。
+あなたの小さな Swarm クラスタが起動し、複数のホスト上で実行中になりました。信頼性や収容能力を高めるには、Swarm マネージャやノードを更に追加し、ディレクトリ・バックエンドの可用性を高めることも可能です。
 
 .. Step 6. Communicate with the Swarm
 
@@ -420,7 +420,7 @@ Swarm API を使って Swarm と通信し、マネージャとノードに関す
 
 .. The output gives the manager’s role as primary (Role: primary) and information about each of the nodes.
 
-出力結果から、マスターの役割がプライマリ（ ``Role: primary`` ）であることと、各ノードの情報が分かります。
+出力結果から、マスタの役割がプライマリ（ ``Role: primary`` ）であることと、各ノードの情報が分かります。
 
 .. Run an application on the Swarm:
 
@@ -445,7 +445,7 @@ Swarm API を使って Swarm と通信し、マネージャとノードに関す
 
 .. To see the replica instance take over, you’re going to shut down the primary manager. Doing so kicks off an election, and the replica becomes the primary manager. When you start the manager you shut down earlier, it becomes the replica.
 
-レプリカ・インスタンスへの継承を確認するために、プライマリ・マネージャをシャットダウンします。これが選出のきっかけとなり、レプリカがプライマリ・マネージャになります。停止したマネジャを再び起動すると、今度はこちらがレプリカになります。
+レプリカ・インスタンスへの継承を確認するために、プライマリ・マネージャをシャットダウンします。これが選出のきっかけとなり、レプリカがプライマリ・マネージャになります。停止したマネージャを再び起動したら、今度はこちらがレプリカになります。
 
 .. SSH connection to the manager0 instance.
 
