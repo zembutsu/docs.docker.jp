@@ -32,7 +32,7 @@ Amazon CloudWatch Logs ロギング・ドライバ
 
 .. You can configure the default logging driver by passing the --log-driver option to the Docker daemon:
 
-Docker デーモンに ``--log-driver`` オプションを使い、デフォルトのロギング・ドライバを指定します。
+デフォルトのロギング・ドライバを指定するには、Docker デーモンで ``--log-driver`` オプションを使います。
 
 .. code-block:: bash
 
@@ -40,7 +40,7 @@ Docker デーモンに ``--log-driver`` オプションを使い、デフォル�
 
 .. You can set the logging driver for a specific container by using the --log-driver option to docker run:
 
-特定のコンテナに対してロギング・ドライバを指定するには、 ``docker run`` で ``--log-driver`` オプションを使います。
+特定のコンテナに対するロギング・ドライバの指定は、 ``docker run`` で ``--log-driver`` オプションを使います。
 
 .. code-block:: bash
 
@@ -90,13 +90,13 @@ awslogs-stream
 
 .. To configure which log stream should be used, you can specify the awslogs-stream log option. If not specified, the container ID is used as the log stream.
 
-`log stream <http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchLogs.html>`_ を使う場合は、 ``awslogs-stream`` ログ・オプションを指定します。指定されなければ、コンテナ iD がログ・ストリームのために使われます。
+`log stream <http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchLogs.html>`_ を使う場合は、 ``awslogs-stream`` ログ・オプションを指定します。指定しなければ、コンテナ ID がログ・ストリームのために使われます。
 
 ..    Note: Log streams within a given log group should only be used by one container at a time. Using the same log stream for multiple containers concurrently can cause reduced logging performance.
 
 .. note::
 
-   ログ・ストリームに使うログ・グループはコンテナ毎に指定すべきです。複数のコンテナが同じログ・ストリームを並行して使用すると、ログ記録性能が低下します。
+   ログ・ストリームに使うログ・グループはコンテナごとに指定すべきです。複数のコンテナが同じログ・ストリームを並行して使用すると、ログ記録性能が低下します。
 
 .. Credentials
 
@@ -105,7 +105,7 @@ awslogs-stream
 
 .. You must provide AWS credentials to the Docker daemon to use the awslogs logging driver. You can provide these credentials with the AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, and AWS_SESSION_TOKEN environment variables, the default AWS shared credentials file (~/.aws/credentials of the root user), or (if you are running the Docker daemon on an Amazon EC2 instance) the Amazon EC2 instance profile.
 
-Docker デーモンが ``awslogs`` ロギング・ドライバを使う時は、 AWS の認証情報（credentials）の指定が必要です。認証情報とは ``AWS_ACCESS_KEY_ID`` 、 ``AWS_SECRET_ACCESS_KEY`` 、 ``AWS_SESSION_TOKEN``  の環境変数です。デフォルトは AWS 共有認証ファイル（ root ユーザであれば ``~/.aws/credentials`` ）か、（Amazon EC2 インスタンス上で Docker デーモンを実行するのであれば）Amazon EC2 インスタンス・プロファイルです。
+Docker デーモンが ``awslogs`` ロギング・ドライバを使う時は、 AWS の認証情報（credentials）の指定が必要です。認証情報とは環境変数 ``AWS_ACCESS_KEY_ID`` 、 ``AWS_SECRET_ACCESS_KEY`` 、 ``AWS_SESSION_TOKEN``  です。デフォルトは AWS 共有認証ファイル（ root ユーザであれば ``~/.aws/credentials`` ）か、（Amazon EC2 インスタンス上で Docker デーモンを実行するのであれば）Amazon EC2 インスタンス・プロファイルです。
 
 .. Credentials must have a policy applied that allows the logs:CreateLogStream and logs:PutLogEvents actions, as shown in the following example.
 

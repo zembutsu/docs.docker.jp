@@ -21,7 +21,7 @@
 
 .. The container can have a different logging driver than the Docker daemon. Use the --log-driver=VALUE with the docker run command to configure the container’s logging driver. The following options are supported:
 
-コンテナには、 Docker デーモンよりも多くの異なるロギング（ログ保存）ドライバがあります。ロギング・ドライバを指定するには、 ``docker run``  コマンドで ``--log-driver=VALUE`` を使います。以下のオプションをサポートしています。
+コンテナには、 Docker デーモンよりも多い様々なロギング（ログ保存）ドライバがあります。ロギング・ドライバを指定するには、 ``docker run``  コマンドで ``--log-driver=VALUE`` を使います。以下のオプションをサポートしています。
 
 .. none 	Disables any logging for the container. docker logs won’t be available with this driver.
 .. json-file 	Default logging driver for Docker. Writes JSON messages to file.
@@ -35,7 +35,7 @@
 .. list-table::
    
    * - ``none``
-     - コンテナ用のロギング・ドライバを無効化します。このドライバを指定すると ``docker logs`` は無効化されます。
+     - コンテナ用のロギング・ドライバを無効化します。このドライバを指定したら ``docker logs`` は無効化されます。
    * - ``json-file``
      - Docker 用のデフォルト・ロギング・ドライバです。JSON メッセージをファイルに記録します。
    * - ``syslog``
@@ -58,7 +58,7 @@
 
 .. The docker logscommand is available only for the json-file and journald logging drivers.
 
-``docker logs`` コマンドは ``json-file`` か ``journald`` ロギング・ドライバ使用時のみ利用可能です。
+``docker logs`` コマンドが使えるのは ``json-file`` か ``journald`` ロギング・ドライバ使用時のみです。
 
 .. The labels and env options add additional attributes for use with logging drivers that accept them. Each option takes a comma-separated list of keys. If there is collision between label and env keys, the value of the env takes precedence.
 
@@ -66,7 +66,7 @@
 
 .. To use attributes, specify them when you start the Docker daemon.
 
-属性（attribute）を使うには、Docker デーモン起動時に指定します。
+各種オプションは、Docker デーモン起動時に指定します。
 
 .. code-block:: bash
 
@@ -74,7 +74,7 @@
 
 .. Then, run a container and specify values for the labels or env. For example, you might use this:
 
-それから、 ``label`` や ``env`` の値を指定して、コンテナを起動します。例えば、次のように指定するでしょう。
+それから、 ``label`` や ``env`` の値を指定してコンテナを起動します。例えば、次のように指定するでしょう。
 
 .. code-block:: bash
 
@@ -82,7 +82,7 @@
 
 .. This adds additional fields to the log depending on the driver, e.g. for json-file that looks like:
 
-これはドライバ上のログに依存する追加フィールドを加えるものであり、次の例では ``json-file`` の場合です。
+これはドライバ上のログに依存する追加フィールドを加えるものです。次の例は ``json-file`` の場合です。
 
 .. code-block:: bash
 
@@ -108,15 +108,15 @@ JSON ファイルのオプション
 
 .. Logs that reach max-size are rolled over. You can set the size in kilobytes(k), megabytes(m), or gigabytes(g). eg --log-opt max-size=50m. If max-size is not set, then logs are not rolled over.
 
-ログが ``max-size`` に到達すると、ロールオーバされます（別のファイルに繰り出されます）。設定できるサイズは、キロバイト(k)、メガバイト(m)、ギガバイト(g) です。例えば、 ``--log-opt max-size=50m`` のように指定します。もし ``max-size`` が設定されなければ、ログはロールオーバされません。
+ログが ``max-size`` に到達したら、ロールオーバされます（別のファイルに繰り出されます）。設定できるサイズは、キロバイト(k)、メガバイト(m)、ギガバイト(g) です。例えば、 ``--log-opt max-size=50m`` のように指定します。もし ``max-size`` を設定しなければ、ログはロールオーバされません。
 
 .. max-file specifies the maximum number of files that a log is rolled over before being discarded. eg --log-opt max-file=100. If max-size is not set, then max-file is not honored.
 
-``max-file`` で指定するのは、ログが何回ロールオーバされたら破棄するかを指定します。例えば ``--log-opt max-file=100`` のように指定します。もし ``max-size`` が設定されなければ、 ``max-file`` は有効ではありません。
+``max-file`` で指定するのは、ログが何回ロールオーバされたら破棄するかです。例えば ``--log-opt max-file=100`` のように指定します。もしも ``max-size`` を設定しなければ、 ``max-file`` は無効です。
 
 .. If max-size and max-file are set, docker logs only returns the log lines from the newest log file.
 
-``max-size`` と ``max-file`` がセットされると、 ``docker logs`` は直近のログファイルのログ行だけ表示します。
+``max-size`` と ``max-file`` をセットしたら、 ``docker logs`` は直近のログファイルのログ行だけ表示します。
 
 .. syslog options
 
@@ -143,7 +143,7 @@ syslog のオプション
 
 .. syslog-address specifies the remote syslog server address where the driver connects to. If not specified it defaults to the local unix socket of the running system. If transport is either tcp or udp and port is not specified it defaults to 514 The following example shows how to have the syslog driver connect to a syslog remote server at 192.168.0.42 on port 123
 
-``syslog-address`` は、ドライバが接続するリモートの syslog サーバのアドレスを指定します。指定されなければ、デフォルトでは実行中システム上にあるローカルの unix ソケットを使います。 ``tcp`` や ``udp`` で ``port`` が指定されなければ、デフォルトは ``514`` になります。以下の例は ``syslog`` ドライバを使い、リモートの ``192.168.0.42`` サーバ上のポート ``123`` に接続する方法です。
+``syslog-address`` は、ドライバが接続するリモートの syslog サーバのアドレスを指定します。指定しなければ、デフォルトでは実行中システム上にあるローカルの unix ソケットを使います。 ``tcp`` や ``udp`` で ``port`` を指定しなければ、デフォルトは ``514`` になります。以下の例は ``syslog`` ドライバを使い、リモートの ``192.168.0.42`` サーバ上のポート ``123`` に接続する方法です。
 
 .. code-block:: bash
 
@@ -176,27 +176,27 @@ syslog のオプション
 
 .. syslog-tls-ca-cert specifies the absolute path to the trust certificates signed by the CA. This option is ignored if the address protocol is not tcp+tls.
 
-``syslog-tls-ca-cert`` は CA によって署名された信頼できる証明書への絶対パスを指定します。このオプションは ``tcp+tls`` 意外のプロトコルを使う場合は無視されます。
+認証局（CA）によって署名済みの、信頼できる証明書への絶対パスを ``syslog-tls-ca-cert`` で指定します。このオプションは ``tcp+tls`` 以外のプロトコルを使う場合は無視されます。
 
 .. syslog-tls-cert specifies the absolute path to the TLS certificate file. This option is ignored if the address protocol is not tcp+tls.
 
-``syslog-tls-cert`` は TLS 証明書用ファイルに対する絶対パスです。このオプションは ``tcp+tls`` 意外のプロトコルを使う場合は無視されます。
+``syslog-tls-cert`` は TLS 証明書用ファイルに対する絶対パスです。このオプションは ``tcp+tls`` 以外のプロトコルを使う場合は無視されます。
 
 .. syslog-tls-key specifies the absolute path to the TLS key file. This option is ignored if the address protocol is not tcp+tls.
 
-``syslog-tls-key`` は TLS 鍵ファイルに対する絶対パスを指定します。このオプションは ``tcp+tls`` 意外のプロトコルを使う場合は無視されます。
+``syslog-tls-key`` は TLS 鍵ファイルに対する絶対パスを指定します。このオプションは ``tcp+tls`` 以外のプロトコルを使う場合は無視されます。
 
 .. syslog-tls-skip-verify configures the TLS verification. This verification is enabled by default, but it can be overriden by setting this option to true. This option is ignored if the address protocol is not tcp+tls.
 
-``syslog-tls-skip-verify`` は TLS 認証を設定します。デフォルトでは認証が有効ですが、オプションの値を ``true`` に指定すると、この設定を上書きします。このオプションは ``tcp+tls`` 意外のプロトコルを使う場合は無視されます。
+``syslog-tls-skip-verify`` は TLS 認証を設定します。デフォルトでは認証が有効ですが、オプションの値を ``true`` に指定したら、この設定を上書きします。このオプションは ``tcp+tls`` 以外のプロトコルを使う場合は無視されます。
 
 .. By default, Docker uses the first 12 characters of the container ID to tag log messages. Refer to the log tag option documentation for customizing the log tag format.
 
-デフォルトでは、Docker はコンテナ ID の始めの 12 文字だけログ・メッセージにタグ付けします。タグ・フォーマットの記録方式をカスタマイズするには、 :doc:`log tag オプションのドキュメント <log_tags>` をご覧ください。
+デフォルトでは、Docker はコンテナ ID の冒頭 12 文字だけログ・メッセージにタグ付けします。タグ・フォーマットの記録方式をカスタマイズするには、 :doc:`log tag オプションのドキュメント <log_tags>` をご覧ください。
 
 .. syslog-format specifies syslog message format to use when logging. If not specified it defaults to the local unix syslog format without hostname specification. Specify rfc3164 to perform logging in RFC-3164 compatible format. Specify rfc5424 to perform logging in RFC-5424 compatible format
 
-``syslog-format`` は syslog メッセージを書き込むときの書式を指定します。何も指定しなければ、デフォルトではホスト名を指定しないローカルの unix syslog 形式です。rfc3164 を指定すると、RFC-3164 互換形式でログを記録します。rfc5424 を指定すると RFC-5424 互換形式で記録します。
+``syslog-format`` は syslog メッセージを書き込み時の書式を指定します。何も指定しなければ、デフォルトではホスト名を指定しないローカルの unix syslog 形式です。rfc3164 を指定したら、RFC-3164 互換形式でログを記録します。rfc5424 を指定したら、 RFC-5424 互換形式で記録します。
 
 .. journald options
 
@@ -229,7 +229,7 @@ GELF ロギングドライバは以下のオプションをサポートしてい
 
 .. The gelf-address option specifies the remote GELF server address that the driver connects to. Currently, only udp is supported as the transport and you must specify a port value. The following example shows how to connect the gelf driver to a GELF remote server at 192.168.0.42 on port 12201
 
-``gelf-address`` オプションは、接続先のリモート GELF サーバのアドレスを指定します。現時点では ``udp`` が転送用にサポートされており、そのとき ``port`` を指定する必要があります。次の例は ``gelf`` ドライバで GELF リモートサーバ ``192.168.0.42`` のポート ``12201`` に接続します。
+``gelf-address`` オプションは、接続先のリモート GELF サーバのアドレスを指定します。現時点では ``udp`` が転送用にサポートされており、利用時に ``port`` を指定する必要があります。次の例は ``gelf`` ドライバで GELF リモートサーバ ``192.168.0.42`` のポート ``12201`` に接続します。
 
 .. code-block:: bash
 
@@ -237,7 +237,7 @@ GELF ロギングドライバは以下のオプションをサポートしてい
 
 .. By default, Docker uses the first 12 characters of the container ID to tag log messages. Refer to the log tag option documentation for customizing the log tag format.
 
-デフォルトでは、Docker はコンテナ ID の始めの 12 文字だけログ・メッセージにタグ付けします。タグ・フォーマットの記録方式をカスタマイズするには、 :doc:`log tag オプションのドキュメント <log_tags>` をご覧ください。
+デフォルトでは、Docker はコンテナ ID の冒頭 12 文字のみログ・メッセージにタグ付けします。タグ・フォーマットの記録方式をカスタマイズするには、 :doc:`log tag オプションのドキュメント <log_tags>` をご覧ください。
 
 .. The labels and env options are supported by the gelf logging driver. It adds additional key on the extra fields, prefixed by an underscore (_).
 
@@ -268,12 +268,12 @@ fluentd オプション
 * ``tag`` ： ``fluentd`` メッセージのタグを指定。
 * ``fluentd-buffer-limit`` ： fluentd ログバッファの最大サイズを指定します。 [8MB]
 * ``fluentd-retry-wait`` ： 接続リトライ前の初回遅延時間です（以降は指数関数的に増えます） [1000ms]　
-* ``fluentd-max-retries`` ： docker で不意の障害が発生したとき、最大のリトライ数を指定します。 [1073741824]
+* ``fluentd-max-retries`` ： docker で不意の障害が発生時、最大のリトライ数を指定します。 [1073741824]
 * ``fluentd-async-connect`` ： 初期接続をブロックするかどうかを指定します。 [false]
 
 .. For example, to specify both additional options:
 
-例えば、両方のオプションを指定すると、次のようになります。
+例えば、両方のオプションを指定したら、次のようになります。
 
 .. code-block:: bash
 
@@ -339,7 +339,7 @@ Google Cloud ロギング・ドライバはいかのオプションをサポー�
 
 .. For detailed information about working with this logging driver, see the Google Cloud Logging driver. reference documentation.
 
-このロギング・ドライバの動作に関する詳細情報は :doc:`Google Cloud ロギング・ドライバ <gpclogs>` をご覧ください。
+このロギング・ドライバの動作に関する詳細情報は :doc:`Google Cloud ロギング・ドライバ <gcplogs>` をご覧ください。
 
 
 .. seealso:: 

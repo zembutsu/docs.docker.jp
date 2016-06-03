@@ -25,7 +25,7 @@ Fluentd ロギング・ドライバ
 
 .. In addition to the log message itself, the fluentd log driver sends the following metadata in the structured log message:
 
-ログ・メッセージ自身に加え、 以下のメタデータを構造化ログ・メッセージの中に入れて ``fluent`` ログ・ドライバが送信できます。
+ログ・メッセージ自身に加え、  ``fluent`` ログ・ドライバは以下のメタデータを構造化ログ・メッセージの中に入れて送信できます。
 
 .. Field 	Description
 .. container_id 	The full 64-character container ID.
@@ -38,15 +38,15 @@ Fluentd ロギング・ドライバ
    * - フィールド
      - 説明
    * - ``container_id``
-     - 完全な 64 文字のコンテナ ID。
+     - 64 文字の完全コンテナ ID
    * - ``container_name``
-     - 開始時のコンテナ名。 ``docker rename`` でコンテナの名称を変えても、新しい名前は journal エントリに反映されない。
+     - 開始時のコンテナ名。 ``docker rename`` でコンテナの名称を変えても、新しい名前は journal エントリに反映されない
    * - ``source``
      - ``stdout`` か ``stderr``
 
 .. The docker logs command is not available for this logging driver.
 
-このロギング・ドライバを使うと、 ``docker logs`` コマンドは利用できません。
+このロギング・ドライバの使用時は、 ``docker logs`` コマンドを利用できません。
 
 .. Usage
 
@@ -57,7 +57,7 @@ Fluentd ロギング・ドライバ
 
 .. Some options are supported by specifying --log-opt as many times as needed:
 
-同じオプションは、必要な回数分の ``--log-opt`` 指定がサポートされています。
+必要であれば、同じ ``--log-opt`` オプションを何度も指定可能です。
 
 ..    fluentd-address: specify host:port to connect localhost:24224
     tag: specify tag for fluentd message, which interpret some markup, ex {{.ID}}, {{.FullID}} or {{.Name}} docker.{{.ID}}
@@ -83,7 +83,7 @@ Fluentd ロギング・ドライバ
 
 .. Before using this logging driver, launch a Fluentd daemon. The logging driver connects to this daemon through localhost:24224 by default. Use the fluentd-address option to connect to a different address.
 
-このロギング・ドライバを使う前に、Fluentd デーモンを起動します。ロギング・ドライバは、デフォルトで ``localhost:24224`` のデーモンに接続を試みます。 ``fluentd-address`` オプションを使い、異なったアドレスに接続できます。
+このロギング・ドライバを使う前に、Fluentd デーモンを起動します。ロギング・ドライバは、デフォルトで ``localhost:24224`` のデーモンに接続を試みます。 ``fluentd-address`` オプションを使えば、異なったアドレスに接続できます。
 
 .. code-block:: bash
 
@@ -91,7 +91,7 @@ Fluentd ロギング・ドライバ
 
 .. If container cannot connect to the Fluentd daemon, the container stops immediately.
 
-コンテナが Fluentd オプションに接続できなければ、コンテナは直ちに停止します。
+コンテナが Fluentd デーモンに接続できなければ、コンテナは直ちに停止します。
 
 .. Options
 

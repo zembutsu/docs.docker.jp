@@ -40,7 +40,7 @@ Journald ロギング・ドライバ
    * - ``CONTAINER_ID``
      - コンテナ ID の先頭から 12 文字。
    * - ``CONTAINER_ID_FULL``
-     - 完全な 64 文字のコンテナ ID。
+     - 64 文字の完全なコンテナ ID。
    * - ``CONTAINER_NAME``
      - 開始時のコンテナ名。 ``docker rename`` でコンテナの名称を変えても、新しい名前は journal エントリに反映されない。
    * - ``CONTAINER_TAG``
@@ -119,7 +119,7 @@ journalctl でログメッセージを表示
 
 .. You can use the journalctl command to retrieve log messages. You can apply filter expressions to limit the retrieved messages to a specific container. For example, to retrieve all log messages from a container referenced by name:
 
-``journalctl`` コマンドを使って、ログメッセージを表示できます。フィルタ表現を追加することで、特定のコンテナに関するメッセージしか表示しないようにできます。たとえば、特定のコンテナ名に関する全てのメッセージを表示するには、次のようにします。
+``journalctl`` コマンドを使って、ログメッセージを表示できます。フィルタ表現を追加することで、特定のコンテナに関するメッセージしか表示しないようにできます。例えば、特定のコンテナ名に関する全てのメッセージを表示するには、次のようにします。
 
 .. code-block:: bash
 
@@ -127,7 +127,7 @@ journalctl でログメッセージを表示
 
 .. You can make use of additional filters to further limit the messages retrieved. For example, to see just those messages generated since the system last booted:
 
-メッセージの制限だけでなく、他のフィルタも利用できます。たとえば、システムが直近で部ブートした以降のメッセージを生成するには、次のように実行します。
+メッセージの制限だけでなく、他のフィルタも利用できます。例えば、システムが直近でリブートした以降のメッセージを生成するには、次のように実行します。
 
 .. code-block:: bash
 

@@ -32,7 +32,7 @@ Google Cloud ロギング・ドライバはコンテナのログを `Google Clou
 
 .. You can configure the default logging driver by passing the --log-driver option to the Docker daemon:
 
-Docker デーモンのオプションで ``--log-driver`` を指定する事で、デフォルトのロギング・ドライバを変更可能です。
+デフォルトのロギング・ドライバを設定するには、Docker デーモンに ``--log-driver`` オプションを使います。
 
 .. code-block:: bash
 

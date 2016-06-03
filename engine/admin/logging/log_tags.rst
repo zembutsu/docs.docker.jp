@@ -29,7 +29,7 @@
 
 .. Docker supports some special template markup you can use when specifying a tag’s value:
 
-Docker はタグの値を指定するための特別なテンプレート・マークアップをサポートしています。
+Docker はタグの値を指定するために、特別なテンプレート・マークアップをサポートしています。
 
 .. Markup 	Description
 .. {{.ID}} 	The first 12 characters of the container id.
@@ -59,7 +59,7 @@ Docker はタグの値を指定するための特別なテンプレート・マ�
 
 .. For example, specifying a --log-opt tag="{{.ImageName}}/{{.Name}}/{{.ID}}" value yields syslog log lines like:
 
-例えば、 ``--log-opt tag="{{.ImageName}}/{{.Name}}/{{.ID}}"`` 値を指定すると、 ``syslog`` のログ行は次のようになります。
+例えば、 ``--log-opt tag="{{.ImageName}}/{{.Name}}/{{.ID}}"`` を値に指定したら、 ``syslog`` のログ行は次のようになります。
 
 .. code-block:: bash
 

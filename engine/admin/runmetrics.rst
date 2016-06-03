@@ -150,7 +150,7 @@ cgroups からのメトリクス：メモリ、CPU、ブロックI/O
 
 .. The first half (without the total_ prefix) contains statistics relevant to the processes within the cgroup, excluding sub-cgroups. The second half (with the total_ prefix) includes sub-cgroups as well.
 
-前半（ ``total_`` が先頭にない ）は、cgroup 中にあるプロセス関連の統計情報を表示します。サブグループは除外しています。後半（  先頭に ``total_`` がある  ）は、サブグループも含めたものです。
+前半（ ``total_`` が先頭に無い ）は、cgroup 中にあるプロセス関連の統計情報を表示します。サブグループは除外しています。後半（  先頭に ``total_`` がある  ）は、サブグループも含めたものです。
 
 .. Some metrics are “gauges”, i.e., values that can increase or decrease (e.g., swap, the amount of swap space used by the members of the cgroup). Some others are “counters”, i.e., values that can only go up, because they represent occurrences of a specific event (e.g., pgfault, which indicates the number of page faults which happened since the creation of the cgroup; this number can never decrease).
 
@@ -304,7 +304,7 @@ IPtables を使えば（というよりも、インターフェースに対す�
 
 .. Then, you will need to check those counters on a regular basis. If you happen to use collectd, there is a nice plugin to automate iptables counters collection.
 
-あとは通常の方法で計測します。 ``collectd`` を使ったことがあるのなら、自動的に iptables のカウンタを収集する `便利なプラグイン <https://collectd.org/wiki/index.php/Table_of_Plugins>`_ があります。
+後は通常の方法で計測します。 ``collectd`` を使ったことがあるのなら、自動的に iptables のカウンタを収集する `便利なプラグイン <https://collectd.org/wiki/index.php/Table_of_Plugins>`_ があります。
 
 .. Interface-level counters
 

@@ -38,7 +38,7 @@ ETW はロギング・ドライバを ``{a3693192-9ed6-46d2-a981-f8226c8363bd}``
 
 .. Here is an example of how to listen to these events using the logman utility program included in most installations of Windows:
 
-ここでは大部分の Windows にインストール済みの logman ユーティリティ・プログラムをつかい、これらのイベントをリッスンする例を扱います。
+ここでは大部分の Windows にインストール済みの logman ユーティリティ・プログラムを使い、これらのイベントのリッスン例を扱います。
 
 ..    logman start -ets DockerContainerLogs -p {a3693192-9ed6-46d2-a981-f8226c8363bd} 0 0 -o trace.etl
     Run your container(s) with the etwlogs driver, by adding --log-driver=etwlogs to the Docker run command, and generate log messages.
@@ -47,7 +47,7 @@ ETW はロギング・ドライバを ``{a3693192-9ed6-46d2-a981-f8226c8363bd}``
 
 1. ``logman start -ets DockerContainerLogs -p {a3693192-9ed6-46d2-a981-f8226c8363bd} 0 0 -o trace.etl``
 2. コンテナを etwlog ドライバと一緒に起動します。 docker run コマンドに ``--log-driver=etwlogs`` を追加します。
-3. `` logman stop -ets DockerContainerLogs``
+3. ``logman stop -ets DockerContainerLogs``
 4. 実行するとイベントを含む etl ファイルを作成します。人間が読める形式に変換する方法の１つが ``tracerpt -y trace.etl`` の実行です。
 
 .. Each ETW event will contain a structured message string in this format:
@@ -103,7 +103,7 @@ ETW はロギング・ドライバを ``{a3693192-9ed6-46d2-a981-f8226c8363bd}``
 
 .. A client can parse this message string to get both the log message, as well as its context information. Note that the time stamp is also available within the ETW event.
 
-クライアントはこのメッセージ文字列をログメッセージ毎にパース可能です。また、コンテクスト情報も同様です。ETW イベント無いのタイムスタンプも利用可能です。
+クライアントはこのメッセージ文字列をログメッセージごとにパース可能です。また、コンテクスト情報も同様です。ETW イベント無いのタイムスタンプも利用可能です。
 
 .. Note This ETW provider emits only a message string, and not a specially structured ETW event. Therefore, it is not required to register a manifest file with the system to read and interpret its ETW events.
 
