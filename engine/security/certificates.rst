@@ -17,7 +17,7 @@
 
 .. In Running Docker with HTTPS, you learned that, by default, Docker runs via a non-networked Unix socket and TLS must be enabled in order to have the Docker client and the daemon communicate securely over HTTPS. TLS ensures authenticity of the registry endpoint and that traffic to/from registry is encrypted.
 
-:doc:`Docker を HTTPS で動かす <https>` 方法を学びました。デフォルトでは Docker はネットワークで使えない Unix ソケットと、Docker クライアントとデーモンがで安全に通信できるよう HTTPS 上で TLS を有効化すべきという内容でした。TLS はレジストリのエンドポイントにおける認証を確実なものとし、かつ、レジストリからあるいはレジストリへの通信を暗号化します。
+:doc:`Docker を HTTPS で動かす <https>` 方法を学びました。デフォルトでは Docker はネットワークで使えない Unix ソケットについてと、Docker クライアントとデーモンが安全に通信できるように、 HTTPS 上で TLS を有効化すべきという内容でした。TLS はレジストリのエンドポイントにおける認証を確実なものとし、かつ、レジストリからあるいはレジストリへの通信を暗号化します。
 
 .. This article demonstrates how to ensure the traffic between the Docker registry (i.e., a server) and the Docker daemon (i.e., a client) traffic is encrypted and a properly authenticated using certificate-based client-server authentication.
 

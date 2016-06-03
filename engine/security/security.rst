@@ -12,7 +12,7 @@
 .. _security-docker-security:
 
 =======================================
-Docker セキュリティ
+Docker のセキュリティ
 =======================================
 
 .. sidebar:: 目次
@@ -23,7 +23,7 @@ Docker セキュリティ
 
 .. There are three major areas to consider when reviewing Docker security:
 
-Docker のセキュリティを検討するにあたり、主に３つの項目があります。
+Docker のセキュリティには、主に３つの検討項目があります。
 
 ..    the intrinsic security of the kernel and its support for namespaces and cgroups;
     the attack surface of the Docker daemon itself;
@@ -56,7 +56,7 @@ Docker コンテナは LXC コンテナに非常に似ており、類似のセ�
 
 .. How mature is the code providing kernel namespaces and private networking? Kernel namespaces were introduced between kernel version 2.6.15 and 2.6.26. This means that since July 2008 (date of the 2.6.26 release, now 7 years ago), namespace code has been exercised and scrutinized on a large number of production systems. And there is more: the design and inspiration for the namespaces code are even older. Namespaces are actually an effort to reimplement the features of OpenVZ in such a way that they could be merged within the mainstream kernel. And OpenVZ was initially released in 2005, so both the design and the implementation are pretty mature.
 
-カーネルの名前空間を提供するコードやプライベート・ネットワーキングの成熟度とは、どの程度でしょうか。カーネルの名前空間は `カーネル 2.6.15 と 2.6.26 の間 <http://lxc.sourceforge.net/index.php/about/kernel-namespaces/>`_ に導入されました。これの意味するところは、2008年6月にリリースされた（2.6.26 がリリースされたのは、今から7年前です）名前空間のコードは、多数のプロダクション・システム上で動作・精査されています。さらにもう１つ。名前区間コードの設計と発想はやや古いものです。名前空間が効果的に実装された例としては `OpenVZ <http://ja.wikipedia.org/wiki/OpenVZ>`_ があり、カーネルのメインストリームとしてマージされたこともありました。OpenVZ の初期リリースは 2005 年であり、設計と実装は、多少成熟していると言えるでしょう。
+カーネルの名前空間を提供するコードやプライベート・ネットワーキングの成熟度とは、どの程度でしょうか。カーネルの名前空間は `カーネル 2.6.15 から 2.6.26 の間 <http://lxc.sourceforge.net/index.php/about/kernel-namespaces/>`_ に導入されました。これが意味するのは、2008年6月にリリースされた（2.6.26 がリリースされたのは、今から7年前です）名前空間のコードは、多数のプロダクション・システム上で動作・精査されています。更にもう１つ。名前区間コードの設計と発想はやや古いものです。名前空間が効果的に実装された例としては `OpenVZ <http://ja.wikipedia.org/wiki/OpenVZ>`_ があり、カーネルのメインストリームとしてマージされたこともありました。OpenVZ の初期リリースは 2005 年であり、設計と実装は、多少成熟していると言えるでしょう。
 
 .. Control groups
 
@@ -67,11 +67,11 @@ Docker コンテナは LXC コンテナに非常に似ており、類似のセ�
 
 .. Control Groups are another key component of Linux Containers. They implement resource accounting and limiting. They provide many useful metrics, but they also help ensure that each container gets its fair share of memory, CPU, disk I/O; and, more importantly, that a single container cannot bring the system down by exhausting one of those resources.
 
-コントロール・グループは Linux コンテナにおけるもう１つの重要なコンポーネントです。これはリソースの計測と制限を実装しています。これらは多くの便利なメトリクス（監視上の指標）を提供するだけでなく、各コンテナが必要な共有リソース（メモリ、CPU、ディスク I/O）の割り当て保証にも役立ちます。さらに重要なのは、単一のコンテナが膨大なリソースを消費しても、システムダウンを引き起こさない点です。
+コントロール・グループは Linux コンテナにおけるもう１つの重要なコンポーネントです。これはリソースの計測と制限を実装しています。これらは多くの便利なメトリクス（監視上の指標）を提供するだけでなく、各コンテナが必要な共有リソース（メモリ、CPU、ディスク I/O）の割り当て保証にも役立ちます。更に重要なのは、単一のコンテナが膨大なリソースを消費しても、システムダウンを引き起こさない点です。
 
 .. So while they do not play a role in preventing one container from accessing or affecting the data and processes of another container, they are essential to fend off some denial-of-service attacks. They are particularly important on multi-tenant platforms, like public and private PaaS, to guarantee a consistent uptime (and performance) even when some applications start to misbehave.
 
-そのため、あるコンテナが他のコンテナからアクセスできませんし、データに対する何らかのアクセスや影響を及ぼすこともありません。これはあらゆるサービス拒否（denial-of-service）攻撃の本質です。特に重要なのはマルチテナントなプラットフォーム、たとえばパブリックやプライベートな PaaS において、特定のアプリケーションが誤った動作をしても、一定の稼働（とパフォーマンス）を保証します。
+そのため、あるコンテナが他のコンテナからアクセスできませんし、データに対する何らかのアクセスや影響を及ぼすこともありません。これはあらゆるサービス拒否（denial-of-service）攻撃の本質です。特に重要なのはマルチテナントなプラットフォーム、例えばパブリックやプライベートな PaaS において、特定のアプリケーションが誤った動作をしても、一定の稼働（とパフォーマンス）を保証します。
 
 .. Control Groups have been around for a while as well: the code was started in 2006, and initially merged in kernel 2.6.24.
 
@@ -86,19 +86,19 @@ Docker デーモンが直面する攻撃
 
 .. Running containers (and applications) with Docker implies running the Docker daemon. This daemon currently requires root privileges, and you should therefore be aware of some important details.
 
-Docker を使ったコンテナ（とアプリケーション）を実行するとは、Docker デーモンの稼働を意味します。このデーモンは現時点では ``root`` 特権が必要であり、それゆえ、いくつか重要な点に配慮が必要です。
+Docker を使ったコンテナ（とアプリケーション）を実行するとは、Docker デーモンの稼働を意味します。このデーモンは現時点で ``root`` 特権が必要であり、それゆえ、いくつか重要な点に配慮が必要です。
 
 .. First of all, only trusted users should be allowed to control your Docker daemon. This is a direct consequence of some powerful Docker features. Specifically, Docker allows you to share a directory between the Docker host and a guest container; and it allows you to do so without limiting the access rights of the container. This means that you can start a container where the /host directory will be the / directory on your host; and the container will be able to alter your host filesystem without any restriction. This is similar to how virtualization systems allow filesystem resource sharing. Nothing prevents you from sharing your root filesystem (or even your root block device) with a virtual machine.
 
-まずはじめに、 **信頼する利用者だけ、Docker デーモンに対するアクセスを許可するべき** です。これは Docker がもたらす強力な機能による直接的な影響のためです。特に、Docker は Docker ホストとゲストコンテナ間でディレクトリを共有できます。そして、それにより、コンテナ内に対する適切なアクセス権限が無くても、ディレクトリを使えるようになる可能性があります。つまりコンテナの ``/host`` ディレクトリは、ホスト上の ``/`` ディレクトリとしても実行可能です。そして、コンテナは何ら制限なく、ホスト上のファイルシステム上に対する修正が可能になります。これは仮想化システムによるファイルシステム・リソースの共有に似ています。仮想マシン上における自分のルート・ファイルシステム（root ブロック・デバイスも同様）の共有を阻止する方法はありません。
+まずはじめに、 **信頼する利用者だけ、Docker デーモンに対するアクセスを許可するべき** です。これは Docker がもたらす強力な機能を直接扱うためです。特に、Docker は Docker ホストとゲストコンテナ間でディレクトリを共有できます。そして、それにより、コンテナ内に対する適切なアクセス権限が無くても、ディレクトリを使えるようになる可能性があります。つまりコンテナの ``/host`` ディレクトリは、ホスト上の ``/`` ディレクトリとしても実行可能です。それだけではありません。コンテナは何ら制限を受けずに、ホスト上のファイルシステム上に対する修正が可能になります。これは仮想化システムによるファイルシステム・リソースの共有に似ています。仮想マシン上における自分のルート・ファイルシステム（ルート・ブロック・デバイスも同様）の共有を阻止する方法はありません。
 
 .. This has a strong security implication: for example, if you instrument Docker from a web server to provision containers through an API, you should be even more careful than usual with parameter checking, to make sure that a malicious user cannot pass crafted parameters causing Docker to create arbitrary containers.
 
-これはセキュリティに重大な影響を及ぼします。例えば、Docker の API を通してウェブ・サーバ用コンテナをプロビジョンしたいとします。通常通りパラメータの確認に注意を払うべきです。ここでは、悪意のあるユーザが手の込んだパラメータを使い、Docker が余分なコンテナを作成できないようにしてください。
+これはセキュリティに重大な影響を及ぼします。例えば、Docker の API を通してウェブ・サーバ用コンテナをプロビジョンしたいとします。通常通りパラメータの確認に注意を払うべきです。ここでは、悪意のあるユーザが手の込んだパラメータを使い、Docker が余分なコンテナを作成不可能にしてください。
 
 .. For this reason, the REST API endpoint (used by the Docker CLI to communicate with the Docker daemon) changed in Docker 0.5.2, and now uses a UNIX socket instead of a TCP socket bound on 127.0.0.1 (the latter being prone to cross-site request forgery attacks if you happen to run Docker directly on your local machine, outside of a VM). You can then use traditional UNIX permission checks to limit access to the control socket.
 
-この理由により、REST API エンドポイント（Docker CLI が Docker デーモンとの通信に使います）が Docker 0.5.2 で変更されました。現在は 127.0.0.1 上の TCP ソケットの代わりに UNIX ソケットを使います（最近はローカルのマシン上の Docker に対して、仮想マシンの外から直接クロスサイト・リクエスト・フォージェリ、CSRF を行う傾向があります）。伝統的な Unix パーミッションを確認し、ソケットに対するアクセスを制限するような管理が必要です。
+この理由により、REST API エンドポイント（Docker CLI が Docker デーモンとの通信に使います）が Docker 0.5.2 で変更されました。現在は 127.0.0.1 上の TCP ソケットに代わり、 UNIX ソケットを使います（最近はローカルのマシン上の Docker に対して、仮想マシンの外から直接クロスサイト・リクエスト・フォージェリ、CSRF を行う傾向があります）。伝統的な Unix パーミッションを確認し、ソケットに対するアクセスを制限するような管理が必要です。
 
 .. You can also expose the REST API over HTTP if you explicitly decide to do so. However, if you do that, being aware of the above mentioned security implication, you should ensure that it will be reachable only from a trusted network or VPN; or protected with e.g., stunnel and client SSL certificates. You can also secure them with HTTPS and certificates.
 
@@ -106,15 +106,15 @@ Docker を使ったコンテナ（とアプリケーション）を実行する�
 
 .. The daemon is also potentially vulnerable to other inputs, such as image loading from either disk with ‘docker load’, or from the network with ‘docker pull’. This has been a focus of improvement in the community, especially for ‘pull’ security. While these overlap, it should be noted that ‘docker load’ is a mechanism for backup and restore and is not currently considered a secure mechanism for loading images. As of Docker 1.3.2, images are now extracted in a chrooted subprocess on Linux/Unix platforms, being the first-step in a wider effort toward privilege separation.
 
-また、デーモンは入力に関する脆弱性を潜在的に持っています。これはディスク上で ``docker load`` 、あるいはネットワーク上で ``docker pull`` を使いイメージを読み込むときです。これはコミュニティにおける改良に焦点がおかれており、特に安全に ``pull`` するためです。これまでの部分と重複しますが、 ``docker load`` はバックアップや修復のための仕組みです。しかし、イメージの読み込みにあたっては、現時点で安全な仕組みではないと考えられていることに注意してください。Docker 1.3.2 からは、イメージは Linux/Unix プラットフォームの chroot サブ・プロセスとして展開されるようになりました。これは広範囲にわたる特権分離問題に対する第一歩です。
+また、デーモンは入力に関する脆弱性を潜在的に持っています。これはディスク上で ``docker load`` 、あるいはネットワーク上で ``docker pull`` を使いイメージを読み込む時です。これはコミュニティにおける改良に焦点がおかれており、特に安全に ``pull`` するためです。これまでの部分と重複しますが、 ``docker load`` はバックアップや修復のための仕組みです。しかし、イメージの読み込みにあたっては、現時点で安全な仕組みではないと考えられていることに注意してください。Docker 1.3.2 からは、イメージは Linux/Unix プラットフォームの chroot サブ・プロセスとして展開されるようになりました。これは広範囲にわたる特権分離問題に対する第一歩です。
 
 .. Eventually, it is expected that the Docker daemon will run restricted privileges, delegating operations well-audited sub-processes, each with its own (very limited) scope of Linux capabilities, virtual network setup, filesystem management, etc. That is, most likely, pieces of the Docker engine itself will run inside of containers.
 
-最終的には、Docker デーモンは制限された権限下で動作するようになるでしょう。それぞれが自身の（あるいは限定された） Linux ケーパビリティ（capability；「能力」や「機能」の意味）、仮想ネットワークのセットアップ、ファイルシステム管理といいった、サブプロセス毎に委任したオペレーションを監査できるようになることを期待しています。
+最終的には、Docker デーモンは制限された権限下で動作するようになるでしょう。それぞれが自身の（あるいは限定された） Linux ケーパビリティ（capability；「能力」や「機能」の意味）、仮想ネットワークのセットアップ、ファイルシステム管理といった、サブプロセスごとに委任したオペレーションを監査できるようになることを期待しています。
 
 .. Finally, if you run Docker on a server, it is recommended to run exclusively Docker in the server, and move all other services within containers controlled by Docker. Of course, it is fine to keep your favorite admin tools (probably at least an SSH server), as well as existing monitoring/supervision processes (e.g., NRPE, collectd, etc).
 
-最後に、Docker をサーバで動かす場合は、サーバ上で Docker 以外を動かさないことを推奨します。そして、他のサービスは Docker によって管理されるコンテナに移動しましょう。もちろん、好きな管理ツール（おそらく SSH サーバでしょう）や既存の監視・管理プロセス（例： NRPE、collectd、等）はそのままで構いません。
+なお、Docker をサーバで動かす場合は、サーバ上で Docker 以外を動かさないことを推奨します。そして、他のサービスは Docker によって管理されるコンテナに移動しましょう。もちろん、好きな管理ツール（おそらく SSH サーバでしょう）や既存の監視・管理プロセス（例： NRPE、collectd、等）はそのままで構いません。
 
 .. Linux kernel capabilities
 
@@ -129,11 +129,11 @@ Linux カーネルのケーパビリティ
 
 .. Capabilities turn the binary “root/non-root” dichotomy into a fine-grained access control system. Processes (like web servers) that just need to bind on a port below 1024 do not have to run as root: they can just be granted the net_bind_service capability instead. And there are many other capabilities, for almost all the specific areas where root privileges are usually needed.
 
-ケーパビリティとは、「root」か「root以外か」といったバイナリの二分法によって分類する、きめ細かなアクセス制御システムです。（ウェブサーバのような）プロセスがポート 1024 以下でポートをバインドする必要があるとき、root 権限でなければ実行できません。そこで ``net_bind_service`` ケーパビリティを使い、権限を与えます。他にも多くのケーパビリティがあります。大部分は特定の条件下で root 特権を利用できるようにするものです。
+ケーパビリティとは、「root」か「root以外か」といったバイナリの二分法によって分類する、きめ細かなアクセス制御システムです。（ウェブサーバのような）プロセスがポート 1024 以下でポートをバインドする必要がある時、root 権限でなければ実行できません。そこで ``net_bind_service`` ケーパビリティを使い、権限を与えます。他にも多くのケーパビリティがあります。大部分は特定の条件下で root 特権を利用できるようにするものです。
 
 .. This means a lot for container security; let’s see why!
 
-つまり、コンテナのセキュリティを高めます。理由をみていきましょう！
+つまり、コンテナのセキュリティを高めます。理由を見ていきましょう！
 
 .. Your average server (bare metal or virtual machine) needs to run a bunch of processes as root. Those typically include SSH, cron, syslogd; hardware management tools (e.g., load modules), network configuration tools (e.g., to handle DHCP, WPA, or VPNs), and much more. A container is very different, because almost all of those tasks are handled by the infrastructure around the container:
 
@@ -161,7 +161,7 @@ Linux カーネルのケーパビリティ
 
 .. This means that in most cases, containers will not need “real” root privileges at all. And therefore, containers can run with a reduced capability set; meaning that “root” within a container has much less privileges than the real “root”. For instance, it is possible to:
 
-これらが意味するのは、大部分のケースにおいて、コンテナを「本当の」 root 特権で動かす必要は *全くない* ということです。それゆえ、コンテナはケーパビリティの組み合わせを減らして実行できるのです。つまり、コンテナ内の「root」は、実際の「root」よりも権限が少ないことを意味します。例えば、次のような使い方があります。
+これらが意味するのは、大部分のケースにおいて、コンテナを「本当の」 root 特権で動かす必要は *全く無い* ということです。それゆえ、コンテナはケーパビリティの組み合わせを減らして実行できるのです。つまり、コンテナ内の「root」は、実際の「root」よりも権限が少ないことを意味します。例えば、次のような使い方があります。
 
 ..    deny all “mount” operations;
     deny access to raw sockets (to prevent packet spoofing);
@@ -171,7 +171,7 @@ Linux カーネルのケーパビリティ
 
 * 全ての「mount」操作を拒否
 * raw ソケットへのアクセスを拒否（パケット・スプーフィングを阻止）
-* ファイルイステムに関するいくつかの操作を拒否（新しいデバイス・ノードの作成、ファイル所有者の変更、immutable フラグを含む属性の変更）
+* ファイルシステムに関するいくつかの操作を拒否（新しいデバイス・ノードの作成、ファイル所有者の変更、immutable フラグを含む属性の変更）
 * モジュールの読み込みを禁止
 * などなど
 
@@ -189,7 +189,7 @@ Docker コンテナ実行にあたり、最も重要なリスクというのは�
 
 .. Docker supports the addition and removal of capabilities, allowing use of a non-default profile. This may make Docker more secure through capability removal, or less secure through the addition of capabilities. The best practice for users would be to remove all capabilities except those explicitly required for their processes.
 
-Docker はケーパビリティの追加と削除をサポートしますので、デフォルトで何も無いプロファイルも扱えます。これにより、ケーパビリティが削除されても Docker は安全ですが、ケーパビリティを追加するときはセキュリティが低下します。利用にあたってのベストプラクティスは、各プロセスが明らかに必要なケーパビリティを除き、すべて削除することです。
+Docker はケーパビリティの追加と削除をサポートしますので、デフォルトで何も無いプロファイルも扱えます。これにより、ケーパビリティが削除されても Docker は安全ですが、ケーパビリティを追加する時はセキュリティが低下します。利用にあたってのベストプラクティスは、各プロセスが明らかに必要なケーパビリティを除き、全て削除することです。
 
 .. Other kernel security features
 
@@ -212,7 +212,7 @@ Docker はケーパビリティの追加と削除をサポートしますので�
 
 ..    If your distribution comes with security model templates for Docker containers, you can use them out of the box. For instance, we ship a template that works with AppArmor and Red Hat comes with SELinux policies for Docker. These templates provide an extra safety net (even though it overlaps greatly with capabilities).
 
-* ディストリビューションに Docker コンテナに対応したセキュリティ・モデル・テンプレートがあれば、それを利用可能です。たとえば、私たちは AppArmor で動作するテンプレートを提供しています。また、Red hat は Docker 対応の SELinux ポリシーを提供しています。これらのテンプレートは外部のセーフティーネットを提供します（ケーパビリティと大いに重複する部分もありますが）。
+* ディストリビューションに Docker コンテナに対応したセキュリティ・モデル・テンプレートがあれば、それを利用可能です。例えば、私たちは AppArmor で動作するテンプレートを提供しています。また、Red hat は Docker 対応の SELinux ポリシーを提供しています。これらのテンプレートは外部のセーフティーネットを提供します（ケーパビリティと大いに重複する部分もありますが）。
 
 ..    You can define your own policies using your favorite access control mechanism.
 
@@ -220,12 +220,12 @@ Docker はケーパビリティの追加と削除をサポートしますので�
 
 .. Just like there are many third-party tools to augment Docker containers with e.g., special network topologies or shared filesystems, you can expect to see tools to harden existing Docker containers without affecting Docker’s core.
 
-Docker コンテナと連携する多くのサードパーティー製ツールが提供されています。例えば、特別なネットワーク・トポロジーや共有ファイルシステムです。これらは Docker のコアの影響をうけず、既存の Docker コンテナを堅牢にするものです。
+Docker コンテナと連携する多くのサードパーティー製ツールが提供されています。例えば、特別なネットワーク・トポロジーや共有ファイルシステムです。これらは Docker のコアの影響を受けずに、既存の Docker コンテナを堅牢にするものです。
 
 .. （1.11で削除）
 .. Recent improvements in Linux namespaces will soon allow to run full-featured containers without root privileges, thanks to the new user namespace. This is covered in detail here. Moreover, this will solve the problem caused by sharing filesystems between host and guest, since the user namespace allows users within containers (including the root user) to be mapped to other users in the host system.
 
-.. 直近の Linux 名前空間に対する改良によって、新しいユーザ名前空間の力を使い、まもなく root 特権無しに全てのコンテナ機能が使えるようになるでしょう。詳細は `こちら <http://s3hh.wordpress.com/2013/07/19/creating-and-using-containers-without-privilege/>`_ で扱っています。さらに、これはホストとゲストに関する共用ファイルシステムによって引き起こされる問題も解決できるかもしれません。これはユーザ名前空間がコンテナ内のユーザをホスト上のユーザ（rootも含まれます）に割り当て（マッピング）できるようにするためです。
+.. 直近の Linux 名前空間に対する改良によって、新しいユーザ名前空間の力を使い、まもなく root 特権無しに全てのコンテナ機能が使えるようになるでしょう。詳細は `こちら <http://s3hh.wordpress.com/2013/07/19/creating-and-using-containers-without-privilege/>`_ で扱っています。更に、これはホストとゲストに関する共用ファイルシステムによって引き起こされる問題も解決できるかもしれません。これはユーザ名前空間がコンテナ内のユーザをホスト上のユーザ（rootも含まれます）に割り当て（マッピング）できるようにするためです。
 
 .. （1.11で削除）
 .. Today, Docker does not directly support user namespaces, but they may still be utilized by Docker containers on supported kernels, by directly using the clone syscall, or utilizing the ‘unshare’ utility. Using this, some users may find it possible to drop more capabilities from their process as user namespaces provide an artificial capabilities set. Likewise, however, this artificial capabilities set may require use of ‘capsh’ to restrict the user-namespace capabilities set when using ‘unshare’.
@@ -256,15 +256,15 @@ Docker 1.10 以降は Docker デーモンがユーザ名前空間（User Namespa
 
 .. Docker containers are, by default, quite secure; especially if you take care of running your processes inside the containers as non-privileged users (i.e., non-root).
 
-Docker コンテナはデフォルトでも安全ですが、とりわけコンテナ内でプロセスを権限のないユーザ（例： root 以外のユーザ）で実行する時に、注意が必要です。
+Docker コンテナはデフォルトでも安全ですが、とりわけコンテナ内でプロセスを権限の無いユーザ（例： root 以外のユーザ）で実行する時に、注意が必要です。
 
 .. You can add an extra layer of safety by enabling AppArmor, SELinux, GRSEC, or your favorite hardening solution.
 
-AppArmor、SELinux、GRSEC など任意の堅牢化ソリューションを有効化することで、さらに安全なレイヤーを追加できます。
+AppArmor、SELinux、GRSEC など任意の堅牢化ソリューションを有効化することで、更に安全なレイヤを追加できます。
 
 .. Last but not least, if you see interesting security features in other containerization systems, these are simply kernels features that may be implemented in Docker as well. We welcome users to submit issues, pull requests, and communicate via the mailing list.
 
-最後ですが疎かにできないのは、他のコンテナ化システムのセキュリティ機能に興味があれば、それらは Docker と同じようにシンプルにカーネルの機能を実装しているのがわかるでしょう。私たちは皆さんからの問題報告、プルリクエスト、メーリングリストにおけるや議論を歓迎します。
+最後ですが疎かにできないのは、他のコンテナ化システムのセキュリティ機能に興味があれば、それらは Docker と同じようにシンプルにカーネルの機能を実装しているのが分かるでしょう。私たちは皆さんからの問題報告、プルリクエスト、メーリングリストにおける議論を歓迎します。
 
 関連情報
 ==========

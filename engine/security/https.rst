@@ -45,7 +45,7 @@ Docker をネットワーク上で安全な方法で使う必要があるなら�
 
 .. Create a CA, server and client keys with OpenSSL
 
-OpenSL で CA （サーバとクライアントの鍵）を作成
+OpenSSL で CA （サーバとクライアントの鍵）を作成
 ==================================================
 
 ..    Note: replace all instances of $HOST in the following example with the DNS name of your Docker daemon’s host.
