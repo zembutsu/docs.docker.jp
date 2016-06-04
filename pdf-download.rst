@@ -16,7 +16,7 @@ Docker Engineドキュメント（https://docs.docker.com/）の日本語翻訳�
   * `Mac OS X <http://docker.jp/PDF/docker-getting-started-guide-for-mac.pdf>`_  (PDF 0.6MB)
 
 * `Docker Engine ユーザガイド基礎編 v1.11 beta1 <http://docker.jp/PDF/docker-engine-basic-userguide-ja-beta1.pdf>`_ (PDF 3.1MB)
-* Docker Engine ユーザガイド活用編（予定）
+* `Docker Engine ユーザガイド活用編 v1.11 beta1 <http://docker.jp/PDF/docker-engine-practical-userguide-ja-beta1.pdf>`_ (PDF 0.9MB)
 * `Docker Engine リファレンス編 v1.11 beta1 <http://docker.jp/PDF/docker-engine-reference-userguide-ja-beta1.pdf>`_ (PDF 1.2MB)
 * `Docker Machine ユーザガイド v0.7 beta1 <http://docker.jp/PDF/docker-machine-userguide-ja-beta1.pdf>`_ PDF (0.7MB)
 * `Docker Swarm ユーザガイド v1.1 beta1 <http://docker.jp/PDF/docker-swarm-userguide-ja-beta1.pdf>`_ PDF (2.1MB)
@@ -32,6 +32,7 @@ Docker Engineドキュメント（https://docs.docker.com/）の日本語翻訳�
 履歴
 ==========
 
+* 2016年6月4日　Engine ユーザガイド～活用編 v1.1 beta1 を公開
 * 2016年6月2日　Swarm ユーザガイド v1.1 beta1 を公開
 * 2016年5月24日　Compose ユーザガイド beta1 を公開
 * 2016年5月21日　Machine ユーザガイド beta1 を公開
