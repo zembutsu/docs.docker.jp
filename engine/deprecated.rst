@@ -112,7 +112,7 @@ Docker ps の「before」「since」オプション
 
 .. Deprecated In Release: v1.10.0
 
-**廃止リリース： `v1.10.0 <https://github.com/docker/docker/releases/tag/v1.10.0>`_ **
+**廃止リリース： v1.10.0**
 
 .. Target For Removal In Release: v1.12
 

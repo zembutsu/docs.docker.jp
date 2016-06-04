@@ -88,31 +88,31 @@ Docker 技術は LXC の置き換えではありません。 「LXC」は Linux 
 
 .. Portable deployment across machines. Docker defines a format for bundling an application and all its dependencies into a single object which can be transferred to any Docker-enabled machine, and executed there with the guarantee that the execution environment exposed to the application will be the same. LXC implements process sandboxing, which is an important pre-requisite for portable deployment, but that alone is not enough for portable deployment. If you sent me a copy of your application installed in a custom LXC configuration, it would almost certainly not run on my machine the way it does on yours, because it is tied to your machine’s specific configuration: networking, storage, logging, distro, etc. Docker defines an abstraction for these machine-specific settings, so that the exact same Docker container can run - unchanged - on many different machines, with many different configurations.
 
-* *マシンをまたがるポータブルなデプロイ* 。Docker はアプリケーションを構築するためのフォーマットを定義し、その全ての依存関係を１つのオブジェクトにすることで、 Docker が利用可能なあらゆるマシン上に移動できるようにします。そして、アプリケーションが同じような環境で動作できるようにするのを保証します。LXC によって実装されるプロセスはサンドボックス（砂場）であり、ポータブルなデプロイの準備としては、重要な環境です。しかしながら、ポータブルなデプロイには十分とは言えません。もしあなたが私にカスタム LXC 設定を施したアプリケーションを送ってきたとしても、おそらく私のマシン上では動作しないでしょう。なぜなら、マシン固有の情報が紐付いているからです。例えばネットワーク、ストレージ、ログ保存、ディストリビューション等です。Docker は、これらマシン固有の情報を抽象化しますので、同じ Docker コンテナであれば間違いなく実行できます。マシンが異なり、環境が変わっていたとしても、コンテナに対して変更を加える必要がありません。
+* **マシンをまたがるポータブルなデプロイ** 。Docker はアプリケーションを構築するためのフォーマットを定義し、その全ての依存関係を１つのオブジェクトにすることで、 Docker が利用可能なあらゆるマシン上に移動できるようにします。そして、アプリケーションが同じような環境で動作できるようにするのを保証します。LXC によって実装されるプロセスはサンドボックス（砂場）であり、ポータブルなデプロイの準備としては、重要な環境です。しかしながら、ポータブルなデプロイには十分とは言えません。もしあなたが私にカスタム LXC 設定を施したアプリケーションを送ってきたとしても、おそらく私のマシン上では動作しないでしょう。なぜなら、マシン固有の情報が紐付いているからです。例えばネットワーク、ストレージ、ログ保存、ディストリビューション等です。Docker は、これらマシン固有の情報を抽象化しますので、同じ Docker コンテナであれば間違いなく実行できます。マシンが異なり、環境が変わっていたとしても、コンテナに対して変更を加える必要がありません。
 
 .. Application-centric. Docker is optimized for the deployment of applications, as opposed to machines. This is reflected in its API, user interface, design philosophy and documentation. By contrast, the lxc helper scripts focus on containers as lightweight machines - basically servers that boot faster and need less RAM. We think there’s more to containers than just that.
 
- **アプリケーション中心です* 。Docker が最適化されているのはマシンに対してというよりも、アプリケーションのデプロイに対してです。これは API はユーザ・インターフェース、設計哲学やドキュメントにも反映されています。対照的に ``lxc`` の場合は、コンテナを軽量なマシンとして扱うための補助スクリプトに注力しています。ここで言うマシンというのは、基本的なサーバのことであり、より速く起動し、メモリを必要としない環境です。私たちは LXC よりもコンテナの方が、より多くの利点があると考えています。
+* **アプリケーション中心型** 。Docker が最適化されているのはマシンに対してというよりも、アプリケーションのデプロイに対してです。これは API やユーザ・インターフェース、設計哲学やドキュメントにも反映されています。対照的に ``lxc`` の場合は、コンテナを軽量なマシンとして扱うための補助スクリプトに注力しています。ここで言うマシンというのは、基本的なサーバのことであり、より速く起動し、メモリを必要としない環境です。私たちは LXC よりもコンテナのほうが、より多くの利点があると考えています。
  
 .. Automatic build. Docker includes a tool for developers to automatically assemble a container from their source code, with full control over application dependencies, build tools, packaging etc. They are free to use make, maven, chef, puppet, salt, Debian packages, RPMs, source tarballs, or any combination of the above, regardless of the configuration of the machines.
  
- * *自動構築（ Automatic Build ）* 。Docker には、 :doc:`開発者向けにソース・コードからコンテナを自動的に構築する機能 </engine/reference/builder>` があります。これは構築ツールやパッケージングにあたるアプリケーションの依存性を完全に管理します。マシンの設定に関係無く、 ``make`` 、 ``maven`` 、 ``chef`` 、 ``puppet`` 、 ``salt`` 、 Debian パッケージ、 RPM 、ソースの tar ボール等を自由に扱えます。
+* **自動構築（ Automatic Build ）** 。Docker には、 :doc:`開発者向けにソース・コードからコンテナを自動的に構築する機能 </engine/reference/builder>` があります。これは構築ツールやパッケージングにあたるアプリケーションの依存性を完全に管理します。マシンの設定に関係無く、 ``make`` 、 ``maven`` 、 ``chef`` 、 ``puppet`` 、 ``salt`` 、 Debian パッケージ、 RPM 、ソースの tar ボール等を自由に扱えます。
  
 .. Versioning. Docker includes git-like capabilities for tracking successive versions of a container, inspecting the diff between versions, committing new versions, rolling back etc. The history also includes how a container was assembled and by whom, so you get full traceability from the production server all the way back to the upstream developer. Docker also implements incremental uploads and downloads, similar to git pull, so new versions of a container can be transferred by only sending diffs.
  
- * *バージョン管理* 。Docker には Git のようにコンテナのバージョン推移を追跡する機能があり、バージョン間の差分を調べ、新しいバージョンをコミットしたり、ロールバックしたり等ができます。また履歴を辿ることで、誰によって何が組み込まれたかを把握できます。そのため、開発元からプロダクションのサーバに至るまでの流れを完全に追跡できます。また Docker には ``git pull`` のようにアップロード回数とダウンロード回数を記録する機能があるため、コンテナの新しいバージョンを送信するとは、単に差分を送信するだけです。
+* **バージョン管理** 。Docker には Git のようにコンテナのバージョン推移を追跡する機能があり、バージョン間の差分を調べ、新しいバージョンをコミットしたり、ロールバックしたり等ができます。また履歴を辿ることで、誰によって何が組み込まれたかを把握できます。そのため、開発元からプロダクションのサーバに至るまでの流れを完全に追跡できます。また Docker には ``git pull`` のようにアップロード回数とダウンロード回数を記録する機能があるため、コンテナの新しいバージョンを送信するとは、単に差分を送信するだけです。
  
 .. Component re-use. Any container can be used as a “base image” to create more specialized components. This can be done manually or as part of an automated build. For example you can prepare the ideal Python environment, and use it as a base for 10 different applications. Your ideal PostgreSQL setup can be re-used for all your future projects. And so on.
  
-* *再利用可能なコンポーネント* 。コンテナは特別なコンポーネントを「 :ref:`ベース・イメージ <image>` 」として利用できます。これは手動もしくは自動構築の一部で使えます。例えば、望ましい Python 環境を用意しておけば、１０もの異なったアプリケーションがベースになります。あるいは、望ましい PostgreSQL をセットアップしておけば、自分の将来のプロジェクトで再利用可能になるでしょう。このような使い方ができます。
+* **再利用可能なコンポーネント** 。コンテナは特別なコンポーネントを「 :ref:`ベース・イメージ <image>` 」として利用できます。これは手動もしくは自動構築の一部で使えます。例えば、望ましい Python 環境を用意しておけば、10以上もの異なるアプリケーションの基盤になります。あるいは、望ましい PostgreSQL をセットアップしておけば、自分の将来のプロジェクトで再利用可能になるでしょう。このような使い方ができます。
 
 .. Sharing. Docker has access to a public registry on Docker Hub where thousands of people have uploaded useful images: anything from Redis, CouchDB, PostgreSQL to IRC bouncers to Rails app servers to Hadoop to base images for various Linux distros. The registry also includes an official “standard library” of useful containers maintained by the Docker team. The registry itself is open-source, so anyone can deploy their own registry to store and transfer private containers, for internal server deployments for example.
 
-* *共有* 。Docker は `Docker Hub <https://hub.docker.com/>`_ というパブリック・レジストリにアクセスします。そこでは数千人もの人達が便利なイメージをアップロードしています。Redis 、 CouchDB 、PostgreSQL といったイメージから、IRC バウンサーや Rails アプリケーション・サーバや、Hadoop 向けや、様々なディストリビューション向けのベース・イメージがあります。また、公式の「標準ライブラリ（standard library）」には  :doc:`レジストリ </registry/index>` という名前の、Docker チームによって管理されている便利なコンテナがあります。レジストリ自身はオープンソースでアリ、誰もが自分自身でレジストリに対して、プライベートなコンテナの保管や転送が可能になります。例えば内部のサーバへデプロイすることも可能です。
+* **共有** 。Docker は `Docker Hub <https://hub.docker.com/>`_ というパブリック・レジストリにアクセスします。そこでは数千人もの人たちが便利なイメージをアップロードしています。Redis 、 CouchDB 、PostgreSQL といったイメージから、IRC バウンサーや Rails アプリケーション・サーバや、Hadoop 向けや、様々なディストリビューション向けのベース・イメージがあります。また、公式の「標準ライブラリ（standard library）」には  :doc:`レジストリ </registry/index>` という名前の、Docker チームによって管理されている便利なコンテナがあります。レジストリ自身はオープンソースでアリ、誰もが自分自身でレジストリに対して、プライベートなコンテナの保管や転送が可能になります。例えば内部のサーバへデプロイすることも可能です。
 
 .. Tool ecosystem. Docker defines an API for automating and customizing the creation and deployment of containers. There are a huge number of tools integrating with Docker to extend its capabilities. PaaS-like deployment (Dokku, Deis, Flynn), multi-node orchestration (Maestro, Salt, Mesos, Openstack Nova), management dashboards (docker-ui, Openstack Horizon, Shipyard), configuration management (Chef, Puppet), continuous integration (Jenkins, Strider, Travis), etc. Docker is rapidly establishing itself as the standard for container-based tooling.
 
-* *ツールのエコシステム* 。Docker はコンテナの作成と開発のために、自動化・カスタマイズ化の API を定義しています。Docker を互換性のある非常に多くのツールと連携できます。PaaS 風のデプロイ（ Dokku、Deis、Flynn）、複数ノードのオーケストレーション（Maestro、Salt、Mesos、OpenStack Nova）、ダッシュボード管理（docker-ui、Openstack Horizon、Shipyard）、設定管理（Chef、Puppet）、継続的インテグレーション（Jenkins、Strider、travis）等です。Docker は
+* **ツールのエコシステム** 。Docker はコンテナの作成と開発のために、自動化・カスタマイズ化の API を定義しています。Docker を互換性のある非常に多くのツールと連携できます。PaaS 風のデプロイ（ Dokku、Deis、Flynn）、複数ノードのオーケストレーション（Maestro、Salt、Mesos、OpenStack Nova）、ダッシュボード管理（docker-ui、Openstack Horizon、Shipyard）、設定管理（Chef、Puppet）、継続的インテグレーション（Jenkins、Strider、travis）等です。コンテナを基盤としたツール標準として、Docker は自身を迅速に起動できます。
 
 .. What is different between a Docker container and a VM?
 
@@ -154,7 +154,7 @@ Docker コンテナにどうやって接続しますか？
 
 .. Also useful for more flexible service portability is the Ambassador linking pattern.
 
-またサービスのポータビリティをフレキシブルにするには、 :doc:`アンバサダー・リンク・パターン </engine/admin/ambassador_pattern_linking>` も便利です。
+またサービスのポータビリティをフレキシブルにするには、 :doc:`アンバサダ・リンク・パターン </engine/admin/ambassador_pattern_linking>` も便利です。
 
 .. How do I run more than one process in a Docker container?
 
@@ -201,7 +201,7 @@ Docker のセキュリティ問題はどこに報告したらよいですか？
 
 .. Why do I need to sign my commits to Docker with the DCO?
 
-なぜ Docker の DCO で署名してからコミットする必要がありますか？
+なぜ Docker の DCO で署名してからコミットする必要があるのでか？
 ======================================================================
 
 .. Please read our blog post on the introduction of the DCO.
@@ -223,7 +223,7 @@ DCO (Developer's Certificate of Origin) については、 `こちらのブロ�
 
 .. Some programs, however, will bundle their third-party libraries, because they rely on very specific versions of those libraries. For instance, Node.js bundles OpenSSL; MongoDB bundles V8 and Boost (among others).
 
-しかしながら、いくつかのプログラムは、特定バージョンのライブラリに依存するため、自分自身でサード・パーティ製のライブラリを同梱しています。例えば、Node.js は OpenSSL を同梱していますし、MongoDB は V8 と Boost （他にも）を同梱しています。
+しかしながら、いくつかのプログラムは、特定バージョンのライブラリに依存するため、自分自身でサード・パーティー製のライブラリを同梱しています。例えば、Node.js は OpenSSL を同梱していますし、MongoDB は V8 と Boost （他にも）を同梱しています。
 
 .. When creating a Docker image, is it better to use the bundled libraries, or should you build those programs so that they use the default system libraries instead?
 
@@ -268,11 +268,11 @@ Dockerfile の中で環境変数 ``DEBIAN_FRONTEND`` を変更して使い、こ
 
 .. This prevents the installer from opening dialog boxes during installation which stops the errors.
 
-これはインストール時にダイアログ・ボックスを開こうとして、エラーがあっても停止しないようにするものです。
+これはインストール時にダイアログ・ボックスを開こうとして、エラーがあっても停止しないようにします。
 
 .. While this may sound like a good idea, it may have side effects. The DEBIAN_FRONTEND environment variable will be inherited by all images and containers built from your image, effectively changing their behavior. People using those images will run into problems when installing software interactively, because installers will not show any dialog boxes.
 
-これは良い考えかもしれませんが、一方で影響がある *かも* しれません。 ``DEBIAN_FRONTEND`` 環境変数はイメージからコンテナを構築するにあたり、全てのイメージに対し変更設定が継承されます。対象のイメージを使おうとする人達が、ソフトウェアをインタラクティブに設定するときに、インストーラは何らダイアログ・ボックスを表示しないため、問題が起こりうる場合があります。
+これは良い考えかもしれませんが、一方で影響がある *かも* しれません。 ``DEBIAN_FRONTEND`` 環境変数はイメージからコンテナを構築するにあたり、全てのイメージに対し変更設定が継承されます。対象のイメージを使おうとする人たちが、ソフトウェアをインタラクティブに設定する時に、インストーラは何らダイアログ・ボックスを表示しないため、問題が起こりうる場合があります。
 
 .. Because of this, and because setting DEBIAN_FRONTEND to noninteractive is mainly a ‘cosmetic’ change, we discourage changing it.
 

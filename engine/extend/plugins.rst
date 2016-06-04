@@ -19,7 +19,7 @@ Docker プラグインの理解
 
 .. You can extend the capabilities of the Docker Engine by loading third-party plugins. This page explains the types of plugins and provides links to several volume and network plugins for Docker.
 
-サードパーティー製のプラグインを読み込むことで、Docker エンジンの能力を拡張できます。このページではプラグインの種類についてと、いくつかの Docker 向けボリュームとネットワークのプラグインのリンクを紹介します。
+サードパーティー製のプラグインを読み込むと、Docker Engine の機能を拡張できます。このページではプラグインの種類についてと、いくつかの Docker 向けボリュームとネットワークのプラグインのリンクを紹介します。
 
 .. Types of plugins
 
@@ -45,13 +45,13 @@ Docker プラグインの理解
 
 .. Follow the instructions in the plugin’s documentation.
 
-設定方法は、プラグインのドキュメントをご覧ください。
+設定方法は、各プラグインのドキュメントをご覧ください。
 
 .. Finding a plugin
 
 .. _finding-a-plugin:
 
-プラグインを見つける
+プラグインを探す
 ====================
 
 .. The following plugins exist:
@@ -64,7 +64,7 @@ Docker プラグインの理解
 
 ..    The Convoy plugin is a volume plugin for a variety of storage back-ends including device mapper and NFS. It’s a simple standalone executable written in Go and provides the framework to support vendor-specific extensions such as snapshots, backups and restore.
 
-* `Convoy plugin <https://github.com/rancher/convoy>`_ は、 device mapper や NSF を含む様々なストレージのバックエンドに対応するボリューム・プラグインです。Go 言語で書かれたシンプルなスタンドアローンのバイナリであり、スナップショット、バックアップ、リストアといったベンダ固有の拡張をサポートしたフレームワークを提供します。
+* `Convoy plugin <https://github.com/rancher/convoy>`_ はボリューム・プラグインです。 device mapper や NSF を含む様々なストレージ・バックエンドに対応します。スタンドアローンのバイナリはシンプルなGo言語で書かれています。スナップショット、バックアップ、リストアといったベンダ固有の拡張をサポートしたフレームワークを提供します。
 
 ..    The Flocker plugin is a volume plugin which provides multi-host portable volumes for Docker, enabling you to run databases and other stateful containers and move them around across a cluster of machines.
 
@@ -72,11 +72,11 @@ Docker プラグインの理解
 
 ..    The GlusterFS plugin is another volume plugin that provides multi-host volumes management for Docker using GlusterFS.
 
-* `GlusterFS plugin <https://github.com/calavera/docker-volume-glusterfs>`_ は、Docker が GlusterFS を使って複数ホストのボリュームを管理可能にするプラグインです。
+* `GlusterFS plugin <https://github.com/calavera/docker-volume-glusterfs>`_ は Docker が GlusterFS を使って複数ホストのボリュームを管理可能にするプラグインです。
 
 ..    The Keywhiz plugin is a plugin that provides credentials and secret management using Keywhiz as a central repository.
 
-* `Kyewhiz plugin <https://github.com/calavera/docker-volume-keywhiz>`_ は、Keywhiz を中央リポジトリとして、証明書やシークレット（秘密情報）の管理を提供するプラグインです。
+* `Kyewhiz plugin <https://github.com/calavera/docker-volume-keywhiz>`_ は Keywhiz を中央リポジトリとして、証明書やシークレット（秘密情報）の管理を提供するプラグインです。
 
 ..    The Netshare plugin is a volume plugin that provides volume management for NFS ¾, AWS EFS and CIFS file systems.
 
@@ -84,7 +84,7 @@ Docker プラグインの理解
 
 ..    The OpenStorage Plugin is a cluster aware volume plugin that provides volume management for file and block storage solutions. It implements a vendor neutral specification for implementing extensions such as CoS, encryption, and snapshots. It has example drivers based on FUSE, NFS, NBD and EBS to name a few.
 
-* `OpenStorage Plugin <https://github.com/libopenstorage/openstorage>`_ はクラスタ検出ボリューム・プラグインであり、ファイルやブロック・ストレージにおけるボリューム管理ソリューションを提供します。扱えるのは、ベンダー中立の拡張機能です。たとえば CoS、暗号化、スナップショットです。サンプル・ドライバがベースにしているのは、FUSE、NFS、NBD、EBS などです。
+* `OpenStorage Plugin <https://github.com/libopenstorage/openstorage>`_ はクラスタ検出ボリューム・プラグインであり、ファイルやブロック・ストレージにおけるボリューム管理ソリューションを提供します。扱えるのは、ベンダ中立の拡張機能です。たとえば CoS、暗号化、スナップショットです。サンプル・ドライバがベースにしているのは、FUSE、NFS、NBD、EBS などです。
 
 ..    The Pachyderm PFS plugin is a volume plugin written in Go that provides functionality to mount Pachyderm File System (PFS) repositories at specific commits as volumes within Docker containers.
 

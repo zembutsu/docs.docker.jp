@@ -60,7 +60,7 @@ Registry の古いバージョン（2.3 より小さい）を使っている場�
 .. Docker Content Trust
 
 Docker Content Trust
-====================
+--------------------
 
 .. Engine older than the current 1.10 cannot pull images from repositories that have enabled key delegation. Key delegation is a feature which requires a manual action to enable.
 
