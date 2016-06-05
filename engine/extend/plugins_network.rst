@@ -34,7 +34,7 @@ Docker ネットワーク・プラグインは、Docker が広範囲のネット
 
 .. Once running however, network driver plugins are used just like the built-in network drivers: by being mentioned as a driver in network-oriented Docker commands. For example,
 
-ネットワーク・ドライバを実行しても、内蔵のネットワーク・ドライバのように扱えないかもしれません。ネットワーク対応の Docker コマンドでドライバを操作します。例えば、次のようなコマンドです。
+ネットワーク・ドライバを実行しても、内部ネットワーク・ドライバのように扱えないかもしれません。ネットワーク対応の Docker コマンドでドライバを操作します。例えば、次のようなコマンドです。
 
 .. code-block:: bash
 

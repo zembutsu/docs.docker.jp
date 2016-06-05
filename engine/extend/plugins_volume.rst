@@ -30,7 +30,7 @@ Docker ボリューム・プラグインとは、Amazon EBS のような外部�
 
 .. A volume plugin makes use of the -vand --volume-driver flag on the docker run command. The -v flag accepts a volume name and the --volume-driver flag a driver type, for example:
 
-ボリューム・プラグインを使うには ``docker run``  コマンドに ``-v`` と ``--volume-driver`` フラグを指定します。 ``-v`` フラグはボリューム名を受け付け、 ``--volume-driver`` フラグはドライバの種類を指定します。例えば、次のように実行します。
+ボリューム・プラグインを使うには ``docker run``  コマンドで ``-v`` と ``--volume-driver`` フラグを指定します。 ``-v`` フラグはボリューム名を受け付け、 ``--volume-driver`` フラグはドライバの種類を指定します。例えば、次のように実行します。
 
 .. code-block:: bash
 
@@ -42,7 +42,7 @@ Docker ボリューム・プラグインとは、Amazon EBS のような外部�
 
 .. By having the user specify a volumename, a plugin can associate the volume with an external volume beyond the lifetime of a single container or container host. This can be used, for example, to move a stateful container from one server to another.
 
-ユーザが ``volumename`` を指定すると、プラグインは１つのコンテナが稼働しつづける間、あるいはコンテナのホスト上における外部ボリュームをプラグインに関連づけます。これを使えば、たとえばステートフルなコンテナを、あるサーバから別のサーバに移せます。
+ユーザが ``volumename`` を指定したら、プラグインは１つのコンテナが稼働し続ける間、あるいはコンテナのホスト上における外部ボリュームをプラグインに関連づけます。これを使えば、例えばステートフルなコンテナを、あるサーバから別のサーバに移せます。
 
 .. By specifying a volumedriver in conjunction with a volumename, users can use plugins such as Flocker to manage volumes external to a single host, such as those on EBS.
 
@@ -66,7 +66,7 @@ Docker ボリューム・プラグインとは、Amazon EBS のような外部�
 
 .. If a plugin registers itself as a VolumeDriver when activated, then it is expected to provide writeable paths on the host filesystem for the Docker daemon to provide to containers to consume.
 
-プラグインは自身を ``VolumeDriver`` として登録した時に有効化されます。それから Docker デーモンがファイルシステム上に、コンテナが使うための書き込み可能なパスを提供します。
+プラグインは自身を ``VolumeDriver`` として登録した時に有効化されます。その後、Docker デーモンがファイルシステム上に、コンテナが使うための書き込み可能なパスを提供します。
 
 .. The Docker daemon handles bind-mounting the provided paths into user containers.
 
@@ -198,8 +198,8 @@ Docker はホスト上のボリュームのパスを覚えておく必要があ�
 
 .. Respond with the path on the host filesystem where the volume has been made available, and/or a string error if an error occurred.
 
-ボリュームが利用可能になったり、あるいはエラーが発生した場合には、ホスト・ファイルシステム上のパスを返します。
-j
+ボリュームが利用可能になったり、あるいはエラーが発生したりする場合には、ホスト・ファイルシステム上のパスを返します。
+
 
 .. /VolumeDriver.Unmount
 ------------------------------

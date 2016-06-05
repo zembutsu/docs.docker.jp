@@ -21,7 +21,7 @@
 
 .. This section discusses the security features you can configure and use within your Docker Engine installation.
 
-このセクションは Docker エンジンのセキュリティ機能やインストール時の設定について扱います。
+このセクションは Docker Engine のセキュリティ機能や、インストール時の設定について扱います。
 
 ..    You can configure Docker’s trust features so that your users can push and pull trusted images. To learn how to do this, see Use trusted images in this section.
 

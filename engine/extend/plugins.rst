@@ -30,7 +30,7 @@ Docker プラグインの理解
 
 .. Plugins extend Docker’s functionality. They come in specific types. For example, a volume plugin might enable Docker volumes to persist across multiple Docker hosts and a network plugin might provide network plumbing.
 
-プラグインは Docker の機能性を拡張します。拡張機能には複数の種類があります。たとえば、 :doc:`volume plugin <plugins_volume>` は複数のホストを横断して存在する Docker ボリュームを有功にします。 :doc:`network plugin <plugins_network>` はネットワークの管（plumbing）を提供するでしょう。
+プラグインは Docker の機能性を拡張します。拡張機能には複数の種類があります。例えば、 :doc:`volume plugin <plugins_volume>` は複数のホストを横断して存在する Docker ボリュームを有功にします。 :doc:`network plugin <plugins_network>` はネットワークの管（plumbing）を提供するでしょう。
 
 .. Currently Docker supports volume and network driver plugins. In the future it will support additional plugin types.
 
@@ -84,7 +84,7 @@ Docker プラグインの理解
 
 ..    The OpenStorage Plugin is a cluster aware volume plugin that provides volume management for file and block storage solutions. It implements a vendor neutral specification for implementing extensions such as CoS, encryption, and snapshots. It has example drivers based on FUSE, NFS, NBD and EBS to name a few.
 
-* `OpenStorage Plugin <https://github.com/libopenstorage/openstorage>`_ はクラスタ検出ボリューム・プラグインであり、ファイルやブロック・ストレージにおけるボリューム管理ソリューションを提供します。扱えるのは、ベンダ中立の拡張機能です。たとえば CoS、暗号化、スナップショットです。サンプル・ドライバがベースにしているのは、FUSE、NFS、NBD、EBS などです。
+* `OpenStorage Plugin <https://github.com/libopenstorage/openstorage>`_ はクラスタ検出ボリューム・プラグインであり、ファイルやブロック・ストレージにおけるボリューム管理ソリューションを提供します。扱えるのは、ベンダ中立の拡張機能です。例えば CoS、暗号化、スナップショットです。サンプル・ドライバがベースにしているのは、FUSE、NFS、NBD、EBS などです。
 
 ..    The Pachyderm PFS plugin is a volume plugin written in Go that provides functionality to mount Pachyderm File System (PFS) repositories at specific commits as volumes within Docker containers.
 

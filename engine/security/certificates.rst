@@ -90,7 +90,7 @@
 
 .. note::
 
-   これらの TLS コマンドが生成する証明書は、Linux 上で動作するものです。Mac OS X に含まれている OpenSSL のバージョンでは、Docker が必要とする証明書のタイプとの互換性はありません。
+   これらの TLS コマンドが生成する証明書は、Linux 上で動作するものです。Mac OS X に含まれている OpenSSL のバージョンでは、Docker が必要とする証明書のタイプと互換性はありません。
 
 .. Troubleshooting tips
 
@@ -99,7 +99,7 @@
 
 .. The Docker daemon interprets `.crt files as CA certificates and .cert files as client certificates. If a CA certificate is accidentally given the extension .cert instead of the correct .crt extension, the Docker daemon logs the following error message:
 
-Docker デーモンは ``.crt`` ファイルを CA 証明書として認識し、 ``.cert`` ファイルをクライアント証明書として認識します。CA 証明書が正しい ``.crt`` 拡張子ではなく ``.cert`` 拡張子になってしまうと、Docker デーモンは次のようなエラーメッセージをログに残します。
+Docker デーモンは ``.crt`` ファイルを CA 証明書として認識し、 ``.cert`` ファイルをクライアント証明書として認識します。CA 証明書が正しい ``.crt`` 拡張子ではなく ``.cert`` 拡張子になれば、Docker デーモンは次のようなエラーメッセージをログに残します。
 
 .. code-block:: bash
 

@@ -82,7 +82,7 @@ docker login コマンドから、ユーザ名が指定されなかった場合�
 
 .. To make tagging consistent across the various docker commands, the -f flag on the docker tag command is deprecated. It is not longer necessary to specify -f to move a tag from one image to another. Nor will docker generate an error if the -f flag is missing and the specified tag is already in use.
 
-様々な ``docker`` コマンド間でタグの付け方を統一するため、 ``docker tag`` コマンドの ``-f`` フラグを廃止しました。イメージのタグを別のものに変えるとき、 ``-f`` オプションの指定は不要です。また、対象のタグが既に利用中であれば、 ``docker`` コマンドに ``-f`` フラグが無くてもエラーになりません。
+様々な ``docker`` コマンド間でタグの付け方を統一するため、 ``docker tag`` コマンドの ``-f`` フラグを廃止しました。イメージのタグを別のものに変える時、 ``-f`` オプションの指定は不要です。また、対象のタグが既に利用中であれば、 ``docker`` コマンドに ``-f`` フラグが無くてもエラーになりません。
 
 .. HostConfig at API container start
 
@@ -175,7 +175,7 @@ Docker ps の「before」「since」オプション
 
 .. _lxc-built-in-exec-driver:
 
-内蔵 LXC 実行ドライバ
+内部 LXC 実行ドライバ
 ==============================
 
 .. Deprecated In Release: v1.8
@@ -188,7 +188,7 @@ Docker ps の「before」「since」オプション
 
 .. The built-in LXC execution driver is deprecated for an external implementation. The lxc-conf flag and API fields will also be removed.
 
-外部で実装の内蔵（built-in）LXC 実行ドライバを廃止しました。lxc-conf フラグと API も削除予定です。
+外部実装の内部（built-in）LXC 実行ドライバを廃止しました。lxc-conf フラグと API も削除予定です。
 
 .. Old Command Line Options
 
