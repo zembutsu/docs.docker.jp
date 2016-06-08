@@ -98,7 +98,7 @@ Docker はダウンロードしたイメージを Docker ホスト上に保管�
 
 .. If instead you wanted to run an Ubuntu 12.04 image you’d use:
 
-あるいは Ubuntu 14.04 イメージを使いたい場合は、次のようにします。
+あるいは Ubuntu 12.04 イメージを使いたい場合は、次のようにします。
 
 .. code-block:: bash
 
