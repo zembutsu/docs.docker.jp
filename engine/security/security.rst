@@ -256,7 +256,7 @@ Docker 1.10 以降は Docker デーモンがユーザ名前空間（User Namespa
 
 .. Docker containers are, by default, quite secure; especially if you take care of running your processes inside the containers as non-privileged users (i.e., non-root).
 
-Docker コンテナはデフォルトでも安全ですが、とりわけコンテナ内でプロセスを権限の無いユーザ（例： root 以外のユーザ）で実行する時に、注意が必要です。
+デフォルトの Docker コンテナは安全です。それには、コンテナ内のプロセスを、特権の無いユーザ（例： root 以外のユーザ）で実行するように管理します。
 
 .. You can add an extra layer of safety by enabling AppArmor, SELinux, GRSEC, or your favorite hardening solution.
 
