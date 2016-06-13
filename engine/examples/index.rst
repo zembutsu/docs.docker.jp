@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/extend/examples/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/examples/index.md
-   doc version: 1.10
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/examples/index.md
-.. check date: 2016/02/15
+.. check date: 2016/06/13
+.. Commits on Apr 23, 2016 d9c0d67b51fc135b2dbf54a152105d124100eb5e
 .. ---------------------------------------------------------------
 
 .. Dockerize an application
@@ -35,7 +36,6 @@
 * :doc:`mongodb`
 * :doc:`postgresql_service`
 * :doc:`couchdb_data_volumes`
-* :doc:`nodejs_web_app`
 * :doc:`running_redis_service`
 * :doc:`apt-cacher-ng`
 * :doc:`/engine/userguide/containers/dockerizing`

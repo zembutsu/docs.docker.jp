@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/extend/examples/couchbase/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/examples/couchbase.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/examples/couchbase.md
-.. check date: 2016/04/21
-.. Commits on Jan 27, 2016 e310d070f498a2ac494c6d3fde0ec5d6e4479e14
+.. check date: 2016/06/13
+.. Commits on May 27, 2016 ee7696312580f14ce7b8fe70e9e4cbdc9f83919f
 .. ---------------------------------------------------------------
 
 .. Dockerizing a Couchbase service
@@ -73,7 +73,7 @@ Couchbase サーバは次のように起動します：
 
 .. The logs show that Couchbase console can be accessed at http://192.168.99.100:8091. The default username is Administrator and the password is password.
 
-Couchbase コンソールには http://192.168.99.100:8091 でアクセスできます。デフォルトがユーザ名が ``Administrator`` 、パスワードが ``password`` です。
+Couchbase コンソールには ``http://192.168.99.100:8091`` でアクセスできます。デフォルトがユーザ名が ``Administrator`` 、パスワードが ``password`` です。
 
 .. Configure Couchbase Docker container
 

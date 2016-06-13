@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/extend/examples/postgresql_service/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/examples/postgresql_service.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/examples/postgresql_service.md
-.. check date: 2016/04/21
+.. check date: 2016/06/13
 .. Commits on Jan 24, 2016 e310d070f498a2ac494c6d3fde0ec5d6e4479e14
 .. ---------------------------------------------------------------
 

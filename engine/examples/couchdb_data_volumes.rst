@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/extend/examples/couchdb_data_volumes/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/examples/couchdb_data_volumes.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/examples/couchdb_data_volumes.md
-.. check date: 2016/04/21
+.. check date: 2016/06/13
 .. Commits on Jan 27, 2016 e310d070f498a2ac494c6d3fde0ec5d6e4479e14
 .. ---------------------------------------------------------------
 
@@ -78,7 +78,7 @@ Docker ホストは到達可能な ``localhost`` を想定しています。も�
 
 .. Browse data on the second database
 
-.. _couchdb-browse-data-on-the-second-database
+.. _couchdb-browse-data-on-the-second-database:
 
 ２つめのデータベースのデータを表示
 ========================================

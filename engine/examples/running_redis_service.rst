@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/extend/examples/running_redis_service/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/examples/running_redis_service.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/examples/running_redis_service.md
-.. check date: 2016/04/21
-.. Commits on Jan 27, 2016 e310d070f498a2ac494c6d3fde0ec5d6e4479e14
+.. check date: 2016/06/13
+.. Commits on Jun 2, 2016 c1be45fa38e82054dcad606d71446a662524f2d5
 .. ---------------------------------------------------------------
 
 .. Dockerizing a Redis service
