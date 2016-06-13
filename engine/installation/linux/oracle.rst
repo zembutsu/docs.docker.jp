@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/installation/linux/oracle/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/linux/oracle.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/installation/linux/oracle.md
-.. check date: 2016/04/16
-.. Commits on Mar 9, 2016 cdd8d3999ffd9f7eeb764f52e21577e0900d7b5c
+.. check date: 2016/06/13
+.. Commits on May 26, 2016 7711c842be52cd753c13a50594da301f2158ddae
 .. ----------------------------------------------------------------------------
 
 .. Oracle Linux
@@ -51,11 +51,8 @@ Docker は Oracle Linux 6 と 7 をサポートします。Docker Linux に Dock
 
 .. note::
 
-   Oracle Linux 6 に関するインストール手順は `Chapter 10 of the Administrator's Solutions Guide <https://docs.oracle.com/cd/E37670_01/E37355/html/ol_docker.html>`_ をご覧ください。
+   Oracle Linux 6 および 7 に関するインストール手順は `the Administrator's Solutions Guide の Chapter 2 <https://docs.oracle.com/cd/E52668_01/E75728/html/docker_install_upgrade.html>`_ をご覧ください。
 
-.. note::
-
-   Oracle Linux 7 に関するインストール手順は、 `Chapter 29 of the Administrator's Guide <https://docs.oracle.com/cd/E52668_01/E54669/html/ol7-docker.html>`_ をご覧ください。
 
 ..    Log into your machine as a user with sudo or root privileges.
 

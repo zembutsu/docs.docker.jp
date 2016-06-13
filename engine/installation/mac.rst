@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/installation/mac/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/mac.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/installation/mac.md
-.. check date: 2016/04/16
+.. check date: 2016/06/13
 .. Commits on Mar 18, 2016 3c6aa163a3fd04c344a2072ab379f0778734b269
 .. -----------------------------------------------------------------------------
 

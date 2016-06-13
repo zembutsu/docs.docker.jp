@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/installation/linux/debian/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/linux/debian.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/installation/linux/debian.md
-.. check date: 2016/04/16
-.. Commits on Jan 27, 2016 e310d070f498a2ac494c6d3fde0ec5d6e4479e14
+.. check date: 2016/06/13
+.. Commits on May 26, 2016 6c5f724560d3e1c47c927fa39056cd32de9f0890
 .. ----------------------------------------------------------------------------
 
 .. Debian
@@ -25,7 +25,7 @@ Docker は以下の Debian バージョンをサポートしています。
 
 * Debian testing stretch (64-bit)
 * Debian 8.0 Jessie (64-bit)
-* Debian 7.7 Wheezy (64-bit)
+* Debian 7.7 Wheezy (64-bit) (バックポートが必要)
 
 ..    Note: If you previously installed Docker using apt, make sure you update your apt sources to the new apt repository.
 
@@ -53,6 +53,50 @@ Docker は 64bit でインストールされた何らかの Debian バージョ�
 .. code-block:: bash
 
    $ uname -r
+
+
+.. Additionally, for users of Debian Wheezy, backports must be available. To enable backports in Wheezy:
+
+さらに、 Debian Wheezy の利用者はバックポートが必ず必要です。Wheezy でバックポートを有効にするには、次のようにします：
+
+..    Log into your machine and open a terminal with sudo or root privileges.
+
+1. マシンにログインし、 ``sudo`` あるいは ``root`` 権限のターミナルを開きます。
+
+..    Open the /etc/apt/sources.list.d/backports.list file in your favorite editor.
+
+2. 任意のエディタで ``/etc/apt/sources.list.d/backports.list`` ファイルを開きます。
+
+..    If the file doesn't exist, create it.
+
+ファイルが無ければ作成します。
+
+..    Remove any existing entries.
+
+3. 既存のエントリがあれば削除します。
+
+..    Add an entry for backports on Debian Wheezy.
+
+4. Debian Wheezy にバックポートのエントリを追加します。
+
+..    An example entry:
+
+エントリの例
+
+.. code-block:: bash
+
+   deb http://http.debian.net/debian wheezy-backports main
+
+..    Update package information:
+
+5. パッケージ情報を更新します。
+
+.. code-block:: bash
+
+   $ apt-get update
+
+
+
 
 .. Update your apt sources
 

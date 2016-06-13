@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. https://docs.docker.com/engine/installation/windows/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/windows.md
-   doc version: 1.10
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/installation/windows.md
-.. check date: 2016/04/16
-.. Commits on Mar 1, 2016 0b882cc0140bc03dfe79462c5cdf77b972c94067
+.. check date: 2016/06/13
+.. Commits on Jun 2, 2016 c1be45fa38e82054dcad606d71446a662524f2d5
 .. -----------------------------------------------------------------------------
 
 .. Windows
@@ -132,7 +132,7 @@ Linux 上への Docker のインストールにおいて、自分の物理マシ
    :scale: 60%
    :alt: Linux アーキテクチャ図
 
-.. In an Windows installation, the docker daemon is running inside a Linux virtual machine. You use the Windows Docker client to talk to the Docker host VM. Your Docker containers run inside this host.
+.. In a Windows installation, the docker daemon is running inside a Linux virtual machine. You use the Windows Docker client to talk to the Docker host VM. Your Docker containers run inside this host.
 
 Windows のインストールでは、Linux 仮想マシンの中に ``docker`` デーモンを動かします。Windows の Docker クライアントを使い、Docker ホストの仮想マシンと通信します。このホストの中でコンテナは実行されます。
 

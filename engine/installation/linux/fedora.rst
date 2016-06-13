@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/installation/linux/fedora/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/linux/fedora.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/installation/linux/fedora.md
-.. check date: 2016/04/16
-.. Commits on Mar 9, 2016 cdd8d3999ffd9f7eeb764f52e21577e0900d7b5c
+.. check date: 2016/06/13
+.. Commits on Jun 2, 2016 c1be45fa38e82054dcad606d71446a662524f2d5
 .. ----------------------------------------------------------------------------
 
 .. Fedora
@@ -39,7 +39,7 @@ Docker は 64bit でインストールされた何らかの Fedora バージョ�
    $ uname -r
    3.19.5-100.fc21.x86_64
 
-.. If your kernel is at a older version, you must update it.
+.. If your kernel is at an older version, you must update it.
 
 もし kernel のバージョンが古ければ、更新する必要があります。
 
@@ -293,7 +293,7 @@ Docker ソフトウェアを ``dnf`` でアンインストール可能です。
 
 .. code-block:: bash
 
-   $ dnf list installed | grep docker dnf list installed | grep docker
+   $ dnf list installed | grep docker
    docker-engine.x86_64     1.7.1-0.1.fc21 @/docker-engine-1.7.1-0.1.fc21.el7.x86_64
 
 ..    Remove the package.

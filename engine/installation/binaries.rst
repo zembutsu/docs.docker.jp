@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/installation/binaries/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/binaries.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/installation/binaries.md
-.. check date: 2016/04/16
-.. Commits on Apr 13, 2016 f5336c737086a4c1807bb2b6ab57116b5ed9d769
+.. check date: 2016/06/13
+.. Commits on Apr 29, 2016 24ec73f754da16e37726a3f1c6a59de508e255fc
 .. -----------------------------------------------------------------------------
 
 .. Installation from binaries
@@ -202,7 +202,7 @@ Engine をデーモン・モードとして手動で実行できます：
 
 .. For additional information about running the Engine in daemon mode, refer to the daemon command in the Engine command line reference.
 
-Engine をデーモン・モードで実行する時の詳しい情報は、Engine コマンド・リファレンスの :doc:`daemon コマンド </engine/reference/commandline/daemon>` をご覧ください。
+Engine をデーモン・モードで実行する時の詳しい情報は、Engine コマンド・リファレンスの :doc:`daemon コマンド </engine/reference/commandline/dockerd>` をご覧ください。
 
 .. Get the Mac OS X binary
 
