@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/logging/fluentd/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/logging/fluentd.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/admin/logging/fluentd.md
-.. check date: 2016/04/21
-.. Commits on Mar 21, 2016 13086f387b28ceea5aff5924e430f41608884a9b
+.. check date: 2016/06/13
+.. Commits on Jun 2, 2016 c1be45fa38e82054dcad606d71446a662524f2d5
 .. ---------------------------------------------------------------------------
 
 .. Fluentd logging driver
@@ -155,7 +155,7 @@ Docker と Fluentd デーモンの管理
 
 ``Fluentd`` そのものについては、 `プロジェクトのウェブページ <http://www.fluentd.org/>`_ と `ドキュメント <http://docs.fluentd.org/>`_ をご覧ください。
 
-.. To use this logging driver, start the fluentd daemon on a host. We recommend that you use the Fluentd docker image. This image is especially useful if you want to aggregate multiple container logs on a each host then, later, transfer the logs to another Fluentd node to create an aggregate store.
+.. To use this logging driver, start the fluentd daemon on a host. We recommend that you use the Fluentd docker image. This image is especially useful if you want to aggregate multiple container logs on each host then, later, transfer the logs to another Fluentd node to create an aggregate store.
 
 このロギング・ドライバを使うには、ホスト上に ``fluentd`` デーモンを起動します。私たちは `Fluentd docker イメージ <https://registry.hub.docker.com/u/fluent/fluentd/>`_ の利用を推奨します。このイメージが特に役立つのは、各ホスト上にある複数のコンテナのログを統合する場合です。そして、ログはデータを統合する用途として作成した、別の Fluentd ノードに転送できます。
 

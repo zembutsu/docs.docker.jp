@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/logging/splunk/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/logging/splunk.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/admin/logging/splunk.md
-.. check date: 2016/04/21
-.. Commits on Mar 31, 2016 28d3c22e55259281c70fd90780a1b0d388450ddf
+.. check date: 2016/06/13
+.. Commits on Jun 1, 2016 a9f6d93099283ee06681caae7fe29bd1b2dd4c77
 .. -------------------------------------------------------------------
 
 .. Splunk logging driver

@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/admin/using_supervisord/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/using_supervisord.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/admin/using_supervisord.md
-.. check date: 2016/04/19
-.. Commits on Jan 27, 2016 e310d070f498a2ac494c6d3fde0ec5d6e4479e14
+.. check date: 2016/06/13
+.. Commits on Mar 6, 2016 e38678e6601cc597b621aaf3cf630419a7963ae9
 .. ---------------------------------------------------------------------------
 
 .. Using Supervisor with Docker
@@ -33,10 +33,11 @@ Supervisor を Docker で使う
 
 .. In this example we’re going to make use of the process management tool, Supervisor, to manage multiple processes in our container. Using Supervisor allows us to better control, manage, and restart the processes we want to run. To demonstrate this we’re going to install and manage both an SSH daemon and an Apache daemon.
 
-ここでは例としてプロセス管理ツール `Supervisor <http://supervisord.org/>`_ を使い、コンテナ内で複数のプロセスを管理します。Supervisor を使うことにより、制御・管理しやすくし、実行したいプロセスを再起動できます。デモンストレーションとして、SSH デーモンと Apache デーモンの両方をインストール・管理します。
-
+ここでは例としてプロセス管理ツール `Supervisor <http://supervisord.org/>`_ を使い、コンテナ内で複数のプロセスを管理します。Supervisor を使うことにより、実行したいプロセスを再起動できます。デモンストレーションとして、SSH デーモンと Apache デーモンの両方をインストール・管理します。
 
 .. Creating a Dockerfile
+
+.. _creating-a-dockerfile:
 
 Dockerfile の作成
 ====================
@@ -45,9 +46,9 @@ Dockerfile の作成
 
 基本的な ``Dockerfile`` から新しいイメージを作りましょう。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
-   FROM ubuntu:13.04
+   FROM ubuntu:16.04
    MAINTAINER examples@docker.com
 
 .. Installing Supervisor
@@ -57,16 +58,16 @@ Supervisor のインストール
 
 .. We can now install our SSH and Apache daemons as well as Supervisor in our container.
 
-SSH と Apache デーモンと同じように、Supervisor をコンテナにインストールできます。
+SSH や Apache デーモンと同様に、Supervisor をコンテナにインストールできます。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    RUN apt-get update && apt-get install -y openssh-server apache2 supervisor
    RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/run/sshd /var/log/supervisor
 
-.. Here we’re installing the openssh-server, apache2 and supervisor (which provides the Supervisor daemon) packages. We’re also creating four new directories that are needed to run our SSH daemon and Supervisor.
+.. The first RUN instruction installs the openssh-server, apache2 and supervisor (which provides the Supervisor daemon) packages. The next RUN instruction creates four new directories that are needed to run the SSH daemon and Supervisor.
 
-ここでインストールしたパッケージは ``openssh-server`` 、 ``apache2`` 、 ``supervisor`` （Supervisor デーモンを提供）です。それから、SSH デーモンと Supervisor を実行するための新しいディレクトリの作成も必要です。
+１つめの ``RUN`` 命令は ``openssh-server`` 、 ``apache2`` 、 ``supervisor`` （Supervisor デーモンを提供）の各パッケージをインストールします。次の ``RUN`` 命令は SSH デーモンと Supervisor が必要な４つのディレクトリを作成します。
 
 .. Adding Supervisor’s configuration file
 
@@ -77,7 +78,7 @@ Supervisor の設定ファイルを追加
 
 次は Supervisor の設定ファイルを追加しましょう。デフォルトのファイルは ``supervisord.conf`` であり、 ``/etc/supervisor/conf.d/`` に置きます。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
@@ -85,7 +86,7 @@ Supervisor の設定ファイルを追加
 
 ``supervisord.conf`` ファイルの内容を見ましょう。
 
-.. code-block:: bash
+.. code-block:: resource
 
    [supervisord]
    nodaemon=true
@@ -113,34 +114,66 @@ Supervisor の設定ファイルを追加
 
 ``Dockerfile`` を仕上げるには、コンテナの実行時に必要な公開ポートや、 Supervisor 起動のための ``CMD`` 命令を追加します。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    EXPOSE 22 80
    CMD ["/usr/bin/supervisord"]
 
-.. Here We’ve exposed ports 22 and 80 on the container and we’re running the /usr/bin/supervisord binary when the container launches.
+.. These instructions tell Docker that ports 22 and 80 are exposed by the container and that the /usr/bin/supervisord binary should be executed when the container launches.
 
-ここでは、コンテナのポート 22 と 80 を公開し、コンテナの起動時に ``/usr/bin/supervisord`` バイナリを実行します。
+この命令は Docker に対してコンテナのポート 22 と 80 を公開するように伝え、そしてコンテナ起動時に ``/usr/bin/supervisord`` バイナリを実行します。
 
 .. Building our image
 
 イメージの構築
 ====================
 
-.. We can now build our new image.
+.. Your completed Dockerfile now looks like this:
 
-これで新しいイメージを構築できます。
+Dockerfile は次のようになっているでしょう：
+
+.. code-block:: dockerfile
+
+   FROM ubuntu:16.04
+   MAINTAINER examples@docker.com
+   
+   RUN apt-get update && apt-get install -y openssh-server apache2 supervisor
+   RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/run/sshd /var/log/supervisor
+   
+   COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+   
+   EXPOSE 22 80
+   CMD ["/usr/bin/supervisord"]
+
+.. And your supervisord.conf file looks like this;
+
+そして ``supervisord.conf`` は次の通りでしょう：
+
+.. code-block:: resource
+
+   [supervisord]
+   nodaemon=true
+   
+   [program:sshd]
+   command=/usr/sbin/sshd -D
+   
+   [program:apache2]
+   command=/bin/bash -c "source /etc/apache2/envvars && exec /usr/sbin/apache2 -DFOREGROUND
+
+.. You can now build the image using this command:
+
+これで、次のコマンドを使って新しいイメージを構築できます。
 
 .. code-block:: bash
 
    $ docker build -t <yourname>/supervisord .
 
-.. Running our Supervisor container
+.. Running your Supervisor container
 
 Supervisor コンテナを実行
 ==============================
 
-.. Once We’ve got a built image we can launch a container from it.
+.. Once you have built image we can launch a container from it.
 
 イメージを構築したら、これを使ってコンテナを起動します。
 
@@ -154,7 +187,7 @@ Supervisor コンテナを実行
    2013-11-25 18:53:23,349 INFO spawned: 'apache2' with pid 7
    . . .
 
-.. We’ve launched a new container interactively using the docker run command. That container has run Supervisor and launched the SSH and Apache daemons with it. We’ve specified the -p flag to expose ports 22 and 80. From here we can now identify the exposed ports and connect to one or both of the SSH and Apache daemons.
+.. You launched a new container interactively using the docker run command. That container has run Supervisor and launched the SSH and Apache daemons with it. We've specified the -p flag to expose ports 22 and 80. From here we can now identify the exposed ports and connect to one or both of the SSH and Apache daemons.
 
 ``docker run`` コマンドを実行することで、新しいコンテナをインタラクティブに起動しました。このコンテナは Supervisor を実行し、一緒に SSH と Apache デーモンを起動します。 ``-p`` フラグを指定し、ポート 22 と 80 を公開します。ここで、SSH と Apache デーモンの両方に接続できるようにするため、公開ポートを個々に指定しています。
 

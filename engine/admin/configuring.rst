@@ -1,10 +1,11 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/admin/configuring/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/configuring.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/admin/configuring.md
-.. check date: 2016/04/19
-.. Commits on Mar 22, 2016 8af4f89cba09105f3d581926aca6e231326f7054.. ---------------------------------------------------------------------------
+.. check date: 2016/06/13
+.. Commits on Jun 22, 2016 c1be45fa38e82054dcad606d71446a662524f2d5
+.. ---------------------------------------------------------------------------
 
 .. Configuring and running Docker on various distributions
 
@@ -33,13 +34,13 @@ Docker のインストールに成功したら、 ``docker`` デーモンはデ�
 docker デーモンを直接実行
 ==============================
 
-.. The docker daemon can be run directly using the docker daemon command. By default it listens on the Unix socket unix:///var/run/docker.sock
+.. The docker daemon can be run directly using the dockerd command. By default it listens on the Unix socket unix:///var/run/docker.sock
 
-``docker`` デーモンは ``docker daemon`` コマンドで直接操作できます。デフォルトでは Unix ソケット ``unix:///var/run/docker.sock`` をリッスンします。
+``docker`` デーモンは ``dockerd`` コマンドで直接操作できます。デフォルトでは Unix ソケット ``unix:///var/run/docker.sock`` をリッスンします。
 
 .. code-block:: bash
 
-   $ docker daemon
+   $ dockerd
    
    INFO[0000] +job init_networkdriver()
    INFO[0000] +job serveapi(unix:///var/run/docker.sock)
@@ -78,13 +79,13 @@ docker デーモンを直接設定
    * - ``--tls=false``
      - TLS の有効化と無効化。デフォルトは false
 
-.. Here is a an example of running the docker daemon with configuration options:
+.. Here is an example of running the docker daemon with configuration options:
 
 以下は ``docker`` デーモンに設定オプションを付けて実行する例です。
 
 .. code-block:: bash
 
-   $ docker daemon -D --tls=true --tlscert=/var/docker/server.pem    --tlskey=/var/docker/serverkey.pem -H tcp://192.168.59.3:2376
+   $ dockerd -D --tls=true --tlscert=/var/docker/server.pem    --tlskey=/var/docker/serverkey.pem -H tcp://192.168.59.3:2376
 
 .. These options :
 
@@ -100,7 +101,7 @@ docker デーモンを直接設定
 
 .. The command line reference has the complete list of daemon flags with explanations.
 
-コマンドライン・リファレンスの :doc:`デーモンのフラグ一覧 </engine/reference/commandline/daemon>` に説明があります。
+コマンドライン・リファレンスの :doc:`デーモンのフラグ一覧 </engine/reference/commandline/dockerd>` に説明があります。
 
 .. Daemon debugging
 
@@ -213,7 +214,7 @@ Docker オプションの設定を変更するには：
 
 .. The command line reference has the complete list of daemon flags with explanations.
 
-コマンドライン・リファレンスの :doc:`デーモンのフラグ一覧 </engine/reference/commandline/daemon>` に説明があります。
+コマンドライン・リファレンスの :doc:`デーモンのフラグ一覧 </engine/reference/commandline/dockerd>` に説明があります。
 
 ..     Save and close the file.
 
@@ -348,7 +349,7 @@ Docker オプションの設定を変更するには：
 
    [Service]
    ExecStart=
-   ExecStart=/usr/bin/docker daemon -H fd:// -D --tls=true --tlscert=/var/docker/server.pem --tlskey=/var/docker/serverkey.pem -H tcp://192.168.59.3:2376
+   ExecStart=/usr/bin/dockerd -H fd:// -D --tls=true --tlscert=/var/docker/server.pem --tlskey=/var/docker/serverkey.pem -H tcp://192.168.59.3:2376
 
 .. These options :
 
@@ -364,7 +365,7 @@ Docker オプションの設定を変更するには：
 
 .. The command line reference has the complete list of daemon flags with explanations.
 
-コマンドライン・リファレンスの :doc:`デーモンのフラグ一覧 </engine/reference/commandline/daemon>` に説明があります。
+コマンドライン・リファレンスの :doc:`デーモンのフラグ一覧 </engine/reference/commandline/dockerd>` に説明があります。
 
 ..    Save and close the file.
 

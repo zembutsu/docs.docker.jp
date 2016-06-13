@@ -56,6 +56,8 @@ Docker はタグの値を指定するために、特別なテンプレート・�
      - コンテナの完全 ID
    * - ``{{.ImageName}}``
      - コンテナが使っているイメージ名
+   * - ``{{.DaemonName}}``
+     - docker プログラムの名前 ( ``docker`` )
 
 .. For example, specifying a --log-opt tag="{{.ImageName}}/{{.Name}}/{{.ID}}" value yields syslog log lines like:
 

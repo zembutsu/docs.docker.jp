@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/admin/systemd/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/systemd.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/admin/systemd.md
-.. check date: 2016/04/19
-.. Commits on Mar 28, 2016 ea1d8d6f82ee76f35b98b6ce2e3c543f24cf4b6c
+.. check date: 2016/06/13
+.. Commits on Jun 2, 2016 c1be45fa38e82054dcad606d71446a662524f2d5
 .. ---------------------------------------------------------------------------
 
 .. Control and configure Docker with systemd
@@ -61,11 +61,11 @@ Docker デーモンのオプション変更
 
 Docker デーモンの設定を変更するには、多くのフラグを使う方法と、環境変数を使う方法があります。
 
-.. The recommended way is to use a systemd drop-in file. These are local files in the /etc/systemd/system/docker.service.d directory. This could also be /etc/systemd/system/docker.service, which also works for overriding the defaults from /lib/systemd/system/docker.service.
+.. The recommended way is to use a systemd drop-in file (as described in the systemd.unit documentation). These are local files named <something>.conf in the /etc/systemd/system/docker.service.d directory. This could also be /etc/systemd/system/docker.service, which also works for overriding the defaults from /lib/systemd/system/docker.service.
 
-推奨する方法は、systemd 用のファイルを使うことです。ローカルの設定ファイルは ``/etc/systemd/system/docker.service.d`` ディレクトリにあります。もしかすると ``/etc/systemd/system/docker.service`` かもしれません。これは ``/lib/systemd/system/docker.service`` にあるデフォルト設定を上書きします。
+推奨する方法は、systemd 用のファイルを使うことです（詳細は `systemd.unit <https://www.freedesktop.org/software/systemd/man/systemd.unit.html>`_ ドキュメントに記述があります）。ローカルの設定ファイルは ``/etc/systemd/system/docker.service.d`` ディレクトリに ``<何らかの名前>.conf`` があります。もしかすると ``/etc/systemd/system/docker.service`` かもしれません。これは ``/lib/systemd/system/docker.service`` にあるデフォルト設定を上書きします。
 
-.. However, if you had previously used a package which had an EnvironmentFile (often pointing to /etc/sysconfig/docker) then for backwards compatibility, you drop a file in the /etc/systemd/system/docker.service.d directory including the following:
+.. However, if you had previously used a package which had an EnvironmentFile (often pointing to /etc/sysconfig/docker) then for backwards compatibility, you drop a file with a .conf extension into the /etc/systemd/system/docker.service.d directory including the following:
 
 一方で、既にパッケージを使ってインストールしていた場合は ``環境設定ファイル`` （通常は ``/etc/sysconfig/docker`` ） があるかもしれません。これは後方互換性のためです。このファイルの内容は、 ``/etc/systemd/system/docker.service.d`` ディレクトリにあるファイルに落とし込めます。
 
@@ -182,7 +182,7 @@ HTTP プロキシ
 
 この例はデフォルトの ``docker.service`` ファイルを上書きします。
 
-.. If you are behind a HTTP proxy server, for example in corporate settings, you will need to add this configuration in the Docker systemd service file.
+.. If you are behind an HTTP proxy server, for example in corporate settings, you will need to add this configuration in the Docker systemd service file.
 
 HTTP プロキシサーバの背後にいる場合、ここではオフィスで設定する例として、Docker の systemd サービス・ファイルに設定を追加する必要があるものとします。
 

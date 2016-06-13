@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/logging/overview/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/logging/overview.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/admin/logging/overview.md
-.. check date: 2016/04/20
-.. Commits on Jan 27, 2016 e310d070f498a2ac494c6d3fde0ec5d6e4479e14
+.. check date: 2016/06/13
+.. Commits on Jun 27, 2016 a9f6d93099283ee06681caae7fe29bd1b2dd4c77
 .. -------------------------------------------------------------------
 
 .. Configure logging drivers
@@ -133,13 +133,16 @@ syslog のオプション
 
    --log-opt syslog-address=[tcp|udp|tcp+tls]://host:port
    --log-opt syslog-address=unix://path
+   --log-opt syslog-address=unixgram://path
    --log-opt syslog-facility=daemon
    --log-opt syslog-tls-ca-cert=/etc/ca-certificates/custom/ca.pem
    --log-opt syslog-tls-cert=/etc/ca-certificates/custom/cert.pem
    --log-opt syslog-tls-key=/etc/ca-certificates/custom/key.pem
    --log-opt syslog-tls-skip-verify=true
    --log-opt tag="mailer"
-   --log-opt syslog-format=[rfc5424|rfc3164] 
+   --log-opt syslog-format=[rfc5424rfc6424micro||rfc3164] 
+   --log-opt env=ENV1,ENV2,ENV3
+   --log-opt labels=label1,label2,label3
 
 .. syslog-address specifies the remote syslog server address where the driver connects to. If not specified it defaults to the local unix socket of the running system. If transport is either tcp or udp and port is not specified it defaults to 514 The following example shows how to have the syslog driver connect to a syslog remote server at 192.168.0.42 on port 123
 
@@ -190,13 +193,25 @@ syslog のオプション
 
 ``syslog-tls-skip-verify`` は TLS 認証を設定します。デフォルトでは認証が有効ですが、オプションの値を ``true`` に指定したら、この設定を上書きします。このオプションは ``tcp+tls`` 以外のプロトコルを使う場合は無視されます。
 
+.. `tag` configures a string that is appended to the APP-NAME in the syslog message.
+
+``tag`` 設定は syslog メッセージに APP-NAME の文字列を追加します。
+
 .. By default, Docker uses the first 12 characters of the container ID to tag log messages. Refer to the log tag option documentation for customizing the log tag format.
 
 デフォルトでは、Docker はコンテナ ID の冒頭 12 文字だけログ・メッセージにタグ付けします。タグ・フォーマットの記録方式をカスタマイズするには、 :doc:`log tag オプションのドキュメント <log_tags>` をご覧ください。
 
-.. syslog-format specifies syslog message format to use when logging. If not specified it defaults to the local unix syslog format without hostname specification. Specify rfc3164 to perform logging in RFC-3164 compatible format. Specify rfc5424 to perform logging in RFC-5424 compatible format
+.. syslog-format specifies syslog message format to use when logging. If not specified it defaults to the local unix syslog format without hostname specification. Specify rfc3164 to perform logging in RFC-3164 compatible format. Specify rfc5424 to perform logging in RFC-5424 compatible format. Specify rfc5424micro to perform logging in RFC-5424 compatible format with microsecond timestamp resolution.
 
-``syslog-format`` は syslog メッセージを書き込み時の書式を指定します。何も指定しなければ、デフォルトではホスト名を指定しないローカルの unix syslog 形式です。rfc3164 を指定したら、RFC-3164 互換形式でログを記録します。rfc5424 を指定したら、 RFC-5424 互換形式で記録します。
+``syslog-format`` は syslog メッセージを書き込み時の書式を指定します。何も指定しなければ、デフォルトではホスト名を指定しないローカルの unix syslog 形式です。rfc3164 を指定したら、RFC-3164 互換形式でログを記録します。rfc5424 を指定したら、 RFC-5424 互換形式で記録します。 rfc5424micro を指定したら、RFC-5424 互換形式のタイムスタンプをミリ秒で記録します。
+
+.. `env` should be a comma-separated list of keys of environment variables. Used for advanced [log tag options](log_tags.md).
+
+``env`` は環境変数をカンマ区切りで指定します。高度な :doc:`log tag オプション <log_tags>` を使います。
+
+.. `labels` should be a comma-separated list of keys of labels. Used for advanced [log tag options](log_tags.md).
+
+``label`` はキーのラベルをカンマ区切りで指定します。高度な :doc:`log tag オプション <log_tags>` を使います。
 
 .. journald options
 
@@ -250,6 +265,14 @@ GELF ロギングドライバは以下のオプションをサポートしてい
    "_fizz": "buzz",
    // […]
 
+.. The gelf-compression-type option can be used to change how the GELF driver compresses each log message. The accepted values are gzip, zlib and none. gzip is chosen by default.
+
+``gelf-compression-type`` オプションは各ログ・メッセージの GELF ドライバ圧縮の仕方を調整します。指定可能な値は ``gzip`` 、 ``zlib`` 、``none`` です。デフォルトは ``gzip`` です。
+
+.. The gelf-compression-level option can be used to change the level of compresssion when gzip or zlib is selected as gelf-compression-type. Accepted value must be from from -1 to 9 (BestCompression). Higher levels typically run slower but compress more. Default value is 1 (BestSpeed).
+
+``gelf-compression-level`` オプションは ``gelf-compression-type`` に ``gzip`` または ``zlib`` を選択時の圧縮率を変更します。設定可能な値は -1 から 9 （最高圧縮）です。高いレベルの圧縮は、一般的に実行が遅くなります。デフォルト値は１（最高速度）です。
+
 .. fluentd options
 
 .. _fluentd-options:
@@ -263,6 +286,7 @@ fluentd オプション
 
 ..    fluentd-address: specify host:port to connect [localhost:24224]
     tag: specify tag for fluentd message,
+
 
 * ``fluentd-address`` ： 接続先を ``host:port`` の形式で指定。[localhost:24224]
 * ``tag`` ： ``fluentd`` メッセージのタグを指定。

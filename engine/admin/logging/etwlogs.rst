@@ -1,10 +1,10 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/logging/etwlogs/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/logging/etwlogs.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/admin/logging/etwlogs.md
-.. check date: 2016/04/21
-.. Commits on Feb 17, 2016 3fe60bbf95b60f1a1e847a48e1c9b9730e570dff
+.. check date: 2016/06/13
+.. Commits on Jun 1, 2016 a9f6d93099283ee06681caae7fe29bd1b2dd4c77
 .. -------------------------------------------------------------------
 
 .. ETW logging driver

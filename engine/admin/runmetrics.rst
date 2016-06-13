@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/admin/runmetrics/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/runmetrics.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/admin/runmetrics.md
-.. check date: 2016/04/19
-.. Commits on Jan 27, 2016 e310d070f498a2ac494c6d3fde0ec5d6e4479e14
+.. check date: 2016/06/13
+.. Commits on May 27, 2016 ee7696312580f14ce7b8fe70e9e4cbdc9f83919f
 .. ---------------------------------------------------------------------------
 
 .. Runtime metrics
@@ -230,7 +230,7 @@ Block I/O メトリクス
 
 .. Block I/O is accounted in the blkio controller. Different metrics are scattered across different files. While you can find in-depth details in the blkio-controller file in the kernel documentation, here is a short list of the most relevant ones:
 
-Block I/O は ``blkio`` コントローラを算出します。異なったメトリックスが別々のファイルに散在しています。より詳細な情報を知りたい場合は、カーネル・ドキュメントの `blkio-controller <https://www.kernel.org/doc/Documentation/cgroups/blkio-controller.txt>`_ をご覧ください。ここでは最も関係が深いものをいくつか扱います。
+Block I/O は ``blkio`` コントローラを算出します。異なったメトリックスが別々のファイルに散在しています。より詳細な情報を知りたい場合は、カーネル・ドキュメントの `blkio-controller <https://www.kernel.org/doc/Documentation/cgroup-v1/blkio-controller.txt>`_ をご覧ください。ここでは最も関係が深いものをいくつか扱います。
 
 ..     blkio.sectors:
 ..     contain the number of 512-bytes sectors read and written by the processes member of the cgroup, device by device. Reads and writes are merged in a single counter.
