@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/networking/default_network/binding/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/default_network/binding.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/userguide/networking/default_network/binding.md
-.. check date: 2016/04/17
+.. check date: 2016/06/15
 .. Commits on Nov 3, 2016 9ef855f9e5fa8077468bda5ce43155318c58e60e
 .. ---------------------------------------------------------------------------
 

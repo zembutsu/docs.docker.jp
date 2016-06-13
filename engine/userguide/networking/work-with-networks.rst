@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/networking/work-with-networks/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/work-with-networks.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/userguide/networking/work-with-networks.md
-.. check date: 2016/04/16
-.. Commits on Mar 29, 2016 a4d4243b9105d03b1e519729e8e8fd4b16084760
+.. check date: 2016/06/14
+.. Commits on Jun 6, 2016 feabf71dc1cd5757093c5887b463a6cbcdd83cc2
 .. ---------------------------------------------------------------------------
 
 .. Work with network commands
@@ -86,9 +86,9 @@ Docker Engine をインストールしたら、Docker Engine は自動的に ``b
 * ホストのクラスタが、キーバリュー・ストアへ接続できること。
 * 各ホスト上のエンジン ``daemon`` に、 Swarm クラスタとしての適切な設定をすること。
 
-.. The docker daemon options that support the overlay network are:
+.. The docked options that support the overlay network are:
 
-``overlay`` ネットワークがサポートする ``docker daemon`` のオプションは、次の通りです。
+``overlay`` ネットワークがサポートする ``dockerd`` のオプションは、次の通りです。
 
 * ``--cluster-store``
 * ``--cluster-store-opt``
@@ -114,12 +114,14 @@ Docker Engine をインストールしたら、Docker Engine は自動的に ``b
 
 .. code-block:: bash
 
-   $ docker network create -d overlay
-     --subnet=192.168.0.0/16 --subnet=192.170.0.0/16
-     --gateway=192.168.0.100 --gateway=192.170.0.100
-     --ip-range=192.168.1.0/24
-     --aux-address a=192.168.1.5 --aux-address b=192.168.1.6
-     --aux-address a=192.170.1.5 --aux-address b=192.170.1.6
+   $ docker network create -d overlay \
+     --subnet=192.168.0.0/16 \
+     --subnet=192.170.0.0/16 \
+     --gateway=192.168.0.100 \
+     --gateway=192.170.0.100 \
+     --ip-range=192.168.1.0/24 \
+     --aux-address a=192.168.1.5 --aux-address b=192.168.1.6 \
+     --aux-address a=192.170.1.5 --aux-address b=192.170.1.6 \
      my-multihost-network
 
 .. Be sure that your subnetworks do not overlap. If they do, the network create fails and Engine returns an error.
@@ -288,9 +290,9 @@ Docker Engineが自動的に ``container2`` に IP アドレスを割り当て�
    $ docker run --net=isolated_nw --ip=172.25.3.3 -itd --name=container3 busybox
    467a7863c3f0277ef8e661b38427737f28099b61fa55622d6c30fb288d88c551
 
-.. As you can see you were able to specify the ip address for your container. As long as the network to which the container is connecting was created with a user specified subnet, you will be able to select the IPv4 and/or IPv6 address(es) for your container when executing docker run and docker network connect commands. The selected IP address is part of the container networking configuration and will be preserved across container reload. The feature is only available on user defined networks, because they guarantee their subnets configuration does not change across daemon reload.
+.. As you can see you were able to specify the ip address for your container. As long as the network to which the container is connecting was created with a user specified subnet, you will be able to select the IPv4 and/or IPv6 address(es) for your container when executing docker run and docker network connect commands by respectively passing the `--ip` and `--ip6` flags for IPv4 and IPv6. The selected IP address is part of the container networking configuration and will be preserved across container reload. The feature is only available on user defined networks, because they guarantee their subnets configuration does not change across daemon reload.
 
-見ての通り、コンテナに対して IP アドレスを指定できました。``docker run`` コマンドでコンテナ作成時に、ユーザが接続先のサブネットを指定したら、任意の IPv4 アドレスと同時、あるいは別に IPv6 アドレスも指定できます。また 、``docker network connect`` コマンドでも追加できます。IP アドレスの指定は、コンテナのネットワーク設定の一部です。そのため、コンテナを再起動しても IP アドレスは維持されるでしょう。将来的にはユーザ定義ネットワーク上でのみ利用可能になります。ユーザ定義ネットワーク以外では、デーモンを再起動時にサブネット設定情報の維持を保証しないためです。
+見ての通り、コンテナに対して IP アドレスを指定できました。``docker run`` コマンドでコンテナ作成時に、ユーザが接続先のサブネットを指定したら、任意の IPv4 アドレスと同時、あるいは別に IPv6 アドレスも指定できます。IPv4 の指定には ``-ip`` フラグを、あるいは IPv6 の指定には ``--ipv6`` フラグを使います。また 、``docker network connect`` コマンドでも追加できます。IP アドレスの指定は、コンテナのネットワーク設定の一部です。そのため、コンテナを再起動しても IP アドレスは維持されるでしょう。将来的にはユーザ定義ネットワーク上でのみ利用可能になります。ユーザ定義ネットワーク以外では、デーモンを再起動時にサブネット設定情報の維持を保証しないためです。
 
 .. Now, inspect the network resources used by container3.
 
@@ -356,7 +358,7 @@ Docker Engineが自動的に ``container2`` に IP アドレスを割り当て�
 
    $ docker attach container2
 
-.. If you look a the container’s network stack you should see two Ethernet interfaces, one for the default bridge network and one for the isolated_nw network.
+.. If you look at the container’s network stack you should see two Ethernet interfaces, one for the default bridge network and one for the isolated_nw network.
 
 コンテナのネットワーク・スタックを確認したら、２つのイーサネット・インターフェースが見えます。１つはデフォルトの bridge ネットワークであり、もう１つは ``isolated_nw`` ネットワークです。
 
@@ -803,7 +805,7 @@ Docker Engineが自動的に ``container2`` に IP アドレスを割り当て�
 
    $ docker network disconnect isolated_nw container2
    
-   docker inspect --format='{{json .NetworkSettings.Networks}}'  container2 | python -m json.tool
+   $ docker inspect --format='{{json .NetworkSettings.Networks}}'  container2 | python -m json.tool
    {
        "bridge": {
            "EndpointID": "9e4575f7f61c0f9d69317b7a4b92eefc133347836dd83ef65deffa16b9985dc0",

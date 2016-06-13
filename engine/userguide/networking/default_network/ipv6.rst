@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/networking/default_network/ipv6/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/default_network/ipv6.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/userguide/networking/default_network/ipv6.md
-.. check date: 2016/04/17
-.. Commits on Nov 3, 2016 9ef855f9e5fa8077468bda5ce43155318c58e60e
+.. check date: 2016/06/14
+.. Commits on Apr 29, 2016 24ec73f754da16e37726a3f1c6a59de508e255fc
 .. ---------------------------------------------------------------------------
 
 .. IPv6 with Docker
@@ -46,7 +46,7 @@ Docker の IPv6 機能
 
 .. code-block:: bash
 
-   docker daemon --ipv6 --fixed-cidr-v6="2001:db8:1::/64"
+   dockerd --ipv6 --fixed-cidr-v6="2001:db8:1::/64"
 
 .. The subnet for Docker containers should at least have a size of /80. This way an IPv6 address can end with the container’s MAC address and you prevent NDP neighbor cache invalidation issues in the Docker layer.
 
@@ -54,7 +54,7 @@ Docker コンテナ用のサブネットは、少なくとも ``/80`` を持っ�
 
 .. With the --fixed-cidr-v6 parameter set Docker will add a new route to the routing table. Further IPv6 routing will be enabled (you may prevent this by starting Docker daemon with --ip-forward=false):
 
-``--fixed-cidr-v6`` パラメータを Docker に設定したら、新しい経路のルーティング・テーブルを作成します。更に IPv6 ルーティング・テーブルも有効化します（有効化したくない場合は、 Docker デーモン起動時に ``--ip-forward=false`` を指定します）。
+``--fixed-cidr-v6`` パラメータを Docker に設定したら、新しい経路のルーティング・テーブルを作成します。更に IPv6 ルーティング・テーブルも有効化します（有効化したくない場合は、 dockerd 起動時に ``--ip-forward=false`` を指定します）。
 
 .. code-block:: bash
 
@@ -142,7 +142,7 @@ Docker ホストが IPv6 サブネットの範囲にありながら IPv6 サブ�
 
 .. code-block:: bash
 
-   docker daemon --ipv6 --fixed-cidr-v6 2001:db8::c008/125
+   dockerd --ipv6 --fixed-cidr-v6 2001:db8::c008/125
 
 .. You notice the Docker subnet is within the subnet managed by your router that is connected to eth0. This means all devices (containers) with the addresses from the Docker subnet are expected to be found within the router subnet. Therefore the router thinks it can talk to these containers directly.
 

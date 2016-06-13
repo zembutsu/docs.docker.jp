@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/networking/default_network/container-communication/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/default_network/container-communication.md
-   doc version: 1.10
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/userguide/networking/default_network/container-communication.md
-.. check date: 2016/04/17
-.. Commits on Apr 13, 2016 30859c34569b900d3d798ad55f48f3d4fd7dc32c
+.. check date: 2016/06/14
+.. Commits on May 19, 2016 5fb7f9b29e9a85f36d02c4ecec6c04498fdb4315
 .. ---------------------------------------------------------------------------
 
 .. Understand container communication
@@ -53,6 +53,12 @@ IP パケット転送（ip packet forwarding）は、 ``ip_forward`` システ�
    $ sysctl net.ipv4.conf.all.forwarding=1
    $ sysctl net.ipv4.conf.all.forwarding
    net.ipv4.conf.all.forwarding = 1
+
+.. Note: this setting does not affect containers that use the host network stack (--net=host).
+
+.. note::
+
+  この設定は、コンテナがホスト側のネットワーク・スタックの使用時（ ``--net=host`` ）に影響を与えません。
 
 .. Many using Docker will want ip_forward to be on, to at least make communication possible between containers and the wider world. May also be needed for inter-container communication if you are in a multiple bridge setup.
 

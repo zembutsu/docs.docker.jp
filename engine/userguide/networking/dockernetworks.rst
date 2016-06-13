@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/networking/dockernetworks/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/dockernetworks.md
-   doc version: 1.10
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/userguide/networking/dockernetworks.md
-.. check date: 2016/04/16
-.. Commits on Mar 4, 2016 65a381ae32d86c4cfe3ae5157e53d16b97b4d64f
+.. check date: 2016/06/14
+.. Commits on May 22, 2016 55b172401851a6338a325ef7930d50ace9efb067
 .. ---------------------------------------------------------------------------
 
 .. Understand Docker container networks
@@ -66,7 +66,7 @@ Docker をインストールした全ての環境には、 ``docker0`` と表示
              collisions:0 txqueuelen:0
              RX bytes:1100 (1.1 KB)  TX bytes:648 (648.0 B)
 
-.. The none network adds a container to a container-specific network stack. That container lacks a network interface. Attaching to such a container and looking at it’s stack you see this:
+.. The none network adds a container to a container-specific network stack. That container lacks a network interface. Attaching to such a container and looking at its stack you see this:
 
 コンテナにネットワーク層を追加したい場合は、 ``none`` ネットワークを指定します。そのコンテナはネットワーク・インターフェースが欠如します。コンテナに接続（アタッチ）すると、次のようなネットワーク情報を表示します。
 
@@ -159,9 +159,9 @@ Docker Engine は自動的にネットワークの ``Subnet`` と ``Gateway`` �
    $ docker run -itd --name=container2 busybox
    94447ca479852d29aeddca75c28f7104df3c3196d7b6d83061879e339946805c
 
-.. Inspecting the bridge network again after starting two containers shows both newly launched containers in the network. Their ids show up in the container
+.. Inspecting the bridge network again after starting two containers shows both newly launched containers in the network. Their ids show up in the "Containers" section of `docker network inspect`:
 
-２つのコンテナを実行してから、再びこのブリッジ・ネットワークを参照し、直近のコンテナのネットワークがどのようになっているか見てみましょう。コンテナの ID が表示されるようになります。
+２つのコンテナを実行してから、再びこのブリッジ・ネットワークを参照し、直近のコンテナのネットワークがどのようになっているか見てみましょう。 ``docker network inspect`` で ``Containers`` のセクションでコンテナ ID を表示します。
 
 .. code-block:: bash
 
@@ -327,9 +327,9 @@ Docker Engine は自動的にネットワークの ``Subnet`` と ``Gateway`` �
 
 コンテナのより優れた分離のために、自分でユーザ定義ネットワーク(user-defined network)を作成できます。Docker はこれらネットワークを作成するための、複数の **ネットワーク・ドライバ** を標準提供しています。新しい **ブリッジ・ネットワーク** や **オーバレイ・ネットワーク** を作成できます。また、自分で **ネットワーク・プラグイン** を書き、 **リモート・ネットワーク** を定義できます。
 
-.. You can create multiple networks. You can add containers to more than one network. Containers can only communicate within networks but not across networks. A container attached to two networks can communicate with member containers in either network.
+.. You can create multiple networks. You can add containers to more than one network. Containers can only communicate within networks but not across networks. A container attached to two networks can communicate with member containers in either network. When a container is connected to multiple networks, its external connectivity is provided via the first non-internal network, in lexical order.
 
-ネットワークは複数作成できます。コンテナを１つ以上のネットワークに追加できます。コンテナの通信はネットワーク内だけでなく、ネットワーク間を横断できます。コンテナが２つのネットワークにアタッチする時、どちらのネットワークに対しても通信可能です。
+ネットワークは複数作成できます。コンテナを１つ以上のネットワークに追加できます。コンテナの通信はネットワーク内だけでなく、ネットワーク間を横断できます。コンテナが２つのネットワークにアタッチする時、どちらのネットワークに対しても通信可能です。コンテナが複数のネットワークに接続時、外部への通信は単語順で１つめの非内部ネットワークを経由します。
 
 .. The next few sections describe each of Docker’s built-in network drivers in greater detail.
 

@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/networking/default_network/configure-dns/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/default_network/configure-dns.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/userguide/networking/default_network/configure-dns.md
-.. check date: 2016/04/17
+.. check date: 2016/06/14
 .. Commits on Feb 15, 2016 7da5784b10a9f085af98984e6e69e733e55ddbf5
 .. ---------------------------------------------------------------------------
 
