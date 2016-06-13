@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/containers/dockerizing/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/containers/dockerizing.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/userguide/containers/dockerizing.md
-.. check date: 2016/04/16
+.. check date: 2016/06/13
 .. Commits on Mar 5, 2016 3b74be8ab7d93a70af3e0ac6418627c1de72228b
 .. ----------------------------------------------------------------------------
 

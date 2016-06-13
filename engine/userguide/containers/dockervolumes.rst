@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/containers/dockervolumes/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/containers/dockervolumes.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/userguide/containers/dockervolumes.md
 .. check date: 2016/04/16
-.. Commits on Mar 31, 2016 0f70f53826ac311ca1653827c0d6bc170f300e84
+.. Commits on May 5, 2016 c7e738d641e83ab955be423b70b9ed364dba9637
 .. ----------------------------------------------------------------------------
 
 .. _dockervolumes:
@@ -391,7 +391,28 @@ SELinux のようなラベリング・システムでは、コンテナ内にマ
 
 この手法を使うことで、好みのツールを用いた自動バックアップ、移行、修復が行えます。
 
+.. Removing volumes
+
+.. _removing-volumes:
+
+ボリュームの削除
+====================
+
+.. A Docker data volume persists after a container is deleted. You can create named or anonymous volumes. Named volumes have a specific source form outside the container, for example awesome:/bar. Anonymous volumes have no specific source. When the container is deleted, you should instruction the Engine daemon to clean up anonymous volumes. To do this, use the --rm option, for example:
+
+Docker データ・ボリュームはコンテナを削除しても残り続けます。ボリュームは名前を付けるかアノニマスで作成できます。名前付きボリュームはコンテナの外から ``awesome:/bar`` のように参照元（ソース）を指定できます。アノニマス・ボリュームはソースを指定できません。コンテナを削除時、 Docker Engine に対してアノニマス・ボリュームを削除するよう指示する必要があります。そのためには、 ``--rm`` オプションを使います。例：
+
+.. code-block:: bash
+
+   $ docker run --rm -v /foo -v awesome:/bar busybox top
+
+.. This command creates an anonymous /foo volume. When the container is removed, Engine removes the /foo volume but not the awesome volume.
+
+このコマンドはアノニマス ``/foo``  ボリュームを作成します。コンテナを削除時、Engine は ``/foo`` ボリュームを削除しますが、 ``awesome`` ボリュームは削除しません。
+
 .. Important tips on using shared volumes
+
+.. important-tips-on-using-shared-volumes:
 
 ボリューム共有時の重要なヒント
 ==============================

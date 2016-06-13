@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/containers/dockerrepos/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/containers/dockerrepos.md
-   doc version: 1.10
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/userguide/containers/dockerrepos.md
-.. check date: 2016/04/16
+.. check date: 2016/06/13
 .. Commits on Mar 14, 2016 d2aa521822135009168fe5a13d372fbc6969dc91
 .. ----------------------------------------------------------------------------
 
