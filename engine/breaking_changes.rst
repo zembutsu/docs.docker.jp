@@ -1,13 +1,15 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/breaking_changes/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/breaking_changes.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/breaking_changes.md
-.. check date: 2016/04/21
-.. Commits on Feb 4, 2016 f0df677913ce9bc6da5253dcca62690917923a3c
+.. check date: 2016/06/13
+.. Commits on May 20, 2016 3d6f5984f52802fe2f4af0dd2296c9e2e4a1e003
 .. -----------------------------------------------------------------------------
 
 .. Breaking changes and incompatibilities
+
+.. _breaking-changes-and-incompatibilities:
 
 =======================================
 破壊的変更と非互換性
@@ -27,7 +29,24 @@
 
 残念ながら、Docker は非常に動いているプロジェクトであり、新しく導入した機能は変更や互換性を弱めてしまうかもしれません。このページでは各エンジンのバージョンごとに文書化しています。
 
+.. Engine 1.12
+
+.. _engine-112:
+
+Engine 1.12
+====================
+
+.. Docker clients <= 1.9.2 used an invalid Host header when making request to the
+   daemon. Docker 1.12 is built using golang 1.6 which is now checking the validity
+   of the Host header and as such clients <= 1.9.2 can't talk anymore to the daemon. 
+   [An environment variable was added to overcome this issue.](reference/commandline/dockerd.md#miscellaneous-options)
+
+Docker クライアント 1.9.2 以下でデーモンにリクエストしても、ホストヘッダが無効です。Docker 1.12 は Go 言語 1.6 を用いて構築しており、新しいホスト・メッダの有効性を確認します。そのため、クライアント 1.9.2 以下はデーモンと通信できません。 :ref:`この問題に対応するため、環境変数を追加しました <dockerd-miscellaneous-options>` 。
+
+
 .. Engine 1.10
+
+.. _engine-110:
 
 Engine 1.10
 ====================
