@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/security/https/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/security/https.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/security/https.md
-.. check date: 2016/04/21
-.. Commits on Jan 23, 2016 4c76c665b73dbd0beb0cb465caa921cbeb1cf61f
+.. check date: 2016/06/14
+.. Commits on Jun 2, 2016 c1be45fa38e82054dcad606d71446a662524f2d5
 .. -------------------------------------------------------------------
 
 .. Protect the Docker daemon socket
@@ -19,7 +19,7 @@ Docker デーモンのソケットを守る
        :depth: 3
        :local:
 
-.. By default, Docker runs via a non-networked Unix socket. It can also optionally communicate using a HTTP socket.
+.. By default, Docker runs via a non-networked Unix socket. It can also optionally communicate using an HTTP socket.
 
 デフォルトでは、ネットワークを通さない Unix ソケットで Docker を操作します。オプションで HTTP ソケットを使った通信も可能です。
 

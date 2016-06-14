@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/security/security/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/security/security.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/security/security.md
-.. check date: 2016/04/21
-.. Commits on Apr 15, 2016 ea8f9c972393e0929e643190573412410bf39c6a
+.. check date: 2016/06/14
+.. Commits on May 12, 2016 73d96a6b17b1fb8af71dc68d78e50f88b89f4167
 .. -------------------------------------------------------------------
 
 .. Docker Security
@@ -54,9 +54,9 @@ Docker コンテナは LXC コンテナに非常に似ており、類似のセ�
 
 **各コンテナは自分自身のネットワーク・スタックを持ちます** 。つまり、コンテナはソケットや他のコンテナのインターフェースに対する特権（privileged）アクセスが得られません。もちろん、ホストシステムが適切に設定されている必要があります。そうしておけば、コンテナが相互に適切なネットワーク・インターフェースを通して通信できるようになります。ホストの外と通信できるのも同様です。コンテナに対して公開用のポートを指定するか、:doc:`リンク機能 </engine/userguide/networking/default_network/dockerlinks>` を使うことで、コンテナ間での IP 通信が許可されます。お互いに ping できるようになり、UDP パケットの送受信や、TCP 接続が確立されます。しかし、必要があれば制限を設けられます。ネットワーク・アーキテクチャの視点から考えますと、全てのコンテナは特定のホスト上のブリッジ・インターフェースを備えています。つまりこれは、物理マシン上で共通のイーサネット・スイッチを使っているのと同じような状態を意味します。それ以上でも、それ以下でもありません。 
 
-.. How mature is the code providing kernel namespaces and private networking? Kernel namespaces were introduced between kernel version 2.6.15 and 2.6.26. This means that since July 2008 (date of the 2.6.26 release, now 7 years ago), namespace code has been exercised and scrutinized on a large number of production systems. And there is more: the design and inspiration for the namespaces code are even older. Namespaces are actually an effort to reimplement the features of OpenVZ in such a way that they could be merged within the mainstream kernel. And OpenVZ was initially released in 2005, so both the design and the implementation are pretty mature.
+.. How mature is the code providing kernel namespaces and private networking? Kernel namespaces were introduced between kernel version 2.6.15 and 2.6.26. This means that since July 2008 (date of the 2.6.26 release), namespace code has been exercised and scrutinized on a large number of production systems. And there is more: the design and inspiration for the namespaces code are even older. Namespaces are actually an effort to reimplement the features of OpenVZ in such a way that they could be merged within the mainstream kernel. And OpenVZ was initially released in 2005, so both the design and the implementation are pretty mature.
 
-カーネルの名前空間を提供するコードやプライベート・ネットワーキングの成熟度とは、どの程度でしょうか。カーネルの名前空間は `カーネル 2.6.15 から 2.6.26 の間 <http://lxc.sourceforge.net/index.php/about/kernel-namespaces/>`_ に導入されました。これが意味するのは、2008年6月にリリースされた（2.6.26 がリリースされたのは、今から7年前です）名前空間のコードは、多数のプロダクション・システム上で動作・精査されています。更にもう１つ。名前区間コードの設計と発想はやや古いものです。名前空間が効果的に実装された例としては `OpenVZ <http://ja.wikipedia.org/wiki/OpenVZ>`_ があり、カーネルのメインストリームとしてマージされたこともありました。OpenVZ の初期リリースは 2005 年であり、設計と実装は、多少成熟していると言えるでしょう。
+カーネルの名前空間を提供するコードやプライベート・ネットワーキングの成熟度とは、どの程度でしょうか。カーネルの名前空間は `カーネル 2.6.15 から 2.6.26 の間 <http://lxc.sourceforge.net/index.php/about/kernel-namespaces/>`_ に導入されました。これが意味するのは、2008年6月にリリースされた（リリース 2.6.26 ）名前空間のコードは、多数のプロダクション・システム上で動作・精査されています。更にもう１つ。名前区間コードの設計と発想はやや古いものです。名前空間が効果的に実装された例としては `OpenVZ <http://ja.wikipedia.org/wiki/OpenVZ>`_ があり、カーネルのメインストリームとしてマージされたこともありました。OpenVZ の初期リリースは 2005 年であり、設計と実装は、多少成熟していると言えるでしょう。
 
 .. Control groups
 
