@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/storagedriver/device-mapper-driver.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/userguide/storagedriver/device-mapper-driver.md
-.. check date: 2016/04/16
-.. Commits on Apr 13, 2016 783ebebff40ebdae27dc72b4c8c5151a01220a87
+.. check date: 2016/06/14
+.. Commits on Jun 4, 2016 0cddc783cff152a383a109f70a9f7bc943dbb5ba
 .. ---------------------------------------------------------------------------
 
 .. Docker and the Device Mapper storage driver
@@ -162,7 +162,7 @@ devicemapper からの読み込み
 .. Write examples
 
 書き込み例
-----------
+==========
 
 .. With the devicemapper driver, writing new data to a container is accomplish..ed by an allocate-on-demand operation. Updating existing data uses a copy-on-write operation. Because Device Mapper is a block-based technology these operations occur at the block level.
 
@@ -230,11 +230,11 @@ devicemapper からの読み込み
 
 コンテナ内のアプリケーションは、必要に応じた割り当てやコピー・オン・ライト処理を意識しません。しかしながら、アプリケーションの読み書き処理において、待ち時間を増やすでしょう。
 
-.. Configuring Docker with Device Mapper
+.. Configure Docker with devicemapper
 
-.. _configuring-docker-with-device-mapper:
+.. _configuring-docker-with-devicemapper:
 
-Device Mapper を Docker で使う設定
+Docker で devicemapper を使う設定
 ========================================
 
 .. The devicemapper is the default Docker storage driver on some Linux distributions. This includes RHEL and most of its forks. Currently, the following distributions support the driver:
@@ -263,12 +263,12 @@ Docker ホストは ``devicemapper`` ストレージ・ドライバを、デフ�
     Pool Name: docker-202:2-25220302-pool
     Pool Blocksize: 65.54 kB
     Backing Filesystem: xfs
-    ...
+    [...]
     Data loop file: /var/lib/docker/devicemapper/devicemapper/data
     Metadata loop file: /var/lib/docker/devicemapper/devicemapper/metadata
     Library Version: 1.02.93-RHEL7 (2015-01-28)
-    ...
-
+    [...]
+ 
 .. The output above shows a Docker host running with the devicemapper storage driver operating in loop-lvm mode. This is indicated by the fact that the Data loop file and a Metadata loop file are on files under /var/lib/docker/devicemapper/devicemapper. These are loopback mounted sparse files.
 
 この実行結果から、Docker ホストは ``devicemapper`` ストレージ・ドライバの処理に ``loop-lvm`` モードを使っているのが分かります。実際には、 ``データ・ループ・ファイル (data loop file)`` と ``メタデータ・ループ・ファイル (Metadata loop file)`` のファイルが ``/var/lib/docker/devicemapper/devicemapper`` 配下にあるのを意味します。これらがループバックにマウントされているパース・ファイルです。
@@ -280,55 +280,47 @@ Docker ホストは ``devicemapper`` ストレージ・ドライバを、デフ�
 プロダクション用に direct-lvm モードを設定
 --------------------------------------------------
 
-.. The preferred configuration for production deployments is direct lvm. This mode uses block devices to create the thin pool. The following procedure shows you how to configure a Docker host to use the devicemapper storage driver in a direct-lvm configuration.
+.. The preferred configuration for production deployments is direct-lvm. This mode uses block devices to create the thin pool. The following procedure shows you how to configure a Docker host to use the devicemapper storage driver in a direct-lvm configuration.
 
-プロダクションへのデプロイに適した設定は ``direct lvm`` モードです。このモードはシン・プールの作成にブロック・デバイスを使います。以下の手順は、Docker ホストが ``devicemapper`` ストレージ・ドライバを ``direct-lvm`` 設定で使えるようにします。
+プロダクションへのデプロイに適した設定は ``direct-lvm`` モードです。このモードはシン・プールの作成にブロック・デバイスを使います。以下の手順は、Docker ホストが ``devicemapper`` ストレージ・ドライバを ``direct-lvm`` 設定で使えるようにします。
 
-..    Caution: If you have already run the Engine daemon on your Docker host and have images you want to keep, push them Docker Hub or your private Docker Trusted Registry before attempting this procedure.
+..    Caution: If you have already run the Docker daemon on your Docker host and have images you want to keep, push them Docker Hub or your private Docker Trusted Registry before attempting this procedure.
 
 .. caution::
 
    既に Docker ホスト上で Docker デーモンを使っている場合は、イメージをどこかに保存する必要があります。そのため、処理を進める前に、それらのイメージを Docker Hub やプライベート Docker Trusted Registry に送信しておきます。
 
-.. The procedure below will create a 90GB data volume and 4GB metadata volume to use as backing for the storage pool. It assumes that you have a spare block device at /dev/sdd with enough free space to complete the task. The device identifier and volume sizes may be be different in your environment and you should substitute your own values throughout the procedure. The procedure also assumes that the Docker daemon is in the stopped state.
+.. The procedure below will create a logical volume and configured as a thin pool to use as backing for the storage pool. It assumes that you have a spare block device at /dev/xvdf with enough free space to complete the task. The device identifier and volume sizes may be be different in your environment and you should substitute your own values throughout the procedure. The procedure also assumes that the Docker daemon is in the stopped state.
 
-以下の手順は 90GB のデータ・ボリュームと 4GB のメタデータ・ボリュームを作成し、ストレージ・プールの基礎として使います。ここでは別のブロック・デバイス ``/dev/sdd`` を持っており、処理するための十分な空き容量があると想定しています。デバイスの識別子とボリューム・サイズは皆さんの環境とは異なるかもしれません。手順を進める時は、自分の環境にあわせて適切に置き換えてください。また、手順は Docker デーモンが停止した状態から始めるのを想定しています。
+以下の手順は論理データ・ボリュームと、ストレージ・プールの基礎として設定されたシン・プールを使います。ここでは別のブロック・デバイス ``/dev/xvdf`` を持っており、処理するための十分な空き容量があると想定しています。デバイスの識別子とボリューム・サイズは皆さんの環境とは異なるかもしれません。手順を進める時は、自分の環境にあわせて適切に置き換えてください。また、手順は Docker デーモンが停止した状態から始めるのを想定しています。
 
-.. Log in to the Docker host you want to configure.
+.. Log in to the Docker host you want to configure and stop the Docker daemon.
 
-1. 設定対象の Docker ホストにログインします。
+1. 設定対象の Docker ホストにログインし、Docker デーモンを停止します。
 
-.. If it is running, stop the Engine daemon.
+.. Install the LVM2 package. The LVM2 package includes the userspace toolset that provides logical volume management facilities on linux.
 
-2. Engine のデーモンが実行中であれば、停止します。
+2. LVM2 パッケージをインストールします。LVM2 パッケージにはユーザー向けのツールが含まれており、簡単に Linux 上で論理ボリュームを管理するものです。
 
-.. Install the logical volume management version 2.
+.. Create a physical volume replacing /dev/xvdf with your block device.
 
-3. LVM（論理ボリューム・マネジメント）のバージョン２をインストールします。
-
-.. code-block:: bash
-
-   $ yum install lvm2
-
-.. Create a physical volume replacing /dev/sdd with your block device.
-
-4. 物理ボリュームにブロック・デバイス ``/dev/sdd`` を作成します。
+3. 物理ボリュームにブロック・デバイス ``/dev/xvdf`` を作成します。
 
 .. code-block:: bash
 
-   $ pvcreate /dev/sdd
+   $ pvcreate /dev/xvdf
 
 .. Create a ‘docker’ volume group.
 
-5. ``docker`` ボリューム・グループを作成します。
+4. ``docker`` ボリューム・グループを作成します。
 
 .. code-block:: bash
 
-   $ vgcreate docker /dev/sdd
+   $ vgcreate docker /dev/xvdf
 
 ..    Create a thin pool named thinpool.
 
-6. ``thinpool`` という名前のシン・プール（thin pool）を作成します。
+5. ``thinpool`` という名前のシン・プール（thin pool）を作成します。
 
 ..    In this example, the data logical is 95% of the ‘docker’ volume group size. Leaving this free space allows for auto expanding of either the data or metadata if space runs low as a temporary stopgap.
 
@@ -341,7 +333,7 @@ Docker ホストは ``devicemapper`` ストレージ・ドライバを、デフ�
 
 ..    Convert the pool to a thin pool.
 
-7. プールをシン・プールに変換します。
+6. プールをシン・プールに変換します。
 
 .. code-block:: bash
 
@@ -349,7 +341,7 @@ Docker ホストは ``devicemapper`` ストレージ・ドライバを、デフ�
 
 ..    Configure autoextension of thin pools via an lvm profile.
 
-8. ``lvm`` プロフィールを経由してシン・プールを自動拡張するよう設定します。
+7. ``lvm`` プロフィールを経由してシン・プールを自動拡張するよう設定します。
 
 .. code-block:: bash
 
@@ -357,7 +349,7 @@ Docker ホストは ``devicemapper`` ストレージ・ドライバを、デフ�
 
 ..    Specify ‘thin_pool_autoextend_threshold’ value.
 
-9.  ``thin_pool_autoextend_threshold`` 値を指定します。
+8.  ``thin_pool_autoextend_threshold`` 値を指定します。
 
 ..    The value should be the percentage of space used before lvm attempts to autoextend the available space (100 = disabled).
 
@@ -369,7 +361,7 @@ Docker ホストは ``devicemapper`` ストレージ・ドライバを、デフ�
 
 ..    Modify the thin_pool_autoextend_percent for when thin pool autoextension occurs.
 
-10. シン・プールの自動拡張が発生するタイミングを指定します。
+9. シン・プールの自動拡張が発生するタイミングを指定します。
 
 ..    The value’s setting is the perentage of space to increase the thin pool (100 = disabled)
 
@@ -381,7 +373,7 @@ Docker ホストは ``devicemapper`` ストレージ・ドライバを、デフ�
 
 ..    Check your work, your docker-thinpool.profile file should appear similar to the following:
 
-11. 確認をします。 ``docker-thinpool.profile`` は次のように表示されます。
+10. 確認をします。 ``docker-thinpool.profile`` は次のように表示されます。
 
 ..    An example /etc/lvm/profile/docker-thinpool.profile file:
 
@@ -396,7 +388,7 @@ Docker ホストは ``devicemapper`` ストレージ・ドライバを、デフ�
 
 ..    Apply your new lvm profile
 
-12. 新しい lvm プロフィールを適用します。
+11. 新しい lvm プロフィールを適用します。
 
 .. code-block:: bash
 
@@ -404,7 +396,7 @@ Docker ホストは ``devicemapper`` ストレージ・ドライバを、デフ�
 
 ..    Verify the lv is monitored.
 
-13. ``lv`` （論理ボリューム）をモニタしているのを確認します。
+12. ``lv`` （論理ボリューム）をモニタしているのを確認します。
 
 .. code-block:: bash
 
@@ -412,7 +404,7 @@ Docker ホストは ``devicemapper`` ストレージ・ドライバを、デフ�
 
 ..    If Engine was previously started, clear your graph driver directory.
 
-14. Docker Engine を起動していた場合は、グラフ・ドライバを直接削除します。
+13. Docker Engine を起動していた場合は、グラフ・ドライバを直接削除します。
 
 ..    Clearing your graph driver removes any images and containers in your Docker installation.
 
@@ -424,7 +416,7 @@ Docker インストール時のイメージとコンテナからグラフ・ド�
 
 ..    Configure the Engine daemon with specific devicemapper options.
 
-15. Engine デーモンが devicemapper オプションを使うように設定します。
+14. Engine デーモンが devicemapper オプションを使うように設定します。
 
 ..    There are two ways to do this. You can set options on the commmand line if you start the daemon there:
 
@@ -447,6 +439,14 @@ Docker インストール時のイメージとコンテナからグラフ・ド�
                     "dm.use_deferred_removal=true"
             ]
     }
+
+.. If using systemd and modifying the daemon configuration via unit or drop-in file, reload systemd to scan for changes.
+
+15. systemd を使っているのであれば、unit あるいはドロップイン・ファイルを経由してデーモン設定を変更するため、変更を読み取るため systemd を再読み込みします。
+
+.. code-block:: bash
+
+   $ systemctl daemon-reload
 
 ..    Start the Engine daemon.
 
@@ -517,7 +517,255 @@ Docker Engine デーモンを起動したら、シン・プールとボリュー
 
 .. Because Device Mapper operates at the block level it is more difficult to see diffs between image layers and containers. However, there are two key directories. The /var/lib/docker/devicemapper/mnt directory contains the mount points for images and containers. The /var/lib/docker/devicemapper/metadata directory contains one file for every image and container snapshot. The files contain metadata about each snapshot in JSON format.
 
-Device Mapper はブロック・レベルで処理を行うため、イメージ・レイヤとコンテナ間の差分を見るのは、少し大変です。しかしながら、２つの鍵となるディレクトリがあります。 ``/var/lib/docker/devicemapper/mnt`` ディレクトリには、イメージとコンテナのマウント・ポイントがあります。 ``/var/lib/docker/devicemapper/metadata`` ディレクトリには、それぞれのイメージとコンテナのスナップショットを格納する１つのファイルがあります。このファイルには、各スナップショットのメタデータが JSON 形式で含まれています。
+Device Mapper はブロック・レベルで処理を行うため、イメージ・レイヤとコンテナ間の差分を見るのは、少し大変です。しかしながら、２つの鍵となるディレクトリがあります。 ``/var/lib/docker/devicemapper/mnt`` ディレクトリには、イメージとコンテナのマウント・ポイントがあります。 ``/var/lib/docker/devicemapper/metadata`` ディレクトリには、それぞれのイメージとコンテナのスナップショットを格納する１つのファイルがあります。このファイルには、各スナップショットのメタデータが JSON 形式で含みます。
+
+.. Increase capacity on a running device
+
+.. _increase-capacity-on-a-running-device:
+
+実行中デバイスの容量を増やす
+==============================
+
+.. You can increase the capacity of the pool on a running thin-pool device. This is useful if the data's logical volume is full and the volume group is at full capacity.
+
+実行中のシン・プール・デバイスのプール容量を増加できます。データの論理ボリュームが一杯になる時やボリューム・グループの容量が一杯になる時に便利です。
+
+.. For a loop-lvm configuration
+
+.. _for-a-loop-lvm-configuration:
+
+loop-lvm 用の設定
+--------------------
+
+.. In this scenario, the thin pool is configured to use loop-lvm mode. To show the specifics of the existing configuration use docker info:
+
+このシナリオでは、シン・プールは ``loop-lvm`` モードの設定とします。 ``docker info`` を使うと現在の設定詳細を表示します。
+
+.. code-block:: bash
+
+   $ sudo docker info
+   Containers: 0
+    Running: 0
+    Paused: 0
+    Stopped: 0
+   Images: 2
+   Server Version: 1.11.0-rc2
+   Storage Driver: devicemapper
+    Pool Name: docker-8:1-123141-pool
+    Pool Blocksize: 65.54 kB
+    Base Device Size: 10.74 GB
+    Backing Filesystem: ext4
+    Data file: /dev/loop0
+    Metadata file: /dev/loop1
+    Data Space Used: 1.202 GB
+    Data Space Total: 107.4 GB
+    Data Space Available: 4.506 GB
+    Metadata Space Used: 1.729 MB
+    Metadata Space Total: 2.147 GB
+    Metadata Space Available: 2.146 GB
+    Udev Sync Supported: true
+    Deferred Removal Enabled: false
+    Deferred Deletion Enabled: false
+    Deferred Deleted Device Count: 0
+    Data loop file: /var/lib/docker/devicemapper/devicemapper/data
+    WARNING: Usage of loopback devices is strongly discouraged for production use. Either use `--storage-opt dm.thinpooldev` or use `--storage-opt dm.no_warn_on_loop_devices=true` to suppress this warning.
+    Metadata loop file: /var/lib/docker/devicemapper/devicemapper/metadata
+    Library Version: 1.02.90 (2014-09-01)
+   Logging Driver: json-file
+   [...]
+
+.. The Data Space values show that the pool is 100GB total. This example extends the pool to 200GB.
+
+``Data Space`` （データ領域）の値は合計 100GB です。この例ではプールを 200GB に拡張します。
+
+..    List the sizes of the devices.
+
+1. デバイスの容量一覧を表示します。
+
+.. code-block:: bash
+
+   $ sudo ls -lh /var/lib/docker/devicemapper/devicemapper/
+   total 1175492
+   -rw------- 1 root root 100G Mar 30 05:22 data
+   -rw------- 1 root root 2.0G Mar 31 11:17 metadata
+
+..    Truncate data file to the size of the metadata file (approximage 200GB).
+
+2. ``data`` ファイルを ``metadata`` ファイルの容量（約 200GB）に切り出します（truncate）。
+
+.. code-block:: bash
+
+   $ sudo truncate -s 214748364800 /var/lib/docker/devicemapper/devicemapper/data
+
+..    Verify the file size changed.
+
+3. 変更を確認します。
+
+.. code-block:: bash
+
+   $ sudo ls -lh /var/lib/docker/devicemapper/devicemapper/
+   total 1.2G
+   -rw------- 1 root root 200G Apr 14 08:47 data
+   -rw------- 1 root root 2.0G Apr 19 13:27 metadata
+
+..    Reload data loop device
+
+4. ループ・デバイスをのデータを再読み込みします。
+
+.. code-block:: bash
+
+   $ sudo blockdev --getsize64 /dev/loop0
+   107374182400
+   $ sudo losetup -c /dev/loop0
+   $ sudo blockdev --getsize64 /dev/loop0
+   214748364800
+
+..    Reload devicemapper thin pool.
+
+5. devicemapper シン・プールを再読み込みします。
+
+..    a. Get the pool name first.
+
+a. まずプール名を取得します。
+
+.. code-block:: bash
+
+   $ sudo dmsetup status | grep pool
+   docker-8:1-123141-pool: 0 209715200 thin-pool 91
+   422/524288 18338/1638400 - rw discard_passdown queue_if_no_space -
+
+..    The name is the string before the colon.
+
+名前はコロンの前の文字列です。
+
+..    b. Dump the device mapper table first.
+
+b. そして、デバイス・マッパー・テーブルをダンプします。
+
+.. code-block:: bash
+
+   $ sudo dmsetup table docker-8:1-123141-pool
+   0 209715200 thin-pool 7:1 7:0 128 32768 1 skip_block_zeroing
+
+..    c. Calculate the real total sectors of the thin pool now.
+
+c. シン・プールの現在の実合計セクタを計算します。
+
+..    Change the second number of the table info (i.e. the number of sectors) to reflect the new number of 512 byte sectors in the disk. For example, as the new loop size is 200GB, change the second number to 419430400.
+
+テーブル情報の２つめの数値（例： セクタ数）を変更するため、ディスク内で新しい 512 バイトのセクタを反映します。例えば、新しいプール容量が 200GB であれば、２つめの数値は 419430400 に変わります。
+
+..    d. Reload the thin pool with the new sector number
+
+d. 新しいセクタ番号でシン・プールを再読み込みします。
+
+.. code-block:: bash
+
+   $ sudo dmsetup suspend docker-8:1-123141-pool \
+       && sudo dmsetup reload docker-8:1-123141-pool --table '0 419430400 thin-pool 7:1 7:0 128 32768 1 skip_block_zeroing' \
+       && sudo dmsetup resume docker-8:1-123141-pool
+
+.. The device_tool
+
+.. _the-device-tool:
+
+device_tool
+^^^^^^^^^^^^^^^^^^^^
+
+.. The Docker's projects contrib directory contains not part of the core distribution. These tools that are often useful but can also be out-of-date. In this directory, is the device_tool.go which you can also resize the loop-lvm thin pool.
+
+Docker プロジェクトの ``contrib`` ディレクトリにあるのは、ディストリビューションのコア（中心）ではありません。これらのツールは多くの場面で役立ちますが、古いものがあるかもしれません。ディレクトリ内にある `device_tool.go <https://github.com/docker/docker/tree/master/contrib/docker-device-tool>`_ で loop-lvm シン・プールの容量変更も可能です。
+
+.. To use the tool, compile it first. Then, do the following to resize the pool:
+
+ツールを使うためには、まずコンパイルします。それからプール容量を次のように変更します：
+
+.. code-block:: bash
+
+   $ ./device_tool resize 200GB
+
+.. For a direct-lvm mode configuration
+
+.. _for-a-direct-lvm-mode-configuration:
+
+direct-lvm モード用の設定
+------------------------------
+
+.. In this example, you extend the capacity of a running device that uses the direct-lvm configuration. This example assumes you are using the /dev/sdh1 disk partition.
+
+この例では ``direct-lvm`` 設定を使って実行中デバイスの容量を拡張します。例では ``/dev/sdh1`` ディスク・パーティションを使っているものと想定します。
+
+..    Extend the volume group (VG) vg-docker.
+
+1. ボリューム・グループ（VG） ``vg-docker`` を拡張します。
+
+.. code-block:: bash
+
+   $ sudo vgextend vg-docker /dev/sdh1
+   Volume group "vg-docker" successfully extended
+
+..    Your volume group may use a different name.
+
+皆さんは別のボリューム名を使っているかもしれません。
+
+..    Extend the data logical volume(LV) vg-docker/data
+
+2. ``data`` 論理ボリューム（LV） ``vg-docker/data`` を拡張します。
+
+.. code-block:: bash
+
+   $ sudo lvextend  -l+100%FREE -n vg-docker/data
+   Extending logical volume data to 200 GiB
+   Logical volume data successfully resized
+
+..    Reload devicemapper thin pool.
+
+3. devicemapper シン・プールを再読み込みします。
+
+..    a. Get the pool name.
+
+a. プール名を取得します。
+
+.. code-block:: bash
+
+   $ sudo dmsetup status | grep pool
+   docker-253:17-1835016-pool: 0 96460800 thin-pool 51593 6270/1048576 701943/753600 - rw no_discard_passdown queue_if_no_space
+
+..    The name is the string before the colon.
+
+名前はコロン前の文字列です。
+
+..    b. Dump the device mapper table.
+
+b. デバイス・マッパー・テーブルをダンプします。
+
+.. code-block:: bash
+
+   $ sudo dmsetup table docker-253:17-1835016-pool
+   0 96460800 thin-pool 252:0 252:1 128 32768 1 skip_block_zeroing
+
+..    c. Calculate the real total sectors of the thin pool now. we can use blockdev to get the real size of data lv.
+
+c. シン・プールの現在の実合計セクタを計算します。 ``blockdev`` を使って data 論理ボリュームの実サイズを取得できます。
+
+..    Change the second number of the table info (i.e. the number of sectors) to reflect the new number of 512 byte sectors in the disk. For example, as the new data lv size is 264132100096 bytes, change the second number to 515883008.
+
+テーブル情報の２つめの数値（例： ディスク終了セクタ）を変更するため、ディスク内で新しい 512 バイトのセクタを反映します。例えば、新しい data 論理ボリューム容量が 264132100096 バイト であれば、２つめの数値は 515883008 に変わります。
+
+.. code-block:: bash
+
+    $ sudo blockdev --getsize64 /dev/vg-docker/data
+    264132100096
+
+..    d. Then reload the thin pool with the new sector number.
+
+d. それから新しいセクタ番号でシン・プールを再読み込みします。
+
+.. code-block:: bash
+
+   $ sudo dmsetup suspend docker-253:17-1835016-pool \
+       && sudo dmsetup reload docker-253:17-1835016-pool --table  '0 515883008 thin-pool 252:0 252:1 128 32768 1 skip_block_zeroing' \
+       && sudo dmsetup resume docker-253:17-1835016-pool
 
 .. Device Mapper and Docker performance
 

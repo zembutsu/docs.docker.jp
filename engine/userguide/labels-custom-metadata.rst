@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/labels-custom-metadata/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/labels-custom-metadata.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/userguide/labels-custom-metadata.md
-.. check date: 2016/04/17
-.. Commits on Jan 27, 2016 e310d070f498a2ac494c6d3fde0ec5d6e4479e14
+.. check date: 2016/06/13
+.. Commits on May 26, 2016 b2643b6953e59549eba8af51a7e783a3e4cebc46
 .. ---------------------------------------------------------------------------
 
 .. Apply custom metadata
@@ -27,11 +27,11 @@
 
 ラベルは ``<key>`` / ``<value>`` のペアです。Docker はラベルの値を *文字列* として保管します。複数のラベルを指定できますが、 ``<key>`` はユニークである必要があるため、重複時は上書きされます。同じ ``<key>`` を複数回指定したら、古いラベルは新しいラベルに置き換えられるため、都度値が変わります。Docker は常に指定した最新の ``key=value`` を使います。
 
-..    Note: Support for daemon-labels was added in Docker 1.4.1. Labels on containers and images are new in Docker 1.6.0
+..    Note: Support for daemon-labels was added in Docker 1.4.1. Labels on containers and images are added in Docker 1.6.0
 
 .. note::
 
-   デーモンのラベル機能は Docker 1.4.1 から追加されました。コンテナとイメージに対するラベルは、Docker 1.6.0 からです。
+   デーモンのラベル機能は Docker 1.4.1 から追加されました。コンテナとイメージに対するラベルは、Docker 1.6.0 で追加されました。
 
 .. Label keys (namespaces)
 

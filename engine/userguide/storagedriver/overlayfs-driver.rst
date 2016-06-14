@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/storagedriver/overlayfs-driver.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/userguide/storagedriver/overlayfs-driver.md
-.. check date: 2016/04/16
-.. Commits on Mar 17, 2016 ca64269165fb30765d7ea0b0b231674df8da157b
+.. check date: 2016/06/1
+.. Commits on Apr 29, 2016 24ec73f754da16e37726a3f1c6a59de508e255fc
 .. ---------------------------------------------------------------------------
 
 .. Docker and OverlayFS in practice
@@ -269,7 +269,7 @@ Docker が overlay ストレージ・ドライバを使うには、Docker ホス
 
 .. code-block:: bash
 
-   $ docker daemon --storage-driver=overlay &
+   $ dockerd --storage-driver=overlay &
    [1] 29403
    root@ip-10-0-0-174:/home/ubuntu# INFO[0000] Listening for HTTP on unix (/var/run/docker.sock)
    INFO[0000] Option DefaultDriver: bridge

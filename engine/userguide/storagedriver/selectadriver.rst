@@ -1,9 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/storagedriver/selectadriver/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/storagedriver/selectadriver.md
-   doc version: 1.10
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/userguide/storagedriver/selectadriver.md
-.. check date: 2016/02/12
+.. check date: 2016/06/14
+.. Commits on Jun 14, 2016 a546042b91f655c7cf53484cdb0c5c8b3cf12d33
 .. ---------------------------------------------------------------------------
 
 .. Select a storage driver
@@ -44,7 +45,7 @@ Docker は接続可能な（pluggable）ストレージ・ドライバ構造を�
 どのドライバがベストかを決めたら、Docker デーモンの起動時にドライバを指定するだけです。Docker デーモンは対象のストレージ・ドライバを使って起動します。そして、デーモン・インスタンスによって作成される全てのコンテナは、全てその同じストレージ・ドライバを使っています。次の表はサポートされているストレージ・ドライバ技術とドライバ名です。
 
 .. Technology 	Storage driver name
-   OverlayFS 	overlay
+   SFS 	overlay
    AUFS 	aufs
    Btrfs 	btrfs
    Device Mapper 	devicemapper
@@ -57,7 +58,7 @@ Docker は接続可能な（pluggable）ストレージ・ドライバ構造を�
    * - 技術
      - ストレージ・ドライバ名
    * - OverlayFS
-     - ``overlay``
+     - ``overlay`` または ``overlay2``
    * - AUFS
      - ``aufs``
    * - Btrfs
@@ -98,31 +99,47 @@ Docker は接続可能な（pluggable）ストレージ・ドライバ構造を�
    :header-rows: 1
    
    * - ストレージ・ドライバ
-     - ファイルシステムと一致する必要があるか
-   * - OverlayFS
-     - いいえ
-   * - aufs
-     - いいえ
-   * - btrfs
-     - はい
-   * - devicemapper
-     - いいえ
-   * - vfs*
-     - いいえ
-   * - zfs
-     - はい
+     - 一般的に使うファイルシステム
+     - 無効なファイルシステム
+   * - ``overlay``
+     - ``ext4`` ``xfs``
+     - ``btrfs`` ``aufs`` ``overlay`` ``overlay2`` ``zfs`` ``eCryptsfs``
+   * - ``overlay2``
+     - ``ext4`` ``xfs``
+     - ``btrfs`` ``aufs`` ``overlay`` ``overlay2`` ``zfs`` ``eCryptsfs``
+   * - ``aufs``
+     - ``ext4`` ``xfs``
+     - ``btrfs`` ``aufs`` ``eCryptsfs``
+   * - ``btrfs``
+     - ``btrfs`` のみ
+     - N/A
+   * - ``devicemapper``
+     - ``direct-lvm``
+     - N/A
+   * - ``vfs``
+     - デバッグ用途のみ
+     - N/A
+   * - ``zfs``
+     - ``zfs`` のみ
+     - N/A
 
-.. You can set the storage driver by passing the --storage-driver=<name> option to the docker daemon command line or by setting the option on the DOCKER_OPTS line in /etc/default/docker file.
+.. Note "Disabled on" means some storage drivers can not run over certain backing filesystem.
 
-ストレージ・ドライバを設定するには ``docker daemon`` コマンドで ``--storage-driver=<名前>`` オプションを使うか、あるいは、 ``/etc/default/docker`` ファイル中の ``DOCKER_OPTS`` 行を編集します。
+.. note::
 
-.. The following command shows how to start the Docker daemon with the devicemapper storage driver using the docker daemon command:
+    「無効な」という意味は、対象のストレージ・ドライバが特定のファイルシステム上で実行できないのを意味します。
 
-以下のコマンドは Docker デーモンの起動時、 ``docker daemon`` コマンドで ``devicemapper`` ストレージ・ドライバを指定しています。
+.. You can set the storage driver by passing the --storage-driver=<name> option to the dockerd command line or by setting the option on the DOCKER_OPTS line in /etc/default/docker file.
+
+ストレージ・ドライバを設定するには ``dockerd`` コマンドで ``--storage-driver=<名前>`` オプションを使うか、あるいは、 ``/etc/default/docker`` ファイル中の ``DOCKER_OPTS`` 行を編集します。
+
+.. The following command shows how to start the Docker daemon with the devicemapper storage driver using the dockerd command:
+
+以下のコマンドは Docker デーモンの起動時、 ``dockerd`` コマンドで ``devicemapper`` ストレージ・ドライバを指定しています。
 
 .. code-block:: bash
 
-   $ docker daemon --storage-driver=devicemapper &
+   $ dockerd --storage-driver=devicemapper &
    
    $ docker info
    Containers: 0
@@ -139,6 +156,7 @@ Docker は接続可能な（pluggable）ストレージ・ドライバ構造を�
     Metadata Space Used: 1.479 MB
     Metadata Space Total: 2.147 GB
     Metadata Space Available: 2.146 GB
+    Thin Pool Minimum Free Space: 10.74 GB
     Udev Sync Supported: true
     Deferred Removal Enabled: false
     Data loop file: /var/lib/docker/devicemapper/devicemapper/data
@@ -255,6 +273,20 @@ Docker がサポートしているストレージ・ドライバの利用経験�
 .. image:: ./images/driver-pros-cons.png
    :scale: 60%
    :alt: ストレージドライバの比較
+
+.. Overlay vs Overlay2
+
+.. _overlay-vs-overlay2:
+
+.. OverlayFS has 2 storage drivers which both make use of the same OverlayFS technology but with different implementations and incompatible on disk storage. Since the storage is incompatible, switching between the two will require re-creating all image content. The overlay driver is the original implementation and the only option in Docker 1.11 and before. The overlay driver has known limitations with inode exhaustion and commit performance. The overlay2 driver addresses this limitation, but is only compatible with Linux kernel 4.0 and later. For users on a pre-4.0 kernel or with an existing overlay graph, it is recommended to stay on overlay. For users with at least a 4.0 kernel and no existing or required overlay graph data, then overlay2 may be used.
+
+OverlayFS は２つのストレージ・ドライバがあります。どちらも同じ OverlayFS 技術を使っていますが、実装が異なり、ディスク・ストレージ上の互換性がありません。ストレージに互換性がないため、両者を切り替えるためには、全てのイメージ内容の再構築が必要です。 ``overlay`` ドライバはオリジナルの実装であり、Docker 1.11 より以前のバージョンでのみ指定可能です。 ``overlay`` ドライバにはｉノード増大とパフォーマンス維持に対する限界が分かっています。 ``overlay2`` ドライバはこの限界に対応するものですが、Linux カーネル 4.0 以降にのみ互換性があります。カーネル 4.0 よりも惹くバージョンのユーザや、現在 ``overlay`` グラフを使っているのであれば、そのまま ``overlay`` の利用を推奨します。カーネル 4.0 以上のユーザや、既存の ``overlay`` グラフ・データが無いまたは不要であれば ``overlay2`` を使うのが良いかもしれません。
+
+..    Note overlay2 graph data will not interfere with overlay graph data. However when switching to overlay2, the user is responsible for removing overlay graph data to avoid storage duplication.
+
+.. note::
+
+   ``overlay2`` グラフ・データは ``overlay`` グラフ・データに干渉しません。しかしながら ``overlay2`` に切り替える時は、ストレージの重複を避けるため ``overlay`` グラフ・データの削除が必要です。
 
 .. Related information
 

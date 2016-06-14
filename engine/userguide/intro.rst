@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/intro/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/intro.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/userguide/intro.md
-.. check date: 2016/04/16
+.. check date: 2016/06/13
 .. Commits on Mar 5, 2016 3b74be8ab7d93a70af3e0ac6418627c1de72228b
 .. ----------------------------------------------------------------------------
 
@@ -183,7 +183,7 @@ Docker Machine は Docker Engine を起動し、迅速に実行する手助け�
 Docker Compose
 --------------------
 
-.. Docker Compose allows you to define a application’s components – their containers, configuration, links and volumes – in a single file. Then a single command will set everything up and start your application running.
+.. Docker Compose allows you to define an application’s components – their containers, configuration, links and volumes – in a single file. Then a single command will set everything up and start your application running.
 
 Docker Compose はアプリケーションの構成を定義します。コンテナと設定、リンク、ボリュームに関する情報を、１つのファイル上で記述します。コマンド１つ実行するだけで、全てのをセットアップし、アプリケーションを実行します。
 

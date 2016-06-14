@@ -124,7 +124,7 @@ Docker マルチホスト・ネットワーク機能を使うために、Docker 
 .. _step2-create-a-swarm-cluster:
 
 ステップ２：Swarm クラスタの作成
-==============================
+================================
 
 .. In this step, you use docker-machine to provision the hosts for your network. At this point, you won’t actually create the network. You’ll create several machines in VirtualBox. One of the machines will act as the Swarm master; you’ll create that first. As you create each host, you’ll pass the Engine on that machine options that are needed by the overlay network driver.
 
@@ -187,7 +187,7 @@ Docker マルチホスト・ネットワーク機能を使うために、Docker 
 .. _step3-create-the-overlay-network:
 
 ステップ３：オーバレイ・ネットワークの作成
-========================================
+==========================================
 
 .. To create an overlay network
 

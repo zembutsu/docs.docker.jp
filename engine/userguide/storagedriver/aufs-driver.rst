@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/storagedriver/aufs-driver/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/storagedriver/aufs-driver.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/userguide/storagedriver/aufs-driver.md
-.. check date: 2016/04/16
-.. Commits on Feb 23, 2016 2264bd95b681d1336b167c8ecd9b2ce65b963071
+.. check date: 2016/06/14
+.. Commits on Apr 29, 2016 24ec73f754da16e37726a3f1c6a59de508e255fc
 .. ---------------------------------------------------------------------------
 
 .. Docker and AUFS in practice
@@ -126,13 +126,13 @@ AUFS ストレージ・ドライバを使えるのは、AUFS がインストー�
    $ grep aufs /proc/filesystems
    nodev   aufs
 
-.. This output indicates the system supports AUFS. Once you’ve verified your system supports AUFS, you can must instruct the Docker daemon to use it. You do this from the command line with the docker daemon command:
+.. This output indicates the system supports AUFS. Once you’ve verified your system supports AUFS, you can must instruct the Docker daemon to use it. You do this from the command line with the dockerd command:
 
-この出力は、システムが AUFS をサポートしています。自分のシステムで AUFS をサポートしているのを確認したら、Docker デーモンに対して AUFS を使う指示が必要です。これには ``docker daemon`` コマンドを使えます。
+この出力は、システムが AUFS をサポートしています。自分のシステムで AUFS をサポートしているのを確認したら、Docker デーモンに対して AUFS を使う指示が必要です。これには ``dockerd`` コマンドを使えます。
 
 .. code-block:: bash
 
-   $ sudo docker daemon --storage-driver=aufs &
+   $ sudo dockerd --storage-driver=aufs &
 
 .. Alternatively, you can edit the Docker config file and add the --storage-driver=aufs option to the DOCKER_OPTS line.
 
@@ -171,9 +171,9 @@ AUFS ストレージ・ドライバを使えるのは、AUFS がインストー�
 ローカルのストレージと AUFS
 ==============================
 
-.. As the docker daemon runs with the AUFS driver, the driver stores images and containers on within the Docker host’s local storage area in the /var/lib/docker/aufs directory.
+.. As the dockerd runs with the AUFS driver, the driver stores images and containers on within the Docker host’s local storage area in the /var/lib/docker/aufs directory.
 
-``docker daemon`` を AUFS ドライバで実行したら、ドライバは Docker ホスト上のローカル・ストレージ領域である ``/var/lib/docker/aufs`` 内に、イメージとコンテナを保管します。
+``dockerd`` を AUFS ドライバで実行したら、ドライバは Docker ホスト上のローカル・ストレージ領域である ``/var/lib/docker/aufs`` 内に、イメージとコンテナを保管します。
 
 .. Images
 

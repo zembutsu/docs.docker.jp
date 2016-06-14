@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/storagedriver/zfs-driver/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/storagedriver/zfs-driver.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/userguide/storagedriver/zfs-driver.md
-.. check date: 2016/04/16
+.. check date: 2016/06/14
 .. Commits on Feb 29, 2016 30c2770a736e6c731f4046431f0f4275dadbd536
 .. ---------------------------------------------------------------------------
 
