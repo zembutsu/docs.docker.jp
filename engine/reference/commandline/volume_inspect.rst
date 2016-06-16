@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/volume_inspect/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/volume_inspect.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/commandline/volume_inspect.md
-.. check date: 2016/04/28
-.. Commits on Apr 15, 2016 36a1c56cf555f8fe9ceabeebb8fc956e05863fc7
+.. check date: 2016/06/16
+.. Commits on Jun 14, 2016 8eca8089fa35f652060e86906166dabc42e556f8
 .. -------------------------------------------------------------------
 
 .. volume inspect

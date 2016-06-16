@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/cp/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/cp.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/commandline/cp.md
-.. check date: 2016/04/26
-.. Commits on Mar 4, 2016 889d06178adef05d9f9d34a2098f0e6023b84bed
+.. check date: 2016/06/14
+.. Commits on May 24, 2016 cb1635c9cf4813c95a1c72dd35b13e8acebfbfb6
 .. -------------------------------------------------------------------
 
 .. cp
@@ -112,9 +112,21 @@ cp
 
    `/path/to/file:name.txt` or `./file:name.txt`
 
-.. It is not possible to copy certain system files such as resources under /proc, /sys, /dev, and mounts created by the user in the container.
+.. It is not possible to copy certain system files such as resources under /proc, /sys, /dev, tmpfs, and mounts created by the user in the container. However, you can still copy such files by manually running tar in docker exec. For example (consider SRC_PATH and DEST_PATH are directories):
 
-``/proc`` 、 ``/sys`` 、 ``/dev`` 配下にあるリソースのような特定のシステムファイルはコピーできません。これらはコンテナの中にマウントされます。
+``/proc`` 、 ``/sys`` 、 ``/dev`` 、 :ref:`tmpfs <mount-tmpfs>` 配下にあるリソースのように、特定のシステムファイルはコピーできません。これらはコンテナの中にマウントします。ただし、 ``docker exec``  で ``tar`` を時h手動実行し、ファイルをコピー可能です。例（ ``送信元のパス`` と ``送信先のパス`` はディレクトリと見なします）：
+
+.. code-block:: bash
+
+   $ docker exec foo tar Ccf $(dirname 送信元パス) - $(basename 送信元パス) | tar Cxf 送信先パス -
+
+.. or
+
+あるいは
+
+.. code-block:: bash
+
+   $ tar Ccf $(dirname 送信元パス) - $(basename 送信元パス) | docker exec -i foo tar Cxf 送信先パス -
 
 .. Using - as the SRC_PATH streams the contents of STDIN as a tar archive. The command extracts the content of the tar to the DEST_PATH in container’s filesystem. In this case, DEST_PATH must specify a directory. Using - as the DEST_PATH streams the contents of the resource as a tar archive to STDOUT.
 

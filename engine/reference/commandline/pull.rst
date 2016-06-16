@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/pull/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/pull.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/commandline/pull.md
-.. check date: 2016/04/28
-.. Commits on Mar 29, 2016 fb5ea0c0efec238aeeff7c5c3742a0e4eccff2c7
+.. check date: 2016/06/16
+.. Commits on Jun 12, 2016 0c3a4a1fcdbb4b7e14292a871dec4bf6828ae57c
 .. -------------------------------------------------------------------
 
 .. pull
@@ -44,6 +44,17 @@ pull
 .. To download a particular image, or set of images (i.e., a repository), use docker pull:
 
 特定のイメージやイメージの集まり（例：リポジトリ）をダウンロードするには、 ``docker pull`` を使います。
+
+.. Proxy configuration
+
+.. _pull-proxy-configuration:
+
+プロキシ設定
+====================
+
+.. If you are behind an HTTP proxy server, for example in corporate settings, before open a connect to registry, you may need to configure the Docker daemon's proxy settings, using the HTTP_PROXY, HTTPS_PROXY, and NO_PROXY environment variables. To set these environment variables on a host using systemd, refer to the control and configure Docker with systemd for variables configuration.
+
+企業内における設定など HTTP プロキシ・サーバの背後で使う場合には、レジストリに接続する前に、Docker デーモンの設定が必要になるでしょう。設定には環境変数 ``HTTP_PROXY`` 、 ``HTTPS_PROXY`` 、 ``NO_PROXY`` です。これらの環境変数を ``systemd``  上で使う場合には、 :ref:`systemd で Docker の管理と設定 <systemd-http-proxy>` の環境変数についてをご覧ください。
 
 .. Examples
 
@@ -191,7 +202,7 @@ Digest は Dockerfile の ``FROM`` でも指定可能です。以下は例です
 
 .. By default, docker pull pulls images from Docker Hub. It is also possible to manually specify the path of a registry to pull from. For example, if you have set up a local registry, you can specify its path to pull from it. A registry path is similar to a URL, but does not contain a protocol specifier (https://).
 
-``docker pull`` のイメージは Docker Hub から取得するのがデフォルトです。取得するレジストリの場所は、手動で指定可能です。例えば、ローカルにレジストリをセットアップしておけば、そちらを指定してイメージを取得できます。レジストリのパスは URL と似ていますが、プロトコル指示子（ ``https://`` ）がありません。
+``docker pull`` のイメージは `Docker Hub <https://hub.docker.com/>`_ から取得するのがデフォルトです。取得するレジストリの場所は、手動で指定可能です。例えば、ローカルにレジストリをセットアップしておけば、そちらを指定してイメージを取得できます。レジストリのパスは URL と似ていますが、プロトコル指示子（ ``https://`` ）がありません。
 
 .. The following command pulls the testing/test-image image from a local registry listening on port 5000 (myregistry.local:5000):
 

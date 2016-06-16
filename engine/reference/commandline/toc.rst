@@ -17,7 +17,7 @@
 
    index.rst
    cli.rst
-   daemon.rst
+   dockerd.rst
    attach.rst
    build.rst
    commit.rst
@@ -48,6 +48,12 @@
    ps.rst
    pull.rst
    push.rst
+   plugin_disable.rst
+   plugin_enable.rst
+   plugin_inspect.rst
+   plugin_install.rst
+   plugin_ls.rst
+   plugin_rm.rst
    rename.rst
    restart.rst
    rm.rst
@@ -61,9 +67,23 @@
    tag.rst
    top.rst
    unpause.rst
+   update.rst
    version.rst
    volume_create.rst
    volume_inspect.rst
    volume_ls.rst
    volume_rm.rst
    wait.rst
+   node_accept.rst
+   node_promote.rst
+   node_demote.rst
+   node_inspect.rst
+   node_update.rst
+   node_tasks.rst
+   node_ls.rst
+   node_rm.rst
+   swarm_init.rst
+   swarm_join.rst
+   swarm_leave.rst
+   swarm_update.rst
+

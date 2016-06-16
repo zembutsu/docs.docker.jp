@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/engine/reference/commandline/daemon/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/daemon.md
-   doc version: 1.11
-      https://github.com/docker/docker/commits/master/docs/reference/commandline/daemon.md
-.. check date: 2016/04/25
-.. Commits on Apr 21, 2016 e3eb24fc21fa6f6002eef081278333f9e5e16614
+.. URL: https://docs.docker.com/engine/reference/commandline/dockerd/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/dockerd.md
+   doc version: 1.12
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/dockerd.md
+.. check date: 2016/06/14
+.. Commits on Jun 14, 2016 7b2e5216b89b4c454d67473f1fa06c52a4624680
 .. -------------------------------------------------------------------
 
 .. daemon
@@ -21,7 +21,7 @@ daemon
 
 .. code-block:: bash
 
-   使い方: docker daemon [オプション]
+   使い方: dockerd [オプション]
    
    Linux コンテナの自給自足ランタイム
    
@@ -63,9 +63,12 @@ daemon
      --log-driver="json-file"               デフォルトのコンテナのログ記録ドライバ
      --log-opt=[]                           ログドライバのオプションを指定
      --mtu=0                                コンテナ・ネットワークの MTU を指定
+     --max-concurrent-downloads=3           pull ごとの最大同時ダウンロード数を指定
+     --max-concurrent-uploads=5             push ごとの最大同時アップロード数を指定
      --disable-legacy-registry              レガシーのレジストリには接続しない
      -p, --pidfile="/var/run/docker.pid"    デーモン PID ファイル用のパス
      --registry-mirror=[]                   Docker レジストリの優先ミラー
+     --add-runtime=[]                       追加 OCI 互換ランタイムの登録
      -s, --storage-driver=""                使用するストレージ・ドライバ
      --selinux-enabled                      SELinux サポートの有効化
      --storage-opt=[]                       ストレージ・ドライバのオプションを指定
@@ -81,13 +84,13 @@ daemon
 
 [] が付いているオプションは、複数回指定できます。
 
-.. The Docker daemon is the persistent process that manages containers. Docker uses the same binary for both the daemon and client. To run the daemon you type docker daemon.
+.. dockerd is the persistent process that manages containers. Docker uses different binary for the daemon and client. To run the daemon you type dockerd.
 
-Docker デーモンはコンテナを管理するために常駐するプロセスです。Docker はデーモンもクライアントも同じバイナリを使います。デーモンを起動するには ``docker daemon`` を入力します。
+dockerd はコンテナを管理するために常駐するプロセスです。Docker はデーモンとクライアントで異なるバイナリを使います。デーモンを起動するには ``dockerd`` を入力します。
 
-.. To run the daemon with debug output, use docker daemon -D.
+.. To run the daemon with debug output, use dockerd -D.
 
-デーモンでデバッグ出力を行うには、 ``docker daemon -D`` を使います。
+デーモンでデバッグ出力を行うには、 ``dockerd -D`` を使います。
 
 .. Daemon socket option
 
@@ -114,9 +117,9 @@ Docker デーモンにリモートからの接続を考えているのであれ�
 
    HTTP 暗号化ソケットを使う時は、TLS 1.0 以上でサポートされているプロトコル SSLv3 以上をお使いください。以下のバージョンはセキュリティ上の理由によりサポートされていません。
 
-.. On Systemd based systems, you can communicate with the daemon via Systemd socket activation, use docker daemon -H fd://. Using fd:// will work perfectly for most setups but you can also specify individual sockets: docker daemon -H fd://3. If the specified socket activated files aren’t found, then Docker will exit. You can find examples of using Systemd socket activation with Docker and Systemd in the Docker source tree.
+.. On Systemd based systems, you can communicate with the daemon via Systemd socket activation, use dockerd -H fd://. Using fd:// will work perfectly for most setups but you can also specify individual sockets: dockerd -H fd://3. If the specified socket activated files aren’t found, then Docker will exit. You can find examples of using Systemd socket activation with Docker and Systemd in the Docker source tree.
 
-systemd をベースとするシステムでは、 `Systemd ソケット・アクティベーション <http://0pointer.de/blog/projects/socket-activation.html>`_ を通し、 ``docker daemon -H fd://`` で通信が可能です。 ``fd://`` は大部分のセットアップで動作するため、個々のソケットを ``docker daemon -H fd://3`` のように指定できます。もし指定したソケットが見つからない時は、Docker が終了します。Docker で Systemd ソケット・アクティベーションを使う例は `Docker のソース・ツリー <https://github.com/docker/docker/tree/master/contrib/init/systemd/>`_ をご覧ください。
+systemd をベースとするシステムでは、 `Systemd ソケット・アクティベーション <http://0pointer.de/blog/projects/socket-activation.html>`_ を通し、 ``dockerd -H fd://`` で通信が可能です。 ``fd://`` は大部分のセットアップで動作するため、個々のソケットを ``dockerd -H fd://3`` のように指定できます。もし指定したソケットが見つからない時は、Docker が終了します。Docker で Systemd ソケット・アクティベーションを使う例は `Docker のソース・ツリー <https://github.com/docker/docker/tree/master/contrib/init/systemd/>`_ をご覧ください。
 
 .. You can configure the Docker daemon to listen to multiple sockets at the same time using multiple -H options:
 
@@ -125,7 +128,7 @@ Docker デーモンは複数の ``-H`` オプションを使い、複数のソ�
 .. code-block:: bash
 
    # デフォルトの unix ソケットと、ホスト上の２つの IP アドレスをリッスンする
-   docker daemon -H unix:///var/run/docker.sock -H tcp://192.168.59.106 -H tcp://10.10.10.2
+   dockerd -H unix:///var/run/docker.sock -H tcp://192.168.59.106 -H tcp://10.10.10.2
 
 .. The Docker client will honor the DOCKER_HOST environment variable to set the -H flag for the client.
 
@@ -154,6 +157,88 @@ Docker クライアントは ``DOCKER_HOST`` 環境変数か ``-H`` フラグで
 
 Docker クライアントは ``HTTP_PROXY`` 、 ``HTTPS_PROXY`` 、 ``NO_PROXY`` 環境変数を（あるいは小文字でも）使えます。 ``HTTPS_PROXY`` は ``HTTP_PROXY`` よりも上位です。
 
+.. Bind Docker to another host/port or a Unix socket
+
+.. _bind-docker-to-another-host-port-or-a-unix-socket:
+
+Docker の別ホスト/ポート、あるいは Unix ソケットをバインド
+------------------------------------------------------------
+
+..    Warning: Changing the default docker daemon binding to a TCP port or Unix docker user group will increase your security risks by allowing non-root users to gain root access on the host. Make sure you control access to docker. If you are binding to a TCP port, anyone with access to that port has full Docker access; so it is not advisable on an open network.
+
+.. warning::
+
+   ``docker`` デーモンがバインドするデフォルトの TCP ポートや Unix docker ユーザ・グループの変更は、セキュリティ上の危険性を高めます。危険性とは、ホスト上の root 以外のユーザが root へのアクセスが可能になるかもしれません。 ``docker`` に対するアクセス管理を確実に行ってください。TCP ポートをバインドする場合、ポートにアクセス可能な誰もが Docker に対するフル・アクセスを可能にします。そのため、オープンなネットワーク上では望ましくありません。
+
+.. With -H it is possible to make the Docker daemon to listen on a specific IP and port. By default, it will listen on unix:///var/run/docker.sock to allow only local connections by the root user. You could set it to 0.0.0.0:2375 or a specific host IP to give access to everybody, but that is not recommended because then it is trivial for someone to gain root access to the host where the daemon is running.
+
+Docker デーモンに ``-H`` オプションを指定すると、特定の IP アドレスとポートをリッスンします。デフォルトでリッスンするのは ``unix:///var/run/docker.sock`` であり、root ユーザのみローカル接続可能です。誰もが接続可能とするには ``0.0.0.0:2375`` かホスト IP アドレスを指定しますが、 **非推奨です** 。デーモンを実行しているホストにアクセス可能であれば、誰もが root アクセスを得られるのと同じだからです。
+
+.. Similarly, the Docker client can use -H to connect to a custom port. The Docker client will default to connecting to unix:///var/run/docker.sock on Linux, and tcp://127.0.0.1:2376 on Windows.
+
+同様に、 Docker クライアントは ``-H`` を使い任意のポートに節即できます。 Docker クライアントはデフォルトで、Linux であれば ``unix:///var/run/docker.sock`` へ、Windows であれば ``tcp://127.0.0.1:2376`` に接続します。
+
+.. -H accepts host and port assignment in the following format:
+
+.. code-block:: bash
+
+   tcp://[ホスト]:[ポート][パス] あるいは unix://パス
+
+.. For example:
+
+例：
+
+..    tcp:// -> TCP connection to 127.0.0.1 on either port 2376 when TLS encryption is on, or port 2375 when communication is in plain text.
+    tcp://host:2375 -> TCP connection on host:2375
+    tcp://host:2375/path -> TCP connection on host:2375 and prepend path to all requests
+    unix://path/to/socket -> Unix socket located at path/to/socket
+
+* ``tcp://`` → ``127.0.0.1`` に接続。TLS 暗号化が有効であればポート ``2376`` を、平文の通信時はポート ``2375`` を使用。
+* ``tcp://ホスト:2375`` → ホスト:2375  の TCP 接続。
+* ``tcp://host:2375/path`` → ホスト:2375 の TCP 接続と、リクエストに追加パスが必要。
+* ``unix://path/to/socket`` → ``path/to/socket`` にある Unix ソケット。
+
+.. -H, when empty, will default to the same value as when no -H was passed in.
+
+``-H`` の値がなければ、デフォルトでは ``-H`` を指定しなかった値になります。
+
+.. -H also accepts short form for TCP bindings:
+
+``-H`` は TCP バインドの指定を短縮できます。
+
+.. code-block:: bash
+
+   ``host:` あるいは `host:port` あるいは `:port`
+
+.. Run Docker in daemon mode:
+
+Dokcer をデーモン・モードで実行するには：
+
+.. code-block:: bash
+
+   $ sudo <path to>/dockerd -H 0.0.0.0:5555 &
+
+.. Download an ubuntu image:
+
+``ubuntu`` イメージをダウンロードするには：
+
+.. code-block:: bash
+
+   $ docker -H :5555 pull ubuntu
+
+.. You can use multiple -H, for example, if you want to listen on both TCP and a Unix socket
+
+複数の ``-H`` を指定できミズ遭う。たとえば、TCP と Unix ソケットの両方をリッスンするには、次のようにします。
+
+.. code-block:: bash
+
+   # docker をデーモン・モードで実行
+   $ sudo <path to>/dockerd -H tcp://127.0.0.1:2375 -H unix:///var/run/docker.sock &
+   # デフォルトの Unix ソケットを使い、 ubuntu イメージのダウンロード
+   $ docker pull ubuntu
+   # あるいは、TCP ポートを使用
+   $ docker -H tcp://127.0.0.1:2375 pull ubuntu
+
 .. Daemon storage-driver option
 
 .. _daemon-storage-driver-option:
@@ -163,7 +248,7 @@ Docker クライアントは ``HTTP_PROXY`` 、 ``HTTPS_PROXY`` 、 ``NO_PROXY``
 
 .. The Docker daemon has support for several different image layer storage drivers: aufs, devicemapper, btrfs, zfs and overlay.
 
-Docker デーモンはイメージ・レイヤ用途に、様々に異なるストレージ・ドライバの利用をサポートします。ドライバは、 ``aufs`` 、 ``devicemapper`` 、 ``btrfs`` 、 ``zfs`` 、 ``overlay`` です。
+Docker デーモンはイメージ・レイヤ用途に、様々に異なるストレージ・ドライバの利用をサポートします。ドライバは、 ``aufs`` 、 ``devicemapper`` 、 ``btrfs`` 、 ``zfs`` 、 ``overlay`` 、 ``overlay2`` です。
 
 .. The aufs driver is the oldest, but is based on a Linux kernel patch-set that is unlikely to be merged into the main kernel. These are also known to cause some serious kernel crashes. However, aufs is also the only storage driver that allows containers to share executable and shared library memory, so is a useful choice when running thousands of containers with the same program or libraries.
 
@@ -173,29 +258,34 @@ Docker デーモンはイメージ・レイヤ用途に、様々に異なるス�
 
 ``devicemapper`` ドライバはシン・プロビジョニング（thin provisioning）とコピー・オン・ライト（Copy on Write）スナップショットを使います。devicemapper の各グラフ（graph）がある典型的な場所は ``/var/lib/docker/devicemapper`` です。シン（thin）プールは２つのブロックデバイス上に作ります。１つはデータで、もう１つはメタデータです。デフォルトでは、別々のファイルとして自動作成したループバックのマウントを元に、これらのブロック・デバイスを自動的に作成します。セットアップのカスタマイズ方法は、以下にある :ref:`ストレージ・ドライバのオプション <storage-driver-options>` をご覧ください。オプションを使わない設定方法は `jpetazzo/Resizing Docker containers with the Device Mapper plugin <http://jpetazzo.github.io/2014/01/29/docker-device-mapper-resize/>`_ の記事に説明があります。
 
-.. The btrfs driver is very fast for docker build - but like devicemapper does not share executable memory between devices. Use docker daemon -s btrfs -g /mnt/btrfs_partition.
+.. The btrfs driver is very fast for docker build - but like devicemapper does not share executable memory between devices. Use dockerd -s btrfs -g /mnt/btrfs_partition.
 
-``btrfs`` ドライバは ``docker build`` が非常に高速です。しかし、 ``devicemapper`` のようにデバイス間の実行メモリを共有しません。使うには ``docker daemon -s btrfs -g /mnt/btrfs_partition`` を実行します。
+``btrfs`` ドライバは ``docker build`` が非常に高速です。しかし、 ``devicemapper`` のようにデバイス間の実行メモリを共有しません。使うには ``dockerd -s btrfs -g /mnt/btrfs_partition`` を実行します。
 
-.. The zfs driver is probably not as fast as btrfs but has a longer track record on stability. Thanks to Single Copy ARC shared blocks between clones will be cached only once. Use docker daemon -s zfs. To select a different zfs filesystem set zfs.fsname option as described in Storage driver options.
+.. The zfs driver is probably not as fast as btrfs but has a longer track record on stability. Thanks to Single Copy ARC shared blocks between clones will be cached only once. Use dockerd -s zfs. To select a different zfs filesystem set zfs.fsname option as described in Storage driver options.
 
-``zfs`` ドライバは ``btrfs`` ほど速くありませんが、安定さのためレコードを長く追跡します。 ``Single Copy ARC`` のおかげで、クローン間の共有ブロックを１度キャッシュします。使うには ``docker daemon -s zfs`` を指定します。異なる zfs ファイルシステムセットを選択するには、 ``zfs.fsname`` オプションを  :ref:`ストレージ・ドライバのオプション <storage-driver-options>` で指定します。
+``zfs`` ドライバは ``btrfs`` ほど速くありませんが、安定さのためレコードを長く追跡します。 ``Single Copy ARC`` のおかげで、クローン間の共有ブロックを１度キャッシュします。使うには ``dockerd -s zfs`` を指定します。異なる zfs ファイルシステムセットを選択するには、 ``zfs.fsname`` オプションを  :ref:`ストレージ・ドライバのオプション <storage-driver-options>` で指定します。
 
-.. The overlay is a very fast union filesystem. It is now merged in the main Linux kernel as of 3.18.0. Call docker daemon -s overlay to use it.
+.. The overlay is a very fast union filesystem. It is now merged in the main Linux kernel as of 3.18.0. Call dockerd -s overlay to use it.
 
-``overlay`` は非常に高速なユニオン・ファイル・システムです。ようやく Linux カーネル `3.18.0 <https://lkml.org/lkml/2014/10/26/137>`_ でメインにマージされました。使うには ``docker daemon -s overlay`` を指定します。
+``overlay`` は非常に高速なユニオン・ファイル・システムです。ようやく Linux カーネル `3.18.0 <https://lkml.org/lkml/2014/10/26/137>`_ でメインにマージされました。使うには ``dockerd -s overlay`` を指定します。
 
 ..    Note: As promising as overlay is, the feature is still quite young and should not be used in production. Most notably, using overlay can cause excessive inode consumption (especially as the number of images grows), as well as being incompatible with the use of RPMs.
+
 
 .. note::
 
    前途有望な ``overlay`` ですが、機能がまだ若く、プロダクションで使うべきではありません。特に  ``overlay`` を使うと過度の inode 消費を引き起こします（特にイメージが大きく成長する場合）。また、RPM との互換性がありません。
 
-..    Note: It is currently unsupported on btrfs or any Copy on Write filesystem and should only be used over ext4 partitions.
+..    Note: Both `overlay` and `overlay2` are currently unsupported on `btrfs` or any Copy on Write filesystem and should only be used over `ext4` partitions.
+
+.. The overlay2 uses the same fast union filesystem but takes advantage of additional features added in Linux kernel 4.0 to avoid excessive inode consumption. Call dockerd -s overlay2 to use it.
+
+``overlay2`` は同じ高速なユニオン・ファイルシステムを使いますが、Linux カーネル 4.0 で追加された `追加機能 <https://lkml.org/lkml/2015/2/11/106>`_ を使います。これは過度のｉノード消費を防ぐものです。使うには ``dockerd -s overlay2`` を実行します。
 
 .. note::
 
-   現時点でサポートされていない ``btrfs`` や他のコピー・オン・ライトのファイルシステムは、 ``ext4`` パーティション上のみで使うべきです。
+  ``overlay`` や ``overlay2`` および、現時点でサポートされていない ``btrfs`` や他のコピー・オン・ライトのファイルシステムは、 ``ext4`` パーティション上のみで使うべきです。
 
 .. Storage driver options
 
@@ -204,9 +294,14 @@ Docker デーモンはイメージ・レイヤ用途に、様々に異なるス�
 ストレージ・ドライバのオプション
 ----------------------------------------
 
-.. Particular storage-driver can be configured with options specified with --storage-opt flags. Options for devicemapper are prefixed with dm and options for zfs start with zfs.
+.. Particular storage-driver can be configured with options specified with --storage-opt flags. Options for devicemapper are prefixed with dm and options for zfs start with zfs and options for btrfs start with btrfs.
 
-個々のストレージドライバは ``--storage-opt`` フラグでオプションを設定できます。 ``devicemapper`` 用のオプションは ``dm`` で始まり、 ``zfs`` 用のオプションは ``zfs`` で始まります。
+個々のストレージドライバは ``--storage-opt`` フラグでオプションを設定できます。 ``devicemapper`` 用のオプションは ``dm`` で始まり、 ``zfs`` 用のオプションは ``zfs`` で始まります。また ``btrfs`` 用のオプションは ``btrfs``  で始まります。
+
+.. _devicemapper-options:
+
+devicemapper のオプション
+------------------------------
 
 ..    dm.thinpooldev
 
@@ -234,7 +329,7 @@ Docker デーモンはイメージ・レイヤ用途に、様々に異なるス�
 
 .. code-block:: bash
 
-   $ docker daemon \
+   $ dockerd \
          --storage-opt dm.thinpooldev=/dev/mapper/thin-pool
 
 * ``dm.basesize``
@@ -253,7 +348,7 @@ Docker デーモンはイメージ・レイヤ用途に、様々に異なるス�
 
 .. code-block:: bash
 
-   $ docker daemon --storage-opt dm.basesize=50G
+   $ dockerd --storage-opt dm.basesize=50G
 
 .. This will increase the base device size to 50G. The Docker daemon will throw an error if existing base device size is larger than 50G. A user can use this option to expand the base device size however shrinking is not permitted.
 
@@ -275,7 +370,7 @@ Docker デーモンはイメージ・レイヤ用途に、様々に異なるス�
 
 .. code-block:: bash
 
-   $ docker daemon --storage-opt dm.basesize=20G
+   $ dockerd --storage-opt dm.basesize=20G
 
 * ``dm.loopdatasize``
 
@@ -295,7 +390,7 @@ Docker デーモンはイメージ・レイヤ用途に、様々に異なるス�
 
 .. code-block:: bash
 
-   $ docker daemon --storage-opt dm.loopdatasize=200G
+   $ dockerd --storage-opt dm.loopdatasize=200G
 
 * ``dm.loopmetadatasize``
 
@@ -313,7 +408,7 @@ Docker デーモンはイメージ・レイヤ用途に、様々に異なるス�
 
 使用例：
 
-   $ docker daemon --storage-opt dm.loopmetadatasize=4G
+   $ dockerd --storage-opt dm.loopmetadatasize=4G
 
 * ``dm.fs``
 
@@ -327,7 +422,7 @@ Docker デーモンはイメージ・レイヤ用途に、様々に異なるス�
 
 .. code-block:: bash
 
-   $ docker daemon --storage-opt dm.fs=ext4
+   $ dockerd --storage-opt dm.fs=ext4
 
 * ``dm.mkfsarg``
 
@@ -341,7 +436,7 @@ Docker デーモンはイメージ・レイヤ用途に、様々に異なるス�
 
 .. code-block:: bash
 
-   $ docker daemon --storage-opt "dm.mkfsarg=-O ^has_journal"
+   $ dockerd --storage-opt "dm.mkfsarg=-O ^has_journal"
 
 * ``dm.mountopt``
 
@@ -353,7 +448,7 @@ Docker デーモンはイメージ・レイヤ用途に、様々に異なるス�
 
 使用例：
 
-   $ docker daemon --storage-opt dm.mountopt=nodiscard
+   $ dockerd --storage-opt dm.mountopt=nodiscard
 
 * ``dm.datadev``
 
@@ -375,7 +470,7 @@ Docker デーモンはイメージ・レイヤ用途に、様々に異なるス�
 
 .. code-block:: bash
 
-   $ docker daemon \
+   $ dockerd \
          --storage-opt dm.datadev=/dev/sdb1 \
          --storage-opt dm.metadatadev=/dev/sdc1
 
@@ -407,7 +502,7 @@ Docker デーモンはイメージ・レイヤ用途に、様々に異なるス�
 
 .. code-block:: bash
 
-   $ docker daemon \
+   $ dockerd \
          --storage-opt dm.datadev=/dev/sdb1 \
          --storage-opt dm.metadatadev=/dev/sdc1
 
@@ -423,7 +518,7 @@ Docker デーモンはイメージ・レイヤ用途に、様々に異なるス�
 
 .. code-block:: bash
 
-   $ docker daemon --storage-opt dm.blocksize=512K
+   $ dockerd --storage-opt dm.blocksize=512K
 
 * ``dm.blkdiscard``
 
@@ -441,7 +536,7 @@ Docker デーモンはイメージ・レイヤ用途に、様々に異なるス�
 
 .. code-block:: bash
 
-   $ docker daemon --storage-opt dm.blkdiscard=false
+   $ dockerd --storage-opt dm.blkdiscard=false
 
 * ``dm.override_udev_sync_check``
 
@@ -474,7 +569,7 @@ Docker デーモンが ``udev`` 同期をサポートしているかどうかは
 
 .. code-block:: bash
 
-   $ docker daemon --storage-opt dm.override_udev_sync_check=true
+   $ dockerd --storage-opt dm.override_udev_sync_check=true
 
 ..    When this value is true, the devicemapper continues and simply warns you the errors are happening.
 
@@ -506,7 +601,7 @@ Docker デーモンが ``udev`` 同期をサポートしているかどうかは
 
 .. code-block:: bash
 
-    $ docker daemon --storage-opt dm.use_deferred_removal=true
+    $ dockerd --storage-opt dm.use_deferred_removal=true
 
 * ``dm.use_deferred_deletion``
 
@@ -522,7 +617,7 @@ Docker デーモンが ``udev`` 同期をサポートしているかどうかは
 
 .. code-block:: bash
 
-   $ docker daemon \
+   $ dockerd \
          --storage-opt dm.use_deferred_deletion=true \
          --storage-opt dm.use_deferred_removal=true
 
@@ -558,11 +653,16 @@ LVM (Logical Volume Management；論理ボリューム管理) シン・プール
 
 .. code-block:: bash
 
-   $ docker daemon --storage-opt dm.min_free_space=10%
+   $ dockerd --storage-opt dm.min_free_space=10%
 
 .. Currently supported options of zfs:
 
-現時点で ``zfs`` がサポートしているオプション：
+.. 現時点で ``zfs`` がサポートしているオプション：
+
+.. _zfs-options:
+
+ZFS オプション
+--------------------
 
 * ``zfs.fsname``
 
@@ -576,7 +676,21 @@ Docker が自身のデータセットとして、どの zfs ファイルシス�
 
 .. code-block:: bash
 
-   $ docker daemon -s zfs --storage-opt zfs.fsname=zroot/docker
+   $ dockerd -s zfs --storage-opt zfs.fsname=zroot/docker
+
+.. _btrfs-options:
+
+Btrfs オプション
+--------------------
+
+* ``btrfs.min_space``
+
+..    Specifies the mininum size to use when creating the subvolume which is used for containers. If user uses disk quota for btrfs when creating or running a container with --storage-opt size option, docker should ensure the size cannot be smaller than btrfs.min_space.
+
+コンテナ用サブボリュームの作成時に、最小容量を指定します。コンテナに ``--storage-opt 容量`` オプションを指定して作成・実行する時、ユーザが btrfs のディスク・クォータを使っていれば、docker は ``btrfs.min_space`` より小さな ``容量`` を指定できないようにします。
+
+..    Example use: $ docker daemon -s btrfs --storage-opt btrfs.min_space=10G
+
 
 .. Docker runtime execution option
 
@@ -588,6 +702,54 @@ Docker ランタイム実行オプション
 .. The Docker daemon relies on a OCI compliant runtime (invoked via the containerd daemon) as its interface to the Linux kernel namespaces, cgroups, and SELinux.
 
 Docker デーモンは `OCI <https://github.com/opencontainers/specs>`_ 基準のランタイム（containerd デーモンの呼び出し）に基づいています。これに従いながら Linux カーネルの ``名前空間（namespaces）`` 、 ``コントロール・グループ（cgroups）`` 、 ``SELinux`` に対するインターフェースとして動作します。
+
+.. Docker runtime execution options
+
+.. _docker-runtime-execution-options:
+
+Docker ランタイム実行オプション
+========================================
+
+.. The Docker daemon relies on a OCI compliant runtime (invoked via the containerd daemon) as its interface to the Linux kernel namespaces, cgroups, and SELinux.
+
+Docker デーモンは `OCI <https://github.com/opencontainers/specs>`_ 規格のランタイムに依存します（ ``containerd`` デーモンを経由して呼び出します）。これが Linux カーネルの ``namespace`` 、 ``cgroups`` 、``SELinux`` のインターフェースとして働きます。
+
+.. Runtimes can be registered with the daemon either via the configuration file or using the --add-runtime command line argument.
+
+ランタイムはデーモンに登録できます。登録は設定ファイルを通してか、あるいは、コマンドラインの引数 ``--add-runtime``  を使います。
+
+.. The following is an example adding 2 runtimes via the configuration:
+
+以下の例は、設定ファイルを通して２つのランタイムを追加しています。
+
+.. code-block:: json
+
+       "default-runtime": "runc",
+       "runtimes": {
+           "runc": {
+               "path": "runc"
+           },
+           "custom": {
+               "path": "/usr/local/bin/my-runc-replacement",
+               "runtimeArgs": [
+                   "--debug"
+               ]
+           }
+       }
+
+.. This is the same example via the command line:
+
+これは、コマンドライン上で次のように実行するのと同じです。
+
+.. code-block:: bash
+
+   $ sudo dockerd --add-runtime runc=runc --add-runtime custom=/usr/local/bin/my-runc-replacement
+
+.. Note: defining runtime arguments via the command line is not supported.
+
+.. note::
+
+   ランタイム引数はコマンドラインを経由して定義できません（サポートされていません）。
 
 .. Options for the runtime
 
@@ -610,7 +772,7 @@ Docker デーモンは `OCI <https://github.com/opencontainers/specs>`_ 基準�
 
 .. code-block:: bash
 
-   $ sudo docker daemon --exec-opt native.cgroupdriver=systemd
+   $ sudo dockerd --exec-opt native.cgroupdriver=systemd
 
 .. Setting this option applies to all containers the daemon launches.
 
@@ -622,11 +784,13 @@ Docker デーモンは `OCI <https://github.com/opencontainers/specs>`_ 基準�
 
 .. code-block:: bash
 
-   $ docker daemon --exec-opt isolation=hyperv
+   $ dockerd --exec-opt isolation=hyperv
 
 .. Will make hyperv the default isolation technology on Windows, without specifying isolation value on daemon start, Windows isolation technology will default to process.
 
-この指定は Windows 上のデフォルト分離技術として ``hyperv`` を使う指定です。デーモン起動時に分離技術の指定が無ければ、デフォルトでは Windows の分離技術として ``process`` を使います。
+.. Will make hyperv the default isolation technology on Windows. If no isolation value is specified on daemon start, on Windows client, the default is hyperv, and on Windows server, the default is process.
+
+この指定は Windows 上のデフォルト分離技術 ``hyperv`` を使います。デーモン起動時に分離技術の指定が無ければ、Windows クライアントはデフォルトで ``hyper-v`` を使い、Windows server はデフォルトで ``process`` を使います。
 
 
 .. Daemon DNS options
@@ -636,13 +800,13 @@ Docker デーモンは `OCI <https://github.com/opencontainers/specs>`_ 基準�
 デーモンの DNS オプション
 ==============================
 
-.. To set the DNS server for all Docker containers, use docker daemon --dns 8.8.8.8.
+.. To set the DNS server for all Docker containers, use dockerd --dns 8.8.8.8.
 
-全ての Docker コンテナ用の DNS サーバを設定するには、 ``docker daemon --dns 8.8.8.8`` を使います。
+全ての Docker コンテナ用の DNS サーバを設定するには、 ``dockerd --dns 8.8.8.8`` を使います。
 
-.. To set the DNS search domain for all Docker containers, use docker daemon --dns-search example.com.
+.. To set the DNS search domain for all Docker containers, use dockerd --dns-search example.com.
 
-全ての Docker コンテナ用の DNS 検索ドメインを設定するには、 ``docker daemon --dns-search example.com`` を使います。
+全ての Docker コンテナ用の DNS 検索ドメインを設定するには、 ``dockerd --dns-search example.com`` を使います。
 
 .. Insecure registries
 
@@ -715,7 +879,7 @@ LAN の内部で ``HTTPS`` プロキシを使う場合、Docker Hub の証明書
 
 ..    Then start your Docker daemon with HTTPS_PROXY=http://username:password@proxy:port/ docker daemon. The username: and password@ are optional - and are only needed if your proxy is set up to require authentication.
 
-3. Docker デーモンに ``HTTPS_PROXY=http://ユーザ名:パスワード@proxy:port/ docker daemon`` を付けて起動します。 ``ユーザ名:`` と ``パスワード@`` はオプションです。そして、プロ指揮の認証設定も必要であれば追加します。
+3. Docker デーモンに ``HTTPS_PROXY=http://ユーザ名:パスワード@proxy:port/ dockerd`` を付けて起動します。 ``ユーザ名:`` と ``パスワード@`` はオプションです。そして、プロ指揮の認証設定も必要であれば追加します。
 
 .. This will only add the proxy and authentication to the Docker daemon’s requests - your docker builds and running containers will need extra configuration to use the proxy
 
@@ -753,7 +917,7 @@ Ulimits のデフォルト
 
 .. code-block:: bash
 
-   docker daemon \
+   dockerd \
        --cluster-advertise 192.168.1.2:2376 \
        --cluster-store etcd://192.168.1.2:2379 \
        --cluster-store-opt kv.cacertfile=/path/to/ca.pem \
@@ -795,13 +959,13 @@ Ulimits のデフォルト
 アクセス認証
 ====================
 
-.. Docker’s access authorization can be extended by authorization plugins that your organization can purchase or build themselves. You can install one or more authorization plugins when you start the Docker daemon using the --authorization-plugin=PLUGIN_ID option.
+.. Docker’s access authorization can be extended by authorization plugins that your organization can purchase or build themselves. You can install one or more authorization plugins when you start the Docker daemond using the --authorization-plugin=PLUGIN_ID option.
 
-Docker のアクセス認証は認証プラグインの拡張であり、組織が組織自身で購入・構築できます。認証プラグイン（authorization plugin）を使うには、Docker ``daemon`` で ``--authorization-plugin=PLUGIN_ID`` オプションを使って起動します。
+Docker のアクセス認証は認証プラグインの拡張であり、組織が組織自身で購入・構築できます。認証プラグイン（authorization plugin）を使うには、Docker ``daemond`` で ``--authorization-plugin=PLUGIN_ID`` オプションを使って起動します。
 
 .. code-block:: bash
 
-   docker daemon --authorization-plugin=plugin1 --authorization-plugin=plugin2,...
+   dockerd --authorization-plugin=plugin1 --authorization-plugin=plugin2,...
 
 .. The PLUGIN_ID value is either the plugin’s name or a path to its specification file. The plugin’s implementation determines whether you can specify a name or path. Consult with your Docker administrator to get information about the plugins available to you.
 
@@ -869,7 +1033,7 @@ Linux カーネルの `ユーザ名前空間(user namespace)サポート <http:/
 
 .. code-block:: bash
 
-   $ docker daemon --userns-remap=default
+   $ dockerd --userns-remap=default
 
 .. When default is provided, Docker will create - or find the existing - user and group named dockremap. If the user is created, and the Linux distribution has appropriate support, the /etc/subuid and /etc/subgid files will be populated with a contiguous 65536 length range of subordinate user and group IDs, starting at an offset based on prior entries in those files. For example, Ubuntu will create the following range, based on an existing user named user1 already owning the first 65536 range:
 
@@ -982,7 +1146,7 @@ Docker は Docker データ・ディレクトリ（ ``/var/lib/docker`` ）と `
    DOCKER_TMPDIR=/mnt/disk2/tmp /usr/local/bin/docker daemon -D -g /var/lib/docker -H unix:// > /var/lib/docker-machine/docker.log 2>&1
    # あるいは
    export DOCKER_TMPDIR=/mnt/disk2/tmp
-   /usr/local/bin/docker daemon -D -g /var/lib/docker -H unix:// > /var/lib/docker-machine/docker.log 2>&1
+   /usr/local/bin/dockerd -D -g /var/lib/docker -H unix:// > /var/lib/docker-machine/docker.log 2>&1
 
 .. Default cgroup parent
 
@@ -1048,8 +1212,10 @@ systemd cgroup ドライバは ``--cgroup-parent`` と異なるルールです�
    	"pidfile": "",
    	"graph": "",
    	"cluster-store": "",
-   	"cluster-store-opts": [],
+   	"cluster-store-opts": {},
    	"cluster-advertise": "",
+   	"max-concurrent-downloads": 3,
+   	"max-concurrent-uploads": 5,
    	"debug": true,
    	"hosts": [],
    	"log-level": "",
@@ -1058,7 +1224,7 @@ systemd cgroup ドライバは ``--cgroup-parent`` と異なるルールです�
    	"tlscacert": "",
    	"tlscert": "",
    	"tlskey": "",
-   	"api-cors-headers": "",
+   	"api-cors-header": "",
    	"selinux-enabled": false,
    	"userns-remap": "",
    	"group": "",
@@ -1067,7 +1233,7 @@ systemd cgroup ドライバは ``--cgroup-parent`` と異なるルールです�
           "ipv6": false,
           "iptables": false,
           "ip-forward": false,
-          "ip-mask": false,
+          "ip-masq": false,
           "userland-proxy": false,
           "ip": "0.0.0.0",
           "bridge": "",
@@ -1080,7 +1246,19 @@ systemd cgroup ドライバは ``--cgroup-parent`` と異なるルールです�
           "raw-logs": false,
           "registry-mirrors": [],
           "insecure-registries": [],
-          "disable-legacy-registry": false
+          "disable-legacy-registry": false,
+          "default-runtime": "runc",
+          "runtimes": {
+              "runc": {
+                  "path": "runc"
+              },
+              "custom": {
+                  "path": "/usr/local/bin/my-runc-replacement",
+                  "runtimeArgs": [
+                      "--debug"
+                  ]
+               }
+          }
    }
 
 .. Configuration reloading
@@ -1103,16 +1281,92 @@ systemd cgroup ドライバは ``--cgroup-parent`` と異なるルールです�
    cluster-store-opts: it uses the new options to reload the discovery store.
    cluster-advertise: it modifies the address advertised after reloading.
     labels: it replaces the daemon labels with a new set of labels.
+   `max-concurrent-downloads`: it updates the max concurrent downloads for each pull.
+   `max-concurrent-uploads`: it updates the max concurrent uploads for each push.
+   default-runtime: it updates the runtime to be used if not is specified at container creation. It defaults to "default" which is the runtime shipped with the official docker packages.
+   runtimes: it updates the list of available OCI runtimes that can be used to run containers
 
 * ``debug`` ：true を設定したら、デーモンをデバッグ・モードにします。
 * ``cluster-store`` ：新しいアドレスにディスカバリ・ストアを読み込み直します。
 * ``cluster-store-opts`` ：ディスカバリ・ストアをお見込む時の新しいオプションを指定します。
 * ``cluster-advertise`` ：再起動後のアドバタイズド・アドレスを指定します。
 * ``labels`` ：デーモンのラベルを新しく設定したものに変えます。
+* ``max-concurrent-downloads`` ：pull ごとの最大同時ダウンロード数を更新します。
+* ``max-concurrent-uploads`` ：push ごとの最大同時アップロード数を更新します。
+* ``default-runtime`` ：デフォルトのランタイム（コンテナ作成時にランタイムの指定がない場合）を更新します。「デフォルト」とは Docker 公式パッケージに含まれるランタイムを意味します。
+* ``runtimes`` ：コンテナ実行時に利用可能な OCI ランタイムの一覧です。
 
 .. Updating and reloading the cluster configurations such as --cluster-store, --cluster-advertise and --cluster-store-opts will take effect only if these configurations were not previously configured. If --cluster-store has been provided in flags and cluster-advertise not, cluster-advertise can be added in the configuration file without accompanied by --cluster-store Configuration reload will log a warning message if it detects a change in previously configured cluster configurations.
 
 ``--cluster-store`` 、 ``--cluster-advertise`` 、 ``--cluster-store-opts`` のようなクラスタ設定情報の更新や再読み込みが反映できるのは、これまでに指定しない項目に対してのみです。フラグで ``--cluster-store`` を指定しても ``cluster-advertise`` を指定していなければ、 ``cluster-advertise`` は ``--cluster-store`` を一緒に指定しなくても反映します。既に設定済みのクラスタ設定に対して変更を試みたら、設定読み込み時に警告メッセージをログに残します。
+
+.. Running multiple daemons
+
+.. _running-multiple-daemons:
+
+複数のデーモンを実行
+====================
+
+..     Note: Running multiple daemons on a single host is considered as "experimental". The user should be aware of unsolved problems. This solution may not work properly in some cases. Solutions are currently under development and will be delivered in the near future.
+
+.. note::
+
+   単一ホスト上での複数デーモンの実行は「実験的」機能です。利用者は、未解決問題に注意すべきです。この解決方法は、特定条件下で動作しない可能性があります。解決方法は現在開発中であり、近いうちに解決されるでしょう。
+
+.. This section describes how to run multiple Docker daemons on a single host. To run multiple daemons, you must configure each daemon so that it does not conflict with other daemons on the same host. You can set these options either by providing them as flags, or by using a daemon configuration file.
+
+このセクションの説明は、単一ホスト上で複数の Docker デーモンを実行する方法です。複数のデーモンを実行するには、各デーモンごとに同一ホスト上で重複しないような設定が必要です。各オプションはフラグを使って指定するか、あるいは :ref:`daemon-configuration-file` で指定します。
+
+.. The following daemon options must be configured for each daemon:
+
+各デーモンで以下のオプション指定が必須です：
+
+.. code-block:: bash
+
+   -b, --bridge=                          コンテナがアタッチするネットワーク・ブリッジ
+   --exec-root=/var/run/docker            Docker 実行ドライバのルート
+   -g, --graph=/var/lib/docker            Docker ランタイムのルート
+   -p, --pidfile=/var/run/docker.pid      デーモンの PID ファイルに使うパス
+   -H, --host=[]                          デーモンが接続するソケット
+   --config-file=/etc/docker/daemon.json  Daemon 設定ファイル
+   --tlscacert="~/.docker/ca.pem"         信頼できる認証局で署名された証明書
+   --tlscert="~/.docker/cert.pem"         TLS 証明書ファイルのパス
+   --tlskey="~/.docker/key.pem"           TLS 鍵ファイルのパス
+
+.. When your daemons use different values for these flags, you can run them on the same host without any problems. It is very important to properly understand the meaning of those options and to use them correctly.
+
+デーモンに対してフラグ用に異なる値を指定したら、同じホスト上でも、別のデーモンを問題なく起動できます。各オプションと使い方を適切に理解するのは、非常に重要です。
+
+..    The -b, --bridge= flag is set to docker0 as default bridge network. It is created automatically when you install Docker. If you are not using the default, you must create and configure the bridge manually or just set it to 'none': --bridge=none
+    --exec-root is the path where the container state is stored. The default value is /var/run/docker. Specify the path for your running daemon here.
+    --graph is the path where images are stored. The default value is /var/lib/docker. To avoid any conflict with other daemons set this parameter separately for each daemon.
+    -p, --pidfile=/var/run/docker.pid is the path where the process ID of the daemon is stored. Specify the path for your pid file here.
+    --host=[] specifies where the Docker daemon will listen for client connections. If unspecified, it defaults to /var/run/docker.sock.
+    --config-file=/etc/docker/daemon.json is the path where configuration file is stored. You can use it instead of daemon flags. Specify the path for each daemon.
+    --tls* Docker daemon supports --tlsverify mode that enforces encrypted and authenticated remote connections. The --tls* options enable use of specific certificates for individual daemons.
+
+* ``-b, --bridge=`` フラグはデフォルトのブリッジ・ネットワークとして ``docker0`` を指定します。これは Docker インストール時に自動作成されます。デフォルトで使いたくなければ、手動で何らかのブリッジを作成して設定するか、あるいは ``none`` を ``--bridge=none`` で指定します。
+* ``--exec-root``  はコンテナの状態を補完するパスです。デフォルトの値は ``/var/run/docker`` です。ここで docker デーモンを実行するパスを指定します。
+* ``--graph`` はイメージを保存する場所です。デフォルト値は ``/var/lib/docker`` です。デーモンごとに別々のパラメータを指定し、重複しないようにする必要があります。
+* ``-p, --pidfile=/var/run/docker.pid`` はデーモンのプロセス ID を保存する場所です。PID ファイルのパスを指定します。
+* ``--host=[]`` には、 Docker デーモンがクライアントからの接続をリッスンする場所を指定します。指定しなければ、デフォルトは ``/var/run/docker.sock`` です。
+* ``--config-file=/etc/docker/daemon.json`` は設定ファイルがあるパスです。デーモンのフラグの代わりに、こちらで指定できます。各デーモンごとにパスの指定が必要です。
+* ``--tls*`` は Docker デーモンが ```--tlsverify`` （TLS認証）モードを有効化します。これはリモート接続時に暗号化と認証を義務づけます。 ``--tls*`` オプションを有効にするには、デーモンごとに証明書を指定する必要があります。
+
+.. Example script for a separate “bootstrap” instance of the Docker daemon without network:
+
+次の例は、「bootstrap」インスタンスとして、ネットワークを持たない Docker デーモンを起動します。
+
+.. code-block:: bash
+
+   $ docker daemon \
+           -H unix:///var/run/docker-bootstrap.sock \
+           -p /var/run/docker-bootstrap.pid \
+           --iptables=false \
+           --ip-masq=false \
+           --bridge=none \
+           --graph=/var/lib/docker-bootstrap \
+           --exec-root=/var/run/docker-bootstrap
 
 .. seealso:: 
 

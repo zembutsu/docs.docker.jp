@@ -1,7 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. https://docs.docker.com/engine/reference/commandline/
-.. doc version: 1.9
-.. check date: 2015/12/25
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/index.md
+   doc version: 1.12
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/index.md
+.. check date: 2016/06/16
+.. Commits on Jun 15, 2016 c21f8613275ca546b1310999d8714ff2609f33e3
 .. -----------------------------------------------------------------------------
 
 .. The Docker Commands
@@ -22,9 +25,9 @@ Docker コマンド
 
 このセクションは、 Docker のコマンドライン・クライアントを使うにあたってのリファレンス情報です。各コマンドのリファレンス・ページにはサンプルもあります。コマンドラインになれていなければ、 :doc:`cli` から読み始めた方が良いでしょう。
 
-.. You start the Docker daemon with the command line. How you start the daemon affects your Docker containers. For that reason you should also make sure to read the daemon reference page.
+.. You start the Docker daemon with the command line. How you start the daemon affects your Docker containers. For that reason you should also make sure to read the dockerd reference page.
 
-Docker デーモンの起動はコマンドラインで行います。Docker デーモンは Docker コンテナに影響を与えるものです。そのため、 ``daemon`` のリファレンス・ページも読んだほうが望ましいでしょう。
+Docker デーモンの起動はコマンドラインで行います。Docker デーモンは Docker コンテナに影響を与えるものです。そのため、 ``dockerd`` のリファレンス・ページも読んだほうが望ましいでしょう。
 
 .. Docker management commands
 
@@ -33,7 +36,7 @@ Docker デーモンの起動はコマンドラインで行います。Docker デ
 Docker 管理コマンド
 ====================
 
-* :doc:`daemon <daemon>`
+* :doc:`dockerd <dockerd>`
 * :doc:`info <info>`
 * :doc:`inspect <inspect>`
 * :doc:`version <version>`
@@ -83,6 +86,7 @@ Docker 管理コマンド
 * :doc:`stop <stop>`
 * :doc:`top <top>`
 * :doc:`unpause <unpause>`
+* :doc:`update <update>`
 * :doc:`wait <wait>`
 
 .. Hub and registry commands
@@ -115,12 +119,37 @@ Hub ・レジストリ用コマンド
 .. Shared data volume commands
 
 共有データ・ボリューム用コマンド
-==============================
+========================================
 
 * :doc:`volume_create <volume_create>`
 * :doc:`volume_inspect <volume_inspect>`
 * :doc:`volume_ls <volume_ls>`
 * :doc:`volume_rm <volume_rm>`
+
+.. Swarm node commands
+
+Swarm ノード用コマンド
+==============================
+
+* :doc:`node_accept <node_accept>`
+* :doc:`node_promote <node_promote>`
+* :doc:`node_demote <node_demote>`
+* :doc:`node_inspect <node_inspect>`
+* :doc:`node_update <node_update>`
+* :doc:`node_tasks <node_tasks>`
+* :doc:`node_ls <node_ls>`
+* :doc:`node_rm <node_rm>`
+
+.. Swarm swarm commands
+
+Swarm swarm 用コマンド
+==============================
+
+* :doc:`swarm_init <swarm_init>`
+* :doc:`swarm_join <swarm_join>`
+* :doc:`swarm_leave <swarm_leave>`
+* :doc:`swarm_update <swarm_update>`
+
 
 .. seealso:: 
 

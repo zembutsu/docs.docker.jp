@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/events/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/events.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/commandline/events.md
-.. check date: 2016/04/26
-.. Commits on Feb 19, 2016 cdc7f26715fbf0779a5283354048caf9faa1ec4a
+.. check date: 2016/06/16
+.. Commits on Jun 4, 2016 3accde6dee079fbde42f1928002bce43cb15833d
 .. -------------------------------------------------------------------
 
 .. events
@@ -36,7 +36,7 @@ Docker コンテナは以下のイベントを報告します。
 
 .. code-block:: bash
 
-   attach, commit, copy, create, destroy, die, exec_create, exec_start, export, kill, oom, pause, rename, resize, restart, start, stop, top, unpause, update
+   attach, commit, copy, create, destroy, detach, die, exec_create, exec_start, exec_detach, export, kill, oom, pause, rename, resize, restart, start, stop, top, unpause, update
 
 .. Docker images report the following events:
 
@@ -44,7 +44,7 @@ Docker イメージは以下のイベントを報告します。
 
 .. code-block:: bash
 
-   delete, import, pull, push, tag, untag
+   delete, import, load, pull, push, save, tag, untag
 
 .. Docker volumes report the following events:
 
@@ -61,6 +61,15 @@ Docker ネットワークは以下のイベントを報告します。
 .. code-block:: bash
 
    create, connect, disconnect, destroy
+
+.. Docker daemon report the following events:
+
+Docker デーモンは以下のイベントを報告します。
+
+.. code-block:: bash
+
+   reload
+
 
 .. The --since and --until parameters can be Unix timestamps, RFC3339 dates or Go duration strings (e.g. 10m, 1h30m) computed relative to client machine’s time. If you do not provide the –since option, the command returns only new and/or live events.
 
@@ -93,11 +102,19 @@ Docker ネットワークは以下のイベントを報告します。
     event (event=<event type>)
     image (image=<tag or id>)
     label (label=<key> or label=<key>=<value>)
+    type (type=<container or image or volume or network or daemon>)
+    volume (volume=<name or id>)
+    network (network=<name or id>)
+    daemon (daemon=<name or id>)
 
 * コンテナ（ ``container=<名前か ID>`` ）
 * イベント（ ``event=<イベント・タイプ>`` ）
 * イメージ（ ``image=<タグか ID>`` ）
 * ラベル（ ``label=<key>`` または ``label=<key>=<value>`` ）
+* タイプ （ ``type=<container か image か volume か network か daemon>`` ）
+* ボリューム（ ``volume=<名前か ID>`` ）
+* ネットワーク（ ``network=<名前か ID>`` ）
+* デーモン（ ``daemon=<名前か ID>`` ）
 
 .. Examples
 

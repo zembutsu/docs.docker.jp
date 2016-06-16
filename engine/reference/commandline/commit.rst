@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/commit/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/commit.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/commandline/commit.md
-.. check date: 2016/04/25
-.. Commits on Feb 19, 2016 cdc7f26715fbf0779a5283354048caf9faa1ec4a
+.. check date: 2016/06/14
+.. Commits on May 22, 2016 ea98cf74aad3c2633268d5a0b8a2f80b331ddc0b
 .. -------------------------------------------------------------------
 
 .. commit
@@ -31,9 +31,9 @@ commit
        :depth: 3
        :local:
 
-.. It can be useful to commit a container’s file changes or settings into a new image. This allows you debug a container by running an interactive shell, or to export a working dataset to another server. Generally, it is better to use Dockerfiles to manage your images in a documented and maintainable way.
+.. It can be useful to commit a container’s file changes or settings into a new image. This allows you debug a container by running an interactive shell, or to export a working dataset to another server. Generally, it is better to use Dockerfiles to manage your images in a documented and maintainable way. Read more about valid image names and tags.
 
-コンテナのファイル変更や設定を、新しいイメージに収容（commit；コミット）するために便利です。これにより、インタラクティブなシェル上でコンテナをデバッグ用に動かしたり、作業中のデータセットを他のサーバに持っていくため出力したりできます。通常は、イメージを管理するためには、文書化されメンテナンスのしやすい Dockerfile を使うのが望ましい方法です。
+コンテナのファイル変更や設定を、新しいイメージに収容（commit；コミット）するために便利です。これにより、インタラクティブなシェル上でコンテナをデバッグ用に動かしたり、作業中のデータセットを他のサーバに持っていくため出力したりできます。通常は、イメージを管理するためには、文書化されメンテナンスのしやすい Dockerfile を使うのが望ましい方法です。 :doc:`詳細はイメージ名とタグについてをご覧ください <tag>` 。
 
 .. The commit operation will not include any data contained in volumes mounted inside the container.
 

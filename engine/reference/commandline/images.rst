@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/images/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/images.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/commandline/images.md
-.. check date: 2016/04/26
-.. Commits on Apr 8, 2016 b83e9df7609e705a85545a8a63db81ef73d85b0e
+.. check date: 2016/06/16
+.. Commits on May 25, 2016 750e16f57c0121aa8cdad1763f0bb6e54b8c6d75
 .. -------------------------------------------------------------------
 
 .. images
@@ -22,7 +22,11 @@ images
    
      -a, --all=false      全てのイメージを表示（デフォルトは中間コンテナを非表示）
      --digests=false      digest 値を表示
-     -f, --filter=[]      指定した状況に応じて出力を整形
+     -f, --filter=[]      指定した状況に応じて出力を整形：
+                          - dangling=(true|false)
+                          - label=<キー> or label=<キー>=<値>
+                          - before=(<イメージ名>[:タグ]|<image-id>|<image@digest>)
+                          - since=(<イメージ名>[:タグ]|<image-id>|<image@digest>)
      --help               使い方の表示
      --no-trunc=false     トランケート（truncate）を出力しない
      -q, --quiet=false    整数値の ID のみ表示
@@ -177,9 +181,13 @@ v2 以降の形式を使うイメージには、 ``digest`` と呼ばれる識�
 
 ..    dangling (boolean - true or false)
     label (label=<key> or label=<key>=<value>)
+    before (<image-name>[:<tag>], <image id> or <image@digest>) - filters images created before given id or references
+    since (<image-name>[:<tag>], <image id> or <image@digest>) - filters images created since given id or references
 
-* ダングリング（宙ぶらりんな状態）なイメージ （ブール値： true か false ）
-* ラベル（ ``label=<key>`` か ``lavel=<key>=<value>`` ）
+* dangling（ダングリング；宙ぶらりんな状態）なイメージ （ブール値： true か false ）
+* label（ ``label=<key>`` か ``lavel=<key>=<value>`` ）
+* before ( ``<イメージ名>[:<タグ>], <イメージ ID> または <image@digest>`` - 指定した ID もしくはリファレンスよりも前に作成したイメージでフィルタ
+* since ( ``<イメージ名>[:<タグ>], <イメージ ID> または <image@digest>`` - 指定した ID もしくはリファレンスよりも後に作成したイメージでフィルタ
 
 .. Untagged images (dangling)
 
@@ -244,7 +252,7 @@ v2 以降の形式を使うイメージには、 ``digest`` と呼ばれる識�
    
    REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
    match-me-1          latest              eeae25ada2aa        About a minute ago   188.3 MB
-   match-me-2          latest              eeae25ada2aa        About a minute ago   188.3 MB
+   match-me-2          latest              dea752e4e117        About a minute ago   188.3 MB
 
 .. The following filter matches images with the com.example.version label with the 1.0 value.
 
@@ -254,7 +262,7 @@ v2 以降の形式を使うイメージには、 ``digest`` と呼ばれる識�
 
    $ docker images --filter "label=com.example.version=1.0"
    REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
-   match-me            latest              eeae25ada2aa        About a minute ago   188.3 MB
+   match-me            latest              511136ea3c5a        About a minute ago   188.3 MB
 
 .. In this example, with the 0.1 value, it returns an empty set because no matches were found.
 
@@ -264,6 +272,145 @@ v2 以降の形式を使うイメージには、 ``digest`` と呼ばれる識�
 
    $ docker images --filter "label=com.example.version=0.1"
    REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
+
+.. Before
+
+before
+----------
+
+.. The before filter shows only images created before the image with given id or reference. For example, having these images:
+
+``before`` フィルタは指定した ID またはリファレンスよりも前に作成したイメージのみ表示します。例えば、３つのイメージがあるとします。
+
+.. code-block:: bash
+
+   $ docker images
+   REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
+   image1              latest              eeae25ada2aa        4 minutes ago        188.3 MB
+   image2              latest              dea752e4e117        9 minutes ago        188.3 MB
+   image3              latest              511136ea3c5a        25 minutes ago       188.3 MB
+
+.. Filtering with before would give:
+
+``before`` を使うフィルタは、次のように指定します。
+
+.. code-block:: bash
+
+   $ docker images --filter "before=image1"
+   REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
+   image2              latest              dea752e4e117        9 minutes ago        188.3 MB
+   image3              latest              511136ea3c5a        25 minutes ago       188.3 MB
+
+.. Since
+
+since
+----------
+
+.. The since filter shows only images created after the image with given id or reference. For example, having these images:
+
+``since`` フィルタは指定した ID またはリファレンスよりも後に作成したイメージのみ表示します。例えば、３つのイメージがあるとします。
+
+.. code-block:: bash
+
+   $ docker images
+   REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
+   image1              latest              eeae25ada2aa        4 minutes ago        188.3 MB
+   image2              latest              dea752e4e117        9 minutes ago        188.3 MB
+   image3              latest              511136ea3c5a        25 minutes ago       188.3 MB
+
+.. Filtering with since would give:
+
+``since`` を使うフィルタは、次のように指定します。
+
+.. code-block:: bash
+
+   $ docker images --filter "since=image3"
+   REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
+   image1              latest              eeae25ada2aa        4 minutes ago        188.3 MB
+   image2              latest              dea752e4e117        9 minutes ago        188.3 MB
+
+.. Formatting
+
+.. _images-formatting:
+
+フォーマット
+====================
+
+.. The formatting option (--format) will pretty print container output using a Go template.
+
+フォーマット・オプション（ ``--format`` ）は Go テンプレートを使いコンテナの出力を見やすくします。
+
+.. Valid placeholders for the Go template are listed below:
+
+Go テンプレートで有効なプレースホルダは以下の通りです。
+
+.. Placeholder 	Description
+   .ID 	Image ID
+   .Repository 	Image repository
+   .Tag 	Image tag
+   .Digest 	Image digest
+   .CreatedSince 	Elapsed time since the image was created.
+   .CreatedAt 	Time when the image was created.
+   .Size 	Image disk size.
+
+.. list-table::
+   :header-rows: 1
+   
+   * - プレースホルダ
+     - 説明
+   * - ``.ID``
+     - イメージ ID
+   * - ``.Repository``
+     - リポジトリ
+   * - ``.Tag``
+     - イメージのタグ
+   * - ``.Digest``
+     - イメージのダイジェスト版
+   * - ``.CreatedSince``
+     - イメージを作成してからの経過時間
+   * - ``.CreatedAt``
+     - イメージの作成時間
+   * - ``.Size``
+     - イメージ・ディスクの容量
+
+.. When using the --format option, the image command will either output the data exactly as the template declares or, when using the table directive, will include column headers as well.
+
+``--format`` オプションの使用時、 ``image`` コマンドはテンプレートで宣言した通りにデータを出力します。あるいは、 ``table`` ディレクティブがあれば列のヘッダも表示するかのどちらかです。
+
+.. The following example uses a template without headers and outputs the ID and Repository entries separated by a colon for all images:
+
+以下の例は ``ID`` と ``Repository`` のエントリをテンプレートで指定します。そして、コロン区切りで全てのイメージを表示します。
+
+.. code-block:: bash
+
+   $ docker images --format "{{.ID}}: {{.Repository}}"
+   77af4d6b9913: <none>
+   b6fa739cedf5: committ
+   78a85c484f71: <none>
+   30557a29d5ab: docker
+   5ed6274db6ce: <none>
+   746b819f315e: postgres
+   746b819f315e: postgres
+   746b819f315e: postgres
+   746b819f315e: postgres
+
+.. To list all images with their repository and tag in a table format you can use:
+
+リポジトリとタグを表形式で一覧表示するには、次のようにします。
+
+.. code-block:: bash
+
+   $ docker images --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}"
+   IMAGE ID            REPOSITORY                TAG
+   77af4d6b9913        <none>                    <none>
+   b6fa739cedf5        committ                   latest
+   78a85c484f71        <none>                    <none>
+   30557a29d5ab        docker                    latest
+   5ed6274db6ce        <none>                    <none>
+   746b819f315e        postgres                  9
+   746b819f315e        postgres                  9.3
+   746b819f315e        postgres                  9.3.5
+   746b819f315e        postgres                  latest
 
 .. seealso:: 
 

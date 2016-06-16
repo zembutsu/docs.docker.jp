@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/load/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/load.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/commandline/load.md
-.. check date: 2016/04/26
-.. Commits on Mar 25, 2016 610ec8c7396ea4cc20465b99cf326684c82d23ff
+.. check date: 2016/06/16
+.. Commits on Jun 9, 2016 9b5e0ea7dedac3c1cbbaf6770aa6834c8e7b7774
 .. -------------------------------------------------------------------
 
 .. load
@@ -17,11 +17,11 @@ load
 
    使い方: docker load [オプション]
    
-   tar アーカイブまたは STDIN （標準入力）からイメージを読み込む
+   tar アーカイブまたは STDIN （標準入力）からイメージを読み込み、取り込んだイメージ名か ID を表示
    
      --help             使い方の表示
      -i, --input=""     STDIN ではなく、tar アーカイブ・ファイルから読み込む。tar は gzip、bzip、 xz で圧縮されている場合がある
-     -q, --quiet        読み込み時に出力を抑制。オプションを指定しなければ、進捗バーを表示
+     -q, --quiet        読み込み時に進捗バーを表示しませんが、取り込んだイメージ情報を表示
    
 .. Loads a tarred repository from a file or the standard input stream. Restores both images and tags.
 
@@ -32,10 +32,17 @@ load
    $ docker images
    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
    $ docker load < busybox.tar.gz
+   # […]
+   Loaded image: busybox:latest
    $ docker images
    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
    busybox             latest              769b9341d937        7 weeks ago         2.489 MB
    $ docker load --input fedora.tar
+   # […]
+   Loaded image: fedora:rawhide
+   # […]
+   Loaded image: fedora:20
+   # […]
    $ docker images
    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
    busybox             latest              769b9341d937        7 weeks ago         2.489 MB
@@ -43,7 +50,7 @@ load
    fedora              20                  58394af37342        7 weeks ago         385.5 MB
    fedora              heisenbug           58394af37342        7 weeks ago         385.5 MB
    fedora              latest              58394af37342        7 weeks ago         385.5 MB
-   
+
 .. seealso:: 
 
    load

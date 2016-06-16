@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/create/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/create.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/commandline/create.md
-.. check date: 2016/04/26
-.. Commits on Apr 13, 2016 9caf7aeefd23263a209c26c8439d26c147972d81
+.. check date: 2016/06/14
+.. Commits on May 22, 2016 ef2db56bcf73b3962548a474bbd4469d26f2c655
 .. -------------------------------------------------------------------
 
 .. create
@@ -161,6 +161,51 @@ create
    -rw-r--r--  1 1000 staff  920 Nov 28 11:51 .profile
    drwx--S---  2 1000 staff  460 Dec  5 00:51 .ssh
    drwxr-xr-x 32 1000 staff 1140 Dec  5 04:01 docker
+
+.. Set storage driver options per container.
+
+コンテナごとにストレージ・ドライバを指定します。
+
+.. code-block:: bash
+
+   $ docker create -it --storage-opt size=120G fedora /bin/bash
+
+.. This (size) will allow to set the container rootfs size to 120G at creation time. User cannot pass a size less than the Default BaseFS Size. 
+
+この容量（size）はコンテナのルート・ファイルシステムの容量を作成時に 120GB と指定しています。ユーザはデフォルトのベース・ファイルシステムより小さな容量を指定できません。
+
+.. Specify isolation technology for container (--isolation)
+
+.. _specify-isolation-technology-for-container:
+
+コンテナの分離技術を指定（--isolation）
+----------------------------------------
+
+.. This option is useful in situations where you are running Docker containers on Windows. The --isolation=<value> option sets a container's isolation technology. On Linux, the only supported is the default option which uses Linux namespaces. On Microsoft Windows, you can specify these values:
+
+このオプションは Docker コンテナを Window 上で使う状況で役立ちます。 ``--isolation=<値>`` オプションはコンテナの分離技術を指定します。 Linux 上では、サポートしているオプションは Linux 名前空間を使う ``default`` のみです。Microsoft Windows 上では、以下の値を指定できます。
+
+.. Value 	Description
+   default 	Use the value specified by the Docker daemon's --exec-opt . If the daemon does not specify an isolation technology, Microsoft Windows uses process as its default value if the
+   daemon is running on Windows server, or hyperv if running on Windows client. 	
+   process 	Namespace isolation only.
+   hyperv 	Hyper-V hypervisor partition-based isolation.
+
+.. list-table::
+   :header-rows: 1
+   
+   * - 値
+     - 説明
+   * - ``default``
+     - Docker デーモンの ``--exec-opt`` で指定した値を使います。 ``daemon`` に分離技術を指定しなければ、Microsoft Windows は Windows Server が動いていれば ``process`` を使います。あるいは Windows クライアントの場合は ``hyperv`` を使います。
+   * - ``process``
+     - 名前空間の分離のみです。
+   * - ``hyperv``
+     - Hyper-V ハイパーバイザのパーティションをベースとした分離です。
+
+.. Specifying the --isolation flag without a value is the same as setting --isolation="default".
+
+``--isolation`` フラグに値を指定しなければ、 ``--isolation="default"``  を指定したのと同じです。
 
 .. seealso:: 
 

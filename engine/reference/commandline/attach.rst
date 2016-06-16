@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/attach/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/attach.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/commandline/attach.md
-.. check date: 2016/04/25
-.. Commits on Feb 6, 2016 7f275315edc73027b3d144da439b00fa6565baec
+.. check date: 2016/06/14
+.. Commits on Jun 7, 2016 2e506039ff9f6502670d42570f835c0d51fcda20
 .. -------------------------------------------------------------------
 
 .. attach
@@ -39,7 +39,7 @@ attach
 .. If --sig-proxy is true (the default),CTRL-c sends a SIGINT to the container.
 .. ``--sig-proxy`` が true であれば（デフォルト設定です）、 ``CTRL-c`` の送信とは、コンテナに対して ``SIGINT`` を送信します。
 
-.. To stop a container, use CTRL-c. This key sequence sends SIGKILL to the container. If --sig-proxy is true (the default),CTRL-c sends a SIGINT to the container. You can detach from a container and leave it running using the using CTRL-p CTRL-q key sequence.
+.. To stop a container, use CTRL-c. This key sequence sends SIGKILL to the container. If --sig-proxy is true (the default),CTRL-c sends a SIGINT to the container. You can detach from a container and leave it running using the CTRL-p CTRL-q key sequence.
 
 コンテナを停止するには、 ``CTRL-c`` を使います。このキー・シーケンスはコンテナに対して ``SIGKILL`` を送信します。もしも ``--sig-proxy`` が true であれば（デフォルト）、 ``CTRL-c`` はコンテナに対して ``SIGINT`` を送信します。 ``CTRL-p CTRL-q`` キー・シーケンスを使えば、実行中のコンテナからデタッチして離れられます。
 
@@ -53,6 +53,10 @@ attach
 
 tty を有効化したコンテナにアタッチした状態（例： ``-t`` を使って起動）では、``docker attach`` コマンドを使った標準入力のリダイレクトは禁止されています。
 
+.. While a client is connected to container's stdio using docker attach, Docker uses a ~1MB memory buffer to maximize the throughput of the application. If this buffer is filled, the speed of the API connection will start to have an effect on the process output writing speed. This is similar to other applications like SSH. Because of this, it is not recommended to run performance critical applications that generate a lot of output in the foreground over a slow client connection. Instead, users should use the docker logs command to get access to the logs.
+
+クライアントが ``docker attach`` を使ってコンテナの標準入出力に接続時、Docker は 1MB 以下のメモリ・バッファをアプリケーション性能の最大化のために使います。バッファがいっぱいになれば、API の接続速度は、出力を書き込む速度の影響を受け始めます。これは SSH のようなアプリケーションと似ています。そのため、性能がクリティカルなアプリケーションの実行はお薦めしません。フォアグラウントで大量の出力を生成するため、クライアントの接続を遅くします。そのかわり、ユーザは ``docker logs`` コマンドでログにアクセスすべきです。
+
 .. Override the detach sequence
 
 .. _override-the-detach-sequence:
@@ -60,7 +64,7 @@ tty を有効化したコンテナにアタッチした状態（例： ``-t`` �
 デタッチ・シーケンスの上書き
 ==============================
 
-.. If you want, you can configure a override the Docker key sequence for detach. This is is useful if the Docker default sequence conflicts with key squence you use for other applications. There are two ways to defines a your own detach key sequence, as a per-container override or as a configuration property on your entire configuration.
+.. If you want, you can configure an override the Docker key sequence for detach. This is is useful if the Docker default sequence conflicts with key sequence you use for other applications. There are two ways to define your own detach key sequence, as a per-container override or as a configuration property on your entire configuration.
 
 必要であれば、デタッチ用の Docker キー・シーケンスの設定を上書きできます。Docker デフォルトのキー・シーケンスが他のアプリケーションと重複している場合に役立ちます。デタッチ用キー・シーケンスを指定するには、２つの方法があります。１つはコンテナごとに設定するか、あるいは全体に対してのプロパティを設定します。
 

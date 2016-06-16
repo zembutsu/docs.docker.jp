@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/cli/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/cli.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/commandline/cli.md
-.. check date: 2016/04/25
+.. check date: 2016/06/14
 .. Commits on Mar 12, 2016 219e5fdda36a18104f7593da9ed8ca097a60aab3
 .. -------------------------------------------------------------------
 

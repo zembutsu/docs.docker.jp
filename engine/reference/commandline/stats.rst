@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/stats/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/stats.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/commandline/stats.md
-.. check date: 2016/04/28
+.. check date: 2016/06/16
 .. Commits on Apr 9, 2016 0e3846e280195cb47c47a7739b475b281dd301cb
 .. -------------------------------------------------------------------
 

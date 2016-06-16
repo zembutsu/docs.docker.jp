@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/login/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/login.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/commandline/login.md
-.. check date: 2016/04/28
+.. check date: 2016/06/12
 .. Commits on Mar 14, 2016 b9361f02da25108af75238093959634e433d72a0
 .. -------------------------------------------------------------------
 

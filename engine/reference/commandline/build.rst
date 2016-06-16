@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/build/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/build.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/commandline/build.md
 .. check date: 2016/04/25
-.. Commits on Mar 31, 2016 28d3c22e55259281c70fd90780a1b0d388450ddf
+.. Commits on May 28, 2016 ab391c9ab595f01e76b82edda0800e13655cc6f3
 .. -------------------------------------------------------------------
 
 .. build
@@ -113,7 +113,15 @@ Git の URL は、コロン ``:`` がコンテクストのセクションを分�
 
 .. code-block:: bash
 
-   docker build - < Dockerfile
+   $ docker build - < Dockerfile
+
+.. With Powershell on Windows, you can run:
+
+Windows 上の Powershell では、次のように実行します：
+
+.. code-block:: powershell
+
+   Get-Content Dockerfile | docker build -
 
 .. If you use STDIN or specify a URL, the system places the contents into a file called Dockerfile, and any -f, --file option is ignored. In this scenario, there is no context.
 
@@ -306,9 +314,17 @@ URL で構築
 
    $ docker build -t vieux/apache:2.0 .
 
-.. This will build like the previous example, but it will then tag the resulting image. The repository name will be vieux/apache and the tag will be 2.0
+.. This will build like the previous example, but it will then tag the resulting image. The repository name will be vieux/apache and the tag will be 2.0. Read more about valid tags.
 
-これまでの例のように構築していますが、作成されるイメージに対してタグ付けをしています。リポジトリ名は ``vieux/apache`` になり、タグは ``2.0`` になります。
+これまでの例のように構築していますが、作成されるイメージに対してタグ付けをしています。リポジトリ名は ``vieux/apache`` になり、タグは ``2.0`` になります。詳細は :doc:`有効なタグ <tag>` についてをご覧ください。
+
+.. You can apply multiple tags to an image. For example, you can apply the latest tag to a newly built image and add another tag that references a specific version. For example, to tag an image both as whenry/fedora-jboss:latest and whenry/fedora-jboss:v2.1, use the following:
+
+イメージに対して複数のタグを適用できます。例えば、最も新しい構築イメージに対して ``latest`` タグを付け、他にもバージョンを参照用タグも付けられます。例えば、イメージに対して ``whenry/fedora-jboss:latest`` と ``whenry/fedora-jboss:v2.1`` をタグ付けするには、次のコマンドを実行します。
+
+.. code-block:: bash
+
+   $ docker build -t whenry/fedora-jboss:latest -t whenry/fedora-jboss:v2.1 .
 
 .. Specify Dockerfile (-f)
 
@@ -394,6 +410,10 @@ Dockerfile の ``ENV`` 命令を使い、変数を定義できます。これら
 .. This flag allows you to pass the build-time variables that are accessed like regular environment variables in the RUN instruction of the Dockerfile. Also, these values don’t persist in the intermediate or final images like ENV values do.
 
 このフラグを使うことで、構築時の変数が Dockerfile の ``RUN`` 命令で通常の環境変数のように扱えます。それだけでなく、これらの値は ``ENV`` のように使えますが、中間ファイルや最終的なイメージでは一定ではありません。
+
+.. Using this flag will not alter the output you see when the `ARG` lines from the Dockerfile are echoed during the build process.
+
+フラグ使用時、Dockerfile で構築プロセスが進行しても ``ARG`` 行は画面には表示されません。
 
 .. For detailed information on using ARG and ENV instructions, see the Dockerfile reference.
 

@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/network_create/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/network_create.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/commandline/network_create.md
-.. check date: 2016/04/28
-.. Commits on Mar 26, 2016 995e5beda74b99dfc920f6a79aee977ff5a15a72
+.. check date: 2016/06/16
+.. Commits on Jun 26, 2016 feabf71dc1cd5757093c5887b463a6cbcdd83cc2
 .. -------------------------------------------------------------------
 
 .. network create
@@ -15,21 +15,23 @@ network create
 
 .. code-block:: bash
 
-   使い方:  docker network create [オプション] ネットワーク名
-   
-   ユーザが名付ける新しいネットワークを作成
-   
-   --aux-address=map[]      ネットワーク・ドライバが使う ipv4 または ipv6 追加アドレス
-   -d --driver=DRIVER       ネットワーク・ブリッジまたはオーバレイを管理するドライバ。デフォルトは bridge
-   --gateway=[]             マスタ・サブネット用の ipv4 または  ipv6 ゲートウェイ
-   --help                   使い方の表示
-   --internal               ネットワークの外部へのアクセスを制限
-   --ip-range=[]            サブ・レンジからコンテナの IP アドレスを割り当て
-   --ipam-driver=default    IP アドレス管理用ドライバ
-   --ipam-opt=map[]         カスタム IPAM ドライバ固有のオプションを指定
-   -o --opt=map[]           カスタムドライバ固有のオプションを指定
-   --subnet=[]              ネットワーク・セグメントを表すサブネットを CIDR 形式で指定
+Usage:  docker network create [OPTIONS]
 
+   ネットワークの作成
+   
+   オプション:
+         --aux-address value    追加 ipv4 または ipv6 アドレスが使うネットワーク・ドライバ (デフォルト map[])
+     -d, --driver string        ネットワーク・ブリッジまたはオーバレイを管理するドライバ (デフォルト "bridge")
+         --gateway value        マスタ・サブネット用の ipv4 または ipv6 ゲートウェイ (default [])
+         --help                 使い方の表示
+         --internal             ネットワークから外部へのアクセスを制限
+         --ip-range value       サブ・レンジからコンテナの IP アドレスを割り当て (default [])
+         --ipam-driver string   IP アドレス管理用ドライバ (デフォルト "default")
+         --ipam-opt value        カスタム IPAM ドライバ固有のオプションを指定 (デフォルト map[])
+         --ipv6                 IPv6 ネットワーク機能の有効か
+         --label value          ネットワークにメタデータを指定 (デフォルト [])
+     -o, --opt value            ドライバ用のオプションを指定 (デフォルト map[])
+         --subnet value         ネットワーク・セグメントを表すサブネットを CIDR 形式で指定 (default [])
 
 .. sidebar:: 目次
 
@@ -57,9 +59,9 @@ network create
 * クラスタの各ホストが、キーバリュー・ストアと接続できること。
 * 各ホスト上の Docker エンジンの ``daemon`` が、クラスタとしての適切な設定をすること。
 
-.. The docker daemon options that support the overlay network are:
+.. The dockerd options that support the overlay network are:
 
-``docker daemon`` が ``overlay`` ネットワークをサポートするために必要なオプションは、次の通りです。
+``dockerd`` が ``overlay`` ネットワークをサポートするために必要なオプションは、次の通りです。
 
 ..    --cluster-store
     --cluster-store-opt
@@ -129,7 +131,7 @@ network create
 
 .. code-block:: bash
 
-   docker network create -d --subnet=192.168.0.0/16
+   docker network create --driver=bridge --subnet=192.168.0.0/16 br0
 
 .. Additionally, you also specify the --gateway --ip-range and --aux-address options.
 
@@ -137,7 +139,12 @@ network create
 
 .. code-block:: bash
 
-   network create --driver=bridge --subnet=172.28.0.0/16 --ip-range=172.28.5.0/24 --gateway=172.28.5.254 br0
+   $ docker network create \
+     --driver=bridge \
+     --subnet=172.28.0.0/16 \
+     --ip-range=172.28.5.0/24 \
+     --gateway=172.28.5.254 \
+     br0
 
 .. If you omit the --gateway flag the Engine selects one for you from inside a preferred pool. For overlay networks and for network driver plugins that support it you can create multiple subnetworks.
 
@@ -145,10 +152,12 @@ network create
 
 .. code-block:: bash
 
-   docker network create -d overlay
-     --subnet=192.168.0.0/16 --subnet=192.170.0.0/16
-     --gateway=192.168.0.100 --gateway=192.170.0.100
-     --ip-range=192.168.1.0/24
+   $ docker network create -d overlay \
+     --subnet=192.168.0.0/16 \
+     --subnet=192.170.0.0/16 \
+     --gateway=192.168.0.100 \
+     --gateway=192.170.0.100 \
+     --ip-range=192.168.1.0/24 \
      --aux-address a=192.168.1.5 --aux-address b=192.168.1.6
      --aux-address a=192.170.1.5 --aux-address b=192.170.1.6
      my-multihost-network
@@ -192,7 +201,7 @@ network create
 
 .. The following arguments can be passed to docker network create for any network driver, again with their approximate equivalents to docker daemon.
 
-以下の引数は ``docker network create`` 実行時、あらゆるネットワーク・ドライバで指定できます。ほとんどが ``docker daemon`` で指定する項目と同等です。
+以下の引数は ``docker network create`` 実行時、あらゆるネットワーク・ドライバで指定できます。ほとんどが ``dockerd`` で指定する項目と同等です。
 
 .. list-table::
    :header-rows: 1

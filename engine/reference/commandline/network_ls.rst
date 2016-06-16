@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/network_ls/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/network_ls.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/commandline/network_ls.md
-.. check date: 2016/04/28
-.. Commits on Apr 18, 2016 f812b55692f5d50d427684216ad6c806bac5a702
+.. check date: 2016/06/16
+.. Commits on Apr 29, 2016 23e418b6c966a43a463a064053ce0c741b8e5159
 .. -------------------------------------------------------------------
 
 .. network ls
@@ -78,10 +78,31 @@ Docker エンジンの ``daemon`` が把握している全てのネットワー�
     name (network’s name)
     type (custom|builtin)
 
+* ドライバ
 * ID （ネットワークID）
 * ラベル（ ``label=<キー>`` または ``label=<キー>=<値>`` ）
 * 名前（ネットワーク名）
 * タイプ（custom|builtin）
+
+.. Driver
+
+driver
+----------
+
+.. The driver filter matches networks based on their driver.
+
+ネットワークが基盤するドライバ名でフィルタします。
+
+.. The following example matches networks with the bridge driver:
+
+以下の例は、 ``bridge`` ドライバに一致するネットワークです。
+
+.. code-block:: bash
+
+   $ docker network ls --filter driver=bridge
+   NETWORK ID          NAME                DRIVER
+   db9db329f835        test1               bridge
+   f6e212da9dfd        test2               bridge
 
 .. ID
 
@@ -121,9 +142,9 @@ id
 ラベル
 ----------
 
-.. The label filter matches containers based on the presence of a label alone or a label and a value.
+.. The label filter matches network based on the presence of a label alone or a label and a value.
 
-``label`` フィルタは ``label`` だけ、あるいは ``label`` と値に一致する条件でフィルタします。
+``label`` フィルタは ``label`` だけ、あるいは ``label`` と値に一致する条件のネットワークでフィルタします。
 
 .. The following filter matches networks with the usage label regardless of its value.
 
@@ -136,9 +157,9 @@ id
    db9db329f835        test1               bridge              
    f6e212da9dfd        test2               bridge
 
-.. The following filter matches containers with the usage label with the prod value.
+.. The following filter matches networks with the usage label with the prod value.
 
-以下のフィルタは ``usage`` ラベルの値が ``prod`` の値に一致するコンテナを表示します。
+以下のフィルタは ``usage`` ラベルの値が ``prod`` の値に一致するネットワークを表示します。
 
 .. code-block:: bash
 

@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/network_connect/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/network_connect.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/commandline/network_connect.md
-.. check date: 2016/04/27
-.. Commits on Feb 12, 2015 99a396902f0ea9d81ef87a683489b2435408f415
+.. check date: 2016/06/16
+.. Commits on Jun 15, 2016 1c4efb6aa05026efce99a7a5bb7e710c0f1b3002
 .. -------------------------------------------------------------------
 
 .. network connect
@@ -24,6 +24,7 @@ network connect
      --ip               IPv4 アドレス
      --ip6              IPv6 アドレス
      --link=[]          他のコンテナに対するリンクを追加
+     --link-local-ip=[] IPv4/IPv6 リンク・ローカル・アドレス
 
 .. Connects a container to a network. You can connect a container by name or by ID. Once connected, the container can communicate with other containers in the same network.
 

@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/network_rm/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/network_rm.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/commandline/network_rm.md
-.. check date: 2016/04/28
+.. check date: 2016/06/18
 .. Commits on Feb 19, 2016 cdc7f26715fbf0779a5283354048caf9faa1ec4a
 .. -------------------------------------------------------------------
 

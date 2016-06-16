@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/inspect/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/inspect.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/commandline/inspect.md
-.. check date: 2016/04/26
-.. Commits on Jan 22, 2016 b0873c2c5009d4b2f758ea49477b55a2b5600c90
+.. check date: 2016/06/16
+.. Commits on Jun 14, 2016 9acf97b72a4d5ff7b1bcad36fb19b53775f01596
 .. -------------------------------------------------------------------
 
 .. inspect
@@ -15,15 +15,16 @@ inspect
 
 .. code-block:: bash
 
-   使い方: docker inspect [オプション] コンテナ|イメージ [コンテナ|イメージ...]
+   使い方: docker inspect [オプション] コンテナ|イメージ|タスク [コンテナ|イメージ|タスク...]
    
-   コンテナあるいはイメージの低レベル情報を表示
+   コンテナあるいはイメージかタスクの低レベル情報を表示
    
-     -f, --format=""         指定する go テンプレートを使い、出力を整形
-     --help                  使い方を表示
-     --type=container|image  JSON を返すイメージまたはコンテナの種類を指定
-     -s, --size=false        種類がコンテナの場合、合計ファイルサイズを表示
-
+     -f, --format=""              指定する go テンプレートを使い、出力を整形
+     --help                       使い方を表示
+     --type=container|image|task  JSON を返すイメージまたはコンテナの種類を指定
+                                  値は「イメージ」か「コンテナ」か「タスク」
+     -s, --size                   種類がコンテナの場合、合計ファイルサイズを表示
+   
 .. By default, this will render all results in a JSON array. If a format is specified, the given template will be executed for each result.
 
 デフォルトは、全ての結果を JSON 配列で表示します。フォーマットを指定した場合は、それぞれのテンプレートに従って結果を表示します。
@@ -74,6 +75,14 @@ inspect
 .. code-block:: bash
 
     $ docker inspect --format='{{.LogPath}}' $INSTANCE_ID
+
+.. Get a Task's image name:
+
+**タスクのイメージ名を取得：**
+
+.. code-block:: bash
+
+   $ docker inspect --format='{{.Container.Spec.Image}}' $INSTANCE_ID
 
 .. List All Port Bindings:
 

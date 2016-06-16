@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/run/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/run.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/commandline/run.md
-.. check date: 2016/04/28
-.. Commits on Apr 26, 2016 8df2066341931d9b7ba552afa902e2ef12e5eed5
+.. check date: 2016/06/16
+.. Commits on Jun 15, 2016 c97fdbe3c5954b2685a8b140f595f06b09191956
 .. -------------------------------------------------------------------
 
 .. run
@@ -61,6 +61,7 @@ run
      -l, --label=[]                コンテナにメタデータを指定 (例: --label=com.example.key=value)
      --label-file=[]               行ごとにラベルを記述したファイルを読み込み
      --link=[]                     他のコンテナへのリンクを追加
+     --link-local-ip=[]            コンテナとリンクするローカルの IPv4/IPv6 アドレス (例: 169.254.0.77, fe80::77)
      --log-driver=""               コンテナ用のログ記録ドライバを追加
      --log-opt=[]                  ログドライバのオプションを指定
      -m, --memory=""               メモリ上限
@@ -93,6 +94,7 @@ run
      --read-only                   コンテナのルート・ファイルシステムを読み込み専用としてマウント
      --restart="no"                再起動ポリシー (no, on-failure[:max-retry], always, unless-stopped)
      --rm                          コンテナ終了時、自動的に削除
+     --runtime=""                  コンテナで使うランタイム名を指定
      --shm-size=[]                 `/dev/shm` のサイズ。書式は `<数値><単位>`. `数値` は必ず `0` より大きい。単位はオプションで `b` (bytes)、 `k` (kilobytes)、 `m` (megabytes)、 `g` (gigabytes) を指定可能。単位を指定しなければ、システムは bytes を使う。数値を指定しなければ、システムは `64m` を使う
      --security-opt=[]             セキュリティ・オプション
      --sig-proxy=true              受信したシグナルをプロセスにプロキシ
@@ -317,9 +319,10 @@ Docker Unix ソケットと docker バイナリ（ https://get.docker.com から
 
    $ docker run -e MYVAR1 --env MYVAR2=foo --env-file ./env.list ubuntu bash
 
-.. This sets simple (non-array) environmental variables in the container. For illustration all three flags are shown here. Where -e, --env take an environment variable and value, or if no = is provided, then that variable’s current value is passed through (i.e. $MYVAR1 from the host is set to $MYVAR1 in the container). When no = is provided and that variable is not defined in the client’s environment then that variable will be removed from the container’s list of environment variables. All three flags, -e, --env and --env-file can be repeated.
 
-これはコンテナ内におけるシンプルな（配列ではない）環境変数を設定します。この３つのフラグについて説明します。 ``-e`` と ``--env`` は環境変数と値を指定する場所です。あるいは、もし ``=`` が指定されなければ、現在の環境変数がそのまま送られます（例： ホスト上の ``$MYVAR1`` がコンテナ内の ``$MYVAR1`` にセットされます ）。 ``=`` が指定されず、クライアント側の環境変数が無い場合は、コンテナ内の環境変数からは削除されます。この３つのフラグ ``-e`` 、 ``--env`` 、``--env-file`` は何度でも指定できます。
+.. This sets simple (non-array) environmental variables in the container. For illustration all three flags are shown here. Where -e, --env take an environment variable and value, or if no = is provided, then that variable's current value, set via export, is passed through (i.e. $MYVAR1 from the host is set to $MYVAR1 in the container). When no = is provided and that variable is not defined in the client's environment then that variable will be removed from the container's list of environment variables. All three flags, -e, --env and --env-file can be repeated.
+
+これはコンテナ内におけるシンプルな（配列ではない）環境変数を設定します。この３つのフラグについて説明します。 ``-e`` と ``--env`` は環境変数と値を指定する場所です。あるいは、もし ``=`` を ``export`` で指定しなければ、現在の環境変数がそのまま送られます（例： ホスト上の ``$MYVAR1`` がコンテナ内の ``$MYVAR1`` にセットされます ）。 ``=`` が指定されず、クライアント側の環境変数が無い場合は、コンテナ内の環境変数からは削除されます。この３つのフラグ ``-e`` 、 ``--env`` 、``--env-file`` は何度でも指定できます。
 
 .. Regardless of the order of these three flags, the --env-file are processed first, and then -e, --env flags. This way, the -e or --env will override variables as needed.
 
@@ -750,18 +753,18 @@ IPv6 は ``-4`` フラグの替わりに ``-6`` を指定します。他のネ�
    * - ``hyperv``
      - Hyper-V ハイパーバイザをベースとする分離です。
 
-.. In practice, when running on Microsoft Windows without a daemon option set, these two commands are equivalent:
+.. On Windows, the default isolation for client is hyperv, and for server is process. Therefore when running on Windows server without a daemon option set, these two commands are equivalent:
 
-特に Microsoft Windows 上で ``daemon`` オプションを指定していなければ、次の２つのコマンドは同等です。
+Windows 上では、クライアントはデフォルトの分離に ``nyperv`` を使い、server は ``process`` を使います。そのため、Windows サーバ上でデーモンのオプションの設定をしなければ、次の２つのコマンドは同等です。
 
 .. code-block:: bash
 
    $ docker run -d --isolation default busybox top
    $ docker run -d --isolation process busybox top
 
-.. If you have set the --exec-opt isolation=hyperv option on the Docker daemon, any of these commands also result in hyperv isolation:
+.. If you have set the --exec-opt isolation=hyperv option on the Docker daemon, if running on Windows server, any of these commands also result in hyperv isolation:
 
-Docker ``daemon`` 上で ``--exec-opt isolation=hyperv`` オプションを指定すると、各コマンドの実行に ``hyperv`` 分離を使った結果を表示します。
+Docker ``daemon`` 上で ``--exec-opt isolation=hyperv`` オプションを指定すると、WIndows server 上であれば、各コマンドの実行に ``hyperv`` 分離を使った結果を表示します。
 
 .. code-block:: bash
 

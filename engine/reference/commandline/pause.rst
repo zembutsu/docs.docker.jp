@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/pause/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/pause.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/commandline/pause.md
-.. check date: 2016/04/28
-.. Commits on Dec 24, 2015 e6115a6c1c02768898b0a47e550e6c67b433c436
+.. check date: 2016/06/16
+.. Commits on May 27, 2016 ee7696312580f14ce7b8fe70e9e4cbdc9f83919f
 .. -------------------------------------------------------------------
 
 .. pause
@@ -27,7 +27,7 @@ pause
 
 .. See the cgroups freezer documentation for further details.
 
-更に詳しい詳細については `cgroup freezer ドキュメント <https://www.kernel.org/doc/Documentation/cgroups/freezer-subsystem.txt>`_ をご覧ください。
+更に詳しい詳細については `cgroup freezer ドキュメント <https://www.kernel.org/doc/Documentation/cgroup-v1/freezer-subsystem.txt>`_ をご覧ください。
 
 .. seealso:: 
 

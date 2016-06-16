@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/network_inspect/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/network_inspect.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/commandline/network_inspect.md
-.. check date: 2016/04/28
+.. check date: 2016/06/16
 .. Commits on Mar 14, 2016 2ef00ba89fc04b0a7571aa050d8a11c06f758d9b
 .. -------------------------------------------------------------------
 

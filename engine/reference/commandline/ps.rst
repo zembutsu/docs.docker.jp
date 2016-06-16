@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/ps/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/ps.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/commandline/ps.md
-.. check date: 2016/04/28
-.. Commits on Mar 15, 2016 b1619766c0131a02774c7ec2b158c2fdf7206d05
+.. check date: 2016/06/16
+.. Commits on Jun 7, 2016 7c46ba02e694ae540866b29ebf0dab76e556cc13
 .. -------------------------------------------------------------------
 
 .. ps
@@ -85,12 +85,23 @@ ps
     exited (int - the code of exited containers. Only useful with --all)
     status (created|restarting|running|paused|exited|dead)
     ancestor (<image-name>[:<tag>], <image id> or <image@digest>) - filters containers that were created from the given image or a descendant.
+   before (container's id or name) - filters containers created before given id or name
+   since (container's id or name) - filters containers created since given id or name
+   isolation (default|process|hyperv) (Windows daemon only)
+   volume (volume name or mount point) - filters containers that mount volumes.
+   network (network id name) - filters containers connected to the provided network
 
-* ID（コンテナの ID）
-* ラベル（ ``label=<key>`` か ``label=<key>=<value>`` ）
-* 名前（コンテナの名前）
-* 終了コード（整数値 - コンテナの終了コード。実用的なのは ``--all``）
-* 先祖/ancestor（ ``<イメージ名>[:<タグ>]`` 、 ``<イメージID>`` 、 ``<イメージ@digest>`` ） - 特定のイメージから作られた子コンテナを作成します。
+* id（コンテナの ID）
+* label（ ``label=<key>`` か ``label=<key>=<value>`` ）
+* name（コンテナの名前）
+* exited（整数値 - コンテナの終了コード。実用的なのは ``--all``）
+* status（created|restarting|running|paused|exited|dead）
+* ancestor（ ``<イメージ名>[:<タグ>]`` 、 ``<イメージID>`` 、 ``<イメージ@digest>`` ） - 特定のイメージから作られた子コンテナを作成します。
+* before（コンテナ ID か名前） - 指定した ID か名前よりも前に作成したコンテナでフィルタ
+* since（コンテナ ID か名前） - 指定した ID か名前よりも後に作成したコンテナでフィルタ
+* isolation （default|process|hyperv）（Windows デーモンのみ）
+* volume（ボリューム名かマウントポイント） - コンテナがマウントしているボリュームでフィルタ
+* network（ネットワーク ID か名前）- コンテナが接続しているネットワークでフィルタ
 
 .. Label
 
@@ -267,6 +278,104 @@ ancestor
     $ docker ps --filter ancestor=d0e008c6cf02
    CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS              PORTS               NAMES
    82a598284012        ubuntu:12.04.5      "top"               3 minutes ago        Up 3 minutes                            sleepy_bose
+
+.. Before
+
+before
+----------
+
+.. The before filter shows only containers created before the container with given id or name. For example, having these containers created:
+
+``before`` フィルタは、指定したコンテナ ID か名前よりも前に作成したコンテナのみ表示します。たとえば、３つのコンテナを作成しているとします。
+
+.. code-block:: bash
+
+   $ docker ps
+   CONTAINER ID        IMAGE       COMMAND       CREATED              STATUS              PORTS              NAMES
+   9c3527ed70ce        busybox     "top"         14 seconds ago       Up 15 seconds                          desperate_dubinsky
+   4aace5031105        busybox     "top"         48 seconds ago       Up 49 seconds                          focused_hamilton
+   6e63f6ff38b0        busybox     "top"         About a minute ago   Up About a minute                      distracted_fermat
+
+.. Filtering with before would give:
+
+``before`` を指定してフィルタリングします。
+
+.. code-block:: bash
+
+   $ docker ps -f before=9c3527ed70ce
+   CONTAINER ID        IMAGE       COMMAND       CREATED              STATUS              PORTS              NAMES
+   4aace5031105        busybox     "top"         About a minute ago   Up About a minute                      focused_hamilton
+   6e63f6ff38b0        busybox     "top"         About a minute ago   Up About a minute                      distracted_fermat
+
+.. Since
+
+since
+----------
+
+.. The since filter shows only containers created since the container with given id or name. For example, with the same containers as in before filter:
+
+``since`` フィルタは、指定したコンテナ ID か名前よりも後に作成したコンテナのみ表示します。次の例は、 ``before`` フィルタの時と同じコンテナを表示します。
+
+.. code-block:: bash
+
+   $ docker ps -f since=6e63f6ff38b0
+   CONTAINER ID        IMAGE       COMMAND       CREATED             STATUS              PORTS               NAMES
+   9c3527ed70ce        busybox     "top"         10 minutes ago      Up 10 minutes                           desperate_dubinsky
+   4aace5031105        busybox     "top"         10 minutes ago      Up 10 minutes                           focused_hamilton
+
+.. Volume
+
+volume
+----------
+
+.. The volume filter shows only containers that mount a specific volume or have a volume mounted in a specific path:
+
+``volume`` フィルタは特定のボリュームをマウントしているコンテナか、特定のパスをマウントしているコンテナを表示します。
+
+.. code-block:: bash
+
+   $ docker ps --filter volume=remote-volume --format "table {{.ID}}\t{{.Mounts}}"
+   CONTAINER ID        MOUNTS
+   9c3527ed70ce        remote-volume
+   
+   $ docker ps --filter volume=/data --format "table {{.ID}}\t{{.Mounts}}"
+   CONTAINER ID        MOUNTS
+   9c3527ed70ce        remote-volume
+
+.. Network
+
+network
+----------
+
+.. The network filter shows only containers that has endpoints on the provided network name or id
+
+``network`` フィルタは、指定したネットワーク名か id をエンドポイントとして持っているコンテナのみ表示します。
+
+.. The following filter matches all containers that are connected to a network with a name containing net1.
+
+以下のフィルタは接続しているネットワーク名に ``net1`` を含む、全てのコンテナを表示します。
+
+.. code-block:: bash
+
+   $ docker run -d --net=net1 --name=test1 ubuntu top
+   $ docker run -d --net=net2 --name=test2 ubuntu top
+   
+   $ docker ps --filter network=net1
+   CONTAINER ID        IMAGE       COMMAND       CREATED             STATUS              PORTS               NAMES
+   9d4893ed80fe        ubuntu      "top"         10 minutes ago      Up 10 minutes                           test1
+
+.. The network filter matches on both the network's name and id. The following example shows all containers that are attached to the net1 network, using the network id as a filter;
+
+ネットワーク・フィルタはネットワーク名または ID にマッチします。次の例は ``net1`` ネットワークにアタッチしている全てのコンテナを表示します。ここではネットワーク ID でフィルタします。
+
+.. code-block:: bash
+
+   $ docker network inspect --format "{{.ID}}" net1
+   8c0b4110ae930dbe26b258de9bc34a03f98056ed6f27f991d32919bfe401d7c5
+   
+   $ docker ps --filter network=8c0b4110ae930dbe26b258de9bc34a03f98056ed6f27f991d32919bfe401d7c5
+   CONTAINER ID        IMAGE       COMMAND       CREATED             STATUS              PORTS               NAMES
+   9d4893ed80fe        ubuntu      "top"         10 minutes ago      Up 10 minutes                           test1
 
 .. Formatting
 
