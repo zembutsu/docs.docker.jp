@@ -104,7 +104,7 @@ Docker デーモンの設定を変更するには、多くのフラグを使う�
 
 .. You can customize the Docker daemon options using override files as explained in the HTTP Proxy example below. The files located in /usr/lib/systemd/system or /lib/systemd/system contain the default options and should not be edited.
 
-Docker デーモンのオプションは、以下の :ref:`HTTP Proxy 例 <http-proxy>` で説明するようなファイルを使って上書き可能です。このファイルは ``/usr/lib/systemd/system`` か ``/lib/systemd/system`` にありますが、デフォルトのオプション設定は変更すべきではありません。
+Docker デーモンのオプションは、以下の :ref:`HTTP Proxy 例 <systemd-http-proxy>` で説明するようなファイルを使って上書き可能です。このファイルは ``/usr/lib/systemd/system`` か ``/lib/systemd/system`` にありますが、デフォルトのオプション設定は変更すべきではありません。
 
 .. Runtime directory and storage driver
 
@@ -171,7 +171,7 @@ ExecSart 設定を変更するには、空の設定の次の行に、新しい�
 
    docker.service has more than one ExecStart= setting, which is only allowed for Type=oneshot services. Refusing.
 
-.. _http-proxy:
+.. _systemd-http-proxy:
 
 .. HTTP proxy
 

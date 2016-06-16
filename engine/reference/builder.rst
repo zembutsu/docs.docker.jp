@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/builder/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/builder.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/builder.md
-.. check date: 2016/04/23
-.. Commits on Feb 5, 2016 0a6e0c43d9442926691cd7a842dcf55fc555c505
+.. check date: 2016/06/14
+.. Commits on Jun 12, 2016 c9a68ffb2ae7b2ac13a2febab82b3d7a824eb97f
 .. -------------------------------------------------------------------
 
 .. Dockerfile reference
@@ -118,7 +118,7 @@ Docker は可能であればいつでも中間イメージ（キャッシュ）�
 
 ここでは ``Dockerfile`` の書式を説明します。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    # コメント
    命令 引数
@@ -131,25 +131,218 @@ Docker は可能であればいつでも中間イメージ（キャッシュ）�
 
 Docker は ``Dockerfile`` の命令を順番に実行します。イメージ構築にあたり :ref:`ベース・イメージ <base-image>` を指定するため、 **１行めの命令は「FROM」であるべき** です。
 
-.. Docker will treat lines that begin with # as a comment. A # marker anywhere else in the line will be treated as an argument. This allows statements like:
 
-Docker は ``#`` で *始まる* 行をコメントとみなします。 ``#`` マークは行における移行の文字をコメントとみなします。コメントは次のような書き方ができます。
+.. Docker treats lines that begin with # as a comment, unless the line is a valid parser directive. A # marker anywhere else in a line is treated as an argument. This allows statements like:
 
-.. code-block:: bash
+Docker は有効な :ref:`パーサ・ディレクティブ <parser-directives>` でなければ、 ``#`` で *始まる* 行をコメントとみなします。 ``#`` マークは行における移行の文字をコメントとみなします。コメントは次のような書き方ができます。
+
+.. code-block:: dockerfile
 
    # コメント
-   RUN echo '何か良いものを # で実行しています'
+   RUN echo '良い感じもの何かを # 実行しています'
 
-.. Here is the set of instructions you can use in a Dockerfile for building images.
+.. Line continuation characters are not supported in comments.
 
-ここでは、 ``Dockerfile`` でイメージ構築時に利用可能な命令セットを紹介します。
+行中で命令の文字列が継続している場合は、コメント扱いしません。
+
+.. Parser directives
+
+.. _parser-directives:
+
+パーサ・ディレクティブ（parser directive）
+==================================================
+
+.. Parser directives are optional, and affect the way in which subsequent lines in a Dockerfile are handled. Parser directives do not add layers to the build, and will not be shown as a build step. Parser directives are written as a special type of comment in the form # directive=value. A single directive may only be used once.
+
+パーサ・ディレクティブはオプションです。 ``Dockerfile`` 中では、次に続く行にも影響を与えます。パーサ・ディレクティブは構築時にレイヤを追加しませんので、構築ステップでは表示されません。パーサ・ディレクティブは ``# ディレクティブ=値`` という特別な種類のコメントとして記述します。１つのディレクティブは１度しか使われません。
+
+.. Once a comment, empty line or builder instruction has been processed, Docker no longer looks for parser directives. Instead it treats anything formatted as a parser directive as a comment and does not attempt to validate if it might be a parser directive. Therefore, all parser directives must be at the very top of a Dockerfile.
+
+コメントがあれば、空行または構築命令があったとしても、 Docker はパーサ・ディレクティブを探しません。そのかわり、あらゆる書式をパーサ・ディレクティブではなくコメントとみなすため、有効なパーサ・ディレクティブとはみなしません。そのため、全てのパーサ・ディレクティブは ``Dockerfile``  の限りなく上に書くべきです。
+
+.. Parser directives are not case-sensitive. However, convention is for them to be lowercase. Convention is also to include a blank line following any parser directives. Line continuation characters are not supported in parser directives.
+
+パーサ・ディレクティブは大文字と小文字を区別しません。しかしながら、小文字での記述が便利です。パーサ・ディレクティブの後に空白行を入れるのも便利です。行を継続する文字列は、パーサ・ディレクティブではサポートされません。
+
+.. Due to these rules, the following examples are all invalid:
+
+これらのルールがあるため、以下の例は全て無効です。
+
+.. Invalid due to line continuation:
+
+行の継続は無効：
+
+.. code-block:: dockerfile
+
+   # direc \
+   tive=value
+
+.. Invalid due to appearing twice:
+
+２つ並ぶ場合は無効：
+
+.. code-block:: dockerfile
+
+   # directive=value1
+   # directive=value2
+   
+   FROM ImageName
+
+.. Treated as a comment due to appearing after a builder instruction:
+
+構築命令の後にあれば、コメントとして扱う：
+
+.. code-block:: dockerfile
+
+   FROM ImageName
+   # directive=value
+
+.. Treated as a comment due to appearing after a comment which is not a parser directive:
+
+パーサ・ディレクティブでないコメントがあれば、以降のものはコメントとして扱う：
+
+.. code-block:: dockerfile
+
+   # About my dockerfile
+   FROM ImageName
+   # directive=value
+
+.. The unknown directive is treated as a comment due to not being recognized. In addition, the known directive is treated as a comment due to appearing after a comment which is not a parser directive.
+
+不明なディレクティブは認識できないため、コメントとして扱う。さらに、パーサ・ディレクティブではないコメントの後にディレクティブがあったとしても、コメントとして扱う：
+
+# unknowndirective=value
+# knowndirective=value
+
+.. Non line-breaking whitespace is permitted in a parser directive. Hence, the following lines are all treated identically:
+
+行を壊さない空白行はパーサ・ディレクティブとして使えます。従って、以下の行はすべて同一として扱う：
+
+.. code-block:: dockerfile
+
+   #directive=value
+   # directive =value
+   #   directive= value
+   # directive = value
+   #     dIrEcTiVe=value
+
+.. The following parser directive is supported:
+
+以下のパーサ・ディレクティブをサポートします：
+
+* ``escape``
+
+.. escape
+
+.. _parser-directive-escape:
+
+escape
+--------------------
+
+.. code-block:: dockerfile
+
+   # escape=\ (バックスラッシュ)
+
+.. Or
+
+または
+
+.. code-block:: dockerfile
+
+   # escape=` (バッククォート)
+
+.. The escape directive sets the character used to escape characters in a Dockerfile. If not specified, the default escape character is \.
+
+``escape`` ディレクティブは ``Dockerfile`` で使うエスケープ文字をセットします。指定しなければ、デフォルトのエスケープ文字は ``\`` です。
+
+.. The escape character is used both to escape characters in a line, and to escape a newline. This allows a Dockerfile instruction to span multiple lines. Note that regardless of whether the escape parser directive is included in a Dockerfile, escaping is not performed in a RUN command, except at the end of a line.
+
+エスケープ文字を使うのは、行におけるエスケープ文字と、新しい行にエスケープする（つなげる）ための両方です。これにより、 ``Dockerfile`` の命令を複数行に記述できます。 ``Dockerfile`` で ``escape`` パーサ・ディレクティブを指定しなければ ``RUN`` 命令でもエスケープ処理はされませんが、行の最後は除くのでご注意ください。
+
+.. Setting the escape character to ` is especially useful on Windows, where \ is the directory path separator. ` is consistent with Windows PowerShell.
+
+エスケープ文字に 「`」 を指定するのは ``Windows`` 上で役立ちます。 ``\`` はディレクトリのパスのパーサ（区切り）だからです。 「`」 は `Windows PowerShell <https://technet.microsoft.com/en-us/library/hh847755.aspx>`_ で次の行をつなぎます。
+
+.. Consider the following example which would fail in a non-obvious way on Windows. The second \ at the end of the second line would be interpreted as an escape for the newline, instead of a target of the escape from the first \. Similarly, the \ at the end of the third line would, assuming it was actually handled as an instruction, cause it be treated as a line continuation. The result of this dockerfile is that second and third lines are considered a single instruction:
+
+以下では Windows では明確にエラーが出る例を考えます。２行目末尾の２つめの ``\`` は、１つめの ``\`` のエスケープとして処理されるのではなく、新しい行のためのエスケープとして扱われます。同様に３行目末尾の ``\`` は次の行に命令が継続するものとして扱われます。この dockerfile を使った結果、２行目と３行目は１つの命令として見なされます。
+
+.. code-block:: dockerfile
+
+   FROM windowsservercore
+   COPY testfile.txt c:\\
+   RUN dir c:\
+
+.. Results in:
+
+実行結果：
+
+.. code-block:: powershell
+
+   PS C:\John> docker build -t cmd .
+   Sending build context to Docker daemon 3.072 kB
+   Step 1 : FROM windowsservercore
+    ---> dbfee88ee9fd
+   Step 2 : COPY testfile.txt c:RUN dir c:
+   GetFileAttributesEx c:RUN: The system cannot find the file specified.
+   PS C:\John>
+
+.. One solution to the above would be to use / as the target of both the COPY instruction, and dir. However, this syntax is, at best, confusing as it is not natural for paths on Windows, and at worst, error prone as not all commands on Windows support / as the path separator.
+
+解決方法の１つは、 ``COPY``  命令とディレクトリで ``/`` を使う方法です。しかしながら、構文上ベストなのは ``Windows`` 上のパスを普通に扱うことであり、最悪なのは ``Windows`` 上でパスの区切りとして ``/`` を指定するとエラーを起こしがちです。
+
+.. By adding the escape parser directive, the following Dockerfile succeeds as expected with the use of natural platform semantics for file paths on Windows:
+
+``escape`` パーサ・ディレクティブを追加することで、次の ``Dockerfile`` は ``Windows`` 上のファイル・パスを期待通りに処理します。
+
+.. code-block:: dockerfile
+
+   # escape=`
+   
+   FROM windowsservercore
+   COPY testfile.txt c:\
+   RUN dir c:\
+
+.. Results in:
+
+実行結果：
+
+.. code-block:: powershell
+
+   PS C:\John> docker build -t succeeds --no-cache=true .
+   Sending build context to Docker daemon 3.072 kB
+   Step 1 : FROM windowsservercore
+    ---> dbfee88ee9fd
+   Step 2 : COPY testfile.txt c:\
+    ---> 99ceb62e90df
+   Removing intermediate container 62afbe726221
+   Step 3 : RUN dir c:\
+    ---> Running in a5ff53ad6323
+    Volume in drive C has no label.
+    Volume Serial Number is 1440-27FA
+   
+    Directory of c:\
+   
+   03/25/2016  05:28 AM    <DIR>          inetpub
+   03/25/2016  04:22 AM    <DIR>          PerfLogs
+   04/22/2016  10:59 PM    <DIR>          Program Files
+   03/25/2016  04:22 AM    <DIR>          Program Files (x86)
+   04/18/2016  09:26 AM                 4 testfile.txt
+   04/22/2016  10:59 PM    <DIR>          Users
+   04/22/2016  10:59 PM    <DIR>          Windows
+                  1 File(s)              4 bytes
+                  6 Dir(s)  21,252,689,920 bytes free
+    ---> 2569aa19abef
+   Removing intermediate container a5ff53ad6323
+   Successfully built 2569aa19abef
+   PS C:\John>
+
+.. Environment replacement:
 
 .. _environment-replacement:
 
-.. Environment replacement
-
 環境変数の置き換え
---------------------
+====================
 
 .. Environment variables (declared with the ENV statement) can also be used in certain instructions as variables to be interpreted by the Dockerfile. Escapes are also handled for including variable-like syntax into a statement literally.
 
@@ -181,7 +374,7 @@ Docker は ``#`` で *始まる* 行をコメントとみなします。 ``#`` �
 
 例（変数展開したものは、 ``#`` のあとに表示）：
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    FROM busybox
    ENV foo /bar
@@ -221,7 +414,7 @@ Docker は ``#`` で *始まる* 行をコメントとみなします。 ``#`` �
 
 環境変数を使う代わりに、各変数をコマンド上で利用できます。次の例を見ましょう。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    ENV abc=hello
    ENV abc=bye def=$abc
@@ -234,7 +427,7 @@ Docker は ``#`` で *始まる* 行をコメントとみなします。 ``#`` �
 .. _dockerignore-file:
 
 .dockerignore ファイル
-------------------------------
+==============================
 
 .. Before the docker CLI sends the context to the docker daemon, it looks for a file named .dockerignore in the root directory of the context. If this file exists, the CLI modifies the context to exclude files and directories that match patterns in it. This helps to avoid unnecessarily sending large or sensitive files and directories to the daemon and potentially adding them to images using ADD or COPY.
 
@@ -244,12 +437,17 @@ docker CLI がコンテクストを docker デーモンに送る前に、コン�
 
 CLI は ``.dockerignore`` ファイルを行ごとに隔てて解釈します。行の一致パターンは Unix シェル上のものに似ています。パターンがコンテクストの root に一致すると考えられる場合は、root ディレクトリとして動作します。例えば、パターン ``/foo/bar`` と ``foo/bar`` がある場合、いずれも ``PATH`` における ``foo`` サブディレクトリの ``bar`` ファイルを削除します。あるいは ``URL`` の場所にある git のルートでもです。どちらでも除外されます。
 
+.. If a line in `.dockerignore` file starts with `#` in column 1, then this line is considered as a comment and is ignored before interpreted by the CLI.
+
+``.dockerignore`` ファイルの１行目が ``#`` で始まる場合は、この合はコメントであると見なされ、CLI の処理からは無視されます。
+
 .. Here is an example .dockerignore file:
 
 これは ``.dockerignore`` ファイルの例です：
 
 .. code-block:: bash
 
+   # コメント
    */temp*
    */*/temp*
    temp?
@@ -265,7 +463,7 @@ CLI は ``.dockerignore`` ファイルを行ごとに隔てて解釈します。
    */*/temp* 	Exclude files and directories starting with temp from any subdirectory that is two levels below the root. For example, /somedir/subdir/temporary.txt is excluded.
    temp? 	Exclude files and directories in the root directory whose names are a one-character extension of temp. For example, /tempa and /tempb are excluded.
 
-
+* ``# コメント`` … 無視します。
 * ``*/temp*`` … ルート以下のあらゆるサブディレクトリを含め、 ``temp`` で始まる名称のファイルとディレクトリを除外します。例えば、テキストファイル ``/somedir/temporary.txt`` は除外しますし、ディレクトリ ``/somedir/temp`` も除外します。
 * ``*/*/temp*`` … ルートから２レベル以下の ``temp`` で 始まる名称のファイルとディレクトリを除外します。例えば ``/somedir/subdir/temporary.txt`` を除外します。
 * ``temp?`` … ルートディレクトリにあるファイル名が ``temp`` と１文字一致するファイルとディレクトリを除外します。例えば、 ``/tempa`` と ``/tempb`` を除外します。
@@ -334,19 +532,19 @@ README を含む全てのファイル除外します。真ん中の行 ``README-
 FROM
 ==========
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    FROM <イメージ>
 
 または
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    FROM <イメージ>:<タグ>
 
 または
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    FROM <イメージ>@<digest>
 
@@ -371,7 +569,7 @@ FROM
 MAINTAINER
 ==========
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
     MAINTAINER <名前>
 
@@ -391,7 +589,7 @@ RUN には２つの形式があります。
 ..  RUN <command> (shell form, the command is run in a shell - /bin/sh -c)
     RUN ["executable", "param1", "param2"] (exec form)
 
-* ``RUN <コマンド>`` （シェル形式、コマンドをシェル ``/bin/sh -c`` で実行する）
+* ``RUN <コマンド>`` （シェル形式、コマンドを実行する。Linux 上のデフォルトは ``/bin/sh -c`` であり、Windows 上 ``cmd /S /C`` ）
 * ``RUN ["実行バイナリ", "パラメータ１", "パラメータ２"]`` （ *exec* 形式）
 
 .. The RUN instruction will execute any commands in a new layer on top of the current image and commit the results. The resulting committed image will be used for the next step in the Dockerfile.
@@ -402,15 +600,19 @@ RUN には２つの形式があります。
 
 ``RUN`` 命令の積み重ねとコミットによるイメージ生成は、 Docker の中心となるコンセプト（概念）に従ったものです。コミットは簡単であり、ソース・コントロールのように、イメージの履歴上のあらゆる場所からコンテナを作成可能です。
 
-.. The exec form makes it possible to avoid shell string munging, and to RUN commands using a base image that does not contain /bin/sh.
+.. The exec form makes it possible to avoid shell string munging, and to RUN commands using a base image that does not contain the specified shell executable.
 
-*exec* 形式はシェルの文字列を変更できないようにします。また、 ``/bin/sh`` がベース・イメージに含まれなくても ``RUN`` コマンドを使えます。
+*exec* 形式はシェルの文字列を変更できないようにします。また、 指定されたシェル実行環境がベース・イメージに含まれなくても ``RUN`` コマンドを使えます。
 
+.. The default shell for the *shell* form can be changed using the `SHELL` command.
+
+デフォルトの *shell* のシェルを変更するには ``SHELL`` コマンドで変更できます。
+ 
 .. In the shell form you can use a \ (backslash) to continue a single RUN instruction onto the next line. For example, consider these two lines:
 
 *シェル* 形式では、RUN 命令を ``\`` （バックスラッシュ）を使い、次の行と連結します。例えば、次の２行があるとします。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    RUN /bin/bash -c 'source $HOME/.bashrc ;\
    echo $HOME'
@@ -419,7 +621,7 @@ RUN には２つの形式があります。
 
 これは、次のように１行にできます。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    RUN /bin/bash -c 'source $HOME/.bashrc ; echo $HOME'
 
@@ -440,6 +642,12 @@ RUN には２つの形式があります。
 .. note::
 
    *シェル* 形式と異なり、 *exec* 形式はコマンド・シェルを呼び出しません。つまり、通常のシェルによる処理が行われません。例えば ``RUN [ "echo", "$HOME" ]`` は ``$HOME`` の変数展開を行いません。シェルによる処理を行いたい場合は、 *シェル* 形式を使うか、あるいはシェルを直接指定します。例： ``RUN [ "sh", "-c", "echo", "$HOME" ]`` 。
+
+.. Note: In the JSON form, it is necessary to escape backslashes. This is particularly relevant on Windows where the backslash is the path seperator. The following line would otherwise be treated as shell form due to not being valid JSON, and fail in an unexpected way: RUN ["c:\windows\system32\tasklist.exe"] The correct syntax for this example is: RUN ["c:\\windows\\system32\\tasklist.exe"]
+
+.. note::
+
+   JSON 形式では、バック・スラッシュはエスケープが必要です。特に関係があるのは Windows でパス区切りにバック・スラッシュを使う場合です。次の行は JSON 形式ではなくシェル形式と見なされエラーになります： ``RUN ["c:\windows\system32\tasklist.exe"]`` 。適切な構文は ``RUN ["c:\\windows\\system32\\tasklist.exe"]`` です。
 
 .. The cache for RUN instructions isn’t invalidated automatically during the next build. The cache for an instruction like RUN apt-get dist-upgrade -y will be reused during the next build. The cache for RUN instructions can be invalidated by using the --no-cache flag, for example docker build --no-cache.
 
@@ -521,7 +729,7 @@ CMD
 
 ``CMD`` を *シェル* 形式で使えば、 ``<コマンド>`` は ``/bin/sh -c`` で実行されます。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    FROM ubuntu
    CMD echo "This is a test." | wc -
@@ -530,7 +738,7 @@ CMD
 
 **<コマンド>をシェルを使わずに実行** したい場合、コマンドを JSON 配列で記述し、実行可能なフルパスで指定する必要があります。 **配列の形式が CMD では望ましい形式です** 。あらゆる追加パラメータは個々の配列の文字列として指定する必要があります。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    FROM ubuntu
    CMD ["/usr/bin/wc","--help"]
@@ -554,7 +762,7 @@ CMD
 LABEL
 ==========
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    LABEL <key>=<value> <key>=<value> <key>=<value> ...
 
@@ -562,7 +770,7 @@ LABEL
 
 ``LABEL`` 命令はイメージにメタデータを追加します。 ``LABEL`` はキーとバリューのペアです。 ``LABEL`` の値に空白スペースを含む場合はクォートを使いますし、コマンドラインの分割にバックスラッシュを使います。使用例：
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    LABEL "com.example.vendor"="ACME Incorporated"
    LABEL com.example.label-with-value="foo"
@@ -574,7 +782,7 @@ LABEL
 
 イメージは複数のラベルを持てます。複数のラベルを指定したら、 Docker は可能であれば１つの ``LABEL`` にすることをお勧めします。各 ``LABEL`` 命令は新しいレイヤを準備しますが、多くのラベルを使えば、それだけレイヤを使います。次の例は１つのイメージ・レイヤを使うものです。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    LABEL multi.label1="value1" multi.label2="value2" other="value3"
 
@@ -582,7 +790,7 @@ LABEL
 
 上記の例は、次のようにも書き換えられます。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    LABEL multi.label1="value1" \
          multi.label2="value2" \
@@ -613,7 +821,7 @@ LABEL
 EXPOSE
 ==========
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    EXPOSE <port> [<port>...]
 
@@ -630,7 +838,7 @@ EXPOSE
 ENV
 ==========
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    ENV <key> <value>
    ENV <key>=<value> ...
@@ -651,7 +859,7 @@ ENV
 
 例：
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    ENV myName="John Doe" myDog=Rex\ The\ Dog \
        myCat=fluffy
@@ -660,7 +868,7 @@ ENV
 
 そして
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    ENV myName John Doe
    ENV myDog Rex The Dog
@@ -707,7 +915,7 @@ Add は２つの形式があります。
 
 それぞれの ``<ソース>`` にはワイルドカードと Go 言語の `filepath.Mach <http://golang.org/pkg/path/filepath#Match>`_ ルールに一致するパターンが使えます。例えば、次のような記述です。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    ADD hom* /mydir/        # "hom" で始まる全てのファイルを追加
    ADD hom?.txt /mydir/    # ? は１文字だけ一致します。例： "home.txt"
@@ -716,7 +924,7 @@ Add は２つの形式があります。
 
 ``<送信先>`` は絶対パスです。あるいは、パスは ``WORKDIR`` からの相対パスです。ソースにあるものが、対象となる送信先コンテナの中にコピーされます。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    ADD test relativeDir/          # "test" を `WORKDIR`/relativeDir/ （相対ディレクトリ）に追加
    ADD test /absoluteDir/          # "test" を /absoluteDir/ （絶対ディレクトリ）に追加
@@ -832,7 +1040,7 @@ COPY は２つの形式があります。
 
 それぞれの ``<ソース>`` にはワイルドカードと Go 言語の `filepath.Mach <http://golang.org/pkg/path/filepath#Match>`_ ルールに一致するパターンが使えます。例えば、次のような記述です。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    COPY hom* /mydir/        # "hom" で始まる全てのファイルを追加
    COPY hom?.txt /mydir/    # ? は１文字だけ一致します。例： "home.txt"
@@ -841,7 +1049,7 @@ COPY は２つの形式があります。
 
 ``<送信先>`` は絶対パスです。あるいは、パスは ``WORKDIR`` からの相対パスです。ソースにあるものが、対象となる送信先コンテナの中にコピーされます。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    COPY test relativeDir/   # "test" を `WORKDIR`/relativeDir/ （相対ディレクトリ）に追加
    COPY test /absoluteDir/   # "test" を /absoluteDir/ （絶対ディレクトリ）に追加
@@ -938,7 +1146,7 @@ exec 形式の ENTRYPOINT 例
 
 ``ENTRYPOINT`` の *exec* 形式を使い、適切なデフォルトのコマンドと引数を指定します。それから ``CMD`` を使い、変更する可能性のある追加のデフォルト引数も指定します。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    FROM ubuntu
    ENTRYPOINT ["top", "-b"]
@@ -979,7 +1187,7 @@ exec 形式の ENTRYPOINT 例
 
 次の ``Dockerfile`` は ``ENTRYPOINT`` を使って Apache をフォアグラウンドで実行します（つまり、 ``PID 1`` として）。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    FROM debian:stable
    RUN apt-get update && apt-get install -y --force-yes apache2
@@ -1019,7 +1227,7 @@ exec 形式の ENTRYPOINT 例
    
    # サービス停止時に手動でもクリーンアップが必要な場合は trap を使います。
    # あるいは１つのコンテナ内に複数のサービスを起動する必要があります。
-   trap "echo TRAPed signal" HUP INT QUIT KILL TERM
+   trap "echo TRAPed signal" HUP INT QUIT TERM
    
    # ここからバックグラウンドでサービスを開始します
    /usr/sbin/apachectl start
@@ -1070,11 +1278,11 @@ exec 形式の ENTRYPOINT 例
 
    *exec* 形式は JSON 配列でパースされます。つまり、語句はシングルクォート(')ではなく、ダブルクォート(")で囲む必要があります。
 
-..    Note: Unlike the shell form, the exec form does not invoke a command shell. This means that normal shell processing does not happen. For example, ENTRYPOINT [ "echo", "$HOME" ] will not do variable substitution on $HOME. If you want shell processing then either use the shell form or execute a shell directly, for example: ENTRYPOINT [ "sh", "-c", "echo", "$HOME" ]. Variables that are defined in the Dockerfileusing ENV, will be substituted by the Dockerfile parser.
+..    Note: Unlike the shell form, the exec form does not invoke a command shell. This means that normal shell processing does not happen. For example, ENTRYPOINT [ "echo", "$HOME" ] will not do variable substitution on $HOME. If you want shell processing then either use the shell form or execute a shell directly, for example: ENTRYPOINT [ "sh", "-c", "echo $HOME" ]. Variables that are defined in the Dockerfileusing ENV, will be substituted by the Dockerfile parser.
 
 .. note::
 
-   *シェル* 形式とは異なり、 *exec* 形式はシェルを呼び出しません。つまり、通常のシェル上の処理はされません。例えば、 ``ENTRYPOINT ["echo", "$HOME"]`` は ``$HOME`` を変数展開しません。シェル上の処理が必要であれば、 *シェル* 形式を使うか、シェルを直接実行します。例： ``ENTRYPOINT [ "sh", "-c", "echo", "$HOME" ]``。変数は ``Dockerfile`` で ``ENV`` を使って定義することができ、 ``Dockerfile`` パーサー上で展開されます。
+   *シェル* 形式とは異なり、 *exec* 形式はシェルを呼び出しません。つまり、通常のシェル上の処理はされません。例えば、 ``ENTRYPOINT ["echo", "$HOME"]`` は ``$HOME`` を変数展開しません。シェル上の処理が必要であれば、 *シェル* 形式を使うか、シェルを直接実行します。例： ``ENTRYPOINT [ "sh", "-c", "echo $HOME" ]``。変数は ``Dockerfile`` で ``ENV`` を使って定義することができ、 ``Dockerfile`` パーサー上で展開されます。
 
 .. Shell form ENTRYPOINT example
 
@@ -1085,7 +1293,7 @@ exec 形式の ENTRYPOINT 例
 
 ``ENTRYPOINT`` に文字列を指定したら、 ``/bin/sh -c`` で実行されます。この形式はシェルの処理を使いますので、シェル上の環境変数を展開し、 ``CMD`` や ``docker run`` コマンド行の引数を無視します。 ``docker stop`` で ``ENTRYPOINT`` で指定している実行ファイルにシグナルを送りたい場合は、 ``exec`` を使う必要があるのを思い出してください。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    FROM ubuntu
    ENTRYPOINT exec top -b
@@ -1119,7 +1327,7 @@ exec 形式の ENTRYPOINT 例
 
 ``ENTRYPOINT`` に ``exec`` を追加し忘れたとします。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    FROM ubuntu
    ENTRYPOINT top -b
@@ -1220,7 +1428,7 @@ CMD と ENTRYPOINT がどのように作用するか学ぶ
 VOLUME
 ==========
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    VOLUME ["/data"]
 
@@ -1232,7 +1440,7 @@ VOLUME
 
 ``docker run`` コマンドは、ベース・イメージから指定した場所に、データを保存する場所として新規作成したボリュームを初期化します。例えば、次の Dockerfile をご覧ください。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    FROM ubuntu
    RUN mkdir /myvol
@@ -1260,7 +1468,7 @@ VOLUME
 USER
 ==========
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    USER daemon
 
@@ -1273,11 +1481,11 @@ USER
 WORKDIR
 ==========
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    WORKDIR /path/to/workdir
 
-.. The WORKDIR instruction sets the working directory for any RUN, CMD, ENTRYPOINT, COPY and ADD instructions that follow it in the Dockerfile. If the WORKDIR doesn't exist, it will be created even if its not used in any subsequent `Dockerfile` instruction.
+.. The WORKDIR instruction sets the working directory for any RUN, CMD, ENTRYPOINT, COPY and ADD instructions that follow it in the Dockerfile. If the WORKDIR doesn't exist, it will be created even if it's not used in any subsequent `Dockerfile` instruction.
 
 ``WORKDIR`` 命令セットは ``Dockerfile`` で ``RUN`` 、 ``CMD`` 、 ``ENTRYPOINT`` 、 ``COPY`` 、 ``ADD`` 命令実行時の作業ディレクトリ（working directory）を指定します。もし ``WORKDIR`` が存在しなければ、 ``Dockerfile`` 命令内で使用しなくてもディレクトリを作成します。
 
@@ -1285,7 +1493,7 @@ WORKDIR
 
 １つの ``Dockerfile`` で複数回の利用が可能です。パスを指定したら、 ``WORKDIR`` 命令は直前に指定した相対パスに切り替えます。例：
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    WORKDIR /a
    WORKDIR b
@@ -1300,7 +1508,7 @@ WORKDIR
 
 ``WORKDIR`` 命令は ``ENV`` 命令を使った環境変数も展開できます。環境変数を使うには ``Dockerfile`` で明確に定義する必要があります。例：
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    ENV DIRPATH /path
    WORKDIR $DIRPATH/$DIRNAME
@@ -1315,7 +1523,7 @@ WORKDIR
 ARG
 ==========
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    ARG <名前>[=<デフォルト値>]
 
@@ -1331,7 +1539,7 @@ ARG
 
 Dockerfile の作者は ``ARG`` 変数を１度だけ定義するだけでなく、複数の ``ARG`` を指定可能です。有効な Dockerfile の例：
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    FROM busybox
    ARG user1
@@ -1342,7 +1550,7 @@ Dockerfile の作者は ``ARG`` 変数を１度だけ定義するだけでなく
 
 Dockerfile の作者は、オプションで ``ARG`` 命令のデフォルト値を指定できます。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    FROM busybox
    ARG user1=someuser
@@ -1357,7 +1565,7 @@ Dockerfile の作者は、オプションで ``ARG`` 命令のデフォルト値
 
 ``ARG`` 変数は ``Dockerfile`` で記述した行以降で効果があります。ただし、コマンドライン上で引数の指定が無い場合です。次の Dockerfile の例を見てみましょう。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    FROM busybox
    USER ${user:-some_user}
@@ -1387,7 +1595,7 @@ Dockerfile の作者は、オプションで ``ARG`` 命令のデフォルト値
 
 ``ARG`` や ``ENV`` 命令を ``RUN`` 命令のための環境変数にも利用できます。 ``ENV`` 命令を使った環境変数の定義は、常に同じ名前の ``ARG`` 命令を上書きします。Dockerfile における ``ENV`` と ``ARG`` 命令を考えましょう。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    FROM ubuntu
    ARG CONT_IMG_VER
@@ -1410,7 +1618,7 @@ Dockerfile の作者は、オプションで ``ARG`` 命令のデフォルト値
 
 上記の ``ENV`` 指定の他にも、更に ``ARG`` と ``ENV`` を使いやすくする指定も可能です。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    FROM ubuntu
    ARG CONT_IMG_VER
@@ -1457,34 +1665,43 @@ Docker は Dockerfile に対応する ``ARG`` 命令が無くても、既定の 
 構築キャッシュの影響
 --------------------
 
-.. ARG variables are not persisted into the built image as ENV variables are. However, ARG variables do impact the build cache in similar ways. If a Dockerfile defines an ARG variable whose value is different from a previous build, then a “cache miss” occurs upon first use of the ARG variable. The declaration of the ARG variable does not count as a use.
+.. ARG variables are not persisted into the built image as ENV variables are. However, ARG variables do impact the build cache in similar ways. If a Dockerfile defines an ARG variable whose value is different from a previous build, then a "cache miss" occurs upon its first usage, not its definition. In particular, all `RUN` instructions following an `ARG` instruction use the `ARG` variable implicitly (as an environment variable), thus can cause a cache miss.
 
-``ARG`` 変数は、イメージ構築時の ``ENV`` 変数のように残り続けません。しかし、 ``ARG`` 変数は構築キャッシュで似たような方法として扱えます。もし Dockerfile で ``ARG`` 変数を定義したら、この値が以前の値と違う時は、以降で ``ARG`` 変数が出た時「キャッシュ・ミス」を発生します。
+``ARG`` 変数は、イメージ構築時の ``ENV`` 変数のように残り続けません。しかし、 ``ARG`` 変数は構築キャッシュで似たような方法として扱えます。もし Dockerfile で ``ARG`` 変数を定義したら、この値が以前の値と違う時は、以降で ``ARG`` 変数が出た時「キャッシュ・ミス」を発生します。これは、値を定義していなくても発生します。特に、すべての ``RUN`` 命令は ``ARG`` 変数を（環境変数から）暗黙的に使おうとするため、結果としてキャッシュ・ミスを引き起こします。
 
 .. For example, consider these two Dockerfile:
 
-::
+たとえば、２つの Dockerfile を考えます。
 
-   1 FROM ubuntu
-   2 ARG CONT_IMG_VER
-   3 RUN echo $CONT_IMG_VER
+.. code-block:: dockerfile
+   :linenos:
 
-::
+   FROM ubuntu
+   ARG CONT_IMG_VER
+   RUN echo $CONT_IMG_VER
 
-   1 FROM ubuntu
-   2 ARG CONT_IMG_VER
-   3 RUN echo hello
+.. code-block:: dockerfile
+   :linenos:
+
+   FROM ubuntu
+   ARG CONT_IMG_VER
+   RUN echo hello
 
 .. If you specify --build-arg CONT_IMG_VER=<value> on the command line, in both cases, the specification on line 2 does not cause a cache miss; line 3 does cause a cache miss.ARG CONT_IMG_VER causes the RUN line to be identified as the same as running CONT_IMG_VER=<value> echo hello, so if the <value> changes, we get a cache miss.
 
+``--build-arg CONT_IMG_VER=<値>`` をコマンドライン上で指定すると、どちらの場合も２行目はキャッシュ・ミスを引き起こします。さらに３行目もキャッシュ・ミスになります。 ``ARG CONT_IMG_VER`` は RUN 行で ``CONT_IMG_VER=<値>`` で echo hello と同じにしたいのであれば、 ``<値>`` の編億がキャッシュ・ミスになります。
+
 .. Consider another example under the same command line:
 
-::
+同じコマンド行で別の例を考えます。
 
-   1 FROM ubuntu
-   2 ARG CONT_IMG_VER
-   3 ENV CONT_IMG_VER $CONT_IMG_VER
-   4 RUN echo $CONT_IMG_VER
+.. code-block:: dockerfile
+   :linenos:
+
+   FROM ubuntu
+   ARG CONT_IMG_VER
+   ENV CONT_IMG_VER $CONT_IMG_VER
+   RUN echo $CONT_IMG_VER
 
 .. In this example, the cache miss occurs on line 3. The miss happens because the variable’s value in the ENV references the ARG variable and that variable is changed through the command line. In this example, the ENV command causes the image to include the value.
 
@@ -1494,12 +1711,13 @@ Docker は Dockerfile に対応する ``ARG`` 命令が無くても、既定の 
 
 もし ``ENV`` 命令を同じ名前の ``ARG`` 命令で、次のように上書きしたらどうでしょう。
 
-::
+.. code-block:: dockerfile
+   :linenos:
 
-   1 FROM ubuntu
-   2 ARG CONT_IMG_VER
-   3 ENV CONT_IMG_VER hello
-   4 RUN echo $CONT_IMG_VER
+   FROM ubuntu
+   ARG CONT_IMG_VER
+   ENV CONT_IMG_VER hello
+   RUN echo $CONT_IMG_VER
 
 .. Line 3 does not cause a cache miss because the value of CONT_IMG_VER is a constant (hello). As a result, the environment variables and values used on the RUN (line 4) doesn’t change between builds.
 
@@ -1513,7 +1731,7 @@ ONBUILD
 
 .. ONBUILD [INSTRUCTION]
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    ONBUILD [命令]
 
@@ -1561,7 +1779,7 @@ ONBUILD
 
 次のような例の記述を追加するでしょう。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    [...]
    ONBUILD ADD . /app/src
@@ -1585,13 +1803,245 @@ STOPSIGNAL
 
 .. STOPSIGNAL signal
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    STOPSIGNAL シグナル
 
 .. The STOPSIGNAL instruction sets the system call signal that will be sent to the container to exit. This signal can be a valid unsigned number that matches a position in the kernel’s syscall table, for instance 9, or a signal name in the format SIGNAME, for instance SIGKILL.
 
 ``STOPSIGNAL`` 命令は、コンテナを終了する時に送信するための、システム・コール・シグナルを設定します。シグナルはカーネルの syscall テーブルと一致する、有効な番号の必要があります。例えば、9 あるいはシグナル名 SIGNAME や、 SIGKILL などです。
+
+.. HEALTHCHECK
+
+.. _build-healthcheck:
+
+HEALTHCHECK
+====================
+
+.. The HEALTHCHECK instruction has two forms:
+
+``HEALTHCHECK`` 命令は２つの形式があります：
+
+..    HEALTHCHECK [OPTIONS] CMD command (check container health by running a command inside the container)
+    HEALTHCHECK NONE (disable any healthcheck inherited from the base image)
+
+* ``HEALTHCHECK [オプション] CMD コマンド`` （コンテナ内でコマンドを実行して、コンテナの正常性を確認）
+* ``HEALTHCHECK NONE``  （ベース・イメージからのヘルスチェック継承を無効化）
+
+.. The HEALTHCHECK instruction tells Docker how to test a container to check that it is still working. This can detect cases such as a web server that is stuck in an infinite loop and unable to handle new connections, even though the server process is still running.
+
+``HEALTHCHECK`` 命令は、 Docker に対してコンテナの正常性をどのように確認（テスト）するかを伝えます。これはウェブ・サーバがループで塞がってしまい、新しい接続を受け付けられないような状態を検出できます。サーバプロセスが実行中でも、応答が無ければ検出します。
+
+.. When a container has a healthcheck specified, it has a health status in addition to its normal status. This status is initially starting. Whenever a health check passes, it becomes healthy (whatever state it was previously in). After a certain number of consecutive failures, it becomes unhealthy.
+
+コンテナのヘルスチェック（healthcheck）を有効化すると、通常の状態に加え、ヘルス・ステータス（health status）を追加します。こちらの初期ステータスは ``starting`` （起動中）です。ヘルスチェックが正常であれば、ステータスは（以前の状態にかかわらず） ``healthy`` （正常）になります。特定回、連続して失敗したら、ステータスは ``unhealthy``  （異常）になります。
+
+.. The options that can appear before CMD are:
+
+``CMD`` より前に記述するオプションは、以下の通りです。
+
+* ``--interval=間隔`` (デフォルト: 30s)
+* ``--timeout=間隔`` (デフォルト: 30s)
+* ``--retries=N``  (デフォルト: 3)
+
+.. The health check will first run interval seconds after the container is started, and then again interval seconds after each previous check completes.
+
+ヘルス・チェックは、まず最初の **interval** （間隔）秒の後、コンテナを起動します。そして **interval** 秒後に直近の確認を行います。
+
+.. If a single run of the check takes longer than timeout seconds then the check is considered to have failed.
+
+確認に **timeout** （タイムアウト）秒を越えるようであれば、確認は失敗とみなします。
+
+.. It takes retries consecutive failures of the health check for the container to be considered unhealthy.
+
+コンテナに対するヘルスチェックが連続して失敗したら、コンテナは ``unhealthy`` とみなします。
+
+.. There can only be one HEALTHCHECK instruction in a Dockerfile. If you list more than one then only the last HEALTHCHECK will take effect.
+
+これらの処理は ``Dockerfile`` で命令がある場合のみです。複数の ``HEALTHCHECK`` があれば、最後の１つだけ有効です。
+
+.. The command after the CMD keyword can be either a shell command (e.g. HEALTHCHECK CMD /bin/check-running) or an exec array (as with other Dockerfile commands; see e.g. ENTRYPOINT for details).
+
+``CMD`` キーワード後のコマンドは、シェル・コマンド（例： ``HEALTHCHECK CMD /bin/check-running`` ）あるいは exec 配列（こちらは Dockerfile の他コマンドと同様です。例えば ``ENTRYPOINT`` の詳細をご覧ください ）です。
+
+.. The command's exit status indicates the health status of the container. The possible values are:
+
+コマンドはコンテナのヘルス・ステータスの終了コードを検出できます。値は以下の通りです。
+
+..    0: success - the container is healthy and ready for use
+    1: unhealthy - the container is not working correctly
+    2: starting - the container is not ready for use yet, but is working correctly
+
+* 0: success（成功） - コンテナは正常であり、使う準備が整っています
+* 1: unhealthy（障害） - コンテナは正常に動作していません
+* 2: starting（起動中） - まだコンテナの利用準備が整っていませんが、正常に動作しています
+
+.. If the probe returns 2 ("starting") when the container has already moved out of the "starting" state then it is treated as "unhealthy" instead.
+
+監視結果が 2（"starting"）であれば、コンテナは起動しはじめており「起動中」の状態であり、「unhealthy」状態ではありません。
+
+.. For example, to check every five minutes or so that a web-server is able to serve the site's main page within three seconds:
+
+たとえば、５分ごとにウエブ・サーバがサイトのメインページを３秒以内に表示するかどうかを確認するには、次のように指定します。
+
+.. code-block:: dockerfile
+
+   HEALTHCHECK --interval=5m --timeout=3s \
+     CMD curl -f http://localhost/ || exit 1
+
+.. To help debug failing probes, any output text (UTF-8 encoded) that the command writes on stdout or stderr will be stored in the health status and can be queried with docker inspect. Such output should be kept short (only the first 4096 bytes are stored currently).
+
+監視失敗時はデバッグしやすくなるように、コマンド実行時の標準出力や標準エラー出力といった、あらゆる出力テキスト（UTF-8 エンコード）はヘルス・ステータスに格納され、 ``docker inspect`` で確認可能です。この出力結果は短くして保存されます（現時点では始めから 4096 バイトのみ保存）。
+
+.. When the health status of a container changes, a health_status event is generated with the new status.
+
+コンテナのヘルス・ステータスが変われば、 ``health_status`` イベントが新しいステータスを生成します。
+
+.. The HEALTHCHECK feature was added in Docker 1.12.
+
+``HEALTHCHECK``  機能は Docker 1.12 で追加されました。
+
+.. SHELL
+
+.. _builder-shell:
+
+SHELL
+==========
+
+.. code-block:: dockerfile
+
+   SHELL ["実行可能なファイル", "パラメータ"]
+
+.. The SHELL instruction allows the default shell used for the shell form of commands to be overridden. The default shell on Linux is ["/bin/sh", "-c"], and on Windows is ["cmd", "/S", "/C"]. The SHELL instruction must be written in JSON form in a Dockerfile.
+
+``SHELL`` 命令は、シェル形式でコマンド実行時における、デフォルトのシェルを上書きします。 Linux 上でのデフォルトのシェルは ``["/bin/sh", "-c"]`` です。Windows は ``["cmd", "/S", "/C"]`` です。 ``SHELL`` 命令は Dockerfile で JSON 形式での記述が必要です。
+
+.. The SHELL instruction is particularly useful on Windows where there are two commonly used and quite different native shells: cmd and powershell, as well as alternate shells available including sh.
+
+``SHELL`` 命令はとりわけ Windows で便利です。全く異なるネイティブなシェル ``cmd`` と ``powershell``  だけでなく、代わりのシェルとして ``sh`` も指定できます。ｎ
+
+.. The SHELL instruction can appear multiple times. Each SHELL instruction overrides all previous SHELL instructions, and affects all subsequent instructions. For example:
+
+``SHELL`` 命令は複数回指定できます。 ``SHELL`` 命令ごとに、これまでの ``SHELL`` 命令を上書きし、以降の命令全てに反映します。例：
+
+.. code-block:: dockerfile
+
+   FROM windowsservercore
+   
+   # cmd /S /C echo default として実行する
+   RUN echo default
+   
+   # cmd /S /C powershell -command Write-Host default として実行する
+   RUN powershell -command Write-Host default
+   
+   # powershell -command Write-Host hello として実行する
+   SHELL ["powershell", "-command"]
+   RUN Write-Host hello
+   
+   # cmd /S /C echo hello として実行する
+   SHELL ["cmd", "/S"", "/C"]
+   RUN echo hello
+
+.. The following instructions can be affected by the SHELL instruction when the shell form of them is used in a Dockerfile: RUN, CMD and ENTRYPOINT.
+
+Dockerfile の ``RUN``  、 ``CMD`` 、``ENTRYPOINT`` のシェルは、 ``SHELL`` 命令以後にあれば影響を受けます。
+
+.. The following example is a common pattern found on Windows which can be streamlined by using the SHELL instruction:
+
+次の例は Windows で一般的に見受けられるパターンですが、 ``SHELL`` 命令で簡素化できます。
+
+.. code-block:: dockerfile
+
+   ...
+   RUN powershell -command Execute-MyCmdlet -param1 "c:\foo.txt"
+   ...
+
+.. The command invoked by docker will be:
+
+このコマンドは、Docker によって次のように処理されます。
+
+.. code-block:: shell
+
+   cmd /S /C powershell -command Execute-MyCmdlet -param1 "c:\foo.txt"
+
+.. This is inefficient for two reasons. First, there is an un-necessary cmd.exe command processor (aka shell) being invoked. Second, each RUN instruction in the shell form requires an extra powershell -command prefixing the command.
+
+これが非効率なのは、２つの理由があります。１つは不要な cmd.exe プロセッサ（いわゆるシェル）が呼び出されること。もう１つは各 ``RUN`` 命令ごとに追加の ``powershell -command`` コマンドが実行されるためです。
+
+.. To make this more efficient, one of two mechanisms can be employed. One is to use the JSON form of the RUN command such as:
+
+効率的にするには、２つの仕組みを採用します。１つは RUN 命令を次のように JSON 形式で使います。
+
+.. code-block:: dockerfile
+
+   ...
+   RUN ["powershell", "-command", "Execute-MyCmdlet", "-param1 \"c:\\foo.txt\""]
+   ...
+
+.. While the JSON form is unambiguous and does not use the un-necessary cmd.exe, it does require more verbosity through double-quoting and escaping. The alternate mechanism is to use the SHELL instruction and the shell form, making a more natural syntax for Windows users, especially when combined with the escape parser directive:
+
+JSON 形式は明確なものであり、不確実な cmd.exe を使いません。そのため、JSON 形式はダブル・クォートで囲み、エスケープするといった冗長な記述が必要です。他の方法としては、 ``SHELL`` 命令でシェル形式を使えば、Windows 利用者にとっても自然な構文になります。 ``escape`` パーサ・ディレクティブと一緒に使えば尚更です。
+
+.. code-block:: dockerfile
+
+   # escape=`
+   
+   FROM windowsservercore
+   SHELL ["powershell","-command"]
+   RUN New-Item -ItemType Directory C:\Example
+   ADD Execute-MyCmdlet.ps1 c:\example\
+   RUN c:\example\Execute-MyCmdlet -sample 'hello world'
+
+.. Resulting in:
+
+実行結果：
+
+.. code-block:: shell
+
+   PS E:\docker\build\shell> docker build -t shell .
+   Sending build context to Docker daemon 3.584 kB
+   Step 1 : FROM windowsservercore
+    ---> 5bc36a335344
+   Step 2 : SHELL powershell -command
+    ---> Running in 87d7a64c9751
+    ---> 4327358436c1
+   Removing intermediate container 87d7a64c9751
+   Step 3 : RUN New-Item -ItemType Directory C:\Example
+    ---> Running in 3e6ba16b8df9
+   
+   
+       Directory: C:\
+   
+   
+   Mode                LastWriteTime         Length Name
+   ----                -------------         ------ ----
+   d-----         6/2/2016   2:59 PM                Example
+   
+   
+    ---> 1f1dfdcec085
+   Removing intermediate container 3e6ba16b8df9
+   Step 4 : ADD Execute-MyCmdlet.ps1 c:\example\
+    ---> 6770b4c17f29
+   Removing intermediate container b139e34291dc
+   Step 5 : RUN c:\example\Execute-MyCmdlet -sample 'hello world'
+    ---> Running in abdcf50dfd1f
+   Hello from Execute-MyCmdlet.ps1 - passed hello world
+    ---> ba0e25255fda
+   Removing intermediate container abdcf50dfd1f
+   Successfully built ba0e25255fda
+   PS E:\docker\build\shell>
+
+.. The SHELL instruction could also be used to modify the way in which a shell operates. For example, using SHELL cmd /S /C /V:ON|OFF on Windows, delayed environment variable expansion semantics could be modified.
+
+``SHELL`` 命令はシェルの実行者でも変更できます。たとえば Windows 上で ``SHELL cmd /S /C /V:ON|OFF`` を使うと、環境変数の遅延拡張セマンティクス（delayed environment variable expansion semantics）を変更できます。
+
+.. The SHELL instruction can also be used on Linux should an alternate shell be required such zsh, csh, tcsh and others.
+
+``SHELL`` 命令は Linux 上でも利用できます。 ``zdh`` 、 ``csh`` 、``tcsh``  など別のチェルを指定できます。
+
+.. The SHELL feature was added in Docker 1.12.
+
+``SHELL`` 機能は Docker 1.12 で追加されました。
 
 .. Dockerfile examples
 
@@ -1602,7 +2052,7 @@ Dockerfile の例
 
 以下で Dockerfile 構文の例を参照できます。実際の環境に興味があれば、 :doc:`Docker 化の例 </engine/examples/index>` をご覧ください。
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    # Nginx
    #
@@ -1614,7 +2064,7 @@ Dockerfile の例
    LABEL Description="This image is used to start the foobar executable" Vendor="ACME Products" Version="1.0"
    RUN apt-get update && apt-get install -y inotify-tools nginx apache2 openssh-server
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    # Firefox over VNC
    #
@@ -1633,7 +2083,7 @@ Dockerfile の例
    EXPOSE 5900
    CMD    ["x11vnc", "-forever", "-usepw", "-create"]
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
    # 複数のイメージ例
    #

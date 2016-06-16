@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/understanding-docker/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/understanding-docker.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/understanding-docker.md
-.. check date: 2016/04/16
-.. Commits on Mar 1, 2016 0b882cc0140bc03dfe79462c5cdf77b972c94067
+.. check date: 2016/06/13
+.. Commits on Jun 9, 2016 8bd33b430b950ca5355f950d4b79a04ba0363c3c
 .. -----------------------------------------------------------------------------
 
 .. sidebar:: 目次
@@ -13,16 +13,13 @@
        :depth: 2
        :local:
 
-.. Understand the architecture
+.. Docker Overview
+
+.. _docker-overview:
 
 =======================================
-アーキテクチャの理解
+Docker 概要
 =======================================
-
-.. What is Docker?
-
-Docker とは何か？
-==============================
 
 .. Docker is an open platform for developing, shipping, and running applications. Docker is designed to deliver your applications faster. With Docker you can separate your applications from your infrastructure and treat your infrastructure like a managed application. Docker helps you ship code faster, test faster, deploy faster, and shorten the cycle between writing code and running code.
 
@@ -31,6 +28,13 @@ Docker はアプリケーションを開発（developing）・移動（shipping�
 .. Docker does this by combining kernel containerization features with workflows and tooling that help you manage and deploy your applications
 
 Docker はこれを実現するために、カーネルのコンテナ化機能（containerization；コンテナライゼーション）がもたらすワークフローと手法（ツール）を組みあわせます。それゆえ、アプリケーション管理とデプロイの手助けになるでしょう。
+
+.. What is the Docker platform?
+
+.. _what-is-the-docker-platform:
+
+Docker プラットフォームとは何ですか？
+========================================
 
 .. At its core, Docker provides a way to run almost any application securely isolated in a container. The isolation and security allow you to run many containers simultaneously on your host. The lightweight nature of containers, which run without the extra load of a hypervisor, means you can get more out of your hardware.
 
@@ -48,7 +52,50 @@ Docker はこれを実現するために、カーネルのコンテナ化機能�
 * 更なる開発やテストのために、これらのコンテナをチームに配布・移動する
 * プロダクション環境にアプリケーションをデプロイ
 
+
+.. What is Docker Engine?
+
+.. _what-is-docker-engine:
+
+Docker Engine とは何ですか？
+==============================
+
+.. Docker Engine is a client-server application with these major components:
+
+Docker Engine は３つの主なコンポーネント（構成要素）を持つクライアント・サーバ型アプリケーションです。
+
+..  A server which is a type of long-running program called a daemon process.
+    A REST API which specifies interfaces that programs can use to talk to the daemon and instruct it what to do.
+    A command line interface (CLI) client.
+
+* サーバはデーモン・プロセスと呼ばれる長期間実行するプログラムの種類
+* インターフェースを規定する REST API は、プログラムがデーモンと通信に使うものであり、何をするか指示
+* コマンドライン・インターフェース（CLI）クライアント
+
+.. Docker Engine Components Flow
+
+.. image:: /engine/article-img/engine-components-flow.png
+   :scale: 60%
+   :alt: Docker Engine コンポーネント図
+
+.. The CLI imakes use of the Docker REST API to control or interact with the Docker daemon through scripting or direct CLI commands. Many other Docker applications make use of the underlying API and CLI.
+
+CLI は Docker REST API のスクリプトもしくは直接 CLI コマンドを使い、Docker デーモンを制御または対話します。多くの他の Docker アプリケーションは、根底となる API と CLI を利用します。
+
+.. The daemon creates and manages Docker objects. Docker objects include images, containers, networks, data volumes, and so forth.
+
+デーモンは Docker オブジェクトを作成・管理します。Docker オブジェクトには、イメージ、コンテナ、ネットワーク、データ・ボリュームなどを含みます。
+
+..    Note: Docker is licensed under the open source Apache 2.0 license.
+
+.. note::
+
+   Docker のライセンスは、オープンソース Apache 2.0 ライセンスの下で供与されています。
+
+
 .. What can I use Docker for?
+
+.. _what-can-i-use-docker-for:
 
 何のために Docker を使うのですか？
 ========================================
@@ -88,26 +135,6 @@ Docker のコンテナを基盤としたプラットフォームは、ワーク�
 
 Docker は軽量かつ高速です。これはハイパーバイザーをベースとした仮想化マシンよりも、費用対効果を高くします。これが特に使いやすいのは高密度の環境でしょう。例えば、自分たちのクラウドや PaaS（プラットフォーム・アズ・ア・サービス）においてです。しかし、自分たちが持っているリソースを、より活用したいとする中小規模のデプロイにも便利です。
 
-.. What are the major Docker components?
-
-Docker の主な構成要素は？
-==============================
-
-.. Docker has two major components:
-
-Docker は２つの主要コンポーネントを持ちます。
-
-..    Docker: the open source container virtualization platform.
-    Docker Hub: our Software-as-a-Service platform for sharing and managing Docker containers.
-
-* Docker：オープンソースのコンテナ仮想化プラットフォーム
-* `Docker Hub <https://hub.docker.com/>`_ ：Docker コンテナを共有・管理する私たちの SaaS プラットフォームです。
-
-..    Note: Docker is licensed under the open source Apache 2.0 license.
-
-.. note::
-
-   Docker はオープンソースの Apache 2.0 ライセンスの下で提供されています。
 
 .. What is Docker’s architecture?
 
@@ -257,7 +284,7 @@ Docker クライアントを使い、公開済みのイメージを検索でき�
 
 .. Docker Hub provides both public and private storage for images. Public storage is searchable and can be downloaded by anyone. Private storage is excluded from search results and only you and your users can pull images down and use them to build containers. You can sign up for a storage plan here.
 
-`Docker Hub <https://hub.docker.com/>`__ はイメージを保管するために、パブリックとプライベートなストレージの利用をサポートしています。パブリック・ストレージとは誰でも検索可能でダウンロードできるものです。プライベート・ストレージとは検索結果から除外され、自分もしくは許可されたユーザだけがイメージを取得し、コンテナを構築できるようにします。 `ストレージの料金プランと契約はこちらから <https://hub.docker.com/plans>`_  できます。
+`Docker Hub <https://hub.docker.com/>`__ はイメージを保管するために、パブリックとプライベートなストレージの利用をサポートしています。パブリック・ストレージとは誰でも検索可能でダウンロードできるものです。プライベート・ストレージとは検索結果から除外され、自分もしくは許可されたユーザだけがイメージを取得し、コンテナを構築できるようにします。 `ストレージの料金プランと契約はこちらから <https://www.docker.com/pricing>`_  できます。
 
 .. How does a container work?
 
@@ -307,7 +334,7 @@ Docker の処理内容を、順番に見ていきます。
     Executes a process that you specify: Runs your application, and;
     Captures and provides application output: Connects and logs standard input, outputs and errors for you to see how your application is running.
 
-* **ubuntu イメージの取得** ：Docker は ``ubuntu`` イメージの存在を確認し、もしローカルホスト上に存在しなければ、 `Docker Hub <https://hub.docker.com/>`__ からダウンロードする。イメージが既にあれば、Docker はこれを新しいコンテナのために使う。
+* **ubuntu イメージの取得** ：Docker は ``ubuntu`` イメージの存在を確認し、もしローカルホスト上に存在しなければ、 `Docker Hub <https://hub.docker.com/>`__ からダウンロードする。
 * **新しいコンテナを作成** ：Docker がイメージを入手したあと、それを使ってコンテナを作成する。
 * **ファイルシステムを割り当て、読み書き可能なレイヤをマウント** ：コンテナを新しいファイルシステム上に作成し、読み込み可能な（イメージの）レイヤをイメージに追加する。
 * **ネットワークとブリッジインターフェースの割り当て** ：Docker コンテナがローカルホストと通信できるようにするため、ネットワーク・インターフェースを作成する。

@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/run/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/run.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/reference/run.md
-.. check date: 2016/04/25
-.. Commits on Apr 22, 2016 9b00817dc692458f9e27e375a870ecd0dcbd0b75
+.. check date: 2016/06/14
+.. Commits on Jun 14, 2016 e6e8c4d700c4510e463eb16fedba51b6e8a3ccd6
 .. -------------------------------------------------------------------
 
 .. Docker run reference
@@ -275,6 +275,14 @@ PID 相当の機能
 
 イメージ・形式 v2 以降のイメージを使えば、その中にダイジェスト値（digest）と呼ばれる識別子が、内容に対して割り当てられています。入力に使われたイメージファイルに対する変更が無ければ、ダイジェスト値とは予想されうる値であり、参照可能なものです。
 
+.. The following example runs a container from the `alpine` image with the  `sha256:9cacb71397b640eca97488cf08582ae4e4068513101088e9f96c9814bfda95e0` digest:
+
+次の例は ``sha256:9cacb71397b640eca97488cf08582ae4e4068513101088e9f96c9814bfda95e0`` ダイジェスト値の ``alpine`` イメージを使い、コンテナを実行する例です。
+
+.. code-block:: bash
+
+   $ docker run alpine@sha256:9cacb71397b640eca97488cf08582ae4e4068513101088e9f96c9814bfda95e0 date
+
 .. PID settings (–pid)
 
 .. _pid-settings-pid:
@@ -288,7 +296,8 @@ PID 設定（--pid）
 .. code-block:: bash
 
    --pid=""  : コンテナに対する PID （プロセス）名前空間モードを指定
-          'host':コンテナ内のホストが使う PID 名前空間
+               'container:<名前|id>': 他のコンテナの PID 名前空間に参加
+               'host': コンテナ内でホスト側の PID 名前空間を使う
 
 .. By default, all containers have the PID namespace enabled.
 
@@ -302,13 +311,63 @@ PID 名前空間はプロセスの分離をもたらします。PID 名前空間
 
 コンテナがホスト上の特定のプロセス名前空間を共有する場合は、コンテナ内のプロセスが、システム上の全プロセスを基本的に見られるようにします。例えば、 ``strace`` や ``gdb`` のようなデバッグ用ツールを含むコンテナを構築した時、コンテナ内のデバッグ用プロセスのみツールを使えるように指定する場合です。
 
+.. Example: run htop inside a container
+
+例：コンテナ内で htop を実行
+------------------------------
+
+.. Create this Dockerfile:
+
+Dockerfile を作成します：
+
+.. code-block:: dockerfile
+
+   FROM alpine:latest
+   RUN apk add --update htop && rm -rf /var/cache/apk/*
+   CMD ["htop"]
+
+.. Build the Dockerfile and tag the image as myhtop:
+
+Dockerfile を構築し、イメージに ``myhtop`` とタグ付け：
+
 .. code-block:: bash
 
-   $ docker run --pid=host rhel7 strace -p 1234
+   $ docker build -t myhtop .
 
-.. This command would allow you to use strace inside the container on pid 1234 on the host.
+.. Use the following command to run htop inside a container:
 
-これはホスト上の pid 1234 にあるコンテナ内で ``strace`` を使うコマンドです。
+次のコマンドを使いコンテナ内で ``htop`` を実行：
+
+.. code-block:: bash
+
+   $ docker run -it --rm --pid=host myhtop
+
+.. Joining another container's pid namespace can be used for debugging that container.
+
+他コンテナの pid 名前空間に参加するのは、コンテナのデバッグ用に便利です。
+
+.. Example
+
+例
+----------
+
+.. Start a container running a redis server:
+
+redis サーバが動くコンテナを起動します：
+
+.. code-block:: bash
+
+   $ docker run --name my-redis -d redis
+
+.. Debug the redis container by running another container that has strace in it:
+
+redis コンテナのデバッグに、strace が入っている他のコンテナを実行。
+
+.. code-block:: bash
+
+   $ docker run --it --pid=container:my-redis bash
+   $ strace -p 1
+
 
 .. UTS settings (–uts)
 
@@ -466,9 +525,9 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 ネットワーク：host
 --------------------
 
-.. With the network set to host a container will share the host’s network stack and all interfaces from the host will be available to the container. The container’s hostname will match the hostname on the host system. Note that --add-host --hostname --dns --dns-search --dns-opt and --mac-address are invalid in host netmode. Even in host network mode a container has its own UTS namespace by default. As such --hostname is allowed in host network mode and will only change the hostname inside the container.
+.. With the network set to host a container will share the host’s network stack and all interfaces from the host will be available to the container. The container’s hostname will match the hostname on the host system. Note that --mac-address is invalid in host netmode. Even in host network mode a container has its own UTS namespace by default. As such --hostname is allowed in host network mode and will only change the hostname inside the container. Similar to --hostname, the --add-host, --dns, --dns-search, and --dns-opt options can be used in host network mode. These options update /etc/hosts or /etc/resolv.conf inside the container. No change are made to /etc/hosts and /etc/resolv.conf on the host.
 
-``host`` ネットワークをコンテナに設定したら、ホスト側のネットワーク・スタックと、全てのホスト上のインターフェースがコンテナ上でも共有できます。コンテナのホスト名はホストシステム上のホスト名と一致します。 ``host`` ネットワーク・モードでは、 ``--add-host`` 、 ``--hostname`` 、 ``--dns`` 、 ``--dns-search`` 、 ``--dns-opt`` 、 ``--mac-address`` が無効になるのでご注意ください。 たとえ ``host``  ネットワーク・モードだとしても、コンテナは自身の UTS 名前空間をデフォルトで持ちます。そのため、  ``host`` ネットワーク・モードで ``--hostname`` が許可されるのは、コンテナの中でホスト名を変えるだけです。
+``host`` ネットワークをコンテナに設定したら、ホスト側のネットワーク・スタックと、全てのホスト上のインターフェースがコンテナ上でも共有できます。コンテナのホスト名はホストシステム上のホスト名と一致します。 ``host`` ネットワーク・モードでは、  ``--mac-address`` が無効になるのでご注意ください。 たとえ ``host``  ネットワーク・モードだとしても、コンテナは自身の UTS 名前空間をデフォルトで持ちます。そのため、  ``host`` ネットワーク・モードで ``--hostname`` が許可されるのは、コンテナの中でホスト名を変えるだけです。 ``--hostname`` 同様、 ``--add-host`` 、 ``--dns``  、 ``--dns-search``  、 ``--dns-opt`` オプションは ``host`` ネットワーク・モードで利用可能です。これらのオプションはコンテナ内の ``/etc/hosts`` や ``/etc/resolv.conf`` を更新するだけです。ホスト側の ``/etc/hosts`` や ``/etc/resolv.conf`` は変更しません。
 
 .. Compared to the default bridge mode, the host mode gives significantly better networking performance since it uses the host’s native networking stack whereas the bridge has to go through one level of virtualization through the docker daemon. It is recommended to run containers in this mode when their networking performance is critical, for example, a production Load Balancer or a High Performance Web Server.
 
@@ -748,21 +807,20 @@ Docker は以下の再起動ポリシーをサポートしています。
    --security-opt="seccomp=unconfined": コンテナ用の seccomp 制限を無効化
    --security-opt="seccomp=profile.json": sccomp フィルタで使うホワイトリスト syscall seccompo Json ファイルを指定
 
-.. You can override the default labeling scheme for each container by specifying the --security-opt flag. For example, you can specify the MCS/MLS level, a requirement for MLS systems. Specifying the level in the following command allows you to share the same content between containers.
+.. You can override the default labeling scheme for each container by specifying the --security-opt flag. Specifying the level in the following command allows you to share the same content between containers.
 
-各コンテナに対するデフォルトのラベリング・スキーマ（labeling scheme）は ``--security-opt`` フラグを指定することで上書き可能です。例えば、MCS/MLS レベルを指定するには MLS システムが必要です。コンテナ間で同じ内容を共有できるようにレベルを指定するには、次のようにコマンドを実行します。
+各コンテナに対するデフォルトのラベリング・スキーマ（labeling scheme）は ``--security-opt`` フラグを指定することで上書き可能です。コンテナ間で同じ内容を共有できるようレベルを指定するには、次のようにコマンドを実行します。
 
 .. code-block:: bash
 
    $ docker run --security-opt label=level:s0:c100,c200 -i -t fedora bash
 
-.. An MLS example might be:
+.. **Note**: Automatic translation of MLS labels is not currently supported.
 
-MLS であれば、次のような例になります。
+.. note::
 
-.. code-block:: bash
+   MLS ラベルの自動変換は、現在サポートしていません。
 
-   $ docker run --security-opt label=level:TopSecret -i -t rhel7 bash
 
 .. To disable the security labeling for this container versus running with the --permissive flag, use the following command:
 
@@ -1022,7 +1080,7 @@ MLS であれば、次のような例になります。
 
 .. Option 	Result
 .. U != 0, K = inf (default) 	This is the standard memory limitation mechanism already present before using kernel memory. Kernel memory is completely ignored.
-.. U != 0, K < U 	Kernel memory is a subset of the user memory. This setup is useful in deployments where the total amount of memory per-cgroup is overcommitted. Overcommitting kernel memory limits is definitely not recommended, since the box can still run out of non-reclaimable memory. In this case, the you can configure K so that the sum of all groups is never greater than the total memory. Then, freely set U at the expense of the system's service quality.
+.. U != 0, K < U 	Kernel memory is a subset of the user memory. This setup is useful in deployments where the total amount of memory per-cgroup is overcommitted. Overcommitting kernel memory limits is definitely not recommended, since the box can still run out of non-reclaimable memory. In this case, you can configure K so that the sum of all groups is never greater than the total memory. Then, freely set U at the expense of the system's service quality.
 .. U != 0, K > U 	Since kernel memory charges are also fed to the user counter and reclamation is triggered for the container for both kinds of memory. This configuration gives the admin a unified view of memory. It is also useful for people who just want to track kernel memory usage.
 
 .. list-table::
@@ -1280,15 +1338,9 @@ Docker コンテナのプロセスを実行できるのは、デフォルトで�
    --device=[]: --privileged（特権）フラグが無いコンテナ内でもデバイスの実行を許可
    --lxc-conf=[]: カスタム lxc オプションの追加
 
-.. Note: With Docker 1.10 and greater, the default seccomp profile will also block syscalls, regardless of --cap-add passed to the container. We recommend in these cases to create your own custom seccomp profile based off our default. Or if you don’t want to run with the default seccomp profile, you can pass --security-opt=seccomp:unconfined on run.
-
-.. note::
-
-   Docker 1.10 以降では、デフォルトの seccomp プロフィールでは、コンテナに対して ``--cap-add`` を指定しても、システムコールをブロックします。このような場合に私たちが推奨するのは、私たちの `デフォルト <https://github.com/docker/docker/blob/master/profiles/seccomp/default.json>`_ プロフィールを元に書き換える方法です。あるいはデフォルトの seccomp プロファイルを使いたくないのであれば、実行時に ``--security-opt=seccomp=unconfined`` を指定できます。
-
 .. By default, Docker containers are “unprivileged” and cannot, for example, run a Docker daemon inside a Docker container. This is because by default a container is not allowed to access any devices, but a “privileged” container is given access to all devices (see lxc-template.go and documentation on cgroups devices).
 
-デフォルトでは、Docker コンテナは「unprivileged」（権限が無い）ため、Docker コンテナの中で Docker デーモンを動かす等ができません。これは、デフォルトのコンテナはあらゆるデバイスに対して接続できないためであり、「privileged」（特権）コンテナのみが全てのコンテナに接続できます（ `lxc-template.go <https://github.com/docker/docker/blob/master/daemon/execdriver/lxc/lxc_template.go>`_ と `cgroups devices <https://www.kernel.org/doc/Documentation/cgroups/devices.txt>`_ のドキュメントをご覧ください ）
+デフォルトでは、Docker コンテナは「unprivileged」（権限が無い）ため、Docker コンテナの中で Docker デーモンを動かす等ができません。これは、デフォルトのコンテナはあらゆるデバイスに対して接続できないためであり、「privileged」（特権）コンテナのみが全てのコンテナに接続できます（ `lxc-template.go <https://github.com/docker/docker/blob/master/daemon/execdriver/lxc/lxc_template.go>`_ と `cgroups devices <https://www.kernel.org/doc/Documentation/cgroup-v1/devices.txt>`_ のドキュメントをご覧ください ）
 
 .. When the operator executes docker run --privileged, Docker will enable to access to all devices on the host as well as set some configuration in AppArmor or SELinux to allow the container nearly all the same access to the host as processes running outside containers on the host. Additional information about running with --privileged is available on the Docker Blog.
 
@@ -1493,15 +1545,9 @@ FUSE を基盤とするファイルシステムをマウントするには、 ``
    -rw-rw-r-- 1 1000 1000    461 Dec  4 06:08 .gitignore
    ....
 
-.. If the Docker daemon was started using the lxc exec-driver (docker daemon --exec-driver=lxc) then the operator can also specify LXC options using one or more --lxc-conf parameters. These can be new parameters or override existing parameters from the lxc-template.go. Note that in the future, a given host’s docker daemon may not use LXC, so this is an implementation-specific configuration meant for operators already familiar with using LXC directly.
+.. The default seccomp profile will adjust to the selected capabilities, in order to allow use of facilities allowed by the capabilities, so you should not have to adjust this, since Docker 1.12. In Docker 1.10 and 1.11 this did not happen and it may be necessary to use a custom seccomp profile or use --security-opt seccomp=unconfined when adding capabilities.
 
-Docker デーモンを ``lxc`` 実行ドライバを使って起動する時（ ``docker daemon --exec-driver=lxc`` ）、作業者は１つまたは複数の LXC オプションを ``--lxc-conf`` パラメータで指定できます。これにより、 `lxc-template.go <https://github.com/docker/docker/blob/master/daemon/execdriver/lxc/lxc_template.go>`_ にある新しいパラメータの追加や既存のパラメータ上書きが可能です。将来的には、Docker ホストによっては LXC が使えなくなる可能性があるため、注意が必要です。そのため、特定の実装に関する設定操作をするためには、LXC の直接操作に慣れておいた方が良いでしょう。
-
-..    Note: If you use --lxc-conf to modify a container’s configuration which is also managed by the Docker daemon, then the Docker daemon will not know about this modification, and you will need to manage any conflicts yourself. For example, you can use --lxc-conf to set a container’s IP address, but this will not be reflected in the /etc/hosts file.
-
-.. note::
-
-   Docker デーモンに管理されているコンテナに対して、``--lxc-conf`` を使いコンテナの設定を変更可能です。しかし Docker デーモンは変更が施されたことを把握できないため、自分自身で管理上の不一致を解決する必要があります。例えば、 ``--lxc-conf`` でコンテナの IP アドレスを設定しても、コンテナ内の ``/etc/hosts`` ファイルには反映されません。
+デフォルトの seccomp profile は特定のケーパビリティでファシリティを使えるようになりました。そのため Docker 1.12 から調整は不要です。Docker 1.10 と Docker 1.11 では何も起こりませんので、カスタム seccomp profile を使うか ``--security-opt seccomp=unconfined`` でケーパビリティを追加します。
 
 .. Logging drivers (–log-driver)
 
@@ -1727,6 +1773,74 @@ ENV（環境変数）
 
 似たようなものとして、オペレータは ``-h`` で **hostname （ホスト名）** も定義できます。
 
+.. HEALTHCHECK
+
+.. _run-healthcheck:
+
+HEALTHCHECK（ヘルスチェック）
+------------------------------
+
+.. code-block:: bash
+
+     --health-interval       チェックを実行する間隔
+     --health-retries        障害を報告するまでに必要な連続失敗回数
+     --health-timeout        チェックを実行できる最長時間
+     --no-healthcheck        コンテナ固有のヘルスチェックを無効化
+
+.. Example:
+
+例：
+
+.. code-block:: bash
+
+   $ docker run --name=test -d \
+       --health-cmd='stat /etc/passwd || exit 1' \
+       --health-interval=2s \
+       busybox sleep 1d
+   $ sleep 2; docker inspect --format='{{.State.Health.Status}}' test
+   healthy
+   $ docker exec test rm /etc/passwd
+   $ sleep 2; docker inspect --format='{{json .State.Health}}' test
+   {
+     "Status": "unhealthy",
+     "FailingStreak": 3,
+     "Log": [
+       {
+         "Start": "2016-05-25T17:22:04.635478668Z",
+         "End": "2016-05-25T17:22:04.7272552Z",
+         "ExitCode": 0,
+         "Output": "  File: /etc/passwd\n  Size: 334       \tBlocks: 8          IO Block: 4096   regular file\nDevice: 32h/50d\tInode: 12          Links: 1\nAccess: (0664/-rw-rw-r--)  Uid: (    0/    root)   Gid: (    0/    root)\nAccess: 2015-12-05 22:05:32.000000000\nModify: 2015..."
+       },
+       {
+         "Start": "2016-05-25T17:22:06.732900633Z",
+         "End": "2016-05-25T17:22:06.822168935Z",
+         "ExitCode": 0,
+         "Output": "  File: /etc/passwd\n  Size: 334       \tBlocks: 8          IO Block: 4096   regular file\nDevice: 32h/50d\tInode: 12          Links: 1\nAccess: (0664/-rw-rw-r--)  Uid: (    0/    root)   Gid: (    0/    root)\nAccess: 2015-12-05 22:05:32.000000000\nModify: 2015..."
+       },
+       {
+         "Start": "2016-05-25T17:22:08.823956535Z",
+         "End": "2016-05-25T17:22:08.897359124Z",
+         "ExitCode": 1,
+         "Output": "stat: can't stat '/etc/passwd': No such file or directory\n"
+       },
+       {
+         "Start": "2016-05-25T17:22:10.898802931Z",
+         "End": "2016-05-25T17:22:10.969631866Z",
+         "ExitCode": 1,
+         "Output": "stat: can't stat '/etc/passwd': No such file or directory\n"
+       },
+       {
+         "Start": "2016-05-25T17:22:12.971033523Z",
+         "End": "2016-05-25T17:22:13.082015516Z",
+         "ExitCode": 1,
+         "Output": "stat: can't stat '/etc/passwd': No such file or directory\n"
+       }
+     ]
+   }
+
+.. The health status is also displayed in the docker ps output.
+
+``docker ps`` の出力からもヘルス・ステータスを表示できます。
 
 .. TMPFS (mount tmpfs filesystems)
 
@@ -1794,7 +1908,7 @@ VOLUME（共有ファイルシステム）
 
 ``コンテナ側ディレクトリ`` は ``/src/docs`` のように常に絶対パスの必要があります。 ``ホスト側ディレクトリ`` は絶対パスか ``名前`` を値に指定できます。 ``ホスト側ディレクトリ`` に絶対パスを指定する場合は、 Docker は指定したパスを拘束マウント（bind-mounts）します。 ``名前`` を指定する場合は、Docker は ``名前`` を持つボリュームを作成します。
 
-.. A name value must start with start with an alphanumeric character, followed by a-z0-9, _ (underscore), . (period) or - (hyphen). An absolute path starts with a / (forward slash).
+.. A name value must start with an alphanumeric character, followed by a-z0-9, _ (underscore), . (period) or - (hyphen). An absolute path starts with a / (forward slash).
 
 ``名前`` は英数字で始まる必要があり、以降は ``a-z0-9`` 、``_`` （アンダースコア）、 ``.`` （ピリオド）、 ``-`` （ハイフン）が使えます。絶対パスは ``/`` （フォアワード・スラッシュ）で始める必要があります。
 

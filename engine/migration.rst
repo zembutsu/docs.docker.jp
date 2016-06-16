@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/migration/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/migration.md
-   doc version: 1.11
+   doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/migration.md
-.. check date: 2016/04/21
-.. Commits on Feb 5, 2016 0a6e0c43d9442926691cd7a842dcf55fc555c505
+.. check date: 2016/06/13
+.. Commits on Feb 12, 2016 57e2a82355c15005875fedc733dc45081af5a2d9
 .. -----------------------------------------------------------------------------
 
 .. Migrate to Engine 1.10
@@ -31,7 +31,7 @@ Docker Engine バージョン 1.10 以降は、ディスク上にイメージ・
 
 イメージに対して内容に関する情報を割り当てることで、既にダウンロード済みのイメージがあるかどうかの検出も容易になります。これはイメージとレイヤが分離しているためであり、オリジナルの構築チェーンに含まれる各イメージを、それぞれ取得（pull）する必要はありません。また、構築命令のためにレイヤを作成する必用がなくなったため、ファイルシステムを変更しません。
 
-.. Content addressability is the foundation for the new distribution features. The image pull and push code has been reworked to use a download/upload manager concept that makes pushing and pulling images much more stable and mitigate any parallel request issues. The download manager also brings retries on failed downloads and better prioritization for concurrent downloads.
+.. Content addressability is the foundation for the new distribution features. The image pull and push code has been reworked to use a download/upload manager concept that makes pushing and pulling images much more stable and mitigates any parallel request issues. The download manager also brings retries on failed downloads and better prioritization for concurrent downloads.
 
 連想機能（content addressability；コンテント・アドレッサビィティ）とは、新しい配布機能の基礎です。イメージの取得（pull）と送信（push）の手法は、ダウンロード／アップロード・マネージャの概念を扱うために調整されました。これにより、イメージの送受信がより安定し、並列リクエスト時の問題を軽減します。ダウンロード・マネージャはダウンロードの失敗時にリトライできるようになり、ダウンロードにおける適切な優先度付けも行えるようにもなりました。
 
@@ -58,7 +58,7 @@ Docker Engine 1.10 の初回起動時は、現時点における全てのイメ�
 
 .. Minimizing migration time
 
-.. _minimizing-migration-time;
+.. _minimizing-migration-time:
 
 移行時間の最小化
 ====================
