@@ -15,4 +15,7 @@ Swarm
 .. toctree::
    :maxdepth: 3
 
+   menu.rst
    index.rst
+   key-concepts.rst
+   swarm-tutorial/toc.rst

@@ -58,27 +58,27 @@ Swarm 機能のハイライト
 
 ..    Multi-host networking: You can specify an overlay network for your application. Swarm automatically assigns addresses to the containers on the overlay network when it initializes or updates the application.
 
-* **マルチホスト・ネットワーク** : 
+* **マルチホスト・ネットワーク** : アプリケーション用のオーバレイ・ネットワークを指定できます。アプリケーションの初期化もしくは更新時に、Swarm はオーバレイ・ネットワーク上のコンテナに自動的にアドレスを割り当てます。
 
 ..    Service discovery: Swarm assigns each service a unique DNS name and load balances running containers. Each Swarm has an internal DNS server that can query every container in the cluster using DNS.
 
-* **** : 
+* **サービス・ディスカバリ（service discovery）** : Swarm は各サービスにユニークな DNS 名を割り当て、実行中のコンテナに対する負荷分散（load balance）をします。各 Swarm は内部 DNS サーバ（internal DNS server）を餅、クラスタ内の全てのコンテナを DNS で問い合わせ（クエリ）可能です。
 
 ..    Load balancing: Using Swarm, you can expose the ports for services to an external load balancer. Internally, Swarm lets you specify how to distribute service containers between nodes.
 
-* **** : 
+* **負荷分散（load balancing）** : Swarm を使えば、サービス用のポートを外部のロードバランサへ公開できます。必要なのは、ノード間でどのようにサービス・コンテナを分散するかを Swarm で指定するだけです。
 
 ..    Secure by default: Each node in the Swarm enforces TLS mutual authentication and encryption to secure communications between itself and all other nodes. You have the option to use self-signed root certificates or certificates from a custom root CA.
 
-* **** : 
+* **デフォルトで安全** : Swarm 上の各ノードは安全に通信できるように、 TLS 相互認証（TLS mutual authentication）と暗号化を自分自身と他の全てのノード間で強制します。
 
 ..    Scaling: For each service, you can declare the number of instances you want to run. When you scale up or down, Swarm automatically adapts by adding or removing instances of the service to maintain the desired state.
 
-* **** : 
+* **スケーリング（拡大縮小）** : 各サービスごとに、実行に必要なインスタンス数を宣言できます。スケール・アップかスケール・ダウン時は、Swarm が望ましい状態を維持するため、自動的にサービス用のインスタンスを追加または削除します。
 
 ..    Rolling updates: At rollout time you can apply service updates to nodes incrementally. Swarm lets you control the delay between service deployment to different sets of nodes. If anything goes wrong, you can roll-back an instance of a service.
 
-* **** : 
+* **ローリング・アップデート** : ロールアウト時に、サービス更新をノード単位で徐々に適用できます。異なるノード群の間にサービスをデプロイ時、Swarm はノードごとの遅延を制御します。何か問題があれば、サービスの状態を元にロールバックできます。
 
 .. What's next?
 
