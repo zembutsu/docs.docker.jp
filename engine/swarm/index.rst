@@ -3,8 +3,8 @@
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/swarm/index.md
    doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/swarm/index.md
-.. check date: 2016/06/16
-.. Commits on Jun 14, 2016 ea4fef2d875de39044ca7570c35365b75086e8a5
+.. check date: 2016/06/20
+.. Commits on Jun 20, 2016 c13c5601961bb5ea30e21c9c8c469dd55a2f17d0
 .. -----------------------------------------------------------------------------
 
 .. Docker Swarm overview
@@ -12,7 +12,7 @@
 .. _docker-swam-overview:
 
 =======================================
-Docker Swarm 概要
+Swarm モード概要
 =======================================
 
 .. sidebar:: 目次
@@ -21,13 +21,13 @@ Docker Swarm 概要
        :depth: 3
        :local:
 
-.. To use this version of Swarm, install the Docker Engine v1.12.0-rc1 or later from the Docker releases GitHub repository. Alternatively, install the latest Docker for Mac or Docker for Windows Beta.
+.. To use Docker Engine in swarm mode, install the Docker Engine v1.12.0-rc1 or later from the Docker releases GitHub repository. Alternatively, install the latest Docker for Mac or Docker for Windows Beta.
 
-このバージョンの Swarm を使うには、 `Docker リリース GitHub リポジトリ <https://github.com/docker/docker/releases>`_ から Docker Engine ``v1.12.0-rc1`` 以降をインストールします。あるいは Docker for Mac か Docker for Windows の最新版をインストールします。
+Docker Engine を swarm モードで使うには、 `Docker リリース GitHub リポジトリ <https://github.com/docker/docker/releases>`_ から Docker Engine ``v1.12.0-rc1`` 以降をインストールします。あるいは Docker for Mac か Docker for Windows の最新版をインストールします。
 
-.. Docker Engine 1.12 includes Docker Swarm for natively managing a cluster of Docker Engines called a Swarm. Use the Docker CLI to create a Swarm, deploy application services to the Swarm, and manage the Swarm behavior.
+.. Docker Engine 1.12 includes swarm mode for natively managing a cluster of Docker Engines called a Swarm. Use the Docker CLI to create a swarm, deploy application services to a Swarm, and manage the Swarm behavior.
 
-Docker Engine 1.12 は Docker Swarm を Swarm として取り込んでいます。Swarm は Docker Engine のクラスタをネイティブに（当たり前に）管理します。Docker CLI で Swarm（訳者注；「群れ」という意味で、Docker Engine のクラスタを表す）を作成し、Swarm にアプリケーション・サービスをデプロイし、Swarm の挙動を管理します。
+Docker Engine 1.12 は swarm モードを取り込んでいます。Swarm は Docker Engine のクラスタをネイティブに（当たり前に）管理します。Docker CLI で swarm（訳者注；「群れ」という意味で、Docker Engine のクラスタを表す）を作成し、swarm にアプリケーション・サービスをデプロイし、swarm の挙動を管理します。
 
 .. If you’re using a Docker version prior to v1.12.0-rc1, see Docker Swarm.
 
@@ -90,6 +90,17 @@ Swarm 機能のハイライト
 
 * Swarm の :doc:`重要な概念 <key-concepts>` を学ぶ
 * :doc:`Swarm チュートリアル <swarm-tutorial/index>` を始める
+* swarm モード CLI コマンドを調べる
+
+  * :doc:`swarm init </engine/reference/commandline/swarm_init>`
+  * :doc:`swarm join </engine/reference/commandline/swarm_join>`
+  * :doc:`swarm create </engine/reference/commandline/swarm_create>`
+  * :doc:`swarm inspect</engine/reference/commandline/swarm_inspect>`
+  * :doc:`swarm ls</engine/reference/commandline/swarm_ls>`
+  * :doc:`swarm rm</engine/reference/commandline/swarm_rm>`
+  * :doc:`swarm scale</engine/reference/commandline/swarm_scale>`
+  * :doc:`swarm tasks</engine/reference/commandline/swarm_tasks>`
+  * :doc:`swarm update</engine/reference/commandline/swarm_update>`
 
 
 .. seealso:: 
