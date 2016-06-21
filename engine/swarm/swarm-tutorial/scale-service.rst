@@ -3,16 +3,16 @@
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/swarm/swarm-tutorial/scale-service.md
    doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/swarm/swarm-tutorial/scale-service.md
-.. check date: 2016/06/17
-.. Commits on Jun 16, 2016 bc033cb706fd22e3934968b0dfdf93da962e36a8
+.. check date: 2016/06/21
+.. Commits on Jun 19, 2016 9499d5fd522e2fa31e5d0458c4eb9b420f164096
 .. -----------------------------------------------------------------------------
 
-.. Scale the service in the Swarm
+.. Scale the service in the swarm
 
 .. _scale-the-service-in-the-swarm:
 
 =======================================
-Swarm でサービスをスケール
+swarm でサービスをスケール
 =======================================
 
 .. sidebar:: 目次
@@ -21,30 +21,30 @@ Swarm でサービスをスケール
        :depth: 3
        :local:
 
-.. Once you have deployed a service to a Swarm, you are ready to use the Docker CLI to scale the number of service tasks in the Swarm.
+.. Once you have deployed a service to a swarm, you are ready to use the Docker CLI to scale the number of service tasks in the swarm.
 
-Swarm に :doc:`サービスをデプロイ <deploy-service>` したら、Swam 上のサービス・タスクの数を Docker CLI でスケールできる準備が整いました。
+swarm に :doc:`サービスをデプロイ <deploy-service>` したら、Swam 上のサービス・タスクの数を Docker CLI でスケールできる準備が整いました。
 
 ..    If you haven't already, open a terminal and ssh into the machine where you run your manager node. For example, the tutorial uses a machine named manager1.
 
 1. ターミナルを開き、マネージャ・ノードを実行中のマシンに SSH で入ります。このチュートリアルでは ``manager1`` という名前のマシンを使います。
 
-..    Run the following command to change the desired state of the service runing in the Swarm:
+..    Run the following command to change the desired state of the service running in the swarm:
 
-2. Swarm で実行しているサービスの期待状態を変更するには、次のコマンドを実行します。
-
-.. code-block:: bash
-
-   $ docker service update --replicas <タスク数> <サービスID>
-
-..    The --replicas flag indicates the number of tasks you want in the new desired state. For example:
-
-``--replicas`` フラグは、新しい期待状態が必要なタスク数を表します。たとえば、次のように実行します。
+2. swarm で実行しているサービスの期待状態を変更するには、次のコマンドを実行します。
 
 .. code-block:: bash
 
-   $ docker service update --replicas 5 helloworld
-   helloworld
+   $ docker service scale <サービスID>=<タスク数>
+
+..    For example:
+
+実行例：
+
+.. code-block:: bash
+
+   $ docker service scale helloworld=5
+   helloworld scaled to 5
 
 ..    Run docker service tasks <SERVICE-ID> to see the updated task list:
 
@@ -54,16 +54,16 @@ Swarm に :doc:`サービスをデプロイ <deploy-service>` したら、Swam �
 
    $ docker service tasks helloworld
    
-   ID                         NAME          SERVICE     IMAGE   DESIRED STATE  LAST STATE          NODE
-   1n6wif51j0w840udalgw6hphg  helloworld.1  helloworld  alpine  RUNNING        RUNNING 2 minutes   manager1
-   dfhsosk00wxfb7j0cazp3fmhy  helloworld.2  helloworld  alpine  RUNNING        RUNNING 15 seconds  worker2
-   6cbedbeywo076zn54fnwc667a  helloworld.3  helloworld  alpine  RUNNING        RUNNING 15 seconds  worker1
-   7w80cafrry7asls96lm2tmwkz  helloworld.4  helloworld  alpine  RUNNING        RUNNING 10 seconds  worker1
-   bn67kh76crn6du22ve2enqg5j  helloworld.5  helloworld  alpine  RUNNING        RUNNING 10 seconds  manager1
+   ID                         NAME          SERVICE     IMAGE   LAST STATE          DESIRED STATE  NODE
+   8p1vev3fq5zm0mi8g0as41w35  helloworld.1  helloworld  alpine  Running 7 minutes   Running        worker2
+   c7a7tcdq5s0uk3qr88mf8xco6  helloworld.2  helloworld  alpine  Running 24 seconds  Running        worker1
+   6crl09vdcalvtfehfh69ogfb1  helloworld.3  helloworld  alpine  Running 24 seconds  Running        worker1
+   auky6trawmdlcne8ad8phb0f1  helloworld.4  helloworld  alpine  Running 24 seconds  Accepted       manager1
+   ba19kca06l18zujfwxyc5lkyn  helloworld.5  helloworld  alpine  Running 24 seconds  Running        worker2
 
-..    You can see that Swarm has created 4 new tasks to scale to a total of 5 running instances of Alpine Linux. The tasks are distributed between the three nodes of the Swarm. Two are running on manager1.
+..    You can see that swarm has created 4 new tasks to scale to a total of 5 running instances of Alpine Linux. The tasks are distributed between the three nodes of the swarm. Two are running on manager1.
 
-Swarm は４つの新しいタスクを作成し、Alpine Linux のインスタンスが合計５つになったのが分かります。タスクは Swarm の３つのノード間で分散されています。２つは ``manager1`` 上で実行中です。
+swarm は４つの新しいタスクを作成し、Alpine Linux のインスタンスが合計５つになったのが分かります。タスクは swarm の３つのノード間で分散されています。２つは ``manager1`` 上で実行中です。
 
 ..    Run docker ps to see the containers running on the node where you're connected. The following example shows the tasks running on manager1:
 
@@ -74,8 +74,7 @@ Swarm は４つの新しいタスクを作成し、Alpine Linux のインスタ�
    $ docker ps
    
    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-   910669d5e188        alpine:latest       "ping docker.com"   10 seconds ago      Up 10 seconds                           helloworld.5.bn67kh76crn6du22ve2enqg5j
-   a0b6c02868ca        alpine:latest       "ping docker.com"   2 minutes  ago      Up 2 minutes                            helloworld.1.1n6wif51j0w840udalgw6hphg
+   528d68040f95        alpine:latest       "ping docker.com"   About a minute ago   Up About a minute                       helloworld.4.auky6trawmdlcne8ad8phb0f1
 
 ..    If you want to see the containers running on other nodes, you can ssh into those nodes and run the docker ps command.
 
@@ -92,5 +91,5 @@ Swarm は４つの新しいタスクを作成し、Alpine Linux のインスタ�
 
 .. seealso:: 
 
-   Scale the service in the Swarm
+   Scale the service in the swarm
       https://docs.docker.com/engine/swarm/swarm-tutorial/scale-service/

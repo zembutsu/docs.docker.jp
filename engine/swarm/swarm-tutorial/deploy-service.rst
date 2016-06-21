@@ -3,16 +3,16 @@
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/swarm/swarm-tutorial/deploy-service.md
    doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/swarm/swarm-tutorial/deploy-service.md
-.. check date: 2016/06/17
-.. Commits on Jun 16, 2016 bc033cb706fd22e3934968b0dfdf93da962e36a8
+.. check date: 2016/06/21
+.. Commits on Jun 19, 2016 9499d5fd522e2fa31e5d0458c4eb9b420f164096
 .. -----------------------------------------------------------------------------
 
-.. Deploy a service to the Swarm
+.. Deploy a service to the swarm
 
 .. _deploy-service-to-the-swarm:
 
 =======================================
-Swarm にサービスをデプロイ
+swarm にサービスをデプロイ
 =======================================
 
 .. sidebar:: 目次
@@ -21,9 +21,9 @@ Swarm にサービスをデプロイ
        :depth: 3
        :local:
 
-.. After you create a Swarm, you can deploy a service to the Swarm. For this tutorial, you also added worker nodes, but that is not a requirement to deploy a service.
+.. After you create a swarm, you can deploy a service to the swarm. For this tutorial, you also added worker nodes, but that is not a requirement to deploy a service.
 
-:doc:`Swarm を作成 <create-swarm>` したら、Swarm にサービスをデプロイできます。このチュートリアルでは :doc:`ワーカーノードも追加 <add-nodes>` しましたが、サービスのデプロイには必須ではありません。
+:doc:`swarm を作成 <create-swarm>` したら、swarm にサービスをデプロイできます。このチュートリアルでは :doc:`ワーカーノードも追加 <add-nodes>` しましたが、サービスのデプロイには必須ではありません。
 
 ..    Open a terminal and ssh into the machine where you run your manager node. For example, the tutorial uses a machine named manager1.
 
@@ -37,7 +37,7 @@ Swarm にサービスをデプロイ
 
    $ docker service create --replicas 1 --name helloworld alpine ping docker.com
    
-   2zs4helqu64f3k3iuwywbk49w
+   9uk4639qpg7npwf3fn2aasksr
 
 ..     The docker service create command creates the service.
         The --name flag names the service helloworld.
@@ -57,20 +57,19 @@ Swarm にサービスをデプロイ
 
    $ docker service ls
    
-   ID            NAME        REPLICAS  IMAGE   COMMAND
-   2zs4helqu64f  helloworld  1         alpine  ping docker.com
-
+   ID            NAME        SCALE  IMAGE   COMMAND
+   9uk4639qpg7n  helloworld  1/1    alpine  ping docker.com
 
 .. What's next?
 
 次は何をしますか？
 ====================
 
-.. Now you've deployed a service to the Swarm, you're ready to inspect the service.
+.. Now you've deployed a service to the swarm, you're ready to inspect the service.
 
-Swarm にサービスをデプロイしましたので、 :doc:`サービスを調べる <inspect-service>` 準備が整いました。
+swarm にサービスをデプロイしましたので、 :doc:`サービスを調べる <inspect-service>` 準備が整いました。
 
 .. seealso:: 
 
-   Deploy a service to the Swarm
+   Deploy a service to the swarm
       https://docs.docker.com/engine/swarm/swarm-tutorial/deploy-service/

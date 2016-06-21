@@ -3,16 +3,16 @@
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/swarm/swarm-tutorial/inspect-service.md
    doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/swarm/swarm-tutorial/inspect-service.md
-.. check date: 2016/06/17
-.. Commits on Jun 16, 2016 bc033cb706fd22e3934968b0dfdf93da962e36a8
+.. check date: 2016/06/21
+.. Commits on Jun 19, 2016 9499d5fd522e2fa31e5d0458c4eb9b420f164096
 .. -----------------------------------------------------------------------------
 
-.. Inspect a service on the Swarm
+.. Inspect a service on the swarm
 
 .. _inspect-a-service-on-the-swarm:
 
 =======================================
-Swarm 上のサービスを調べる
+swarm 上のサービスを調べる
 =======================================
 
 .. sidebar:: 目次
@@ -21,9 +21,9 @@ Swarm 上のサービスを調べる
        :depth: 3
        :local:
 
-.. When you have deployed a service to your Swarm, you can use the Docker CLI to see details about the service running in the Swarm.
+.. When you have deployed a service to your swarm, you can use the Docker CLI to see details about the service running in the swarm.
 
-Swarm に :doc:`サービスをデプロイ <deploy-service>` したら、Swarm 上で実行している全サービスの詳細を Docker CLI で確認できます。
+swarm に :doc:`サービスをデプロイ <deploy-service>` したら、swarm 上で実行している全サービスの詳細を Docker CLI で確認できます。
 
 ..    If you haven't already, open a terminal and ssh into the machine where you run your manager node. For example, the tutorial uses a machine named manager1.
 
@@ -41,17 +41,17 @@ Swarm に :doc:`サービスをデプロイ <deploy-service>` したら、Swarm 
 
    $ docker service inspect --pretty helloworld
    
-   ID:     2zs4helqu64f3k3iuwywbk49w
+   ID:     9uk4639qpg7npwf3fn2aasksr
    Name:       helloworld
    Mode:       REPLICATED
-    Scale: 1
+    Replicas:      1
    Placement:
     Strategy:  SPREAD
    UpdateConfig:
     Parallelism:   1
    ContainerSpec:
     Image:     alpine
-    Command:   ping docker.com
+    Args:  ping docker.com
 
 ..        Tip: To return the service details in json format, run the same command without the --pretty flag.
 
@@ -64,36 +64,43 @@ Swarm に :doc:`サービスをデプロイ <deploy-service>` したら、Swarm 
    $ docker service inspect helloworld
    [
    {
-       "ID": "2zs4helqu64f3k3iuwywbk49w",
+       "ID": "9uk4639qpg7npwf3fn2aasksr",
        "Version": {
-           "Index": 16264
+           "Index": 418
        },
-       "CreatedAt": "2016-06-06T17:41:11.509146705Z",
-       "UpdatedAt": "2016-06-06T17:41:11.510426385Z",
+       "CreatedAt": "2016-06-16T21:57:11.622222327Z",
+       "UpdatedAt": "2016-06-16T21:57:11.622222327Z",
        "Spec": {
            "Name": "helloworld",
-           "ContainerSpec": {
-               "Image": "alpine",
-               "Command": [
-                   "ping",
-                   "docker.com"
-               ],
+           "TaskTemplate": {
+               "ContainerSpec": {
+                   "Image": "alpine",
+                   "Args": [
+                       "ping",
+                       "docker.com"
+                   ]
+               },
                "Resources": {
                    "Limits": {},
                    "Reservations": {}
-               }
+               },
+               "RestartPolicy": {
+                   "Condition": "any",
+                   "MaxAttempts": 0
+               },
+               "Placement": {}
            },
            "Mode": {
                "Replicated": {
-                   "Instances": 1
+                   "Replicas": 1
                }
            },
-           "RestartPolicy": {},
-           "Placement": {},
            "UpdateConfig": {
                "Parallelism": 1
            },
-           "EndpointSpec": {}
+           "EndpointSpec": {
+               "Mode": "vip"
+           }
        },
        "Endpoint": {
            "Spec": {}
@@ -109,20 +116,22 @@ Swarm に :doc:`サービスをデプロイ <deploy-service>` したら、Swarm 
 
    $ docker service tasks helloworld
    
-   ID                         NAME          SERVICE     IMAGE   DESIRED STATE  LAST STATE          NODE
-   1n6wif51j0w840udalgw6hphg  helloworld.1  helloworld  alpine  RUNNING        RUNNING 19 minutes  manager1
+   ID                         NAME          SERVICE     IMAGE   LAST STATE         DESIRED STATE  NODE
+   8p1vev3fq5zm0mi8g0as41w35  helloworld.1  helloworld  alpine  Running 3 minutes  Running        worker2
 
-..    In this case, the one instance of the helloworld service is running on the manager1 node. Manager nodes in a Swarm can execute tasks just like worker nodes.
+.. In this case, the one instance of the helloworld service is running on the worker2 node. You may see the service running on your manager node. By default, manager nodes in a Swarm can execute tasks just like worker nodes.
 
-この場合は、 ``helloworld`` サービスのインスタンス１つが ``manager1`` ノードで動いています。 Swarm のマネージャ・ノードはワーカーノードのようにタスクを実行できます。
+この場合、 ``helloworld`` サービスは ``worker2`` ノード上で動作しています。マネージャ・ノード上からサービスを実行しているのが確認できます。デフォルトでは、Swarm 内のマネージャ・ノードはワーカ・ノードのようにタスクを実行可能です。
 
-..    Swarm also shows you the DESIRED STATE and LAST STATE of the service task so you can see if tasks are running according to the service definition.
+..   swarm also shows you the DESIRED STATE and LAST STATE of the service task so you can see if tasks are running according to the service definition.
 
-また、Swarm はサービス・タスクの ``DESIRED STATE`` （期待状態）と ``LAST STATE`` （最新状態）を表示します。これでサービス低吟胃従ってタスクを実行しているか確認できます。
+また、swarm はサービス・タスクの ``DESIRED STATE`` （期待状態）と ``LAST STATE`` （最新状態）を表示します。これでサービス低吟胃従ってタスクを実行しているか確認できます。
 
 ..    Run docker ps on the node where the instance of the service is running to see the service container.
 
-4. サービスのインスタンスを実行中のノード上で ``docker ps`` を実行し、サービス・コンテナを確認します。
+.. Run docker ps on the node where the task is running to see details about the container for the task.
+
+4. タスクを実行中のノード上で ``docker ps`` を実行したら、タスク用のコンテナに関する詳細を確認できます。
 
 ..        Tip: If helloworld is running on a node other than your manager node, you must ssh to that node.
 
@@ -132,21 +141,21 @@ Swarm に :doc:`サービスをデプロイ <deploy-service>` したら、Swarm 
 
 .. code-block:: bash
 
-   $docker ps
+    $docker ps
    
-   CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-   a0b6c02868ca        alpine:latest       "ping docker.com"   12 minutes ago      Up 12 minutes                           helloworld.1.1n6wif51j0w840udalgw6hphg
+       CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+       e609dde94e47        alpine:latest       "ping docker.com"   3 minutes ago       Up 3 minutes                            helloworld.1.8p1vev3fq5zm0mi8g0as41w35
 
 .. What's next?
 
 次は何をしますか？
 ====================
 
-.. Next, you can change the scale for the service running in the Swarm.
+.. Next, you can change the scale for the service running in the swarm.
 
 次は、スワーム内で実行するサービスの :doc:`スケールを変更 <scale-service>` できます。
 
 .. seealso:: 
 
-   Inspect a service on the Swarm
+   Inspect a service on the swarm
       https://docs.docker.com/engine/swarm/swarm-tutorial/inspect-service/

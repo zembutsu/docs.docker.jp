@@ -3,16 +3,16 @@
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/swarm/swarm-tutorial/delete-service.md
    doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/swarm/swarm-tutorial/delete-service.md
-.. check date: 2016/06/17
-.. Commits on Jun 16, 2016 bc033cb706fd22e3934968b0dfdf93da962e36a8
+.. check date: 2016/06/21
+.. Commits on Jun 19, 2016 9499d5fd522e2fa31e5d0458c4eb9b420f164096
 .. -----------------------------------------------------------------------------
 
-.. Delete the service running on the Swarm
+.. Delete the service running on the swarm
 
 .. _delete-the-service-running-on-the-swarm:
 
 =======================================
-Swarm で実行中のサービスを削除
+swarm で実行中のサービスを削除
 =======================================
 
 .. sidebar:: 目次
@@ -21,9 +21,9 @@ Swarm で実行中のサービスを削除
        :depth: 3
        :local:
 
-.. The remaining steps in the tutorial don't use the helloworld service, so now you can delete the service from the Swarm.
+.. The remaining steps in the tutorial don't use the helloworld service, so now you can delete the service from the swarm.
 
-チュートリアルの以後のステップでは ``helloworld`` サービスを使いませんので、Swarm からサービスを削除できます。
+チュートリアルの以後のステップでは ``helloworld`` サービスを使いませんので、swarm からサービスを削除できます。
 
 ..    If you haven't already, open a terminal and ssh into the machine where you run your manager node. For example, the tutorial uses a machine named manager1.
 
@@ -38,9 +38,9 @@ Swarm で実行中のサービスを削除
    $ docker service rm helloworld
    helloworld
 
-..    Run docker service inspect <SERVICE-ID> to veriy that Swarm removed the service. The CLI returns a message that the service is not found:
+..    Run docker service inspect <SERVICE-ID> to veriy that the swarm manager removed the service. The CLI returns a message that the service is not found:
 
-3. ``docker service inspect <サービスID>`` を実行し、Swarm からサービスが削除されたのを確認します。CLI はサービスが見つからないとメッセージを返します。
+3. ``docker service inspect <サービスID>`` を実行し、swarm マネージャがサービスを削除したのを確認します。CLI はサービスが見つからないとメッセージを返します。
 
 .. code-block:: bash
 
@@ -59,5 +59,5 @@ Swarm で実行中のサービスを削除
 
 .. seealso:: 
 
-   Delete the service running on the Swarm
+   Delete the service running on the swarm
       https://docs.docker.com/engine/swarm/swarm-tutorial/delete-service/

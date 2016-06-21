@@ -13,14 +13,14 @@ Docker Swarm 導入チュートリアル
 ========================================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
 
-   index.rst
-   create-swarm.rst
-   add-nodes.rst
-   deploy-service.rst
-   inspect-service.rst
-   scale-service.rst
-   delete-service.rst
-   rolling-update.rst
-   drain-node.rst
+   セットアップ <index.rst>
+   swarmの作成 <create-swarm.rst>
+   swarmにノード追加 <add-nodes.rst>
+   サービスのデプロイ <deploy-service.rst>
+   サービスの調査 <inspect-service.rst>
+   サービスをスケール <scale-service.rst>
+   サービスの削除 <delete-service.rst>
+   ローリング・アップデートの適用 <rolling-update.rst>
+   ノード解放 <drain-node.rst>

@@ -3,16 +3,16 @@
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/swarm/swarm-tutorial/drain-node.md
    doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/swarm/swarm-tutorial/drain-node.md
-.. check date: 2016/06/17
-.. Commits on Jun 16, 2016 bc033cb706fd22e3934968b0dfdf93da962e36a8
+.. check date: 2016/06/21
+.. Commits on Jun 19, 2016 9499d5fd522e2fa31e5d0458c4eb9b420f164096
 .. -----------------------------------------------------------------------------
 
-.. Drain a node on the Swarm
+.. Drain a node on the swarm
 
 .. _drain-a-node-on-the-swarm:
 
 =======================================
-Swarm からノードをドレイン（解放）
+swarm からノードをドレイン（解放）
 =======================================
 
 .. sidebar:: 目次
@@ -21,13 +21,13 @@ Swarm からノードをドレイン（解放）
        :depth: 3
        :local:
 
-.. In earlier steps of the tutorial, all the nodes have been running with ACTIVE availability. The Swarm manager can assign tasks to any ACTIVE node, so all nodes have been available to receive tasks.
+.. In earlier steps of the tutorial, all the nodes have been running with ACTIVE availability. The swarm manager can assign tasks to any ACTIVE node, so up to now all nodes have been available to receive tasks.
 
-チュートリアルのこれまでのステップは、全て ``ACTIVE`` 状態で利用可能なノードでした。Swarm マネージャはタスクをあらゆる ``ACTIVE`` ノード上に割り当て可能です。つまり、全てのノードはタスクを受け取れます。
+チュートリアルのこれまでのステップは、全て ``ACTIVE`` 状態で利用可能なノードでした。swarm マネージャはタスクをあらゆる ``ACTIVE`` ノード上に割り当て可能です。つまり、これまでの全てのノードがタスクを受け取れます。
 
-.. Sometimes, such as planned maintenance times, you need to set a node to DRAIN availabilty. DRAIN availabilty prevents a node from receiving new tasks from the Swarm manager. It also means the manager stops tasks running on the node and launches replica tasks on a node with ACTIVE availability.
+.. Sometimes, such as planned maintenance times, you need to set a node to DRAIN availability. DRAIN availability prevents a node from receiving new tasks from the swarm manager. It also means the manager stops tasks running on the node and launches replica tasks on a node with ACTIVE availability.
 
-とはいえ、たまにはメンテナンス時間の計画など、 ``DRAIN`` 状態（訳者注；ドレイン＝離脱、解放された状態）の指定が必要になるでしょう。 ``DRAIN`` 状態はノードが Swarm マネージャから新しいタスクの受信を拒否します。また、マネージャは対象ノード上のタスクを停止し、レプリカ（複製）タスクを別の ``ACTIVE`` 状態のノードで起動します。
+とはいえ、たまにはメンテナンス時間の計画など、 ``DRAIN`` 状態（訳者注；ドレイン＝離脱、解放された状態）の指定が必要になるでしょう。 ``DRAIN`` 状態はノードが swarm マネージャから新しいタスクの受信を拒否します。また、マネージャは対象ノード上のタスクを停止し、レプリカ（複製）タスクを別の ``ACTIVE`` 状態のノードで起動します。
 
 ..    If you haven't already, open a terminal and ssh into the machine where you run your manager node. For example, the tutorial uses a machine named manager1.
 
@@ -41,37 +41,37 @@ Swarm からノードをドレイン（解放）
 
    $ docker node ls
    
-   ID               NAME      MEMBERSHIP  STATUS  AVAILABILITY  MANAGER STATUS  LEADER
-   1x2bldyhie1cj    worker1   Accepted    Ready   Active
-   1y3zuia1z224i    worker2   Accepted    Ready   Active
-   2p5bfd34mx4op *  manager1  Accepted    Ready   Active        Reachable       Yes
+   ID                           NAME      MEMBERSHIP  STATUS  AVAILABILITY     MANAGER STATUS  LEADER
+   1bcef6utixb0l0ca7gxuivsj0    worker2   Accepted    Ready   Active
+   38ciaotwjuritcdtn9npbnkuz    worker1   Accepted    Ready   Active
+   e216jshn25ckzbvmwlnh5jr3g *  manager1  Accepted    Ready   Active        Reachable       Yes
 
 ..    If you aren't still running the redis service from the rolling update tutorial, start it now:
 
-2. :doc:`ローリング・アップデート <rolling-update>` チュートリアルの ``redis`` サービスを起動していなければ、今起動します。
+3. :doc:`ローリング・アップデート <rolling-update>` チュートリアルの ``redis`` サービスを起動していなければ、今起動します。
 
 .. code-block:: bash
 
    $ docker service create --replicas 3 --name redis --update-delay 10s --update-parallelism 1 redis:3.0.6
    
-   69uh57k8o03jtqj9uvmteodbb
+   c5uo6kdmzpon37mgj9mwglcfw
 
-..    Run docker service tasks redis to see how the Swarm manager assigned the tasks to different nodes:
+..    Run docker service tasks redis to see how the swarm manager assigned the tasks to different nodes:
 
-4. ``docker service tasks redis`` を実行したら、Swarm マネージャが別々のノードにタスクを割り当てたのが分かります。
+4. ``docker service tasks redis`` を実行したら、swarm マネージャが別々のノードにタスクを割り当てたのが分かります。
 
 .. code-block:: bash
 
    $ docker service tasks redis
    
    ID                         NAME     SERVICE  IMAGE        LAST STATE          DESIRED STATE  NODE
-   3wfqsgxecktpwoyj2zjcrcn4r  redis.1  redis    redis:3.0.6  RUNNING 13 minutes  RUNNING        worker2
-   8lcm041z3v80w0gdkczbot0gg  redis.2  redis    redis:3.0.6  RUNNING 13 minutes  RUNNING        worker1
-   d48skceeph9lkz4nbttig1z4a  redis.3  redis    redis:3.0.6  RUNNING 12 minutes  RUNNING        manager1
+   7q92v0nr1hcgts2amcjyqg3pq  redis.1  redis    redis:3.0.6  Running 26 seconds  Running        manager1
+   7h2l8h3q3wqy5f66hlv9ddmi6  redis.2  redis    redis:3.0.6  Running 26 seconds  Running        worker1
+   9bg7cezvedmkgg6c8yzvbhwsd  redis.3  redis    redis:3.0.6  Running 26 seconds  Running        worker2
 
-..    In this case the Swarm manager distributed one task to each node. You may see the tasks distributed differently among the nodes in your environment.
+..    In this case the swarm manager distributed one task to each node. You may see the tasks distributed differently among the nodes in your environment.
 
-このケースでは Swarm マネージャはノードごとに１つのタスクを分散しました。皆さんの環境によっては、別のノードに分散されて見えるかもしれません。
+このケースでは swarm マネージャはノードごとに１つのタスクを分散しました。皆さんの環境によっては、別のノードに分散されて見えるかもしれません。
 
 ..    Run docker node update --availability drain <NODE-ID> to drain a node that had a task assigned to it:
 
@@ -80,6 +80,7 @@ Swarm からノードをドレイン（解放）
 .. code-block:: bash
 
    docker node update --availability drain worker1
+   
    worker1
 
 ..    Inspect the node to check its availability:
@@ -89,11 +90,12 @@ Swarm からノードをドレイン（解放）
 .. code-block:: bash
 
    $ docker node inspect --pretty worker1
-   ID:         1x2bldyhie1cj
+   
+   ID:         38ciaotwjuritcdtn9npbnkuz
    Hostname:       worker1
    Status:
-    State:         READY
-    Availability:      DRAIN
+    State:         Ready
+    Availability:      Drain
    ...省略...
 
 ..    The drained node shows Drain for AVAILABILITY.
@@ -106,14 +108,16 @@ Swarm からノードをドレイン（解放）
 
 .. code-block:: bash
 
-   ID                         NAME     SERVICE  IMAGE        LAST STATE          DESIRED STATE  NODE
-   3wfqsgxecktpwoyj2zjcrcn4r  redis.1  redis    redis:3.0.6  RUNNING 26 minutes  RUNNING        worker2
-   ah7o4u5upostw3up1ns9vbqtc  redis.2  redis    redis:3.0.6  RUNNING 9 minutes   RUNNING        manager1
-   d48skceeph9lkz4nbttig1z4a  redis.3  redis    redis:3.0.6  RUNNING 26 minutes  RUNNING        manager1
+   $ docker service tasks redis
+   
+   ID                         NAME     SERVICE  IMAGE        LAST STATE              DESIRED STATE  NODE
+   7q92v0nr1hcgts2amcjyqg3pq  redis.1  redis    redis:3.0.6  Running 4 minutes       Running        manager1
+   b4hovzed7id8irg1to42egue8  redis.2  redis    redis:3.0.6  Running About a minute  Running        worker2
+   9bg7cezvedmkgg6c8yzvbhwsd  redis.3  redis    redis:3.0.6  Running 4 minutes       Running        worker2
 
 ..    The Swarm manager maintains the desired state by ending the task on a node with Drain availability and creating a new task on a node with Active availability.
 
-Swarm マネージャは期待状態を維持するため、 ``Drain`` 状態のノードでタスクを終了したら、 ``Active`` 状態のノードで新しいタスクを作成します。
+swarm マネージャは期待状態を維持するため、 ``Drain`` 状態のノードでタスクを終了したら、 ``Active`` 状態のノードで新しいタスクを作成します。
 
 ..    Run docker node update --availability active <NODE-ID> to return the drained node to an active state:
 
@@ -122,6 +126,7 @@ Swarm マネージャは期待状態を維持するため、 ``Drain`` 状態の
 .. code-block:: bash
 
    $ docker node update --availability active worker1
+   
    worker1
 
 ..    Inspect the node to see the updated state:
@@ -131,11 +136,12 @@ Swarm マネージャは期待状態を維持するため、 ``Drain`` 状態の
 .. code-block:: bash
 
    $ docker node inspect --pretty worker1
-   ID:          1x2bldyhie1cj
+   
+   ID:          38ciaotwjuritcdtn9npbnkuz
    Hostname:        worker1
    Status:
-   State:          READY
-   Availability:       ACTIVE
+   State:          Ready
+   Availability:       Active
    ...省略...
 
 ..    When you set the node back to Active availability, it can receive new tasks:
@@ -153,5 +159,5 @@ Swarm マネージャは期待状態を維持するため、 ``Drain`` 状態の
 
 .. seealso:: 
 
-   Apply rolling updates to a service
+   Drain a node on the swarm
       https://docs.docker.com/engine/swarm/swarm-tutorial/drain-node/
