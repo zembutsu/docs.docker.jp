@@ -61,9 +61,20 @@
    run.rst
    save.rst
    search.rst
+   service_create.rst
+   service_inspect.rst
+   service_ls.rst
+   service_rm.rst
+   service_scale.rst
+   service_tasks.rst
+   service_update.rst
    start.rst
    stats.rst
    stop.rst
+   swarm_init.rst
+   swarm_join.rst
+   swarm_leave.rst
+   swarm_update.rst
    tag.rst
    top.rst
    unpause.rst
@@ -82,8 +93,4 @@
    node_tasks.rst
    node_ls.rst
    node_rm.rst
-   swarm_init.rst
-   swarm_join.rst
-   swarm_leave.rst
-   swarm_update.rst
 
