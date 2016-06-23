@@ -71,7 +71,7 @@ service tasks
 
 .. The currently supported filters are:
 
-現時点絵サポートしているフィルタは、以下の通りです。
+現時点でサポートしているフィルタは、以下の通りです。
 
 ..    id
     name
