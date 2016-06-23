@@ -64,7 +64,7 @@ Swarm の主な機能
 
 ..    Desired state reconciliation: Swarm constantly monitors the cluster state and reconciles any differences between the actual state your expressed desired state.
 
-* **期待状態の調整（reconciliation）** : Swarm は絶えずクラスタ状態の監視と調整をします。監視するのは自分が示した望ましい状態であり、少しでも差違があれば調整の処理を行います
+* **期待状態の調整（reconciliation）** : Swarm は絶えずクラスタ状態の監視と調整をします。監視するのは自分が示した望ましい状態であり、少しでも差違があれば調整の処理を行います。
 
 ..    Multi-host networking: You can specify an overlay network for your application. Swarm automatically assigns addresses to the containers on the overlay network when it initializes or updates the application.
 
