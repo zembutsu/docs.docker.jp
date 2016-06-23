@@ -84,7 +84,7 @@ Swarm の主な機能
 
 .. Rolling updates: At rollout time you can apply service updates to nodes incrementally. The swarm manager lets you control the delay between service deployment to different sets of nodes. If anything goes wrong, you can roll-back a task to a previous version of the service.
 
-* **ローリング・アップデート** : ロールアウト時に、サービス更新をノード単位で徐々に適用できます。異なるノード群の間にサービスをデプロイ時、swarm マネージャははノードごとの遅延を制御します。何か問題があれば、サービスのタスクを以前の状態にロールバックできます。
+* **ローリング・アップデート** : ロールアウト時に、サービス更新をノード単位で徐々に適用できます。異なるノード群の間にサービスをデプロイ時、swarm マネージャはノードごとの遅延を制御します。何か問題があれば、サービスのタスクを以前の状態にロールバックできます。
 
 .. What's next?
 
