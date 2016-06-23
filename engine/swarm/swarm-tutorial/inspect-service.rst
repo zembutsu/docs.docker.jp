@@ -125,7 +125,7 @@ swarm に :doc:`サービスをデプロイ <deploy-service>` したら、swarm 
 
 ..   swarm also shows you the DESIRED STATE and LAST STATE of the service task so you can see if tasks are running according to the service definition.
 
-また、swarm はサービス・タスクの ``DESIRED STATE`` （期待状態）と ``LAST STATE`` （最新状態）を表示します。これでサービス低吟胃従ってタスクを実行しているか確認できます。
+また、swarm はサービス・タスクの ``DESIRED STATE`` （期待状態）と ``LAST STATE`` （最新状態）を表示します。これでサービス定義に従ってタスクを実行しているか確認できます。
 
 ..    Run docker ps on the node where the instance of the service is running to see the service container.
 
