@@ -1918,7 +1918,7 @@ SHELL
 
 .. The SHELL instruction is particularly useful on Windows where there are two commonly used and quite different native shells: cmd and powershell, as well as alternate shells available including sh.
 
-``SHELL`` 命令はとりわけ Windows で便利です。全く異なるネイティブなシェル ``cmd`` と ``powershell``  だけでなく、代わりのシェルとして ``sh`` も指定できます。ｎ
+``SHELL`` 命令はとりわけ Windows で便利です。全く異なるネイティブなシェル ``cmd`` と ``powershell``  だけでなく、代わりのシェルとして ``sh`` も指定できます。
 
 .. The SHELL instruction can appear multiple times. Each SHELL instruction overrides all previous SHELL instructions, and affects all subsequent instructions. For example:
 
