@@ -35,7 +35,7 @@ swarm に :doc:`サービスをデプロイ <deploy-service>` したら、swarm 
 
 ..    To see the details on the helloworld service:
 
-``helloworld`` サービスの詳細を観るには、次のようにします。
+``helloworld`` サービスの詳細を見るには、次のようにします。
 
 .. code-block:: bash
 
