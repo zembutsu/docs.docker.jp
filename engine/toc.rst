@@ -36,3 +36,4 @@ Docker Engine
    破壊的変更 <breaking_changes.rst>
    廃止機能 <deprecated.rst>
    faq.rst
+   Swarm管理(1.12RC) <swarm/toc.rst>

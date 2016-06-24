@@ -3,8 +3,8 @@
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/configuring.md
    doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/admin/configuring.md
-.. check date: 2016/06/13
-.. Commits on Jun 22, 2016 c1be45fa38e82054dcad606d71446a662524f2d5
+.. check date: 2016/06/21
+.. Commits on Jun 14, 2016 3020081e94277410984c62d12f88de3d4f258681
 .. ---------------------------------------------------------------------------
 
 .. Configuring and running Docker on various distributions
@@ -423,6 +423,21 @@ systemd は自身で journal と呼ばれるロギング・システムを持っ
 .. note::
 
    journal の使い方や設定方法は高度なトピックのため、この記事の範囲では扱いません。
+
+.. Daemonless Containers
+
+.. _daemonless-containers:
+
+デーモンのないコンテナ（daemonless container）
+==================================================
+
+.. Starting with Docker 1.12 containers can run without Docker or containerd running. This allows the Docker daemon to exit, be upgraded, or recover from a crash without affecting running containers on the system. To enable this functionality you need to add the --live-restore flag when launching dockerd. This will ensure that Docker does not kill containers on graceful shutdown or on restart leaving the containers running.
+
+Docker 1.12 から、 Docker や containerd 実行しなくてもコンテナを実行可能になります。これにより、システム上のコンテナに影響を与えずに、Docker デーモンを停止してのアップグレードや障害からの復旧が可能になります。この機能を有効にするためには、 ``dockerd`` の起動時点で ``--live-restore`` フラグの追加が必要です。この場合、Docker はコンテナの停止（kill）や丁寧な停止（graceful shutdown）や、実行中のコンテナに対する再起動ができなくなります。
+
+.. While the Docker daemon is down logging will still be captured, however, it will be capped at the kernel's pipe buffer size before the buffer fills up, blocking the process. Docker will need to be restarted to flush these buffers. You can modify the kernel's buffer size by changing /proc/sys/fs/pipe-max-size.
+
+Docker デーモンが停止中でも、ログ機能は収集し続けます。しかしながら、カーネルのパイプ・バッファ・サイズにバッファが満たされる上限に到達すると、処理が止まります。これらのバッファをフラッシュするには、Docker で再起動が必用です。カーネルがキャッシュするバッファ・サイズは ``/proc/sys/fs/pipe-max-size`` で変更できます。
 
 .. seealso:: 
 

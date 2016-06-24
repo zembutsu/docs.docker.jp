@@ -97,7 +97,7 @@ Docker Swarm はノードに対して、マシンのホスト名を自動的に�
 
 .. In the next section of the tutorial, we'll add two more nodes to the cluster.
 
-チュートリアルの次のセクションで、クラスタに :doc:`さらに２つのノーdを追加 <add-nodes>` します。
+チュートリアルの次のセクションで、クラスタに :doc:`さらに２つのノードを追加 <add-nodes>` します。
 
 .. seealso:: 
 

@@ -3,8 +3,8 @@
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/examples/index.md
    doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/examples/index.md
-.. check date: 2016/06/13
-.. Commits on Apr 23, 2016 d9c0d67b51fc135b2dbf54a152105d124100eb5e
+.. check date: 2016/06/21
+.. Commits on Jun 14, 2016 8eca8089fa35f652060e86906166dabc42e556f8
 .. ---------------------------------------------------------------
 
 .. Dockerize an application
@@ -38,9 +38,7 @@
 * :doc:`couchdb_data_volumes`
 * :doc:`running_redis_service`
 * :doc:`apt-cacher-ng`
-* :doc:`/engine/userguide/containers/dockerizing`
-* :doc:`running_riak_service`
-* :doc:`running_ssh_service`
+* :doc:`/engine/tutorials/dockerizing`
 
 .. seealso:: 
 
