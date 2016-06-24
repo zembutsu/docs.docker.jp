@@ -109,7 +109,7 @@ libkv についてやサポートしているバックエンドに対する技�
 
 .. code-block:: bash
 
-   ocker -H tcp://<swarm_ip:swarm_port> info
+   docker -H tcp://<swarm_ip:swarm_port> info
    docker -H tcp://<swarm_ip:swarm_port> run ...
    docker -H tcp://<swarm_ip:swarm_port> ps
    docker -H tcp://<swarm_ip:swarm_port> logs ...
