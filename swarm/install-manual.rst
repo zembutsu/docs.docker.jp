@@ -330,7 +330,7 @@ consul ノードを立ち上げて実行することで、クラスタ用のデ�
 
 .. code-block:: bash
 
-   $ docker run -d -p 4000:4000 swarm manage -H :4000 --replication --advertise <manager0_ip>:4000  consul://<consul_ip>
+   $ docker run -d -p 4000:4000 swarm manage -H :4000 --replication --advertise <manager0_ip>:4000  consul://<consul_ip>:8500
 
 .. Because this is particular manager is on the same “manager0 & consul0” instance as the consul node, replace both <manager0_ip> and <consul_ip> with the same IP address. For example:
 
