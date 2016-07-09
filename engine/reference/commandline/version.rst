@@ -32,6 +32,8 @@ Go 言語の `text/template <http://golang.org/pkg/text/template/>`_ パッケ�
 
 .. Examples
 
+.. _version-examples:
+
 例
 ==========
 

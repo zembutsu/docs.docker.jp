@@ -3,8 +3,8 @@
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/logging/overview.md
    doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/admin/logging/overview.md
-.. check date: 2016/06/13
-.. Commits on Jun 27, 2016 a9f6d93099283ee06681caae7fe29bd1b2dd4c77
+.. check date: 2016/07/09
+.. Commits on Jul 4, 2016 1763474a84770e8af96a065551bc328124222f13
 .. -------------------------------------------------------------------
 
 .. Configure logging drivers
@@ -27,7 +27,7 @@
 .. json-file 	Default logging driver for Docker. Writes JSON messages to file.
 .. syslog 	Syslog logging driver for Docker. Writes log messages to syslog.
 .. journald 	Journald logging driver for Docker. Writes log messages to journald.
-.. gelf 	Graylog Extended Log Format (GELF) logging driver for Docker. Writes log messages to a GELF endpoint likeGraylog or Logstash.
+.. gelf 	Graylog Extended Log Format (GELF) logging driver for Docker. Writes log messages to a GELF endpoint like Graylog or Logstash.
 .. fluentd 	Fluentd logging driver for Docker. Writes log messages to fluentd (forward input).
 .. awslogs 	Amazon CloudWatch Logs logging driver for Docker. Writes log messages to Amazon CloudWatch Logs.
 
@@ -189,7 +189,7 @@ syslog のオプション
 
 ``syslog-tls-key`` は TLS 鍵ファイルに対する絶対パスを指定します。このオプションは ``tcp+tls`` 以外のプロトコルを使う場合は無視されます。
 
-.. syslog-tls-skip-verify configures the TLS verification. This verification is enabled by default, but it can be overriden by setting this option to true. This option is ignored if the address protocol is not tcp+tls.
+.. syslog-tls-skip-verify configures the TLS verification. This verification is enabled by default, but it can be overridden by setting this option to true. This option is ignored if the address protocol is not tcp+tls.
 
 ``syslog-tls-skip-verify`` は TLS 認証を設定します。デフォルトでは認証が有効ですが、オプションの値を ``true`` に指定したら、この設定を上書きします。このオプションは ``tcp+tls`` 以外のプロトコルを使う場合は無視されます。
 

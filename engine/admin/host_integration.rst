@@ -3,8 +3,8 @@
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/host_integration.md
    doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/admin/host_integration.md
-.. check date: 2016/06/13
-.. Commits on Jan 27, 2016 e310d070f498a2ac494c6d3fde0ec5d6e4479e14
+.. check date: 2016/07/09
+.. Commits on Jul 1, 2016 48744e03e951c7ab4be180fbf6c1f56108512efa
 .. ---------------------------------------------------------------------------
 
 .. Automatically start containers
@@ -97,7 +97,7 @@ systemd
    ExecStop=/usr/bin/docker stop -t 2 redis_server
    
    [Install]
-   WantedBy=local.target
+   WantedBy=default.target
 
 .. If you need to pass options to the redis container (such as --env), then you’ll need to use docker run rather than docker start. This will create a new container every time the service is started, which will be stopped and removed when the service is stopped.
 
@@ -108,7 +108,8 @@ redis コンテナに（ ``--env`` のような）オプションを渡したい
    [Service]
    ...
    ExecStart=/usr/bin/docker run --env foo=bar --name redis_server redis
-   ExecStop=/usr/bin/docker stop -t 2 redis_server ; /usr/bin/docker rm -f redis_server
+   ExecStop=/usr/bin/docker stop -t 2 redis_server
+   ExecStopPost=/usr/bin/docker rm -f redis_server
    ...
 
 .. seealso:: 

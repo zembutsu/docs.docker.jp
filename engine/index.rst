@@ -1,7 +1,11 @@
 .. -*- coding: utf-8 -*-
-.. http://docs.docker.com/engine/
-.. doc version: 1.10
-.. check date: 2016/02/08
+.. URL: https://docs.docker.com/engine/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/index.md
+   doc version: 1.12
+      https://github.com/docker/docker/commits/master/docs/index.md
+.. check date: 2016/07/09
+.. Commits on Feb 3, 2016 c49b6ce4e16d570432941fc686c05939dc888fc9
+.. -----------------------------------------------------------------------------
 
 .. About Docker Engine
 

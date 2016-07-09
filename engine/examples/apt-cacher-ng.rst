@@ -4,7 +4,7 @@
    doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/examples/apt-cacher-ng.md
 .. check date: 2016/06/13
-.. Commits on Jan 27, 2016 e310d070f498a2ac494c6d3fde0ec5d6e4479e14
+.. Commits on Jun 20, 2016 8aba9fd3ec776fa419ea504982e9bc12b6427f22
 .. ---------------------------------------------------------------
 
 .. Dockerizing an apt-cacher-ng service
@@ -77,9 +77,9 @@ apt-cacher-ng サービスの Docker 化
 
    $ docker logs -f test_apt_cacher_ng
 
-.. To get your Debian-based containers to use the proxy, you have following options
+.. To get your Debian-based containers to use the proxy, you have following options. Note that you must replace dockerhost with the IP address or FQDN of the host running the test_apt_cacher_ng container.
 
-Debian をベースとしたコンテナで proxy を使うには、以下の手順とオプションを進めます。
+Debian をベースとしたコンテナで proxy を使うには、以下の手順とオプションを進めます。このとき ``dockerhost``  の箇所は ``test_apt_cacher_ng`` コンテナを実行するホストの IP アドレスか FQDN を置き換える必要があります。
 
 ..    Add an apt Proxy setting echo 'Acquire::http { Proxy "http://dockerhost:3142"; };' >> /etc/apt/conf.d/01proxy
     Set an environment variable: http_proxy=http://dockerhost:3142/
