@@ -88,12 +88,6 @@ Doc v1.12 RC 目次
    engine/toc.rst
 
 .. toctree::
-   :caption: Docker Swarm
-   :maxdepth: 2
-
-   swarm/toc.rst
-
-.. toctree::
    :caption: Docker Compose
    :maxdepth: 2
 
@@ -122,6 +116,7 @@ Doc v1.12 RC 目次
    :maxdepth: 2
 
    registry/toc.rst
+   swarm/toc.rst
 
 
 About
