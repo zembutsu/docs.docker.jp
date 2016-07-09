@@ -1,18 +1,17 @@
 .. -*- coding: utf-8 -*-
-.. https://docs.docker.com/linux/
-.. doc version: 1.10
-.. check date: 2016/4/13
+.. https://docs.docker.com/engine/getstarted/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/getstarted/index.md
+   doc version: 1.12
+      https://github.com/docker/docker/commits/master/docs/getstarted/index.md
+.. check date: 2016/07/09
+.. Commits on Jun 14, 2016 8eca8089fa35f652060e86906166dabc42e556f8
 .. -----------------------------------------------------------------------------
 
-.. Get Started with Docker Engine for Linux
+.. Get Started with Docker
 
 ========================================
-Linux への Docker Engine 導入ガイド
+Docker 導入ガイド
 ========================================
-
-.. tip::
-
-   導入ガイドの PDF 版は `こちらからダウンロード <http://docker.jp/PDF/docker-getting-started-guide-for-linux.pdf>`_ できます。
 
 .. sidebar:: 目次
 
