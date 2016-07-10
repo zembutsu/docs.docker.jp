@@ -4,7 +4,7 @@
    doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/getstarted/index.md
 .. check date: 2016/07/09
-.. Commits on Jun 14, 2016 8eca8089fa35f652060e86906166dabc42e556f8
+.. Commits on Jun 28, 2016 4060eb02ef84a0faef4407bf9796db1a2afc42f5
 .. -----------------------------------------------------------------------------
 
 .. Get Started with Docker
@@ -19,13 +19,41 @@ Docker 導入ガイド
        :depth: 3
        :local:
 
-.. This is written for users of Linux distribution such as Ubuntu. If you are not using Linux, see the Windows or Mac OS X version.
+.. This tutorial is a for non-technical users who are interested in learning more about Docker. By following these steps, you'll learn fundamental Docker features while working through some simple tasks.
 
-このページは Ubuntu など Linux ディストリビューションの利用者向けです。Linux を使っていなければ :doc:`Windows </windows/index>` や :doc:`Mac OS X </mac/index>` 向けの文章をご覧ください。
+このチュートリアルは、専門家でなくとも Docker を学ぶことに興味のある方です。以降では簡単な作業を通し、 Docker 機能の基本を学びます。
 
-.. This getting started is for non-technical users who are interested in learning about Docker. By following this getting started, you’ll learn fundamental Docker features by performing some simple tasks. You’ll learn how to:
+.. Depending on how you got here, you may or may not have already downloaded Docker for your platform and installed it.
 
-この導入ガイドは、専門家でなくとも Docker を学ぶことに興味のある方です。導入ガイドでは、簡単な作業を通して Docker 機能の基本を学びます。導入ガイドで学ぶ内容は、次の通りです。
+ここからは、Docker をまだダウンロードしていないか、あるいは既にダウンロードとインストール済みかどうかによって、作業手順が異なります。
+
+.. Got Docker?
+
+.. _got-docker:
+
+Docker が入っていますか？
+==============================
+
+.. If you haven't yet downloaded Docker for your platform or installed it, go to Get Docker.
+
+まだ環境に対応した Docker をダウンロードしていなければ、 :ref:`Docker の入手 <step-1-get-docker>` に移動しましょう。
+
+
+.. Ready to start working with Docker?
+
+.. _ready-to-start-working-with-docker:
+
+Docker を使う準備が整っていますか？
+========================================
+
+.. If you have already downloaded and installed Docker, you are ready to run Docker commands! Go to Verify your installation.
+
+既にDocker をダウンロードかつインストール済みであれば、もう Docker コマンドを実行する準備が整っています！ :ref:`インストールの確認 <step-3-verify-your-installation>` に移動しましょう。
+
+.. What you'll learn and do
+
+これから学び、作業する内容
+------------------------------
 
 ..    install Docker Engine
     use Docker Engine to run a software image in a container
@@ -47,10 +75,30 @@ Docker 導入ガイド
 
 進める上で発生する問題が減るように、この導入ガイドは利用者テストを経ています。個人で色々試すよりも、導入ガイドを進める方が、最も成功に至るチャンスです。なお、ガイドを終えるまでにかかる時間は約45分です。
 
-.. Make sure you understand…
+.. Flavors of Docker
 
-ご確認ください
-====================
+.. _flavors-of-docker:
+
+Docker の操作にあたって
+==============================
+
+.. This tutorial is designed as a getting started with Docker, and works the same whether you are using Docker for Mac, Docker for Windows, Docker on Linux, or Docker Toolbox (for older Mac and Windows systems).
+
+チュートリアルを通して Docker を使い始められるようにしています。どこでもチュートリアルを進められます。Docker for Mac、Docker for WIndows、Linux 上での Docker、あるいは Docker Toolbox （古い Mac や Windows 環境向け）で進めましょう。
+
+.. If you are using Docker Toolbox, you can use the Docker Quickstart Terminal to run Docker commands in a pre-configured environment instead of opening a command line terminal.
+
+Docker Toolbox を使う場合は、皆さんの環境のコマンドライン・ターミナルを使わずに、Docker Quickstart Terminal（クイックスタート・ターミナル）を使います。
+
+.. If you are using Docker for Mac, Docker for Windows, or Docker on Linux, you will have Docker running in the background, and your standard command line terminal is already set up to run Docker commands.
+
+Docker for Mac や Docker for Windows 、Linux 上で Docker を使う場合は、Docker がバックグラウンドで動作します。通常のコマンドライン・ターミナル上で Docker コマンドが使えるようになっています。
+
+
+.. How much command line savvy do I need?
+
+コマンドラインの知識はどの程度必要？
+========================================
 
 .. This getting started uses Docker Engine CLI commands entered on the commandline of a terminal window. You don’t need to be experienced using a command line, but you should be familiar with how to open one and type commands.
 
