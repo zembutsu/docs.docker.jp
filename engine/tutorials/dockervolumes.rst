@@ -151,7 +151,7 @@
 
 .. The container-dir must always be an absolute path such as /src/docs. The host-dir can either be an absolute path or a name value. If you supply an absolute path for the host-dir, Docker bind-mounts to the path you specify. If you supply a name, Docker creates a named volume by that name.
 
-``コンテナ内のディレクトリ`` は、``/src/docs`` のように、常に絶対パスが必要えす。``ホスト側のディレクトリ`` は相対パスでも ``名前`` でも構いません。``ホスト側のディレクトリ`` に対して絶対パスを指定したら、Docker は指定したパスを拘束マウント（bind-mount）します。この時に ``名前`` の値を指定したら、Docker は指定した ``名前`` のボリュームを作成します。
+``コンテナ内のディレクトリ`` は、``/src/docs`` のように、常に絶対パスが必要です。``ホスト側のディレクトリ`` は相対パスでも ``名前`` でも構いません。``ホスト側のディレクトリ`` に対して絶対パスを指定したら、Docker は指定したパスを拘束マウント（bind-mount）します。この時に ``名前`` の値を指定したら、Docker は指定した ``名前`` のボリュームを作成します。
 
 .. A name value must start with start with an alphanumeric character, followed by a-z0-9, _ (underscore), . (period) or - (hyphen). An absolute path starts with a / (forward slash).
 
