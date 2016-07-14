@@ -230,7 +230,7 @@ health フィルタを使う
 
 .. The node health filter prevents the scheduler form running containers on unhealthy nodes. A node is considered unhealthy if the node is down or it can't communicate with the cluster store.
 
-ノード ``health`` フィルタは障害の発生したノードにコンテナをスケジュールするの防ぎます。対象のノードはダウンしているか、クラスタ・ストアとの通信ができないことが考えられます。
+ノード ``health`` フィルタは障害の発生したノードにコンテナをスケジュールするのを防ぎます。対象のノードはダウンしているか、クラスタ・ストアとの通信ができないことが考えられます。
 
 .. Container filters
 
