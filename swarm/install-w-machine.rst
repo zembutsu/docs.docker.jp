@@ -228,7 +228,7 @@ Swarm マネージャとノードの作成
 
 .. code-block:: bash
 
-   $ docker run -d swarm join --addr=<node_ip>:<
+   $ docker run -d swarm join --addr=<node_ip>:<node_port> token://<cluster_id>
 
 ..     For example:
 
