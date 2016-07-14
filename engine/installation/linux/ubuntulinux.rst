@@ -89,8 +89,8 @@ Docker 1.7.1 以上は Docker の ``apt`` リポジトリに保管されてい�
 
 .. code-block:: bash
 
-   $ apt-get update
-   $ apt-get install apt-transport-https ca-certificates
+   $ sudo apt-get update
+   $ sudo apt-get install apt-transport-https ca-certificates
 
 ..    Add the new gpg key.
 
