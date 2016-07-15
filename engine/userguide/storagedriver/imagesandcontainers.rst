@@ -34,7 +34,7 @@
 
 .. Docker images are a series of read-only layers that are stacked on top of each other to form a single unified view. The first image in the stack is called a base image and all the other layers are stacked on top of this layer. The diagram below shows the Ubuntu 15:04 image comprising 4 stacked image layers.
 
-Docker イメージは読み込み専用（read-only）レイヤのセットです。それぞれのレイヤが層（スタック）として積み重なり、１つに統合された形に見えます。この１番めの層を *ベース・イメージ (base image)* と呼び、他の全てのレイヤは、このベース・イメージのレイヤ上に積み重なります。次の図は、 Ubuntu 15:04 イメージが４つのイメージ・レイヤを組みあわせて構成されているのが分かります。
+Docker イメージは読み込み専用（read-only）レイヤのセットです。それぞれのレイヤが層（スタック）として積み重なり、１つに統合された形に見えます。この１番めの層を *ベース・イメージ (base image)* と呼び、他の全てのレイヤは、このベース・イメージのレイヤ上に積み重なります。次の図は、 Ubuntu 15.04 イメージが４つのイメージ・レイヤを組みあわせて構成されているのが分かります。
 
 .. image:: ./images/image-layers.png
    :scale: 60%
@@ -464,7 +464,7 @@ Docker バージョン 1.10 未満までは、各レイヤをイメージ・レ�
 
 .. BTFS, ZFS, and other drivers handle the copy-on-write differently. You can read more about the methods of these drivers later in their detailed descriptions.
 
-BTFS、ZFS 、その他のドライバは、コピー・オン・ライトを異なった方法で処理します。これらのドライバの手法については、後述するそれぞれの詳細説明をご覧ください。
+BTRFS、ZFS 、その他のドライバは、コピー・オン・ライトを異なった方法で処理します。これらのドライバの手法については、後述するそれぞれの詳細説明をご覧ください。
 
 .. Containers that write a lot of data will consume more space than containers that do not. This is because most write operations consume new space in the containers thin writable top layer. If your container needs to write a lot of data, you can use a data volume.
 

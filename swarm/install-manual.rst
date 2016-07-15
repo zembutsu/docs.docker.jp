@@ -392,6 +392,8 @@ b. 各コンテナで、次の構文を使って Swarm コンテナを起動し�
 
 実行例：
 
+.. code-block:: bash
+
    $ docker run -d swarm join --advertise=172.30.0.69:2375 consul://172.30.0.161:8500
 
 .. Your small Swarm cluster is up and running on multiple hosts, providing you with a high-availability virtual Docker Engine. To increase its reliability and capacity, you can add more Swarm managers, nodes, and a high-availability discovery backend.
@@ -433,6 +435,8 @@ Swarm API を使って Swarm と通信し、マネージャとノードに関す
 .. Check which Swarm node ran the application:
 
 3. Swarm ノード上でアプリケーションが動いているのを確認します。
+
+.. code-block:: bash
 
    $ docker -H :4000 ps
 
