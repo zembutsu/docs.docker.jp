@@ -304,5 +304,5 @@ docx_subject = 'Version 1.12.RC'
 docx_descriptions = 'https://github.com/zembutsu/docs.docker.jp'
 docx_creator = 'Masahito Zembutsu <m.zembutsu@gmail.com> (@zembutsu)'
 docx_keywords = ['Sphinx', 'OpenXML']
-docx_style= '/home/zembutsu/Desktop/docs.docker.jp/sphinx/style.docx'
+docx_style= './misc/style.docx'
 
