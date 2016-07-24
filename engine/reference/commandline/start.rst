@@ -19,7 +19,7 @@ start
    
    １つまたは複数のコンテナを起動する
    
-     -a, --attach               STDIN、STDOUT、STDERR にアタッチする
+     -a, --attach               STDOUT、STDERR にアタッチする
      --detach-keys              コンテナのデタッチに使うエスケープ・キー・シーケンスを設定
      --help                     使い方の表示
      -i, --interactive          コンテナの STDIN にアタッチ
