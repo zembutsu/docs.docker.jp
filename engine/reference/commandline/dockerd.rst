@@ -1288,7 +1288,7 @@ systemd cgroup ドライバは ``--cgroup-parent`` と異なるルールです�
 
 * ``debug`` ：true を設定したら、デーモンをデバッグ・モードにします。
 * ``cluster-store`` ：新しいアドレスにディスカバリ・ストアを読み込み直します。
-* ``cluster-store-opts`` ：ディスカバリ・ストアをお見込む時の新しいオプションを指定します。
+* ``cluster-store-opts`` ：ディスカバリ・ストアを読み込む時の新しいオプションを指定します。
 * ``cluster-advertise`` ：再起動後のアドバタイズド・アドレスを指定します。
 * ``labels`` ：デーモンのラベルを新しく設定したものに変えます。
 * ``max-concurrent-downloads`` ：pull ごとの最大同時ダウンロード数を更新します。
