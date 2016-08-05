@@ -193,7 +193,7 @@ Docker で ``-a`` を指定しなければ、Docker は `自動的に全ての�
 
 .. For interactive processes (like a shell), you must use -i -t together in order to allocate a tty for the container process. -i -t is often written -it as you’ll see in later examples. Specifying -t is forbidden when the client standard output is redirected or piped, such as in: echo test | docker run -i busybox cat.
 
-（シェルのような）インタラクティブなプロセスでは、コンテナのプロセスに対して tty を割り当てるために、 ``-i -t`` を一緒に使う必要があります。 ``-i -t`` は ``-it`` と書けます。後の例で出てきます。 ``-t`` を指定したら、クライアント側の出力を ``echo test | docker run -i busybox cat`` のようにリダイレクトやパイプできます。
+（シェルのような）インタラクティブなプロセスでは、コンテナのプロセスに対して tty を割り当てるために、 ``-i -t`` を一緒に使う必要があります。 後の例で出てきますが ``-i -t`` は ``-it`` と書けます。 クライアント側の標準出力を ``echo test | docker run -i busybox cat`` のようにリダイレクトやパイプする場合 ``-t`` は指定できません。
 
 ..     Note: A process running as PID 1 inside a container is treated specially by Linux: it ignores any signal with the default action. So, the process will not terminate on SIGINT or SIGTERM unless it is coded to do so.
 
