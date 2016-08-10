@@ -295,7 +295,7 @@ depends_on
 
 ..    docker-compose up will start services in dependency order. In the following example, db and redis will be started before web.
 
-* ``docker-compose up`` を実行したら、依存関係のある順番に従ってサービスを起動します。以下の例では、 ``web`` を開始する前に ``db`` と ``rails`` を実行します。
+* ``docker-compose up`` を実行したら、依存関係のある順番に従ってサービスを起動します。以下の例では、 ``web`` を開始する前に ``db`` と ``redis`` を実行します。
 
 ..    docker-compose up SERVICE will automatically include SERVICE’s dependencies. In the following example, docker-compose up web will also create and start db and redis.
 
