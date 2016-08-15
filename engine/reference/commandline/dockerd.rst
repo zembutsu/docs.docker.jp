@@ -27,7 +27,7 @@ daemon
    
    オプション:
      --api-cors-header=""                   リモート API の CORS ヘッダをセットする
-     --authorization-plugin=[]              読み込む認証プログインを指定
+     --authorization-plugin=[]              読み込む認証プラグインを指定
      -b, --bridge=""                        コンテナをネットワーク・ブリッジにアタッチ
      --bip=""                               ネットワーク・ブリッジ IP の指定
      --cgroup-parent=                       全てのコンテナの親 cgroup を指定
