@@ -16,8 +16,6 @@ service ls
 =======================================
 
 .. code-block:: bash
-
-   docker service ls --help
    
    使い方:  docker service ls [オプション]
    
