@@ -228,7 +228,7 @@ Dokcer をデーモン・モードで実行するには：
 
 .. You can use multiple -H, for example, if you want to listen on both TCP and a Unix socket
 
-複数の ``-H`` を指定できミズ遭う。たとえば、TCP と Unix ソケットの両方をリッスンするには、次のようにします。
+複数の ``-H`` を指定できます。たとえば、TCP と Unix ソケットの両方をリッスンするには、次のようにします。
 
 .. code-block:: bash
 
