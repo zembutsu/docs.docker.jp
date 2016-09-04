@@ -33,7 +33,7 @@ env
    オプション:
    
       --swarm  Docker デーモンの代わりに Swarm の設定を表示
-      --shell  環境変数を設定するシェルを指定: [fish, cmd, powershell], デフォルトは sh/bash
+      --shell  環境変数を設定するシェルを指定: [fish, cmd, powershell, tcsh], デフォルトは sh/bash
       --unset, -u  環境変数の値を指定せずにリセット
       --no-proxy   マシンの IP アドレスに NO_PROXY 環境変数の追加
 
