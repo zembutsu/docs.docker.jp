@@ -130,8 +130,8 @@ Mac や Linux ディストリビューションでは、 `AWS コマンドライ
 * ``--amazonec2-device-name`` : 実行するデバイス名です。
 * ``--amazonec2-root-size`` : インスタンスのルート・ディスク容量（単位：GB）。
 * ``--amazonec2-volume-type`` : インスタンスにアタッチする Amazon EBS の種類を指定。
-* ``--amazonec2-iam-instance-profile`` : インスタンスのプロフィールに使われる AWS IAM ロール名。
-* ``--amazonec2-ssh-user`` : SSH ログイン・ユーザ名です。ここには AMI が使うデフォルトの SSH ユーザを一致する必要があります。
+* ``--amazonec2-iam-instance-profile`` : インスタンスのプロファイルに使われる AWS IAM ロール名。
+* ``--amazonec2-ssh-user`` : SSH ログイン・ユーザ名です。ここには AMI が使うデフォルトの SSH ユーザと一致する必要があります。
 * ``--amazonec2-request-spot-instance`` : スポット・インスタンスを使用。
 * ``--amazonec2-spot-price`` : スポット・インスタンスの bid 価格（単位：ドル）。 ``--amazonec2-request-spot-instance`` フラグが必要です。
 * ``--amazonec2-use-private-addressce`` : docker-machine の通信にプライベート IP アドレスを使います。ですがパブリックな IP アドレスも作成されます。
@@ -249,7 +249,7 @@ Mac や Linux ディストリビューションでは、 `AWS コマンドライ
      - ami-ab0210c7
    * - sa-east-1
      - ami-185de774
-   * - us-west-1
+   * - us-east-1
      - ami-26d5af4c
    * - us-west-1
      - ami-9cbcd2fc
@@ -275,7 +275,7 @@ Mac や Linux ディストリビューションでは、 `AWS コマンドライ
 
 .. If you specify a security group yourself using the --amazonec2-security-group flag, the above ports will be checked and opened and the security group modified. If you want more ports to be opened, like application specific ports, use the aws console and modify the configuration manually.
 
-これポート以外にポートを開くには、 ``--amazonec2-security-group`` フラグを使って自分でセキュリティ・グループを指定し、ポートが開かれたか確認します。特定のアプリケーションが必要とするポートを開きたい場合は、AWS コンソールで設定を調整ください。
+このポート以外にポートを開くには、 ``--amazonec2-security-group`` フラグを使って自分でセキュリティ・グループを指定し、ポートが開かれたか確認します。特定のアプリケーションが必要とするポートを開きたい場合は、AWS コンソールで設定を調整ください。
 
 .. VPC ID
 
@@ -304,7 +304,7 @@ VPC ID を確認するには：
 
 ..    For example, us-east1-a is in the a availability zone. If the a zone is not present, you can create a new subnet in that zone or specify a different zone when you create the machine.
 
-例えば、 ``us-east-1-a`` にはアベイラビリティ・ゾーン ``a`` が存在しています。もし ``a`` ゾーンが表示されなければ、マシンを作成するために、新しいサブネットを作成するか別のゾーンを指定します。
+例えば、 ``us-east1-a`` にはアベイラビリティ・ゾーン ``a`` が存在しています。もし ``a`` ゾーンが表示されなければ、マシンを作成するために、新しいサブネットを作成するか別のゾーンを指定します。
 
 .. To create the machine instance, specify --driver amazonec2 and the three required parameters.
 
