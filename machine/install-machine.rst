@@ -42,7 +42,7 @@ Machine を直接インストール
 
 2. Docker Machine のバイナリ・ファイル（docker-machine）をダウンロードし、PATH に展開します。
 
-Mac OS X もしくは Windows の場合：
+Mac OS X もしくは Linux の場合：
 
 .. code-block:: bash
 
