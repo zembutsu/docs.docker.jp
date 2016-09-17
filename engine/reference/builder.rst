@@ -2037,7 +2037,7 @@ JSON 形式は明確なものであり、不確実な cmd.exe を使いません
 
 .. The SHELL instruction can also be used on Linux should an alternate shell be required such zsh, csh, tcsh and others.
 
-``SHELL`` 命令は Linux 上でも利用できます。 ``zdh`` 、 ``csh`` 、``tcsh``  など別のチェルを指定できます。
+``SHELL`` 命令は Linux 上でも利用できます。 ``zsh`` 、 ``csh`` 、``tcsh``  など別のシェルを指定できます。
 
 .. The SHELL feature was added in Docker 1.12.
 
