@@ -43,6 +43,7 @@ Swarm フィルタ
 
 * ``constraint`` （ノードの制限）
 * ``health`` （ノードが正常かどうか）
+* ``containerslots`` （ノードでの最大実行コンテナ数）
 
 .. The container configuration filters are:
 
@@ -65,7 +66,7 @@ Swarm フィルタ
 
 .. note::
 
-   コンテナ設定フィルタに一致するのは全てのコンテナが対象でです。フィルタが適用されるのは停止しているコンテナも含みます。コンテナによって使用されているノードを解放するには、ノード上からコンテナを削除する必要があります。
+   コンテナ設定フィルタに一致するのは全てのコンテナが対象です。フィルタが適用されるのは停止しているコンテナも含みます。コンテナによって使用されているノードを解放するには、ノード上からコンテナを削除する必要があります。
 
 .. Node filters:
 
@@ -74,9 +75,9 @@ Swarm フィルタ
 ノード・フィルタ
 ====================
 
-.. When creating a container or building an image, you use a constraint or health filter to select a subset of nodes to consider for scheduling.
+.. When creating a container or building an image, you use a constraint or health filter to select a subset of nodes to consider for scheduling. If a node in Swarm cluster has a label with key containerslots and a number-value, Swarm will not launch more containers than the given number.
 
-コンテナ作成時とイメージ構築時に、 ``constraint`` か ``health`` フィルタを使い、コンテナをスケジューリングするノード群を選択できます。
+コンテナ作成時とイメージ構築時に、 ``constraint`` か ``health`` フィルタを使い、コンテナをスケジューリングするノード群を選択できます。もし、Swarmクラスタ内のノードが``containerslots``キーと数値をラベルに持っている場合、Swarmは指定された数以上のコンテナを起動しません。
 
 .. Use a constraint Filter
 
@@ -231,6 +232,25 @@ health フィルタを使う
 .. The node health filter prevents the scheduler form running containers on unhealthy nodes. A node is considered unhealthy if the node is down or it can't communicate with the cluster store.
 
 ノード ``health`` フィルタは障害の発生したノードにコンテナをスケジュールするのを防ぎます。対象のノードはダウンしているか、クラスタ・ストアとの通信ができないことが考えられます。
+
+.. Use the containerslots filter
+
+.. _use-the-containerslots-filter:
+
+containerslots フィルタを使う
+-------------------------------
+
+.. You may give your Docker nodes the containerslots label
+
+Dockerノードに``containerslots``ラベルを与えることができます。
+
+.. code-block:: bash
+
+   $ docker daemon --label containerslots=3
+
+.. Swarm will run up to 3 containers at this node, if all nodes are “full”, an error is thrown indicating no suitable node can be found. If the value is not castable to an integer number or is not present, there will be no limit on container number.
+
+Swarmはノードで3つのコンテナまで実行しますが、全てのノードが「満載（コンテナ数が最大）」であれば適切なノードが無い事を示すエラーがスローされます。もし、値が整数にキャストできないか、存在しなければコンテナ数に制限は存在しません。
 
 .. Container filters
 
