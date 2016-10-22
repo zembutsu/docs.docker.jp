@@ -72,7 +72,7 @@ Swarm の主な機能
 
 ..    Service discovery: Swarm assigns each service a unique DNS name and load balances running containers. Each Swarm has an internal DNS server that can query every container in the cluster using DNS.
 
-* **サービス・ディスカバリ（service discovery）** : Swarm は各サービスにユニークな DNS 名を割り当て、実行中のコンテナに対する負荷分散（load balance）をします。各 Swarm は内部 DNS サーバ（internal DNS server）を餅、クラスタ内の全てのコンテナを DNS で問い合わせ（クエリ）可能です。
+* **サービス・ディスカバリ（service discovery）** : Swarm は各サービスにユニークな DNS 名を割り当て、実行中のコンテナに対する負荷分散（load balance）をします。各 Swarm は内部 DNS サーバ（internal DNS server）を持ち、クラスタ内の全てのコンテナを DNS で問い合わせ（クエリ）可能です。
 
 ..    Load balancing: Using Swarm, you can expose the ports for services to an external load balancer. Internally, Swarm lets you specify how to distribute service containers between nodes.
 
