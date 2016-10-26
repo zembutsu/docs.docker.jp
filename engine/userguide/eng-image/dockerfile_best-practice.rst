@@ -87,7 +87,7 @@ Docker は ``Dockerfile`` の命令を読み込み、自動的にイメージを
 
 .. You need to find the balance between readability (and thus long-term maintainability) of the Dockerfile and minimizing the number of layers it uses. Be strategic and cautious about the number of layers you use.
 
-``Dockerfile`` の読みやすさと、使用するイメージレイヤ数の最小化は。両者のバランスを見つける必要があります。戦略的に注意深くレイヤ数をお使いください。
+``Dockerfile`` の読みやすさと、使用するイメージレイヤ数の最小化は、両者のバランスを見つける必要があります。戦略的に注意深くレイヤ数をお使いください。
 
 .. Sort multi-line arguments
 
@@ -403,7 +403,7 @@ ENTRYPOINT
 
 .. Dockerfile reference for the ENTRYPOINT instruction
 
-:ref:`Dockerfile リファレンスの ENTRYPOINT 命令 <copy>`
+:ref:`Dockerfile リファレンスの ENTRYPOINT 命令 <entrypoint>`
 
 .. The best use for ENTRYPOINT is to set the image’s main command, allowing that image to be run as though it was that command (and then use CMD as the default flags).
 
