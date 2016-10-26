@@ -403,7 +403,7 @@ ENTRYPOINT
 
 .. Dockerfile reference for the ENTRYPOINT instruction
 
-:ref:`Dockerfile リファレンスの ENTRYPOINT 命令 <copy>`
+:ref:`Dockerfile リファレンスの ENTRYPOINT 命令 <entrypoint>`
 
 .. The best use for ENTRYPOINT is to set the image’s main command, allowing that image to be run as though it was that command (and then use CMD as the default flags).
 
