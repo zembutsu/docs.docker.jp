@@ -650,6 +650,9 @@ links
 
 .. _compose-file-logging:
 
+logging
+----------
+
 .. note::
 
    :ref:`バージョン２のファイル形式 <compose-file-version-2>` のみ対応しています。バージョン１では :ref:`log_driver <compose-file-log_driver>` と :ref:`log_opt <compose-file-log_opt>` をお使いください。
