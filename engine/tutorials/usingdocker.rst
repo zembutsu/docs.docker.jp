@@ -19,7 +19,7 @@
 
 .. sidebar:: 目次
 
-   .. contents:: 
+   .. contents::
        :depth: 3
        :local:
 
@@ -27,7 +27,7 @@
 
 「 :doc:`dockerizing` 」では、``docker run`` コマンドを使い、初めてのコンテナを起動しました。そして、フォアグラウンドで *双方向なコンテナ (interactive container)* を実行しました。また、バックグラウンドで *デタッチド・コンテナ (detached container)* を実行しました。この過程で複数の Docker コマンドを学びました。
 
-.. 
+..
     docker ps - Lists containers.
     docker logs - Shows us the standard output of a container.
     docker stop - Stops running containers.
@@ -74,7 +74,7 @@ Docker クライアントについて学ぶ
      Git commit:   d12ea79
      Built:        Thu Aug 13 02:35:49 UTC 2015
      OS/Arch:      linux/amd64
-   
+
    Server:
      Version:      1.8.1
      API version:  1.20
@@ -106,11 +106,11 @@ Docker コマンドの使い方を表示
 .. code-block:: bash
 
    $ docker attach --help
-   
+
    Usage: docker attach [OPTIONS] CONTAINER
-   
+
    Attach to a running container
-   
+
      --help=false        Print usage
      --no-stdin=false    Do not attach stdin
      --sig-proxy=true    Proxy all received signals to the process
@@ -171,7 +171,7 @@ Docker でウェブ・アプリケーションを実行
 
 さて、``docker ps`` コマンドを使い、実行中のコンテナを表示できます。
 
-.. code-block:: bash 
+.. code-block:: bash
 
    $ docker ps -l
    CONTAINER ID  IMAGE                   COMMAND       CREATED        STATUS        PORTS                    NAMES
@@ -189,7 +189,7 @@ Docker でウェブ・アプリケーションを実行
 
 .. We can see the same details we saw when we first Dockerized a container with one important addition in the PORTS column.
 
-:doc:`始めて Docker 化したコンテナ <dockerizing>` で見てきた詳細に加え、 ``PORTS`` 列に重要な情報が追加されています。
+:doc:`初めて Docker 化したコンテナ <dockerizing>` で見てきた詳細に加え、 ``PORTS`` 列に重要な情報が追加されています。
 
 .. code-block:: bash
 
@@ -242,12 +242,12 @@ Python アプリケーションが動いています！
 .. note::
 
    Mac OS X や Windows または Linux 上の仮想マシンを使っている場合は、ローカルホスト上で仮想マシンが使っている IP アドレスを確認する必要があります。コマンドラインや端末アプリケーションを使い ``docker-machine ip 仮想マシン名`` を実行します。例：
-   
+
    .. code-block:: bash
-   
+
       $ docker-machine ip my-docker-vm
       192.168.99.100
-   
+
    この例では、ブラウザで ``http://192.168.99.100:49155`` を開きます。
 
 .. A network port shortcut
@@ -457,7 +457,7 @@ network port でショートカット
 
 :doc:`Docker イメージの操作 <dockerimages>` に移動します。
 
-.. seealso:: 
+.. seealso::
 
    Run a simple application
       https://docs.docker.com/engine/userguide/containers/usingdocker/
