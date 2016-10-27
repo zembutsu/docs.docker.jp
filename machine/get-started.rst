@@ -17,7 +17,7 @@ Docker Machine をローカル VM で始めるには
 
 .. sidebar:: 目次
 
-   .. contents:: 
+   .. contents::
        :depth: 3
        :local:
 
@@ -95,7 +95,7 @@ Docker Machine で作成したマシンは、必要に応じて何度も再利�
 
 ..    Run the docker-machine create command, passing the string virtualbox to the --driver flag. The final argument is the name of the machine. If this is your first machine, name it default. If you already have a “default” machine, choose another name for this new machine.
 
-コマンド ``docker-machine create`` の実行時、 ``--driver`` フラグに ``virtualbox`` の文字列を指定します。そして、最後の引数がマシン名になります。これが始めてのマシンであれば、名前を ``default`` にしましょう。既に「default｣という名前のマシンが存在している場合は、別の新しいマシン名を指定します。
+コマンド ``docker-machine create`` の実行時、 ``--driver`` フラグに ``virtualbox`` の文字列を指定します。そして、最後の引数がマシン名になります。これが初めてのマシンであれば、名前を ``default`` にしましょう。既に「default｣という名前のマシンが存在している場合は、別の新しいマシン名を指定します。
 
 .. code-block:: bash
 
@@ -388,7 +388,7 @@ Docker ホスト上でポート番号が利用可能な IP アドレスの確認
 * :doc:`Docker Machine ドライバ・リファレンス </machine/drivers/index>`
 * :doc:`Docker Machine サブコマンド・リファレンス </machine/reference/index>`
 
-.. seealso:: 
+.. seealso::
 
    Get started with Docker Machine and a local VM
       https://docs.docker.com/machine/get-started/
