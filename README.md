@@ -20,7 +20,7 @@ docker run --rm -v `pwd`:/mnt docsdockerjp/latex make clean html
 
 ## pdf
 
-`build/html` 以下に生成されます。
+`build/latex` 以下に生成されます。
 
 `Emergency stop.` を避けるために、あらかじめ `\xe2\x80\x93` (EN DASH)を `--` に変換しておきます。
 
