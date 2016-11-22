@@ -15,7 +15,7 @@ Dockerを使ってbuildできます。
 
 ```
 docker build -t docsdockerjp/latex .
-docker run --rm -v `pwd`:/mnt docsdockerjp/latex make html
+docker run --rm -v `pwd`:/mnt docsdockerjp/latex make clean html
 ```
 
 ## pdf
@@ -32,7 +32,7 @@ grep -r '–' . | cut -d : -f 1 | sort | uniq | xargs -I%% perl -pi -e 's/–/--
 
 ```
 docker build -t docsdockerjp/latex .
-docker run --rm -v `pwd`:/mnt docsdockerjp/latex make latexpdfja
+docker run --rm -v `pwd`:/mnt docsdockerjp/latex make clean latexpdfja
 ```
 
 ## Archives
