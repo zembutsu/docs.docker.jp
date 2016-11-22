@@ -96,7 +96,7 @@ import
 
    $ sudo tar -c . | docker import --change "ENV DEBUG true" - exampleimagedir
 
-.. Note the sudo in this example – you must preserve the ownership of the files (especially root ownership) during the archiving with tar. If you are not root (or the sudo command) when you tar, then the ownerships might not get preserved.
+.. Note the sudo in this example -- you must preserve the ownership of the files (especially root ownership) during the archiving with tar. If you are not root (or the sudo command) when you tar, then the ownerships might not get preserved.
 
 この例では ``sudo`` を使っているのに気をつけてください。これは、tar アーカイブを処理する時にファイル（特に root ）の所有権を保持するためです。root でなければ（あるいは sudo を使わなければ）、tar の利用時に権限を得られない可能性があります。
 

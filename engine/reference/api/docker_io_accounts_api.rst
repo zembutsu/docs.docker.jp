@@ -40,7 +40,7 @@ docker.io アカウント API
 
 パラメータ：
 
-..    username – username of the user whose profile info is being requested.
+..    username -- username of the user whose profile info is being requested.
 
 * **username** … リクエスト対象のユーザのユーザ名
 
@@ -48,7 +48,7 @@ docker.io アカウント API
 
 リクエスト・ヘッダ：
 
-..    Authorization – required authentication credentials of either type HTTP Basic or OAuth Bearer Token.
+..    Authorization -- required authentication credentials of either type HTTP Basic or OAuth Bearer Token.
 
 * **Authorization** … 認証のために必要となる HTTP Basic 認証の情報か OAuth Bearer トークン
 
@@ -56,10 +56,10 @@ docker.io アカウント API
 
 ステータス・コード：
 
-..    200 – success, user data returned.
-    401 – authentication error.
-    403 – permission error, authenticated user must be the user whose data is being requested, OAuth access tokens must have profile_read scope.
-    404 – the specified username does not exist.
+..    200 -- success, user data returned.
+    401 -- authentication error.
+    403 -- permission error, authenticated user must be the user whose data is being requested, OAuth access tokens must have profile_read scope.
+    404 -- the specified username does not exist.
 
 * **200** … 成功。ユーザのデータを返す
 * **401** … 認証エラー
@@ -117,7 +117,7 @@ docker.io アカウント API
 
 パラメータ：
 
-..    username – username of the user whose profile info is being updated.
+..    username -- username of the user whose profile info is being updated.
 
 * **username** … プロフィールを更新するユーザのユーザ名
 
@@ -125,11 +125,11 @@ docker.io アカウント API
 
 JSON パラメータ：
 
-..    full_name (string) – (optional) the new name of the user.
-    location (string) – (optional) the new location.
-    company (string) – (optional) the new company of the user.
-    profile_url (string) – (optional) the new profile url.
-    gravatar_email (string) – (optional) the new Gravatar email address.
+..    full_name (string) -- (optional) the new name of the user.
+    location (string) -- (optional) the new location.
+    company (string) -- (optional) the new company of the user.
+    profile_url (string) -- (optional) the new profile url.
+    gravatar_email (string) -- (optional) the new Gravatar email address.
 
 * **full_name** (文字列) … （オプション）ユーザの新しい名前
 * **location** (文字列) … （オプション）新しい場所
@@ -141,8 +141,8 @@ JSON パラメータ：
 
 リクエスト・ヘッダ：
 
-..    Authorization – required authentication credentials of either type HTTP Basic or OAuth Bearer Token.
-..    Content-Type – MIME Type of post data. JSON, url-encoded form data, etc.
+..    Authorization -- required authentication credentials of either type HTTP Basic or OAuth Bearer Token.
+..    Content-Type -- MIME Type of post data. JSON, url-encoded form data, etc.
 
 * **Authorization** … 認証のために必要となる HTTP Basic 認証の情報か OAuth Bearer トークン
 * **Content-Type** … JSON、 url エンコード形式のデータ等、ポストする MIME タイプ
@@ -151,11 +151,11 @@ JSON パラメータ：
 
 ステータス・コード：
 
-..     200 – success, user data updated.
-    400 – post data validation error.
-    401 – authentication error.
-    403 – permission error, authenticated user must be the user whose data is being updated, OAuth access tokens must have profile_write scope.
-    404 – the specified username does not exist.
+..     200 -- success, user data updated.
+    400 -- post data validation error.
+    401 -- authentication error.
+    403 -- permission error, authenticated user must be the user whose data is being updated, OAuth access tokens must have profile_write scope.
+    404 -- the specified username does not exist.
 
 * **200** … 成功。ユーザのデータを返す
 * **400** … POST するデータ形式が無効
@@ -221,7 +221,7 @@ JSON パラメータ：
 
 .. Parameters:
 
-..    username – username of the user whose profile info is being updated.
+..    username -- username of the user whose profile info is being updated.
 
 * **username** … メール情報を表示したいユーザのユーザ名
 
@@ -229,7 +229,7 @@ JSON パラメータ：
 
 リクエスト・ヘッダ：
 
-..    Authorization – required authentication credentials of either type HTTP Basic or OAuth Bearer Token
+..    Authorization -- required authentication credentials of either type HTTP Basic or OAuth Bearer Token
 
 * **Authorization** … 認証のために必要となる HTTP Basic 認証の情報か OAuth Bearer トークン
 
@@ -237,10 +237,10 @@ JSON パラメータ：
 
 ステータス・コード：
 
-..    200 – success, user data updated.
-    401 – authentication error.
-    403 – permission error, authenticated user must be the user whose data is being requested, OAuth access tokens must have email_read scope.
-    404 – the specified username does not exist.
+..    200 -- success, user data updated.
+    401 -- authentication error.
+    403 -- permission error, authenticated user must be the user whose data is being requested, OAuth access tokens must have email_read scope.
+    404 -- the specified username does not exist.
 
 * **200** … 成功。ユーザのデータを返す
 * **401** … 認証エラー
@@ -294,7 +294,7 @@ JSON パラメータ：
 
 JSON パラメータ：
 
-..    email (string) – email address to be added.
+..    email (string) -- email address to be added.
 
 * **email** (文字列) … メールアドレスが追加されます。
 
@@ -302,8 +302,8 @@ JSON パラメータ：
 
 リクエスト・ヘッダ：
 
-..     Authorization – required authentication credentials of either type HTTP Basic or OAuth Bearer Token.
-..     Content-Type – MIME Type of post data. JSON, url-encoded form data, etc.
+..     Authorization -- required authentication credentials of either type HTTP Basic or OAuth Bearer Token.
+..     Content-Type -- MIME Type of post data. JSON, url-encoded form data, etc.
 
 * **Authorization** … 認証のために必要となる HTTP Basic 認証の情報か OAuth Bearer トークン
 * **Content-Type** … JSON、 url エンコード形式のデータ等、ポストする MIME タイプ
@@ -312,11 +312,11 @@ JSON パラメータ：
 
 ステータス・コード：
 
-..    201 – success, new email added.
-    400 – data validation error.
-    401 – authentication error.
-    403 – permission error, authenticated user must be the user whose data is being requested, OAuth access tokens must have email_write scope.
-    404 – the specified username does not exist.
+..    201 -- success, new email added.
+    400 -- data validation error.
+    401 -- authentication error.
+    403 -- permission error, authenticated user must be the user whose data is being requested, OAuth access tokens must have email_write scope.
+    404 -- the specified username does not exist.
 
 * **200** … 成功。ユーザのデータを返す
 * **400** … POST するデータ形式が無効
@@ -374,7 +374,7 @@ JSON パラメータ：
 
 JSON パラメータ：
 
-..    email (string) – email address to be added.
+..    email (string) -- email address to be added.
 
 * **email** (文字列) … メールアドレスが追加されます。
 
@@ -382,8 +382,8 @@ JSON パラメータ：
 
 リクエスト・ヘッダ：
 
-..    Authorization – required authentication credentials of either type HTTP Basic or OAuth Bearer Token.
-..    Content-Type – MIME Type of post data. JSON, url-encoded form data, etc.
+..    Authorization -- required authentication credentials of either type HTTP Basic or OAuth Bearer Token.
+..    Content-Type -- MIME Type of post data. JSON, url-encoded form data, etc.
 
 
 * **Authorization** … 認証のために必要となる HTTP Basic 認証の情報か OAuth Bearer トークン
@@ -393,11 +393,11 @@ JSON パラメータ：
 
 ステータス・コード：
 
-..    201 – success, new email added.
-    400 – data validation error.
-    401 – authentication error.
-    403 – permission error, authenticated user must be the user whose data is being requested, OAuth access tokens must have email_write scope.
-    404 – the specified username does not exist.
+..    201 -- success, new email added.
+    400 -- data validation error.
+    401 -- authentication error.
+    403 -- permission error, authenticated user must be the user whose data is being requested, OAuth access tokens must have email_write scope.
+    404 -- the specified username does not exist.
 
 * **200** … 成功。ユーザのデータを返す
 * **400** … POST するデータ形式が無効

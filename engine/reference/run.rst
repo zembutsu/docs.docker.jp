@@ -89,12 +89,12 @@ Docker は隔離（独立）したコンテナでプロセスを実行します�
         Detached (-d)
         Foreground
     Container identification
-        Name (–name)
+        Name (--name)
         PID equivalent
-    IPC settings (–ipc)
+    IPC settings (--ipc)
     Network settings
-    Restart policies (–restart)
-    Clean up (–rm)
+    Restart policies (--restart)
+    Clean up (--rm)
     Runtime constraints on resources
     Runtime privilege, Linux capabilities, and LXC configuration
 
@@ -208,7 +208,7 @@ Docker で ``-a`` を指定しなければ、Docker は `自動的に全ての�
 コンテナの識別
 ====================
 
-.. Name (–name)
+.. Name (--name)
 
 .. _name-name:
 
@@ -283,7 +283,7 @@ PID 相当の機能
 
    $ docker run alpine@sha256:9cacb71397b640eca97488cf08582ae4e4068513101088e9f96c9814bfda95e0 date
 
-.. PID settings (–pid)
+.. PID settings (--pid)
 
 .. _pid-settings-pid:
 
@@ -369,7 +369,7 @@ redis コンテナのデバッグに、strace が入っている他のコンテ�
    $ strace -p 1
 
 
-.. UTS settings (–uts)
+.. UTS settings (--uts)
 
 .. _uts-settings-uts:
 
@@ -398,7 +398,7 @@ UTS 名前空間とは、プロセスを実行する名前空間上で見える�
 
 ホスト上と UTS 名前空間を共有したい場合もあるでしょう。例えば、コンテナを動かすホストがホスト名を変更してしまい、コンテナのホスト名も変更したい場合です。より高度な使い方としては、コンテナからホスト側のホスト名の変更を行うケースです。
 
-.. IPC settings (–ipc)
+.. IPC settings (--ipc)
 
 .. _ipc-settings-ipc:
 
@@ -621,7 +621,7 @@ IPC (POSIX/SysV IPC) 名前空間は、共有メモリ・セグメント、セ�
 
    Docker がコンテナの ``/etc/hosts`` ファイルをリアルタイムに更新するかもしれません。そのため、コンテナ内のプロセスが ``/etc/hosts`` ファイルを読み込もうとしても空だったり、あるいは最後まで読み込めなかったりする場合が有り得ます。ほとんどの場合、再度読み込みで問題が解決するでしょう。
 
-.. Restart policies (–restart)
+.. Restart policies (--restart)
 
 .. _restart-policies-restart:
 
@@ -686,7 +686,7 @@ Docker は以下の再起動ポリシーをサポートしています。
    $ docker inspect -f "{{ .State.StartedAt }}" my-container
    # 2015-03-04T23:47:07.691840179Z
 
-.. You cannot set any restart policy in combination with “clean up (–rm)”. Setting both --restart and --rm results in an error.
+.. You cannot set any restart policy in combination with “clean up (--rm)”. Setting both --restart and --rm results in an error.
 
 再起動ポリシーと :ref:`クリーンアップ <clean-up-rm>` は同時に指定できません。 ``--restart`` と ``--rm`` を同時に指定してもエラーになります。
 
@@ -767,7 +767,7 @@ Docker は以下の再起動ポリシーをサポートしています。
    # 3
 
 
-.. Clean up (–rm)
+.. Clean up (--rm)
 
 .. _clean-up-rm:
 
@@ -977,7 +977,7 @@ Docker は以下の再起動ポリシーをサポートしています。
 
    $ docker run -ti -m 300M ubuntu:14.04 /bin/bash
 
-.. We set memory limit only, this means the processes in the container can use 300M memory and 300M swap memory, by default, the total virtual memory size (–memory-swap) will be set as double of memory, in this case, memory + swap would be 2*300M, so processes can use 300M swap memory as well.
+.. We set memory limit only, this means the processes in the container can use 300M memory and 300M swap memory, by default, the total virtual memory size (--memory-swap) will be set as double of memory, in this case, memory + swap would be 2*300M, so processes can use 300M swap memory as well.
 
 メモリの上限のみ設定しました。これはコンテナが 300M のメモリと 300M のスワップ・メモリを使えます。合計の仮想メモリサイズ（total virtual memory size、 --memory-swap で指定）はメモリの２倍に設定されます。今回の例では、メモリ＋スワップは 2×300M ですので、プロセスは 300M のスワップ・メモリを利用できます。
 
@@ -1549,7 +1549,7 @@ FUSE を基盤とするファイルシステムをマウントするには、 ``
 
 デフォルトの seccomp profile は特定のケーパビリティでファシリティを使えるようになりました。そのため Docker 1.12 から調整は不要です。Docker 1.10 と Docker 1.11 では何も起こりませんので、カスタム seccomp profile を使うか ``--security-opt seccomp=unconfined`` でケーパビリティを追加します。
 
-.. Logging drivers (–log-driver)
+.. Logging drivers (--log-driver)
 
 .. _logging-drivers-log-driver:
 

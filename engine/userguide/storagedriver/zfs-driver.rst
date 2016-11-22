@@ -121,7 +121,7 @@ Docker ホストで ``zfs`` ストレージ・ドライバを使えば、イメ�
 コンテナを ZFS で読み書き
 ==============================
 
-.. Container reads with the zfs storage driver are very simple. A newly launched container is based on a ZFS clone. This clone initially shares all of its data with the dataset it was created from. This means that read operations with the zfs storage driver are fast – even if the data being read was copied into the container yet. This sharing of data blocks is shown in the diagram below.
+.. Container reads with the zfs storage driver are very simple. A newly launched container is based on a ZFS clone. This clone initially shares all of its data with the dataset it was created from. This means that read operations with the zfs storage driver are fast -- even if the data being read was copied into the container yet. This sharing of data blocks is shown in the diagram below.
 
 コンテナが ``zfs`` ストレージ・ドライバから読み込むのは、非常にシンプルです。直近で起動したコンテナは、ZFS クローンを元にしています。このクローンは作成時、まず全てのデータセットを共有します。つまり、 ``zfs`` ストレージ・ドライバの読み込み処理が高速なことを意味します。これは、読み込み対象のデータがコンテナ内にコピーされていなくてもです。データブロックの共有は、次のような図になります。
 

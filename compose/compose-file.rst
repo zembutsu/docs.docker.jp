@@ -44,7 +44,7 @@ Bash の ``${変数}`` の構文のように、環境変数を使って設定を
 サービス設定リファレンス
 ==============================
 
-.. Note: There are two versions of the Compose file format – version 1 (the legacy format, which does not support volumes or networks) and version 2 (the most up-to-date). For more information, see the Versioning section.
+.. Note: There are two versions of the Compose file format -- version 1 (the legacy format, which does not support volumes or networks) and version 2 (the most up-to-date). For more information, see the Versioning section.
 
 .. note::
 

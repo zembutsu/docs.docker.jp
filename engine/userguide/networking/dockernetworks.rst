@@ -25,7 +25,7 @@ Docker コンテナ・ネットワークの理解
 
 ウェブ・アプリケーションの構築は、安全についての考慮が必要であり、そのために Docker ネットワーク機能を使います。ネットワークとは、定義上、コンテナのために完全な分離(isolation)を提供するものです。そして、アプリケーションの実行にあたり、ネットワーク管理は重要であることを意味します。Docker コンテナ・ネットワークは、これらを管理するものです。
 
-.. This section provides an overview of the default networking behavior that Docker Engine delivers natively. It describes the type of networks created by default and how to create your own, user–defined networks. It also describes the resources required to create networks on a single host or across a cluster of hosts.
+.. This section provides an overview of the default networking behavior that Docker Engine delivers natively. It describes the type of networks created by default and how to create your own, user--defined networks. It also describes the resources required to create networks on a single host or across a cluster of hosts.
 
 このセクションでは、Docker Engine ドライバ固有の標準ネットワーク機能について、その概要を扱います。ここでは標準のネットワーク・タイプについてと、どのようにして自分自身でユーザ定義ネットワークを使うのかを説明します。また、単一ホストまたはクラスタ上をまたがるホスト間で、ネットワークを作成するために必要なリソースについても説明します。
 
