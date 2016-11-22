@@ -24,10 +24,8 @@ RUN apt-get -y update \
 RUN apt-get -y update \
         && apt-get -y install \
             make \
+            python-pip \
         && apt-get clean
-RUN apt-get -y update \
-        && apt-get -y install \
-            python-pip
 RUN pip install Sphinx==1.4.8
 
 VOLUME ["/mnt"]
