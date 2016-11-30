@@ -913,7 +913,7 @@ Add は２つの形式があります。
 
 .. Each <src> may contain wildcards and matching will be done using Go’s filepath.Match rules. For example:
 
-それぞれの ``<ソース>`` にはワイルドカードと Go 言語の `filepath.Mach <http://golang.org/pkg/path/filepath#Match>`_ ルールに一致するパターンが使えます。例えば、次のような記述です。
+それぞれの ``<ソース>`` にはワイルドカードと Go 言語の `filepath.Match <http://golang.org/pkg/path/filepath#Match>`_ ルールに一致するパターンが使えます。例えば、次のような記述です。
 
 .. code-block:: dockerfile
 
@@ -1038,7 +1038,7 @@ COPY は２つの形式があります。
 
 .. Each <src> may contain wildcards and matching will be done using Go’s filepath.Match rules. For example:
 
-それぞれの ``<ソース>`` にはワイルドカードと Go 言語の `filepath.Mach <http://golang.org/pkg/path/filepath#Match>`_ ルールに一致するパターンが使えます。例えば、次のような記述です。
+それぞれの ``<ソース>`` にはワイルドカードと Go 言語の `filepath.Match <http://golang.org/pkg/path/filepath#Match>`_ ルールに一致するパターンが使えます。例えば、次のような記述です。
 
 .. code-block:: dockerfile
 
