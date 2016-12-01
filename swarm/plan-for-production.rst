@@ -231,7 +231,7 @@ Consul 、 etcd 、 Zookeeper はどれもプロダクションにふさわし�
 .. image:: ./images/swarm-ha-cluster-discovery-aws.png
    :scale: 60%
 
-.. It is possible to share the same Consul, etcd, or Zookeeper containers between the Swarm discovery and Engine container networks. However, for best performance and availability you should deploy dedicated instances – a discovery instance for Swarm and another for your container networks.
+.. It is possible to share the same Consul, etcd, or Zookeeper containers between the Swarm discovery and Engine container networks. However, for best performance and availability you should deploy dedicated instances -- a discovery instance for Swarm and another for your container networks.
 
  Swarm ディスカバリ用の Consul 、 etcd 、 Zookeeper コンテナは、Engine コンテナ・ネットワークは共有できるかもしれません。しかし最高の性能と可用性のためには、Swarm のディスカバリ用に専用のインスタンスをデプロイし、他はコンテナのネットワーク用に使うべきでしょう。
  
@@ -249,7 +249,7 @@ Consul 、 etcd 、 Zookeeper はどれもプロダクションにふさわし�
  .. image:: ./images/swarm-across-aws-and-azure.png
    :scale: 60%
 
-.. While such architectures may appear to provide the ultimate in availability, there are several factors to consider. Network latency can be problematic, as can partitioning. As such, you should seriously consider technologies that provide reliable, high speed, low latency connections into these cloud platforms – technologies such as AWS Direct Connect and Azure ExpressRoute.
+.. While such architectures may appear to provide the ultimate in availability, there are several factors to consider. Network latency can be problematic, as can partitioning. As such, you should seriously consider technologies that provide reliable, high speed, low latency connections into these cloud platforms -- technologies such as AWS Direct Connect and Azure ExpressRoute.
 
 このアーキテクチャは究極の可用性を提供しているように見えるかもしれませんが、考慮すべき複数の要素があります。ネットワークのレイテンシ（応答遅延）は問題になりがちです。パーティショニング（分割）も問題になりうるでしょう。クラウド・プラットフォームにおいて信頼性、高スピード、低いレイテンシを実現する技術の考慮が必要となるでしょう。例えば AWS ダイレクト・コネクトや Azure ExpressRoute といった技術です。
 
@@ -268,7 +268,7 @@ Consul 、 etcd 、 Zookeeper はどれもプロダクションにふさわし�
 
 開発、ステージング、プロダクションのような複数の環境を、１つの Swarm クラスタ上で動かせるでしょう。そのためには Swarm ノードをタグ付けし、 ``production`` や ``staging`` 等のようにタグ付けされたコンテナを制約フィルタ（constraint filter）で使う方法があります。しかしながら、これは推奨しません。ビジネスにおけるクリティカルなプロダクション環境において高いパフォーマンスが必要な時は、エアギャップ・プロダクション環境の手法を推奨します。
 
-.. For example, many companies not only deploy dedicated isolated infrastructures for production – such as networks, storage, compute and other systems. They also deploy separate management systems and policies. This results in things like users having separate accounts for logging on to production systems etc. In these types of environments, it is mandatory to deploy dedicated production Swarm clusters that operate on the production hardware infrastructure and follow thorough production management, monitoring, audit and other policies.
+.. For example, many companies not only deploy dedicated isolated infrastructures for production -- such as networks, storage, compute and other systems. They also deploy separate management systems and policies. This results in things like users having separate accounts for logging on to production systems etc. In these types of environments, it is mandatory to deploy dedicated production Swarm clusters that operate on the production hardware infrastructure and follow thorough production management, monitoring, audit and other policies.
 
 例えば、多くの会社では、プロダクション用に分離された専用環境にデプロイするでしょう。専用環境とは、ネットワーク、ストレージ、計算資源、その他のシステムです。デプロイは別の管理システムやポリシーで行われます。その結果、プロダクション・システム等にログインするために、別のアカウント情報を持つ必要があります。この種の環境では、プロダクション専用の Swarm クラスタへデプロイする義務があるでしょう。プロダクションのハードウェア基盤で Swarm クラスタを動かし、そこでプロダクションにおける管理・監視・監査・その他のポリシーに従うことになります。
 

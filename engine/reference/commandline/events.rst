@@ -71,7 +71,7 @@ Docker デーモンは以下のイベントを報告します。
    reload
 
 
-.. The --since and --until parameters can be Unix timestamps, RFC3339 dates or Go duration strings (e.g. 10m, 1h30m) computed relative to client machine’s time. If you do not provide the –since option, the command returns only new and/or live events.
+.. The --since and --until parameters can be Unix timestamps, RFC3339 dates or Go duration strings (e.g. 10m, 1h30m) computed relative to client machine’s time. If you do not provide the --since option, the command returns only new and/or live events.
 
 ``--since`` と ``--until`` パラメータでは、 Unix タイムスタンプ、 RFC 3339 の dates 、Go 言語の期間文字列（例： ``10m`` 、 ``1h30m`` ）をクライアントのマシン時刻から相対的に扱えます。 ``--since`` オプションを指定しなければ、コマンドは新しく追加されたか現在のイベントのみ表示します。
 

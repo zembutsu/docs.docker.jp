@@ -183,7 +183,7 @@ Docker Machine は Docker Engine を起動し、迅速に実行する手助け�
 Docker Compose
 --------------------
 
-.. Docker Compose allows you to define an application’s components – their containers, configuration, links and volumes – in a single file. Then a single command will set everything up and start your application running.
+.. Docker Compose allows you to define an application’s components -- their containers, configuration, links and volumes -- in a single file. Then a single command will set everything up and start your application running.
 
 Docker Compose はアプリケーションの構成を定義します。コンテナと設定、リンク、ボリュームに関する情報を、１つのファイル上で記述します。コマンド１つ実行するだけで、全てのをセットアップし、アプリケーションを実行します。
 

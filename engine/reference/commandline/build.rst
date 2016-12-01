@@ -366,7 +366,7 @@ Dockerfile の指定（-f）
 
    ``docker build`` が ``no such file or directory`` エラーを返すのは、アップロードすべきコンテクストとしてのファイルやディレクトリが存在しない時です。これは、コンテクストが存在しないか、指定したファイルがホストシステム上に存在していない可能性があります。コンテクストはカレント・ディレクトリ（と、その子ディレクトリ）のみに安全上の理由で制限されています。これはリモートの Docker ホスト上でも、繰り返し構築できるようにするためです。これが ``ADD ../file`` が動作しない理由でもあります。
 
-.. Optional parent cgroup (–cgroup-parent)
+.. Optional parent cgroup (--cgroup-parent)
 
 .. _optional-parent-cgroup:
 
@@ -377,7 +377,7 @@ Dockerfile の指定（-f）
 
 ``docker build`` に ``--cgroup-parent`` オプションを付けて構築すると、構築時の ``docker run`` 実行時に :ref:`適切なフラグを付けて実行 <specifying-custom-cgroups>` します。
 
-.. Set ulimits in container (–ulimit)
+.. Set ulimits in container (--ulimit)
 
 .. _set-ulimits-in-container:
 
@@ -388,7 +388,7 @@ Dockerfile の指定（-f）
 
 ``docker build`` に ``--ulimit`` オプションを付けて実行したら、コンテナの構築ステップを開始する時、都度 ``--ulimit`` :doc:`フラグの値を設定 <run>` します。
 
-.. Set build-time variables (–build-arg)
+.. Set build-time variables (--build-arg)
 
 .. _set-build-time-variables:
 

@@ -225,7 +225,7 @@ TLS 接続は DNS 名と同様に、IP アドレスでも通信可能にでき�
 デフォルトで安全に
 ====================
 
-.. If you want to secure your Docker client connections by default, you can move the files to the .docker directory in your home directory – and set the DOCKER_HOST and DOCKER_TLS_VERIFY variables as well (instead of passing -H=tcp://$HOST:2376 and --tlsverify on every call).
+.. If you want to secure your Docker client connections by default, you can move the files to the .docker directory in your home directory -- and set the DOCKER_HOST and DOCKER_TLS_VERIFY variables as well (instead of passing -H=tcp://$HOST:2376 and --tlsverify on every call).
 
 Docker クライアントの接続をデフォルトで安全にしたい場合は、自分のホームディレクトリ直下の ``.docker`` ディレクトリにファイルを移動できます。そして、環境変数 ``DOCKER_HOST`` と ``DOCKER_TLS_VERIFY`` を使います（ 毎回 ``-H=tcp://$HOST;2376`` や ``--tlsverify`` を実行する代わりになります ）。
 
