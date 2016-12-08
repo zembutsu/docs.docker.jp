@@ -134,7 +134,7 @@ Docker は ``Dockerfile`` の命令を順番に実行します。イメージ構
 
 .. Docker treats lines that begin with # as a comment, unless the line is a valid parser directive. A # marker anywhere else in a line is treated as an argument. This allows statements like:
 
-Docker は有効な :ref:`パーサ・ディレクティブ <parser-directives>` でなければ、 ``#`` で *始まる* 行をコメントとみなします。 ``#`` マークは行における移行の文字をコメントとみなします。コメントは次のような書き方ができます。
+Docker は有効な :ref:`パーサ・ディレクティブ <parser-directives>` でなければ、 ``#`` で *始まる* 行をコメントとみなします。 ``#`` マークは行における以降の文字をコメントとみなします。コメントは次のような書き方ができます。
 
 .. code-block:: dockerfile
 
