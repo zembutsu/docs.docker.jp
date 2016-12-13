@@ -27,7 +27,7 @@ Compose の起動順番を制御
 
 .. However, Compose will not wait until a container is “ready” (whatever that means for your particular application) - only until it’s running. There’s a good reason for this.
 
-しかしながら、Compose はコンテナの準備が「整う」まで待ちません（つまり、特定のアプリケーションが利用可能になるまで待ちません）。単に起動するだけす。これには理由があります。
+しかしながら、Compose はコンテナの準備が「整う」まで待ちません（つまり、特定のアプリケーションが利用可能になるまで待ちません）。単に起動するだけです。これには理由があります。
 
 .. The problem of waiting for a database (for example) to be ready is really just a subset of a much larger problem of distributed systems. In production, your database could become unavailable or move hosts at any time. Your application needs to be resilient to these types of failures.
 
