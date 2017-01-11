@@ -254,7 +254,7 @@ Docker に対して新しいネットワークで使用する ``bridge`` ドラ�
 
 .. Launch a container running a PostgreSQL database and pass it the --net=my-bridge-network flag to connect it to your new network:
 
-PostgreSQL データベースを実行するコンテナを起動します。``--net=my-bridge-netowk`` フラグを付けて、新しいネットワークに接続します。
+PostgreSQL データベースを実行するコンテナを起動します。``--net=my-bridge-network`` フラグを付けて、新しいネットワークに接続します。
 
 .. code-block:: bash
 
