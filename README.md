@@ -2,7 +2,7 @@
 
 http://docs.docker.jp
 
-Here is a translated documents  of Docker Version 1.11. 
+Here is a translated documents  of Docker Version 1.13. 
 Original (English) version is here; https://docs.docker.com/ 
 
 # build
@@ -37,5 +37,7 @@ docker run --rm -v `pwd`:/mnt docsdockerjp/latex make clean latexpdfja
 
 ## Archives
 
+* v1.12 - http://docs.docker.jp/v1.12/
+* v1.11 - http://docs.docker.jp/v1.11/
 * v1.10 - http://docs.docker.jp/v1.10/
 * v1.9 - http://docs.docker.jp/v1.9/
