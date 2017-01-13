@@ -44,7 +44,7 @@ Bash の ``${変数}`` の構文のように、環境変数を使って設定を
 サービス設定リファレンス
 ==============================
 
-.. Note: There are two versions of the Compose file format – version 1 (the legacy format, which does not support volumes or networks) and version 2 (the most up-to-date). For more information, see the Versioning section.
+.. Note: There are two versions of the Compose file format -- version 1 (the legacy format, which does not support volumes or networks) and version 2 (the most up-to-date). For more information, see the Versioning section.
 
 .. note::
 
@@ -450,7 +450,7 @@ environment
 
 .. Add environment variables. You can use either an array or a dictionary. Any boolean values; true, false, yes no, need to be enclosed in quotes to ensure they are not converted to True or False by the YML parser.
 
-環境変数を追加します。配列もしくは辞書形式（dictionary）で指定できます。boolean 値は true、false、yes、no のいずれかであり、YML パーサによって True か False に変換されるよう、クォート（ ' 記号）で囲む必要があります。
+環境変数を追加します。配列もしくは辞書形式（dictionary）で指定できます。boolean 値 (true、false、yes、no のいずれか) は、YML パーサによって True か False に変換されないよう、クォート（ ' 記号）で囲む必要があります。
 
 .. Environment variables with only a key are resolved to their values on the machine Compose is running on, which can be helpful for secret or host-specific values.
 

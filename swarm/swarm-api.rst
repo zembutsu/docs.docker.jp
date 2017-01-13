@@ -60,7 +60,7 @@ Docker Swarm API は :doc:`Docker リモート API </engine/reference/api/docker
 
 * ``GET "/containers/json"`` : 公式 swarm イメージを使ってコンテナを起動した場合、デフォルトでは表示しません。表示するには ``all-1`` を使います。
 
-* ``GET "/images/json"`` : ``–filter node=<Node name>`` を使うことで、特定のノードのイメージ情報を表示します。
+* ``GET "/images/json"`` : ``--filter node=<Node name>`` を使うことで、特定のノードのイメージ情報を表示します。
 
 * ``POST "/containers/create"`` : ``HostConfig`` の ``CpuShares`` 設定で、コンテナに対する CPU コアの割当数を指定します。
 

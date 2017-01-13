@@ -56,7 +56,7 @@ Docker サーバが作成するマスカレード・ルールは、外の世界�
 
 まずは、 ``docker run`` で  ``-P`` か ``--publish-all=true|false`` を指定します。これは全体的なオプションであり、イメージの ``Dockerfile`` 内にある ``EXPOSE`` 命令で各ポートを指定するか、あるいは、コマンドラインで ``--expose <ポート>`` フラグを使って指定します。いずれかを使い、ホスト上の *エフェメラル・ポート範囲内（ephemeral port range）* にあるポートに割り当てられます。以後、どのポートに割り当てられているか調べるには ``docker port`` コマンドを使います。エフェメラル・ポート範囲とは、カーネル・パラメータの ``/proc/sys/net/ipv4/ip_local_port_range`` で指定されており、典型的な範囲は 32768 ～ 61000 です。
 
-.. Mapping can be specified explicitly using -p SPEC or --publish=SPEC option. It allows you to particularize which port on docker server - which can be any port at all, not just one within the ephemeral port range – you want mapped to which port in the container.
+.. Mapping can be specified explicitly using -p SPEC or --publish=SPEC option. It allows you to particularize which port on docker server - which can be any port at all, not just one within the ephemeral port range -- you want mapped to which port in the container.
 
 割り当て（マッピング）を明示するには、 ``-p 指定`` か ``--publish=指定`` オプションを使います。これは、Docker サーバのどのポートを使うか明示するものであり、ポートの指定が無ければ、エフェメラル・ポート範囲から割り当てられます。この指定を使い、コンテナの任意のポートに割り当て可能です。
 

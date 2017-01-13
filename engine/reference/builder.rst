@@ -134,7 +134,7 @@ Docker は ``Dockerfile`` の命令を順番に実行します。イメージ構
 
 .. Docker treats lines that begin with # as a comment, unless the line is a valid parser directive. A # marker anywhere else in a line is treated as an argument. This allows statements like:
 
-Docker は有効な :ref:`パーサ・ディレクティブ <parser-directives>` でなければ、 ``#`` で *始まる* 行をコメントとみなします。 ``#`` マークは行における移行の文字をコメントとみなします。コメントは次のような書き方ができます。
+Docker は有効な :ref:`パーサ・ディレクティブ <parser-directives>` でなければ、 ``#`` で *始まる* 行をコメントとみなします。 ``#`` マークは行における以降の文字をコメントとみなします。コメントは次のような書き方ができます。
 
 .. code-block:: dockerfile
 
@@ -548,7 +548,7 @@ FROM
 
    FROM <イメージ>@<digest>
 
-.. The FROM instruction sets the Base Image for subsequent instructions. As such, a valid Dockerfile must have FROM as its first instruction. The image can be any valid image – it is especially easy to start by pulling an image from the Public Repositories.
+.. The FROM instruction sets the Base Image for subsequent instructions. As such, a valid Dockerfile must have FROM as its first instruction. The image can be any valid image -- it is especially easy to start by pulling an image from the Public Repositories.
 
 ``FROM`` 命令は、以降の命令で使う :ref:`ベース・イメージ <base-image>` を指定します。あるいは、有効な ``Dockerfile`` は、１行めを ``FROM`` 命令で指定する必要があります。イメージとは、あらゆる有効なものが利用できます。 :doc:`パブリック・リポジトリ </engine/userguide/containers/dockerrepos>` から **イメージを取得する** 方法が一番簡単です。
 
@@ -913,7 +913,7 @@ Add は２つの形式があります。
 
 .. Each <src> may contain wildcards and matching will be done using Go’s filepath.Match rules. For example:
 
-それぞれの ``<ソース>`` にはワイルドカードと Go 言語の `filepath.Mach <http://golang.org/pkg/path/filepath#Match>`_ ルールに一致するパターンが使えます。例えば、次のような記述です。
+それぞれの ``<ソース>`` にはワイルドカードと Go 言語の `filepath.Match <http://golang.org/pkg/path/filepath#Match>`_ ルールに一致するパターンが使えます。例えば、次のような記述です。
 
 .. code-block:: dockerfile
 
@@ -1038,7 +1038,7 @@ COPY は２つの形式があります。
 
 .. Each <src> may contain wildcards and matching will be done using Go’s filepath.Match rules. For example:
 
-それぞれの ``<ソース>`` にはワイルドカードと Go 言語の `filepath.Mach <http://golang.org/pkg/path/filepath#Match>`_ ルールに一致するパターンが使えます。例えば、次のような記述です。
+それぞれの ``<ソース>`` にはワイルドカードと Go 言語の `filepath.Match <http://golang.org/pkg/path/filepath#Match>`_ ルールに一致するパターンが使えます。例えば、次のような記述です。
 
 .. code-block:: dockerfile
 
@@ -1625,7 +1625,7 @@ Dockerfile の作者は、オプションで ``ARG`` 命令のデフォルト値
    ENV CONT_IMG_VER ${CONT_IMG_VER:-v1.0.0}
    RUN echo $CONT_IMG_VER
 
-.. Unlike an ARG instruction, ENV values are always persisted in the built image. Consider a docker build without the –build-arg flag:
+.. Unlike an ARG instruction, ENV values are always persisted in the built image. Consider a docker build without the --build-arg flag:
 
 ``ARG`` 命令とは異なり、構築時の ``ENV`` 値は常に一定です。docker build で --build-arg フラグを使わない場合を考えてみましょう。
 

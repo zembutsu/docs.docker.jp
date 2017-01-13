@@ -141,7 +141,7 @@ run
 例
 ==========
 
-.. Assign name and allocate pseudo-TTY (–name, -it)
+.. Assign name and allocate pseudo-TTY (--name, -it)
 
 .. _assign-name-and-allocalte-pseudo-tty:
 
@@ -161,7 +161,7 @@ run
 
 この例は ``debian:latest`` イメージを使い、 ``test`` という名称のコンテナを実行します。 ``-it`` は疑似 TTY（pseudo-TTY）をコンテナの標準入力に接続するよう、 Docker に対して命令します。つまり、コンテナ内でインタラクティブな ``bash`` シェルを作成します。例の中で、 ``bash`` シェルを終了コード ``13`` で終了しています。この終了コードは ``docker run`` を呼び出したもの（docker）にも送られ、 ``test`` コンテナのメタデータに記録されます。
 
-.. Capture container ID (–cidfile)
+.. Capture container ID (--cidfile)
 
 コンテナ ID の取得（--cidfile）
 ----------------------------------------
@@ -174,7 +174,7 @@ run
 
 これはコンテナを作成し、コンソール上に ``test`` を表示します。 ``cidfile`` フラグは Docker に新しいファイルを作成させ、そこにコンテナ ID を書かせるものです。もしファイルが既に存在している場合、Docker はエラーを返します。 ``docker run`` を終了したら、Docker はこのファイルを閉じます。
 
-.. Full container capabilities (–privileged)
+.. Full container capabilities (--privileged)
 
 .. _full-container-capabilities:
 
@@ -248,11 +248,11 @@ tmpfs のマウント（--tmpfs）
 
 ``--tmpfs`` フラグはコンテナに対して空の tmfps をマウントします。この時、オプション ``rw`` 、 ``noexec`` 、``nosuid`` 、 ``size=65536k`` オプションを指定しています。
 
-.. Mount volume (-v, –read-only)
+.. Mount volume (-v, --read-only)
 
 .. _mount-volume:
 
-ボリュームのマウント（-v, –read-only）
+ボリュームのマウント（-v, --read-only）
 ----------------------------------------
 
 .. code-block:: bash
@@ -287,7 +287,7 @@ tmpfs のマウント（--tmpfs）
 
 Docker Unix ソケットと docker バイナリ（ https://get.docker.com から入手）に対するマウントにより、コンテナはホスト側の Docker デーモンに対して作成や各種操作といった完全アクセスをもたらします。
 
-.. Publish or expose port (-p, –expose)
+.. Publish or expose port (-p, --expose)
 
 ポートの公開と露出（-p、--expose）
 ----------------------------------------
@@ -308,7 +308,7 @@ Docker Unix ソケットと docker バイナリ（ https://get.docker.com から
 
 コンテナのポート ``80`` を露出（expose）しますが、ホストシステム側のインターフェースには公開しません。
 
-.. Set environment variables (-e, –env, –env-file)
+.. Set environment variables (-e, --env, --env-file)
 
 .. _set-environment-variable:
 
@@ -385,7 +385,7 @@ Docker Unix ソケットと docker バイナリ（ https://get.docker.com から
    123qwe=bar
    org.spring.config=something
 
-.. Set metadata on container (-l, –label, –label-file)
+.. Set metadata on container (-l, --label, --label-file)
 
 .. _set-metadata-on-container:
 
@@ -436,7 +436,7 @@ label-file の書式は、環境変数の読み込み書式と似ています（
 
 ラベルの動作に関する詳しい情報は、Docker ユーザ・ガイドの :doc:`Label - Docker でカスタム・メタデータを使う </engine/userguide/labels-custom-metadata>` をご覧ください。
 
-.. Connect a container to a network (–net)
+.. Connect a container to a network (--net)
 
 .. _connect-a-container-to-a-network:
 
@@ -477,7 +477,7 @@ label-file の書式は、環境変数の読み込み書式と似ています（
 
 ネットワークからコンテナを切断するには、 ``docker network disconnect`` コマンドを使います。
 
-.. Mount volumes from container (–volumes-from)
+.. Mount volumes from container (--volumes-from)
 
 .. _mount-volumes-from-container:
 
@@ -535,7 +535,7 @@ STDIN・STDOUT・STDERRのアタッチ（-a）
 
 これはファイルの内容をコンテナにパイプし、構築するものです。構築が完了するとコンテナ ID が表示され、構築ログは ``docker logs`` で取得できます。これはファイルや何かをコンテナ内にパイプし、コンテナで処理が終わるとコンテナ ID を表示するので便利です。
 
-.. Add host device to container (–device)
+.. Add host device to container (--device)
 
 .. _add-host-device-to-container:
 
@@ -580,7 +580,7 @@ STDIN・STDOUT・STDERRのアタッチ（-a）
 
    ``--device`` はエフェメラルな（短命な）デバイスでは使うべきではありません。信頼できないコンテナが ``--device`` を追加しようとしても、ブロック・デバイスは除外されるでしょう。
 
-.. Restart policies (–restart)
+.. Restart policies (--restart)
 
 .. _restart-policies:
 
@@ -619,11 +619,11 @@ Docker の ``--restart`` はコンテナの *再起動ポリシー* を指定し
 
 これは ``redis`` コンテナを再起動ポリシー **always** で起動するものです。つまり、コンテナが終了したら Docker がコンテナを再起動します。
 
-.. More detailed information on restart policies can be found in the Restart Policies (–restart) section of the Docker run reference page.
+.. More detailed information on restart policies can be found in the Restart Policies (--restart) section of the Docker run reference page.
 
 再起動ポリシーに関するより詳しい情報は、 :doc:`Docker run リファレンス・ページ </engine/reference/run>` の :ref:`再起動ポリシー（--restart） <restart-policies-restart>` をご覧ください。
 
-.. Add entries to container hosts file (–add-host)
+.. Add entries to container hosts file (--add-host)
 
 .. _add-entries-to-container-hosts-file:
 
@@ -662,7 +662,7 @@ Docker の ``--restart`` はコンテナの *再起動ポリシー* を指定し
 
 IPv6 は ``-4`` フラグの替わりに ``-6`` を指定します。他のネットワーク・デバイスの場合は ``eth0`` を適切なデバイス名に置き換えます（例えば ``docker0`` ブリッジ・デバイス ）。
 
-.. Set ulimits in container (–ulimit)
+.. Set ulimits in container (--ulimit)
 
 .. _set-ulimits-in-container-ulimit:
 
@@ -710,7 +710,7 @@ IPv6 は ``-4`` フラグの替わりに ``-6`` を指定します。他のネ�
 
 ４番めのコンテナは失敗し、“[8] System error: resource temporarily unavailable” エラーを表示します。これが失敗するのは、実行時に ``nproc=3`` を指定したからです。３つのコンテナが起動したら、 ``daemon`` ユーザに指定されたプロセスの上限（quota）に達してしまうからです。
 
-.. Stop container with signal (–stop-signal)
+.. Stop container with signal (--stop-signal)
 
 .. _stop-container-with-signal:
 
