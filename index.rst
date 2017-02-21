@@ -7,8 +7,8 @@
 .. URL: https://docs.docker.com/
    doc version: 1.13
       https://github.com/docker/docker.github.io/blob/master/index.md
-.. check date: 2017/01/14
-.. Commits on Jan 11, 2017 443d84ec3463016e703df9b64b40a672ee8ed460
+.. check date: 2017/02/22
+.. Commits on Feb 17, 2017 4e870835f7cc3c10a528fb14674d2e25fc755161y
 .. -----------------------------------------------------------------------------
 
 .. Welcome to Docker-docs-ja's documentation!
@@ -32,50 +32,39 @@ Docker ドキュメント日本語化プロジェクト
 Docker ドキュメント
 ==========================================
 
-.. Docker provides a way to run applications securely isolated in a container, packaged with all its dependencies and libraries. Because your application can always be run with the environment it expects right in the build image, testing and deployment is simpler than ever, as your build will be fully portable and ready to run as designed in any environment. And because containers are lightweight and run without the extra load of a hypervisor, you can run many applications that all rely on different libraries and environments on a single kernel, each one never interfering with the other. This allows you to get more out of your hardware by shifting the “unit of scale” for your application from a virtual or physical machine, to a container instance.
+.. Docker packages your app with its dependencies, freeing you from worrying about your system configuration, and making your app more portable.
 
-Docker が提供するのは、アプリケーションをコンテナ内で安全に隔てた状態で実行するための手法であり、コンテナでは全ての依存関係やライブラリをパッケージ化しています。これにより、皆さんのアプリケーションを常に同じ環境で実行可能となります。イメージの構築・テスト・開発を従来よりも確実に簡単にできるようにし、構築したものはどこでも移動できるようにし、あらゆる環境で設計した通りに実行できる状態を整えます。なぜならば、コンテナは軽量であり、実行にあたっては外部のハイパーバイザの処理が不要だからです。そして、アプリケーションごとに依存するライブラリや環境を相互に影響を与えないよう１つのカーネル上で実行できるため、多くのアプリケーションが実行可能になります。その結果、アプリケーションの「スケール単位」は仮想・物理マシンのハードウェアによるものから、コンテナ・インスタンスへと変化をもたらすでしょう。
+Docker はアプリケーションと依存関係をまとめ、システム設定に対する心配から解放し、アプリケーションをよりポータブルにできます。
 
-.. Typical Docker Platform Workflow
+.. Learn the basics of Docker
 
-.. _typical-docker-platform-workflow:
+.. _learn-the-basics-of-docker:
 
-Docker プラットフォームの典型的な作業の流れ
---------------------------------------------------
+Docker の基本を学ぶ
+--------------------
 
-..    Get your code and its dependencies into Docker containers:
-.        Write a Dockerfile that specifies the execution environment and pulls in your code.
-..        If your app depends on external applications (such as Redis, or MySQL), simply find them on a registry such as Docker Hub, and refer to them in a Docker Compose file, along with a reference to your application, so they’ll run simultaneously.
-..            Software providers also distribute paid software via the Docker Store.
-..        Build, then run your containers on a virtual host via Docker Machine as you develop.
+.. The basic tutorial introduces Docker concepts, tools, and commands. The examples show you how to build, push, and pull Docker images, and run them as containers. This tutorial stops short of teaching you how to deploy applications.
 
-1. コードと依存関係を Docker :doc:`コンテナ <engine/getstarted/step_two>` に入れます。
+基本チュートリアルでは、Docker の概念、ツール、コマンドを紹介します。例では、Docker イメージを構築・取得・送信し、コンテナとして実行する方法を紹介します。チュートリアルではアプリケーションのデプロイ方法には触れません。
 
-  * :doc:`Dockerfile を作成 <engine/getstarted/step_four>` し、コードの実行環境や必要なものを指定します。
-  * もしアプリケーションが外部のアプリケーション（たとえば Reds や MySQL）と連携する場合は、シンプルに :doc:`Docker Hub のようなリポジトリを検索し <docker-hub/repos>` 、 :doc:`Docker Compose ファイル  <compose/overview>` を参照し、皆さんのアプリケーションの参考にしていただくと、同様に動作するようになります。
+.. Start the basic tutorial
 
-    * また、有償ソフトウェアは `Docker Store <https://store.docker.com/>`_ で配布されています。
+* :doc:`基本チュートリアルを始める </engine/getstarted> ` 
 
-  * 皆さんの開発環境でコンテナの構築と実行をするには、 :doc:`Docker Machine <machine/overview>` を通した仮想ホスト上で行います。
+.. Define and deploy applications
 
-..    Configure networking and storage for your solution, if needed.
+.. _define-and-deploy-applications:
 
-2. 必要に応じて :doc:`ネットワーク <engine/tutorials/networkingcontainers>` や :doc:`ストレージ <engine/tutorials/dockervolumes>` を設定します。
+アプリケーションの定義とデプロイ
+----------------------------------------
 
-..     Upload builds to a registry (ours, yours, or your cloud provider’s), to collaborate with your team.
+.. The define-and-deploy tutorial shows how to relate containers to each other and define them as services in an application that is ready to deploy at scale in a production environment. Highlights Compose Version 3 new features and swarm mode.
 
-3. 成果物をレジストリ（ :doc:`私たちの <engine/tutorials/dockerrepos>` 、 :doc:`皆さん自身の <docker-trusted-registry/index>` 、あるいはクラウド・プロバイダが提供する場所 ）にアップロードし、チームの皆さんと共同で作業します。
+定義とデプロイのチュートリアルでは、コンテナ間をお互いに関連付ける方法と、プロダクション環境にスケールできる準備が整ったアプリケーションをサービスとして定義する方法を紹介します。重要なのは :ref:`Compose バージョン 3 の新機能 <compose-version-3-features-and-compatibility>` と swarm モードです。
 
-..     If you’re gonna need to scale your solution across multiple hosts (VMs or physical machines), plan for how you’ll set up your Swarm cluster and scale it to meet demand.
-        Note: Use Universal Control Plane and you can manage your Swarm cluster using a friendly UI!
+.. Start the application tutorial
 
-4. 複数のホスト上（仮想マシンや物理マシン）にスケールする必要性を検討しているならば、 :doc:`Swarm クラスタの構築方法 <engine/swarm/key-concepts/>` や、:doc:`必要に応じたスケール <engine/swarm/swarm-tutorial/>` をご検討ください。
-
-  * メモ： :doc:`Universal Control Plane <ucp/overview>` を使えば、自分の Swarm クラスタを扱いやすいユーザ・インターフェースを通して管理できます！
-
-..    Finally, deploy to your preferred cloud provider (or, for redundancy, multiple cloud providers) with Docker Cloud. Or, use Docker Datacenter, and deploy to your own on-premise hardware.
-
-5. 最終的には :doc:`Docker Cloud <docker-cloud/overview>` で任意のクラウド・プロバイダ（あるいは冗長化のため複数のクラウド・プロバイダ）にデプロイします。あるいは、:doc:`Docker Datacenter <https://www.docker.com/products/docker-datacenter>`_ を使えば自分らのオンプレミス・ハードウェア上にもデプロイできます。
+* :doc:`アプリケーションのチュートリアルを始める </engine/getstarted-voting-app> ` 
 
 
 .. Components:
@@ -84,7 +73,6 @@ Docker プラットフォームの典型的な作業の流れ
 
 構成要素
 ==========
-
 
 * :doc:`Docker for Mac </docker-for-mac/index>`
 
@@ -101,11 +89,7 @@ Docker プラットフォームの典型的な作業の流れ
 * :doc:`Docker Engine （エンジン）</engine/installation/index>`
 
    Docker イメージを作成し、Docker コンテナを実行します。
-   v.1.12.0-rc1 以降は、Engine の :doc:`swarm モード </engine/swarm/index>` にコンテナのオーケストレーション機能が含まれます。
-
-* :doc:`Docker Compose （コンポーズ） </compose/overview>`
-
-   複数のコンテナを使うアプリケーションを定義します。
+   v.1.12.0 以降は、Engine の :doc:`swarm モード </engine/swarm/index>` にコンテナのオーケストレーション機能が含まれます。
 
 * :doc:`Docker Hub （ハブ） </docker-hub/overview>`
 
@@ -125,7 +109,11 @@ Docker プラットフォームの典型的な作業の流れ
 
 * :doc:`Docker Machine （マシン） </machine/overview>`
 
-   ネットワークまたはクラウド上へ自動的にコンテナをプロビジョニングします。Windows、Mac OS X、Linux で使えます。
+   ネットワークまたはクラウド上へ自動的にコンテナをプロビジョニングします。Windows、mac OS、Linux で使えます。
+
+* :doc:`Docker Compose （コンポーズ） </compose/overview>`
+
+   複数のコンテナを使うアプリケーションを定義します。
 
 
 ----
