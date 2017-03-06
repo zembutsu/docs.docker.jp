@@ -292,7 +292,7 @@ PostgreSQL データベースを実行するコンテナを起動します。``-
 
 .. code-block:: bash
 
-   $ docker inspect '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' web
+   $ docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' web
    172.17.0.2
 
 .. Now, open a shell to your running db container:
