@@ -319,7 +319,7 @@ Docker のネットワーク機能は、必要に応じてコンテナに対し�
 
 .. code-block:: bash
 
-   $ docker network connect my-bridge-network Web
+   $ docker network connect my-bridge-network web
 
 .. Open a shell into the db application again and try the ping command. This time just use the container name web rather than the IP Address.
 
