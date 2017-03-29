@@ -134,17 +134,17 @@ Swarm クラスタのアーキテクチャ
 
 * ``frontend01`` ：
 
-  * コンテナ：voitng-app（投票アプリ）
+  * コンテナ：voting-app（投票アプリ）
   * コンテナ：Swarm エージェント
 
 * ``frontend02`` ：
 
-  * コンテナ：voitng-app（投票アプリ）
+  * コンテナ：voting-app（投票アプリ）
   * コンテナ：Swarm エージェント
 
 * ``worker01`` ：
 
-  * コンテナ：voitng-app-worker（投票ワーカ・アプリ）
+  * コンテナ：voting-app-worker（投票ワーカ・アプリ）
   * コンテナ：Swarm エージェント
 
 * ``dbstore`` ：
