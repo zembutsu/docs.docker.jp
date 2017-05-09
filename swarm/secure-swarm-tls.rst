@@ -169,7 +169,7 @@ Docker Engine デーモンが認証に使う証明書について学んできま
 
 .. Many organizations choose to implement their own Certificate Authorities and PKI. Common examples are using OpenSSL and Microsoft Active Directory. In this case, your company is its own Certificate Authority with all the work it entails. The benefit is, as your own CA, you have more control over your PKI.
 
-多くの組織で、その組織内で認証局や PKI を運用することが選ばれています。そのために OpenSSL もしくは Microsoft Active Directory を使うのが一般的な例です。このような場合、皆さんの会社自身が自信で証明機関を運用しています。この利点は、自分自身が証明局ですのので、更なる PKI を管理できる点です。
+多くの組織で、その組織内で認証局や PKI を運用することが選ばれています。そのために OpenSSL もしくは Microsoft Active Directory を使うのが一般的な例です。このような場合、皆さんの会社自身が自信で証明機関を運用しています。この利点は、自分自身が証明局ですので、更なる PKI を管理できる点です。
 
 .. Running your own CA and PKI requires you to provide all of the services offered by external 3rd party CAs. These include creating, issuing, revoking, and otherwise managing certificates. Doing all of this yourself has its own costs and overheads. However, for a large corporation, it still may reduce costs in comparison to using an external 3rd party service.
 
