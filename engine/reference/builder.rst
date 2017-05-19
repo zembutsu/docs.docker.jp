@@ -402,7 +402,7 @@ escape
 
 ..    ONBUILD (when combined with one of the supported instructions above)
 
-* ``ONBLIUD`` （上記の命令と組み合わせて使う場合にサポートされます）
+* ``ONBUILD`` （上記の命令と組み合わせて使う場合にサポートされます）
 
 ..    Note: prior to 1.4, ONBUILD instructions did NOT support environment variable, even when combined with any of the instructions listed above.
 
