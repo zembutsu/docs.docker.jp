@@ -22,7 +22,7 @@ Docker ドキュメント日本語化プロジェクト
 
 .. attention::
 
-  * Docker `1.13`  向けにドキュメントの改訂作業中です。古いバージョンについては `アーカイブ <http://docs.docker.jp/v1.12/>`_ をご覧ください。
+  * Docker `17.03`  向けにドキュメントの改訂作業中です。古いバージョンについては `アーカイブ <http://docs.docker.jp/v1.13/>`_ をご覧ください。
   * Docker のドキュメントは常に変わり続けています。最新の情報については `公式ドキュメント <https://docs.docker.com/>`_ をご覧ください。
 
 .. Docker Documentation
