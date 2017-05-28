@@ -292,7 +292,7 @@ PostgreSQL データベースを実行するコンテナを起動します。``-
 
 .. code-block:: bash
 
-   $ docker inspect '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' web
+   $ docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' web
    172.17.0.2
 
 .. Now, open a shell to your running db container:
@@ -319,7 +319,7 @@ Docker のネットワーク機能は、必要に応じてコンテナに対し�
 
 .. code-block:: bash
 
-   $ docker network connect my-bridge-network Web
+   $ docker network connect my-bridge-network web
 
 .. Open a shell into the db application again and try the ping command. This time just use the container name web rather than the IP Address.
 

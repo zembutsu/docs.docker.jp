@@ -67,7 +67,7 @@ Compose のネットワーク機能
 
 .. Each container can now look up the hostname web or db and get back the appropriate container’s IP address. For example, web’s application code could connect to the URL postgres://db:5432 and start using the Postgres database.
 
-各コンテナは、これでホスト名を ``web`` あるいは ``db`` で名前解決することにより、コンテナに割り当てられた IP アドレスが分かります。たとえば、``web`` アプリケーションのコードが URL  ``postgres://myapp_db_1:5432`` にアクセスできるようになり、PostgreSQL データベースを利用開始します。
+各コンテナは、これでホスト名を ``web`` あるいは ``db`` で名前解決することにより、コンテナに割り当てられた IP アドレスが分かります。たとえば、``web`` アプリケーションのコードが URL  ``postgres://db:5432`` にアクセスできるようになり、PostgreSQL データベースを利用開始します。
 
 .. Because web explicitly maps a port, it’s also accessible from the outside world via port 8000 on your Docker host’s network interface.
 
