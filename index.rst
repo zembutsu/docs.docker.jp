@@ -118,8 +118,14 @@ Docker の基本を学ぶ
 
 ----
 
-Doc v1.13 RC 目次
+Doc v17.03 RC 目次
 ====================
+
+.. toctree::
+   :caption: 用語集
+   :maxdepth: 1
+
+   glossary/index.rst
 
 .. toctree::
    :caption: Docker を始めましょう - 導入ガイド
