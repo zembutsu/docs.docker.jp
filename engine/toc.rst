@@ -20,9 +20,7 @@ Docker Engine
    understanding-docker.rst
 
 .. toctree::
-   :maxdepth: 3
-   :caption: Install
-   :hidden:
+   :maxdepth: 1
 
    index.rst
    installation/toc.rst

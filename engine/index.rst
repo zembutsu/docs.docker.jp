@@ -1,10 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/index.md
-   doc version: 1.12
-      https://github.com/docker/docker/commits/master/docs/index.md
-.. check date: 2016/07/09
-.. Commits on Feb 3, 2016 c49b6ce4e16d570432941fc686c05939dc888fc9
+   doc version: 17.03
+      https://github.com/docker/docker.github.io/blob/master/engine/index.md
+.. check date: 2017/06/20
+.. Commits on Apr 21, 2017 a3a7ae1e0b691151bb039337bd7c7745ff70534a
 .. -----------------------------------------------------------------------------
 
 .. About Docker Engine
@@ -20,6 +19,7 @@ Docker Engine について
    .. contents::
        :depth: 3
        :local:
+       
 
 .. Develop, Ship and Run Any Application, Anywhere
 
@@ -151,9 +151,9 @@ Docker の詳細を学び、使い方や実装に関する疑問を解消する�
 機能廃止ポリシー
 ====================
 
-.. As changes are made to Docker there may be times when existing features will need to be removed or replaced with newer features. Before an existing feature is removed it will be labeled as “deprecated” within the documentation and will remain in Docker for, usually, at least 2 releases. After that time it may be removed.
+.. As changes are made to Docker there may be times when existing features will need to be removed or replaced with newer features. Before an existing feature is removed it will be labeled as "deprecated" within the documentation and will remain in Docker for at least 3 stable releases (roughly 9 months). After that time it may be removed.
 
-Docker の各バージョンにおいて、既存機能の削除や、新しい機能に置き換わる変更が生じる可能性があります。既存の機能を削除する前に、ドキュメントの中で "deprecated"（廃止予定）とラベル付けするようにします。通常、少なくとも２つのリリースがされるまで残し、その後、削除します。
+Docker の各バージョンにおいて、既存機能の削除や、新しい機能に置き換わる変更が生じる可能性があります。既存の機能を削除する前に、ドキュメントの中で "deprecated"（廃止予定）とラベル付けするようにします。通常、少なくとも３つの安定版（stable）リリースがされるまで残します（おおよそ９ヶ月）。期間の経過後、削除となるでしょう。
 
 .. Users are expected to take note of the list of deprecated features each release and plan their migration away from those features, and (if applicable) towards the replacement features as soon as possible.
 
