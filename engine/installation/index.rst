@@ -1,16 +1,16 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/installation/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/installation/index.md
-   doc version: 1.11
+   doc version: 17.03
+      https://github.com/docker/docker.github.io/blob/master/engine/installation/index.md
+.. check date: 2017/06/20
       https://github.com/docker/docker/commits/master/docs/installation/index.md
-.. check date: 2016/04/16
-.. Commits on Feb 11, 2016 4e9e95fe8d9ba177ec77727b6fca558a0ba8f01f
+.. Commits on Apr 29, 2017 
 .. -----------------------------------------------------------------------------
 
-.. Install Docker Engine
+.. Install Docker
 
 ==============================
-Docker Engine のインストール
+Docker のインストール
 ==============================
 
 .. sidebar:: 目次
@@ -19,32 +19,137 @@ Docker Engine のインストール
        :depth: 2
        :local:
 
-.. Docker Engine is supported on Linux, Cloud, Windows, and OS X. Installation instructions are available for the following:
+.. Docker is available in two editions: Community Edition (CE) and Enterprise Edition (EE).
 
-Docker Engine は Linux、クラウド、Windows、OS X でサポートされています。インストール方法は、以下の各ページをご覧ください。
+Docker は **コミュニティ版（CE; Community Edition）** と **エンタープライズ版（EE; Enterprise Edition）** の２つのエディションを使えます。
 
-.. On Linux
+.. Docker Community Edition (CE) is ideal for developers and small teams looking to get started with Docker and experimenting with container-based apps. Docker CE has two update channels, stable and edge:
 
-.. _on-linux:
+Docker コミュニティ版（CE）は開発者や小さなチームが Docker を使い始め、コンテナをベースと下アプリケーションを実験するのに最適です。Docker CE は **stable** と **edge**  の２つの更新用チャンネルがあります。
 
-Linux
-==========
+..    Stable gives you reliable updates every quarter
+    Edge gives you new features every month
 
-* :doc:`Arch Linux <linux/archlinux>`
-* :doc:`CentOS <linux/centos>`
-* :doc:`CRUX Linux <linux/cruxlinux>`
-* :doc:`Debian <linux/debian>`
-* :doc:`Fedora <linux/fedora>`
-* :doc:`FrugalWare <linux/frugalware>`
-* :doc:`Gentoo <linux/gentoolinux>`
-* :doc:`Oracle Linux <linux/oracle>`
-* :doc:`Red Hat Enterprise Linux <linux/rhel>`
-* :doc:`openSUSE and SUSE Linux Enterprise <linux/SUSE>`
-* :doc:`Ubuntu <linux/ubuntulinux>`
+* **stable（安定版）** は4ヶ月ごとに安定した更新を行います
+* **edge（エッジ）** は毎月新機能を追加します
 
-.. If your linux distribution is not listed above, don’t give up yet. To try out Docker on a distribution that is not listed above, go here: Installation from binaries.
+.. For more information about Docker CE, see Docker Community Edition.
 
-この Linux ディストリビューションの一覧になくても、あきらめないでください。一覧になくても Docker を試せます。 :doc:`バイナリをインストール <binaries>` するページに移動しましょう。
+Docker CE に関する詳しい情報は、 `Docker Community Edition（英語） <https://www.docker.com/community-edition/>`_  のページをご覧ください。
+
+.. Docker Enterprise Edition (EE) is designed for enterprise development and IT teams who build, ship, and run business critical applications in production at scale. For more information about Docker EE, including purchasing options, see Docker Enterprise Edition.
+
+Docker エンタープライズ版（EE）はエンタープライズにおける開発と IT チーム向けに設計されており、プロダクションでスケールするようなビジネスにとって重要なアプリケーションを構築・移動・実行します。
+
+.. list-table::
+   :widths: 100 20 20 20 20
+   :header-rows: 1
+
+   * - 
+     - Community Edition
+     - Enterprise Edition Basic
+     - Enterprise Edition Standard
+     - Enterprise Edition Advanced
+   * - コンテナ・エンジンとオーケストレーション、ネットワーク機能、セキュリティを内蔵
+     - .. image:: /engine/images/green-check.png
+     - .. image:: /engine/images/green-check.png
+     - .. image:: /engine/images/green-check.png
+     - .. image:: /engine/images/green-check.png
+   * - 認証済みインフラ、プラグイン、ISV コンテナ
+     - 
+     - .. image:: /engine/images/green-check.png
+     - .. image:: /engine/images/green-check.png
+     - .. image:: /engine/images/green-check.png
+   * - イメージ管理
+     - 
+     - 
+     - .. image:: /engine/images/green-check.png
+     - .. image:: /engine/images/green-check.png
+   * - コンテナ・アプリ管理
+     - 
+     - 
+     - .. image:: /engine/images/green-check.png
+     - .. image:: /engine/images/green-check.png
+   * - イメージのセキュリティ・スキャン
+     - 
+     - 
+     - 
+     - .. image:: /engine/images/green-check.png
+
+
+.. Supported platforms
+
+対応プラットフォーム
+====================
+
+.. Docker CE and EE are available on multiple platforms, on cloud and on-premises. Use the following matrix to choose the best installation path for you.
+
+クラウドやオンプレミスにかかわらず、Docker CE と EE を様々なプラットフォーム上で実行できます。以下の表は皆さんが何をインストールするのが良いのか検討するのに役立つでしょう。
+
+.. list-table::
+   :header-rows: 1
+
+   * - プラットフォーム
+     - Docker CE x86_64
+     - Docker CE ARM
+     - Docker EE
+   * - :doc:`Ubuntu <./linux/ubuntu>`
+     - .. image:: /engine/images/green-check.png
+     - .. image:: /engine/images/green-check.png
+     - .. image:: /engine/images/green-check.png
+   * - :doc:`Debian <./linux/debian>`
+     - .. image:: /engine/images/green-check.png
+     - .. image:: /engine/images/green-check.png
+     - 
+   * - :doc:`Red Hat Enterprise Linux <./linux/rhel>`
+     - 
+     - 
+     - .. image:: /engine/images/green-check.png
+   * - :doc:`CentOS <./linux/centos>`
+     - .. image:: /engine/images/green-check.png
+     - 
+     - .. image:: /engine/images/green-check.png
+   * - :doc:`Fedora <./linux/fedora>`
+     - .. image:: /engine/images/green-check.png
+     - 
+     - 
+   * - :doc:`Oracle Linux <./linux/oracle>`
+     - 
+     - 
+     - .. image:: /engine/images/green-check.png
+   * - :doc:`SUSE Linux Enterprise Server <./linux/suse>`
+     - 
+     - 
+     - .. image:: /engine/images/green-check.png
+   * - :doc:`Microsoft Windows Server 2016 </docker-ee-for-windows/install/index>`
+     - 
+     - 
+     - .. image:: /engine/images/green-check.png
+   * - :doc:`Microsoft Windows 10 </docker-for-windows/index>`
+     - .. image:: /engine/images/green-check.png
+     - 
+     - 
+   * - :doc:`macOS </docker-for-mac/index>`
+     - .. image:: /engine/images/green-check.png
+     - 
+     - 
+   * - :doc:`Microsoft Azure </docker-for-azure/index>`
+     - .. image:: /engine/images/green-check.png
+     - 
+     - .. image:: /engine/images/green-check.png
+   * - :doc:`Amazon Web Services </docker-for-aws/>`
+     - .. image:: /engine/images/green-check.png
+     - 
+     - .. image:: /engine/images/green-check.png
+
+
+.. See also Docker Cloud for setup instructions for Digital Ocean, Packet, SoftLink, or Bring Your Own Cloud.
+
+Digital Ocean、Packet、SoftLink、あるいは皆さん自身のクラウドにセットアップする場合は :ref:`Docker Cloud <on-docker-cloud>` もご覧ください。
+
+
+ｰｰｰｰ
+（以下、旧リンク情報）
 
 .. On Cloud
 
