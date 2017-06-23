@@ -2,7 +2,7 @@
 .. URL: https://docs.docker.com/engine/installation/
    doc version: 17.03
       https://github.com/docker/docker.github.io/blob/master/engine/installation/index.md
-.. check date: 2017/06/20
+.. check date: 2017/06/24
       https://github.com/docker/docker/commits/master/docs/installation/index.md
 .. Commits on Apr 29, 2017 
 .. -----------------------------------------------------------------------------
@@ -147,6 +147,120 @@ Docker エンタープライズ版（EE）はエンタープライズにおけ�
 
 Digital Ocean、Packet、SoftLink、あるいは皆さん自身のクラウドにセットアップする場合は :ref:`Docker Cloud <on-docker-cloud>` もご覧ください。
 
+.. Time-based release schedule
+
+.. _time-based-release-schedule:
+
+時間を基準としたリリース予定
+==============================
+
+.. Starting with Docker 17.03, Docker uses a time-based release schedule, outlined below.
+
+Docker 17.03 以降、Docker は時間を基準としたりりース（time-based release）予定しています。概要は以下の通りです。
+
+.. list-table::
+   :header-rows: 1
+
+   * - 月
+     - Docker CE Edge
+     - Docker CE Stable
+     - Docker EE
+   * - １月
+     - .. image:: /engine/images/green-check.png
+     - 
+     - 
+   * - ２月
+     - .. image:: /engine/images/green-check.png
+     - 
+     - 
+   * - ３月
+     - .. image:: /engine/images/green-check.png
+     - .. image:: /engine/images/green-check.png
+     - .. image:: /engine/images/green-check.png
+   * - ４月
+     - .. image:: /engine/images/green-check.png
+     - 
+     - 
+   * - ５月
+     - .. image:: /engine/images/green-check.png
+     - 
+     - 
+   * - ６月
+     - .. image:: /engine/images/green-check.png
+     - 
+     - 
+   * - ７月
+     - .. image:: /engine/images/green-check.png
+     - 
+     - 
+   * - ８月
+     - .. image:: /engine/images/green-check.png
+     - 
+     - 
+   * - ９月
+     - .. image:: /engine/images/green-check.png
+     - 
+     - 
+   * - 10月
+     - .. image:: /engine/images/green-check.png
+     - 
+     - 
+   * - 11月
+     - .. image:: /engine/images/green-check.png
+     - 
+     - 
+   * - 12月
+     - .. image:: /engine/images/green-check.png
+     - 
+     - 
+
+Docker CE の Linux 版では、３月、6月、９月、12 月の  Edge リリースは ``edge`` チャンネルではなく、 ``stable``  チャンネルでリリースされます。つまり、Linux 版の Edge では両方のチャンネルを有効にする必要があります。
+
+.. Prior releases
+
+.. _priori-releases:
+
+以前のリリース
+--------------------
+
+.. Instructions for installing prior releases of Docker can be found in the Docker archives.
+
+以前にリリースした Docker のインストール方法は、 :doc:`Docker アーカイブ </dockerarchve/index>` にあるかもしれません。
+
+.. Docker Cloud
+
+.. _docker-cloud:
+
+Docker Cloud
+====================
+
+.. You can use Docker Cloud to automatically provision and manage your cloud instances.
+
+Docker Cloud を使えば、各クラウド環境上に自動的にセットアップできます。
+
+..    Amazon Web Services setup guide
+    DigitalOcean setup guide
+    Microsoft Azure setup guide
+    Packet setup guide
+    SoftLayer setup guide
+    Use the Docker Cloud Agent to Bring your Own Host
+
+* `Amazon Web Services setup guide <https://docs.docker.com/docker-cloud/infrastructure/link-aws/>`_
+* `DigitalOcean setup guide <https://docs.docker.com/docker-cloud/infrastructure/link-do/>`_
+* `Microsoft Azure setup guide <https://docs.docker.com/docker-cloud/infrastructure/link-do/>`_
+* `Packet setup guide <https://docs.docker.com/docker-cloud/infrastructure/link-packet/>`_
+* `SoftLayer setup guide <https://docs.docker.com/docker-cloud/infrastructure/link-softlayer/>`_
+* `Use the Docker Cloud Agent to Bring your Own Host <https://docs.docker.com/docker-cloud/infrastructure/byoh/>`_
+
+
+.. Get started
+
+はじめましょう
+====================
+
+.. After setting up Docker, try learning the basics over at Getting started with Docker.
+
+Docker のセットアップを終えた、 :doc:`Docker を始めよう </get-started/index>` で Docker の基本を学びましょう。
 
 ｰｰｰｰ
 （以下、旧リンク情報）
