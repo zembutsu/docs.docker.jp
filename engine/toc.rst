@@ -23,6 +23,7 @@ Docker Engine
    :maxdepth: 1
 
    index.rst
+   Docker Edge </edge/toc.rst>
    installation/toc.rst
    getstarted/toc.rst
    tutorials/index.rst
