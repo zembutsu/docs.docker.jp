@@ -188,6 +188,7 @@ Docker で Btrfs を設定
 .. The btrfs storage driver only operates on a Docker host where /var/lib/docker is mounted as a Btrfs filesystem. The following procedure shows how to configure Btrfs on Ubuntu 14.04 LTS.
 
 ``btrfs`` ストレージ・ドライバは、Docker ホストで Btrfs ファイルシステムとしてマウントしている ``/var/lib/docker`` のみ処理します。以下の手順で、 Ubuntu 14.04 LTS 上で Btrfs を設定する方法を紹介します。
+
 .. Prerequisites
 
 動作条件
@@ -379,7 +380,7 @@ Btrfs の最近のバージョンは、 ``autodefrag`` をマウント用のオ�
 
 ..    Solid State Devices (SSD). Btrfs has native optimizations for SSD media. To enable these, mount with the -o ssd mount option. These optimizations include enhanced SSD write performance by avoiding things like seek optimizations that have no use on SSD media.
 
-* **SSD（ソリッド・ステート・ドライブ）** ：Btrfs は SSD メディアをネイティブに最適化します。最適化を有効化するには、マウントオプションで ``-o ssh`` を指定します。 SSD はメディアを使わずシーク最適化が不要なため、これら最適化により SSD の性能を拡張します。
+* **SSD（ソリッド・ステート・ドライブ）** ：Btrfs は SSD メディアをネイティブに最適化します。最適化を有効化するには、マウントオプションで ``-o ssd`` を指定します。 SSD はメディアを使わずシーク最適化が不要なため、これら最適化により SSD の性能を拡張します。
 
 ..    Btfs also supports the TRIM/Discard primitives. However, mounting with the -o discard mount option can cause performance issues. Therefore, it is recommended you perform your own tests before using this option.
 
