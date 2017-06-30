@@ -139,7 +139,7 @@ label と env
 
 .. Docker connects to Fluentd in the background. Messages are buffered until the connection is established.
 
-fluentd-acync-connect
+fluentd-async-connect
 ------------------------------
 
 Docker は Fluentd にバックグラウンドで接続します。接続が確立できるまでメッセージはバッファされます。
