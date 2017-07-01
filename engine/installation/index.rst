@@ -1,10 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/installation/
-   doc version: 17.03
+   doc version: 17.06
       https://github.com/docker/docker.github.io/blob/master/engine/installation/index.md
-.. check date: 2017/06/24
-      https://github.com/docker/docker/commits/master/docs/installation/index.md
-.. Commits on Apr 29, 2017 
+.. check date: 2017/07/01
+.. Commits on Jun 29, 2017 322213052e760120e6a211f5db3d847d4ab52695
 .. -----------------------------------------------------------------------------
 
 .. Install Docker
