@@ -9,7 +9,7 @@
 .. _engine-installation-toc:
 
 ========================================
-Docker for Linux
+Get Docker - Docker を手に入れる
 ========================================
 
 .. toctree::
@@ -17,9 +17,8 @@ Docker for Linux
    :titlesonly:
 
    index.rst
-   mac.rst
-   windows.rst
-   バイナリからインストール <binaries.rst>
+   Docker CE <linux/docker-ce/toc.rst>
+   Docker Edge </edge/toc.rst>
 
 
 
@@ -28,7 +27,10 @@ Docker for Linux
 
 
 
-Linux ディストリビューション
+※以下整理中、削除予定
+
+
+Linux ディストリビューション（古い文章）
 =============================
 
 .. toctree::
@@ -47,7 +49,7 @@ Linux ディストリビューション
    linux/oracle.rst
    linux/SUSE.rst
 
-クラウド
+クラウド（古い文章）
 =============================
 
 .. toctree::
@@ -57,7 +59,7 @@ Linux ディストリビューション
    cloud/cloud-ex-aws.rst
    cloud/cloud-ex-machine-ocean.rst
 
-クラウド（古い文章）
+クラウド（もっと古い文章）
 =============================
 
 .. toctree::

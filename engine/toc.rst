@@ -1,7 +1,7 @@
 .. -*- coding: utf-8 -*-
 .. 
-.. doc version: 1.10
-.. check date: 2016/02/06
+.. doc version: 17.06
+.. check date: 2016/07/08
 .. -----------------------------------------------------------------------------
 
 .. engine toc
@@ -23,9 +23,6 @@ Docker Engine
    :maxdepth: 1
 
    index.rst
-   Docker Edge</edge/toc.rst>
-   installation/toc.rst
-   getstarted/toc.rst
    tutorials/index.rst
    userguide/index.rst
    admin/index.rst

@@ -122,17 +122,16 @@ Doc v17.03 RC 目次
 ====================
 
 .. toctree::
-   :caption: 用語集
+   :caption: Glossary - 用語集
    :maxdepth: 1
 
    glossary/index.rst
 
 .. toctree::
-   :caption: Docker を始めましょう - 導入ガイド
+   :caption: Guide - ガイド
    :maxdepth: 1
 
-   windows/toc.rst
-   mac/toc.rst
+   engine/installation/toc.rst
  
 .. toctree::
    :caption: Docker Engine

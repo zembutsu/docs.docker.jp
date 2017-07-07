@@ -15,7 +15,7 @@ Docker Edge
    :titlesonly:
 
    概要 <index.rst>
-   engine/reference/commandline/docker
-   マルチ・ステージ・ビルドを使う（Edgeのみ） </engine/userguide/eng-image/multistage-build>
+..   engine/reference/commandline/docker
+..   マルチ・ステージ・ビルドを使う（Edgeのみ） </engine/userguide/eng-image/multistage-build>
 
 
