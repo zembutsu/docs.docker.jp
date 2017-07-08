@@ -132,6 +132,7 @@ Doc v17.03 RC 目次
    :maxdepth: 1
 
    engine/installation/toc.rst
+   get-started/toc.rst
  
 .. toctree::
    :caption: Docker Engine
