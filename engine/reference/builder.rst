@@ -1753,7 +1753,7 @@ ONBUILD
 
 .. The solution is to use ONBUILD to register advance instructions to run later, during the next build stage.
 
-この解決方法として、 ``ONBLUID`` を使い、実行後に別の構築ステージに進む上位命令を登録することです。
+この解決方法として、 ``ONBUILD`` を使い、実行後に別の構築ステージに進む上位命令を登録することです。
 
 .. Here’s how it works:
 
