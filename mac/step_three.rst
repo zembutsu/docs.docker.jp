@@ -75,7 +75,7 @@ Docker Hub には皆さんのような個人で作成したイメージと、何
 
 .. _step-2-run-the-whalesay-image-mac:
 
-ステップ２：whaysay イメージの実行
+ステップ２：whalesay イメージの実行
 ==================================
 
 .. If you don’t already have the Docker Quickstart Terminal open, open one now:

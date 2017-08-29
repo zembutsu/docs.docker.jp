@@ -189,7 +189,7 @@ RUN
 
 .. You should avoid RUN apt-get upgrade or dist-upgrade, as many of the “essential” packages from the base images won’t upgrade inside an unprivileged container. If a package contained in the base image is out-of-date, you should contact its maintainers. If you know there’s a particular package, foo, that needs to be updated, use apt-get install -y foo to update automatically.
 
-まず、``RUN apt-get update`` や ``dist-upgrade`` を避けるべきでしょう。ベース・イメージに含まれる「必須」パッケージの多くが、権限を持たないコンテナの内部で更新されないためです。もし、ベース・イメージに含まれるパッケージが時代遅れになっていれば、イメージのメンテナに連絡すべきでしょう。例えば、 ``foo`` という特定のパッケージを知っていて、それを更新する必要があるのであれば、自動的に更新するために ``apt-get install -y foo`` を使います。
+まず、``RUN apt-get upgrade`` や ``dist-upgrade`` を避けるべきでしょう。ベース・イメージに含まれる「必須」パッケージの多くが、権限を持たないコンテナの内部で更新されないためです。もし、ベース・イメージに含まれるパッケージが時代遅れになっていれば、イメージのメンテナに連絡すべきでしょう。例えば、 ``foo`` という特定のパッケージを知っていて、それを更新する必要があるのであれば、自動的に更新するために ``apt-get install -y foo`` を使います。
 
 .. Always combine RUN apt-get update with apt-get install in the same RUN statement, for example:
 
@@ -270,7 +270,7 @@ Docker は冒頭からファイルを読み込み、命令の変更を認識し�
 
 .. In addition, cleaning up the apt cache and removing /var/lib/apt/lists helps keep the image size down. Since the RUN statement starts with apt-get update, the package cache will always be refreshed prior to apt-get install.
 
-付け加えると、apt キャッシュをクリーンにし、 ``/var/lib/apt/lits`` を削除すると、イメージのサイズを減らします。 ``RUN`` 命令は ``apt-get update`` から開始しますので、 ``apt-get install`` は常に新しいパッケージをインストールします。
+付け加えると、apt キャッシュをクリーンにし、 ``/var/lib/apt/lists`` を削除すると、イメージのサイズを減らします。 ``RUN`` 命令は ``apt-get update`` から開始しますので、 ``apt-get install`` は常に新しいパッケージをインストールします。
 
 .. CMD
 
