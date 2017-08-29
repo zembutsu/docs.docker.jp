@@ -59,7 +59,7 @@ Docker を構成するのは、次の２つです。
 
 ..    Docker containers are lightweight and fast! Containers have sub-second launch times, reducing the cycle time of development, testing, and deployment.
 
-* Docker コンテナは軽量かつ高速です！　コンテナの起動時間は数秒であり、開発・テスト・デプロイのサイクルにかかる時間を減らします。
+* Docker コンテナは軽量かつ高速です！コンテナの起動時間は数秒であり、開発・テスト・デプロイのサイクルにかかる時間を減らします。
 
 .. Deploy and scale more easily
 
