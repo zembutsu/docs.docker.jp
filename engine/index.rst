@@ -36,7 +36,7 @@ Docker を構成するのは、次の２つです。
 ..     The Docker Engine - our lightweight and powerful open source container virtualization technology combined with a work flow for building and containerizing your applications.
 ..    Docker Hub - our SaaS service for sharing and managing your application stacks.
 
-* Docker Engine （エンジン）… 私たちの軽量かつ強力なオープンソースによるコンテナ仮装化技術であり、アプリケーションの構築からコンテナ化に至るワークフローを連結します。
+* Docker Engine （エンジン）… 私たちの軽量かつ強力なオープンソースによるコンテナ仮想化技術であり、アプリケーションの構築からコンテナ化に至るワークフローを連結します。
 * `Docker Hub <https://hub.docker.com/>`_ … 皆さんのアプリケーション群を共有・管理する SaaS サービスです。
 
 .. Why Docker?

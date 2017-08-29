@@ -76,7 +76,7 @@ Docker を実行するには、Windows 7 以上が動作する 64 ビットの�
 
 .. Make sure your CPU supports virtualization technology and virtualization support is enabled in BIOS and recognized by Windows.
 
-2. CPU が `仮装化技術 <https://ja.wikipedia.org/wiki/X86%E4%BB%AE%E6%83%B3%E5%8C%96>`_ をサポートしていること、BIOS の設定で仮想化をサポートしていること、Windows によって認識されていることを確認します。
+2. CPU が `仮想化技術 <https://ja.wikipedia.org/wiki/X86%E4%BB%AE%E6%83%B3%E5%8C%96>`_ をサポートしていること、BIOS の設定で仮想化をサポートしていること、Windows によって認識されていることを確認します。
 
 .. For Windows 8, 8.1 or 10
 
