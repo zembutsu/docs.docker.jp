@@ -185,7 +185,7 @@ v2 以降の形式を使うイメージには、 ``digest`` と呼ばれる識�
     since (<image-name>[:<tag>], <image id> or <image@digest>) - filters images created since given id or references
 
 * dangling（ダングリング；宙ぶらりんな状態）なイメージ （ブール値： true か false ）
-* label（ ``label=<key>`` か ``lavel=<key>=<value>`` ）
+* label（ ``label=<key>`` か ``label=<key>=<value>`` ）
 * before ( ``<イメージ名>[:<タグ>], <イメージ ID> または <image@digest>`` - 指定した ID もしくはリファレンスよりも前に作成したイメージでフィルタ
 * since ( ``<イメージ名>[:<タグ>], <イメージ ID> または <image@digest>`` - 指定した ID もしくはリファレンスよりも後に作成したイメージでフィルタ
 
