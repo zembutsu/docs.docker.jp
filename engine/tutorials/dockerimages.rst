@@ -372,7 +372,7 @@ Windows で Docker Machine を使っている場合は、ホスト・ディレ�
 
 .. Lastly, you’ve specified two RUN instructions. A RUN instruction executes a command inside the image, for example installing a package. Here you’re updating our APT cache, installing Ruby and RubyGems and then installing the Sinatra gem.
 
-最後に ``RUN`` 命令を指定しています。``RUN`` 命令はイメージの中で実行するコマンドを指示します。この例ではパッケージのインストールのため。まず APT キャッシュを更新します。それから、Ruby と RubyGem をインストールし、Sinatra gem をインストールします。
+最後に ``RUN`` 命令を指定しています。``RUN`` 命令はイメージの中で実行するコマンドを指示します。この例ではパッケージのインストールのために、まず APT キャッシュを更新します。それから、Ruby と RubyGem をインストールし、Sinatra gem をインストールします。
 
 
 .. Now let’s take our Dockerfile and use the docker build command to build an image.
