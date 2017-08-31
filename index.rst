@@ -5,10 +5,8 @@
    contain the root `toctree` directive.
 .. -----------------------------------------------------------------------------
 .. URL: https://docs.docker.com/
-   doc version: 1.13
-      https://github.com/docker/docker.github.io/blob/master/index.md
-.. check date: 2017/02/22
-.. Commits on Feb 17, 2017 4e870835f7cc3c10a528fb14674d2e25fc755161y
+   doc version: 17.06
+.. check date: 2017/09/01
 .. -----------------------------------------------------------------------------
 
 .. Welcome to Docker-docs-ja's documentation!
@@ -22,8 +20,9 @@ Docker ドキュメント日本語化プロジェクト
 
 .. attention::
 
-  * Docker `17.03`  向けにドキュメントの改訂作業中です。古いバージョンについては `アーカイブ <http://docs.docker.jp/v1.13/>`_ をご覧ください。
+  * Docker `17.06`  向けにドキュメントの改訂作業中です(2017年9月現在)。一部古い場合がありますので、ご注意ください。
   * Docker のドキュメントは常に変わり続けています。最新の情報については `公式ドキュメント <https://docs.docker.com/>`_ をご覧ください。
+* 本プロジェクトは有志による翻訳プロジェクトです。お気づきの点がございましたら、 `issue <https://github.com/zembutsu/docs.docker.jp/issues>`_ や `Pull Request <https://github.com/zembutsu/docs.docker.jp/pulls>`_ でお知らせ願います。
 
 .. Docker Documentation
 
@@ -32,42 +31,55 @@ Docker ドキュメント日本語化プロジェクト
 Docker ドキュメント
 ==========================================
 
-.. Docker packages your app with its dependencies, freeing you from worrying about your system configuration, and making your app more portable.
+.. Get started with Docker
 
-Docker はアプリケーションと依存関係をまとめ、システム設定に対する心配から解放し、アプリケーションをよりポータブルにできます。
+.. _get-started-with-docker:
 
-.. Learn the basics of Docker
+Docker を始めましょう
+------------------------------
 
-.. _learn-the-basics-of-docker:
+.. Try our new multi-part walkthrough that goes from writing your first app, data storage, networking, and swarms, ending with your app running on production servers in the cloud. Total reading time is less than an hour!
 
-Docker の基本を学ぶ
---------------------
+複数のパートにわたる新しい手引きを試しましょう。手引きでは初めてのアプリケーションを書き、データ保存、ネットワーク機能、クラスタの各機能を通し、最終的にはクラウド上のプロダクション・サーバ上でアプリケーションを実行します。すべてを読むのに１時間もかかりません！
 
-.. The basic tutorial introduces Docker concepts, tools, and commands. The examples show you how to build, push, and pull Docker images, and run them as containers. This tutorial stops short of teaching you how to deploy applications.
+.. Get started with Docker
 
-基本チュートリアルでは、Docker の概念、ツール、コマンドを紹介します。例では、Docker イメージを構築・取得・送信し、コンテナとして実行する方法を紹介します。チュートリアルではアプリケーションのデプロイ方法には触れません。
+* :doc:`Docker を始めましょう </get-started/index>`
 
-.. Start the basic tutorial
+.. Docker Editions
 
-* :doc:`基本チュートリアルを始める </engine/getstarted> ` 
+.. _docker-editions:
 
-.. Define and deploy applications
+Docker のエディションについて
+==============================
 
-.. _define-and-deploy-applications:
+.. Docker Enterprise Edition
 
-アプリケーションの定義とデプロイ
+.. _docker-enterprise-edition:
+
+Docker エンタープライズ・エディション
 ----------------------------------------
 
-.. The define-and-deploy tutorial shows how to relate containers to each other and define them as services in an application that is ready to deploy at scale in a production environment. Highlights Compose Version 3 new features and swarm mode.
+.. Designed for enterprise development and IT teams who build, ship, and run business critical applications in production at scale. Integrated, certified, and supported to provide enterprises with the most secure container platform in the industry to modernize all applications. Docker EE Advanced comes with enterprise add-ons like UCP and DTR.
 
-定義とデプロイのチュートリアルでは、コンテナ間をお互いに関連付ける方法と、プロダクション環境にスケールできる準備が整ったアプリケーションをサービスとして定義する方法を紹介します。重要なのは :ref:`Compose バージョン 3 の新機能 <compose-version-3-features-and-compatibility>` と swarm モードです。
+ビジネスにおいて重要なアプリケーションを構築、移動、そして本番環境でスケールさせるような、エンタープライズの開発と IT チームのために設計されています。統合、認証された、エンタープライズが提供するサポートを受け、全てのアプリケーションを現代化するため、業界における最も安全なコンテナ・プラットフォームです。Docker EE は UCP と DTR のようなエンタープライズ向け :ref:`アドオン <docker-ee-add-ons>` を備えています。
 
-.. Start the application tutorial
+.. Learn more about Docker EE
 
-* :doc:`アプリケーションのチュートリアルを始める </engine/getstarted-voting-app> ` 
+* :ref:`Docker EE について学ぶ <platform-support-matrix>`
 
+.. Docker Community Edition
 
-.. Components:
+Docker コミュニティ・エディション
+----------------------------------------
+
+.. Get started with Docker and experimenting with container-based apps. Docker CE is available on many platforms, from desktop to cloud to server. Build and share containers and automate the development pipeline from a single environment. Choose the Edge channel to get fast access to the latest features, or the Stable channel for more predictability.
+
+Docker を使い、コンテナをベースとしたアプリケーションを体験しましょう。Docker CE はデスクトップからクラウドのサーバに至るまで、多くのプラットフォームで利用可能です。単一の環境から自動デプロイ・パイプラインを通し、コンテナを構築・共有します。最新機能をいち早く得たい場合は Edge（エッジ）チャンネルを、あるいは、（挙動が）より予測可能な Stable（ステーブル；安定）チャンネルをお選び下さい。
+
+.. Learn more about Docker CE
+
+* :ref:`Docker CE について学ぶ <platform-support-matrix>`
 
 .. _components:
 
@@ -118,7 +130,7 @@ Docker の基本を学ぶ
 
 ----
 
-Doc v17.03 RC 目次
+Doc v17.06 目次
 ====================
 
 .. toctree::
@@ -193,8 +205,8 @@ Docs archive
 .. toctree::
    :maxdepth: 1
    :caption: Docs アーカイブ
-   
-   v1.13 <http://docs.docker.jp/v1.13/>
+  
+..   v1.13 <http://docs.docker.jp/v1.13/>
    v1.12 <http://docs.docker.jp/v1.12/>
    v1.11 <http://docs.docker.jp/v1.11/>
    v1.10 <http://docs.docker.jp/v1.10/>
