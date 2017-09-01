@@ -19,4 +19,4 @@ Swarm
    Swarm モードの重要な概念 <key-concepts.rst>
    導入ガイド <swarm-tutorial/toc.rst>
 
-..   menu.rst
+   menu.rst

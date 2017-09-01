@@ -180,7 +180,7 @@ Docker リポジトリを追加後、パッケージ一覧の更新が初めて�
 
 3. プロダクション（本番向け）システムでは、Docker CE 最新版を使う代わりに、特定のバージョンをインストールすべきでしょう。利用可能なバージョンを一覧表示します。例では ``sort -r`` コマンドを使い、バージョン番号の結果を高いものから低いものへとソートします。また、表示を簡略化します。
 
-.. note::
+.. infomation::
 
 .. Note: This yum list command only shows binary packages. To show source packages as well, omit the .x86_64 from the package name.
 

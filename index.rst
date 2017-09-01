@@ -22,7 +22,7 @@ Docker ドキュメント日本語化プロジェクト
 
   * Docker `17.06`  向けにドキュメントの改訂作業中です(2017年9月現在)。一部古い場合がありますので、ご注意ください。
   * Docker のドキュメントは常に変わり続けています。最新の情報については `公式ドキュメント <https://docs.docker.com/>`_ をご覧ください。
-* 本プロジェクトは有志による翻訳プロジェクトです。お気づきの点がございましたら、 `issue <https://github.com/zembutsu/docs.docker.jp/issues>`_ や `Pull Request <https://github.com/zembutsu/docs.docker.jp/pulls>`_ でお知らせ願います。
+  * 本プロジェクトは有志による翻訳プロジェクトです。お気づきの点がございましたら、 `issue <https://github.com/zembutsu/docs.docker.jp/issues>`_ や `Pull Request <https://github.com/zembutsu/docs.docker.jp/pulls>`_ でお知らせ願います。
 
 .. Docker Documentation
 
@@ -62,7 +62,7 @@ Docker エンタープライズ・エディション
 
 .. Designed for enterprise development and IT teams who build, ship, and run business critical applications in production at scale. Integrated, certified, and supported to provide enterprises with the most secure container platform in the industry to modernize all applications. Docker EE Advanced comes with enterprise add-ons like UCP and DTR.
 
-ビジネスにおいて重要なアプリケーションを構築、移動、そして本番環境でスケールさせるような、エンタープライズの開発と IT チームのために設計されています。統合、認証された、エンタープライズが提供するサポートを受け、全てのアプリケーションを現代化するため、業界における最も安全なコンテナ・プラットフォームです。Docker EE は UCP と DTR のようなエンタープライズ向け :ref:`アドオン <docker-ee-add-ons>` を備えています。
+ビジネスにおいて重要なアプリケーションを構築、移動、そして本番環境でスケールさせるような、エンタープライズの開発と IT チームのために設計されています。統合、認証された、エンタープライズが提供するサポートを受け、全てのアプリケーションを現代化するため、業界における最も安全なコンテナ・プラットフォームです。Docker EE は UCP と DTR のようなエンタープライズ向けアドオンを備えています。
 
 .. Learn more about Docker EE
 
@@ -90,11 +90,11 @@ Docker を使い、コンテナをベースとしたアプリケーションを�
 
    Mac 上で全ての Docker ツールを実行するために、OS X サンドボックス・セキュリティ・モデルを使うネイティブなアプリケーションです。
 
-* :doc:`Docker for Windows </docker-for-windows/index>`
+* :doc:`Docker for Windows </docker-for-windows/overview>`
 
    Windows コンピュータ上で全ての Docker ツールを実行するためのネイティブ Windows アプリケーションです。
 
-* :doc:`Docker for Linux </engine/installation/linux/index>`
+* Docker for Linux
 
    コンピュータにインストール済みの Linux ディストリビューション上に Docker をインストールします。
 
@@ -107,15 +107,15 @@ Docker を使い、コンテナをベースとしたアプリケーションを�
 
    イメージの管理と構築のためのホステッド・レジストリ・サービスです。
 
-* :doc:`Docker Cloud （クラウド） </docker-cloud/overview>`
+* Docker Cloud （クラウド）
 
    ホスト上にDocker イメージの構築、テスト、デプロイするホステッド・サービスです。
 
-* :doc:`Docker Trusted Registry （トラステッド・レジストリ） </docker-trusted-registry/overview>`
+* Docker Trusted Registry （トラステッド・レジストリ）
 
    [DTR] でイメージの保管と署名をします。
 
-* :doc:`Docker Universal Control Plane （ユニバーサル・コントロール・プレーン） </ucp/overview>`
+* Docker Universal Control Plane （ユニバーサル・コントロール・プレーン）
 
    [UCP] はオンプレミス上の Docker ホストのクラスタを１台から管理します。
 
@@ -137,7 +137,7 @@ Doc v17.06 目次
    :caption: Glossary - 用語集
    :maxdepth: 1
 
-   glossary/index.rst
+   glossary.rst
 
 .. toctree::
    :caption: Guide - ガイド
@@ -192,7 +192,7 @@ About
    :caption: Docker について
 
    release-notes.rst
-   engine/reference/glossary.rst
+   glossary.rst
    about.rst
    guide.rst
    pdf-download.rst

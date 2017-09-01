@@ -2,8 +2,9 @@
 .. URL: https://docs.docker.com/engine/installation/
    doc version: 17.06
       https://github.com/docker/docker.github.io/blob/master/engine/installation/index.md
-.. check date: 2017/07/01
-.. Commits on Jun 29, 2017 322213052e760120e6a211f5db3d847d4ab52695
+      https://github.com/docker/docker.github.io/commits/master/engine/installation/index.md
+.. check date: 2017/09/01
+.. Commits on Aug 22, 2017 6c15aa45eda03f5a22bb8f83fb8af026571dcdfb
 .. -----------------------------------------------------------------------------
 
 .. Install Docker
@@ -78,7 +79,7 @@ Docker エンタープライズ版（EE）はエンタープライズにおけ�
 
 .. Supported platforms
 
-.. _supported-platforms:
+.. _platform-support-matrix:
 
 対応プラットフォーム
 ====================
@@ -144,9 +145,9 @@ Docker エンタープライズ版（EE）はエンタープライズにおけ�
      - .. image:: /engine/images/green-check.png
 
 
-.. See also Docker Cloud for setup instructions for Digital Ocean, Packet, SoftLink, or Bring Your Own Cloud.
+.. See also Docker Cloud for setup instructions for Digital Ocean, Packet, SoftLayer, or Bring Your Own Cloud.
 
-Digital Ocean、Packet、SoftLink、あるいは皆さん自身のクラウドにセットアップする場合は :ref:`Docker Cloud <on-docker-cloud>` もご覧ください。
+Digital Ocean、Packet、SoftLayer、あるいは皆さん自身のクラウドにセットアップする場合は :ref:`Docker Cloud <on-docker-cloud>` もご覧ください。
 
 .. Time-based release schedule
 
@@ -188,8 +189,9 @@ Docker 17.03 以降、Docker は時間を基準としたりりース（time-base
      - 
    * - ６月
      - .. image:: /engine/images/green-check.png
-     - 
-     - 
+       [#0]_
+     - .. image:: /engine/images/green-check.png
+     - .. image:: /engine/images/green-check.png
    * - ７月
      - .. image:: /engine/images/green-check.png
      - 
@@ -200,8 +202,9 @@ Docker 17.03 以降、Docker は時間を基準としたりりース（time-base
      - 
    * - ９月
      - .. image:: /engine/images/green-check.png
-     - 
-     - 
+       [#0]_
+     - .. image:: /engine/images/green-check.png
+     - .. image:: /engine/images/green-check.png
    * - 10月
      - .. image:: /engine/images/green-check.png
      - 
@@ -212,10 +215,13 @@ Docker 17.03 以降、Docker は時間を基準としたりりース（time-base
      - 
    * - 12月
      - .. image:: /engine/images/green-check.png
-     - 
-     - 
+       [#0]_
+     - .. image:: /engine/images/green-check.png
+     - .. image:: /engine/images/green-check.png
 
-Docker CE の Linux 版では、３月、6月、９月、12 月の  Edge リリースは ``edge`` チャンネルではなく、 ``stable``  チャンネルでリリースされます。つまり、Linux 版の Edge では両方のチャンネルを有効にする必要があります。
+.. rubric:: 
+
+.. [#0] Docker CE の Linux 版では、３月、6月、９月、12 月の  Edge リリースは ``edge`` チャンネルではなく、 ``stable``  チャンネルでリリースされます。つまり、Linux 版の Edge では両方のチャンネルを有効にする必要があります。
 
 .. Prior releases
 
@@ -263,8 +269,17 @@ Docker Cloud を使えば、各クラウド環境上に自動的にセットア�
 
 Docker のセットアップを終えた、 :doc:`Docker を始めよう </get-started/index>` で Docker の基本を学びましょう。
 
-ｰｰｰｰ
-（以下、旧リンク情報）
+
+.. seealso:: 
+
+   Install
+      https://docs.docker.com/engine/installation/
+
+
+----
+
+
+（以下、旧いバージョンの情報のため、削除予定）
 
 .. On Cloud
 
@@ -309,9 +324,4 @@ Docker ドキュメントのアーカイブ
 * :doc:`Docker について </engine/index>`
 * `サポート（英語） <https://www.docker.com/support/>`_
 * `トレーニング（英語） <https://training.docker.com//>`_
-
-.. seealso:: 
-
-   Install
-      https://docs.docker.com/engine/installation/
 

@@ -22,7 +22,7 @@ Mac OS X 導入ガイド
 
 .. This is written for users of Mac OS X. If you are not using Mac OS X, see the Linux or Windows version.
 
-このページは Mac OS X の利用者向けです。Mac OS X を使っていなければば :doc:`Linux </linux/index>` や :doc:`Windows </windows/index>` 向けのページをご覧ください。
+このページは Mac OS X の利用者向けです。Mac OS X を使っていなければば Linux  や Windows` 向けのページをご覧ください。
 
 .. This getting started is for non-technical users who are interested in learning about Docker. By following this getting started, you’ll learn fundamental Docker features by performing some simple tasks. You’ll learn how to:
 
@@ -60,6 +60,12 @@ Mac OS X 導入ガイド
 .. Go to the next page to install.
 
 :doc:`次のインストールのページ <step_one>` に移動します。
+
+.. toctree::
+   :maxdepth: 1
+   :titlesonly:
+
+   overview.rst
 
 
 .. seealso:: 

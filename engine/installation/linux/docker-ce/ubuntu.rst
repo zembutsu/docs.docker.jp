@@ -68,7 +68,7 @@ Docker CE がサポートしている Ubuntu のアーキテクチャは、 `x86
 
 .. Uninstall old versions
 
-.. _uninstall-old-versions:
+.. _uninstall-old-ubuntu-versions:
 
 古いバージョンのアンインストール
 ----------------------------------------

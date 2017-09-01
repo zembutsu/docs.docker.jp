@@ -22,7 +22,7 @@ Windows 導入ガイド
 
 .. This is written for users of Windows. If you are not using Windows, see the Linux or Mac OS X version.
 
-このページは Windows ユーザ向けです。Windows を使っていなければ :doc:`Linux </linux/index>` や :doc:`Mac OS </mac/index>` 向けのページをご覧ください。
+このページは Windows ユーザ向けです。Windows を使っていなければ Linux や Mac OS 向けのページをご覧ください。
 
 .. This getting started is for non-technical users who are interested in learning about Docker. By following this getting started, you’ll learn fundamental Docker features by performing some simple tasks. You’ll learn how to:
 

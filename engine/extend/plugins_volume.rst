@@ -128,9 +128,9 @@ Docker デーモンはユーザのコンテナが指定したパスに対し、�
 
 **応答** :
 
-{
-    "Err": null
-}
+   {
+       "Err": null
+   }
 
 .. Respond with a string error if an error occurred.
 
@@ -201,7 +201,7 @@ Docker はホスト上のボリュームのパスを覚えておく必要があ�
 ボリュームが利用可能になったり、あるいはエラーが発生したりする場合には、ホスト・ファイルシステム上のパスを返します。
 
 
-.. /VolumeDriver.Unmount
+VolumeDriver.Unmount
 ------------------------------
 
 .. Request:

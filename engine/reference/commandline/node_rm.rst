@@ -54,7 +54,7 @@ node rm
 * :doc:`node_tasks`
 * :doc:`node_ls`
 
-.. seearmo:: 
+.. seealso:: 
 
    node rm
       https://docs.docker.com/engine/reference/commandline/node_rm/

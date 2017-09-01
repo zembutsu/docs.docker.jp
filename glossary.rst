@@ -26,7 +26,7 @@
 
 .. aufs
 
-.. _aufs:
+.. _glossary-aufs:
 
 aufs
 ==========
@@ -388,7 +388,6 @@ Machine
 ==============================
 
 .. A Linux namespace is a Linux kernel feature that isolates and vitualizes system resources. Processes which restricted to a namespace can only interact with resources or processes that are part of the same namespace. Namespaces are an important part of Docker’s isolation model. Namespaces exist for each type of resource, including net (networking), mnt (storage), pid (processes), uts (hostname control), and user (UID mapping). For more information about namespaces, see Docker run reference and Introduction to user namespaces.
-Glossary terms
 
 `Linux 名前空間（namespace；ネームスペース） <http://man7.org/linux/man-pages/man7/namespaces.7.html>`_ は  Linux カーネルの分離（isolate）と仮想システム・リソース機能です。名前空間によって制限されたプロセスは、お味名前空間内のリソースやプロセスとしかやりとりできません。名前空間は Docker の分離モデルにおける重要な部分です。名前空間は各リソース・タイプごとに存在しています。リソース・タイプとは ``net`` （ネットワーク機能）、 ``mnt`` （ストレージ）、 ``pid`` （プロセス）、 ``uts`` （ホスト名の制御）、 ``user`` （UID 割り当て）です。名前空間に関する詳しい情報は、 :doc:`Docker run リファレンス </engine/reference/run>` と `ユーザ名前空間入門（英語） <https://success.docker.com/KBase/Introduction_to_User_Namespaces_in_Docker_Engine>`_ をご覧ください。
 
@@ -400,8 +399,10 @@ Glossary terms
 
 .. A node is a physical or virtual machine running an instance of the Docker Engine in swarm mode.
 
-:doc:`ノード </engine/swarm/how-swarm-mode-works/nodes>` とは、swarm モード上における Docker Engine が動作している物理または仮想マシンを指します。
+.. :doc:`ノード </engine/swarm/how-swarm-mode-works/nodes>` とは、swarm モード上における Docker Engine が動作している物理または仮想マシンを指します。
 
+ノードとは、swarm モード上における Docker Engine が動作している物理または仮想マシンを指します。
+g
 .. Manager nodes perform swarm management and orchestration duties. By default manager nodes are also worker nodes.
 
 **マネージャ・ノード（Manager node）** は swarm（クラスタ）管理とオーケストレーションの責務を処理します。デフォルトでは、マネージャ・ノードはワーカ・ノードも兼ねます。
@@ -479,7 +480,10 @@ SSH（secure shell；安全なシェル）はリモート・マシンやアプ�
 
 .. A service is the definition of how you want to run your application containers in a swarm. At the most basic level a service defines which container image to run in the swarm and which commands to run in the container. For orchestration purposes, the service defines the “desired state”, meaning how many containers to run as tasks and constraints for deploying the containers.
 
-:doc:`サービス </engine/swarm/how-swarm-mode-works/services>` は、 swarm 上でアプリケーション・コンテナをどのように実行するかの定義です。最も基本的なレベルのサービス定義とは、swarm 上でどのコンテナ・イメージを実行するか、そして、どのコマンドをコンテナで実行するかです。オーケストレーションの目的は「望ましい状態（desired state）」としてサービスを定義することです。つまり、いくつのコンテナをタスクとして実行するか、コンテナをデプロイする条件（constraint）を指します。
+.. :doc:`サービス </engine/swarm/how-swarm-mode-works/services>` は、 swarm 上でアプリケーション・コンテナをどのように実行するかの定義です。最も基本的なレベルのサービス定義とは、swarm 上でどのコンテナ・イメージを実行するか、そして、どのコマンドをコンテナで実行するかです。オーケストレーションの目的は「望ましい状態（desired state）」としてサービスを定義することです。つまり、いくつのコンテナをタスクとして実行するか、コンテナをデプロイする条件（constraint）を指します。
+
+サービスは、 swarm 上でアプリケーション・コンテナをどのように実行するかの定義です。最も基本的なレベルのサービス定義とは、swarm 上でどのコンテナ・イメージを実行するか、そして、どのコマンドをコンテナで実行するかです。オーケストレーションの目的は「望ましい状態（desired state）」としてサービスを定義することです。つまり、いくつのコンテナをタスクとして実行するか、コンテナをデプロイする条件（constraint）を指します。
+
 
 .. Frequently a service is a microservice within the context of some larger application. Examples of services might include an HTTP server, a database, or any other type of executable program that you wish to run in a distributed environment.
 
@@ -493,7 +497,10 @@ SSH（secure shell；安全なシェル）はリモート・マシンやアプ�
 
 .. Swarm mode service discovery is a DNS component internal to the swarm that automatically assigns each service on an overlay network in the swarm a VIP and DNS entry. Containers on the network share DNS mappings for the service via gossip so any container on the network can access the service via its service name.
 
-Swarm モードの :ref:`サービス・ディスカバリ <use-swarm-mode-service-discovery>` は、swarm クラスタ内部における DNS コンポーネントです。これは、オーバレイ・ネットワーク上の各サービスに対し、VIP と DNS エントリを自動的に割り当てます。ネットワーク上のコンテナはゴシップ（訳者注；分散環境における通信プロトコルの一種です）を経由し、各サービス向けに割り当てられた DNS を共有します。そのため、ネットワーク上における全てのコンテナ上にあるサービスに対し、サービス名でアクセスできます。
+.. Swarm モードの :ref:`サービス・ディスカバリ <use-swarm-mode-service-discovery>` は、swarm クラスタ内部における DNS コンポーネントです。これは、オーバレイ・ネットワーク上の各サービスに対し、VIP と DNS エントリを自動的に割り当てます。ネットワーク上のコンテナはゴシップ（訳者注；分散環境における通信プロトコルの一種です）を経由し、各サービス向けに割り当てられた DNS を共有します。そのため、ネットワーク上における全てのコンテナ上にあるサービスに対し、サービス名でアクセスできます。
+
+Swarm モードのサービス・ディスカバリは、swarm クラスタ内部における DNS コンポーネントです。これは、オーバレイ・ネットワーク上の各サービスに対し、VIP と DNS エントリを自動的に割り当てます。ネットワーク上のコンテナはゴシップ（訳者注；分散環境における通信プロトコルの一種です）を経由し、各サービス向けに割り当てられた DNS を共有します。そのため、ネットワーク上における全てのコンテナ上にあるサービスに対し、サービス名でアクセスできます。
+
 
 .. You don’t need to expose service-specific ports to make the service available to other services on the same overlay network. The swarm’s internal load balancer automatically distributes requests to the service VIP among the active tasks.
 
@@ -555,7 +562,10 @@ Docker Swarm は Docker 用に独立したネイティブなクラスタリン�
 
 .. A task is the atomic unit of scheduling within a swarm. A task carries a Docker container and the commands to run inside the container. Manager nodes assign tasks to worker nodes according to the number of replicas set in the service scale.
 
-:ref:`タスク <tasks-and-scheduling>` は swarm 内でスケジューリングする最小単位です。タスクは Docker コンテナを運び、コンテナ内部にあるコンテナを実行します。ノードへのタスク管理を管理し、サービスをスケールするために、ワーカ・ノードに複数のレプリカを割り当てます。
+.. :ref:`タスク <tasks-and-scheduling>` は swarm 内でスケジューリングする最小単位です。タスクは Docker コンテナを運び、コンテナ内部にあるコンテナを実行します。ノードへのタスク管理を管理し、サービスをスケールするために、ワーカ・ノードに複数のレプリカを割り当てます。
+
+タスクは swarm 内でスケジューリングする最小単位です。タスクは Docker コンテナを運び、コンテナ内部にあるコンテナを実行します。ノードへのタスク管理を管理し、サービスをスケールするために、ワーカ・ノードに複数のレプリカを割り当てます。
+
 
 .. The diagram below illustrates the relationship of services to tasks and containers.
 
@@ -577,7 +587,7 @@ Toolbox
 
 .. For Macs running OS X El Capitan 10.11 and newer macOS releases, Docker for Mac is the better solution.
 
-Mac で OS X EI Capitan 10.11 か、これよりも新しい macOS リリースをお使いであれば、 :doc:`Docker for mac </docker-for-mac/index.>` のほうが良いソリューションです。
+Mac で OS X EI Capitan 10.11 か、これよりも新しい macOS リリースをお使いであれば、 :doc:`Docker for mac </docker-for-mac/index>` のほうが良いソリューションです。
 
 .. For Windows 10 systems that support Microsoft Hyper-V (Professional, Enterprise and Education), Docker for Windows is the better solution.
 
