@@ -14,6 +14,6 @@ Get started - 始めましょう
    :maxdepth: 1
    :titlesonly:
 
-   Docker を使い始める <get-started-with-docker.rst>
+   Docker を使い始める <get-started.rst>
    例を通して学ぶ <learn-by-example.rst>
    Docker 概要 </engine/docker-overview.rst>
