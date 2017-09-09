@@ -9,7 +9,7 @@
 .. Get Started, Part 2: Containers
 
 ========================================
-Part2：コンテナ
+Part 2：コンテナ
 ========================================
 
 .. sidebar:: 目次
@@ -20,7 +20,7 @@ Part2：コンテナ
 
 .. Prerequisites
 
-動作条件
+必要条件
 ==========
 
 ..    Install Docker version 1.13 or higher.
@@ -449,7 +449,7 @@ Docker アカウントをお持ちでなければ、 `cloud.docker.com <https://
 
 .. Here’s a terminal recording of what was covered on this page:
 
-`このページで扱ったターミナルを録画したもの <https://asciinema.org/a/blkah0l4ds33tbe06y4vkme6g>`_ がこちらです。
+`このページで扱ったターミナルの録画 <https://asciinema.org/a/blkah0l4ds33tbe06y4vkme6g>`_ がこちらです。
 
 .. Here is a list of the basic Docker commands from this page, and some related ones if you’d like to explore a bit before moving on.
 
@@ -474,5 +474,9 @@ Docker アカウントをお持ちでなければ、 `cloud.docker.com <https://
    docker push username/repository:tag                                  # タグ付けしたイメージを送信
    docker run username/repository:tag                               # レジストリにあるイメージを実行
 
+.. seealso::
+
+   Get Started, Part 2: Containers | Docker Documentation
+      https://docs.docker.com/get-started/part2/
 
 

@@ -11,7 +11,7 @@ Get started - 始めましょう
 ========================================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 3
    :titlesonly:
 
    Docker を使い始める <get-started.rst>

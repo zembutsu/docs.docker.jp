@@ -9,7 +9,7 @@
 .. Get Started, Part 1: Orientation and Setup
 
 ========================================
-Part1：概要説明とセットアップ
+Part 1：概要説明とセットアップ
 ========================================
 
 .. sidebar:: 目次
@@ -46,7 +46,7 @@ Part1：概要説明とセットアップ
 
 .. Prerequisites
 
-動作条件
+必要条件
 ==========
 
 .. While we’ll define concepts along the way, it is good for you to understand what Docker is and why you would use Docker before we begin.
