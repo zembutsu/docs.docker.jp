@@ -42,7 +42,7 @@ Part 5：スタック
 * イメージをコンテナとしてデプロイできるのを確認します。次のコマンドを実行しますが、 ``ユーザ名`` と ``リポジトリ`` ``タグ`` は皆さんのものに置き換えます。コマンドは ``docker run -p 80:80 ユーザ名/リポジトリ:タグ`` です。そして ``http://localhost/`` を表示します。
 * :doc:`Part 3 <part3>` で扱った ``docker-compose.yml`` のコピーを持っていること
 * :doc:`Part 4 <part4>` でセットアップしたマシンが実行中かつ準備できていること。確認には ``docker-machine ls`` を実行。マシンが停止している場合は、マネージャを ``docker-machine start myvm1`` で起動し、ワーカを ``docker-machine start myvm2`` で起動
-* :doc:`Part 4 <part4>` で作絵師した swarm （クラスタのこと）が実行中かつ準備できていること。確認には ``docker-machine ssh myvm1 "docker node ls"`` を実行。swarm が起動中であれば、いずれのノードも status （状態）は ``ready`` （準備完了）。そうでなければ、swarm を再度初期化し、ワーカを :ref:`swram としてセットアップ <set-up-your-swarm>` します。
+* :doc:`Part 4 <part4>` で作成した swarm （クラスタのこと）が実行中かつ準備できていること。確認には ``docker-machine ssh myvm1 "docker node ls"`` を実行。swarm が起動中であれば、いずれのノードも status （状態）は ``ready`` （準備完了）。そうでなければ、swarm を再度初期化し、ワーカを :ref:`swram としてセットアップ <set-up-your-swarm>` します。
 
 .. Introduction
 
@@ -78,7 +78,7 @@ Part 5：スタック
 
 ..    Open up docker-compose.yml in an editor and replace its contents with the following. Be sure to replace username/repo:tag with your image details.
 
-1. エディタで ``docker-compose.yml`` を開き、内容を以下の通りに各機変えます。 ``username/repo:tag`` の部分は、皆さんのイメージにあわせてください。
+1. エディタで ``docker-compose.yml`` を開き、内容を以下の通りに書き換えます。 ``username/repo:tag`` の部分は、皆さんのイメージにあわせてください。
 
 .. code-block:: yalm
 

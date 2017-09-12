@@ -63,11 +63,11 @@ Part 3では、アプリケーションをスケールアウトし、負荷分�
 
 .. In a distributed application, different pieces of the app are called “services.” For example, if you imagine a video sharing site, it probably includes a service for storing application data in a database, a service for video transcoding in the background after a user uploads something, a service for the front-end, and so on.
 
-分散アプリケーションにおいて、アプリケーションにおける「サービス」と呼ばれる部分は異なる構成要素です。たとえば、動画共有サイトをご想像ください。このサービスではアプリケーションのデータをデータベースに保管するでしょうし、ユーザが何かをアップロードしたらバックグラウンドでビデオ変換サービスが走るでしょうし、フロントエンド向けのサービス等もあるでしょう。
+分散アプリケーションにおいて、アプリケーションにおける「サービス」と呼ばれる部分は異なる構成要素です。例えば、動画共有サイトをご想像ください。このサービスではアプリケーションのデータをデータベースに保管するでしょうし、ユーザが何かをアップロードしたらバックグラウンドでビデオ変換サービスが走るでしょうし、フロントエンド向けのサービス等もあるでしょう。
 
 .. Services are really just “containers in production.” A service only runs one image, but it codifies the way that image runs—what ports it should use, how many replicas of the container should run so the service has the capacity it needs, and so on. Scaling a service changes the number of container instances running that piece of software, assigning more computing resources to the service in the process.
 
-サービスとは、まさに「本番環境におけるコンテナ」なのです。サービスは１つのイメージしか実行しません。しかし、イメージ実行にはコード化の手法を用います。たとえば、何番のポートを使うか、サービスのキャパシティ（収容能力）に応じてコンテナの複製（レプリカ）をいくつ作成したらよいのか等です。サービスのスケール（規模）を変えるには、ソフトウェアのパーツとしての実行するコンテナ・インスタンス数の変更、すなわち、プロセス中のサービスに対して更に大きな計算資源を割り当てます。
+サービスとは、正に「本番環境におけるコンテナ」なのです。サービスは１つのイメージしか実行しません。しかし、イメージ実行にはコード化の手法を用います。例えば、何番のポートを使うか、サービスのキャパシティ（収容能力）に応じてコンテナの複製（レプリカ）を幾つ作成したらよいのか等です。サービスのスケール（規模）を変えるには、ソフトウェアのパーツとしての実行するコンテナ・インスタンス数の変更、すなわち、プロセス中のサービスに対して更に大きな計算資源を割り当てます。
 
 .. Luckily it’s very easy to define, run, and scale services with the Docker platform – just write a docker-compose.yml file.
 
@@ -77,7 +77,7 @@ Part 3では、アプリケーションをスケールアウトし、負荷分�
 
 .. _your-first-docker-compose-yml-file:
 
-はじめての ``docker-compose.yml`` ファイル
+初めての ``docker-compose.yml`` ファイル
 ==================================================
 
 .. A docker-compose.yml file is a YAML file that defines how Docker containers should behave in production.
@@ -125,7 +125,7 @@ Part 3では、アプリケーションをスケールアウトし、負荷分�
 
 * :doc:`Step 2 でアップロードしたイメージ` をレジストリから取得
 * ``web`` という名前のサービスとして、イメージのインスタンスを５つ実行。それぞれのインスタンスには最大で CPU の 10% （全てのコアを横断して）かつメモリを 50MB に制限
-* コンテナが停止すると、ただちに再起動
+* コンテナが停止すると、直ちに再起動
 * ホスト側のポート 80 を、 ``web`` のポート 80 に割り当て
 * ''web'' のコンテナに対し、 ``webnet`` という名前の負荷分散ネットワークを経由してポート 80 を共有するよう命令（内部では、コンテナ自身の一時的なポートとして、 ``web`` のポート 80 を公開 ）
 * デフォルトの設定として ``webnet`` ネットワークを定義（負荷分散されるオーバレイ・ネットワーク）
@@ -159,7 +159,7 @@ Part 3では、アプリケーションをスケールアウトし、負荷分�
 
 .. note::
 
-   このコマンドの意味については :doc:`Part 4 <part4>` で扱います。もしも ``docker swarm init`` コマンドを実行しなければ、 "this node is not a swarm manager." （このノードは swarm マネージャであはありません）とエラーが出ます。
+   このコマンドの意味については :doc:`Part 4 <part4>` で扱います。もしも ``docker swarm init`` コマンドを実行しなければ、 "this node is not a swarm manager." （このノードは swarm マネージャではありません）とエラーが出ます。
 
 .. Now let’s run it. You have to give your app a name. Here, it is set to getstartedlab:
 
@@ -271,7 +271,7 @@ Docker は現状のまま更新を行いますので、スタックの停止や�
 
 .. It’s as easy as that to stand up and scale your app with Docker. You’ve taken a huge step towards learning how to run containers in production. Up next, you will learn how to run this app as a bonafide swarm on a cluster of Docker machines.
 
-Docker はアプリケーションの起動だけでなくスケールも非常に簡単です。コンテナをプロダクションで動かす方法を学ぶにあたり、大きな前進です。次は、Docker マシンのクラスタ上で動作する swarm で、このアプリを動かす方法を学びましょう。
+Docker はアプリケーションの起動だけでなくスケールも非常に簡単です。コンテナをプロダクションで動かす方法を学ぶのに、大きな前進です。次は、Docker マシンのクラスタ上で動作する swarm で、このアプリを動かす方法を学びましょう。
 
 ..    Note: Compose files like this are used to define applications with Docker, and can be uploaded to cloud providers using Docker Cloud, or on any hardware or cloud provider you choose with Docker Enterprise Edition.
 
@@ -294,11 +294,11 @@ Docker はアプリケーションの起動だけでなくスケールも非常�
 
 .. To recap, while typing docker run is simple enough, the true implementation of a container in production is running it as a service. Services codify a container’s behavior in a Compose file, and this file can be used to scale, limit, and redeploy our app. Changes to the service can be applied in place, as it runs, using the same command that launched the service: docker stack deploy.
 
-お復習いとして ``docker run`` を実行するだけで、コンテナをプロダクションにおけるサービスとして正に実装されているのが分かるでしょう。コンテナの挙動をサービスとして Compose ファイルでコード化し、これを使ったアプリのスケール、制限、再デプロイに用いられます。サービスにタイする変更とは、変更箇所を書き換えての適用であり、サービスを起動するときと同じコマンド ``docker stack deploy`` を実行するだけです。
+復習として ``docker run`` を実行するだけで、コンテナをプロダクションにおけるサービスとして正に実装されているのが分かるでしょう。コンテナの挙動をサービスとして Compose ファイルでコード化し、これを使ったアプリのスケール、制限、再デプロイに用いられます。サービスに対するする変更とは、変更箇所を書き換えての適用であり、サービスを起動するときと同じコマンド ``docker stack deploy`` を実行するだけです。
 
 .. Some commands to explore at this stage:
 
-この時点におけるコマンドをいくつか見てみましょう。
+現時点における複数のコマンドを見てみましょう。
 
 .. code-block:: bash
 
@@ -308,7 +308,7 @@ Docker はアプリケーションの起動だけでなくスケールも非常�
    docker service ps <service>                        # アプリに関係あるタスク一覧
    docker inspect <task or container>                 # タスクまたはコンテナの調査
    docker container ls -q                                     # コンテナ ID の一覧
-   docker stack rm <appname>                      ]         # アプリケーションの解体
+   docker stack rm <appname>                                # アプリケーションの解体
 
 .. seealso::
 

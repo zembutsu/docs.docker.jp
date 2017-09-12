@@ -57,7 +57,7 @@ Docker CE（クラウド・プロバイダ）
 
 .. If you’re okay with using Docker Community Edition in production, you can use Docker Cloud to help manage your app on popular service providers such as Amazon Web Services, DigitalOcean, and Microsoft Azure.
 
-Docker コミュニティ・エディションをプロダクションで使う方針であれば、Amazon Web Services や DeigalOcean、Microsoft Azure のような有名なサービスプロバイダ上でアプリを管理するのに Docker Cloud を利用できます。
+Docker コミュニティ・エディションをプロダクションで使う方針であれば、Amazon Web Services や DeigalOcean、Microsoft Azure のような有名なサービスプロバイダ上のアプリ管理に、Docker Cloud を利用できます。
 
 .. To set up and deploy:
 
@@ -166,7 +166,7 @@ swarm 作成の準備が整いましたか？
 
 .. There is much more to the Docker platform than what was covered here, but you have a good idea of the basics of containers, images, services, swarms, stacks, scaling, load-balancing, volumes, and placement constraints.
 
-Docker Cloud にはここで扱わなかった以上の事も可能ですが、コンテナ、イメージ、サービス、swarm、スタック、スケーリング、負荷分散ボリューム、場所の制約といった、基本的な考えを習得しました。
+ここで扱わない機能も Docker Cloud にはありますが、これまで、コンテナ、イメージ、サービス、swarm、スタック、スケーリング、負荷分散ボリューム、場所の制約といった、基本的な考えを習得しました。
 
 .. Want to go deeper? Here are some resources we recommend:
 

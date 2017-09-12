@@ -33,7 +33,7 @@ Part 4：Swarm
     Have a copy of your docker-compose.yml from Part 3 handy.
 
 * :doc:`Docker バージョン 1.13 以上のインストール </engine/installation/index>`
-* :doc:`Docker Machine </machine/overview>` を入手。 Docker for Mac と Docker for Windows ではインストール済みなので、このまま読み進めてください。Linux システムでは :ref:`直接インストール <installing-machine-directly>_ が必要です。Widows 10 システム上で Hyper-V が入っていなければ、 :doc:`Docker Toolbox </toolbox/overview>` をお使い下さい。
+* :doc:`Docker Machine </machine/overview>` を入手。 Docker for Mac と Docker for Windows ではインストール済みですので、このまま読み進めてください。Linux システムでは :ref:`直接インストール <installing-machine-directly>_ が必要です。Widows 10 システム上で Hyper-V が入っていなければ、 :doc:`Docker Toolbox </toolbox/overview>` をお使い下さい。
 * :doc:`Part 1 <index>` の概要を読んでいること
 * :doc:`Part 2 <part>` のコンテナの作成方法学んでいること
 * 自分で作成した ``friendlyhello`` イメージを :ref:`レジストリに送信 <share-your-image>` して公開済みなのを確認します。ここでは、この共有イメージを使います。
@@ -62,11 +62,11 @@ Swarm クラスタの理解
 
 .. A swarm is a group of machines that are running Docker and joined into a cluster. After that has happened, you continue to run the Docker commands you’re used to, but now they are executed on a cluster by a swarm manager. The machines in a swarm can be physical or virtual. After joining a swarm, they are referred to as nodes.
 
-swarm とは Docker が動作し、クラスタに参加しているマシン・グループです。swarm を使えば、Docker コマンドをこれまで通り使い続けながら、 **swam マネージャ** を通してクラスタ上で実行可能になります。swarm 上のマシンは物理または仮想どちらも使えます。swarm に加わった後は、これらは **ノード** として参照されます。
+swarm とは Docker が動作し、クラスタに参加しているマシン・グループです。swarm を使えば、Docker コマンドをこれまで通り使い続けながら、 **swam マネージャ** を通してクラスタ上で実行可能になります。swarm 上のマシンは物理あるいは仮想どちらも使えます。swarm に加わった後は、これらは **ノード** として参照されます。
 
 .. Swarm managers can use several strategies to run containers, such as “emptiest node” – which fills the least utilized machines with containers. Or “global”, which ensures that each machine gets exactly one instance of the specified container. You instruct the swarm manager to use these strategies in the Compose file, just like the one you have already been using.
 
-swarm マネージャはコンテナの実行にあたり、複数のストラテジ（strategy；計画、方針）を扱えます。たとえば「emptiest node」（最も空いているノード）であれば、最も使われていないマシンが選ばれます。あるいは「global」（グローバル）であれば、特定の１つのマシンだけでなく、すべてのマシン上で特定のコンテナを実行します。このように様々なストラテジがありますが、 swarm マネージャには Compose ファイルを通して命令できます。
+swarm マネージャはコンテナの実行時、複数のストラテジ（strategy；計画、方針）を扱います。例えば「emptiest node」（最も空いているノード）であれば、最も使われていないマシンが選ばれます。あるいは「global」（グローバル）であれば、特定の１つのマシンだけでなく、すべてのマシン上で特定のコンテナを実行します。このように様々なストラテジがありますが、 swarm マネージャには Compose ファイルを通して命令できます。
 
 .. Swarm managers are the only machines in a swarm that can execute your commands, or authorize other machines to join the swarm as workers. Workers are just there to provide capacity and do not have the authority to tell any other machine what it can and cannot do.
 
@@ -74,7 +74,7 @@ swarm マネージャは swarm における単なるマシンであり、コマ�
 
 .. Up until now, you have been using Docker in a single-host mode on your local machine. But Docker also can be switched into swarm mode, and that’s what enables the use of swarms. Enabling swarm mode instantly makes the current machine a swarm manager. From then on, Docker will run the commands you execute on the swarm you’re managing, rather than just on the current machine.
 
-これまではローカルマシン上の単一ホスト上で動く Docker を使ってきました。しかし、Docker は **swarm mode**  に切り替え可能であり、swarm（クタスタ）上でも利用できます。現在のマシンを swarm マネージャとしたら、簡単に swarm モードを有効化できます。あとは、現在のマシンで Docker を操作する代わりに、swarm クラスタ上で処理します。
+これまではローカルマシン上の単一ホスト上で動く Docker を使ってきました。しかし、Docker は **swarm mode**  に切り替え可能であり、swarm（クラスタ）上でも利用できます。現在のマシンを swarm マネージャとしたら、簡単に swarm モードを有効化できます。あとは、現在のマシンで Docker を操作する代わりに、swarm クラスタ上で処理します。
 
 .. Set up your swarm
 
@@ -85,7 +85,7 @@ swarm のセットアップ
 
 .. A swarm is made up of multiple nodes, which can be either physical or virtual machines. The basic concept is simple enough: run docker swarm init to enable swarm mode and make your current machine a swarm manager, then run docker swarm join on other machines to have them join the swarm as workers. Choose a tab below to see how this plays out in various contexts. We’ll use VMs to quickly create a two-machine cluster and turn it into a swarm.
 
-swarm は複数のノードで構成します。物理マシンまたは仮想マシンどちらでもノードになれます。基本概念は極めてシンプルです。 ``docker swarm init`` を実行すると、 swarm mode を有効化し、現在のマシンを swarm マネージャします。そして ``docker swarm join`` を実行し、他のマシンをワーカとして swarm に追加します。環境に応じて以下の項目を読み進めてください。ここでは２つの仮想マシを素早く作成し、swarm に追加します。
+swarm は複数のノードで構成します。物理マシンまたは仮想マシンどちらでもノードになれます。基本概念は極めてシンプルです。 ``docker swarm init`` を実行すると、 swarm mode を有効化し、現在のマシンを swarm マネージャにします。そして ``docker swarm join`` を実行し、他のマシンをワーカとして swarm に追加します。環境に応じて以下の項目を読み進めてください。ここでは２つの仮想マシを素早く作成し、swarm に追加します。
 
 .. Create a cluster
 
@@ -126,7 +126,7 @@ swarm は複数のノードで構成します。物理マシンまたは仮想�
 
 .. First, quickly create a virtual switch for your VMs to share, so they will be able to connect to each other.
 
-まず、仮想マシンが共有する仮想スイッチを作成すると、仮想マシンがお互い接続可能になります。
+まず、仮想マシンが共有する仮想スイッチを作成したら、仮想マシンがお互い接続可能になります。
 
 ..    Launch Hyper-V Manager
     Click Virtual Switch Manager in the right-hand menu
@@ -206,7 +206,7 @@ swarm は複数のノードで構成します。物理マシンまたは仮想�
 
 .. note::
 
-   別の方法として、 ``docker-machine ssh myvm2`` でコマンドを付与しなければ、仮想マシンに対するターミナル・セッションを開きます。ホスト側のシェル・プロンプトに戻る準備が整えば、 ``exit`` を実行します。場合にょっては join コマンドを実行するよりも簡単でしょう。
+   別の方法として、 ``docker-machine ssh myvm2`` でコマンドを付与しなければ、仮想マシンに対するターミナル・セッションを開きます。ホスト側のシェル・プロンプトに戻る準備が整えば、 ``exit`` を実行します。場合によっては join コマンドを実行するよりも簡単でしょう。
 
 .. Use ssh to connect to the (docker-machine ssh myvm1), and run docker node ls to view the nodes in this swarm:
 
@@ -290,7 +290,7 @@ part 3 で使った全てのコマンドを ``docker-machine ssh`` で送るだ�
 
 .. The reason both IP addresses work is that nodes in a swarm participate in an ingress routing mesh. This ensures that a service deployed at a certain port within your swarm always has that port reserved to itself, no matter what node is actually running the container. Here’s a diagram of how a routing mesh for a service called my-web published at port 8080 on a three-node swarm would look:
 
-どちらの IP アドレスでも動作する理由は、swarm の各ノードがが ingress **ルーティング・メッシュ（rougint mesh）** に所属しているからです。これにより、サービスのデプロイにあたり swarm 上で指定したポートを確保できるよう、コンテナが実際にどのノードで実行中か気にすることなく、ノード自身がポートを予約します。下図は ``my-web`` という名前のサービスが公開するポート ``8080`` を、３つの swarm ノード上で、どのようにルーティング・メッシュするかの説明です。
+どちらの IP アドレスでも動作する理由は、swarm の各ノードが ingress **ルーティング・メッシュ（rougint mesh）** に所属しているからです。これにより、サービスのデプロイにあたり swarm 上で指定したポートを確保できるよう、コンテナが実際にどのノードで実行中か気にすることなく、ノード自身がポートを予約します。下図は ``my-web`` という名前のサービスが公開するポート ``8080`` を、３つの swarm ノード上で、どのようにルーティング・メッシュするかの説明です。
 
 .. routing mesh diagram
 
@@ -306,7 +306,7 @@ part 3 で使った全てのコマンドを ``docker-machine ssh`` で送るだ�
 
    接続に問題がありますか？
    
-   swarm で ingress ネットワークを使う為には、swarm モード有効にする前に、swarm ノード間で以下のポートを開く必要がありますので、ご注意ください。
+   swarm で ingress ネットワークを使うためには、swarm モード有効にする前に、swarm ノード間で以下のポートを開く必要がありますので、ご注意ください。
    
    * Port 7946 TCP/UDP を、コンテナのネットワーク・ディスカバリ用に
    * Port 4789UDP をコンテナ ingress ネットワーク用に

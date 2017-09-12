@@ -44,7 +44,7 @@ Part 2：コンテナ
 
 .. It’s time to begin building an app the Docker way. We’ll start at the bottom of the hierarchy of such an app, which is a container, which we cover on this page. Above this level is a service, which defines how containers behave in production, covered in Part 3. Finally, at the top level is the stack, defining the interactions of all the services, covered in Part 5.
 
-Docker の手法でアプリケーションを作り始める時です。コンテナによるアプリケーション階層の底部を、このページで始めましょう。このレベルの上位にあるのがサービスであり、プロダクションにおけるコンテナの挙動を定義します。こちらは :doc:`Part3 <part3>` で扱います。最終的にはスタックの頂上であり、 :doc:`Part5 <part5>` で扱う全サービス挙動の定義です。
+Docker を使い、アプリケーションを作り始めましょう。コンテナを用いたアプリケーション階層の底部を、このページから始めます。このレベルの上位にあるのがサービスであり、プロダクションにおけるコンテナの挙動を定義します。こちらは :doc:`Part3 <part3>` で扱います。最終的にはスタックの頂上、つまり、 :doc:`Part5 <part5>` で扱うすべてのサービスの挙動を定義します。
 
 ..    Stack
     Services
@@ -63,7 +63,7 @@ Docker の手法でアプリケーションを作り始める時です。コン�
 
 .. In the past, if you were to start writing a Python app, your first order of business was to install a Python runtime onto your machine. But, that creates a situation where the environment on your machine has to be just so in order for your app to run as expected; ditto for the server that runs your app.
 
-Python アプリケーションを書き始めようとする時、自分のマシン上に Python ランタイムをインストールするのが、これまでは一番初めの仕事でした。しかし、サーバ上でもアプリケーションが期待する通りに問題なく動作するには、マシンと同じ環境を作成しなくてはいけません。
+Python アプリケーションを書き始めるにあたり、自分のマシン上に Python ランタイムをインストールするのが、これまでは一番初めの仕事でした。しかし、サーバ上でもアプリケーションが期待する通りに問題なく動作するには、マシンと同じ環境を作成しなくてはいけません。
 
 .. With Docker, you can just grab a portable Python runtime as an image, no installation necessary. Then, your build can include the base Python image right alongside your app code, ensuring that your app, its dependencies, and the runtime, all travel together.
 
@@ -177,7 +177,7 @@ Docker であれば、移動可能な Python ランタイムをイメージ内�
 
 .. That’s it! You don’t need Python or anything in requirements.txt on your system, nor will building or running this image install them on your system. It doesn’t seem like you’ve really set up an environment with Python and Flask, but you have.
 
-以上です！ システム上に Python や ``requirements.txt`` に書かれているどれもが不要であり、それどころか、システム上にイメージの構築や実行も不要なのです。一見すると環境に Python と Flask をインストールしていませんが、既に持っているのです。
+以上です！ システム上に Python や ``requirements.txt`` に書かれているどれもが不要であり、それどころか、システム上にイメージの構築や実行も不要なのです。一見しますと環境に Python と Flask をインストールしていませんが、既に持っているのです。
 
 .. Build the app
 
@@ -306,7 +306,7 @@ Python がアプリに提供するのは ``http://0.0.0.0:80`` であるのに�
 
 .. note::
 
-   ここでは無料に使えて設定済みの Docker 公開レジストリを使いますが、他の公開レジストリからもお選びいただけます。あるいは、 Docker Trusted Regsitry をセットアップすると、自分のプライベートなレジストリも使えます。
+   ここでは無料に使えて設定済みの Docker 公開レジストリを使いますが、他の公開レジストリからもお選びいただけます。あるいは、 Docker Trusted Regsitry をセットアップしたら、自分のプライベートなレジストリも使えます。
 
 .. Log in with your Docker ID
 
@@ -334,7 +334,7 @@ Docker アカウントをお持ちでなければ、 `cloud.docker.com <https://
 
 .. The notation for associating a local image with a repository on a registry is username/repository:tag. The tag is optional, but recommended, since it is the mechanism that registries use to give Docker images a version. Give the repository and tag meaningful names for the context, such as get-started:part1. This will put the image in the get-started repository and tag it as part1.
 
-ローカルのイメージとレジストリ上にあるリポジトリとを関連付ける概念は、 ``ユーザ名/リポジトリ:タグ`` です。タグはオプションですが、指定が推奨されています。これは、レジストリにおける Docker イメージのバージョン指定の仕組みに使う為です。指定するのは ``get-started:part`` のように、レポジトリ名と意味のあるタグ名です。こちらはイメージを ``get-started`` リポジトリに、タグを ``part1`` として送信します。
+ローカルのイメージとレジストリ上にあるリポジトリとを関連付ける概念は、 ``ユーザ名/リポジトリ:タグ`` です。タグはオプションですが、指定が推奨されています。これは、レジストリにおける Docker イメージのバージョン指定の仕組みに使うためです。指定するのは ``get-started:part`` のように、レポジトリ名と意味のあるタグ名です。こちらはイメージを ``get-started`` リポジトリに、タグを ``part1`` として送信します。
 
 .. Now, put it all together to tag the image. Run docker tag image with your username, repository, and tag names so that the image will upload to your desired destination. The syntax of the command is:
 
@@ -380,7 +380,7 @@ Docker アカウントをお持ちでなければ、 `cloud.docker.com <https://
 
 .. Once complete, the results of this upload are publicly available. If you log in to Docker Hub, you will see the new image there, with its pull command.
 
-完了したら、アップロード結果が表示され、誰でも利用可能になります。 `Docker Hub <https://hub.docker.com/>`_ にログインすると、pull コマンドで取得可能な新しいイメージが表示されます。
+完了したら、アップロード結果が表示され、誰でも利用可能になります。 `Docker Hub <https://hub.docker.com/>`_ にログインしたら、pull コマンドで取得可能な新しいイメージが表示されます。
 
 .. Pull and run the image from the remote repository
 
@@ -423,7 +423,7 @@ Docker アカウントをお持ちでなければ、 `cloud.docker.com <https://
 
 .. note::
 
-   各コマンドで ``:タグ`` を指定しなければ、 ``:latest`` タグが指定されたものとみなされます。これは build 時も run 時も同様です。Docker はイメージに対するタグの指定が無ければ（直近のイメージであれば不要です）、最新版を使います。
+   各コマンドで ``:タグ`` を指定しなければ、 ``:latest`` タグが指定されたものとみなされます。これは build 時も run 時も同様です。Docker はイメージに対するタグの指定がなければ（直近のイメージであれば不要です）、最新版を使います。
 
 .. No matter where docker run executes, it pulls your image, along with Python and all the dependencies from requirements.txt, and runs your code. It all travels together in a neat little package, and the host machine doesn’t have to install anything but Docker to run it.
 
@@ -436,7 +436,7 @@ Docker アカウントをお持ちでなければ、 `cloud.docker.com <https://
 
 .. That’s all for this page. In the next section, we will learn how to scale our application by running this container in a service.
 
-以上でこのページは終わりです。次のセクションでは、 **サービス** としてこのコンテナを実行し、アプリケーションをどのようにスケールするかを学びミズ合う。
+以上でこのページは終わりです。次のセクションでは、 **サービス** としてこのコンテナを実行し、アプリケーションをどのようにスケールするかを学びましょう。
 
 .. Continue to Part 3 »
 
