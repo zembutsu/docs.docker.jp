@@ -317,7 +317,7 @@ Docker CE のアンインストール
 
 .. You must delete any edited configuration files manually.
 
-編集した設定ファイルは全て児童で削除する必要があります。
+編集した設定ファイルは全て手動で削除する必要があります。
 
 .. Next steps
 
