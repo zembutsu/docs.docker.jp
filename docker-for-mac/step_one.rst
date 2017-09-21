@@ -20,7 +20,7 @@ Mac OS X に Docker Toolbox のインストール
 
 .. Mac OS X users use Docker Toolbox to install Docker software. Docker Toolbox includes the following Docker tools:
 
-Mac OS X ユーザは Docker ツールボックス（Toolbox）を使い、Docker のソフトウェアをインストールできます。Docker ツールボックスには、以下の Docker ツール群が入っています。
+Mac OS X ユーザは Docker ツールボックス（Toolbox）を使って、Docker のソフトウェアをインストールできます。Docker ツールボックスには、以下の Docker ツール群が入っています。
 
 ..    Docker CLI client for running Docker Engine to create images and containers
     Docker Machine so you can run Docker Engine commands from Mac OS X terminals
@@ -272,5 +272,5 @@ Docker コンテナを実行するには：
 
 .. seealso:: 
 
-   Install Docker for Windows
+   Install Docker Toolbox on Mac OS X
       https://docs.docker.com/mac/step_one/
