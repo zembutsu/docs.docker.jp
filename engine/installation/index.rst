@@ -25,7 +25,7 @@ Docker は **コミュニティ版（CE; Community Edition）** と **エンタ�
 
 .. Docker Community Edition (CE) is ideal for developers and small teams looking to get started with Docker and experimenting with container-based apps. Docker CE has two update channels, stable and edge:
 
-Docker コミュニティ版（CE）は開発者や小さなチームが Docker を使い始め、コンテナをベースと下アプリケーションを実験するのに最適です。Docker CE は **stable** と **edge**  の２つの更新用チャンネルがあります。
+Docker コミュニティ版（CE）は開発者や小さなチームが Docker を使い始め、コンテナをベースとしたアプリケーションを実験するのに最適です。Docker CE は **stable** と **edge**  の２つの更新用チャンネルがあります。
 
 ..    Stable gives you reliable updates every quarter
     Edge gives you new features every month
@@ -267,7 +267,7 @@ Docker Cloud を使えば、各クラウド環境上に自動的にセットア�
 
 .. After setting up Docker, try learning the basics over at Getting started with Docker.
 
-Docker のセットアップを終えた、 :doc:`Docker を始めよう </get-started/index>` で Docker の基本を学びましょう。
+Docker のセットアップを終えたら、 :doc:`Docker を始めよう </get-started/index>` で Docker の基本を学びましょう。
 
 
 .. seealso:: 
