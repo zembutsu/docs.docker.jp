@@ -1,10 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/eng-image/dockerfile_best-practices.md
-   doc version: 1.11
-      https://github.com/docker/docker/commits/master/docs/userguide/eng-image/dockerfile_best-practices.md
-.. check date: 2016/04/16
-.. Commits on Mar 15, 2016 2f634e4691d13616cf8c714ec7653616ec3b121a
+   doc version: 17.06
+      https://github.com/docker/docker.github.io/blob/master/engine/userguide/eng-image/dockerfile_best-practices.md
+.. check date: 2017/09/23
+.. Commits on Aug 9, 2017 54e823ae7a6f9bf4bf84966d21bd6a4e88b25941
 .. ---------------------------------------------------------------------------
 
 .. Best practices for writing Dockerfile
@@ -168,6 +167,46 @@ FROM
 
 可能であれば、自分のイメージの元として現在の公式リポジトリを使います。私たちは `Debian イメージ <https://hub.docker.com/_/debian/>`_ を推奨します。これは、非常にしっかりと管理されており、ディストリビューションの中でも小さくなるよう（現在は 150 MB 以下に）維持されているからです。
 
+.. LABEL
+
+LABEL
+----------
+
+:doc:`オブジェクト・ラベルの理解 </engine/userguide/labels-custom-metadata>`
+
+.. You can add labels to your image to help organize images by project, record licensing information, to aid in automation, or for other reasons. For each label, add a line beginning with LABEL and with one or more key-value pairs. The following examples show the different acceptable formats. Explanatory comments are included inline.
+
+プロジェクトでイメージ管理を便利にするため、イメージにラベルを追加できます。ラベルにライセンス情報の記録や、自動化に役立つものや、その他の用途に使えます。各ラベルは、 ``LABEL`` で始まる行であり、１つまたは複数のキーバリュー・ペアです（訳者注；「key=value」の形式で記述）。以下の例は異なったフォーマットが使えるのを表しています。
+
+..    Note: If your string contains spaces, it must be quoted or the spaces must be escaped. If your string contains inner quote characters ("), escape them as well.
+
+.. note::
+
+   文字列に空白（スペース）を使う場合は、必ず引用符を付けるか、 **あるいは** 、エスケープする必要があります。文字列に引用符記号（ ``"`` ）が有る場合も、同様にエスケープが必要です。
+
+::
+
+   # 個々にラベルを設定
+   LABEL com.example.version="0.0.1-beta"
+   LABEL vendor="ACME Incorporated"
+   LABEL com.example.release-date="2015-02-12"
+   LABEL com.example.version.is-production=""
+   
+   # 1行でラベルを設定
+   LABEL com.example.version="0.0.1-beta" com.example.release-date="2015-02-12"
+   
+   # 一度に複数のラベルを指定しますが、行継続文字列を使い、長い行が続くのを避けます
+   LABEL vendor=ACME\ Incorporated \
+         com.example.is-beta= \
+         com.example.is-production="" \
+         com.example.version="0.0.1-beta" \
+         com.example.release-date="2015-02-12"
+
+.. See Understanding object labels for guidelines about acceptable label keys and values. For information about querying labels, refer to the items related to filtering in Managing labels on objects.
+
+利用可能なキーと値に関するガイドラインは :doc:`/engine/userguide/labels-custom-metadata` をご覧ください。ラベルの記述に関する情報は、 :ref:`managing-labels-on-objects` フィルタリングの項目をご覧ください。
+
+
 .. RUN
 
 RUN
@@ -182,6 +221,9 @@ RUN
 常に ``Dockerfile`` をより読みやすく、理解しやすく、メンテナンスしやすくします。長ければ分割するか、複雑な ``RUN`` 命令はバックスラッシュを使い複数行に分割します。
 
 .. apt-get
+
+apt-get
+^^^^^^^^^^
 
 .. Probably the most common use-case for RUN is an application of apt-get. The RUN apt-get command, because it installs packages, has several gotchas to look out for.
 
@@ -281,13 +323,13 @@ CMD
 
 :ref:`Dockerfile リファレンスの CMD 命令 <cmd>`
 
-.. The CMD instruction should be used to run the software contained by your image, along with any arguments. CMD should almost always be used in the form of CMD [“executable”, “param1”, “param2”…]. Thus, if the image is for a service (Apache, Rails, etc.), you would run something like CMD ["apache2","-DFOREGROUND"]. Indeed, this form of the instruction is recommended for any service-based image.
+.. The CMD instruction should be used to run the software contained by your image, along with any arguments. CMD should almost always be used in the form of CMD [“executable”, “param1”, “param2”…]. Thus, if the image is for a service, such as Apache and Rails, you would run something like CMD ["apache2","-DFOREGROUND"]. Indeed, this form of the instruction is recommended for any service-based image.
 
-``CMD`` 命令は、イメージに含まれるソフトウェアの実行と、その引数のために使うべきです。また、``CMD`` は常に ``CMD [“実行ファイル”, “パラメータ1”, “パラメタ2”…]`` のような形式で使うべきです。そのため、イメージがサービス向け（Apache、Rails 等）であれば、 ``CMD ["apache2","-DFOREGROUND"]`` のようにすべきでしょう。実際に、あらゆるサービスのベースとなるイメージで、この命令形式が推奨されます。
+``CMD`` 命令は、イメージに含まれるソフトウェアの実行と、その引数のために使うべきです。また、``CMD`` は常に ``CMD [“実行ファイル”, “パラメータ1”, “パラメタ2”…]`` のような形式で使うべきです。そのため、イメージが Apache や Rails のようなサービス向けであれば、 ``CMD ["apache2","-DFOREGROUND"]`` のようにすべきでしょう。実際に、あらゆるサービスのベースとなるイメージで、この命令形式が推奨されます。
 
-.. In most other cases, CMD should be given an interactive shell (bash, python, perl, etc), for example, CMD ["perl", "-de0"], CMD ["python"], or CMD [“php”, “-a”]. Using this form means that when you execute something like docker run -it python, you’ll get dropped into a usable shell, ready to go. CMD should rarely be used in the manner of CMD [“param”, “param”] in conjunction with ENTRYPOINT, unless you and your expected users are already quite familiar with how ENTRYPOINT works.
+.. In most other cases, CMD should be given an interactive shell, cush as bash, python and perl. For example, CMD ["perl", "-de0"], CMD ["python"], or CMD [“php”, “-a”]. Using this form means that when you execute something like docker run -it python, you’ll get dropped into a usable shell, ready to go. CMD should rarely be used in the manner of CMD [“param”, “param”] in conjunction with ENTRYPOINT, unless you and your expected users are already quite familiar with how ENTRYPOINT works.
 
-その他の多くの場合、 ``CMD`` はインタラクティブなシェル（bash、python、perl 等）で使われます。例えば、 ``CMD ["perl", "-de0"]`` 、 ``CMD ["python"]`` 、 ``CMD [“php”, “-a”]`` です。この利用形式が意味するのは、 ``docker run -it python`` のように実行したら、そのコマンドを使いやすいシェル上に落とし込み、すぐに使えるようにします。 また、あなたとあなたの想定ユーザが ``ENTRYPOINT`` の動作に慣れていないなら、 ``CMD [“パラメータ”, “パラメータ”]`` 形式のように ``CMD`` を ``ENTRYPOINT`` と一緒に使うべきではないでしょう。
+その他の多くの場合、 ``CMD`` は bash、python、perl 等のインタラクティブなシェルに使います。例えば、 ``CMD ["perl", "-de0"]`` 、 ``CMD ["python"]`` 、 ``CMD [“php”, “-a”]`` です。この利用形式が意味するのは、 ``docker run -it python`` のように実行したら、そのコマンドを使いやすいシェル上に落とし込み、すぐに使えるようにします。 また、あなたとあなたの想定ユーザが ``ENTRYPOINT`` の動作に慣れていないなら、 ``CMD [“パラメータ”, “パラメータ”]`` 形式のように ``CMD`` を ``ENTRYPOINT`` と一緒に使うべきではないでしょう。
 
 .. EXPOSE
 

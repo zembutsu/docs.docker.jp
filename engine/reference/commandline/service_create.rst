@@ -142,6 +142,9 @@ service create
 
 .. Set metadata on a service (-l --label)
 
+.. _service-create-ls:
+
+
 サービスのメタデータを指定（ ``-l --label`` ）
 --------------------------------------------------
 

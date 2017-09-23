@@ -145,12 +145,7 @@ Doc v17.06 目次
 
    engine/installation/toc.rst
    get-started/toc.rst
- 
-.. toctree::
-   :caption: Docker Engine
-   :maxdepth: 2
-
-   engine/toc.rst
+   ユーザガイド <engine/toc.rst>
 
 .. toctree::
    :caption: Docker Compose
