@@ -12,7 +12,6 @@
 
 .. toctree::
    :maxdepth: 3
-   :titlesonly:
    
    index.rst
    part2.rst
