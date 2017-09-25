@@ -462,7 +462,7 @@ OverlayFS は、他のファイルシステムに対する `ユニオン・マ�
 
 .. Here is an example of the shared nginx repository and its tags
 
-共有 `Nginx リポジトリ <https://hub.docker.com/r/library/nginx/tags>`_ と `タグ <https://hub.docker.com/r/library/nginx/tags>`_ の例です。
+共有 `Nginx リポジトリ <https://hub.docker.com/_/nginx/>`_ と `タグ <https://hub.docker.com/r/library/nginx/tags>`_ の例です。
 
 .. _SSH:
 
