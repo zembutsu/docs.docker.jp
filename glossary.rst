@@ -402,7 +402,7 @@ Machine
 .. :doc:`ノード </engine/swarm/how-swarm-mode-works/nodes>` とは、swarm モード上における Docker Engine が動作している物理または仮想マシンを指します。
 
 ノードとは、swarm モード上における Docker Engine が動作している物理または仮想マシンを指します。
-g
+
 .. Manager nodes perform swarm management and orchestration duties. By default manager nodes are also worker nodes.
 
 **マネージャ・ノード（Manager node）** は swarm（クラスタ）管理とオーケストレーションの責務を処理します。デフォルトでは、マネージャ・ノードはワーカ・ノードも兼ねます。
