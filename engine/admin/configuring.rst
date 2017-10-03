@@ -437,7 +437,7 @@ Docker 1.12 から、 Docker や containerd 実行しなくてもコンテナを
 
 .. While the Docker daemon is down logging will still be captured, however, it will be capped at the kernel's pipe buffer size before the buffer fills up, blocking the process. Docker will need to be restarted to flush these buffers. You can modify the kernel's buffer size by changing /proc/sys/fs/pipe-max-size.
 
-Docker デーモンが停止中でも、ログ機能は収集し続けます。しかしながら、カーネルのパイプ・バッファ・サイズにバッファが満たされる上限に到達すると、処理が止まります。これらのバッファをフラッシュするには、Docker で再起動が必用です。カーネルがキャッシュするバッファ・サイズは ``/proc/sys/fs/pipe-max-size`` で変更できます。
+Docker デーモンが停止中でも、ログ機能は収集し続けます。しかしながら、カーネルのパイプ・バッファ・サイズにバッファが満たされる上限に到達すると、処理が止まります。これらのバッファをフラッシュするには、Docker で再起動が必要です。カーネルがキャッシュするバッファ・サイズは ``/proc/sys/fs/pipe-max-size`` で変更できます。
 
 .. seealso:: 
 
