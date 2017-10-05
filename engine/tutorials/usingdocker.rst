@@ -259,7 +259,7 @@ network port でショートカット
 
 .. Using the docker ps command to return the mapped port is a bit clumsy so Docker has a useful shortcut we can use: docker port. To use docker port we specify the ID or name of our container and then the port for which we need the corresponding public-facing port.
 
-割り当てたポートを確認するのに ``docker ps`` コマンドを使うのは少々面倒です。そこで、 Docker の ``docker port`` という便利なソートカットを使いしょう。``docker port`` でコンテナ ID や名前を指定したら、公開ポートに割り当てられているポート番号が分かります。
+割り当てたポートを確認するのに ``docker ps`` コマンドを使うのは少々面倒です。そこで、 Docker の ``docker port`` という便利なショートカットを使いましょう。``docker port`` でコンテナ ID や名前を指定したら、公開ポートに割り当てられているポート番号が分かります。
 
 .. code-block:: bash
 
