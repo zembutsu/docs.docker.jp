@@ -329,7 +329,7 @@ CMD
 
 .. In most other cases, CMD should be given an interactive shell, cush as bash, python and perl. For example, CMD ["perl", "-de0"], CMD ["python"], or CMD [“php”, “-a”]. Using this form means that when you execute something like docker run -it python, you’ll get dropped into a usable shell, ready to go. CMD should rarely be used in the manner of CMD [“param”, “param”] in conjunction with ENTRYPOINT, unless you and your expected users are already quite familiar with how ENTRYPOINT works.
 
-その他の多くの場合、 ``CMD`` は bash、python、perl 等のインタラクティブなシェルに使います。例えば、 ``CMD ["perl", "-de0"]`` 、 ``CMD ["python"]`` 、 ``CMD [“php”, “-a”]`` です。この利用形式が意味するのは、 ``docker run -it python`` のように実行したら、そのコマンドを使いやすいシェル上に落とし込み、すぐに使えるようにします。 また、あなたとあなたの想定ユーザが ``ENTRYPOINT`` の動作に慣れていないなら、 ``CMD [“パラメータ”, “パラメータ”]`` 形式のように ``CMD`` を ``ENTRYPOINT`` と一緒に使うべきではないでしょう。
+その他の多くの場合、 ``CMD`` は bash、python、perl 等のインタラクティブなシェルに使います。例えば、 ``CMD ["perl", "-de0"]`` 、 ``CMD ["python"]`` 、 ``CMD [“php”, “-a”]`` です。この利用形式が意味するのは、 ``docker run -it python`` のように実行したら、そのコマンドを使いやすいシェル上に落とし込み、すぐに使えるようにします。 また、あなたとあなたの想定ユーザが ``ENTRYPOINT`` の動作に慣れていないなら、 ``ENTRYPOINT`` と一緒に使う形式である ``CMD [“パラメータ”, “パラメータ”]`` 形式で ``CMD`` を使うべきではないでしょう。
 
 .. EXPOSE
 
