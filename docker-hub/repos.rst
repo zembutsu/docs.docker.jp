@@ -301,7 +301,7 @@ webhook 連鎖のコールバックを確認するには、次のようにしま
 
 .. To help you debug or simply view the results of your webhook(s), view the “History” of the webhook available on its settings page.
 
-webhook のデバッグを簡単にしたり、結果を単に表示したい亜愛は、設定ページにある webhook の「History」をご覧ください。
+webhook のデバッグを簡単にしたり、結果を単に表示したい場合は、設定ページにある webhook の「History」をご覧ください。
 
 .. Callback JSON data
 
