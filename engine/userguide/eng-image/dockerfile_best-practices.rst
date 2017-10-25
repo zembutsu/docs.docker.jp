@@ -281,7 +281,7 @@ Docker は冒頭からファイルを読み込み、命令の変更を認識し�
 
 .. Version pinning forces the build to retrieve a particular version regardless of what’s in the cache. This technique can also reduce failures due to unanticipated changes in required packages.
 
-パッケージのバージョン指定は、何をキャッシュしているか気にせずに、特定バージョンを取得した上での構築を強制します。このテクニックにより、必要なパッケージが、予期しない変更によって引き起こされる失敗を減らします。
+パッケージのバージョン指定は、何をキャッシュしているか気にせずに、特定バージョンを取得した上での構築を強制します。このテクニックにより、必要なパッケージの予期しない変更によって引き起こされる失敗を減らします。
 
 .. Below is a well-formed RUN instruction that demonstrates all the apt-get recommendations.
 
