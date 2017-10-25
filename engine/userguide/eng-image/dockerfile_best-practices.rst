@@ -139,7 +139,7 @@ Docker イメージ構築のプロセスとは、 ``Dockerfile``  で指定し�
 
 ..    Aside from the ADD and COPY commands, cache checking will not look at the files in the container to determine a cache match. For example, when processing a RUN apt-get -y update command the files updated in the container will not be examined to determine if a cache hit exists. In that case just the command string itself will be used to find a match.
 
-* ``ADD`` と ``COPY`` コマンドだけでなく、キャッシュのチェックにおいて、キャッシュが一致すると思われるコンテナ内のファイル状態を確認しません。例えば、 ``RUN apt-get -y update`` コマンドによってコンテナ内のファイルに変更を加えたとしても、キャッシュの有無に影響を与えません。この場合、コマンドの文字列自身が一致するかどうかしか見ないためです。
+* ``ADD`` と ``COPY`` 以外のコマンドは、キャッシュのチェックにおいて、キャッシュが一致すると思われるコンテナ内のファイル状態を確認しません。例えば、 ``RUN apt-get -y update`` コマンドによってコンテナ内のファイルに変更を加えたとしても、キャッシュの有無に影響を与えません。この場合、コマンドの文字列自身が一致するかどうかしか見ないためです。
 
 .. Once the cache is invalidated, all subsequent Dockerfile commands will generate new images and the cache will not be used.
 
