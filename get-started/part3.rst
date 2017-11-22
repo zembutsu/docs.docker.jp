@@ -88,7 +88,7 @@ Part 3では、アプリケーションをスケールアウトし、負荷分�
 
 .. Save this file as docker-compose.yml wherever you want. Be sure you have pushed the image you created in Part 2 to a registry, and update this .yml by replacing username/repo:tag with your image details.
 
-以下の内容を任意の場所に ``docker-commpose.yml`` として保存します。 :doc:`Part 2 <part2>` でレジストリに :ref:`送信したイメージ <share-your-image>` を確認し、 ``.yml``ファイルの ``username/repo:tag`` の部分を皆さんのイメージのものへ書き換えます。
+以下の内容を任意の場所に ``docker-commpose.yml`` として保存します。 :doc:`Part 2 <part2>` でレジストリに :ref:`送信したイメージ <share-your-image>` を確認し、 ``.yml`` ファイルの ``username/repo:tag`` の部分を皆さんのイメージのものへ書き換えます。
 
 .. code-block:: yamo
 
@@ -127,7 +127,7 @@ Part 3では、アプリケーションをスケールアウトし、負荷分�
 * ``web`` という名前のサービスとして、イメージのインスタンスを５つ実行。それぞれのインスタンスには最大で CPU の 10% （全てのコアを横断して）かつメモリを 50MB に制限
 * コンテナが停止すると、直ちに再起動
 * ホスト側のポート 80 を、 ``web`` のポート 80 に割り当て
-* ''web'' のコンテナに対し、 ``webnet`` という名前の負荷分散ネットワークを経由してポート 80 を共有するよう命令（内部では、コンテナ自身の一時的なポートとして、 ``web`` のポート 80 を公開 ）
+* ``web`` のコンテナに対し、 ``webnet`` という名前の負荷分散ネットワークを経由してポート 80 を共有するよう命令（内部では、コンテナ自身の一時的なポートとして、 ``web`` のポート 80 を公開 ）
 * デフォルトの設定として ``webnet`` ネットワークを定義（負荷分散されるオーバレイ・ネットワーク）
 
 ..    Wondering about Compose file versions, names, and commands?
@@ -267,7 +267,7 @@ Docker は現状のまま更新を行いますので、スタックの停止や�
 
 .. This removes the app, but our one-node swarm is still up and running (as shown by docker node ls). Take down the swarm with docker swarm leave --force.
 
-これはアプリケーションを削除（remove）しますが、１つの swarm ノードは起動および実行したままです（ ``ocker node ls`` で表示します）。swarm （クラスタ）を停止するには ``docker swarm leave --force`` を実行します。
+これはアプリケーションを削除（remove）しますが、１つの swarm ノードは起動および実行したままです（ ``docker node ls`` で表示します）。swarm （クラスタ）を停止するには ``docker swarm leave --force`` を実行します。
 
 .. It’s as easy as that to stand up and scale your app with Docker. You’ve taken a huge step towards learning how to run containers in production. Up next, you will learn how to run this app as a bonafide swarm on a cluster of Docker machines.
 
