@@ -62,7 +62,7 @@ Swarm クラスタの理解
 
 .. A swarm is a group of machines that are running Docker and joined into a cluster. After that has happened, you continue to run the Docker commands you’re used to, but now they are executed on a cluster by a swarm manager. The machines in a swarm can be physical or virtual. After joining a swarm, they are referred to as nodes.
 
-swarm とは Docker が動作し、クラスタに参加しているマシン・グループです。swarm を使えば、Docker コマンドをこれまで通り使い続けながら、 **swam マネージャ** を通してクラスタ上で実行可能になります。swarm 上のマシンは物理あるいは仮想どちらも使えます。swarm に加わった後は、これらは **ノード** として参照されます。
+swarm とは Docker が動作し、クラスタに参加しているマシン・グループです。swarm を使えば、Docker コマンドをこれまで通り使い続けながら、 **swarm マネージャ** を通してクラスタ上で実行可能になります。swarm 上のマシンは物理あるいは仮想どちらも使えます。swarm に加わった後は、これらは **ノード** として参照されます。
 
 .. Swarm managers can use several strategies to run containers, such as “emptiest node” – which fills the least utilized machines with containers. Or “global”, which ensures that each machine gets exactly one instance of the specified container. You instruct the swarm manager to use these strategies in the Compose file, just like the one you have already been using.
 
@@ -85,7 +85,7 @@ swarm のセットアップ
 
 .. A swarm is made up of multiple nodes, which can be either physical or virtual machines. The basic concept is simple enough: run docker swarm init to enable swarm mode and make your current machine a swarm manager, then run docker swarm join on other machines to have them join the swarm as workers. Choose a tab below to see how this plays out in various contexts. We’ll use VMs to quickly create a two-machine cluster and turn it into a swarm.
 
-swarm は複数のノードで構成します。物理マシンまたは仮想マシンどちらでもノードになれます。基本概念は極めてシンプルです。 ``docker swarm init`` を実行すると、 swarm mode を有効化し、現在のマシンを swarm マネージャにします。そして ``docker swarm join`` を実行し、他のマシンをワーカとして swarm に追加します。環境に応じて以下の項目を読み進めてください。ここでは２つの仮想マシを素早く作成し、swarm に追加します。
+swarm は複数のノードで構成します。物理マシンまたは仮想マシンどちらでもノードになれます。基本概念は極めてシンプルです。 ``docker swarm init`` を実行すると、 swarm mode を有効化し、現在のマシンを swarm マネージャにします。そして ``docker swarm join`` を実行し、他のマシンをワーカとして swarm に追加します。環境に応じて以下の項目を読み進めてください。ここでは２つの仮想マシンを素早く作成し、swarm に追加します。
 
 .. Create a cluster
 
@@ -160,7 +160,7 @@ swarm は複数のノードで構成します。物理マシンまたは仮想�
 
 .. You can send commands to your VMs using docker-machine ssh. Instruct myvm1 to become a swarm manager with docker swarm init and you’ll see output like this:
 
-仮想マシンには ``docker-machine ssh`` を使ってコマンドを送ります。 ``myvm2`` に対して ``docker swarm init`` で swarm マネージャになるよう命令します。次のような実行結果になるでしょう。
+仮想マシンには ``docker-machine ssh`` を使ってコマンドを送ります。 ``myvm1`` に対して ``docker swarm init`` で swarm マネージャになるよう命令します。次のような実行結果になるでしょう。
 
 .. code-block:: bash
 
@@ -286,7 +286,7 @@ part 3 で使った全てのコマンドを ``docker-machine ssh`` で送るだ�
 
 .. You can access your app from the IP address of either myvm1 or myvm2. The network you created is shared between them and load-balancing. Run docker-machine ls to get your VMs’ IP addresses and visit either of them on a browser, hitting refresh (or just curl them). You’ll see five possible container IDs all cycling by randomly, demonstrating the load-balancing.
 
-アプリに対しては ``myvm1`` か ``myvm2`` の **どちらか** の IP アドレスでアクセスできます。作成したネットワークは双方のホストで共有され、負荷分散できます。 ``docker-machine ls`` を実行しs手仮想マシンの IP アドレスを確認し、ブラウザでどちらかを表示し、それから再読み込みします（あるいは ``curl`` でも同様です）。読み込み直すたびに、ランダムに５つのコンテナ ID のどれかを表示するでしょう。負荷分散のデモンストレーションです。
+アプリに対しては ``myvm1`` か ``myvm2`` の **どちらか** の IP アドレスでアクセスできます。作成したネットワークは双方のホストで共有され、負荷分散できます。 ``docker-machine ls`` を実行して仮想マシンの IP アドレスを確認し、ブラウザでどちらかを表示し、それから再読み込みします（あるいは ``curl`` でも同様です）。読み込み直すたびに、ランダムに５つのコンテナ ID のどれかを表示するでしょう。負荷分散のデモンストレーションです。
 
 .. The reason both IP addresses work is that nodes in a swarm participate in an ingress routing mesh. This ensures that a service deployed at a certain port within your swarm always has that port reserved to itself, no matter what node is actually running the container. Here’s a diagram of how a routing mesh for a service called my-web published at port 8080 on a three-node swarm would look:
 
