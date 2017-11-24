@@ -205,12 +205,3 @@ Docs archive
    v1.11 <http://docs.docker.jp/v1.11/>
    v1.10 <http://docs.docker.jp/v1.10/>
    v1.9 <http://docs.docker.jp/v1.9/>
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
