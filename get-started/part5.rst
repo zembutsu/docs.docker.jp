@@ -59,7 +59,7 @@ Part 5：スタック
 
 .. Some good news is, you have technically been working with stacks since part 3, when you created a Compose file and used docker stack deploy. But that was a single service stack running on a single host, which is not usually what takes place in production. Here, you will take what you’ve learned, make multiple services relate to each other, and run them on multiple machines.
 
-良いお知らせがあります。スタックに関する技術的な内容は Part 3 で既に学んだとおり、 Compose ファイルを作成し、 ``docker stack deploy`` を実行するだけです。しかし、これまで行ったは１つのホスト上で１つのサービス・スタックを動かしただけであり、プロダクションではあまり見ない環境です。ここでは従来の学びに加え、複数のマシン上で複数の関連サービスをお互いに作成し、実行しましょう。
+良いお知らせがあります。スタックに関する技術的な内容は Part 3 で既に学んだとおり、 Compose ファイルを作成し、 ``docker stack deploy`` を実行するだけです。しかし、これまで行ったことは１つのホスト上で１つのサービス・スタックを動かしただけであり、プロダクションではあまり見ない環境です。ここでは従来の学びに加え、複数のマシン上で複数の関連サービスをお互いに作成し、実行しましょう。
 
 .. You’re doing great, this is the home stretch!
 
@@ -115,7 +115,7 @@ Part 5：スタック
 
 ..    The only thing new here is the peer service to web, named visualizer. You’ll see two new things here: a volumes key, giving the visualizer access to the host’s socket file for Docker, and a placement key, ensuring that this service only ever runs on a swarm manager – never a worker. That’s because this container, built from an open source project created by Docker, displays Docker services running on a swarm in a diagram.
 
-新しく追加したのは ``visualizer`` という名前の ``web`` と対となるサービスです。そして、ここでは新しい２つのものがあります。１つはキー ``volumes`` であり、ビジュアライザが Docker ホスト側のソケットファイルにアクセスするためです。それと、 ``placement`` キーはサービスが swarm マネージャのみでしか動作しないよう指定しています。ワーカーでは決して動きません。これは `Docker によって作られたオープンソース・プロジェクト <https://github.com/ManoMarks/docker-swarm-visualizer>`_ であり、 swarm 上で実行している Docker サービスを図で表示するものです。
+新しく追加したのは ``visualizer`` という名前の ``web`` と対となるサービスです。そして、ここでは新しい２つのものがあります。１つは ``volumes`` キーであり、ビジュアライザが Docker ホスト側のソケットファイルにアクセスするためです。それと、 ``placement`` キーはサービスが swarm マネージャのみでしか動作しないよう指定しています。ワーカーでは決して動きません。これは `Docker によって作られたオープンソース・プロジェクト <https://github.com/ManoMarks/docker-swarm-visualizer>`_ であり、 swarm 上で実行している Docker サービスを図で表示するものです。
 
 ..    We’ll talk more about placement constraints and volumes in a moment.
 
@@ -290,7 +290,7 @@ Redis は Docker ライブラリ内に公式イメージがあるため、 ``ima
 
 ..    Also, check the visualizer at port 8080 on either node’s IP address, and you’ll see the redis service running along with the web and visualizer services.
 
-また、他のノードの IP アドレスでポート 8080 を開き、ビジュアライザを確認します。そうしますと、 ``web`` と ``visualizer`` サービスと同様に、 `redis``` サービスが動いているのが分かります。
+また、他のノードの IP アドレスでポート 8080 を開き、ビジュアライザを確認します。そうしますと、 ``web`` と ``visualizer`` サービスと同様に、 ``redis`` サービスが動いているのが分かります。
 
 ..    Visualizer with redis screenshot
 

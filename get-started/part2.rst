@@ -82,7 +82,7 @@ Docker であれば、移動可能な Python ランタイムをイメージ内�
 
 .. Dockerfile will define what goes on in the environment inside your container. Access to resources like networking interfaces and disk drives is virtualized inside this environment, which is isolated from the rest of your system, so you have to map ports to the outside world, and be specific about what files you want to “copy in” to that environment. However, after doing that, you can expect that the build of your app defined in this Dockerfile will behave exactly the same wherever it runs.
 
-``Dockerfile`` では、コンテナ内の環境で何をするかを定義します。ネットワーク・インターフェースとディスク・ドライバののようなリソースは、システム上の他の環境からは隔離された環境内に仮想化されています。このようなリソースに接続するには、ポートを外の世界にマッピング（割り当て）する必要がありますし、どのファイルを環境に「複製」（copy in）するか指定する必要もあります。しかしながら、これらの作業を ``Dockerfile`` における構築時の定義で済ませておけば、どこで実行しても同じ挙動となります。
+``Dockerfile`` では、コンテナ内の環境で何をするかを定義します。ネットワーク・インターフェースとディスク・ドライバのようなリソースは、システム上の他の環境からは隔離された環境内に仮想化されています。このようなリソースに接続するには、ポートを外の世界にマッピング（割り当て）する必要がありますし、どのファイルを環境に「複製」（copy in）するか指定する必要もあります。しかしながら、これらの作業を ``Dockerfile`` における構築時の定義で済ませておけば、どこで実行しても同じ挙動となります。
 
 .. Dockerfile
 
