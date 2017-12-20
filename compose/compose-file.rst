@@ -108,7 +108,7 @@ build
 .. _compose-file-context:
 
 context
-----------
+^^^^^^^^^^
 
 ..     Version 2 file format only. In version 1, just use build.
 
@@ -138,7 +138,7 @@ Compose は生成時の名前で構築・タグ付けし、それがイメージ
 .. _compose-file-dockerfile:
 
 dockerfile
-----------
+^^^^^^^^^^
 
 .. Alternate Dockerfile.
 
@@ -174,7 +174,7 @@ Compose は構築時に別のファイルを使えます。構築時のパスも
 .. _compose-file-args:
 
 args
-----------
+^^^^^^^^^^
 
 ..    Version 2 file format only.
 
