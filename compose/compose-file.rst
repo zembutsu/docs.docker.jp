@@ -1172,7 +1172,7 @@ driver_opts
 .. _compose-file-external:
 
 external
-==========
+^^^^^^^^^^
 
 .. If set to true, specifies that this volume has been created outside of Compose. docker-compose up will not attempt to create it, and will raise an error if it doesn’t exist.
 
