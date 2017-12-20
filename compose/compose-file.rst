@@ -889,7 +889,7 @@ aliases
 .. _ipv4-address-ipv6-address:
 
 IPv4 アドレス、IPv6 アドレス
-------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. Specify a static IP address for containers for this service when joining the network.
 
