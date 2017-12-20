@@ -158,7 +158,7 @@ Digital Ocean、Packet、SoftLayer、あるいは皆さん自身のクラウド�
 
 .. Starting with Docker 17.03, Docker uses a time-based release schedule, outlined below.
 
-Docker 17.03 以降、Docker は時間を基準としたりりース（time-based release）予定しています。概要は以下の通りです。
+Docker 17.03 以降、Docker は時間を基準としたリリース（time-based release）予定しています。概要は以下の通りです。
 
 .. list-table::
    :header-rows: 1
