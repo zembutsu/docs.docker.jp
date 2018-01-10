@@ -1206,7 +1206,7 @@ external
 
 .. code-block:: yaml
 
-   volumes
+   volumes:
      data:
        external:
          name: actual-name-of-volume（実際のボリューム名）
