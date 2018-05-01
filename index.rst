@@ -182,7 +182,7 @@ Doc v18.03 目次
    :caption: Guide - ガイド
    :maxdepth: 1
 
-   engine/installation/toc.rst
+   install/toc.rst
    get-started/toc.rst
    ユーザガイド <engine/toc.rst>
 
