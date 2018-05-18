@@ -139,6 +139,7 @@ Docker であれば、移動可能な Python ランタイムをイメージ内�
 * app.py
 
 .. code-block:: bash
+   # coding:utf-8
 
    from flask import Flask
    from redis import Redis, RedisError
