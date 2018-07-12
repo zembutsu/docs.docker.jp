@@ -350,7 +350,7 @@ escape
 
 .. Environment variables are notated in the Dockerfile either with $variable_name or ${variable_name}. They are treated equivalently and the brace syntax is typically used to address issues with variable names with no whitespace, like ${foo}_bar.
 
-``Dockerfile`` の中では、環境変数を ``$variable_name`` または ``${variable_name}`` の形式で記述します。これらは同等に扱われます。固定用の構文として典型的に使われるのは、空白スペースを変数名に入れず ``${foo}_bar`` のような変数名で割り当てることです。
+``Dockerfile`` の中では、環境変数を ``$variable_name`` または ``${variable_name}`` の形式で記述します。これらは同等に扱われます。固定用の構文として典型的に使われるのは、空白スペースを変数名に入れず ``${foo_bar}`` のような変数名で割り当てることです。
 
 .. The ${variable_name} syntax also supports a few of the standard bash modifiers as specified below:
 
