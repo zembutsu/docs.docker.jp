@@ -47,7 +47,7 @@ Part 4：Swarm
 
 .. In part 3, you took an app you wrote in part 2, and defined how it should run in production by turning it into a service, scaling it up 5x in the process.
 
-:doc:`Part 3 <part3>` では、 :doc:`Part 2 <part2>` で書いたアプリを元に、プロダクションで実行可能にサービスとして調整したものを定義し、５つのプロセスへとスケールアップしました。
+:doc:`Part 3 <part3>` では、 :doc:`Part 2 <part2>` で書いたアプリを元に、本番環境において実行可能なサービスとして調整したものを定義し、プロセス数を５倍にスケールアップしました。
 
 .. Here in part 4, you deploy this application onto a cluster, running it on multiple machines. Multi-container, multi-machine applications are made possible by joining multiple machines into a “Dockerized” cluster called a swarm.
 
