@@ -29,9 +29,9 @@ Part 2：コンテナ
 * :doc:`Docker バージョン 1.13 以上のインストール </engine/installation/index>`
 * :doc:`Part1 <index>` の概要を読んでいること
 
-..    Give your environment a quick test run to make sure you’re all set up:
+..    - Give your environment a quick test run to make sure you're all set up:
 
-皆さんの環境でセットアップが完了しているかどうか、素早く確認するには：
+- 以下のような簡単なコマンドを実行して、環境がセットアップできていることを確認します。
 
 .. code-block:: bash
 
