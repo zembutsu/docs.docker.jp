@@ -82,7 +82,7 @@ Part 1：概要説明とセットアップ
 
 .. A container is a runtime instance of an image—what the image becomes in memory when actually executed. It runs completely isolated from the host environment by default, only accessing host files and ports if configured to do so.
 
-**コンテナ（container）** とはイメージのランタイム・インスタンス（runtime instance；実行状態にあるモノ）です。言い換えれば、イメージからメモリ内に展開し、実際に実行する何かです。
+**コンテナ（container）** とはイメージのランタイム・インスタンス（runtime instance；実行状態にあるモノ）です。そのイメージがメモリ上に置かれ実行されている状態のものです。
 
 .. Containers run apps natively on the host machine’s kernel. They have better performance characteristics than virtual machines that only get virtual access to host resources through a hypervisor. Containers can get native access, each one running in a discrete process, taking no more memory than any other executable.
 
