@@ -112,7 +112,7 @@ Part 1：概要説明とセットアップ
 
 .. Virtual machines run guest operating systems—note the OS layer in each box. This is resource intensive, and the resulting disk image and application state is an entanglement of OS settings, system-installed dependencies, OS security patches, and other easy-to-lose, hard-to-replicate ephemera.
 
-仮想マシンはゲスト・オペレーティング・システム上で動作します。この図では、それぞれの箱が OS 層です。仮想マシンはリソース集中型です。その結果、ディスク・イメージとアプリケーションの状態は、 OS の状態やシステムにインストールされた依存関係、OS セキュリティ・パッチによる影響を受けます。また、簡単に（アプリケーションの状態が）失われやすく、短時間での複製は大変です。
+仮想マシンではゲスト・オペレーティング・システムが稼動します。図における枠内の OS 層にあたります。仮想マシンはリソース集中型です。その結果、ディスク・イメージとアプリケーションの状態は、 OS の状態やシステムにインストールされた依存関係、OS セキュリティ・パッチによる影響を受けます。また、簡単に（アプリケーションの状態が）失われやすく、短時間での複製は大変です。
 
 .. Container diagram
 
