@@ -55,7 +55,7 @@ Part 1：概要説明とセットアップ
 
 .. We also need to assume you are familiar with a few concepts before we continue:
 
-また、このまま進むには、以下の概念を熟知している必要があります。
+また以下の用語については理解できているものとして話を進めていきます。
 
 ..    IP Addresses and Ports
     Virtual Machines
