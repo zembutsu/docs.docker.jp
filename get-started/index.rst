@@ -165,7 +165,7 @@ Part 1：概要説明とセットアップ
 
 .. Now would also be a good time to make sure you are using version 1.13 or higher. Run docker --version to check it out.
 
-また、バージョン 1.13 以上を使っているかどうかを確認する良い機会です。
+ここでバージョン 1.13 以上を使っているかどうか確認してみてください。`docker --version` によって確認することができます。
 
 .. code-block:: bash
 
