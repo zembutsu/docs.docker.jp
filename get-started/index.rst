@@ -97,7 +97,7 @@ Part 1：概要説明とセットアップ
 
 .. Consider this diagram comparing virtual machines to containers:
 
-図を使い、仮想マシンとコンテナの比較を考察します。
+以下の図を用いて、仮想マシンとコンテナの違いを見ていきます。
 
 .. Virtual Machine diagram
 
