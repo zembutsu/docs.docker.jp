@@ -51,7 +51,7 @@ Part 1：概要説明とセットアップ
 
 .. While we’ll define concepts along the way, it is good for you to understand what Docker is and why you would use Docker before we begin.
 
-概念の定義に関しては、 チュートリアルを進める前に `Docker とは何か？（英語） <https://www.docker.com/what-docker>`_ や `Docker 利用例（英語） <https://www.docker.com/use-cases>`_ の理解が役立つでしょう。
+これから用語の定義を示していきます。あらかじめ `Docker とは何か？（英語） <https://www.docker.com/what-docker>`_ や `なぜ Docker を使うのか（英語） <https://www.docker.com/use-cases>`_ を読んでおけば理解に役立つでしょう。
 
 .. We also need to assume you are familiar with a few concepts before we continue:
 
