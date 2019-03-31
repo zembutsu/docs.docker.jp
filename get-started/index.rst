@@ -86,7 +86,7 @@ Part 1：概要説明とセットアップ
 
 .. Containers run apps natively on the host machine’s kernel. They have better performance characteristics than virtual machines that only get virtual access to host resources through a hypervisor. Containers can get native access, each one running in a discrete process, taking no more memory than any other executable.
 
-ホストマシンのカーネル上で、コンテナはアプリケーションをネイティブに（訳者注；何らかのプログラムを通さず、直接の意味）実行します。仮想マシンでは、ホスト上のリソースにハイパーバイザを通してしかアクセスできません。そのため、コンテナは仮想マシンよりも性能が良くなります。コンテナはネイティブにアクセス可能であり、各々のプロセスは分離して実行し、メモリは実行に必要な容量のみ確保します。
+ホストマシンのカーネル上で、コンテナはアプリケーションをネイティブに（訳者注；何らかのプログラムを通さず、直接の意味）実行します。仮想マシンでは、ホスト上のリソースにハイパーバイザを通してしかアクセスできません。そのためコンテナには仮想マシン以上の性能特性があります。コンテナはネイティブにアクセス可能であり、個々のコンテナは分離されたプロセス内で動作します。したがって通常の実行モジュールに比べてもメモリ消費が少なくて済ます。
 
 .. Containers vs. virtual machines
 
