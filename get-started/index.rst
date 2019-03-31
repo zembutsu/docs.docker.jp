@@ -136,7 +136,7 @@ Part 1：概要説明とセットアップ
 
 .. Before we get started, make sure your system has the latest version of Docker installed.
 
-チュートリアルを進める前に、皆さんのシステム上に Docker 最新版がインストールされているのを確認してください。
+説明を進める前に、皆さんのシステム上に Docker 最新版がインストールされていることを確認してください。
 
 .. Install Docker
 
