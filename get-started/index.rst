@@ -42,7 +42,7 @@ Part 1：概要説明とセットアップ
 
 .. The application itself is very simple so that you are not too distracted by what the code is doing. After all, the value of Docker is in how it can build, ship, and run applications; it’s totally agnostic as to what your application actually does.
 
-アプリケーションそのものは非常にシンプルです。そのため、コードが何をしているか、あまり気に留める必要はありません。それよりも、 Docker の価値とは、アプリケーションをどのように構築（build）・移動（ship）・実行（run）するかにあります。言い換えれば、実際に皆さんのアプリケーションが何なのかに依存しません。
+アプリケーションそのものは非常にシンプルです。そのため、プログラムが行っていることが分からなくなるようなことはありません。何といっても  Docker の真価は、アプリケーションをどのように構築（build）・移動（ship）・実行（run）するかというところにあります。皆さんのアプリケーションが実際に何をするのかには関係がないのです。
 
 .. Prerequisites
 
