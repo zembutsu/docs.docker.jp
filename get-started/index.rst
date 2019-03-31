@@ -127,7 +127,7 @@ Part 1：概要説明とセットアップ
 
 .. Containers can share a single kernel, and the only information that needs to be in a container image is the executable and its package dependencies, which never need to be installed on the host system. These processes run like native processes, and you can manage them individually by running commands like docker ps—just like you would run ps on Linux to see active processes. Finally, because they contain all their dependencies, there is no configuration entanglement; a containerized app “runs anywhere.”
 
-コンテナは１つのカーネルを共有できます。また、コンテナ・イメージに必要なのは、実行可能なものとパッケージの依存性に関する情報のみです。これらはホストシステム上へインストールする必要が一切ありません。そして、これらのプロセスはネイティブなプロセスのように実行可能であり、 ``docker ps`` のようなコマンドを使い、個々に管理可能です。 この ``ps`` は Linux 上でアクティブなプロセスを表示します。つまり、このように全ての依存関係を含むため、設定の複雑化もありません。すなわち、コンテナ化（containerized）したアプリは "どこでも動く"（run anywhere）のです。
+コンテナは複数であっても１つのカーネルを共有します。コンテナイメージにとって必要なものは、実行モジュールと依存パッケージの情報のみです。これはホストシステム上にインストールされていなくても構いません。各プロセスはネイティブプロセスのように動作するので、``docker ps`` というコマンドを使って個々に管理できます。 ちょうど Linux 上でアクティブプロセスを確認する時に ``ps`` を実行するのと同じです。つまり、依存関係がすべて含まれているため、入り組んだ設定となることもありません。コンテナ化（containerized）されたアプリはどこでも動く（run anywhere）ということです。
 
 .. Setup
 
