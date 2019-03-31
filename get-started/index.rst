@@ -183,7 +183,7 @@ Part 1：概要説明とセットアップ
 
 .. The unit of scale being an individual, portable executable has vast implications. It means CI/CD can push updates to any part of a distributed application, system dependencies are not an issue, and resource density is increased. Orchestration of scaling behavior is a matter of spinning up new executables, not new VM hosts.
 
-スケールの単位は１から始まりポータブルに実行可能なため、広大に拡がります。つまり、あらゆる分散アプリケーションにおいて、システムの依存関係による問題を起こさずに CI/CD による push 更新が可能であり、リソースの集約度が高まります。スケールするオーケストレーションの挙動とは、新しい実行ファイルを展開するのみであり、新しい仮想ホストではありません。
+取り扱う単位が、個別化し可搬性のある実行モジュールになるということには、極めて重要な意味があります。つまり継続的インテグレーション (CI)/継続的デリバリ (CD) においては、提供するアプリケーションのどの部分であっても容易に更新が可能となることを意味します。システムへの依存はもはや問題になることはなく、リソースの集約がさらに高まります。このような規模のプログラムを寄せ集めて実行できるわけですから、いかに素早く実行モジュールを提供できるかが問題になるのであって、新たな VM ホストを作り出す話ではないのです。
 
 .. We’ll be learning about all of these things, but first let’s learn to walk.
 
