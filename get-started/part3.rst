@@ -160,11 +160,11 @@ Part 3では、アプリケーションをスケールアップして、負荷�
 
 .. note::
 
-   このコマンドの意味については :doc:`Part 4 <part4>` で扱います。もしも ``docker swarm init`` コマンドを実行しなければ、 "this node is not a swarm manager." （このノードは swarm マネージャではありません）とエラーが出ます。
+   このコマンドの意味については :doc:`Part 4 <part4>` で説明します。もしも ``docker swarm init`` コマンドを実行しなければ、 "this node is not a swarm manager." （このノードは swarm マネージャではありません）とエラーが出ることになります。
 
 .. Now let’s run it. You have to give your app a name. Here, it is set to getstartedlab:
 
-次はコマンドを実行しましょう。アプリに名前を付ける必要があります。ここでは ``getstartedlab`` と指定します：
+次のコマンドを実行します。アプリには名前を付ける必要があります。ここでは ``getstartedlab`` と指定します：
 
 .. code-block:: bash
 
