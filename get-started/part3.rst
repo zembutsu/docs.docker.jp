@@ -213,7 +213,7 @@ Docker swarm は、コンテナを作成するタスクを実行します。タ�
 
 .. Vice versa, inspect the container ID, and extract the task ID:
 
-同様に、コンテナ ID を調べ、タスク ID を展開しましょう。
+逆も同様で、コンテナ ID を調べることでタスク ID を得ることもできます。
 
 .. code-block:: bash
 
