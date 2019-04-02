@@ -277,7 +277,7 @@ Docker は現状のまま更新を行いますので、スタックの停止や�
 
 .. This removes the app, but our one-node swarm is still up and running (as shown by docker node ls). Take down the swarm with docker swarm leave --force.
 
-これはアプリケーションを削除（remove）しますが、１つの swarm ノードは起動および実行したままです（ ``docker node ls`` で表示します）。swarm （クラスタ）を停止するには ``docker swarm leave --force`` を実行します。
+このコマンドはアプリケーションを削除しますが、これまでの swarm 単一ノードは立ち上がったまま実行し続けます（ ``docker node ls`` により確認できます）。swarm を停止するには ``docker swarm leave --force`` を実行します。
 
 .. It’s as easy as that to stand up and scale your app with Docker. You’ve taken a huge step towards learning how to run containers in production. Up next, you will learn how to run this app as a bonafide swarm on a cluster of Docker machines.
 
