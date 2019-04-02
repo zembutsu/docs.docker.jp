@@ -30,7 +30,7 @@ Part 3：サービス
     Make sure you have published the friendlyhello image you created by pushing it to a registry. We’ll use that shared image here.
     Be sure your image works as a deployed container. Run this command, slotting in your info for username, repo, and tag: docker run -p 80:80 username/repo:tag, then visit http://localhost/.
 
-* :doc:`Docker バージョン 1.13 以上のインストール </engine/installation/index>`
+* :doc:`Docker バージョン 1.13 またはそれ以上をインストールすること。</engine/installation/index>`
 .. ↓実際の手順では不要なため、コメントアウト
 .. * :doc:`Docker Compose </compose/overview>` を入手。 Docker for Mac と Docker for Windows ではインストール済みなので、このまま読み進めてください。Linux システムでは `直接インストール <https://github.com/docker/compose/releases>`_ が必要です。Widows 10 システム上で Hyper-V が入っていなければ、 :doc:`Docker Toolbox </toolbox/overview>` をお使い下さい。
 * :doc:`Part 1 <index>` の概要を読んでいること
