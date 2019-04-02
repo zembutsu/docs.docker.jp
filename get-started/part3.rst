@@ -150,7 +150,7 @@ Part 3では、アプリケーションをスケールアップして、負荷�
 .. Before we can use the docker stack deploy command we’ll first run:
 
 
-まず始めに、 ``docker stack deploy`` コマンドの実行が必要です。
+``docker stack deploy`` コマンドを実行する前に、以下を実行します：
 
 .. code-block:: bash
 
