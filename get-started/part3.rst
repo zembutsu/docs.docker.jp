@@ -33,8 +33,8 @@ Part 3：サービス
 * :doc:`Docker バージョン 1.13 またはそれ以上をインストールすること。</engine/installation/index>`
 .. ↓実際の手順では不要なため、コメントアウト
 .. * :doc:`Docker Compose </compose/overview>` を入手。 Docker for Mac と Docker for Windows ではインストール済みなので、このまま読み進めてください。Linux システムでは `直接インストール <https://github.com/docker/compose/releases>`_ が必要です。Widows 10 システム上で Hyper-V が入っていなければ、 :doc:`Docker Toolbox </toolbox/overview>` をお使い下さい。
-* :doc:`Part 1 <index>` の概要を読んでいること
-* :doc:`Part 2 <part>` のコンテナの作成方法学んでいること
+* :doc:`Part 1 <index>` の概要説明を読んでいること。
+* :doc:`Part 2 <part>` のコンテナの作成方法を学んでいること。
 * 自分で作成した ``friendlyhello`` イメージを :ref:`レジストリに送信 <share-your-image>` して公開済みなのを確認します。ここでは、この共有イメージを使います。
 * イメージをコンテナとしてデプロイできるのを確認します。次のコマンドを実行しますが、 ``ユーザ名`` と ``リポジトリ`` ``タグ`` は皆さんのものに置き換えます。コマンドは ``docker run -p 80:80 ユーザ名/リポジトリ:タグ`` です。そして ``http://localhost/`` を表示します。
 
