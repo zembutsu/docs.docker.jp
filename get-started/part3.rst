@@ -191,7 +191,7 @@ replicas, image name, and exposed ports.
 
 .. Docker swarms run tasks that spawn containers. Tasks have state and their own IDs:
 
-Docker swarm（クラスタ）は作成したコンテナを、タスクとして実行します。タスクは状態（state）と各々が自身の ID を持ちます。
+Docker swarm は、コンテナを作成するタスクを実行します。タスクには状態（state）とそれぞれに ID がつきます。タスクの一覧を見てみます。
 
 .. code-block:: bash
 
