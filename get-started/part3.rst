@@ -64,7 +64,7 @@ Part 3では、アプリケーションをスケールアップして、負荷�
 
 .. In a distributed application, different pieces of the app are called “services.” For example, if you imagine a video sharing site, it probably includes a service for storing application data in a database, a service for video transcoding in the background after a user uploads something, a service for the front-end, and so on.
 
-分散アプリケーションにおいて、アプリケーションにおける「サービス」と呼ばれる部分は異なる構成要素です。例えば、動画共有サイトをご想像ください。このサービスではアプリケーションのデータをデータベースに保管するでしょうし、ユーザが何かをアップロードしたらバックグラウンドでビデオ変換サービスが走るでしょうし、フロントエンド向けのサービス等もあるでしょう。
+分散アプリケーションにおいては、その中に他の要素とは性格が異なる「サービス」と呼ばれるものがあります。例えば動画共有サイトを考えてみてください。おそらくはアプリケーションデータをデータベースに保存するためのサービスがあり、ユーザがデータをアップロードしたときにバックグラウンドでビデオ変換するサービスがあり、フロントエンドのサービスもあるでしょう。
 
 .. Services are really just “containers in production.” A service only runs one image, but it codifies the way that image runs—what ports it should use, how many replicas of the container should run so the service has the capacity it needs, and so on. Scaling a service changes the number of container instances running that piece of software, assigning more computing resources to the service in the process.
 
