@@ -281,7 +281,7 @@ Docker は現状のまま更新を行いますので、スタックの停止や�
 
 .. It’s as easy as that to stand up and scale your app with Docker. You’ve taken a huge step towards learning how to run containers in production. Up next, you will learn how to run this app as a bonafide swarm on a cluster of Docker machines.
 
-Docker はアプリケーションの起動だけでなくスケールも非常に簡単です。コンテナをプロダクションで動かす方法を学ぶのに、大きな前進です。次は、Docker マシンのクラスタ上で動作する swarm で、このアプリを動かす方法を学びましょう。
+Docker においてはアプリケーションの起動もスケールアップも非常に簡単です。ここまでにコンテナを実稼動させる方法を学びました。大きく前進しました。次に学ぶのは、複数の Docker マシンによるクラスタ上にて、本当の意味で swarm としてのアプリを実行する方法です。
 
 ..    Note: Compose files like this are used to define applications with Docker, and can be uploaded to cloud providers using Docker Cloud, or on any hardware or cloud provider you choose with Docker Enterprise Edition.
 
