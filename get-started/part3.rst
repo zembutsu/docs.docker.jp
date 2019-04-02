@@ -215,6 +215,8 @@ Docker swarm は、コンテナを作成するタスクを実行します。タ�
 
 逆も同様で、コンテナ ID を調べることでタスク ID を得ることもできます。
 
+初めに ``docker container ls`` を実行してコンテナ ID を得てから、以下を実行します：
+
 .. code-block:: bash
 
    docker inspect --format="{{index .Config.Labels \"com.docker.swarm.task.id\"}}" <container>
