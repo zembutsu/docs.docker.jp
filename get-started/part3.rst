@@ -182,6 +182,13 @@ Part 3では、アプリケーションをスケールアップして、負荷�
 
    docker service ls
 
+.. You'll see output for the `web` service, prepended with your app name. If you
+named it the same as shown in this example, the name will be
+`getstartedlab_web`. The service ID is listed as well, along with the number of
+replicas, image name, and exposed ports.
+
+``web`` サービスに関する情報が出力されます。アプリ名も行先頭に表示されます。上で示した例と同じ名前をつけていれば ``getstartedlab_web`` が表示されたはずです。サービス ID をはじめ、レプリカ数、イメージ名、公開ポートもともに一覧表示されます。
+
 .. Docker swarms run tasks that spawn containers. Tasks have state and their own IDs:
 
 Docker swarm（クラスタ）は作成したコンテナを、タスクとして実行します。タスクは状態（state）と各々が自身の ID を持ちます。
