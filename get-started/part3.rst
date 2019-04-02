@@ -51,6 +51,7 @@ Part 3では、アプリケーションをスケールアップして、負荷�
     Services (ここにいます)
     Container 
 
+* スタック
 * サービス ``Services`` （今ここにいます）
 * コンテナ（ :doc:`part 2 <part2>` で扱いました）
 
