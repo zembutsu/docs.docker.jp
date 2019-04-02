@@ -201,7 +201,7 @@ Docker swarm は、コンテナを作成するタスクを実行します。タ�
 
 .. note::
 
-   Docker の swarm サポート機能は、SwarmKit と呼ばれるプロジェクトを利用して構築されています。SwarmKit のタスクはコンテナである必要はありませんが、Docker swarm のタスクにはコンテナの作成が定義されています。
+   Docker が swarm クラスタをサポートするにあたって、 SwarmKit と呼ばれるプロジェクトを構築に用いています。SwarmKit のタスクにコンテナは必須ではありませんが、Docker swarm のタスクにはコンテナの作成が定義されています。
 
 .. Let’s inspect one task and limit the ouput to container ID:
 
