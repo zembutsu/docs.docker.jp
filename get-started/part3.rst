@@ -258,7 +258,7 @@ Docker は現状のまま更新を行いますので、スタックの停止や�
 
 .. Now, re-run docker container ls -q to see the deployed instances reconfigured. If you scaled up the replicas, more tasks, and hence, more containers, are started.
 
-次は ``docker container ls -q`` を再度実行しますと、指定したインスタンスのデプロイを確認できます。レプリカをスケールアップしていれば、より多くのタスクが起動しますので、より多くのコンテナが起動します。
+もう一度 ``docker container ls -q`` を実行してみると、デプロイしたインスタンスが再設定されたことが確認できます。レプリカをスケールアップしていれば、より多くのタスクが起動するので、つまりより多くのコンテナが起動します。
 
 .. Take down the app and the swarm
 
