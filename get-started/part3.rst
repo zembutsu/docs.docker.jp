@@ -172,11 +172,11 @@ Part 3では、アプリケーションをスケールアップして、負荷�
 
 .. Our single service stack is running 5 container instances of our deployed image on one host. Let’s investigate.
 
-サービス・スタックでは、ホスト上にデプロイしたイメージを使った５つのコンテナインスタンスが実行中です。詳細を調べましょう。
+一つのサービス・スタックから、ホストにデプロイしたイメージに対するコンテナ・インスタンスが５つ稼動しました。中身を確認してみましょう。
 
 .. Get the service ID for the one service in our application:
 
-アプリケーションのサービスが持つサービス ID を取得します。
+アプリケーション内に稼動しているサービスの ID を取得します。
 
 .. code-block:: bash
 
