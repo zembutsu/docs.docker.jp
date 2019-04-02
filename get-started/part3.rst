@@ -83,7 +83,7 @@ Part 3では、アプリケーションをスケールアップして、負荷�
 
 .. A docker-compose.yml file is a YAML file that defines how Docker containers should behave in production.
 
-``docker-compose.yml`` ファイルとは YAML ファイルであり、プロダクションにおける Docker コンテナのあるべき挙動を定義します。
+``docker-compose.yml`` ファイルは YAML ファイルであり、Docker コンテナがどのように動作するかを定義します。
 
 ``docker-compose.yml``
 
