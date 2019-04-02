@@ -115,7 +115,7 @@ Part 3では、アプリケーションをスケールアップして、負荷�
 
 .. This docker-compose.yml file tells Docker to do the following:
 
-この ``docker-compose.yml`` ファイルで Docker に以下の作業を伝えます：
+この ``docker-compose.yml`` ファイルが Docker に対して以下の指示を行います:
 
 ..    Pull the image we uploaded in step 2 from the registry.
     Run 5 instances of that image as a service called web, limiting each one to use, at most, 10% of the CPU (across all cores), and 50MB of RAM.
