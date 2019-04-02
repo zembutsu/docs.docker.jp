@@ -72,7 +72,7 @@ Part 3では、アプリケーションをスケールアップして、負荷�
 
 .. Luckily it’s very easy to define, run, and scale services with the Docker platform – just write a docker-compose.yml file.
 
-幸運にも、Docker プラットフォームにおいては、サービスの定義、実行、スケールが非常に簡単です。これらを ``docker-compose.yml`` ファイルに書くだけです。
+うれしいことに Docker では簡単にサービスの定義、実行、規模変更を行うことができます。ただ ``docker-compose.yml`` ファイルを書くだけです。
 
 .. Your first docker-compose.yml file
 
