@@ -246,7 +246,7 @@ Docker swarm は、コンテナを作成するタスクを実行します。タ�
 
 .. You can scale the app by changing the replicas value in docker-compose.yml, saving the change, and re-running the docker stack deploy command:
 
-``docker-compose.yml`` の ``replicas`` 値の変更し、アプリをスケールできます。変更を保存したら、 ``docker stack deploy`` コマンドを再度実行します。
+``docker-compose.yml`` の ``replicas`` の値を変更すれば、アプリのスケールを変更できます。変更を保存したら、 ``docker stack deploy`` コマンドを再度実行します。
 
 .. code-block:: bash
 
