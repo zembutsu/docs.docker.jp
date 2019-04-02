@@ -45,7 +45,7 @@ Part 3：サービス
 
 .. In part 3, we scale our application and enable load-balancing. To do this, we must go one level up in the hierarchy of a distributed application: the service.
 
-Part 3では、アプリケーションをスケールアウトし、負荷分散（ロード・バランシング）を有効にします。そのためには、分散アプリケーション階層においてレベルを上げるする必要があります。すなわち、 **サービス（service）** にです。
+Part 3では、アプリケーションをスケールアップして、負荷分散（ロード・バランシング）を有効にします。こうするためには、分散アプリケーションのレベルを一段あげる必要があります。**サービス化** するということです。
 
 ..    Stack
     Services (ここにいます)
