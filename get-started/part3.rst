@@ -205,7 +205,7 @@ Docker swarm は、コンテナを作成するタスクを実行します。タ�
 
 .. Let’s inspect one task and limit the ouput to container ID:
 
-それでは、タスクを調べ、コンテナ ID の出力を確認しましょう。
+タスクを調べてみます。コンテナ ID を指定して出力を行います。
 
 .. code-block:: bash
 
