@@ -68,7 +68,7 @@ Part 3では、アプリケーションをスケールアップして、負荷�
 
 .. Services are really just “containers in production.” A service only runs one image, but it codifies the way that image runs—what ports it should use, how many replicas of the container should run so the service has the capacity it needs, and so on. Scaling a service changes the number of container instances running that piece of software, assigning more computing resources to the service in the process.
 
-サービスとは、正に「本番環境におけるコンテナ」なのです。サービスは１つのイメージしか実行しません。しかし、イメージ実行にはコード化の手法を用います。例えば、何番のポートを使うか、サービスのキャパシティ（収容能力）に応じてコンテナの複製（レプリカ）を幾つ作成したらよいのか等です。サービスのスケール（規模）を変えるには、ソフトウェアのパーツとしての実行するコンテナ・インスタンス数の変更、すなわち、プロセス中のサービスに対して更に大きな計算資源を割り当てます。
+サービスとは正に「稼動するコンテナ」なのです。どのサービスも実行するイメージはただ一つですが、そこにはイメージの動作方法がコーディングされています。ポートは何番を使うか、サービスが持つべき性能を発揮するにはレプリカをいくつ用いればよいか、などです。サービスの規模を大きくすると、このソフトウエアを実行するコンテナ・インスタンスの数が変わります。またプロセス内で実行されるこのサービスへのコンピュータ・リソース割り当てが増えます。
 
 .. Luckily it’s very easy to define, run, and scale services with the Docker platform – just write a docker-compose.yml file.
 
