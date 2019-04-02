@@ -124,9 +124,9 @@ Part 3では、アプリケーションをスケールアップして、負荷�
     Instruct web’s containers to share port 80 via a load-balanced network called webnet. (Internally, the containers themselves will publish to web’s port 80 at an ephemeral port.)
     Define the webnet network with the default settings (which is a load-balanced overlay network).
 
-* :doc:`Step 2 でアップロードしたイメージ` をレジストリから取得
+* :doc:`Step 2 でアップロードしたイメージ` をレジストリから取得。
 * イメージのインスタンスを５つ実行し ``web`` という名前のサービスとして実行。それぞれのインスタンスは（全てのコアを通じて）最大で CPU の 10% の利用までに制限し、RAM は 50MB とする。
-* コンテナが停止すると、直ちに再起動
+* コンテナが停止したときは、すぐに再起動。
 * ホスト側のポート 80 を、 ``web`` のポート 80 に割り当て
 * ``web`` のコンテナに対し、 ``webnet`` という名前の負荷分散ネットワークを経由してポート 80 を共有するよう命令（内部では、コンテナ自身の一時的なポートとして、 ``web`` のポート 80 を公開 ）
 * デフォルトの設定として ``webnet`` ネットワークを定義（負荷分散されるオーバレイ・ネットワーク）
