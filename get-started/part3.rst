@@ -229,9 +229,9 @@ Docker swarm は、コンテナを作成するタスクを実行します。タ�
 
    docker container ls -q
 
-.. You can run curl http://localhost several times in a row, or go to that URL in your browser and hit refresh a few times. Either way, you’ll see the container ID change, demonstrating the load-balancing; with each request, one of the 5 replicas is chosen, in a round-robin fashion, to respond.
+.. You can run curl http://localhost several times in a row, or go to that URL in your browser and hit refresh a few times. Either way, you’ll see the container ID change, demonstrating the load-balancing; with each request, one of the 5 replicas is chosen, in a round-robin fashion, to respond. The container IDs will match your output from the previous command (`docker container ls -q`).
 
-``curl http://localhost`` コマンドを何度も実行するか、ブラウザで URL を何度か再読み込みします。そうしますと、アクセスごとにコンテナ ID の表示が変わり、負荷分散が動作しているのがわかります。つまり、５つのレプリカのうち１つが選ばれる、ラウンドロビン方式で応答します。
+``curl http://localhost`` コマンドを順に数回実行するか、あるいはブラウザでこの URL を表示して何回か再読み込みをしてみてください。どちらの方法でもコンテナ ID が変化して、各リクエストごとに５つのレプリカのうちの１つがラウンドロビン方式により選ばれて応答します。これにより負荷分散が機能していることが分かります。コンテナ ID は先ほどのコマンド（``docker container ls -q``）の出力に合致しているはずです。
 
 ..    Note: At this stage, it may take up to 30 seconds for the containers to respond to HTTP requests. This is not indicative of Docker or swarm performance, but rather an unmet Redis dependency that we will address later in the tutorial.
 
