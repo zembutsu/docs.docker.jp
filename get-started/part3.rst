@@ -301,7 +301,7 @@ Docker においてはアプリケーションの起動もスケールアップ�
 
 .. To recap, while typing docker run is simple enough, the true implementation of a container in production is running it as a service. Services codify a container’s behavior in a Compose file, and this file can be used to scale, limit, and redeploy our app. Changes to the service can be applied in place, as it runs, using the same command that launched the service: docker stack deploy.
 
-復習として ``docker run`` を実行するだけで、コンテナをプロダクションにおけるサービスとして正に実装されているのが分かるでしょう。コンテナの挙動をサービスとして Compose ファイルでコード化し、これを使ったアプリのスケール、制限、再デプロイに用いられます。サービスに対するする変更とは、変更箇所を書き換えての適用であり、サービスを起動するときと同じコマンド ``docker stack deploy`` を実行するだけです。
+要するに ``docker run`` と入力するのが非常に簡単なことではあるものの、実稼動させるコンテナの真の実現方法は、それをサービスとして稼動させることです。サービスは Compose ファイルにおいてコンテナの動作を定義します。このファイルによってアプリのスケールアップ、制限、再デプロイを実現します。サービスへの変更は、稼動中であろうとも適切に反映されます。その際のコマンドはサービスを起動させたときの ``docker stack deploy`` と同じようにして実現できます。
 
 .. Some commands to explore at this stage:
 
