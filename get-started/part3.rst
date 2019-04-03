@@ -309,13 +309,13 @@ Docker においてはアプリケーションの起動もスケールアップ�
 
 .. code-block:: bash
 
-   docker stack ls                                          # スタックやアプリ一覧
-   docker stack deploy -c <composefile> <appname>  # 特定の Compose ファイルを実行
-   docker service ls                          # アプリに関係ある実行中サービス一覧
-   docker service ps <service>                        # アプリに関係あるタスク一覧
+   docker stack ls                                        # スタックやアプリの一覧
+   docker stack deploy -c <composefile> <appname> # 指定する Compose ファイルの実行
+   docker service ls                          # アプリに関連する実行中サービス一覧
+   docker service ps <service>                        # アプリに関連するタスク一覧
    docker inspect <task or container>                 # タスクまたはコンテナの調査
    docker container ls -q                                     # コンテナ ID の一覧
-   docker stack rm <appname>                                # アプリケーションの解体
+   docker stack rm <appname>                              # アプリケーションの解体
 
 .. seealso::
 
