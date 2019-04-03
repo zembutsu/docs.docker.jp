@@ -297,7 +297,7 @@ Docker においてはアプリケーションの起動もスケールアップ�
 
 .. Here’s a terminal recording of what was covered on this page:
 
-`このページで扱ったターミナルの録画 <https://asciinema.org/a/b5gai4rnflh7r0kie01fx6lip>`_ がこちらです。
+`このページで扱った端末操作の録画 <https://asciinema.org/a/b5gai4rnflh7r0kie01fx6lip>`_ がこちらです。
 
 .. To recap, while typing docker run is simple enough, the true implementation of a container in production is running it as a service. Services codify a container’s behavior in a Compose file, and this file can be used to scale, limit, and redeploy our app. Changes to the service can be applied in place, as it runs, using the same command that launched the service: docker stack deploy.
 
