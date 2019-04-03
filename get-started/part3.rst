@@ -284,7 +284,7 @@ Docker においてはアプリケーションの起動もスケールアップ�
 
 .. note::
 
-   Docker では今回使ったような Compose ファイルでアプリケーションを定義します。そして、 :doc:`Docker Cloud </docker-cloud/index>` を用いたクラウド・プロバイダへのアップロードや、 `Docker Enterprise エディション <https://www.docker.com/enterprise-edition>`_ で任意のハードウェアやクラウド・プロバイダを利用できます。
+   Docker では、このようなことは Compose ファイルを用いてアプリケーション定義を行います。そして :doc:`Docker Cloud </docker-cloud/index>` を用いてクラウド・プロバイダへのアップロードを行います。つまり他のハードウェアや、 `Docker Enterprise エディション <https://www.docker.com/enterprise-edition>`_ において選定したクラウド・プロバイダへのアップロードを行うものです。
 
 .. On to “Part 4” »
 
