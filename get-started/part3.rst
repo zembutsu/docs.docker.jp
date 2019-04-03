@@ -305,7 +305,7 @@ Docker においてはアプリケーションの起動もスケールアップ�
 
 .. Some commands to explore at this stage:
 
-現時点における複数のコマンドを見てみましょう。
+ここまでのコマンドをまとめます。
 
 .. code-block:: bash
 
