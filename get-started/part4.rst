@@ -52,7 +52,7 @@ Part 4：Swarm
 
 .. Here in part 4, you deploy this application onto a cluster, running it on multiple machines. Multi-container, multi-machine applications are made possible by joining multiple machines into a “Dockerized” cluster called a swarm.
 
-この Part 4 では、アプリケーションをクラスタにデプロイし、複数のマシン上で実行します。複数のコンテナ、複数のマシンにおけるアプリケーションは、 **swarm** （スウォーム）と呼ぶ複数のマシンが参加する「Docker化」（Dockerized）クラスタで利用可能になります。
+この Part 4 では、デプロイするアプリケーションをクラスタにして、複数のマシン上で実行します。複数コンテナ、複数マシンによるアプリケーションは、各マシンを「Docker化」（Dockerized）したクラスタ、すなわち **swarm** （スウォーム）と呼ばれるものに集約することによって実現されます。
 
 .. _understanding-swarm-clusters:
 
