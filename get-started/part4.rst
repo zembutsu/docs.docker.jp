@@ -63,7 +63,7 @@ Swarm クラスタの理解
 
 .. A swarm is a group of machines that are running Docker and joined into a cluster. After that has happened, you continue to run the Docker commands you’re used to, but now they are executed on a cluster by a swarm manager. The machines in a swarm can be physical or virtual. After joining a swarm, they are referred to as nodes.
 
-swarm とは Docker が動作し、クラスタに参加しているマシン・グループです。swarm を使えば、Docker コマンドをこれまで通り使い続けながら、 **swarm マネージャ** を通してクラスタ上で実行可能になります。swarm 上のマシンは物理あるいは仮想どちらも使えます。swarm に加わった後は、これらは **ノード** として参照されます。
+swarm とは Docker の動作するマシンがひとまとまりとなってクラスタを構成するものです。swarm を使うようになると、これまで使ってきた Docker コマンドは引き続き用いることにはなりますが、今度はクラスタに対しての **swarm マネージャ** として処理操作を行うものとなります。swarm 内のマシンは物理マシン、仮想マシンのいずれでも構いません。マシンを swarm に含めた後は、 **ノード** として参照されます。
 
 .. Swarm managers can use several strategies to run containers, such as “emptiest node” – which fills the least utilized machines with containers. Or “global”, which ensures that each machine gets exactly one instance of the specified container. You instruct the swarm manager to use these strategies in the Compose file, just like the one you have already been using.
 
