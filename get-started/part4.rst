@@ -134,10 +134,10 @@ swarm は複数のノードにより構成されます。それは物理マシ�
     Click Create Virtual Switch of type External
     Give it the name myswitch, and check the box to share your host machine’s active network adapter
 
-1. Hyper-V マネージャを起動
-2. 右側メニューにある **Virtual Switch Manager** をクリック
-3. **Create Virtual Switch** の **External** タイプをクリック
-4. 名前を **myswitch** に指定子、ホストマシンのアクティブ・ネットワーク・アダプタとの共有ボックスにチェックを入れる
+1. Hyper-V マネージャーを起動
+2. 右側のメニューにある **仮想スイッチ マネージャー** をクリック
+3. **仮想スイッチの作成** のタイプ **外部** をクリック
+4. ``myswitch`` という名称に設定し、ホストマシンのアクティブ・ネットワーク・アダプタとの共有ボックスにチェックを入れる
 
 .. Now, create a couple of virtual machines using our node management tool, docker-machine:
 
