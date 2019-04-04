@@ -36,7 +36,7 @@ Part 4：Swarm
 * :doc:`Part 3 の必要条件 </get-started/part3.md#prerequisites>` で説明した :doc:`Docker Compose </engine/installation/index>` を入手していること。
 * :doc:`Docker Machine </machine/overview>` を入手していること。 Docker for Mac と Docker for Windows ではインストール済みであるが Linux システムでは :ref:`直接インストール <installing-machine-directly>_ が必要。Widows 10 Home のように Windows 10 システム上に Hyper-V が入っていない場合は、 :doc:`Docker Toolbox </toolbox/overview>` が必要。
 * :doc:`Part 1 <index>` の概要を読んでいること。
-* :doc:`Part 2 <part>` のコンテナの作成方法学んでいること
+* :doc:`Part 2 <part>` のコンテナの作成方法を理解していること。
 * 自分で作成した ``friendlyhello`` イメージを :ref:`レジストリに送信 <share-your-image>` して公開済みなのを確認します。ここでは、この共有イメージを使います。
 * イメージをコンテナとしてデプロイできるのを確認します。次のコマンドを実行しますが、 ``ユーザ名`` と ``リポジトリ`` ``タグ`` は皆さんのものに置き換えます。コマンドは ``docker run -p 80:80 ユーザ名/リポジトリ:タグ`` です。そして ``http://localhost/`` を表示します。
 * :doc:`Part 3 <part3>` で扱った ``docker-compose.yml`` のコピーを持っていること
