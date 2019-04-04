@@ -67,7 +67,7 @@ swarm とは Docker の動作するマシンがひとまとまりとなってク
 
 .. Swarm managers can use several strategies to run containers, such as “emptiest node” – which fills the least utilized machines with containers. Or “global”, which ensures that each machine gets exactly one instance of the specified container. You instruct the swarm manager to use these strategies in the Compose file, just like the one you have already been using.
 
-swarm マネージャはコンテナの実行時、複数のストラテジ（strategy；計画、方針）を扱います。例えば「emptiest node」（最も空いているノード）であれば、最も使われていないマシンが選ばれます。あるいは「global」（グローバル）であれば、特定の１つのマシンだけでなく、すべてのマシン上で特定のコンテナを実行します。このように様々なストラテジがありますが、 swarm マネージャには Compose ファイルを通して命令できます。
+swarm マネージャでは、コンテナの実行にあたってストラテジというものが指定できます。たとえば「emptiest node」（最も空いているノード）です。これは最も使われていないマシンをコンテナに割り当てます。「global」というものは、個々のマシンには、指定されたコンテナの１インスタンスのみを割り当てます。swarm マネージャに対してのストラテジ指定は Compose ファイルにて行います。既に利用してきたファイルです。
 
 .. Swarm managers are the only machines in a swarm that can execute your commands, or authorize other machines to join the swarm as workers. Workers are just there to provide capacity and do not have the authority to tell any other machine what it can and cannot do.
 
