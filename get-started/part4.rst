@@ -38,7 +38,7 @@ Part 4：Swarm
 * :doc:`Part 1 <index>` の概要を読んでいること。
 * :doc:`Part 2 <part>` のコンテナの作成方法を理解していること。
 * :ref:`レジストリに送信 <share-your-image>` して作成した ``friendlyhello`` イメージが共有可能であることを確認します。ここではその共有イメージを使います。
-* イメージをコンテナとしてデプロイできるのを確認します。次のコマンドを実行しますが、 ``ユーザ名`` と ``リポジトリ`` ``タグ`` は皆さんのものに置き換えます。コマンドは ``docker run -p 80:80 ユーザ名/リポジトリ:タグ`` です。そして ``http://localhost/`` を表示します。
+* デプロイしたコンテナとしてイメージが動作することを確認します。以下のコマンドを実行してください。`docker run -p 80:80 username/repo:tag` ここで username、repo、tag の部分は各環境に合わせて書き換えてください。そして ``http://localhost/`` にアクセスします。
 * :doc:`Part 3 <part3>` で扱った ``docker-compose.yml`` のコピーを持っていること
 
 .. Introduction
