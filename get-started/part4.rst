@@ -86,7 +86,7 @@ swarm のセットアップ
 
 .. A swarm is made up of multiple nodes, which can be either physical or virtual machines. The basic concept is simple enough: run docker swarm init to enable swarm mode and make your current machine a swarm manager, then run docker swarm join on other machines to have them join the swarm as workers. Choose a tab below to see how this plays out in various contexts. We’ll use VMs to quickly create a two-machine cluster and turn it into a swarm.
 
-swarm は複数のノードで構成します。物理マシンまたは仮想マシンどちらでもノードになれます。基本概念は極めてシンプルです。 ``docker swarm init`` を実行すると、 swarm mode を有効化し、現在のマシンを swarm マネージャにします。そして ``docker swarm join`` を実行し、他のマシンをワーカとして swarm に追加します。環境に応じて以下の項目を読み進めてください。ここでは２つの仮想マシンを素早く作成し、swarm に追加します。
+swarm は複数のノードにより構成されます。それは物理マシン、仮想マシンのどちらでも構いません。基本的な考え方はとても簡単です。 ``docker swarm init`` の実行により swarm モードが有効となり、現在のマシンが swarm マネージャになります。その後に他のマシンから ``docker swarm join`` を実行すると、そのマシンはワーカとして swarm に参加できます。この仕組みがさまざまな環境においてどのように動作するか、以下のタブを切り替えて確認してください。以下では仮想環境を用いて、２つのマシンによるクラスタをさっと作り出して、これを swarm に切り替えます。
 
 .. Create a cluster
 
