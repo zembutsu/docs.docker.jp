@@ -33,6 +33,7 @@ Part 4：Swarm
     Have a copy of your docker-compose.yml from Part 3 handy.
 
 * :doc:`Docker バージョン 1.13 またはそれ以上をインストールしていること。</engine/installation/index>`
+* :doc:`Part 3 の必要条件 </get-started/part3.md#prerequisites>` で説明した :doc:`Docker Compose </engine/installation/index>` を入手していること。
 * :doc:`Docker Machine </machine/overview>` を入手。 Docker for Mac と Docker for Windows ではインストール済みですので、このまま読み進めてください。Linux システムでは :ref:`直接インストール <installing-machine-directly>_ が必要です。Widows 10 システム上で Hyper-V が入っていなければ、 :doc:`Docker Toolbox </toolbox/overview>` をお使い下さい。
 * :doc:`Part 1 <index>` の概要を読んでいること
 * :doc:`Part 2 <part>` のコンテナの作成方法学んでいること
