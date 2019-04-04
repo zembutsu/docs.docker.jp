@@ -71,7 +71,7 @@ swarm マネージャでは、コンテナの実行にあたってストラテ�
 
 .. Swarm managers are the only machines in a swarm that can execute your commands, or authorize other machines to join the swarm as workers. Workers are just there to provide capacity and do not have the authority to tell any other machine what it can and cannot do.
 
-swarm マネージャは swarm における単なるマシンであり、コマンドの実行や、swarm に参加したマシンを **ワーカ（workers）** として認証できます。ワーカは収容能力（キャパシティ）を提供するのみであり、他のマシンに対して何ができる・できないといった権限を持ちません。
+swarm マネージャは swarm においてコマンド実行をまさに行うマシンです。あるいは他のマシンを swarm に参加させる **ワーカ（workers）** として動作します。ワーカは能力を付与する役目をになっているわけですが、他のマシンの機能を制約する権限を持つわけではありません。
 
 .. Up until now, you have been using Docker in a single-host mode on your local machine. But Docker also can be switched into swarm mode, and that’s what enables the use of swarms. Enabling swarm mode instantly makes the current machine a swarm manager. From then on, Docker will run the commands you execute on the swarm you’re managing, rather than just on the current machine.
 
