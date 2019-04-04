@@ -122,7 +122,7 @@ swarm は複数のノードにより構成されます。それは物理マシ�
    $ docker-machine create --driver virtualbox myvm1
    $ docker-machine create --driver virtualbox myvm2
 
-ローカルマシン上の仮想マシン（Windows 10/Hyper-V）
+ローカルマシン上の仮想マシン（Windows 10）
 ----------------------------------------------------------------------
 
 .. First, quickly create a virtual switch for your VMs to share, so they will be able to connect to each other.
