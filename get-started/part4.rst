@@ -111,7 +111,7 @@ swarm は複数のノードにより構成されます。それは物理マシ�
 
 .. note::
 
-   WIndows 10 のような Hyper-V をインストールした WIndows システムをお使いの場合、Hyper-V を利用する代わりに VirtualBox のインストールが必要です。ページ下方の Hyper-V に関する項目をご覧ください。
+   Windows 10 のように Hyper-V が搭載された Windows システムの場合、VirtualBox のインストールは不要であり、かわりに Hyper-V を利用してください。上記の Hyper-V に関するタブをクリックして Hyper-V システムの手順を参照してください。`Docker Toolbox </toolbox/overview>`_ を利用する場合は、その一部としてすでに VirtualBox がインストールされるため、このまま先に進んでください。
 
 .. Now, create a couple of VMs using docker-machine, using the VirtualBox driver:
 
