@@ -127,7 +127,7 @@ swarm は複数のノードにより構成されます。それは物理マシ�
 
 .. First, quickly create a virtual switch for your VMs to share, so they will be able to connect to each other.
 
-まず、仮想マシンが共有する仮想スイッチを作成したら、仮想マシンがお互い接続可能になります。
+はじめに、仮想マシンが共有する仮想スイッチを作成して、仮想マシンが互いに接続できるようにします。
 
 ..    Launch Hyper-V Manager
     Click Virtual Switch Manager in the right-hand menu
