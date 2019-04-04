@@ -75,7 +75,7 @@ swarm マネージャは swarm においてコマンド実行をまさに行う�
 
 .. Up until now, you have been using Docker in a single-host mode on your local machine. But Docker also can be switched into swarm mode, and that’s what enables the use of swarms. Enabling swarm mode instantly makes the current machine a swarm manager. From then on, Docker will run the commands you execute on the swarm you’re managing, rather than just on the current machine.
 
-これまではローカルマシン上の単一ホスト上で動く Docker を使ってきました。しかし、Docker は **swarm mode**  に切り替え可能であり、swarm（クラスタ）上でも利用できます。現在のマシンを swarm マネージャとしたら、簡単に swarm モードを有効化できます。あとは、現在のマシンで Docker を操作する代わりに、swarm クラスタ上で処理します。
+これまではローカルマシン上において、シングルホストモードにより Docker を利用してきました。Docker は **swarm モード** に切り替えることが可能であり、このモードにすることで swarm が利用できるようになります。swarm を有効にした時点で現在のマシンが swarm マネージャとなります。これ以降の Docker に対するコマンドは swarm に対して実行されます。もうそれまでのマシンに対して実行するものではなくなります。
 
 .. Set up your swarm
 
