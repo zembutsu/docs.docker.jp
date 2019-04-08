@@ -243,7 +243,7 @@ Docker Cloud
 
 .. You can use Docker Cloud to automatically provision and manage your cloud instances.
 
-Docker Cloud を使えば、各クラウド環境上に自動的にセットアップできます。
+Docker Cloud を使えば、クラウドインスタンスのセットアップや管理を自動的に行うことができます。
 
 ..    Amazon Web Services setup guide
     DigitalOcean setup guide
