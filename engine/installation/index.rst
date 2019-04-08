@@ -39,7 +39,7 @@ Docker CE に関する詳しい情報は、 `Docker Community Edition（英語�
 
 .. Docker Enterprise Edition (EE) is designed for enterprise development and IT teams who build, ship, and run business critical applications in production at scale. For more information about Docker EE, including purchasing options, see Docker Enterprise Edition.
 
-Docker エンタープライズ版（EE）はエンタープライズにおける開発と IT チーム向けに設計されており、プロダクションでスケールするようなビジネスにとって重要なアプリケーションを構築・移動・実行します。
+Docker エンタープライズ版（EE）は、エンタープライズ開発向けや IT チーム向けに設計されています。最重要のビジネスアプリケーションが、稼働中にその規模を拡大していっても、アプリケーションの構築、導入、実行を容易に実現できます。Docker EE や購入オプションに関する詳細は `Docker Enterprise Edition（英語） <https://www.docker.com/enterprise-edition/>`_ を参照してください。
 
 .. list-table::
    :widths: 100 20 20 20 20
