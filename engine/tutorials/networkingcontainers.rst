@@ -251,7 +251,7 @@ Docker に対して ``-d`` フラグを指定するのは、新たなネット�
 
 .. To build web applications that act in concert but do so securely, create a network. Networks, by definition, provide complete isolation for containers. You can add containers to a network when you first run a container.
 
-ウェブ・アプリケーションの構築にあたり、安全性を高めるためにネットワークを作成します。ネットワークとは、コンテナの完全な分離を提供するものと定義します。コンテナを実行する時に、コンテナをネットワークに追加できます。
+ウェブ・アプリケーションを正しく動作させ、しかも安全性をもったものとして構築するには、ネットワークを生成することです。ネットワークは当然のこととして、各コンテナの完全な独立性を作り出します。コンテナの初回起動時に、同時にネットワークへコンテナを追加することができます。
 
 .. Launch a container running a PostgreSQL database and pass it the --net=my-bridge-network flag to connect it to your new network:
 
