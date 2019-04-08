@@ -190,7 +190,7 @@ Compose は様々な使い方があります。一般的な利用例は、以下
 
 .. When you’re developing software, the ability to run an application in an isolated environment and interact with it is crucial. The Compose command line tool can be used to create the environment and interact with it.
 
-ソフトウェアの開発時であれば、アプリケーションを別々の環境で相互にやりとりするのは重要です。Compose のコマンドライン・ツールは環境の作成と、相互のやりとりのために使えます。
+ソフトウェアを開発する上で、アプリケーションを分離された環境内にて実行させ、しかも正しくアクセスできるようにすることが極めて重要です。Compose のコマンドラインツールを用いることで、環境生成と環境へのアクセスを行うことができます。
 
 .. The Compose file provides a way to document and configure all of the application’s service dependencies (databases, queues, caches, web service APIs, etc). Using the Compose command line tool you can create and start one or more containers for each dependency with a single command (docker-compose up).
 
