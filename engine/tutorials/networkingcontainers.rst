@@ -272,7 +272,7 @@ PostgreSQL データベースを実行させているコンテナを起動する
 
 .. Now, go ahead and start your by now familiar web application. This time leave off the -P flag and also don’t specify a network.
 
-次に進み、近くでウェブ・アプリケーションを起動します。今回は ``-P`` フラグもネットワークも指定しません。
+操作を続けます。おなじみのウェブ・アプリケーションを起動させます。今回はネットワークの指定は行いません。
 
 .. code-block:: bash
 
