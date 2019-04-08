@@ -65,7 +65,7 @@ Compose を使うには、基本的に３つのステップを踏みます。
 
 .. For more information about the Compose file, see the Compose file reference
 
-Compose に関する更に詳しい情報は、 :doc:`Compose ファイル・リファレンス </compose/compose-file>` をご覧ください。
+Compose ファイルに関するさらに詳しい情報は、 :doc:`Compose ファイル・リファレンス </compose/compose-file>` をご覧ください。
 
 .. Compose has commands for managing the whole lifecycle of your application:
 
