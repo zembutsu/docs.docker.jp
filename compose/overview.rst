@@ -157,7 +157,7 @@ Windows 上において docker-compose を利用している場合には、:doc:
 
 .. Compose caches the configuration used to create a container. When you restart a service that has not changed, Compose re-uses the existing containers. Re-using containers means that you can make changes to your environment very quickly.
 
-Compose はコンテナ作成時に使う設定情報をキャッシュします。サービスの再起動時に、内容に変更がなければ、Compose は既存のコンテナを再利用します。コンテナの再利用とは、環境をとても速く作り直せるのを意味します。
+Compose はコンテナが生成されたときの設定情報をキャッシュに保存します。設定内容に変更のないサービスが再起動された場合、Compose はすでにあるサービスを再利用します。再利用されるということは、全体として環境への変更がすばやくできることを意味します。
 
 .. _variables-and-moving-a-composition-between-environments:
 
