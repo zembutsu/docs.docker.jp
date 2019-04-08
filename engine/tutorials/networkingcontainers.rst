@@ -280,7 +280,7 @@ PostgreSQL データベースを実行させているコンテナを起動する
 
 .. Which network is your web application running under? Inspect the application and you’ll find it is running in the default bridge network.
 
-ウェブ・アプリケーションはどのネットワーク上で実行しているのでしょうか。アプリケーションを調査したら、標準の ``bridge`` ネットワークで実行していることが分かります。
+ウェブ・アプリケーション ``web`` はどのネットワークのもとで稼動しているのでしょう。アプリケーションを調べてみれば分かります。それはデフォルトの ``bridge`` ネットワークです。
 
 .. code-block:: bash
 
