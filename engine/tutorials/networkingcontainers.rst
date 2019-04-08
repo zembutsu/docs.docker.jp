@@ -203,7 +203,7 @@ Docker Engine はブリッジ・ネットワークとオーバレイ・ネット
 
 .. The -d flag tells Docker to use the bridge driver for the new network. You could have left this flag off as bridge is the default value for this flag. Go ahead and list the networks on your machine:
 
-Docker に対して新しいネットワークで使用する ``bridge`` ドライバを指定するには、 ``-d`` フラグを使います。このフラグを指定しなくても、同様にこの ``bridge`` フラグが適用されます。マシン上のネットワーク一覧を表示します。
+Docker に対して ``-d`` フラグを指定するのは、新たなネットワークに対応する ``bridge`` ドライバを利用するためです。この場合のフラグ指定は行わなくても構いません。というのもこのフラグのデフォルト値は ``bridge`` であるからです。次にマシン上のネットワーク一覧を確認します。
 
 .. code-block:: bash
 
