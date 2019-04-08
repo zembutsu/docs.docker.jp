@@ -263,7 +263,7 @@ PostgreSQL データベースを実行させているコンテナを起動する
 
 .. If you inspect your my-bridge-network you’ll see it has a container attached. You can also inspect your container to see where it is connected:
 
-``my-bridge-network`` を調べると、コンテナがアタッチ（接続）しているのが分かります。同様にコンテナを調べても、どこに接続しているのか分かります。
+``my-bridge-network`` を確認してみると、コンテナが加わっていることが分かります。コンテナを確認してみると、どこに接続されているかも分かります。
 
 .. code-block:: bash
 
