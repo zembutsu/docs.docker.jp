@@ -47,17 +47,17 @@ Compose を使うには、基本的に３つのステップを踏みます。
 
 .. code-block:: yaml
 
-   version: '2'
+   version: '3'
    services:
      web:
        build: .
        ports:
-        - "5000:5000"
+       - "5000:5000"
        volumes:
-        - .:/code
-        - logvolume01:/var/log
+       - .:/code
+       - logvolume01:/var/log
        links:
-        - redis
+       - redis
      redis:
        image: redis
    volumes:
