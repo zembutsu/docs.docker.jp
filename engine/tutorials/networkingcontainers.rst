@@ -289,7 +289,7 @@ PostgreSQL データベースを実行させているコンテナを起動する
 
 .. Then, get the IP address of your web
 
-次に web の IP アドレスを取得しましょう。
+次に ``web`` の IP アドレスを取得しましょう。
 
 .. code-block:: bash
 
