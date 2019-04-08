@@ -232,7 +232,7 @@ Docker 17.03 以降、Docker は月ごとにリリース予定を設けていま
 
 .. Instructions for installing prior releases of Docker can be found in the Docker archives.
 
-以前にリリースした Docker のインストール方法は、 :doc:`Docker アーカイブ </dockerarchve/index>` にあるかもしれません。
+以前にリリースした Docker のインストール方法は、 :doc:`Docker アーカイブ </dockerarchve/index>` にあります。
 
 .. Docker Cloud
 
