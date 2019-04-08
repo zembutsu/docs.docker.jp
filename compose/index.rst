@@ -24,9 +24,11 @@ Compose とは、複数のコンテナを定義し実行する Docker アプリ�
 * :doc:`django`
 * :doc:`rails`
 * :doc:`wordpress`
+* :doc:`samples/drupal/`
 * :doc:`faq`
 * :doc:`reference/index`
 * :doc:`compose-file`
+* :doc:`env-file`
 
 .. To see a detailed list of changes for past and current releases of Docker Compose, please refer to the CHANGELOG.
 
