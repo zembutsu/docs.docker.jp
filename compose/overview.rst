@@ -37,7 +37,7 @@ Compose を使うには、基本的に３つのステップを踏みます。
     Define the services that make up your app in docker-compose.yml so they can be run together in an isolated environment.
     Lastly, run docker-compose up and Compose will start and run your entire app.
 
-1. アプリケーションの環境を ``Dockerfile`` ファイルで定義します。このファイルは、どこでも再利用可能です。
+1. アプリケーション環境を ``Dockerfile`` に定義します。こうしてその環境は再構築が可能となります。
 2. アプリケーションを構成する各サービスを ``docker-compose.yml`` ファイルで定義します。そうすることで、独立した環境を一斉に実行できるようにします。
 3. 最後に、``docker-compose up`` を実行したら、Compose はアプリケーション全体を起動・実行します。
 
