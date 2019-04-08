@@ -16,7 +16,7 @@ Docker Compose
 
 .. Compose is a tool for defining and running multi-container Docker applications. To learn more about Compose refer to the following documentation:
 
-Compose は複数のコンテナを使う Docker アプリケーションを定義・実行するためのツールです。Compose の詳細を学ぶには、以下のドキュメントをご覧ください。
+Compose とは、複数のコンテナを定義し実行する Docker アプリケーションのためのツールです。Compose の詳細を学ぶには、以下のドキュメントをご覧ください。
 
 * :doc:`overview`
 * :doc:`install`
