@@ -25,9 +25,9 @@ Docker Compose 概要
 
 Compose とは、複数のコンテナを定義し実行する Docker アプリケーションのためのツールです。Compose においては YAML ファイルを使ってアプリケーションサービスの設定を行います。コマンドを１つ実行するだけで、設定内容に基づいたアプリケーションサービスの生成、起動を行います。Compose の機能一覧については、 :ref:`機能一覧 <compose-features>` をご覧ください。
 
-.. Compose is great for development, testing, and staging environments, as well as CI workflows. You can learn more about each case in Common Use Cases.
+.. Compose works in all environments: production, staging, development, testing, as well as CI workflows. You can learn more about each case in Common Use Cases.
 
-Compose は開発環境、テスト、ステージング環境だけでなく、CI ワークフローにも適しています。それぞれの使い方の詳細を学ぶには、 :ref:`一般的な利用例 <compose-common-use-cases>` をご覧ください。
+Compose は本番環境、ステージング環境、開発環境において動作し、CI ワークフローとしても利用することができます。それぞれの使い方については、 :ref:`一般的な利用例 <compose-common-use-cases>` を確認してください。
 
 .. Using Compose is basically a three-step process.
 
