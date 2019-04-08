@@ -153,7 +153,7 @@ Digital Ocean、Packet、SoftLayer、あるいは皆さん自身のクラウド�
 
 .. _time-based-release-schedule:
 
-時間を基準としたリリース予定
+各月のリリース予定
 ==============================
 
 .. Starting with Docker 17.03, Docker uses a time-based release schedule, outlined below.
