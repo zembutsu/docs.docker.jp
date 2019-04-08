@@ -643,7 +643,7 @@ Docker 及びユニオン・ファイル・システムの詳細は、 :doc:`/en
 
 .. There are three types of volumes: host, anonymous, and named:
 
-ボリュームは、ホスト（*host*）、匿名（*anonymous*）、名前付き（*named*）の3種類です。
+ボリュームには、ホスト（*host*）、匿名（*anonymous*）、名前付き（*named*）という３種類のタイプがあります。
 
 ..    A host volume lives on the Docker host’s filesystem and can be accessed from within the container.
 ..    A named volume is a volume which Docker manages where on disk the volume is created, but it is given a name.
