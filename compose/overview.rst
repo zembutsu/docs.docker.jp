@@ -146,6 +146,10 @@ Compose はプロジェクト名というものを用いて各環境を分離し
 
 Compose は、サービスによって利用されているボリュームをすべて保護します。``docker-compose up`` が実行されたときに、コンテナがそれ以前に実行されていたものであれば、以前のコンテナから現在のコンテナに向けてボリュームをコピーします。この処理において、ボリューム内に作り出されていたデータは失われることはありません。
 
+.. If you use docker-compose on a Windows machine, see Environment variables and adjust the necessary environment variables for your specific needs.
+
+Windows 上において docker-compose を利用している場合には、:doc:`環境変数 </reference/envvars>`_ を参考にし、状況に応じて必要となる環境変数を定めてください。
+
 .. _only-recreate-containers-that-have-changed:
 
 変更のあったコンテナのみ再作成
