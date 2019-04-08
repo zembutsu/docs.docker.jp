@@ -650,7 +650,7 @@ Docker 及びユニオン・ファイル・システムの詳細は、 :doc:`/en
 ..    An anonymous volume is similar to a named volume, however, it can be difficult, to refer to the same volume over time when it is an anonymous volumes. Docker handle where the files are stored.
 
    * **ホスト・ボリューム（host volume）** は Docker ホストのファイルシステム上に存在し、コンテナ内部からもアクセスできます。
-   * **名前付きボリューム（named volume）** は Docker が管理するディスク上に作成されたボリュームであり、名前を指定しています。
+   * **名前付きボリューム（named volume）** は、Docker が管理するボリュームであり、ディスク上に生成されます。そこには名前がつけられます。
    * **匿名ボリューム（anonymous volume）**  は名前付きボリュームと似ていますが、匿名ボリュームとして作成すると対象となるボリュームを特定するのが大変で、時間がかかります。Docker がファイルをどこに保管するか処理します。
 
 
