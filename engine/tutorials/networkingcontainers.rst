@@ -23,7 +23,7 @@
 
 .. If you are working your way through the user guide, you just built and ran a simple application. You’ve also built in your own images. This section teaches you how to network your containers.
 
-これまでのユーザ・ガイドでは、単純なアプリケーションを構築して実行しました。また、自分でイメージの構築をしました。このセクションでは、コンテナをどのように接続するかを学びます。
+これまでのユーザ・ガイドを通じて、単純なアプリケーションを構築して実行してきました。さらにイメージ構築も行いました。このセクションでは、コンテナをネットワーク接続する方法を説明します。
 
 .. Name a container
 
