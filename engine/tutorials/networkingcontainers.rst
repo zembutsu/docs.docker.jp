@@ -316,7 +316,7 @@ PostgreSQL データベースを実行させているコンテナを起動する
 
 .. Docker networking allows you to attach a container to as many networks as you like. You can also attach an already running container. Go ahead and attach your running web app to the my-bridge-network.
 
-Docker のネットワーク機能は、必要に応じてコンテナに対して多くのネットワークを接続（attach）できます。接続は、実行中のコンテナに対しても可能です。次に、実行中の ``web`` アプリケーションを ``my-bridge-network`` に接続します。
+Docker のネットワーク機能において、コンテナは必要な分だけネットワークに接続することができます。ネットワークが稼働中であっても構いません。では次の操作として、実行中の ``web`` アプリケーションを ``my-bridge-network`` に接続します。
 
 .. code-block:: bash
 
