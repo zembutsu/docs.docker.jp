@@ -30,7 +30,7 @@ Docker コミュニティ版（CE）は開発者や小さなチームが Docker 
 ..    Stable gives you reliable updates every quarter
     Edge gives you new features every month
 
-* **stable（安定版）** は4ヶ月ごとに安定した更新を行います
+* **stable（安定版）** は3ヶ月ごとに安定した更新を行います
 * **edge（エッジ）** は毎月新機能を追加します
 
 .. For more information about Docker CE, see Docker Community Edition.
