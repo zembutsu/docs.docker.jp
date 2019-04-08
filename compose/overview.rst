@@ -123,7 +123,7 @@ Compose には特徴的な以下の機能があります。
 
 .. Compose uses a project name to isolate environments from each other. You can use this project name to:
 
-Compose は別々の環境の分離にプロジェクト名を使います。このプロジェクト名は次の用途で使えます。
+Compose はプロジェクト名というものを用いて各環境を分離します。このプロジェクト名はさまざまに異なる用途に利用することができます。
 
 ..    on a dev host, to create multiple copies of a single environment (ex: you want to run a stable copy for each feature branch of a project)
     on a CI server, to keep builds from interfering with each other, you can set the project name to a unique build number
