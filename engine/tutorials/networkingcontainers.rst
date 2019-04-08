@@ -328,12 +328,11 @@ Docker のネットワーク機能において、コンテナは必要な分だ�
 
 .. code-block:: bash
 
-   $ docker exec -it db bash
    root@a205f0dd33b2:/# ping web
-   PING web (172.19.0.3) 56(84) bytes of data.
-   64 bytes from web (172.19.0.3): icmp_seq=1 ttl=64 time=0.095 ms
-   64 bytes from web (172.19.0.3): icmp_seq=2 ttl=64 time=0.060 ms
-   64 bytes from web (172.19.0.3): icmp_seq=3 ttl=64 time=0.066 ms
+   PING web (10.0.0.2) 56(84) bytes of data.
+   64 bytes from web (10.0.0.2): icmp_seq=1 ttl=64 time=0.095 ms
+   64 bytes from web (10.0.0.2): icmp_seq=2 ttl=64 time=0.060 ms
+   64 bytes from web (10.0.0.2): icmp_seq=3 ttl=64 time=0.066 ms
    ^C
    --- web ping statistics ---
    3 packets transmitted, 3 received, 0% packet loss, time 2000ms
