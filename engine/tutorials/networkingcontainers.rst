@@ -216,7 +216,7 @@ Docker に対して ``-d`` フラグを指定するのは、新たなネット�
 
 .. If you inspect the network, you’ll find that it has nothing in it.
 
-このネットワークを調査しても、中にはコンテナが存在しないのが分かります。
+そのネットワークを確認してみると、中には何も入っていないことがわかります。
 
 .. code-block:: bash
 
