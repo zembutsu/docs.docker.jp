@@ -639,7 +639,7 @@ Docker 及びユニオン・ファイル・システムの詳細は、 :doc:`/en
 
 .. A volume is a specially-designated directory within one or more containers that bypasses the Union File System. Volumes are designed to persist data, independent of the container’s life cycle. Docker therefore never automatically delete volumes when you remove a container, nor will it “garbage collect” volumes that are no longer referenced by a container. Also known as: data volume
 
-ボリュームとは特別に設計されたディレクトリであり、ユニオン・ファイル・システムを迂回し、複数のコンテナ内で使えます。ボリュームは永続的なデータを保管するために設計されており、コンテナのライフサイクルとは独立しています。そのため、Docker はコンテナの削除時に、ボリュームを決して自動的に削除しません。そればかりか「ガベージ・コレクト」（ゴミ収集；garbage collect）ボリュームとして、コンテナからは参照できないようにもできます。これは *データ・ボリューム（data volume）* とも呼ばれます。
+ボリュームとは、いくつかのコンテナ内にて用いられる特定のディレクトリのことであり、ユニオン・ファイル・システムを通じて利用されます。ボリュームはデータを永続的に保持する目的で設計されており、コンテナのライフサイクルには影響されません。したがってコンテナを削除したとしても、Docker はボリュームを自動的に削除するようなことはしません。たとえコンテナから参照されなくなったボリュームであっても、「ガベージ・コレクト」により失われることもありません。これは *データ・ボリューム（data volume）* とも呼ばれます。
 
 .. There are three types of volumes: host, anonymous, and named:
 
