@@ -144,7 +144,7 @@ Compose はプロジェクト名というものを用いて各環境を分離し
 
 .. Compose preserves all volumes used by your services. When docker-compose up runs, if it finds any containers from previous runs, it copies the volumes from the old container to the new container. This process ensures that any data you’ve created in volumes isn’t lost.
 
-Compose はサービスが使う全てのボリュームを保持（preserve）します。 ``docker-compose up`` を実行時、以前に実行済みのコンテナが見つかれば、古いコンテナから新しいコンテナにボリュームをコピーします。この処理により、ボリューム内で作成したデータを失わないように守ります。
+Compose は、サービスによって利用されているボリュームをすべて保護します。``docker-compose up`` が実行されたときに、コンテナがそれ以前に実行されていたものであれば、以前のコンテナから現在のコンテナに向けてボリュームをコピーします。この処理において、ボリューム内に作り出されていたデータは失われることはありません。
 
 .. _only-recreate-containers-that-have-changed:
 
