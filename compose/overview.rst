@@ -135,7 +135,7 @@ Compose はプロジェクト名というものを用いて各環境を分離し
 
 .. The default project name is the basename of the project directory. You can set a custom project name by using the -p command line option or the COMPOSE_PROJECT_NAME environment variable.
 
-標準のプロジェクト名は、プロジェクトが存在するディレクトリ名です。プロジェクト名を変更するには、 :doc:`コマンドラインのオプション </compose/reference/overview>` で ``-p`` を指定するか、 :ref:`環境変数 <compose-project-name>` の ``COMPOSE_PROJECT_NAME`` を指定します。
+プロジェクト名はデフォルトでは、プロジェクトが存在するディレクトリ名となります。プロジェクト名を指定するには、 :doc:`コマンドラインのオプション </compose/reference/overview>` の ``-p`` を指定するか、 :ref:`環境変数 <compose-project-name>` の ``COMPOSE_PROJECT_NAME`` を使って指定します。
 
 .. _preserve-volume-data-when-containers-are-created:
 
