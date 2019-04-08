@@ -255,7 +255,7 @@ Docker に対して ``-d`` フラグを指定するのは、新たなネット�
 
 .. Launch a container running a PostgreSQL database and pass it the --net=my-bridge-network flag to connect it to your new network:
 
-PostgreSQL データベースを実行するコンテナを起動します。``--net=my-bridge-network`` フラグを付けて、新しいネットワークに接続します。
+PostgreSQL データベースを実行させているコンテナを起動するなら、``--net=my-bridge-network`` をつけ、新たなネットワークにそのコンテナを接続します。
 
 .. code-block:: bash
 
