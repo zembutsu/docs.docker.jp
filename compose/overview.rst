@@ -104,7 +104,7 @@ Compose のドキュメント
 
 .. The features of Compose that make it effective are:
 
-Compose には効率的な機能があります。
+Compose には特徴的な以下の機能があります。
 
 ..    Multiple isolated environments on a single host
     Preserve volume data when containers are created
