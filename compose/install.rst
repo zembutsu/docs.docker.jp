@@ -339,14 +339,19 @@ Compose をコンテナとして実行・インストールするには、次の
    </div>
    </div>
 
-.. Master builds
+.. ## Master builds
 
 マスターのビルド
 =================
 
-.. If you’re interested in trying out a pre-release build you can download a binary from https://dl.bintray.com/docker-compose/master/. Pre-release builds allow you to try out new features before they are released, but may be less stable.
+..   If you're interested in trying out a pre-release build you can download a binary
+     from
+     [https://dl.bintray.com/docker-compose/master/](https://dl.bintray.com/docker-compose/master/).
+     Pre-release builds allow you to try out new features before they are released,
+     but may be less stable.
 
-リリース直前（プレリリース）のビルドに興味があれば、バイナリを https://dl.bintray.com/docker-compose/master/ からダウンロードできます。プレリリース版のビルドにより、リリース前に新機能を試せますが、安定性に欠けるかもしれません。
+プレリリース版を試してみたい方は、https://dl.bintray.com/docker-compose/master/ からバイナリをダウンロードできます。
+プレリリース版を使えば、正式リリース前に新たな機能を試すことができます。ただし安定性に欠けるかもしれません。
 
 .. Upgrading
 
