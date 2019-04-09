@@ -227,7 +227,7 @@ Compose はこれまで、開発環境やテスト環境でのワークフロー
 
 .. For details on using production-oriented features, see compose in production in this documentation.
 
-プロダクション向け機能の詳細な使い方は、 :doc:`プロダクションの構成 </compose/production>` をご覧ください。
+本番環境向けの機能の使い方については、 :doc:`プロダクションの構成 </compose/production>` をご覧ください。
 
 .. Release Notes
 
