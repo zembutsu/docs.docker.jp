@@ -207,7 +207,7 @@ Compose は様々な使い方があります。一般的な利用例は、以下
 
 .. An important part of any Continuous Deployment or Continuous Integration process is the automated test suite. Automated end-to-end testing requires an environment in which to run tests. Compose provides a convenient way to create and destroy isolated testing environments for your test suite. By defining the full environment in a Compose file you can create and destroy these environments in just a few commands:
 
-継続的デプロイや継続的インテグレーションのプロセスにおいて重要な部分は、自動テストの実装です。自動的なエンド間（end-to-end）のテストは、テストを行う環境が必要になります。テスト実装にあたり、Compose は個々のテスト環境の作成と破棄を便利に行う手法を提供します。 :doc:`Compose ファイル </compose/compose-file>` で定義した全ての環境は、いくつかのコマンドを実行するだけで作成・破棄できます。
+継続的デプロイや継続的インテグレーションのプロセスにおいて、自動テストスイートは極めて重要です。もれることなくテストを自動化させるためには、そのためのテスト環境が必要になるものです。Compose ではテストスイートに対応して、分離されたテスト環境の生成とデプロイを便利に行う機能を提供しています。 :doc:`Compose ファイル </compose/compose-file>` 内に必要な環境定義を行っておけば、テスト環境の生成と削除は、ごく簡単なコマンドだけで実現できます。
 
 .. code-block:: bash
 
