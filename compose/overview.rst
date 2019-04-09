@@ -218,7 +218,7 @@ Compose は様々な使い方があります。一般的な利用例は、以下
 
 .. Single host deployment
 
-単一ホストへのデプロイ
+単一ホストのデプロイ
 ------------------------------
 
 .. Compose has traditionally been focused on development and testing workflows, but with each release we’re making progress on more production-oriented features. You can use Compose to deploy to a remote Docker Engine. The Docker Engine may be a single instance provisioned with Docker Machine or an entire Docker Swarm cluster.
