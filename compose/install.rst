@@ -21,9 +21,9 @@ Docker Compose のインストール
        :depth: 3
        :local:
 
-.. You can run Compose on OS X, Windows and 64-bit Linux. To install it, you’ll need to install Docker first.
+.. You can run Compose on OS X, Windows and 64-bit Linux.
 
-Compose は OS X、Windows、64-bit Linux で実行可能です。Compose をインストールするには、まず Docker のインストールが必要です。
+Compose は OS X、Windows、64-bit Linux で実行可能です。
 
 .. To install Compose, do the following:
 
