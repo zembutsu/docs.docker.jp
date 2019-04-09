@@ -198,7 +198,7 @@ Compose は様々な使い方があります。一般的な利用例は、以下
 
 .. Together, these features provide a convenient way for developers to get started on a project. Compose can reduce a multi-page “developer getting started guide” to a single machine readable Compose file and a few commands.
 
-同時に、開発者がプロジェクトを開始する時に役立つ機能を提供します。Compose は、複数のページにわたる「開発者向け導入手順書」を減らします。それをマシンが読み込み可能な Compose ファイルと、いくつかのコマンドで実現します。
+さらにこういった機能は、プロジェクトに取りかかろうとしている開発者にとっても便利なものです。Compose は、分厚く仕上がっている「開発者向け導入手順書」のページ数を減らすものになり、ただ１つの Compose ファイルと数えるほどのコマンドだけになります。
 
 .. Automated testing environments
 
