@@ -194,7 +194,7 @@ Compose は様々な使い方があります。一般的な利用例は、以下
 
 .. The Compose file provides a way to document and configure all of the application’s service dependencies (databases, queues, caches, web service APIs, etc). Using the Compose command line tool you can create and start one or more containers for each dependency with a single command (docker-compose up).
 
-:doc:`Compose ファイル <compose-file>` は、文章化と、アプリケーション全ての依存関係（データベース、キュー、キャッシュ、ウェブ・サービス、API 等）を設定するものです。Compose コマンドライン・ツールを使えば、コマンドを１つ（ ``docker-compose up`` ）実行するだけで、各依存関係に応じて１つまたは複数のコンテナを作成します。
+:doc:`Compose ファイル <compose-file>` は、アプリケーションにおけるサービスの依存関係（データベース、キュー、キャッシュ、ウェブ・サービス API など）を設定するものです。Compose コマンドライン・ツールを使うと、いくつでもコンテナを生成、起動でき、しかもコマンド（ ``docker-compose up`` ）を１つ実行するだけで、依存関係も正しく考慮してくれます。
 
 .. Together, these features provide a convenient way for developers to get started on a project. Compose can reduce a multi-page “developer getting started guide” to a single machine readable Compose file and a few commands.
 
