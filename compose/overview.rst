@@ -223,7 +223,7 @@ Compose は様々な使い方があります。一般的な利用例は、以下
 
 .. Compose has traditionally been focused on development and testing workflows, but with each release we’re making progress on more production-oriented features. You can use Compose to deploy to a remote Docker Engine. The Docker Engine may be a single instance provisioned with Docker Machine or an entire Docker Swarm cluster.
 
-これまでの Compose は、開発やテストにおけるワークフローに注力してきました。しかしリリースごとに、私たちはプロダクションに対応した機能を実装し続けています。Compose をリモートの Docker Engine におけるデプロイにも利用できます。Docker Engine とは、 :doc:`Docker Machine </machine/index>` で自動作成された単一のマシンかもしれませんし、 :doc:`Docker Swarm </swarm/index>`  クラスタかもしれません。
+Compose はこれまで、開発環境やテスト環境でのワークフローに注目してきました。しかしリリースを重ねるにつれて、本番環境を意識した機能を充実させるように進化しています。Compose はリモートにある Docker Engine に対してもデプロイすることができます。Docker Engine とは、 :doc:`Docker Machine </machine/index>` で提供される単一インスタンスであったり、 :doc:`Docker Swarm </swarm/index>`  クラスタ一式である場合もあります。
 
 .. For details on using production-oriented features, see compose in production in this documentation.
 
