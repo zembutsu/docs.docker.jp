@@ -25,7 +25,7 @@ Compose を始めましょう
 
 .. Prerequisites
 
-事前準備
+必要条件
 ==========
 
 .. Make sure you have already installed both Docker Engine and Docker Compose. You don’t need to install Python, it is provided by a Docker image.
