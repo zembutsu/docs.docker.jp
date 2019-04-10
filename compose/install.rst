@@ -372,7 +372,7 @@ Docker ラベルを持っていないコンテナであることが検出され�
 
 .. Alternatively, if you’re not worried about keeping them, you can remove them. Compose will just create new ones.
 
-あるいは、コンテナを持ち続ける必要がなければ、削除できます。Compose は新しいコンテナを作成します。
+コンテナを維持しておく必要がないのであれば、削除するだけで構いません。Compose は新しくコンテナを生成してくれます。
 
 .. code-block:: bash
 
