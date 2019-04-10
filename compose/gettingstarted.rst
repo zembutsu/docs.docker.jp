@@ -30,7 +30,7 @@ Compose を始めましょう
 
 .. Make sure you have already installed both Docker Engine and Docker Compose. You don’t need to install Python, it is provided by a Docker image.
 
-既に :doc:`Docker Engine と Docker Compose がインストール済み </compose/install>` なのを確認します。Python をインストールする必要はなく、Docker イメージのものを使います。
+:doc:`Docker Engine</engine/installation/index>` と :doc:`Docker Compose</compose/install>` がインストール済であること。Python と Redis はインストールしておく必要はなく、いずれも Docker イメージによって提供されます。
 
 .. Step 1: Setup
 
