@@ -72,7 +72,7 @@ Compose を始めましょう
 
 .. Create another file called requirements.txt in your project directory and add the following:
 
-3. プロジェクト用のディレクトリで別の ``requirements.txt`` という名称のファイルを作成し、次の内容にします。
+3. プロジェクト用のディレクトリで、もう一つ ``requirements.txt`` という名称のファイルを作成し、次のようにします。
 
 .. code-block:: text
 
