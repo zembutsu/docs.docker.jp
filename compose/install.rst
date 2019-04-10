@@ -364,7 +364,7 @@ Compose をコンテナとして実行・インストールするには、次の
 
 .. If Compose detects containers that were created without labels, it will refuse to run so that you don’t end up with two sets of them. If you want to keep using your existing containers (for example, because they have data volumes you want to preserve) you can use compose 1.5.x to migrate them with the following command:
 
-Compose は作成されたコンテナにラベルがないことを検出したら、実行を拒否し、処理停止と表示します。既存のコンテナを Compose 1.5.x 以降も使い続けたい場合（たとえば、コンテナにデータ・ボリュームがあり、使い続けたい場合）は、次のコマンドで移行できます。
+Docker ラベルを持っていないコンテナであることが検出されると、Compose はそのようなコンテナの実行を拒否するため利用することができません。それまで使っていたコンテナを引き続き利用したい場合（たとえばデータボリュームを用いてデータ保存をしている場合）、Compose 1.5.x を使って、以下のようなコマンドによりデータ移行を行うことができます。
 
 .. code-block:: bash
 
