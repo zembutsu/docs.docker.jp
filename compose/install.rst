@@ -385,7 +385,7 @@ Docker ラベルを持っていないコンテナであることが検出され�
 
 .. To uninstall Docker Compose if you installed using curl:
 
-``curl`` を使って Docker Compose をインストールした場合は、次のように削除します。
+``curl`` を使って Docker Compose をインストールしていた場合は、次のようにしてアンインストールします。
 
 .. code-block:: bash
 
