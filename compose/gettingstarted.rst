@@ -66,6 +66,10 @@ Compose を始めましょう
    if __name__ == "__main__":
        app.run(host="0.0.0.0", debug=True)
 
+..         In this example, `redis` is the hostname of the redis container on the application's network. We use the default port for Redis, `6379`.
+
+この例において ``redis`` とはアプリケーションネットワーク上にある redis コンテナのホスト名です。Redis のポートとしてデフォルトの ``6379`` を利用します。
+
 .. Create another file called requirements.txt in your project directory and add the following:
 
 3. プロジェクト用のディレクトリで別の ``requirements.txt`` という名称のファイルを作成し、次の内容にします。
