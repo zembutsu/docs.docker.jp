@@ -360,7 +360,7 @@ Compose をコンテナとして実行・インストールするには、次の
 
 .. If you’re upgrading from Compose 1.2 or earlier, you’ll need to remove or migrate your existing containers after upgrading Compose. This is because, as of version 1.3, Compose uses Docker labels to keep track of containers, and so they need to be recreated with labels added.
 
-Compose 1.2 以前からアップグレードする場合、Compose を更新後、既存のコンテナの削除・移行が必要です。これは Compose バージョン 1.3 がコンテナ追跡用に Docker ラベルを用いているためであり、ラベルを追加したものへと置き換える必要があります。
+バージョン 1.2 以前の Compose をアップグレードする場合には、アップグレードをした後にそれまで使っていたコンテナを削除するか移行する必要があります。Compose バージョン 1.3 以降においては、コンテナの追跡を行うための Docker ラベルというものが利用されるようになったからです。つまり古いコンテナはこのラベルをつけて再生成する必要があります。
 
 .. If Compose detects containers that were created without labels, it will refuse to run so that you don’t end up with two sets of them. If you want to keep using your existing containers (for example, because they have data volumes you want to preserve) you can use compose 1.5.x to migrate them with the following command:
 
