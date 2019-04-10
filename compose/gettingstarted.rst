@@ -228,7 +228,7 @@ Mac や Windows 上で Docker Machine を使っている場合は、 ``docker-ma
 
    Hello World! I have been seen 1 times.
 
-.. Refresh this page.
+.. image:: images/quick-hello-world-1.png
 
 .. Refresh the page.
 
@@ -241,6 +241,8 @@ Mac や Windows 上で Docker Machine を使っている場合は、 ``docker-ma
 ::
 
    Hello World! I have been seen 2 times.
+
+.. image:: images/quick-hello-world-2.png
 
 4. 別のターミナルウィンドウを開いて、``docker image ls`` と入力し、ローカルイメージの一覧を表示してみます。
 
@@ -369,6 +371,8 @@ Mac や Windows 上で Docker Machine を使っている場合は、 ``docker-ma
        counter should still be incrementing.
 
 2. ブラウザにてアプリを再読み込みします。メッセージは更新され、カウンタも増加しているはずです。
+
+.. image:: images/quick-hello-world-3.png
 
 .. ## Step 8: Experiment with some other commands
 
