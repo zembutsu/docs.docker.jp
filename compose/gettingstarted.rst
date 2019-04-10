@@ -21,7 +21,7 @@ Compose を始めましょう
 
 .. On this page you build a simple Python web application running on Compose. The application uses the Flask framework and increments a value in Redis. While the sample uses Python, the concepts demonstrated here should be understandable even if you’re not familiar with it.
 
-このページでは、簡単な Python ウェブ・アプリケーションを Docker Compose で実行しましょう。アプリケーションは Flask フレームワークを使い、Redis の値を増やします。サンプルでは Python を使いますが、ここでの動作概念は Python に親しくなくても理解可能です。
+このページにおいて Docker Compose 上で動く簡単な Python ウェブ・アプリケーションを作り出していきましょう。このアプリケーションは Flask フレームワークを使うもので、Redis を使ってアクセスカウンタを管理します。このサンプルでは Python を用いていますが、たとえ Python に詳しくない方でも、ここに示す考え方は十分に理解できるようになっています。
 
 .. Prerequisites
 
