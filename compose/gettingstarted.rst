@@ -37,6 +37,10 @@ Compose を始めましょう
 ステップ１：セットアップ
 ==============================
 
+..   Define the application dependencies.
+
+アプリケーションの依存関係を定義します。
+
 .. Create a directory for the project:
 
 1. プロジェクト用のディレクトリを作成します。
@@ -78,10 +82,6 @@ Compose を始めましょう
 
    flask
    redis
-
-.. These define the applications dependencies.
-
-これらはアプリケーションの依存関係を定義します。
 
 .. Step 2: Create a Docker image
 
