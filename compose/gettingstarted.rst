@@ -271,15 +271,122 @@ Mac や Windows 上で Docker Machine を使っている場合は、 ``docker-ma
 ステップ５：Compose ファイルにバインドマウントを追加
 ====================================================
 
-.. If you want to run your services in the background, you can pass the -d flag (for “detached” mode) to docker-compose up and use docker-compose ps to see what is currently running:
+.. Edit `docker-compose.yml` in your project directory to add a [bind mount](/engine/admin/volumes/bind-mounts.md) for the `web` service:
 
-サービスをバックグラウンドで実行したい場合は、``docker-compose up`` に ``-d`` フラグ（"デタッチド"モード用のフラグ）を付けます。どのように動作しているか見るには、``docker-compose ps`` を使います。
+プロジェクトディレクトリ内にある ``docker-compose.yml`` を編集して、``web`` サービスへの :doc:`バインドマウント</engine/admin/volumes/bind-mounts>` を追加します。
+
+::
+
+   version: '3'
+   services:
+     web:
+       build: .
+       ports:
+        - "5000:5000"
+       volumes:
+        - .:/code
+     redis:
+       image: "redis:alpine"
+
+.. The new `volumes` key mounts the project directory (current directory) on the
+   host to `/code` inside the container, allowing you to modify the code on the
+   fly, without having to rebuild the image.
+
+新しい ``volumes`` というキーは、ホスト上のプロジェクトディレクトリ（カレントディレクトリ）を、コンテナ内にある ``/code`` ディレクトリにマウントします。こうすることで、イメージを再構築することなく、実行中のコードを修正できるようになります。
+
+.. ## Step 6: Re-build and run the app with Compose
+
+ステップ６：Compose によるアプリの再構築と実行
+==============================================
+
+.. From your project directory, type `docker-compose up` to build the app with the updated Compose file, and run it.
+
+プロジェクトディレクトリにて ``docker-compose up`` を入力する際に、Compose ファイルが更新されていると、アプリは再構築され実行されます。
+
+::
+
+   $ docker-compose up
+   Creating network "composetest_default" with the default driver
+   Creating composetest_web_1 ...
+   Creating composetest_redis_1 ...
+   Creating composetest_web_1
+   Creating composetest_redis_1 ... done
+   Attaching to composetest_web_1, composetest_redis_1
+   web_1    |  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+   ...
+
+.. Check the `Hello World` message in a web browser again, and refresh to see the
+   count increment.
+
+``Hello World`` メッセージをもう一度確認してみます。再読み込みをすると、さらにカウンタが増えているはずです。
+
+.. > Shared folders, volumes, and bind mounts
+   >
+   > * If your project is outside of the `Users` directory (`cd ~`), then you
+   need to share the drive or location of the Dockerfile and volume you are using.
+   If you get runtime errors indicating an application file is not found, a volume
+   mount is denied, or a service cannot start, try enabling file or drive sharing.
+   Volume mounting requires shared drives for projects that live outside of
+   `C:\Users` (Windows) or `/Users` (Mac), and is required for _any_ project on
+   Docker for Windows that uses [Linux
+   containers](/docker-for-windows/#switch-between-windows-and-linux-containers-beta-feature). For more information, see [Shared Drives](../docker-for-windows/#shared-drives)
+   on Docker for Windows, [File sharing](../docker-for-mac/#file-sharing) on Docker
+   for Mac, and the general examples on how to [Manage data in
+   containers](../engine/tutorials/dockervolumes.md).
+   >
+   > * If you are using Oracle VirtualBox on an older Windows OS, you might encounter an issue with shared folders as described in this [VB trouble
+   ticket](https://www.virtualbox.org/ticket/14920). Newer Windows systems meet the
+   requirements for [Docker for Windows](/docker-for-windows/install.md) and do not
+   need VirtualBox.
+   {: .important}
+
+.. important::
+
+   共有フォルダ、ボリューム、バインドマウント
+      * プロジェクトを `Users` ディレクトリ（``cd ~``）以外に置いている場合、利用している Dockerfile やボリュームのドライブやディレクトリは、共有できるようにしておく必要があります。実行時に、アプリケーションファイルが見つからない、ボリュームマウントが拒否される、サービスが起動できない、といったランタイムエラーが発生した場合は、ファイルやドライブを共有にすることを試してください。``C:\Users`` (Windows の場合) または ``/Users`` (Mac の場合) 以外のディレクトリにあるプロジェクトに対して、ボリュームマウントは共有するドライブにある必要があります。これはまた、:doc:`Linux コンテナ </docker-for-windows/#switch-between-windows-and-linux-containers-beta-feature>` を利用する Dock  for Windows におけるプロジェクトも同様のことが必要です。詳しくは Dock for Windows における :doc:`共有ドライブ<../docker-for-windows/#shared-drives>` や Docker for Mac における :doc:`ファイル共有 <../docker-for-mac/#file-sharing>` を参照してください。また一般的な利用例に関しては :doc:`コンテナでデータ管理<../engine/tutorials/dockervolumes>` を参照してください。
+      * 比較的古い Windows OS 上において Oracle VirtualBox を利用している場合は、`VB trouble ticket <https://www.virtualbox.org/ticket/14920>`_ に示されている共有フォルダに関する問題が起こるかもしれません。より新しい Windows システムであれば、:doc:`Docker for Windows</docker-for-windows/install>` の要件を満たすため、VirtualBox は必要としません。
+
+.. ## Step 7: Update the application
+
+ステップ７：アプリケーションの更新
+==================================
+
+.. Because the application code is now mounted into the container using a volume,
+   you can make changes to its code and see the changes instantly, without having
+   to rebuild the image.
+
+アプリケーションのコードは、ボリュームを利用してコンテナ内にマウントされましたから、コードへ変更を行うこと、それを確認することはすぐにできるようになりました。イメージを再構築することは必要ありません。
+
+.. 1.  Change the greeting in `app.py` and save it. For example, change the `Hello World!` message to `Hello from Docker!`:
+
+1. ``app.py`` 内のメッセージを変更して保存します。例えば ``Hello World!`` メッセージを ``Hello from Docker!`` に変更することにします。
+
+::
+
+    return 'Hello from Docker! I have been seen {} times.\n'.format(count)
+
+.. 2.  Refresh the app in your browser. The greeting should be updated, and the
+       counter should still be incrementing.
+
+2. ブラウザにてアプリを再読み込みします。メッセージは更新され、カウンタも増加しているはずです。
+
+.. ## Step 8: Experiment with some other commands
+
+ステップ８：その他のコマンドを試す
+==================================
+
+.. If you want to run your services in the background, you can pass the `-d` flag
+   (for "detached" mode) to `docker-compose up` and use `docker-compose ps` to
+   see what is currently running:
+
+サービスをバックグラウンドで実行したい場合は、``docker-compose up`` に ``-d`` フラグ（"デタッチ"モード用のフラグ）を付けます。``docker-compose ps`` を実行して、現在動いているものを確認します。
 
 .. code-block:: bash
 
    $ docker-compose up -d
    Starting composetest_redis_1...
    Starting composetest_web_1...
+
    $ docker-compose ps
    Name                 Command            State       Ports
    -------------------------------------------------------------------
@@ -288,32 +395,39 @@ Mac や Windows 上で Docker Machine を使っている場合は、 ``docker-ma
 
 .. The docker-compose run command allows you to run one-off commands for your services. For example, to see what environment variables are available to the web service:
 
-``docker-compose run`` コマンドを使えば、サービスに対して一度だけコマンドを実行します。たとえば、``web`` サービス上でどのような環境変数があるのかを知るには、次のようにします。
+``docker-compose run`` コマンドを使えば、サービスに対してのコマンド実行を行うことができます。たとえば、``web`` サービス上でどのような環境変数が利用可能であるかは、以下のコマンドを実行します。
 
 .. code-block:: bash
 
    $ docker-compose run web env
 
-.. See docker-compose --help to see other available commands. You can also install command completion for the bash and zsh shell, which will also show you available commands.
+.. See `docker-compose --help` to see other available commands. You can also install [command completion](completion.md) for the bash and zsh shell, which will also show you available commands.
 
-``docker-compose --help`` で利用可能な他のコマンドを確認できます。また、必要があれば bash と zsh シェル向けの :doc:`コマンド補完 </compose/completion>` もインストールできます。
+``docker-compose --help`` を実行すれば、その他のコマンドを確認できます。bash や zsh シェルにおいて :doc:`コマンド補完<completion>` をインストールしている場合は、利用可能なコマンドを確認することもできます。
 
-.. If you started Compose with docker-compose up -d, you’ll probably want to stop your services once you’ve finished with them:
+.. If you started Compose with `docker-compose up -d`, you'll probably want to stop
+your services once you've finished with them:
 
-Compose を ``docker-compose up -d`` で起動した場合は、次のようにサービスを停止して、終わらせます。
+``docker-compose up -d`` により Compose を起動し、サービスを停止させたい場合には、以下のコマンドを実行します。
 
 .. code-block:: bash
 
    $ docker-compose stop
 
+.. You can bring everything down, removing the containers entirely, with the `down`
+   command. Pass `--volumes` to also remove the data volume used by the Redis
+   container:
+
+コンテナも完全に削除し、すべてを終わらせる場合には ``down`` コマンドを使います。``--volumes`` を指定すれば、Redis コンテナにおいて利用されているデータボリュームも削除することができます。
+
 .. At this point, you have seen the basics of how Compose works.
 
-以上、Compose の基本動作を見てきました。
+ここまで Compose の基本動作について見てきました。
 
-.. Where to go next
+.. ## Where to go next
 
-次はどこへ
-==========
+次は何を読みますか
+==================
 
 .. 
     Next, try the quick start guide for Django, Rails, or WordPress.
@@ -323,6 +437,7 @@ Compose を ``docker-compose up -d`` で起動した場合は、次のように�
 * 次は、:doc:`Django </compose/django>` 、 :doc:`Rails </compose/rails>`  、 :doc:`WordPress </compose/wordpress>`  向けのクイックスタートガイドを試しましょう。
 * :doc:`/compose/reference/index`
 * :doc:`/compose/compose-file`
+* ボリュームやバインドマウントについての詳細は :doc:Manage data in Docker</engine/admin/volumes/index>` を参照してください。
 
 .. seealso:: 
 
