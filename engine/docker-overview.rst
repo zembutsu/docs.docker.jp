@@ -108,9 +108,11 @@ Docker Engine は、主に以下の３つのコンポーネントからなるク
 CLI は Docker REST API を通じて、スクリプトや直接のコマンド実行により Docker デーモンを制御したり入出力を行ったりします。
 Docker アプリケーションの多くが、基本的なところで API や CLI を利用しています。
 
-.. The daemon creates and manages Docker objects, such as images, containers, networks, and volumes.
+.. The daemon creates and manages Docker _objects_, such as images, containers,
+   networks, and volumes.
 
-デーモンは Docker オブジェクトを作成・管理します。Docker オブジェクトとは、イメージ、コンテナ、ネットワーク、データ・ボリューム等です。
+デーモンは Docker オブジェクトを作成、管理します。
+Docker オブジェクトとは、イメージ、コンテナー、ネットワーク、データ・ボリュームなどです。
 
 ..    Note: Docker is licensed under the open source Apache 2.0 license.
 
