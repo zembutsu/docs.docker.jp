@@ -83,15 +83,17 @@ Docker Engine
 
 .. Docker Engine is a client-server application with these major components:
 
-Docker Engine は３つの主なコンポーネント（構成要素）を持つクライアント・サーバ型アプリケーションです。
+Docker Engine は、主に以下の３つのコンポーネントからなるクライアントサーバ型アプリケーションです。
 
-..    A server which is a type of long-running program called a daemon process (the dockerd command).
-    A REST API which specifies interfaces that programs can use to talk to the daemon and instruct it what to do.
-    A command line interface (CLI) client (the docker command).
+.. * A server which is a type of long-running program called a daemon process (the
+     `dockerd` command).
+    * A REST API which specifies interfaces that programs can use to talk to the
+     daemon and instruct it what to do.
+   * A command line interface (CLI) client (the `docker` command).
 
-* サーバはデーモン・プロセス（ ``dockerd`` コマンド）と呼ばれる長期間実行するプログラムの状態
-* インターフェースを規定する REST API は、プログラムがデーモンと通信に使うものであり、何をするか指示
-* コマンドライン・インターフェース（CLI）クライアント（ ``docker`` コマンド）
+* サーバ。長時間稼動する種類のプログラムでありデーモン・プロセスと呼ばれる（ ``dockerd`` コマンド）。
+* REST API。プログラムとデーモンとの間での通信方法を定義し、何をなすべきかを指示する。
+* コマンドライン・インターフェース（command line interface; CLI）クライアント（ ``docker`` コマンド）。
 
 .. Docker Engine Components Flow
 
