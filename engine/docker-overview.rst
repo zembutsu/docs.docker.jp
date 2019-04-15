@@ -22,9 +22,17 @@
 Docker 概要
 =======================================
 
-.. Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications. By taking advantage of Docker’s methodologies for shipping, testing, and deploying code quickly, you can significantly reduce the delay between writing code and running it in production.
+.. Docker is an open platform for developing, shipping, and running applications.
+   Docker enables you to separate your applications from your infrastructure so
+   you can deliver software quickly. With Docker, you can manage your infrastructure
+   in the same ways you manage your applications. By taking advantage of Docker's
+   methodologies for shipping, testing, and deploying code quickly, you can
+   significantly reduce the delay between writing code and running it in production.
 
-Docker はアプリケーションを開発（developing）・移動（shipping）・実行（running）するための、オープンなプラットフォームです。Docker はアプリケーションをインフラストラクチャ（訳者注；システムおよびネットワーク基盤）から切り離せるため、ソフトウェアを素早く配信できます。Docker であれば、皆さんがアプリケーションを管理するのと同じ手法で、インフラストラクチャを管理できます。移動、テスト、コードのデプロイが迅速に行えるのが Docker を扱う手法の利点です。そのため、コードの記述とプロダクションでの実行までの間の遅延を著しく減らします。
+Docker はアプリケーションの開発、導入、実行を行うためのオープンなプラットフォームです。
+Docker を使えば、アプリケーションをインフラストラクチャーから切り離すことができるため、ソフトウエアをすばやく提供することができます。
+Docker であれば、アプリケーションを管理する手法をそのまま、インフラストラクチャーの管理にも適用できます。
+Docker が採用する方法を最大限利用して、アプリケーションの導入、テスト、コードデプロイをすばやく行うことは、つまりコーディングと実稼動の合間を大きく軽減できることを意味します。
 
 .. The Docker platform
 
