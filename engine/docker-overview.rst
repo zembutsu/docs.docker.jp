@@ -128,7 +128,7 @@ Docker の詳細については、 :ref:`docker-architecture` を参照してく
 
 .. _what-can-i-use-docker-for:
 
-何のために Docker を使うのですか？
+何のために Docker を使うのか？
 ========================================
 
 .. Fast, consistent delivery of your applications
