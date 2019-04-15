@@ -49,7 +49,7 @@ Docker プラットフォーム
    combination than if you were using virtual machines. You can even run Docker
    containers within host machines that are actually virtual machines!
 
-Docker はアプリケーションをパッケージ化して実行するために、ほぼ分離された環境となるコンテナというものを提供します。
+Docker はアプリケーションをパッケージ化して実行するために、ほぼ分離された環境 [#f1]_ となるコンテナというものを提供します。
 隔離してセキュリティを保つことから、実行するホスト上に複数のコンテナを同時に実行することができます。
 コンテナは非常に軽量なものとなります。
 なぜならハイパーバイザーを別途ロードする必要などなく、ホストマシンのカーネルを使って動作するからです。
@@ -61,13 +61,16 @@ Docker はアプリケーションをパッケージ化して実行するため�
 
 Docker が提供するのは、コンテナのライフサイクルを管理するツールとプラットフォームです。
 
-..    Develop your application and its supporting components using containers.
-    The container becomes the unit for distributing and testing your application.
-    When you’re ready, deploy your application into your production environment, as a container or an orchestrated service. This works the same whether your production environment is a local data center, a cloud provider, or a hybrid of the two.
+.. * Develop your application and its supporting components using containers.
+   * The container becomes the unit for distributing and testing your application.
+   * When you're ready, deploy your application into your production environment,
+     as a container or an orchestrated service. This works the same whether your
+     production environment is a local data center, a cloud provider, or a hybrid
+     of the two.
 
-* コンテナを用いたアプリケーション開発と、コンポーネント [#f2]_ をサポートします
-* コンテナはアプリケーションの配布またはテストの単位になります
-* アプリケーションの準備が整えば、コンテナまたはオーケストレートされたサービス [#f3]_ を通してアプリケーションをプロダクション環境にデプロイできます
+* コンテナを利用して、アプリケーションとそれをサポートするコンポーネント [#f2]_ を開発します。
+* コンテナは、アプリケーションの配布とテストを行う１つの単位となります。
+* 準備ができたら本番環境に向けてアプリケーションをデプロイします。デプロイの単位は、１つのコンテナか、あるいはオーケストレーション（orchestrated [#f3]_ ）された１つのサービスです。その本番環境があたかも手元のデータセンタ上であったり、クラウドプロバイダ上であったりするのと同様に動作します。
 
 .. rubric:: 訳者注
 
