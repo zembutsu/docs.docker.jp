@@ -41,9 +41,21 @@ Docker が採用する方法を最大限利用して、アプリケーション�
 Docker プラットフォーム
 ==============================
 
-.. Docker provides the ability to package and run an application in a loosely isolated environment called a container. The isolation and security allow you to run many containers simultaneously on a given host. Containers are lightweight because they don’t need the extra load of a hypervisor, but run directly within the host machine’s kernel. This means you can run more containers on a given hardware combination than if you were using virtual machines. You can even run Docker containers within host machines that are actually virtual machines!
+.. Docker provides the ability to package and run an application in a loosely isolated
+   environment called a container. The isolation and security allow you to run many
+   containers simultaneously on a given host. Containers are lightweight because
+   they don’t need the extra load of a hypervisor, but run directly within the host
+   machine’s kernel. This means you can run more containers on a given hardware
+   combination than if you were using virtual machines. You can even run Docker
+   containers within host machines that are actually virtual machines!
 
-Docker が提供するのは、コンテナ（container）と呼ばれる緩やかに隔離された環境 [#f1]_ における、アプリケーションの梱包（パッケージ）と実行です。隔離とセキュリティにより、指定したホスト上で多くのコンテナを一斉に実行できます。コンテナは外部のハイパーバイザによる処理が不要です。そして、コンテナはホストマシン上のカーネル内で直接実行しますので、軽量です。つまり、任意のハードウェアの組み合わせにより、仮想マシンの使用よりも多くのコンテナを実行できます。また、Docker コンテナの実行はホストマシンだけでなく、実際には仮想マシン上でも実行できるのです！
+Docker はアプリケーションをパッケージ化して実行するために、ほぼ分離された環境となるコンテナというものを提供します。
+隔離してセキュリティを保つことから、実行するホスト上に複数のコンテナを同時に実行することができます。
+コンテナは非常に軽量なものとなります。
+なぜならハイパーバイザーを別途ロードする必要などなく、ホストマシンのカーネルを使って動作するからです。
+このことは手元にあるハードウェアの中から、必要なものを使ってより多くのコンテナが実行できることを意味します。
+それは仮想マシンを使う以上のことです。
+さらに Docker コンテナを動作させるホストマシンは、それ自体が仮想マシンであっても構わないのです。
 
 .. Docker provides tooling and a platform to manage the lifecycle of your containers:
 
