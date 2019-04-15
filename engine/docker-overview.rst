@@ -150,15 +150,19 @@ Docker は開発のライフサイクルを効率化します。
 
 以下のようなシナリオ例を考えてみてください。
 
-..    Your developers write code locally and share their work with their colleagues using Docker containers.
-    They use Docker to push their applications into a test environment and execute automated and manual tests.
-    When developers find bugs, they can fix them in the development environment and redeploy them to the test environment for testing and validation.
-    When testing is complete, getting the fix to the customer is as simple as pushing the updated image to the production environment.
+.. - Your developers write code locally and share their work with their colleagues
+     using Docker containers.
+   - They use Docker to push their applications into a test environment and execute
+     automated and manual tests.
+   - When developers find bugs, they can fix them in the development environment
+     and redeploy them to the test environment for testing and validation.
+   - When testing is complete, getting the fix to the customer is as simple as
+     pushing the updated image to the production environment.
 
-* 開発者がローカルでコードを書き、同僚と作業時に共有するために Docker コンテナを使う
-* アプリケーションをテスト環境への送信や、自動実行、手動テストのために Docker を使う
-* 開発者がバグを発見したら、開発環境で問題を修正し、テストと確認のためにテスト環境に再デプロイする
-* テストが完了したら、プロダクション環境に単純に送信し、イメージを入れ替えるだけで、利用者は修正版を利用できる
+* 開発者がローカルでコードを書き、仲間とその作業を共有するために Docker コンテナを使います。
+* Docker によりアプリケーションをテスト環境に投入し、自動および手動のテストを実行します。
+* 開発者がバグを発見したら、開発環境においてこれを修正して、アプリケーションをテスト環境に再デプロイし、テスト確認を行ないます。
+* テストが完了します。この後にユーザが修正版を利用できるようにすることは、更新済イメージを本番環境へ投入することと同じく容易なことです。
 
 .. Responsive deployment and scaling
 .. _responsive-deployment-and-scaling:
