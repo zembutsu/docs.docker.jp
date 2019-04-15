@@ -101,9 +101,12 @@ Docker Engine は、主に以下の３つのコンポーネントからなるク
    :scale: 60%
    :alt: Docker Engine コンポーネント図
 
-.. The CLI uses the Docker REST API to control or interact with the Docker daemon through scripting or direct CLI commands. Many other Docker applications use the underlying API and CLI
+.. The CLI uses the Docker REST API to control or interact with the Docker daemon
+   through scripting or direct CLI commands. Many other Docker applications use the
+   underlying API and CLI.
 
-CLI は Docker REST API を使い、Docker デーモンに対してスクリプトや CLI コマンドを通して、 Docker デーモンを制御または操作をします。多くの他の Docker アプリケーションも、水面下では API と CLI を利用します。
+CLI は Docker REST API を通じて、スクリプトや直接のコマンド実行により Docker デーモンを制御したり入出力を行ったりします。
+Docker アプリケーションの多くが、基本的なところで API や CLI を利用しています。
 
 .. The daemon creates and manages Docker objects, such as images, containers, networks, and volumes.
 
