@@ -170,9 +170,12 @@ Docker は開発のライフサイクルを効率化します。
 迅速なデプロイとスケーリング
 ----------------------------------------
 
-.. Docker’s container-based platform allows for highly portable workloads. Docker containers can run on a developer’s local laptop, on physical or virtual machines in a data center, on cloud providers, or in a mixture of environments.
+.. Docker's container-based platform allows for highly portable workloads. Docker
+   containers can run on a developer's local laptop, on physical or virtual
+   machines in a data center, on cloud providers, or in a mixture of environments.
 
-Docker はコンテナをベースとしたプラットフォームのため、移動性の高い処理（highly portable workloads）を行えます。Docker コンテナは開発者のローカル PC 上で実行できるだけでなく、データセンタの物理あるいは仮想マシン、クラウドプロバイダ、あるいは様々な環境の組み合わせにおいても実行可能です。
+Docker によるコンテナベースのプラットフォームは、処理負荷の高度な分散を考慮しています。
+Docker コンテナは、開発者のノートパソコン上で実行できるだけでなく、データセンタの物理マシンや仮想マシン、クラウドプロバイダ、そしてさまざまな環境の組み合わせにおいて実行可能です。
 
 .. Docker’s portability and lightweight nature also make it easy to dynamically manage workloads, scaling up or tearing down applications and services as business needs dictate, in near real time.
 
