@@ -177,9 +177,12 @@ Docker は開発のライフサイクルを効率化します。
 Docker によるコンテナベースのプラットフォームは、処理負荷の高度な分散を考慮しています。
 Docker コンテナは、開発者のノートパソコン上で実行できるだけでなく、データセンタの物理マシンや仮想マシン、クラウドプロバイダ、そしてさまざまな環境の組み合わせにおいて実行可能です。
 
-.. Docker’s portability and lightweight nature also make it easy to dynamically manage workloads, scaling up or tearing down applications and services as business needs dictate, in near real time.
+.. Docker's portability and lightweight nature also make it easy to dynamically
+   manage workloads, scaling up or tearing down applications and services as
+   business needs dictate, in near real time.
 
-また、Docker の移動性と軽量な特性により、ビジネスにおける必要性に応じ、ほぼリアルタイムでアプリケーションやサービスをスケールアップ（拡張）やティアダウン（解体）するといった、動的な処理の管理を行いやすくします。
+Docker の可搬性と軽量な特性は、以下のようなことを容易に実現します。
+それは処理負荷を動的に管理できること、ビジネスシーンでの要求に応じてアプリケーションのスケールアップや提供終了を簡単に、しかもほぼリアルタイムで行うことができます。
 
 
 .. Running more workloads on the same hardware
