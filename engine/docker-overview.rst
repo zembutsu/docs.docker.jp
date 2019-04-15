@@ -120,8 +120,9 @@ Docker オブジェクトとは、イメージ、コンテナー、ネットワ�
 
    Docker は、オープンソース Apache 2.0 ライセンスのもとで提供されています。
 
-Docker の詳細についれは、 :ref:`docker-architecture` をお読みください。
+.. For more details, see [Docker Architecture](#docker-architecture) below.
 
+Docker の詳細については、 :ref:`docker-architecture` を参照してください。
 
 .. What can I use Docker for?
 
