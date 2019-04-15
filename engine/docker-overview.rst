@@ -137,9 +137,14 @@ Docker の詳細については、 :ref:`docker-architecture` を参照してく
 アプリケーションの配信をすばやく一貫性を保って
 --------------------------------------------------
 
-.. Docker streamlines the development lifecycle by allowing developers to work in standardized environments using local containers which provide your applications and services. Containers are great for continuous integration and continuous development (CI/CD) workflows.
+.. Docker streamlines the development lifecycle by allowing developers to work in
+   standardized environments using local containers which provide your applications
+   and services. Containers are great for continuous integration and continuous
+   development (CI/CD) workflows.
 
-Docker の開発ライフサイクルが効率的なのは、開発者がローカルなコンテナが提供するアプリケーションやサービスを通し、標準的な環境で作業できるからです。コンテナは継続的インテグレーションと継続できデプロイメント（CI/CD）ワークフローに最適です。
+Docker は開発のライフサイクルを効率化します。
+開発するアプリケーションやサービスがローカルなコンテナ内に実現でき、開発者は標準化された環境により作業が進められるからです。
+コンテナを使った開発は、継続的インテグレーション (continuous integration; CI) や継続的開発 (continuous development; CD) のワークフローに適しています。
 
 .. Consider the following example scenario:
 
