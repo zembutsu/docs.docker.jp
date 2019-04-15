@@ -114,11 +114,11 @@ Docker アプリケーションの多くが、基本的なところで API や C
 デーモンは Docker オブジェクトを作成、管理します。
 Docker オブジェクトとは、イメージ、コンテナー、ネットワーク、データ・ボリュームなどです。
 
-..    Note: Docker is licensed under the open source Apache 2.0 license.
+.. > **Note**: Docker is licensed under the open source Apache 2.0 license.
 
 .. note::
 
-   Docker のライセンスは、オープンソース Apache 2.0 ライセンスの下で供与されています。
+   Docker は、オープンソース Apache 2.0 ライセンスのもとで提供されています。
 
 Docker の詳細についれは、 :ref:`docker-architecture` をお読みください。
 
