@@ -134,7 +134,7 @@ Docker の詳細については、 :ref:`docker-architecture` を参照してく
 .. Fast, consistent delivery of your applications
 .. _fast-consistent-delivery-of-your-applications:
 
-速く、一貫性のあるアプリケーションのデリバリ
+アプリケーションの配信をすばやく一貫性を保って
 --------------------------------------------------
 
 .. Docker streamlines the development lifecycle by allowing developers to work in standardized environments using local containers which provide your applications and services. Containers are great for continuous integration and continuous development (CI/CD) workflows.
