@@ -167,7 +167,7 @@ Docker は開発のライフサイクルを効率化します。
 .. Responsive deployment and scaling
 .. _responsive-deployment-and-scaling:
 
-即応性のあるデプロイとスケーリング
+迅速なデプロイとスケーリング
 ----------------------------------------
 
 .. Docker’s container-based platform allows for highly portable workloads. Docker containers can run on a developer’s local laptop, on physical or virtual machines in a data center, on cloud providers, or in a mixture of environments.
