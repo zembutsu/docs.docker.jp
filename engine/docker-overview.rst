@@ -148,7 +148,7 @@ Docker は開発のライフサイクルを効率化します。
 
 .. Consider the following example scenario:
 
-以下のシナリオ例が考えられます：
+以下のようなシナリオ例を考えてみてください。
 
 ..    Your developers write code locally and share their work with their colleagues using Docker containers.
     They use Docker to push their applications into a test environment and execute automated and manual tests.
