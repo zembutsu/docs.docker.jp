@@ -324,9 +324,14 @@ Dockerfile の内容を書き換えたことでイメージが再構築される
 コンテナ
 ^^^^^^^^^^
 
-.. A container is a runnable instance of an image. You can create, run, stop, move, or delete a container using the Docker API or CLI. You can connect a container to one or more networks, attach storage to it, or even create a new image based on its current state.
+.. A container is a runnable instance of an image. You can create, run, stop,
+   move, or delete a container using the Docker API or CLI. You can connect a
+   container to one or more networks, attach storage to it, or even create a new
+   image based on its current state.
 
-コンテナ（container）とは、イメージの実行可能なインスタンス（訳者注；実体の意味）です。Docker API や CLI を使い、コンテナの作成、実行、停止、移動、削除を行えます。コンテナはネットワークに接続可能であり、ストレージもアタッチできます。あるいは、現在の状態を元にして新しいイメージの作成もできます。
+コンテナとは、イメージが実行状態となったインスタンスのことです。
+コンテナに対する生成、実行、停止、移動、削除は Docker API や CLI を使って行われます。
+コンテナは、複数のネットワークへの接続、ストレージの追加を行うことができ、さらには現時点の状態にもとづいた新たなイメージを生成することもできます。
 
 .. By default, a container is relatively well isolated from other containers and its host machine. You can control how isolated a container’s network, storage, or other underlying subsystems are from other containers or from the host machine.
 
