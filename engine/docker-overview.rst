@@ -362,9 +362,10 @@ Dockerfile の内容を書き換えたことでイメージが再構築される
 
     $ docker run -i -t ubuntu /bin/bash
 
-.. When you run this command, the following happens (assuming you are using the default registry configuration):
+.. When you run this command, the following happens (assuming you are using
+   the default registry configuration):
 
-このコマンドを実行し、以下の処理が発生します（デフォルトのレジストリ設定を用いているものと想定）。
+このコマンドを実行すると、以下が発生します（レジストリから入手した際のデフォルトの設定を使用しているものとします）。
 
 ..    If you do not have the ubuntu image locally, Docker pulls it from your configured registry, as though you had run docker pull ubuntu manually.
     Docker creates a new container, as though you had run a docker create command manually.
