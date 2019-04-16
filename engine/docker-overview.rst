@@ -191,10 +191,16 @@ Docker の可搬性と軽量な特性は、以下のようなことを容易に�
 同一ハードウェア上にて負荷の高い処理を実行
 ----------------------------------------
 
-.. Docker is lightweight and fast. It provides a viable, cost-effective alternative to hypervisor-based virtual machines, so you can use more of your compute capacity to achieve your business goals. Docker is perfect for high density environments and for small and medium deployments where you need to do more with fewer resources.
+.. Docker is lightweight and fast. It provides a viable, cost-effective alternative
+   to hypervisor-based virtual machines, so you can use more of your compute
+   capacity to achieve your business goals. Docker is perfect for high density
+   environments and for small and medium deployments where you need to do more with
+   fewer resources.
 
-Docker は軽量かつ高速です。これはハイパーバイザーをベースとした仮想化マシンよりも、費用対効果を高くします。そのため、皆さんの計算能力を、ビジネスにおけるゴールに到達するために利用できるのです。Docker が最適なのは、高密度の環境や、より少ないリソースを必要とする中小規模のデプロイです。
-
+Docker は軽量かつ高速です。
+ハイパーバイザ・ベースの仮想マシンに取って変わる、実用的で費用対効果の高いものです。
+したがってコンピュータ性能をフルに活用してビジネス目標を達成できます。
+Docker は高度に処理集中する環境に適しており、さらには中小規模の、より少ないリソースの中でのシステム構築にも適しています。
 
 .. Docker architecture
 .. _docker-architecture:
