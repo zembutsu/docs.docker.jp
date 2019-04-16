@@ -417,9 +417,10 @@ Docker Engine がスウォームモードをサポートするのは Docker バ�
 基盤とする技術
 ==============
 
-.. Docker is written in Go and makes use of several kernel features to deliver the functionality we’ve seen.
+.. Docker is written in [Go](https://golang.org/) and takes advantage of several
+   features of the Linux kernel to deliver its functionality.
 
-Docker は `Go 言語 <https://golang.org/>`_ で書かれており、これまで見てきた機能は、カーネルが持つ複数の機能を利用しています。
+Docker は `Go 言語 <https://golang.org/>`_ で書かれており、Linux カーネルの機能をうまく活用して、さまざまな機能性を実現しています。
 
 .. Namespaces
 
