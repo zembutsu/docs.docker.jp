@@ -272,9 +272,15 @@ Docker Hub と Docker Cloud は公開レジストリであり、誰でも利用�
 
 ``docker pull`` や ``docker run`` コマンドを使うと、設定されたレジストリから必要なイメージを取得します。 ``docker push`` コマンドを使えば、イメージを指定したレジストリに送信します。
 
-.. Docker store allows you to buy and sell Docker images or distribute them for free. For instance, you can buy a Docker image containing an application or service from a software vendor and use the image to deploy the application into your testing, staging, and production environments. You can upgrade the application by pulling the new version of the image and redeploying the containers.
+.. [Docker store](http://store.docker.com) allows you to buy and sell Docker images
+   or distribute them for free. For instance, you can buy a Docker image containing
+   an application or service from a software vendor and use the image to deploy
+   the application into your testing, staging, and production environments. You can
+   upgrade the application by pulling the new version of the image and redeploying
+   the containers.
 
-`Docker ストア <http://store.docker.com/>`_ で Docker イメージの売買や、自由な配布ができます。たとえば、ソフトウェア・ベンダのアプリケーションやサービスを含む Docker イメージの購入や、そのイメージを使ってアプリケーションをテスト、ステージング、プロダクション環境に展開（デプロイ）できます。アプリケーションを更新するには、イメージの新しいバージョンを取得し、コンテナの再展開によって可能です。
+`Docker ストア <http://store.docker.com/>`_ を利用すれば Docker イメージの売買や無償配布ができます。
+たとえば、ソフトウェア・ベンダが提供するアプリケーションやサービスを含んだ Docker イメージを購入し、そのイメージを使って、テスト、ステージング、本番の各環境にアプリケーションをデプロイすることができます。アプリケーションを更新するには、もう一度イメージの新バージョンを取得し、コンテナを再デプロイすれば実現できます。
 
 Docker オブジェクト
 --------------------
