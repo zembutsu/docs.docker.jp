@@ -185,10 +185,10 @@ Docker の可搬性と軽量な特性は、以下のようなことを容易に�
 それは処理負荷を動的に管理できること、ビジネスシーンでの要求に応じてアプリケーションのスケールアップや提供終了を簡単に、しかもほぼリアルタイムで行うことができます。
 
 
-.. Running more workloads on the same hardware
+.. **Running more workloads on the same hardware**
 .. _running-more-workloads-on-the-same-hardware:
 
-同じハードウェア上でより多くの処理を実行
+同一ハードウェア上にて負荷の高い処理を実行
 ----------------------------------------
 
 .. Docker is lightweight and fast. It provides a viable, cost-effective alternative to hypervisor-based virtual machines, so you can use more of your compute capacity to achieve your business goals. Docker is perfect for high density environments and for small and medium deployments where you need to do more with fewer resources.
