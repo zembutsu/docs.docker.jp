@@ -395,9 +395,22 @@ Dockerfile の内容を書き換えたことでイメージが再構築される
 サービス
 ^^^^^^^^^^
 
-.. Services allow you to scale containers across multiple Docker daemons, which all work together as a swarm with multiple managers and workers. Each member of a swarm is a Docker daemon, and the daemons all communicate using the Docker API. A service allows you to define the desired state, such as the number of replicas of the service that must be available at any given time. By default, the service is load-balanced across all worker nodes. To the consumer, the Docker service appears to be a single application. Docker Engine supports swarm mode in Docker 1.12 and higher.
+.. Services allow you to scale containers across multiple Docker daemons, which
+   all work together as a _swarm_ with multiple _managers_ and _workers_. Each
+   member of a swarm is a Docker daemon, and the daemons all communicate using
+   the Docker API. A service allows you to define the desired state, such as the
+   number of replicas of the service that must be available at any given time.
+   By default, the service is load-balanced across all worker nodes. To
+   the consumer, the Docker service appears to be a single application. Docker
+   Engine supports swarm mode in Docker 1.12 and higher.
 
-サービス（services）とは、複数の Docker デーモンを横断してコンテナをスケールできます。複数の Docker デーモンは複数のマネージャ（ `manager` ）とワーカ（ `worker` ）が `swarm` （スウォーム、訳者注；Docker用語で複数の Docker デーモンで構成する「クラスタ」を意味）として協調動作します。swarm を構成するのは Docker デーモンであり、デーモンは全て Docker API を使って通信します。サービスは、サービスのレプリカ数など期待状態（desired state）を常に定義する必要があります。デフォルトでは、サービスは全てのワーカ・ノードを横断して負荷部産します。利用者からすると、 Docker サービスは１つのアプリケーションのように見えます。Docker 1.12 以上で Docker Engine は swarm mode をサポートしました。
+サービスは、複数の Docker デーモンにわたって、コンテナのスケール変更ができるようにします。
+複数のデーモンはスォームと呼ばれるものとして扱われ、複数のマネージャ、ワーカとともに動作します。
+そしてすべてのデーモンが Docker API を利用して通信します。
+サービスは必要となる状態を定義することが可能であり、たとえばサービスのレプリカ数を、指定した時間においてどれだけ作り出すかを定義できます。
+デフォルトでは、すべてのワーカ・ノードにわたって負荷分散が行われます。
+利用者からすると、Docker サービスは１つのアプリケーションとして見えます。
+Docker Engine がスウォームモードをサポートするのは Docker バージョン 1.12 またはそれ以上です。
 
 .. The underlying technology
 
