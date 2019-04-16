@@ -294,9 +294,17 @@ Docker の利用時は、イメージ、コンテナ、ネットワーク、ボ�
 イメージ
 ^^^^^^^^^^
 
-.. An image is a read-only template with instructions for creating a Docker container. Often, an image is based on another image, with some additional customization. For example, you may build an image which is based on the ubuntu image, but installs the Apache web server and your application, as well as the configuration details needed to make your application run.
+.. An _image_ is a read-only template with instructions for creating a Docker
+   container. Often, an image is _based on_ another image, with some additional
+   customization. For example, you may build an image which is based on the `ubuntu`
+   image, but installs the Apache web server and your application, as well as the
+   configuration details needed to make your application run.
 
-イメージ（ ``image`` ）とは、Docker コンテナを作成する命令が入った読み込み専用のテンプレートです。通常、イメージは、他のイメージを元（ベース）にして何らかのカスタマイズを追加したものです。例えば、 ``ubuntu`` イメージを元にして、Apache ウェブサーバやアプリケーションのインストールだけでなく、アプリケーションの実行に必要な設定詳細も含めたイメージを構築できます。
+イメージ（ ``image`` ）とは、Docker コンテナを作成する命令が入った読み込み専用のテンプレートです。
+通常イメージは、他のイメージをベースにしてそれをカスタマイズして利用します。
+たとえば ``ubuntu`` イメージをベースとするイメージを作ったとします。
+そこには Apache ウェブ・サーバや自開発したアプリケーションといったものをインストールするかもしれません。
+さらにアプリケーション実行に必要となる詳細な設定も加えることにもなるでしょう。
 
 .. You might create your own images or you might only use those created by others and published in a registry. To build your own image, you create a Dockerfile with a simple syntax for defining the steps needed to create the image and run it. Each instruction in a Dockerfile creates a layer in the image. When you change the Dockerfile and rebuild the image, only those layers which have changed are rebuilt. This is part of what makes images so lightweight, small, and fast, when compared to other virtualization technologies.
 
