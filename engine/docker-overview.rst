@@ -208,9 +208,18 @@ Docker は高度に処理集中する環境に適しており、さらには中�
 Docker のアーキテクチャ
 ==============================
 
-.. Docker uses a client-server architecture. The Docker client talks to the Docker daemon, which does the heavy lifting of building, running, and distributing your Docker containers. The Docker client and daemon can run on the same system, or you can connect a Docker client to a remote Docker daemon. The Docker client and daemon communicate using a REST API, over UNIX sockets or a network interface.
+.. Docker uses a client-server architecture. The Docker *client* talks to the
+   Docker *daemon*, which does the heavy lifting of building, running, and
+   distributing your Docker containers. The Docker client and daemon *can*
+   run on the same system, or you can connect a Docker client to a remote Docker
+   daemon. The Docker client and daemon communicate using a REST API, over UNIX
+   sockets or a network interface.
 
-Docker はクライアント・サーバ型のアーキテクチャです。Docker *クライアント* が Docker コンテナの構築・実行・配布といった力仕事をするには、 Docker *デーモン* と通信します。 Docker クライアントとデーモンは、どちらも同じシステム上で実行できます。また、Docker クライアントはリモートの Docker デーモンにも接続できます。Docker クライアントとデーモンは、お互いに UNIX ソケットやネットワーク・インターフェースを通し、 RESTful API を使って通信します。
+Docker はクライアント・サーバ型のアーキテクチャを採用しています。
+Docker *クライアント* は Docker デーモンに処理を依頼します。
+このデーモンは、Docker コンテナの構築、実行、配布という複雑な仕事をこなします。
+Docker クライアントとデーモンは同一システム上で動かすことも *可能* ですが、別のシステム上であっても、Docker クライアントからリモートにある Docker デーモンへのアクセスが可能です。
+Docker クライアントとデーモンの間の通信には REST API が利用され、UNIX ソケットまたはネット・ワークインターフェイスを介して行われます。
 
 .. image:: ./article-img/architecture.png
    :scale: 60%
