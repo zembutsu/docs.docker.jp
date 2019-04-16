@@ -382,14 +382,15 @@ Dockerfile の内容を書き換えたことでイメージが再構築される
        is run interactively and attached to your terminal (due to the `-i` and `-t`)
        flags, you can provide input using your keyboard and output is logged to
        your terminal.
-    When you type exit to terminate the /bin/bash command, the container stops but is not removed. You can start it again or remove it.
+   6.  When you type `exit` to terminate the `/bin/bash` command, the container
+       stops but is not removed. You can start it again or remove it.
 
 1. ``ubuntu`` イメージがローカルになければ、Docker は設定されているレジストリからイメージを取得します。この動作は手動で ``docker pull ubuntu`` を実行するのと同じです。
 2. Docker は新しいコンテナを生成します。これは手動で ``docker create`` コマンドを実行することと同じです。
 3. Docker はコンテナに対して読み書きが可能なファイルシステムを割り当てます。これが最終的にレイヤとなります。このことによりコンテナの稼動中に、ローカルなファイルシステム内でのファイルやディレクトリの生成や変更などが実現されます。
 4. Docker はネットワーク・インターフェースを生成し、コンテナをデフォルト・ネットワークに接続します。ここではネットワーク・オプションを指定していないものとしているためです。このときには、コンテナに対しての IP アドレスの割り当ても行われます。デフォルトでコンテナは、ホストマシンのネットワーク接続を利用して、外部ネットワークに接続します。
 5. Docker はコンテナを起動し、 ``/bin/bash`` を実行します。（ ``-i`` と ``-t`` のフラグにより）対話的に、かつターミナル画面に接続するようにして実行しているため、手元のキーボードを使って入力することができ、ターミナル画面に出力が行われるようになります。
-6. ``exit`` を入力すると、 ``/bin/bash`` コマンドは終了し、コンテナは停止状態となりますが、削除はされていません。コンテナを再起動するか、削除できます。
+6. ``exit`` を入力すると、 ``/bin/bash`` コマンドは終了します。コンテナは停止状態となりますが、削除はされません。コンテナを再起動したり削除することもできます。
 
 サービス
 ^^^^^^^^^^
