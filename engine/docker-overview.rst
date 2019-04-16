@@ -257,9 +257,16 @@ Docker クライアントは複数のデーモンと通信することができ�
 Docker レジストリ
 --------------------
 
-.. A Docker registry stores Docker images. Docker Hub and Docker Cloud are public registries that anyone can use, and Docker is configured to look for images on Docker Hub by default. You can even run your own private registry. If you use Docker Datacenter (DDC), it includes Docker Trusted Registry (DTR).
+.. A Docker _registry_ stores Docker images. Docker Hub and Docker Cloud are public
+   registries that anyone can use, and Docker is configured to look for images on
+   Docker Hub by default. You can even run your own private registry. If you use
+   Docker Datacenter (DDC), it includes Docker Trusted Registry (DTR).
 
-Docker レジストリ（ *registry* ）は Docker イメージを保管します。Docker Hub と Docker Cloud は公開レジストリであり、誰でも利用可能です。また、 Docker はデフォルトで Docker Hub のイメージを探すよう設定されています。それだけでなく、自分のプライベート・レジストリも使えます。もし Docker データセンタ（DDC）を利用するのであれば、Docker トラステッド・レジストリ（DTR）が含まれています。
+Docker レジストリは Docker イメージを保管します。
+Docker Hub と Docker Cloud は公開レジストリであり、誰でも利用可能です。
+また  Docker はデフォルトで Docker Hub のイメージを探すよう設定されています。
+独自にプライベート・レジストリを運用することもできます。
+もし Docker データセンタ（Docker Datacenter; DDC）を利用するのであれば、Docker トラステッド・レジストリ（Docker Trusted Registry; DTR）が含まれています。
 
 .. When you use the docker pull or docker run commands, the required images are pulled from your configured registry. When you use the docker push command, your image is pushed to your configured registry.
 
