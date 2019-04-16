@@ -369,14 +369,15 @@ Dockerfile の内容を書き換えたことでイメージが再構築される
 
 .. 1.  If you do not have the `ubuntu` image locally, Docker pulls it from your
        configured registry, as though you had run `docker pull ubuntu` manually.
-   Docker creates a new container, as though you had run a docker create command manually.
+   2.  Docker creates a new container, as though you had run a `docker create`
+       command manually.
     Docker allocates a read-write filesystem to the container, as its final layer. This allows a running container to create or modify files and directories in its local filesystem.
     Docker creates a network interface to connect the container to the default network, since you did not specify any networking options. This includes assigning an IP address to the container. By default, containers can connect to external networks using the host machine’s network connection.
     Docker starts the container and executes /bin/bash. Because the container is run interactively and attached to your terminal (due to the -i and -t) flags, you can provide input using your keyboard and output is logged to your terminal.
     When you type exit to terminate the /bin/bash command, the container stops but is not removed. You can start it again or remove it.
 
 1. ``ubuntu`` イメージがローカルになければ、Docker は設定されているレジストリからイメージを取得します。この動作は手動で ``docker pull ubuntu`` を実行するのと同じです。
-2. Docker は新しいコンテナを作成します。こちらは手動で ``docker create`` コマンドを実行するのと同じです。
+2. Docker は新しいコンテナを生成します。これは手動で ``docker create`` コマンドを実行することと同じです。
 3. 読み書き可能なファイルシステムを、Docker はコンテナに新しいレイヤとして割り当てます。
 4. Docker はネットワーク・インターフェースを作成し、ネットワークのオプション指定がなければ、コンテナをデフォルト・ネットワークに接続します。この時、コンテナに IP アドレスを割り当てます。ホストマシンのネットワークと接続するネットワークを使わなければ、コンテナはデフォルトで外部のネットワークと接続できません。
 5. Docker はコンテナを起動し、 ``/bin/bash`` を実行します。コンテナを双方向（interactive）かつターミナル（terminal）に接続する設定（ ``-i`` と ``-t`` のフラグによる）で実行しているため、キーボードを使っての入力や、出力をターミナルに表示できます。
