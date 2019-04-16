@@ -241,9 +241,16 @@ Docker デーモン（ ``dockerd`` ）は Docker API リクエストを受け付
 Docker クライアント
 --------------------
 
-.. The Docker client (docker) is the primary way that many Docker users interact with Docker. When you use commands such as docker run, the client sends these commands to dockerd, which carries them out. The docker command uses the Docker API. The Docker client can communicate with more than one daemon.
+.. The Docker client (`docker`) is the primary way that many Docker users interact
+   with Docker. When you use commands such as `docker run`, the client sends these
+   commands to `dockerd`, which carries them out. The `docker` command uses the
+   Docker API. The Docker client can communicate with more than one daemon.
 
-Docker クライアント（ ``docker`` ）は多くの Docker 利用者が Docker を操作する主な手法です。 ``docker run`` のようなコマンドを用いると、クライアントは ``dockerd`` に命令（コマンド）を送り届けます。 ``dockerd`` コマンドは Docker API を用います。Docker クライアントは複数のデーモンと通信できます。
+Docker クライアント（ ``docker`` ）は Docker とのやりとりを行うために、たいていのユーザが利用するものです。
+``docker run`` のようなコマンドが実行されると、Docker クライアントは ``dockerd`` にそのコマンドを伝えます。
+そして ``dockerd`` はその内容を実現します。
+``docker`` コマンドは Docker API を利用しています。
+Docker クライアントは複数のデーモンと通信することができます。
 
 .. _docker-registries:
 
