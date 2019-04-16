@@ -230,9 +230,11 @@ Docker クライアントとデーモンの間の通信には REST API が利用
 Docker デーモン
 --------------------
 
-.. The Docker daemon (dockerd) listens for Docker API requests and manages Docker objects such as images, containers, networks, and volumes. A daemon can also communicate with other daemons to manage Docker services.
+.. The Docker daemon (`dockerd`) listens for Docker API requests and manages Docker
+   objects such as images, containers, networks, and volumes. A daemon can also
+   communicate with other daemons to manage Docker services.
 
-Docker デーモン（ ``dockerd`` ）は Docker API リクエストを受け付け、イメージ、コンテナ、ネットワーク、ボリュームといった Docker オブジェクトを管理します。また、Docker サービスを管理するため、デーモンは他のデーモンと通信できます。
+Docker デーモン（ ``dockerd`` ）は Docker API リクエストを受け付け、イメージ、コンテナ、ネットワーク、ボリュームといった Docker オブジェクトを管理します。また、Docker サービスを管理するため、他のデーモンとも通信を行います。
 
 .. The Docker client
 
