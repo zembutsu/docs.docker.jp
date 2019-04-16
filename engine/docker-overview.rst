@@ -353,9 +353,10 @@ Dockerfile の内容を書き換えたことでイメージが再構築される
 
 **``docker run`` コマンドの例**
 
-.. The following command runs an ubuntu container, attaches interactively to your local command-line session, and runs /bin/bash.
+.. The following command runs an `ubuntu` container, attaches interactively to your
+   local command-line session, and runs `/bin/bash`.
 
-次のコンテナは ``ubuntu`` コンテナを実行し、ローカルのコマンドライン・セッションと双方向（インタラクティブ）に接続（アタッチ）し、 ``/bin/bash`` を実行します。
+次のコマンドは ``ubuntu`` コンテナを実行し、ローカルのコマンドライン処理のセッションを結びつけます。そして ``/bin/bash`` を実行します。
 
 .. code-block:: bash
 
