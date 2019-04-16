@@ -412,10 +412,10 @@ Dockerfile の内容を書き換えたことでイメージが再構築される
 利用者からすると、Docker サービスは１つのアプリケーションとして見えます。
 Docker Engine がスウォームモードをサポートするのは Docker バージョン 1.12 またはそれ以上です。
 
-.. The underlying technology
+.. ## The underlying technology
 
-基礎技術
-==========
+基盤とする技術
+==============
 
 .. Docker is written in Go and makes use of several kernel features to deliver the functionality we’ve seen.
 
