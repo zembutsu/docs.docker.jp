@@ -306,9 +306,20 @@ Docker の利用時は、イメージ、コンテナ、ネットワーク、ボ�
 そこには Apache ウェブ・サーバや自開発したアプリケーションといったものをインストールするかもしれません。
 さらにアプリケーション実行に必要となる詳細な設定も加えることにもなるでしょう。
 
-.. You might create your own images or you might only use those created by others and published in a registry. To build your own image, you create a Dockerfile with a simple syntax for defining the steps needed to create the image and run it. Each instruction in a Dockerfile creates a layer in the image. When you change the Dockerfile and rebuild the image, only those layers which have changed are rebuilt. This is part of what makes images so lightweight, small, and fast, when compared to other virtualization technologies.
+.. You might create your own images or you might only use those created by others
+   and published in a registry. To build your own image, you create a _Dockerfile_
+   with a simple syntax for defining the steps needed to create the image and run
+   it. Each instruction in a Dockerfile creates a layer in the image. When you
+   change the Dockerfile and rebuild the image, only those layers which have
+   changed are rebuilt. This is part of what makes images so lightweight, small,
+   and fast, when compared to other virtualization technologies.
 
-イメージは自分で作成できますし、あるいはレジストリに公開されている他人が作ったイメージも利用できます。自分でイメージを構築するには、イメージを作成するために必要なステップを簡単な構文で定義する ``Dockerfile`` を作成し、実行します。Dockerfile の命令ごとに、イメージのレイヤ（layer）を作成します。Dockerfile を変更してイメージを再構築しても、変更のあったレイヤのみを再構築します。他の仮想化技術と比較した時に、この部分こそが、イメージの何が軽量で、小さく、速いのかにあたります。
+イメージは作ろうと思えば作ることができ、他の方が作ってレジストリに公開されているイメージを使うということもできます。
+イメージを自分で作る場合は Dockerfile というファイルを生成します。
+このファイルの文法は単純なものであり、そこにはイメージを生成して実行するまでの手順が定義されます。
+Dockerfile 内の個々の命令ごとに、イメージ内にはレイヤというものが生成されます。
+Dockerfile の内容を書き換えたことでイメージが再構築されるときには、変更がかかったレイヤのみが再生成されます。
+他の仮想化技術に比べて Dockerイメージというものが軽量、小さい、早いを実現できているのも、そういった部分があるからです。
 
 コンテナ
 ^^^^^^^^^^
