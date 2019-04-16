@@ -341,9 +341,13 @@ Dockerfile の内容を書き換えたことでイメージが再構築される
 デフォルトでは、コンテナは他のコンテナやホストマシンとは、程よく分離されています。
 コンテナに属するネットワーク、ストレージ、基盤となるサブシステムなどを、いかにして他のコンテナやホストマシンから切り離すか、その程度は制御することが可能です。
 
-.. A container is defined by its image as well as any configuration options you provide to it when you create or run it. When a container is removed, any changes to its state that are not stored in persistent storage disappear.
+.. A container is defined by its image as well as any configuration options you
+   provide to it when you create or run it. When a container is removed, any changes to
+   its state that are not stored in persistent storage disappear.
 
-コンテナはイメージによってデフォルトで定義されている設定だけでなく、コンテナを作成して実行する時にオプションの指定も可能です。コンテナを削除しますと、永続ストレージに保存していない変更や状態は消滅します。
+コンテナはイメージによって定義されるものです。
+またこれを生成、実行するために設定したオプションによっても定義されます。
+コンテナを削除すると、その時点での状態に対して変更がかかっていたとしても、永続的なストレージに保存されていないものは消失します。
 
 .. Example docker run command
 
