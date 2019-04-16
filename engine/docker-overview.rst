@@ -333,9 +333,13 @@ Dockerfile の内容を書き換えたことでイメージが再構築される
 コンテナに対する生成、実行、停止、移動、削除は Docker API や CLI を使って行われます。
 コンテナは、複数のネットワークへの接続、ストレージの追加を行うことができ、さらには現時点の状態にもとづいた新たなイメージを生成することもできます。
 
-.. By default, a container is relatively well isolated from other containers and its host machine. You can control how isolated a container’s network, storage, or other underlying subsystems are from other containers or from the host machine.
+.. By default, a container is relatively well isolated from other containers and
+   its host machine. You can control how isolated a container's network, storage,
+   or other underlying subsystems are from other containers or from the host
+   machine.
 
-デフォルトでは、コンテナは他のコンテナやホストマシンとの間で、相対的に分離（isolated）されています。コンテナのネットワークやストレージ、他のサブシステムを、その他のコンテナやホストマシンからどのように分離するかを制御できます。
+デフォルトでは、コンテナは他のコンテナやホストマシンとは、程よく分離されています。
+コンテナに属するネットワーク、ストレージ、基盤となるサブシステムなどを、いかにして他のコンテナやホストマシンから切り離すか、その程度は制御することが可能です。
 
 .. A container is defined by its image as well as any configuration options you provide to it when you create or run it. When a container is removed, any changes to its state that are not stored in persistent storage disappear.
 
