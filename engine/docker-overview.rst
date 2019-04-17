@@ -479,9 +479,14 @@ cgroup は、アプリケーションが利用するリソースを特定のも�
 ユニオン・ファイル・システム
 ------------------------------
 
-.. Union file systems, or UnionFS, are file systems that operate by creating layers, making them very lightweight and fast. Docker Engine uses UnionFS to provide the building blocks for containers. Docker Engine can use multiple UnionFS variants, including AUFS, btrfs, vfs, and DeviceMapper.
+.. Union file systems, or UnionFS, are file systems that operate by creating layers,
+   making them very lightweight and fast. Docker Engine uses UnionFS to provide
+   the building blocks for containers. Docker Engine can use multiple UnionFS variants,
+   including AUFS, btrfs, vfs, and DeviceMapper.
 
-ユニオン・ファイル・システム、あるいは UnionFS はファイルシステムです。これは作成したレイヤを操作しますので、非常に軽量かつ高速です。Docker Engine はコンテナごとブロックを構築するため、ユニオン・ファイル・システムを使います。Docker は AUFS、btrfs、vfs、DeviceMapper を含む複数のユニオン・ファイル・システムの派生を利用できます。
+ユニオン・ファイル・システムは UnionFS というものであり、レイヤが作り出され、軽量かつ高速に処理が行われるファイルシステムのことです。
+Docker Engine は UnionFS を利用して、コンテナにおけるブロックを構築します。
+Docker Engine では AUFS、btrfs、vfs、DeviceMapper などの UnionFS 系のファイルシステムも利用できます。
 
 .. Container format
 
