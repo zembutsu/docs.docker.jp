@@ -490,12 +490,17 @@ Docker Engine では AUFS、btrfs、vfs、DeviceMapper などの UnionFS 系の�
 
 .. Container format
 
-コンテナの形式（フォーマット）
+コンテナ・フォーマット
 ------------------------------
 
-.. Docker Engine combines the namespaces, control groups, and UnionFS into a wrapper called a container format. The default container format is libcontainer. In the future, Docker may support other container formats by integrating with technologies such as BSD Jails or Solaris Zones.
+.. Docker Engine combines the namespaces, control groups, and UnionFS into a wrapper
+   called a container format. The default container format is `libcontainer`. In
+   the future, Docker may support other container formats by integrating with
+   technologies such as BSD Jails or Solaris Zones.
 
-Docker Engine は名前空間、コントロールグループ、UnionFS を連結し、包み込んでいます。これをコンテナ形式（フォーマット）と呼びます。デフォルトのコンテナ形式は ``libcontainer`` と呼ばれています。いずれ、Docker は他のコンテナ形式、例えば BSD Jail や Solaris Zone との統合をサポートするかもしれません。
+名前空間、コントロール・グループ、UnionFS は Docker Engine により、コンテナ・フォーマットと呼ばれるラッパーとして構成されます。
+このコンテナ・フォーマットのデフォルトが ``libcontainer`` です。
+いずれ BSD Jail や Solaris Zone などを技術統合した新たなコンテナ・フォーマットがサポートされることになるかもしれません。
 
 .. Next steps
 
