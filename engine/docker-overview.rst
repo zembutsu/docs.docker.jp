@@ -442,7 +442,7 @@ Docker は名前空間という技術を利用して *コンテナ* と呼ぶ作
 
 .. Docker Engine uses namespaces such as the following on Linux:
 
-Docker Engine が使う Linux 上の名前空間は、次の通りです。
+Docker Engine が取り扱う名前空間は、Linux 上で言えば以下のようなものです。
 
 ..    The pid namespace: Process isolation (PID: Process ID).
     The net namespace: Managing network interfaces (NET: Networking).
