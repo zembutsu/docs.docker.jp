@@ -444,17 +444,20 @@ Docker は名前空間という技術を利用して *コンテナ* と呼ぶ作
 
 Docker Engine が取り扱う名前空間は、Linux 上で言えば以下のようなものです。
 
-..    The pid namespace: Process isolation (PID: Process ID).
-    The net namespace: Managing network interfaces (NET: Networking).
-    The ipc namespace: Managing access to IPC resources (IPC: InterProcess Communication).
-    The mnt namespace: Managing filesystem mount points (MNT: Mount).
-    The uts namespace: Isolating kernel and version identifiers. (UTS: Unix Timesharing System).
+..  - **The `pid` namespace:** Process isolation (PID: Process ID).
+    - **The `net` namespace:** Managing network interfaces (NET:
+    Networking).
+    - **The `ipc` namespace:** Managing access to IPC
+    resources (IPC: InterProcess Communication).
+    - **The `mnt` namespace:** Managing filesystem mount points (MNT: Mount).
+    - **The `uts` namespace:** Isolating kernel and version identifiers. (UTS: Unix
+   Timesharing System).
 
-* **pid 名前区間** ：プロセスの分離に使います（PID：プロセス ID）
-* **net 名前区間** ：ネットワーク・インターフェースの管理に使います（NET：ネットワーキング）
-* **ipc 名前区間** ：IPC リソースに対するアクセス管理に使います（IPC：InterProcess Communication、内部プロセスの通信）
-* **mnt 名前区間** ：マウント・ポイントの管理に使います（MNT：マウント）
-* **uts 名前区間** ：カーネルとバージョン認識の隔離に使います（UTS：Unix  Timesharing System、Unix タイムシェアリング・システム）
+* **pid 名前区間** ：プロセスの分離。（PID：プロセス ID）
+* **net 名前区間** ：ネットワーク・インターフェースの管理。（NET：ネットワーキング）
+* **ipc 名前区間** ：IPC リソースに対するアクセス管理。（IPC：InterProcess Communication、内部プロセスの通信）
+* **mnt 名前区間** ：ファイルシステムのマウント・ポイントの管理。（MNT：マウント）
+* **uts 名前区間** ：カーネルとバージョンの分離。（UTS：Unix  Timesharing System、Unix タイムシェアリング・システム）
 
 .. Control groups
 
