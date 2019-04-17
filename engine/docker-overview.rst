@@ -434,9 +434,11 @@ Docker は `Go 言語 <https://golang.org/>`_ で書かれており、Linux カ�
 Docker は名前空間という技術を利用して *コンテナ* と呼ぶ作業空間を分離して提供します。
 コンテナが実行されたとき、Docker はそのコンテナに対して複数の *名前空間* を生成します。
 
-.. These namespaces provide a layer of isolation. Each aspect of a container runs in a separate namespace and its access is limited to that namespace.
+.. These namespaces provide a layer of isolation. Each aspect of a container runs
+   in a separate namespace and its access is limited to that namespace.
 
-名前空間はレイヤの分離ををもたらします。コンテナを実行した状態では、それぞれの名前空間は隔てられており、名前空間へのアクセスが制限されます。
+名前空間はいくつもの分離状態を作り出します。
+コンテナ内のさまざまな処理は、分離された名前空間内にて実行され、それぞれへのアクセスはその名前空間内に限定されます。
 
 .. Docker Engine uses namespaces such as the following on Linux:
 
