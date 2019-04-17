@@ -453,11 +453,11 @@ Docker Engine が取り扱う名前空間は、Linux 上で言えば以下のよ
     - **The `uts` namespace:** Isolating kernel and version identifiers. (UTS: Unix
    Timesharing System).
 
-* **pid 名前区間** ：プロセスの分離。（PID：プロセス ID）
-* **net 名前区間** ：ネットワーク・インターフェースの管理。（NET：ネットワーキング）
-* **ipc 名前区間** ：IPC リソースに対するアクセス管理。（IPC：InterProcess Communication、内部プロセスの通信）
-* **mnt 名前区間** ：ファイルシステムのマウント・ポイントの管理。（MNT：マウント）
-* **uts 名前区間** ：カーネルとバージョンの分離。（UTS：Unix  Timesharing System、Unix タイムシェアリング・システム）
+* **pid 名前空間** ：プロセスの分離。（PID：プロセス ID）
+* **net 名前空間** ：ネットワーク・インターフェースの管理。（NET：ネットワーキング）
+* **ipc 名前空間** ：IPC リソースに対するアクセス管理。（IPC：InterProcess Communication、内部プロセスの通信）
+* **mnt 名前空間** ：ファイルシステムのマウント・ポイントの管理。（MNT：マウント）
+* **uts 名前空間** ：カーネルとバージョンの分離。（UTS：Unix  Timesharing System、Unix タイムシェアリング・システム）
 
 .. ### Control groups
 
