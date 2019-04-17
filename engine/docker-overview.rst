@@ -459,14 +459,20 @@ Docker Engine が取り扱う名前空間は、Linux 上で言えば以下のよ
 * **mnt 名前区間** ：ファイルシステムのマウント・ポイントの管理。（MNT：マウント）
 * **uts 名前区間** ：カーネルとバージョンの分離。（UTS：Unix  Timesharing System、Unix タイムシェアリング・システム）
 
-.. Control groups
+.. ### Control groups
 
 コントロール・グループ (Control groups)
 ----------------------------------------
 
-.. Docker Engine on Linux also relies on another technology called control groups (cgroups). A cgroup limits an application to a specific set of resources. Control groups allow Docker Engine to share available hardware resources to containers and optionally enforce limits and constraints. For example, you can limit the memory available to a specific container.
+.. Docker Engine on Linux also relies on another technology called _control groups_
+   (`cgroups`). A cgroup limits an application to a specific set of resources.
+   Control groups allow Docker Engine to share available hardware resources to
+   containers and optionally enforce limits and constraints. For example,
+   you can limit the memory available to a specific container.
 
-Linux の Docker Engine はコントロール・グループ（ ``ctroups`` ）という他の技術も依存します。アプリケーションに対するリソース指定は cgroup で制限します。コントロール・グループにより、 Docker Engine のコンテナに対するハードウェア・リソース共有を可能とします。また、オプションでリソース上限や制限（constraint）も強制できます。たとえば、特定のコンテナに対する利用可能なメモリを制限できます。
+Linux 上で動作する Docker Engine には、さらに *コントール・グループ* （``cgroups``; control groups）と呼ばれる技術も併用されます。
+cgroup は、アプリケーションが利用するリソースを特定のものに限定します。
+つまりコントロール・グループは、Docker Engine が利用可能なハードウェア・リソースをコンテナ間で共有するようにし、必要に応じて利用上限や制約をつけることも行います。たとえば特定のコンテナが利用するメモリの上限を設定することもできます。
 
 .. Union file systems
 
