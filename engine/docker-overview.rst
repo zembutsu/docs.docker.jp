@@ -507,13 +507,15 @@ Docker Engine では AUFS、btrfs、vfs、DeviceMapper などの UnionFS 系の�
 次のステップ
 ====================
 
-..    Read about installing Docker.
-    Get hands-on experience with the Getting started with Docker tutorial.
-    Check out examples and deep dive topics in the Docker Engine user guide.
+.. - Read about [installing Docker](installation/index.md#installation).
+   - Get hands-on experience with the [Getting started with Docker](getstarted/index.md)
+       tutorial.
+   - Check out examples and deep dive topics in the
+       [Docker Engine user guide](userguide/index.md).
 
-* :doc:`/engine/installation` を読む
-* :doc:`チュートリアル </get-started/index>` で手を動かす
-* :doc:`Docker Engine ユーザ・ガイド </engine/userguide/index>` で例や詳細トピックを確認
+* :doc:`/engine/installation` に進む。
+* :doc:`Docker を使い始める </get-started/index>` を試す。
+* 利用例を確認したり詳細なトピックを突き詰めたりするために :doc:`Docker Engine ユーザ・ガイド </engine/userguide/index>` を読む。
 
 
 .. seealso:: 
