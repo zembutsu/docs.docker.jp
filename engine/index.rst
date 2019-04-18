@@ -65,18 +65,14 @@ Docker は以下によって構成されます。
       inside containers while sysadmins and operators can work on running the
       container in your deployment. This separation of duties streamlines and
       simplifies the management and deployment of code.
-
-* 私たちはみなさんの環境を良くしたいのです。Docker コンテナおよびこれを利用したワークフローは、開発に関わるすべての人、つまり開発者、システム管理者、品質管理担当者、リリース・エンジニアを含め、コードを本番環境へ適用し実運用させる作業すべてを手助けします。標準的なコンテナ・フォーマットというものが作り出されているので、開発者にとってはコンテナ内にあるアプリケーションの開発に集中するだけでよく、システム管理者やオペレータはデプロイされたコンテナの運用に取り組むだけでよくなります。このように作業を分担することは、コード管理とデプロイを効率化し簡素化することを意味します。
-
-.. * We make it easy to build new containers, enable rapid iteration of
+   * We make it easy to build new containers, enable rapid iteration of
          your applications, and increase the visibility of changes. This
          helps everyone in your organization understand how an application works
          and how it is built.
+   *  Docker containers are lightweight and fast! Containers have sub-second launch times, reducing the cycle time of development, testing, and deployment.
 
+* 私たちはみなさんの環境を良くしたいのです。Docker コンテナおよびこれを利用したワークフローは、開発に関わるすべての人、つまり開発者、システム管理者、品質管理担当者、リリース・エンジニアを含め、コードを本番環境へ適用し実運用させる作業すべてを手助けします。標準的なコンテナ・フォーマットというものが作り出されているので、開発者にとってはコンテナ内にあるアプリケーションの開発に集中するだけでよく、システム管理者やオペレータはデプロイされたコンテナの運用に取り組むだけでよくなります。このように作業を分担することは、コード管理とデプロイを効率化し簡素化することを意味します。
 * 新たなコンテナの構築は容易にできます。さらにアプリケーションを迅速に繰り返して投入することや、変更がわかりやすくなるようにしてます。つまり開発する誰にとっても、アプリケーションがいかに作動し、どのようにして構築されるかを、簡単に理解できるようにもなっているわけです。
-
-..    Docker containers are lightweight and fast! Containers have sub-second launch times, reducing the cycle time of development, testing, and deployment.
-
 * Docker コンテナは軽量かつ高速です！コンテナの起動時間は数秒であり、開発・テスト・デプロイのサイクルにかかる時間を減らします。
 
 .. Deploy and scale more easily
