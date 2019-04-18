@@ -104,10 +104,9 @@ Docker は以下によって構成されます。
 
 * Docker コンテナはハイパーバイザを必要としないため、ホスト上により多くを詰め込むことができます。つまり各サーバの価値を十分に引き出し、機器やライセンスにかかる潜在的なコストを軽減する可能性を秘めています。
 
-.. Faster deployment makes for easier management
+.. *Faster deployment makes for easier management*
 
-デプロイの高速化による管理の簡易化
-----------------------------------------
+**管理の容易さを目指してデプロイを迅速化**
 
 ..    As Docker speeds up your work flow, it gets easier to make lots of small changes instead of huge, big bang updates. Smaller changes mean reduced risk and more uptime.
 
