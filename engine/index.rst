@@ -177,9 +177,11 @@ Docker についての詳細、あるいは使い方や実装についての疑�
 
 Docker の機能変更に際しては、既存機能を削除したり新たな機能に置き換えたりする必要があった場合には、時間をおくことが必要になります。既存機能を削除するにあたっては、ドキュメント内に "deprecated"（廃止予定）とラベル付けするようにします。そして Docker モジュール内には、最低でも３つの安定版がリリースされる間（およそ９ヶ月）は残すようにします。この期間を過ぎたものは削除されることがあります。
 
-.. Users are expected to take note of the list of deprecated features each release and plan their migration away from those features, and (if applicable) towards the replacement features as soon as possible.
+.. Users are expected to take note of the list of deprecated features each
+   release and plan their migration away from those features, and (if applicable)
+   towards the replacement features as soon as possible.
 
-利用者は、廃止予定の機能に関しては、リリースごとに注意をお払いください。機能の変更が分かった場合は、可能な限り速く（適切な）移行をお願いします。
+ユーザは最新リリースごとに、廃止予定の機能一覧を注意して見ていく必要があります。最新版への移行にあたっては、廃止予定の機能は使わないようにして、（適用可能であれば）できるだけ早くに代替機能を用いるようにしてください。
 
 .. The complete list of deprecated features can be found on the Deprecated Features page.
 
