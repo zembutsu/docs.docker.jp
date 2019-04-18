@@ -140,9 +140,10 @@ Docker は以下によって構成されます。
 インストールガイド
 --------------------
 
-.. The installation section will show you how to install Docker on a variety of platforms.
+.. The [installation section](installation/index.md) will show you how to install Docker
+   on a variety of platforms.
 
-:doc:`インストールのセクション </engine/installation/index>` では、様々なプラットフォームに対する Docker のインストール方法を理解します。
+:doc:`インストールのセクション </engine/installation/index>` では、さまざまなプラットフォームにおける Docker のインストール方法を示します。
 
 .. Docker user guide
 
