@@ -166,7 +166,7 @@ Docker についての詳細、あるいは使い方や実装についての疑�
 
 .. Feature deprecation policy
 
-機能廃止ポリシー
+機能廃止に関する方針
 ====================
 
 .. As changes are made to Docker there may be times when existing features will need to be removed or replaced with newer features. Before an existing feature is removed it will be labeled as "deprecated" within the documentation and will remain in Docker for at least 3 stable releases (roughly 9 months). After that time it may be removed.
