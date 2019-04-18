@@ -123,17 +123,17 @@ Docker は以下によって構成されます。
 
 :doc:`Docker のアーキテクチャ </engine/understanding-docker>` にて以下が示されています。
 
-..    See how Docker works at a high level
-    Understand the architecture of Docker
-    Discover Docker’s features;
-    See how Docker compares to virtual machines
-    See some common use cases.
+..  - See how Docker works at a high level
+    - Understand the architecture of Docker
+    - Discover Docker's features;
+    - See how Docker compares to virtual machines
+    - See some common use cases.
 
-* Docker がハイレベルでどのように動作するのか
-* Docker アーキテクチャの理解
-* Docker の機能確認
-* Docker と仮想化の違いを知る
-* 一般的な使い方を知る
+* Docker がいかにして動作するかを詳細に
+* Docker のアーキテクチャを理解する
+* Docker の機能を確認する
+* Docker と仮想マシンの違いを見る
+* 一般的な利用例を見る
 
 .. Installation guides
 
