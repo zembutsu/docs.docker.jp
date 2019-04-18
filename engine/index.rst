@@ -48,10 +48,10 @@ Docker は以下によって構成されます。
 * Docker Engine … 軽量かつ強力なオープンソースによりコンテナ化（containerization）を行う技術。アプリケーションの構築とコンテナ化を行うワークフローを実現します。
 * `Docker Hub <https://hub.docker.com/>`_ … アプリケーション層を共有し管理するための Saas サービス。
 
-.. Why Docker?
+.. ## Why Docker?
 
-なぜ Docker なのでしょうか？
-==============================
+なぜ Docker なのか？
+====================
 
 .. Faster delivery of your applications
 
