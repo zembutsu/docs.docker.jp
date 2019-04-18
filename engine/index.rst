@@ -37,7 +37,7 @@ Docker はテストや本番投入も迅速に実現します。
 
 .. Docker consists of:
 
-Docker を構成するのは、次の２つです。
+Docker は以下によって構成されます。
 
 ..     The Docker Engine - our lightweight and powerful open source container virtualization technology combined with a work flow for building and containerizing your applications.
 ..    Docker Hub - our SaaS service for sharing and managing your application stacks.
