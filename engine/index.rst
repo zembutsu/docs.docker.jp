@@ -75,10 +75,9 @@ Docker は以下によって構成されます。
 * 新たなコンテナの構築は容易にできます。さらにアプリケーションを迅速に繰り返して投入することや、変更がわかりやすくなるようにしてます。つまり開発する誰にとっても、アプリケーションがいかに作動し、どのようにして構築されるかを、簡単に理解できるようにもなっているわけです。
 * Docker コンテナは軽量かつ高速です！コンテナの起動時間は数秒であり、開発・テスト・デプロイのサイクルにかかる時間を減らします。
 
-.. Deploy and scale more easily
+.. *Deploy and scale more easily*
 
-デプロイやスケールをもっと簡単に
-----------------------------------------
+**デプロイやスケールをもっと簡単に**
 
 ..    Docker containers run (almost) everywhere. You can deploy containers on desktops, physical servers, virtual machines, into data centers, and up to public and private clouds.
 
