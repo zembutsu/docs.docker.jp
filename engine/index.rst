@@ -93,10 +93,9 @@ Docker は以下によって構成されます。
 * Docker は多くのプラットフォーム上で動作するので、開発したアプリケーションをあちこちに動かすことが簡単にできます。アプリケーションは、テスト環境からクラウド上に簡単に移動でき、必要に応じてすぐに戻すこともできます。
 * Docker の軽量なコンテナは、スケールアップやスケールダウンもすばやく簡単に実現します。必要なときに必要なだけコンテナをすばやく起動でき、不要になったときには簡単に停止することができます。
 
-.. Get higher density and run more workloads
+.. *Get higher density and run more workloads*
 
-より高い密度で多くの仕事量を
-------------------------------
+**処理を集中させ負荷を高く**
 
 ..    Docker containers don’t need a hypervisor, so you can pack more of them onto your hosts. This means you get more value out of every server and can potentially reduce what you spend on equipment and licenses.
 
