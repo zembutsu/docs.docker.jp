@@ -53,10 +53,9 @@ Docker は以下によって構成されます。
 なぜ Docker なのか？
 ====================
 
-.. Faster delivery of your applications
+.. *Faster delivery of your applications*
 
-より速いアプリケーションの配信
-----------------------------------------
+**迅速なアプリケーション配信**
 
 ..    We want your environment to work better. Docker containers, and the work flow that comes with them, help your developers, sysadmins, QA folks, and release engineers work together to get your code into production and make it useful. We’ve created a standard container format that lets developers care about their applications inside containers while sysadmins and operators can work on running the container in your deployment. This separation of duties streamlines and simplifies the management and deployment of code.
 
