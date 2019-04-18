@@ -21,13 +21,19 @@ Docker Engine について
        :local:
        
 
--- **Develop, Ship and Run Any Application, Anywhere**
+.. **Develop, Ship and Run Any Application, Anywhere**
 
 **あらゆるアプリケーションがどこでも開発、導入、実行できる**
 
-.. Docker is a platform for developers and sysadmins to develop, ship, and run applications. Docker lets you quickly assemble applications from components and eliminates the friction that can come when shipping code. Docker lets you get your code tested and deployed into production as fast as possible.
+.. [**Docker**](https://www.docker.com) is a platform for developers and sysadmins
+   to develop, ship, and run applications.  Docker lets you quickly assemble
+   applications from components and eliminates the friction that can come when
+   shipping code. Docker lets you get your code tested and deployed into production
+   as fast as possible.
 
-`Docker <https://www.docker.com/>`_ とは、開発者やシステム管理者が、アプリケーションの開発、移動、実行するためのプラットフォームです。Docker は部品（コンポーネント）から迅速にアプリケーションを組み立てるため、コードの移動による摩擦を無くします。Docker はコードのテストやプロダクション（本番環境）に対する迅速な展開をもたらします。
+`Docker <https://www.docker.com/>`_ とは、開発者やシステム管理者がアプリケーションを開発、導入、実行するためのプラットフォームです。
+Docker を使えば、アプリケーションをコンポーネントからすばやく組み立てることができ、コード導入時に発生するコード間の相違を軽減できます。
+Docker はテストや本番投入も迅速に実現します。
 
 .. Docker consists of:
 
