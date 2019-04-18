@@ -21,9 +21,9 @@ Docker Engine について
        :local:
        
 
-.. Develop, Ship and Run Any Application, Anywhere
+-- **Develop, Ship and Run Any Application, Anywhere**
 
-**Develop, Ship and Run Any Application, Anywhere ～ あらゆるアプリケーションを、どこでも開発、移動、実行できるように**
+**あらゆるアプリケーションがどこでも開発、導入、実行できる**
 
 .. Docker is a platform for developers and sysadmins to develop, ship, and run applications. Docker lets you quickly assemble applications from components and eliminates the friction that can come when shipping code. Docker lets you get your code tested and deployed into production as fast as possible.
 
