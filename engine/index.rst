@@ -79,9 +79,11 @@ Docker は以下によって構成されます。
 
 **デプロイやスケールをもっと簡単に**
 
-..    Docker containers run (almost) everywhere. You can deploy containers on desktops, physical servers, virtual machines, into data centers, and up to public and private clouds.
+.. * Docker containers run (almost) everywhere. You can deploy
+         containers on desktops, physical servers, virtual machines, into
+         data centers, and up to public and private clouds.
 
-* Docker コンテナは（ほとんど）どこでも動きます。コンテナのデプロイは、デスクトップでも、物理サーバでも、仮想マシンにもデプロイできます。それだけでなく、あらゆるデータセンタ、パブリック・クラウド、プライベート・クラウドにデプロイできます。
+* Docker コンテナは（ほとんど）どこでも動きます。コンテナのデプロイは、デスクトップ、物理サーバ、仮想マシンに対して行うことができます。さらにデータセンタやパブリック・クラウド、プライベート・クラウドにもデプロイできます。
 
 ..    Since Docker runs on so many platforms, it’s easy to move your applications around. You can easily move an application from a testing environment into the cloud and back whenever you need.
 
