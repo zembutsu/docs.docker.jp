@@ -108,9 +108,11 @@ Docker は以下によって構成されます。
 
 **管理の容易さを目指してデプロイを迅速化**
 
-..    As Docker speeds up your work flow, it gets easier to make lots of small changes instead of huge, big bang updates. Smaller changes mean reduced risk and more uptime.
+.. * As Docker speeds up your work flow, it gets easier to make lots
+         of small changes instead of huge, big bang updates. Smaller
+         changes mean reduced risk and more uptime.
 
-* Docker がもたらすワークフローの高速化は、小さな変更だけでなく、大規模アップデートに至るまでをも簡単にします。小さな変更とは、更新時におけるリスク（危険性）の減少を意味します。
+* Docker によってワークフローがスピードアップするため、とてつもなく大きな更新を行うのではなく、小さな更新を数多くこなすことが可能になります。小さな更新であればあるほど、リスクは減り更新タイミングを増やすことができます。
 
 .. About this guide
 
