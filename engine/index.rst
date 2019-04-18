@@ -85,9 +85,11 @@ Docker は以下によって構成されます。
 
 * Docker コンテナは（ほとんど）どこでも動きます。コンテナのデプロイは、デスクトップ、物理サーバ、仮想マシンに対して行うことができます。さらにデータセンタやパブリック・クラウド、プライベート・クラウドにもデプロイできます。
 
-..    Since Docker runs on so many platforms, it’s easy to move your applications around. You can easily move an application from a testing environment into the cloud and back whenever you need.
+.. * Since Docker runs on so many platforms, it's easy to move your
+         applications around. You can easily move an application from a
+         testing environment into the cloud and back whenever you need.
 
-* Docker は多くのプラットフォームで動作しますので、アプリケーション周辺の移動も簡単です。必要であればテスト環境上のアプリケーションを、クラウド環境でもどこでも簡単に移動できます。
+* Docker は多くのプラットフォーム上で動作するので、開発したアプリケーションをあちこちに動かすことが簡単にできます。アプリケーションは、テスト環境からクラウド上に簡単に移動でき、必要に応じてすぐに戻すこともできます。
 
 ..    Docker’s lightweight containers also make scaling up and down fast and easy. You can quickly launch more containers when needed and then shut them down easily when they’re no longer needed.
 
