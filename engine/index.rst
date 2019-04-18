@@ -188,14 +188,16 @@ Docker の機能変更に際しては、既存機能を削除したり新たな�
 
 廃止予定の機能一覧については、:doc:`廃止予定機能のページ </engine/deprecated>` を確認してください。
 
-.. Licensing
+.. ## Licensing
 
-使用許諾
+ライセンス
 ====================
 
-.. Docker is licensed under the Apache License, Version 2.0. See LICENSE for the full license text.
+.. Docker is licensed under the Apache License, Version 2.0. See
+   [LICENSE](https://github.com/moby/moby/blob/master/LICENSE) for the full
+   license text.
 
-Docker の使用許諾（ライセンス）は Apache License, Version 2.0 です。使用許諾条項の詳細は  `LICENSE <https://github.com/docker/docker/blob/master/LICENSE>`_ をご覧ください。
+Docker のライセンスは Apache License, Version 2.0 です。ライセンス条項の詳細は  `LICENSE <https://github.com/docker/docker/blob/master/LICENSE>`_ を確認してください。
 
 .. seealso::
 
