@@ -119,9 +119,9 @@ Docker は以下によって構成されます。
 このガイドについて
 ====================
 
-.. The Understanding Docker section will help you:
+.. The [Understanding Docker section](understanding-docker.md) will help you:
 
-:doc:`Docker のアーキテクチャ </engine/understanding-docker>` は、次の理解を助けます。
+:doc:`Docker のアーキテクチャ </engine/understanding-docker>` にて以下が示されています。
 
 ..    See how Docker works at a high level
     Understand the architecture of Docker
