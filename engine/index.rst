@@ -97,9 +97,12 @@ Docker は以下によって構成されます。
 
 **処理を集中させ負荷を高く**
 
-..    Docker containers don’t need a hypervisor, so you can pack more of them onto your hosts. This means you get more value out of every server and can potentially reduce what you spend on equipment and licenses.
+.. * Docker containers don't need a hypervisor, so you can pack more of
+         them onto your hosts. This means you get more value out of every
+         server and can potentially reduce what you spend on equipment and
+         licenses.
 
-* Docker コンテナはハイパーバイザーが不要なため、ホスト上により多くを集約できます。つまり、各サーバの価値をより高め、機材やライセンスの消費を減らせる可能性があります。
+* Docker コンテナはハイパーバイザを必要としないため、ホスト上により多くを詰め込むことができます。つまり各サーバの価値を十分に引き出し、機器やライセンスにかかる潜在的なコストを軽減する可能性を秘めています。
 
 .. Faster deployment makes for easier management
 
