@@ -57,9 +57,16 @@ Docker は以下によって構成されます。
 
 **迅速なアプリケーション配信**
 
-..    We want your environment to work better. Docker containers, and the work flow that comes with them, help your developers, sysadmins, QA folks, and release engineers work together to get your code into production and make it useful. We’ve created a standard container format that lets developers care about their applications inside containers while sysadmins and operators can work on running the container in your deployment. This separation of duties streamlines and simplifies the management and deployment of code.
+.. * We want your environment to work better. Docker containers,
+      and the work flow that comes with them, help your developers,
+      sysadmins, QA folks, and release engineers work together to get your code
+      into production and make it useful. We've created a standard
+      container format that lets developers care about their applications
+      inside containers while sysadmins and operators can work on running the
+      container in your deployment. This separation of duties streamlines and
+      simplifies the management and deployment of code.
 
-* 私たちは皆さんの環境を良くしたいのです。Docker コンテナと、そのワークフローにより、開発者、システム管理者、品質管理担当者、リリース・エンジニアが一緒になり、皆さんのコードをプロダクションに運ぶのを手伝い、使いやすくします。私たちが作成した標準コンテナ形式により、開発者はコンテナの中のアプリケーションに集中し、システム管理者やオペレータはコンテナのデプロイと実行が可能になります。この作業範囲の分割によって、コードの開発と管理を単純化します。
+* 私たちはみなさんの環境を良くしたいのです。Docker コンテナおよびこれを利用したワークフローは、開発に関わるすべての人、つまり開発者、システム管理者、品質管理担当者、リリース・エンジニアを含め、コードを本番環境へ適用し実運用させる作業すべてを手助けします。標準的なコンテナ・フォーマットというものが作り出されているので、開発者にとってはコンテナ内にあるアプリケーションの開発に集中するだけでよく、システム管理者やオペレータはデプロイされたコンテナの運用に取り組むだけでよくなります。このように作業を分担することは、コード管理とデプロイを効率化し簡素化することを意味します。
 
 ..    We make it easy to build new containers, enable rapid iteration of your applications, and increase the visibility of changes. This helps everyone in your organization understand how an application works and how it is built.
 
