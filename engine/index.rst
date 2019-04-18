@@ -183,9 +183,10 @@ Docker の機能変更に際しては、既存機能を削除したり新たな�
 
 ユーザは最新リリースごとに、廃止予定の機能一覧を注意して見ていく必要があります。最新版への移行にあたっては、廃止予定の機能は使わないようにして、（適用可能であれば）できるだけ早くに代替機能を用いるようにしてください。
 
-.. The complete list of deprecated features can be found on the Deprecated Features page.
+.. The complete list of deprecated features can be found on the
+   [Deprecated Features page](deprecated.md).
 
-廃止機能の一覧リストについては、:doc:`廃止機能のページ </engine/deprecated>` をご覧ください。
+廃止予定の機能一覧については、:doc:`廃止予定機能のページ </engine/deprecated>` を確認してください。
 
 .. Licensing
 
