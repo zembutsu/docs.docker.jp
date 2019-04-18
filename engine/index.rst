@@ -91,9 +91,11 @@ Docker は以下によって構成されます。
 
 * Docker は多くのプラットフォーム上で動作するので、開発したアプリケーションをあちこちに動かすことが簡単にできます。アプリケーションは、テスト環境からクラウド上に簡単に移動でき、必要に応じてすぐに戻すこともできます。
 
-..    Docker’s lightweight containers also make scaling up and down fast and easy. You can quickly launch more containers when needed and then shut them down easily when they’re no longer needed.
+.. * Docker's lightweight containers also make scaling up and
+         down fast and easy. You can quickly launch more containers when
+         needed and then shut them down easily when they're no longer needed.
 
-* また、Docker の軽量コンテナは、スケールアップやスケールダウンを速く簡単にします。必要であれば迅速に多くのコンテナを起動できますし、必要がなくなれば簡単に停止できます。
+* Docker の軽量なコンテナは、スケールアップやスケールダウンもすばやく簡単に実現します。必要なときに必要なだけコンテナをすばやく起動でき、不要になったときには簡単に停止することができます。
 
 
 .. Get higher density and run more workloads
