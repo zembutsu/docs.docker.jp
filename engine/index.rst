@@ -150,10 +150,10 @@ Docker は以下によって構成されます。
 Docker ユーザガイド
 --------------------
 
-.. To learn about Docker in more detail and to answer questions about usage and implementation, check out the Docker User Guide.
+.. To learn about Docker in more detail and to answer questions about usage and
+   implementation, check out the [Docker User Guide](userguide/index.md).
 
-Docker の詳細を学び、使い方や実装に関する疑問を解消するには、 :doc:`Docker Engine ユーザガイド </engine/userguide/index>` をご確認ください。
-
+Docker についての詳細、あるいは使い方や実装についての疑問を解消するには :doc:`Docker Engine ユーザガイド </engine/userguide/index>` を確認してください。
 
 .. Release note
 
