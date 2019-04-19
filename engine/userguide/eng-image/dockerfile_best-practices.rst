@@ -33,9 +33,14 @@ Docker は ``Dockerfile`` に書かれる指示を読み込んで、自動的に
 基本的なことは :doc:`Dockerfile リファレンス </engine/reference/builder>` で学ぶことができます。
 Dockerfile を書き慣れていない方は、そのリファレンスから始めてください。
 
-.. This document covers the best practices and methods recommended by Docker, Inc. and the Docker community for creating easy-to-use, effective Dockerfiles. We strongly suggest you follow these recommendations (in fact, if you’re creating an Official Image, you must adhere to these practices).
+.. This document covers the best practices and methods recommended by Docker,
+   Inc. and the Docker community for creating easy-to-use, effective
+   `Dockerfile`s. We strongly suggest you follow these recommendations (in fact,
+   if you’re creating an Official Image, you *must* adhere to these practices).
 
-このドキュメントは Docker 社が推奨するベストプラクティスや手法を扱っており、Docker コミュニティが簡単かつ効率的に ``Dockerfile`` を作成できるようにします。この推奨方法に従うことを強く勧めます（実際、公式イメージを作成するには、これらのプラクティスに従う *必要* があります）。
+このドキュメントでは、Docker 社や Docker コミュニティが推奨するベストプラクティスおよび方法を示しています。
+Dockerfile を簡単に作り出して利用できるように、効率的な Dockerfile の書き方を示すものです。
+みなさんには、ここに示す推奨方法を強くお勧めします（さらに、公式イメージを生成するときには、この推奨方法に従うことが必要になってきます）。
 
 .. You can see many of these practices and recommendations in action in the buildpack-deps Dockerfile.
 
