@@ -64,9 +64,17 @@ Dockerfile を簡単に作り出して利用できるように、効率的な Do
 コンテナは "はかない" もの
 --------------------------
 
-.. The container produced by the image your Dockerfile defines should be as ephemeral as possible. By “ephemeral,” we mean that it can be stopped and destroyed and a new one built and put in place with an absolute minimum of set-up and configuration.
+.. The container produced by the image your `Dockerfile` defines should be as
+   ephemeral as possible. By “ephemeral,” we mean that it can be stopped and
+   destroyed and a new one built and put in place with an absolute minimum of
+   set-up and configuration. You may want to take a look at the
+   [Processes](https://12factor.net/processes) section of the 12 Factor app
+   methodology to get a feel for the motivations of running containers in such a
+   stateless fashion.
 
-``Dockerfile`` で定義されたイメージを使って作成するコンテナは、可能な限りエフェメラル（短命；ephemeral）にすべきです。つまり、停止・破棄可能であり、また再構築して利用可能にするにも最小限の構成・設定さえすればよい状態であるべきということです。
+``Dockerfile`` が定義するイメージによって生成されるコンテナは、できる限り "はかないもの"（ephemeral）と考えておくべきです。
+"はかない" という語を使うのは、コンテナが停止、破棄されて、すぐに新たなものが作り出されるからです。
+最小限の構成や設定があれば稼動できます。
 
 .. Use a .dockerignore file
 
