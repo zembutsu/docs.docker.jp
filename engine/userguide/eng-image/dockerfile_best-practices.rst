@@ -59,10 +59,10 @@ Dockerfile を簡単に作り出して利用できるように、効率的な Do
 一般的なガイドラインとアドバイス
 ================================
 
-.. Containers should be ephemeral
+.. ### Containers should be ephemeral
 
-コンテナはエフェメラルであるべき
-----------------------------------------
+コンテナは "はかない" もの
+--------------------------
 
 .. The container produced by the image your Dockerfile defines should be as ephemeral as possible. By “ephemeral,” we mean that it can be stopped and destroyed and a new one built and put in place with an absolute minimum of set-up and configuration.
 
