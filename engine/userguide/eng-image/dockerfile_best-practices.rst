@@ -42,9 +42,10 @@ Dockerfile を書き慣れていない方は、そのリファレンスから始
 Dockerfile を簡単に作り出して利用できるように、効率的な Dockerfile の書き方を示すものです。
 みなさんには、ここに示す推奨方法を強くお勧めします（さらに、公式イメージを生成するときには、この推奨方法に従うことが必要になってきます）。
 
-.. You can see many of these practices and recommendations in action in the buildpack-deps Dockerfile.
+.. You can see many of these practices and recommendations in action in the [buildpack-deps `Dockerfile`](https://github.com/docker-library/buildpack-deps/blob/master/jessie/Dockerfile).
 
-多くのベストプラクティスや推奨する手法は、 `buildpack-deps <https://github.com/docker-library/buildpack-deps/blob/master/jessie/Dockerfile>`_ の ``Dockerfile`` でご覧いただけます。
+
+このベストプラクティスや推奨する手法の多くは、更新中の `buildpack-deps <https://github.com/docker-library/buildpack-deps/blob/master/jessie/Dockerfile>`_ の ``Dockerfile`` に見ることができます。
 
 ..    Note: for more detailed explanations of any of the Dockerfile commands mentioned here, visit the Dockerfile Reference page.
 
