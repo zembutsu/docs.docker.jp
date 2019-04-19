@@ -28,7 +28,7 @@ Dockerfile 記述のベスト・プラクティス
    you’re new to writing `Dockerfile`s, you should start there.
 
 Docker は ``Dockerfile`` に書かれる指示を読み込んで、自動的にイメージを構築します。
-これは、あらゆる命令を含んだテキストファイルであり、指定されたイメージの構築に必要となるものです。
+これは、あらゆる命令を含んだテキストファイルであり、順に処理することで指定されたイメージを構築するために必要となるものです。
 ``Dockerfile`` は所定のフォーマットにこだわっていて、特定の指示を用いることにしています。
 基本的なことは :doc:`Dockerfile リファレンス </engine/reference/builder>` で学ぶことができます。
 Dockerfile を書き慣れていない方は、そのリファレンスから始めてください。
