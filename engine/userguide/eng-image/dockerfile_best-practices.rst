@@ -81,9 +81,18 @@ Dockerfile を簡単に作り出して利用できるように、効率的な Do
 .dockerignore ファイルの利用
 ------------------------------
 
-.. In most cases, it’s best to put each Dockerfile in an empty directory. Then, add to that directory only the files needed for building the Dockerfile. To increase the build’s performance, you can exclude files and directories by adding a .dockerignore file to that directory as well. This file supports exclusion patterns similar to .gitignore files. For information on creating one, see the .dockerignore file.
+.. In most cases, it's best to put each Dockerfile in an empty directory. Then,
+   add to that directory only the files needed for building the Dockerfile. To
+   increase the build's performance, you can exclude files and directories by
+   adding a `.dockerignore` file to that directory as well. This file supports
+   exclusion patterns similar to `.gitignore` files. For information on creating one,
+   see the [.dockerignore file](../../reference/builder.md#dockerignore-file).
 
-ほとんどの場合、空のディレクトリに個々の Dockerfile を置くのがベストです。その場合、そのディレクトリには Dockerfile の構築に必要なファイルだけを追加するようにします。あるいは ``.dockerignore`` ファイルを追加することでファイルやディレクトリを除外でき、構築のパフォーマンスを高められます。このファイルは ``.gitignore`` ファイルのような除外パターンに対応しています。作成については、 :ref:`.dockerignore ファイル <dockerignore-file>` をご覧ください。
+Dockerfile は、たいていは空のディレクトリに配置するのが適当です。
+その後にそのディレクトリへは、Dockerfile の構築に必要となるファイルのみを追加します。
+ビルドの効率をよくするために、ファイルやディレクトリを除外指定する ``.dockerignore`` ファイルをそのディレクトリに置く方法もあります。
+このファイルがサポートする除外パターンの指定方法は ``.gitignore`` と同様です。
+このファイルの作成に関しては :ref:`.dockerignore ファイル <dockerignore-file>` を参照してください。
 
 .. Avoid installing unnecessary packages
 
