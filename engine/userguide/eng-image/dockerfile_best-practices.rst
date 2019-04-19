@@ -47,11 +47,12 @@ Dockerfile を簡単に作り出して利用できるように、効率的な Do
 
 このベストプラクティスや推奨する手法の多くは、更新中の `buildpack-deps <https://github.com/docker-library/buildpack-deps/blob/master/jessie/Dockerfile>`_ の ``Dockerfile`` に見ることができます。
 
-..    Note: for more detailed explanations of any of the Dockerfile commands mentioned here, visit the Dockerfile Reference page.
+.. > Note: for more detailed explanations of any of the Dockerfile commands
+   >mentioned here, visit the [Dockerfile Reference](../../reference/builder.md) page.
 
 .. note::
 
-   Dockerfile の命令に関するより詳細な説明は、 :doc:`Dockerfile リファレンス </engine/reference/builder>` ページをご覧ください。
+   ここで説明する Dockerfile コマンドの詳しい説明は  :doc:`Dockerfile リファレンス </engine/reference/builder>` を参照してください。
 
 .. General guidelines and recommendations
 
