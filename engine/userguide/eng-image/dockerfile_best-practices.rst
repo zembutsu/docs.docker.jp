@@ -11,7 +11,7 @@
 .. _best-practices-for-writing-dockerfile:
 
 =======================================
-Dockerfile を書くベスト・プラクティス
+Dockerfile 記述のベスト・プラクティス
 =======================================
 
 .. sidebar:: 目次
