@@ -20,9 +20,18 @@ Dockerfile 記述のベスト・プラクティス
        :depth: 3
        :local:
 
-.. Docker can build images automatically by reading the instructions from a Dockerfile, a text file that contains all the commands, in order, needed to build a given image. Dockerfiles adhere to a specific format and use a specific set of instructions. You can learn the basics on the Dockerfile Reference page. If you’re new to writing Dockerfiles, you should start there.
+.. Docker can build images automatically by reading the instructions from a
+   `Dockerfile`, a text file that contains all the commands, in order, needed to
+   build a given image. `Dockerfile`s adhere to a specific format and use a
+   specific set of instructions. You can learn the basics on the
+   [Dockerfile Reference](../../reference/builder.md) page. If
+   you’re new to writing `Dockerfile`s, you should start there.
 
-Docker は ``Dockerfile`` の命令を読み込み、自動的にイメージを構築できます。これはテキストファイルであり、特定のイメージを構築するために必要な全ての命令が入っています。 ``Dockerfile`` は個別の命令セットを使い、特定の形式で記述します。基本は :doc:`Dockerfile リファレンス </engine/reference/builder>` で学べます。新しく ``Dockerfile`` を書こうとしているのであれば、そのリファレンスから出発しましょう。
+Docker は ``Dockerfile`` に書かれる指示を読み込んで、自動的にイメージを構築します。
+これは、あらゆる命令を含んだテキストファイルであり、指定されたイメージの構築に必要となるものです。
+``Dockerfile`` は所定のフォーマットにこだわっていて、特定の指示を用いることにしています。
+基本的なことは :doc:`Dockerfile リファレンス </engine/reference/builder>` で学ぶことができます。
+Dockerfile を書き慣れていない方は、そのリファレンスから始めてください。
 
 .. This document covers the best practices and methods recommended by Docker, Inc. and the Docker community for creating easy-to-use, effective Dockerfiles. We strongly suggest you follow these recommendations (in fact, if you’re creating an Official Image, you must adhere to these practices).
 
