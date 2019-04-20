@@ -206,9 +206,14 @@ Dockerfile は、たいていは空のディレクトリに配置するのが適
 
 一方で Docker のキャッシュを利用する場合、Docker が適切なイメージを見つけた上で、どのようなときにキャッシュを利用し、どのようなときには利用しないのかを理解しておくことが必要です。Docker が従っている規則は以下のとおりです。
 
-..    Starting with a base image that is already in the cache, the next instruction is compared against all child images derived from that base image to see if one of them was built using the exact same instruction. If not, the cache is invalidated.
+.. * Starting with a parent image that is already in the cache, the next
+   instruction is compared against all child images derived from that base
+   image to see if one of them was built using the exact same instruction. If
+   not, the cache is invalidated.
 
-* キャッシュ済みのベース・イメージから開始する場合、次の命令はそのベース・イメージ由来の子イメージすべてと比較され、全く同じ命令で構築済の子イメージがないか調べられます。なければ、キャッシュを無効化します。
+* キャッシュ内にすでに存在している親イメージから処理を始めます。
+  そのベースとなるイメージから派生した子イメージに対して、次の命令が合致するかどうかが比較され、子イメージのいずれかが同一の命令によって構築されているかを確認します。
+  そのようなものが存在しなければ、キャッシュは無効になります。
 
 ..    In most cases simply comparing the instruction in the Dockerfile with one of the child images is sufficient. However, certain instructions require a little more examination and explanation.
 
