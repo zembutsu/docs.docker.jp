@@ -158,9 +158,15 @@ Dockerfile は、たいていは空のディレクトリに配置するのが適
 複数行にわたる引数は並びを適切に
 --------------------------------
 
-.. Whenever possible, ease later changes by sorting multi-line arguments alphanumerically. This will help you avoid duplication of packages and make the list much easier to update. This also makes PRs a lot easier to read and review. Adding a space before a backslash (\) helps as well.
+.. Whenever possible, ease later changes by sorting multi-line arguments
+   alphanumerically. This will help you avoid duplication of packages and make the
+   list much easier to update. This also makes PRs a lot easier to read and
+   review. Adding a space before a backslash (`\`) helps as well.
 
-可能な限り、複数行の引数をアルファベット順に並べることで後々の変更を容易にしましょう。そうしておけば、パッケージの重複を避けられたり、リストがより更新しやすくなったりするでしょう。プルリクエストを読んだりレビューしたりするのもとても楽になります。バックスラッシュ( \\ ) の前に空白を追加するのも、同じく役立つでしょう。
+複数行にわたる引数は、できるなら後々の変更を容易にするために、その並びはアルファベット順にしましょう。
+そうしておけば、パッケージを重複指定することはなくなり、一覧の変更も簡単になります。
+プルリクエストを読んだりレビューしたりすることも、さらに楽になります。
+バックスラッシュ（\\） の前に空白を含めておくことも同様です。
 
 .. Here’s an example from the buildpack-deps image:
 
