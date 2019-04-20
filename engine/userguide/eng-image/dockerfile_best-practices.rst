@@ -200,9 +200,11 @@ Dockerfile は、たいていは空のディレクトリに配置するのが適
 そこでは新たな（同じ）イメージを作ることはしません。
 キャッシュをまったく使いたくない場合は ``docker build`` コマンドに ``--no-cache=true`` オプションをつけて実行します。
 
-.. However, if you do let Docker use its cache then it is very important to understand when it will, and will not, find a matching image. The basic rules that Docker will follow are outlined below:
+.. However, if you do let Docker use its cache then it is very important to
+   understand when it will, and will not, find a matching image. The basic rules
+   that Docker will follow are outlined below:
 
-しかしながら、 Docker にキャッシュを利用させるならば、どういうときに既存イメージが再利用可能か、あるいは不可能かを理解することが非常に重要です。Docker の基本的な判断基準を概説すると、次の通りです。
+一方で Docker のキャッシュを利用する場合、Docker が適切なイメージを見つけた上で、どのようなときにキャッシュを利用し、どのようなときには利用しないのかを理解しておくことが必要です。Docker が従っている規則は以下のとおりです。
 
 ..    Starting with a base image that is already in the cache, the next instruction is compared against all child images derived from that base image to see if one of them was built using the exact same instruction. If not, the cache is invalidated.
 
