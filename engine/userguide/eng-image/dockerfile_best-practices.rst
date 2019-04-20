@@ -244,9 +244,10 @@ Dockerfile は、たいていは空のディレクトリに配置するのが適
   たとえば ``RUN apt-get -y update`` コマンドの処理が行われる際には、コンテナ内にて更新されたファイルは、キャッシュが合致するかどうかの判断のために用いられません。
   この場合にはコマンド文字列そのものが、キャッシュの合致判断に用いられます。
 
-.. Once the cache is invalidated, all subsequent Dockerfile commands will generate new images and the cache will not be used.
+.. Once the cache is invalidated, all subsequent `Dockerfile` commands will
+   generate new images and the cache will not be used.
 
-* キャッシュが無効化されると、以降の ``Dockerfile`` 命令ではキャッシュは使われず、新しいイメージを生成します。
+キャッシュが無効になると、次に続く ``Dockerfile`` コマンドは新たなイメージを生成し、そのキャッシュは使われなくなります。
 
 .. The Dockerfile instructions
 
