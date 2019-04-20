@@ -117,6 +117,24 @@ Dockerfile は、たいていは空のディレクトリに配置するのが適
 たとえばウェブ・アプリケーションが３つの独立したコンテナにより成り立っているとします。
 それらは個々のイメージを持つものとなり、それぞれに分かれてウェブ・アプリケーション、データベース、メモリキャッシュを管理するようになります。
 
+.. You may have heard that there should be "one process per container". While this
+   mantra has good intentions, it is not necessarily true that there should be only
+   one operating system process per container. In addition to the fact that
+   containers can now be [spawned with an init process](https://docs.docker.com/engine/reference/run/#/specifying-an-init-process),
+   some programs might spawn additional processes of their own accord. For
+   instance, [Celery](http://www.celeryproject.org/) can spawn multiple worker
+   processes, or [Apache](https://httpd.apache.org/) might create a process per
+   request. While "one process per container" is frequently a good rule of thumb,
+   it is not a hard and fast rule. Use your best judgment to keep containers as
+   clean and modular as possible.
+
+「１つのコンテナには１つのプロセス」とすべき、ということを聞いたことがあるかもしれません。
+この標語には見習うべきところはあるのですが、１つのコンテナに１つのオペレーティング・システムのプロセスだけを割り当てるのかというと、必ずしもそうではありません。
+最近のコンテナは `初期プロセスにおいて起動 <https://docs.docker.com/engine/reference/run/#/specifying-an-init-process)>`_ するという現実もあり、プログラムの中には都合に応じて追加のプロセスを起動するようなものもあります。
+例をあげると、 `Celery <http://www.celeryproject.org/>`_ はワーカ・プロセスを複数起動し、 `Apache <https://httpd.apache.org/>`_ はリクエストごとにプロセスを生成します。
+「１つのコンテナには１つのプロセス」というのは、優れた経験則となることがありますが、決して厳密な規則というわけでもありません。
+コンテナはできる限りすっきりとモジュラ化されるように、適切な判断をしてください。
+
 .. Minimize the number of layers
 
 レイヤの数を最小に
