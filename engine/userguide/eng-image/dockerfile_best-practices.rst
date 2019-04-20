@@ -265,9 +265,9 @@ Dockerfile コマンド
 FROM
 ----------
 
-.. Dockerfile reference for the FROM instruction
+.. [Dockerfile reference for the FROM instruction](../../reference/builder.md#from)
 
-:ref:`Dockerfile リファレンスの FROM 命令 <from>`
+:ref:`Dockerfile リファレンスの FROM コマンド <from>`
 
 .. Whenever possible, use current Official Repositories as the basis for your image. We recommend the Debian image since it’s very tightly controlled and kept minimal (currently under 150 mb), while still being a full distribution.
 
@@ -318,9 +318,9 @@ LABEL
 RUN
 ----------
 
-.. Dockerfile reference for the RUN instruction
+.. [Dockerfile reference for the RUN instruction](../../reference/builder.md#run)
 
-:ref:`Dockerfile リファレンスの RUN 命令 <run>`
+:ref:`Dockerfile リファレンスの RUN コマンド <run>`
 
 .. As always, to make your Dockerfile more readable, understandable, and maintainable, split long or complex RUN statements on multiple lines separated with backslashes.
 
@@ -425,9 +425,9 @@ version pinning は、何をキャッシュしているかにかかわらず、�
 CMD
 ----------
 
-.. Dockerfile reference for the CMD instruction
+.. [Dockerfile reference for the CMD instruction](../../reference/builder.md#cmd)
 
-:ref:`Dockerfile リファレンスの CMD 命令 <cmd>`
+:ref:`Dockerfile リファレンスの CMD コマンド <cmd>`
 
 .. The CMD instruction should be used to run the software contained by your image, along with any arguments. CMD should almost always be used in the form of CMD [“executable”, “param1”, “param2”…]. Thus, if the image is for a service, such as Apache and Rails, you would run something like CMD ["apache2","-DFOREGROUND"]. Indeed, this form of the instruction is recommended for any service-based image.
 
@@ -442,9 +442,9 @@ CMD
 EXPOSE
 ----------
 
-.. Dockerfile reference for the EXPOSE instruction
+.. [Dockerfile reference for the EXPOSE instruction](../../reference/builder.md#expose)
 
-:ref:`Dockerfile リファレンスの EXPOSE 命令 <expose>`
+:ref:`Dockerfile リファレンスの EXPOSE コマンド <expose>`
 
 .. The EXPOSE instruction indicates the ports on which a container will listen for connections. Consequently, you should use the common, traditional port for your application. For example, an image containing the Apache web server would use EXPOSE 80, while an image containing MongoDB would use EXPOSE 27017 and so on.
 
@@ -459,9 +459,9 @@ EXPOSE
 ENV
 ----------
 
-.. Dockerfile reference for the ENV instruction
+.. [Dockerfile reference for the ENV instruction](../../reference/builder.md#env)
 
-:ref:`Dockerfile リファレンスの ENV 命令 <env>`
+:ref:`Dockerfile リファレンスの ENV コマンド <env>`
 
 .. In order to make new software easier to run, you can use ENV to update the PATH environment variable for the software your container installs. For example, ENV PATH /usr/local/nginx/bin:$PATH will ensure that CMD [“nginx”] just works.
 
@@ -491,11 +491,11 @@ ENV
 ADD と COPY
 --------------------
 
-.. Dockerfile reference for the ADD instruction
-.. Dockerfile reference for the COPY instruction
+.. [Dockerfile reference for the ADD instruction](../../reference/builder.md#add)<br/>
+   [Dockerfile reference for the COPY instruction](../../reference/builder.md#copy)
 
-:ref:`Dockerfile リファレンスの ADD 命令 <add>`
-:ref:`Dockerfile リファレンスの COPY 命令 <copy>`
+:ref:`Dockerfile リファレンスの ADD コマンド <add>`
+:ref:`Dockerfile リファレンスの COPY コマンド <copy>`
 
 .. Although ADD and COPY are functionally similar, generally speaking, COPY is preferred. That’s because it’s more transparent than ADD. COPY only supports the basic copying of local files into the container, while ADD has some features (like local-only tar extraction and remote URL support) that are not immediately obvious. Consequently, the best use for ADD is local tar file auto-extraction into the image, as in ADD rootfs.tar.xz /.
 
@@ -549,9 +549,9 @@ ADD と COPY
 ENTRYPOINT
 ----------
 
-.. Dockerfile reference for the ENTRYPOINT instruction
+.. [Dockerfile reference for the ENTRYPOINT instruction](../../reference/builder.md#entrypoint)
 
-:ref:`Dockerfile リファレンスの ENTRYPOINT 命令 <entrypoint>`
+:ref:`Dockerfile リファレンスの ENTRYPOINT コマンド <entrypoint>`
 
 .. The best use for ENTRYPOINT is to set the image’s main command, allowing that image to be run as though it was that command (and then use CMD as the default flags).
 
@@ -659,9 +659,9 @@ ENTRYPOINT
 VOLUME
 ----------
 
-.. Dockerfile reference for the VOLUME instruction
+[Dockerfile reference for the VOLUME instruction](../../reference/builder.md#volume)
 
-:ref:`Dockerfile リファレンスの VOLUME 命令 <volume>`
+:ref:`Dockerfile リファレンスの VOLUME コマンド <volume>`
 
 .. The VOLUME instruction should be used to expose any database storage area, configuration storage, or files/folders created by your docker container. You are strongly encouraged to use VOLUME for any mutable and/or user-serviceable parts of your image.
 
@@ -672,9 +672,9 @@ VOLUME
 USER
 ----------
 
-.. Dockerfile reference for the USER instruction
+.. [Dockerfile reference for the USER instruction](../../reference/builder.md#user)
 
-:ref:`Dockerfile リファレンスの USER 命令 <user>`
+:ref:`Dockerfile リファレンスの USER コマンド <user>`
 
 .. If a service can run without privileges, use USER to change to a non-root user. Start by creating the user and group in the Dockerfile with something like RUN groupadd -r postgres && useradd -r -g postgres postgres.
 
@@ -699,9 +699,9 @@ USER
 WORKDIR
 ----------
 
-.. Dockerfile reference for the WORKDIR instruction
+.. [Dockerfile reference for the WORKDIR instruction](../../reference/builder.md#workdir)
 
-:ref:`Dockerfile リファレンスの WORKDIR 命令 <workdir>`
+:ref:`Dockerfile リファレンスの WORKDIR コマンド <workdir>`
 
 .. For clarity and reliability, you should always use absolute paths for your WORKDIR. Also, you should use WORKDIR instead of proliferating instructions like RUN cd … && do-something, which are hard to read, troubleshoot, and maintain.
 
@@ -712,9 +712,9 @@ WORKDIR
 ONBUILD
 ----------
 
-.. Dockerfile reference for the ONBUILD instruction
+.. [Dockerfile reference for the ONBUILD instruction](../../reference/builder.md#onbuild)
 
-:ref:`Dockerfile リファレンスの ONBUILD 命令 <onbuild>`
+:ref:`Dockerfile リファレンスの ONBUILD コマンド <onbuild>`
 
 .. An ONBUILD command executes after the current Dockerfile build completes. ONBUILD executes in any child image derived FROM the current image. Think of the ONBUILD command as an instruction the parent Dockerfile gives to the child Dockerfile.
 
