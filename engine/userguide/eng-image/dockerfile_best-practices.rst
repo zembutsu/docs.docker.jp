@@ -307,7 +307,7 @@ LABEL
 
 ::
 
-   # 個々にラベルを設定
+   # 個別のラベルを設定
    LABEL com.example.version="0.0.1-beta"
    LABEL vendor="ACME Incorporated"
    LABEL com.example.release-date="2015-02-12"
@@ -316,7 +316,7 @@ LABEL
    # 1行でラベルを設定
    LABEL com.example.version="0.0.1-beta" com.example.release-date="2015-02-12"
    
-   # 一度に複数のラベルを指定しますが、行継続文字列を使い、長い行が続くのを避けます
+   # 複数のラベルを一度に設定、ただし行継続の文字を使い、長い文字列を改行する
    LABEL vendor=ACME\ Incorporated \
          com.example.is-beta= \
          com.example.is-production="" \
