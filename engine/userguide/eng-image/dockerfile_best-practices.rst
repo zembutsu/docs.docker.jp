@@ -323,10 +323,12 @@ LABEL
          com.example.version="0.0.1-beta" \
          com.example.release-date="2015-02-12"
 
-.. See Understanding object labels for guidelines about acceptable label keys and values. For information about querying labels, refer to the items related to filtering in Managing labels on objects.
+.. See [Understanding object labels](../labels-custom-metadata.md) for
+   guidelines about acceptable label keys and values. For information about
+   querying labels, refer to the items related to filtering in
+   [Managing labels on objects](../labels-custom-metadata.md#managing-labels-on-objects).
 
-利用可能なキーと値に関するガイドラインは :doc:`/engine/userguide/labels-custom-metadata` をご覧ください。ラベルの記述に関する情報は、 :ref:`managing-labels-on-objects` フィルタリングの項目をご覧ください。
-
+ラベルにおける利用可能なキーと値のガイドラインとしては :doc:`オブジェクトラベルを理解する </engine/userguide/labels-custom-metadata>` を参照してください。またラベルの検索に関する情報は  :doc:`オブジェクト上のラベルの管理 </engine/userguide/labels-custom-metadata#managing-labels-on-objects>` のフィルタリングに関する項目を参照してください。
 
 .. RUN
 
