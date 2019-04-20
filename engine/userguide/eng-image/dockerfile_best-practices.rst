@@ -135,6 +135,11 @@ Dockerfile は、たいていは空のディレクトリに配置するのが適
 「１つのコンテナには１つのプロセス」というのは、優れた経験則となることがありますが、決して厳密な規則というわけでもありません。
 コンテナはできる限りすっきりとモジュラ化されるように、適切な判断をしてください。
 
+.. If containers depend on each other, you can use [Docker container networks](https://docs.docker.com/engine/userguide/networking/)
+    to ensure that these containers can communicate.
+
+コンテナが互いに依存している場合は、`Docker container ネットワーク <https://docs.docker.com/engine/userguide/networking/>`_ を用いることで、コンテナ間の通信を確実に行うことができます。
+
 .. Minimize the number of layers
 
 レイヤの数を最小に
