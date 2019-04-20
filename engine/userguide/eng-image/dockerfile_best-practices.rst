@@ -215,9 +215,12 @@ Dockerfile は、たいていは空のディレクトリに配置するのが適
   そのベースとなるイメージから派生した子イメージに対して、次の命令が合致するかどうかが比較され、子イメージのいずれかが同一の命令によって構築されているかを確認します。
   そのようなものが存在しなければ、キャッシュは無効になります。
 
-..    In most cases simply comparing the instruction in the Dockerfile with one of the child images is sufficient. However, certain instructions require a little more examination and explanation.
+.. * In most cases simply comparing the instruction in the `Dockerfile` with one
+   of the child images is sufficient.  However, certain instructions require
+   a little more examination and explanation.
 
-* ほとんどの場合は、 ``Dockerfile`` の命令と子イメージとの単純な比較で十分です。しかし、命令によっては更なる検査や解釈が必要になります。
+* ほとんどの場合、 ``Dockerfile`` 内の命令と子イメージのどれかを単純に比較するだけで十分です。
+  しかし命令によっては、多少の検査や解釈が必要となるものもあります。
 
 ..    For the ADD and COPY instructions, the contents of the file(s) in the image are examined and a checksum is calculated for each file. The last-modified and last-accessed times of the file(s) are not considered in these checksums. During the cache lookup, the checksum is compared against the checksum in the existing images. If anything has changed in the file(s), such as the contents and metadata, then the cache is invalidated.
 
