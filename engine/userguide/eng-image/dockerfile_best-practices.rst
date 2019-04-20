@@ -234,9 +234,15 @@ Dockerfile は、たいていは空のディレクトリに配置するのが適
   キャッシュを探す際に、このチェックサムと既存イメージのチェックサムが比較されます。
   ファイル内の何かが変更になったとき、たとえばファイル内容やメタデータが変わっていれば、キャッシュは無効になります。
 
-..    Aside from the ADD and COPY commands, cache checking will not look at the files in the container to determine a cache match. For example, when processing a RUN apt-get -y update command the files updated in the container will not be examined to determine if a cache hit exists. In that case just the command string itself will be used to find a match.
+.. * Aside from the `ADD` and `COPY` commands, cache checking will not look at the
+   files in the container to determine a cache match. For example, when processing
+   a `RUN apt-get -y update` command the files updated in the container
+   will not be examined to determine if a cache hit exists.  In that case just
+   the command string itself will be used to find a match.
 
-* ``ADD`` と ``COPY`` 以外のコマンドについては、キャッシュのチェック時にコンテナ内のファイル状態は確認しません。例えば、 ``RUN apt-get -y update`` コマンドによって変更されたコンテナ内のファイルは検査されず、キャッシュがヒットするかどうかに影響を与えません。この場合、コマンドの文字列自身が一致するかどうかしか見ないためです。
+* ``ADD`` と ``COPY`` 以外のコマンドの場合、キャッシュのチェックは、コンテナ内のファイル内容を見ることはなく、それによってキャッシュと合致しているかどうかが決定されるわけでありません。
+  たとえば ``RUN apt-get -y update`` コマンドの処理が行われる際には、コンテナ内にて更新されたファイルは、キャッシュが合致するかどうかの判断のために用いられません。
+  この場合にはコマンド文字列そのものが、キャッシュの合致判断に用いられます。
 
 .. Once the cache is invalidated, all subsequent Dockerfile commands will generate new images and the cache will not be used.
 
