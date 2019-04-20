@@ -254,9 +254,11 @@ Dockerfile は、たいていは空のディレクトリに配置するのが適
 Dockerfile コマンド
 ====================
 
-.. Below you’ll find recommendations for the best way to write the various instructions available for use in a Dockerfile.
+.. Below you'll find recommendations for the best way to write the
+   various instructions available for use in a `Dockerfile`.
 
-以下は、``Dockerfile`` で利用可能な様々な命令を記述する上で、推奨されるベストな方法です。
+以下は ``Dockerfile`` 記述にて推奨するベストな方法を示すものです。
+``Dockerfile`` に記述できるさまざまなコマンドの記述方法を示します。
 
 .. FROM
 
