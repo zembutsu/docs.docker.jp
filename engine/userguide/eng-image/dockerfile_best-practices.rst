@@ -153,10 +153,10 @@ Dockerfile は、たいていは空のディレクトリに配置するのが適
 ``Dockerfile`` を読みやすくする（つまり長期にわたって保守しやすくする）のか、利用するレイヤ数をできるだけ減らすのかということです。
 使用するレイヤ数は、計画的に注意して取り決めてください。
 
-.. Sort multi-line arguments
+.. ### Sort multi-line arguments
 
-複数行の引数
---------------------
+複数行にわたる引数は並びを適切に
+--------------------------------
 
 .. Whenever possible, ease later changes by sorting multi-line arguments alphanumerically. This will help you avoid duplication of packages and make the list much easier to update. This also makes PRs a lot easier to read and review. Adding a space before a backslash (\) helps as well.
 
