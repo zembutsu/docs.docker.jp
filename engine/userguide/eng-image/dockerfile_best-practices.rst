@@ -188,9 +188,17 @@ Dockerfile は、たいていは空のディレクトリに配置するのが適
 ビルドキャッシュ
 --------------------
 
-.. During the process of building an image Docker will step through the instructions in your Dockerfile executing each in the order specified. As each instruction is examined Docker will look for an existing image in its cache that it can reuse, rather than creating a new (duplicate) image. If you do not want to use the cache at all you can use the --no-cache=true option on the docker build command.
+.. During the process of building an image Docker will step through the
+   instructions in your `Dockerfile` executing each in the order specified.
+   As each instruction is examined Docker will look for an existing image in its
+   cache that it can reuse, rather than creating a new (duplicate) image.
+   If you do not want to use the cache at all you can use the `--no-cache=true`
+   option on the `docker build` command.
 
-イメージ構築の過程において、 Docker は ``Dockerfile`` の各命令を記述された順に実行していきます。各命令が検証されるたびに、 Docker はキャッシュから再利用可能な既存イメージを探し、新しい(重複した)イメージの作成を避けようとします。もしキャッシュを全く使いたくなければ、 ``docker build`` コマンドで ``--no-cache=true`` オプションを使います。
+イメージ構築の過程において Docker は、``Dockerfile`` 内に示されている命令を記述順に実行していきます。
+個々の命令が検査される際に Docker は、既存イメージのキャッシュが再利用できるかどうかを調べます。
+そこでは新たな（同じ）イメージを作ることはしません。
+キャッシュをまったく使いたくない場合は ``docker build`` コマンドに ``--no-cache=true`` オプションをつけて実行します。
 
 .. However, if you do let Docker use its cache then it is very important to understand when it will, and will not, find a matching image. The basic rules that Docker will follow are outlined below:
 
