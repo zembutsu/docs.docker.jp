@@ -269,9 +269,14 @@ FROM
 
 :ref:`Dockerfile リファレンスの FROM コマンド <from>`
 
-.. Whenever possible, use current Official Repositories as the basis for your image. We recommend the Debian image since it’s very tightly controlled and kept minimal (currently under 150 mb), while still being a full distribution.
+.. Whenever possible, use current Official Repositories as the basis for your
+   image. We recommend the [Debian image](https://hub.docker.com/_/debian/)
+   since it’s very tightly controlled and kept minimal (currently under 150 mb),
+   while still being a full distribution.
 
-可能な限り、現在の公式リポジトリを基にしてイメージを作りましょう。私たちは `Debian イメージ <https://hub.docker.com/_/debian/>`_ を推奨します。これは、非常にしっかりと管理されており、完全なディストリビューションであるにもかかわらず軽量に（現在は 150 MB 以下に）維持されているからです。
+イメージのベースは、できるだけ現時点での公式リポジトリを利用してください。
+`Debian イメージ <https://hub.docker.com/_/debian/>`_ がお勧めです。
+このイメージはしっかりと管理されていて、充実したディストリビューションであるにもかかわらず、非常にコンパクトなものになっています（現在 150 MB 以下）。
 
 .. LABEL
 
