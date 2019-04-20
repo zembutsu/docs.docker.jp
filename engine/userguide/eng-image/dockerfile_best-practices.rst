@@ -145,9 +145,13 @@ Dockerfile は、たいていは空のディレクトリに配置するのが適
 レイヤの数を最小に
 --------------------
 
-.. You need to find the balance between readability (and thus long-term maintainability) of the Dockerfile and minimizing the number of layers it uses. Be strategic and cautious about the number of layers you use.
+.. You need to find the balance between readability (and thus long-term
+   maintainability) of the `Dockerfile` and minimizing the number of layers it
+   uses. Be strategic and cautious about the number of layers you use.
 
-``Dockerfile`` の読みやすさ(そしてつまり長期の保守性)と、使用レイヤ数の最小化との間でバランスを見出す必要があります。使用するレイヤ数は戦略的に、注意深く決めましょう。、
+``Dockerfile`` は可読性とレイヤ数のバランスを考慮する必要があります。
+``Dockerfile`` を読みやすくする（つまり長期にわたって保守しやすくする）のか、利用するレイヤ数をできるだけ減らすのかということです。
+使用するレイヤ数は、計画的に注意して取り決めてください。
 
 .. Sort multi-line arguments
 
