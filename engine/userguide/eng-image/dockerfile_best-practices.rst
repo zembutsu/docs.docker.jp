@@ -285,9 +285,16 @@ LABEL
 
 :doc:`オブジェクト・ラベルの理解 </engine/userguide/labels-custom-metadata>`
 
-.. You can add labels to your image to help organize images by project, record licensing information, to aid in automation, or for other reasons. For each label, add a line beginning with LABEL and with one or more key-value pairs. The following examples show the different acceptable formats. Explanatory comments are included inline.
+.. You can add labels to your image to help organize images by project, record
+   licensing information, to aid in automation, or for other reasons. For each
+   label, add a line beginning with `LABEL` and with one or more key-value pairs.
+   The following examples show the different acceptable formats. Explanatory comments
+   are included inline.
 
-イメージにラベルを追加することで、プロジェクトのイメージ管理を楽にしたり、ライセンス情報を記録したり、自動化を助けたり、他にもいろいろなことができます。各ラベルについて、``LABEL`` で始まり１つまたは複数のキーバリュー・ペアを持つ行を追加します（訳者注；「key=value」の形式で記述）。以下では利用可能な異なるフォーマット例を示します。説明用コメントがインラインで入っています。
+イメージにラベルを追加するのは、プロジェクト内でのイメージ管理をしやすくしたり、ライセンス情報の記録や自動化の助けとするなど、さまざまな目的があります。
+ラベルを指定するには、 ``LABEL`` で始まる行を追加して、そこにキーと値のペア（key-value pair）をいくつか設定します。
+以下に示す例は、いずれも正しい構文です。
+説明をコメントとしてつけています。
 
 ..    Note: If your string contains spaces, it must be quoted or the spaces must be escaped. If your string contains inner quote characters ("), escape them as well.
 
