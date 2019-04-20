@@ -108,9 +108,14 @@ Dockerfile は、たいていは空のディレクトリに配置するのが適
 コンテナごとに１つのプロセスだけ実行
 ----------------------------------------
 
-.. In almost all cases, you should only run a single process in a single container. Decoupling applications into multiple containers makes it much easier to scale horizontally and reuse containers. If that service depends on another service, make use of container linking.
+.. Decoupling applications into multiple containers makes it much easier to scale
+   horizontally and reuse containers. For instance, a web application stack might
+   consist of three separate containers, each with its own unique image, to manage
+   the web application, database, and an in-memory cache in a decoupled manner.
 
-ほとんどの場合、１つのコンテナの中では１つのプロセスだけを実行すべきです。アプリケーションを複数のコンテナに分離することで、水平スケールやコンテナの再利用が簡単になります。サービス間に依存関係がある場合は、 :doc:`コンテナのリンク </engine/userguide/networking/default_network/dockerlinks>` を使います。
+アプリケーションを複数のコンテナに分けることにより、スケールアウトやコンテナの再利用が行いやすくなります。
+たとえばウェブ・アプリケーションが３つの独立したコンテナにより成り立っているとします。
+それらは個々のイメージを持つものとなり、それぞれに分かれてウェブ・アプリケーション、データベース、メモリキャッシュを管理するようになります。
 
 .. Minimize the number of layers
 
