@@ -249,9 +249,9 @@ Dockerfile は、たいていは空のディレクトリに配置するのが適
 
 キャッシュが無効になると、次に続く ``Dockerfile`` コマンドは新たなイメージを生成し、そのキャッシュは使われなくなります。
 
-.. The Dockerfile instructions
+.. ## The Dockerfile instructions
 
-Dockerfile 命令
+Dockerfile コマンド
 ====================
 
 .. Below you’ll find recommendations for the best way to write the various instructions available for use in a Dockerfile.
