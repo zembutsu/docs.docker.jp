@@ -222,9 +222,17 @@ Dockerfile は、たいていは空のディレクトリに配置するのが適
 * ほとんどの場合、 ``Dockerfile`` 内の命令と子イメージのどれかを単純に比較するだけで十分です。
   しかし命令によっては、多少の検査や解釈が必要となるものもあります。
 
-..    For the ADD and COPY instructions, the contents of the file(s) in the image are examined and a checksum is calculated for each file. The last-modified and last-accessed times of the file(s) are not considered in these checksums. During the cache lookup, the checksum is compared against the checksum in the existing images. If anything has changed in the file(s), such as the contents and metadata, then the cache is invalidated.
+.. * For the `ADD` and `COPY` instructions, the contents of the file(s)
+   in the image are examined and a checksum is calculated for each file.
+   The last-modified and last-accessed times of the file(s) are not considered in
+   these checksums. During the cache lookup, the checksum is compared against the
+   checksum in the existing images. If anything has changed in the file(s), such
+   as the contents and metadata, then the cache is invalidated.
 
-* ``ADD`` と ``COPY`` 命令では、イメージに含まれるファイルが検査され、各ファイルについてチェックサムが計算されます。ファイルの最終編集・最終アクセス時間は、チェックサムに影響しません。キャッシュ探索時に、それらのチェックサムを既存イメージのチェックサムと比較します。ファイル(例えば内容やメタデータ)が変更されていれば、キャッシュを無効化します。
+* ``ADD`` 命令や ``COPY`` 命令では、イメージに含まれるファイルの内容が検査され、個々のファイルについてチェックサムが計算されます。
+  この計算において、ファイルの最終更新時刻、最終アクセス時刻は考慮されません。
+  キャッシュを探す際に、このチェックサムと既存イメージのチェックサムが比較されます。
+  ファイル内の何かが変更になったとき、たとえばファイル内容やメタデータが変わっていれば、キャッシュは無効になります。
 
 ..    Aside from the ADD and COPY commands, cache checking will not look at the files in the container to determine a cache match. For example, when processing a RUN apt-get -y update command the files updated in the container will not be examined to determine if a cache hit exists. In that case just the command string itself will be used to find a match.
 
