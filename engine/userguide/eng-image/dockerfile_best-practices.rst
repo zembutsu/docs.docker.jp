@@ -296,11 +296,14 @@ LABEL
 以下に示す例は、いずれも正しい構文です。
 説明をコメントとしてつけています。
 
-..    Note: If your string contains spaces, it must be quoted or the spaces must be escaped. If your string contains inner quote characters ("), escape them as well.
+.. >**Note**: If your string contains spaces, it must be quoted **or** the spaces
+   must be escaped. If your string contains inner quote characters (`"`), escape
+   them as well.
 
 .. note::
 
-   文字列に空白（スペース）を使う場合は、必ず引用符を付けるか、 **あるいは** 、エスケープする必要があります。文字列に引用符記号（ ``"`` ）が有る場合も、同様にエスケープが必要です。
+   文字列に空白が含まれる場合は、引用符でくくるか **あるいは** エスケープする必要があります。
+   文字列内に引用符がある場合も、同様にエスケープしてください。
 
 ::
 
