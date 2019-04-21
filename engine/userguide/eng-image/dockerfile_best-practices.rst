@@ -460,13 +460,11 @@ Docker は当初のコマンドと修正後のコマンドを見て、同一の�
        dpkg-sig \
        libcap-dev \
        libsqlite3-dev \
-       lxc=1.0* \
        mercurial \
        reprepro \
        ruby1.9.1 \
        ruby1.9.1-dev \
        s3cmd=1.1.* \
-    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 .. The s3cmd instructions specifies a version 1.1.0*. If the image previously used an older version, specifying the new one causes a cache bust of apt-get update and ensure the installation of the new version. Listing packages on each line can also prevent mistakes in package duplication.
