@@ -640,9 +640,12 @@ ENV
 ``ENV`` コマンドは、必要となる環境変数を設定するときにも利用します。
 たとえば Postgres の ``PGDATA`` のように、コンテナ化したいサービスに固有の環境変数が設定できます。
 
-.. Lastly, ENV can also be used to set commonly used version numbers so that version bumps are easier to maintain, as seen in the following example:
+.. Lastly, `ENV` can also be used to set commonly used version numbers so that
+   version bumps are easier to maintain, as seen in the following example:
 
-あとは、 ``ENV`` は一般的に使うバージョン番号の指定にも使えるので、バージョンアップ時のメンテを楽にできます。例は以下。
+また ``ENV`` は普段利用している各種バージョン番号を設定しておくときにも利用されます。
+これによってバージョンを混同することなく、管理が容易になります。
+たとえば以下がその例です。
 
 .. code-block:: bash
 
