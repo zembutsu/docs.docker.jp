@@ -797,9 +797,10 @@ ENTRYPOINT
 そのスクリプトは、上記のコマンド例と同じように機能させられます。
 たとえ対象ツールの起動に複数ステップを要するような場合でも、それが可能です。
 
-.. For example, the Postgres Official Image uses the following script as its ENTRYPOINT:
+.. For example, the [Postgres Official Image](https://hub.docker.com/_/postgres/)
+   uses the following script as its `ENTRYPOINT`:
 
-例えば、 `Postgres <https://hub.docker.com/_/postgres/>`_ 公式イメージは次のスクリプトを ``ENTRYPOINT`` に使っています。
+たとえば `Postgres 公式イメージ <https://hub.docker.com/_/postgres/>`_ は次のスクリプトを ``ENTRYPOINT`` として使っています。
 
 .. code-block:: bash
 
