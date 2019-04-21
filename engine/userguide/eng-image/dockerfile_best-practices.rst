@@ -594,9 +594,16 @@ EXPOSE
 
 :ref:`Dockerfile リファレンスの EXPOSE コマンド <expose>`
 
-.. The EXPOSE instruction indicates the ports on which a container will listen for connections. Consequently, you should use the common, traditional port for your application. For example, an image containing the Apache web server would use EXPOSE 80, while an image containing MongoDB would use EXPOSE 27017 and so on.
+.. The `EXPOSE` instruction indicates the ports on which a container will listen
+   for connections. Consequently, you should use the common, traditional port for
+   your application. For example, an image containing the Apache web server would
+   use `EXPOSE 80`, while an image containing MongoDB would use `EXPOSE 27017` and
+   so on.
 
-``EXPOSE`` 命令は、コンテナが接続用にリッスンするポートを指定します。そのため、アプリケーションには一般的で伝統的なポートを使うべきです。例えば、Apache ウェブ・サーバのイメージは ``EXPOSE 80`` を使い、MongoDB を含むイメージであれば ``EXPOSE 27017`` を使うでしょう。
+``EXPOSE`` コマンドは、コンテナが接続のためにリッスンするポートを指定します。
+当然のことながらアプリケーションにおいては、標準的なポートを利用します。
+たとえば Apache ウェブ・サーバを含んでいるイメージに対しては ``EXPOSE 80`` を使います。
+また MongoDB を含んでいれば ``EXPOSE 27017`` を使うことになります。
 
 .. For external access, your users can execute docker run with a flag indicating how to map the specified port to the port of their choice. For container linking, Docker provides environment variables for the path from the recipient container back to the source (ie, MYSQL_PORT_3306_TCP).
 
