@@ -633,9 +633,12 @@ ENV
 コンテナがインストールするソフトウェアに必要な環境変数 ``PATH`` を、この ``ENV`` を使って更新します。
 たとえば ``ENV PATH /usr/local/nginx/bin:$PATH`` を実行すれば、 ``CMD ["nginx"]`` が確実に動作するようになります。
 
-.. The ENV instruction is also useful for providing required environment variables specific to services you wish to containerize, such as Postgres’s PGDATA.
+.. The `ENV` instruction is also useful for providing required environment
+   variables specific to services you wish to containerize, such as Postgres’s
+   `PGDATA`.
 
-また、 ``ENV`` 命令は PostgreSQL の ``PGDATA`` のような、コンテナ化されたサービスが必要とする環境変数を提供するのにも便利です。
+``ENV`` コマンドは、必要となる環境変数を設定するときにも利用します。
+たとえば Postgres の ``PGDATA`` のように、コンテナ化したいサービスに固有の環境変数が設定できます。
 
 .. Lastly, ENV can also be used to set commonly used version numbers so that version bumps are easier to maintain, as seen in the following example:
 
