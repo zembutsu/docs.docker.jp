@@ -351,9 +351,12 @@ RUN
 apt-get
 ^^^^^^^^^^
 
-.. Probably the most common use-case for RUN is an application of apt-get. The RUN apt-get command, because it installs packages, has several gotchas to look out for.
+.. Probably the most common use-case for `RUN` is an application of `apt-get`. The
+   `RUN apt-get` command, because it installs packages, has several gotchas to look
+   out for.
 
-おそらく ``RUN`` の最も一般的な利用例は ``apt-get`` アプリケーションです。 ``RUN apt-get`` コマンドはパッケージをインストールしますので、いくつかの注意点があります。
+おそらく ``RUN`` において一番利用する使い方が ``apt-get`` アプリケーションの実行です。
+``RUN apt-get`` はパッケージをインストールするものであるため、注意点がいくつかあります。
 
 .. You should avoid RUN apt-get upgrade or dist-upgrade, as many of the “essential” packages from the base images won’t upgrade inside an unprivileged container. If a package contained in the base image is out-of-date, you should contact its maintainers. If you know there’s a particular package, foo, that needs to be updated, use apt-get install -y foo to update automatically.
 
