@@ -624,9 +624,14 @@ ENV
 
 :ref:`Dockerfile リファレンスの ENV コマンド <env>`
 
-.. In order to make new software easier to run, you can use ENV to update the PATH environment variable for the software your container installs. For example, ENV PATH /usr/local/nginx/bin:$PATH will ensure that CMD [“nginx”] just works.
+.. In order to make new software easier to run, you can use `ENV` to update the
+   `PATH` environment variable for the software your container installs. For
+   example, `ENV PATH /usr/local/nginx/bin:$PATH` will ensure that `CMD [“nginx”]`
+   just works.
 
-新しいソフトウェアを簡単に実行するために、コンテナにインストールされているソフトウェアが参照する ``PATH`` 環境変数を ``ENV`` を使って更新できます。例えば、 ``ENV PATH /usr/local/nginx/bin:$PATH`` は ``CMD ["nginx"]`` を動作するようにします。
+新しいソフトウェアに対しては ``ENV`` を用いれば簡単にそのソフトウェアを実行できます。
+コンテナがインストールするソフトウェアに必要な環境変数 ``PATH`` を、この ``ENV`` を使って更新します。
+たとえば ``ENV PATH /usr/local/nginx/bin:$PATH`` を実行すれば、 ``CMD ["nginx"]`` が確実に動作するようになります。
 
 .. The ENV instruction is also useful for providing required environment variables specific to services you wish to containerize, such as Postgres’s PGDATA.
 
