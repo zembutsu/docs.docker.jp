@@ -409,9 +409,15 @@ apt-get
    RUN apt-get update
    RUN apt-get install -y curl nginx
 
-.. Docker sees the initial and modified instructions as identical and reuses the cache from previous steps. As a result the apt-get update is NOT executed because the build uses the cached version. Because the apt-get update is not run, your build can potentially get an outdated version of the curl and nginx packages.
+.. Docker sees the initial and modified instructions as identical and reuses the
+   cache from previous steps. As a result the `apt-get update` is *NOT* executed
+   because the build uses the cached version. Because the `apt-get update` is not
+   run, your build can potentially get an outdated version of the `curl` and `nginx`
+   packages.
 
-Docker は、変更前と変更後の命令文が同じ場合、前回のキャッシュを利用します。その結果、 ``apt-get update`` は実行 **されず** 、キャッシュ済みのバージョンが利用されます。 ``apt-get update`` が実行されないため、構築時に古いバージョンの ``curl`` と ``nginx`` パッケージを取得する恐れがあります。
+Docker は当初のコマンドと修正後のコマンドを見て、同一のコマンドであると判断するので、前回の処理において作られたキャッシュを再利用します。
+キャッシュされたものを利用して処理が行われるわけですから、結果として ``apt-get update`` は実行 **されません** 。
+``apt-get update`` が実行されないということは、つまり ``curl`` にしても ``nginx`` にしても、古いバージョンのまま利用する可能性が出てくるということです。
 
 .. Using RUN apt-get update && apt-get install -y ensures your Dockerfile installs the latest package versions with no further coding or manual intervention. This technique is known as “cache busting”. You can also achieve cache-busting by specifying a package version. This is known as version pinning, for example:
 
