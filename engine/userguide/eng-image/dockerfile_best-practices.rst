@@ -654,9 +654,12 @@ ENV
    RUN curl -SL http://example.com/postgres-$PG_VERSION.tar.xz | tar -xJC /usr/src/postgress && …
    ENV PATH /usr/local/postgres-$PG_MAJOR/bin:$PATH
 
-.. Similar to having constant variables in a program (as opposed to hard-coding values), this approach lets you change a single ENV instruction to auto-magically bump the version of the software in your container.
+.. Similar to having constant variables in a program (as opposed to hard-coding
+   values), this approach lets you change a single `ENV` instruction to
+   auto-magically bump the version of the software in your container.
 
-プログラムにおける定数変数と同様に(そしてハードコーディングとは対照的に)、たった一行の ``ENV`` 命令を変更するだけで、コンテナで使うソフトウェアのバージョンを魔法のように簡単に変更できるようになります。
+プログラムにおける（ハードコーディングではない）定数定義と同じことで、この方法をとっておくのが便利です。
+ただ１つの ``ENV`` コマンドを変更するだけで、コンテナ内のソフトウェアバージョンは、いとも簡単に変えてしまうことができるからです。
 
 .. ADD or COPY
 
