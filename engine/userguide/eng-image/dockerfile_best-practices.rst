@@ -686,9 +686,14 @@ ADD と COPY
 結局 ``ADD`` の最も適切な利用場面は、ローカルの tar ファイルを自動的に展開してイメージに書き込むときです。
 たとえば ``ADD rootfs.tar.xz /`` といったコマンドになります。
 
-.. If you have multiple Dockerfile steps that use different files from your context, COPY them individually, rather than all at once. This will ensure that each step’s build cache is only invalidated (forcing the step to be re-run) if the specifically required files change.
+.. If you have multiple `Dockerfile` steps that use different files from your
+   context, `COPY` them individually, rather than all at once. This will ensure that
+   each step's build cache is only invalidated (forcing the step to be re-run) if the
+   specifically required files change.
 
-内容によっては、一度にファイルを取り込むよりも、 ``Dockerfile`` の複数ステップで ``COPY`` することもあるでしょう。これにより、何らかのファイルが変更された所だけ、キャッシュが無効化されます（ステップを強制的に再実行します）。
+``Dockerfile`` 内の複数ステップにおいて異なるファイルをコピーするときには、一度にすべてをコピーするのではなく、 ``COPY`` を使って個別にコピーしてください。
+こうしておくと、個々のステップに対するキャッシュのビルドは最低限に抑えることができます。
+つまり指定されているファイルが変更になったときのみキャッシュが無効化されます（そのステップは再実行されます）。
 
 .. For example:
 
