@@ -605,9 +605,15 @@ EXPOSE
 たとえば Apache ウェブ・サーバを含んでいるイメージに対しては ``EXPOSE 80`` を使います。
 また MongoDB を含んでいれば ``EXPOSE 27017`` を使うことになります。
 
-.. For external access, your users can execute docker run with a flag indicating how to map the specified port to the port of their choice. For container linking, Docker provides environment variables for the path from the recipient container back to the source (ie, MYSQL_PORT_3306_TCP).
+.. For external access, your users can execute `docker run` with a flag indicating
+   how to map the specified port to the port of their choice.
+   For container linking, Docker provides environment variables for the path from
+   the recipient container back to the source (ie, `MYSQL_PORT_3306_TCP`).
 
-外部からアクセスするためには、ユーザの ``docker run`` 実行時にフラグを指定すれば、指定したポートを任意のポートに割り当てられます。コンテナのリンク機能を使えば、Docker はコンテナがソースをたどれるよう、環境変数を提供します（例： ``MYSQL_PORT_3306_TCP`` ）。
+外部からアクセスできるようにするため、これを実行するユーザは ``docker run`` にフラグをつけて実行します。
+そのフラグとは、指定されているポートを、自分が取り決めるどのようなポートに割り当てるかを指示するものです。
+Docker のリンク機能においては環境変数が利用できます。
+受け側のコンテナが提供元をたどることができるようにするものです（例: ``MYSQL_PORT_3306_TCP`` ）。
 
 .. ENV
 
