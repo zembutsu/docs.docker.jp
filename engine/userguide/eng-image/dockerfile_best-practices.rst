@@ -445,9 +445,10 @@ Docker は当初のコマンドと修正後のコマンドを見て、同一の�
 バージョン・ピニングでは、キャッシュにどのようなイメージがあろうとも、指定されたバージョンを使ってビルドが行われます。
 この手法を用いれば、そのパッケージの最新版に、思いもよらない変更が加わっていたとしても、ビルド失敗を回避できることもあります。
 
-.. Below is a well-formed RUN instruction that demonstrates all the apt-get recommendations.
+.. Below is a well-formed `RUN` instruction that demonstrates all the `apt-get`
+   recommendations.
 
-以下は　丁寧に練られた ``RUN`` 命令であり、 ``apt-get`` について推奨される方法全ての例でもあります。
+以下の ``RUN`` コマンドはきれいに整えられていて、 ``apt-get`` の推奨する利用方法を示しています。
 
 .. code-block:: bash
 
