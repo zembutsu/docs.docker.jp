@@ -438,9 +438,12 @@ Docker は当初のコマンドと修正後のコマンドを見て、同一の�
        package-baz \
        package-foo=1.3.*
 
-.. Version pinning forces the build to retrieve a particular version regardless of what’s in the cache. This technique can also reduce failures due to unanticipated changes in required packages.
+.. Version pinning forces the build to retrieve a particular version regardless of
+   what’s in the cache. This technique can also reduce failures due to unanticipated changes
+   in required packages.
 
-version pinning は、何をキャッシュしているかにかかわらず、特定バージョンを取得した上での構築を強制します。このテクニックでも、依存パッケージの予期せぬ変更によって引き起こされる失敗を減らせます。
+バージョン・ピニングでは、キャッシュにどのようなイメージがあろうとも、指定されたバージョンを使ってビルドが行われます。
+この手法を用いれば、そのパッケージの最新版に、思いもよらない変更が加わっていたとしても、ビルド失敗を回避できることもあります。
 
 .. Below is a well-formed RUN instruction that demonstrates all the apt-get recommendations.
 
