@@ -384,9 +384,12 @@ apt-get
        package-baz \
        package-foo
 
-.. Using apt-get update alone in a RUN statement causes caching issues and subsequent apt-get install instructions fail. For example, say you have a Dockerfile:
+.. Using `apt-get update` alone in a `RUN` statement causes caching issues and
+   subsequent `apt-get install` instructions fail.
+   For example, say you have a Dockerfile:
 
-``RUN`` 命令で ``apt-get update`` だけを使うとキャッシュの問題が発生し、その後の ``apt-get install`` 命令が失敗します。例えば、次のように Dockerfile を記述したとします。
+１つの ``RUN`` コマンド内で ``apt-get update`` だけを使うとキャッシュに問題が発生し、その後の ``apt-get install`` コマンドが失敗します。
+たとえば Dockerfile を以下のように記述したとします。
 
 .. code-block:: bash
 
