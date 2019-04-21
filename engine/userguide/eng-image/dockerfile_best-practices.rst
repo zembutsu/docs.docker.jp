@@ -339,9 +339,12 @@ RUN
 
 :ref:`Dockerfile リファレンスの RUN コマンド <run>`
 
-.. As always, to make your Dockerfile more readable, understandable, and maintainable, split long or complex RUN statements on multiple lines separated with backslashes.
+.. As always, to make your `Dockerfile` more readable, understandable, and
+   maintainable, split long or complex `RUN` statements on multiple lines separated
+   with backslashes.
 
-例によって、 ``Dockerfile`` をより読みやすく、理解しやすく、メンテナンスしやすくするために、長かったり複雑だったりする ``RUN`` 命令はバックスラッシュで複数行に分割しましょう。
+いつものことながら ``Dockerfile`` は読みやすく理解しやすく、そして保守しやすくすることが必要です。
+``RUN`` コマンドが複数行にわたって長く複雑になるなら、バックスラッシュを使って行を分けてください。
 
 .. apt-get
 
