@@ -914,6 +914,23 @@ USER
    イメージが再構築されるかどうかには関係なく、「次の」値が UID、GID に割り当てられます。
    これが問題となる場合は、UID、GID を明示的に割り当ててください。
 
+.. > **Note**: Due to an [unresolved bug](https://github.com/golang/go/issues/13548)
+   > in the Go archive/tar package's handling of sparse files, attempting to
+   > create a user with a sufficiently large UID inside a Docker container can
+   > lead to disk exhaustion as `/var/log/faillog` in the container layer is
+   > filled with NUL (\0) characters.  Passing the `--no-log-init` flag to
+   > useradd works around this issue.  The Debian/Ubuntu `adduser` wrapper
+   > does not support the `--no-log-init` flag and should be avoided.
+
+.. note::
+
+   Go 言語の archive/tar パッケージが取り扱うスパースファイルにおいて
+   `未解決のバグ <https://github.com/golang/go/issues/13548>`_ があります。
+   これは Docker コンテナ内にて非常に大きな値の UID を使ってユーザを生成しようとするため、ディスク消費が異常に発生します。
+   コンテナ・レイヤ内の ``/var/log/faillog`` が NUL (\\0) キャラクタにより埋められてしまいます。
+   useradd に対して ``--no-log-init`` フラグをつけることで、とりあえずこの問題は回避できます。
+   ただし Debian/Ubuntu の ``adduser`` ラッパーは ``--no-log-init`` フラグをサポートしていないため、利用することはできません。
+
 .. You should avoid installing or using sudo since it has unpredictable TTY and signal-forwarding behavior that can cause more problems than it solves. If you absolutely need functionality similar to sudo (e.g., initializing the daemon as root but running it as non-root), you may be able to use “gosu”.
 
 ``sudo`` は予測不可能なTTY/シグナル送信といった挙動を見せ、解決するより多くの問題を作り出しかねないので、インストールや使用は避けたほうが良いでしょう。もし、どうしても ``sudo`` のような機能が必要であれば（例：root としてデーモンを初期化しますが、実行は root 以外で行いたい時）、 「 `gosu <https://github.com/tianon/gosu>`_ 」を利用ができます。
