@@ -358,9 +358,18 @@ apt-get
 おそらく ``RUN`` において一番利用する使い方が ``apt-get`` アプリケーションの実行です。
 ``RUN apt-get`` はパッケージをインストールするものであるため、注意点がいくつかあります。
 
-.. You should avoid RUN apt-get upgrade or dist-upgrade, as many of the “essential” packages from the base images won’t upgrade inside an unprivileged container. If a package contained in the base image is out-of-date, you should contact its maintainers. If you know there’s a particular package, foo, that needs to be updated, use apt-get install -y foo to update automatically.
+.. You should avoid `RUN apt-get upgrade` or `dist-upgrade`, as many of the
+   “essential” packages from the parent images won't upgrade inside an unprivileged
+   container. If a package contained in the parent image is out-of-date, you should
+   contact its maintainers.
+   If you know there’s a particular package, `foo`, that needs to be updated, use
+   `apt-get install -y foo` to update automatically.
 
-まず、``RUN apt-get upgrade`` や ``dist-upgrade`` を避けるべきでしょう。ベース・イメージに含まれる「必須(essential)」パッケージの多くが、権限を持たないコンテナの内部で更新されないためです。もしベース・イメージのパッケージが古くなっているなら、メンテナに連絡すべきでしょう。もし ``foo`` という特定のパッケージを知っていて、それを更新する必要があるのであれば、自動的に更新するために ``apt-get install -y foo`` を使います。
+``RUN apt-get upgrade`` や ``dist-upgrade`` の実行は避けてください。
+ベース・イメージに含まれる重要パッケージは、権限が与えられていないコンテナ内ではほとんど更新できないからです。
+ベース・イメージ内のパッケージが古くなっていたら、開発者に連絡をとってください。
+``foo`` というパッケージを更新する必要があれば、 ``apt-get install -y foo`` を利用してください。
+これによってパッケージは自動的に更新されます。
 
 .. Always combine RUN apt-get update with apt-get install in the same RUN statement, for example:
 
