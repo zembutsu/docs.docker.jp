@@ -397,9 +397,11 @@ apt-get
    RUN apt-get update
    RUN apt-get install -y curl
 
-.. After building the image, all layers are in the Docker cache. Suppose you later modify apt-get install by adding extra package:
+.. After building the image, all layers are in the Docker cache. Suppose you later
+   modify `apt-get install` by adding extra package:
 
-イメージを構築後、Docker は全てのレイヤをキャッシュします。次に、別のパッケージを追加するよう ``apt-get install`` を編集したとします。
+イメージが構築されると、レイヤーがすべて Docker のキャッシュに入ります。
+この次に ``apt-get install`` を編集して別のパッケージを追加したとします。
 
 .. code-block:: bash
 
