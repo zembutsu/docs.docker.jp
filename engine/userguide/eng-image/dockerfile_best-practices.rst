@@ -419,9 +419,17 @@ Docker は当初のコマンドと修正後のコマンドを見て、同一の�
 キャッシュされたものを利用して処理が行われるわけですから、結果として ``apt-get update`` は実行 **されません** 。
 ``apt-get update`` が実行されないということは、つまり ``curl`` にしても ``nginx`` にしても、古いバージョンのまま利用する可能性が出てくるということです。
 
-.. Using RUN apt-get update && apt-get install -y ensures your Dockerfile installs the latest package versions with no further coding or manual intervention. This technique is known as “cache busting”. You can also achieve cache-busting by specifying a package version. This is known as version pinning, for example:
+.. Using  `RUN apt-get update && apt-get install -y` ensures your Dockerfile
+   installs the latest package versions with no further coding or manual
+   intervention. This technique is known as "cache busting". You can also achieve
+   cache-busting by specifying a package version. This is known as version pinning,
+   for example:
 
-``RUN apt-get update && apt-get install -y`` とすることで、 Dockerfile が最新バージョンをインストールすることを追加の記述や手動作業なしに保証できます。このテクニックは「cache busting」として知られています。パッケージのバージョンを指定することでも cache busting でき、これは version pinning として知られています。以下は例です。
+``RUN apt-get update && apt-get install -y`` というコマンドにすると、 Dockerfile が確実に最新バージョンをインストールしてくれるものとなり、さらにコードを書いたり手作業を加えたりする必要がなくなります。
+これは「キャッシュ・バスティング（cache busting）」と呼ばれる技術です。
+この技術は、パッケージのバージョンを指定することによっても利用することができます。
+これはバージョン・ピニング（version pinning）というものです。
+以下に例を示します。
 
 .. code-block:: bash
 
