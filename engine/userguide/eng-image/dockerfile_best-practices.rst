@@ -558,9 +558,17 @@ CMD
 
 :ref:`Dockerfile リファレンスの CMD コマンド <cmd>`
 
-.. The CMD instruction should be used to run the software contained by your image, along with any arguments. CMD should almost always be used in the form of CMD [“executable”, “param1”, “param2”…]. Thus, if the image is for a service, such as Apache and Rails, you would run something like CMD ["apache2","-DFOREGROUND"]. Indeed, this form of the instruction is recommended for any service-based image.
+.. The `CMD` instruction should be used to run the software contained by your
+   image, along with any arguments. `CMD` should almost always be used in the
+   form of `CMD [“executable”, “param1”, “param2”…]`. Thus, if the image is for a
+   service, such as Apache and Rails, you would run something like
+   `CMD ["apache2","-DFOREGROUND"]`. Indeed, this form of the instruction is
+   recommended for any service-based image.
 
-``CMD`` 命令は、イメージに含まれるソフトウェアを引数付きで実行するために使うべきです。また、``CMD`` はほとんど常に ``CMD [“実行ファイル”, “パラメータ1”, “パラメータ2”…]`` のような形式で使うべきです。そのため、イメージが Apache や Rails のようなサービス向けのものであれば、 ``CMD ["apache2","-DFOREGROUND"]`` のようにすべきでしょう。実際、サービスベースのあらゆるイメージで、この命令形式が推奨されます。
+``CMD`` コマンドは、イメージ内に含まれるソフトウェアを実行するために用いるもので、引数を指定して実行します。
+``CMD`` はほぼ、``CMD [“実行モジュール名”, “引数1”, “引数2”…]`` の形式をとります。
+Apache や Rails のようにサービスをともなうイメージに対しては、たとえば ``CMD ["apache2","-DFOREGROUND"]`` といったコマンド実行になります。
+実際にサービスベースのイメージに対しては、この実行形式が推奨されます。
 
 .. In most other cases, CMD should be given an interactive shell, cush as bash, python and perl. For example, CMD ["perl", "-de0"], CMD ["python"], or CMD [“php”, “-a”]. Using this form means that when you execute something like docker run -it python, you’ll get dropped into a usable shell, ready to go. CMD should rarely be used in the manner of CMD [“param”, “param”] in conjunction with ENTRYPOINT, unless you and your expected users are already quite familiar with how ENTRYPOINT works.
 
