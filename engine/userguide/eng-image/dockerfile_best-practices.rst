@@ -819,11 +819,19 @@ ENTRYPOINT
    
    exec "$@"
 
-..     Note: This script uses the exec Bash command so that the final running application becomes the container’s PID 1. This allows the application to receive any Unix signals sent to the container. See the ENTRYPOINT help for more details.
+.. > **Note**:
+   > This script uses [the `exec` Bash command](http://wiki.bash-hackers.org/commands/builtin/exec)
+   > so that the final running application becomes the container's PID 1. This allows
+   > the application to receive any Unix signals sent to the container.
+   > See the [`ENTRYPOINT`](../../reference/builder.md#entrypoint)
+   > help for more details.
 
 .. note::
 
-   このスクリプトは ``exec`` `Bash コマンド <http://wiki.bash-hackers.org/commands/builtin/exec>`_ をコンテナの PID 1 アプリケーションとして実行します。これにより、コンテナに対して送信される Unix シグナルは、アプリケーションが受信します。詳細は ``ENTRYPOINT`` のヘルプをご覧ください。
+   このスクリプトは `Bash コマンドの exec <http://wiki.bash-hackers.org/commands/builtin/exec>`_ を用います。
+   このため最終的に実行されたアプリケーションが、コンテナの PID として 1 を持つことになります。
+   こうなるとそのアプリケーションは、コンテナに送信された Unix シグナルをすべて受信できるようになります。
+   詳細は :ref:`ENTRYPOINT <entrypoint>` を参照してください。
 
 .. The helper script is copied into the container and run via ENTRYPOINT on container start:
 
