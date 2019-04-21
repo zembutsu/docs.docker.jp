@@ -738,9 +738,10 @@ ADD と COPY
        | tar -xJC /usr/src/things \
        && make -C /usr/src/things all
 
-.. For other items (files, directories) that do not require ADD’s tar auto-extraction capability, you should always use COPY.
+.. For other items (files, directories) that do not require `ADD`’s tar
+   auto-extraction capability, you should always use `COPY`.
 
-他のアイテム（ファイルやディレクトリ）は ``ADD`` の自動展開機能を必要としませんので、常に ``COPY`` を使うべきです。
+``ADD`` の自動展開機能を必要としないもの（ファイルやディレクトリ）に対しては、常に ``COPY`` を使うようにしてください。
 
 .. ENTRYPOINT
 
