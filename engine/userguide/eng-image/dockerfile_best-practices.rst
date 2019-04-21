@@ -789,9 +789,13 @@ ENTRYPOINT
 
 このコマンドのようにして、イメージ名がバイナリへの参照としても使えるので便利です。
 
-.. The ENTRYPOINT instruction can also be used in combination with a helper script, allowing it to function in a similar way to the command above, even when starting the tool may require more than one step.
+.. The `ENTRYPOINT` instruction can also be used in combination with a helper
+   script, allowing it to function in a similar way to the command above, even
+   when starting the tool may require more than one step.
 
-``ENTRYPOINT`` 命令はヘルパースクリプトと合わせて利用することもできます。これにより、ツールを使うために複数のステップが必要になるかもしれない場合も、先ほどのコマンドと似たような方法が使えます。
+``ENTRYPOINT`` コマンドはヘルパースクリプトとの組み合わせにより利用することもできます。
+そのスクリプトは、上記のコマンド例と同じように機能させられます。
+たとえ対象ツールの起動に複数ステップを要するような場合でも、それが可能です。
 
 .. For example, the Postgres Official Image uses the following script as its ENTRYPOINT:
 
