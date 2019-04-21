@@ -759,9 +759,9 @@ ENTRYPOINT
 ``ENTRYPOINT`` の最適な利用方法は、イメージに対してメインのコマンドを設定することです。
 これを設定すると、イメージをそのコマンドそのものであるかのようにして実行できます（その次に ``CMD`` を使ってデフォルトフラグを指定します）。
 
-.. Let’s start with an example of an image for the command line tool s3cmd:
+.. Let's start with an example of an image for the command line tool `s3cmd`:
 
-コマンドライン・ツール ``s3cmd`` のイメージを例にしてみましょう。
+コマンドライン・ツール ``s3cmd`` のイメージ例から始めます。
 
 .. code-block:: bash
 
