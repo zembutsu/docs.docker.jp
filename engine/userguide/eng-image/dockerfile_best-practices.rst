@@ -467,9 +467,14 @@ Docker は当初のコマンドと修正後のコマンドを見て、同一の�
        s3cmd=1.1.* \
     && rm -rf /var/lib/apt/lists/*
 
-.. The s3cmd instructions specifies a version 1.1.0*. If the image previously used an older version, specifying the new one causes a cache bust of apt-get update and ensure the installation of the new version. Listing packages on each line can also prevent mistakes in package duplication.
+.. The `s3cmd` instructions specifies a version `1.1.*`. If the image previously
+   used an older version, specifying the new one causes a cache bust of `apt-get
+   update` and ensure the installation of the new version. Listing packages on
+   each line can also prevent mistakes in package duplication.
 
-``s3cmd`` の命令行は、バージョン ``1.1.*`` を指定します。イメージが以前に古いバージョンを使っていたとしても、新しいバージョンを指定することで  ``apt-get update`` の cache bust を引き起こし、新しい方がインストールされるようにします。パッケージを行単位でリストアップしたのは、パッケージ重複のミスを防ぐためです。
+``s3cmd`` のコマンド行は、バージョン ``1.1.*`` を指定しています。
+以前に作られたイメージが古いバージョンを使っていたとしても、新たなバージョンの指定により ``apt-get update`` のキャッシュ・バスティングが働いて、確実に新バージョンがインストールされるようになります。
+パッケージを各行に分けて記述しているのは、パッケージを重複して書くようなミスを防ぐためです。
 
 .. In addition, cleaning up the apt cache and removing /var/lib/apt/lists helps keep the image size down. Since the RUN statement starts with apt-get update, the package cache will always be refreshed prior to apt-get install.
 
