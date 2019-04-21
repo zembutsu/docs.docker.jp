@@ -875,13 +875,17 @@ ENTRYPOINT
 VOLUME
 ----------
 
-[Dockerfile reference for the VOLUME instruction](../../reference/builder.md#volume)
+.. [Dockerfile reference for the VOLUME instruction](../../reference/builder.md#volume)
 
 :ref:`Dockerfile リファレンスの VOLUME コマンド <volume>`
 
-.. The VOLUME instruction should be used to expose any database storage area, configuration storage, or files/folders created by your docker container. You are strongly encouraged to use VOLUME for any mutable and/or user-serviceable parts of your image.
+.. The `VOLUME` instruction should be used to expose any database storage area,
+   configuration storage, or files/folders created by your docker container. You
+   are strongly encouraged to use `VOLUME` for any mutable and/or user-serviceable
+   parts of your image.
 
-``VOLUME`` 命令はデータベース・ストレージ領域、設定用ストレージ、Docker コンテナによって作成されるファイルやフォルダの公開に使います。イメージにおける任意の、変わりやすい(かつ/または)ユーザが使う部分では VOLUME の利用が強く推奨されます。
+``VOLUME`` コマンドは、データベース・ストレージ領域、設定用ストレージ、Docker コンテナによって作成されるファイルやフォルダの公開に使います。
+イメージの可変的な部分、あるいはユーザが設定可能な部分については VOLUME の利用が強く推奨されます。
 
 .. USER
 
