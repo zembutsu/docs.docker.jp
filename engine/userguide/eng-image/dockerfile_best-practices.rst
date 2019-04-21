@@ -848,7 +848,7 @@ ENTRYPOINT
 
 .. It can simply start Postgres:
 
-単純な postgres の起動にも使えます。
+以下は単純に Postgres を起動します。
 
 .. code-block:: bash
 
