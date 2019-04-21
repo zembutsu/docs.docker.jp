@@ -371,9 +371,11 @@ apt-get
 ``foo`` というパッケージを更新する必要があれば、 ``apt-get install -y foo`` を利用してください。
 これによってパッケージは自動的に更新されます。
 
-.. Always combine RUN apt-get update with apt-get install in the same RUN statement, for example:
+.. Always combine  `RUN apt-get update` with `apt-get install` in the same `RUN`
+   statement, for example:
 
-``RUN apt-get update`` は常に ``apt-get install`` とセットで、同じ ``RUN`` 命令文内で使いましょう。例えば以下のように。
+``RUN apt-get update`` と ``apt-get install`` は、同一の ``RUN`` コマンド内にて同時実行するようにしてください。
+たとえば以下のようにします。
 
 .. code-block:: bash
 
