@@ -904,12 +904,16 @@ USER
 ユーザとグループを生成するところから始めてください。
 ``Dockerfile`` 内にてたとえば  ``RUN groupadd -r postgres && useradd -r -g postgres postgres`` のようなコマンドを実行します。
 
-..     Note: Users and groups in an image get a non-deterministic UID/GID in that the “next” UID/GID gets assigned regardless of image rebuilds. So, if it’s critical, you should assign an explicit UID/GID.
+.. > **Note**: Users and groups in an image get a non-deterministic
+   > UID/GID in that the “next” UID/GID gets assigned regardless of image
+   > rebuilds. So, if it’s critical, you should assign an explicit UID/GID.
 
 .. note::
 
-   イメージ内で得られるユーザとグループの UID/GID は非決定的で、イメージの再構築とは無関係に「次の」 UID/GID が割り当てられます。これが問題になるようなら、UID/GID を明確に割り当ててください。
-   
+   イメージ内のユーザとグループに割り当てられる UID、GID は確定的なものではありません。
+   イメージが再構築されるかどうかには関係なく、「次の」値が UID、GID に割り当てられます。
+   これが問題となる場合は、UID、GID を明示的に割り当ててください。
+
 .. You should avoid installing or using sudo since it has unpredictable TTY and signal-forwarding behavior that can cause more problems than it solves. If you absolutely need functionality similar to sudo (e.g., initializing the daemon as root but running it as non-root), you may be able to use “gosu”.
 
 ``sudo`` は予測不可能なTTY/シグナル送信といった挙動を見せ、解決するより多くの問題を作り出しかねないので、インストールや使用は避けたほうが良いでしょう。もし、どうしても ``sudo`` のような機能が必要であれば（例：root としてデーモンを初期化しますが、実行は root 以外で行いたい時）、 「 `gosu <https://github.com/tianon/gosu>`_ 」を利用ができます。
