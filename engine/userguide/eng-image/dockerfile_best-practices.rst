@@ -784,9 +784,10 @@ ENTRYPOINT
 
    $ docker run s3cmd ls s3://mybucket
 
-.. This is useful because the image name can double as a reference to the binary as shown in the command above.
+.. This is useful because the image name can double as a reference to the binary as
+   shown in the command above.
 
-イメージ名が、上述したコマンドで示したバイナリへの参照も兼ねるので便利です。
+このコマンドのようにして、イメージ名がバイナリへの参照としても使えるので便利です。
 
 .. The ENTRYPOINT instruction can also be used in combination with a helper script, allowing it to function in a similar way to the command above, even when starting the tool may require more than one step.
 
