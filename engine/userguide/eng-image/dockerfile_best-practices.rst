@@ -672,9 +672,19 @@ ADD と COPY
 :ref:`Dockerfile リファレンスの ADD コマンド <add>`
 :ref:`Dockerfile リファレンスの COPY コマンド <copy>`
 
-.. Although ADD and COPY are functionally similar, generally speaking, COPY is preferred. That’s because it’s more transparent than ADD. COPY only supports the basic copying of local files into the container, while ADD has some features (like local-only tar extraction and remote URL support) that are not immediately obvious. Consequently, the best use for ADD is local tar file auto-extraction into the image, as in ADD rootfs.tar.xz /.
+.. Although `ADD` and `COPY` are functionally similar, generally speaking, `COPY`
+   is preferred. That’s because it’s more transparent than `ADD`. `COPY` only
+   supports the basic copying of local files into the container, while `ADD` has
+   some features (like local-only tar extraction and remote URL support) that are
+   not immediately obvious. Consequently, the best use for `ADD` is local tar file
+   auto-extraction into the image, as in `ADD rootfs.tar.xz /`.
 
-``ADD`` と ``COPY`` の機能は似ていますが、一般的には ``COPY`` が望ましいと言われています。これは、 ``ADD`` よりも機能が明確なためです。 ``COPY`` はローカルファイルをコンテナの中にコピーするという、基本的な機能しかサポートしていません。一方の ``ADD`` は複数の機能（ローカル上での tar アーカイブ展開や、リモート URL のサポート）を持ち、一見では処理内容が分かりません（訳者注：ファイルや URL に何が含まれているか確認できないためです）。したがって ``ADD`` のベストな使い方は、ローカルの tar ファイルをイメージに自動展開（ ``ADD rootfs.tar.xz /`` ）する用途です。
+``ADD`` と ``COPY`` の機能は似ていますが、一般的には ``COPY`` が選ばれます。
+それは ``ADD`` よりも機能がはっきりしているからです。
+``COPY`` は単に、基本的なコピー機能を使ってローカルファイルをコンテナにコピーするだけです。
+一方 ``ADD`` には特定の機能（ローカルでの tar 展開やリモート URL サポート）があり、これはすぐにわかるものではありません。
+結局 ``ADD`` の最も適切な利用場面は、ローカルの tar ファイルを自動的に展開してイメージに書き込むときです。
+たとえば ``ADD rootfs.tar.xz /`` といったコマンドになります。
 
 .. If you have multiple Dockerfile steps that use different files from your context, COPY them individually, rather than all at once. This will ensure that each step’s build cache is only invalidated (forcing the step to be re-run) if the specifically required files change.
 
