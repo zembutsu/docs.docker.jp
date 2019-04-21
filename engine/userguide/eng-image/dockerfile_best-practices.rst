@@ -476,9 +476,14 @@ Docker は当初のコマンドと修正後のコマンドを見て、同一の�
 以前に作られたイメージが古いバージョンを使っていたとしても、新たなバージョンの指定により ``apt-get update`` のキャッシュ・バスティングが働いて、確実に新バージョンがインストールされるようになります。
 パッケージを各行に分けて記述しているのは、パッケージを重複して書くようなミスを防ぐためです。
 
-.. In addition, cleaning up the apt cache and removing /var/lib/apt/lists helps keep the image size down. Since the RUN statement starts with apt-get update, the package cache will always be refreshed prior to apt-get install.
+.. In addition, when you clean up the apt cache by removing `/var/lib/apt/lists`
+   reduces the image size, since the apt cache is not stored in a layer. Since the
+   `RUN` statement starts with `apt-get update`, the package cache will always be
+   refreshed prior to `apt-get install`.
 
-付け加えると、apt キャッシュをクリーンアップし、 ``/var/lib/apt/lists`` を削除することでイメージのサイズが減らせます。 ``RUN`` 命令は ``apt-get update`` から開始しますので、 ``apt-get install`` される前には常にパッケージキャッシュが更新されます。
+apt キャッシュをクリーンアップし ``/var/lib/apt/lists`` を削除するのは、イメージサイズを小さくするためです。
+そもそも apt キャッシュはレイヤー内に保存されません。
+``RUN`` コマンドを ``apt-get update`` から始めているので、 ``apt-get install`` の前に必ずパッケージのキャッシュが更新されることになります。
 
 .. CMD
 
