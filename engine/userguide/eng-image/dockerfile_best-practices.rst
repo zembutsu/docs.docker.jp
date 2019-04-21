@@ -752,9 +752,12 @@ ENTRYPOINT
 
 :ref:`Dockerfile リファレンスの ENTRYPOINT コマンド <entrypoint>`
 
-.. The best use for ENTRYPOINT is to set the image’s main command, allowing that image to be run as though it was that command (and then use CMD as the default flags).
+.. The best use for `ENTRYPOINT` is to set the image's main command, allowing that
+   image to be run as though it was that command (and then use `CMD` as the
+   default flags).
 
-``ENTRYPOINT`` のベストな使い方は、イメージにおけるメインコマンドの設定です。これによりイメージは、まるでそのコマンドであるかのように実行できます（そして、 ``CMD`` がデフォルトのフラグとして使われます）。
+``ENTRYPOINT`` の最適な利用方法は、イメージに対してメインのコマンドを設定することです。
+これを設定すると、イメージをそのコマンドそのものであるかのようにして実行できます（その次に ``CMD`` を使ってデフォルトフラグを指定します）。
 
 .. Let’s start with an example of an image for the command line tool s3cmd:
 
