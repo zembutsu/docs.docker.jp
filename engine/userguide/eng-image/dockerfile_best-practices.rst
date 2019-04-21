@@ -485,6 +485,70 @@ apt キャッシュをクリーンアップし ``/var/lib/apt/lists`` を削除�
 そもそも apt キャッシュはレイヤー内に保存されません。
 ``RUN`` コマンドを ``apt-get update`` から始めているので、 ``apt-get install`` の前に必ずパッケージのキャッシュが更新されることになります。
 
+.. > **Note**: The official Debian and Ubuntu images [automatically run `apt-get clean`](https://github.com/moby/moby/blob/03e2923e42446dbb830c654d0eec323a0b4ef02a/contrib/mkimage/debootstrap#L82-L105),
+   > so explicit invocation is not required.
+
+.. note::
+
+   公式の Debian と Ubuntu のイメージは `自動的に apt-get clean を実行する <https://github.com/moby/moby/blob/03e2923e42446dbb830c654d0eec323a0b4ef02a/contrib/mkimage/debootstrap#L82-L105>`_ ので、明示的にこのコマンドを実行する必要はありません。
+
+.. #### Using pipes
+
+パイプの利用
+^^^^^^^^^^^^
+
+.. Some `RUN` commands depend on the ability to pipe the output of one command into another, using the pipe character (`|`), as in the following example:
+
+``RUN`` コマンドの中には、その出力をパイプを使って他のコマンドへ受け渡すことを前提としているものがあります。
+そのときにはパイプを行う文字（ ``|`` ）を使います。
+たとえば以下のような例があります。
+
+::
+
+   RUN wget -O - https://some.site | wc -l > /number
+
+.. Docker executes these commands using the `/bin/sh -c` interpreter, which
+   only evaluates the exit code of the last operation in the pipe to determine
+   success. In the example above this build step succeeds and produces a new
+   image so long as the `wc -l` command succeeds, even if the `wget` command
+   fails.
+
+Docker はこういったコマンドを ``/bin/sh -c`` というインタープリタ実行により実現します。
+正常処理されたかどうかは、パイプの最後の処理の終了コードにより評価されます。
+上の例では、このビルド処理が成功して新たなイメージが生成されるかどうかは、``wc -l`` コマンドの成功にかかっています。
+つまり ``wget`` コマンドが成功するかどうかは関係がありません。
+
+.. If you want the command to fail due to an error at any stage in the pipe,
+   prepend `set -o pipefail &&` to ensure that an unexpected error prevents
+   the build from inadvertently succeeding. For example:
+
+パイプ内のどの段階でも、エラーが発生したらコマンド失敗としたい場合は、頭に ``set -o pipefail &&`` をつけて実行します。
+こうしておくと、予期しないエラーが発生しても、それに気づかずにビルドされてしまうことはなくなります。
+たとえば以下です。
+
+.. ```Dockerfile
+   RUN set -o pipefail && wget -O - https://some.site | wc -l > /number
+   ```
+
+::
+
+   RUN set -o pipefail && wget -O - https://some.site | wc -l > /number
+
+.. note::
+
+   すべてのシェルが ``-o pipefail`` オプションをサポートしているわけではありません。
+   その場合（例えば Debian ベースのイメージにおけるデフォルトシェル ``dash`` である場合）、``RUN`` コマンドにおける **exec** 形式の利用を考えてみてください。
+   これは ``pipefail`` オプションをサポートしているシェルを明示的に指示するものです。
+   たとえば以下です。
+
+   .. ```Dockerfile
+      RUN ["/bin/bash", "-c", "set -o pipefail && wget -O - https://some.site | wc -l > /number"]
+      ```
+   
+   ::
+   
+      RUN ["/bin/bash", "-c", "set -o pipefail && wget -O - https://some.site | wc -l > /number"]
+
 .. CMD
 
 CMD
