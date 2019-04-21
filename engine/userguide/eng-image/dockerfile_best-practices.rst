@@ -566,13 +566,24 @@ CMD
    recommended for any service-based image.
 
 ``CMD`` コマンドは、イメージ内に含まれるソフトウェアを実行するために用いるもので、引数を指定して実行します。
-``CMD`` はほぼ、``CMD [“実行モジュール名”, “引数1”, “引数2”…]`` の形式をとります。
+``CMD`` はほぼ、``CMD ["実行モジュール名", "引数1", "引数2" …]`` の形式をとります。
 Apache や Rails のようにサービスをともなうイメージに対しては、たとえば ``CMD ["apache2","-DFOREGROUND"]`` といったコマンド実行になります。
 実際にサービスベースのイメージに対しては、この実行形式が推奨されます。
 
-.. In most other cases, CMD should be given an interactive shell, cush as bash, python and perl. For example, CMD ["perl", "-de0"], CMD ["python"], or CMD [“php”, “-a”]. Using this form means that when you execute something like docker run -it python, you’ll get dropped into a usable shell, ready to go. CMD should rarely be used in the manner of CMD [“param”, “param”] in conjunction with ENTRYPOINT, unless you and your expected users are already quite familiar with how ENTRYPOINT works.
+.. In most other cases, `CMD` should be given an interactive shell, such as bash, python
+   and perl. For example, `CMD ["perl", "-de0"]`, `CMD ["python"]`, or
+   `CMD [“php”, “-a”]`. Using this form means that when you execute something like
+   `docker run -it python`, you’ll get dropped into a usable shell, ready to go.
+   `CMD` should rarely be used in the manner of `CMD [“param”, “param”]` in
+   conjunction with [`ENTRYPOINT`](../../reference/builder.md#entrypoint), unless
+   you and your expected users are already quite familiar with how `ENTRYPOINT`
+   works.
 
-その他の多くの場合、 ``CMD`` は bash、python、perl 等のインタラクティブなシェルに使います。例えば、 ``CMD ["perl", "-de0"]`` 、 ``CMD ["python"]`` 、 ``CMD [“php”, “-a”]`` です。この利用形式にしておくことで、 ``docker run -it python`` とすると、そのコマンドを使いやすいシェル上に落とし込んだ上ですぐに使えるようになります。 また、あなたとあなたの想定ユーザが ``ENTRYPOINT`` の動作に慣れていないなら、 ``ENTRYPOINT`` と一緒に使う形式である ``CMD [“パラメータ”, “パラメータ”]`` 形式で ``CMD`` を使うべきではないでしょう。
+上記以外では、 ``CMD`` に対して bash、python、perl などインタラクティブシェルを与えることが行われます。
+たとえば ``CMD ["perl", "-de0"]`` 、 ``CMD ["python"]`` 、 ``CMD ["php", "-a"]`` といった具合です。
+この実行形式を利用するということは、たとえば ``docker run -it python`` というコマンドを実行したときに、指定したシェルの中に入り込んで、処理を進めていくことを意味します。
+``CMD`` と ``ENTRYPOINT`` を組み合わせて用いる ``CMD ["引数", "引数"]`` という実行形式がありますが、これを利用するのはまれです。
+開発者自身や利用者にとって ``ENTRYPOINT`` がどのように動作するのかが十分に分かっていないなら、用いないようにしましょう。
 
 .. EXPOSE
 
