@@ -778,7 +778,7 @@ ENTRYPOINT
 
 .. Or using the right parameters to execute a command:
 
-あるいは、適切なパラメータを指定したら、コマンドを実行します。
+あるいは適正なパラメータを指定してコマンドを実行します。
 
 .. code-block:: bash
 
