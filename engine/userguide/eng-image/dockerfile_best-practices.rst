@@ -864,7 +864,7 @@ ENTRYPOINT
 
 .. Lastly, it could also be used to start a totally different tool, such as Bash:
 
-または、Bash のような全く異なったツールのためにも利用可能です。
+または Bash のような全く異なるツールを起動するために利用することもできます。
 
 .. code-block:: bash
 
