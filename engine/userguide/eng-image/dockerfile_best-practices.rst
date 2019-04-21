@@ -710,9 +710,16 @@ ADD と COPY
 
 ``RUN`` コマンドのステップより前に ``COPY . /tmp/`` を実行していたとしたら、それに比べて上の例はキャッシュ無効化の可能性が低くなっています。
 
-.. Because image size matters, using ADD to fetch packages from remote URLs is strongly discouraged; you should use curl or wget instead. That way you can delete the files you no longer need after they’ve been extracted and you won’t have to add another layer in your image. For example, you should avoid doing things like:
+.. Because image size matters, using `ADD` to fetch packages from remote URLs is
+   strongly discouraged; you should use `curl` or `wget` instead. That way you can
+   delete the files you no longer need after they've been extracted and you won't
+   have to add another layer in your image. For example, you should avoid doing
+   things like:
 
-イメージ・サイズの問題があるので、 ``ADD`` でリモート URL 上のパッケージを取得するのは全くおすすめできません。その代わりに ``curl`` や ``wget`` を使うべきです。この方法であれば、展開後に不要となったファイルを削除でき、イメージに余分なレイヤを増やしません。例えば、次のような記述は避けるべきです。
+イメージ・サイズの問題があるので、 ``ADD`` を用いてリモート URL からパッケージを取得することはやめてください。
+かわりに ``curl`` や ``wget`` を使ってください。
+こうしておくことで、ファイルを取得し展開した後や、イメージ内の他のレイヤにファイルを加える必要がないのであれば、その後にファイルを削除することができます。
+たとえば以下に示すのは、やってはいけない例です。
 
 .. code-block:: bash
 
