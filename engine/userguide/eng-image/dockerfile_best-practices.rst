@@ -705,9 +705,10 @@ ADD と COPY
    RUN pip install /tmp/requirements.txt
    COPY . /tmp/
 
-.. Results in fewer cache invalidations for the RUN step, than if you put the COPY . /tmp/ before it.
+.. Results in fewer cache invalidations for the `RUN` step, than if you put the
+   `COPY . /tmp/` before it.
 
-``RUN`` ステップはキャッシュ無効化の影響が少なくなるよう、 ``COPY . /tmp/`` の前に入れるべきでしょう。
+``RUN`` コマンドのステップより前に ``COPY . /tmp/`` を実行していたとしたら、それに比べて上の例はキャッシュ無効化の可能性が低くなっています。
 
 .. Because image size matters, using ADD to fetch packages from remote URLs is strongly discouraged; you should use curl or wget instead. That way you can delete the files you no longer need after they’ve been extracted and you won’t have to add another layer in your image. For example, you should avoid doing things like:
 
