@@ -896,9 +896,13 @@ USER
 
 :ref:`Dockerfile リファレンスの USER コマンド <user>`
 
-.. If a service can run without privileges, use USER to change to a non-root user. Start by creating the user and group in the Dockerfile with something like RUN groupadd -r postgres && useradd -r -g postgres postgres.
+.. If a service can run without privileges, use `USER` to change to a non-root
+   user. Start by creating the user and group in the `Dockerfile` with something
+   like `RUN groupadd -r postgres && useradd --no-log-init -r -g postgres postgres`.
 
-サービスが特権なしに実行できるなら、``USER`` を用いて root 以外のユーザに変更しましょう。利用するには ``Dockerfile`` で ``RUN groupadd -r postgres && useradd -r -g postgres postgres`` のようにユーザとグループを作成します。
+サービスが特権ユーザでなくても実行できる場合は、 ``USER`` を用いて非 root ユーザに変更します。
+ユーザとグループを生成するところから始めてください。
+``Dockerfile`` 内にてたとえば  ``RUN groupadd -r postgres && useradd -r -g postgres postgres`` のようなコマンドを実行します。
 
 ..     Note: Users and groups in an image get a non-deterministic UID/GID in that the “next” UID/GID gets assigned regardless of image rebuilds. So, if it’s critical, you should assign an explicit UID/GID.
 
