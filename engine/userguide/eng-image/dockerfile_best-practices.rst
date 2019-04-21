@@ -844,7 +844,7 @@ ENTRYPOINT
 
 .. This script allows the user to interact with Postgres in several ways.
 
-このスクリプトにより、 Postgres とユーザとはいくつかの方法で対話できます。
+このスクリプトを用いると、Postgres との間で、ユーザがいろいろな方法でやり取りできるようになります。
 
 .. It can simply start Postgres:
 
