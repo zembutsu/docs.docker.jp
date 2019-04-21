@@ -768,9 +768,9 @@ ENTRYPOINT
    ENTRYPOINT ["s3cmd"]
    CMD ["--help"]
 
-.. Now the image can be run like this to show the command’s help:
+.. Now the image can be run like this to show the command's help:
 
-このイメージを使って次のように実行したら、コマンドのヘルプを表示します。
+このイメージが実行されると、コマンドのヘルプが表示されます。
 
 .. code-block:: bash
 
