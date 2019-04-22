@@ -92,9 +92,11 @@ Docker のかつてのバージョンは、`docker` あるいは `docker-engine`
 
 ``yum`` を実行したときに、上のパッケージがインストールされていないと表示されれば OK です。
 
-.. The contents of /var/lib/docker/, including images, containers, volumes, and networks, are preserved. The Docker CE package is now called docker-ce.
+.. The contents of `/var/lib/docker/`, including images, containers, volumes, and
+   networks, are preserved. The Docker CE package is now called `docker-ce`.
 
-イメージ、コンテナ、ボリューム、ネットワークは ``/var/lib/docker/`` の中に保存されたままです。また、 Docker CE のパッケージは ``docker-ce`` と呼びます。
+``/var/lib/docker/`` にはイメージ、コンテナ、ボリューム、ネットワークが含まれていて、それは保持されたまま残ります。
+なお Docker CE パッケージは、今は ``docker-ce`` と呼ばれます。
 
 
 .. Install Docker CE
