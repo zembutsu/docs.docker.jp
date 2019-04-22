@@ -931,9 +931,15 @@ USER
    useradd に対して ``--no-log-init`` フラグをつけることで、とりあえずこの問題は回避できます。
    ただし Debian/Ubuntu の ``adduser`` ラッパーは ``--no-log-init`` フラグをサポートしていないため、利用することはできません。
 
-.. You should avoid installing or using sudo since it has unpredictable TTY and signal-forwarding behavior that can cause more problems than it solves. If you absolutely need functionality similar to sudo (e.g., initializing the daemon as root but running it as non-root), you may be able to use “gosu”.
+.. You should avoid installing or using `sudo` since it has unpredictable TTY and
+   signal-forwarding behavior that can cause more problems than it solves. If
+   you absolutely need functionality similar to `sudo` (e.g., initializing the
+   daemon as root but running it as non-root), you may be able to use
+   [“gosu”](https://github.com/tianon/gosu).
 
-``sudo`` は予測不可能なTTY/シグナル送信といった挙動を見せ、解決するより多くの問題を作り出しかねないので、インストールや使用は避けたほうが良いでしょう。もし、どうしても ``sudo`` のような機能が必要であれば（例：root としてデーモンを初期化しますが、実行は root 以外で行いたい時）、 「 `gosu <https://github.com/tianon/gosu>`_ 」を利用ができます。
+``sudo`` のインストールとその利用は避けてください。
+TTY やシグナル送信が予期しない動作をするため、解決できることは少なく、多くの問題を引き起こすことになります。
+``sudo`` と同様の機能（たとえばデーモンの初期化を root により行い、起動は root 以外で行うなど）を実現する必要がある場合は、 `gosu <https://github.com/tianon/gosu>`_ を使うとよいかもしれません。
 
 .. Lastly, to reduce layers and complexity, avoid switching USER back and forth frequently.
 
