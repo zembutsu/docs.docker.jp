@@ -223,13 +223,19 @@ Docker CE のインストール方法はいくつかあります。
 Docker CE のインストール
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-..    Update the yum package index.
+.. 1.  Install the latest version of Docker CE, or go to the next step to install a
+       specific version.
 
-1. ``yum`` パッケージ・インデックスを更新します。
+1.  Docker CE の最新版をインストールします。
+    あるいは次の手順に行って、特定のバージョンをインストールします。
 
-.. code-block:: bash
+   ..  ```bash
+       $ sudo yum install docker-ce
+       ```
 
-   $ sudo yum makecache fast
+   .. code-block:: bash
+
+      $ sudo yum install docker-ce
 
 ..        Warning: If you have multiple Docker repositories enabled, installing or updating without specifying a version in the yum install or yum update command will always install the highest possible version, which may not be appropriate for your stability needs.
 
