@@ -973,9 +973,14 @@ ONBUILD
 
 :ref:`Dockerfile リファレンスの ONBUILD コマンド <onbuild>`
 
-.. An ONBUILD command executes after the current Dockerfile build completes. ONBUILD executes in any child image derived FROM the current image. Think of the ONBUILD command as an instruction the parent Dockerfile gives to the child Dockerfile.
+.. An `ONBUILD` command executes after the current `Dockerfile` build completes.
+   `ONBUILD` executes in any child image derived `FROM` the current image.  Think
+   of the `ONBUILD` command as an instruction the parent `Dockerfile` gives
+   to the child `Dockerfile`.
 
-``ONBULID`` コマンドは現 ``Dockerfile`` による構築の完了後に実行されます。 ``ONBUILD`` は、このイメージから ``FROM`` で派生したあらゆる子イメージにおいても実行されます。 ``ONBUILD`` コマンドは親の ``Dockerfile`` が子 ``Dockerfile``  に指定する命令としても考えられます。
+``ONBUILD`` コマンドは、 ``Dockerfile`` によるビルドが完了した後に実行されます。
+``ONBUILD`` は、現在のイメージから ``FROM`` によって派生した子イメージにおいて実行されます。
+つまり ``ONBUILD`` とは、親の ``Dockerfile`` から子どもの ``Dockerfile`` へ与える命令であると言えます。
 
 .. A Docker build executes ONBUILD commands before any command in a child Dockerfile.
 
