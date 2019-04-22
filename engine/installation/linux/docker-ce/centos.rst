@@ -19,9 +19,11 @@ CentOS 用 Docker CE の入手
        :depth: 3
        :local:
 
-.. To get started with Docker CE on CentOS, make sure you meet the prerequisites, then install Docker.
+.. To get started with Docker CE on CentOS, make sure you
+   [meet the prerequisites](#prerequisites), then
+   [install Docker](#install-docker-ce).
 
-CentOS 用 Docker CE を利用するには、 :ref:`動作条件に一致 <ce-prerequisites>` するか確認してから、  :ref:`Docker をインストール <ce-install>` してください。
+CentOS 用 Docker CE を始めるには、 :ref:`前提条件を満たしているか <ce-prerequisites>` を確認してから、  :ref:`Docker をインストール <ce-install>` してください。
 
 .. Prerequisites
 
