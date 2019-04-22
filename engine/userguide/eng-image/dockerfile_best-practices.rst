@@ -982,9 +982,10 @@ ONBUILD
 ``ONBUILD`` は、現在のイメージから ``FROM`` によって派生した子イメージにおいて実行されます。
 つまり ``ONBUILD`` とは、親の ``Dockerfile`` から子どもの ``Dockerfile`` へ与える命令であると言えます。
 
-.. A Docker build executes ONBUILD commands before any command in a child Dockerfile.
+.. A Docker build executes `ONBUILD` commands before any command in a child
+   `Dockerfile`.
 
-Docker は ``ONBUILD`` コマンドを処理する前に、あらゆる子 ``Dockerfile`` 命令を実行します。
+Docker によるビルドにおいては ``ONBUILD`` の実行が済んでから、子イメージのコマンド実行が行われます。
 
 .. ONBUILD is useful for images that are going to be built FROM a given image. For example, you would use ONBUILD for a language stack image that builds arbitrary user software written in that language within the Dockerfile, as you can see in Ruby’s ONBUILD variants.
 
