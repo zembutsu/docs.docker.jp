@@ -44,9 +44,10 @@ Docker EE を利用する方は
 Docker エンタープライズ・エディション（Docker Enterprise Edition; EE）をインストールする場合は、
 **このページではなく** :doc:`Docer EE の入手（CentOS 向け） </engine/installation/linux/docker-ee/centos>` に進んでください。
 
-.. To learn more about Docker EE, see Docker Enterprise Edition.
+.. To learn more about Docker EE, see
+   [Docker Enterprise Edition](https://www.docker.com/enterprise-edition/){: target="_blank" class="_" }.
 
-Docker EE の詳細を学ぶには、  `Docker Enterprise Edition（英語） <https://www.docker.com/enterprise-edition/>`_ をご覧ください。
+Docker EE の詳細を学ぶには、  `Docker エンタープライズ・エディション <https://www.docker.com/enterprise-edition/>`_ をご覧ください。
 
 
 .. OS requirements
