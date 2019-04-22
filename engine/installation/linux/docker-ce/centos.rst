@@ -88,9 +88,9 @@ Docker のかつてのバージョンは、`docker` あるいは `docker-engine`
                      docker-selinux \
                      docker-engine
 
-.. It’s OK if yum reports that none of these packages are installed.
+.. It's OK if `yum` reports that none of these packages are installed.
 
-`yum` で対象パッケージがインストールされていないと表示されれば、問題ありません。
+``yum`` を実行したときに、上のパッケージがインストールされていないと表示されれば OK です。
 
 .. The contents of /var/lib/docker/, including images, containers, volumes, and networks, are preserved. The Docker CE package is now called docker-ce.
 
