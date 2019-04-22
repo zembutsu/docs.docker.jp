@@ -1030,10 +1030,10 @@ Docker によるビルドにおいては ``ONBUILD`` の実行が済んでから
 * `Hy <https://hub.docker.com/_/hylang/>`_
 * `Rails <https://hub.docker.com/_/ruby>`_
 
-.. Additional resources:
+.. ## Additional resources:
 
-さらなるリソース情報
-====================
+その他の情報
+============
 
 ..    Dockerfile Reference
     More about Base Images
