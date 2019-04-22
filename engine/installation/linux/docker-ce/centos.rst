@@ -61,9 +61,12 @@ OS 要件
 Docker CE をインストールするには、保守対象の CentOS 7 が必要です。
 古いバージョンはサポートもテストも行っていません。
 
-.. The centos-extras repository must be enabled. This repository is enabled by default, but if you have disabled it, you need to re-enable it.
+.. The `centos-extras` repository must be enabled. This repository is enabled by
+   default, but if you have disabled it, you need to
+   [re-enable it](https://wiki.centos.org/AdditionalResources/Repositories){: target="_blank" class="_" }.
 
-``centos-extras`` リポジトリの有効化が必要です。このリポジトリはデフォルトでは有効ですが、もし無効にしている場合、 `再度有効化 <https://wiki.centos.org/AdditionalResources/Repositories>`_ する必要があります。
+``centos-extras`` リポジトリを有効にすることが必要です。
+このリポジトリはデフォルトでは有効になっていますが、もし無効にしている場合は、 `もう一度有効に <https://wiki.centos.org/AdditionalResources/Repositories>`_ する必要があります。
 
 .. Uninstall old versions
 
