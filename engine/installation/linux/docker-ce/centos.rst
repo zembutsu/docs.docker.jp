@@ -115,14 +115,20 @@ Docker CE のインストール方法はいくつかあります。
      [set up Docker's repositories](#install-using-the-repository) and install
      from them, for ease of installation and upgrade tasks. This is the
      recommended approach.
-..    Some users download the RPM package and install it manually and manage upgrades completely manually. This is useful in situations such as installing Docker on air-gapped systems with no access to the internet.
+.. - Some users download the RPM package and
+     [install it manually](#install-from-a-package) and manage
+     upgrades completely manually. This is useful in situations such as installing
+     Docker on air-gapped systems with no access to the internet.
 .. In testing and development environments, some users choose to use automated convenience scripts to install Docker.
 
 * たいていのユーザは :ref:`Docker のリポジトリをセットアップ <install-using-the-repository>` して、そこからインストールしています。
   インストールやアップグレードの作業が簡単だからです。
   この方法をお勧めします。
 
-* 一部のユーザは RPM パッケージをダウンロードし、手動でのインストールや、更新の作業を完全に手動で行います。こちらは Docker をインターネットにアクセスできない領域でインストールしたい場合に便利です。
+* ユーザの中には RPM パッケージをダウンロードし、手動でインストールしている方もいます。
+  アップグレードも完全に手動となります。
+  この方法は、インターネットにアクセスできない環境で Docker をインストールするような場合には有用です。
+
 * テストや開発環境のユーザでは、Docker のインストールを自動化された :ref:`便利なスクリプト <convenience-scripts>` を使えます。
 
 .. Install using the repository
