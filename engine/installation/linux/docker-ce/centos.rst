@@ -119,7 +119,8 @@ Docker CE のインストール方法はいくつかあります。
      [install it manually](#install-from-a-package) and manage
      upgrades completely manually. This is useful in situations such as installing
      Docker on air-gapped systems with no access to the internet.
-.. In testing and development environments, some users choose to use automated convenience scripts to install Docker.
+.. - In testing and development environments, some users choose to use automated
+     [convenience scripts](#install-using-the-convenience-script) to install Docker.
 
 * たいていのユーザは :ref:`Docker のリポジトリをセットアップ <install-using-the-repository>` して、そこからインストールしています。
   インストールやアップグレードの作業が簡単だからです。
@@ -129,7 +130,7 @@ Docker CE のインストール方法はいくつかあります。
   アップグレードも完全に手動となります。
   この方法は、インターネットにアクセスできない環境で Docker をインストールするような場合には有用です。
 
-* テストや開発環境のユーザでは、Docker のインストールを自動化された :ref:`便利なスクリプト <convenience-scripts>` を使えます。
+* テスト環境や開発環境向けに、自動化された :ref:`便利なスクリプト <convenience-scripts>` を使って Docker のインストールを行うユーザもいます。
 
 .. Install using the repository
 
