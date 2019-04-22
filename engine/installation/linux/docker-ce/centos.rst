@@ -172,11 +172,11 @@ Docker CE のインストール方法はいくつかあります。
 2.  以下のコマンドを使って **安定版** （stable）リポジトリをセットアップします。
     **エッジ版** （edge）や **テスト版** （test）リポジトリからインストールしたい場合があったとしても、安定版リポジトリは常に必要となります。
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   $ sudo yum-config-manager \
-       --add-repo \
-       https://download.docker.com/linux/centos/docker-ce.repo
+      $ sudo yum-config-manager \
+          --add-repo \
+          https://download.docker.com/linux/centos/docker-ce.repo
 
 .. 3.  **Optional**: Enable the **edge** and **test** repositories. These
        repositories are included in the `docker.repo` file above but are disabled
@@ -205,15 +205,16 @@ Docker CE のインストール方法はいくつかあります。
    
       $ sudo yum-config-manager --disable docker-ce-edge
 
-..        Note: Starting with Docker 17.06, stable releases are also pushed to the edge and testing repositories.
+   .. > **Note**: Starting with Docker 17.06, stable releases are also pushed to
+      > the **edge** and **test** repositories.
 
-.. note::
+   .. note::
 
-   Docker 17.06 以降、 stable リリースは **edge** と **testing** リポジトリにも送られます。
+      Docker 17.06 以降、安定版リリースは **エッジ版** リポジトリと **テスト版** リポジトリにもプッシュされるようになりました。
 
-..    Learn about stable and edge channels.
+   .. [Learn about **stable** and **edge** builds](/engine/installation/).
 
-:doc:`stable と edge チャンネルについて学ぶ </engine/installation/index>`
+   :doc:`安定版とエッジ版のチャネルについて学ぶ </engine/installation/index>`
 
 .. Install Docker CE
 
