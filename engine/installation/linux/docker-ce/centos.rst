@@ -161,7 +161,9 @@ Docker CE のインストール方法はいくつかあります。
 
    .. code-block:: bash
 
-      $ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+    $ sudo yum install -y yum-utils \
+      device-mapper-persistent-data \
+      lvm2
 
 .. Use the following command to set up the stable repository. You always need the stable repository, even if you want to install builds from the edge or testing repositories as well.
 
