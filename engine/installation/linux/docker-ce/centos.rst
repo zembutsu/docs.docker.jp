@@ -25,11 +25,11 @@ CentOS 用 Docker CE の入手
 
 CentOS 用 Docker CE を始めるには、 :ref:`前提条件を満たしているか <ce-prerequisites>` を確認してから、  :ref:`Docker をインストール <ce-install>` してください。
 
-.. Prerequisites
+.. ## Prerequisites
 
 .. _ce-prerequisites:
 
-動作条件
+前提条件
 ==========
 
 .. Docker EE customers
