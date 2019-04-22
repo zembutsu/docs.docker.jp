@@ -139,9 +139,12 @@ Docker CE のインストール方法はいくつかあります。
 リポジトリを使ったインストール
 ------------------------------
 
-.. Before you install Docker CE for the first time on a new host machine, you need to set up the Docker repository. Afterward, you can install and update Docker from the repository.
+.. Before you install Docker CE for the first time on a new host machine, you need
+   to set up the Docker repository. Afterward, you can install and update Docker
+   from the repository.
 
-新しいホストマシン上に Docker CE を初めてインストールする前に、Docker リポジトリのセットアップが必要です。その後、リポジトリから Docker のインストールやアップグレードができます。
+新しいホストマシンに Docker CE を初めてインストールするときは、その前に Docker リポジトリをセットアップしておくことが必要です。
+これを行った後に、リポジトリからの Docker のインストールやアップグレードができるようになります。
 
 .. Set up the repository
 
