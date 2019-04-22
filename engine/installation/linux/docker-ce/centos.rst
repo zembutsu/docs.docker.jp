@@ -151,13 +151,17 @@ Docker CE のインストール方法はいくつかあります。
 リポジトリのセットアップ
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. Install required packages. yum-utils provides the yum-config-manager utility, and device-mapper-persistent-data and lvm2 are required by the devicemapper storage driver.
+.. 1.  Install required packages. `yum-utils` provides the `yum-config-manager`
+       utility, and `device-mapper-persistent-data` and `lvm2` are required by the
+       `devicemapper` storage driver.
 
-1. 必要なパッケージをインストールします。 ``yum-utils`` は ``yum-config-manager`` ユーティリティを提供します。そして、 ``device-mapper-persistent-data`` と ``lvm2``  は ``devicemapper`` ストレージ・ドライバの使用に必要です。
+1. 必要なパッケージをインストールします。
+   ``yum-utils`` は ``yum-config-manager`` ユーティリティを提供します。
+   また ``device-mapper-persistent-data`` と ``lvm2``  は ``devicemapper`` ストレージ・ドライバを利用するために必要です。
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   $ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+      $ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 
 .. Use the following command to set up the stable repository. You always need the stable repository, even if you want to install builds from the edge or testing repositories as well.
 
