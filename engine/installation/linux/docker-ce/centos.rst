@@ -178,9 +178,13 @@ Docker CE のインストール方法はいくつかあります。
        --add-repo \
        https://download.docker.com/linux/centos/docker-ce.repo
 
-.. Optional: Enable the edge and testing repositories. These repositories are included in the docker.repo file above but are disabled by default. You can enable them alongside the stable repository.
+.. 3.  **Optional**: Enable the **edge** and **test** repositories. These
+       repositories are included in the `docker.repo` file above but are disabled
+       by default. You can enable them alongside the stable repository.
 
-3. **オプション** :  **edge** や **testing** リポジトリを有効化します。これらのリポジトリは ``docker.repo`` ファイルに含まれますが、デフォルトでは無効です。stable リポジトリと併用して有効化できます。
+3.  **任意の作業** : **エッジ版** （edge）リポジトリ、 **テスト版** （test）リポジトリを有効にします。
+    このリポジトリは上記の ``docker.repo`` ファイルに含まれていますが、デフォルトで無効になっています。
+    このリポジトリを、 **安定版** （stable）リポジトリとともに有効にします。
 
 .. code-block:: bash
 
