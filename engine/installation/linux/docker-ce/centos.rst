@@ -237,11 +237,16 @@ Docker CE のインストール
 
       $ sudo yum install docker-ce
 
-..        Warning: If you have multiple Docker repositories enabled, installing or updating without specifying a version in the yum install or yum update command will always install the highest possible version, which may not be appropriate for your stability needs.
+   ..  > **Warning**: If you have multiple Docker repositories enabled, installing
+       > or updating without specifying a version in the `yum install` or
+       > `yum update` command will always install the highest possible version,
+       > which may not be appropriate for your stability needs.
+       {:.warning}
 
-.. attention::
+   .. attention::
 
-   複数の Docker リポジトリを有効にすると、 ``yum install`` または ``yum update`` コマンドでバージョン指定をしなければ、常に最新バージョンをインストールします。そのため、安定性が必要な場合には、適切ではない場合があります。
+      Docker リポジトリを複数有効にしていて、バージョン指定をせずに ``yum install`` によるインストール、または ``yum update`` によるアップデートを行うと、入手可能な最新版がインストールされます。
+      安定した版が必要である場合には、適切でない場合があります。
 
 .. If this is the first time you have refreshed the package index since adding the Docker repositories, you will be prompted to accept the GPG key, and the key’s fingerprint will be shown. Verify that the fingerprint is correct, and if so, accept the key. The fingerprint should match 060A 61C5 1B55 8A7F 742B 77AA C52F EB6B 621E 9F35.
 
