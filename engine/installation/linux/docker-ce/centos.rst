@@ -37,9 +37,12 @@ CentOS 用 Docker CE を始めるには、 :ref:`前提条件を満たしてい�
 Docker EE を利用する方は
 ------------------------------
 
-.. To install Docker Enterprise Edition (Docker EE), go to Get Docker EE for CentOS instead of this topic.
+.. To install Docker Enterprise Edition (Docker EE), go to
+   [Get Docker EE for CentOS](/engine/installation/linux/docker-ee/centos/)
+   **instead of this topic**.
 
-Docker エンタープライズ版（Docker EE）のインストールは、 **このページではなく** CentOS 用 Docker EE 設定をご覧ください。
+Docker エンタープライズ・エディション（Docker Enterprise Edition; EE）をインストールする場合は、
+**このページではなく** :doc:`Docer EE の入手（CentOS 向け） </engine/installation/linux/docker-ee/centos>` に進んでください。
 
 .. To learn more about Docker EE, see Docker Enterprise Edition.
 
