@@ -75,9 +75,11 @@ Docker CE をインストールするには、保守対象の CentOS 7 が必要
 古いバージョンのアンインストール
 ----------------------------------------
 
-.. Older versions of Docker were called docker or docker-engine. If these are installed, uninstall them, along with associated dependencies.
+.. Older versions of Docker were called `docker` or `docker-engine`. If these are
+   installed, uninstall them, along with associated dependencies.
 
-Docker の古いバージョンの名前は ``docker`` または ``docker-engine`` です。もしこれらがインストールされている場合は、関連する依存関係を含めてアンインストールします。
+Docker のかつてのバージョンは、`docker` あるいは `docker-engine` と呼ばれていました。
+これがインストールされている場合は、関連する依存パッケージも含めアンインストールしてください。
 
 .. code-block:: bash
 
