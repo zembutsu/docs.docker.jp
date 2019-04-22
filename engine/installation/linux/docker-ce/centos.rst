@@ -7,10 +7,10 @@
 .. Commits on Oct 25, 2017 4b356427472793ddbb7cb824adc774ba082975ff
 .. ----------------------------------------------------------------------------
 
-.. Get Docker CE for CentOS
+.. title: Get Docker CE for CentOS
 
 ==============================
-CentOS 用 Docker CE の入手
+Docker CE の入手（CentOS 向け）
 ==============================
 
 .. sidebar:: 目次
