@@ -165,9 +165,12 @@ Docker CE のインストール方法はいくつかあります。
       device-mapper-persistent-data \
       lvm2
 
-.. Use the following command to set up the stable repository. You always need the stable repository, even if you want to install builds from the edge or testing repositories as well.
+.. 2.  Use the following command to set up the **stable** repository. You always
+       need the **stable** repository, even if you want to install builds from the
+       **edge** or **test** repositories as well.
 
-2. 以降のコマンドでは **stable** （安定版）リポジトリをセットアップします。もしも **edge** や **testing** リポジトリからビルドしたものをインストールしたい場合でも、常に **stable** リポジトリが必要です。
+2.  以下のコマンドを使って **安定版** （stable）リポジトリをセットアップします。
+    **エッジ版** （edge）や **テスト版** （test）リポジトリからインストールしたい場合があったとしても、安定版リポジトリは常に必要となります。
 
 .. code-block:: bash
 
