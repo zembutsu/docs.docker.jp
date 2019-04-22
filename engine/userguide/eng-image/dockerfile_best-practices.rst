@@ -997,9 +997,11 @@ Docker によるビルドにおいては ``ONBUILD`` の実行が済んでから
 ``Dockerfile`` 内にて、その言語で書かれたどのようなユーザ・ソフトウェアであってもビルドすることができます。
 その例として `Ruby's ONBUILD variants <https://github.com/docker-library/ruby/blob/master/2.1/onbuild/Dockerfile>`_ があります。
 
-.. Images built from ONBUILD should get a separate tag, for example: ruby:1.9-onbuild or ruby:2.0-onbuild.
+.. Images built from `ONBUILD` should get a separate tag, for example:
+   `ruby:1.9-onbuild` or `ruby:2.0-onbuild`.
 
-``ONBUILD`` によって構築されるイメージは、異なったタグを指定すべきです。例： ``ruby:1.9-onbuild`` や ``ruby:2.0-onbuild`` 。
+``ONBUILD`` によって構築するイメージは、異なったタグを指定してください。
+たとえば ``ruby:1.9-onbuild`` と ``ruby:2.0-onbuild`` などです。
 
 .. Be careful when putting ADD or COPY in ONBUILD. The “onbuild” image will fail catastrophically if the new build’s context is missing the resource being added. Adding a separate tag, as recommended above, will help mitigate this by allowing the Dockerfile author to make a choice.
 
