@@ -955,9 +955,14 @@ WORKDIR
 
 :ref:`Dockerfile リファレンスの WORKDIR コマンド <workdir>`
 
-.. For clarity and reliability, you should always use absolute paths for your WORKDIR. Also, you should use WORKDIR instead of proliferating instructions like RUN cd … && do-something, which are hard to read, troubleshoot, and maintain.
+.. For clarity and reliability, you should always use absolute paths for your
+   `WORKDIR`. Also, you should use `WORKDIR` instead of  proliferating
+   instructions like `RUN cd … && do-something`, which are hard to read,
+   troubleshoot, and maintain.
 
-明確さと信頼性のため、常に ``WORKDIR`` からの絶対パスを使うべきです。また、 ``RUN cd ... && 何らかの処理`` のような読みにくくデバッグもメンテも困難で増殖していく命令の代わりにも、 ``WORKDIR`` を使うべきです。
+``WORKDIR`` に設定するパスは、分かり易く確実なものとするために、絶対パス指定としてください。
+また ``RUN cd … && do-something`` といった長くなる一方のコマンドを書くくらいなら、 ``WORKDIR`` を利用してください。
+そのような書き方は読みにくく、トラブル発生時には解決しにくく保守が困難になるためです。
 
 .. ONBUILD
 
