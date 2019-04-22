@@ -941,9 +941,10 @@ USER
 TTY やシグナル送信が予期しない動作をするため、解決できることは少なく、多くの問題を引き起こすことになります。
 ``sudo`` と同様の機能（たとえばデーモンの初期化を root により行い、起動は root 以外で行うなど）を実現する必要がある場合は、 `gosu <https://github.com/tianon/gosu>`_ を使うとよいかもしれません。
 
-.. Lastly, to reduce layers and complexity, avoid switching USER back and forth frequently.
+.. Lastly, to reduce layers and complexity, avoid switching `USER` back
+   and forth frequently.
 
-あとは、レイヤの複雑さを減らすため、 ``USER`` を頻繁に切り替えるべきではありません。
+レイヤ数を減らしたり複雑にならないようにするためには、 ``USER`` の設定を何度も繰り返すのは避けてください。
 
 .. WORKDIR
 
