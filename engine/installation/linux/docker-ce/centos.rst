@@ -186,21 +186,24 @@ Docker CE のインストール方法はいくつかあります。
     このリポジトリは上記の ``docker.repo`` ファイルに含まれていますが、デフォルトで無効になっています。
     このリポジトリを、 **安定版** （stable）リポジトリとともに有効にします。
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   $ sudo yum-config-manager --enable docker-ce-edge
+      $ sudo yum-config-manager --enable docker-ce-edge
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   $ sudo yum-config-manager --enable docker-ce-test
+      $ sudo yum-config-manager --enable docker-ce-test
 
-.. You can disable the edge or testing repository by running the yum-config-manager command with the --disable flag. To re-enable it, use the --enable flag. The following command disables the edge repository.
+   ..  You can disable the **edge** or **test** repository by running the
+       `yum-config-manager` command with the `--disable` flag. To re-enable it, use
+       the `--enable` flag. The following command disables the **edge** repository.
 
-``yum-config-manager`` コマンド実行時に ``--disable`` フラグを使えば、 **edge** や **testing** リポジトリを無効にできます。再び有効にするには ``--enable`` フラグを使います。以下のコマンドは **edge** リポジトリを無効化します。
+   **エッジ版** リポジトリ、 **テスト版** リポジトリを無効にするには ``yum-config-manager`` コマンドに ``--disable`` フラグをつけて実行します。
+   以下のコマンドは **エッジ版** リポジトリを無効にします。
 
-.. code-block:: bash
-
-   $ sudo yum-config-manager --disable docker-ce-edge
+   .. code-block:: bash
+   
+      $ sudo yum-config-manager --disable docker-ce-edge
 
 ..        Note: Starting with Docker 17.06, stable releases are also pushed to the edge and testing repositories.
 
