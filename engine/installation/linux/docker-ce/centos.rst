@@ -50,9 +50,9 @@ Docker エンタープライズ・エディション（Docker Enterprise Edition
 Docker EE の詳細を学ぶには、  `Docker エンタープライズ・エディション <https://www.docker.com/enterprise-edition/>`_ をご覧ください。
 
 
-.. OS requirements
+.. ### OS requirements
 
-OS 動作条件
+OS 要件
 --------------------
 
 .. To install Docker CE, you need a maintained version of CentOS 7. Archived versions aren’t supported or tested.
