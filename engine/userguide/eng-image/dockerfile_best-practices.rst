@@ -987,9 +987,15 @@ ONBUILD
 
 Docker によるビルドにおいては ``ONBUILD`` の実行が済んでから、子イメージのコマンド実行が行われます。
 
-.. ONBUILD is useful for images that are going to be built FROM a given image. For example, you would use ONBUILD for a language stack image that builds arbitrary user software written in that language within the Dockerfile, as you can see in Ruby’s ONBUILD variants.
+.. `ONBUILD` is useful for images that are going to be built `FROM` a given
+   image. For example, you would use `ONBUILD` for a language stack image that
+   builds arbitrary user software written in that language within the
+   `Dockerfile`, as you can see in [Ruby’s `ONBUILD` variants](https://github.com/docker-library/ruby/blob/master/2.4/jessie/onbuild/Dockerfile).
 
-``ONBUILD`` は 指定されたイメージから ``FROM`` で派生してビルドされるイメージにとって便利です。例えば、言語スタック・イメージの ``Dockerfile`` で ``ONBUILD`` を 使えば、その言語で書かれた任意のユーザソフトウェアをビルドできます。 これは Ruby の ``ONBUILD`` 各種でも `見られます <https://github.com/docker-library/ruby/blob/master/2.1/onbuild/Dockerfile>`_ 。
+``ONBUILD`` は、所定のイメージから ``FROM`` を使ってイメージをビルドしようとするときに利用できます。
+たとえば特定言語のスタックイメージは ``ONBUILD`` を利用します。
+``Dockerfile`` 内にて、その言語で書かれたどのようなユーザ・ソフトウェアであってもビルドすることができます。
+その例として `Ruby's ONBUILD variants <https://github.com/docker-library/ruby/blob/master/2.1/onbuild/Dockerfile>`_ があります。
 
 .. Images built from ONBUILD should get a separate tag, for example: ruby:1.9-onbuild or ruby:2.0-onbuild.
 
