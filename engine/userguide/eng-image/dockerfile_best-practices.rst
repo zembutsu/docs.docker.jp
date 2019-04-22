@@ -1016,9 +1016,9 @@ Docker によるビルドにおいては ``ONBUILD`` の実行が済んでから
 公式リポジトリの例
 ====================
 
-.. These Official Repositories have exemplary Dockerfiles:
+.. These Official Repositories have exemplary `Dockerfile`s:
 
-模範的な ``Dockerfile`` の例をご覧ください。
+以下に示すのは代表的な ``Dockerfile`` の例です。
 
 ..    Go
     Perl
@@ -1028,7 +1028,7 @@ Docker によるビルドにおいては ``ONBUILD`` の実行が済んでから
 * `Go <https://hub.docker.com/_/golang/>`_
 * `Perl <https://hub.docker.com/_/perl/>`_
 * `Hy <https://hub.docker.com/_/hylang/>`_
-* `Rails <https://hub.docker.com/_/rails>`_
+* `Rails <https://hub.docker.com/_/ruby>`_
 
 .. Additional resources:
 
