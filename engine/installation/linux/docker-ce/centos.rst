@@ -55,9 +55,11 @@ Docker EE の詳細を学ぶには、  `Docker エンタープライズ・エデ
 OS 要件
 --------------------
 
-.. To install Docker CE, you need a maintained version of CentOS 7. Archived versions aren’t supported or tested.
+.. To install Docker CE, you need a maintained version of CentOS 7. Archived
+   versions aren't supported or tested.
 
-Docker CE をインストールするには、メンテナンスされている CentOS 7 が必要です。アーカイブされた（過去の）バージョンはサポートやテストを行っていません。
+Docker CE をインストールするには、保守対象の CentOS 7 が必要です。
+古いバージョンはサポートもテストも行っていません。
 
 .. The centos-extras repository must be enabled. This repository is enabled by default, but if you have disabled it, you need to re-enable it.
 
