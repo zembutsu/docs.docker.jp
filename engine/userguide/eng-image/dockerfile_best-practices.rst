@@ -1003,9 +1003,13 @@ Docker によるビルドにおいては ``ONBUILD`` の実行が済んでから
 ``ONBUILD`` によって構築するイメージは、異なったタグを指定してください。
 たとえば ``ruby:1.9-onbuild`` と ``ruby:2.0-onbuild`` などです。
 
-.. Be careful when putting ADD or COPY in ONBUILD. The “onbuild” image will fail catastrophically if the new build’s context is missing the resource being added. Adding a separate tag, as recommended above, will help mitigate this by allowing the Dockerfile author to make a choice.
+.. Be careful when putting `ADD` or `COPY` in `ONBUILD`. The “onbuild” image will
+   fail catastrophically if the new build's context is missing the resource being
+   added. Adding a separate tag, as recommended above, will help mitigate this by
+   allowing the `Dockerfile` author to make a choice.
 
-``ONBUILD`` で ``ADD`` や ``COPY`` を使う時は注意してください。追加されるべきリソースが新しいビルドコンテキスト上で見つからなければ、「onbuild」イメージに破滅的な失敗をもたらします。先ほどお勧めしたように、別々のタグを付けておけば、 ``Dockerfile`` の書き手が選べるようになります。
+``ONBUILD`` において ``ADD`` や ``COPY`` を用いるときは注意してください。
+"onbuild" イメージが新たにビルドされる際に、追加しようとしているリソースが見つからなかったとしたら、このイメージは復旧できない状態になります。上に示したように個別にタグをつけておけば、 ``Dockerfile`` の開発者にとっても判断ができるようになるので、不測の事態は軽減されます。
 
 .. Examples for Official Repositories
 
