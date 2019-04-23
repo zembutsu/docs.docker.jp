@@ -324,9 +324,9 @@ Docker CE のインストール
 
 3. Docker を起動します。
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   $ sudo systemctl start docker
+      $ sudo systemctl start docker
 
 ..    Verify that docker is installed correctly by running the hello-world image.
 
