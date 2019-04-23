@@ -425,9 +425,11 @@ Docker リポジトリを利用した Docker インストールができない�
 
       $ sudo docker run hello-world
 
-..    This command downloads a test image and runs it in a container. When the container runs, it prints an informational message and exits.
+   ..  This command downloads a test image and runs it in a container. When the
+       container runs, it prints an informational message and exits.
 
-このコマンドはテスト用イメージをダウンロードし、コンテナ内で実行します。コンテナを実行したら、情報を表示したあと終了します。
+   このコマンドはテスト用イメージをダウンロードし、コンテナ内で実行します。
+   コンテナが起動すると、メッセージを表示して終了します。
 
 .. Docker CE is installed and running. You need to use sudo to run Docker commands. Continue to Post-installation steps for Linux to allow non-privileged users to run Docker commands and for other optional configuration steps.
 
