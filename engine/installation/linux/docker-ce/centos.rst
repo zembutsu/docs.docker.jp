@@ -342,9 +342,14 @@ Docker CE のインストール
    このコマンドはテスト用イメージをダウンロードし、コンテナ内で実行します。
    コンテナが起動すると、メッセージを表示して終了します。
 
-.. Docker CE is installed and running. You need to use sudo to run Docker commands. Continue to Linux postinstall to allow non-privileged users to run Docker commands and for other optional configuration steps.
+.. Docker CE is installed and running. You need to use `sudo` to run Docker
+   commands. Continue to [Linux postinstall](/engine/installation/linux/linux-postinstall.md) to allow
+   non-privileged users to run Docker commands and for other optional configuration
+   steps.
 
-Docker CE をインストールし、実行しています。Docker コマンドの実行には ``sudo`` が必要です。 引き続き :doc:`/engine/installation/linux/linux-postinstall` から、特権のないユーザで Docker コマンドを実行できるようにしたり、他のオプション設定を進めます。
+Docker CE がインストールされ、実行できました。
+Docker コマンドの実行には ``sudo`` が必要になります。
+続いて :doc:`Linux のインストール後 </engine/installation/linux/linux-postinstall>` に進み、非特権ユーザでも Docker コマンドが実行できるように、またその他の追加の設定について見ていきます。
 
 .. Upgrade Docker CE
 
