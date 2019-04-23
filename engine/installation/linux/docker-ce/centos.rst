@@ -332,9 +332,9 @@ Docker CE のインストール
 
 4. ``docker`` が正しくインストールされているのを確認するため、 ``hello-world`` イメージを実行します。
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   $ sudo docker run hello-world
+      $ sudo docker run hello-world
 
 ..    This command downloads a test image and runs it in a container. When the container runs, it prints an informational message and exits.
 
