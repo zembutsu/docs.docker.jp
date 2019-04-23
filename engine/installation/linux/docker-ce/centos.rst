@@ -488,10 +488,12 @@ Docker CE のアンインストール
 次のステップ
 ====================
 
-..    Continue to Post-installation steps for Linux
-    Continue with the User Guide.
+.. - Continue to [Post-installation steps for Linux](/engine/installation/linux/linux-postinstall.md)
+   
+   - Continue with the [User Guide](/engine/userguide/index.md).
 
-* :doc:`/engine/installation/linux/linux-postinstall` に進む
+* :doc:`Linux のインストール後 </engine/installation/linux/linux-postinstall>` に進む
+
 * :doc:`ユーザガイド </engine/userguide/index>` に進む
 
 
