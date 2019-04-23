@@ -258,9 +258,11 @@ Docker CE のインストール
    鍵の指紋が間違いないものであることを確認したら、鍵を受け入れてください。
    鍵の指紋は ``060A 61C5 1B55 8A7F 742B  77AA C52F EB6B 621E 9F35`` です。
 
-.. Docker is installed but not started. The docker group is created, but no users are added to the group.
+   ..  Docker is installed but not started. The `docker` group is created, but no
+       users are added to the group.
 
-Docker をインストールしますが、起動しません。 ``docker`` グループを追加します、グループに所属しているユーザはいません。
+   Docker はインストールされましたが、まだ起動はしていません。
+   グループ ``docker`` が追加されていますが、このグループにはまだユーザが存在していない状態です。
 
 ..    On production systems, you should install a specific version of Docker CE instead of always using the latest. List the available versions. his example uses the sort -r command to sort the results by version number, highest to lowest, and is truncated.
 
