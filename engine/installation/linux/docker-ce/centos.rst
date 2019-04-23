@@ -412,9 +412,9 @@ Docker リポジトリを利用した Docker インストールができない�
 
 3. Docker を起動します。
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   $ sudo systemctl start docker
+      $ sudo systemctl start docker
 
 ..    Verify that Docker CE is installed correctly by running the hello-world image.
 
