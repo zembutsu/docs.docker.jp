@@ -49,9 +49,14 @@ Docker では `get.docker.com <https://get.docker.com/>`_ と `test.docker.com <
   これはホストマシンのその時点での設定によります。
 * ホスト・マシンに別の方法ですでに Docker をインストールしているのであれば、この便利スクリプトは使わないでください。
 
-.. This example uses the script at get.docker.com to install the latest stable release of Docker CE on Linux. To install the latest testing version, use test.docker.com instead. In each of the commands below, replace each occurrence of get with test.
+.. This example uses the script at [get.docker.com](https://get.docker.com/) to
+   install the latest stable release of Docker CE on Linux. To install the latest
+   testing version, use [test.docker.com](https://test.docker.com/) instead. In
+   each of the commands below, replace each occurrence of `get` with `test`.
 
-次の例は Linux に Docker CE の最新安定版リリースのインストールに、 `get.docker.com`_ のスクリプトを使います。最新テスト版を使いたい場合は、代わりに `test.docker.com`_ を指定します。その場合はコマンド中の ``get`` を ``test`` に置き換えて実行します。
+次の例は  `get.docker.com <https://get.docker.com/>`_ のスクリプトを使って、Linux 上に Docker CE の最新安定版をインストールするものです。
+最新テスト版をインストールする場合は、 `test.docker.com <https://test.docker.com/>`_ のスクリプトを利用してください。
+テスト版の場合は、以下の各コマンドにおいて ``get`` と書かれている箇所をすべて ``test`` に置き換えてください。
 
 .. warning::
 
