@@ -103,6 +103,11 @@ Docker CE がインストールされました。
 便利なスクリプトを使った後の Docker アップグレード
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. If you installed Docker using the convenience script, you should upgrade Docker using your package manager directly. There is no advantage to re-running the convenience script, and it can cause issues if it attempts to re-add repositories which have already been added to the host machine.
+.. If you installed Docker using the convenience script, you should upgrade Docker
+   using your package manager directly. There is no advantage to re-running the
+   convenience script, and it can cause issues if it attempts to re-add
+   repositories which have already been added to the host machine.
 
-便利なスクリプトを使って Docker をインストールしている場合は、パッケージ・マネージャをとして直接アップグレードを試みるべきでしょう。便利なスクリプトを再度実行する利点は何らありません。また、スクリプトの再実行により、ホストマシン上に既に追加されているリポジトリを再追加するため、何か問題となる可能性があります。
+便利スクリプトを使って Docker をインストールした場合、その後の Docker のアップグレードはパッケージ・マネージャを直接使って行ってください。
+便利スクリプトは再実行する意味はありません。
+ホストマシンにリポジトリが追加されているところに、このスクリプトを再実行したとすると、そのリポジトリを再度追加してしまうため、問題になることがあります。
