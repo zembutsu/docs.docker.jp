@@ -264,9 +264,16 @@ Docker CE のインストール
    Docker はインストールされましたが、まだ起動はしていません。
    グループ ``docker`` が追加されていますが、このグループにはまだユーザが存在していない状態です。
 
-..    On production systems, you should install a specific version of Docker CE instead of always using the latest. List the available versions. his example uses the sort -r command to sort the results by version number, highest to lowest, and is truncated.
+.. 2.  On production systems, you should install a specific version of Docker CE
+       instead of always using the latest. List the available versions. This
+       example uses the `sort -r` command to sort the results by version number,
+       highest to lowest, and is truncated.
 
-2. プロダクション（本番向け）システムでは、Docker CE 最新版を使う代わりに、特定のバージョンをインストールすべきでしょう。利用可能なバージョンを一覧表示します。例では ``sort -r`` コマンドを使い、バージョン番号の結果を高いものから低いものへとソートします。また、表示を簡略化します。
+2.  本番環境では Docker CE の最新版を常に利用するようなことはせずに、特定バージョンをインストールするかもしれません。
+    そこで利用可能なバージョンの一覧を確認します。
+    以下の例では ``sort -r`` コマンドを使って、出力結果をバージョン番号によりソートします。
+    一覧は最新のものが上に並びます。
+    バージョンは簡略に表示されます。
 
 .. code-block:: bash
 
