@@ -307,16 +307,18 @@ Docker CE のインストール
    パッケージがどのリポジトリによって提供されているかを示しており、また後ろにある文字から、その安定度合い（安定版かどうか）を見ることができます。
    バージョンを指定してインストールする場合は、パッケージ名の次にハイフン（ ``-`` ）をつけ、さらにバージョン文字列をつけたものを利用します。
 
-.. Note: The version string is the package name plus the version up to the first hyphen. In the example above, the fully qualified package name is docker-ce-17.06.1.ce.
+   ..  > **Note**: The version string is the package name plus the version up to
+       > the first hyphen. In the example above, the fully qualified package name
+       > is `docker-ce-17.06.1.ce`.
 
-.. note::
+   .. note::
 
-   バージョン文字列を指定するには、パッケージ名にハイフンを加え、その次にバージョン情報を書きます。先ほどの例では、正式なパッケージ名は ``docker-ce-17.09.0.ce`` になります。
+      バージョン文字列は、パッケージ名に加えて、バージョンの最初にハイフンが出てくるところまでの文字列を使うだけで構いません。
+      上の例の場合、有効なパッケージ名は ``docker-ce-17.06.1.ce`` になります。
 
+   .. code-block:: bash
 
-.. code-block:: bash
-
-   $ sudo yum install docker-ce-<正式なバージョン名>
+      $ sudo yum install docker-ce-<有効なバージョン文字列>
 
 .. Start Docker.
 
