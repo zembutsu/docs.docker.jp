@@ -468,13 +468,16 @@ Docker CE のアンインストール
 
       $ sudo yum remove docker-ce
 
-..    Images, containers, volumes, or customized configuration files on your host are not automatically removed. To delete all images, containers, and volumes:
+.. 2.  Images, containers, volumes, or customized configuration files on your host
+       are not automatically removed. To delete all images, containers, and
+       volumes:
 
-2. ホスト上のイメージ、コンテナ、ボリューム、その他にカスタマイズした設定ファイルは自動的に削除されません。全てのイメージ、コンテナ、ボリュームを削除するには：
+2.  ホスト上のイメージ、コンテナ、ボリューム、カスタマイズした設定ファイルは自動的に削除されません。
+    イメージ、コンテナ、ボリュームをすべて削除するには、以下を実行します。
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   $ sudo rm -rf /var/lib/docker
+      $ sudo rm -rf /var/lib/docker
 
 .. You must delete any edited configuration files manually.
 
