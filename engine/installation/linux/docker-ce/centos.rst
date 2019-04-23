@@ -464,9 +464,9 @@ Docker CE のアンインストール
 
 1. Docker CE パッケージをアンインストールします。
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   $ sudo yum remove docker-ce
+      $ sudo yum remove docker-ce
 
 ..    Images, containers, volumes, or customized configuration files on your host are not automatically removed. To delete all images, containers, and volumes:
 
