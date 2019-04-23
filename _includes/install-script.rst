@@ -24,12 +24,14 @@ Docker では `get.docker.com <https://get.docker.com/>`_ と `test.docker.com <
 このスクリプトを本番環境において利用することはお勧めしません。
 またこのスクリプトの潜在的リスクについては、十分理解した上で利用してください。
 
-..    The scripts require root or sudo privileges in order to run. Therefore, you should carefully examine and audit the scripts before running them.
+.. - The scripts require `root` or `sudo` privileges in order to run. Therefore,
+     you should carefully examine and audit the scripts before running them.
     The scripts attempt to detect your Linux distribution and version and configure your package management system for you. In addition, the scripts do not allow you to customize any installation parameters. This may lead to an unsupported configuration, either from Docker’s point of view or from your own organization’s guidelines and standards.
     The scripts install all dependencies and recommendations of the package manager without asking for confirmation. This may install a large number of packages, depending on the current configuration of your host machine.
     Do not use the convenience script if Docker has already been installed on the host machine using another mechanism.
 
-* スクリプトの実行には ``root`` か ``sudo`` 権限が必要です。そのため、スクリプトを実行する前に、調査と正常性に対して十分にご注意ください。
+* スクリプトを実行するには ``root`` 権限か ``sudo`` が必要です。
+  したがって十分に内容を確認してからスクリプトを実行するようにしてください。
 * スクリプトは自動的に Linux ディストリビューションとバージョン、パッケージ管理システムの検出を試みます。また、スクリプトにはインストール時に何からしらパラメータを渡せません。このため、サポートされていない設定に至ったり、Docker が意図しない、あるいは皆さんの組織のガイドラインや標準から外れたりする場合があります。
 * スクリプトを実行すると、パッケージ・マネージャが示す依存関係や推奨パッケージを、すべて自動的にインストールします。これにより、ホストマシン上の設定によっては、非常に多くのパッケージや依存関係のインストールが行われる場合があります。
 * 既にホスト・マシン上で別の手法による Docker をインストール済みの環境では、この便利なスクリプトは使用しないでください。
