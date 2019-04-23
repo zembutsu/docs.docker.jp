@@ -31,7 +31,9 @@ Docker では `get.docker.com <https://get.docker.com/>`_ と `test.docker.com <
      not allow you to customize any installation parameters. This may lead to an
      unsupported configuration, either from Docker's point of view or from your own
      organization's guidelines and standards.
-    The scripts install all dependencies and recommendations of the package manager without asking for confirmation. This may install a large number of packages, depending on the current configuration of your host machine.
+   - The scripts install all dependencies and recommendations of the package
+     manager without asking for confirmation. This may install a large number of
+     packages, depending on the current configuration of your host machine.
     Do not use the convenience script if Docker has already been installed on the host machine using another mechanism.
 
 * スクリプトを実行するには ``root`` 権限か ``sudo`` が必要です。
@@ -40,7 +42,10 @@ Docker では `get.docker.com <https://get.docker.com/>`_ と `test.docker.com <
   なおこのスクリプトは、インストール時にパラメータを受け渡すような設定はできないものになっています。
   このことから時には、不適切な設定となる場合があります。
   それは Docker の観点の場合もあれば、開発現場のガイドラインや標準に対しての場合もあります。
-* スクリプトを実行すると、パッケージ・マネージャが示す依存関係や推奨パッケージを、すべて自動的にインストールします。これにより、ホストマシン上の設定によっては、非常に多くのパッケージや依存関係のインストールが行われる場合があります。
+* スクリプトはパッケージ・マネージャによって、依存パッケージや推奨パッケージをすべてインストールします。
+  その際にはインストールして良いかどうかを問いません。
+  したがって相当数のパッケージがインストールされることもあります。
+  これはホストマシンのその時点での設定によります。
 * 既にホスト・マシン上で別の手法による Docker をインストール済みの環境では、この便利なスクリプトは使用しないでください。
 
 .. This example uses the script at get.docker.com to install the latest stable release of Docker CE on Linux. To install the latest testing version, use test.docker.com instead. In each of the commands below, replace each occurrence of get with test.
