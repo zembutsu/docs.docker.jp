@@ -391,13 +391,18 @@ Docker リポジトリを利用した Docker インストールができない�
        :doc:`安定版と最新版チャンネルを学ぶにはこちら </engine/installation/index>`  。
 
 
-..    Install Docker CE, changing the path below to the path where you downloaded the Docker package.
+.. 2.  Install Docker CE, changing the path below to the path where you downloaded
+       the Docker package.
 
-2. Docker CE をインストールするには、以下のパスの場所を Docker パッケージをダウンロードした場所に変更します。
+2.  Docker CE をインストールします。
+    以下に示すパス部分は、Docker パッケージをダウンロードしたパスに書き換えます。
 
-.. code-block:: bash
+   .. ```bash
+       $ sudo yum install /path/to/package.rpm
+       ```
+   .. code-block:: bash
 
-   $ sudo yum install /path/to/package.rpm
+      $ sudo yum install /path/to/package.rpm
 
 3. Docker を起動します。
 
