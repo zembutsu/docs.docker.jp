@@ -287,7 +287,7 @@ Docker CE のインストール
 
       $ yum list docker-ce.x86_64  --showduplicates | sort -r
 
-        docker-ce.x86_64            17.09.ce-1.el7.centos             docker-ce-stable
+        docker-ce.x86_64            17.06.ce-1.el7.centos             docker-ce-stable
 
    ..  The contents of the list depend upon which repositories are enabled, and
        will be specific to your version of CentOS (indicated by the `.el7` suffix
@@ -314,7 +314,7 @@ Docker CE のインストール
    .. note::
 
       バージョン文字列は、パッケージ名に加えて、バージョンの最初にハイフンが出てくるところまでの文字列を使うだけで構いません。
-      上の例の場合、有効なパッケージ名は ``docker-ce-17.06.1.ce`` になります。
+      上の例の場合、有効なパッケージ名は ``docker-ce-17.06.ce`` になります。
 
    .. code-block:: bash
 
