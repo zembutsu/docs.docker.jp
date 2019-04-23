@@ -356,9 +356,12 @@ Docker コマンドの実行には ``sudo`` が必要になります。
 Docker CE のアップグレード
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. To upgrade Docker CE, follow the installation instructions, choosing the new version you want to install.
+.. To upgrade Docker CE, first run `sudo yum makecache fast`, then follow the
+   [installation instructions](#install-docker), choosing the new version you want
+   to install.
 
-Docker CE をアップグレードするには :ref:`インストール手順 <install-docker-ce>` に従い、インストールしたい新しいバージョンを入れてください。
+Docker CE をアップグレードするには、まず ``sudo yum makecache fast`` を実行してください。
+次に :ref:`インストール手順 <ce-install>` に従って、インストールしたい新たなバージョンを選んでください。
 
 
 .. Install from a package
