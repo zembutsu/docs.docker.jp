@@ -369,9 +369,11 @@ Docker CE をアップグレードするには、まず ``sudo yum makecache fas
 パッケージからインストール
 ------------------------------
 
-.. If you cannot use Docker’s repository to install Docker CE, you can download the .rpm file for your release and install it manually. You will need to download a new file each time you want to upgrade Docker CE.
+.. If you cannot use Docker's repository to install Docker, you can download the
+   `.rpm` file for your release and install it manually. You will need to download
+   a new file each time you want to upgrade Docker.
 
-Docker CE のインストールに Docker のリポジトリが使えない場合、 ``.rpm`` ファイルをダウンロードし、手作業でインストールできます。Docker CE をアップグレードしたい場合は、新しいファイルのダウンロードが毎回必要です。
+Docker リポジトリを利用した Docker インストールができない場合は、目的とするリリースの ``.rpm`` ファイルをダウンロードして、手動でインストールする方法があります。この場合 Docker をアップグレードするには、毎回新たな ``.rpm`` ファイルをダウンロードして利用することになります。
 
 ..     Go to https://download.docker.com/linux/centos/7/x86_64/stable/Packages/ and download the .rpm file for the Docker version you want to install.
 
