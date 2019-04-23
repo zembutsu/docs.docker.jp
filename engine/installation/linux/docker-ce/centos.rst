@@ -452,6 +452,7 @@ Docker CE のアップグレード
 
 Docker CE をアップグレードする場合は、新たなパッケージ・ファイルをダウンロードして、インストール手順をもう一度行います。
 その際には ``yum -y install`` でなく ``yum -y upgrade`` を実行します。
+またパッケージには新しいものを指定します。
 
 .. include:: ../../../../_includes/install-script.rst
 
