@@ -289,9 +289,23 @@ Docker CE のインストール
 
         docker-ce.x86_64            17.09.ce-1.el7.centos             docker-ce-stable
 
-.. The contents of the list depend upon which repositories are enabled, and will be specific to your version of CentOS (indicated by the .el7 suffix on the version, in this example). Choose a specific version to install. The second column is the version string. You can use the entire version string, but you need to include at least to the first hyphen. The third column is the repository name, which indicates which repository the package is from and by extension its stability level. To install a specific version, append the version string to the package name and separate them by a hyphen (-).
+   ..  The contents of the list depend upon which repositories are enabled, and
+       will be specific to your version of CentOS (indicated by the `.el7` suffix
+       on the version, in this example). Choose a specific version to install. The
+       second column is the version string. You can use the entire version string,
+       but **you need to include at least to the first hyphen**. The third column
+       is the repository name, which indicates which repository the package is from
+       and by extension its stability level. To install a specific version, append
+       the version string to the package name and separate them by a hyphen (`-`).
 
-　こちらには有効なリポジトリを表示します。また、特定の CentOS バージョンのものを表示します（この例では ``.el7`` が付いているバージョンを表示 ）。インストールするバージョンを選択します。２列目はバージョンの文字列です。どのバージョンを指定する時も、文字列の前にハイフン記号が必要です。３列目はリポジトリ名です。ここにはパッケージがどのリポジトリを使うかを示し、パッケージ名には安定性とバージョン番号を表示します。特定のバージョンをインストールするには、パッケージ名にハイフン記号（ ``-`` ）でバージョン文字列を追加します。
+   この一覧内容は、どのリポジトリを有効にしているかによって変わります。
+   また利用している CentOS のバージョンに応じたものになります（この例では ``.e17`` というサフィックスにより示されるバージョンです）。
+   この中から必要なバージョンを選んでください。
+   第２項目はバージョン番号を示しています。
+   バージョンの指定はバージョン文字列をすべて指定してもよいですが、省略する場合であっても **少なくとも最初のハイフンまで** は指定するようにしてください。
+   第３項目はリポジトリ名です。
+   パッケージがどのリポジトリによって提供されているかを示しており、また後ろにある文字から、その安定度合い（安定版かどうか）を見ることができます。
+   バージョンを指定してインストールする場合は、パッケージ名の次にハイフン（ ``-`` ）をつけ、さらにバージョン文字列をつけたものを利用します。
 
 .. Note: The version string is the package name plus the version up to the first hyphen. In the example above, the fully qualified package name is docker-ce-17.06.1.ce.
 
