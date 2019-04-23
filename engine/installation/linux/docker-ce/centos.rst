@@ -416,13 +416,14 @@ Docker リポジトリを利用した Docker インストールができない�
 
       $ sudo systemctl start docker
 
-..    Verify that Docker CE is installed correctly by running the hello-world image.
+.. 4.  Verify that `docker` is installed correctly by running the `hello-world`
+       image.
 
-4. Docker CE が正しくインストールされているのを確認するため、 ``hello-world`` イメージを実行します。
+4.  ``docker`` が正しくインストールされているのを確認するため、 ``hello-world`` イメージを実行します。
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   $ sudo docker run hello-world
+      $ sudo docker run hello-world
 
 ..    This command downloads a test image and runs it in a container. When the container runs, it prints an informational message and exits.
 
