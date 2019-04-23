@@ -58,9 +58,15 @@ Docker では `get.docker.com <https://get.docker.com/>`_ と `test.docker.com <
 最新テスト版をインストールする場合は、 `test.docker.com <https://test.docker.com/>`_ のスクリプトを利用してください。
 テスト版の場合は、以下の各コマンドにおいて ``get`` と書かれている箇所をすべて ``test`` に置き換えてください。
 
+.. > **Warning**:
+   >
+   Always examine scripts downloaded from the internet before
+   > running them locally.
+   {:.warning}
+
 .. warning::
 
-   スクリプトを実行する前に、インターネットからダウンロードしたスクリプトをご確認ください。
+   インターネットからスクリプトをダウンロードしたら、まず内容を十分確認してから実行してください。
 
 .. code-block:: bash
 
