@@ -88,9 +88,15 @@ Docker では `get.docker.com <https://get.docker.com/>`_ と `test.docker.com <
             Refer to https://docs.docker.com/engine/security/security/#docker-daemon-attack-surface
             for more information.
 
-.. Docker CE is installed. It starts automatically on DEB-based distributions. On RPM-based distributions, you need to start it manually using the appropriate systemctl or service command. As the message indicates, non-root users are not able to run Docker commands by default.
+.. Docker CE is installed. It starts automatically on `DEB`-based distributions. On
+   `RPM`-based distributions, you need to start it manually using the appropriate
+   `systemctl` or `service` command. As the message indicates, non-root users are
+   not able to run Docker commands by default.
 
-これで Docker CE をインストールしました。 ``DEB`` をベースとしたディストリビューションでは、自動的に開始します。 ``RPM`` ベースのディストリビューションでは、適切な ``systemctl`` や ``service`` コマンドを使い、手動で実行する必要があります。メッセージが表示されているように、デフォルトでは root ではないユーザは Docker コマンドを実行できません。
+Docker CE がインストールされました。
+``DEB`` ベースのディストリビューションでは Docker が自動的に開始されます。
+``RPM`` ベースの場合は手動での実行が必要となるため、 ``systemctl`` か ``service`` のいずれか適当なものを実行します。
+上の出力メッセージに示されているように、デフォルトで非 root ユーザは Docker コマンドを実行できません。
 
 .. Upgrade Docker after using the convenience script
 
