@@ -275,11 +275,19 @@ Docker CE のインストール
     一覧は最新のものが上に並びます。
     バージョンは簡略に表示されます。
 
-.. code-block:: bash
+   ..  > **Note**: This `yum list` command only shows binary packages. To show
+       > source packages as well, omit the `.x86_64` from the package name.
 
-   $ yum list docker-ce --showduplicates | sort -r
-   
-   docker-ce.x86_64            17.09.ce-1.el7.centos             docker-ce-stable
+   .. note::
+
+      以下の ``yum list`` コマンドではバイナリ・パッケージしか表示されません。
+      ソース・パッケージもともに表示する場合は、パッケージ名から ``.x86_64`` の部分を除いてください。
+
+   .. code-block:: bash
+
+      $ yum list docker-ce.x86_64  --showduplicates | sort -r
+
+        docker-ce.x86_64            17.09.ce-1.el7.centos             docker-ce-stable
 
 .. The contents of the list depend upon which repositories are enabled, and will be specific to your version of CentOS (indicated by the .el7 suffix on the version, in this example). Choose a specific version to install. The second column is the version string. You can use the entire version string, but you need to include at least to the first hyphen. The third column is the repository name, which indicates which repository the package is from and by extension its stability level. To install a specific version, append the version string to the package name and separate them by a hyphen (-).
 
