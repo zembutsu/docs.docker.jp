@@ -404,6 +404,12 @@ Docker リポジトリを利用した Docker インストールができない�
 
       $ sudo yum install /path/to/package.rpm
 
+   ..  Docker is installed but not started. The `docker` group is created, but no
+       users are added to the group.
+
+   Docker はインストールされましたが、まだ起動はしていません。
+   グループ ``docker`` が追加されていますが、このグループにはまだユーザが存在していない状態です。
+
 3. Docker を起動します。
 
 .. code-block:: bash
