@@ -248,9 +248,15 @@ Docker CE のインストール
       Docker リポジトリを複数有効にしていて、バージョン指定をせずに ``yum install`` によるインストール、または ``yum update`` によるアップデートを行うと、入手可能な最新版がインストールされます。
       安定した版が必要である場合には、適切でない場合があります。
 
-.. If this is the first time you have refreshed the package index since adding the Docker repositories, you will be prompted to accept the GPG key, and the key’s fingerprint will be shown. Verify that the fingerprint is correct, and if so, accept the key. The fingerprint should match 060A 61C5 1B55 8A7F 742B 77AA C52F EB6B 621E 9F35.
+   ..  If this is the first time you have refreshed the package index since adding
+       the Docker repositories, you will be prompted to accept the GPG key, and
+       the key's fingerprint will be shown. Verify that the fingerprint is
+       correct, and if so, accept the key. The fingerprint should match
+       `060A 61C5 1B55 8A7F 742B  77AA C52F EB6B 621E 9F35`.
 
-Docker リポジトリを追加後、パッケージ一覧の更新が初めての場合は、 GPG 鍵を受け入れるかどうかの確認と、鍵のフィンガープリント（fingerprint；指紋）を表示します。フィンガープリントが正しいものであると確認したら、鍵を受け入れます。鍵のフィンガープリントが ``9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88`` と一致するのを確認します。
+   Docker リポジトリを追加した後に、パッケージインデックスの更新が初めて行なわれる場合には、GPG 鍵を受け入れるための確認が行われ、鍵の指紋（fingerprint）が表示されます。
+   鍵の指紋が間違いないものであることを確認したら、鍵を受け入れてください。
+   鍵の指紋は ``060A 61C5 1B55 8A7F 742B  77AA C52F EB6B 621E 9F35`` です。
 
 .. Docker is installed but not started. The docker group is created, but no users are added to the group.
 
