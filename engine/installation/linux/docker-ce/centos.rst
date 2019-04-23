@@ -446,9 +446,12 @@ Docker コマンドの実行には ``sudo`` が必要になります。
 Docker CE のアップグレード
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. To upgrade Docker CE, download the newer package file and repeat the installation procedure, using yum -y upgrade instead of yum -y install, and pointing to the new file.
+.. To upgrade Docker CE, download the newer package file and repeat the
+   [installation procedure](#install-from-a-package), using `yum -y upgrade`
+   instead of `yum -y install`, and pointing to the new file.
 
-Docker CE をアップグレードするには、新しいパッケージ・ファイルをダウンロードし、インストール手順の ``yum -y install`` の代わりに ``yum -y upgrade`` を実行します。また、新しいファイルに置き換えます。
+Docker CE をアップグレードする場合は、新たなパッケージ・ファイルをダウンロードして、インストール手順をもう一度行います。
+その際には ``yum -y install`` でなく ``yum -y upgrade`` を実行します。
 
 
 .. _convenience-scripts:
