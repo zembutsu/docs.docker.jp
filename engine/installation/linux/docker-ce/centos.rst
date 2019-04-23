@@ -375,15 +375,20 @@ Docker CE をアップグレードするには、まず ``sudo yum makecache fas
 
 Docker リポジトリを利用した Docker インストールができない場合は、目的とするリリースの ``.rpm`` ファイルをダウンロードして、手動でインストールする方法があります。この場合 Docker をアップグレードするには、毎回新たな ``.rpm`` ファイルをダウンロードして利用することになります。
 
-..     Go to https://download.docker.com/linux/centos/7/x86_64/stable/Packages/ and download the .rpm file for the Docker version you want to install.
+.. 1.  Go to
+       [{{ download-url-base }}/7/x86_64/stable/Packages/]({{ download-url-base }}/7/x86_64/stable/Packages/)
+       and download the `.rpm` file for the Docker version you want to install.
 
-1. https://download.docker.com/linux/centos/7/x86_64/stable/Packages/に移動し、インストールしたい Docker バージョンの ``.rpm`` ファイルをダウンロードします。
+1.  https://download.docker.com/linux/centos/7/x86_64/stable/Packages/ にアクセスして、インストールしたい ``.rpm`` ファイルをダウンロードします。
 
-..        Note: To install an edge package, change the word stable in the URL to edge. Learn about stable and edge channels.
+   ..  > **Note**: To install an **edge**  package, change the word
+       > `stable` in the > URL to `edge`.
+       > [Learn about **stable** and **edge** channels](/engine/installation/).
 
-.. note::
+   .. note::
 
-   **edge**  パッケージをインストールするには、URL 中の ``stable`` の文字を ``edge`` にします。 :doc:`stable と edge チャンネルを学ぶにはこちら </engine/installation/index>`  。
+       **最新版** パッケージをインストールする場合は URL 内の ``stable`` を ``edge`` に変更してください。
+       :doc:`安定版と最新版チャンネルを学ぶにはこちら </engine/installation/index>`  。
 
 
 ..    Install Docker CE, changing the path below to the path where you downloaded the Docker package.
