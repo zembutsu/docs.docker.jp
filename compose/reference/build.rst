@@ -36,6 +36,11 @@ build
 Compose ファイルが :doc:`イメージ </compose/compose-file>` 名を指定している場合、イメージはその名称によってタグづけされます。変数が用いられている場合は、あらかじめ置換されます。
 これについては :doc:`変数置換 </compose/compose-file>` を参照してください。
 
+.. If you change a service's Dockerfile or the contents of its
+   build directory, run `docker-compose build` to rebuild it.
+
+サービスの Dockerfile やビルドディレクトリの内容を変更する場合は、``docker-compose build`` を実行して再ビルドします。
+
 .. seealso:: 
 
    build
