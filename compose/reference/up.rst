@@ -23,7 +23,7 @@ up
        -d                         デタッチド・モード: バックグラウンドでコンテナを実行し、新しいコンテナ名を表示
                                   --abort-on-container-exit と同時に使えない
        --no-color                 白黒で画面に表示
-       --no-deps                  リンクしたサービスを表示しない
+       --no-deps                  リンクしたサービスを起動しない
        --force-recreate           設定やイメージに変更がなくても、コンテナを再作成する
                                   --no-recreate と同時に使えません
        --no-recreate              コンテナが既に存在していれば、再作成しない
@@ -35,6 +35,10 @@ up
        -t, --timeout TIMEOUT      アタッチしている、あるいは既に実行中のコンテナを
                                   停止する時のタイムアウト秒数を指定 (デフォルト:10 )
        --remove-orphans           Compose ファイルで定義されていないサービス用のコンテナを削除
+       --exit-code-from SERVICE   指定されたサービスコンテナの終了コードを返す
+                                  --abort-on-container-exit の指定を暗に含む
+       --scale SERVICE=NUM        SERVICE のインスタンス数を NUM とする
+                                  Compose ファイルに scale の設定があっても上書きされる
 
 .. Builds, (re)creates, starts, and attaches to containers for a service.
 
