@@ -60,9 +60,10 @@ up
 
 もしサービス用のコンテナが存在している場合、かつ、コンテナを作成後にサービスの設定やイメージを変更している場合は、 ``docker-compose up -d`` を実行すると、 設定を反映するためにコンテナを停止・再作成します（マウントしているボリュームは、そのまま保持します）。Compose が設定を反映させないようにするには、 ``--no-recreate`` フラグを使います。
 
-.. If you want to force Compose to stop and recreate all containers, use the --force-recreate flag.
+.. If you want to force Compose to stop and recreate all containers, use the
+   `--force-recreate` flag.
 
-もしも Compose で処理時、強制的に全てのコンテナを停止・再作成するには ``--force-recreate`` フラグを使います。
+コンテナすべてを強制的に停止および再生成するには ``--force-recreate`` フラグを指定します。
 
 .. seealso:: 
 
