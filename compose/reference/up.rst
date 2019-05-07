@@ -65,6 +65,14 @@ up
 
 コンテナすべてを強制的に停止および再生成するには ``--force-recreate`` フラグを指定します。
 
+.. If the process encounters an error, the exit code for this command is `1`.  
+   If the process is interrupted using `SIGINT` (`ctrl` + `C`) or `SIGTERM`, the containers are stopped, and the exit code is `0`.  
+   If `SIGINT` or `SIGTERM` is sent again during this shutdown phase, the running containers are killed, and the exit code is `2`.
+
+処理過程においてエラーが発生した場合、このコマンドは終了コード ``1`` を返します。
+``SIGINT`` (``ctrl`` + ``C``) や ``SIGTERM`` によって処理が中断した場合、コンテナはすべて停止し、終了コード ``0`` を返します。
+シャットダウン過程において ``SIGINT`` や ``SIGTERM`` が再度送信された場合、起動しているコンテナのプロセスは強制終了され、終了コード ``2`` を返します。
+
 .. seealso:: 
 
    up
