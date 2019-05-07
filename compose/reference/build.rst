@@ -20,9 +20,10 @@ build
    使い方: build [オプション] [--build-arg key=val...] [サービス...]
    
    オプション:
-   --force-rm  常に中間コンテナを削除
-   --no-cache  構築時にイメージのキャッシュを使わない
-   --pull      常に新しいバージョンのイメージ取得を試みる
+   --force-rm              常に中間コンテナを削除
+   --no-cache              構築時にイメージのキャッシュを使わない
+   --pull                  常に新しいバージョンのイメージ取得を試みる
+   --build-arg key=val     サービスに対してビルド時の変数を設定する
 
 .. Services are built once and then tagged as project_service, e.g., composetest_db. If you change a service’s Dockerfile or the contents of its build directory, run docker-compose build to rebuild it.
 
