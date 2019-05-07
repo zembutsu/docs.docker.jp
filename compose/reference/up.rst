@@ -46,7 +46,7 @@ up
 
 .. Unless they are already running, this command also starts any linked services.
 
-既に実行している場合は、このコマンドによってリンクされているサービスも起動します。
+リンクされているサービスがまだ起動していない場合は、それらも起動します。
 
 .. The docker-compose up command aggregates the output of each container. When the command exits, all containers are stopped. Running docker-compose up -d starts the containers in the background and leaves them running.
 
