@@ -48,9 +48,13 @@ up
 
 リンクされているサービスがまだ起動していない場合は、それらも起動します。
 
-.. The docker-compose up command aggregates the output of each container. When the command exits, all containers are stopped. Running docker-compose up -d starts the containers in the background and leaves them running.
+.. The `docker-compose up` command aggregates the output of each container. When
+   the command exits, all containers are stopped. Running `docker-compose up -d`
+   starts the containers in the background and leaves them running.
 
-``docker-compose up`` コマンドは各コンテナの出力を統合します。コマンドを終了（exit）すると、全てのコンテナを停止します。 ``docker-compose up -d`` で実行すると、コンテナをバックグラウンドで起動し、実行し続けます。
+``docker-compose up`` コマンドは個々のコンテナの出力をまとめます。
+コマンドが終了すると、コンテナはすべて停止します。
+``docker-compose up -d`` を実行すると、コンテナはバックグラウンドで起動し、そのまま実行し続けます。
 
 .. If there are existing containers for a service, and the service’s configuration or image was changed after the container’s creation, docker-compose up picks up the changes by stopping and recreating the containers (preserving mounted volumes). To prevent Compose from picking up changes, use the --no-recreate flag.
 
