@@ -17,7 +17,7 @@ build
 
 .. code-block:: bash
 
-   使い方: build [オプション] [サービス...]
+   使い方: build [オプション] [--build-arg key=val...] [サービス...]
    
    オプション:
    --force-rm  常に中間コンテナを削除
