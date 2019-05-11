@@ -12,7 +12,7 @@
 .. _controlling-startup-order-in-compose:
 
 ==============================
-Compose の起動順番を制御
+Compose における起動順の制御
 ==============================
 
 .. sidebar:: 目次
