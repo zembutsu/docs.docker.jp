@@ -144,15 +144,15 @@ Compose ドキュメント
 
 ..     Installing Compose
     Get started with Django
-    Get started with Rails
     Get started with WordPress
+    Get started with Rails
     Command line reference
     Compose file reference
 
 * :doc:`install`
 * :doc:`django`
 * :doc:`wordpress`
-* :doc:`install`
+* :doc:`rails`
 * :doc:`/compose/reference/index`
 * :doc:`/compose/compose-file`
 
