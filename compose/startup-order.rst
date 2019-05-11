@@ -54,9 +54,14 @@ Compose では必ず依存順に応じて、コンテナーの起動を行いま
 こういったことを取り扱う際には、データベースへの接続に失敗した後に、接続を再度確立するようにアプリケーションを設計しておくことが必要です。
 アプリケーションが再接続を行えば、そのうちデータベースへの接続が成功します。
 
-.. The best solution is to perform this check in your application code, both at startup and whenever a connection is lost for any reason. However, if you don’t need this level of resilience, you can work around the problem with a wrapper script:
+.. The best solution is to perform this check in your application code, both at
+   startup and whenever a connection is lost for any reason. However, if you don't
+   need this level of resilience, you can work around the problem with a wrapper
+   script:
 
-この問題を解決するベストな方法は、アプリケーションのコード上で解決することです。起動時に、あるいは何らかの理由によって接続できない場合にです。しかしながら、このレベルの復旧が必要なければ、ラッパー用のスクリプトを書くことでも対処できます。
+最適な方法は、再接続をアプリケーションコード内で行うことです。
+これは起動時にも行い、さらに何らかの理由で接続が断たれた際にも行います。
+もっともそれほどの柔軟性を必要としないのであれば、以下のようなラッパースクリプトを使ってこの問題を回避する方法もあります。
 
 ..    Use a tool such as wait-for-it or dockerize. These are small wrapper scripts which you can include in your application’s image and will poll a given host and port until it’s accepting TCP connections.
 
