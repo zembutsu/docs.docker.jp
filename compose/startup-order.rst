@@ -129,6 +129,14 @@ Compose では必ず依存順に応じて、コンテナーの起動を行いま
 
    このラッパースクリプトを先の例において利用するには、以下のように設定します。
 
+   ..  ```none
+       command: ["./wait-for-postgres.sh", "db", "python", "app.py"]
+       ```
+
+   ::
+
+      command: ["./wait-for-postgres.sh", "db", "python", "app.py"]
+
 .. Compose documentation
 
 Compose ドキュメント
