@@ -38,9 +38,14 @@ Compose では必ず依存順に応じて、コンテナーの起動を行いま
 つまり稼動していることが必要です。
 これには十分な理由があります。
 
-.. The problem of waiting for a database (for example) to be ready is really just a subset of a much larger problem of distributed systems. In production, your database could become unavailable or move hosts at any time. Your application needs to be resilient to these types of failures.
+.. The problem of waiting for a database (for example) to be ready is really just
+   a subset of a much larger problem of distributed systems. In production, your
+   database could become unavailable or move hosts at any time. Your application
+   needs to be resilient to these types of failures.
 
-たとえば、データベースの準備が整うまで待つのであれば、そのことが分散システム全体に対する大きな問題になり得ます。プロダクションでは、データベースは利用不可能になったり、あるいは別のホストに移動したりする場合があるでしょう。アプリケーションは、障害発生に対して復旧する必要があるためです。
+たとえばデータベースが準備状態になるまで待ち続けたとすると、分散システムにおいては非常に大きな問題となります。
+本番環境であれば利用不能となって、すぐにホストを切り替えなければならなくなります。
+アプリケーションは、このような状況に柔軟に対応できるものでなくてはなりません。
 
 .. To handle this, your application should attempt to re-establish a connection to the database after a failure. If the application retries the connection, it should eventually be able to connect to the database.
 
