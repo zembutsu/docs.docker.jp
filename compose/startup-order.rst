@@ -73,9 +73,9 @@ Compose では必ず依存順に応じて、コンテナーの起動を行いま
     これは非常に小さなラッパースクリプトです。
     これをアプリケーションイメージに含めて、指定されたホストが TCP 接続を受け入れるまでの間、指定ポートに問い合わせを行うようにすることができます。
 
-..    Supposing your application’s image has a CMD set in its Dockerfile, you can wrap it by setting the entrypoint in docker-compose.yml:
+   ..  For example, to use `wait-for-it.sh` or `wait-for` to wrap your service's command:
 
-アプリケーションのイメージに適用するためには、Dockerfile の ``CMD`` 命令でラップできるように ``docker-compose.yml`` の entrypoint を設定します。
+   たとえば ``wait-for-it.sh`` または ``wait-for`` を使って、サービスコマンドをラップするには以下のようにします。
 
 .. code-block:: yaml
 
