@@ -63,9 +63,15 @@ Compose では必ず依存順に応じて、コンテナーの起動を行いま
 これは起動時にも行い、さらに何らかの理由で接続が断たれた際にも行います。
 もっともそれほどの柔軟性を必要としないのであれば、以下のようなラッパースクリプトを使ってこの問題を回避する方法もあります。
 
-..    Use a tool such as wait-for-it or dockerize. These are small wrapper scripts which you can include in your application’s image and will poll a given host and port until it’s accepting TCP connections.
+.. -   Use a tool such as [wait-for-it](https://github.com/vishnubob/wait-for-it),
+       [dockerize](https://github.com/jwilder/dockerize) or sh-compatible
+       [wait-for](https://github.com/Eficode/wait-for). These are small
+       wrapper scripts which you can include in your application's image and will
+       poll a given host and port until it's accepting TCP connections.
 
-* `wait-for-it <https://github.com/vishnubob/wait-for-it>`_ や `dockerize <https://github.com/jwilder/dockerize>`_ のようなツールを使います。これらはラッパー用のスクリプトであり、アプリケーションのイメージに含めることができます。また特定のホスト側のポートに対して、TCP 接続を受け入れ可能です。
+*   `wait-for-it <https://github.com/vishnubob/wait-for-it>`_ 、 `dockerize <https://github.com/jwilder/dockerize>`_ 、あるいはシェル互換の `wait-for <https://github.com/Eficode/wait-for>`_ を利用します。
+    これは非常に小さなラッパースクリプトです。
+    これをアプリケーションイメージに含めて、指定されたホストが TCP 接続を受け入れるまでの間、指定ポートに問い合わせを行うようにすることができます。
 
 ..    Supposing your application’s image has a CMD set in its Dockerfile, you can wrap it by setting the entrypoint in docker-compose.yml:
 
