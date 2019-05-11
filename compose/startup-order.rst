@@ -21,9 +21,13 @@ Compose における起動順の制御
        :depth: 3
        :local:
 
-.. You can control the order of service startup with the depends_on option. Compose always starts containers in dependency order, where dependencies are determined by depends_on, links, volumes_from and network_mode: "service:...".
+.. You can control the order of service startup with the
+   [depends_on](compose-file.md#depends-on) option. Compose always starts
+   containers in dependency order, where dependencies are determined by
+   `depends_on`, `links`, `volumes_from`, and `network_mode: "service:..."`.
 
-:ref:`compose-file-depends_on` オプションを使えば、サービスの起動順番を制御できます。Compose は常に依存関係に従ってコンテナを起動しようとします。依存関係とは、 ``depends_on`` 、 ``links`` 、 ``volumes_form`` 、 ``network_mode: "サービス:..."`` を指定している場合です。
+サービスの起動順は、:ref:`compose-file-depends_on` オプションを使って制御することができます。
+Compose では必ず依存順に応じて、コンテナーの起動を行いますが、この依存順とは ``depends_on`` 、 ``links`` 、 ``volumes_from`` 、 ``network_mode: "サービス:..."`` によって決定します。
 
 .. However, Compose will not wait until a container is “ready” (whatever that means for your particular application) - only until it’s running. There’s a good reason for this.
 
