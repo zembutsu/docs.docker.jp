@@ -125,9 +125,9 @@ Compose では必ず依存順に応じて、コンテナーの起動を行いま
       >&2 echo "Postgres is up - executing command"
       exec $cmd
 
-..     You can use this as a wrapper script as in the previous example, by setting entrypoint: ./wait-for-postgres.sh db.
+   ..  You can use this as a wrapper script as in the previous example, by setting:
 
-このラッパー・スクリプトの例を使うには、 ``entrypoint: ./wait-for-postgres.sh db`` と指定します。
+   このラッパースクリプトを先の例において利用するには、以下のように設定します。
 
 .. Compose documentation
 
