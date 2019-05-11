@@ -77,19 +77,19 @@ Compose では必ず依存順に応じて、コンテナーの起動を行いま
 
    たとえば ``wait-for-it.sh`` または ``wait-for`` を使って、サービスコマンドをラップするには以下のようにします。
 
-.. code-block:: yaml
+   .. code-block:: yaml
 
-   version: "2"
-   services:
-     web:
-       build: .
-       ports:
-         - "80:8000"
-       depends_on:
-         - "db"
-       entrypoint: ./wait-for-it.sh db:5432
-     db:
-       image: postgres
+      version: "2"
+      services:
+        web:
+          build: .
+          ports:
+            - "80:8000"
+          depends_on:
+            - "db"
+          command: ["./wait-for-it.sh", "db:5432", "--", "python", "app.py"]
+        db:
+          image: postgres
 
 ..     Write your own wrapper script to perform a more application-specific health check. For example, you might want to wait until Postgres is definitely ready to accept commands:
 
