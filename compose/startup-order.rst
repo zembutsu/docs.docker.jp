@@ -47,9 +47,12 @@ Compose では必ず依存順に応じて、コンテナーの起動を行いま
 本番環境であれば利用不能となって、すぐにホストを切り替えなければならなくなります。
 アプリケーションは、このような状況に柔軟に対応できるものでなくてはなりません。
 
-.. To handle this, your application should attempt to re-establish a connection to the database after a failure. If the application retries the connection, it should eventually be able to connect to the database.
+.. To handle this, your application should attempt to re-establish a connection to
+   the database after a failure. If the application retries the connection,
+   it should eventually be able to connect to the database.
 
-データベースに対する接続が失敗したら、アプリケーションは再接続を試みるように扱わなくてはいけません。アプリケーションは再接続を試みるため、データベースへの接続を定期的に行う必要があるでしょう。
+こういったことを取り扱う際には、データベースへの接続に失敗した後に、接続を再度確立するようにアプリケーションを設計しておくことが必要です。
+アプリケーションが再接続を行えば、そのうちデータベースへの接続が成功します。
 
 .. The best solution is to perform this check in your application code, both at startup and whenever a connection is lost for any reason. However, if you don’t need this level of resilience, you can work around the problem with a wrapper script:
 
