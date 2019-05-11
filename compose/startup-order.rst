@@ -29,9 +29,14 @@ Compose における起動順の制御
 サービスの起動順は、:ref:`compose-file-depends_on` オプションを使って制御することができます。
 Compose では必ず依存順に応じて、コンテナーの起動を行いますが、この依存順とは ``depends_on`` 、 ``links`` 、 ``volumes_from`` 、 ``network_mode: "サービス:..."`` によって決定します。
 
-.. However, Compose will not wait until a container is “ready” (whatever that means for your particular application) - only until it’s running. There’s a good reason for this.
+.. However, Compose will not wait until a container is "ready" (whatever that means
+   for your particular application) - only until it's running. There's a good
+   reason for this.
 
-しかしながら、Compose はコンテナの準備が「整う」まで待ちません（つまり、特定のアプリケーションが利用可能になるまで待ちません）。単に起動するだけです。これには理由があります。
+しかし起動時の場合、Compose はコンテナーが "準備状態" になって初めて制御を待ちます。
+（これがアプリケーションにとってどのような意味になるかには無関係です。）
+つまり稼動していることが必要です。
+これには十分な理由があります。
 
 .. The problem of waiting for a database (for example) to be ready is really just a subset of a much larger problem of distributed systems. In production, your database could become unavailable or move hosts at any time. Your application needs to be resilient to these types of failures.
 
