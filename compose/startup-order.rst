@@ -99,9 +99,12 @@ Compose では必ず依存順に応じて、コンテナーの起動を行いま
       たとえば指定するサービスが、本当に準備状態であるかどうかは確認できません。
       コマンドにさらに引数を追加して ``bash shift`` を利用し、ループによって対処するのが次の例です。
 
-..     Write your own wrapper script to perform a more application-specific health check. For example, you might want to wait until Postgres is definitely ready to accept commands:
+.. -   Alternatively, write your own wrapper script to perform a more application-specific health
+       check. For example, you might want to wait until Postgres is definitely
+       ready to accept commands:
 
-* アプリケーションが独自にヘルスチェックを行えるよう、スクリプトをラッパーすることも可能です。たとえば、Postgres コマンドが使えるようになるまで待ちたい場合を考えてみましょう。
+*   別の方法として、独自にラッパースクリプトを用意して、アプリケーション特有のヘルスチェックを実現することも考えられます。
+    たとえば、Postgres が完全に準備状態になって、コマンドを受け付けるようになるまで待ちたいとするなら、以下のスクリプトを用意します。
 
 .. code-block:: bash
 
