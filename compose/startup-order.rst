@@ -106,23 +106,24 @@ Compose では必ず依存順に応じて、コンテナーの起動を行いま
 *   別の方法として、独自にラッパースクリプトを用意して、アプリケーション特有のヘルスチェックを実現することも考えられます。
     たとえば、Postgres が完全に準備状態になって、コマンドを受け付けるようになるまで待ちたいとするなら、以下のスクリプトを用意します。
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   #!/bin/bash
-   
-   set -e
-   
-   host="$1"
-   shift
-   cmd="$@"
-   
-   until psql -h "$host" -U "postgres" -c '\l'; do
-     >&2 echo "Postgres is unavailable - sleeping"
-     sleep 1
-   done
-   
-   >&2 echo "Postgres is up - executing command"
-   exec $cmd
+      #!/bin/bash
+      # wait-for-postgres.sh
+
+      set -e
+
+      host="$1"
+      shift
+      cmd="$@"
+
+      until psql -h "$host" -U "postgres" -c '\l'; do
+        >&2 echo "Postgres is unavailable - sleeping"
+        sleep 1
+      done
+
+      >&2 echo "Postgres is up - executing command"
+      exec $cmd
 
 ..     You can use this as a wrapper script as in the previous example, by setting entrypoint: ./wait-for-postgres.sh db.
 
