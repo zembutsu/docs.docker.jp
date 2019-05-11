@@ -91,6 +91,14 @@ Compose では必ず依存順に応じて、コンテナーの起動を行いま
         db:
           image: postgres
 
+   ..  >**Tip**: There are limitations to this first solution; e.g., it doesn't verify when a specific service is really ready. If you add more arguments to the command, you'll need to use the `bash shift` command with a loop, as shown in the next example.
+
+   .. tip::
+
+      この解決方法には限界があります。
+      たとえば指定するサービスが、本当に準備状態であるかどうかは確認できません。
+      コマンドにさらに引数を追加して ``bash shift`` を利用し、ループによって対処するのが次の例です。
+
 ..     Write your own wrapper script to perform a more application-specific health check. For example, you might want to wait until Postgres is definitely ready to accept commands:
 
 * アプリケーションが独自にヘルスチェックを行えるよう、スクリプトをラッパーすることも可能です。たとえば、Postgres コマンドが使えるようになるまで待ちたい場合を考えてみましょう。
