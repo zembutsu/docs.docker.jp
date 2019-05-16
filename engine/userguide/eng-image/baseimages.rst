@@ -21,6 +21,31 @@
        :depth: 3
        :local:
 
+.. Most Dockerfiles start from a parent image. If you need to completely control
+   the contents of your image, you might need to create a base image instead.
+   Here's the difference:
+
+Dockerfile は普通は親イメージから作り始めます。
+イメージ内容を完全にコントロールする場合は、ベース・イメージを作り出すこともあります。
+その違いは以下のとおりです。
+
+.. - A [parent image](/reference/glossary.md#parent-image) is the image that your
+     image is based on. It refers to the contents of the `FROM` directive in the
+     Dockerfile. Each subsequent declaration in the Dockerfile modifies this parent
+     image. Most Dockerfiles start from a parent image, rather than a base image.
+     However, the terms are sometimes used interchangeably.
+
+- 親イメージは基準とするイメージのことです。
+  Dockerfile 内の ``FROM`` ディレクティブによって指定されます。
+  Dockerfile 内のこれに続く定義は、その親イメージを修正指示するものとなります。
+  Dockerfile は普通は親イメージから作り始め、ベース・イメージから作るのはまれです。
+  ただしこの用語は混同されて用いられることもあります。
+
+.. - A [base image](/reference/glossary.md#base-image) either has no `FROM` line
+     in its Dockerfile, or has `FROM scratch`.
+
+- ベース・イメージは Dockerfile において ``FROM`` 行がないか、あるいは ``FROM scratch`` が記述されます。
+
 .. So you want to create your own Base Image? Great!
 
 自分自分で :ref:`ベース・イメージ <base-image>` を作りたいですか？　素晴らしいです！
