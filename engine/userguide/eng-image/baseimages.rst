@@ -112,9 +112,11 @@ Docker GitHub レポジトリには、親イメージを生成するスクリプ
 Docker が規定する最小イメージ ``scratch`` は、コンテナを構築するベース・イメージとして利用できます。
 ``scratch`` を利用すると「イメージ」は、``Dockerfile` `内の次に実行したいコマンドの構築プロセスに対して、最初のファイルシステムレイヤとなるように指示を出します。
 
-.. While scratch appears in Docker’s repository on the hub, you can’t pull it, run it, or tag any image with the name scratch. Instead, you can refer to it in your Dockerfile. For example, to create a minimal container using scratch:
+.. While `scratch` appears in Docker's repository on the hub, you can't pull it, run it, or tag any image with the name `scratch`. Instead, you can refer to it in your `Dockerfile`. For example, to create a minimal container using `scratch`:
 
-``scratch`` は Docker Hub 上のリポジトリからは見えません。そのため、取得（pull）の実行や、イメージを ``scratch`` という名前でタグ付けできません。そのかわり、``Dockerfile`` で参照可能です。例えば、 ``scratch`` を使って最小コンテナを作成するには、次のようにします。
+Docker Hub 上の Docker リポジトリとして ``scratch`` が登場したことにより、``scratch`` という名前を使ったイメージのアップロード、実行、タグづけはできなくなりました。
+そのかわり ``Dockerfile`` 内での参照のみが可能です。
+たとえば ``scratch`` を利用した最小コンテナの生成は以下のようになります。
 
 .. code-block:: dockerfile
 
