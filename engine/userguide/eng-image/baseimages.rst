@@ -90,13 +90,17 @@ Ubuntu の親イメージを作るのは、以下のように簡単にできま�
 
 Docker GitHub レポジトリには、親イメージを生成するスクリプトの例がいろいろとあります。
 
-..    BusyBox
-    CentOS / Scientific Linux CERN (SLC) on Debian/Ubuntu or on CentOS/RHEL/SLC/etc.
-    Debian / Ubuntu
+..  - [BusyBox](https://github.com/moby/moby/blob/master/contrib/mkimage/busybox-static)
+    - CentOS / Scientific Linux CERN (SLC) [on Debian/Ubuntu](
+      https://github.com/moby/moby/blob/master/contrib/mkimage/rinse) or
+      [on CentOS/RHEL/SLC/etc.](
+      https://github.com/moby/moby/blob/master/contrib/mkimage-yum.sh)
+    - [Debian / Ubuntu](
+      https://github.com/moby/moby/blob/master/contrib/mkimage/debootstrap)
 
-* `BusyBox <https://github.com/docker/docker/blob/master/contrib/mkimage-busybox.sh>`_
-* CentOS / Scientific Linux CERN (SLC) on `Debian/Ubuntu <https://github.com/docker/docker/blob/master/contrib/mkimage-rinse.sh>`_ or `CentOS/RHEL/SLC/etc <https://github.com/docker/docker/blob/master/contrib/mkimage-yum.sh>`_
-* `Debian / Ubuntu <https://github.com/docker/docker/blob/master/contrib/mkimage-debootstrap.sh>`_
+* `BusyBox <https://github.com/moby/moby/blob/master/contrib/mkimage/busybox-static>`_
+* CentOS / Scientific Linux CERN (SLC) （ `Debian/Ubuntu 向け <https://github.com/moby/moby/blob/master/contrib/mkimage/rinse>`_ または `CentOS/RHEL/SLC など向け <https://github.com/moby/moby/blob/master/contrib/mkimage-yum.sh>`_ ）
+* `Debian / Ubuntu <https://github.com/moby/moby/blob/master/contrib/mkimage/debootstrap>`_
 
 .. Creating a simple base image using scratch
 
