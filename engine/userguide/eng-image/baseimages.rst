@@ -85,9 +85,10 @@ Ubuntu の親イメージを作るのは、以下のように簡単にできま�
    DISTRIB_CODENAME=raring
    DISTRIB_DESCRIPTION="Ubuntu 13.04"
 
-.. There are more example scripts for creating base images in the Docker GitHub Repo:
+.. There are more example scripts for creating parent images in the Docker
+   GitHub Repo:
 
-Docker の GitHub リポジトリ上に、ベース・イメージ作成のためのサンプル・スクリプトがあります。
+Docker GitHub レポジトリには、親イメージを生成するスクリプトの例がいろいろとあります。
 
 ..    BusyBox
     CentOS / Scientific Linux CERN (SLC) on Debian/Ubuntu or on CentOS/RHEL/SLC/etc.
