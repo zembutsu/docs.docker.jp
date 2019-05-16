@@ -46,13 +46,15 @@ Dockerfile は普通は親イメージから作り始めます。
 
 - ベース・イメージは Dockerfile において ``FROM`` 行がないか、あるいは ``FROM scratch`` が記述されます。
 
-.. So you want to create your own Base Image? Great!
+.. This topic shows you several ways to create a base image. The specific process
+   will depend heavily on the Linux distribution you want to package. We have some
+   examples below, and you are encouraged to submit pull requests to contribute new
+   ones.
 
-自分自分で :ref:`ベース・イメージ <base-image>` を作りたいですか？　素晴らしいです！
-
-.. The specific process will depend heavily on the Linux distribution you want to package. We have some examples below, and you are encouraged to submit pull requests to contribute new ones.
-
-Linux ディストリビューションによっては、パッケージ化の対象により、重度に依存する手順を踏みます。以下の例では、皆さんが新しいイメージのコントリビュート（貢献）にあたり、プル・リクエストの送信を勇気づけるでしょう。
+ここではベースイメージの生成方法をいくつか示します。
+パッケージ化しようとしている Linux ディストリビューションに大きく依存する処理操作もあります。
+以下に例をあげていきます。
+新たなイメージを提供して頂ける場合は、プルリクエストをあげることをお願いします。
 
 .. Create a full image using tar
 
