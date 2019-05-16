@@ -154,9 +154,11 @@ Docker イメージは ``docker build -tag hello .`` コマンドによってビ
 
 そして（Linux、Mac、Windowsにおいて） ``docker run --rm hello`` により実行します。
 
-.. This example creates the hello-world image used in the tutorials. If you want to test it out, you can clone the image repo
+.. This example creates the hello-world image used in the tutorials.
+   If you want to test it out, you can clone [the image repo](https://github.com/docker-library/hello-world).
 
-これはチュートリアルで使用する hello-world イメージを作成する例です。テストしたい場合は、 この `イメージ・リポジトリ <https://github.com/docker-library/hello-world>`_ から複製できます。
+この例は、チュートリアルにおいて用いられている hello-world イメージを生成します。
+これを試してみたい場合は、 `イメージ・リポジトリ <https://github.com/docker-library/hello-world>`_ をクローンすることができます。
 
 
 .. More resources
