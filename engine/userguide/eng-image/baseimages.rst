@@ -107,9 +107,10 @@ Docker GitHub レポジトリには、親イメージを生成するスクリプ
 単純な親イメージを一から生成
 ============================
 
-.. You can use Docker’s reserved, minimal image, scratch, as a starting point for building containers. Using the scratch “image” signals to the build process that you want the next command in the Dockerfile to be the first filesystem layer in your image.
+.. You can use Docker's reserved, minimal image, `scratch`, as a starting point for building containers. Using the `scratch` "image" signals to the build process that you want the next command in the `Dockerfile` to be the first filesystem layer in your image.
 
-Docker が準備した最小イメージ ``scratch`` を、コンテナの構築開始点として使えます。 ``scratch`` "イメージ" が意味するのは、自分が Dockerfile 上のコマンドによって作成するイメージの、その最初のファイルシステム層にあたります。
+Docker が規定する最小イメージ ``scratch`` は、コンテナを構築するベース・イメージとして利用できます。
+``scratch`` を利用すると「イメージ」は、``Dockerfile` `内の次に実行したいコマンドの構築プロセスに対して、最初のファイルシステムレイヤとなるように指示を出します。
 
 .. While scratch appears in Docker’s repository on the hub, you can’t pull it, run it, or tag any image with the name scratch. Instead, you can refer to it in your Dockerfile. For example, to create a minimal container using scratch:
 
