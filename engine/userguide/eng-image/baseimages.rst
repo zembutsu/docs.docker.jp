@@ -124,6 +124,36 @@ Docker Hub 上の Docker リポジトリとして ``scratch`` が登場したこ
    ADD hello /
    CMD ["/hello"]
 
+.. Assuming you built the "hello" executable example [from the Docker GitHub example C-source code](https://github.com/docker-library/hello-world/blob/master/hello.c), and you compiled it with the `-static` flag, you can then build this Docker image using: `docker build --tag hello .`
+
+`Docker GitHub の C ソースコード例 <https://github.com/docker-library/hello-world/blob/master/hello.c>`_ に示されている手順に従って、"hello" 実行モジュールの例を構築するとします。
+実行モジュールは ``-static`` フラグをつけてコンパイルします。
+Docker イメージは ``docker build -tag hello .`` コマンドによってビルドすることができます。
+
+.. > **Note**: Because Docker for Mac and Docker for Windows use a Linux VM, you must compile this code using a Linux toolchain to end up
+   > with a Linux binary. Not to worry, you can quickly pull down a Linux image and a build environment and build within it:
+
+.. note::
+
+   Docker Desktop for Mac と Docker Desktop for Windows では Linux VM を利用するため、Mac や Windows の実行バイナリではなく Linux の実行バイナリが必要になります。
+   Docker コンテナーを使って以下のようにビルドします。
+
+   ..  $ docker run --rm -it -v $PWD:/build ubuntu:16.04
+       container# apt-get update && apt-get install build-essential
+       container# cd /build
+       container# gcc -o hello -static -nostartfiles hello.c
+
+   .. code-block:: bash
+
+      $ docker run --rm -it -v $PWD:/build ubuntu:16.04
+      container# apt-get update && apt-get install build-essential
+      container# cd /build
+      container# gcc -o hello -static -nostartfiles hello.c
+
+.. Then you can run it (on Linux, Mac, or Windows) using: `docker run --rm hello`
+
+そして（Linux、Mac、Windowsにおいて） ``docker run --rm hello`` により実行します。
+
 .. This example creates the hello-world image used in the tutorials. If you want to test it out, you can clone the image repo
 
 これはチュートリアルで使用する hello-world イメージを作成する例です。テストしたい場合は、 この `イメージ・リポジトリ <https://github.com/docker-library/hello-world>`_ から複製できます。
