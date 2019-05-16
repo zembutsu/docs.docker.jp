@@ -102,10 +102,10 @@ Docker GitHub レポジトリには、親イメージを生成するスクリプ
 * CentOS / Scientific Linux CERN (SLC) （ `Debian/Ubuntu 向け <https://github.com/moby/moby/blob/master/contrib/mkimage/rinse>`_ または `CentOS/RHEL/SLC など向け <https://github.com/moby/moby/blob/master/contrib/mkimage-yum.sh>`_ ）
 * `Debian / Ubuntu <https://github.com/moby/moby/blob/master/contrib/mkimage/debootstrap>`_
 
-.. Creating a simple base image using scratch
+.. ## Create a simple parent image using scratch
 
-スクラッチからベース・イメージを作成
-========================================
+単純な親イメージを一から生成
+============================
 
 .. You can use Docker’s reserved, minimal image, scratch, as a starting point for building containers. Using the scratch “image” signals to the build process that you want the next command in the Dockerfile to be the first filesystem layer in your image.
 
