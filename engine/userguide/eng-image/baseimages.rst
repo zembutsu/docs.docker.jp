@@ -61,9 +61,14 @@ Dockerfile は普通は親イメージから作り始めます。
 tar を使ったフルイメージの生成
 ==============================
 
-.. In general, you’ll want to start with a working machine that is running the distribution you’d like to package as a base image, though that is not required for some tools like Debian’s Debootstrap, which you can also use to build Ubuntu images.
+.. In general, you'll want to start with a working machine that is running
+   the distribution you'd like to package as a parent image, though that is
+   not required for some tools like Debian's
+   [Debootstrap](https://wiki.debian.org/Debootstrap), which you can also
+   use to build Ubuntu images.
 
-一般に、皆さんが作業で使っているマシン上で動作しているディストリビューションを使い、ベース・イメージのパッケージを作りたいと考えるでしょう。その場合、Debian の `Debootstrap <https://wiki.debian.org/Debootstrap>`_ のようなツールを使えば、Ubuntu イメージを使わずに構築も可能です。
+通常であれば、作業マシン上に稼動するディストリビューションを使い、これを親イメージとしてビルドしていくことになります。
+しかし Debian の [Debootstrap](https://wiki.debian.org/Debootstrap) のようなツールを使えば作業マシンは不要であり、ここから Ubuntu イメージを作ることもできます。
 
 .. It can be as simple as this to create an Ubuntu base image:
 
