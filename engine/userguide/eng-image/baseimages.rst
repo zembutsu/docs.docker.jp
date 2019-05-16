@@ -68,7 +68,7 @@ tar を使ったフルイメージの生成
    use to build Ubuntu images.
 
 通常であれば、作業マシン上に稼動するディストリビューションを使い、これを親イメージとしてビルドしていくことになります。
-しかし Debian の [Debootstrap](https://wiki.debian.org/Debootstrap) のようなツールを使えば作業マシンは不要であり、ここから Ubuntu イメージを作ることもできます。
+しかし Debian の `Debootstrap <https://wiki.debian.org/Debootstrap>`_ のようなツールを使えば作業マシンは不要であり、ここから Ubuntu イメージを作ることもできます。
 
 .. It can be as simple as this to create an Ubuntu parent image:
 
