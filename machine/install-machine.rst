@@ -80,7 +80,9 @@ Docker Machine の直接インストール
       chmod +x /tmp/docker-machine &&
       sudo cp /tmp/docker-machine /usr/local/bin/docker-machine
 
-Windows 上の git bash の場合：
+   .. If you are running with **Windows** with [Git BASH](https://git-for-windows.github.io/){: target="_blank" class="_"}:
+
+   **Windows** 上において `Git BASH <https://git-for-windows.github.io/>`_ を利用している場合:
 
 .. code-block:: bash
 
