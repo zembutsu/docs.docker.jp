@@ -103,9 +103,9 @@ Docker Machine の直接インストール
 
    上記以外は `docker/machine リリース・ページ <https://github.com/docker/machine/releases/>`_ からバイナリ・リリースを直接ダウンロードしてください。
 
-..    Check the installation by displaying the Machine version:
+.. 3.  Check the installation by displaying the Machine version:
 
-3. Machine のバージョンを表示して、インストールを確認します。
+3.  インストール後の確認として Machine のバージョンを表示してみます。
 
 .. code-block:: bash
 
