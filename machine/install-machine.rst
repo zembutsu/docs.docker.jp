@@ -125,13 +125,14 @@ bash 補完スクリプトのインストール
 
 Machine リポジトリには便利な ``bash`` スクリプトがあり、以下のような機能を利用できます。
 
-..    command completion
-    a function that displays the active machine in your shell prompt
-    a function wrapper that adds a docker-machine use subcommand to switch the active machine
+.. -   command completion
+   -   a function that displays the active machine in your shell prompt
+   -   a function wrapper that adds a `docker-machine use` subcommand to switch the
+       active machine
 
-* コマンド補完
-* シェル・プロンプトにアクティブなホストを表示
-* ``docker-machine use`` サブコマンドを追加し、アクティブなマシンを切り替えるラッパー
+*   コマンド補完
+*   シェルプロンプト内にアクティブなマシンを表示する機能
+*   アクティブマシンを切り替えるサブコマンド ``docker-machine use`` を実現するラッパー
 
 .. To install the scripts, copy or link them into your /etc/bash_completion.d or /usr/local/etc/bash_completion.d file. To enable the docker-machine shell prompt, add $(__docker-machine-ps1) to your PS1 setting in ~/.bashrc.
 
