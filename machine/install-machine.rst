@@ -35,12 +35,12 @@ macOS と Windows の場合 :doc:`Docker for Mac </docker-for-mac/index>` 、 :d
 Docker Machine だけをインストールしたい場合は、次の節で示す手順に従って Docker Machine のバイナリを直接インストールすることができます。
 GitHub 上の `docker/machine リリース・ページ <https://github.com/docker/machine/releases/>`_ に、最新のバイナリバージョンがあります。
 
-.. Installing Machine Directly
+.. ## Installing Machine directly
 
 .. _installing-machine-directly:
 
-Machine を直接インストール
-==============================
+Docker Machine の直接インストール
+=================================
 
 ..    Install the Docker binary.
 
