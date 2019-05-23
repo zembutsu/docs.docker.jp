@@ -120,9 +120,10 @@ Docker Machine の直接インストール
 bash 補完スクリプトのインストール
 ========================================
 
-.. The Machine repository supplies several bash scripts that add features such as:
+.. The Machine repository supplies several `bash` scripts that add features such
+   as:
 
-Machine 用のリポジトリには次の機能を持つ ``bash`` スクリプトがあります。
+Machine リポジトリには便利な ``bash`` スクリプトがあり、以下のような機能を利用できます。
 
 ..    command completion
     a function that displays the active machine in your shell prompt
