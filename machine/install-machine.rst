@@ -84,11 +84,11 @@ Docker Machine の直接インストール
 
    **Windows** 上において `Git BASH <https://git-for-windows.github.io/>`_ を利用している場合:
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   $ if [[ ! -d "$HOME/bin" ]]; then mkdir -p "$HOME/bin"; fi && \
-   curl -L https://github.com/docker/machine/releases/download/v0.7.0/docker-machine-Windows-x86_64.exe > "$HOME/bin/docker-machine.exe" && \
-   chmod +x "$HOME/bin/docker-machine.exe"
+      $ if [[ ! -d "$HOME/bin" ]]; then mkdir -p "$HOME/bin"; fi && \
+      curl -L https://github.com/docker/machine/releases/download/v0.12.2/docker-machine-Windows-x86_64.exe > "$HOME/bin/docker-machine.exe" && \
+      chmod +x "$HOME/bin/docker-machine.exe"
 
 .. Otherwise, download one of the releases from the docker/machine release page directly.
 
