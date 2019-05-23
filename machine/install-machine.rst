@@ -19,9 +19,12 @@ Docker Machine のインストール
        :depth: 3
        :local:
 
-.. On OS X and Windows, Machine is installed along with other Docker products when you install the Docker Toolbox. For details on installing Docker Toolbox, see the Mac OS X installation instructions or Windows installation instructions.
+.. On macOS and Windows, Machine is installed along with other Docker products when
+   you install the [Docker for Mac](/docker-for-mac/index.md), [Docker for
+   Windows](/docker-for-windows/index.md), or [Docker
+   Toolbox](/toolbox/overview.md).
 
-OS X と Windows の場合は、Docker Toolbox をインストールしたら、他の Docker プロダクトと一緒にインストールします。Docker Toolbox の詳細は、:doc:`Mac OS X インストールガイド</engine/installation/mac>`  か :doc:`Windows インストールガイド</engine/installation/windows>` をご覧ください。
+macOS と Windows の場合 :doc:`Docker for Mac </docker-for-mac/index>` 、 :doc:`Docker for Windows </docker-for-windows/index>` 、 :doc:`Docker Toolbox </toolbox/overview>` をインストールしたら、数ある Docker 製品とともに Docker Machine が同時にインストールされます。
 
 .. If you want only Docker Machine, you can install the Machine binaries directly by following the instructions in the next section. You can find the latest versions of the binaries are on the docker/machine release page on GitHub.
 
