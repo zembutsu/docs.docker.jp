@@ -64,6 +64,22 @@ Docker Machine の直接インストール
       $ curl -L https://github.com/docker/machine/releases/download/v0.12.2/docker-machine-`uname -s`-`uname -m` >/usr/local/bin/docker-machine && \
       chmod +x /usr/local/bin/docker-machine
 
+   .. If you are running on **Linux**:
+
+   **Linux** を利用している場合:
+
+   ..  ```console
+       $ curl -L https://github.com/docker/machine/releases/download/v{{machineversion}}/docker-machine-`uname -s`-`uname -m` >/tmp/docker-machine &&
+       chmod +x /tmp/docker-machine &&
+       sudo cp /tmp/docker-machine /usr/local/bin/docker-machine
+       ```
+
+   .. code-block:: bash
+
+      $ curl -L https://github.com/docker/machine/releases/download/v0.12.2/docker-machine-`uname -s`-`uname -m` >/tmp/docker-machine &&
+      chmod +x /tmp/docker-machine &&
+      sudo cp /tmp/docker-machine /usr/local/bin/docker-machine
+
 Windows 上の git bash の場合：
 
 .. code-block:: bash
