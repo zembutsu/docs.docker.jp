@@ -157,9 +157,9 @@ Machine リポジトリには便利な ``bash`` スクリプトがあり、以�
 
    PS1='[\u@\h \W$(__docker_machine_ps1)]\$ '
 
-.. You can find additional documentation in the comments at the top of each script.
+.. You can find additional documentation in the comments at the [top of each script](https://github.com/docker/machine/tree/master/contrib/completion/bash){: target="_blank" class="_"}.
 
-詳細なドキュメントは、 `各スクリプト <https://github.com/docker/machine/tree/master/contrib/completion/bash>`_ の文頭にあるコメントをご覧ください。
+詳細な情報は `各スクリプトの上段 <https://github.com/docker/machine/tree/master/contrib/completion/bash>`_  にコメントとして記述されています。
 
 .. Where to go next
 
