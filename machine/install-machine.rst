@@ -107,10 +107,13 @@ Docker Machine の直接インストール
 
 3.  インストール後の確認として Machine のバージョンを表示してみます。
 
-.. code-block:: bash
+   ..      $ docker-machine version
+           docker-machine version {{machineversion}}, build 9371605
 
-   $ docker-machine version
-   docker-machine version 0.7.0, build 61388e9
+   .. code-block:: bash
+
+      $ docker-machine version
+      docker-machine version 0.12.2, build 9371605
 
 .. Installing bash completion scripts
 
