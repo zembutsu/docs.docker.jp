@@ -90,6 +90,14 @@ Docker Machine の直接インストール
       curl -L https://github.com/docker/machine/releases/download/v0.12.2/docker-machine-Windows-x86_64.exe > "$HOME/bin/docker-machine.exe" && \
       chmod +x "$HOME/bin/docker-machine.exe"
 
+   ..  > The above command will work on Windows only if you use a
+       terminal emulater such as [Git BASH](https://git-for-windows.github.io/){: target="_blank" class="_"}, which supports Linux commands like `chmod`.
+       {: .important}
+
+   .. important::
+
+      上のコマンドは Windows 上において実行していますが、これができるのは `Git BASH <https://git-for-windows.github.io/>`_ などを利用して、 ``chmod`` といった Linux コマンドをサポートしている端末エミュレーターを使っているからです。
+
 .. Otherwise, download one of the releases from the docker/machine release page directly.
 
 あるいは、 `docker/machine リリース・ページ <https://github.com/docker/machine/releases/>`_ から直接ダウンロードします。
