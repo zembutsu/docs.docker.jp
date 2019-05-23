@@ -54,10 +54,15 @@ Docker Machine の直接インストール
 
    **macOS** を利用している場合:
 
-.. code-block:: bash
+   ..  ```console
+       $ curl -L https://github.com/docker/machine/releases/download/v{{machineversion}}/docker-machine-`uname -s`-`uname -m` >/usr/local/bin/docker-machine && \
+     chmod +x /usr/local/bin/docker-machine
+       ```
 
-   $ curl -L https://github.com/docker/machine/releases/download/v0.7.0/docker-machine-`uname -s`-`uname -m` > /usr/local/bin/docker-machine && \
-   chmod +x /usr/local/bin/docker-machine
+   .. code-block:: bash
+
+      $ curl -L https://github.com/docker/machine/releases/download/v0.12.2/docker-machine-`uname -s`-`uname -m` >/usr/local/bin/docker-machine && \
+      chmod +x /usr/local/bin/docker-machine
 
 Windows 上の git bash の場合：
 
