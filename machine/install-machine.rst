@@ -134,13 +134,28 @@ Machine リポジトリには便利な ``bash`` スクリプトがあり、以�
 *   シェルプロンプト内にアクティブなマシンを表示する機能
 *   アクティブマシンを切り替えるサブコマンド ``docker-machine use`` を実現するラッパー
 
-.. To install the scripts, copy or link them into your /etc/bash_completion.d or /usr/local/etc/bash_completion.d file. To enable the docker-machine shell prompt, add $(__docker-machine-ps1) to your PS1 setting in ~/.bashrc.
+.. Confirm the version and save scripts to `/etc/bash_completion.d` or
+   `/usr/local/etc/bash_completion.d`:
 
-スクリプトをインストールするには、 ``/etc/bash_completion.d`` か ``/usr/local/etc/bash_completion.d`` にファイルをコピーするかリンクします。 ``docker-machine`` シェル・プロンプトを有効化するには、 ``~/.bashrc``  の ``PS1`` に ``$(__docker-machine-ps1)`` を追加します。
+スクリプトのバージョンを確認し保存します。
+保存先は ``/etc/bash_completion.d`` または ``/usr/local/etc/bash_completion.d`` とします。
 
 .. code-block:: bash
 
-   PS1='[\u@\h \W$(__docker-machine-ps1)]\$ '
+   scripts=( docker-machine-prompt.bash docker-machine-wrapper.bash docker-machine.bash ); for i in "${scripts[@]}"; do sudo wget https://raw.githubusercontent.com/docker/machine/v0.12.2/contrib/completion/bash/${i} -P /etc/bash_completion.d; done
+
+.. To enable the `docker-machine` shell
+   prompt, add `$(__docker_machine_ps1)` to your `PS1` setting in `~/.bashrc`.
+
+``docker-machine`` のシェル・プロンプトを有効にするために、``~/.bashrc`` 内の ``PS1`` を ``$(__docker_machine_ps1)`` とします。
+
+.. ```
+   PS1='[\u@\h \W$(__docker_machine_ps1)]\$ '
+   ```
+
+.. code-block:: bash
+
+   PS1='[\u@\h \W$(__docker_machine_ps1)]\$ '
 
 .. You can find additional documentation in the comments at the top of each script.
 
