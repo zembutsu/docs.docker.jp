@@ -98,9 +98,10 @@ Docker Machine の直接インストール
 
       上のコマンドは Windows 上において実行していますが、これができるのは `Git BASH <https://git-for-windows.github.io/>`_ などを利用して、 ``chmod`` といった Linux コマンドをサポートしている端末エミュレーターを使っているからです。
 
-.. Otherwise, download one of the releases from the docker/machine release page directly.
+   ..  Otherwise, download one of the releases from the [docker/machine release
+       page](https://github.com/docker/machine/releases/){: target="_blank" class="_" } directly.
 
-あるいは、 `docker/machine リリース・ページ <https://github.com/docker/machine/releases/>`_ から直接ダウンロードします。
+   上記以外は `docker/machine リリース・ページ <https://github.com/docker/machine/releases/>`_ からバイナリ・リリースを直接ダウンロードしてください。
 
 ..    Check the installation by displaying the Machine version:
 
