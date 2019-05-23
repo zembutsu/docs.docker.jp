@@ -42,9 +42,9 @@ GitHub 上の `docker/machine リリース・ページ <https://github.com/docke
 Docker Machine の直接インストール
 =================================
 
-..    Install the Docker binary.
+.. 1.  Install [Docker](/engine/installation/index.md){: target="_blank" class="_" }.
 
-1. :doc:`Docker クライアント（docker という名称のバイナリ・ファイル </engine/installation/index>` をインストールします。
+1.  :doc:`Docker </engine/installation/index>` をインストールします。
 
 ..    Download the Docker Machine binary and extract it to your PATH.
 
