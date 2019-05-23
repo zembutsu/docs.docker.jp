@@ -46,9 +46,9 @@ Docker Machine の直接インストール
 
 1.  :doc:`Docker </engine/installation/index>` をインストールします。
 
-..    Download the Docker Machine binary and extract it to your PATH.
+.. 2.  Download the Docker Machine binary and extract it to your PATH.
 
-2. Docker Machine のバイナリ・ファイル（docker-machine）をダウンロードし、PATH に展開します。
+2.  Docker Machine のバイナリをダウンロードして実行パスに展開します。
 
 Mac OS X もしくは Linux の場合：
 
