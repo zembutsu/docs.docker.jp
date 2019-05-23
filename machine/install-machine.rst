@@ -50,7 +50,9 @@ Docker Machine の直接インストール
 
 2.  Docker Machine のバイナリをダウンロードして実行パスに展開します。
 
-Mac OS X もしくは Linux の場合：
+   .. If you are running on **macOS**:
+
+   **macOS** を利用している場合:
 
 .. code-block:: bash
 
