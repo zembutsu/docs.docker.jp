@@ -81,9 +81,13 @@
       RUN pip install -r requirements.txt
       ADD . /code/
 
-.. This Dockerfile starts with a Python 2.7 base image. The base image is modified by adding a new code directory. The base image is further modified by installing the Python requirements defined in the requirements.txt file.
+   ..  This `Dockerfile` starts with a [Python 3 parent image](https://hub.docker.com/r/library/python/tags/3/).
+       The parent image is modified by adding a new `code` directory. The parent image is further modified
+       by installing the Python requirements defined in the `requirements.txt` file.
 
-この ``Dockerfile`` は Python 2.7 ベース・イメージを使って開始します。ベース・イメージに新しく ``/code`` ディレクトリ追加という変更が行われます。ベース・イメージは、``requirements.txt`` ファイルで定義されている Python 依存関係のインストールという、更なる変更を定義します。
+   この ``Dockerfile`` はまず `Python 3 の親イメージ <https://hub.docker.com/r/library/python/tags/3/>`_ から始まっています。
+   この親イメージには新規のディレクトリ ``code`` が加えられます。 
+   さらに ``requirements.txt`` ファイルに定義された Python 依存パッケージをインストールする変更が加えられています。
 
 .. Save and close the Dockerfile.
 
