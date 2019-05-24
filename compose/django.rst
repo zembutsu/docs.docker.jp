@@ -516,7 +516,7 @@ Compose の更なるドキュメント
 
 .. seealso:: 
 
-   Quicks
-      https://docs.docker.com/machine/reference/
+   "Quickstart: Compose and Django"
+      https://docs.docker.com/compose/django/
 
 
