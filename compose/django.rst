@@ -389,6 +389,12 @@ Django プロジェクトの生成
    Docker Desktop for Mac または Docker Desktop for Windows の場合は、ブラウザから ``http://localhost:8000`` にアクセスすることで、Django の Welcome ページを確認できます。
    :doc:`Docker Machine </machine/overview>` を利用している場合は ``docker-machine ip MACHINE_VM`` を実行すると Docker ホストの IP アドレスが得られるので、ポート番号をつけてアクセスします（ ``<DockerホストID>:8000`` ）。
 
+   ..  ![Django example](images/django-it-worked.png)
+
+   .. image:: /compose/images/django-it-worked.png
+      :scale: 60%
+      :alt: Django の例
+
 .. More Compose documentation
 
 Compose の更なるドキュメント
