@@ -19,9 +19,11 @@
        :depth: 3
        :local:
 
-.. This quick-start guide demonstrates how to use Docker Compose to set up and run a simple Django/PostgreSQL app. Before starting, you’ll need to have Compose installed.
+.. This quick-start guide demonstrates how to use Docker Compose to set up and run a simple Django/PostgreSQL app. Before starting, you'll need to have
+   [Compose installed](install.md).
 
-このクイックスタート・ガイドは Docker Compose を使い、簡単な Django/PostgreSQL アプリをセットアップします。事前に :doc:`Compose のインストール </compose/install>` が必要です。
+このクィックスタート・ガイドでは Docker Compose を使って、簡単な Django/PostgreSQL アプリを設定し実行する手順を示します。
+はじめる前に :doc:`Compose をインストール </compose/install>` してください。
 
 .. Define the project components
 
