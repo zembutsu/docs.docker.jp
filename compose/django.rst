@@ -196,9 +196,10 @@ Django プロジェクトの生成
 
 1. プロジェクト・ディレクトリに移動します。
 
-..     Create the Django project using the docker-compose command.
+.. 2. Create the Django project by running
+   the [docker-compose run](/compose/reference/run/) command as follows.
 
-2. Django プロジェクトを ``docker-compose`` コマンドを使って作成します。
+2. Django プロジェクトを生成するために :doc:`docker-compose run </compose/reference/run>` コマンドを以下のように実行します。
 
 .. code-block:: bash
 
