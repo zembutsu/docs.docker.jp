@@ -63,16 +63,23 @@
 
 3. ``Dockerfile`` に次の内容を加えます。
 
-.. code-block:: dockerfile
+   ..      FROM python:3
+           ENV PYTHONUNBUFFERED 1
+           RUN mkdir /code
+           WORKDIR /code
+           ADD requirements.txt /code/
+           RUN pip install -r requirements.txt
+           ADD . /code/
 
-   
-   FROM python:2.7
-   ENV PYTHONUNBUFFERED 1
-   RUN mkdir /code
-   WORKDIR /code
-   ADD requirements.txt /code/
-   RUN pip install -r requirements.txt
-   ADD . /code/
+   .. code-block:: dockerfile
+
+      FROM python:3
+      ENV PYTHONUNBUFFERED 1
+      RUN mkdir /code
+      WORKDIR /code
+      ADD requirements.txt /code/
+      RUN pip install -r requirements.txt
+      ADD . /code/
 
 .. This Dockerfile starts with a Python 2.7 base image. The base image is modified by adding a new code directory. The base image is further modified by installing the Python requirements defined in the requirements.txt file.
 
