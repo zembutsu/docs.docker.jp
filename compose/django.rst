@@ -265,15 +265,23 @@ Django プロジェクトの生成
    Docker on Mac あるいは Docker on Windows を利用している場合は、生成されたファイルの所有権は ``django-admin`` が作り出したファイルも含めて、すべて持っています。
    確認のため一覧を表示してみます。
 
-.. code-block:: bash
+   ..      $ ls -l
+           total 32
+           -rw-r--r--  1 user  staff  145 Feb 13 23:00 Dockerfile
+           drwxr-xr-x  6 user  staff  204 Feb 13 23:07 composeexample
+           -rw-r--r--  1 user  staff  159 Feb 13 23:02 docker-compose.yml
+           -rwxr-xr-x  1 user  staff  257 Feb 13 23:07 manage.py
+           -rw-r--r--  1 user  staff   16 Feb 13 23:01 requirements.txt
 
-   $ ls -l
-   total 32
-   -rw-r--r--  1 user  staff  145 Feb 13 23:00 Dockerfile
-   drwxr-xr-x  6 user  staff  204 Feb 13 23:07 composeexample
-   -rw-r--r--  1 user  staff  159 Feb 13 23:02 docker-compose.yml
-   -rwxr-xr-x  1 user  staff  257 Feb 13 23:07 manage.py
-   -rw-r--r--  1 user  staff   16 Feb 13 23:01 requirements.txt
+   .. code-block:: bash
+
+      $ ls -l
+      total 32
+      -rw-r--r--  1 user  staff  145 Feb 13 23:00 Dockerfile
+      drwxr-xr-x  6 user  staff  204 Feb 13 23:07 composeexample
+      -rw-r--r--  1 user  staff  159 Feb 13 23:02 docker-compose.yml
+      -rwxr-xr-x  1 user  staff  257 Feb 13 23:07 manage.py
+      -rw-r--r--  1 user  staff   16 Feb 13 23:01 requirements.txt
 
 .. Connect the database
 
