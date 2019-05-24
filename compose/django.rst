@@ -175,9 +175,9 @@
             - db
 
 
-.. This file defines two services: The db service and the web service
+   ..  This file defines two services: The `db` service and the `web` service.
 
-このファイルは２つのサービスを定義しています。``db`` サービスと ``web`` サービスです。
+   このファイルには ``db`` サービスと ``web`` サービスという 2 つのサービスが定義されています。
 
 .. Save and close the docker-compose.yml file.
 
