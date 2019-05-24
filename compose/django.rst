@@ -207,9 +207,14 @@ Django プロジェクトの生成
 
       docker-compose run web django-admin.py startproject composeexample .
 
-..    This instructs Compose to run django-admin.py startproject composeeexample in a container, using the web service’s image and configuration. Because the web image doesn’t exist yet, Compose builds it from the current directory, as specified by the build: . line in docker-compose.yml.
+   ..  This instructs Compose to run `django-admin.py startproject composeexample`
+       in a container, using the `web` service's image and configuration. Because
+       the `web` image doesn't exist yet, Compose builds it from the current
+       directory, as specified by the `build: .` line in `docker-compose.yml`.
 
-これは Compose に対して、コンテナ内で ``django-admin.py startproject composeexample`` を実行するよう命令します。コンテナは ``web`` サービスのイメージと設定を使います。``web`` イメージはまだ作成していませんが、``docker-compose.yml`` の ``build: .`` 行の命令があるため、現在のディレクトリ上で構築します。
+   このコマンドは Compose に対し、コンテナ内において ``django-admin startproject composeexample`` を実行するものです。
+   その際には ``web`` サービスイメージとその設定を利用します。
+   ただし ``web`` イメージはこの時点ではまだ存在していないため、Compose はカレントディレクトリからそのイメージをビルドします。このことは ``docker-compose.yml`` の ``build: .`` という記述行において指示されています。
 
 .. Once the web service image is built, Compose runs it and executes the django-admin.py startproject command in the container. This command instructs Django to create a set of files and directories representing a Django project.
 
