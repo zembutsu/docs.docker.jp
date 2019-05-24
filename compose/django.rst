@@ -201,9 +201,11 @@ Django プロジェクトの生成
 
 2. Django プロジェクトを生成するために :doc:`docker-compose run </compose/reference/run>` コマンドを以下のように実行します。
 
-.. code-block:: bash
+   ..      docker-compose run web django-admin.py startproject composeexample .
 
-   $ docker-compose run web django-admin.py startproject composeexample .
+   .. code-block:: bash
+
+      docker-compose run web django-admin.py startproject composeexample .
 
 ..    This instructs Compose to run django-admin.py startproject composeeexample in a container, using the web service’s image and configuration. Because the web image doesn’t exist yet, Compose builds it from the current directory, as specified by the build: . line in docker-compose.yml.
 
