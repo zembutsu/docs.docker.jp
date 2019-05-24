@@ -228,14 +228,21 @@ Django プロジェクトの生成
 
 3. ``docker-compose`` コマンドの処理が完了したら、プロジェクト内の一覧を表示してみます。
 
-.. code-block:: bash
+   ..      $ ls -l
+           drwxr-xr-x 2 root   root   composeexample
+           -rw-rw-r-- 1 user   user   docker-compose.yml
+           -rw-rw-r-- 1 user   user   Dockerfile
+           -rwxr-xr-x 1 root   root   manage.py
+           -rw-rw-r-- 1 user   user   requirements.txt
 
-   $ ls -l
-   drwxr-xr-x 2 root   root   composeexample
-   -rw-rw-r-- 1 user   user   docker-compose.yml
-   -rw-rw-r-- 1 user   user   Dockerfile
-   -rwxr-xr-x 1 root   root   manage.py
-   -rw-rw-r-- 1 user   user   requirements.txt
+   .. code-block:: bash
+
+      $ ls -l
+      drwxr-xr-x 2 root   root   composeexample
+      -rw-rw-r-- 1 user   user   docker-compose.yml
+      -rw-rw-r-- 1 user   user   Dockerfile
+      -rwxr-xr-x 1 root   root   manage.py
+      -rw-rw-r-- 1 user   user   requirements.txt
 
 .. If you are running Docker on Linux, the files django-admin created are owned by root. This happens because the container runs as the root user. Change the ownership of the the new files.
 
