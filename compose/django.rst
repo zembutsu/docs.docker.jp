@@ -418,6 +418,80 @@ Django プロジェクトの生成
       この設定は本番環境では **安全ではありません** 。
       詳しくは `Django ドキュメント <https://docs.djangoproject.com/en/1.11/ref/settings/#allowed-hosts>`_  を参照してください。
 
+.. 5.  List running containers.
+
+5. 起動しているコンテナの一覧を確認します。
+
+   ..  In another terminal window, list the running Docker processes with the `docker ps` command.
+
+   別の端末画面を開いて ``docker container ls`` コマンドを実行し、起動している Docker プロセスの一覧を表示します。
+
+   ..  ```none
+       $ docker ps
+       CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+       def85eff5f51        django_web          "python3 manage.py..."   10 minutes ago      Up 9 minutes        0.0.0.0:8000->8000/tcp   django_web_1
+       678ce61c79cc        postgres            "docker-entrypoint..."   20 minutes ago      Up 9 minutes        5432/tcp                 django_db_1
+       ```
+
+   ::
+
+      $ docker ps
+      CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+      def85eff5f51        django_web          "python3 manage.py..."   10 minutes ago      Up 9 minutes        0.0.0.0:8000->8000/tcp   django_web_1
+      678ce61c79cc        postgres            "docker-entrypoint..."   20 minutes ago      Up 9 minutes        5432/tcp                 django_db_1
+
+.. 6.  Shut down services and clean up by using either of these methods:
+
+6. サービスを停止しクリアするために、以下のいずれかの方法をとります。
+
+   ..  * Stop the application by typing `Ctrl-C`
+       in the same shell in where you started it:
+
+   * アプリケーションを実行したシェル上で ``Ctrl-C`` を入力してアプリケーションを止めます。
+
+      .. ```none
+         Gracefully stopping... (press Ctrl+C again to force)
+         Killing test_web_1 ... done
+         Killing test_db_1 ... done
+         ```
+
+      ::
+
+         Gracefully stopping... (press Ctrl+C again to force)
+         Killing test_web_1 ... done
+         Killing test_db_1 ... done
+
+   ..  * Or, for a more elegant shutdown, switch to a different shell, and run [docker-compose down](/compose/reference/down/) from the top level of your Django sample project directory.
+
+   * もう少しきれいなやり方として別のシェル画面に切り替えて、Django サンプル・プロジェクトのトップ・ディレクトリにおいて :doc:`docker-compose down </compose/reference/down>` を実行します。
+
+      .. ```none
+         vmb at mymachine in ~/sandbox/django
+         $ docker-compose down
+         Stopping django_web_1 ... done
+         Stopping django_db_1 ... done
+         Removing django_web_1 ... done
+         Removing django_web_run_1 ... done
+         Removing django_db_1 ... done
+         Removing network django_default
+         ```
+
+      ::
+
+         vmb at mymachine in ~/sandbox/django
+         $ docker-compose down
+         Stopping django_web_1 ... done
+         Stopping django_db_1 ... done
+         Removing django_web_1 ... done
+         Removing django_web_run_1 ... done
+         Removing django_db_1 ... done
+         Removing network django_default
+
+..   Once you've shut down the app, you can safely remove the Django project directory (for example, `rm -rf django`).
+
+アプリを停止したら Django プロジェクト・ディレクトリは何も問題なく削除することができます。
+（たとえば ``rm -rf django`` ）
+
 .. More Compose documentation
 
 Compose の更なるドキュメント
