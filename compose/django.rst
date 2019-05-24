@@ -25,10 +25,10 @@
 このクィックスタート・ガイドでは Docker Compose を使って、簡単な Django/PostgreSQL アプリを設定し実行する手順を示します。
 はじめる前に :doc:`Compose をインストール </compose/install>` してください。
 
-.. Define the project components
+.. ### Define the project components
 
-プロジェクトの構成物を定義
-==============================
+プロジェクトのコンポーネントを定義
+===================================
 
 .. For this project, you need to create a Dockerfile, a Python dependencies file, and a docker-compose.yml file.
 
