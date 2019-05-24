@@ -395,6 +395,29 @@ Django プロジェクトの生成
       :scale: 60%
       :alt: Django の例
 
+   ..  > Note:
+       >
+       > On certain platforms (Windows 10), you might need to
+         edit `ALLOWED_HOSTS` inside `settings.py` and add your Docker host name
+         or IP address to the list.  For demo purposes, you can set the value to:
+       >
+       >       ALLOWED_HOSTS = ['*']
+       >
+       > Please note this value is **not** safe for production usage.  Refer to the
+        [Django documentation](https://docs.djangoproject.com/en/1.11/ref/settings/#allowed-hosts)  for more information.
+
+   .. note::
+
+      特定プラットフォーム（Windows 10）では、 ``settings.py`` ファイル内の ``ALLOWED_HOSTS`` に、ホスト名あるいはホストの IP アドレスを追加することが必要かもしれません。
+      ここはデモが目的なので、以下のように設定することにします。
+
+      ::
+
+         ALLOWED_HOSTS = ['*']
+
+      この設定は本番環境では **安全ではありません** 。
+      詳しくは `Django ドキュメント <https://docs.djangoproject.com/en/1.11/ref/settings/#allowed-hosts>`_  を参照してください。
+
 .. More Compose documentation
 
 Compose の更なるドキュメント
