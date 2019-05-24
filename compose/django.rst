@@ -30,9 +30,10 @@
 プロジェクトのコンポーネントを定義
 ===================================
 
-.. For this project, you need to create a Dockerfile, a Python dependencies file, and a docker-compose.yml file.
+.. For this project, you need to create a Dockerfile, a Python dependencies file,
+   and a `docker-compose.yml` file. (You can use either a `.yml` or `.yaml` extension for this file.)
 
-このプロジェクトでは、Dockerfile と、Python 依存関係のファイル、``docker-compose.yml`` ファイルを作成する必要があります。
+このプロジェクトでは Dockerfile、Python の依存パッケージを示すファイル、 ``docker-compose.yml`` ファイルをそれぞれ生成します。（ ``docker-compose.yml`` の拡張子は ``.yml`` と ``.yaml`` のどちらでも構いません。）
 
 ..    Create an empty project directory.
 
