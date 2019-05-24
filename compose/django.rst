@@ -49,9 +49,15 @@
 
 2. プロジェクトディレクトリ内に ``Dockerfile`` というファイルを新規生成します。
 
-..    The Dockerfile defines an application’s image content via one or more build commands that configure that image. Once built, you can run the image in a container. For more information on Dockerfiles, see the Docker user guide and the Dockerfile reference.
+   ..  The Dockerfile defines an application's image content via one or more build
+       commands that configure that image. Once built, you can run the image in a
+       container.  For more information on `Dockerfiles`, see the [Docker user
+       guide](/engine/tutorials/dockerimages.md#building-an-image-from-a-dockerfile)
+       and the [Dockerfile reference](/engine/reference/builder.md).
 
-Dockerfile はアプリケーションのイメージ内容に含まれる、１つまたは複数のイメージ構築用のコマンドを定義します。構築（ビルド）時に、コンテナの中でイメージを実行できます。``Dockerfile`` の詳細情報については、 :ref:`Docker ユーザ・ガイド <building-an-image-from-a-dockerfile>` や :doc:`Dockerfile リファレンス </engine/reference/builder>` をご覧ください。
+   Dockerfile はアプリケーション・イメージの内容を定義するものであり、イメージを設定しビルドするコマンドがいくつか記述されます。
+   ビルドが成功すると、コンテナ内にてイメージが起動します。
+   ``Dockerfile`` の詳細は :ref:`Docker ユーザ・ガイド <building-an-image-from-a-dockerfile>` や :doc:`Dockerfile リファレンス </engine/reference/builder>` を参照してください。
 
 .. Add the following content to the Dockerfile.
 
