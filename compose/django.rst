@@ -292,9 +292,9 @@ Django プロジェクトの生成
 
 ここでは Django におけるデータベース接続の設定を行います。
 
-..    In your project directory, edit the composeexample/settings.py file.
+.. 1.  In your project directory, edit the `composeexample/settings.py` file.
 
-1. プロジェクト用ディレクトリで、``composeexample/settings.py`` ファイルを編集します。
+1. プロジェクト・ディレクトリにおいて ``composeexample/settings.py`` ファイルを編集します。
 
 ..    Replace the DATABASES = ... with the following:
 
