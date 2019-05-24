@@ -188,9 +188,9 @@
 Django プロジェクトの生成
 ==============================
 
-.. In this step, you create a Django started project by building the image from the build context defined in the previous procedure.
+.. In this step, you create a Django starter project by building the image from the build context defined in the previous procedure.
 
-このステップでは、Django を開始するプロジェクトを作りましょう。そのためには、先の手順で構築内容を定義したイメージを作成します。
+ここでの手順では、前の手順で定義したビルドコンテキストからイメージをビルドし、Django プロジェクトのひながたを生成します。
 
 ..     Change to the root of your project directory.
 
