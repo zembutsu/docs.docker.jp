@@ -97,9 +97,9 @@
 
 5. プロジェクト・ディレクトリに ``requirements.txt`` というファイルを生成します。
 
-.. This file is used by the RUN pip install -r requirements.txt command in your Dockerfile.
+   ..  This file is used by the `RUN pip install -r requirements.txt` command in your `Dockerfile`.
 
-このファイルは ``Dockerfile`` の ``RUN pip install -r requirements.txt`` 命令で使います。
+   このファイルは ``Dockerfile`` 内の ``RUN pip install -r requirements.txt`` というコマンドにおいて利用されます。
 
 .. Add the required software in the file.
 
