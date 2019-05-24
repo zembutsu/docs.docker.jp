@@ -244,13 +244,13 @@ Django プロジェクトの生成
       -rwxr-xr-x 1 root   root   manage.py
       -rw-rw-r-- 1 user   user   requirements.txt
 
-.. If you are running Docker on Linux, the files django-admin created are owned by root. This happens because the container runs as the root user. Change the ownership of the the new files.
+   ..  If you are running Docker on Linux, the files `django-admin` created are
+       owned by root. This happens because the container runs as the root user.
+       Change the ownership of the new files.
 
-.. The files django-admin created are owned by root. This happens because the container runs as the root user.
-
-ファイル ``django-admin`` は所有者が root として作成されました。これはコンテナが ``root`` ユーザによって実行されたからです。
-
-Docker を Linux 上で動かしている場合は、 ``django-admin`` は root の所有者として作成されます。つまり、これはコンテナが root ユーザとして実行されるのを意味します。新しいファイルの所有者を変更するには、次のように実行します。
+   Linux 上で Docker を利用している場合、``django-admin`` が生成したファイルの所有者が root になっています。
+   これはコンテナが root ユーザで実行されるからです。
+   生成されたファイルの所有者を以下のようにして変更します。
 
 .. code-block:: bash
 
