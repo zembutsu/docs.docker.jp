@@ -93,9 +93,9 @@
 
 4. ``Dockerfile`` を保存して閉じます。
 
-.. Create a requirements.txt in your project directory.
+.. 5. Create a `requirements.txt` in your project directory.
 
-5. ``requirements.txt`` をプロジェクト用のディレクトリに作成します。
+5. プロジェクト・ディレクトリに ``requirements.txt`` というファイルを生成します。
 
 .. This file is used by the RUN pip install -r requirements.txt command in your Dockerfile.
 
