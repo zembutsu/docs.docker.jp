@@ -105,10 +105,13 @@
 
 6. ファイル中に必要なソフトウェアを記述します。
 
-::
+   ..      Django>=1.8,<2.0
+           psycopg2
 
-  Django
-  psycopg2
+   ::
+
+      Django>=1.8,<2.0
+      psycopg2
 
 .. Save and close the requirements.txt file.
 
