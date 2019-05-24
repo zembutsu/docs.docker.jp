@@ -290,7 +290,7 @@ Django プロジェクトの生成
 
 .. In this section, you set up the database connection for Django.
 
-このセクションでは、Django 用のデータベースをセットアップします。
+ここでは Django におけるデータベース接続の設定を行います。
 
 ..    In your project directory, edit the composeexample/settings.py file.
 
