@@ -140,21 +140,40 @@
 
 9. ファイルに以下の設定を追加します。
 
-.. code-block:: yaml
+   ..  ```none
+       version: '3'
 
-   version: '2'
-   services:
-     db:
-       image: postgres
-     web:
-       build: .
-       command: python manage.py runserver 0.0.0.0:8000
-       volumes:
-         - .:/code
-       ports:
-         - "8000:8000"
-       depends_on:
-         - db
+       services:
+         db:
+           image: postgres
+         web:
+           build: .
+           command: python3 manage.py runserver 0.0.0.0:8000
+           volumes:
+             - .:/code
+           ports:
+             - "8000:8000"
+           depends_on:
+             - db
+       ```
+
+   .. code-block:: yaml
+
+      version: '3'
+
+      services:
+        db:
+          image: postgres
+        web:
+          build: .
+          command: python3 manage.py runserver 0.0.0.0:8000
+          volumes:
+            - .:/code
+          ports:
+            - "8000:8000"
+          depends_on:
+            - db
+
 
 .. This file defines two services: The db service and the web service
 
