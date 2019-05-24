@@ -224,9 +224,9 @@ Django プロジェクトの生成
    ``web`` サービスイメージがビルドされると Compose はこのイメージを起動し、コンテナ内でコマンド ``django-admin startproject`` を実行します。
    このコマンドは Django に対して、Django プロジェクトを組み立てるファイルやディレクトリを生成することを指示するものです。
 
-.. After the docker-compose command completes, list the contents of your project.
+.. 3. After the `docker-compose` command completes, list the contents of your project.
 
-3. ``docker-compose`` コマンドが完了したら、プロジェクトのディレクトリ内は次のようになります。
+3. ``docker-compose`` コマンドの処理が完了したら、プロジェクト内の一覧を表示してみます。
 
 .. code-block:: bash
 
