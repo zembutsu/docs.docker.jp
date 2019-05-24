@@ -121,9 +121,20 @@
 
 8. プロジェクト・ディレクトリ内に ``docker-compose.yml`` というファイルを生成します。
 
-.. The docker-compose.yml file describes the services that make your app. In this example those services are a web server and database. The compose file also describes which Docker images these services use, how they link together, any volumes they might need mounted inside the containers. Finally, the docker-compose.yml file describes which ports these services expose. See the docker-compose.yml reference for more information on how this file works.
+   ..  The `docker-compose.yml` file describes the services that make your app. In
+       this example those services are a web server and database.  The compose file
+       also describes which Docker images these services use, how they link
+       together, any volumes they might need mounted inside the containers.
+       Finally, the `docker-compose.yml` file describes which ports these services
+       expose. See the [`docker-compose.yml` reference](compose-file.md) for more
+       information on how this file works.
 
-``docker-compose.yml`` ファイルは、アプリケーションを作るためのサービスを記述します。この例におけるサービスとはウェブサーバとデータベースです。また、Compose ファイルではサービスが利用する Docker イメージ、どのように相互にリンクするか、コンテナ内で必要となるボリュームをそれぞれ定義します。最後に ``docker-compose.yml`` ファイルでサービスを公開するポートを指定します。詳細な情報や動作に関しては :doc:`docker-compose.yml リファレンス </compose/compose-file>` をご覧ください。
+   ``docker-compose.yml`` ファイルは、アプリケーションを作り出すサービスを記述するものです。
+   この例においてそのサービスとは、ウェブ・サーバーとデータベースです。
+   Compose ファイルはまた、各サービスが利用する Docker イメージを記述します。
+   そしてどのように互いにリンクし合い、コンテナ内部にマウントすべきボリュームはどのようなものかを定義します。
+   そして ``docker-compose.yml`` ファイルには、各サービスが公開するポート番号が何かも記述します。
+   このファイルがどのようにして動作するかの詳細は :doc:`docker-compose.yml リファレンス </compose/compose-file>` を参照してください。
 
 .. Add the following configuration to the file.
 
