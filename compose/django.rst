@@ -283,10 +283,10 @@ Django プロジェクトの生成
       -rwxr-xr-x  1 user  staff  257 Feb 13 23:07 manage.py
       -rw-r--r--  1 user  staff   16 Feb 13 23:01 requirements.txt
 
-.. Connect the database
+.. ### Connect the database
 
-データベースに接続
-====================
+データベースへの接続設定
+========================
 
 .. In this section, you set up the database connection for Django.
 
