@@ -192,9 +192,9 @@ Django プロジェクトの生成
 
 ここでの手順では、前の手順で定義したビルドコンテキストからイメージをビルドし、Django プロジェクトのひながたを生成します。
 
-..     Change to the root of your project directory.
+.. 1. Change to the root of your project directory.
 
-1. プロジェクト用のディレクトリに移動します。
+1. プロジェクト・ディレクトリに移動します。
 
 ..     Create the Django project using the docker-compose command.
 
