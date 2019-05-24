@@ -183,9 +183,9 @@
 
 10. ``docker-compose.yml`` ファイルを保存して閉じます。
 
-.. Create a Django project
+.. ### Create a Django project
 
-Django プロジェクトの作成
+Django プロジェクトの生成
 ==============================
 
 .. In this step, you create a Django started project by building the image from the build context defined in the previous procedure.
