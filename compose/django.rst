@@ -45,9 +45,9 @@
    このディレクトリはアプリケーションイメージのコンテキストディレクトリとなります。
    このディレクトリには、イメージをビルドするために必要となるものだけを含めるようにします。
 
-..    Create a new file called Dockerfile in your project directory.
+.. 2. Create a new file called `Dockerfile` in your project directory.
 
-2. プロジェクト用のディレクトリに、``Dockerfile`` という名称の新規ファイルを作成します。
+2. プロジェクトディレクトリ内に ``Dockerfile`` というファイルを新規生成します。
 
 ..    The Dockerfile defines an application’s image content via one or more build commands that configure that image. Once built, you can run the image in a container. For more information on Dockerfiles, see the Docker user guide and the Dockerfile reference.
 
