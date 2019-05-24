@@ -322,9 +322,11 @@ Django プロジェクトの生成
           }
       }
 
-.. These settings are determined by the postgres Docker image specified in docker-compose.yml.
+   ..  These settings are determined by the
+       [postgres](https://store.docker.com/images/postgres) Docker image
+       specified in `docker-compose.yml`.
 
-これらの設定は ``docker-compose.yml`` で指定した `postgres <https://hub.docker.com/_/postgres/>`_ Docker イメージによって決められているものです。
+   上の設定は ``docker-compose.yml`` に指定した Docker イメージ `postgres <https://hub.docker.com/images/postgres>`_ が定めている内容です。
 
 .. Save and close the file.
 
