@@ -296,9 +296,9 @@ Django プロジェクトの生成
 
 1. プロジェクト・ディレクトリにおいて ``composeexample/settings.py`` ファイルを編集します。
 
-..    Replace the DATABASES = ... with the following:
+.. 2.  Replace the `DATABASES = ...` with the following:
 
-2. ``DATABASES = ...`` を以下のものに置き換えます。
+2.  ``DATABASES = ...`` の部分を以下のように書き換えます。
 
 ::
 
