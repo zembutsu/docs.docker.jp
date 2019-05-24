@@ -332,9 +332,9 @@ Django プロジェクトの生成
 
 3. ファイルを保存して閉じます。
 
-.. Run the docker-compose up command.
+.. 4.  Run the [docker-compose up](/compose/reference/up/) command from the top level directory for your project.
 
-4. ``docker-compose up`` コマンドを実行します。
+4. プロジェクトのトップ・ディレクトリにおいてコマンド :doc:`docker-compose up </compose/reference/up>` を実行します。
 
 .. code-block:: bash
 
