@@ -117,9 +117,9 @@
 
 7. ``requirements.txt`` ファイルを保存して閉じます。
 
-.. Create a file called docker-compose.yml in your project directory.
+.. 8. Create a file called `docker-compose.yml` in your project directory.
 
-8. プロジェクト用のディレクトリに ``docker-compose.yml`` という名称のファイルを作成します。
+8. プロジェクト・ディレクトリ内に ``docker-compose.yml`` というファイルを生成します。
 
 .. The docker-compose.yml file describes the services that make your app. In this example those services are a web server and database. The compose file also describes which Docker images these services use, how they link together, any volumes they might need mounted inside the containers. Finally, the docker-compose.yml file describes which ports these services expose. See the docker-compose.yml reference for more information on how this file works.
 
