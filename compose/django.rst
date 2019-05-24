@@ -378,9 +378,16 @@ Django プロジェクトの生成
       web_1  | Starting development server at http://0.0.0.0:8000/
       web_1  | Quit the server with CONTROL-C.
 
-.. At this point, your Django app should be running at port 8000 on your Docker host. If you are using a Docker Machine VM, you can use the docker-machine ip MACHINE_NAME to get the IP addres
+   ..  At this point, your Django app should be running at port `8000` on
+       your Docker host. On Docker for Mac and Docker for Windows, go
+       to `http://localhost:8000` on a web browser to see the Django
+       welcome page. If you are using [Docker Machine](/machine/overview.md),
+       then `docker-machine ip MACHINE_VM` returns the Docker host IP
+       address, to which you can append the port (`<Docker-Host-IP>:8000`).
 
-これで Django アプリが Docker ホスト上のポート ``8000`` で動作しているでしょう。Docker Machine の仮想マシンを使っている場合は、``docker-machine ip マシン名`` を実行して IP アドレスを取得できます。
+   この段階で Django アプリは Docker ホスト上のポート ``8000`` で稼動しています。
+   Docker Desktop for Mac または Docker Desktop for Windows の場合は、ブラウザから ``http://localhost:8000`` にアクセスすることで、Django の Welcome ページを確認できます。
+   :doc:`Docker Machine </machine/overview>` を利用している場合は ``docker-machine ip MACHINE_VM`` を実行すると Docker ホストの IP アドレスが得られるので、ポート番号をつけてアクセスします（ ``<DockerホストID>:8000`` ）。
 
 .. More Compose documentation
 
