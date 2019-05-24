@@ -336,21 +336,47 @@ Django プロジェクトの生成
 
 4. プロジェクトのトップ・ディレクトリにおいてコマンド :doc:`docker-compose up </compose/reference/up>` を実行します。
 
-.. code-block:: bash
+   ..  ```none
+       $ docker-compose up
+       djangosample_db_1 is up-to-date
+       Creating djangosample_web_1 ...
+       Creating djangosample_web_1 ... done
+       Attaching to djangosample_db_1, djangosample_web_1
+       db_1   | The files belonging to this database system will be owned by user "postgres".
+       db_1   | This user must also own the server process.
+       db_1   |
+       db_1   | The database cluster will be initialized with locale "en_US.utf8".
+       db_1   | The default database encoding has accordingly been set to "UTF8".
+       db_1   | The default text search configuration will be set to "english".
 
-   $ docker-compose up
-   Starting composepractice_db_1...
-   Starting composepractice_web_1...
-   Attaching to composepractice_db_1, composepractice_web_1
-   ...
-   db_1  | PostgreSQL init process complete; ready for start up.
-   ...
-   db_1  | LOG:  database system is ready to accept connections
-   db_1  | LOG:  autovacuum launcher started
-   ..
-   web_1 | Django version 1.8.4, using settings 'composeexample.settings'
-   web_1 | Starting development server at http://0.0.0.0:8000/
-   web_1 | Quit the server with CONTROL-C.
+       . . .
+
+       web_1  | May 30, 2017 - 21:44:49
+       web_1  | Django version 1.11.1, using settings 'composeexample.settings'
+       web_1  | Starting development server at http://0.0.0.0:8000/
+       web_1  | Quit the server with CONTROL-C.
+       ```
+
+   .. code-block:: bash
+
+      $ docker-compose up
+      djangosample_db_1 is up-to-date
+      Creating djangosample_web_1 ...
+      Creating djangosample_web_1 ... done
+      Attaching to djangosample_db_1, djangosample_web_1
+      db_1   | The files belonging to this database system will be owned by user "postgres".
+      db_1   | This user must also own the server process.
+      db_1   |
+      db_1   | The database cluster will be initialized with locale "en_US.utf8".
+      db_1   | The default database encoding has accordingly been set to "UTF8".
+      db_1   | The default text search configuration will be set to "english".
+
+      . . .
+
+      web_1  | May 30, 2017 - 21:44:49
+      web_1  | Django version 1.11.1, using settings 'composeexample.settings'
+      web_1  | Starting development server at http://0.0.0.0:8000/
+      web_1  | Quit the server with CONTROL-C.
 
 .. At this point, your Django app should be running at port 8000 on your Docker host. If you are using a Docker Machine VM, you can use the docker-machine ip MACHINE_NAME to get the IP addres
 
