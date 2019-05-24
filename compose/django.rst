@@ -300,17 +300,27 @@ Django プロジェクトの生成
 
 2.  ``DATABASES = ...`` の部分を以下のように書き換えます。
 
-::
+   ..      DATABASES = {
+               'default': {
+                   'ENGINE': 'django.db.backends.postgresql',
+                   'NAME': 'postgres',
+                   'USER': 'postgres',
+                   'HOST': 'db',
+                   'PORT': 5432,
+               }
+           }
 
-   DATABASES = {
-       'default': {
-           'ENGINE': 'django.db.backends.postgresql_psycopg2',
-           'NAME': 'postgres',
-           'USER': 'postgres',
-           'HOST': 'db',
-           'PORT': 5432,
-       }
-   }
+   ::
+
+      DATABASES = {
+          'default': {
+              'ENGINE': 'django.db.backends.postgresql',
+              'NAME': 'postgres',
+              'USER': 'postgres',
+              'HOST': 'db',
+              'PORT': 5432,
+          }
+      }
 
 .. These settings are determined by the postgres Docker image specified in docker-compose.yml.
 
