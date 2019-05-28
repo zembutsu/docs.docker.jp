@@ -626,9 +626,11 @@ escape
 
 どの例においても、``word`` は文字列であれば何でもよく、さらに別の環境変数を含んでいても構いません。
 
-.. Escaping is possible by adding a \ before the variable: \$foo or \${foo}, for example, will translate to $foo and ${foo} literals respectively.
+.. Escaping is possible by adding a `\` before the variable: `\$foo` or `\${foo}`,
+   for example, will translate to `$foo` and `${foo}` literals respectively.
 
-エスケープするには ``\$foo`` や ``\${foo}`` のように、変数名の前に ``\`` を付けます。例えば、 ``$foo`` と ``${foo}`` リテラルは別々のものです。
+変数名をエスケープすることも可能で、変数名の前に ``\$foo`` や ``\${foo}`` のように ``\`` をつけます。
+こうすると、この例はそれぞれ ``$foo``、``${foo}`` という文字列そのものとして解釈されます。
 
 .. Example (parsed representation is displayed after the #):
 
