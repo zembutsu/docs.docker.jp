@@ -143,9 +143,15 @@ Docker は ``Dockerfile`` から命令を読み込んで、自動的にイメー
    Sending build context to Docker daemon 2.048 kB
    Error response from daemon: Unknown instruction: RUNCMD
 
-.. The Docker daemon runs the instructions in the Dockerfile one-by-one, committing the result of each instruction to a new image if necessary, before finally outputting the ID of your new image. The Docker daemon will automatically clean up the context you sent.
+.. The Docker daemon runs the instructions in the `Dockerfile` one-by-one,
+   committing the result of each instruction
+   to a new image if necessary, before finally outputting the ID of your
+   new image. The Docker daemon will automatically clean up the context you
+   sent.
 
-Docker デーモンは ``Dockerfile`` の命令を1行ずつ実行し、必要があれば命令ごとにイメージをコミットし、最終的に新しいイメージ ID を出力します。Docker デーモンは送信したコンテクストを自動的に削除します。
+Docker デーモンは ``Dockerfile`` 内の命令を 1 つずつ実行し、必要な場合にはビルドイメージ内にその処理結果を確定します。
+最後にビルドイメージの ID を出力します。
+Docker デーモンは、送信されたコンテキスト内容を自動的にクリアします。
 
 .. Note that each instruction is run independently, and causes a new image to be created - so RUN cd /tmp will not have any effect on the next instructions.
 
