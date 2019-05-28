@@ -339,7 +339,7 @@ Docker は ``Dockerfile`` 内の命令を記述順に実行します。
 
 .. Invalid due to appearing twice:
 
-２つ並ぶ場合は無効：
+二度出現するため無効：
 
 .. code-block:: dockerfile
 
