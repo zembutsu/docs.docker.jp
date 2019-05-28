@@ -380,13 +380,21 @@ Docker は ``Dockerfile`` 内の命令を記述順に実行します。
 改行ではないホワイトスペースは、パーサ・ディレクティブにおいて記述することができます。
 そこで、以下の各行はすべて同一のものとして扱われます。
 
+.. ```Dockerfile
+   #directive=value
+   # directive =value
+   #	directive= value
+   # directive = value
+   #	  dIrEcTiVe=value
+   ```
+
 .. code-block:: dockerfile
 
    #directive=value
    # directive =value
-   #   directive= value
+   #	directive= value
    # directive = value
-   #     dIrEcTiVe=value
+   #	  dIrEcTiVe=value
 
 .. The following parser directive is supported:
 
