@@ -85,9 +85,16 @@ Docker は ``Dockerfile`` から命令を読み込んで、自動的にイメー
    ``PATH`` に対して root ディレクトリ ``/`` を指定することはやめてください。
    これを行うとビルド時に Docker デーモンに対して、ハードディスクの内容すべてを送り込むことになってしまいます。
 
-.. To use a file in the build context, the Dockerfile refers to the file specified in an instruction, for example, a COPY instruction. To increase the build’s performance, exclude files and directories by adding a .dockerignore file to the context directory. For information about how to create a .dockerignore file see the documentation on this page.
+.. To use a file in the build context, the `Dockerfile` refers to the file specified
+   in an instruction, for example,  a `COPY` instruction. To increase the build's
+   performance, exclude files and directories by adding a `.dockerignore` file to
+   the context directory.  For information about how to [create a `.dockerignore`
+   file](#dockerignore-file) see the documentation on this page.
 
-``Dockerfile`` に記述した ``COPY`` 命令などで使うファイル指定を参照し、コンテクスト（内容物の意味）を構築します。構築パフォーマンスを向上するためには、 ``.dockerignore`` ファイルにファイルやディレクトリを追加し、コンテクスト・ディレクトリから除外できます。より詳しい情報は、 :ref:`.dockerignore ファイルの作成 <dockerignore-file>` をご覧ください。
+ビルドコンテキスト内のファイルを利用する場合、``Dockerfile`` では命令を記述する際にファイル参照を指定します。
+たとえば ``COPY`` 命令の対象として参照します。
+ビルド時の処理性能を上げるために、コンテキストディレクトリ内に ``.dockerignore`` ファイルを追加し、不要なファイルやディレクトリは除外するようにします。
+詳しくはこのページ内の :ref:`.dockerignore` ファイルの生成方法 <#dockerignore-file>` を参照してください。
 
 .. Traditionally, the Dockerfile is called Dockerfile and located in the root of the context. You use the -f flag with docker build to point to a Dockerfile anywhere in your file system.
 
