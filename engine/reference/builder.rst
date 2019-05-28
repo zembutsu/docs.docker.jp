@@ -477,13 +477,21 @@ escape
 
 この Dockerfile を用いると以下の結果になります。
 
+   ..  PS C:\John> docker build -t cmd .
+       Sending build context to Docker daemon 3.072 kB
+       Step 1/2 : FROM microsoft/nanoserver
+        ---> 22738ff49c6d
+       Step 2/2 : COPY testfile.txt c:\RUN dir c:
+       GetFileAttributesEx c:RUN: The system cannot find the file specified.
+       PS C:\John>
+
 .. code-block:: powershell
 
    PS C:\John> docker build -t cmd .
    Sending build context to Docker daemon 3.072 kB
-   Step 1 : FROM windowsservercore
-    ---> dbfee88ee9fd
-   Step 2 : COPY testfile.txt c:RUN dir c:
+   Step 1/2 : FROM microsoft/nanoserver
+    ---> 22738ff49c6d
+   Step 2/2 : COPY testfile.txt c:\RUN dir c:
    GetFileAttributesEx c:RUN: The system cannot find the file specified.
    PS C:\John>
 
