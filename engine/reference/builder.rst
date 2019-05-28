@@ -240,9 +240,12 @@ Docker は可能な限り中間イメージ（キャッシュ）を再利用し�
    INSTRUCTION arguments
 
 
-.. The instruction is not case-sensitive, however convention is for them to be UPPERCASE in order to distinguish them from arguments more easily.
+.. The instruction is not case-sensitive. However, convention is for them to
+   be UPPERCASE to distinguish them from arguments more easily.
 
-命令（instruction）は大文字と小文字を区別しません。しかし引数（arguments）を簡単に見分けられるよう、大文字にするのが便利です。
+命令（instruction）は大文字小文字を区別しません。
+ただし慣習として大文字とします。
+そうすることで引数（arguments）との区別をつけやすくします。
 
 .. Docker runs the instructions in a Dockerfile in order. The first instruction must be `FROM` in order to specify the Base Image from which you are building.
 
