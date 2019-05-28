@@ -204,6 +204,18 @@ Docker は可能な限り中間イメージ（キャッシュ）を再利用し�
     ---> 7ea8aef582cc
    Successfully built 7ea8aef582cc
 
+.. Build cache is only used from images that have a local parent chain. This means
+   that these images were created by previous builds or the whole chain of images
+   was loaded with `docker load`. If you wish to use build cache of a specific
+   image you can specify it with `--cache-from` option. Images specified with
+   `--cache-from` do not need to have a parent chain and may be pulled from other
+   registries.
+
+ビルドキャッシュは、ローカルにて親イメージへのつながりを持ったイメージからのみ利用されます。
+利用されるイメージとはつまり、前回のビルドによって生成されたイメージか、あるいは ``docker load`` によってロードされたイメージのいずれかです。
+ビルドキャッシュを特定のイメージから利用したい場合は ``--cache-from`` オプションを指定します。
+``--cache-from`` オプションが用いられた場合に、そのイメージは親イメージへのつながりを持っている必要はなく、他のレジストリから取得するイメージであっても構いません。
+
 .. When you’re done with your build, you’re ready to look into Pushing a repository to its registry.
 
 構築が終わったら、:doc:`レジストリにリポジトリを送信 </engine/userguide/containers/dockerrepos>` する準備が整います。
