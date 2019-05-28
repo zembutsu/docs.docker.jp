@@ -644,9 +644,10 @@ escape
    ADD . $foo       # ADD . /bar
    COPY \$foo /quux # COPY $foo /quux
 
-.. Environment variables are supported by the following list of instructions in the Dockerfile:
+.. Environment variables are supported by the following list of instructions in
+   the `Dockerfile`:
 
-以下の命令で ``Dockerfile`` における環境変数の利用がサポートされています。
+環境変数は、以下に示す ``Dockerfile`` 内の命令においてサポートされます。
 
 * ``ADD``
 * ``COPY``
