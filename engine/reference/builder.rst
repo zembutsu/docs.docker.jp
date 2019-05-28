@@ -621,9 +621,10 @@ escape
 * ``${variable:+word}`` は、``variable`` が設定されているとき、この結果は ``word`` となります。
   ``variable`` が設定されていないとき、結果は空文字となります。
 
-.. In all cases, word can be any string, including additional environment variables.
+.. In all cases, `word` can be any string, including additional environment
+   variables.
 
-いずれの場合でも、 ``文字`` とは何らかの文字列であり、追加の環境変数を含みます。
+どの例においても、``word`` は文字列であれば何でもよく、さらに別の環境変数を含んでいても構いません。
 
 .. Escaping is possible by adding a \ before the variable: \$foo or \${foo}, for example, will translate to $foo and ${foo} literals respectively.
 
