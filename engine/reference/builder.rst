@@ -76,11 +76,14 @@ Docker は ``Dockerfile`` から命令を読み込んで、自動的にイメー
 普通はコンテキストとして空のディレクトリを用意して、そこに Dockerfile を置きます。
 そのディレクトリへは、Dockerfile の構築に必要となるファイルのみを置くようにします。
 
-..    Warning: Do not use your root directory, /, as the PATH as it causes the build to transfer the entire contents of your hard drive to the Docker daemon.
+.. >**Warning**: Do not use your root directory, `/`, as the `PATH` as it causes
+   >the build to transfer the entire contents of your hard drive to the Docker
+   >daemon.
 
 .. warning::
 
-   ``PATH`` として自分のルート・ディレクトリ ``/`` を使わないでください。これは、自分のハードディスクに含まれる内容を、Docker デーモンに転送しようとするためです。
+   ``PATH`` に対して root ディレクトリ ``/`` を指定することはやめてください。
+   これを行うとビルド時に Docker デーモンに対して、ハードディスクの内容すべてを送り込むことになってしまいます。
 
 .. To use a file in the build context, the Dockerfile refers to the file specified in an instruction, for example, a COPY instruction. To increase the build’s performance, exclude files and directories by adding a .dockerignore file to the context directory. For information about how to create a .dockerignore file see the documentation on this page.
 
