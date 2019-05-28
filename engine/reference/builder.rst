@@ -216,9 +216,10 @@ Docker は可能な限り中間イメージ（キャッシュ）を再利用し�
 ビルドキャッシュを特定のイメージから利用したい場合は ``--cache-from`` オプションを指定します。
 ``--cache-from`` オプションが用いられた場合に、そのイメージは親イメージへのつながりを持っている必要はなく、他のレジストリから取得するイメージであっても構いません。
 
-.. When you’re done with your build, you’re ready to look into Pushing a repository to its registry.
+.. When you're done with your build, you're ready to look into [*Pushing a
+   repository to its registry*](https://docs.docker.com/engine/tutorials/dockerrepos/#/contributing-to-docker-hub).
 
-構築が終わったら、:doc:`レジストリにリポジトリを送信 </engine/userguide/containers/dockerrepos>` する準備が整います。
+ビルドに関する操作を終えたら、次は :doc:`リポジトリをレジストリへ送信 </engine/tutorials/dockerrepos>` を読んでみてください。
 
 .. Format
 
