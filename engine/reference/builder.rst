@@ -421,9 +421,12 @@ escape
 
    # escape=` (バッククォート)
 
-.. The escape directive sets the character used to escape characters in a Dockerfile. If not specified, the default escape character is \.
+.. The `escape` directive sets the character used to escape characters in a
+   `Dockerfile`. If not specified, the default escape character is `\`.
 
-``escape`` ディレクティブは ``Dockerfile`` で使うエスケープ文字をセットします。指定しなければ、デフォルトのエスケープ文字は ``\`` です。
+ディレクティブ ``escape`` は、``Dockerfile`` 内でエスケープ文字として用いる文字を設定します。
+設定していない場合は、デフォルトとして `\` が用いられます。
+
 
 .. The escape character is used both to escape characters in a line, and to escape a newline. This allows a Dockerfile instruction to span multiple lines. Note that regardless of whether the escape parser directive is included in a Dockerfile, escaping is not performed in a RUN command, except at the end of a line.
 
