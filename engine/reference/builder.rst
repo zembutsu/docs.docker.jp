@@ -65,9 +65,16 @@ Docker は ``Dockerfile`` から命令を読み込んで、自動的にイメー
    Sending build context to Docker daemon  6.51 MB
    ...
 
-.. The build is run by the Docker daemon, not by the CLI. The first thing a build process does is send the entire context (recursively) to the daemon. In most cases, it’s best to start with an empty directory as context and keep your Dockerfile in that directory. Add only the files needed for building the Dockerfile.
+.. The build is run by the Docker daemon, not by the CLI. The first thing a build
+   process does is send the entire context (recursively) to the daemon.  In most
+   cases, it's best to start with an empty directory as context and keep your
+   Dockerfile in that directory. Add only the files needed for building the
+   Dockerfile.
 
-構築を処理するのは Docker デーモンであり、 CLI ではありません。まずはじめの構築プロセスは、対象のコンテクスト（再帰的）をデーモンに送信することです。多くの場合、空のディレクトリをコンテクストとして使いますので、Dockerfile をそのディレクトリ設置できます。Dockerfile の構築に必要なファイルのみを（ディレクトリに）追加します。
+ビルド処理は Docker デーモンが行うものであって CLI により行われるものではありません。
+ビルド処理の開始時にまず行われるのは、コンテキスト全体を（再帰的に）デーモンに送信することです。
+普通はコンテキストとして空のディレクトリを用意して、そこに Dockerfile を置きます。
+そのディレクトリへは、Dockerfile の構築に必要となるファイルのみを置くようにします。
 
 ..    Warning: Do not use your root directory, /, as the PATH as it causes the build to transfer the entire contents of your hard drive to the Docker daemon.
 
