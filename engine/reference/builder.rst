@@ -260,9 +260,14 @@ Docker は ``Dockerfile`` 内の命令を記述順に実行します。
 これは ``FROM`` において用いられる引数を宣言するものです。
 
 
-.. Docker treats lines that begin with # as a comment, unless the line is a valid parser directive. A # marker anywhere else in a line is treated as an argument. This allows statements like:
+.. Docker treats lines that *begin* with `#` as a comment, unless the line is
+   a valid [parser directive](#parser-directives). A `#` marker anywhere
+   else in a line is treated as an argument. This allows statements like:
 
-Docker は有効な :ref:`パーサ・ディレクティブ <parser-directives>` でなければ、 ``#`` で *始まる* 行をコメントとみなします。 ``#`` マークは行における以降の文字をコメントとみなします。コメントは次のような書き方ができます。
+行頭が ``#`` で始まる行はコメントとして扱われます。
+ただし例外として :ref:`パーサ・ディレクティブ <parser-directives>` があります。
+行途中の ``#`` は単なる引数として扱われます。
+以下のような行記述が可能です。
 
 .. code-block:: dockerfile
 
