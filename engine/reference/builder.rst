@@ -461,9 +461,15 @@ escape
 同様に 3 行めの行末にある ``\`` も、この行が正しく命令として解釈されるものであっても、行継続として扱われることになります。
 結果としてこの Dockerfile の 2 行めと 3 行めは、一続きの記述行とみなされます。
 
+.. ```Dockerfile
+   FROM microsoft/nanoserver
+   COPY testfile.txt c:\\
+   RUN dir c:\
+   ```
+
 .. code-block:: dockerfile
 
-   FROM windowsservercore
+   FROM microsoft/nanoserver
    COPY testfile.txt c:\\
    RUN dir c:\
 
