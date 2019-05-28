@@ -29,9 +29,12 @@ Docker は ``Dockerfile`` から命令を読み込んで、自動的にイメー
 ``Dockerfile`` はテキストファイルであり、イメージを作り上げるために実行するコマンドラインコマンドを、すべてこのファイルに含めることができます。
 ``docker build`` を実行すると、順次コマンドライン命令を自動化した処理が行われて、ビルド結果となるイメージが得られます。
 
-.. This page describes the commands you can use in a Dockerfile. When you are done reading this page, refer to the Dockerfile Best Practices for a tip-oriented guide.
+.. This page describes the commands you can use in a `Dockerfile`. When you are
+   done reading this page, refer to the [`Dockerfile` Best
+   Practices](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/) for a tip-oriented guide.
 
-このページでは ``Dockerfile`` 内で利用可能な命令を説明します。ページを読み終えたら、より便利に使うための ``Dockerfile`` の :doc:`ベスト・プラクティス </engine/userguide/eng-image/dockerfile_best-practice>` もご覧ください。
+ここでは ``Dockerfile`` において利用可能なコマンドを説明します。
+このページを読み終えたら、さまざまなガイドとなる ``Dockerfile`` の :doc:`ベスト・プラクティス </engine/userguide/eng-image/dockerfile_best-practices>` を参照してください。
 
 .. Usage
 
