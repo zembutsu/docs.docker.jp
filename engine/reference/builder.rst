@@ -611,11 +611,15 @@ escape
 ``${variable_name}`` という書式は、標準的な ``bash`` の修飾書式をいくつかサポートしています。
 たとえば以下のものです。
 
-..    ${variable:-word} indicates that if variable is set then the result will be that value. If variable is not set then word will be the result.
-    ${variable:+word} indicates that if variable is set then word will be the result, otherwise the result is the empty string.
+.. * `${variable:-word}` indicates that if `variable` is set then the result
+     will be that value. If `variable` is not set then `word` will be the result.
+   * `${variable:+word}` indicates that if `variable` is set then `word` will be
+     the result, otherwise the result is the empty string.
 
-* ``${変数:-文字}`` は、 ``変数`` を設定したら、その値を使うことを意味します。もし ``変数`` がセットされ無ければ、 ``文字`` が設定されます。
-* ``${変数:+文字}`` は、 ``変数`` を設定したら、``文字`` を使います。 ``変数`` がセットされなければ、空白のままにします。
+* ``${variable:-word}`` は、``variable`` が設定されているとき、この結果はその値となります。
+  ``variable`` が設定されていないとき、``word`` が結果となります。
+* ``${variable:+word}`` は、``variable`` が設定されているとき、この結果は ``word`` となります。
+  ``variable`` が設定されていないとき、結果は空文字となります。
 
 .. In all cases, word can be any string, including additional environment variables.
 
