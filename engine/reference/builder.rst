@@ -161,9 +161,16 @@ Docker デーモンは、送信されたコンテキスト内容を自動的に�
 それによって新たなイメージがビルドされます。
 したがって、たとえば ``RUN cd /tmp`` を実行したとしても、次の命令には何の効果も与えません。
 
-.. Whenever possible, Docker will re-use the intermediate images (cache), to accelerate the docker build process significantly. This is indicated by the Using cache message in the console output. (For more information, see the Build cache section) in the Dockerfile best practices guide:
+.. Whenever possible, Docker will re-use the intermediate images (cache),
+   to accelerate the `docker build` process significantly. This is indicated by
+   the `Using cache` message in the console output.
+   (For more information, see the [Build cache section](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/#build-cache) in the
+   `Dockerfile` best practices guide):
 
-Docker は可能であればいつでも中間イメージ（キャッシュ）を再利用します。これは ``docker build`` 処理を速くするためです。コンソール出力に ``Using cache`` （キャッシュを利用中）の文字列が表示されます。より詳しい情報は ``Dockerfile`` ベスト・プラクティス・ガイドの :ref:`構築キャッシュ <build-cache>` をご覧ください。
+Docker は可能な限り中間イメージ（キャッシュ）を再利用しようとします。
+これは ``docker build`` 処理を速くするためです。
+その場合は、端末画面に ``Using cache`` というメッセージが出力されます。
+（詳細については ``Dockerfile`` のベストプラクティスガイドにある :ref:`ビルドキャッシュの説明 <build-cache>` を参照してください。）
 
 .. code-block:: bash
 
