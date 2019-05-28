@@ -374,9 +374,11 @@ Docker は ``Dockerfile`` 内の命令を記述順に実行します。
 # unknowndirective=value
 # knowndirective=value
 
-.. Non line-breaking whitespace is permitted in a parser directive. Hence, the following lines are all treated identically:
+.. Non line-breaking whitespace is permitted in a parser directive. Hence, the
+   following lines are all treated identically:
 
-行を壊さない空白行はパーサ・ディレクティブとして使えます。従って、以下の行はすべて同一として扱う：
+改行ではないホワイトスペースは、パーサ・ディレクティブにおいて記述することができます。
+そこで、以下の各行はすべて同一のものとして扱われます。
 
 .. code-block:: dockerfile
 
