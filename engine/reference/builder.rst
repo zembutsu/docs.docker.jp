@@ -428,9 +428,15 @@ escape
 設定していない場合は、デフォルトとして `\` が用いられます。
 
 
-.. The escape character is used both to escape characters in a line, and to escape a newline. This allows a Dockerfile instruction to span multiple lines. Note that regardless of whether the escape parser directive is included in a Dockerfile, escaping is not performed in a RUN command, except at the end of a line.
+.. The escape character is used both to escape characters in a line, and to
+   escape a newline. This allows a `Dockerfile` instruction to
+   span multiple lines. Note that regardless of whether the `escape` parser
+   directive is included in a `Dockerfile`, *escaping is not performed in
+   a `RUN` command, except at the end of a line.*
 
-エスケープ文字を使うのは、行におけるエスケープ文字と、新しい行にエスケープする（つなげる）ための両方です。これにより、 ``Dockerfile`` の命令を複数行に記述できます。 ``Dockerfile`` で ``escape`` パーサ・ディレクティブを指定しなければ ``RUN`` 命令でもエスケープ処理はされませんが、行の最後は除くのでご注意ください。
+エスケープ文字は行途中での文字をエスケープするものと、行継続をエスケープするものがあります。
+行継続のエスケープを使うと ``Dockerfile`` 内の命令を複数行に分けることができます。
+``Dockerfile`` に ``escape`` パーサ・ディレクティブを記述していたとしても、``RUN`` コマンドの途中でのエスケープは無効であり、行末の行継続エスケープのみ利用することができます。
 
 .. Setting the escape character to ` is especially useful on Windows, where \ is the directory path separator. ` is consistent with Windows PowerShell.
 
