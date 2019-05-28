@@ -172,19 +172,34 @@ Docker は可能な限り中間イメージ（キャッシュ）を再利用し�
 その場合は、端末画面に ``Using cache`` というメッセージが出力されます。
 （詳細については ``Dockerfile`` のベストプラクティスガイドにある :ref:`ビルドキャッシュの説明 <build-cache>` を参照してください。）
 
+   ..  $ docker build -t svendowideit/ambassador .
+       Sending build context to Docker daemon 15.36 kB
+       Step 1/4 : FROM alpine:3.2
+        ---> 31f630c65071
+       Step 2/4 : MAINTAINER SvenDowideit@home.org.au
+        ---> Using cache
+        ---> 2a1c91448f5f
+       Step 3/4 : RUN apk update &&      apk add socat &&        rm -r /var/cache/
+        ---> Using cache
+        ---> 21ed6e7fbb73
+       Step 4/4 : CMD env | grep _TCP= | (sed 's/.*_PORT_\([0-9]*\)_TCP=tcp:\/\/\(.*\):\(.*\)/socat -t 100000000 TCP4-LISTEN:\1,fork,reuseaddr TCP4:\2:\3 \&/' && echo wait) | sh
+        ---> Using cache
+        ---> 7ea8aef582cc
+       Successfully built 7ea8aef582cc
+
 .. code-block:: bash
 
    $ docker build -t svendowideit/ambassador .
    Sending build context to Docker daemon 15.36 kB
-   Step 0 : FROM alpine:3.2
+   Step 1/4 : FROM alpine:3.2
     ---> 31f630c65071
-   Step 1 : MAINTAINER SvenDowideit@home.org.au
+   Step 2/4 : MAINTAINER SvenDowideit@home.org.au
     ---> Using cache
     ---> 2a1c91448f5f
-   Step 2 : RUN apk update &&      apk add socat &&        rm -r /var/cache/
+   Step 3/4 : RUN apk update &&      apk add socat &&        rm -r /var/cache/
     ---> Using cache
     ---> 21ed6e7fbb73
-   Step 3 : CMD env | grep _TCP= | sed 's/.*_PORT_\([0-9]*\)_TCP=tcp:\/\/\(.*\):\(.*\)/socat -t 100000000 TCP4-LISTEN:\1,fork,reuseaddr TCP4:\2:\3 \&/' && echo wait) | sh
+   Step 4/4 : CMD env | grep _TCP= | (sed 's/.*_PORT_\([0-9]*\)_TCP=tcp:\/\/\(.*\):\(.*\)/socat -t 100000000 TCP4-LISTEN:\1,fork,reuseaddr TCP4:\2:\3 \&/' && echo wait) | sh
     ---> Using cache
     ---> 7ea8aef582cc
    Successfully built 7ea8aef582cc
