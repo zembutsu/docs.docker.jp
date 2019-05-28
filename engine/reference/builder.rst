@@ -582,11 +582,11 @@ escape
    Successfully built 01c7f3bef04f
    PS C:\John>
 
-.. Environment replacement:
+.. ## Environment replacement
 
 .. _environment-replacement:
 
-環境変数の置き換え
+環境変数の置換
 ====================
 
 .. Environment variables (declared with the ENV statement) can also be used in certain instructions as variables to be interpreted by the Dockerfile. Escapes are also handled for including variable-like syntax into a statement literally.
