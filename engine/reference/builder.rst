@@ -688,9 +688,14 @@ escape
    ENV abc=bye def=$abc
    ENV ghi=$abc
 
-.. will result in def having a value of hello, not bye. However, ghi will have a value of bye because it is not part of the same command that set abc to bye.
+.. will result in `def` having a value of `hello`, not `bye`. However,
+   `ghi` will have a value of `bye` because it is not part of the same instruction 
+   that set `abc` to `bye`.
 
-この結果は、 ``def`` の値が ``hello`` であり、 ``bye`` ではありません。しかしながら ``ghi`` の値は ``bye`` になります。これは ``abc`` を ``bye`` に設定するのと同じコマンド行ではないためです。
+この結果、``def`` は ``hello`` になります。
+``bye`` ではありません。
+しかし ``ghi`` は ``bye`` になります。
+``ghi`` を設定している行は、 ``abc`` に ``bye`` を設定している命令と同一箇所ではないからです。
 
 .. _dockerignore-file:
 
