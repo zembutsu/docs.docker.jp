@@ -19,9 +19,15 @@ Dockerfile リファレンス
        :depth: 3
        :local:
 
-.. Docker can build images automatically by reading the instructions from a Dockerfile. A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image. Using docker build users can create an automated build that executes several command-line instructions in succession.
+.. Docker can build images automatically by reading the instructions from a
+   `Dockerfile`. A `Dockerfile` is a text document that contains all the commands a
+   user could call on the command line to assemble an image. Using `docker build`
+   users can create an automated build that executes several command-line
+   instructions in succession.
 
-Docker は ``Dockerfile`` から命令を読み込み、自動的にイメージを構築できます。 ``Dockerfile`` はテキスト形式のドキュメントであり、コマンドライン上でイメージを作り上げる命令を全て記述します。ユーザは ``docker build`` を使い、複数のコマンド行の命令を順次実行し、イメージを自動構築します。
+Docker は ``Dockerfile`` から命令を読み込んで、自動的にイメージをビルドします。
+``Dockerfile`` はテキストファイルであり、イメージを作り上げるために実行するコマンドラインコマンドを、すべてこのファイルに含めることができます。
+``docker build`` を実行すると、順次コマンドライン命令を自動化した処理が行われて、ビルド結果となるイメージが得られます。
 
 .. This page describes the commands you can use in a Dockerfile. When you are done reading this page, refer to the Dockerfile Best Practices for a tip-oriented guide.
 
