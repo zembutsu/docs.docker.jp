@@ -508,11 +508,17 @@ escape
 
 パーサ・ディレクティブ ``escape`` を利用すれば、``Windows`` 上のファイル・パスの文法をそのままに、期待どおりに ``Dockerfile`` が動作してくれます。
 
+   ..  # escape=`
+
+       FROM microsoft/nanoserver
+       COPY testfile.txt c:\
+       RUN dir c:\
+
 .. code-block:: dockerfile
 
    # escape=`
-   
-   FROM windowsservercore
+
+   FROM microsoft/nanoserver
    COPY testfile.txt c:\
    RUN dir c:\
 
