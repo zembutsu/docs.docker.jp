@@ -676,9 +676,11 @@ escape
    Docker バージョン 1.4 より以前では ``ONBUILD`` 命令は環境変数をサポートしていません。
    一覧にあげた命令との組み合わせで用いる場合も同様です。
 
-.. Environment variable substitution will use the same value for each variable throughout the entire command. In other words, in this example:
+.. Environment variable substitution will use the same value for each variable
+   throughout the entire instruction. In other words, in this example:
 
-環境変数を使う代わりに、各変数をコマンド上で利用できます。次の例を見ましょう。
+環境変数の置換は、命令全体の中で個々の変数ごとに同一の値が用いられます。
+これを説明するために以下の例を見ます。
 
 .. code-block:: dockerfile
 
