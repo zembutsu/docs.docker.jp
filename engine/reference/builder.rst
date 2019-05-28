@@ -36,9 +36,9 @@ Docker は ``Dockerfile`` から命令を読み込んで、自動的にイメー
 ここでは ``Dockerfile`` において利用可能なコマンドを説明します。
 このページを読み終えたら、さまざまなガイドとなる ``Dockerfile`` の :doc:`ベスト・プラクティス </engine/userguide/eng-image/dockerfile_best-practices>` を参照してください。
 
-.. Usage
+.. ## Usage
 
-使い方
+利用方法
 ==========
 
 .. The docker build command builds an image from a Dockerfile and a context. The build’s context is the files at a specified location PATH or URL. The PATH is a directory on your local filesystem. The URL is a the location of a Git repository.
