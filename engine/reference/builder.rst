@@ -475,7 +475,7 @@ escape
 
 .. Results in:
 
-実行結果：
+この Dockerfile を用いると以下の結果になります。
 
 .. code-block:: powershell
 
