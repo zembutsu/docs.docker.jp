@@ -153,9 +153,13 @@ Docker デーモンは ``Dockerfile`` 内の命令を 1 つずつ実行し、必
 最後にビルドイメージの ID を出力します。
 Docker デーモンは、送信されたコンテキスト内容を自動的にクリアします。
 
-.. Note that each instruction is run independently, and causes a new image to be created - so RUN cd /tmp will not have any effect on the next instructions.
+.. Note that each instruction is run independently, and causes a new image
+   to be created - so `RUN cd /tmp` will not have any effect on the next
+   instructions.
 
-各命令は独立して実行されるのでご注意ください。新しいイメージの作成時、 ``RUN cd /tmp`` を実行したとしても、次の命令には何ら影響を与えません。
+各命令は個別に実行されます。
+それによって新たなイメージがビルドされます。
+したがって、たとえば ``RUN cd /tmp`` を実行したとしても、次の命令には何の効果も与えません。
 
 .. Whenever possible, Docker will re-use the intermediate images (cache), to accelerate the docker build process significantly. This is indicated by the Using cache message in the console output. (For more information, see the Build cache section) in the Dockerfile best practices guide:
 
