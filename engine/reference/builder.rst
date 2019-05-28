@@ -230,10 +230,15 @@ Docker は可能な限り中間イメージ（キャッシュ）を再利用し�
 
 ここに ``Dockerfile`` の記述書式を示します。
 
+.. ```Dockerfile
+   # Comment
+   INSTRUCTION arguments
+
 .. code-block:: dockerfile
 
-   # コメント
-   命令 引数
+   # Comment
+   INSTRUCTION arguments
+
 
 .. The instruction is not case-sensitive, however convention is for them to be UPPERCASE in order to distinguish them from arguments more easily.
 
