@@ -495,9 +495,13 @@ escape
    GetFileAttributesEx c:RUN: The system cannot find the file specified.
    PS C:\John>
 
-.. One solution to the above would be to use / as the target of both the COPY instruction, and dir. However, this syntax is, at best, confusing as it is not natural for paths on Windows, and at worst, error prone as not all commands on Windows support / as the path separator.
+.. One solution to the above would be to use `/` as the target of both the `COPY`
+   instruction, and `dir`. However, this syntax is, at best, confusing as it is not
+   natural for paths on `Windows`, and at worst, error prone as not all commands on
+   `Windows` support `/` as the path separator.
 
-解決方法の１つは、 ``COPY``  命令とディレクトリで ``/`` を使う方法です。しかしながら、構文上ベストなのは ``Windows`` 上のパスを普通に扱うことであり、最悪なのは ``Windows`` 上でパスの区切りとして ``/`` を指定するとエラーを起こしがちです。
+上を解決するには ``COPY`` 命令と ``dir`` の対象において ``/`` を用います。
+ただし ``Windows`` 上における普通のパス記述とは違う文法であるため混乱しやすく、さらに ``Windows`` のあらゆるコマンドがパス・セパレータとして  ``/`` をサポートしているわけではないので、エラーになることもあります。
 
 .. By adding the escape parser directive, the following Dockerfile succeeds as expected with the use of natural platform semantics for file paths on Windows:
 
