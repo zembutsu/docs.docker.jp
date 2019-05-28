@@ -605,9 +605,11 @@ escape
 ``Dockerfile`` における環境変数の記述書式は、``$variable_name`` あるいは ``${variable_name}`` のいずれかが可能です。
 両者は同等のものですが、ブレースを用いた記述は ``${foo}_bar`` といった記述のように、変数名にホワイトスペースを含めないようにするために利用されます。
 
-.. The ${variable_name} syntax also supports a few of the standard bash modifiers as specified below:
+.. The `${variable_name}` syntax also supports a few of the standard `bash`
+   modifiers as specified below:
 
-``${変数の_名前}`` 構文は、次のような ``bash`` の変更をサポートしています。
+``${variable_name}`` という書式は、標準的な ``bash`` の修飾書式をいくつかサポートしています。
+たとえば以下のものです。
 
 ..    ${variable:-word} indicates that if variable is set then the result will be that value. If variable is not set then word will be the result.
     ${variable:+word} indicates that if variable is set then word will be the result, otherwise the result is the empty string.
