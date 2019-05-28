@@ -589,9 +589,13 @@ escape
 環境変数の置換
 ====================
 
-.. Environment variables (declared with the ENV statement) can also be used in certain instructions as variables to be interpreted by the Dockerfile. Escapes are also handled for including variable-like syntax into a statement literally.
+.. Environment variables (declared with [the `ENV` statement](#env)) can also be
+   used in certain instructions as variables to be interpreted by the
+   `Dockerfile`. Escapes are also handled for including variable-like syntax
+   into a statement literally.
 
-``Dockerfile`` は環境変数（ :ref:`env 命令 <env>` で宣言）も解釈できます。命令文字（ステートメント・リテラル）中では、変数の様な構文でエスケープ・シーケンスも扱えます。
+``Dockerfile`` の :ref:`ENV 構文 <#env>` により宣言される環境変数は、特定の命令において変数として解釈されます。
+エスケープについても構文内にリテラルを含めることから、変数と同様の扱いと考えられます。
 
 .. Environment variables are notated in the Dockerfile either with $variable_name or ${variable_name}. They are treated equivalently and the brace syntax is typically used to address issues with variable names with no whitespace, like ${foo}_bar.
 
