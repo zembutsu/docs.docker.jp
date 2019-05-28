@@ -702,9 +702,16 @@ escape
 .dockerignore ファイル
 ==============================
 
-.. Before the docker CLI sends the context to the docker daemon, it looks for a file named .dockerignore in the root directory of the context. If this file exists, the CLI modifies the context to exclude files and directories that match patterns in it. This helps to avoid unnecessarily sending large or sensitive files and directories to the daemon and potentially adding them to images using ADD or COPY.
+.. Before the docker CLI sends the context to the docker daemon, it looks
+   for a file named `.dockerignore` in the root directory of the context.
+   If this file exists, the CLI modifies the context to exclude files and
+   directories that match patterns in it.  This helps to avoid
+   unnecessarily sending large or sensitive files and directories to the
+   daemon and potentially adding them to images using `ADD` or `COPY`.
 
-docker CLI がコンテクストを docker デーモンに送る前に、コンテクストのルートディレクトリ内の ``.dockerignore`` ファイルを探します。もしファイルが存在していれば、CLI はパターンに一致するファイルとディレクトリを除外するためにコンテクストを修正します。これは、大きかったり取り扱いに注意が必要だったりするファイルやディレクトリをデーモンに送ってしまうこと、および、``ADD`` や ``COPY`` を使って潜在的にそれらをイメージに追加してしまうことを回避するのに役立ちます。
+Docker の CLI によってコンテキストが Docker デーモンに送信される前には、コンテキストのルートディレクトリの ``.dockerignore`` というファイルが参照されます。
+このファイルが存在したら、CLI はそこに記述されたパターンにマッチするようなファイルやディレクトリを除外した上で、コンテキストを扱います。
+必要もないのに、巨大なファイルや取り扱い注意のファイルを不用意に送信してしまうことが避けられ、``ADD`` や ``COPY`` を使ってイメージに間違って送信してしまうことを防ぐことができます。
 
 .. The CLI interprets the .dockerignore file as a newline-separated list of patterns similar to the file globs of Unix shells. For the purposes of matching, the root of the context is considered to be both the working and the root directory. For example, the patterns /foo/bar and foo/bar both exclude a file or directory named bar in the foo subdirectory of PATH or in the root of the git repository located at URL. Neither excludes anything else.
 
