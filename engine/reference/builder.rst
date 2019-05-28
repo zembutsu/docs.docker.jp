@@ -632,9 +632,9 @@ escape
 変数名をエスケープすることも可能で、変数名の前に ``\$foo`` や ``\${foo}`` のように ``\`` をつけます。
 こうすると、この例はそれぞれ ``$foo``、``${foo}`` という文字列そのものとして解釈されます。
 
-.. Example (parsed representation is displayed after the #):
+.. Example (parsed representation is displayed after the `#`):
 
-例（変数展開したものは、 ``#`` のあとに表示）：
+記述例 （`#` の後に変数解釈した結果を表示）
 
 .. code-block:: dockerfile
 
