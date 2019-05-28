@@ -221,9 +221,9 @@ Docker は可能な限り中間イメージ（キャッシュ）を再利用し�
 
 ビルドに関する操作を終えたら、次は :doc:`リポジトリをレジストリへ送信 </engine/tutorials/dockerrepos>` を読んでみてください。
 
-.. Format
+.. ## Format
 
-書式
+記述書式
 ==========
 
 .. Here is the format of the Dockerfile:
