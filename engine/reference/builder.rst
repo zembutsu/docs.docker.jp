@@ -667,11 +667,14 @@ escape
 
 * ``ONBUILD`` （上記のサポート対象の命令と組み合わせて用いる場合）
 
-..    Note: prior to 1.4, ONBUILD instructions did NOT support environment variable, even when combined with any of the instructions listed above.
+.. > **Note**:
+   > prior to 1.4, `ONBUILD` instructions did **NOT** support environment
+   > variable, even when combined with any of the instructions listed above.
 
 .. note::
 
-   1.4 より前のバージョンでは、環境変数における ``ONBUILD`` 命令と上記の命令の組み合わせはサポート **していません** 。
+   Docker バージョン 1.4 より以前では ``ONBUILD`` 命令は環境変数をサポートしていません。
+   一覧にあげた命令との組み合わせで用いる場合も同様です。
 
 .. Environment variable substitution will use the same value for each variable throughout the entire command. In other words, in this example:
 
