@@ -269,10 +269,15 @@ Docker は ``Dockerfile`` 内の命令を記述順に実行します。
 行途中の ``#`` は単なる引数として扱われます。
 以下のような行記述が可能です。
 
+.. ```Dockerfile
+   # Comment
+   RUN echo 'we are running some # of cool things'
+   ```
+
 .. code-block:: dockerfile
 
-   # コメント
-   RUN echo '良い感じもの何かを # 実行しています'
+   # Comment
+   RUN echo 'we are running some # of cool things'
 
 .. Line continuation characters are not supported in comments.
 
