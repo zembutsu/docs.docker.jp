@@ -713,9 +713,19 @@ Docker の CLI によってコンテキストが Docker デーモンに送信さ
 このファイルが存在したら、CLI はそこに記述されたパターンにマッチするようなファイルやディレクトリを除外した上で、コンテキストを扱います。
 必要もないのに、巨大なファイルや取り扱い注意のファイルを不用意に送信してしまうことが避けられ、``ADD`` や ``COPY`` を使ってイメージに間違って送信してしまうことを防ぐことができます。
 
-.. The CLI interprets the .dockerignore file as a newline-separated list of patterns similar to the file globs of Unix shells. For the purposes of matching, the root of the context is considered to be both the working and the root directory. For example, the patterns /foo/bar and foo/bar both exclude a file or directory named bar in the foo subdirectory of PATH or in the root of the git repository located at URL. Neither excludes anything else.
+.. The CLI interprets the `.dockerignore` file as a newline-separated
+   list of patterns similar to the file globs of Unix shells.  For the
+   purposes of matching, the root of the context is considered to be both
+   the working and the root directory.  For example, the patterns
+   `/foo/bar` and `foo/bar` both exclude a file or directory named `bar`
+   in the `foo` subdirectory of `PATH` or in the root of the git
+   repository located at `URL`.  Neither excludes anything else.
 
-CLI は ``.dockerignore`` ファイルを行ごとに隔てて解釈します。行の一致パターンは Unix シェル上のものに似ています。パターンがコンテクストの root に一致すると考えられる場合は、root ディレクトリとして動作します。例えば、パターン ``/foo/bar`` と ``foo/bar`` がある場合、いずれも ``PATH`` における ``foo`` サブディレクトリの ``bar`` ファイルを削除します。あるいは ``URL`` の場所にある git のルートでもです。どちらでも除外されます。
+CLI は ``.dockerignore`` ファイルを各行ごとに区切られた設定一覧として捉えます。
+ちょうど Unix シェルにおけるファイルグロブ（glob）と同様です。
+マッチング処理の都合上、コンテキストのルートは、ワーキングディレクトリとルートディレクトリの双方であるものとしてみなされます。
+たとえばパターンとして ``/foo/bar`` と ``foo/bar`` があったとすると、``PATH`` 上であればサブディレクトリ ``foo`` 内、``URL`` であればその git レポジトリ内の、いずれも ``bar`` というファイルまたはディレクトリを除外します。
+その他のものについては除外対象としません。
 
 .. If a line in `.dockerignore` file starts with `#` in column 1, then this line is considered as a comment and is ignored before interpreted by the CLI.
 
