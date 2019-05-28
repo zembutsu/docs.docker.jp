@@ -41,9 +41,15 @@ Docker は ``Dockerfile`` から命令を読み込んで、自動的にイメー
 利用方法
 ==========
 
-.. The docker build command builds an image from a Dockerfile and a context. The build’s context is the files at a specified location PATH or URL. The PATH is a directory on your local filesystem. The URL is a the location of a Git repository.
+.. The [`docker build`](commandline/build.md) command builds an image from
+   a `Dockerfile` and a *context*. The build's context is the set of files at a
+   specified location `PATH` or `URL`. The `PATH` is a directory on your local
+   filesystem. The `URL` is a Git repository location.
 
-``docker build`` コマンドは ``Dockerfile`` と *コンテクスト(context；イメージに含まれる「内容」の意味)* に従ってイメージを構築します。構築用コンテクストとは、ファイルを示す ``PATH``  や ``URL`` の場所です。 ``PATH`` はローカルのファイルシステム上のディレクトリです。 ``URL`` は Git リポジトリの場所です。
+:doc:`docker build </engine/reference/commandline/build>` コマンドは、``Dockerfile`` と **コンテキスト** （context）からイメージをビルドします。
+ビルドにおけるコンテキストとは、指定された ``PATH`` または ``URL`` にある一連のファイルのことです。
+``PATH`` はローカルファイルシステム内のディレクトリを表わします。
+``URL`` は Git のリポジトリ URL のことです。
 
 .. A context is processed recursively. So, a PATH includes any subdirectories and the URL includes the repository and its submodules. A simple build command that uses the current directory as context:
 
