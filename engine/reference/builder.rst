@@ -290,9 +290,18 @@ Docker は ``Dockerfile`` 内の命令を記述順に実行します。
 パーサ・ディレクティブ
 ==================================================
 
-.. Parser directives are optional, and affect the way in which subsequent lines in a Dockerfile are handled. Parser directives do not add layers to the build, and will not be shown as a build step. Parser directives are written as a special type of comment in the form # directive=value. A single directive may only be used once.
+.. Parser directives are optional, and affect the way in which subsequent lines
+   in a `Dockerfile` are handled. Parser directives do not add layers to the build,
+   and will not be shown as a build step. Parser directives are written as a
+   special type of comment in the form `# directive=value`. A single directive
+   may only be used once.
 
-パーサ・ディレクティブはオプションです。 ``Dockerfile`` 中では、次に続く行にも影響を与えます。パーサ・ディレクティブは構築時にレイヤを追加しませんので、構築ステップでは表示されません。パーサ・ディレクティブは ``# ディレクティブ=値`` という特別な種類のコメントとして記述します。１つのディレクティブは１度しか使われません。
+パーサ・ディレクティブ（parser directive）を利用することは任意です。
+これは ``Dockerfile`` 内のその後に続く記述行を取り扱う方法を指示するものです。
+パーサ・ディレクティブはビルドされるイメージにレイヤを追加しません。
+したがってビルドステップとして表示されることはありません。
+パーサ・ディレクティブは、特別なコメントの記述方法をとるもので、`# ディレクティブ＝値` という書式です。
+同一のディレクティブは一度しか記述できません。
 
 .. Once a comment, empty line or builder instruction has been processed, Docker no longer looks for parser directives. Instead it treats anything formatted as a parser directive as a comment and does not attempt to validate if it might be a parser directive. Therefore, all parser directives must be at the very top of a Dockerfile.
 
