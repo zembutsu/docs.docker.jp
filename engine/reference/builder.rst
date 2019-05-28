@@ -503,9 +503,10 @@ escape
 上を解決するには ``COPY`` 命令と ``dir`` の対象において ``/`` を用います。
 ただし ``Windows`` 上における普通のパス記述とは違う文法であるため混乱しやすく、さらに ``Windows`` のあらゆるコマンドがパス・セパレータとして  ``/`` をサポートしているわけではないので、エラーになることもあります。
 
-.. By adding the escape parser directive, the following Dockerfile succeeds as expected with the use of natural platform semantics for file paths on Windows:
+.. By adding the `escape` parser directive, the following `Dockerfile` succeeds as
+   expected with the use of natural platform semantics for file paths on `Windows`:
 
-``escape`` パーサ・ディレクティブを追加することで、次の ``Dockerfile`` は ``Windows`` 上のファイル・パスを期待通りに処理します。
+パーサ・ディレクティブ ``escape`` を利用すれば、``Windows`` 上のファイル・パスの文法をそのままに、期待どおりに ``Dockerfile`` が動作してくれます。
 
 .. code-block:: dockerfile
 
