@@ -117,6 +117,32 @@ Docker は ``Dockerfile`` から命令を読み込んで、自動的にイメー
 
    $ docker build -t shykes/myapp .
 
+.. To tag the image into multiple repositories after the build,
+   add multiple `-t` parameters when you run the `build` command:
+
+ビルドの際に複数のリポジトリに対してイメージをタグづけするには、``build`` コマンドの実行時に ``-t`` パラメータを複数指定します。
+
+   ..  $ docker build -t shykes/myapp:1.0.2 -t shykes/myapp:latest .
+
+::
+
+   $ docker build -t shykes/myapp:1.0.2 -t shykes/myapp:latest .
+
+.. Before the Docker daemon runs the instructions in the `Dockerfile`, it performs
+   a preliminary validation of the `Dockerfile` and returns an error if the syntax is incorrect:
+
+``Dockerfile`` 内に記述されている命令を Docker デーモンが実行する際には、事前に ``Dockerfile`` が検証され、文法の誤りがある場合にはエラーが返されます。
+
+   ..  $ docker build -t test/myapp .
+       Sending build context to Docker daemon 2.048 kB
+       Error response from daemon: Unknown instruction: RUNCMD
+
+::
+
+   $ docker build -t test/myapp .
+   Sending build context to Docker daemon 2.048 kB
+   Error response from daemon: Unknown instruction: RUNCMD
+
 .. The Docker daemon runs the instructions in the Dockerfile one-by-one, committing the result of each instruction to a new image if necessary, before finally outputting the ID of your new image. The Docker daemon will automatically clean up the context you sent.
 
 Docker デーモンは ``Dockerfile`` の命令を1行ずつ実行し、必要があれば命令ごとにイメージをコミットし、最終的に新しいイメージ ID を出力します。Docker デーモンは送信したコンテクストを自動的に削除します。
