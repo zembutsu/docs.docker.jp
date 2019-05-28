@@ -96,9 +96,13 @@ Docker は ``Dockerfile`` から命令を読み込んで、自動的にイメー
 ビルド時の処理性能を上げるために、コンテキストディレクトリ内に ``.dockerignore`` ファイルを追加し、不要なファイルやディレクトリは除外するようにします。
 詳しくはこのページ内の :ref:`.dockerignore` ファイルの生成方法 <#dockerignore-file>` を参照してください。
 
-.. Traditionally, the Dockerfile is called Dockerfile and located in the root of the context. You use the -f flag with docker build to point to a Dockerfile anywhere in your file system.
+.. Traditionally, the `Dockerfile` is called `Dockerfile` and located in the root
+   of the context. You use the `-f` flag with `docker build` to point to a Dockerfile
+   anywhere in your file system.
 
-伝統的に ``Dockerfile`` は、``Dockerfile`` とコンテクストがあるルートの場所を示します。 ``docker build`` 時に ``-f`` フラグを使えば、システム上のどこに Dockerfile があるか指定できます。
+慣例として ``Dockerfile`` は ``Dockerfile`` と命名されています。
+またこのファイルはコンテキストディレクトリのトップに置かれます。
+``docker build`` の ``-f`` フラグを用いれば、Dockerfile がファイルシステム内のどこにあっても指定することができます。
 
 .. code-block:: bash
 
