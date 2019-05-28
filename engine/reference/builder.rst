@@ -281,7 +281,7 @@ Docker は ``Dockerfile`` 内の命令を記述順に実行します。
 
 .. Line continuation characters are not supported in comments.
 
-行中で命令の文字列が継続している場合は、コメント扱いしません。
+コメントにおいて行継続を指示する文字はサポートされていません。
 
 .. Parser directives
 
