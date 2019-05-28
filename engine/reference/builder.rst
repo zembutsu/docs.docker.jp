@@ -283,11 +283,11 @@ Docker は ``Dockerfile`` 内の命令を記述順に実行します。
 
 コメントにおいて行継続を指示する文字はサポートされていません。
 
-.. Parser directives
+.. ## Parser directives
 
 .. _parser-directives:
 
-パーサ・ディレクティブ（parser directive）
+パーサ・ディレクティブ
 ==================================================
 
 .. Parser directives are optional, and affect the way in which subsequent lines in a Dockerfile are handled. Parser directives do not add layers to the build, and will not be shown as a build step. Parser directives are written as a special type of comment in the form # directive=value. A single directive may only be used once.
