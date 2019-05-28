@@ -303,9 +303,16 @@ Docker は ``Dockerfile`` 内の命令を記述順に実行します。
 パーサ・ディレクティブは、特別なコメントの記述方法をとるもので、`# ディレクティブ＝値` という書式です。
 同一のディレクティブは一度しか記述できません。
 
-.. Once a comment, empty line or builder instruction has been processed, Docker no longer looks for parser directives. Instead it treats anything formatted as a parser directive as a comment and does not attempt to validate if it might be a parser directive. Therefore, all parser directives must be at the very top of a Dockerfile.
+.. Once a comment, empty line or builder instruction has been processed, Docker
+   no longer looks for parser directives. Instead it treats anything formatted
+   as a parser directive as a comment and does not attempt to validate if it might
+   be a parser directive. Therefore, all parser directives must be at the very
+   top of a `Dockerfile`.
 
-コメントがあれば、空行または構築命令があったとしても、 Docker はパーサ・ディレクティブを探しません。そのかわり、あらゆる書式をパーサ・ディレクティブではなくコメントとみなすため、有効なパーサ・ディレクティブとはみなしません。そのため、全てのパーサ・ディレクティブは ``Dockerfile``  の限りなく上に書くべきです。
+コメント、空行、ビルド命令が一つでも読み込まれたら、それ以降 Docker はパーサ・ディレクティブの処理を行いません。
+その場合、パーサ・ディレクティブの書式で記述されていても、それはコメントとして扱われます。
+そしてパーサ・ディレクティブとして適切な書式であるかどうかも確認しません。
+したがってパーサ・ディレクティブは ``Dockerfile`` の冒頭に記述しなければなりません。
 
 .. Parser directives are not case-sensitive. However, convention is for them to be lowercase. Convention is also to include a blank line following any parser directives. Line continuation characters are not supported in parser directives.
 
