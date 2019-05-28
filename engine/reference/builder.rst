@@ -226,9 +226,9 @@ Docker は可能な限り中間イメージ（キャッシュ）を再利用し�
 記述書式
 ==========
 
-.. Here is the format of the Dockerfile:
+.. Here is the format of the `Dockerfile`:
 
-ここでは ``Dockerfile`` の書式を説明します。
+ここに ``Dockerfile`` の記述書式を示します。
 
 .. code-block:: dockerfile
 
