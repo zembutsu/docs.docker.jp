@@ -51,9 +51,13 @@ Docker は ``Dockerfile`` から命令を読み込んで、自動的にイメー
 ``PATH`` はローカルファイルシステム内のディレクトリを表わします。
 ``URL`` は Git のリポジトリ URL のことです。
 
-.. A context is processed recursively. So, a PATH includes any subdirectories and the URL includes the repository and its submodules. A simple build command that uses the current directory as context:
+.. A context is processed recursively. So, a `PATH` includes any subdirectories and
+   the `URL` includes the repository and its submodules. This example shows a
+   build command that uses the current directory as context:
 
-コンテクストの処理は再帰的です。そのため、 ``PATH`` にはサブディレクトリを含みます。また ``URL`` であればリポジトリと、そのサブモジュールも含みます。単に build コマンドを実行したら、現在のディレクトリをコンテクストとして使います。
+コンテキストは再帰的に処理されます。
+つまり ``PATH`` の場合はサブディレクトリがすべて含まれ、``URL`` の場合はリポジトリとそのサブモジュールが含まれます。
+以下の例におけるビルドコマンドは、コンテキストとしてカレントディレクトリを用いるものです。
 
 .. code-block:: bash
 
