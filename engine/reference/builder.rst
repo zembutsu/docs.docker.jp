@@ -247,9 +247,17 @@ Docker は可能な限り中間イメージ（キャッシュ）を再利用し�
 ただし慣習として大文字とします。
 そうすることで引数（arguments）との区別をつけやすくします。
 
-.. Docker runs the instructions in a Dockerfile in order. The first instruction must be `FROM` in order to specify the Base Image from which you are building.
+.. Docker runs instructions in a `Dockerfile` in order. A `Dockerfile` **must
+   start with a \`FROM\` instruction**. The `FROM` instruction specifies the [*Base
+   Image*](glossary.md#base-image) from which you are building. `FROM` may only be
+   preceded by one or more `ARG` instructions, which declare arguments that are used
+   in `FROM` lines in the `Dockerfile`.
 
-Docker は ``Dockerfile`` の命令を順番に実行します。イメージ構築にあたり :ref:`ベース・イメージ <base-image>` を指定するため、 **１行めの命令は「FROM」であるべき** です。
+Docker は ``Dockerfile`` 内の命令を記述順に実行します。
+``Dockerfile`` は必ず ``FROM`` **命令で** 始めなければなりません。
+``FROM`` 命令は、ビルドするイメージに対しての :ref:`ベースイメージ <base-image>` を指定するものです。
+``FROM`` よりも先に記述できる命令として ``ARG`` があります。
+これは ``FROM`` において用いられる引数を宣言するものです。
 
 
 .. Docker treats lines that begin with # as a comment, unless the line is a valid parser directive. A # marker anywhere else in a line is treated as an argument. This allows statements like:
