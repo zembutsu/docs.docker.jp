@@ -446,9 +446,20 @@ escape
 ``\`` はディレクトリ・セパレータとなっているためです。
 「`」は `Windows PowerShell <https://technet.microsoft.com/en-us/library/hh847755.aspx>`_ 上でも利用できます。
 
-.. Consider the following example which would fail in a non-obvious way on Windows. The second \ at the end of the second line would be interpreted as an escape for the newline, instead of a target of the escape from the first \. Similarly, the \ at the end of the third line would, assuming it was actually handled as an instruction, cause it be treated as a line continuation. The result of this dockerfile is that second and third lines are considered a single instruction:
+.. Consider the following example which would fail in a non-obvious way on
+   `Windows`. The second `\` at the end of the second line would be interpreted as an
+   escape for the newline, instead of a target of the escape from the first `\`.
+   Similarly, the `\` at the end of the third line would, assuming it was actually
+   handled as an instruction, cause it be treated as a line continuation. The result
+   of this dockerfile is that second and third lines are considered a single
+   instruction:
 
-以下では Windows では明確にエラーが出る例を考えます。２行目末尾の２つめの ``\`` は、１つめの ``\`` のエスケープとして処理されるのではなく、新しい行のためのエスケープとして扱われます。同様に３行目末尾の ``\`` は次の行に命令が継続するものとして扱われます。この dockerfile を使った結果、２行目と３行目は１つの命令として見なされます。
+以下のような ``Windows`` 上の例を見てみます。
+これはよく分からずに失敗してしまう例です。
+2 行めの行末にある 2 つめの ``\`` は、次の行への継続を表わすエスケープと解釈されます。
+つまり 1 つめの ``\`` をエスケープするものとはなりません。
+同様に 3 行めの行末にある ``\`` も、この行が正しく命令として解釈されるものであっても、行継続として扱われることになります。
+結果としてこの Dockerfile の 2 行めと 3 行めは、一続きの記述行とみなされます。
 
 .. code-block:: dockerfile
 
