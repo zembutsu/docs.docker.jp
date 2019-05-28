@@ -314,9 +314,15 @@ Docker は ``Dockerfile`` 内の命令を記述順に実行します。
 そしてパーサ・ディレクティブとして適切な書式であるかどうかも確認しません。
 したがってパーサ・ディレクティブは ``Dockerfile`` の冒頭に記述しなければなりません。
 
-.. Parser directives are not case-sensitive. However, convention is for them to be lowercase. Convention is also to include a blank line following any parser directives. Line continuation characters are not supported in parser directives.
+.. Parser directives are not case-sensitive. However, convention is for them to
+   be lowercase. Convention is also to include a blank line following any
+   parser directives. Line continuation characters are not supported in parser
+   directives.
 
-パーサ・ディレクティブは大文字と小文字を区別しません。しかしながら、小文字での記述が便利です。パーサ・ディレクティブの後に空白行を入れるのも便利です。行を継続する文字列は、パーサ・ディレクティブではサポートされません。
+パーサ・ディレクティブは大文字小文字を区別しません。
+ただし慣習として小文字とします。
+また別のパーサ・ディレクティブが続く場合は、間に空行を入れます。
+パーサ・ディレクティブにおいて、行継続を指示する文字はサポートされていません。
 
 .. Due to these rules, the following examples are all invalid:
 
