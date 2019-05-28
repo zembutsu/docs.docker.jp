@@ -108,9 +108,10 @@ Docker は ``Dockerfile`` から命令を読み込んで、自動的にイメー
 
    $ docker build -f /path/to/a/Dockerfile .
 
-.. You can specify a repository and tag at which to save the new image if the build succeeds:
+.. You can specify a repository and tag at which to save the new image if
+   the build succeeds:
 
-新しいイメージの構築に成功する時は、新しいイメージにリポジトリとタグを指定できます。
+イメージのビルドが成功した後の保存先として、リポジトリとタグを指定することができます。
 
 .. code-block:: bash
 
