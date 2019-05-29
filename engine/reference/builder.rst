@@ -782,9 +782,12 @@ Docker では Go 言語の filepath.Match ルールを拡張して、特別な�
 たとえば ``**/*.go`` は、ファイル名が ``.go`` で終わるものであって、どのサブディレクトリにあるものであってもマッチします。
 ビルドコンテキストのルートも含まれます。
 
-.. Lines starting with ! (exclamation mark) can be used to make exceptions to exclusions. The following is an example .dockerignore file that uses this mechanism:
+.. Lines starting with `!` (exclamation mark) can be used to make exceptions
+   to exclusions.  The following is an example `.dockerignore` file that
+   uses this mechanism:
 
-行を ``!`` （エクスクラメーション・マーク）で始めると、除外ルールとして使えます。以下の例は ``.dockerignore`` ファイルでこの仕組みを使ったものです。
+行頭を感嘆符 ``!`` で書き始めると、それは除外に対しての例外を指定するものとなります。
+以下の ``.dockerignore`` はこれを用いる例です。
 
 .. code-block:: bash
 
