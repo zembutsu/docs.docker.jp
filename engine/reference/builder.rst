@@ -812,9 +812,11 @@ Docker では Go 言語の filepath.Match ルールを拡張して、特別な�
    !README*.md
    README-secret.md
 
-.. No markdown files are included in the context except README files other than README-secret.md.
+.. No markdown files are included in the context except README files other than
+   `README-secret.md`.
 
-README を含むファイル以外は、``README-secret.md`` も含め、残り全てのマークダウンファイルが除外対象です。
+コンテキストにあるマークダウンファイルはすべて除外されます。
+例外として README ファイルは含まれることになりますが、ただし ``README-secret.md`` は除外されます。
 
 .. Now consider this example:
 
