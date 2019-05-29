@@ -747,17 +747,19 @@ CLI は ``.dockerignore`` ファイルを各行ごとに区切られた設定一
 
 このファイルは構築時に以下の動作をします。
 
-.. Rule 	Behavior
+.. | Rule           | Behavior                                                                                                                                                                     |
+   |----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   | `# comment`    | Ignored.                 |
+   | `*/temp*`      | Exclude files and directories whose names start with `temp` in any immediate subdirectory of the root.  For example, the plain file `/somedir/temporary.txt` is excluded, as is the directory `/somedir/temp`.                 |
+   | `*/*/temp*`    | Exclude files and directories starting with `temp` from any subdirectory that is two levels below the root. For example, `/somedir/subdir/temporary.txt` is excluded. |
+   | `temp?`        | Exclude files and directories in the root directory whose names are a one-character extension of `temp`.  For example, `/tempa` and `/tempb` are excluded.
+
 .. 表にする(todo)
 
-.. */temp* 	Exclude files and directories whose names start with temp in any immediate subdirectory of the root. For example, the plain file /somedir/temporary.txt is excluded, as is the directory /somedir/temp.
-   */*/temp* 	Exclude files and directories starting with temp from any subdirectory that is two levels below the root. For example, /somedir/subdir/temporary.txt is excluded.
-   temp? 	Exclude files and directories in the root directory whose names are a one-character extension of temp. For example, /tempa and /tempb are excluded.
-
-* ``# コメント`` … 無視します。
-* ``*/temp*`` … ルート以下のあらゆるサブディレクトリを含め、 ``temp`` で始まる名称のファイルとディレクトリを除外します。例えば、テキストファイル ``/somedir/temporary.txt`` は除外しますし、ディレクトリ ``/somedir/temp`` も除外します。
-* ``*/*/temp*`` … ルートから２レベル以下の ``temp`` で 始まる名称のファイルとディレクトリを除外します。例えば ``/somedir/subdir/temporary.txt`` を除外します。
-* ``temp?`` … ルートディレクトリにあるファイル名が ``temp`` と１文字一致するファイルとディレクトリを除外します。例えば、 ``/tempa`` と ``/tempb`` を除外します。
+* ``# comment`` … 無視されます。
+* ``*/temp*`` … ルートディレクトリの直下にあるサブディレクトリ内にて、``temp`` で始まる名称のファイルまたはディレクトリすべてを除外します。たとえば通常のファイル ``/somedir/temporary.txt`` は除外されます。ディレクトリ ``/somedir/temp`` も同様です。
+* ``*/*/temp*`` … ルートから 2 階層下までのサブディレクトリ内にて、``temp`` で始まる名称のファイルまたはディレクトリすべてを除外します。たとえば ``/somedir/subdir/temporary.txt`` は除外されます。
+* ``temp?`` … ルートディレクトリにあるファイルやディレクトリであって、``temp`` にもう 1 文字ついた名前のものを除外します。たとえば ``/tempa`` や ``/tempb`` が除外されます。
 
 .. Matching is done using Go’s filepath.Match rules. A preprocessing step removes leading and trailing whitespace and eliminates . and .. elements using Go’s filepath.Clean. Lines that are blank after preprocessing are ignored.
 
