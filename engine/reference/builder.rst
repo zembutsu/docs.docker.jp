@@ -727,9 +727,10 @@ CLI は ``.dockerignore`` ファイルを各行ごとに区切られた設定一
 たとえばパターンとして ``/foo/bar`` と ``foo/bar`` があったとすると、``PATH`` 上であればサブディレクトリ ``foo`` 内、``URL`` であればその git レポジトリ内の、いずれも ``bar`` というファイルまたはディレクトリを除外します。
 その他のものについては除外対象としません。
 
-.. If a line in `.dockerignore` file starts with `#` in column 1, then this line is considered as a comment and is ignored before interpreted by the CLI.
+.. If a line in `.dockerignore` file starts with `#` in column 1, then this line is
+   considered as a comment and is ignored before interpreted by the CLI.
 
-``.dockerignore`` ファイルの１行目が ``#`` で始まる場合は、この合はコメントであると見なされ、CLI の処理からは無視されます。
+``.dockerignore`` ファイルの各行頭の第 1 カラムめに ``#`` があれば、その行はコメントとみなされて、CLI による解釈が行われず無視されます。
 
 .. Here is an example .dockerignore file:
 
