@@ -845,9 +845,13 @@ README ファイルはすべて含まれます。
 この 2 つのファイルはデーモンの処理に必要なものであるからです。
 ただし ``ADD`` 命令や ``COPY`` 命令では、この 2 つのファイルはイメージにコピーされません。
 
-.. Finally, you may want to specify which files to include in the context, rather than which to exclude. To achieve this, specify * as the first pattern, followed by one or more ! exception patterns.
+.. Finally, you may want to specify which files to include in the
+   context, rather than which to exclude. To achieve this, specify `*` as
+   the first pattern, followed by one or more `!` exception patterns.
 
-最後に、特定のファイルのみコンテクストに含め、他を除外したい場合があるでしょう。実行するには、始めに ``*`` パターンに指定し、以下１つまたは複数の ``!`` 例外パターンを記述します。
+除外したいファイルを指定するのではなく、含めたいファイルを指定したい場合があります。
+これを実現するには、冒頭のマッチングパターンとして ``*`` を指定します。
+そしてこれに続けて、例外となるパターンを ``!`` を使って指定します。
 
 .. Note: For historical reasons, the pattern . is ignored.
 
