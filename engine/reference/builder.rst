@@ -794,9 +794,9 @@ Docker では Go 言語の filepath.Match ルールを拡張して、特別な�
    *.md
    !README.md
 
-.. All markdown files except README.md are excluded from the context.
+.. All markdown files *except* `README.md` are excluded from the context.
 
-`README.md` を除く全てのマークダウンファイルが、コンテントから除外されます。
+マークダウンファイルがすべてコンテキストから除外されますが、``README.md`` だけは **除外されません** 。
 
 .. The placement of ! exception rules influences the behavior: the last line of the .dockerignore that matches a particular file determines whether it is included or excluded. Consider the following example:
 
