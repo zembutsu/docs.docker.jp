@@ -772,6 +772,16 @@ CLI は ``.dockerignore`` ファイルを各行ごとに区切られた設定一
 マッチングの前処理として、文字列前後のホワイトスペースは取り除かれ、Go 言語の `filepath.Clean <http://golang.org/pkg/path/filepath/#Clean>`_ によって ``.`` と ``..`` が除外されます。
 前処理を行った後の空行は無視されます。
 
+.. Beyond Go's filepath.Match rules, Docker also supports a special
+   wildcard string `**` that matches any number of directories (including
+   zero). For example, `**/*.go` will exclude all files that end with `.go`
+   that are found in all directories, including the root of the build context.
+
+Docker では Go 言語の filepath.Match ルールを拡張して、特別なワイルドカード文字列 ``**`` をサポートしています。
+これは複数のディレクトリ（ゼロ個を含む）にマッチします。
+たとえば ``**/*.go`` は、ファイル名が ``.go`` で終わるものであって、どのサブディレクトリにあるものであってもマッチします。
+ビルドコンテキストのルートも含まれます。
+
 .. Lines starting with ! (exclamation mark) can be used to make exceptions to exclusions. The following is an example .dockerignore file that uses this mechanism:
 
 行を ``!`` （エクスクラメーション・マーク）で始めると、除外ルールとして使えます。以下の例は ``.dockerignore`` ファイルでこの仕組みを使ったものです。
