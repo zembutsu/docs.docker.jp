@@ -828,9 +828,12 @@ Docker では Go 言語の filepath.Match ルールを拡張して、特別な�
    README-secret.md
    !README*.md
 
-.. All of the README files are included. The middle line has no effect because !README*.md matches README-secret.md and comes last.
+.. All of the README files are included.  The middle line has no effect because
+   `!README*.md` matches `README-secret.md` and comes last.
 
-README を含む全てのファイル除外します。真ん中の行 ``README-secret.md`` は最終行の ``!README*.md`` に一致するため、何の影響もありません。
+README ファイルはすべて含まれます。
+2 行めは意味をなしていません。
+なぜなら ``!README*.md`` には ``README-secret.md`` がマッチすることになり、しかも ``!README*.md`` が最後に記述されているからです。
 
 .. You can even use the .dockerignore file to exclude the Dockerfile and .dockerignore files. These files are still sent to the daemon because it needs them to do its job. But the ADD and COPY commands do not copy them to image.
 
