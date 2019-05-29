@@ -761,9 +761,16 @@ CLI は ``.dockerignore`` ファイルを各行ごとに区切られた設定一
 * ``*/*/temp*`` … ルートから 2 階層下までのサブディレクトリ内にて、``temp`` で始まる名称のファイルまたはディレクトリすべてを除外します。たとえば ``/somedir/subdir/temporary.txt`` は除外されます。
 * ``temp?`` … ルートディレクトリにあるファイルやディレクトリであって、``temp`` にもう 1 文字ついた名前のものを除外します。たとえば ``/tempa`` や ``/tempb`` が除外されます。
 
-.. Matching is done using Go’s filepath.Match rules. A preprocessing step removes leading and trailing whitespace and eliminates . and .. elements using Go’s filepath.Clean. Lines that are blank after preprocessing are ignored.
+.. Matching is done using Go's
+   [filepath.Match](http://golang.org/pkg/path/filepath#Match) rules.  A
+   preprocessing step removes leading and trailing whitespace and
+   eliminates `.` and `..` elements using Go's
+   [filepath.Clean](http://golang.org/pkg/path/filepath/#Clean).  Lines
+   that are blank after preprocessing are ignored.
 
-一致には Go 言語の `filepath.Match <http://golang.org/pkg/path/filepath#Match>`_ ルールを使います。処理前のステップでは、空白スペースと ``.`` と ``..`` 要素を Go 言語の `filepath.Clean <http://golang.org/pkg/path/filepath/#Clean>`_ を用いて除外します。
+パターンマッチングには Go 言語の `filepath.Match <http://golang.org/pkg/path/filepath#Match>`_ ルールが用いられています。
+マッチングの前処理として、文字列前後のホワイトスペースは取り除かれ、Go 言語の `filepath.Clean <http://golang.org/pkg/path/filepath/#Clean>`_ によって ``.`` と ``..`` が除外されます。
+前処理を行った後の空行は無視されます。
 
 .. Lines starting with ! (exclamation mark) can be used to make exceptions to exclusions. The following is an example .dockerignore file that uses this mechanism:
 
