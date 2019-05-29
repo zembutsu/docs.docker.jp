@@ -835,9 +835,15 @@ README ファイルはすべて含まれます。
 2 行めは意味をなしていません。
 なぜなら ``!README*.md`` には ``README-secret.md`` がマッチすることになり、しかも ``!README*.md`` が最後に記述されているからです。
 
-.. You can even use the .dockerignore file to exclude the Dockerfile and .dockerignore files. These files are still sent to the daemon because it needs them to do its job. But the ADD and COPY commands do not copy them to image.
+.. You can even use the `.dockerignore` file to exclude the `Dockerfile`
+   and `.dockerignore` files.  These files are still sent to the daemon
+   because it needs them to do its job.  But the `ADD` and `COPY` instructions
+   do not copy them to the image.
 
-``.dockerignore`` ファイルは ``Dockerfile`` と ``.dockerignore`` ファイルの除外にも使えます。それでも、これらのファイルはジョブを処理するためデーモンに送信されます。しかし ``ADD`` と ``COPY`` コマンドは、これらをイメージ内にコピーしません。
+``.dockerignore`` ファイルを使って ``Dockerfile`` や ``.dockerignore`` ファイルを除外することもできます。
+除外したとしてもこの 2 つのファイルはデーモンに送信されます。
+この 2 つのファイルはデーモンの処理に必要なものであるからです。
+ただし ``ADD`` 命令や ``COPY`` 命令では、この 2 つのファイルはイメージにコピーされません。
 
 .. Finally, you may want to specify which files to include in the context, rather than which to exclude. To achieve this, specify * as the first pattern, followed by one or more ! exception patterns.
 
