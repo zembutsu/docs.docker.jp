@@ -853,11 +853,11 @@ README ファイルはすべて含まれます。
 これを実現するには、冒頭のマッチングパターンとして ``*`` を指定します。
 そしてこれに続けて、例外となるパターンを ``!`` を使って指定します。
 
-.. Note: For historical reasons, the pattern . is ignored.
+.. **Note**: For historical reasons, the pattern `.` is ignored.
 
 .. note::
 
-   歴史的な理由により、 ``.`` パターンは無視されます。
+   これまでの開発経緯によりパターン ``.`` は無視されます。
 
 .. _from:
 
