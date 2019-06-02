@@ -808,9 +808,9 @@ exec 形式は、シェル文字列が置換されないようにします。
   aufs の最新バージョンを利用するシステム（つまりマウントオプション ``dirperm1`` を設定可能なシステム）の場合、docker はレイヤーに対して ``dirperm1`` オプションをつけてマウントすることで、この問題を自動的に解消するように試みます。
   ``dirperm1`` オプションに関する詳細は ``aufs`` の `man ページ <https://github.com/sfjro/aufs3-linux/tree/aufs3.18/Documentation/filesystems/aufs>`_ を参照してください。
 
-.. If your system doesn’t have support for dirperm1, the issue describes a workaround.
+  .. If your system doesn't have support for `dirperm1`, the issue describes a workaround.
 
-システムが ``dirperm1`` をサポートしていない場合は、issue に回避方法があります。
+  ``dirperm1`` をサポートしていないシステムの場合は、issue に示される回避方法を参照してください。
 
 .. _cmd:
 
