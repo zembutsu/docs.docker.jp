@@ -532,21 +532,27 @@ README を含む全てのファイル除外します。真ん中の行 ``README-
 FROM
 ==========
 
+   ..  FROM <image> [AS <name>]
+
 .. code-block:: dockerfile
 
-   FROM <イメージ>
+   FROM <image> [AS <name>]
 
 または
 
+   ..  FROM <image>[:<tag>] [AS <name>]
+
 .. code-block:: dockerfile
 
-   FROM <イメージ>:<タグ>
+   FROM <image>[:<tag>] [AS <name>]
 
 または
 
+   ..  FROM <image>[@<digest>] [AS <name>]
+
 .. code-block:: dockerfile
 
-   FROM <イメージ>@<digest>
+   FROM <image>[@<digest>] [AS <name>]
 
 .. The `FROM` instruction initializes a new build stage and sets the 
    [*Base Image*](glossary.md#base-image) for subsequent instructions. As such, a 
