@@ -695,10 +695,12 @@ exec 形式は、シェル文字列が置換されないようにします。
    command.
 
 シェル形式にて用いるデフォルトのシェルを変更するには ``SHELL`` コマンドを使います。
- 
-.. In the shell form you can use a \ (backslash) to continue a single RUN instruction onto the next line. For example, consider these two lines:
 
-*シェル* 形式では、RUN 命令を ``\`` （バックスラッシュ）を使い、次の行と連結します。例えば、次の２行があるとします。
+.. In the *shell* form you can use a `\` (backslash) to continue a single
+   RUN instruction onto the next line. For example, consider these two lines:
+
+シェル形式においては ``\``（バックスラッシュ）を用いて、1 つの RUN 命令を次行にわたって記述することができます。
+たとえば以下のような 2 行があるとします。
 
 .. code-block:: dockerfile
 
