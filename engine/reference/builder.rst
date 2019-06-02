@@ -685,9 +685,11 @@ RUN には２つの形式があります。
 この際の処理確定は容易なものであって、イメージの処理履歴上のどの時点からでもコンテナーを復元できます。
 この様子はソース管理システムに似ています。
 
-.. The exec form makes it possible to avoid shell string munging, and to RUN commands using a base image that does not contain the specified shell executable.
+.. The *exec* form makes it possible to avoid shell string munging, and to `RUN`
+   commands using a base image that does not contain the specified shell executable.
 
-*exec* 形式はシェルの文字列を変更できないようにします。また、 指定されたシェル実行環境がベース・イメージに含まれなくても ``RUN`` コマンドを使えます。
+exec 形式は、シェル文字列が置換されないようにします。
+そして ``RUN`` の実行にあたっては、特定のシェル変数を含まないベースイメージを用います。
 
 .. The default shell for the *shell* form can be changed using the `SHELL` command.
 
