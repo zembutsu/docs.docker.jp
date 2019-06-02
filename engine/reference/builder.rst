@@ -677,9 +677,13 @@ RUN には２つの形式があります。
 そして処理結果を確定します。
 結果が確定したイメージは、``Dockerfile`` の次のステップにおいて利用されていきます。
 
-.. Layering RUN instructions and generating commits conforms to the core concepts of Docker where commits are cheap and containers can be created from any point in an image’s history, much like source control.
+.. Layering `RUN` instructions and generating commits conforms to the core
+   concepts of Docker where commits are cheap and containers can be created from
+   any point in an image's history, much like source control.
 
-``RUN`` 命令の積み重ねとコミットによるイメージ生成は、 Docker の中心となるコンセプト（概念）に従ったものです。コミットは簡単であり、ソース・コントロールのように、イメージの履歴上のあらゆる場所からコンテナを作成可能です。
+``RUN`` 命令をレイヤー上にて扱い処理確定を行うこの方法は、Docker の根本的な考え方に基づいています。
+この際の処理確定は容易なものであって、イメージの処理履歴上のどの時点からでもコンテナーを復元できます。
+この様子はソース管理システムに似ています。
 
 .. The exec form makes it possible to avoid shell string munging, and to RUN commands using a base image that does not contain the specified shell executable.
 
