@@ -829,9 +829,11 @@ CMD
 * ``CMD ["param1","param2"]`` ( ``ENTRYPOINT`` のデフォルト・パラメータとして)
 * ``CMD command param1 param2`` (シェル形式)
 
-.. There can only be one CMD instruction in a Dockerfile. If you list more than one CMD then only the last CMD will take effect.
+.. There can only be one `CMD` instruction in a `Dockerfile`. If you list more than one `CMD`
+   then only the last `CMD` will take effect.
 
-``Dockerfile`` で ``CMD`` 命令を一度だけ指定できます。複数の ``CMD`` がある場合、最も後ろの ``CMD`` のみ有効です。
+``Dockerfile`` では ``CMD`` 命令を 1 つしか記述できません。
+仮に複数の ``CMD`` を記述しても、最後の ``CMD`` 命令しか処理されません。
 
 .. The main purpose of a CMD is to provide defaults for an executing container. These defaults can include an executable, or they can omit the executable, in which case you must specify an ENTRYPOINT instruction as well.
 
