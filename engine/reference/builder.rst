@@ -978,7 +978,7 @@ LABEL
 
 .. The above can also be written as:
 
-上記の例は、次のようにも書き換えられます。
+上記の例は、以下のように書くこともできます。
 
 .. code-block:: dockerfile
 
