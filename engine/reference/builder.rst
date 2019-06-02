@@ -662,11 +662,12 @@ RUN
 
 RUN には２つの形式があります。
 
-..  RUN <command> (shell form, the command is run in a shell - /bin/sh -c)
-    RUN ["executable", "param1", "param2"] (exec form)
+.. - `RUN <command>` (*shell* form, the command is run in a shell, which by
+   default is `/bin/sh -c` on Linux or `cmd /S /C` on Windows)
+   - `RUN ["executable", "param1", "param2"]` (*exec* form)
 
-* ``RUN <コマンド>`` （シェル形式、コマンドを実行する。Linux 上のデフォルトは ``/bin/sh -c`` であり、Windows 上 ``cmd /S /C`` ）
-* ``RUN ["実行バイナリ", "パラメータ１", "パラメータ２"]`` （ *exec* 形式）
+* ``RUN <command>`` （シェル形式、コマンドはシェル内で実行される、シェルとはデフォルトで Linux なら ``/bin/sh -c``、Windows なら ``cmd /S /C``）
+* ``RUN ["executable", "param1", "param2"]`` （exec 形式）
 
 .. The RUN instruction will execute any commands in a new layer on top of the current image and commit the results. The resulting committed image will be used for the next step in the Dockerfile.
 
