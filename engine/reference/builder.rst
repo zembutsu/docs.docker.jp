@@ -993,9 +993,9 @@ LABEL
 ラベルには ``FROM`` に指定されたイメージ内の ``LABEL`` 命令も含まれます。
 ラベルのキーが既に存在していた場合、そのキーに対応する古い値は、新しい値によって上書きされます。
 
-.. To view an image’s labels, use the docker inspect command.
+.. To view an image's labels, use the `docker inspect` command.
 
-イメージが使っているラベルを確認するには、 ``docker inspect`` コマンドを使います。
+イメージのラベルを参照するには ``docker inspect`` コマンドを用います。
 
 .. code-block:: bash
 
