@@ -793,9 +793,12 @@ exec 形式は、シェル文字列が置換されないようにします。
 既知の問題(RUN)
 --------------------
 
-..    Issue 783 is about file permissions problems that can occur when using the AUFS file system. You might notice it during an attempt to rm a file, for example.
+.. - [Issue 783](https://github.com/docker/docker/issues/783) is about file
+     permissions problems that can occur when using the AUFS file system. You
+     might notice it during an attempt to `rm` a file, for example.
 
-* `Issue 783 <https://github.com/docker/docker/issues/783>`_ は、AUFS ファイルシステム使用時、ファイルのパーミッションに関する問題が起こり得ます。例えば、ファイルを ``rm`` しようとする場合は注意が必要です。
+* `Issue 783 <https://github.com/docker/docker/issues/783>`_ はファイル・パーミッションに関する問題を取り上げていて、ファイルシステムに AUFS を用いている場合に発生します。
+  たとえば ``rm`` によってファイルを削除しようとしたときに、これが発生する場合があります。
 
 .. For systems that have recent aufs version (i.e., dirperm1 mount option can be set), docker will attempt to fix the issue automatically by mounting the layers with dirperm1 option. More details on dirperm1 option can be found at aufs man page
 
