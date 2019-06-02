@@ -896,9 +896,14 @@ CMD
    FROM ubuntu
    CMD echo "This is a test." | wc -
 
-.. If you want to run your <command> without a shell then you must express the command as a JSON array and give the full path to the executable. This array form is the preferred format of CMD. Any additional parameters must be individually expressed as strings in the array:
+.. If you want to **run your** `<command>` **without a shell** then you must
+   express the command as a JSON array and give the full path to the executable.
+   **This array form is the preferred format of `CMD`.** Any additional parameters
+   must be individually expressed as strings in the array:
 
-**<コマンド>をシェルを使わずに実行** したい場合、コマンドを JSON 配列で記述し、実行可能なフルパスで指定する必要があります。 **配列の形式が CMD では望ましい形式です** 。あらゆる追加パラメータは個々の配列の文字列として指定する必要があります。
+``<command>`` **をシェル実行することなく実行** したい場合は、そのコマンドを JSON 配列として表現し、またそのコマンドの実行モジュールへのフルパスを指定しなければなりません。
+**この配列書式は** ``CMD`` **において推奨される記述です。**
+パラメータを追加する必要がある場合は、配列内にて文字列として記述します。
 
 .. code-block:: dockerfile
 
