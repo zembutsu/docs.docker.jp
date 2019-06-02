@@ -715,11 +715,15 @@ exec 形式は、シェル文字列が置換されないようにします。
 
    RUN /bin/bash -c 'source $HOME/.bashrc ; echo $HOME'
 
-..    Note: To use a different shell, other than ‘/bin/sh’, use the exec form passing in the desired shell. For example, RUN ["/bin/bash", "-c", "echo hello"]
+.. > **Note**:
+   > To use a different shell, other than '/bin/sh', use the *exec* form
+   > passing in the desired shell. For example,
+   > `RUN ["/bin/bash", "-c", "echo hello"]`
 
 .. note::
 
-   「/bin/sh/」以外のシェルを使いたい場合は、exec 形式で任意のシェルを指定します。例： ``RUN ["/bin/bash", "-c", "echo hello"]`` 。
+   '/bin/sh' 以外の別のシェルを利用する場合は、exec 形式を用いて、目的とするシェルを引数に与えます。
+   たとえば ``RUN ["/bin/bash", "-c", "echo hello"]`` とします。
 
 ..    Note: The exec form is parsed as a JSON array, which means that you must use double-quotes (“) around words not single-quotes (‘).
 
