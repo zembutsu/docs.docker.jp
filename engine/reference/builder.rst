@@ -598,6 +598,61 @@ FROM
   これを省略した場合、デフォルトである ``latest`` タグが指定されたものとして扱われます。
   ``tag`` の値に合致するものがなければ、エラーが返されます。
 
+.. ### Understand how ARG and FROM interact
+
+.. _understand-how-arg-and-from-interact:
+
+ARG と FROM の関連について
+--------------------------
+
+.. `FROM` instructions support variables that are declared by any `ARG` 
+   instructions that occur before the first `FROM`.
+
+``FROM`` 命令では、``ARG`` 命令によって宣言された変数すべてを参照できます。
+この ``ARG`` 命令は、初出の ``FROM`` 命令よりも前に記述します。
+
+
+.. ```Dockerfile
+   ARG  CODE_VERSION=latest
+   FROM base:${CODE_VERSION}
+   CMD  /code/run-app
+   
+   FROM extras:${CODE_VERSION}
+   CMD  /code/run-extras
+   ```
+
+.. code-block:: dockerfile
+
+   ARG  CODE_VERSION=latest
+   FROM base:${CODE_VERSION}
+   CMD  /code/run-app
+
+   FROM extras:${CODE_VERSION}
+   CMD  /code/run-extras
+
+.. An `ARG` declared before a `FROM` is outside of a build stage, so it
+   can't be used in any instruction after a `FROM`. To use the default value of
+   an `ARG` declared before the first `FROM` use an `ARG` instruction without
+   a value inside of a build stage:
+
+``FROM`` よりも前に宣言されている ``ARG`` は、ビルドステージ内に含まれるものではありません。
+したがって ``FROM`` 以降の命令において利用することはできません。
+初出の ``FROM`` よりも前に宣言された ``ARG`` の値を利用するには、ビルドステージ内において ``ARG`` 命令を、値を設定することなく利用します。
+
+.. ```Dockerfile
+   ARG VERSION=latest
+   FROM busybox:$VERSION
+   ARG VERSION
+   RUN echo $VERSION > image_version
+   ```
+
+.. code-block:: dockerfile
+
+   ARG VERSION=latest
+   FROM busybox:$VERSION
+   ARG VERSION
+   RUN echo $VERSION > image_version
+
 .. _maintainer:
 
 MAINTAINER
