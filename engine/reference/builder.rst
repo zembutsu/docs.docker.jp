@@ -669,9 +669,13 @@ RUN には２つの形式があります。
 * ``RUN <command>`` （シェル形式、コマンドはシェル内で実行される、シェルとはデフォルトで Linux なら ``/bin/sh -c``、Windows なら ``cmd /S /C``）
 * ``RUN ["executable", "param1", "param2"]`` （exec 形式）
 
-.. The RUN instruction will execute any commands in a new layer on top of the current image and commit the results. The resulting committed image will be used for the next step in the Dockerfile.
+.. The `RUN` instruction will execute any commands in a new layer on top of the
+   current image and commit the results. The resulting committed image will be
+   used for the next step in the `Dockerfile`.
 
-``RUN`` 命令は既存イメージ上の新しいレイヤで、あらゆるコマンドを実行し、その結果をコミットする命令です。コミットの結果得られたイメージは、 ``Dockerfile`` の次のステップで使われます。
+``RUN`` 命令は、現在のイメージの最上位の最新レイヤーにおいて、あらゆるコマンドを実行します。
+そして処理結果を確定します。
+結果が確定したイメージは、``Dockerfile`` の次のステップにおいて利用されていきます。
 
 .. Layering RUN instructions and generating commits conforms to the core concepts of Docker where commits are cheap and containers can be created from any point in an image’s history, much like source control.
 
