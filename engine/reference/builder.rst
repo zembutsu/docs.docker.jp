@@ -844,11 +844,14 @@ CMD
 この処理設定においては、実行モジュールを含める場合と、実行モジュールを省略する場合があります。
 省略する場合は ``ENTRYPOINT`` 命令を合わせて指定する必要があります。
 
-..     Note: If CMD is used to provide default arguments for the ENTRYPOINT instruction, both the CMD and ENTRYPOINT instructions should be specified with the JSON array format.
+.. > **Note**:
+   > If `CMD` is used to provide default arguments for the `ENTRYPOINT`
+   > instruction, both the `CMD` and `ENTRYPOINT` instructions should be specified
+   > with the JSON array format.
 
 .. note::
 
-   ``ENTRYPOINT`` 命令のデフォルトの引数として ``CMD`` を使う場合、 ``CMD`` と ``ENTRYPOINT`` 命令の両方が JSON 配列フォーマットになっている必要があります。
+   ``ENTRYPOINT`` 命令に対するデフォルト引数を設定する目的で ``CMD`` 命令を用いる場合、``CMD`` と ``ENTRYPOINT`` の両命令とも、JSON 配列形式で指定しなければなりません。
 
 ..     Note: The exec form is parsed as a JSON array, which means that you must use double-quotes (“) around words not single-quotes (‘).
 
