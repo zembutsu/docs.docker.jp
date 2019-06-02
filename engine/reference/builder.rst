@@ -800,9 +800,13 @@ exec 形式は、シェル文字列が置換されないようにします。
 * `Issue 783 <https://github.com/docker/docker/issues/783>`_ はファイル・パーミッションに関する問題を取り上げていて、ファイルシステムに AUFS を用いている場合に発生します。
   たとえば ``rm`` によってファイルを削除しようとしたときに、これが発生する場合があります。
 
-.. For systems that have recent aufs version (i.e., dirperm1 mount option can be set), docker will attempt to fix the issue automatically by mounting the layers with dirperm1 option. More details on dirperm1 option can be found at aufs man page
+  .. For systems that have recent aufs version (i.e., `dirperm1` mount option can
+     be set), docker will attempt to fix the issue automatically by mounting
+     the layers with `dirperm1` option. More details on `dirperm1` option can be
+     found at [`aufs` man page](https://github.com/sfjro/aufs3-linux/tree/aufs3.18/Documentation/filesystems/aufs)
 
-最近の aufs バージョンを使っているシステムでは（例： ``dirperm1`` マウント・オプションが利用可能 ）、docker は ``dirperm1`` オプションのレイヤをマウント時、自動的に問題を修正しようとします。 ``dirperm1`` オプションに関する詳細は、 ``aufs`` `man ページ <http://aufs.sourceforge.net/aufs3/man.html>`_ をご覧ください。
+  aufs の最新バージョンを利用するシステム（つまりマウントオプション ``dirperm1`` を設定可能なシステム）の場合、docker はレイヤーに対して ``dirperm1`` オプションをつけてマウントすることで、この問題を自動的に解消するように試みます。
+  ``dirperm1`` オプションに関する詳細は ``aufs`` の `man ページ <https://github.com/sfjro/aufs3-linux/tree/aufs3.18/Documentation/filesystems/aufs>`_ を参照してください。
 
 .. If your system doesn’t have support for dirperm1, the issue describes a workaround.
 
