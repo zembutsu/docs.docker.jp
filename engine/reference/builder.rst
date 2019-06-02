@@ -565,9 +565,16 @@ FROM
 * ``Dockerfile`` 内にて ``ARG`` は、``FROM`` よりも前に記述できる唯一の命令です。
   :ref:`ARG と FROM の関連について <understand-how-arg-and-from-interact>` を参照してください。
 
-..    FROM can appear multiple times within a single Dockerfile in order to create multiple images. Simply make a note of the last image ID output by the commit before each new FROM command.
+.. - `FROM` can appear multiple times within a single `Dockerfile` to 
+     create multiple images or use one build stage as a dependency for another.
+     Simply make a note of the last image ID output by the commit before each new 
+     `FROM` instruction. Each `FROM` instruction clears any state created by previous
+     instructions.
 
-* 単一の ``Dockerfile`` から複数のイメージを作成するため、複数の ``FROM`` を指定できます。各 ``FROM`` 命令ごとに自動的にコミットし、最新のイメージ ID が出力されるのを覚えておいてください。
+* 1 つの ``Dockerfile`` 内に ``FROM`` を複数記述することが可能です。
+  これは複数のイメージを生成するため、あるいは 1 つのビルドステージを使って依存イメージをビルドするために行います。
+  各 ``FROM`` 命令までのコミットによって出力される最終のイメージ ID は書き留めておいてください。
+  個々の ``FROM`` 命令は、それ以前の命令により作り出された状態を何も変更しません。
 
 ..    The tag or digest values are optional. If you omit either of them, the builder assumes a latest by default. The builder returns an error if it cannot match the tag value.
 
