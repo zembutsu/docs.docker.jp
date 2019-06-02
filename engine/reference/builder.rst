@@ -886,9 +886,10 @@ CMD
 
 シェル形式または exec 形式を用いる場合、``CMD`` 命令は、イメージが起動されたときに実行するコマンドを指定します。
 
-.. If you use the shell form of the CMD, then the <command> will execute in /bin/sh -c:
+.. If you use the *shell* form of the `CMD`, then the `<command>` will execute in
+   `/bin/sh -c`:
 
-``CMD`` を *シェル* 形式で使えば、 ``<コマンド>`` は ``/bin/sh -c`` で実行されます。
+シェル形式を用いる場合、``<command>`` は ``/bin/sh -c`` の中で実行されます。
 
 .. code-block:: dockerfile
 
