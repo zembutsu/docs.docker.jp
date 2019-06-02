@@ -548,9 +548,16 @@ FROM
 
    FROM <イメージ>@<digest>
 
-.. The FROM instruction sets the Base Image for subsequent instructions. As such, a valid Dockerfile must have FROM as its first instruction. The image can be any valid image -- it is especially easy to start by pulling an image from the Public Repositories.
+.. The `FROM` instruction initializes a new build stage and sets the 
+   [*Base Image*](glossary.md#base-image) for subsequent instructions. As such, a 
+   valid `Dockerfile` must start with a `FROM` instruction. The image can be
+   any valid image – it is especially easy to start by **pulling an image** from 
+   the [*Public Repositories*](https://docs.docker.com/engine/tutorials/dockerrepos/).
 
-``FROM`` 命令は、以降の命令で使う :ref:`ベース・イメージ <base-image>` を指定します。あるいは、有効な ``Dockerfile`` は、１行めを ``FROM`` 命令で指定する必要があります。イメージとは、あらゆる有効なものが利用できます。 :doc:`パブリック・リポジトリ </engine/userguide/containers/dockerrepos>` から **イメージを取得する** 方法が一番簡単です。
+``FROM`` 命令は、イメージビルドのための処理ステージを初期化し、:ref:`ベース・イメージ <base-image>` を設定します。後続の命令がこれに続きます。
+このため、正しい ``Dockerfile`` は ``FROM`` 命令から始めなければなりません。
+ベース・イメージは正しいものであれば何でも構いません。
+簡単に取り掛かりたいときは、`公開リポジトリ <https://docs.docker.com/engine/tutorials/dockerrepos/>`_ から **イメージを取得** します。
 
 ..    FROM must be the first non-comment instruction in the Dockerfile.
 
