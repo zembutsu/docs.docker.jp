@@ -653,19 +653,6 @@ ARG と FROM の関連について
    ARG VERSION
    RUN echo $VERSION > image_version
 
-.. _maintainer:
-
-MAINTAINER
-==========
-
-.. code-block:: dockerfile
-
-    MAINTAINER <名前>
-
-.. The MAINTAINER instruction allows you to set the Author field of the generated images.
-
-``MAINTAINER`` 命令は、生成するイメージの *Author* （作者）フィールドを指定します。
-
 .. _run:
 
 RUN
@@ -904,6 +891,40 @@ LABEL
        "multi.label2": "value2",
        "other": "value3"
    },
+
+.. ## MAINTAINER (deprecated)
+
+.. _maintainer:
+
+MAINTAINER（廃止予定）
+=======================
+
+   ..  MAINTAINER <name>
+
+.. code-block:: dockerfile
+
+    MAINTAINER <name>
+
+.. The `MAINTAINER` instruction sets the *Author* field of the generated images.
+   The `LABEL` instruction is a much more flexible version of this and you should use
+   it instead, as it enables setting any metadata you require, and can be viewed
+   easily, for example with `docker inspect`. To set a label corresponding to the
+   `MAINTAINER` field you could use:
+
+``MAINTAINER`` 命令は、ビルドされるイメージの *Author* フィールドを設定します。
+``LABEL`` 命令を使った方がこれよりも柔軟に対応できるため、``LABEL`` を使うようにします。
+そうすれば必要なメタデータとしてどのようにでも設定ができて、``docker inspect`` を用いて簡単に参照することができます。
+``MAINTAINER`` フィールドに相当するラベルを作るには、以下のようにします。
+
+   ..  LABEL maintainer="SvenDowideit@home.org.au"
+
+.. code-block:: dockerfile
+
+   LABEL maintainer="SvenDowideit@home.org.au"
+
+.. This will then be visible from `docker inspect` with the other labels.
+
+こうすれば ``docker inspect`` によってラベルをすべて確認することができます。
 
 .. _expose:
 
