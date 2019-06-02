@@ -753,11 +753,21 @@ exec 形式は、シェル文字列が置換されないようにします。
    たとえば ``RUN [ "sh", "-c", "echo $HOME" ]`` とします。
    exec 形式によってシェルを直接起動した場合、シェル形式の場合でも同じですが、変数置換を行うのはシェルであって、docker ではありません。
 
-.. Note: In the JSON form, it is necessary to escape backslashes. This is particularly relevant on Windows where the backslash is the path seperator. The following line would otherwise be treated as shell form due to not being valid JSON, and fail in an unexpected way: RUN ["c:\windows\system32\tasklist.exe"] The correct syntax for this example is: RUN ["c:\\windows\\system32\\tasklist.exe"]
+.. > **Note**:
+   > In the *JSON* form, it is necessary to escape backslashes. This is
+   > particularly relevant on Windows where the backslash is the path separator.
+   > The following line would otherwise be treated as *shell* form due to not
+   > being valid JSON, and fail in an unexpected way:
+   > `RUN ["c:\windows\system32\tasklist.exe"]`
+   > The correct syntax for this example is:
+   > `RUN ["c:\\windows\\system32\\tasklist.exe"]`
 
 .. note::
 
-   JSON 形式では、バック・スラッシュはエスケープが必要です。特に関係があるのは Windows でパス区切りにバック・スラッシュを使う場合です。次の行は JSON 形式ではなくシェル形式と見なされエラーになります： ``RUN ["c:\windows\system32\tasklist.exe"]`` 。適切な構文は ``RUN ["c:\\windows\\system32\\tasklist.exe"]`` です。
+   JSON 記述においてバックスラッシュはエスケープする必要があります。
+   特に関係してくるのは Windows であり、Windows ではパス・セパレータにバックスラッシュを用います。
+   ``RUN ["c:\windows\system32\tasklist.exe"]`` という記述例は、適正な JSON 記述ではないことになるため、シェル形式として扱われ、思いどおりの動作はせずエラーとなります。
+   正しくは ``RUN ["c:\\windows\\system32\\tasklist.exe"]`` と記述します。
 
 .. The cache for RUN instructions isn’t invalidated automatically during the next build. The cache for an instruction like RUN apt-get dist-upgrade -y will be reused during the next build. The cache for RUN instructions can be invalidated by using the --no-cache flag, for example docker build --no-cache.
 
