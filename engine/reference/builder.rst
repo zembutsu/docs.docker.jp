@@ -986,9 +986,12 @@ LABEL
          multi.label2="value2" \
          other="value3"
 
-.. Labels are additive including LABELs in FROM images. If Docker encounters a label/key that already exists, the new value overrides any previous labels with identical keys.
+.. Labels are additive including `LABEL`s in `FROM` images. If Docker
+   encounters a label/key that already exists, the new value overrides any previous
+   labels with identical keys.
 
-ラベルには、``FROM`` イメージが使う ``LABEL`` も含まれています。ラベルのキーが既に存在している時、Docker は特定のキーを持つラベルの値を上書きします。
+ラベルには ``FROM`` に指定されたイメージ内の ``LABEL`` 命令も含まれます。
+ラベルのキーが既に存在していた場合、そのキーに対応する古い値は、新しい値によって上書きされます。
 
 .. To view an image’s labels, use the docker inspect command.
 
