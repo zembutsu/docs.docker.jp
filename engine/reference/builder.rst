@@ -943,9 +943,15 @@ LABEL
 
    LABEL <key>=<value> <key>=<value> <key>=<value> ...
 
-.. The LABEL instruction adds metadata to an image. A LABEL is a key-value pair. To include spaces within a LABEL value, use quotes and backslashes as you would in command-line parsing. A few usage examples:
+.. The `LABEL` instruction adds metadata to an image. A `LABEL` is a
+   key-value pair. To include spaces within a `LABEL` value, use quotes and
+   backslashes as you would in command-line parsing. A few usage examples:
 
-``LABEL`` 命令はイメージにメタデータを追加します。 ``LABEL`` はキーとバリューのペアです。 ``LABEL`` の値に空白スペースを含む場合はクォートを使いますし、コマンドラインの分割にバックスラッシュを使います。使用例：
+``LABEL`` 命令はイメージに対してメタデータを追加します。
+``LABEL`` ではキーバリューペアによる記述を行います。
+値に空白などを含める場合は、クォートとバックスラッシュを用います。
+これはコマンドライン処理において行うことと同じです。
+以下に簡単な例を示します。
 
 .. code-block:: dockerfile
 
