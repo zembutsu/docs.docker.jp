@@ -881,9 +881,10 @@ CMD
    たとえば ``RUN [ "sh", "-c", "echo $HOME" ]`` とします。
    exec 形式によってシェルを直接起動した場合、シェル形式の場合でも同じですが、変数置換を行うのはシェルであって、docker ではありません。
 
-.. When used in the shell or exec formats, the CMD instruction sets the command to be executed when running the image.
+.. When used in the shell or exec formats, the `CMD` instruction sets the command
+   to be executed when running the image.
 
-シェルあるいは exec 形式を使う時、 ``CMD`` 命令はイメージで実行するコマンドを指定します。
+シェル形式または exec 形式を用いる場合、``CMD`` 命令は、イメージが起動されたときに実行するコマンドを指定します。
 
 .. If you use the shell form of the CMD, then the <command> will execute in /bin/sh -c:
 
