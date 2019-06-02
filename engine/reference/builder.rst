@@ -590,9 +590,13 @@ FROM
   これは ``FROM`` 命令の ``AS name`` により行います。
   この名前は後続の ``FROM`` や ``COPY --from=<name|index>`` 命令において利用することができ、このビルドステージにおいてビルドされたイメージを参照します。
 
-..    The tag or digest values are optional. If you omit either of them, the builder assumes a latest by default. The builder returns an error if it cannot match the tag value.
+.. - The `tag` or `digest` values are optional. If you omit either of them, the 
+     builder assumes a `latest` tag by default. The builder returns an error if it
+     cannot find the `tag` value.
 
-* ``タグ`` や ``digest`` 値はオプションです。省略した場合、ビルダーはデフォルトの ``latest`` とみなします。ビルダーは一致する ``tag`` 値が無ければエラーを返します。
+* ``tag`` と ``digest`` の設定はオプションです。
+  これを省略した場合、デフォルトである ``latest`` タグが指定されたものとして扱われます。
+  ``tag`` の値に合致するものがなければ、エラーが返されます。
 
 .. _maintainer:
 
