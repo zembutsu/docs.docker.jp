@@ -922,11 +922,17 @@ CMD
 
 ``docker run`` において引数を指定することで、``CMD`` 命令に指定されたデフォルトを上書きすることができます。
 
-..    Note: don’t confuse RUN with CMD. RUN actually runs a command and commits the result; CMD does not execute anything at build time, but specifies the intended command for the image.
+.. > **Note**:
+   > Don't confuse `RUN` with `CMD`. `RUN` actually runs a command and commits
+   > the result; `CMD` does not execute anything at build time, but specifies
+   > the intended command for the image.
 
 .. note::
 
-   ``RUN`` と ``CMD`` を混同しないでください。 ``RUN`` が実際に行っているのは、コマンドの実行と結果のコミットです。一方の ``CMD`` は構築時には何もしませんが、イメージで実行するコマンドを指定します。
+   ``RUN`` と ``CMD`` を混同しないようにしてください。
+   ``RUN`` は実際にコマンドが実行されて、結果を確定させます。
+   一方 ``CMD`` はイメージビルド時には何も実行しません。
+   イメージに対して実行する予定のコマンドを指示するものです。
 
 .. _builder-label:
 
