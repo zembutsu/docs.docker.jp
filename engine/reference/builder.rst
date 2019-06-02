@@ -691,9 +691,10 @@ RUN には２つの形式があります。
 exec 形式は、シェル文字列が置換されないようにします。
 そして ``RUN`` の実行にあたっては、特定のシェル変数を含まないベースイメージを用います。
 
-.. The default shell for the *shell* form can be changed using the `SHELL` command.
+.. The default shell for the *shell* form can be changed using the `SHELL`
+   command.
 
-デフォルトの *shell* のシェルを変更するには ``SHELL`` コマンドで変更できます。
+シェル形式にて用いるデフォルトのシェルを変更するには ``SHELL`` コマンドを使います。
  
 .. In the shell form you can use a \ (backslash) to continue a single RUN instruction onto the next line. For example, consider these two lines:
 
