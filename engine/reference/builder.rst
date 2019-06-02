@@ -725,11 +725,14 @@ exec 形式は、シェル文字列が置換されないようにします。
    '/bin/sh' 以外の別のシェルを利用する場合は、exec 形式を用いて、目的とするシェルを引数に与えます。
    たとえば ``RUN ["/bin/bash", "-c", "echo hello"]`` とします。
 
-..    Note: The exec form is parsed as a JSON array, which means that you must use double-quotes (“) around words not single-quotes (‘).
+.. > **Note**:
+   > The *exec* form is parsed as a JSON array, which means that
+   > you must use double-quotes (") around words not single-quotes (').
 
 .. note::
 
-   exec 形式は JSON 配列でパースされます。つまり、文字を囲むのはシングル・クォート(') ではなくダブル・クォート(")を使う必要があります。
+   exec 形式は JSON 配列として解釈されます。
+   したがって文字列をくくるのはダブル・クォート（"）であり、シングル・クォート（'）は用いてはなりません。
 
 ..    Note: Unlike the shell form, the exec form does not invoke a command shell. This means that normal shell processing does not happen. For example, RUN [ "echo", "$HOME" ] will not do variable substitution on $HOME. If you want shell processing then either use the shell form or execute a shell directly, for example: RUN [ "sh", "-c", "echo", "$HOME" ].
 
