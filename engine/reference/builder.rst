@@ -910,9 +910,12 @@ CMD
    FROM ubuntu
    CMD ["/usr/bin/wc","--help"]
 
-.. If you would like your container to run the same executable every time, then you should consider using ENTRYPOINT in combination with CMD. See ENTRYPOINT.
+.. If you would like your container to run the same executable every time, then
+   you should consider using `ENTRYPOINT` in combination with `CMD`. See
+   [*ENTRYPOINT*](#entrypoint).
 
-もしコンテナで毎回同じものを実行するのであれば、 ``CMD`` と ``ENTRYPOINT`` の使用を検討ください。詳細は :ref:`ENTRYPOINT <entrypoint>` をご覧ください。
+コンテナにおいて毎回同じ実行モジュールを起動させたい場合は、``CMD`` 命令と ``ENTRYPOINT`` 命令を合わせて利用することを考えてみてください。
+:ref:`ENTRYPOINT <entrypoint>` を参照のこと。
 
 .. If the user specifies arguments to docker run then they will override the default specified in CMD.
 
