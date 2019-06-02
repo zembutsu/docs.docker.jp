@@ -709,7 +709,7 @@ exec 形式は、シェル文字列が置換されないようにします。
 
 .. Together they are equivalent to this single line:
 
-これは、次のように１行にできます。
+上は 2 行を合わせて、以下の 1 行としたものと同じです。
 
 .. code-block:: dockerfile
 
