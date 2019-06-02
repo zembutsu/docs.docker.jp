@@ -582,6 +582,14 @@ FROM
   各 ``FROM`` 命令までのコミットによって出力される最終のイメージ ID は書き留めておいてください。
   個々の ``FROM`` 命令は、それ以前の命令により作り出された状態を何も変更しません。
 
+.. - Optionally a name can be given to a new build stage by adding `AS name` to the 
+     `FROM` instruction. The name can be used in subsequent `FROM` and
+     `COPY --from=<name|index>` instructions to refer to the image built in this stage.
+
+* オプションとして、新たなビルドステージに対しては名前をつけることができます。
+  これは ``FROM`` 命令の ``AS name`` により行います。
+  この名前は後続の ``FROM`` や ``COPY --from=<name|index>`` 命令において利用することができ、このビルドステージにおいてビルドされたイメージを参照します。
+
 ..    The tag or digest values are optional. If you omit either of them, the builder assumes a latest by default. The builder returns an error if it cannot match the tag value.
 
 * ``タグ`` や ``digest`` 値はオプションです。省略した場合、ビルダーはデフォルトの ``latest`` とみなします。ビルダーは一致する ``tag`` 値が無ければエラーを返します。
