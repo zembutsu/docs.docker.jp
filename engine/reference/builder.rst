@@ -835,9 +835,14 @@ CMD
 ``Dockerfile`` では ``CMD`` 命令を 1 つしか記述できません。
 仮に複数の ``CMD`` を記述しても、最後の ``CMD`` 命令しか処理されません。
 
-.. The main purpose of a CMD is to provide defaults for an executing container. These defaults can include an executable, or they can omit the executable, in which case you must specify an ENTRYPOINT instruction as well.
+.. **The main purpose of a `CMD` is to provide defaults for an executing
+   container.** These defaults can include an executable, or they can omit
+   the executable, in which case you must specify an `ENTRYPOINT`
+   instruction as well.
 
-``CMD`` の主な目的は、 **コンテナ実行時のデフォルトを提供します** 。 デフォルトには、実行可能なコマンドが含まれているか、あるいは省略されるかもしれません。省略時は ``ENTRYPOINT`` 命令で同様に指定する必要があります。
+``CMD`` 命令の主目的は、**コンテナの実行時のデフォルト処理を設定することです。**
+この処理設定においては、実行モジュールを含める場合と、実行モジュールを省略する場合があります。
+省略する場合は ``ENTRYPOINT`` 命令を合わせて指定する必要があります。
 
 ..     Note: If CMD is used to provide default arguments for the ENTRYPOINT instruction, both the CMD and ENTRYPOINT instructions should be specified with the JSON array format.
 
