@@ -917,9 +917,10 @@ CMD
 コンテナにおいて毎回同じ実行モジュールを起動させたい場合は、``CMD`` 命令と ``ENTRYPOINT`` 命令を合わせて利用することを考えてみてください。
 :ref:`ENTRYPOINT <entrypoint>` を参照のこと。
 
-.. If the user specifies arguments to docker run then they will override the default specified in CMD.
+.. If the user specifies arguments to `docker run` then they will override the
+   default specified in `CMD`.
 
-ユーザが ``docker run`` で引数を指定した時、これらは ``CMD`` で指定したデフォルトを上書きします。
+``docker run`` において引数を指定することで、``CMD`` 命令に指定されたデフォルトを上書きすることができます。
 
 ..    Note: don’t confuse RUN with CMD. RUN actually runs a command and commits the result; CMD does not execute anything at build time, but specifies the intended command for the image.
 
