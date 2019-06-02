@@ -559,9 +559,11 @@ FROM
 ベース・イメージは正しいものであれば何でも構いません。
 簡単に取り掛かりたいときは、`公開リポジトリ <https://docs.docker.com/engine/tutorials/dockerrepos/>`_ から **イメージを取得** します。
 
-..    FROM must be the first non-comment instruction in the Dockerfile.
+.. - `ARG` is the only instruction that may precede `FROM` in the `Dockerfile`.
+     See [Understand how ARG and FROM interact](#understand-how-arg-and-from-interact).
 
-* ``Dockerfile`` では、コメント以外では ``FROM`` を一番始めに書く必要があります。
+* ``Dockerfile`` 内にて ``ARG`` は、``FROM`` よりも前に記述できる唯一の命令です。
+  :ref:`ARG と FROM の関連について <understand-how-arg-and-from-interact>` を参照してください。
 
 ..    FROM can appear multiple times within a single Dockerfile in order to create multiple images. Simply make a note of the last image ID output by the commit before each new FROM command.
 
