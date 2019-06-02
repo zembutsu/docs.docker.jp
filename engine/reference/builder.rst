@@ -769,9 +769,16 @@ exec 形式は、シェル文字列が置換されないようにします。
    ``RUN ["c:\windows\system32\tasklist.exe"]`` という記述例は、適正な JSON 記述ではないことになるため、シェル形式として扱われ、思いどおりの動作はせずエラーとなります。
    正しくは ``RUN ["c:\\windows\\system32\\tasklist.exe"]`` と記述します。
 
-.. The cache for RUN instructions isn’t invalidated automatically during the next build. The cache for an instruction like RUN apt-get dist-upgrade -y will be reused during the next build. The cache for RUN instructions can be invalidated by using the --no-cache flag, for example docker build --no-cache.
+.. The cache for `RUN` instructions isn't invalidated automatically during
+   the next build. The cache for an instruction like
+   `RUN apt-get dist-upgrade -y` will be reused during the next build. The
+   cache for `RUN` instructions can be invalidated by using the `--no-cache`
+   flag, for example `docker build --no-cache`.
 
-次の構築時、``RUN`` 命令によるキャッシュは自動的に無効化できません。 ``RUN apt-get dist-upgrade -y`` のような命令のキャッシュがあれば、次の構築時に再利用されます。 ``RUN`` 命令でキャッシュを使いたくない場合は、 ``--no-cache`` フラグを使います。例： ``docker build --no-cache`` .
+``RUN`` 命令に対するキャッシュは、次のビルドの際、その無効化は自動的に行われません。
+``RUN apt-get dist-upgrade -y`` のような命令に対するキャッシュは、次のビルドの際にも再利用されます。
+``RUN`` 命令に対するキャッシュを無効にするためには ``--no-cache`` フラグを利用します。
+たとえば ``docker build --no-cache`` とします。
 
 .. See the Dockerfile Best Practices guide for more information.
 
