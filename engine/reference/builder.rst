@@ -961,9 +961,16 @@ LABEL
    LABEL description="This text illustrates \
    that label-values can span multiple lines."
 
-.. An image can have more than one label. To specify multiple labels, Docker recommends combining labels into a single LABEL instruction where possible. Each LABEL instruction produces a new layer which can result in an inefficient image if you use many labels. This example results in a single image layer.
+.. An image can have more than one label. To specify multiple labels,
+   Docker recommends combining labels into a single `LABEL` instruction where
+   possible. Each `LABEL` instruction produces a new layer which can result in an
+   inefficient image if you use many labels. This example results in a single image
+   layer.
 
-イメージは複数のラベルを持てます。複数のラベルを指定したら、 Docker は可能であれば１つの ``LABEL`` にすることをお勧めします。各 ``LABEL`` 命令は新しいレイヤを準備しますが、多くのラベルを使えば、それだけレイヤを使います。次の例は１つのイメージ・レイヤを使うものです。
+イメージには複数のラベルを含めることができます。
+複数のラベルを指定する場合、可能であれば ``LABEL`` 命令の記述を 1 行とすることをお勧めします。
+``LABEL`` 命令 1 つからは新しいレイヤが生成されますが、多数のラベルを利用すると、非効率なイメージがビルドされてしまいます。
+以下の例は、ただ 1 つのイメージ・レイヤを作るものです。
 
 .. code-block:: dockerfile
 
