@@ -821,13 +821,13 @@ CMD
 
 ``CMD`` には３つの形式があります。
 
-..    CMD ["executable","param1","param2"] (exec form, this is the preferred form)
-    CMD ["param1","param2"] (as default parameters to ENTRYPOINT)
-    CMD command param1 param2 (shell form)
+.. - `CMD ["executable","param1","param2"]` (*exec* form, this is the preferred form)
+   - `CMD ["param1","param2"]` (as *default parameters to ENTRYPOINT*)
+   - `CMD command param1 param2` (*shell* form)
 
-* ``CMD ["実行バイナリ", "パラメータ１", "パラメータ２"]`` （ *exec* 形式、推奨する形式）
-* ``CMD ["パラメータ１", "パラメータ２"]`` （ *ENTRYPOINT* のデフォルト・パラメータ）
-* ``CMD <コマンド>`` （シェル形式）
+* ``CMD ["executable","param1","param2"]`` (exec 形式、この形式が推奨される)
+* ``CMD ["param1","param2"]`` ( ``ENTRYPOINT`` のデフォルト・パラメータとして)
+* ``CMD command param1 param2`` (シェル形式)
 
 .. There can only be one CMD instruction in a Dockerfile. If you list more than one CMD then only the last CMD will take effect.
 
