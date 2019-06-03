@@ -1349,9 +1349,13 @@ ADD されるファイルやディレクトリの UID と GID は、すべて 0 
      名前によって判断されるわけではありません。
      たとえば、空のファイルの名前の末尾がたまたま ``.tar.gz`` となっていた場合、圧縮ファイルとして認識されないため、解凍に失敗したといったエラーメッセージは一切 **出ることはなく** 、このファイルはコピー先に向けて単純にコピーされるだけです。
 
-..    If <src> is any other kind of file, it is copied individually along with its metadata. In this case, if <dest> ends with a trailing slash /, it will be considered a directory and the contents of <src> will be written at <dest>/base(<src>).
+.. - If `<src>` is any other kind of file, it is copied individually along with
+     its metadata. In this case, if `<dest>` ends with a trailing slash `/`, it
+     will be considered a directory and the contents of `<src>` will be written
+     at `<dest>/base(<src>)`.
 
-* もし ``<ソース>`` がファイル以外であれば、個々のメタデータと一緒にコピーします。 ``<送信先>`` の末尾がスラッシュ ``/`` で終わる場合は、ディレクトリであるとみなし、 ``<ソース>`` の内容を ``<送信先>/base(<ソース>)`` に書き込みます。
+* ``<src>`` が上に示す以外のファイルであった場合、メタデータも含めて個々にコピーされます。
+  このとき ``<dest>`` が ``/`` で終わっていたらディレクトリとみなされるので、``<src>`` の内容は ``<dest>/base(<src>)`` に書き込まれることになります。
 
 ..    If multiple <src> resources are specified, either directly or due to the use of a wildcard, then <dest> must be a directory, and it must end with a slash /.
 
