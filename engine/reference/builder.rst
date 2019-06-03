@@ -1180,9 +1180,12 @@ ADD には 2 つの書式があります。
 
 ``ADD`` 命令は ``<src>`` に示されるファイル、ディレクトリ、リモートファイル URL をコピーして、イメージ内のファイルシステム上のパス ``<dest>`` にこれらを加えます。
 
-.. Multiple <src> resource may be specified but if they are files or directories then they must be relative to the source directory that is being built (the context of the build).
+.. Multiple `<src>` resource may be specified but if they are files or
+   directories then they must be relative to the source directory that is
+   being built (the context of the build).
 
-複数の ``<ソース>`` リソースを指定できます。この時、ファイルやディレクトリはソースディレクトリ（構築時のコンテクスト）からの相対パス上に存在しないと構築できません。
+``<src>`` には複数のソースを指定することが可能です。
+ソースとしてファイルあるいはディレクトリが指定されている場合、そのパスは生成されたソース・ディレクトリ（ビルド・コンテキスト）からの相対パスでなければなりません。
 
 .. Each <src> may contain wildcards and matching will be done using Go’s filepath.Match rules. For example:
 
