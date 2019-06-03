@@ -1084,9 +1084,14 @@ ENV
    ENV <key> <value>
    ENV <key>=<value> ...
 
-.. The ENV instruction sets the environment variable <key> to the value <value>. This value will be in the environment of all “descendant” Dockerfile commands and can be replaced inline in many as well.
+.. The `ENV` instruction sets the environment variable `<key>` to the value
+   `<value>`. This value will be in the environment of all "descendant"
+   `Dockerfile` commands and can be [replaced inline](#environment-replacement) in
+   many as well.
 
-``ENV`` 命令は、環境変数 ``<key>`` と 値 ``<value>`` のセットです。値は ``Dockerfile`` から派生する全てのコマンド環境で利用でき、 :ref:`インラインで置き換え <environment-replacement>` も可能です。
+``ENV`` 命令は、環境変数 ``<key>`` に ``<value>`` という値を設定します。
+``Dockerfile`` 内の後続命令の環境において、環境変数の値は維持されます。
+また、いろいろと :ref:`インラインにて変更 <environment-replacement>` することもできます。
 
 .. The ENV instruction has two forms. The first form, ENV <key> <value>, will set a single variable to a value. The entire string after the first space will be treated as the <value> - including characters such as spaces and quotes.
 
