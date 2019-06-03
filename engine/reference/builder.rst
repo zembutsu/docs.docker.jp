@@ -1104,9 +1104,15 @@ ENV
 全体の文字列のうち、最初の空白文字以降がすべて ``<value>`` として扱われます。
 そこには空白やクォートを含んでいて構いません。
 
-.. The second form, ENV <key>=<value> ..., allows for multiple variables to be set at one time. Notice that the second form uses the equals sign (=) in the syntax, while the first form does not. Like command line parsing, quotes and backslashes can be used to include spaces within values.
+.. The second form, `ENV <key>=<value> ...`, allows for multiple variables to
+   be set at one time. Notice that the second form uses the equals sign (=)
+   in the syntax, while the first form does not. Like command line parsing,
+   quotes and backslashes can be used to include spaces within values.
 
-２つめの形式は ``ENV <key>=<value> ...`` です。これは一度に複数の変数を指定できます。先ほどと違い、構文の２つめにイコールサイン（=）があるので気を付けてください。コマンドラインの分割、クォート、バックスラッシュは、空白スペースも含めて値になります。
+2 つめの書式は ``ENV <key>=<value> ...`` です。
+これは一度に複数の値を設定できる形です。
+この書式では等号（=）を用いており、1 つめの書式とは異なります。
+コマンドライン上の解析で行われることと同じように、クォートやバックスラッシュを使えば、値の中に空白などを含めることができます。
 
 .. For example:
 
