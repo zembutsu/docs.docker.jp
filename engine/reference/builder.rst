@@ -1442,11 +1442,13 @@ COPY は２つの形式があります。
 
 コピーされるファイルやディレクトリの UID と GID は、すべて 0 として生成されます。
 
-..    Note: If you build using STDIN (docker build - < somefile), there is no build context, so COPY can’t be used.
+.. > **Note**:
+   > If you build using STDIN (`docker build - < somefile`), there is no
+   > build context, so `COPY` can't be used.
 
 .. note::
 
-   標準入力（ ``docker build - < 何らかのファイル`` ）を使って構築しようとしても、構築時のコンテントは存在しないため、 ``COPY`` を使えません。
+  ``Dockerfile`` を標準入力から生成する場合（ ``docker build - < somefile`` ）は、ビルド・コンテキストが存在していないことになるので、``COPY`` 命令は利用することができません。
 
 .. COPY obeys the following rules:
 
