@@ -1502,9 +1502,10 @@ COPY は２つの形式があります。
 
 * 複数の ``<src>`` が直接指定された場合、あるいはワイルドカードを用いて指定された場合、``<dest>`` はディレクトリとする必要があり、末尾には ``/`` をつけなければなりません。
 
-..    If <dest> does not end with a trailing slash, it will be considered a regular file and the contents of <src> will be written at <dest>.
+.. - If `<dest>` does not end with a trailing slash, it will be considered a
+     regular file and the contents of `<src>` will be written at `<dest>`.
 
-* もし ``<送信先>`` の末尾がスラッシュで終わらなければ、通常のファイルとみなされ、 ``<ソース>`` の内容は ``<送信先>`` として書き込まれます。
+* ``<dest>`` の末尾にスラッシュがなかった場合、通常のファイルとみなされるため、``<src>`` の内容が ``<dest>`` に書き込まれます。
 
 ..    If <dest> doesn’t exist, it is created along with all missing directories in its path.
 
