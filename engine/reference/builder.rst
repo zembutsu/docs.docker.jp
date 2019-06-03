@@ -1263,11 +1263,18 @@ ADD されるファイルやディレクトリの UID と GID は、すべて 0 
 
    URL ファイルが認証によって保護されている場合は、``RUN wget`` や ``RUN curl`` あるいは同様のツールをコンテナ内から利用する必要があります。``ADD`` 命令は認証処理をサポートしていません。
 
-..    Note: The first encountered ADD instruction will invalidate the cache for all following instructions from the Dockerfile if the contents of <src> have changed. This includes invalidating the cache for RUN instructions. See the Dockerfile Best Practices guide for more information.
+.. > **Note**:
+   > The first encountered `ADD` instruction will invalidate the cache for all
+   > following instructions from the Dockerfile if the contents of `<src>` have
+   > changed. This includes invalidating the cache for `RUN` instructions.
+   > See the [`Dockerfile` Best Practices
+   guide](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/#/build-cache) for more information.
 
 .. note::
 
-   ``ADD`` 命令の処理時、まず ``<ソース>`` に含まれる内容が変更されていれば、以降の ``Dockerfile`` に書かれている命令のキャッシュを全て無効化します。これは ``RUN`` 命令のキャッシュ無効化も含まれます。より詳細な情報については ``Dockerfile`` の :ref:`ベスト・プラクティス・ガイド <build-cache>` をご覧ください。
+   ``ADD`` 命令の ``<src>`` の内容が変更されていた場合、その ``ADD`` 命令以降に続く命令のキャッシュはすべて無効化されます。
+   そこには ``RUN`` 命令に対するキャッシュの無効化も含まれます。
+   詳しくは ``Dockerfile`` の :ref:`ベスト・プラクティス・ガイド <build-cache>` を参照してください。
 
 .. ADD obeys the following rules:
 
