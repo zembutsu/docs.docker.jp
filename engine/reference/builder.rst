@@ -1450,6 +1450,20 @@ COPY は２つの形式があります。
 
   ``Dockerfile`` を標準入力から生成する場合（ ``docker build - < somefile`` ）は、ビルド・コンテキストが存在していないことになるので、``COPY`` 命令は利用することができません。
 
+.. Optionally `COPY` accepts a flag `--from=<name|index>` that can be used to set
+   the source location to a previous build stage (created with `FROM .. AS <name>`)
+   that will be used instead of a build context sent by the user. The flag also 
+   accepts a numeric index assigned for all previous build stages started with 
+   `FROM` instruction. In case a build stage with a specified name can't be found an 
+   image with the same name is attempted to be used instead.
+
+オプションとして ``COPY`` にはフラグ ``--from=<name|index>`` があります。
+これは実行済のビルド・ステージ（ ``FROM .. AS <name>`` により生成）におけるソース・ディレクトリを設定するものです。
+これがあると、ユーザーが指定したビルド・コンテキストのかわりに、設定されたディレクトリが用いられます。
+このフラグは数値インデックスを指定することも可能です。
+この数値インデックスは、``FROM`` 命令から始まる実行済のビルド・ステージすべてに割り当てられている値です。
+指定されたビルド・ステージがその名前では見つけられなかった場合、指定された数値によって見つけ出します。
+
 .. COPY obeys the following rules:
 
 ``COPY`` は以下のルールに従います。
