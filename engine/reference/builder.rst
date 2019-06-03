@@ -1400,9 +1400,12 @@ COPY は２つの形式があります。
 ``<src>`` には複数のソースを指定することが可能です。
 ソースとしてファイルあるいはディレクトリが指定されている場合、そのパスは生成されたソース・ディレクトリ（ビルド・コンテキスト）からの相対パスでなければなりません。
 
-.. Each <src> may contain wildcards and matching will be done using Go’s filepath.Match rules. For example:
+.. Each `<src>` may contain wildcards and matching will be done using Go's
+   [filepath.Match](http://golang.org/pkg/path/filepath#Match) rules. For example:
 
-それぞれの ``<ソース>`` にはワイルドカードと Go 言語の `filepath.Match <http://golang.org/pkg/path/filepath#Match>`_ ルールに一致するパターンが使えます。例えば、次のような記述です。
+``<src>`` にはワイルドカードを含めることができます。
+その場合、マッチング処理は Go 言語の `filepath.Match <http://golang.org/pkg/path/filepath#Match>`_ ルールに従って行われます。
+記述例は以下のとおりです。
 
 .. code-block:: dockerfile
 
