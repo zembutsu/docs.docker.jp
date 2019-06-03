@@ -1382,11 +1382,12 @@ COPY
 
 COPY は２つの形式があります。
 
-..    COPY <src>... <dest>
-    COPY ["<src>",... "<dest>"] (this form is required for paths containing whitespace)
+.. - `COPY <src>... <dest>`
+   - `COPY ["<src>",... "<dest>"]` (this form is required for paths containing
+   whitespace)
 
-* ``COPY <ソース>... <送信先>``
-* ``COPY ["<ソース>",... "<送信先>"]`` （この形式はパスに空白スペースを使う場合に必要）
+* ``COPY <src>... <dest>``
+* ``COPY ["<src>",... "<dest>"]`` （パスにホワイトスペースを含む場合にこの書式が必要）
 
 .. The COPY instruction copies new files or directories from <src> and adds them to the filesystem of the container at the path <dest>.
 
