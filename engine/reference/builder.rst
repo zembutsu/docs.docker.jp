@@ -1335,11 +1335,19 @@ ADD されるファイルやディレクトリの UID と GID は、すべて 0 
   1. コピー先に指定されていれば、それが存在しているかどうかに関わらず。あるいは、
   2. ソース・ツリーの内容に従って各ファイルごとに行う。衝突が発生した場合は 2. を優先する。
 
-.. Note: Whether a file is identified as a recognized compression format or not is done solely based on the contents of the file, not the name of the file. For example, if an empty file happens to end with .tar.gz this will not be recognized as a compressed file and will not generate any kind of decompression error message, rather the file will simply be copied to the destination.
+  .. > **Note**:
+     > Whether a file is identified as a recognized compression format or not
+     > is done solely based on the contents of the file, not the name of the file.
+     > For example, if an empty file happens to end with `.tar.gz` this will not
+     > be recognized as a compressed file and **will not** generate any kind of
+     > decompression error message, rather the file will simply be copied to the
+     > destination.
 
-.. note::
+  .. note::
 
-   ファイルが圧縮フォーマットと認識するか、あるいはファイルの集まりをベースにしているのかは、ファイルの名前では判断しません。例えば、空のファイル名の拡張子が ``.tar.gz`` だとしても、圧縮ファイルと認識しないため、展開エラーのメッセージを表示 **しません** 。そして単純に送信先にファイルをコピーします。
+     圧縮されたファイルが認識可能なフォーマットであるかどうかは、そのファイル内容に基づいて確認されます。
+     名前によって判断されるわけではありません。
+     たとえば、空のファイルの名前の末尾がたまたま ``.tar.gz`` となっていた場合、圧縮ファイルとして認識されないため、解凍に失敗したといったエラーメッセージは一切 **出ることはなく** 、このファイルはコピー先に向けて単純にコピーされるだけです。
 
 ..    If <src> is any other kind of file, it is copied individually along with its metadata. In this case, if <dest> ends with a trailing slash /, it will be considered a directory and the contents of <src> will be written at <dest>/base(<src>).
 
