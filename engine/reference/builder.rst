@@ -1389,9 +1389,10 @@ COPY は２つの形式があります。
 * ``COPY <src>... <dest>``
 * ``COPY ["<src>",... "<dest>"]`` （パスにホワイトスペースを含む場合にこの書式が必要）
 
-.. The COPY instruction copies new files or directories from <src> and adds them to the filesystem of the container at the path <dest>.
+.. The `COPY` instruction copies new files or directories from `<src>`
+   and adds them to the filesystem of the container at the path `<dest>`.
 
-``COPY`` 命令は ``<ソース>`` にある新しいファイルやディレクトリをコピーするもので、コンテナ内のファイルシステム上にある ``<送信先>`` に指定されたパスに追加します。
+``COPY`` 命令は ``<src>`` からファイルやディレクトリを新たにコピーして、コンテナ内のファイルシステムのパス ``<dest>`` に追加します。
 
 .. Multiple <src> resource may be specified but they must be relative to the source directory that is being built (the context of the build).
 
