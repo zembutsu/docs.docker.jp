@@ -1480,11 +1480,13 @@ COPY は２つの形式があります。
 
 * ``<ソース>`` がディレクトリの場合、ディレクトリ内容の全てをコピーします。これにはファイルシステムのメタデータを含みます。
 
-..    Note: The directory itself is not copied, just its contents.
+  .. > **Note**:
+     > The directory itself is not copied, just its contents.
 
-.. note::
+  .. note::
 
-   ディレクトリ自身はコピーしません。ディレクトリは単なるコンテントの入れ物です。
+     ディレクトリそのものはコピーされません。
+     コピーされるのはその中身です。
 
 ..     If <src> is any other kind of file, it is copied individually along with its metadata. In this case, if <dest> ends with a trailing slash /, it will be considered a directory and the contents of <src> will be written at <dest>/base(<src>).
 
