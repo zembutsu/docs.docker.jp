@@ -1318,9 +1318,15 @@ ADD されるファイルやディレクトリの UID と GID は、すべて 0 
       ディレクトリそのものはコピーされません。
       コピーされるのはその中身です。
 
-..    If <src> is a local tar archive in a recognized compression format (identity, gzip, bzip2 or xz) then it is unpacked as a directory. Resources from remote URLs are not decompressed. When a directory is copied or unpacked, it has the same behavior as tar -x: the result is the union of:
+.. - If `<src>` is a *local* tar archive in a recognized compression format
+     (identity, gzip, bzip2 or xz) then it is unpacked as a directory. Resources
+     from *remote* URLs are **not** decompressed. When a directory is copied or
+     unpacked, it has the same behavior as `tar -x`, the result is the union of:
 
-* もし ``<ソース>`` が *ローカル* にある tar アーカイブの場合、圧縮フォーマットを認識します（gzip、bzip2、xz を認識）。それからディレクトリに展開します。 *リモート* の URL が指定された場合は展開 **しません**。ディレクトリにコピーまたは展開する時は、 ``tar -x`` と同じ働きをします。結果は次の処理を同時に行います。
+* ``<src>`` が **ローカル** にある tar アーカイブであって、認識できるフォーマット（gzip、bzip2、xz）である場合、1 つのディレクトリ配下に展開されます。
+  **リモート** URL の場合は展開 **されません** 。
+  ディレクトリのコピーあるいは展開の仕方は ``tar -x`` と同等です。
+  つまりその結果は以下の 2 つのいずれかに従います。
 
 ..        Whatever existed at the destination path and
 ..        The contents of the source tree, with conflicts resolved in favor of “2.” on a file-by-file basis.
