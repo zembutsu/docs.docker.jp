@@ -1310,11 +1310,13 @@ ADD されるファイルやディレクトリの UID と GID は、すべて 0 
 
 * ``<ソース>`` がディレクトリの場合、ディレクトリの内容の全てをコピーします。これにはファイルシステムのメタデータを含みます。
 
-..    Note: The directory itself is not copied, just its contents.
+  .. > **Note**:
+     > The directory itself is not copied, just its contents.
 
-.. note::
+  .. note::
 
-   ディレクトリ自身はコピーされません。ディレクトリは単なるコンテントの入れ物です。
+      ディレクトリそのものはコピーされません。
+      コピーされるのはその中身です。
 
 ..    If <src> is a local tar archive in a recognized compression format (identity, gzip, bzip2 or xz) then it is unpacked as a directory. Resources from remote URLs are not decompressed. When a directory is copied or unpacked, it has the same behavior as tar -x: the result is the union of:
 
