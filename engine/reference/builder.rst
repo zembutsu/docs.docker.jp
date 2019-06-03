@@ -1288,9 +1288,10 @@ ADD されるファイルやディレクトリの UID と GID は、すべて 0 
 * ``<src>`` のパス指定は、ビルド **コンテキスト** 内でなければならないため、たとえば ``ADD ../something /something`` といったことはできません。
   ``docker build`` の最初の処理ステップでは、コンテキスト・ディレクトリ（およびそのサブディレクトリ）を Docker デーモンに送信するところから始まるためです。
 
-..    If <src> is a URL and <dest> does not end with a trailing slash, then a file is downloaded from the URL and copied to <dest>.
+.. - If `<src>` is a URL and `<dest>` does not end with a trailing slash, then a
+     file is downloaded from the URL and copied to `<dest>`.
 
-* ``<ソース>`` が URL であり、 ``<送信先>`` の末尾にスラッシュが無い場合、URL からファイルをダウンロードし、 ``<送信先>`` にコピーします。
+* ``<src>`` が URL 指定であって ``<dest>`` の最後にスラッシュが指定されていない場合、そのファイルを URL よりダウンロードして ``<dest>`` にコピーします。
 
 ..    If <src> is a URL and <dest> does end with a trailing slash, then the filename is inferred from the URL and the file is downloaded to <dest>/<filename>. For instance, ADD http://example.com/foobar / would create the file /foobar. The URL must have a nontrivial path so that an appropriate filename can be discovered in this case (http://example.com will not work).
 
