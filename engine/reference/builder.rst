@@ -1440,7 +1440,7 @@ COPY は２つの形式があります。
 
 .. All new files and directories are created with a UID and GID of 0.
 
-追加される新しいファイルやディレクトリは、全て UID と GID が 0 として作成されます。
+コピーされるファイルやディレクトリの UID と GID は、すべて 0 として生成されます。
 
 ..    Note: If you build using STDIN (docker build - < somefile), there is no build context, so COPY can’t be used.
 
