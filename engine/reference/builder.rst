@@ -1507,9 +1507,10 @@ COPY は２つの形式があります。
 
 * ``<dest>`` の末尾にスラッシュがなかった場合、通常のファイルとみなされるため、``<src>`` の内容が ``<dest>`` に書き込まれます。
 
-..    If <dest> doesn’t exist, it is created along with all missing directories in its path.
+.. - If `<dest>` doesn't exist, it is created along with all missing directories
+     in its path.
 
-* ``<送信先>`` が存在しなければ、パスに存在しないディレクトリを作成します。
+* ``<dest>`` のパス内のディレクトリが存在しなかった場合、すべて生成されます。
 
 .. _entrypoint:
 
