@@ -1064,9 +1064,15 @@ EXPOSE
 利用できるようにするためには ``-p`` フラグを使ってポートの公開範囲を指定するか、 ``-P`` フラグによって expose したポートをすべて公開する必要があります。
 1 つのポート番号を expose して、これを外部に向けては別の番号により公開することも可能です。
 
-.. To set up port redirection on the host system, see using the -P flag. The Docker network feature supports creating networks without the need to expose ports within the network, for detailed information see the overview of this feature).
+.. To set up port redirection on the host system, see [using the -P
+   flag](run.md#expose-incoming-ports). The Docker network feature supports
+   creating networks without the need to expose ports within the network, for
+   detailed information see the  [overview of this
+   feature](https://docs.docker.com/engine/userguide/networking/)).
 
-ホストシステム上でポート転送を使うには、 :ref:`-P フラグを使う <expose-incoming-ports>` をご覧ください。Docker のネットワーク機能は、ネットワーク内でポートを公開しないネットワークを作成可能です。詳細な情報は :doc:`機能概要 </engine/userguide/networking/index>` をご覧ください。
+ホストシステム上にてポート転送を行う場合は、:ref:`-P フラグの利用 <expose-incoming-ports>` を参照してください。
+Docker のネットワークにおいては、ネットワーク内でポートを expose しなくてもネットワークを生成できる機能がサポートされています。
+詳しくは :doc:`ネットワーク機能の概要 </engine/userguide/networking/index>` を参照してください。
 
 .. _env:
 
