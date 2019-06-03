@@ -1147,11 +1147,17 @@ ENV
 ``ENV`` を用いて設定された環境変数は、そのイメージから実行されたコンテナであれば維持されます。
 環境変数の参照は ``docker inspect`` を用い、値の変更は ``docker run --env <key>=<value>`` により行うことができます。
 
-..    Note: Environment persistence can cause unexpected side effects. For example, setting ENV DEBIAN_FRONTEND noninteractive may confuse apt-get users on a Debian-based image. To set a value for a single command, use RUN <key>=<value> <command>.
+.. > **Note**:
+   > Environment persistence can cause unexpected side effects. For example,
+   > setting `ENV DEBIAN_FRONTEND noninteractive` may confuse apt-get
+   > users on a Debian-based image. To set a value for a single command, use
+   > `RUN <key>=<value> <command>`.
 
 .. note::
 
-   環境変数の一貫性は予期しない影響を与える場合があります。例えば、 ``ENV DEBIAN_FRONTEND noninteractive`` が設定されていると、Debian ベースのイメージで apt-get の利用者が混乱するかもしれません。１つのコマンドだけで値を設定するには、 ``RUN <key>=<value> <コマンド>`` を使います。
+   環境変数が維持されると、思わぬ副作用を引き起こすことがあります。
+   たとえば ``ENV DEBIAN_FRONTEND noninteractive`` という設定を行なっていると、Debian ベースのイメージにおいて apt-get を使う際には混乱を起こすかもしれません。
+   1 つのコマンドには 1 つの値のみを設定するには ``RUN <key>=<value> <command>`` を実行します。
 
 .. _add:
 
