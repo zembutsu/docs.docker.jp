@@ -1140,9 +1140,12 @@ ENV
 ただし 1 つめの書式が望ましいものです。
 1 つめは単一のキャッシュ・レイヤしか生成しないからです。
 
-.. The environment variables set using ENV will persist when a container is run from the resulting image. You can view the values using docker inspect, and change them using docker run --env <key>=<value>.
+.. The environment variables set using `ENV` will persist when a container is run
+   from the resulting image. You can view the values using `docker inspect`, and
+   change them using `docker run --env <key>=<value>`.
 
-環境変数の設定に ``ENV`` を使えば、作成したイメージを使ってコンテナを実行しても有効です。どのような値が設定されているかは ``docker inspect`` で確認でき、変更するには ``docker run --env <key>=<value>`` を使います。
+``ENV`` を用いて設定された環境変数は、そのイメージから実行されたコンテナであれば維持されます。
+環境変数の参照は ``docker inspect`` を用い、値の変更は ``docker run --env <key>=<value>`` により行うことができます。
 
 ..    Note: Environment persistence can cause unexpected side effects. For example, setting ENV DEBIAN_FRONTEND noninteractive may confuse apt-get users on a Debian-based image. To set a value for a single command, use RUN <key>=<value> <command>.
 
