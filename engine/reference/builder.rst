@@ -1280,9 +1280,13 @@ ADD されるファイルやディレクトリの UID と GID は、すべて 0 
 
 ``ADD`` は以下のルールに従います。
 
-..    The <src> path must be inside the context of the build; you cannot ADD ../something /something, because the first step of a docker build is to send the context directory (and subdirectories) to the docker daemon.
+.. - The `<src>` path must be inside the *context* of the build;
+     you cannot `ADD ../something /something`, because the first step of a
+     `docker build` is to send the context directory (and subdirectories) to the
+     docker daemon.
 
-* ``<ソース>`` パスは、構築時の *コンテント* 内にある必要があります。そのため、 ``ADD ../something /something`` の指定はできません。 ``docker build`` の最初のステップで、コンテクストのディレクトリ（と、サブディレクトリ）を docker デーモンに送るためです。
+* ``<src>`` のパス指定は、ビルド **コンテキスト** 内でなければならないため、たとえば ``ADD ../something /something`` といったことはできません。
+  ``docker build`` の最初の処理ステップでは、コンテキスト・ディレクトリ（およびそのサブディレクトリ）を Docker デーモンに送信するところから始まるためです。
 
 ..    If <src> is a URL and <dest> does not end with a trailing slash, then a file is downloaded from the URL and copied to <dest>.
 
