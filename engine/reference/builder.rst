@@ -1133,9 +1133,12 @@ ENV
    ENV myDog Rex The Dog
    ENV myCat fluffy
 
-.. will yield the same net results in the final container, but the first form is preferred because it produces a single cache layer.
+.. will yield the same net results in the final image, but the first form
+   is preferred because it produces a single cache layer.
 
-この例では、どちらも最終的に同じ結果をコンテナにもたらしますが、私たちが推奨するのは前者です。理由は前者であれば単一のキャッシュ・レイヤしか使わないからです。
+上の 2 つは最終的に同じ結果をイメージに書き入れます。
+ただし 1 つめの書式が望ましいものです。
+1 つめは単一のキャッシュ・レイヤしか生成しないからです。
 
 .. The environment variables set using ENV will persist when a container is run from the resulting image. You can view the values using docker inspect, and change them using docker run --env <key>=<value>.
 
