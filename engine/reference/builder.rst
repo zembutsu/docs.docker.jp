@@ -1240,11 +1240,18 @@ ADD されるファイルやディレクトリの UID と GID は、すべて 0 
 リモートファイルの取得時に HTTP の ``Last-Modified`` ヘッダが含まれている場合は、ヘッダに書かれたタイムスタンプを利用して、コピー先ファイルの ``mtime`` を設定します。
 ただし ``ADD`` によって処理されるファイルが何であっても、ファイルが変更されたかどうか、そしてキャッシュを更新するべきかどうかは ``mtime`` によって判断されるわけではありません。
 
-..    Note: If you build by passing a Dockerfile through STDIN (docker build - < somefile), there is no build context, so the Dockerfile can only contain a URL based ADD instruction. You can also pass a compressed archive through STDIN: (docker build - < archive.tar.gz), the Dockerfile at the root of the archive and the rest of the archive will get used at the context of the build.
+.. > **Note**:
+   > If you build by passing a `Dockerfile` through STDIN (`docker
+   > build - < somefile`), there is no build context, so the `Dockerfile`
+   > can only contain a URL based `ADD` instruction. You can also pass a
+   > compressed archive through STDIN: (`docker build - < archive.tar.gz`),
+   > the `Dockerfile` at the root of the archive and the rest of the
+   > archive will be used as the context of the build.
 
 .. note::
 
-   ``Dockerfile`` を標準入力（ ``docker build - < 何らかのファイル`` ）を通して構築しようとしても。構築時のコンテントは存在しないため、 ``Dockerfile`` には URL を指定する ``ADD`` 命令のみ記述可能です。また、圧縮ファイルを標準入力（ ``docker build - < archive.tar.gz`` ）を通すことができ、アーカイブに含まれるルートに ``Dockerfile`` があれば、構築時のコンテクストとしてアーカイブが使われます。
+   ``Dockerfile`` を標準入力から生成する場合（ ``docker build - < somefile`` ）は、ビルド・コンテキストが存在していないことになるので、``ADD`` 命令には URL の指定しか利用できません。
+   また標準入力から圧縮アーカイブを入力する場合（ ``docker build - < archive.tar.gz`` ）は、そのアーカイブのルートにある ``Dockerfile`` と、アーカイブ内のファイルすべてが、ビルド時のコンテキストとなります。
 
 ..    Note: If your URL files are protected using authentication, you will need to use RUN wget, RUN curl or use another tool from within the container as the ADD instruction does not support authentication.
 
