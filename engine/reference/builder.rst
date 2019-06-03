@@ -1166,7 +1166,7 @@ ADD
 
 .. ADD has two forms:
 
-Add は２つの形式があります。
+ADD には 2 つの書式があります。
 
 ..    ADD <src>... <dest>
     ADD ["<src>",... "<dest>"] (this form is required for paths containing whitespace)
