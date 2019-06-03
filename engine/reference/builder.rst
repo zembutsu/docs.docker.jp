@@ -1168,11 +1168,12 @@ ADD
 
 ADD には 2 つの書式があります。
 
-..    ADD <src>... <dest>
-    ADD ["<src>",... "<dest>"] (this form is required for paths containing whitespace)
+.. - `ADD <src>... <dest>`
+   - `ADD ["<src>",... "<dest>"]` (this form is required for paths containing
+   whitespace)
 
-* ``ADD <ソース>... <送信先>``
-* ``ADD ["<ソース>", ... "<送信先>"]`` （この形式はパスに空白スペースを使う場合に必要）
+* ``ADD <src>... <dest>``
+* ``ADD ["<src>",... "<dest>"]`` （この書式はホワイトスペースを含むパスを用いる場合に必要）
 
 .. The ADD instruction copies new files, directories or remote file URLs from <src> and adds them to the filesystem of the container at the path <dest>.
 
