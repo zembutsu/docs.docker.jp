@@ -1093,9 +1093,16 @@ ENV
 ``Dockerfile`` 内の後続命令の環境において、環境変数の値は維持されます。
 また、いろいろと :ref:`インラインにて変更 <environment-replacement>` することもできます。
 
-.. The ENV instruction has two forms. The first form, ENV <key> <value>, will set a single variable to a value. The entire string after the first space will be treated as the <value> - including characters such as spaces and quotes.
+.. The `ENV` instruction has two forms. The first form, `ENV <key> <value>`,
+   will set a single variable to a value. The entire string after the first
+   space will be treated as the `<value>` - including characters such as
+   spaces and quotes.
 
-``ENV`` 命令は２つの形式があります。１つめは、 ``ENV <key> <value>`` であり、変数に対して１つの値を設定します。はじめの空白以降の文字列が ``<value>`` に含まれます。ここには空白もクォートも含まれます。
+``ENV`` 命令には 2 つの書式があります。
+1 つめの書式は ``ENV <key> <value>`` です。
+1 つの変数に対して 1 つの値を設定します。
+全体の文字列のうち、最初の空白文字以降がすべて ``<value>`` として扱われます。
+そこには空白やクォートを含んでいて構いません。
 
 .. The second form, ENV <key>=<value> ..., allows for multiple variables to be set at one time. Notice that the second form uses the equals sign (=) in the syntax, while the first form does not. Like command line parsing, quotes and backslashes can be used to include spaces within values.
 
