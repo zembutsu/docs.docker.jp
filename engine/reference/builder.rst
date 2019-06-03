@@ -1052,9 +1052,17 @@ EXPOSE
 
    EXPOSE <port> [<port>...]
 
-.. The EXPOSE instruction informs Docker that the container listens on the specified network ports at runtime. EXPOSE does not make the ports of the container accessible to the host. To do that, you must use either the -p flag to publish a range of ports or the -P flag to publish all of the exposed ports. You can expose one port number and publish it externally under another number.
+.. The `EXPOSE` instruction informs Docker that the container listens on the
+   specified network ports at runtime. `EXPOSE` does not make the ports of the
+   container accessible to the host. To do that, you must use either the `-p` flag
+   to publish a range of ports or the `-P` flag to publish all of the exposed
+   ports. You can expose one port number and publish it externally under another
+   number.
 
-``EXPOSE`` 命令は、特定のネットワーク・ポートをコンテナが実行時にリッスンすることを Docker に伝えます。 ``EXPOSE`` があっても、これだけではホストからコンテナにアクセスできるようにしません。アクセスするには、 ``-p`` フラグを使ってポートの公開範囲を指定するか、 ``-P`` フラグで全ての露出ポートを公開する必要があります。外部への公開時は他のポート番号も利用可能です。
+``EXPOSE`` 命令はコンテナの実行時に、所定ネットワーク上のどのポートをリッスンするかを指定します。
+``EXPOSE`` はコンテナーのポートをホストが利用できるようにするものではありません。
+利用できるようにするためには ``-p`` フラグを使ってポートの公開範囲を指定するか、 ``-P`` フラグによって expose したポートをすべて公開する必要があります。
+1 つのポート番号を expose して、これを外部に向けては別の番号により公開することも可能です。
 
 .. To set up port redirection on the host system, see using the -P flag. The Docker network feature supports creating networks without the need to expose ports within the network, for detailed information see the overview of this feature).
 
