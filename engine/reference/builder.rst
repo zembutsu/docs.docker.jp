@@ -1357,9 +1357,11 @@ ADD されるファイルやディレクトリの UID と GID は、すべて 0 
 * ``<src>`` が上に示す以外のファイルであった場合、メタデータも含めて個々にコピーされます。
   このとき ``<dest>`` が ``/`` で終わっていたらディレクトリとみなされるので、``<src>`` の内容は ``<dest>/base(<src>)`` に書き込まれることになります。
 
-..    If multiple <src> resources are specified, either directly or due to the use of a wildcard, then <dest> must be a directory, and it must end with a slash /.
+.. - If multiple `<src>` resources are specified, either directly or due to the
+     use of a wildcard, then `<dest>` must be a directory, and it must end with
+     a slash `/`.
 
-* もし複数の ``<ソース>`` リソースが指定された場合や、ディレクトリやワイルドカードを使った場合、 ``<送信先>`` は必ずディレクトリになり、最後はスラッシュ ``/`` にしなければいけません。
+* 複数の ``<src>`` が直接指定された場合、あるいはワイルドカードを用いて指定された場合、``<dest>`` はディレクトリとする必要があり、末尾には ``/`` をつけなければなりません。
 
 ..    If <dest> does not end with a trailing slash, it will be considered a regular file and the contents of <src> will be written at <dest>.
 
