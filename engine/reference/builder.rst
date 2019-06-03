@@ -1175,9 +1175,10 @@ ADD には 2 つの書式があります。
 * ``ADD <src>... <dest>``
 * ``ADD ["<src>",... "<dest>"]`` （この書式はホワイトスペースを含むパスを用いる場合に必要）
 
-.. The ADD instruction copies new files, directories or remote file URLs from <src> and adds them to the filesystem of the container at the path <dest>.
+.. The `ADD` instruction copies new files, directories or remote file URLs from `<src>`
+   and adds them to the filesystem of the image at the path `<dest>`.
 
-``ADD`` 命令は ``<ソース>`` にある新しいファイルやディレクトリをコピー、あるいはリモートの URL からコピーします。それから、コンテナ内のファイルシステム上にある ``送信先`` に指定されたパスに追加します。
+``ADD`` 命令は ``<src>`` に示されるファイル、ディレクトリ、リモートファイル URL をコピーして、イメージ内のファイルシステム上のパス ``<dest>`` にこれらを加えます。
 
 .. Multiple <src> resource may be specified but if they are files or directories then they must be relative to the source directory that is being built (the context of the build).
 
