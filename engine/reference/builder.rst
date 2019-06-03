@@ -1293,9 +1293,18 @@ ADD されるファイルやディレクトリの UID と GID は、すべて 0 
 
 * ``<src>`` が URL 指定であって ``<dest>`` の最後にスラッシュが指定されていない場合、そのファイルを URL よりダウンロードして ``<dest>`` にコピーします。
 
-..    If <src> is a URL and <dest> does end with a trailing slash, then the filename is inferred from the URL and the file is downloaded to <dest>/<filename>. For instance, ADD http://example.com/foobar / would create the file /foobar. The URL must have a nontrivial path so that an appropriate filename can be discovered in this case (http://example.com will not work).
+.. - If `<src>` is a URL and `<dest>` does end with a trailing slash, then the
+     filename is inferred from the URL and the file is downloaded to
+     `<dest>/<filename>`. For instance, `ADD http://example.com/foobar /` would
+     create the file `/foobar`. The URL must have a nontrivial path so that an
+     appropriate filename can be discovered in this case (`http://example.com`
+     will not work).
 
-* もし ``<ソース>`` が URL であり、 ``<送信先>`` の末尾がスラッシュの場合、URL からファイル名を推測し、ファイルを ``<送信先>/<ファイル名>`` にダウンロードします。例えば、 ``ADD http://example.com/foobar /`` は、 ``/foobar`` ファイルを作成します。URL には何らかのパスが必要です。これは適切なファイル名を見つけられない場合があるためです（今回の例では、 ``http://example.com`` の指定は動作しません）。
+* ``<src>`` が URL 指定であって ``<dest>`` の最後にスラッシュが指定された場合、ファイルが指定されたものとして扱われ、URL からダウンロードして ``<dest>/<filename>`` にコピーします。
+  たとえば ``ADD http://example.com/foobar /`` という記述は ``/foobar`` というファイルを作ることになります。
+  URL には正確なパス指定が必要です。
+  上の記述であれば、適切なファイルが見つけ出されます。
+  （ ``http://example.com`` では正しく動作しません。）
 
 ..    If <src> is a directory, the entire contents of the directory are copied, including filesystem metadata.
 
