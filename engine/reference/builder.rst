@@ -1229,9 +1229,16 @@ ADD には 2 つの書式があります。
 
 ADD されるファイルやディレクトリの UID と GID は、すべて 0 として生成されます。
 
-.. In the case where <src> is a remote file URL, the destination will have permissions of 600. If the remote file being retrieved has an HTTP Last-Modified header, the timestamp from that header will be used to set the mtime on the destination file. However, like any other file processed during an ADD, mtime will not be included in the determination of whether or not the file has changed and the cache should be updated.
+.. In the case where `<src>` is a remote file URL, the destination will
+   have permissions of 600. If the remote file being retrieved has an HTTP
+   `Last-Modified` header, the timestamp from that header will be used
+   to set the `mtime` on the destination file. However, like any other file
+   processed during an `ADD`, `mtime` will not be included in the determination
+   of whether or not the file has changed and the cache should be updated.
 
-``<ソース>`` がリモート URL の場合は、送信先のパーミッションは 600 にします。もしリモートのファイルが HTTP ``Last-Modified`` ヘッダを返す場合は、このヘッダの情報を元に送信先ファイルの ``mtime`` を指定するのに使います。しかしながら、 ``ADD`` を使ったファイルをコピーする手順では、 ``mtime`` はファイルが更新されたかどうかの決定には使われず、ファイルが更新されればキャッシュも更新されます。
+``<src>`` にリモートファイル URL が指定された場合、コピー先のパーミッションは 600 となります。
+リモートファイルの取得時に HTTP の ``Last-Modified`` ヘッダが含まれている場合は、ヘッダに書かれたタイムスタンプを利用して、コピー先ファイルの ``mtime`` を設定します。
+ただし ``ADD`` によって処理されるファイルが何であっても、ファイルが変更されたかどうか、そしてキャッシュを更新するべきかどうかは ``mtime`` によって判断されるわけではありません。
 
 ..    Note: If you build by passing a Dockerfile through STDIN (docker build - < somefile), there is no build context, so the Dockerfile can only contain a URL based ADD instruction. You can also pass a compressed archive through STDIN: (docker build - < archive.tar.gz), the Dockerfile at the root of the archive and the rest of the archive will get used at the context of the build.
 
