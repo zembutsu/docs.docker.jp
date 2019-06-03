@@ -1423,6 +1423,21 @@ COPY は２つの形式があります。
    COPY test relativeDir/   # "test" を `WORKDIR`/relativeDir/ （相対ディレクトリ）に追加
    COPY test /absoluteDir/   # "test" を /absoluteDir/ （絶対ディレクトリ）に追加
 
+.. When copying files or directories that contain special characters (such as `[`
+   and `]`), you need to escape those paths following the Golang rules to prevent
+   them from being treated as a matching pattern. For example, to copy a file
+   named `arr[0].txt`, use the following;
+
+ファイルやディレクトリを追加する際に、その名前の中に（ ``[`` や ``]`` のような）特殊な文字が含まれている場合は、Go 言語のルールに従ってパス名をエスケープする必要があります。
+これはパターン・マッチングとして扱われないようにするものです。
+たとえば ``arr[0].txt`` というファイルを追加する場合は、以下のようにします。
+
+   .. COPY arr[[]0].txt /mydir/    # copy a file named "arr[0].txt" to /mydir/
+
+.. code-block:: dockerfile
+
+   COPY arr[[]0].txt /mydir/    # "arr[0].txt" というファイルを /mydir/ へコピー
+
 .. All new files and directories are created with a UID and GID of 0.
 
 追加される新しいファイルやディレクトリは、全て UID と GID が 0 として作成されます。
