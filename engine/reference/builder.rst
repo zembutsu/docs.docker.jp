@@ -1468,9 +1468,13 @@ COPY は２つの形式があります。
 
 ``COPY`` は以下のルールに従います。
 
-..    The <src> path must be inside the context of the build; you cannot COPY ../something /something, because the first step of a docker build is to send the context directory (and subdirectories) to the docker daemon.
+.. - The `<src>` path must be inside the *context* of the build;
+     you cannot `COPY ../something /something`, because the first step of a
+     `docker build` is to send the context directory (and subdirectories) to the
+     docker daemon.
 
-* ``<ソース>`` パスは、構築時の *コンテント* 内にある必要があります。そのため、 ``COPY ../something /something`` の指定はできません。 ``docker build`` の最初のステップで、コンテクストのディレクトリ（と、サブディレクトリ）を docker デーモンに送るためです。
+* ``<src>`` のパス指定は、ビルド **コンテキスト** 内でなければならないため、たとえば ``COPY ../something /something`` といったことはできません。
+  ``docker build`` の最初の処理ステップでは、コンテキスト・ディレクトリ（およびそのサブディレクトリ）を Docker デーモンに送信するところから始まるためです。
 
 ..    If <src> is a directory, the entire contents of the directory are copied, including filesystem metadata.
 
