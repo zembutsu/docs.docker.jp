@@ -1306,9 +1306,11 @@ ADD されるファイルやディレクトリの UID と GID は、すべて 0 
   上の記述であれば、適切なファイルが見つけ出されます。
   （ ``http://example.com`` では正しく動作しません。）
 
-..    If <src> is a directory, the entire contents of the directory are copied, including filesystem metadata.
+.. - If `<src>` is a directory, the entire contents of the directory are copied,
+     including filesystem metadata.
 
-* ``<ソース>`` がディレクトリの場合、ディレクトリの内容の全てをコピーします。これにはファイルシステムのメタデータを含みます。
+* ``<src>`` がディレクトリである場合、そのディレクトリ内の内容がすべてコピーされます。
+  ファイルシステムのメタデータも含まれます。
 
   .. > **Note**:
      > The directory itself is not copied, just its contents.
@@ -1476,9 +1478,11 @@ COPY は２つの形式があります。
 * ``<src>`` のパス指定は、ビルド **コンテキスト** 内でなければならないため、たとえば ``COPY ../something /something`` といったことはできません。
   ``docker build`` の最初の処理ステップでは、コンテキスト・ディレクトリ（およびそのサブディレクトリ）を Docker デーモンに送信するところから始まるためです。
 
-..    If <src> is a directory, the entire contents of the directory are copied, including filesystem metadata.
+.. - If `<src>` is a directory, the entire contents of the directory are copied,
+     including filesystem metadata.
 
-* ``<ソース>`` がディレクトリの場合、ディレクトリ内容の全てをコピーします。これにはファイルシステムのメタデータを含みます。
+* ``<src>`` がディレクトリである場合、そのディレクトリ内の内容がすべてコピーされます。
+  ファイルシステムのメタデータも含まれます。
 
   .. > **Note**:
      > The directory itself is not copied, just its contents.
