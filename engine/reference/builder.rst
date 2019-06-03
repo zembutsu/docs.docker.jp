@@ -1253,11 +1253,15 @@ ADD されるファイルやディレクトリの UID と GID は、すべて 0 
    ``Dockerfile`` を標準入力から生成する場合（ ``docker build - < somefile`` ）は、ビルド・コンテキストが存在していないことになるので、``ADD`` 命令には URL の指定しか利用できません。
    また標準入力から圧縮アーカイブを入力する場合（ ``docker build - < archive.tar.gz`` ）は、そのアーカイブのルートにある ``Dockerfile`` と、アーカイブ内のファイルすべてが、ビルド時のコンテキストとなります。
 
-..    Note: If your URL files are protected using authentication, you will need to use RUN wget, RUN curl or use another tool from within the container as the ADD instruction does not support authentication.
+.. > **Note**:
+   > If your URL files are protected using authentication, you
+   > will need to use `RUN wget`, `RUN curl` or use another tool from
+   > within the container as the `ADD` instruction does not support
+   > authentication.
 
 .. note::
 
-   URL で指定したファイルに認証がかかっている場合は、 ``RUN wget`` や ``RUN curl`` や他のツールを使う必要があります。これは ``ADD`` 命令が認証機能をサポートしていないからです。
+   URL ファイルが認証によって保護されている場合は、``RUN wget`` や ``RUN curl`` あるいは同様のツールをコンテナ内から利用する必要があります。``ADD`` 命令は認証処理をサポートしていません。
 
 ..    Note: The first encountered ADD instruction will invalidate the cache for all following instructions from the Dockerfile if the contents of <src> have changed. This includes invalidating the cache for RUN instructions. See the Dockerfile Best Practices guide for more information.
 
