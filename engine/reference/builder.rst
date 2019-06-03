@@ -1199,9 +1199,11 @@ ADD には 2 つの書式があります。
    ADD hom* /mydir/        # "hom" で始まる全てのファイルを追加
    ADD hom?.txt /mydir/    # ? は１文字だけ一致します。例： "home.txt"
 
-.. The <dest> is an absolute path, or a path relative to WORKDIR, into which the source will be copied inside the destination container.
+.. The `<dest>` is an absolute path, or a path relative to `WORKDIR`, into which
+   the source will be copied inside the destination container.
 
-``<送信先>`` は絶対パスです。あるいは、パスは ``WORKDIR`` からの相対パスです。ソースにあるものが、対象となる送信先コンテナの中にコピーされます。
+``<dest>`` は絶対パスか、あるいは ``WORKDIR`` からの相対パスにより指定します。
+対象としているコンテナ内において、そのパスに対してソースがコピーされます。
 
 .. code-block:: dockerfile
 
