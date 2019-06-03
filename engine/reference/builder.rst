@@ -1328,11 +1328,12 @@ ADD されるファイルやディレクトリの UID と GID は、すべて 0 
   ディレクトリのコピーあるいは展開の仕方は ``tar -x`` と同等です。
   つまりその結果は以下の 2 つのいずれかに従います。
 
-..        Whatever existed at the destination path and
-..        The contents of the source tree, with conflicts resolved in favor of “2.” on a file-by-file basis.
+  ..  1. Whatever existed at the destination path and
+      2. The contents of the source tree, with conflicts resolved in favor
+         of "2." on a file-by-file basis.
 
-1. 送信先のパスが存在しているかどうか
-2. ファイル単位の原則に従って、ソース・ツリーの内容と衝突しないかどうか「2」を繰り返す
+  1. コピー先に指定されていれば、それが存在しているかどうかに関わらず。あるいは、
+  2. ソース・ツリーの内容に従って各ファイルごとに行う。衝突が発生した場合は 2. を優先する。
 
 .. Note: Whether a file is identified as a recognized compression format or not is done solely based on the contents of the file, not the name of the file. For example, if an empty file happens to end with .tar.gz this will not be recognized as a compressed file and will not generate any kind of decompression error message, rather the file will simply be copied to the destination.
 
