@@ -1115,9 +1115,9 @@ ENTRYPOINT には２つの形式があります。
 * ``ENTRYPOINT ["executable", "param1", "param2"]`` （exec 形式、推奨）
 * ``ENTRYPOINT command param1 param2`` （シェル形式）
 
-.. An ENTRYPOINT allows you to configure a container that will run as an executable.
+.. An `ENTRYPOINT` allows you to configure a container that will run as an executable.
 
-``ENTRYPOINT`` はコンテナが実行するファイルを設定します。
+``ENTRYPOINT`` は、コンテナを実行モジュールのようにして実行する設定を行ないます。
 
 .. For example, the following will start nginx with its default content, listening on port 80:
 
