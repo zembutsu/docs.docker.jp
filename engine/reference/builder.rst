@@ -1119,9 +1119,11 @@ ENTRYPOINT には２つの形式があります。
 
 ``ENTRYPOINT`` は、コンテナを実行モジュールのようにして実行する設定を行ないます。
 
-.. For example, the following will start nginx with its default content, listening on port 80:
+.. For example, the following will start nginx with its default content, listening
+   on port 80:
 
-例えば、次の例は nginx をデフォルトの内容で開始し、ポート 80 を開きます。
+たとえば以下の例では、nginx をデフォルト設定で起動します。
+ポートは 80 番を利用します。
 
 .. code-block:: bash
 
