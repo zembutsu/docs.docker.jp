@@ -1107,11 +1107,13 @@ ENTRYPOINT
 
 ENTRYPOINT には２つの形式があります。
 
-..    ENTRYPOINT ["executable", "param1", "param2"] (exec form, preferred)
-    ENTRYPOINT command param1 param2 (shell form)
+.. - `ENTRYPOINT ["executable", "param1", "param2"]`
+     (*exec* form, preferred)
+   - `ENTRYPOINT command param1 param2`
+     (*shell* form)
 
-* ``ENTRYPOINT ["実行可能なもの", "パラメータ１", "パラメータ２"]`` （ *exec* 形式、推奨）
-* ``ENTRYPOINT コマンド パラメータ１ パラメータ２`` （ *シェル* 形式）
+* ``ENTRYPOINT ["executable", "param1", "param2"]`` （exec 形式、推奨）
+* ``ENTRYPOINT command param1 param2`` （シェル形式）
 
 .. An ENTRYPOINT allows you to configure a container that will run as an executable.
 
