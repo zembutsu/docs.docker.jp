@@ -1129,9 +1129,19 @@ ENTRYPOINT には２つの形式があります。
 
     docker run -i -t --rm -p 80:80 nginx
 
-.. Command line arguments to docker run <image> will be appended after all elements in an exec form ENTRYPOINT, and will override all elements specified using CMD. This allows arguments to be passed to the entry point, i.e., docker run <image> -d will pass the -d argument to the entry point. You can override the ENTRYPOINT instruction using the docker run --entrypoint flag.
+.. Command line arguments to `docker run <image>` will be appended after all
+   elements in an *exec* form `ENTRYPOINT`, and will override all elements specified
+   using `CMD`.
+   This allows arguments to be passed to the entry point, i.e., `docker run <image> -d`
+   will pass the `-d` argument to the entry point.
+   You can override the `ENTRYPOINT` instruction using the `docker run --entrypoint`
+   flag.
 
-コマンドラインで ``docker run <イメージ>`` コマンドに引数を付けますと、*exec* 形式 の ``ENTRYPOINT`` で指定した全要素の後に追加します。そして、この時に ``CMD`` を使って指定していた要素を上書きします。この動きにより、引数はエントリ・ポイント（訳者注：指定されたバイナリ）に渡されます。例えば、 ``docker run <イメージ> -d`` は、引数 ``-d`` をエントリポイントに渡します。 ``ENTRYPOINT`` 命令を上書きするには、 ``docker run --entrypoint`` フラグを使います。
+``docker run <image>`` に対するコマンドライン引数は、exec 形式の ``ENTRYPOINT`` の指定要素の後に付け加えられます。
+そして ``CMD`` において指定された引数は上書きされます。
+これはつまり、引数をエントリーポイントに受け渡すことができるということです。
+たとえば ``docker run <image> -d`` としたときの ``-d`` は、引数としてエントリーポイントに渡されます。
+``docker run --entrypoint`` を利用すれば ``ENTRYPOINT`` の内容を上書きすることができます。
 
 .. The shell form prevents any CMD or run command line arguments from being used, but has the disadvantage that your ENTRYPOINT will be started as a subcommand of /bin/sh -c, which does not pass signals. This means that the executable will not be the container’s PID 1 - and will not receive Unix signals - so your executable will not receive a SIGTERM from docker stop <container>.
 
