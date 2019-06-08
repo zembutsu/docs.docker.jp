@@ -1419,9 +1419,11 @@ exec 形式の ENTRYPOINT 例
 
 ``ENTRYPOINT`` によって指定された ``top`` の出力は ``PID 1`` ではないことがわかります。
 
-.. If you then run docker stop test, the container will not exit cleanly - the stop command will be forced to send a SIGKILL after the timeout:
+.. If you then run `docker stop test`, the container will not exit cleanly - the
+   `stop` command will be forced to send a `SIGKILL` after the timeout:
 
-それから ``docker stop test`` を実行しても、コンテナはすぐに終了しません。これは ``stop`` コマンドがタイムアウト後、``SIGKILL`` を強制送信したからです。
+この後に ``docker stop test`` を実行しても、コンテナはきれいに終了しません。
+``stop`` コマンドは、タイムアウトの後に強制的に ``SIGKILL`` を送信することになるからです。
 
 .. code-block:: bash
 
