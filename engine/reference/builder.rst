@@ -1390,9 +1390,9 @@ exec 形式の ENTRYPOINT 例
    user	0m 0.02s
    sys	0m 0.04s
 
-.. If you forget to add exec to the beginning of your ENTRYPOINT:
+.. If you forget to add `exec` to the beginning of your `ENTRYPOINT`:
 
-``ENTRYPOINT`` に ``exec`` を追加し忘れたとします。
+仮に ``ENTRYPOINT`` の先頭に ``exec`` を記述し忘れたとします。
 
 .. code-block:: dockerfile
 
