@@ -1641,9 +1641,15 @@ WORKDIR
 
    WORKDIR /path/to/workdir
 
-.. The WORKDIR instruction sets the working directory for any RUN, CMD, ENTRYPOINT, COPY and ADD instructions that follow it in the Dockerfile. If the WORKDIR doesn't exist, it will be created even if it's not used in any subsequent `Dockerfile` instruction.
+.. The `WORKDIR` instruction sets the working directory for any `RUN`, `CMD`,
+   `ENTRYPOINT`, `COPY` and `ADD` instructions that follow it in the `Dockerfile`.
+   If the `WORKDIR` doesn't exist, it will be created even if it's not used in any
+   subsequent `Dockerfile` instruction.
 
-``WORKDIR`` 命令セットは ``Dockerfile`` で ``RUN`` 、 ``CMD`` 、 ``ENTRYPOINT`` 、 ``COPY`` 、 ``ADD`` 命令実行時の作業ディレクトリ（working directory）を指定します。もし ``WORKDIR`` が存在しなければ、 ``Dockerfile`` 命令内で使用しなくてもディレクトリを作成します。
+``WORKDIR`` 命令はワークディレクトリを設定します。
+``Dockerfile`` 内にてその後に続く ``RUN``、``CMD``、``ENTRYPOINT``、``COPY``、``ADD`` の各命令において利用することができます。
+``WORKDIR`` が存在しないときは生成されます。
+これはたとえ、この後にワークディレクトリが利用されていなくても生成されます。
 
 .. It can be used multiple times in the one Dockerfile. If a relative path is provided, it will be relative to the path of the previous WORKDIR instruction. For example:
 
