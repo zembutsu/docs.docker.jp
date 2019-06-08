@@ -1343,9 +1343,16 @@ exec 形式の ENTRYPOINT 例
 シェル形式の ENTRYPOINT 例
 ------------------------------
 
-.. You can specify a plain string for the ENTRYPOINT and it will execute in /bin/sh -c. This form will use shell processing to substitute shell environment variables, and will ignore any CMD or docker run command line arguments. To ensure that docker stop will signal any long running ENTRYPOINT executable correctly, you need to remember to start it with exec:
+.. You can specify a plain string for the `ENTRYPOINT` and it will execute in `/bin/sh -c`.
+   This form will use shell processing to substitute shell environment variables,
+   and will ignore any `CMD` or `docker run` command line arguments.
+   To ensure that `docker stop` will signal any long running `ENTRYPOINT` executable
+   correctly, you need to remember to start it with `exec`:
 
-``ENTRYPOINT`` に文字列を指定したら、 ``/bin/sh -c`` で実行されます。この形式はシェルの処理を使いますので、シェル上の環境変数を展開し、 ``CMD`` や ``docker run`` コマンド行の引数を無視します。 ``docker stop`` で ``ENTRYPOINT`` で指定している実行ファイルにシグナルを送りたい場合は、 ``exec`` を使う必要があるのを思い出してください。
+``ENTRYPOINT`` に指定した文字列は、そのまま ``/bin/sh -c`` の中で実行されます。
+この形式は、シェル環境変数を置換しながらシェル処理を実行します。
+そして ``CMD`` や ``docker run`` におけるコマンドライン引数は無視します。
+``ENTRYPOINT`` による実行モジュールがどれだけ実行し続けていても、確実に ``docker stop`` によりシグナル送信ができるようにするためには、忘れずに ``exec`` をつけて実行する必要があります。
 
 .. code-block:: dockerfile
 
