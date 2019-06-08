@@ -1177,9 +1177,9 @@ exec 形式の ENTRYPOINT 例
    ENTRYPOINT ["top", "-b"]
    CMD ["-c"]
 
-.. When you run the container, you can see that top is the only process:
+.. When you run the container, you can see that `top` is the only process:
 
-コンテナを実行したら、 ``top`` のプロセスが１つだけ見えます。
+コンテナを実行すると、ただ 1 つのプロセスとして ``top`` があるのがわかります。
 
 .. code-block:: bash
 
