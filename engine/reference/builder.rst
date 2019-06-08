@@ -2024,9 +2024,21 @@ Docker にはあらかじめ定義された ``ARG`` 変数があります。
 ビルドキャッシュへの影響
 -------------------------
 
-.. ARG variables are not persisted into the built image as ENV variables are. However, ARG variables do impact the build cache in similar ways. If a Dockerfile defines an ARG variable whose value is different from a previous build, then a "cache miss" occurs upon its first usage, not its definition. In particular, all `RUN` instructions following an `ARG` instruction use the `ARG` variable implicitly (as an environment variable), thus can cause a cache miss.
+.. `ARG` variables are not persisted into the built image as `ENV` variables are.
+   However, `ARG` variables do impact the build cache in similar ways. If a
+   Dockerfile defines an `ARG` variable whose value is different from a previous
+   build, then a "cache miss" occurs upon its first usage, not its definition. In
+   particular, all `RUN` instructions following an `ARG` instruction use the `ARG`
+   variable implicitly (as an environment variable), thus can cause a cache miss.
+   All predefined `ARG` variables are exempt from caching unless there is a
+   matching `ARG` statement in the `Dockerfile`.
 
-``ARG`` 変数は、イメージ構築時の ``ENV`` 変数のように残り続けません。しかし、 ``ARG`` 変数は構築キャッシュで似たような方法として扱えます。もし Dockerfile で ``ARG`` 変数を定義したら、この値が以前の値と違う時は、以降で ``ARG`` 変数が出た時「キャッシュ・ミス」を発生します。これは、値を定義していなくても発生します。特に、すべての ``RUN`` 命令は ``ARG`` 変数を（環境変数から）暗黙的に使おうとするため、結果としてキャッシュ・ミスを引き起こします。
+``ARG`` 変数は ``ENV`` 変数とは違って、ビルドイメージの中に保持されません。
+しかし ``ARG`` 変数はビルドキャッシュへ同じような影響を及ぼします。
+Dockerfile に ``ARG`` 変数が定義されていて、その値が前回のビルドとは異なった値が設定されたとします。
+このとき「キャッシュ・ミス」（cache miss）が発生しますが、それは初めて利用されたときであり、定義された段階ではありません。
+特に ``ARG`` 命令に続く ``RUN`` 命令は、``ARG`` 変数の値を（環境変数として）暗に利用しますが、そこでキャッシュ・ミスが起こります。
+定義済の ``ARG`` 変数は、``Dockerfile`` 内に ``ARG`` 行がない限りは、キャッシュは行われません。
 
 .. For example, consider these two Dockerfile:
 
