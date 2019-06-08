@@ -1456,9 +1456,11 @@ exec 形式の ENTRYPOINT 例
 CMD と ENTRYPOINT の関連について
 ==================================================
 
-.. Both CMD and ENTRYPOINT instructions define what command gets executed when running a container. There are few rules that describe their co-operation.
+.. Both `CMD` and `ENTRYPOINT` instructions define what command gets executed when running a container.
+   There are few rules that describe their co-operation.
 
-``CMD`` と ``ENTRYPOINT`` 命令はコンテナ起動時に実行するコマンドを定義します。両方を記述する時、動作には複数のルールがあります。
+``CMD`` 命令も ``ENTRYPOINT`` 命令も、ともにコンテナ起動時に実行するコマンドを定義するものです。
+両方が動作する際に必要となるルールがいくらかあります。
 
 ..    Dockerfile should specify at least one of CMD or ENTRYPOINT commands.
 
