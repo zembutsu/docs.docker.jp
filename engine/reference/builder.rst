@@ -1531,9 +1531,13 @@ VOLUME
 たとえば ``VOLUME /var/log`` や ``VOLUME /var/log /var/db`` などです。
 Docker クライアントを通じたマウントに関する情報、利用例などに関しては :ref:`ボリュームを通じたディレクトリの共有 <mount-a-host-directory-as-a-data-volume>` を参照してください。
 
-.. The docker run command initializes the newly created volume with any data that exists at the specified location within the base image. For example, consider the following Dockerfile snippet:
+.. The `docker run` command initializes the newly created volume with any data
+   that exists at the specified location within the base image. For example,
+   consider the following Dockerfile snippet:
 
-``docker run`` コマンドは、ベース・イメージから指定した場所に、データを保存する場所として新規作成したボリュームを初期化します。例えば、次の Dockerfile をご覧ください。
+``docker run`` コマンドは、新たに生成するボリュームを初期化します。
+ベースイメージ内の指定したディレクトリに、データが存在していても構いません。
+たとえば以下のような Dockerfile の記述部分があったとします。
 
 .. code-block:: dockerfile
 
