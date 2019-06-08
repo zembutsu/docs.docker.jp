@@ -1868,7 +1868,7 @@ ARG 変数の利用
 
 .. Then, assume this image is built with this command:
 
-それから、イメージを次のように起動します。
+そしてこのイメージを以下のコマンドによりビルドしたとします。
 
 .. code-block:: bash
 
