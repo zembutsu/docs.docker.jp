@@ -1908,9 +1908,13 @@ ARG 変数の利用
 ``ARG`` 命令とは違って ``ENV`` による値はビルドイメージ内に常に保持されます。
 以下のような ``--build-arg`` フラグのない ``docker build`` を見てみます。
 
+.. ```
+   $ docker build .
+   ```
+
 .. code-block:: bash
 
-   $ docker build Dockerfile
+   $ docker build .
 
 .. Using this Dockerfile example, CONT_IMG_VER is still persisted in the image but its value would be v1.0.0 as it is the default set in line 3 by the ENV instruction.
 
