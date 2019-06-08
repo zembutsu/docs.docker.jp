@@ -2079,9 +2079,14 @@ Dockerfile に ``ARG`` 変数が定義されていて、その値が前回のビ
    ENV CONT_IMG_VER $CONT_IMG_VER
    RUN echo $CONT_IMG_VER
 
-.. In this example, the cache miss occurs on line 3. The miss happens because the variable’s value in the ENV references the ARG variable and that variable is changed through the command line. In this example, the ENV command causes the image to include the value.
+.. In this example, the cache miss occurs on line 3. The miss happens because
+   the variable's value in the `ENV` references the `ARG` variable and that
+   variable is changed through the command line. In this example, the `ENV`
+   command causes the image to include the value.
 
-この例では、キャッシュミスが３行めで発生します。ミスが起こるのは ``ENV`` 変数が ``ARG`` 変数を参照しているのと、この変数がコマンドラインで変わるためです。例における ``ENV`` コマンドはイメージの中で処理されるものです。
+この例においてキャッシュ・ミスは 3 行めで発生します。
+これは ``ENV`` における変数値が ``ARG`` 変数を参照しており、その変数値がコマンドラインから変更されるために起きます。
+この例では ``ENV`` コマンドがイメージに対して変数値を書き込むものとなります。
 
 .. If an ENV instruction overrides an ARG instruction of the same name, like this Dockerfile:
 
