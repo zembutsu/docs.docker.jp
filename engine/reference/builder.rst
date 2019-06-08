@@ -1155,9 +1155,9 @@ ENTRYPOINT には２つの形式があります。
 これはつまり、実行モジュールがコンテナの ``PID 1`` にはならず、Unix のシグナルを受信しないということです。
 したがって ``docker stop <container>`` が実行されても、その実行モジュールは ``SIGTERM`` を受信しないことになります。
 
-.. Only the last ENTRYPOINT instruction in the Dockerfile will have an effect.
+.. Only the last `ENTRYPOINT` instruction in the `Dockerfile` will have an effect.
 
-なお、 ``Dockerfile`` の最後に現れた ``ENTRYPOINT`` 命令のみ有効です。
+``ENTRYPOINT`` 命令は複数記述されていても、最後の命令しか処理されません。
 
 .. Exec form ENTRYPOINT example
 
