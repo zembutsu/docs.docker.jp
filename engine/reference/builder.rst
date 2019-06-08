@@ -2088,9 +2088,10 @@ Dockerfile に ``ARG`` 変数が定義されていて、その値が前回のビ
 これは ``ENV`` における変数値が ``ARG`` 変数を参照しており、その変数値がコマンドラインから変更されるために起きます。
 この例では ``ENV`` コマンドがイメージに対して変数値を書き込むものとなります。
 
-.. If an ENV instruction overrides an ARG instruction of the same name, like this Dockerfile:
+.. If an `ENV` instruction overrides an `ARG` instruction of the same name, like
+   this Dockerfile:
 
-もし ``ENV`` 命令を同じ名前の ``ARG`` 命令で、次のように上書きしたらどうでしょう。
+``ENV`` 命令が ``ARG`` 命令の同一変数名を上書きする例を見てみます。
 
 .. code-block:: dockerfile
    :linenos:
