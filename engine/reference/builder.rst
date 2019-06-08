@@ -1651,9 +1651,13 @@ WORKDIR
 ``WORKDIR`` が存在しないときは生成されます。
 これはたとえ、この後にワークディレクトリが利用されていなくても生成されます。
 
-.. It can be used multiple times in the one Dockerfile. If a relative path is provided, it will be relative to the path of the previous WORKDIR instruction. For example:
+.. The `WORKDIR` instruction can be used multiple times in a `Dockerfile`. If a
+   relative path is provided, it will be relative to the path of the previous
+   `WORKDIR` instruction. For example:
 
-１つの ``Dockerfile`` で複数回の利用が可能です。パスを指定したら、 ``WORKDIR`` 命令は直前に指定した相対パスに切り替えます。例：
+``WORKDIR`` 命令は ``Dockerfile`` 内にて複数利用することができます。
+ディレクトリ指定に相対パスが用いられた場合、そのパスは、直前の ``WORKDIR`` 命令からの相対パスとなります。
+たとえば以下のとおりです。
 
 .. code-block:: dockerfile
 
