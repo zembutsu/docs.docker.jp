@@ -1466,9 +1466,9 @@ CMD と ENTRYPOINT の関連について
 
 1. Dockerfile には、``CMD`` または ``ENTRYPOINT`` のいずれかが、少なくとも 1 つ必要です。
 
-..    ENTRYPOINT should be defined when using the container as an executable.
+.. 2. `ENTRYPOINT` should be defined when using the container as an executable.
 
-2. ``ENTRYPOINT`` は実行可能なコンテナとして定義する時に使うべきです。
+2. ``ENTRYPOINT`` は、コンテナを実行モジュールとして実行する際に利用します。
 
 ..    CMD should be used as a way of defining default arguments for an ENTRYPOINT command or for executing an ad-hoc command in a container.
 
