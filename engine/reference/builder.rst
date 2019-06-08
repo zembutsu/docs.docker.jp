@@ -1319,11 +1319,24 @@ exec 形式の ENTRYPOINT 例
    exec 形式は JSON 配列として解釈されます。
    したがって文字列をくくるのはダブルクォート（"）であり、シングルクォート（'）は用いてはなりません。
 
-..    Note: Unlike the shell form, the exec form does not invoke a command shell. This means that normal shell processing does not happen. For example, ENTRYPOINT [ "echo", "$HOME" ] will not do variable substitution on $HOME. If you want shell processing then either use the shell form or execute a shell directly, for example: ENTRYPOINT [ "sh", "-c", "echo $HOME" ]. Variables that are defined in the Dockerfileusing ENV, will be substituted by the Dockerfile parser.
+.. > **Note**:
+   > Unlike the *shell* form, the *exec* form does not invoke a command shell.
+   > This means that normal shell processing does not happen. For example,
+   > `ENTRYPOINT [ "echo", "$HOME" ]` will not do variable substitution on `$HOME`.
+   > If you want shell processing then either use the *shell* form or execute
+   > a shell directly, for example: `ENTRYPOINT [ "sh", "-c", "echo $HOME" ]`.
+   > When using the exec form and executing a shell directly, as in the case for
+   > the shell form, it is the shell that is doing the environment variable
+   > expansion, not docker.
 
 .. note::
 
-   *シェル* 形式とは異なり、 *exec* 形式はシェルを呼び出しません。つまり、通常のシェル上の処理はされません。例えば、 ``ENTRYPOINT ["echo", "$HOME"]`` は ``$HOME`` を変数展開しません。シェル上の処理が必要であれば、 *シェル* 形式を使うか、シェルを直接実行します。例： ``ENTRYPOINT [ "sh", "-c", "echo $HOME" ]``。変数は ``Dockerfile`` で ``ENV`` を使って定義することができ、 ``Dockerfile`` パーサー上で展開されます。
+   シェル形式とは違って exec 形式はコマンドシェルを起動しません。
+   これはつまり、ごく普通のシェル処理とはならないということです。
+   たとえば ``ENTRYPOINT [ "echo", "$HOME" ]`` を実行したとすると、`$HOME` の変数置換は行われません。
+   シェル処理が行われるようにしたければ、シェル形式を利用するか、あるいはシェルを直接実行するようにします。
+   たとえば ``ENTRYPOINT [ "sh", "-c", "echo $HOME" ]`` とします。
+   exec 形式によってシェルを直接起動した場合、シェル形式の場合でも同じですが、変数置換を行うのはシェルであって、docker ではありません。
 
 .. Shell form ENTRYPOINT example
 
