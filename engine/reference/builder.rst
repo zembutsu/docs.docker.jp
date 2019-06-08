@@ -1449,11 +1449,11 @@ exec 形式の ENTRYPOINT 例
    user	0m 0.04s
    sys	0m 0.03s
 
-.. Understand how CMD and ENTRYPOINT interact
+.. ### Understand how CMD and ENTRYPOINT interact
 
 .. _understand-how-cmd-and-entrypoint-interact:
 
-CMD と ENTRYPOINT がどのように作用するか学ぶ
+CMD と ENTRYPOINT の関連について
 ==================================================
 
 .. Both CMD and ENTRYPOINT instructions define what command gets executed when running a container. There are few rules that describe their co-operation.
