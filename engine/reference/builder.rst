@@ -1666,9 +1666,10 @@ WORKDIR
    WORKDIR c
    RUN pwd
 
-.. The output of the final pwd command in this Dockerfile would be /a/b/c.
+.. The output of the final `pwd` command in this `Dockerfile` would be
+   `/a/b/c`.
 
-この ``Dockerfile`` を使えば、最後の ``pwd`` コマンドの出力は ``/a/b/c`` になります。
+上の ``Dockerfile`` の最後の ``pwd`` コマンドは ``/a/b/c`` という出力結果を返します。
 
 .. The WORKDIR instruction can resolve environment variables previously set using ENV. You can only use environment variables explicitly set in the Dockerfile. For example:
 
