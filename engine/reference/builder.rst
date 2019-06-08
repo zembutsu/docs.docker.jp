@@ -1874,9 +1874,15 @@ ARG 変数の利用
 
    $ docker build --build-arg CONT_IMG_VER=v2.0.1 Dockerfile
 
-.. In this case, the RUN instruction uses v1.0.0 instead of the ARG setting passed by the user:v2.0.1 This behavior is similar to a shell script where a locally scoped variable overrides the variables passed as arguments or inherited from environment, from its point of definition.
+.. In this case, the `RUN` instruction uses `v1.0.0` instead of the `ARG` setting
+   passed by the user:`v2.0.1` This behavior is similar to a shell
+   script where a locally scoped variable overrides the variables passed as
+   arguments or inherited from environment, from its point of definition.
 
-この例では、 ``RUN`` 命令は ``v1.0.0`` の代わりに、 ``ARG`` でユーザから渡された ``v2.0.1`` を使います。この動作はシェルスクリプトの挙動に似ています。ローカルのスコープにある環境変数が、与えられた引数や上位の環境変数によって上書きするようなものです。
+この例において ``RUN`` 命令は ``v1.0.0`` という値を採用します。
+コマンドラインから ``v2.0.1`` が受け渡され ``ARG`` の値に設定されますが、それが用いられるわけではありません。
+これはちょうどシェルスクリプトにおいて行われる動きに似ています。
+ローカルなスコープを持つ変数は、指定された引数や環境から受け継いだ変数よりも優先されます。
 
 .. Using the example above but a different ENV specification you can create more useful interactions between ARG and ENV instructions:
 
