@@ -2069,7 +2069,7 @@ Dockerfile に ``ARG`` 変数が定義されていて、その値が前回のビ
 
 .. Consider another example under the same command line:
 
-同じコマンド行で別の例を考えます。
+もう 1 つの例を、同じコマンドライン実行を行って利用するとします。
 
 .. code-block:: dockerfile
    :linenos:
