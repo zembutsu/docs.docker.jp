@@ -1952,9 +1952,17 @@ Docker にはあらかじめ定義された ``ARG`` 変数があります。
 * ``NO_PROXY``
 * ``no_proxy``
 
-.. To use these, simply pass them on the command line using the --build-arg <varname>=<value> flag.
+.. To use these, simply pass them on the command line using the flag:
 
-これらを使うには、コマンドラインで ``--build-arg <変数名>=<値>`` フラグを単に渡すだけです。
+これを利用する場合は、コマンドラインから以下のフラグを与えるだけです。
+
+.. ```
+   --build-arg <varname>=<value>
+   ```
+
+.. code-block:: bash
+
+   --build-arg <varname>=<value>
 
 .. Impact on build caching
 
