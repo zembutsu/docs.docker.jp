@@ -1273,9 +1273,12 @@ exec 形式の ENTRYPOINT 例
    
    echo "exited $0"
 
-.. If you run this image with docker run -it --rm -p 80:80 --name test apache, you can then examine the container’s processes with docker exec, or docker top, and then ask the script to stop Apache:
+.. If you run this image with `docker run -it --rm -p 80:80 --name test apache`,
+   you can then examine the container's processes with `docker exec`, or `docker top`,
+   and then ask the script to stop Apache:
 
-このイメージを ``docker run -it --rm -p 80:80 --name test apache`` で実行したら、コンテナのプロセス状態を ``docker exec`` や ``docker top`` で調べられます。それから、スクリプトに Apache 停止を依頼します。
+このイメージを ``docker run -it --rm -p 80:80 --name test apache`` により実行したら、このコンテナのプロセスは ``docker exec`` や ``docker top`` を使って確認することができます。
+そしてこのスクリプトから Apache を停止させます。
 
 .. code-block:: bash
 
