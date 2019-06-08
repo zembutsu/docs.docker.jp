@@ -1546,9 +1546,11 @@ Docker クライアントを通じたマウントに関する情報、利用例�
    RUN echo "hello world" > /myvol/greeting
    VOLUME /myvol
 
-.. This Dockerfile results in an image that causes docker run, to create a new mount point at /myvol and copy the greeting file into the newly created volume.
+.. This Dockerfile results in an image that causes `docker run`, to
+   create a new mount point at `/myvol` and copy the  `greeting` file
+   into the newly created volume.
 
-この Dockerfile によって作られたイメージは、 ``docker run`` を実行したら、新しいマウント・ポイント ``/myvol`` を作成し、``greeting`` ファイルを直近で作成したボリュームにコピーします。
+この Dockerfile はイメージに対する処理として、``docker run`` により ``/myvol`` というマウントポイントを新たに生成し、そのボリュームの中に ``greeting`` ファイルをコピーします。
 
 ..     Note: If any build steps change the data within the volume after it has been declared, those changes will be discarded.
 
