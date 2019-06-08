@@ -1793,7 +1793,7 @@ Dockerfile には複数の ``ARG`` 命令を含めることもできます。
 
 .. A user builds this file by calling:
 
-   ユーザは構築時に次のように呼び出します。
+このファイルをビルドするには以下を実行します。
 
 .. code-block:: bash
 
