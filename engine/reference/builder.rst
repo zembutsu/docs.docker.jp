@@ -1475,9 +1475,9 @@ CMD と ENTRYPOINT の関連について
 
 3. ``CMD`` は、``ENTRYPOINT`` のデフォルト引数を定義するため、あるいはその時点でのみコマンド実行を行うために利用します。
 
-..    CMD will be overridden when running the container with alternative arguments.
+.. 4. `CMD` will be overridden when running the container with alternative arguments.
 
-4. ``CMD`` はコンテナ実行時に引数を指定すると上書します。
+4. ``CMD`` はコンテナ実行時に、別の引数によって上書きされることがあります。
 
 .. The table below shows what command is executed for different ENTRYPOINT / CMD combinations:
 
