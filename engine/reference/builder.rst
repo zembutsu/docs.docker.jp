@@ -1671,9 +1671,13 @@ WORKDIR
 
 上の ``Dockerfile`` の最後の ``pwd`` コマンドは ``/a/b/c`` という出力結果を返します。
 
-.. The WORKDIR instruction can resolve environment variables previously set using ENV. You can only use environment variables explicitly set in the Dockerfile. For example:
+.. The `WORKDIR` instruction can resolve environment variables previously set using
+   `ENV`. You can only use environment variables explicitly set in the `Dockerfile`.
+   For example:
 
-``WORKDIR`` 命令は ``ENV`` 命令を使った環境変数も展開できます。環境変数を使うには ``Dockerfile`` で明確に定義する必要があります。例：
+``WORKDIR`` 命令では、その前に ``ENV`` によって設定された環境変数を解釈します。
+環境変数は ``Dockerfile`` の中で明示的に設定したものだけが利用可能です。
+たとえば以下のようになります。
 
 .. code-block:: dockerfile
 
