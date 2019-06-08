@@ -1221,9 +1221,11 @@ exec 形式の ENTRYPOINT 例
    VOLUME ["/var/www", "/var/log/apache2", "/etc/apache2"]
    ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 
-.. If you need to write a starter script for a single executable, you can ensure that the final executable receives the Unix signals by using exec and gosu commands:
+.. If you need to write a starter script for a single executable, you can ensure that
+   the final executable receives the Unix signals by using `exec` and `gosu`
+   commands:
 
-もし実行するだけの起動スクリプトを書く必要があれば、最後に実行するコマンドが Unix シグナルを受信できるよう、 ``exec`` と ``gosu`` コマンドを使うことで可能になります。
+1 つの実行モジュールを起動するスクリプトを書く場合、最終実行される実行モジュールが Unix シグナルを受信できるようにするには ``exec`` あるいは ``gosu`` を用います。
 
 .. code-block:: bash
 
