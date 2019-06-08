@@ -1799,9 +1799,16 @@ Dockerfile には複数の ``ARG`` 命令を含めることもできます。
 
    $ docker build --build-arg user=what_user Dockerfile
 
-.. The USER at line 2 evaluates to some_user as the user variable is defined on the subsequent line 3. The USER at line 4 evaluates to what_user as user is defined and the what_user value was passed on the command line. Prior to its definition by an ARG instruction, any use of a variable results in an empty string.
+.. The `USER` at line 2 evaluates to `some_user` as the `user` variable is defined on the
+   subsequent line 3. The `USER` at line 4 evaluates to `what_user` as `user` is
+   defined and the `what_user` value was passed on the command line. Prior to its definition by an
+   `ARG` instruction, any use of a variable results in an empty string.
 
-２行めの ``USER`` は ``some_user`` を、３行めサブシーケントで定義された ``user`` 変数として評価します。４行めでは ``what_user`` を ``USER`` で定義したものと評価し、 ``what_user`` 値はコマンドラインで指定したものになります。 ``ARG`` 命令で定義するまで、あらゆる変数は空の文字列です。
+2 行めの ``USER`` が ``some-user`` として評価されます。
+これは ``user`` 変数が、直後の 3 行めにおいて定義されているからです。
+そして 4 行めの ``USER`` は ``what_user`` として評価されます。
+``user`` が定義済であって、コマンドラインから ``what_user`` という値が受け渡されたからです。
+``ARG`` 命令による定義を行うまで、その変数を利用しても空の文字列として扱われます。
 
 .. You can use an ARG or an ENV instruction to specify variables that are available to the RUN instruction. Environment variables defined using the ENV instruction always override an ARG instruction of the same name. Consider this Dockerfile with an ENV and ARG instruction.
 
