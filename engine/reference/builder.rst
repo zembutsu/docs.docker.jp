@@ -2058,9 +2058,14 @@ Dockerfile に ``ARG`` 変数が定義されていて、その値が前回のビ
    ARG CONT_IMG_VER
    RUN echo hello
 
-.. If you specify --build-arg CONT_IMG_VER=<value> on the command line, in both cases, the specification on line 2 does not cause a cache miss; line 3 does cause a cache miss.ARG CONT_IMG_VER causes the RUN line to be identified as the same as running CONT_IMG_VER=<value> echo hello, so if the <value> changes, we get a cache miss.
+.. If you specify `--build-arg CONT_IMG_VER=<value>` on the command line, in both
+   cases, the specification on line 2 does not cause a cache miss; line 3 does
+   cause a cache miss.`ARG CONT_IMG_VER` causes the RUN line to be identified
+   as the same as running `CONT_IMG_VER=<value>` echo hello, so if the `<value>`
+   changes, we get a cache miss.
 
-``--build-arg CONT_IMG_VER=<値>`` をコマンドライン上で指定すると、どちらの場合も２行目はキャッシュ・ミスを引き起こします。さらに３行目もキャッシュ・ミスになります。 ``ARG CONT_IMG_VER`` は RUN 行で ``CONT_IMG_VER=<値>`` で echo hello と同じにしたいのであれば、 ``<値>`` の編億がキャッシュ・ミスになります。
+コマンドラインから ``--build-arg CONT_IMG_VER=<value>`` を指定すると 2 つの例ともに、2 行めの記述ではキャッシュ・ミスが起きず、3 行めで発生します。
+``ARG CONT_IMG_VER`` は、``RUN`` 行において ``CONT_IMG_VER=<value>`` echo hello と同等のことが実行されるので、``<value>`` が変更されると、キャッシュ・ミスが起こるということです。
 
 .. Consider another example under the same command line:
 
