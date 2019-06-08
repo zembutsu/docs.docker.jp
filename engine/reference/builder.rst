@@ -1372,9 +1372,9 @@ exec 形式の ENTRYPOINT 例
      PID  PPID USER     STAT   VSZ %VSZ %CPU COMMAND
        1     0 root     R     3164   0%   0% top -b
 
-.. Which will exit cleanly on docker stop:
+.. Which will exit cleanly on `docker stop`:
 
-終了するには、 ``docker stop`` を実行します。
+きれいに終了させるには ``docker stop`` を実行します。
 
 .. code-block:: bash
 
