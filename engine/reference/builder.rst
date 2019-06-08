@@ -1937,9 +1937,11 @@ ARG 変数の利用
 定義済 ARG 変数
 ----------------
 
-.. Docker has a set of predefined ARG variables that you can use without a corresponding ARG instruction in the Dockerfile.
+.. Docker has a set of predefined `ARG` variables that you can use without a
+   corresponding `ARG` instruction in the Dockerfile.
 
-Docker は Dockerfile に対応する ``ARG`` 命令が無くても、既定の ``ARG`` 変数セットを持っています。
+Docker にはあらかじめ定義された ``ARG`` 変数があります。
+これは Dockerfile において ``ARG`` 命令を指定しなくても利用することができます。
 
 * ``HTTP_PROXY``
 * ``http_proxy``
