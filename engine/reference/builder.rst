@@ -1922,9 +1922,13 @@ ARG 変数の利用
 上の Dockerfile の例を用いると、``CONT_IMG_VER`` の値はイメージ内に保持されますが、その値は ``v1.0.0`` になります。
 これは 3 行めの ``ENV`` 命令で設定されているデフォルト値です。
 
-.. The variable expansion technique in this example allows you to pass arguments from the command line and persist them in the final image by leveraging the ENV instruction. Variable expansion is only supported for a limited set of Dockerfile instructions.
+.. The variable expansion technique in this example allows you to pass arguments
+   from the command line and persist them in the final image by leveraging the
+   `ENV` instruction. Variable expansion is only supported for [a limited set of
+   Dockerfile instructions.](#environment-replacement)
 
-この例における変数展開のテクニックは、コマンドラインから引数を渡せるようにし、 ``ENV`` 命令を使うことで最終的に一貫したイメージを作成します。サポートされている変数展開は :ref:`Dockerfile 命令の一部 <environment-replacement>` のみです。
+この例で見たように変数展開の手法では、コマンドラインから引数を受け渡すことが可能であり、``ENV`` 命令を用いればその値を最終イメージに残すことができます。
+変数展開は、:ref:`特定の Dockerfile 命令 <environment-replacement>` においてのみサポートされます。
 
 .. Docker has a set of predefined ARG variables that you can use without a corresponding ARG instruction in the Dockerfile.
 
