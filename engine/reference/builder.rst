@@ -1624,6 +1624,14 @@ USER
 ``USER`` 命令は、ユーザ名（または UID）と、オプションとしてユーザグループ（または GID）を指定します。
 そしてイメージが実行されるとき、``Dockerfile`` 内の後続の ``RUN``、``CMD``、``ENTRYPOINT`` の各命令においてこの情報を利用します。
 
+.. > **Warning**:
+   > When the user does doesn't have a primary group then the image (or the next
+   > instructions) will be run with the `root` group.
+
+.. warning::
+
+   ユーザにプライマリグループがない場合、イメージ（あるいは次の命令）は ``root`` グループとして実行されます。
+
 .. _workdir:
 
 WORKDIR
