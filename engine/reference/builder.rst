@@ -1415,9 +1415,9 @@ exec 形式の ENTRYPOINT 例
        1     0 root     S     3168   0%   0% /bin/sh -c top -b cmd cmd2
        7     1 root     R     3164   0%   0% top -b
 
-.. You can see from the output of top that the specified ENTRYPOINT is not PID 1.
+.. You can see from the output of `top` that the specified `ENTRYPOINT` is not `PID 1`.
 
-``top`` の出力から、 ``ENTRYPOINT`` が ``PID 1`` ではないことが分かるでしょう。
+``ENTRYPOINT`` によって指定された ``top`` の出力は ``PID 1`` ではないことがわかります。
 
 .. If you then run docker stop test, the container will not exit cleanly - the stop command will be forced to send a SIGKILL after the timeout:
 
