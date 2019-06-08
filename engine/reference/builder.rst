@@ -1964,6 +1964,59 @@ Docker にはあらかじめ定義された ``ARG`` 変数があります。
 
    --build-arg <varname>=<value>
 
+.. By default, these pre-defined variables are excluded from the output of
+   `docker history`. Excluding them reduces the risk of accidentally leaking
+   sensitive authentication information in an `HTTP_PROXY` variable.
+
+デフォルトにおいて、これらの定義済変数は ``docker history`` による出力からは除外されます。
+除外する理由は、``HTTP_PROXY`` などの各変数内にある重要な認証情報が漏洩するリスクを軽減するためです。
+
+.. For example, consider building the following Dockerfile using
+   `--build-arg HTTP_PROXY=http://user:pass@proxy.lon.example.com`
+
+たとえば ``--build-arg HTTP_PROXY=http://user:pass@proxy.lon.example.com`` という引数を用いて、以下の Dockerfile をビルドするとします。
+
+.. ``` Dockerfile
+   FROM ubuntu
+   RUN echo "Hello World"
+   ```
+
+.. code-block:: dockerfile
+
+   FROM ubuntu
+   RUN echo "Hello World"
+
+.. In this case, the value of the `HTTP_PROXY` variable is not available in the
+   `docker history` and is not cached. If you were to change location, and your
+   proxy server changed to `http://user:pass@proxy.sfo.example.com`, a subsequent
+   build does not result in a cache miss.
+
+この場合、``HTTP_PROXY`` 変数の値は ``docker history`` から取得することはできず、キャッシュにも含まれていません。
+したがって URL が変更され、プロキシサーバーも ``http://user:pass@proxy.sfo.example.com`` に変更したとしても、この後に続くビルド処理において、キャッシュ・ミスは発生しません。
+
+.. If you need to override this behaviour then you may do so by adding an `ARG`
+   statement in the Dockerfile as follows:
+
+この動作を取り消す必要がある場合は、以下のように Dockerfile 内に ``ARG`` 命令を加えれば実現できます。
+
+.. ``` Dockerfile
+   FROM ubuntu
+   ARG HTTP_PROXY
+   RUN echo "Hello World"
+   ```
+
+.. code-block:: dockerfile
+
+   FROM ubuntu
+   ARG HTTP_PROXY
+   RUN echo "Hello World"
+
+.. When building this Dockerfile, the `HTTP_PROXY` is preserved in the
+   `docker history`, and changing its value invalidates the build cache.
+
+この Dockerfile がビルドされるとき、``HTTP_PROXY`` は ``docker history`` に保存されます。
+そしてその値を変更すると、ビルドキャッシュは無効化されます。
+
 .. Impact on build caching
 
 .. _impact-on-build-caching:
