@@ -1759,9 +1759,20 @@ Dockerfile には複数の ``ARG`` 命令を含めることもできます。
 
 ``ARG`` 命令にデフォルト値が設定されていて、ビルド時に値設定が行われなければ、デフォルト値が用いられます。
 
-.. An ARG variable definition comes into effect from the line on which it is defined in the Dockerfile not from the argument’s use on the command-line or elsewhere. For example, consider this Dockerfile:
+.. ### Scope
 
-``ARG`` 変数は ``Dockerfile`` で記述した行以降で効果があります。ただし、コマンドライン上で引数の指定が無い場合です。次の Dockerfile の例を見てみましょう。
+.. _scope:
+
+変数スコープ
+-------------
+
+.. An `ARG` variable definition comes into effect from the line on which it is
+   defined in the `Dockerfile` not from the argument's use on the command-line or
+   elsewhere.  For example, consider this Dockerfile:
+
+``ARG`` による値定義が有効になるのは、``Dockerfile`` 内の記述行以降です。
+コマンドラインなどにおいて用いられるときではありません。
+たとえば以下のような Dockerfile を見てみます。
 
 .. code-block:: dockerfile
 
