@@ -1244,9 +1244,12 @@ exec 形式の ENTRYPOINT 例
    
    exec "$@"
 
-.. Lastly, if you need to do some extra cleanup (or communicate with other containers) on shutdown, or are co-ordinating more than one executable, you may need to ensure that the ENTRYPOINT script receives the Unix signals, passes them on, and then does some more work:
+.. Lastly, if you need to do some extra cleanup (or communicate with other containers)
+   on shutdown, or are co-ordinating more than one executable, you may need to ensure
+   that the `ENTRYPOINT` script receives the Unix signals, passes them on, and then
+   does some more work:
 
-もしも、シャットダウン時に何らかの追加クリーンアップ（あるいは、他のコンテナとの通信）が必要な場合や、１つ以上の実行ファイルと連携したい場合は、 ``ENTRYPOINT`` のスクリプトが Unix シグナルを受信出来るようにし、それを使って様々な処理を行います。
+シャットダウンの際に追加でクリーンアップするようなコマンドを実行したい（他のコンテナとの通信を行ないたい）場合、あるいは複数の実行モジュールを連動して動かしている場合は、``ENTRYPOINT`` のスクリプトが確実に Unix シグナルを受信し、これを受けて動作するようにすることが必要になるかもしれません。
 
 .. code-block:: bash
 
