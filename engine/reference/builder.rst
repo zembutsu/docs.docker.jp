@@ -1754,9 +1754,10 @@ Dockerfile には複数の ``ARG`` 命令を含めることもできます。
    ARG buildno=1
    ...
 
-.. If an ARG value has a default and if there is no value passed at build-time, the builder uses the default.
+.. If an `ARG` instruction has a default value and if there is no value passed
+   at build-time, the builder uses the default.
 
-``ARG`` がデフォルト値を持っている場合、構築時に値の指定が無ければ、このデフォルト値を使います。
+``ARG`` 命令にデフォルト値が設定されていて、ビルド時に値設定が行われなければ、デフォルト値が用いられます。
 
 .. An ARG variable definition comes into effect from the line on which it is defined in the Dockerfile not from the argument’s use on the command-line or elsewhere. For example, consider this Dockerfile:
 
