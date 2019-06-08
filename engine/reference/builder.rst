@@ -1902,9 +1902,11 @@ ARG 変数の利用
    ENV CONT_IMG_VER ${CONT_IMG_VER:-v1.0.0}
    RUN echo $CONT_IMG_VER
 
-.. Unlike an ARG instruction, ENV values are always persisted in the built image. Consider a docker build without the --build-arg flag:
+.. Unlike an `ARG` instruction, `ENV` values are always persisted in the built
+   image. Consider a docker build without the `--build-arg` flag:
 
-``ARG`` 命令とは異なり、構築時の ``ENV`` 値は常に一定です。docker build で --build-arg フラグを使わない場合を考えてみましょう。
+``ARG`` 命令とは違って ``ENV`` による値はビルドイメージ内に常に保持されます。
+以下のような ``--build-arg`` フラグのない ``docker build`` を見てみます。
 
 .. code-block:: bash
 
