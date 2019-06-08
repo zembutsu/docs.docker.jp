@@ -1916,9 +1916,11 @@ ARG 変数の利用
 
    $ docker build .
 
-.. Using this Dockerfile example, CONT_IMG_VER is still persisted in the image but its value would be v1.0.0 as it is the default set in line 3 by the ENV instruction.
+.. Using this Dockerfile example, `CONT_IMG_VER` is still persisted in the image but
+   its value would be `v1.0.0` as it is the default set in line 3 by the `ENV` instruction.
 
-この Dockerfile の例では、 ``CONT_IMG_VER`` はイメージの中では変わりませんが、３行めの ``ENV`` 命令でデフォルト値を設定することにより、値は ``v1.0.0`` となります。
+上の Dockerfile の例を用いると、``CONT_IMG_VER`` の値はイメージ内に保持されますが、その値は ``v1.0.0`` になります。
+これは 3 行めの ``ENV`` 命令で設定されているデフォルト値です。
 
 .. The variable expansion technique in this example allows you to pass arguments from the command line and persist them in the final image by leveraging the ENV instruction. Variable expansion is only supported for a limited set of Dockerfile instructions.
 
