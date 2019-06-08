@@ -2017,12 +2017,12 @@ Docker にはあらかじめ定義された ``ARG`` 変数があります。
 この Dockerfile がビルドされるとき、``HTTP_PROXY`` は ``docker history`` に保存されます。
 そしてその値を変更すると、ビルドキャッシュは無効化されます。
 
-.. Impact on build caching
+.. ### Impact on build caching
 
 .. _impact-on-build-caching:
 
-構築キャッシュの影響
---------------------
+ビルドキャッシュへの影響
+-------------------------
 
 .. ARG variables are not persisted into the built image as ENV variables are. However, ARG variables do impact the build cache in similar ways. If a Dockerfile defines an ARG variable whose value is different from a previous build, then a "cache miss" occurs upon its first usage, not its definition. In particular, all `RUN` instructions following an `ARG` instruction use the `ARG` variable implicitly (as an environment variable), thus can cause a cache miss.
 
