@@ -1774,7 +1774,16 @@ Dockerfile には複数の ``ARG`` 命令を含めることもできます。
 コマンドラインなどにおいて用いられるときではありません。
 たとえば以下のような Dockerfile を見てみます。
 
+.. ```
+   1 FROM busybox
+   2 USER ${user:-some_user}
+   3 ARG user
+   4 USER $user
+   ...
+   ```
+
 .. code-block:: dockerfile
+   :linenos:
 
    FROM busybox
    USER ${user:-some_user}
