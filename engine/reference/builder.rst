@@ -1603,9 +1603,19 @@ Docker クライアントを通じたマウントに関する情報、利用例�
 USER
 ==========
 
+..     USER <user>[:<group>]
+   or
+       USER <UID>[:<GID>]
+
 .. code-block:: dockerfile
 
-   USER daemon
+   USER <user>[:<group>]
+
+または
+
+.. code-block:: dockerfile
+
+   USER <UID>[:<GID>]
 
 .. The USER instruction sets the user name or UID to use when running the image and for any RUN, CMD and ENTRYPOINT instructions that follow it in the Dockerfile.
 
