@@ -1204,9 +1204,9 @@ exec 形式の ENTRYPOINT 例
    root         1  2.6  0.1  19752  2352 ?        Ss+  08:24   0:00 top -b -H
    root         7  0.0  0.1  15572  2164 ?        R+   08:25   0:00 ps aux
 
-.. And you can gracefully request top to shut down using docker stop test.
+.. And you can gracefully request `top` to shut down using `docker stop test`.
 
-それから、``docker stop test`` を使い ``top`` を停止するよう、通常のリクエストを行えます。
+``top`` を適切に終了させるには ``docker stop test`` を実行します。
 
 .. The following Dockerfile shows using the ENTRYPOINT to run Apache in the foreground (i.e., as PID 1):
 
