@@ -1143,9 +1143,17 @@ ENTRYPOINT には２つの形式があります。
 たとえば ``docker run <image> -d`` としたときの ``-d`` は、引数としてエントリーポイントに渡されます。
 ``docker run --entrypoint`` を利用すれば ``ENTRYPOINT`` の内容を上書きすることができます。
 
-.. The shell form prevents any CMD or run command line arguments from being used, but has the disadvantage that your ENTRYPOINT will be started as a subcommand of /bin/sh -c, which does not pass signals. This means that the executable will not be the container’s PID 1 - and will not receive Unix signals - so your executable will not receive a SIGTERM from docker stop <container>.
+.. The *shell* form prevents any `CMD` or `run` command line arguments from being
+   used, but has the disadvantage that your `ENTRYPOINT` will be started as a
+   subcommand of `/bin/sh -c`, which does not pass signals.
+   This means that the executable will not be the container's `PID 1` - and
+   will _not_ receive Unix signals - so your executable will not receive a
+   `SIGTERM` from `docker stop <container>`.
 
-*シェル* 形式では ``CMD`` や ``run`` コマンド行の引数を使えないという不利な点があります。 ``ENTRYPOINT`` は ``/bin/sh -c`` のサブコマンドとして実行されるため、シグナルを渡せません。つまり、何かを実行してもコンテナの ``PID 1`` にはなりません。そして、 Unix シグナルを受け付け *ません*。そのため、実行ファイルは ``docker stop <コンテナ>`` を実行しても、 ``SIGTERM``  を受信しません。
+シェル形式では ``CMD`` や ``run`` のコマンドライン引数は受け付けずに処理を行います。
+ただし ``ENTRYPOINT`` は ``/bin/sh -c`` のサブコマンドとして起動されるので、シグナルを送信しません。
+これはつまり、実行モジュールがコンテナの ``PID 1`` にはならず、Unix のシグナルを受信しないということです。
+したがって ``docker stop <container>`` が実行されても、その実行モジュールは ``SIGTERM`` を受信しないことになります。
 
 .. Only the last ENTRYPOINT instruction in the Dockerfile will have an effect.
 
