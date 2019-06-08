@@ -1727,17 +1727,6 @@ Dockerfile には複数の ``ARG`` 命令を含めることもできます。
    ARG buildno
    ...
 
-.. A Dockerfile author may optionally specify a default value for an ARG instruction:
-
-Dockerfile の作者は、オプションで ``ARG`` 命令のデフォルト値を指定できます。
-
-.. code-block:: dockerfile
-
-   FROM busybox
-   ARG user1=someuser
-   ARG buildno=1
-   ...
-
 .. > **Warning:** It is not recommended to use build-time variables for
    >  passing secrets like github keys, user credentials etc. Build-time variable
    >  values are visible to any user of the image with the `docker history` command.
@@ -1746,6 +1735,24 @@ Dockerfile の作者は、オプションで ``ARG`` 命令のデフォルト値
 
    ビルド時の変数として、github キーや認証情報などの秘密の情報を設定することは、お勧めできません。
    ビルド変数の値は、イメージを利用する他人が ``docker history`` コマンドを実行すれば容易に見ることができてしまうからです。
+
+.. ### Default values
+
+.. _default_values:
+
+デフォルト値
+-------------
+
+.. An `ARG` instruction can optionally include a default value:
+
+``ARG`` 命令にはオプションとしてデフォルト値を設定することができます。
+
+.. code-block:: dockerfile
+
+   FROM busybox
+   ARG user1=someuser
+   ARG buildno=1
+   ...
 
 .. If an ARG value has a default and if there is no value passed at build-time, the builder uses the default.
 
