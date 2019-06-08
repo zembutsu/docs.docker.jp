@@ -1208,9 +1208,10 @@ exec 形式の ENTRYPOINT 例
 
 ``top`` を適切に終了させるには ``docker stop test`` を実行します。
 
-.. The following Dockerfile shows using the ENTRYPOINT to run Apache in the foreground (i.e., as PID 1):
+.. The following `Dockerfile` shows using the `ENTRYPOINT` to run Apache in the
+   foreground (i.e., as `PID 1`):
 
-次の ``Dockerfile`` は ``ENTRYPOINT`` を使って Apache をフォアグラウンドで実行します（つまり、 ``PID 1`` として）。
+次の ``Dockerfile`` は、Apache をフォアグラウンドで（つまり ``PID 1`` として）実行するような ``ENTRYPOINT`` の例を示しています。
 
 .. code-block:: dockerfile
 
