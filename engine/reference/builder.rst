@@ -1685,9 +1685,10 @@ WORKDIR
    WORKDIR $DIRPATH/$DIRNAME
    RUN pwd
 
-..    The output of the final pwd command in this Dockerfile would be /path/$DIRNAME
+.. The output of the final `pwd` command in this `Dockerfile` would be
+   `/path/$DIRNAME`
 
-この ``Dockerfile`` を使えば、最後の ``pwd`` コマンドの出力は ``/path/$DIRNAME`` になります。
+上の ``Dockerfile`` の最後の ``pwd`` コマンドは  ``/path/$DIRNAME`` という出力結果を返します。
 
 .. _arg:
 
