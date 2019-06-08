@@ -1301,11 +1301,14 @@ exec 形式の ENTRYPOINT 例
    user	0m 0.03s
    sys	0m 0.03s
 
-..    Note: you can over ride the ENTRYPOINT setting using --entrypoint, but this can only set the binary to exec (no sh -c will be used).
+.. > **Note:** you can override the `ENTRYPOINT` setting using `--entrypoint`,
+   > but this can only set the binary to *exec* (no `sh -c` will be used).
 
 .. note::
 
-   ``ENTRYPIONT`` 設定は ``--entrypoint``  を使って上書きできますが、設定できるのはバイナリが実行可能な場合のみです（ ``sh -c`` が使われていない時のみ ）。
+   ``--entrypoint`` を使うと ``ENTRYPOINT`` の設定を上書きすることができます。
+   ただしこの場合は、実行モジュールを exec 形式にできるだけです。
+   （``sh -c`` は利用されません。）
 
 ..    Note: The exec form is parsed as a JSON array, which means that you must use double-quotes (“) around words not single-quotes (‘).
 
