@@ -1254,10 +1254,11 @@ exec 形式の ENTRYPOINT 例
 .. code-block:: bash
 
    #!/bin/sh
-   # メモ：これは sh を使っていますので、busyboy コンテナでも動きます
+   # メモ: ここで sh を用いました。したがって busybox コンテナーでも動作します。
    
-   # サービス停止時に手動でもクリーンアップが必要な場合は trap を使います。
-   # あるいは１つのコンテナ内に複数のサービスを起動する必要があります。
+   # ここで trap を用います。サービスが停止した後に手動でクリーンアップする
+   # コマンドを実行するにはこれも必要となります。
+   # こうしておかないと、1 つのコンテナーで複数サービスを起動しなければなりません。
    trap "echo TRAPed signal" HUP INT QUIT TERM
    
    # ここからバックグラウンドでサービスを開始します
@@ -1266,7 +1267,7 @@ exec 形式の ENTRYPOINT 例
    echo "[hit enter key to exit] or run 'docker stop <container>'"
    read
    
-   # ここからサービスを停止し、クリーンアップします
+   # ここでサービスを停止しクリーンアップします。
    echo "stopping apache"
    /usr/sbin/apachectl stop
    
