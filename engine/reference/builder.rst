@@ -1164,9 +1164,12 @@ ENTRYPOINT には２つの形式があります。
 exec 形式の ENTRYPOINT 例
 ------------------------------
 
-.. You can use the exec form of ENTRYPOINT to set fairly stable default commands and arguments and then use either form of CMD to set additional defaults that are more likely to be changed.
+.. You can use the *exec* form of `ENTRYPOINT` to set fairly stable default commands
+   and arguments and then use either form of `CMD` to set additional defaults that
+   are more likely to be changed.
 
-``ENTRYPOINT`` の *exec* 形式を使い、適切なデフォルトのコマンドと引数を指定します。それから ``CMD`` を使い、変更する可能性のある追加のデフォルト引数も指定します。
+``ENTRYPOINT`` の exec 形式は、デフォルト実行するコマンドおよび引数として、ほぼ変わることがないものを設定します。
+そして ``CMD`` 命令の 2 つある書式のいずれでもよいので、変更が必要になりそうな内容を追加で設定します。
 
 .. code-block:: dockerfile
 
