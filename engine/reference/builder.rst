@@ -1844,9 +1844,14 @@ Dockerfile には複数の ``ARG`` 命令を含めることもできます。
 ARG 変数の利用
 ---------------
 
-.. You can use an ARG or an ENV instruction to specify variables that are available to the RUN instruction. Environment variables defined using the ENV instruction always override an ARG instruction of the same name. Consider this Dockerfile with an ENV and ARG instruction.
+.. You can use an `ARG` or an `ENV` instruction to specify variables that are
+   available to the `RUN` instruction. Environment variables defined using the
+   `ENV` instruction always override an `ARG` instruction of the same name. Consider
+   this Dockerfile with an `ENV` and `ARG` instruction.
 
-``ARG`` や ``ENV`` 命令を ``RUN`` 命令のための環境変数にも利用できます。 ``ENV`` 命令を使った環境変数の定義は、常に同じ名前の ``ARG`` 命令を上書きします。Dockerfile における ``ENV`` と ``ARG`` 命令を考えましょう。
+``ARG`` 命令や ``ENV`` 命令において変数を指定し、それを ``RUN`` 命令にて用いることができます。
+``ENV`` 命令を使って定義された環境変数は、``ARG`` 命令において同名の変数が指定されていたとしても優先されます。
+以下のように ``ENV`` 命令と ``ARG`` 命令を含む Dockerfile があるとします。
 
 .. code-block:: dockerfile
 
