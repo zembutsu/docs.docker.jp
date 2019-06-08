@@ -1617,9 +1617,12 @@ USER
 
    USER <UID>[:<GID>]
 
-.. The USER instruction sets the user name or UID to use when running the image and for any RUN, CMD and ENTRYPOINT instructions that follow it in the Dockerfile.
+.. The `USER` instruction sets the user name (or UID) and optionally the user
+   group (or GID) to use when running the image and for any `RUN`, `CMD` and
+   `ENTRYPOINT` instructions that follow it in the `Dockerfile`.
 
-``USER`` 命令セットはユーザ名か UID を使います。これはイメージを ``RUN`` 、 ``CMD`` 、 ``ENTRYPOINT`` 命令で実行時のものであり、 ``Dockerfile`` で指定します。
+``USER`` 命令は、ユーザ名（または UID）と、オプションとしてユーザグループ（または GID）を指定します。
+そしてイメージが実行されるとき、``Dockerfile`` 内の後続の ``RUN``、``CMD``、``ENTRYPOINT`` の各命令においてこの情報を利用します。
 
 .. _workdir:
 
