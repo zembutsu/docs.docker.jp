@@ -1470,9 +1470,10 @@ CMD と ENTRYPOINT の関連について
 
 2. ``ENTRYPOINT`` は、コンテナを実行モジュールとして実行する際に利用します。
 
-..    CMD should be used as a way of defining default arguments for an ENTRYPOINT command or for executing an ad-hoc command in a container.
+.. 3. `CMD` should be used as a way of defining default arguments for an `ENTRYPOINT` command
+   or for executing an ad-hoc command in a container.
 
-3. コンテナをアドホック（その場その場）で実行するコマンドを ``ENTRYPOINT`` にする場合、そのデフォルトの引数の指定として ``CMD`` を指定すべきです。
+3. ``CMD`` は、``ENTRYPOINT`` のデフォルト引数を定義するため、あるいはその時点でのみコマンド実行を行うために利用します。
 
 ..    CMD will be overridden when running the container with alternative arguments.
 
