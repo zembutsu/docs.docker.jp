@@ -1695,9 +1695,11 @@ WORKDIR
 ARG
 ==========
 
+   ..  ARG <name>[=<default value>]
+
 .. code-block:: dockerfile
 
-   ARG <名前>[=<デフォルト値>]
+   ARG <name>[=<default value>]
 
 .. The ARG instruction defines a variable that users can pass at build-time to the builder with the docker build command using the --build-arg <varname>=<value> flag. If a user specifies a build argument that was not defined in the Dockerfile, the build outputs an error.
 
