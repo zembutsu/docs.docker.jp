@@ -1889,7 +1889,13 @@ ARG 変数の利用
 
 上の例を利用しつつ ``ENV`` のもう 1 つ別の仕様を用いると、さらに ``ARG`` と ``ENV`` の組み合わせによる以下のような利用もできます。
 
+.. 1 FROM ubuntu
+   2 ARG CONT_IMG_VER
+   3 ENV CONT_IMG_VER ${CONT_IMG_VER:-v1.0.0}
+   4 RUN echo $CONT_IMG_VER
+
 .. code-block:: dockerfile
+   :linenos:
 
    FROM ubuntu
    ARG CONT_IMG_VER
