@@ -1479,9 +1479,9 @@ CMD と ENTRYPOINT の関連について
 
 4. ``CMD`` はコンテナ実行時に、別の引数によって上書きされることがあります。
 
-.. The table below shows what command is executed for different ENTRYPOINT / CMD combinations:
+.. The table below shows what command is executed for different `ENTRYPOINT` / `CMD` combinations:
 
-以下の表は ``ENTRYPOINT`` / ``CMD`` を組み合わせたコマンドの実行結果です。
+以下の表は、``ENTRYPOINT`` と ``CMD`` の組み合わせに従って実行されるコマンドを示しています。
 
 .. list-table::
    :header-rows: 1
