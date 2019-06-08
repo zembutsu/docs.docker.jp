@@ -1425,6 +1425,17 @@ exec 形式の ENTRYPOINT 例
 この後に ``docker stop test`` を実行しても、コンテナはきれいに終了しません。
 ``stop`` コマンドは、タイムアウトの後に強制的に ``SIGKILL`` を送信することになるからです。
 
+   ..  $ docker exec -it test ps aux
+       PID   USER     COMMAND
+           1 root     /bin/sh -c top -b cmd cmd2
+           7 root     top -b
+           8 root     ps aux
+       $ /usr/bin/time docker stop test
+       test
+       real	0m 10.19s
+       user	0m 0.04s
+       sys	0m 0.03s
+
 .. code-block:: bash
 
    $ docker exec -it test ps aux
@@ -1434,9 +1445,9 @@ exec 形式の ENTRYPOINT 例
        8 root     ps aux
    $ /usr/bin/time docker stop test
    test
-   real    0m 10.19s
-   user    0m 0.04s
-   sys 0m 0.03s
+   real	0m 10.19s
+   user	0m 0.04s
+   sys	0m 0.03s
 
 .. Understand how CMD and ENTRYPOINT interact
 
