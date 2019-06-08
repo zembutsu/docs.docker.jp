@@ -1193,9 +1193,9 @@ exec 形式の ENTRYPOINT 例
      PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND
        1 root      20   0   19744   2336   2080 R  0.0  0.1   0:00.04 top
 
-.. To examine the result further, you can use docker exec:
+.. To examine the result further, you can use `docker exec`:
 
-より詳細なテストをするには、 ``docker exec`` コマンドが使えます。
+さらに詳しく見るには ``docker exec`` を実行します。
 
 .. code-block:: bash
 
