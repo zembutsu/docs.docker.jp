@@ -1810,6 +1810,40 @@ Dockerfile には複数の ``ARG`` 命令を含めることもできます。
 ``user`` が定義済であって、コマンドラインから ``what_user`` という値が受け渡されたからです。
 ``ARG`` 命令による定義を行うまで、その変数を利用しても空の文字列として扱われます。
 
+.. An `ARG` instruction goes out of scope at the end of the build
+   stage where it was defined. To use an arg in multiple stages, each stage must
+   include the `ARG` instruction.
+
+``ARG`` 命令の変数スコープは、それが定義されたビルドステージが終了するときまでです。
+複数のビルドステージにおいて ``ARG`` を利用する場合は、個々に ``ARG`` 命令を指定する必要があります。
+
+.. ```
+   FROM busybox
+   ARG SETTINGS
+   RUN ./run/setup $SETTINGS
+   
+   FROM busybox
+   ARG SETTINGS
+   RUN ./run/other $SETTINGS
+   ```
+
+.. code-block:: dockerfile
+
+   FROM busybox
+   ARG SETTINGS
+   RUN ./run/setup $SETTINGS
+
+   FROM busybox
+   ARG SETTINGS
+   RUN ./run/other $SETTINGS
+
+.. ### Using ARG variables
+
+.. _using-arg-variables:
+
+ARG 変数の利用
+---------------
+
 .. You can use an ARG or an ENV instruction to specify variables that are available to the RUN instruction. Environment variables defined using the ENV instruction always override an ARG instruction of the same name. Consider this Dockerfile with an ENV and ARG instruction.
 
 ``ARG`` や ``ENV`` 命令を ``RUN`` 命令のための環境変数にも利用できます。 ``ENV`` 命令を使った環境変数の定義は、常に同じ名前の ``ARG`` 命令を上書きします。Dockerfile における ``ENV`` と ``ARG`` 命令を考えましょう。
