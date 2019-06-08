@@ -1701,9 +1701,14 @@ ARG
 
    ARG <name>[=<default value>]
 
-.. The ARG instruction defines a variable that users can pass at build-time to the builder with the docker build command using the --build-arg <varname>=<value> flag. If a user specifies a build argument that was not defined in the Dockerfile, the build outputs an error.
+.. The `ARG` instruction defines a variable that users can pass at build-time to
+   the builder with the `docker build` command using the `--build-arg <varname>=<value>`
+   flag. If a user specifies a build argument that was not
+   defined in the Dockerfile, the build outputs a warning.
 
-``ARG`` 命令は、構築時に作業者が ``docker build`` コマンドで使う変数、 ``--build-arg <変数名>=<値>`` フラグを定義するものです。ユーザが構築時に引数を指定しても Dockerfile で定義されていなければ、構築時に次のようなエラーが出ます。
+``ARG`` 命令は変数を定義して、ビルド時にその値を受け渡します。
+これは ``docker build`` コマンドにおいて ``--build-arg <varname>=<value>`` フラグを利用して行います。
+指定したビルド引数（build argument）が Dockerfile 内において定義されていない場合は、ビルド処理時に警告メッセージが出力されます。
 
 .. code-block:: bash
 
