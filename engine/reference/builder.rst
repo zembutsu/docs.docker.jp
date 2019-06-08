@@ -1738,6 +1738,15 @@ Dockerfile の作者は、オプションで ``ARG`` 命令のデフォルト値
    ARG buildno=1
    ...
 
+.. > **Warning:** It is not recommended to use build-time variables for
+   >  passing secrets like github keys, user credentials etc. Build-time variable
+   >  values are visible to any user of the image with the `docker history` command.
+
+.. warning::
+
+   ビルド時の変数として、github キーや認証情報などの秘密の情報を設定することは、お勧めできません。
+   ビルド変数の値は、イメージを利用する他人が ``docker history`` コマンドを実行すれば容易に見ることができてしまうからです。
+
 .. If an ARG value has a default and if there is no value passed at build-time, the builder uses the default.
 
 ``ARG`` がデフォルト値を持っている場合、構築時に値の指定が無ければ、このデフォルト値を使います。
@@ -1765,12 +1774,6 @@ Dockerfile の作者は、オプションで ``ARG`` 命令のデフォルト値
 .. The USER at line 2 evaluates to some_user as the user variable is defined on the subsequent line 3. The USER at line 4 evaluates to what_user as user is defined and the what_user value was passed on the command line. Prior to its definition by an ARG instruction, any use of a variable results in an empty string.
 
 ２行めの ``USER`` は ``some_user`` を、３行めサブシーケントで定義された ``user`` 変数として評価します。４行めでは ``what_user`` を ``USER`` で定義したものと評価し、 ``what_user`` 値はコマンドラインで指定したものになります。 ``ARG`` 命令で定義するまで、あらゆる変数は空の文字列です。
-
-..    Note: It is not recommended to use build-time variables for passing secrets like github keys, user credentials etc.
-
-.. note::
-
-   構築時の変数として、GitHub の鍵やユーザの証明書などの秘密情報を含むのは、推奨される使い方ではありません。
 
 .. You can use an ARG or an ENV instruction to specify variables that are available to the RUN instruction. Environment variables defined using the ENV instruction always override an ARG instruction of the same name. Consider this Dockerfile with an ENV and ARG instruction.
 
