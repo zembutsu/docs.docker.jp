@@ -1853,7 +1853,13 @@ ARG 変数の利用
 ``ENV`` 命令を使って定義された環境変数は、``ARG`` 命令において同名の変数が指定されていたとしても優先されます。
 以下のように ``ENV`` 命令と ``ARG`` 命令を含む Dockerfile があるとします。
 
+.. 1 FROM ubuntu
+   2 ARG CONT_IMG_VER
+   3 ENV CONT_IMG_VER v1.0.0
+   4 RUN echo $CONT_IMG_VER
+
 .. code-block:: dockerfile
+   :linenos:
 
    FROM ubuntu
    ARG CONT_IMG_VER
