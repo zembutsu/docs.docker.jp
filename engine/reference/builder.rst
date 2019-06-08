@@ -2101,9 +2101,13 @@ Dockerfile に ``ARG`` 変数が定義されていて、その値が前回のビ
    ENV CONT_IMG_VER hello
    RUN echo $CONT_IMG_VER
 
-.. Line 3 does not cause a cache miss because the value of CONT_IMG_VER is a constant (hello). As a result, the environment variables and values used on the RUN (line 4) doesn’t change between builds.
+.. Line 3 does not cause a cache miss because the value of `CONT_IMG_VER` is a
+   constant (`hello`). As a result, the environment variables and values used on
+   the `RUN` (line 4) doesn't change between builds.
 
-３行めはキャッシュミスを引き起こしません。 ``CONT_IMG_VAR`` は固定（ ``hello`` ）だからです。そのため、環境変数と値は ``RUN``  （４行め）で使われますが、構築時に変わりません。
+3 行めにおいてキャッシュ・ミスは発生しません。
+これは ``CONT_IMG_VER`` が定数（``hello``）であるからです。
+その結果、4 行めの ``RUN`` 命令において用いられる環境変数およびその値は、ビルドの際に変更されません。
 
 
 .. _onbuild:
