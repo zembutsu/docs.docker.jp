@@ -1359,9 +1359,9 @@ exec 形式の ENTRYPOINT 例
    FROM ubuntu
    ENTRYPOINT exec top -b
 
-.. When you run this image, you’ll see the single PID 1 process:
+.. When you run this image, you'll see the single `PID 1` process:
 
-このイメージを実行したら、単一の ``PID 1`` プロセスが表示されます。
+上のイメージを実行すると、``PID 1`` のプロセスがただ 1 つだけあるのがわかります。
 
 .. code-block:: bash
 
