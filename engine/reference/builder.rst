@@ -1402,7 +1402,8 @@ exec 形式の ENTRYPOINT 例
 
 .. You can then run it (giving it a name for the next step):
 
-次のように実行します（次のステップで名前を使います）。
+そして以下のように実行したとします。
+（名前をつけておいて次のステップで使います。）
 
 .. code-block:: bash
 
