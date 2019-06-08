@@ -1376,13 +1376,19 @@ exec 形式の ENTRYPOINT 例
 
 きれいに終了させるには ``docker stop`` を実行します。
 
+   ..  $ /usr/bin/time docker stop test
+       test
+       real	0m 0.20s
+       user	0m 0.02s
+       sys	0m 0.04s
+
 .. code-block:: bash
 
    $ /usr/bin/time docker stop test
    test
-   real    0m 0.20s
-   user    0m 0.02s
-   sys 0m 0.04s
+   real	0m 0.20s
+   user	0m 0.02s
+   sys	0m 0.04s
 
 .. If you forget to add exec to the beginning of your ENTRYPOINT:
 
