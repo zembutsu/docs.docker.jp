@@ -1884,9 +1884,10 @@ ARG 変数の利用
 これはちょうどシェルスクリプトにおいて行われる動きに似ています。
 ローカルなスコープを持つ変数は、指定された引数や環境から受け継いだ変数よりも優先されます。
 
-.. Using the example above but a different ENV specification you can create more useful interactions between ARG and ENV instructions:
+.. Using the example above but a different `ENV` specification you can create more
+   useful interactions between `ARG` and `ENV` instructions:
 
-上記の ``ENV`` 指定の他にも、更に ``ARG`` と ``ENV`` を使いやすくする指定も可能です。
+上の例を利用しつつ ``ENV`` のもう 1 つ別の仕様を用いると、さらに ``ARG`` と ``ENV`` の組み合わせによる以下のような利用もできます。
 
 .. code-block:: dockerfile
 
