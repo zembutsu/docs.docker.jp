@@ -1714,9 +1714,11 @@ ARG
 
    One or more build-args were not consumed, failing build.
 
-.. The Dockerfile author can define a single variable by specifying ARG once or many variables by specifying ARG more than once. For example, a valid Dockerfile:
+.. A Dockerfile may include one or more `ARG` instructions. For example,
+   the following is a valid Dockerfile:
 
-Dockerfile の作者は ``ARG`` 変数を１度だけ定義するだけでなく、複数の ``ARG`` を指定可能です。有効な Dockerfile の例：
+Dockerfile には複数の ``ARG`` 命令を含めることもできます。
+たとえば以下の Dockerfile は有効な例です。
 
 .. code-block:: dockerfile
 
