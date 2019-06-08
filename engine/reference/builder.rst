@@ -1516,9 +1516,20 @@ VOLUME
 
    VOLUME ["/data"]
 
-.. The VOLUME instruction creates a mount point with the specified name and marks it as holding externally mounted volumes from native host or other containers. The value can be a JSON array, VOLUME ["/var/log/"], or a plain string with multiple arguments, such as VOLUME /var/log or VOLUME /var/log /var/db. For more information/examples and mounting instructions via the Docker client, refer to Share Directories via Volumes documentation.
+.. The `VOLUME` instruction creates a mount point with the specified name
+   and marks it as holding externally mounted volumes from native host or other
+   containers. The value can be a JSON array, `VOLUME ["/var/log/"]`, or a plain
+   string with multiple arguments, such as `VOLUME /var/log` or `VOLUME /var/log
+   /var/db`. For more information/examples and mounting instructions via the
+   Docker client, refer to
+   [*Share Directories via Volumes*](https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-host-directory-as-a-data-volume)
+   documentation.
 
-``VOLUME`` 命令は指定した名前でマウントポイントを作成し、他のホストやコンテナから外部マウント可能なボリュームにします。指定する値は ``VOLUME ["/var/log"]`` といったJSON 配列になるべきです。あるいは文字列で ``VOLUME /var/log`` や ``VOLUME /var/log /var/db`` のように、複数の引数を書くこともできます。Docker クライアントを使ったマウント命令や詳しい情報やサンプルは :ref:`ボリュームを経由してディレクトリを共有 <mount-a-host-directory-as-a-data-volume>` をご覧ください。
+``VOLUME`` 命令は指定された名前を使ってマウントポイントを生成します。
+そして自ホストまたは他のコンテナからマウントされたボリュームとして、そのマウントポイントを扱います。
+指定する値は JSON 配列として ``VOLUME ["/var/log/"]`` のようにするか、あるいは単純な文字列を複数与えます。
+たとえば ``VOLUME /var/log`` や ``VOLUME /var/log /var/db`` などです。
+Docker クライアントを通じたマウントに関する情報、利用例などに関しては :ref:`ボリュームを通じたディレクトリの共有 <mount-a-host-directory-as-a-data-volume>` を参照してください。
 
 .. The docker run command initializes the newly created volume with any data that exists at the specified location within the base image. For example, consider the following Dockerfile snippet:
 
