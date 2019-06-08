@@ -1552,17 +1552,51 @@ Docker クライアントを通じたマウントに関する情報、利用例�
 
 この Dockerfile はイメージに対する処理として、``docker run`` により ``/myvol`` というマウントポイントを新たに生成し、そのボリュームの中に ``greeting`` ファイルをコピーします。
 
-..     Note: If any build steps change the data within the volume after it has been declared, those changes will be discarded.
+.. ### Notes about specifying volumes
 
-.. note::
+.. _notes-about-specifying-volumes:
 
-   構築ステップでボリューム内においてあらゆる変更を加えても、宣言後に内容は破棄されます。
+ボリュームの指定に関して
+-------------------------
 
-..    Note: The list is parsed as a JSON array, which means that you must use double-quotes (“) around words not single-quotes (‘).
+.. Keep the following things in mind about volumes in the `Dockerfile`.
 
-.. note::
+``Dockerfile`` におけるボリューム設定に関しては、以下のことを覚えておいてください。
 
-   リストは JSON 配列でパースされます。これが意味するのは、単語はシングルクォート(')で囲むのではなく、ダブルクォート(")を使う必要があります。
+.. - **Volumes on Windows-based containers**: When using Windows-based containers,
+     the destination of a volume inside the container must be one of:
+
+* **Windows ベースのコンテナでのボリューム**: Windows ベースのコンテナを利用しているときは、コンテナ内部のボリューム先は、以下のいずれかでなければなりません。
+
+  .. - a non-existing or empty directory
+     - a drive other than `C:`
+
+  * 存在していないディレクトリ、または空のディレクトリ
+  * ``C:`` 以下のドライブ
+
+.. - **Changing the volume from within the Dockerfile**: If any build steps change the
+     data within the volume after it has been declared, those changes will be discarded.
+
+* **Dockerfile 内からのボリューム変更**: ボリュームを宣言した後に、そのボリューム内のデータを変更する処理があったとしても、そのような変更は無視され処理されません。
+
+.. - **JSON formatting**: The list is parsed as a JSON array.
+     You must enclose words with double quotes (`"`)rather than single quotes (`'`).
+
+* **JSON 形式**: 引数リストは JSON 配列として扱われます。
+  したがって文字列をくくるのはダブルクォート（``"``）であり、シングルクォート（``'``）は用いてはなりません。
+
+.. - **The host directory is declared at container run-time**: The host directory
+     (the mountpoint) is, by its nature, host-dependent. This is to preserve image
+     portability. since a given host directory can't be guaranteed to be available
+     on all hosts.For this reason, you can't mount a host directory from
+     within the Dockerfile. The `VOLUME` instruction does not support specifying a `host-dir`
+     parameter.  You must specify the mountpoint when you create or run the container.
+
+* **コンテナ実行時に宣言されるホストディレクトリ**: ホストディレクトリ（マウントポイント）は、その性質からして、ホストに依存するものです。
+  これはイメージの可搬性を確保するためなので、設定されたホストディレクトリが、あらゆるホスト上にて利用可能になるかどうかの保証はありません。
+  このため、Dockerfile の内部からホストディレクトリをマウントすることはできません。
+  つまり ``VOLUME`` 命令は ``host-dir`` （ホストのディレクトリを指定する）パラメータをサポートしていません。
+  マウントポイントの指定は、コンテナを生成、実行するときに行う必要があります。
 
 .. _user:
 
