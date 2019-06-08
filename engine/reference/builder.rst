@@ -1930,6 +1930,13 @@ ARG 変数の利用
 この例で見たように変数展開の手法では、コマンドラインから引数を受け渡すことが可能であり、``ENV`` 命令を用いればその値を最終イメージに残すことができます。
 変数展開は、:ref:`特定の Dockerfile 命令 <environment-replacement>` においてのみサポートされます。
 
+.. ### Predefined ARGs
+
+.. _predefined-args:
+
+定義済 ARG 変数
+----------------
+
 .. Docker has a set of predefined ARG variables that you can use without a corresponding ARG instruction in the Dockerfile.
 
 Docker は Dockerfile に対応する ``ARG`` 命令が無くても、既定の ``ARG`` 変数セットを持っています。
