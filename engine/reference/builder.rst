@@ -1750,9 +1750,12 @@ ONBUILD
 
 どのようなビルド命令でも、トリガ命令として登録することができます。
 
-.. This is useful if you are building an image which will be used as a base to build other images, for example an application build environment or a daemon which may be customized with user-specific configuration.
+.. This is useful if you are building an image which will be used as a base
+   to build other images, for example an application build environment or a
+   daemon which may be customized with user-specific configuration.
 
-これは他のイメージからイメージを構築する時に役立つでしょう。例えば、アプリケーションの開発環境やデーモンは、ユーザごとに設定をカスタマイズする可能性があります。
+この命令は、他のイメージのビルドに用いることを意図したイメージをビルドする際に利用できます。
+たとえばアプリケーションやデーモンの開発環境であって、ユーザ特有の設定を行うような場合です。
 
 .. For example, if your image is a reusable Python application builder, it will require application source code to be added in a particular directory, and it might require a build script to be called after that. You can’t just call ADD and RUN now, because you don’t yet have access to the application source code, and it will be different for each application build. You could simply provide application developers with a boilerplate Dockerfile to copy-paste into their application, but that is inefficient, error-prone and difficult to update because it mixes with application-specific code.
 
