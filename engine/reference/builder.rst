@@ -1729,11 +1729,11 @@ Docker は Dockerfile に対応する ``ARG`` 命令が無くても、既定の 
 ONBUILD
 ==========
 
-.. ONBUILD [INSTRUCTION]
+   ..  ONBUILD [INSTRUCTION]
 
 .. code-block:: dockerfile
 
-   ONBUILD [命令]
+   ONBUILD [INSTRUCTION]
 
 .. The ONBUILD instruction adds to the image a trigger instruction to be executed at a later time, when the image is used as the base for another build. The trigger will be executed in the context of the downstream build, as if it had been inserted immediately after the FROM instruction in the downstream Dockerfile.
 
