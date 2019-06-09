@@ -1896,9 +1896,15 @@ HEALTHCHECK
 
 ``CMD`` より前に記述するオプションは、以下の通りです。
 
-* ``--interval=間隔`` (デフォルト: 30s)
-* ``--timeout=間隔`` (デフォルト: 30s)
-* ``--retries=N``  (デフォルト: 3)
+.. * `--interval=DURATION` (default: `30s`)
+   * `--timeout=DURATION` (default: `30s`)
+   * `--start-period=DURATION` (default: `0s`)
+   * `--retries=N` (default: `3`)
+
+* ``--interval=DURATION`` (デフォルト: `30s`)
+* ``--timeout=DURATION`` (デフォルト: `30s`)
+* ``--start-period=DURATION`` (デフォルト: `0s`)
+* ``--retries=N`` (default: `3`)
 
 .. The health check will first run interval seconds after the container is started, and then again interval seconds after each previous check completes.
 
