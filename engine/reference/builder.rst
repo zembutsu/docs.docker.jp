@@ -1748,7 +1748,7 @@ ONBUILD
 
 .. Any build instruction can be registered as a trigger.
 
-あらゆる構築時の命令をトリガとして登録可能です。
+どのようなビルド命令でも、トリガ命令として登録することができます。
 
 .. This is useful if you are building an image which will be used as a base to build other images, for example an application build environment or a daemon which may be customized with user-specific configuration.
 
