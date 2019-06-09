@@ -1824,11 +1824,11 @@ ONBUILD
    ONBUILD RUN /usr/local/bin/python-build --dir /app/src
    [...]
 
-..     Warning: Chaining ONBUILD instructions using ONBUILD ONBUILD isn’t allowed.
+.. > **Warning**: Chaining `ONBUILD` instructions using `ONBUILD ONBUILD` isn't allowed.
 
 .. warning::
 
-   ``ONBUILD ONBUILD`` 命令を使って ``ONBULID`` 命令の上書きはできません。
+   ``ONBUILD`` 命令をつなぎ合わせた命令、``ONBUILD ONBUILD`` は実現することはできません。
 
 ..     Warning: The ONBUILD instruction may not trigger FROM or MAINTAINER instructions.
 
