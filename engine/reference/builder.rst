@@ -1735,9 +1735,16 @@ ONBUILD
 
    ONBUILD [INSTRUCTION]
 
-.. The ONBUILD instruction adds to the image a trigger instruction to be executed at a later time, when the image is used as the base for another build. The trigger will be executed in the context of the downstream build, as if it had been inserted immediately after the FROM instruction in the downstream Dockerfile.
+.. The `ONBUILD` instruction adds to the image a *trigger* instruction to
+   be executed at a later time, when the image is used as the base for
+   another build. The trigger will be executed in the context of the
+   downstream build, as if it had been inserted immediately after the
+   `FROM` instruction in the downstream `Dockerfile`.
 
-イメージは他で構築したイメージを元にしている時、``ONBUILD`` 命令はイメージに対して最終的に実行する *トリガ* 命令を追加します。トリガは構築後に行うもので、 ``Dockerfile`` で ``FROM`` 命令のあとに書くことができます。
+``ONBUILD`` 命令は、イメージに対して **トリガ** 命令（trigger instruction）を追加します。
+トリガ命令は後々実行されるものであり、そのイメージが他のビルドにおけるベースイメージとして用いられたときに実行されます。
+このトリガ命令は、後続のビルドコンテキスト内で実行されます。
+後続の ``Dockerfile`` 内での ``FROM`` 命令の直後に、その命令が挿入されたかのようにして動作します。
 
 .. Any build instruction can be registered as a trigger.
 
