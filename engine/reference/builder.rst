@@ -1791,15 +1791,23 @@ ONBUILD
 .. 2. At the end of the build, a list of all triggers is stored in the
       image manifest, under the key `OnBuild`. They can be inspected with
       the `docker inspect` command.
+.. 3. Later the image may be used as a base for a new build, using the
+      `FROM` instruction. As part of processing the `FROM` instruction,
+      the downstream builder looks for `ONBUILD` triggers, and executes
+      them in the same order they were registered. If any of the triggers
+      fail, the `FROM` instruction is aborted which in turn causes the
+      build to fail. If all triggers succeed, the `FROM` instruction
+      completes and the build continues as usual.
 
 1. ``ONBUILD`` 命令があると、現在ビルドしているイメージのメタデータに対してトリガが追加されます。
    この命令は現在のビルドには影響を与えません。
 2. ビルドの最後に、トリガの一覧がイメージマニフェスト内の ``OnBuild`` というキーのもとに保存されます。
    この情報は ``docker inspect`` コマンドを使って確認することができます。
-
-..    Later the image may be used as a base for a new build, using the FROM instruction. As part of processing the FROM instruction, the downstream builder looks for ONBUILD triggers, and executes them in the same order they were registered. If any of the triggers fail, the FROM instruction is aborted which in turn causes the build to fail. If all triggers succeed, the FROM instruction completes and the build continues as usual.
-
-3. このイメージは後で何らかのイメージの元になります。その時は ``FROM`` 命令で呼び出されます。 ``FROM`` 命令の処理の一部として、ダウンストリームのビルダーは ``ONBULID`` トリガを探し、登録された順番で実行します。もしトリガが失敗したら、 ``FROM`` 命令は処理を中断し、ビルドを失敗とします。もし全てのトリガが成功したら、 ``FROM`` 命令は完了し、以降は通常の構築が進みます。
+3. 次のビルドにおけるベースイメージとして、このイメージを利用します。
+   その指定には ``FROM`` 命令を用います。
+   ``FROM`` 命令の処理の中で、後続ビルド処理が ``ONBUILD`` トリガを見つけると、それが登録された順に実行していきます。
+   トリガが 1 つでも失敗したら、``FROM`` 命令は中断され、ビルドが失敗することになります。
+   すべてのトリガが成功したら ``FROM`` 命令の処理が終わり、ビルド処理がその後に続きます。
 
 ..    Triggers are cleared from the final image after being executed. In other words they are not inherited by “grand-children” builds.
 
