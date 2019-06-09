@@ -1785,9 +1785,12 @@ ONBUILD
 
 これは次のように動作します。
 
-..    When it encounters an ONBUILD instruction, the builder adds a trigger to the metadata of the image being built. The instruction does not otherwise affect the current build.
+.. 1. When it encounters an `ONBUILD` instruction, the builder adds a
+      trigger to the metadata of the image being built. The instruction
+      does not otherwise affect the current build.
 
-1. ``ONBUILD`` 命令が呼び出されると、ビルダーはイメージ構築時のメタデータの中にトリガを追加します。
+1. ``ONBUILD`` 命令があると、現在ビルドしているイメージのメタデータに対してトリガが追加されます。
+   この命令は現在のビルドには影響を与えません。
 
 ..     At the end of the build, a list of all triggers is stored in the image manifest, under the key OnBuild. They can be inspected with the docker inspect command.
 
