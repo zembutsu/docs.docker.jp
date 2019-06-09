@@ -1798,6 +1798,8 @@ ONBUILD
       fail, the `FROM` instruction is aborted which in turn causes the
       build to fail. If all triggers succeed, the `FROM` instruction
       completes and the build continues as usual.
+.. 4. Triggers are cleared from the final image after being executed. In
+      other words they are not inherited by "grand-children" builds.
 
 1. ``ONBUILD`` 命令があると、現在ビルドしているイメージのメタデータに対してトリガが追加されます。
    この命令は現在のビルドには影響を与えません。
@@ -1808,10 +1810,8 @@ ONBUILD
    ``FROM`` 命令の処理の中で、後続ビルド処理が ``ONBUILD`` トリガを見つけると、それが登録された順に実行していきます。
    トリガが 1 つでも失敗したら、``FROM`` 命令は中断され、ビルドが失敗することになります。
    すべてのトリガが成功したら ``FROM`` 命令の処理が終わり、ビルド処理がその後に続きます。
-
-..    Triggers are cleared from the final image after being executed. In other words they are not inherited by “grand-children” builds.
-
-4. 実行する前に、最終的なイメージ上からトリガが削除されます。言い替えると構築された「孫」には、何ら親子関係がありません。
+4. トリガは、イメージが実行された後は、イメージ内から削除されます。
+   別の言い方をすれば、「孫」のビルドにまでは受け継がれないということです。
 
 .. For example you might add something like this:
 
