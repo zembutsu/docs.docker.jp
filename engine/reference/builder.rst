@@ -1874,9 +1874,13 @@ HEALTHCHECK
 * ``HEALTHCHECK [OPTIONS] CMD command`` (コンテナ内部でコマンドを実行し、コンテナをヘルスチェック)
 * ``HEALTHCHECK NONE`` (ベースイメージが行うヘルスチェックを無効化)
 
-.. The HEALTHCHECK instruction tells Docker how to test a container to check that it is still working. This can detect cases such as a web server that is stuck in an infinite loop and unable to handle new connections, even though the server process is still running.
+.. The `HEALTHCHECK` instruction tells Docker how to test a container to check that
+   it is still working. This can detect cases such as a web server that is stuck in
+   an infinite loop and unable to handle new connections, even though the server
+   process is still running.
 
-``HEALTHCHECK`` 命令は、 Docker に対してコンテナの正常性をどのように確認（テスト）するかを伝えます。これはウェブ・サーバがループで塞がってしまい、新しい接続を受け付けられないような状態を検出できます。サーバプロセスが実行中でも、応答が無ければ検出します。
+``HEALTHCHECK`` 命令は、コンテナが動作していることをチェックする方法を指定するものです。
+この機能はたとえば、ウェブサーバのプロセスが稼動はしているものの、無限ループに陥っていて新たな接続を受け入れられない状態を検知する場合などに利用できます。
 
 .. When a container has a healthcheck specified, it has a health status in addition to its normal status. This status is initially starting. Whenever a health check passes, it becomes healthy (whatever state it was previously in). After a certain number of consecutive failures, it becomes unhealthy.
 
