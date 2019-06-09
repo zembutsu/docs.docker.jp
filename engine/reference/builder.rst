@@ -1868,11 +1868,11 @@ HEALTHCHECK
 
 ``HEALTHCHECK`` 命令は２つの形式があります：
 
-..    HEALTHCHECK [OPTIONS] CMD command (check container health by running a command inside the container)
-    HEALTHCHECK NONE (disable any healthcheck inherited from the base image)
+.. * `HEALTHCHECK [OPTIONS] CMD command` (check container health by running a command inside the container)
+   * `HEALTHCHECK NONE` (disable any healthcheck inherited from the base image)
 
-* ``HEALTHCHECK [オプション] CMD コマンド`` （コンテナ内でコマンドを実行して、コンテナの正常性を確認）
-* ``HEALTHCHECK NONE``  （ベース・イメージからのヘルスチェック継承を無効化）
+* ``HEALTHCHECK [OPTIONS] CMD command`` (コンテナ内部でコマンドを実行し、コンテナをヘルスチェック)
+* ``HEALTHCHECK NONE`` (ベースイメージが行うヘルスチェックを無効化)
 
 .. The HEALTHCHECK instruction tells Docker how to test a container to check that it is still working. This can detect cases such as a web server that is stuck in an infinite loop and unable to handle new connections, even though the server process is still running.
 
