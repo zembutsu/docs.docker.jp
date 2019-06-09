@@ -1815,7 +1815,7 @@ ONBUILD
 
 .. For example you might add something like this:
 
-次のような例の記述を追加するでしょう。
+例として以下のようなことを追加する場合が考えられます。
 
 .. code-block:: dockerfile
 
