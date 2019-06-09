@@ -1917,9 +1917,10 @@ HEALTHCHECK
 
 1 回のヘルスチェックが **timeout** 秒以上かかったとき、そのチェックは失敗したものとして扱われます。
 
-.. It takes retries consecutive failures of the health check for the container to be considered unhealthy.
+.. It takes **retries** consecutive failures of the health check for the container
+   to be considered `unhealthy`.
 
-コンテナに対するヘルスチェックが連続して失敗したら、コンテナは ``unhealthy`` とみなします。
+コンテナに対するヘルスチェックが **retries** 回分、連続して失敗した場合は ``unhealthy`` とみなされます。
 
 .. There can only be one HEALTHCHECK instruction in a Dockerfile. If you list more than one then only the last HEALTHCHECK will take effect.
 
