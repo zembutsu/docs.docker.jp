@@ -1841,11 +1841,11 @@ ONBUILD
 STOPSIGNAL
 ==========
 
-.. STOPSIGNAL signal
+   ..  STOPSIGNAL signal
 
 .. code-block:: dockerfile
 
-   STOPSIGNAL シグナル
+   STOPSIGNAL signal
 
 .. The STOPSIGNAL instruction sets the system call signal that will be sent to the container to exit. This signal can be a valid unsigned number that matches a position in the kernel’s syscall table, for instance 9, or a signal name in the format SIGNAME, for instance SIGKILL.
 
