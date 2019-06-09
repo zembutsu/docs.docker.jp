@@ -1912,9 +1912,10 @@ HEALTHCHECK
 ヘルスチェックは、コンテナが起動した **interval** 秒後に最初に起動されます。
 そして直前のヘルスチェックが完了した **interval** 秒後に、再び実行されます。
 
-.. If a single run of the check takes longer than timeout seconds then the check is considered to have failed.
+.. If a single run of the check takes longer than **timeout** seconds then the check
+   is considered to have failed.
 
-確認に **timeout** （タイムアウト）秒を越えるようであれば、確認は失敗とみなします。
+1 回のヘルスチェックが **timeout** 秒以上かかったとき、そのチェックは失敗したものとして扱われます。
 
 .. It takes retries consecutive failures of the health check for the container to be considered unhealthy.
 
