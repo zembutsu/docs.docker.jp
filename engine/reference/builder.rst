@@ -1830,9 +1830,11 @@ ONBUILD
 
    ``ONBUILD`` 命令をつなぎ合わせた命令、``ONBUILD ONBUILD`` は実現することはできません。
 
-..     Warning: The ONBUILD instruction may not trigger FROM or MAINTAINER instructions.
+.. > **Warning**: The `ONBUILD` instruction may not trigger `FROM` or `MAINTAINER` instructions.
 
-.. ``ONBUILD`` 命令は ``FROM`` や ``MAINTAINER`` をトリガとしてみなさないでしょう。
+.. warning::
+
+   ``ONBUILD`` 命令は ``FROM`` 命令や ``MAINTAINER`` 命令をトリガーとすることはできません。
 
 .. _stopsignal:
 
