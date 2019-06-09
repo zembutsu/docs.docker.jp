@@ -1906,9 +1906,11 @@ HEALTHCHECK
 * ``--start-period=DURATION`` (デフォルト: `0s`)
 * ``--retries=N`` (default: `3`)
 
-.. The health check will first run interval seconds after the container is started, and then again interval seconds after each previous check completes.
+.. The health check will first run **interval** seconds after the container is
+   started, and then again **interval** seconds after each previous check completes.
 
-ヘルス・チェックは、まず最初の **interval** （間隔）秒の後、コンテナを起動します。そして **interval** 秒後に直近の確認を行います。
+ヘルスチェックは、コンテナが起動した **interval** 秒後に最初に起動されます。
+そして直前のヘルスチェックが完了した **interval** 秒後に、再び実行されます。
 
 .. If a single run of the check takes longer than timeout seconds then the check is considered to have failed.
 
