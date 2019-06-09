@@ -1757,9 +1757,23 @@ ONBUILD
 この命令は、他のイメージのビルドに用いることを意図したイメージをビルドする際に利用できます。
 たとえばアプリケーションやデーモンの開発環境であって、ユーザ特有の設定を行うような場合です。
 
-.. For example, if your image is a reusable Python application builder, it will require application source code to be added in a particular directory, and it might require a build script to be called after that. You can’t just call ADD and RUN now, because you don’t yet have access to the application source code, and it will be different for each application build. You could simply provide application developers with a boilerplate Dockerfile to copy-paste into their application, but that is inefficient, error-prone and difficult to update because it mixes with application-specific code.
+.. For example, if your image is a reusable Python application builder, it
+   will require application source code to be added in a particular
+   directory, and it might require a build script to be called *after*
+   that. You can't just call `ADD` and `RUN` now, because you don't yet
+   have access to the application source code, and it will be different for
+   each application build. You could simply provide application developers
+   with a boilerplate `Dockerfile` to copy-paste into their application, but
+   that is inefficient, error-prone and difficult to update because it
+   mixes with application-specific code.
 
-例えば、イメージが Python アプリケーション・ビルダーを再利用する時、アプリケーションのソースコードを適切なディレクトリに追加し、その後、構築スクリプトを実行することもあるでしょう。この時点では ``ADD`` と ``RUN`` を呼び出せません。なぜなら、まだアプリケーションのソースコードにアクセスしておらず、個々のアプリケーション構築によって異なるからです。アプリケーションの開発者は、ボイラープレートである ``Dockerfile`` をコピーペーストでアプリケーションを入れるように編集するだけです。ですが、これは効率的ではなく、エラーを引き起こしやすく、アプリケーション固有のコードが混在することで更新が大変になります。
+たとえば、繰り返し利用できる Python アプリケーション環境イメージがあるとします。
+そしてこのイメージにおいては、アプリケーションソースコードを所定のディレクトリに配置することが必要であって、さらにソースを配置した後にソースビルドを行うスクリプトを加えたいとします。
+このままでは ``ADD`` と ``RUN`` を単に呼び出すだけでは実現できません。
+それはアプリケーションソースコードがまだわかっていないからであり、ソースコードはアプリケーション環境ごとに異なるからです。
+アプリケーション開発者に向けて、ひながたとなる ``Dockerfile`` を提供して、コピーペーストした上でアプリケーションに組み入れるようにすることも考えられます。
+しかしこれでは不十分であり、エラーも起こしやすくなります。
+そしてアプリケーションに特有のコードが含まれることになるので、更新作業も大変になります。
 
 .. The solution is to use ONBUILD to register advance instructions to run later, during the next build stage.
 
