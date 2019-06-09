@@ -1847,9 +1847,15 @@ STOPSIGNAL
 
    STOPSIGNAL signal
 
-.. The STOPSIGNAL instruction sets the system call signal that will be sent to the container to exit. This signal can be a valid unsigned number that matches a position in the kernel’s syscall table, for instance 9, or a signal name in the format SIGNAME, for instance SIGKILL.
+.. The `STOPSIGNAL` instruction sets the system call signal that will be sent to the container to exit.
+   This signal can be a valid unsigned number that matches a position in the kernel's syscall table, for instance 9,
+   or a signal name in the format SIGNAME, for instance SIGKILL.
 
-``STOPSIGNAL`` 命令は、コンテナを終了する時に送信するための、システム・コール・シグナルを設定します。シグナルはカーネルの syscall テーブルと一致する、有効な番号の必要があります。例えば、9 あるいはシグナル名 SIGNAME や、 SIGKILL などです。
+``STOPSIGNAL`` 命令はシステムコールシグナルを設定するものであり、コンテナが終了するときに送信されます。
+シグナルは負ではない整数値であり、カーネルのシステムコールテーブル内に合致するものを指定します。
+たとえば 9 などです。
+あるいは SIGNAME という形式のシグナル名を指定します。
+たとえば SIGKILL などです。
 
 .. HEALTHCHECK
 
