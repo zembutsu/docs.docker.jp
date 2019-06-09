@@ -1788,13 +1788,14 @@ ONBUILD
 .. 1. When it encounters an `ONBUILD` instruction, the builder adds a
       trigger to the metadata of the image being built. The instruction
       does not otherwise affect the current build.
+.. 2. At the end of the build, a list of all triggers is stored in the
+      image manifest, under the key `OnBuild`. They can be inspected with
+      the `docker inspect` command.
 
 1. ``ONBUILD`` 命令があると、現在ビルドしているイメージのメタデータに対してトリガが追加されます。
    この命令は現在のビルドには影響を与えません。
-
-..     At the end of the build, a list of all triggers is stored in the image manifest, under the key OnBuild. They can be inspected with the docker inspect command.
-
-2. 構築が完了したら、全てのトリガはイメージのマニフェスト内の  ``OnBuild`` キー配下に保管されます。この構築時点では、命令は何ら影響を与えません。
+2. ビルドの最後に、トリガの一覧がイメージマニフェスト内の ``OnBuild`` というキーのもとに保存されます。
+   この情報は ``docker inspect`` コマンドを使って確認することができます。
 
 ..    Later the image may be used as a base for a new build, using the FROM instruction. As part of processing the FROM instruction, the downstream builder looks for ONBUILD triggers, and executes them in the same order they were registered. If any of the triggers fail, the FROM instruction is aborted which in turn causes the build to fail. If all triggers succeed, the FROM instruction completes and the build continues as usual.
 
