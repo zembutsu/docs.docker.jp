@@ -1882,9 +1882,15 @@ HEALTHCHECK
 ``HEALTHCHECK`` 命令は、コンテナが動作していることをチェックする方法を指定するものです。
 この機能はたとえば、ウェブサーバのプロセスが稼動はしているものの、無限ループに陥っていて新たな接続を受け入れられない状態を検知する場合などに利用できます。
 
-.. When a container has a healthcheck specified, it has a health status in addition to its normal status. This status is initially starting. Whenever a health check passes, it becomes healthy (whatever state it was previously in). After a certain number of consecutive failures, it becomes unhealthy.
+.. When a container has a healthcheck specified, it has a _health status_ in
+   addition to its normal status. This status is initially `starting`. Whenever a
+   health check passes, it becomes `healthy` (whatever state it was previously in).
+   After a certain number of consecutive failures, it becomes `unhealthy`.
 
-コンテナのヘルスチェック（healthcheck）を有効化すると、通常の状態に加え、ヘルス・ステータス（health status）を追加します。こちらの初期ステータスは ``starting`` （起動中）です。ヘルスチェックが正常であれば、ステータスは（以前の状態にかかわらず） ``healthy`` （正常）になります。特定回、連続して失敗したら、ステータスは ``unhealthy``  （異常）になります。
+コンテナーヘルスチェックが設定されていると、通常のステータスに加えて **ヘルスステータス** を持つことになります。
+このステータスの初期値は ``starting`` です。
+ヘルスチェックが行われると、このステータスは（それまでにどんなステータスであっても） ``healthy`` となります。
+ある一定数、連続してチェックに失敗すると、そのステータスは ``unhealty`` となります。
 
 .. The options that can appear before CMD are:
 
