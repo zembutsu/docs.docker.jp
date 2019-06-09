@@ -1775,9 +1775,11 @@ ONBUILD
 しかしこれでは不十分であり、エラーも起こしやすくなります。
 そしてアプリケーションに特有のコードが含まれることになるので、更新作業も大変になります。
 
-.. The solution is to use ONBUILD to register advance instructions to run later, during the next build stage.
+.. The solution is to use `ONBUILD` to register advance instructions to
+   run later, during the next build stage.
 
-この解決方法として、 ``ONBUILD`` を使い、実行後に別の構築ステージに進む上位命令を登録することです。
+これを解決するには ``ONBUILD`` を利用します。
+後々実行する追加の命令を登録しておき、次のビルドステージにおいて実行させるものです。
 
 .. Here’s how it works:
 
