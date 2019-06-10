@@ -1958,10 +1958,6 @@ HEALTHCHECK
 * 1: 不健康（unhealthy） - コンテナは正常に動作していません。
 * 2: 予約（reserved） - このコードを戻り値として利用してはなりません。
 
-.. If the probe returns 2 ("starting") when the container has already moved out of the "starting" state then it is treated as "unhealthy" instead.
-
-監視結果が 2（"starting"）であれば、コンテナは起動しはじめており「起動中」の状態であり、「unhealthy」状態ではありません。
-
 .. For example, to check every five minutes or so that a web-server is able to serve the site's main page within three seconds:
 
 たとえば、５分ごとにウエブ・サーバがサイトのメインページを３秒以内に表示するかどうかを確認するには、次のように指定します。
