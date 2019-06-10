@@ -1958,9 +1958,10 @@ HEALTHCHECK
 * 1: 不健康（unhealthy） - コンテナは正常に動作していません。
 * 2: 予約（reserved） - このコードを戻り値として利用してはなりません。
 
-.. For example, to check every five minutes or so that a web-server is able to serve the site's main page within three seconds:
+.. For example, to check every five minutes or so that a web-server is able to
+   serve the site's main page within three seconds:
 
-たとえば、５分ごとにウエブ・サーバがサイトのメインページを３秒以内に表示するかどうかを確認するには、次のように指定します。
+たとえば 5 分間に 1 回のチェックとして、ウェブサーバが 3 秒以内にサイトのメインページを提供できているかを確認するには、以下のようにします。
 
 .. code-block:: dockerfile
 
