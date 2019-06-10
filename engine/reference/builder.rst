@@ -1944,9 +1944,11 @@ HEALTHCHECK
 
 ``CMD`` キーワードの後ろにあるコマンドは、シェルコマンド（たとえば ``HEALTHCHECK CMD /bin/check-running``）か、あるいは exec 形式の配列（他の Dockerfile コマンド、たとえば ``ENTRYPOINT`` にあるもの）のいずれかを指定します。
 
-.. The command's exit status indicates the health status of the container. The possible values are:
+.. The command's exit status indicates the health status of the container.
+   The possible values are:
 
-コマンドはコンテナのヘルス・ステータスの終了コードを検出できます。値は以下の通りです。
+そのコマンドの終了ステータスが、コンテナのヘルスステータスを表わします。
+返される値は以下となります。
 
 ..    0: success - the container is healthy and ready for use
     1: unhealthy - the container is not working correctly
