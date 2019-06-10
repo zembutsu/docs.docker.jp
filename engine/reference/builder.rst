@@ -2057,9 +2057,10 @@ Windows には主に 2 つのネイティブなシェル、つまり ``cmd`` と
    SHELL ["cmd", "/S", "/C"]
    RUN echo hello
 
-.. The following instructions can be affected by the SHELL instruction when the shell form of them is used in a Dockerfile: RUN, CMD and ENTRYPOINT.
+.. The following instructions can be affected by the `SHELL` instruction when the
+   *shell* form of them is used in a Dockerfile: `RUN`, `CMD` and `ENTRYPOINT`.
 
-Dockerfile の ``RUN``  、 ``CMD`` 、``ENTRYPOINT`` のシェルは、 ``SHELL`` 命令以後にあれば影響を受けます。
+Dockerfile において ``RUN``、``CMD``、``ENTRYPOINT`` の各コマンドをシェル形式で記述した際には、``SHELL`` 命令の設定による影響が及びます。
 
 .. The following example is a common pattern found on Windows which can be streamlined by using the SHELL instruction:
 
