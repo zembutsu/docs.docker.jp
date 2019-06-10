@@ -1932,9 +1932,11 @@ HEALTHCHECK
 ただしこの開始時間内にヘルスチェックが 1 つでも成功したら、コンテナは起動済であるとみなされます。
 そこで、それ以降にヘルスチェックが失敗したら、**retries** 数の最大を越えたかどうかがカウントされます。
 
-.. There can only be one HEALTHCHECK instruction in a Dockerfile. If you list more than one then only the last HEALTHCHECK will take effect.
+.. There can only be one `HEALTHCHECK` instruction in a Dockerfile. If you list
+   more than one then only the last `HEALTHCHECK` will take effect.
 
-これらの処理は ``Dockerfile`` で命令がある場合のみです。複数の ``HEALTHCHECK`` があれば、最後の１つだけ有効です。
+1 つの Dockerfile に記述できる ``HEALTHCHECK`` 命令はただ 1 つです。
+複数の ``HEALTHCHECK`` を記述しても、最後の命令しか効果はありません。
 
 .. The command after the CMD keyword can be either a shell command (e.g. HEALTHCHECK CMD /bin/check-running) or an exec array (as with other Dockerfile commands; see e.g. ENTRYPOINT for details).
 
