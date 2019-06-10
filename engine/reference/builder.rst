@@ -1922,6 +1922,16 @@ HEALTHCHECK
 
 コンテナに対するヘルスチェックが **retries** 回分、連続して失敗した場合は ``unhealthy`` とみなされます。
 
+.. **start period** provides initialization time for containers that need time to bootstrap.
+   Probe failure during that period will not be counted towards the maximum number of retries.
+   However, if a health check succeeds during the start period, the container is considered
+   started and all consecutive failures will be counted towards the maximum number of retries.
+
+**開始時間** （start period）は、コンテナが起動するまでに必要となる初期化時間を設定します。
+この時間内にヘルスチェックの失敗が発生したとしても、 **retries** 数の最大を越えたかどうかの判断は行われません。
+ただしこの開始時間内にヘルスチェックが 1 つでも成功したら、コンテナは起動済であるとみなされます。
+そこで、それ以降にヘルスチェックが失敗したら、**retries** 数の最大を越えたかどうかがカウントされます。
+
 .. There can only be one HEALTHCHECK instruction in a Dockerfile. If you list more than one then only the last HEALTHCHECK will take effect.
 
 これらの処理は ``Dockerfile`` で命令がある場合のみです。複数の ``HEALTHCHECK`` があれば、最後の１つだけ有効です。
