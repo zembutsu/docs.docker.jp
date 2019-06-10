@@ -2089,9 +2089,11 @@ Docker によって実行されるコマンドは以下となります。
 1 つめは、コマンドプロセッサー cmd.exe（つまりはシェル）が不要に呼び出されているからです。
 2 つめは、シェル形式の ``RUN`` 命令において、常に ``powershell -command`` を各コマンドの頭につけて実行しなければならないからです。
 
-.. To make this more efficient, one of two mechanisms can be employed. One is to use the JSON form of the RUN command such as:
+.. To make this more efficient, one of two mechanisms can be employed. One is to
+   use the JSON form of the RUN command such as:
 
-効率的にするには、２つの仕組みを採用します。１つは RUN 命令を次のように JSON 形式で使います。
+これを効率化するには、2 つあるメカニズムの 1 つを取り入れることです。
+1 つは、RUN コマンドの JSON 形式を使って、以下のようにします。
 
 .. code-block:: dockerfile
 
