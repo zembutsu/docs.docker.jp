@@ -1938,9 +1938,11 @@ HEALTHCHECK
 1 つの Dockerfile に記述できる ``HEALTHCHECK`` 命令はただ 1 つです。
 複数の ``HEALTHCHECK`` を記述しても、最後の命令しか効果はありません。
 
-.. The command after the CMD keyword can be either a shell command (e.g. HEALTHCHECK CMD /bin/check-running) or an exec array (as with other Dockerfile commands; see e.g. ENTRYPOINT for details).
+.. The command after the `CMD` keyword can be either a shell command (e.g. `HEALTHCHECK
+   CMD /bin/check-running`) or an _exec_ array (as with other Dockerfile commands;
+   see e.g. `ENTRYPOINT` for details).
 
-``CMD`` キーワード後のコマンドは、シェル・コマンド（例： ``HEALTHCHECK CMD /bin/check-running`` ）あるいは exec 配列（こちらは Dockerfile の他コマンドと同様です。例えば ``ENTRYPOINT`` の詳細をご覧ください ）です。
+``CMD`` キーワードの後ろにあるコマンドは、シェルコマンド（たとえば ``HEALTHCHECK CMD /bin/check-running``）か、あるいは exec 形式の配列（他の Dockerfile コマンド、たとえば ``ENTRYPOINT`` にあるもの）のいずれかを指定します。
 
 .. The command's exit status indicates the health status of the container. The possible values are:
 
