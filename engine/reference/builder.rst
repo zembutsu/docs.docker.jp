@@ -2081,9 +2081,13 @@ Docker によって実行されるコマンドは以下となります。
 
    cmd /S /C powershell -command Execute-MyCmdlet -param1 "c:\foo.txt"
 
-.. This is inefficient for two reasons. First, there is an un-necessary cmd.exe command processor (aka shell) being invoked. Second, each RUN instruction in the shell form requires an extra powershell -command prefixing the command.
+.. This is inefficient for two reasons. First, there is an un-necessary cmd.exe command
+   processor (aka shell) being invoked. Second, each `RUN` instruction in the *shell*
+   form requires an extra `powershell -command` prefixing the command.
 
-これが非効率なのは、２つの理由があります。１つは不要な cmd.exe プロセッサ（いわゆるシェル）が呼び出されること。もう１つは各 ``RUN`` 命令ごとに追加の ``powershell -command`` コマンドが実行されるためです。
+これは効率的ではなく、そこには 2 つの理由があります。
+1 つめは、コマンドプロセッサー cmd.exe（つまりはシェル）が不要に呼び出されているからです。
+2 つめは、シェル形式の ``RUN`` 命令において、常に ``powershell -command`` を各コマンドの頭につけて実行しなければならないからです。
 
 .. To make this more efficient, one of two mechanisms can be employed. One is to use the JSON form of the RUN command such as:
 
