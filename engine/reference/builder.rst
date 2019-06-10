@@ -2190,9 +2190,11 @@ JSON 形式を使えば、あいまいさはなくなり、不要な cmd.exe を
 Dockerfile の記述例
 ====================
 
-.. Below you can see some examples of Dockerfile syntax. If you’re interested in something more realistic, take a look at the list of Dockerization examples.
+.. Below you can see some examples of Dockerfile syntax. If you're interested in
+   something more realistic, take a look at the list of [Dockerization examples](https://docs.docker.com/engine/examples/).
 
-以下で Dockerfile 構文の例を参照できます。実際の環境に興味があれば、 :doc:`Docker 化の例 </engine/examples/index>` をご覧ください。
+以下では Dockerfile の文法例をいくつか示します。
+より実践的なところに興味がある場合は :doc:`Docker 化のサンプル </engine/examples/index>` を参照してください。
 
 .. code-block:: dockerfile
 
