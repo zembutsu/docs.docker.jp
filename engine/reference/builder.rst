@@ -1968,9 +1968,14 @@ HEALTHCHECK
    HEALTHCHECK --interval=5m --timeout=3s \
      CMD curl -f http://localhost/ || exit 1
 
-.. To help debug failing probes, any output text (UTF-8 encoded) that the command writes on stdout or stderr will be stored in the health status and can be queried with docker inspect. Such output should be kept short (only the first 4096 bytes are stored currently).
+.. To help debug failing probes, any output text (UTF-8 encoded) that the command writes
+   on stdout or stderr will be stored in the health status and can be queried with
+   `docker inspect`. Such output should be kept short (only the first 4096 bytes
+   are stored currently).
 
-監視失敗時はデバッグしやすくなるように、コマンド実行時の標準出力や標準エラー出力といった、あらゆる出力テキスト（UTF-8 エンコード）はヘルス・ステータスに格納され、 ``docker inspect`` で確認可能です。この出力結果は短くして保存されます（現時点では始めから 4096 バイトのみ保存）。
+ヘルスチェックにが失敗しても、それをデバッグしやすくするために、そのコマンドが標準出力あるいは標準エラー出力へ書き込んだ文字列（UTF-8 エンコーディング）は、すべてヘルスステータス内に保存されます。
+``docker inspect`` を使えば、すべて確認することができます。
+ただしその出力は切り詰められます（現時点においては最初の 4096 バイト分のみを出力します）。
 
 .. When the health status of a container changes, a health_status event is generated with the new status.
 
