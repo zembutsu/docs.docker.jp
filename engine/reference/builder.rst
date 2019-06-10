@@ -2101,9 +2101,16 @@ Docker によって実行されるコマンドは以下となります。
    RUN ["powershell", "-command", "Execute-MyCmdlet", "-param1 \"c:\\foo.txt\""]
    ...
 
-.. While the JSON form is unambiguous and does not use the un-necessary cmd.exe, it does require more verbosity through double-quoting and escaping. The alternate mechanism is to use the SHELL instruction and the shell form, making a more natural syntax for Windows users, especially when combined with the escape parser directive:
+.. While the JSON form is unambiguous and does not use the un-necessary cmd.exe,
+   it does require more verbosity through double-quoting and escaping. The alternate
+   mechanism is to use the `SHELL` instruction and the *shell* form,
+   making a more natural syntax for Windows users, especially when combined with
+   the `escape` parser directive:
 
-JSON 形式は明確なものであり、不確実な cmd.exe を使いません。そのため、JSON 形式はダブル・クォートで囲み、エスケープするといった冗長な記述が必要です。他の方法としては、 ``SHELL`` 命令でシェル形式を使えば、Windows 利用者にとっても自然な構文になります。 ``escape`` パーサ・ディレクティブと一緒に使えば尚更です。
+JSON 形式を使えば、あいまいさはなくなり、不要な cmd.exe を使うこともなくなります。
+しかしダブルクォートやエスケープを行うことも必要となり、より多くを記述することにもなります。
+もう 1 つの方法は ``SHELL`` 命令とシェル形式を使って、Windows ユーザーにとって、より自然な文法で実現するやり方です。
+特にパーサーディレクティブ ``escape`` を組み合わせて実現します。
 
 .. code-block:: dockerfile
 
