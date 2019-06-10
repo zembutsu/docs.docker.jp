@@ -2137,15 +2137,15 @@ JSON 形式を使えば、あいまいさはなくなり、不要な cmd.exe を
 .. code-block:: shell
 
    PS E:\docker\build\shell> docker build -t shell .
-   Sending build context to Docker daemon 3.584 kB
-   Step 1 : FROM windowsservercore
-    ---> 5bc36a335344
-   Step 2 : SHELL powershell -command
-    ---> Running in 87d7a64c9751
-    ---> 4327358436c1
-   Removing intermediate container 87d7a64c9751
-   Step 3 : RUN New-Item -ItemType Directory C:\Example
-    ---> Running in 3e6ba16b8df9
+   Sending build context to Docker daemon 4.096 kB
+   Step 1/5 : FROM microsoft/nanoserver
+    ---> 22738ff49c6d
+   Step 2/5 : SHELL powershell -command
+    ---> Running in 6fcdb6855ae2
+    ---> 6331462d4300
+   Removing intermediate container 6fcdb6855ae2
+   Step 3/5 : RUN New-Item -ItemType Directory C:\Example
+    ---> Running in d0eef8386e97
    
    
        Directory: C:\
@@ -2153,20 +2153,20 @@ JSON 形式を使えば、あいまいさはなくなり、不要な cmd.exe を
    
    Mode                LastWriteTime         Length Name
    ----                -------------         ------ ----
-   d-----         6/2/2016   2:59 PM                Example
+   d-----       10/28/2016  11:26 AM                Example
    
    
-    ---> 1f1dfdcec085
-   Removing intermediate container 3e6ba16b8df9
-   Step 4 : ADD Execute-MyCmdlet.ps1 c:\example\
-    ---> 6770b4c17f29
-   Removing intermediate container b139e34291dc
-   Step 5 : RUN c:\example\Execute-MyCmdlet -sample 'hello world'
-    ---> Running in abdcf50dfd1f
-   Hello from Execute-MyCmdlet.ps1 - passed hello world
-    ---> ba0e25255fda
-   Removing intermediate container abdcf50dfd1f
-   Successfully built ba0e25255fda
+    ---> 3f2fbf1395d9
+   Removing intermediate container d0eef8386e97
+   Step 4/5 : ADD Execute-MyCmdlet.ps1 c:\example\
+    ---> a955b2621c31
+   Removing intermediate container b825593d39fc
+   Step 5/5 : RUN c:\example\Execute-MyCmdlet 'hello world'
+    ---> Running in be6d8e63fe75
+   hello world
+    ---> 8e559e9bf424
+   Removing intermediate container be6d8e63fe75
+   Successfully built 8e559e9bf424
    PS E:\docker\build\shell>
 
 .. The SHELL instruction could also be used to modify the way in which a shell operates. For example, using SHELL cmd /S /C /V:ON|OFF on Windows, delayed environment variable expansion semantics could be modified.
