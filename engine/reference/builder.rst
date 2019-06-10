@@ -2016,9 +2016,12 @@ SHELL
 Windows には主に 2 つのネイティブなシェル、つまり ``cmd`` と ``powershell`` があり、両者はかなり異なります。
 しかも ``sh`` のような、さらに別のシェルも利用することができます。
 
-.. The SHELL instruction can appear multiple times. Each SHELL instruction overrides all previous SHELL instructions, and affects all subsequent instructions. For example:
+.. The `SHELL` instruction can appear multiple times. Each `SHELL` instruction overrides
+   all previous `SHELL` instructions, and affects all subsequent instructions. For example:
 
-``SHELL`` 命令は複数回指定できます。 ``SHELL`` 命令ごとに、これまでの ``SHELL`` 命令を上書きし、以降の命令全てに反映します。例：
+``SHELL`` 命令は、何度でも記述できます。
+個々の ``SHELL`` 命令は、それより前の ``SHELL`` 命令の値を上書きし、それ以降の命令に効果を及ぼします。
+たとえば以下のとおりです。
 
 .. code-block:: dockerfile
 
