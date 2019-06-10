@@ -2023,22 +2023,38 @@ Windows には主に 2 つのネイティブなシェル、つまり ``cmd`` と
 個々の ``SHELL`` 命令は、それより前の ``SHELL`` 命令の値を上書きし、それ以降の命令に効果を及ぼします。
 たとえば以下のとおりです。
 
+   ..  FROM microsoft/windowsservercore
+
+       # Executed as cmd /S /C echo default
+       RUN echo default
+
+       # Executed as cmd /S /C powershell -command Write-Host default
+       RUN powershell -command Write-Host default
+
+       # Executed as powershell -command Write-Host hello
+       SHELL ["powershell", "-command"]
+       RUN Write-Host hello
+
+       # Executed as cmd /S /C echo hello
+       SHELL ["cmd", "/S"", "/C"]
+       RUN echo hello
+
 .. code-block:: dockerfile
 
-   FROM windowsservercore
-   
-   # cmd /S /C echo default として実行する
+   FROM microsoft/windowsservercore
+
+   # 以下のように実行： cmd /S /C echo default
    RUN echo default
-   
-   # cmd /S /C powershell -command Write-Host default として実行する
+
+   # 以下のように実行： cmd /S /C powershell -command Write-Host default
    RUN powershell -command Write-Host default
-   
-   # powershell -command Write-Host hello として実行する
+
+   # 以下のように実行： powershell -command Write-Host hello
    SHELL ["powershell", "-command"]
    RUN Write-Host hello
-   
-   # cmd /S /C echo hello として実行する
-   SHELL ["cmd", "/S"", "/C"]
+
+   # 以下のように実行： cmd /S /C echo hello
+   SHELL ["cmd", "/S", "/C"]
    RUN echo hello
 
 .. The following instructions can be affected by the SHELL instruction when the shell form of them is used in a Dockerfile: RUN, CMD and ENTRYPOINT.
