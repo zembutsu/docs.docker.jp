@@ -1977,9 +1977,10 @@ HEALTHCHECK
 ``docker inspect`` を使えば、すべて確認することができます。
 ただしその出力は切り詰められます（現時点においては最初の 4096 バイト分のみを出力します）。
 
-.. When the health status of a container changes, a health_status event is generated with the new status.
+.. When the health status of a container changes, a `health_status` event is
+   generated with the new status.
 
-コンテナのヘルス・ステータスが変われば、 ``health_status`` イベントが新しいステータスを生成します。
+コンテナのヘルスステータスが変更されると、``health_status`` イベントが生成されて、新たなヘルスステータスになります。
 
 .. The HEALTHCHECK feature was added in Docker 1.12.
 
