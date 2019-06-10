@@ -2008,9 +2008,13 @@ SHELL
 デフォルトのシェルは Linux 上では ``["/bin/sh", "-c"]``、Windows 上では ``["cmd", "/S", "/C"]`` です。
 ``SHELL`` 命令は Dockerfile 内において JSON 形式で記述しなければなりません。
 
-.. The SHELL instruction is particularly useful on Windows where there are two commonly used and quite different native shells: cmd and powershell, as well as alternate shells available including sh.
+.. The `SHELL` instruction is particularly useful on Windows where there are
+   two commonly used and quite different native shells: `cmd` and `powershell`, as
+   well as alternate shells available including `sh`.
 
-``SHELL`` 命令はとりわけ Windows で便利です。全く異なるネイティブなシェル ``cmd`` と ``powershell``  だけでなく、代わりのシェルとして ``sh`` も指定できます。
+``SHELL`` 命令は特に Windows 上において利用されます。
+Windows には主に 2 つのネイティブなシェル、つまり ``cmd`` と ``powershell`` があり、両者はかなり異なります。
+しかも ``sh`` のような、さらに別のシェルも利用することができます。
 
 .. The SHELL instruction can appear multiple times. Each SHELL instruction overrides all previous SHELL instructions, and affects all subsequent instructions. For example:
 
