@@ -2132,7 +2132,7 @@ JSON 形式を使えば、あいまいさはなくなり、不要な cmd.exe を
 
 .. Resulting in:
 
-実行結果：
+これは以下のようになります。
 
 .. code-block:: shell
 
