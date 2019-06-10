@@ -2112,11 +2112,19 @@ JSON 形式を使えば、あいまいさはなくなり、不要な cmd.exe を
 もう 1 つの方法は ``SHELL`` 命令とシェル形式を使って、Windows ユーザーにとって、より自然な文法で実現するやり方です。
 特にパーサーディレクティブ ``escape`` を組み合わせて実現します。
 
+   ..  # escape=`
+
+       FROM microsoft/nanoserver
+       SHELL ["powershell","-command"]
+       RUN New-Item -ItemType Directory C:\Example
+       ADD Execute-MyCmdlet.ps1 c:\example\
+       RUN c:\example\Execute-MyCmdlet -sample 'hello world'
+
 .. code-block:: dockerfile
 
    # escape=`
-   
-   FROM windowsservercore
+
+   FROM microsoft/nanoserver
    SHELL ["powershell","-command"]
    RUN New-Item -ItemType Directory C:\Example
    ADD Execute-MyCmdlet.ps1 c:\example\
