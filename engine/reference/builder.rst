@@ -1950,13 +1950,13 @@ HEALTHCHECK
 そのコマンドの終了ステータスが、コンテナのヘルスステータスを表わします。
 返される値は以下となります。
 
-..    0: success - the container is healthy and ready for use
-    1: unhealthy - the container is not working correctly
-    2: starting - the container is not ready for use yet, but is working correctly
+.. - 0: success - the container is healthy and ready for use
+   - 1: unhealthy - the container is not working correctly
+   - 2: reserved - do not use this exit code
 
-* 0: success（成功） - コンテナは正常であり、使う準備が整っています
-* 1: unhealthy（障害） - コンテナは正常に動作していません
-* 2: starting（起動中） - まだコンテナの利用準備が整っていませんが、正常に動作しています
+* 0: 成功（success） - コンテナは健康であり、利用が可能です。
+* 1: 不健康（unhealthy） - コンテナは正常に動作していません。
+* 2: 予約（reserved） - このコードを戻り値として利用してはなりません。
 
 .. If the probe returns 2 ("starting") when the container has already moved out of the "starting" state then it is treated as "unhealthy" instead.
 
