@@ -2169,9 +2169,12 @@ JSON 形式を使えば、あいまいさはなくなり、不要な cmd.exe を
    Successfully built 8e559e9bf424
    PS E:\docker\build\shell>
 
-.. The SHELL instruction could also be used to modify the way in which a shell operates. For example, using SHELL cmd /S /C /V:ON|OFF on Windows, delayed environment variable expansion semantics could be modified.
+.. The `SHELL` instruction could also be used to modify the way in which
+   a shell operates. For example, using `SHELL cmd /S /C /V:ON|OFF` on Windows, delayed
+   environment variable expansion semantics could be modified.
 
-``SHELL`` 命令はシェルの実行者でも変更できます。たとえば Windows 上で ``SHELL cmd /S /C /V:ON|OFF`` を使うと、環境変数の遅延拡張セマンティクス（delayed environment variable expansion semantics）を変更できます。
+``SHELL`` 命令はまた、シェルの動作を変更する際にも利用することができます。
+たとえば Windows 上において ``SHELL cmd /S /C /V:ON|OFF`` を実行すると、遅延環境変数の展開方法を変更することができます。
 
 .. The SHELL instruction can also be used on Linux should an alternate shell be required such zsh, csh, tcsh and others.
 
