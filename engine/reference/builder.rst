@@ -2062,9 +2062,10 @@ Windows には主に 2 つのネイティブなシェル、つまり ``cmd`` と
 
 Dockerfile において ``RUN``、``CMD``、``ENTRYPOINT`` の各コマンドをシェル形式で記述した際には、``SHELL`` 命令の設定による影響が及びます。
 
-.. The following example is a common pattern found on Windows which can be streamlined by using the SHELL instruction:
+.. The following example is a common pattern found on Windows which can be
+   streamlined by using the `SHELL` instruction:
 
-次の例は Windows で一般的に見受けられるパターンですが、 ``SHELL`` 命令で簡素化できます。
+以下に示す例は、Windows 上において見られる普通の実行パターンですが、``SHELL`` 命令を使って簡単に実現することができます。
 
 .. code-block:: dockerfile
 
