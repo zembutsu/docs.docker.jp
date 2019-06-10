@@ -2075,7 +2075,7 @@ Dockerfile において ``RUN``、``CMD``、``ENTRYPOINT`` の各コマンドを
 
 .. The command invoked by docker will be:
 
-このコマンドは、Docker によって次のように処理されます。
+Docker によって実行されるコマンドは以下となります。
 
 .. code-block:: shell
 
