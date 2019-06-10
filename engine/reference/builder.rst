@@ -2176,9 +2176,10 @@ JSON 形式を使えば、あいまいさはなくなり、不要な cmd.exe を
 ``SHELL`` 命令はまた、シェルの動作を変更する際にも利用することができます。
 たとえば Windows 上において ``SHELL cmd /S /C /V:ON|OFF`` を実行すると、遅延環境変数の展開方法を変更することができます。
 
-.. The SHELL instruction can also be used on Linux should an alternate shell be required such zsh, csh, tcsh and others.
+.. The `SHELL` instruction can also be used on Linux should an alternate shell be
+   required such as `zsh`, `csh`, `tcsh` and others.
 
-``SHELL`` 命令は Linux 上でも利用できます。 ``zsh`` 、 ``csh`` 、``tcsh``  など別のシェルを指定できます。
+``SHELL`` 命令は Linux において、``zsh``、``csh``、``tcsh`` などのシェルが必要となる場合にも利用することができます。
 
 .. The SHELL feature was added in Docker 1.12.
 
