@@ -1999,9 +1999,14 @@ SHELL
 
    SHELL ["executable", "parameters"]
 
-.. The SHELL instruction allows the default shell used for the shell form of commands to be overridden. The default shell on Linux is ["/bin/sh", "-c"], and on Windows is ["cmd", "/S", "/C"]. The SHELL instruction must be written in JSON form in a Dockerfile.
+.. The `SHELL` instruction allows the default shell used for the *shell* form of
+   commands to be overridden. The default shell on Linux is `["/bin/sh", "-c"]`, and on
+   Windows is `["cmd", "/S", "/C"]`. The `SHELL` instruction *must* be written in JSON
+   form in a Dockerfile.
 
-``SHELL`` 命令は、シェル形式でコマンド実行時における、デフォルトのシェルを上書きします。 Linux 上でのデフォルトのシェルは ``["/bin/sh", "-c"]`` です。Windows は ``["cmd", "/S", "/C"]`` です。 ``SHELL`` 命令は Dockerfile で JSON 形式での記述が必要です。
+``SHELL`` 命令は、各種コマンドのシェル形式において用いられるデフォルトのシェルを、上書き設定するために利用します。
+デフォルトのシェルは Linux 上では ``["/bin/sh", "-c"]``、Windows 上では ``["cmd", "/S", "/C"]`` です。
+``SHELL`` 命令は Dockerfile 内において JSON 形式で記述しなければなりません。
 
 .. The SHELL instruction is particularly useful on Windows where there are two commonly used and quite different native shells: cmd and powershell, as well as alternate shells available including sh.
 
