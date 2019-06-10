@@ -2185,9 +2185,9 @@ JSON 形式を使えば、あいまいさはなくなり、不要な cmd.exe を
 
 ``SHELL`` 機能は Docker 1.12 で追加されました。
 
-.. Dockerfile examples
+.. ## Dockerfile examples
 
-Dockerfile の例
+Dockerfile の記述例
 ====================
 
 .. Below you can see some examples of Dockerfile syntax. If you’re interested in something more realistic, take a look at the list of Dockerization examples.
