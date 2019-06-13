@@ -5,13 +5,13 @@
       https://github.com/docker/docker.github.io/blob/master/compose/compose-file/index.md
 .. ----------------------------------------------------------------------------
 
-.. Compose file reference
+.. title: Compose file version 3 reference
 
 .. _compose-file-reference:
 
-=======================================
-Compose ファイル・リファレンス
-=======================================
+===========================================
+Compose ファイル バージョン 3 リファレンス
+===========================================
 
 .. sidebar:: 目次
 
