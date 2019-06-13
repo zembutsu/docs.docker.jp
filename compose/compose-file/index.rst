@@ -32,6 +32,25 @@ Compose ファイル バージョン 3 リファレンス
 ここに示す内容は Compose ファイルフォーマット、バージョン 3 です。
 これが最新バージョンです。
 
+.. ## Compose and Docker compatibility matrix
+
+.. _compose-and-docker-compatibility-matrix:
+
+Compose と Docker の互換マトリックス
+=====================================
+
+.. There are several versions of the Compose file format – 1, 2, 2.x, and 3.x. The
+   table below is a quick look. For full details on what each version includes and
+   how to upgrade, see **[About versions and upgrading](compose-versioning.md)**.
+
+Compose ファイルフォーマットには 1、2、2.x、3.x という複数のバージョンがあります。
+その様子は以下の一覧表に見ることができます。
+各バージョンにて何が増えたのか、どのようにアップグレードしたのか、といった詳細については :ref:`バージョンとアップグレードについて <compose-versioning>` を参照してください。
+
+.. {% include content/compose-matrix.md %}
+
+.. include:: ../../_includes/content/compose-matrix.rst
+
 .. The Compose file is a YAML file defining services, networks and volumes. The default path for a Compose file is ./docker-compose.yml.
 
 Compose ファイルは `YAML <http://yaml.org/>`_ ファイルであり、 :ref:`サービス（services） <service-configuration-reference>` 、 :ref:`ネットワーク（networks） <network-configuration-reference>` 、 :ref:`ボリューム（volumes） <volume-configuration-reference>` を定義します。Compose ファイルのデフォルトのパスは ``./docker-compose.yml`` です。
