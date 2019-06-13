@@ -26,7 +26,7 @@ Compose は複数のコンテナを使う Docker アプリケーションを定�
 * :doc:`wordpress`
 * :doc:`faq`
 * :doc:`reference/index`
-* :doc:`compose-file`
+* :doc:`compose-file/index`
 
 .. To see a detailed list of changes for past and current releases of Docker Compose, please refer to the CHANGELOG.
 

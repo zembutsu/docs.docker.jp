@@ -28,7 +28,7 @@ Docker Compose
    extends.rst
    networking.rst
    production.rst
-   compose-file.rst
+   compose-file/toc.rst
    reference/toc.rst
    completion.rst
    link-env-deprecated.rst
