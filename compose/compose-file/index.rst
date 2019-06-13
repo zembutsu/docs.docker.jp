@@ -19,6 +19,19 @@ Compose ファイル バージョン 3 リファレンス
        :depth: 3
        :local:
 
+.. ## Reference and guidelines
+
+.. _reference-and-guidelines:
+
+リファレンスとガイドライン
+===========================
+
+.. These topics describe version 3 of the Compose file format. This is the newest
+   version.
+
+ここに示す内容は Compose ファイルフォーマット、バージョン 3 です。
+これが最新バージョンです。
+
 .. The Compose file is a YAML file defining services, networks and volumes. The default path for a Compose file is ./docker-compose.yml.
 
 Compose ファイルは `YAML <http://yaml.org/>`_ ファイルであり、 :ref:`サービス（services） <service-configuration-reference>` 、 :ref:`ネットワーク（networks） <network-configuration-reference>` 、 :ref:`ボリューム（volumes） <volume-configuration-reference>` を定義します。Compose ファイルのデフォルトのパスは ``./docker-compose.yml`` です。
