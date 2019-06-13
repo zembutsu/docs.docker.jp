@@ -1,10 +1,8 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/compose-file/
-.. SOURCE: https://github.com/docker/compose/blob/master/docs/compose-file.md
+.. SOURCE: https://github.com/docker/docker.github.io/blob/master/compose/compose-file/index.md
    doc version: 1.11
-      https://github.com/docker/compose/commits/master/docs/compose-file.md
-.. check date: 2016/04/28
-.. Commits on Apr 21, 2016 55fcd1c3e32ccbd71caa14462a6239d4bf7a1685
+      https://github.com/docker/docker.github.io/blob/master/compose/compose-file/index.md
 .. ----------------------------------------------------------------------------
 
 .. Compose file reference
