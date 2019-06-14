@@ -580,6 +580,35 @@ Dockerfile 内にてはじめにビルド引数を指定します。
    YAML のブール値（``true``, ``false``, ``yes``, ``no``, ``on``, ``off``）を用いる場合は、クォートで囲む必要があります。
    そうすることで、これらの値は文字列として解釈されます。
 
+.. #### cache_from
+
+cache_from
+----------
+
+.. > **Note:** This option is new in v3.2
+
+.. note::
+
+   このオプションはバージョン 3.2 において新たに追加されました。
+
+.. A list of images that the engine will use for cache resolution.
+
+エンジンがキャッシュ解決のために利用するイメージを設定します。
+
+..  build:
+      context: .
+      cache_from:
+        - alpine:latest
+        - corp/web_app:3.14
+
+.. code-block:: yaml
+
+   build:
+     context: .
+     cache_from:
+       - alpine:latest
+       - corp/web_app:3.14
+
 .. cap_add, cap_drop
 
 cap_add, cap_drop
