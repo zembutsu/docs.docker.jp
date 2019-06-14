@@ -921,16 +921,30 @@ configs
 また短い文法、長い文法を混在することも可能です。
 config を定義しただけでは、サービスの config へのアクセスを許可するものにはなりません。
 
+.. ### cgroup_parent
+
+.. _compose-file-cgroup_parent:
+
 cgroup_parent
 --------------------
 
 .. Specify an optional parent cgroup for the container.
 
-コンテナに対し、オプションの親グループを指定します。
+コンテナに対して、オプションで指定する親の cgroup を指定します。
+
+..  cgroup_parent: m-executor-abcd
 
 .. code-block:: yaml
 
    cgroup_parent: m-executor-abcd
+
+.. > **Note**: This option is ignored when
+   > [deploying a stack in swarm mode](/engine/reference/commandline/stack_deploy.md)
+   > with a (version 3) Compose file.
+
+.. note::
+
+   Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 
 .. _compose-file-container-name:
 
