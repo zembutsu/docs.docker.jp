@@ -730,6 +730,197 @@ command
 
    command: ["bundle", "exec", "thin", "-p", "3000"]
 
+.. ### configs
+
+.. _compose-file-configs:
+
+configs
+----------
+
+.. Grant access to configs on a per-service basis using the per-service `configs`
+   configuration. Two different syntax variants are supported.
+
+サービスごとの ``configs`` を利用して、サービス単位での configs 設定を許可します。
+2 つの異なる文法がサポートされています。
+
+.. > **Note**: The config must already exist or be
+   > [defined in the top-level `configs` configuration](#configs-configuration-reference)
+   > of this stack file, or stack deployment will fail.
+
+.. note::
+
+   config は既に定義済であるか、あるいは :ref:`最上位の configs 設定が定義済 <configs-configuration-reference>` である必要があります。
+   そうでない場合、このファイルによるデプロイが失敗します。
+
+.. #### Short syntax
+
+.. _compose-file-configs-short-syntax:
+
+短い文法
+^^^^^^^^^
+.. The short syntax variant only specifies the config name. This grants the
+   container access to the config and mounts it at `/<config_name>`
+   within the container. The source name and destination mountpoint are both set
+   to the config name.
+
+短い文法の場合には config 名を指定するのみです。
+これを行うと、コンテナー内において ``/<config_name>`` というディレクトリをマウントしてアクセス可能とします。
+マウント元の名前とマウント名はともに config 名となります。
+
+.. The following example uses the short syntax to grant the `redis` service
+   access to the `my_config` and `my_other_config` configs. The value of
+   `my_config` is set to the contents of the file `./my_config.txt`, and
+   `my_other_config` is defined as an external resource, which means that it has
+   already been defined in Docker, either by running the `docker config create`
+   command or by another stack deployment. If the external config does not exist,
+   the stack deployment fails with a `config not found` error.
+
+以下の例では短い文法を用います。
+``redis`` サービスが 2 つの configs ファイル ``my_config`` と ``my_other_config`` にアクセスできるようにするものです。
+``my_config`` へは、ファイル ``./my_config.txt`` の内容を設定しています。
+そして ``my_other_config`` は外部リソースとして定義します。
+これはつまり Docker によりすでに定義されていることを意味し、``docker config create`` の実行により、あるいは別のスタックデプロイメントにより指定されます。
+外部 config が存在していない場合は、スタックデプロイメントは失敗し ``config not found`` というエラーになります。
+
+.. > **Note**: `config` definitions are only supported in version 3.3 and higher
+   >  of the compose file format.
+
+.. note::
+
+   ``config`` 定義は、Compose ファイルフォーマットのバージョン 3.3 またはそれ以上においてサポートされています。
+
+.. ```none
+   version: "3.3"
+   services:
+     redis:
+       image: redis:latest
+       deploy:
+         replicas: 1
+       configs:
+         - my_config
+         - my_other_config
+   configs:
+     my_config:
+       file: ./my_config.txt
+     my_other_config:
+       external: true
+   ```
+
+.. code-block:: yaml
+
+   version: "3.3"
+   services:
+     redis:
+       image: redis:latest
+       deploy:
+         replicas: 1
+       configs:
+         - my_config
+         - my_other_config
+   configs:
+     my_config:
+       file: ./my_config.txt
+     my_other_config:
+       external: true
+
+.. #### Long syntax
+
+.. _compose-file-configs-long-syntax:
+
+長い文法
+^^^^^^^^^
+
+.. The long syntax provides more granularity in how the config is created within
+   the service's task containers.
+
+長い文法は、サービスのタスクコンテナ内にて生成する config をより細かく設定します。
+
+.. - `source`: The name of the config as it exists in Docker.
+   - `target`: The path and name of the file that will be mounted in the service's
+     task containers. Defaults to `/<source>` if not specified.
+   - `uid` and `gid`: The numeric UID or GID which will own the mounted config file
+     within in the service's task containers. Both default to `0` on Linux if not
+     specified. Not supported on Windows.
+   - `mode`: The permissions for the file that will be mounted within the service's
+     task containers, in octal notation. For instance, `0444`
+     represents world-readable. The default is `0444`. Configs cannot be writable
+     because they are mounted in a temporary filesystem, so if you set the writable
+     bit, it is ignored. The executable bit can be set. If you aren't familiar with
+     UNIX file permission modes, you may find this
+     [permissions calculator](http://permissions-calculator.org/){: target="_blank" class="_" }
+     useful.
+
+* ``source``: Docker 内に設定する config 名。
+* ``target``: サービスのタスクコンテナ内にマウントされるファイルパス名。
+  指定されない場合のデフォルトは ``/<source>``。
+* ``uid`` と ``gid``: サービスのタスクコンテナ内にマウントされる config ファイルの所有者を表わす UID 値および GID 値。
+  指定されない場合のデフォルトは、Linux においては ``0``。
+  Windows においてはサポートされません。
+* ``mode``: サービスのタスクコンテナ内にマウントされる config ファイルのパーミッション。
+  8 進数表記。
+  たとえば ``0444`` であればすべて読み込み可。
+  デフォルトは ``0444``。
+  Configs は、テンポラリなファイルシステム上にマウントされるため、書き込み可能にはできません。
+  したがって書き込みビットを設定しても無視されます。
+  実行ビットは設定できます。
+  UNIX のファイルパーミッションモードに詳しくない方は、`パーミッション計算機 <http://permissions-calculator.org/>`_ を参照してください。
+
+.. The following example sets the name of `my_config` to `redis_config` within the
+   container, sets the mode to `0440` (group-readable) and sets the user and group
+   to `103`. The `redis` service does not have access to the `my_other_config`
+   config.
+
+以下の例では ``my_config`` という名前の config を、コンテナ内では ``redis_config`` として設定します。
+そしてモードを ``0440`` （グループが読み込み可能）とし、ユーザとグループは ``103`` とします。
+``redis`` サービスは ``my_other_config`` へはアクセスしません。
+
+.. ```none
+   version: "3.3"
+   services:
+     redis:
+       image: redis:latest
+       deploy:
+         replicas: 1
+       configs:
+         - source: my_config
+           target: /redis_config
+           uid: '103'
+           gid: '103'
+           mode: 0440
+   configs:
+     my_config:
+       file: ./my_config.txt
+     my_other_config:
+       external: true
+   ```
+
+.. code-block:: yaml
+
+   version: "3.3"
+   services:
+     redis:
+       image: redis:latest
+       deploy:
+         replicas: 1
+       configs:
+         - source: my_config
+           target: /redis_config
+           uid: '103'
+           gid: '103'
+           mode: 0440
+   configs:
+     my_config:
+       file: ./my_config.txt
+     my_other_config:
+       external: true
+
+.. You can grant a service access to multiple configs and you can mix long and
+   short syntax. Defining a config does not imply granting a service access to it.
+
+1 つのサービスを複数の configs にアクセスする設定とすることもできます。
+また短い文法、長い文法を混在することも可能です。
+config を定義しただけでは、サービスの config へのアクセスを許可するものにはなりません。
+
 cgroup_parent
 --------------------
 
