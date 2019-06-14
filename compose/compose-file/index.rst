@@ -326,11 +326,13 @@ Bash の ``${変数}`` の構文のように、環境変数を使って設定を
 Compose ファイルは `YAML <http://yaml.org/>`_ 形式のファイルであり、:ref:`サービス（services） <service-configuration-reference>` 、:ref:`ネットワーク（networks） <network-configuration-reference>` 、 :ref:`ボリューム（volumes） <volume-configuration-reference>` を定義します。
 Compose ファイルのデフォルトパスは ``./docker-compose.yml`` です。
 
-.. Note: There are two versions of the Compose file format -- version 1 (the legacy format, which does not support volumes or networks) and version 2 (the most up-to-date). For more information, see the Versioning section.
+.. >**Tip**: You can use either a `.yml` or `.yaml` extension for this file.
+   They both work.
 
-.. note::
+.. tip::
 
-   Compose ファイルの形式には、バージョン１（過去のフォーマットであり、ボリュームやネットワークをサポートしていません）とバージョン２（最新版）という２つのバージョンが存在します。詳しい情報は :ref:`バージョン <compose-file-versioning>` に関するドキュメントをご覧ください。
+   このファイルの拡張子は ``.yml`` と ``.yaml`` のどちらでも構いません。
+   いずれでも動作します。
 
 .. This section contains a list of all configuration options supported by a service definition.
 
