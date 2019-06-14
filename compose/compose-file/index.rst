@@ -493,21 +493,6 @@ Compose は指定された別の Dockerfile を使ってビルドを行います
      context: .
      dockerfile: Dockerfile-alternate
 
-..    Note: In the version 1 file format, dockerfile is different in two ways:
-    It appears alongside build, not as a sub-option:
-    Using dockerfile together with image is not allowed. Attempting to do so results in an error.
-
-.. note::
-
-   :ref:`バージョン１のフォーマット <compose-file-version-1>` とは ``dockerfile`` の使い方が異なります。
-   
-   * ``build`` と ``dockerfile`` は並列であり、サブオプションではありません。
-   
-      build: .
-      dockerfile: Dockerfile-alternate
-   
-   * ``dockerfile`` と ``image`` を同時に使えません。使おうとしてもエラーになります。
-
 .. args
 
 .. _compose-file-args:
