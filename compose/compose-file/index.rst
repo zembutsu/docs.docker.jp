@@ -421,20 +421,19 @@ build
    build: ./dir
    image: webapp:tag
 
-.. This will result in an image tagged webapp, built from ./dir.
+.. This will result in an image named `webapp` and tagged `tag`, built from `./dir`.
 
-これは ``./dir`` で構築したイメージを ``webapp`` としてタグ付けしています。
+結果としてイメージ名は ``webapp`` であり ``tag`` というタグづけが行われます。
+そしてこのイメージは ``./dir`` から作り出されます。
 
-..    Note: In the version 1 file format, build is different in two ways:
-        Only the string form (build: .) is allowed - not the object form.
-        Using build together with image is not allowed. Attempting to do so results in an error.
+.. > **Note**: This option is ignored when
+   > [deploying a stack in swarm mode](/engine/reference/commandline/stack_deploy.md)
+   > with a (version 3) Compose file. The `docker stack` command accepts only pre-built images.
 
 .. note::
 
-   :ref:`バージョン１のフォーマット <compose-file-version-1>` では、 ``build`` の使い方が異なります：
-   
-   * ``build: .`` の文字列のみ許可されています。オブジェクトは指定できません。
-   * ``build`` と ``image`` は同時に使えません。指定するとエラーになります。
+   Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
+   ``docker stack`` コマンドは、ビルド済のイメージのみを受け付けるためです。
 
 .. context
 
