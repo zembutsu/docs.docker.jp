@@ -609,6 +609,63 @@ cache_from
        - alpine:latest
        - corp/web_app:3.14
 
+.. #### labels
+
+.. _compose-file-labels:
+
+labels
+^^^^^^^^
+
+.. > **Note:** This option is new in v3.3
+
+.. note::
+
+   このオプションはバージョン 3.3 において新たに追加されました。
+
+.. Add metadata to the resulting image using [Docker labels](/engine/userguide/labels-custom-metadata.md).
+   You can use either an array or a dictionary.
+
+:doc:`Docker labels </engine/userguide/labels-custom-metadata>` を使ってイメージにメタデータを追加します。
+配列形式と辞書形式のいずれかにより指定します。
+
+.. It's recommended that you use reverse-DNS notation to prevent your labels from conflicting with
+   those used by other software.
+
+ここでは逆 DNS 記法とすることをお勧めします。
+この記法にしておけば、他のソフトウェアが用いるラベルとの競合が避けられるからです。
+
+..  build:
+      context: .
+      labels:
+        com.example.description: "Accounting webapp"
+        com.example.department: "Finance"
+        com.example.label-with-empty-value: ""
+
+.. code-block:: yaml
+
+   build:
+     context: .
+     labels:
+       com.example.description: "Accounting webapp"
+       com.example.department: "Finance"
+       com.example.label-with-empty-value: ""
+
+..  build:
+      context: .
+      labels:
+        - "com.example.description=Accounting webapp"
+        - "com.example.department=Finance"
+        - "com.example.label-with-empty-value"
+
+.. code-block:: yaml
+
+   build:
+     context: .
+     labels:
+       - "com.example.description=Accounting webapp"
+       - "com.example.department=Finance"
+       - "com.example.label-with-empty-value"
+
 .. cap_add, cap_drop
 
 cap_add, cap_drop
@@ -999,31 +1056,6 @@ image
 .. note::
 
    :ref:`バージョン１のファイル形式 <compose-file-version-1>` では、 ``build`` と ``image`` を同時に使えません。実行しようとしてもエラーが出ます。
-
-.. _compose-file-labels:
-
-labels
-----------
-
-.. Add metadata to containers using Docker labels. You can use either an array or a dictionary.
-
-:doc:`Docker ラベル </engine/userguide/labels-custom-metadata>` を使いコンテナにメタデータを追加します。配列もしくは辞書形式で追加できます。
-
-.. It’s recommended that you use reverse-DNS notation to prevent your labels from conflicting with those used by other software.
-
-他のソフトウェアとラベルが競合しないようにするため、DNS 逆引き記法の利用を推奨します。
-
-.. code-block:: yaml
-
-   labels:
-     com.example.description: "Accounting webapp"
-     com.example.department: "Finance"
-     com.example.label-with-empty-value: ""
-   
-   labels:
-     - "com.example.description=Accounting webapp"
-     - "com.example.department=Finance"
-     - "com.example.label-with-empty-value"
 
 .. _compose-file-links:
 
