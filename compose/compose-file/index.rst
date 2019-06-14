@@ -442,15 +442,9 @@ build
 context
 ----------
 
-..     Version 2 file format only. In version 1, just use build.
-
-.. note::
-
-   context は :ref:`バージョン２のフォーマット <compose-file-version-2>` のみで利用可能です。バージョン１では :ref:`build <compose-file-build>` をお使いください。
-
 .. Either a path to a directory containing a Dockerfile, or a url to a git repository.
 
-コンテクスト（訳者注：内容物の意味）には Dockerfile があるディレクトリのパスや Git リポジトリの URL を指定します。
+Dockerfile を含むディレクトリへのパスか、あるいは git リポジトリの URL を設定します。
 
 .. When the value supplied is a relative path, it is interpreted as relative to the location of the Compose file. This directory is also the build context that is sent to the Docker daemon.
 
