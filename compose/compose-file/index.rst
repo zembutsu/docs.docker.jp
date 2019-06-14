@@ -666,24 +666,41 @@ labels
        - "com.example.department=Finance"
        - "com.example.label-with-empty-value"
 
-.. cap_add, cap_drop
+.. ### cap_add, cap_drop
 
 cap_add, cap_drop
 --------------------
 
-.. Add or drop container capabilities. See man 7 capabilities for a full list.
+.. Add or drop container capabilities.
+   See `man 7 capabilities` for a full list.
 
-コンテナのケーパビリティ（capabilities）を追加・削除します。ケーパビリティの一覧は ``man 7 capabilities`` をご覧ください。
+コンテナケーパビリティーの機能を追加または削除します。
+詳細な一覧は ``man 7 capabilities`` を参照してください。
+
+..  cap_add:
+      - ALL
+
+..  cap_drop:
+      - NET_ADMIN
+      - SYS_ADMIN
 
 .. code-block:: yaml
 
    cap_add:
      - ALL
-   
+
    cap_drop:
      - NET_ADMIN
      - SYS_ADMIN
 
+.. > **Note**: These options are ignored when
+   > [deploying a stack in swarm mode](/engine/reference/commandline/stack_deploy.md)
+   > with a (version 3) Compose file.
+
+.. note::
+
+   Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
+   ``docker stack`` コマンドは、ビルド済のイメージのみを受け付けるためです。
 
 .. _compose-file-command:
 
