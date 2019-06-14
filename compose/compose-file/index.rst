@@ -361,19 +361,51 @@ build
 
 この設定オプションはビルド時に適用されます。
 
-.. build can be specified either as a string containing a path to the build context, or an object with the path specified under context and optionally dockerfile and args.
+.. `build` can be specified either as a string containing a path to the build
+   context:
 
-``build`` で指定できるのは、構築用コンテクストのパスを含む文字列だけでなく、 :ref:`context <compose-file-context>` の配下にある特定の物（オブジェクト）や、 :ref:`dockerfile <compose-file-dockerfile>` のオプションと :ref:`引数 <compose-file-args>` を指定できます。
+``build`` の指定方法の 1 つは、ビルドコンテキストへのパスを表わす文字列を指定します。
+
+.. ```none
+   version: '2'
+   services:
+     webapp:
+       build: ./dir
+   ```
 
 .. code-block:: yaml
 
-   build: ./dir
-   
-   build:
-     context: ./dir
-     dockerfile: Dockerfile-alternate
-     args:
-       buildno: 1
+   version: '2'
+   services:
+     webapp:
+       build: ./dir
+
+.. Or, as an object with the path specified under [context](#context) and
+   optionally [Dockerfile](#dockerfile) and [args](#args):
+
+あるいは :ref:`コンテキスト <compose-file-context>` の指定のもとにパスを指定し、オプションとして :ref:`Dockerfile <compose-file-dockerfile>` や :ref:`args <compose-file-args>` を記述する方法をとります。
+
+.. ```none
+   version: '2'
+   services:
+     webapp:
+       build:
+         context: ./dir
+         dockerfile: Dockerfile-alternate
+         args:
+           buildno: 1
+   ```
+
+.. code-block:: yaml
+
+   version: '2'
+   services:
+     webapp:
+       build:
+         context: ./dir
+         dockerfile: Dockerfile-alternate
+         args:
+           buildno: 1
 
 .. If you specify image as well as build, then Compose tags the built image with the tag specified in image:
 
