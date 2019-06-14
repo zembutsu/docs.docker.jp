@@ -345,9 +345,10 @@ Compose ファイルのデフォルトパスは ``./docker-compose.yml`` です�
 環境変数は Bash 風に ``${VARIABLE}`` のように記述します。
 詳しくは :ref:`変数の置換 <variable-substitution>` を参照してください。
 
-.. This section contains a list of all configuration options supported by a service definition.
+.. This section contains a list of all configuration options supported by a service
+   definition in version 3.
 
-（Docker Composeの）サービス定義用にサポートされている設定オプションの一覧を、このセクションで扱います。
+このセクションでは、バージョン 3 のサービス定義においてサポートされている設定オプションをすべて説明しています。
 
 .. build
 
