@@ -298,10 +298,6 @@ Compose ファイル バージョン 3 の記述例:
 Swarm <https://github.com/docker/labs/blob/master/beginner/chapters/votingapp.md>`_ の中のトピック `Docker for Beginners lab <https://github.com/docker/labs/tree/master/beginner/>`_ において利用されている投票アプリのサンプルの Compose ファイルが参考になります。
 これも本節の上部にあるコードの中に示しています。
 
-.. A service definition contains configuration which will be applied to each container started for that service, much like passing command-line parameters to docker run. Likewise, network and volume definitions are analogous to docker network create and docker volume create.
-
-サービスの定義では、各コンテナをサービスとして定義できます。このサービスを起動する時、コマンドラインの ``docker run`` のパラメータのような指定が可能です。同様に、ネットワークやボリュームの定義も ``docker network create`` や ``docker volume create`` と似ています。
-
 .. As with docker run, options specified in the Dockerfile (e.g., CMD, EXPOSE, VOLUME, ENV) are respected by default - you don’t need to specify them again in docker-compose.yml.
 
 ``docker run`` では、 Dockerfile で指定したオプション（例： ``CMD`` 、 ``EXPOSE`` 、 ``VOLUME`` 、``ENV`` ）はデフォルトとして尊重されます。そのため、 ``docker-compose.yml`` で再び指定する必要はありません。
@@ -333,6 +329,15 @@ Compose ファイルのデフォルトパスは ``./docker-compose.yml`` です�
 
    このファイルの拡張子は ``.yml`` と ``.yaml`` のどちらでも構いません。
    いずれでも動作します。
+
+.. A service definition contains configuration which will be applied to each
+   container started for that service, much like passing command-line parameters to
+   `docker run`. Likewise, network and volume definitions are analogous to
+   `docker network create` and `docker volume create`.
+
+サービスの定義とは、そのサービスを起動する各コンテナに適用される設定を行うことです。
+コマンドラインから ``docker container create`` のパラメータを受け渡すことと、非常によく似ています。
+同様に、ネットワークの定義、ボリュームの定義は、それぞれ ``docker network create`` と ``docker volume create`` のコマンドに対応づくものです。
 
 .. This section contains a list of all configuration options supported by a service definition.
 
