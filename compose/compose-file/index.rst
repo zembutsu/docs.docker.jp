@@ -453,9 +453,13 @@ Dockerfile を含むディレクトリへのパスか、あるいは git リポ�
 設定された記述が相対パスを表わしている場合、Compose ファイルのあるディレクトリからの相対パスとして解釈されます。
 このディレクトリはビルドコンテキストでもあり、Docker デーモンへ送信されるディレクトリです。
 
-.. Compose will build and tag it with a generated name, and use that image thereafter.
+.. Compose will build and tag it with a generated name, and use that image
+   thereafter.
 
-Compose は生成時の名前で構築・タグ付けし、それがイメージとなります。
+Compose は指定された名前により、イメージのビルドとタグづけを行い、後々これを利用します。
+
+..  build:
+      context: ./dir
 
 .. code-block:: yaml
 
