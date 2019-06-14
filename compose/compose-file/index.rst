@@ -946,6 +946,8 @@ cgroup_parent
 
    Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 
+.. ### container_name
+
 .. _compose-file-container-name:
 
 container_name
@@ -953,16 +955,29 @@ container_name
 
 .. Specify a custom container name, rather than a generated default name.
 
-デフォルトで生成される名前の代わりに、カスタム・コンテナ名を指定します。
+デフォルトのコンテナ名ではない、独自のコンテナ名を設定します。
+
+..  container_name: my-web-container
 
 .. code-block:: yaml
 
    container_name: my-web-container
 
-.. Because Docker container names must be unique, you cannot scale a service beyond 1 container if you have specified a custom name. Attempting to do so results in an error.
+.. Because Docker container names must be unique, you cannot scale a service beyond
+   1 container if you have specified a custom name. Attempting to do so results in
+   an error.
 
-Docker コンテナ名はユニークである必要があります。そのため、カスタム名を指定時、サービスは複数のコンテナにスケールできなくなります。
+Docker コンテナ名はユニークである必要があります。
+そこで独自のコンテナ名を設定したときは、サービスをスケールアップして複数コンテナとすることはできません。
+これを行うとエラーが発生します。
 
+.. > **Note**: This option is ignored when
+   > [deploying a stack in swarm mode](/engine/reference/commandline/stack_deploy.md)
+   > with a (version 3) Compose file.
+
+.. note::
+
+   Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 .. _compose-file-devices:
 
 devices
