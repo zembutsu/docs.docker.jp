@@ -500,31 +500,85 @@ Compose は指定された別の Dockerfile を使ってビルドを行います
 args
 ----------
 
-..    Version 2 file format only.
+.. Add build arguments, which are environment variables accessible only during the
+   build process.
 
-.. Add build arguments. You can use either an array or a dictionary. Any boolean values; true, false, yes, no, need to be enclosed in quotes to ensure they are not converted to True or False by the YML parser.
+ビルド引数を追加します。
+これは環境変数であり、ビルド処理の間だけ利用可能なものです。
 
-.. note::
+.. First, specify the arguments in your Dockerfile:
 
-   対応しているのは :ref:`バージョン２のファイル形式 <compose-file-version-2>` のみです。
+Dockerfile 内にてはじめにビルド引数を指定します。
 
-構築時に build のオプション（args）を追加します。配列でも辞書形式（訳者注：「foo=bar」の形式）も指定できます。ブール演算子（true、false、yes、no）を使う場合はクォートで囲む必要があります。そうしませんと YAML パーサは True か False か判別できません。
+..  ARG buildno
+    ARG password
 
-.. Build arguments with only a key are resolved to their environment value on the machine Compose is running on.
+..  RUN echo "Build number: $buildno"
+    RUN script-requiring-password.sh "$password"
 
-構築時に引数のキーとして解釈する環境変数の値は、Compose を実行するマシン上のみです。
+.. code-block:: yaml
+
+   ARG buildno
+   ARG password
+
+   RUN echo "Build number: $buildno"
+   RUN script-requiring-password.sh "$password"
+
+.. Then specify the arguments under the `build` key. You can pass either a mapping
+   or a list:
+
+そして ``build`` キーのもとにその引数を指定します。
+指定は個々をマッピングする形式か、リストとする形式が可能です。
+
+..  build:
+      context: .
+      args:
+        buildno: 1
+        password: secret
+
+..  build:
+      context: .
+      args:
+        - buildno=1
+        - password=secret
 
 .. code-block:: yaml
 
    build:
+     context: .
      args:
        buildno: 1
-       user: someuser
-   
+       password: secret
+
    build:
+     context: .
      args:
        - buildno=1
-       - user=someuser
+       - password=secret
+
+.. You can omit the value when specifying a build argument, in which case its value
+   at build time is the value in the environment where Compose is running.
+
+ビルド引数の指定にあたって、その値設定を省略することができます。
+この場合、ビルド時におけるその値は、Compose を起動している環境での値になります。
+
+..  args:
+      - buildno
+      - password
+
+.. code-block:: yaml
+
+   args:
+     - buildno
+     - password
+
+.. > **Note**: YAML boolean values (`true`, `false`, `yes`, `no`, `on`, `off`) must
+   > be enclosed in quotes, so that the parser interprets them as strings.
+
+.. note::
+
+   YAML のブール値（``true``, ``false``, ``yes``, ``no``, ``on``, ``off``）を用いる場合は、クォートで囲む必要があります。
+   そうすることで、これらの値は文字列として解釈されます。
 
 .. cap_add, cap_drop
 
