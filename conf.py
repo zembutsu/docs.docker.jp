@@ -306,3 +306,6 @@ texinfo_documents = [
 #docx_keywords = ['Sphinx', 'OpenXML']
 #docx_style= './misc/style.docx'
 
+html_context = {
+    'css_files': ['_static/css/bootstrap.min.css'],
+}
