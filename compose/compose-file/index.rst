@@ -702,6 +702,8 @@ cap_add, cap_drop
    Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
    ``docker stack`` コマンドは、ビルド済のイメージのみを受け付けるためです。
 
+.. ### command
+
 .. _compose-file-command:
 
 command
@@ -709,19 +711,24 @@ command
 
 .. Override the default command.
 
-デフォルトのコマンドを上書きします。
+デフォルトコマンドを上書きします。
+
+..  command: bundle exec thin -p 3000
 
 .. code-block:: yaml
 
    command: bundle exec thin -p 3000
 
-.. The command can also be a list, in a manner similar to dockerfile:
+.. The command can also be a list, in a manner similar to
+   [dockerfile](/engine/reference/builder.md#cmd):
 
-これは :ref:`Dockerfile <cmd>` の書き方に似せることもできます。
+コマンドは :ref:`Dockerfile <cmd>` の場合と同じように、リスト形式により指定することもできます。
+
+..  command: ["bundle", "exec", "thin", "-p", "3000"]
 
 .. code-block:: yaml
 
-   command: [bundle, exec, thin, -p, 3000]
+   command: ["bundle", "exec", "thin", "-p", "3000"]
 
 cgroup_parent
 --------------------
