@@ -298,10 +298,6 @@ Compose ファイル バージョン 3 の記述例:
 Swarm <https://github.com/docker/labs/blob/master/beginner/chapters/votingapp.md>`_ の中のトピック `Docker for Beginners lab <https://github.com/docker/labs/tree/master/beginner/>`_ において利用されている投票アプリのサンプルの Compose ファイルが参考になります。
 これも本節の上部にあるコードの中に示しています。
 
-.. The Compose file is a YAML file defining services, networks and volumes. The default path for a Compose file is ./docker-compose.yml.
-
-Compose ファイルは `YAML <http://yaml.org/>`_ ファイルであり、 :ref:`サービス（services） <service-configuration-reference>` 、 :ref:`ネットワーク（networks） <network-configuration-reference>` 、 :ref:`ボリューム（volumes） <volume-configuration-reference>` を定義します。Compose ファイルのデフォルトのパスは ``./docker-compose.yml`` です。
-
 .. A service definition contains configuration which will be applied to each container started for that service, much like passing command-line parameters to docker run. Likewise, network and volume definitions are analogous to docker network create and docker volume create.
 
 サービスの定義では、各コンテナをサービスとして定義できます。このサービスを起動する時、コマンドラインの ``docker run`` のパラメータのような指定が可能です。同様に、ネットワークやボリュームの定義も ``docker network create`` や ``docker volume create`` と似ています。
@@ -320,6 +316,15 @@ Bash の ``${変数}`` の構文のように、環境変数を使って設定を
 
 サービス設定リファレンス
 ==============================
+
+.. The Compose file is a [YAML](http://yaml.org/) file defining
+   [services](#service-configuration-reference),
+   [networks](#network-configuration-reference) and
+   [volumes](#volume-configuration-reference).
+   The default path for a Compose file is `./docker-compose.yml`.
+
+Compose ファイルは `YAML <http://yaml.org/>`_ 形式のファイルであり、:ref:`サービス（services） <service-configuration-reference>` 、:ref:`ネットワーク（networks） <network-configuration-reference>` 、 :ref:`ボリューム（volumes） <volume-configuration-reference>` を定義します。
+Compose ファイルのデフォルトパスは ``./docker-compose.yml`` です。
 
 .. Note: There are two versions of the Compose file format -- version 1 (the legacy format, which does not support volumes or networks) and version 2 (the most up-to-date). For more information, see the Versioning section.
 
