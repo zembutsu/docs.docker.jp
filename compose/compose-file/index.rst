@@ -260,6 +260,43 @@ Compose ファイル バージョン 3 の記述例:
    volumes:
      db-data:
 
+.. The topics on this reference page are organized alphabetically by top-level key
+   to reflect the structure of the Compose file itself. Top-level keys that define
+   a section in the configuration file such as `build`, `deploy`, `depends_on`,
+   `networks`, and so on, are listed with the options that support them as
+   sub-topics. This maps to the `<key>: <option>: <value>` indent structure of the
+   Compose file.
+
+このリファレンスページで取り上げているトピックは、Compose ファイルの構造に合わせて、最上位のキー項目をアルファベット順に示しています。
+最上位のキー項目とは、設定ファイルにおいてのセクションを定義するものであり、``build``、``deploy``、``depends_on``、``networks`` などのことです。
+そのキー項目ごとに、それをサポートするオプションをサブトピックとして説明しています。
+これは Compose ファイルにおいて ``<key>: <option>: <value>`` という形式のインデント構造に対応します。
+
+.. A good place to start is the [Getting Started](/get-started/index.md) tutorial
+   which uses version 3 Compose stack files to implement multi-container apps,
+   service definitions, and swarm mode. Here are some Compose files used in the
+   tutorial.
+
+理解しやすいのは、:doc:`始めましょう </get-started/index>` にて示しているチュートリアルです。
+そこでは Compose ファイルのバージョン 3 を使って、マルチコンテナーアプリケーション、サービス定義、スウォームモードを実現しています。
+チュートリアルで利用している Compose ファイルは以下のものです。
+
+.. - [Your first docker-compose.yml File](/get-started/part3.md#your-first-docker-composeyml-file)
+   
+   - [Adding a new service and redeploying](/get-started/part5.md#adding-a-new-service-and-redeploying)
+
+* :ref:`はじめての docker-compose.yml ファイル <your-first-docker-composeyml-file>`
+
+* :ref:`サービスの新規追加と再デプロイ <adding-a-new-service-and-redeploying>`
+
+.. Another good reference is the Compose file for the voting app sample used in the
+   [Docker for Beginners lab](https://github.com/docker/labs/tree/master/beginner/)
+   topic on [Deploying an app to a
+   Swarm](https://github.com/docker/labs/blob/master/beginner/chapters/votingapp.md). This is also shown on the accordion at the top of this section.
+
+別のリファレンスとして `Deploying an app to a
+Swarm <https://github.com/docker/labs/blob/master/beginner/chapters/votingapp.md>`_ の中のトピック `Docker for Beginners lab <https://github.com/docker/labs/tree/master/beginner/>`_ において利用されている投票アプリのサンプルの Compose ファイルが参考になります。
+これも本節の上部にあるコードの中に示しています。
 
 .. The Compose file is a YAML file defining services, networks and volumes. The default path for a Compose file is ./docker-compose.yml.
 
