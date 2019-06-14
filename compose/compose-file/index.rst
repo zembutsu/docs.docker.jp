@@ -446,9 +446,12 @@ context
 
 Dockerfile を含むディレクトリへのパスか、あるいは git リポジトリの URL を設定します。
 
-.. When the value supplied is a relative path, it is interpreted as relative to the location of the Compose file. This directory is also the build context that is sent to the Docker daemon.
+.. When the value supplied is a relative path, it is interpreted as relative to the
+   location of the Compose file. This directory is also the build context that is
+   sent to the Docker daemon.
 
-値に相対パスを指定したら、Compose ファイルのある場所を基準とした相対パスとして解釈します。また、指定したディレクトリが構築コンテクストとなり、Docker デーモンに送信します。
+設定された記述が相対パスを表わしている場合、Compose ファイルのあるディレクトリからの相対パスとして解釈されます。
+このディレクトリはビルドコンテキストでもあり、Docker デーモンへ送信されるディレクトリです。
 
 .. Compose will build and tag it with a generated name, and use that image thereafter.
 
