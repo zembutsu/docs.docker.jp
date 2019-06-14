@@ -359,7 +359,7 @@ build
 
 .. Configuration options that are applied at build time.
 
-構築時に適用するオプションを指定します。
+この設定オプションはビルド時に適用されます。
 
 .. build can be specified either as a string containing a path to the build context, or an object with the path specified under context and optionally dockerfile and args.
 
