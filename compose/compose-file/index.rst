@@ -13,11 +13,11 @@
 Compose ファイル バージョン 3 リファレンス
 ===========================================
 
-.. .. sidebar:: 目次
-   
-      .. contents:: 
-          :depth: 3
-          :local:
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
 
 .. ## Reference and guidelines
 
@@ -440,7 +440,7 @@ build
 .. _compose-file-context:
 
 context
-----------
+^^^^^^^^
 
 .. Either a path to a directory containing a Dockerfile, or a url to a git repository.
 
@@ -471,7 +471,7 @@ Compose は指定された名前により、イメージのビルドとタグづ
 .. _compose-file-dockerfile:
 
 dockerfile
-----------
+^^^^^^^^^^^
 
 .. Alternate Dockerfile.
 
@@ -498,7 +498,7 @@ Compose は指定された別の Dockerfile を使ってビルドを行います
 .. _compose-file-args:
 
 args
-----------
+^^^^^
 
 .. Add build arguments, which are environment variables accessible only during the
    build process.
@@ -583,7 +583,7 @@ Dockerfile 内にてはじめにビルド引数を指定します。
 .. #### cache_from
 
 cache_from
-----------
+^^^^^^^^^^^
 
 .. > **Note:** This option is new in v3.2
 
