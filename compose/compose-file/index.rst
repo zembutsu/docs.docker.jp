@@ -407,14 +407,19 @@ build
          args:
            buildno: 1
 
-.. If you specify image as well as build, then Compose tags the built image with the tag specified in image:
+.. If you specify `image` as well as `build`, then Compose names the built image
+   with the `webapp` and optional `tag` specified in `image`:
 
-``build`` だけでなく ``image`` も指定できます。 Compose は ``image`` で指定したタグを使い、構築したイメージをタグ付けします。
+``build`` に加えて ``image`` も指定した場合、Compose はビルドイメージに名前をつけます。
+たとえば以下のように ``image`` を指定すると、イメージ名を ``webapp``、オプションのタグを ``tag`` という名前にします。
+
+..  build: ./dir
+    image: webapp:tag
 
 .. code-block:: yaml
 
    build: ./dir
-   image: webapp
+   image: webapp:tag
 
 .. This will result in an image tagged webapp, built from ./dir.
 
