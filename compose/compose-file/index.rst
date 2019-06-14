@@ -475,13 +475,19 @@ dockerfile
 
 .. Alternate Dockerfile.
 
-Dockerfile の代わりになるものです。
+別の Dockerfile を指定します。
 
-.. Compose will use an alternate file to build with. A build path must also be specified.
+.. Compose will use an alternate file to build with. A build path must also be
+   specified.
 
-Compose は構築時に別のファイルを使えます。構築時のパスも指定する必要があります。
+Compose は指定された別の Dockerfile を使ってビルドを行います。
+このときは、ビルドパスを同時に指定しなければなりません。
 
-.. code-block:: bash
+..  build:
+      context: .
+      dockerfile: Dockerfile-alternate
+
+.. code-block:: yaml
 
    build:
      context: .
