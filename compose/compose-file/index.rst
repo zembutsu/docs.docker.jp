@@ -1042,6 +1042,616 @@ Windows における Docker データディレクトリのデフォルトは ``C
    credential_spec:
      registry: my-credential-spec
 
+.. ### deploy
+
+.. _compose-file-deploy:
+
+deploy
+-------
+
+.. > **[Version 3](compose-versioning.md#version-3) only.**
+
+.. note::
+
+   :ref:`バージョン 3 <compose-versioning-version-3>` のみ。
+
+.. Specify configuration related to the deployment and running of services. This
+   only takes effect when deploying to a [swarm](/engine/swarm/index.md) with
+   [docker stack deploy](/engine/reference/commandline/stack_deploy.md), and is
+   ignored by `docker-compose up` and `docker-compose run`.
+
+サービスのデプロイや起動に関する設定を行います。
+この設定が有効になるのは :doc:`スウォーム </engine/swarm/index>` に対して :doc:`docker stack deploy </engine/reference/commandline/stack_deploy>` コマンドを実行したときであって、 ``docker-compose up`` や ``docker-compose run`` を実行したときには無視されます。
+
+..  version: '3'
+    services:
+      redis:
+        image: redis:alpine
+        deploy:
+          replicas: 6
+          update_config:
+            parallelism: 2
+            delay: 10s
+          restart_policy:
+            condition: on-failure
+
+.. code-block:: yaml
+
+   version: '3'
+   services:
+     redis:
+       image: redis:alpine
+       deploy:
+         replicas: 6
+         update_config:
+           parallelism: 2
+           delay: 10s
+         restart_policy:
+           condition: on-failure
+
+.. Several sub-options are available:
+
+利用可能なサブオプションがあります。
+
+.. #### endpoint_mode
+
+.. _compose-file-endpoint-mode:
+
+endpoint_mode
+^^^^^^^^^^^^^^
+
+.. Specify a service discovery method for external clients connecting to a swarm.
+
+スウォームに接続する外部クライアントのサービスディスカバリ方法を指定します。
+
+.. > **[Version 3.3](compose-versioning.md#version-3) only.**
+
+.. note::
+
+   :ref:`バージョン 3.3 <compose-versioning-version-3>` のみ。
+
+.. * `endpoint_mode: vip` - Docker assigns the service a virtual IP (VIP),
+   which acts as the “front end” for clients to reach the service on a
+   network. Docker routes requests between the client and available worker
+   nodes for the service, without client knowledge of how many nodes
+   are participating in the service or their IP addresses or ports.
+   (This is the default.)
+
+* ``endpoint_mode: vip`` - Docker はサービスに対して仮想 IP（virtual IP; VIP）を割り当てます。
+  これはネットワーク上のサービスに対して、クライアントがアクセスできるようにするためのフロントエンドとして機能します。
+  Docker がサービスに参加する稼動中のワーカーノードやクライアントの間でリクエストを受け渡ししている際に、クライアントはそのサービス上にどれだけの数のノードが参加しているのか、その IP アドレスやポートが何なのか、一切分かりません。
+  （この設定がデフォルトです。）
+
+.. * `endpoint_mode: dnsrr` -  DNS round-robin (DNSRR) service discovery does
+   not use a single virtual IP. Docker sets up DNS entries for the service
+   such that a DNS query for the service name returns a list of IP addresses,
+   and the client connects directly to one of these. DNS round-robin is useful
+   in cases where you want to use your own load balancer, or for Hybrid
+   Windows and Linux applications.
+
+* ``endpoint_mode: dnsrr`` -  DNS ラウンドロビン（DNS round-robin; DNSRR）によるサービスディスカバリでは、仮想 IP は単一ではありません。
+  Docker はサービスに対する DNS エントリーを設定し、サービス名に対する DNS クエリーが IP アドレスのリストを返すようにします。
+  クライアントはそのうちの 1 つに対して直接アクセスします。
+  DNS ラウンドロビンが有効なのは、独自のロードバランサーを利用したい場合や、Windows と Linux が統合されたアプリケーションに対して利用する場合です。
+
+.. ```none
+   version: "3.3"
+
+   services:
+     wordpress:
+       image: wordpress
+       ports:
+         - 8080:80
+       networks:
+         - overlay
+       deploy:
+         mode: replicated
+         replicas: 2
+         endpoint_mode: vip
+
+     mysql:
+       image: mysql
+       volumes:
+          - db-data:/var/lib/mysql/data
+       networks:
+          - overlay
+       deploy:
+         mode: replicated
+         replicas: 2
+         endpoint_mode: dnsrr
+
+   volumes:
+     db-data:
+
+   networks:
+     overlay:
+   ```
+
+.. code-block:: yaml
+
+   version: "3.3"
+
+   services:
+     wordpress:
+       image: wordpress
+       ports:
+         - 8080:80
+       networks:
+         - overlay
+       deploy:
+         mode: replicated
+         replicas: 2
+         endpoint_mode: vip
+
+     mysql:
+       image: mysql
+       volumes:
+          - db-data:/var/lib/mysql/data
+       networks:
+          - overlay
+       deploy:
+         mode: replicated
+         replicas: 2
+         endpoint_mode: dnsrr
+
+   volumes:
+     db-data:
+
+   networks:
+     overlay:
+
+.. The options for `endpoint_mode` also work as flags on the swarm mode CLI command
+   [docker service create](/engine/reference/commandline/service_create.md). For a
+   quick list of all swarm related `docker` commands, see [Swarm mode CLI
+   commands](/engine/swarm.md#swarm-mode-key-concepts-and-tutorial).
+
+``endpoint_mode`` に対する設定は、スウォームモードの CLI コマンド :doc:`docker service create </engine/reference/commandline/service_create>` におけるフラグとしても動作します。
+スウォームに関連する ``docker`` コマンドの一覧は :ref:`スウォームモード CLI コマンド <swarm-mode-key-concepts-and-tutorial>` を参照してください。
+
+.. To learn more about service discovery and networking in swarm mode, see
+   [Configure service
+   discovery](/engine/swarm/networking.md#configure-service-discovery) in the swarm
+   mode topics.
+
+スウォームモードにおけるサービスディスカバリやネットワークに関しての詳細は、スウォームモードのトピックにある :ref:`サービスディスカバリの設定 <networking-configure-service-discovery>` を参照してください。
+
+
+.. #### labels
+
+.. _compose-file-deploy-labels:
+
+labels
+^^^^^^^
+
+.. Specify labels for the service. These labels will *only* be set on the service,
+   and *not* on any containers for the service.
+
+サービスに対してのラベルを設定します。
+このラベルはサービスに対してのみ設定するものであって、サービスのコンテナに設定するものでは **ありません** 。
+
+..  version: "3"
+    services:
+      web:
+        image: web
+        deploy:
+          labels:
+            com.example.description: "This label will appear on the web service"
+
+.. code-block:: yaml
+
+   version: "3"
+   services:
+     web:
+       image: web
+       deploy:
+         labels:
+           com.example.description: "このラベルは web サービス上に現れます。"
+
+.. To set labels on containers instead, use the `labels` key outside of `deploy`:
+
+コンテナにラベルを設定するのであれば、``deploy`` の外に ``labels`` キーを記述してください。
+
+..  version: "3"
+    services:
+      web:
+        image: web
+        labels:
+          com.example.description: "This label will appear on all containers for the web service"
+
+.. code-block:: yaml
+
+
+   version: "3"
+   services:
+     web:
+       image: web
+       labels:
+         com.example.description: "このラベルは web サービスに対するコンテナすべてに現れます。"
+
+.. #### mode
+
+.. _compose-file-deploy-mode:
+
+mode
+^^^^^
+
+.. Either `global` (exactly one container per swarm node) or `replicated` (a
+   specified number of containers). The default is `replicated`. (To learn more,
+   see [Replicated and global
+   services](/engine/swarm/how-swarm-mode-works/services/#replicated-and-global-services)
+   in the [swarm](/engine/swarm/) topics.)
+
+``global`` （スウォームノードごとに 1 つのコンテナとする）か、``replicated`` （指定されたコンテナ数とするか）のいずれかを設定します。
+デフォルトは ``replicated`` です。
+（詳しくは :doc:`スウォーム </engine/swarm/>` のトピックにある :ref:`サービスの Replicated と global <replicated-and-global-services>` を参照してください。）
+
+..  version: '3'
+    services:
+      worker:
+        image: dockersamples/examplevotingapp_worker
+        deploy:
+          mode: global
+
+.. code-block:: yaml
+
+   version: '3'
+   services:
+     worker:
+       image: dockersamples/examplevotingapp_worker
+       deploy:
+         mode: global
+
+.. #### placement
+
+.. _compose-file-deploy-placement:
+
+placement
+^^^^^^^^^^
+
+.. Specify placement constraints. For a full description of the syntax and
+   available types of constraints, see the
+   [docker service create](/engine/reference/commandline/service_create.md#specify-service-constraints-constraint)
+   documentation.
+
+制約（constraints）とプリファレンス（preferences）の記述場所を指定します。
+docker service create のドキュメントには、:ref:`制約 <specify-service-constraints-constraint>` と :ref:`プリファレンス <specify-service-placement-preferences-placement-pref>` に関する文法と設定可能な型について、詳細に説明しているので参照してください。
+
+..  version: '3'
+    services:
+      db:
+        image: postgres
+        deploy:
+          placement:
+            constraints:
+              - node.role == manager
+              - engine.labels.operatingsystem == ubuntu 14.04
+
+.. code-block:: yaml
+
+   version: '3'
+   services:
+     db:
+       image: postgres
+       deploy:
+         placement:
+           constraints:
+             - node.role == manager
+             - engine.labels.operatingsystem == ubuntu 14.04
+
+.. #### replicas
+
+.. _compose-file-deploy-replicas:
+
+replicas
+^^^^^^^^^
+
+.. If the service is `replicated` (which is the default), specify the number of
+   containers that should be running at any given time.
+
+サービスを ``replicated`` （デフォルト）に設定しているときに、起動させるコンテナ数を指定します。
+
+..  version: '3'
+    services:
+      worker:
+        image: dockersamples/examplevotingapp_worker
+        networks:
+          - frontend
+          - backend
+        deploy:
+          mode: replicated
+          replicas: 6
+
+.. code-block:: yaml
+
+   version: '3'
+   services:
+     worker:
+       image: dockersamples/examplevotingapp_worker
+       networks:
+         - frontend
+         - backend
+       deploy:
+         mode: replicated
+         replicas: 6
+
+.. #### resources
+
+.. _compose-file-deploy-resources:
+
+resources
+^^^^^^^^^^
+
+.. Configures resource constraints.
+
+リソースの制約を設定します。
+
+.. > **Note**: This replaces the [older resource constraint options](compose-file-v2.md#cpu-and-other-resources) for non swarm mode in
+   Compose files prior to version 3 (`cpu_shares`, `cpu_quota`, `cpuset`,
+   `mem_limit`, `memswap_limit`, `mem_swappiness`), as described in [Upgrading
+   version 2.x to 3.x](/compose/compose-file/compose-versioning.md#upgrading).
+
+.. note::
+
+   Compose ファイルバージョン 3 より前には、:ref:`リソースに対する古い制約オプション <compose-file-v2-cpu-and-other-resources>` があって、非スウォームモードで用いられていました。
+   （``cpu_shares``, ``cpu_quota``, ``cpuset``, ``mem_limit``, ``memswap_limit``, ``mem_swappiness``）
+   ここに示すオプションはそれに替わるものです。
+   このことは :ref:`バージョン 2.x から 3.x へのアップグレード <compose-versioning-upgrading>` にて説明しています。
+
+.. Each of these is a single value, analogous to its [docker service
+   create](/engine/reference/commandline/service_create.md) counterpart.
+
+個々の設定には単一の値を指定します。
+これは :doc:`docker service create </engine/reference/commandline/service_create>` のオプションに対応づきます。
+
+.. In this general example, the `redis` service is constrained to use no more than
+   50M of memory and `0.001` (0.1%) of available processing time (CPU), and has
+   `20M` of memory and `0.0001` CPU time reserved (as always available to it).
+
+以下の一般的な例は ``redis`` サービスに制約をつけるものです。
+メモリ利用は 50M まで、利用可能なプロセス時間（CPU）は ``0.50`` （シングルコアの 50%）まで。
+最低メモリは ``20M`` 確保し（常時利用可能な） CPU 時間は ``0.25`` とします。
+
+.. ```none
+   version: '3'
+   services:
+     redis:
+       image: redis:alpine
+       deploy:
+         resources:
+           limits:
+             cpus: '0.001'
+             memory: 50M
+           reservations:
+             cpus: '0.0001'
+             memory: 20M
+   ```
+
+.. code-block:: yaml
+
+   version: '3'
+   services:
+     redis:
+       image: redis:alpine
+       deploy:
+         resources:
+           limits:
+             cpus: '0.001'
+             memory: 50M
+           reservations:
+             cpus: '0.0001'
+             memory: 20M
+
+.. The topics below describe available options to set resource constraints on
+   services or containers in a swarm.
+
+以下では、スウォーム内のサービスやコンテナに設定できるリソース制約を説明します。
+
+.. > Looking for options to set resources on non swarm mode containers?
+   >
+   > The options described here are specific to the
+   `deploy` key and swarm mode. If you want to set resource constraints
+   on non swarm deployments, use
+   [Compose file format version 2 CPU, memory, and other resource
+   options](compose-file-v2.md#cpu-and-other-resources).
+   If you have further questions, please refer to the discussion on the GitHub
+   issue [docker/compose/4513](https://github.com/docker/compose/issues/4513){: target="_blank" class="_"}.
+   {: .important}
+
+.. important::
+   スウォームモードではないコンテナーでのリソース設定を探していますか？
+     ここに説明している設定は、スウォームモードで利用する ``deploy`` キーにおけるオプションです。
+     スウォームモードではないデプロイメントにおけるリソース制約を設定したい場合は、:ref:`Compose ファイルバージョン 2 における CPU、メモリなどに関するリソースオプション <compose-file-v2-cpu-and-other-resources>` を参照してください。
+     それでもよくわからない場合は、GitHub 上にあげられている議論 `docker/compose/4513 <https://github.com/docker/compose/issues/4513>`_ を参照してください。
+
+.. ##### Out Of Memory Exceptions (OOME)
+
+.. _out-of-memory-exceptions-oome:
+
+Out Of Memory Exceptions (OOME)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. If your services or containers attempt to use more memory than the system has
+   available, you may experience an Out Of Memory Exception (OOME) and a container,
+   or the Docker daemon, might be killed by the kernel OOM killer. To prevent this
+   from happening, ensure that your application runs on hosts with adequate memory
+   and see [Understand the risks of running out of
+   memory](/engine/admin/resource_constraints.md#understand-the-risks-of-running-out-of-memory).
+
+サービスやコンテナが、システムにおいて利用可能なメモリ容量以上を利用しようとして、Out Of Memory Exception (OOME) が発生するということがあります。
+コンテナあるいは Docker デーモンは、このときカーネルの OOM killer によって強制終了させられます。
+これが発生しないようにするためには、ホスト上で動作させるアプリケーションのメモリ利用を適切に行うことが必要です。
+:ref:`メモリ不足のリスクへの理解 <understand-the-risks-of-running-out-of-memory>` を参照してください。
+
+.. #### restart_policy
+
+.. _compose-file-deploy-restart-policy:
+
+restart_policy
+^^^^^^^^^^^^^^^
+
+.. Configures if and how to restart containers when they exit. Replaces
+   [`restart`](compose-file-v2.md#orig-resources).
+
+コンテナが終了した後に、いつどのようにして再起動するかを設定します。
+:ref:`restart <compose-file-v2-orig-resources>` に置き換わるものです。
+
+.. - `condition`: One of `none`, `on-failure` or `any` (default: `any`).
+   - `delay`: How long to wait between restart attempts, specified as a
+     [duration](#specifying-durations) (default: 0).
+   - `max_attempts`: How many times to attempt to restart a container before giving
+     up (default: never give up).
+   - `window`: How long to wait before deciding if a restart has succeeded,
+     specified as a [duration](#specifying-durations) (default:
+     decide immediately).
+
+* ``condition``: ``none``, ``on-failure``, ``any`` のいずれかを指定します。（デフォルト: ``any``）
+* ``delay``: 再起動までどれだけの間隔をあけるかを :ref:`duration <specifying-durations>` として指定します。
+  （デフォルト: 0）
+* ``max_attempts``: 再起動に失敗しても何回までリトライするかを指定します。
+  （デフォルト: 無制限）
+  設定した ``window`` 時間内に再起動が成功しなかったとしても、そのときの再起動リトライは、``max_attempts`` の値としてカウントされません。
+  たとえば ``max_attempts`` が ``2`` として設定されていて、1 回めの再起動が失敗したとします。
+  この場合、2 回以上の再起動が発生する可能性があります。
+* ``window``: 再起動が成功したかどうかを決定するためにどれだけ待つかを :ref:`duration <specifying-durations>` として指定します。
+  （デフォルト: 即時）
+
+.. ```none
+   version: "3"
+   services:
+     redis:
+       image: redis:alpine
+       deploy:
+         restart_policy:
+           condition: on-failure
+           delay: 5s
+           max_attempts: 3
+           window: 120s
+   ```
+
+.. code-block:: yaml
+
+   version: "3"
+   services:
+     redis:
+       image: redis:alpine
+       deploy:
+         restart_policy:
+           condition: on-failure
+           delay: 5s
+           max_attempts: 3
+           window: 120s
+
+.. #### update_config
+
+.. _compose-file-deploy-update-config:
+
+update_config
+^^^^^^^^^^^^^^
+
+.. Configures how the service should be updated. Useful for configuring rolling
+   updates.
+
+どのようにサービスを更新するかを設定します。
+Rolling update を設定する際に有効です。
+
+.. - `parallelism`: The number of containers to update at a time.
+   - `delay`: The time to wait between updating a group of containers.
+   - `failure_action`: What to do if an update fails. One of `continue`, `rollback`, or `pause`
+     (default: `pause`).
+   - `monitor`: Duration after each task update to monitor for failure `(ns|us|ms|s|m|h)` (default 0s).
+   - `max_failure_ratio`: Failure rate to tolerate during an update.
+
+* ``parallelism``： 一度に更新を行うコンテナ数を設定します。
+* ``delay``： 一連のコンテナを更新する間隔を設定します。
+* ``failure_action``： 更新に失敗したときの動作を設定します。
+  ``continue``, ``rollback``, ``pause`` のいずれかです。
+  （デフォルト： ``pause`` ）
+* ``monitor``: 各タスク更新後に失敗を監視する時間 ``(ns|us|ms|s|m|h)`` を設定します。
+  （デフォルト： 0s）
+* ``max_failure_ratio``: 更新時の失敗許容率を設定します。
+
+.. ```none
+   version: '3'
+   services:
+     vote:
+       image: dockersamples/examplevotingapp_vote:before
+       depends_on:
+         - redis
+       deploy:
+         replicas: 2
+         update_config:
+           parallelism: 2
+           delay: 10s
+   ```
+
+.. code-block:: yaml
+
+   version: '3'
+   services:
+     vote:
+       image: dockersamples/examplevotingapp_vote:before
+       depends_on:
+         - redis
+       deploy:
+         replicas: 2
+         update_config:
+           parallelism: 2
+           delay: 10s
+
+.. #### Not supported for `docker stack deploy`
+
+.. _not-supported-for-docker-stack-deploy:
+
+``docker stack deploy`` でサポートされないオプション
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. The following sub-options (supported for `docker compose up` and `docker compose run`) are _not supported_ for `docker stack deploy` or the `deploy` key.
+
+以下に示すサブオプション（``docker-compose up`` と ``docker-compose run`` においてサポートされるオプション）は、``docker stack deploy`` または ``deploy`` キーにおいては **サポートされません** 。
+
+.. - [build](#build)
+   - [cgroup_parent](#cgroup_parent)
+   - [container_name](#container_name)
+   - [devices](#devices)
+   - [dns](#dns)
+   - [dns_search](#dns_search)
+   - [tmpfs](#tmpfs)
+   - [external_links](#external_links)
+   - [links](#links)
+   - [network_mode](#network_mode)
+   - [security_opt](#security_opt)
+   - [stop_signal](#stop_signal)
+   - [sysctls](#sysctls)
+   - [userns_mode](#userns_mode)
+
+* :ref:`build <compose-file-build>`
+* :ref:`cgroup_parent <compose-file-cgroup_parent>`
+* :ref:`container_name <compose-file-container-name>`
+* :ref:`devices <compose-file-devices>`
+* :ref:`dns <compose-file-dns>`
+* :ref:`dns_search <compose-file-dns-search>`
+* :ref:`tmpfs <copmose-file-tmpfs>`
+* :ref:`external_links <compose-file-external_links>`
+* :ref:`links <compose-file-links>`
+* :ref:`network_mode <compose-file-network_mode>`
+* :ref:`security_opt <compose-file-security_opt>`
+* :ref:`stop_signal <compose-file-stop_signal>`
+* :ref:`sysctls <compose-file-sysctls>`
+* :ref:`userns_mode <compose-file-userns_mode>`
+
+.. >**Tip:** See also, the section on [how to configure volumes
+   for services, swarms, and docker-stack.yml
+   files](#volumes-for-services-swarms-and-stack-files).  Volumes _are_ supported
+   but in order to work with swarms and services, they must be configured properly,
+   as named volumes or associated with services that are constrained to nodes with
+   access to the requisite volumes.
+
+.. tip::
+
+   :ref:`サービス、スウォーム、docker-stack.yml ファイルにおけるボリューム設定方法 <volumes-for-services-swarms-and-stack-files>` にある説明を確認してください。
+   ボリュームはサポートされますが、これはスウォームとサービスに対してです。
+   ボリュームは名前つきとして設定されるか、あるいは必要なボリュームにアクセスするノードのみから構成されるサービスに関連づけられている必要があります。
+
 .. _compose-file-devices:
 
 devices
