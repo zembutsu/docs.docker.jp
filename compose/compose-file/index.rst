@@ -978,6 +978,70 @@ Docker コンテナ名はユニークである必要があります。
 .. note::
 
    Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
+
+.. ### credential_spec
+
+.. _compose-file-credential-spec:
+
+credential_spec
+--------------------
+
+.. > **Note:** this option was added in v3.3
+
+.. note::
+
+   このオプションは v3.3 で追加されました。
+
+.. Configure the credential spec for managed service account. This option is only
+   used for services using Windows containers. The `credential_spec` must be in the
+   format `file://<filename>` or `registry://<value-name>`.
+
+管理サービスアカウントに対する資格情報スペック（``credential_spec``）を設定します。
+このオプションは Windows コンテナを利用するサービスにおいてのみ用いられます。
+``credential_spec`` の書式は ``file://<filename>`` または ``registry://<value-name>`` でなければなりません。
+
+.. When using `file:`, the referenced file must be present in the `CredentialSpecs`
+   subdirectory in the docker data directory, which defaults to `C:\ProgramData\Docker\`
+   on Windows. The following example loads the credential spec from a file named
+   `C:\ProgramData\Docker\CredentialSpecs\my-credential-spec.json`:
+
+``file:`` を用いるとき、参照するファイルは実際に存在するファイルでなければならず、Docker データディレクトリ配下のサブディレクトリ ``CredentialSpecs`` になければなりません。
+Windows における Docker データディレクトリのデフォルトは ``C:\ProgramData\Docker\`` です。
+以下の例は ``C:\ProgramData\Docker\CredentialSpecs\my-credential-spec.json`` というファイルから資格情報スペックを読み込みます。
+
+..  credential_spec:
+      file: my-credential-spec.json
+
+.. code-block:: yaml
+
+   credential_spec:
+     file: my-credential-spec.json
+
+.. When using `registry:`, the credential spec is read from the Windows registry on
+   the daemon's host. A registry value with the given name must be located in:
+
+``registry:`` を用いるとき資格情報スペックは、デーモンホスト内の Windows レジストリから読み込まれます。
+指定された名称のレジストリ値は、以下に定義されている必要があります。
+
+..  HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers\CredentialSpecs
+
+::
+
+   HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers\CredentialSpecs
+
+.. The following example load the credential spec from a value named `my-credential-spec`
+   in the registry:
+
+以下の例は、レジストリ内の ``my-credential-spec`` という値から資格情報スペックを読み込みます。
+
+..  credential_spec:
+      registry: my-credential-spec
+
+.. code-block:: yaml
+
+   credential_spec:
+     registry: my-credential-spec
+
 .. _compose-file-devices:
 
 devices
