@@ -1652,19 +1652,35 @@ Rolling update を設定する際に有効です。
    ボリュームはサポートされますが、これはスウォームとサービスに対してです。
    ボリュームは名前つきとして設定されるか、あるいは必要なボリュームにアクセスするノードのみから構成されるサービスに関連づけられている必要があります。
 
+.. ### devices
+
 .. _compose-file-devices:
 
 devices
 ----------
 
-.. List of device mappings. Uses the same format as the --device docker client create option.
+.. List of device mappings.  Uses the same format as the `--device` docker
+   client create option.
 
-デバイス・マッピングの一覧を表示します。docker クライアントで作成する際の ``--device`` と同じ形式を使います。
+デバイスのマッピングをリスト形式で設定します。
+Docker クライアントの create オプション ``--device`` と同じ書式とします。
+
+..  devices:
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
 
 .. code-block:: yaml
 
    devices:
      - "/dev/ttyUSB0:/dev/ttyUSB0"
+
+
+.. > **Note**: This option is ignored when
+   > [deploying a stack in swarm mode](/engine/reference/commandline/stack_deploy.md)
+   > with a (version 3) Compose file.
+
+.. note::
+
+   Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 
 .. _compose-file-depends_on:
 
