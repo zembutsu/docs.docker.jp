@@ -1709,11 +1709,23 @@ depends_on
 
 .. Simple example:
 
-簡単なサンプル：
+以下がその簡単な例です。
 
-.. code-block:: bash
+..  version: '3'
+    services:
+      web:
+        build: .
+        depends_on:
+          - db
+          - redis
+      redis:
+        image: redis
+      db:
+        image: postgres
 
-   version: '2'
+.. code-block:: yaml
+
+   version: '3'
    services:
      web:
        build: .
@@ -1725,11 +1737,29 @@ depends_on
      db:
        image: postgres
 
-..     Note: depends_on will not wait for db and redis to be “ready” before starting web - only until they have been started. If you need to wait for a service to be ready, see Controlling startup order for more on this problem and strategies for solving it.
+.. > There are several things to be aware of when using `depends_on`:
+   >
+   > - `depends_on` will not wait for `db` and `redis` to be "ready" before
+   >   starting `web` - only until they have been started. If you need to wait
+   >   for a service to be ready, see [Controlling startup order](/compose/startup-order.md)
+   >   for more on this problem and strategies for solving it.
+   >
+   > - Version 3 no longer supports the `condition` form of `depends_on`.
+   >
+   > - The `depends_on` option is ignored when
+   >   [deploying a stack in swarm mode](/engine/reference/commandline/stack_deploy.md)
+   >   with a version 3 Compose file.
 
 .. note::
 
-   ``depends_on`` では、  ``web`` の実行にあたり、 ``db`` と ``redis`` の準備が整うのを待てません。待てるのはコンテナを開始するまでです。サービスの準備が整うまで待たせる必要がある場合は、 :doc:`起動順番の制御 <startup-order>` に関するドキュメントで、問題への対処法や方針をご確認ください。
+   ``depends_on`` の利用にあたっては、気をつけておくべきことがあります。
+
+   - ``depends_on`` では ``db`` や ``redis`` が「準備」状態になるのを待たずに、つまりそれらを開始したらすぐに ``web`` を起動します。
+     準備状態になるのを待ってから次のサービスを起動することが必要な場合は、:doc:`Compose における起動順の制御 </compose/startup-order>` にて示す内容と解決方法を確認してください。
+
+   - バージョン 3 では ``depends_on`` の ``condition`` 形式はサポートされなくなりました。
+
+   - Compose ファイルバージョン 3 において ``depends_on`` オプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 
 .. _compose-file-dns:
 
