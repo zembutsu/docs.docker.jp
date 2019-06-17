@@ -1682,6 +1682,8 @@ Docker クライアントの create オプション ``--device`` と同じ書式
 
    Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 
+.. ### depends_on
+
 .. _compose-file-depends_on:
 
 depends_on
@@ -1689,15 +1691,21 @@ depends_on
 
 .. Express dependency between services, which has two effects:
 
-サービス間の依存関係を指定したら、２つの効果があります。
+サービス間の依存関係を表わします。
+これにより以下の 2 つの効果が発生します。
 
-..    docker-compose up will start services in dependency order. In the following example, db and redis will be started before web.
+.. - `docker-compose up` will start services in dependency order. In the following
+     example, `db` and `redis` will be started before `web`.
 
-* ``docker-compose up`` を実行したら、依存関係のある順番に従ってサービスを起動します。以下の例では、 ``web`` を開始する前に ``db`` と ``redis`` を実行します。
+* ``docker-compose up`` は依存関係の順にサービスを起動します。
+  以下の例において ``db`` と ``redis`` は ``web`` の後に起動します。
 
-..    docker-compose up SERVICE will automatically include SERVICE’s dependencies. In the following example, docker-compose up web will also create and start db and redis.
+.. - `docker-compose up SERVICE` will automatically include `SERVICE`'s
+     dependencies. In the following example, `docker-compose up web` will also
+     create and start `db` and `redis`.
 
-* ``docker-compose up サービス（の名称）`` を実行したら、自動的に ``サービス`` の依存関係を処理します。以下の例では、 ``docker-compose up web`` を実行したら、 ``db`` と ``redis`` も作成・起動します。
+* ``docker-compose up SERVICE`` を実行すると ``SERVICE`` における依存関係をもとに動作します。
+  以下の例において ``docker-compose up web`` を実行すると ``db`` と ``redis`` を生成して起動します。
 
 .. Simple example:
 
