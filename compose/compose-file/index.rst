@@ -1793,6 +1793,8 @@ DNS サーバーを設定します。
 
    Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 
+.. ### dns_search
+
 .. _compose-file-dns-search:
 
 dns_search
@@ -1800,7 +1802,13 @@ dns_search
 
 .. Custom DNS search domains. Can be a single value or a list.
 
-DNS の検索ドメインを変更します。単一の値、もしくはリストになります。
+DNS 検索ドメインを設定します。
+設定は 1 つだけとするか、リストにすることができます。
+
+..  dns_search: example.com
+    dns_search:
+      - dc1.example.com
+      - dc2.example.com
 
 .. code-block:: yaml
 
@@ -1809,6 +1817,13 @@ DNS の検索ドメインを変更します。単一の値、もしくはリス�
      - dc1.example.com
      - dc2.example.com
 
+.. > **Note**: This option is ignored when
+   > [deploying a stack in swarm mode](/engine/reference/commandline/stack_deploy.md)
+   > with a (version 3) Compose file.
+
+.. note::
+
+   Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 
 .. tmpfs
 
