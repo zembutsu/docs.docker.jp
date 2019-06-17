@@ -1825,16 +1825,28 @@ DNS 検索ドメインを設定します。
 
    Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 
-.. tmpfs
+.. ### tmpfs
 
 .. _copmose-file-tmpfs:
 
 tmpfs
 ----------
 
+.. > [Version 2 file format](compose-versioning.md#version-2) and up.
+
+.. note::
+
+   :ref:`ファイルフォーマットバージョン 2 <compose-versioning-version-2>` またはそれ以上。
+
 .. Mount a temporary file system inside the container. Can be a single value or a list.
 
-コンテナ内にテンポラリ・ファイルシステムをマウントします。単一の値もしくはリストです。
+コンテナ内においてテンポラリファイルシステムをマウントします。
+設定は 1 つだけとするか、リストにすることができます。
+
+..  tmpfs: /run
+    tmpfs:
+      - /run
+      - /tmp
 
 .. code-block:: yaml
 
@@ -1843,8 +1855,13 @@ tmpfs
      - /run
      - /tmp
 
+.. > **Note**: This option is ignored when
+   > [deploying a stack in swarm mode](/engine/reference/commandline/stack_deploy.md)
+   > with a (version 3) Compose file.
 
+.. note::
 
+   Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 
 .. _compose-file-entrypoint:
 
