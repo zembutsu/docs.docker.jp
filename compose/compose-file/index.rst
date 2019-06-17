@@ -1761,14 +1761,22 @@ depends_on
 
    - Compose ファイルバージョン 3 において ``depends_on`` オプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 
+.. ### dns
+
 .. _compose-file-dns:
 
 dns
-----------
+----
 
 .. Custom DNS servers. Can be a single value or a list.
 
-DNS サーバの設定を変更します。単一の値、もしくはリストになります。
+DNS サーバーを設定します。
+設定は 1 つだけとするか、リストにすることができます。
+
+..  dns: 8.8.8.8
+    dns:
+      - 8.8.8.8
+      - 9.9.9.9
 
 .. code-block:: yaml
 
@@ -1776,6 +1784,14 @@ DNS サーバの設定を変更します。単一の値、もしくはリスト�
    dns:
      - 8.8.8.8
      - 9.9.9.9
+
+.. > **Note**: This option is ignored when
+   > [deploying a stack in swarm mode](/engine/reference/commandline/stack_deploy.md)
+   > with a (version 3) Compose file.
+
+.. note::
+
+   Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 
 .. _compose-file-dns-search:
 
