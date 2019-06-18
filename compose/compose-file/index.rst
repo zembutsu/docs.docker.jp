@@ -2582,6 +2582,20 @@ Docker クライアントの ``--network`` パラメータと同じ値を設定�
    network_mode: "service:[service name]"
    network_mode: "container:[container name/id]"
 
+.. > **Notes**
+   >
+   >* This option is ignored when
+   [deploying a stack in swarm
+    mode](/engine/reference/commandline/stack_deploy.md) with a (version 3) Compose
+    file.
+   >
+   >* `network_mode: "host"` cannot be mixed with [links](#links).
+
+.. note::
+
+   * Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
+
+   * ``network_mode: "host"`` とした場合、:ref:`links <compose-file-links>` を同時に指定することはできません。
 .. networks
 
 .. _compose-file-networks:
