@@ -2350,21 +2350,32 @@ labels
      - "com.example.department=Finance"
      - "com.example.label-with-empty-value"
 
+.. ### links
+
 .. _compose-file-links:
 
 links
 ----------
 
-.. Link to containers in another service. Either specify both the service name and the link alias (SERVICE:ALIAS), or just the service name (which will also be used for the alias).
+.. Link to containers in another service. Either specify both the service name and
+   a link alias (`SERVICE:ALIAS`), or just the service name.
 
-コンテナを他のサービスとリンクします。サービス名とリンク用エイリアスの両方を指定できます（ ``サービス名:エイリアス名`` ）。あるいはサービス名だけの指定もできます（このサービス名はエイリアス名としても使われます）。
+他サービスのコンテナをリンクします。
+サービス名とリンクのエイリアス名（``SERVICE:ALIAS`` ）を指定するか、直接サービス名を指定します。
+
+..  web:
+      links:
+       - db
+       - db:database
+       - redis
 
 .. code-block:: yaml
 
-   links:
-    - db
-    - db:database
-    - redis
+   web:
+     links:
+      - db
+      - db:database
+      - redis
 
 .. Containers for the linked service will be reachable at a hostname identical to the alias, or the service name if no alias was specified.
 
