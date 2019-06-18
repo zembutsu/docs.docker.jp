@@ -2832,14 +2832,28 @@ PID モードをホスト PID モードに設定します。
 このフラグを使って起動したコンテナは、ベアメタルマシンの名前空間にあるコンテナにアクセスし、操作することが可能になります。
 逆もまた可能です。
 
+.. ### ports
+
 .. _compose-file-ports:
 
 ports
 ----------
 
-.. Expose ports. Either specify both ports (HOST:CONTAINER), or just the container port (a random host port will be chosen).
+.. Expose ports.
 
-公開用のポートです。ホスト側とコンテナ側の両方のポートを指定（ ``ホスト側:コンテナ側`` ）できるだけでなく、コンテナ側のポートのみも指定できます（ホスト側はランダムなポートが選ばれます）。
+公開用のポートを設定します。
+
+.. #### Short syntax
+
+.. _compose-file-ports-short-syntax:
+
+短い文法
+^^^^^^^^^
+
+.. Either specify both ports (`HOST:CONTAINER`), or just the container
+   port (a random host port will be chosen).
+
+ホスト側とコンテナ側の両方のポートを指定する（``HOST:CONTAINER`` ）か、あるいはコンテナ側のポートを指定します（ホストポートはランダムに設定されます）。
 
 ..    Note: When mapping ports in the HOST:CONTAINER format, you may experience erroneous results when using a container port lower than 60, because YAML will parse numbers in the format xx:yy as sexagesimal (base 60). For this reason, we recommend always explicitly specifying your port mappings as strings.
 
