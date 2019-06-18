@@ -2192,6 +2192,84 @@ Docker Client の ``--add-host`` パラメータと同じ値を設定します�
    162.242.195.82  somehost
    50.31.209.229   otherhost
 
+.. ### healthcheck
+
+.. _compose-file-healthcheck:
+
+healthcheck
+--------------------
+
+.. > [Version 2.1 file format](compose-versioning.md#version-21) and up.
+
+.. note::
+
+   :ref:`ファイルフォーマットバージョン 2.1 <compose-versioning-version-21>` またはそれ以上。
+
+.. Configure a check that's run to determine whether or not containers for this
+   service are "healthy". See the docs for the
+   [HEALTHCHECK Dockerfile instruction](/engine/reference/builder.md#healthcheck)
+   for details on how healthchecks work.
+
+このサービスを起動させているコンテナが「健康」（healthy）かどうかを確認する処理を設定します。
+ヘルスチェックがどのように動作するのかの詳細は :ref:`Dockerfile の HEALTHCHECK 命令 <build-healthcheck>` を参照してください。
+
+..  healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
+.. code-block:: yaml
+
+   healthcheck:
+     test: ["CMD", "curl", "-f", "http://localhost"]
+     interval: 1m30s
+     timeout: 10s
+     retries: 3
+
+.. `interval` and `timeout` are specified as
+   [durations](#specifying-durations).
+
+``interval``, ``timeout``, ``start_period`` は :ref:`間隔 <specifying-durations>` を設定します。
+
+.. `test` must be either a string or a list. If it's a list, the first item must be
+   either `NONE`, `CMD` or `CMD-SHELL`. If it's a string, it's equivalent to
+   specifying `CMD-SHELL` followed by that string.
+
+``test`` は 1 つの文字列かリスト形式である必要があります。
+リスト形式の場合、第 1 要素は必ず ``NONE``, ``CMD``, ``CMD-SHELL`` のいずれかとします。
+文字列の場合は、``CMD-SHELL`` に続けてその文字列を指定することと同じになります。
+
+..  # Hit the local web app
+    test: ["CMD", "curl", "-f", "http://localhost"]
+
+    # As above, but wrapped in /bin/sh. Both forms below are equivalent.
+    test: ["CMD-SHELL", "curl -f http://localhost || exit 1"]
+    test: curl -f https://localhost || exit 1
+
+.. code-block:: yaml
+
+   # ローカルのウェブアプリにアクセスします。
+   test: ["CMD", "curl", "-f", "http://localhost"]
+
+   # 上と同様。ただし /bin/sh でラップします。以下の 2つは同等です。
+   test: ["CMD-SHELL", "curl -f http://localhost || exit 1"]
+   test: curl -f https://localhost || exit 1
+
+.. To disable any default healthcheck set by the image, you can use `disable:
+   true`. This is equivalent to specifying `test: ["NONE"]`.
+
+イメージが設定するデフォルトのヘルスチェックを無効にするには、``disable: true`` を指定します。
+これは ``test: ["NONE"]`` と指定することと同じです。
+
+..  healthcheck:
+      disable: true
+
+.. code-block:: yaml
+
+   healthcheck:
+     disable: true
+
 .. _compose-file-image:
 
 image
