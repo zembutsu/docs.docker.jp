@@ -2157,16 +2157,21 @@ external_links
 
    Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 
-.. extra_hosts
+.. ### extra_hosts
 
 .. _compose-file-extra_hosts:
 
 extra_hosts
 --------------------
 
-.. Add hostname mappings. Use the same values as the docker client --add-host parameter.
+.. Add hostname mappings. Use the same values as the docker client `--add-host` parameter.
 
-ホスト名を割り当てます。これは docker クライアントで ``--add-host`` パラメータを使うのと同じものです。
+ホスト名のマッピングを追加します。
+Docker Client の ``--add-host`` パラメータと同じ値を設定します。
+
+..  extra_hosts:
+     - "somehost:162.242.195.82"
+     - "otherhost:50.31.209.229"
 
 .. code-block:: yaml
 
@@ -2174,9 +2179,13 @@ extra_hosts
     - "somehost:162.242.195.82"
     - "otherhost:50.31.209.229"
 
-.. An entry with the ip address and hostname will be created in /etc/hosts inside containers for this service, e.g:
+.. An entry with the ip address and hostname will be created in `/etc/hosts` inside containers for this service, e.g:
 
-コンテナ内の ``/etc/hosts`` に IP アドレスとホスト名のエントリが追加されます。例：
+ホスト名と IP アドレスによるこの設定内容は、サービスコンテナ内の ``/etc/hosts`` に追加されます。
+たとえば以下のとおりです。
+
+..  162.242.195.82  somehost
+    50.31.209.229   otherhost
 
 .. code-block:: yaml
 
