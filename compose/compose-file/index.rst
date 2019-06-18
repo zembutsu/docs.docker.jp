@@ -2399,9 +2399,21 @@ Links は :ref:`depends_on <compose-file-depends_on>` と同様にサービス�
 
 ..    Note: If you define both links and networks, services with links between them must share at least one network in common in order to communicate.
 
+.. > **Notes**
+   >
+   > * If you define both links and [networks](#networks), services with
+   > links between them must share at least one network in common in order to
+   > communicate.
+   >
+   > *  This option is ignored when
+   > [deploying a stack in swarm mode](/engine/reference/commandline/stack_deploy.md)
+   > with a (version 3) Compose file.
+
 .. note::
 
-   links と :ref:`networks <compose-file-networks>` を両方定義する時は、リンクするサービスが通信するために、ネットワークの少なくとも１つを共有する必要があります。
+   * links と :ref:`networks <compose-file-networks>` をともに設定する場合、リンクするサービスは、少なくとも 1 つのネットワークが共有され通信ができるようにする必要があります。
+
+   * Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 
 .. _compose-file-logging:
 
