@@ -1890,6 +1890,15 @@ entrypoint は :ref:`Dockerfile <entrypoint>` のように列挙できます。
        - memory_limit=-1
        - vendor/bin/phpunit
 
+.. > **Note**: Setting `entrypoint` will both override any default entrypoint set
+   > on the service's image with the `ENTRYPOINT` Dockerfile instruction, *and*
+   > clear out any default command on the image - meaning that if there's a `CMD`
+   > instruction in the Dockerfile, it will be ignored.
+
+.. note::
+
+   ``entrypoint`` を設定すると、サービスイメージ内に Dockerfile 命令の ``ENTRYPOINT`` によって設定されているデフォルトのエントリーポイントは上書きされ、**さらに** イメージ内のあらゆるデフォルトコマンドもクリアされます。
+   これはつまり、Dockerfile に ``CMD`` 命令があったとしたら無視されるということです。
 
 .. _compose-file-env_file:
 
