@@ -2855,11 +2855,27 @@ ports
 
 ホスト側とコンテナ側の両方のポートを指定する（``HOST:CONTAINER`` ）か、あるいはコンテナ側のポートを指定します（ホストポートはランダムに設定されます）。
 
-..    Note: When mapping ports in the HOST:CONTAINER format, you may experience erroneous results when using a container port lower than 60, because YAML will parse numbers in the format xx:yy as sexagesimal (base 60). For this reason, we recommend always explicitly specifying your port mappings as strings.
+.. > **Note**: When mapping ports in the `HOST:CONTAINER` format, you may experience
+   > erroneous results when using a container port lower than 60, because YAML will
+   > parse numbers in the format `xx:yy` as sexagesimal (base 60). For this reason,
+   > we recommend always explicitly specifying your port mappings as strings.
 
 .. note::
 
-   ``ホスト側:コンテナ側`` の書式でポートを割り当てる時、コンテナのポートが 60 以下であればエラーが発生します。これは YAML が ``xx:yy`` 形式の指定を、60 進数（60が基準）の数値とみなすからです。そのため、ポートの割り当てには常に文字列として指定することを推奨します（訳者注： " で囲んで文字扱いにする）。
+   ``HOST:CONTAINER`` の書式によってポートをマッピングした場合に、コンテナ側のポートが 60 番未満であるとエラーになることがあります。
+   これは YAML パーサが ``xx:yy`` の書式内にある数値を 60 進数値として解釈するからです。
+   このことからポートマッピングを指定する際には、常に文字列として設定することをお勧めします。
+
+
+..  ports:
+     - "3000"
+     - "3000-3005"
+     - "8000:8000"
+     - "9090-9091:8080-8081"
+     - "49100:22"
+     - "127.0.0.1:8001:8001"
+     - "127.0.0.1:5000-5010:5000-5010"
+     - "6060:6060/udp"
 
 .. code-block:: yaml
 
@@ -2871,6 +2887,7 @@ ports
     - "49100:22"
     - "127.0.0.1:8001:8001"
     - "127.0.0.1:5000-5010:5000-5010"
+    - "6060:6060/udp"
 
 .. _compose-file-security_opt:
 
