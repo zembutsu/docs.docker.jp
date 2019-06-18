@@ -2270,14 +2270,24 @@ healthcheck
    healthcheck:
      disable: true
 
+.. ### image
+
 .. _compose-file-image:
 
 image
 ----------
 
-.. Specify the image to start the container from. Can either be a repository/tag or a partial image ID.
+.. Specify the image to start the container from. Can either be a repository/tag or
+   a partial image ID.
 
-コンテナを実行時に元となるイメージを指定します。リポジトリ名・タグあるいはイメージ ID の一部を指定できます。
+コンテナを起動させるイメージを設定します。
+リポジトリ/タグの形式か、あるいは部分イメージ ID により指定します。
+
+..  image: redis
+    image: ubuntu:14.04
+    image: tutum/influxdb
+    image: example-registry.com:4000/postgresql
+    image: a4bc65fd
 
 .. code-block:: yaml
 
@@ -2287,15 +2297,12 @@ image
    image: example-registry.com:4000/postgresql
    image: a4bc65fd
 
-.. If the image does not exist, Compose attempts to pull it, unless you have also specified build, in which case it builds it using the specified options and tags it with the specified tag.
+.. If the image does not exist, Compose attempts to pull it, unless you have also
+   specified [build](#build), in which case it builds it using the specified
+   options and tags it with the specified tag.
 
-イメージが存在していなければ、Compose は pull （取得）を試みます。しかし :ref:`build <compose-file-build>` を指定している場合は除きます。その場合、指定されたタグやオプションを使って構築します。
-
-..    Note: In the version 1 file format, using build together with image is not allowed. Attempting to do so results in an error.
-
-.. note::
-
-   :ref:`バージョン１のファイル形式 <compose-file-version-1>` では、 ``build`` と ``image`` を同時に使えません。実行しようとしてもエラーが出ます。
+イメージが存在しなかった場合、:ref:`build <compose-file-build>` を指定していなければ Compose はイメージを取得しようとします。
+取得する際には、指定されたオプションを使ってビルドを行い、指定されたタグ名によりタグづけを行います。
 
 .. _compose-file-links:
 
