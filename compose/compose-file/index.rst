@@ -2489,6 +2489,71 @@ logging
    options:
      syslog-address: "tcp://192.168.0.42:123"
 
+.. The default driver [json-file](/engine/admin/logging/overview.md#json-file), has options to limit the amount of logs stored. To do this, use a key-value pair for maximum storage size and maximum number of files:
+
+デフォルトドライバである :doc:`json-file <json-file>` には、保存するログの容量を制限するオプションがあります。
+これを利用する場合は、キーバリューのペアを使って、最大保存容量（max-size）と最大ファイル数（max-file）を指定します。
+
+..  options:
+      max-size: "200k"
+      max-file: "10"
+
+.. code-block:: yaml
+
+   options:
+     max-size: "200k"
+     max-file: "10"
+
+.. The example shown above would store log files until they reach a `max-size` of
+   200kB, and then rotate them. The amount of individual log files stored is
+   specified by the `max-file` value. As logs grow beyond the max limits, older log
+   files are removed to allow storage of new logs.
+
+上に示した例では、``max-size`` に指定された 200 KB に達するまでログファイルへの出力を行います。
+最大値に達するとログをローテートします。
+保存するログファイル数は ``max-file`` により指定します。
+ログ出力が上限数を越えた場合、古いログファイルは削除され、新たなログファイルへの保存が行われます。
+
+.. Here is an example `docker-compose.yml` file that limits logging storage:
+
+以下に示すのは ``docker-compose.yml`` ファイルにおいてログ保存の制限を行う例です。
+
+..  services:
+      some-service:
+        image: some-service
+        logging:
+          driver: "json-file"
+          options:
+            max-size: "200k"
+            max-file: "10"
+
+.. code-block:: yaml
+
+   services:
+     some-service:
+       image: some-service
+       logging:
+         driver: "json-file"
+         options:
+           max-size: "200k"
+           max-file: "10"
+
+.. > Logging options available depend on which logging driver you use
+   >
+   > The above example for controlling log files and sizes uses options
+   specific to the [json-file driver](/engine/admin/logging/overview.md#json-file).
+   These particular options are not available on other logging drivers.
+   For a full list of supported logging drivers and their options, see
+   [logging drivers](/engine/admin/logging/overview.md).
+
+.. note::
+
+   利用可能なロギングオプションは、利用しているロギングドライバによって変わります。
+
+   上で示した例においては、ログファイルや容量を制御するために :ref:`json-file ドライバ <json-file>` に固有のオプションを利用しました。
+   このようなオプションはその他のロギングドライバでは利用できません。
+   サポートされるロギングドライバと個々のオプションについては :doc:`ロギングドライバ </engine/admin/logging/overview>` を参照してください。
+
 .. _compose-file-log_driver:
 
 log_driver
