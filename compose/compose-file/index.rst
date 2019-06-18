@@ -2554,22 +2554,25 @@ logging
    このようなオプションはその他のロギングドライバでは利用できません。
    サポートされるロギングドライバと個々のオプションについては :doc:`ロギングドライバ </engine/admin/logging/overview>` を参照してください。
 
-.. network_mode
+.. ### network_mode
 
 .. _compose-file-network_mode:
 
 network_mode
 --------------------
 
-.. Version 2 file format only. In version 1, use net.
+.. Network mode. Use the same values as the docker client `--net` parameter, plus
+   the special form `service:[service name]`.
 
-.. note::
+ネットワークモードを設定します。
+Docker クライアントの ``--network`` パラメータと同じ値を設定します。
+これに加えて ``service:[service name]`` という特別な書式も指定可能です。
 
-   :ref:`ファイル形式バージョン２ <compose-file-version-2>` のオプションです。バージョン１では :ref:`net <compose-file-net>` を使います。
-
-.. Network mode. Use the same values as the docker client --net parameter, plus the special form service:[service name].
-
-ネットワーク・モードです。 docker クライアントで ``--net`` パラメータを使うのと同じ働きですが、 ``サービス:[サービス名]`` の形式で指定します。
+..  network_mode: "bridge"
+    network_mode: "host"
+    network_mode: "none"
+    network_mode: "service:[service name]"
+    network_mode: "container:[container name/id]"
 
 .. code-block:: yaml
 
