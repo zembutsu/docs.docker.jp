@@ -2110,14 +2110,27 @@ expose
     - "3000"
     - "8000"
 
-.. compose-file-external_links:
+.. ### external_links
+
+.. _compose-file-external_links:
 
 external_links
 --------------------
 
-.. Link to containers started outside this docker-compose.yml or even outside of Compose, especially for containers that provide shared or common services. external_links follow semantics similar to links when specifying both the container name and the link alias (CONTAINER:ALIAS).
+.. Link to containers started outside this `docker-compose.yml` or even outside of
+   Compose, especially for containers that provide shared or common services.
+   `external_links` follow semantics similar to the legacy option `links` when
+   specifying both the container name and the link alias (`CONTAINER:ALIAS`).
 
-対象の ``docker-compose.yml`` の外にあるコンテナだけでなく、Compose の外にあるコンテナとリンクします。特に、コンテナが共有サービスもしくは一般的なサービスを提供している場合に有用です。 ``external_links`` でコンテナ名とエイリアスを指定すると（ ``コンテナ名:エイリアス名`` ）、 ``link`` のように動作します。
+今の ``docker-compose.yml`` からではない別のところから起動されたコンテナをリンクします。
+あるいは Compose の外から、特に共有サービスや汎用サービスとして提供されるコンテナをリンクします。
+``external_links`` の文法は、かつてのオプション ``links`` と同様です。
+つまりコンテナ名とリンクのエイリアス名（``CONTAINER:ALIAS`` ）を同時に指定します。
+
+..  external_links:
+     - redis_1
+     - project_db_1:mysql
+     - project_db_1:postgresql
 
 .. code-block:: yaml
 
@@ -2126,11 +2139,23 @@ external_links
     - project_db_1:mysql
     - project_db_1:postgresql
 
-..    Note: If you’re using the version 2 file format, the externally-created containers must be connected to at least one of the same networks as the service which is linking to them.
+.. > **Notes:**
+   >
+   > If you're using the [version 2 or above file format](compose-versioning.md#version-2), the externally-created  containers
+   must be connected to at least one of the same networks as the service which is
+   linking to them. Starting with Version 2, [links](compose-file-v2#links) are a
+   legacy option. We recommend using [networks](#networks) instead.
+   >
+   > This option is ignored when [deploying a stack in swarm mode](/engine/reference/commandline/stack_deploy.md)
+   with a (version 3) Compose file.
 
 .. note::
 
-   :ref:`バージョン２のファイル形式 <compose-file-version-2>` を使う時、外部に作成したコンテナと接続する必要があれば、接続先のサービスは対象ネットワーク上に少なくとも１つリンクする必要があります。
+   :ref:`バージョン 2 またはそれ以上のファイルフォーマット <compose-versioning-version-2>` を利用しているときに、外部にて生成されたコンテナをネットワークに接続する場合は、そのコンテナがサービスとしてリンクしているネットワークのうちの 1 つでなければなりません。
+   :ref:`Links <compose-file-v2-links>` は古いオプションです。
+   これではなく :ref:`networks <compose-file-networks>` を用いるようにしてください。
+
+   Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 
 .. extra_hosts
 
