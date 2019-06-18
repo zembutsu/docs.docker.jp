@@ -1974,6 +1974,74 @@ env ファイルの各行は ``VAR=VAL`` の書式とします。
    サービスに :ref:`build <compose-file-build>` オプションを指定している場合、env ファイル内に定義された変数は、ビルド時にこのままでは自動的に参照されません。
    その場合は ``build`` のサブオプション :ref:`args <compose-file-args>` を利用して、ビルド時の環境変数を設定してください。
 
+.. The value of `VAL` is used as is and not modified at all. For example if the
+   value is surrounded by quotes (as is often the case of shell variables), the
+   quotes will be included in the value passed to Compose.
+
+``VAL`` の値は記述されたとおりに用いられ、一切修正はされません。
+たとえば値がクォートにより囲まれている（よくシェル変数に対して行う）場合、クォートもそのまま値として Compose に受け渡されます。
+
+.. Keep in mind that _the order of files in the list is significant in determining
+   the value assigned to a variable that shows up more than once_. The files in the
+   list are processed from the top down. For the same variable specified in file
+   `a.env` and assigned a different value in file `b.env`, if `b.env` is
+   listed below (after), then the value from `b.env` stands. For example, given the
+   following declaration in `docker_compose.yml`:
+
+ファイルを複数用いる場合の順番には気をつけてください。
+特に何度も出現する変数に対して、値がどのように決定されるかです。
+ファイルが複数指定された場合、その処理は上から順に行われます。
+たとえば ``a.env`` ファイルに変数が指定されていて、``b.env`` ファイルには同じ変数が異なる値で定義されていたとします。
+ここで ``b.env`` ファイルが下に（後に）指定されているとします。
+このとき変数の値は ``b.env`` のものが採用されます。
+さらに例として ``docker-compose.yml`` に以下のような宣言があったとします。
+
+.. ```none
+   services:
+     some-service:
+       env_file:
+         - a.env
+         - b.env
+   ```
+
+.. code-block:: yaml
+
+   services:
+     some-service:
+       env_file:
+         - a.env
+         - b.env
+
+.. And the following files:
+
+ファイルの内容は以下であるとします。
+
+.. ```none
+   # a.env
+   VAR=1
+   ```
+   
+   and
+   
+   ```none
+   # b.env
+   VAR=hello
+   ```
+
+.. code-block:: yaml
+
+   # a.env
+   VAR=1
+
+.. code-block:: yaml
+
+   # b.env
+   VAR=hello
+
+.. $VAR will be `hello`.
+
+この結果 $VAR は ``hello`` になります。
+
 .. _compose-file-environment:
 
 environment
