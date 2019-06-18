@@ -2415,18 +2415,21 @@ Links は :ref:`depends_on <compose-file-depends_on>` と同様にサービス�
 
    * Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 
+.. ### logging
+
 .. _compose-file-logging:
 
 logging
 ----------
 
-.. note::
-
-   :ref:`バージョン２のファイル形式 <compose-file-version-2>` のみ対応しています。バージョン１では :ref:`log_driver <compose-file-log_driver>` と :ref:`log_opt <compose-file-log_opt>` をお使いください。
-
 .. Logging configuration for the service.
 
-サービスに対してログ記録の設定をします。
+サービスに対するログ記録の設定をします。
+
+..  logging:
+      driver: syslog
+      options:
+        syslog-address: "tcp://192.168.0.42:123"
 
 .. code-block:: yaml
 
