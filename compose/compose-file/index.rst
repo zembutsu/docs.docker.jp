@@ -2322,6 +2322,34 @@ Linux においてサポートされるのは ``default`` のみです。
 Windows では ``default``, ``process``, ``hyperv`` の設定が可能です。
 詳しくは :ref:`Docker Engine ドキュメント <specify-isolation-technology-for-container---isolation>` を参照してください。
 
+.. ### labels
+
+.. _compose-file-labels:
+
+labels
+----------
+
+.. Add metadata to containers using [Docker labels](/engine/userguide/labels-custom-metadata.md). You can use either an array or a dictionary.
+
+:doc:`Docker labels </engine/userguide/labels-custom-metadata>` を使ってコンテナにメタデータを追加します。
+配列形式と辞書形式のいずれかにより指定します。
+
+.. It's recommended that you use reverse-DNS notation to prevent your labels from conflicting with those used by other software.
+
+他のソフトウェアが用いるラベルとの競合を避けるため、逆 DNS 記法とすることをお勧めします。
+
+..  labels:
+      com.example.description: "Accounting webapp"
+      com.example.department: "Finance"
+      com.example.label-with-empty-value: ""
+
+.. code-block:: yaml
+
+   labels:
+     - "com.example.description=Accounting webapp"
+     - "com.example.department=Finance"
+     - "com.example.label-with-empty-value"
+
 .. _compose-file-links:
 
 links
