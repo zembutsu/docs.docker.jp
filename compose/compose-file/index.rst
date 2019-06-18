@@ -2809,18 +2809,28 @@ IPv4 アドレス、IPv6 アドレス
          -
            subnet: 2001:3984:3989::/64
 
+.. ### pid
+
 .. _compose-file-pid:
 
 pid
 ----------
 
+..  pid: "host"
+
 .. code-block:: yaml
 
    pid: "host"
 
-.. Sets the PID mode to the host PID mode. This turns on sharing between container and the host operating system the PID address space. Containers launched with this flag will be able to access and manipulate other containers in the bare-metal machine’s namespace and vise-versa.
+.. Sets the PID mode to the host PID mode.  This turns on sharing between
+   container and the host operating system the PID address space.  Containers
+   launched with this flag will be able to access and manipulate other
+   containers in the bare-metal machine's namespace and vise-versa.
 
-PID モードはホストの PID モードを設定します。有効化したら、コンテナとホスト・オペレーティング・システム間で PID アドレス空間を共有します。コンテナにこのフラグを付けて起動したら、他のコンテナからアクセスできるだけでなく、ベアメタル・マシン上の名前空間などから操作できるようになります。
+PID モードをホスト PID モードに設定します。
+これはコンテナとホストオペレーティングシステムとの間で、PID アドレス空間の共有を開始します。
+このフラグを使って起動したコンテナは、ベアメタルマシンの名前空間にあるコンテナにアクセスし、操作することが可能になります。
+逆もまた可能です。
 
 .. _compose-file-ports:
 
