@@ -2741,29 +2741,53 @@ aliases
      new:
      legacy:
 
-.. ipv4_address, ipv6_address
+.. #### ipv4_address, ipv6_address
 
 .. _ipv4-address-ipv6-address:
 
 IPv4 アドレス、IPv6 アドレス
-------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. Specify a static IP address for containers for this service when joining the network.
 
-サービスをネットワークに追加する時、コンテナに対して静的な IP アドレスを割り当てます。
+サービスをネットワークに参加させる際、そのコンテナに対してスタティック IP アドレスを設定します。
 
-.. The corresponding network configuration in the top-level networks section must have an ipam block with subnet and gateway configurations covering each static address. If IPv6 addressing is desired, the com.docker.network.enable_ipv6 driver option must be set to true.
+.. The corresponding network configuration in the [top-level networks section](#network-configuration-reference) must have an `ipam` block with subnet configurations covering each static address. If IPv6 addressing is desired, the [`enable_ipv6`](#enableipv6) option must be set.
 
-:ref:`トップレベルのネットワーク・セクション <network-configuration-reference>` では、適切なネットワーク設定に ``ipam`` ブロックが必要です。ここで各静的アドレスが扱うサブネットやゲートウェイを定義します。 IPv6 アドレスが必要であれば、 ``com.docker.network.enable_ipv6`` ドライバ・オプションを ``true`` にする必要があります。
+:ref:`最上位の networks セクション <network-configuration-reference>` の対応するネットワーク設定においては、``ipam`` ブロックが必要です。
+そこでは各スタティックアドレスに応じたサブネットの設定が必要になります。
 
 .. An example:
 
 例：
 
+..  version: '2.1'
+
+    services:
+      app:
+        image: busybox
+        command: ifconfig
+        networks:
+          app_net:
+            ipv4_address: 172.16.238.10
+            ipv6_address: 2001:3984:3989::10
+
+    networks:
+      app_net:
+        driver: bridge
+        enable_ipv6: true
+        ipam:
+          driver: default
+          config:
+          -
+            subnet: 172.16.238.0/24
+          -
+            subnet: 2001:3984:3989::/64
+
 .. code-block:: yaml
 
-   version: '2'
-   
+   version: '2.1'
+
    services:
      app:
        image: busybox
@@ -2772,20 +2796,18 @@ IPv4 アドレス、IPv6 アドレス
          app_net:
            ipv4_address: 172.16.238.10
            ipv6_address: 2001:3984:3989::10
-   
+
    networks:
      app_net:
        driver: bridge
-       driver_opts:
-         com.docker.network.enable_ipv6: "true"
+       enable_ipv6: true
        ipam:
          driver: default
          config:
-         - subnet: 172.16.238.0/24
-           gateway: 172.16.238.1
-         - subnet: 2001:3984:3989::/64
-           gateway: 2001:3984:3989::1
-
+         -
+           subnet: 172.16.238.0/24
+         -
+           subnet: 2001:3984:3989::/64
 
 .. _compose-file-pid:
 
