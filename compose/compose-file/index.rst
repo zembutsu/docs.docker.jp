@@ -2460,19 +2460,28 @@ logging
    driver: "syslog"
    driver: "none"
 
-..     Note: Only the json-file driver makes the logs available directly from docker-compose up and docker-compose logs. Using any other driver will not print any logs.
+.. > **Note**: Only the `json-file` and `journald` drivers make the logs
+   available directly from `docker-compose up` and `docker-compose logs`.
+   Using any other driver will not print any logs.
 
 .. note::
 
-   ``docker-compose up`` で立ち上げた場合、 ``docker-compose logs`` コマンドでログを表示できるのは ``json-file`` ドライバを指定した時のみです。他のドライバを指定したら logs コマンドを実行しても画面に表示されません。
+   ドライバのうち ``json-file`` と ``journald`` だけが、``docker-compose up`` と ``docker-compose logs`` によって直接ログ参照ができます。
+   その他のドライバではログ出力は行われません。
 
-.. Specify logging options for the logging driver with the options key, as with the --log-opt option for docker run.
+.. Specify logging options for the logging driver with the ``options`` key, as with the ``--log-opt`` option for `docker run`.
 
-ロギング・ドライバのオプションを指定するには ``options`` キーを使います。これは ``docker run`` コマンド実行時の ``--log-opt`` オプションと同じです。
+ロギングドライバへのロギングオプションの設定は ``options`` キーにより行います。
+これは ``docker run`` コマンドの ``--log-opt`` オプションと同じです。
 
-.. Logging options are key-value pairs. An example of syslog options:
+.. Logging options are key-value pairs. An example of `syslog` options:
 
-ロギングのオプションはキーバリューのペアです。以下は ``syslog`` オプションを指定する例です。
+ロギングオプションはキーバリューのペアで指定します。
+たとえば ``syslog`` オプションは以下のようになります。
+
+..  driver: "syslog"
+    options:
+      syslog-address: "tcp://192.168.0.42:123"
 
 .. code-block:: yaml
 
