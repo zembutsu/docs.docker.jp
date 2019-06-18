@@ -2377,13 +2377,25 @@ links
       - db:database
       - redis
 
-.. Containers for the linked service will be reachable at a hostname identical to the alias, or the service name if no alias was specified.
+.. Containers for the linked service will be reachable at a hostname identical to
+   the alias, or the service name if no alias was specified.
 
-リンクするサービスのコンテナは、エイリアスとして認識できるホスト名で到達（接続）可能になります。エイリアスが指定されなければ、サービス名で到達できます。
+リンクされたサービスのコンテナは、エイリアスと同等のホスト名により到達可能になります。
+エイリアスが設定されていない場合はサービス名により到達可能です。
 
-.. Links also express dependency between services in the same way as depends_on, so they determine the order of service startup.
+.. Links are not required to enable services to communicate - by default,
+   any service can reach any other service at that service’s name. (See also, the
+   [Links topic in Networking in Compose](/compose/networking.md#links).)
 
-また、サービス間の依存関係は :ref:`depends_on <compose-file-depends_on>` を使っても同様に指定できますし、サービスを起動する順番も指定できます。
+Links はサービスを通信可能とするために必要になるものではありません。
+デフォルトで各サービスは、サービス名を使って他サービスにアクセスすることができます。
+（:ref:`Compose ネットワークにおける Links のトピック </compose/networking-links>` も参照してください。）
+
+.. Links also express dependency between services in the same way as
+   [depends_on](#depends_on), so they determine the order of service startup.
+
+Links は :ref:`depends_on <compose-file-depends_on>` と同様にサービス間の依存関係を表わします。
+したがってサービスの起動順を設定するものになります。
 
 ..    Note: If you define both links and networks, services with links between them must share at least one network in common in order to communicate.
 
