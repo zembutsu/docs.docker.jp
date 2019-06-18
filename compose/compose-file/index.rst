@@ -1949,6 +1949,30 @@ Compose は各行を ``変数=値`` の形式とみなします。 ``#`` で始�
    # Rails/Rack 環境変数を設定
    RACK_ENV=development
 
+.. Compose expects each line in an env file to be in `VAR=VAL` format. Lines
+   beginning with `#` (i.e. comments) are ignored, as are blank lines.
+
+env ファイルの各行は ``VAR=VAL`` の書式とします。
+行先頭に `#` がある行は（コメントとして扱われ）無視されます。
+空行も無視されます。
+
+..  # Set Rails/Rack environment
+    RACK_ENV=development
+
+.. code-block:: yaml
+
+   # Rails/Rack 環境変数を設定
+   RACK_ENV=development
+
+.. > **Note**: If your service specifies a [build](#build) option, variables
+   > defined in environment files will _not_ be automatically visible during the
+   > build. Use the [args](#args) sub-option of `build` to define build-time
+   > environment variables.
+
+.. note::
+
+   サービスに :ref:`build <compose-file-build>` オプションを指定している場合、env ファイル内に定義された変数は、ビルド時にこのままでは自動的に参照されません。
+   その場合は ``build`` のサブオプション :ref:`args <compose-file-args>` を利用して、ビルド時の環境変数を設定してください。
 
 .. _compose-file-environment:
 
