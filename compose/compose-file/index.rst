@@ -2650,7 +2650,18 @@ aliases
 
 .. The general format is shown here.
 
-一般的な形式は、以下の通りです。
+一般的な書式は以下のとおりです。
+
+..  services:
+      some-service:
+        networks:
+          some-network:
+            aliases:
+             - alias1
+             - alias3
+          other-network:
+            aliases:
+             - alias2
 
 .. code-block:: yaml
 
@@ -2665,25 +2676,57 @@ aliases
            aliases:
             - alias2
 
-.. In the example below, three services are provided (web, worker, and db), along with two networks (new and legacy). The db service is reachable at the hostname db or database on the new network, and at db or mysql on the legacy network.
+.. In the example below, three services are provided (`web`, `worker`, and `db`),
+   along with two networks (`new` and `legacy`). The `db` service is reachable at
+   the hostname `db` or `database` on the `new` network, and at `db` or `mysql` on
+   the `legacy` network.
 
-この例では、３つのサービス（ ``web`` 、 ``worker`` 、 ``db`` ）と２つのネットワーク（ ``new`` と ``legacy`` ）が提供されています。 ``db`` サービスはホスト名 ``db`` または ``database`` として ``new`` ネットワーク上で到達可能です。そして、``legacy`` ネットワーク上では  ``db`` または ``mysql`` として到達できます。
+以下の例では 3 つのサービス（``web``, ``worker``, ``db`` ）と 2 つのネットワーク（``new`` と ``legacy`` ）を提供します。
+``db`` サービスは ``new`` ネットワーク上では、ホスト名 ``db`` あるいは ``database`` としてアクセスできます。
+一方 ``legacy`` ネットワーク上では ``db`` あるいは ``mysql`` としてアクセスできます。
+
+..  version: '2'
+
+    services:
+      web:
+        build: ./web
+        networks:
+          - new
+
+      worker:
+        build: ./worker
+        networks:
+          - legacy
+
+      db:
+        image: mysql
+        networks:
+          new:
+            aliases:
+              - database
+          legacy:
+            aliases:
+              - mysql
+
+    networks:
+      new:
+      legacy:
 
 .. code-block:: yaml
 
    version: '2'
-   
+
    services:
      web:
        build: ./web
        networks:
          - new
-   
+
      worker:
        build: ./worker
        networks:
-       - legacy
-   
+         - legacy
+
      db:
        image: mysql
        networks:
@@ -2693,11 +2736,10 @@ aliases
          legacy:
            aliases:
              - mysql
-   
+
    networks:
      new:
      legacy:
-
 
 .. ipv4_address, ipv6_address
 
