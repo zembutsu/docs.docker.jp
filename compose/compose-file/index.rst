@@ -2110,41 +2110,6 @@ expose
     - "3000"
     - "8000"
 
-.. _compose-file-extends:
-
-extends
-----------
-
-.. Extend another service, in the current file or another, optionally overriding configuration.
-
-現在のファイルから別のファイルにサービスを拡張するもので、設定のオプションを追加します。
-
-.. You can use extends on any service together with other configuration keys. The extends value must be a dictionary defined with a required service and an optional file key.
-
-他の設定用のキーと一緒にサービスを ``extends`` （拡張）できます。 ``extends`` 値には ``service`` の定義が必要であり、オプションで ``file`` キーを指定します。
-
-.. code-block:: yaml
-
-   extends:
-     file: common.yml
-     service: webapp
-
-.. The service the name of the service being extended, for example web or database. The file is the location of a Compose configuration file defining that service.
-
-サービスを拡張する ``service`` の名前とは、たとえば ``web`` や ``database`` です。 ``file`` はサービスを定義する Compose 設定ファイルの場所です。
-
-.. If you omit the file Compose looks for the service configuration in the current file. The file value can be an absolute or relative path. If you specify a relative path, Compose treats it as relative to the location of the current file.
-
-``file`` を省略したら、Compose は現在の設定ファイル上からサービスの定義を探します。 ``file`` の値は相対パスまたは絶対パスです。相対パスを指定したら、Compose はその場所を、現在のファイルからの相対パスとして扱います。
-
-.. You can extend a service that itself extends another. You can extend indefinitely. Compose does not support circular references and docker-compose returns an error if it encounters one.
-
-自分自身を他に対して拡張するサービス定義ができます。拡張は無限に可能です。Compose は循環参照をサポートしておらず、もし循環参照があれば ``docker-compose`` はエラーを返します。
-
-.. For more on extends, see the the extends documentation.
-
-``extends`` に関するより詳細は、 :ref:`extends ドキュメント <extending-services>` をご覧ください。
-
 .. compose-file-external_links:
 
 external_links
