@@ -2554,68 +2554,6 @@ logging
    このようなオプションはその他のロギングドライバでは利用できません。
    サポートされるロギングドライバと個々のオプションについては :doc:`ロギングドライバ </engine/admin/logging/overview>` を参照してください。
 
-.. _compose-file-log_driver:
-
-log_driver
-----------
-
-.. Version 1 file format only. In version 2, use logging.
-
-.. note::
-
-   :ref:`ファイル形式バージョン１ <compose-file-version-1>` のオプションです。バージョン２では :ref:`logging <compose-file-logging>` を使います。
-
-.. Specify a log driver. The default is json-file.
-
-ログ・ドライバを指定します。デフォルトは json-file（JSON ファイル形式）です。
-
-.. code-block:: yaml
-
-   log_driver: "syslog"
-
-.. _compose-file-log_opt:
-
-log_opt
-----------
-
-.. Version 1 file format only. In version 2, use logging.
-
-.. note::
-
-   :ref:`ファイル形式バージョン１ <compose-file-version-1>` のオプションです。バージョン２では :ref:`logging <compose-file-logging>` を使います。
-
-
-.. Specify logging options as key-value pairs. An example of syslog options:
-
-ログ記録のオプション、キー・バリューのペアで指定します。次の例は ``syslog`` のオプションです。
-
-.. code-block:: yaml
-
-   log_opt:
-     syslog-address: "tcp://192.168.0.42:123"
-
-.. _compose-file-net:
-
-net
-----------
-
-.. Version 1 file format only. In version 2, use network_mode.
-
-.. note::
-
-   :ref:`ファイル形式バージョン１ <compose-file-version-1>` のオプションです。バージョン２では :ref:`network_mode <compose-file-network_mode>` を使います。
-
-.. Network mode. Use the same values as the docker client --net parameter. The container:... form can take a service name instead of a container name or id.
-
-ネットワーク・モードを指定します。これは docker クライアントで ``--net`` パラメータを指定するのと同じものです。コンテナ名や ID の代わりに、 ``container:...`` で指定した名前が使えます。
-
-.. code-block:: yaml
-
-   net: "bridge"
-   net: "none"
-   net: "host"
-   net: "container:[サービス名かコンテナ名/id]"
-
 .. network_mode
 
 .. _compose-file-network_mode:
