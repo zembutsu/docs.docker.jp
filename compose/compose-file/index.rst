@@ -2304,6 +2304,24 @@ image
 イメージが存在しなかった場合、:ref:`build <compose-file-build>` を指定していなければ Compose はイメージを取得しようとします。
 取得する際には、指定されたオプションを使ってビルドを行い、指定されたタグ名によりタグづけを行います。
 
+.. ### isolation
+
+.. _compose-file-isolation:
+
+isolation
+----------
+
+.. Specify a container’s isolation technology. On Linux, the only supported value
+   is `default`. On Windows, acceptable values are `default`, `process` and
+   `hyperv`. Refer to the
+   [Docker Engine docs](/engine/reference/commandline/run.md#specify-isolation-technology-for-container---isolation)
+   for details.
+
+コンテナの分離技術（isolation technology）を設定します。
+Linux においてサポートされるのは ``default`` のみです。
+Windows では ``default``, ``process``, ``hyperv`` の設定が可能です。
+詳しくは :ref:`Docker Engine ドキュメント <specify-isolation-technology-for-container---isolation>` を参照してください。
+
 .. _compose-file-links:
 
 links
