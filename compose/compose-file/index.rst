@@ -2596,22 +2596,24 @@ Docker クライアントの ``--network`` パラメータと同じ値を設定�
    * Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 
    * ``network_mode: "host"`` とした場合、:ref:`links <compose-file-links>` を同時に指定することはできません。
-.. networks
+.. ### networks
 
 .. _compose-file-networks:
 
 networks
 ----------
 
-..    Version 2 file format only. In version 1, use net.
+.. Networks to join, referencing entries under the
+   [top-level `networks` key](#network-configuration-reference).
 
-.. note::
+ネットワークへの参加を設定します。
+設定には :ref:`最上位の networks キー <network-configuration-reference>` に設定された値を用います。
 
-   :ref:`ファイル形式バージョン２ <compose-file-version-2>` のオプションです。バージョン１では使えません。
-
-.. Networks to join, referencing entries under the top-level networks key.
-
-ネットワークに参加する時、トップ・レベルの ``network`` :ref:`キー <network-configuration-reference>` のエントリを参照します。
+..  services:
+      some-service:
+        networks:
+         - some-network
+         - other-network
 
 .. code-block:: yaml
 
