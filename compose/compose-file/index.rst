@@ -2889,6 +2889,52 @@ ports
     - "127.0.0.1:5000-5010:5000-5010"
     - "6060:6060/udp"
 
+.. #### Long syntax
+
+.. _compose-file-ports-long-syntax:
+
+長い文法
+^^^^^^^^^
+
+.. The long form syntax allows the configuration of additional fields that can't be
+   expressed in the short form.
+
+長い文法は追加の設定項目が加えられていて、短い文法では表現できないものです。
+
+.. - `target`: the port inside the container
+   - `published`: the publicly exposed port
+   - `protocol`: the port protocol (`tcp` or `udp`)
+   - `mode`: `host` for publishing a host port on each node, or `ingress` for a swarm
+      mode port which will be load balanced.
+
+* ``target``: コンテナ内部のポート。
+* ``published``: 公開ポート。
+* ``protocol``: ポートプロトコル。（``tcp`` または ``udp`` ）
+* ``mode``: ``host`` は各ノード向けにホストポートを公開、また ``ingress`` はロードバランスを行うためのスウォームモードポート。
+
+.. ```none
+   ports:
+     - target: 80
+       published: 8080
+       protocol: tcp
+       mode: host
+   
+   ```
+
+.. code-block:: yaml
+
+   ports:
+     - target: 80
+       published: 8080
+       protocol: tcp
+       mode: host
+
+.. > **Note:** The long syntax is new in v3.2
+
+.. note::
+
+   長い文法は v3.2 から導入されました。
+
 .. _compose-file-security_opt:
 
 security_opt
