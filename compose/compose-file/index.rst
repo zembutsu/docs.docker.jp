@@ -2042,18 +2042,36 @@ env ファイルの各行は ``VAR=VAL`` の書式とします。
 
 この結果 $VAR は ``hello`` になります。
 
+.. ### environment
+
 .. _compose-file-environment:
 
 environment
 --------------------
 
-.. Add environment variables. You can use either an array or a dictionary. Any boolean values; true, false, yes no, need to be enclosed in quotes to ensure they are not converted to True or False by the YML parser.
+.. Add environment variables. You can use either an array or a dictionary. Any
+   boolean values; true, false, yes no, need to be enclosed in quotes to ensure
+   they are not converted to True or False by the YML parser.
 
-環境変数を追加します。配列もしくは辞書形式（dictionary）で指定できます。boolean 値 (true、false、yes、no のいずれか) は、YML パーサによって True か False に変換されないよう、クォート（ ' 記号）で囲む必要があります。
+環境変数を追加します。
+配列形式または辞書形式での指定が可能です。
+ブール値 ``true``, ``false``, ``yes``, ``no`` を用いる場合は、クォートで囲むことで YML パーサによって True や False に変換されてしまうのを防ぐ必要があります。
 
-.. Environment variables with only a key are resolved to their values on the machine Compose is running on, which can be helpful for secret or host-specific values.
+.. Environment variables with only a key are resolved to their values on the
+   machine Compose is running on, which can be helpful for secret or host-specific values.
 
-キーだけの環境変数は、Compose の実行時にマシン上で指定するものであり、シークレット（訳注：API鍵などの秘密情報）やホスト固有の値を指定するのに便利です。
+環境変数だけが記述されている場合は、Compose が起動しているマシン上にて定義されている値が設定されます。
+これは機密情報やホスト固有の値を設定する場合に利用できます。
+
+..  environment:
+      RACK_ENV: development
+      SHOW: 'true'
+      SESSION_SECRET:
+
+    environment:
+      - RACK_ENV=development
+      - SHOW=true
+      - SESSION_SECRET
 
 .. code-block:: yaml
 
@@ -2061,11 +2079,21 @@ environment
      RACK_ENV: development
      SHOW: 'true'
      SESSION_SECRET:
-   
+
    environment:
      - RACK_ENV=development
      - SHOW=true
      - SESSION_SECRET
+
+.. > **Note**: If your service specifies a [build](#build) option, variables
+   > defined in `environment` will _not_ be automatically visible during the
+   > build. Use the [args](#args) sub-option of `build` to define build-time
+   > environment variables.
+
+.. note::
+
+   サービスに :ref:`build <compose-file-build>` オプションを指定している場合、env ファイル内に定義された変数は、ビルド時にこのままでは自動的に参照されません。
+   その場合は ``build`` のサブオプション :ref:`args <compose-file-args>` を利用して、ビルド時の環境変数を設定してください。
 
 .. _compose-file-expose:
 
