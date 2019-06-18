@@ -2623,24 +2623,30 @@ networks
         - some-network
         - other-network
 
+.. #### aliases
+
 .. _compose-file-aliases:
 
 aliases
 ^^^^^^^^^^
 
-.. Aliases (alternative hostnames) for this service on the network. Other containers on the same network can use either the service name or this alias to connect to one of the service’s containers.
+.. Aliases (alternative hostnames) for this service on the network. Other containers on the same network can use either the service name or this alias to connect to one of the service's containers.
 
-エイリアス（ホスト名の別名）は、ネットワーク上のサービスに対してです。同一ネットワーク上の他のコンテナが、サービス名またはこのエイリアスを使い、サービスのコンテナの１つに接続します。
+ネットワーク上のサービスに対して、ホスト名の別名となるエイリアスを設定します。
+同じネットワーク上にある他のコンテナは、この 1 つのサービスコンテナに対して、サービス名か、あるいはそのエイリアスを使ってアクセスすることができます。
 
-.. Since aliases is network-scoped, the same service can have different aliases on different networks
+.. Since `aliases` is network-scoped, the same service can have different aliases on different networks.
 
-``aliases`` が適用されるのはネットワーク範囲内のみです。そのため、同じサービスでも他のネットワークからは異なったエイリアスが使えます。
+``aliases`` はネットワーク範囲内において有効です。
+ネットワークが異なれば、同一サービスに違うエイリアスを持たせることができます。
 
-..     Note: A network-wide alias can be shared by multiple containers, and even by multiple services. If it is, then exactly which container the name will resolve to is not guaranteed.
+.. > **Note**: A network-wide alias can be shared by multiple containers, and even by multiple services. If it is, then exactly which container the name will resolve to is not guaranteed.
 
 .. note::
 
-   複数のコンテナだけでなく複数のサービスに対しても、ネットワーク範囲内でエイリアスが利用できます。ただしその場合、名前解決がどのコンテナに対して名前解決されるのか保証されません。
+   ネットワーク全体にわたってのエイリアスを複数コンテナ間で共有することができます。
+   それは複数サービス間でも可能です。
+   ただしこの場合、名前解決がどのコンテナに対して行われるかは保証されません。
 
 .. The general format is shown here.
 
