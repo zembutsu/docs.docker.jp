@@ -2438,13 +2438,21 @@ logging
      options:
        syslog-address: "tcp://192.168.0.42:123"
 
-.. The driver name specifies a logging driver for the service’s containers, as with the --log-driver option for docker run (documented here).
+.. The `driver`  name specifies a logging driver for the service's
+   containers, as with the ``--log-driver`` option for docker run
+   ([documented here](/engine/admin/logging/overview.md)).
 
-``driver`` にはコンテナのサービスに使うロギング・ドライバを指定します。これは docker run コマンドにおける ``--log-driver`` オプションと同じです （ :doc:`ドキュメントはこちら </engine/admin/logging/overview>` ）。
+``driver`` 名にはサービスコンテナにおけるロギングドライバを指定します。
+これは docker run コマンドに対する ``--log-driver`` オプションと同じです。
+（:doc:`ドキュメントはこちら </engine/admin/logging/overview>` ）
 
 .. The default value is json-file.
 
-デフォルトの値は json-file です。
+デフォルトは json-file です。
+
+..  driver: "json-file"
+    driver: "syslog"
+    driver: "none"
 
 .. code-block:: yaml
 
