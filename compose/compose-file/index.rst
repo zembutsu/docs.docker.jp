@@ -1900,6 +1900,8 @@ entrypoint は :ref:`Dockerfile <entrypoint>` のように列挙できます。
    ``entrypoint`` を設定すると、サービスイメージ内に Dockerfile 命令の ``ENTRYPOINT`` によって設定されているデフォルトのエントリーポイントは上書きされ、**さらに** イメージ内のあらゆるデフォルトコマンドもクリアされます。
    これはつまり、Dockerfile に ``CMD`` 命令があったとしたら無視されるということです。
 
+.. ### env_file
+
 .. _compose-file-env_file:
 
 env_file
@@ -1907,20 +1909,32 @@ env_file
 
 .. Add environment variables from a file. Can be a single value or a list.
 
-ファイル上の定義から環境変数を追加します。単一の値、もしくはリストになります。
+ファイルを用いて環境変数を追加します。
+設定は 1 つだけとするか、リストにすることができます。
 
-.. If you have specified a Compose file with docker-compose -f FILE, paths in env_file are relative to the directory that file is in.
+.. If you have specified a Compose file with `docker-compose -f FILE`, paths in
+   `env_file` are relative to the directory that file is in.
 
-Compose ファイルを ``docker-compose -f ファイル名`` で指定する場合は、 ``env_file`` ファイルは指定したディレクトリに対する相対パスとみなします。
+Compose ファイルを ``docker-compose -f FILE`` という起動により指定している場合、``env_file`` におけるパスは、Compose ファイルがあるディレクトリからの相対パスとします。
 
-.. Environment variables specified in environment override these values.
+.. Environment variables declared in the [environment](#environment) section
+   _override_ these values &ndash; this holds true even if those values are
+   empty or undefined.
 
-環境変数で指定されている値は、 ``environment`` で上書きできます。
+環境変数が :ref:`environment <compose-file-environment>` の項に宣言されていれば、ここでの設定を **オーバーライド** します。
+たとえ設定値が空や未定義であっても、これは変わりません。
+
+..  env_file: .env
+
+    env_file:
+      - ./common.env
+      - ./apps/web.env
+      - /opt/secrets.env
 
 .. code-block:: yaml
 
    env_file: .env
-   
+
    env_file:
      - ./common.env
      - ./apps/web.env
