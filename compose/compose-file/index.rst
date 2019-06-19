@@ -3244,22 +3244,32 @@ sysctls
 
    Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 
+.. ### ulimits
+
 .. _compose-file-ulimits:
 
 ulimits
 ----------
 
-.. Override the default ulimits for a container. You can either specify a single limit as an integer or soft/hard limits as a mapping.
+.. Override the default ulimits for a container. You can either specify a single
+   limit as an integer or soft/hard limits as a mapping.
 
-コンテナのデフォルト ulimits を上書きします。単一の整数値で上限を指定できるだけでなく、ソフト／ハード・リミットの両方も指定できます。
+コンテナにおけるデフォルトの ulimits を上書きします。
+1 つの limit を整数値として指定するか、ソフト、ハードの limit をマッピングとして指定することができます。
+
+..  ulimits:
+      nproc: 65535
+      nofile:
+        soft: 20000
+        hard: 40000
 
 .. code-block:: yaml
 
-     ulimits:
-       nproc: 65535
-       nofile:
-         soft: 20000
-         hard: 40000
+   ulimits:
+     nproc: 65535
+     nofile:
+       soft: 20000
+       hard: 40000
 
 .. _compose-file-volumes:
 
