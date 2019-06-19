@@ -3148,6 +3148,34 @@ security_opt
 
    Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 
+.. ### stop_grace_period
+
+.. _compose-file-stop_grace_period:
+
+stop_grace_period
+--------------------
+
+.. Specify how long to wait when attempting to stop a container if it doesn't
+   handle SIGTERM (or whatever stop signal has been specified with
+   [`stop_signal`](#stopsignal)), before sending SIGKILL. Specified
+   as a [duration](#specifying-durations).
+
+コンテナが SIGKILL を送信するまでに、SIGTERM（あるいは :ref:`stop_signal <compose-file-stop_signal>` によって設定されたストップシグナル）をどれだけ待つかを設定します。
+指定には :ref:`間隔 <specifying-durations>` を用います。
+
+..  stop_grace_period: 1s
+    stop_grace_period: 1m30s
+
+.. code-block:: yaml
+
+   stop_grace_period: 1s
+   stop_grace_period: 1m30s
+
+.. By default, `stop` waits 10 seconds for the container to exit before sending
+   SIGKILL.
+
+デフォルトで、コンテナが SIGKILL を送信する前に ``stop`` は 10 秒待ちます。
+
 .. -compose-file-stop_signal:
 
 stop_signal
