@@ -3176,18 +3176,34 @@ stop_grace_period
 
 デフォルトで、コンテナが SIGKILL を送信する前に ``stop`` は 10 秒待ちます。
 
-.. -compose-file-stop_signal:
+.. ### stop_signal
+
+.. _compose-file-stop_signal:
 
 stop_signal
 --------------------
 
-.. Sets an alternative signal to stop the container. By default stop uses SIGTERM. Setting an alternative signal using stop_signal will cause stop to send that signal instead.
+.. Sets an alternative signal to stop the container. By default `stop` uses
+   SIGTERM. Setting an alternative signal using `stop_signal` will cause
+   `stop` to send that signal instead.
 
-コンテナに対して別の停止シグナルを設定します。デフォルトでは ``stop`` で SIGTERM を使います。 ``stop_signal`` で別のシグナルを指定したら、 ``stop`` 実行時にそのシグナルを送信します。
+コンテナに対して別の停止シグナルを設定します。
+デフォルトにおいて ``stop`` は SIGTERM を用います。
+``stop_signal`` を使って別のシグナルを設定すると ``stop`` にはそのシグナルが代わりに送信されます。
+
+..  stop_signal: SIGUSR1
 
 .. code-block:: yaml
 
    stop_signal: SIGUSR1
+
+.. > **Note**: This option is ignored when
+   > [deploying a stack in swarm mode](/engine/reference/commandline/stack_deploy.md)
+   > with a (version 3) Compose file.
+
+.. note::
+
+   Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 
 .. _compose-file-ulimits:
 
