@@ -3205,6 +3205,45 @@ stop_signal
 
    Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 
+.. ### sysctls
+
+.. _compose-file-sysctls:
+
+sysctls
+--------------------
+
+.. Kernel parameters to set in the container. You can use either an array or a
+   dictionary.
+
+コンテナに設定するカーネルパラメータを設定します。
+配列または辞書形式での指定ができます。
+
+..  sysctls:
+      net.core.somaxconn: 1024
+      net.ipv4.tcp_syncookies: 0
+
+    sysctls:
+      - net.core.somaxconn=1024
+      - net.ipv4.tcp_syncookies=0
+
+.. code-block:: yaml
+
+   sysctls:
+     net.core.somaxconn: 1024
+     net.ipv4.tcp_syncookies: 0
+
+   sysctls:
+     - net.core.somaxconn=1024
+     - net.ipv4.tcp_syncookies=0
+
+.. > **Note**: This option is ignored when
+   > [deploying a stack in swarm mode](/engine/reference/commandline/stack_deploy.md)
+   > with a (version 3) Compose file.
+
+.. note::
+
+   Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
+
 .. _compose-file-ulimits:
 
 ulimits
