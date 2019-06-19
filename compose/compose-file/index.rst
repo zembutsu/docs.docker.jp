@@ -2935,6 +2935,190 @@ ports
 
    長い文法は v3.2 から導入されました。
 
+.. ### secrets
+
+.. _compose-file-secrets:
+
+secrets
+----------
+
+.. Grant access to secrets on a per-service basis using the per-service `secrets`
+   configuration. Two different syntax variants are supported.
+
+各サービスごとの ``secrets`` 設定を用いて、個々のサービスごとに secrets へのアクセスを許可します。
+2 つの異なる文法がサポートされています。
+
+.. > **Note**: The secret must already exist or be
+   > [defined in the top-level `secrets` configuration](#secrets-configuration-reference)
+   > of this stack file, or stack deployment will fail.
+
+.. note::
+
+   secrets は既に定義済であるか、あるいは :ref:`最上位の configs が定義済 <configs-configuration-reference>` である必要があります。
+   そうでない場合、このファイルによるデプロイが失敗します。
+
+.. #### Short syntax
+
+.. _compose-file-secrets-short-syntax:
+
+短い文法
+^^^^^^^^^
+
+.. The short syntax variant only specifies the secret name. This grants the
+   container access to the secret and mounts it at `/run/secrets/<secret_name>`
+   within the container. The source name and destination mountpoint are both set
+   to the secret name.
+
+短い文法では secret 名を指定することだけができます。
+これを行うと、コンテナが secret にアクセスできるようになり、secret はコンテナ内の ``/run/secrets/<secret_name>`` にマウントされます。
+ソース元となる名前とマウントポイント名は、ともに secret 名となります。
+
+.. The following example uses the short syntax to grant the `redis` service
+   access to the `my_secret` and `my_other_secret` secrets. The value of
+   `my_secret` is set to the contents of the file `./my_secret.txt`, and
+   `my_other_secret` is defined as an external resource, which means that it has
+   already been defined in Docker, either by running the `docker secret create`
+   command or by another stack deployment. If the external secret does not exist,
+   the stack deployment fails with a `secret not found` error.
+
+以下の例では短い文法を使って、``redis`` サービスが 2 つの secret、つまり ``my_secret`` と ``my_other_secret`` にアクセスできるようにします。
+``my_secret`` の値には ``./my_secret.txt`` ファイルに含まれる内容を設定します。
+``my_other_secret`` は外部リソースとして定義し、それはつまり Docker において定義済の内容を用います。
+これは ``docker secret create`` コマンドの実行か、あるいは別のスタックデプロイメントにより与えられます。
+外部 secret が存在しなかった場合、スタックデプロイメントは失敗し ``secret not found`` といったエラーが発生します。
+
+.. ```none
+   version: "3.1"
+   services:
+     redis:
+       image: redis:latest
+       deploy:
+         replicas: 1
+       secrets:
+         - my_secret
+         - my_other_secret
+   secrets:
+     my_secret:
+       file: ./my_secret.txt
+     my_other_secret:
+       external: true
+   ```
+
+.. code-block:: yaml
+
+   version: "3.1"
+   services:
+     redis:
+       image: redis:latest
+       deploy:
+         replicas: 1
+       secrets:
+         - my_secret
+         - my_other_secret
+   secrets:
+     my_secret:
+       file: ./my_secret.txt
+     my_other_secret:
+       external: true
+
+.. #### Long syntax
+
+.. _compose-file-secrets-long-syntax:
+
+長い文法
+^^^^^^^^^
+
+.. The long syntax provides more granularity in how the secret is created within
+   the service's task containers.
+
+長い文法ではさらに細かな設定として、サービスタスクのコンテナ内にて secret をどのように生成するかを設定します。
+
+.. - `source`: The name of the secret as it exists in Docker.
+   - `target`: The name of the file that will be mounted in `/run/secrets/` in the
+     service's task containers. Defaults to `source` if not specified.
+   - `uid` and `gid`: The numeric UID or GID which will own the file within
+     `/run/secrets/` in the service's task containers. Both default to `0` if not
+     specified.
+   - `mode`: The permissions for the file that will be mounted in `/run/secrets/`
+     in the service's task containers, in octal notation. For instance, `0444`
+     represents world-readable. The default in Docker 1.13.1 is `0000`, but will
+     be `0444` in the future. Secrets cannot be writable because they are mounted
+     in a temporary filesystem, so if you set the writable bit, it is ignored. The
+     executable bit can be set. If you aren't familiar with UNIX file permission
+     modes, you may find this
+     [permissions calculator](http://permissions-calculator.org/){: target="_blank" class="_" }
+     useful.
+
+* ``source``： Docker 内に存在している secret 名。
+* ``target``： サービスのタスクコンテナにおいて ``/run/secrets/`` にマウントされるファイル名。
+  指定されなかった場合のデフォルトは ``source`` となります。
+* ``uid`` と ``gid``： サービスのタスクコンテナにおいて ``/run/secrets/`` 内のファイルを所有する UID 値と GID 値。
+  指定されなかった場合のデフォルトはいずれも ``0``。
+* ``mode``： サービスのタスクコンテナにおいて ``/run/secrets/`` にマウントされるファイルのパーミッション。
+  8 進数表記。
+  たとえば ``0444`` であればすべて読み込み可。
+  Docker 1.13.1 におけるデフォルトは ``0000`` でしたが、それ以降では ``0444`` となりました。
+  secrets はテンポラリなファイルシステム上にマウントされるため、書き込み可能にはできません。
+  したがって書き込みビットを設定しても無視されます。
+  実行ビットは設定できます。
+  UNIX のファイルパーミッションモードに詳しくない方は、`パーミッション計算機 <http://permissions-calculator.org/>`_ を参照してください。
+
+.. The following example sets name of the `my_secret` to `redis_secret` within the
+   container, sets the mode to `0440` (group-readable) and sets the user and group
+   to `103`. The `redis` service does not have access to the `my_other_secret`
+   secret.
+
+以下の例では ``my_secret`` という名前の secret を、コンテナ内では ``redis_secret`` として設定します。
+そしてモードを ``0440`` （グループが読み込み可能）とし、ユーザとグループは ``103`` とします。
+``redis`` サービスは ``my_other_secret`` へはアクセスしません。
+
+.. ```none
+   version: "3.1"
+   services:
+     redis:
+       image: redis:latest
+       deploy:
+         replicas: 1
+       secrets:
+         - source: my_secret
+           target: redis_secret
+           uid: '103'
+           gid: '103'
+           mode: 0440
+   secrets:
+     my_secret:
+       file: ./my_secret.txt
+     my_other_secret:
+       external: true
+   ```
+
+.. code-block:: yaml
+
+   version: "3.1"
+   services:
+     redis:
+       image: redis:latest
+       deploy:
+         replicas: 1
+       secrets:
+         - source: my_secret
+           target: redis_secret
+           uid: '103'
+           gid: '103'
+           mode: 0440
+   secrets:
+     my_secret:
+       file: ./my_secret.txt
+     my_other_secret:
+       external: true
+
+.. You can grant a service access to multiple secrets and you can mix long and
+   short syntax. Defining a secret does not imply granting a service access to it.
+
+1 つのサービスが複数の secrets にアクセスする設定とすることもできます。
+また短い文法、長い文法を混在することも可能です。
+secret を定義しただけでは、サービスに対して secret へのアクセスを許可するものにはなりません。
+
 .. _compose-file-security_opt:
 
 security_opt
