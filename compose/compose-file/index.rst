@@ -3271,6 +3271,34 @@ ulimits
        soft: 20000
        hard: 40000
 
+.. ### userns_mode
+
+.. _compose-file-userns_mode:
+
+userns_mode
+-------------
+
+..  userns_mode: "host"
+
+.. code-block:: yaml
+
+   userns_mode: "host"
+
+.. Disables the user namespace for this service, if Docker daemon is configured with user namespaces.
+   See [dockerd](/engine/reference/commandline/dockerd.md#disable-user-namespace-for-a-container) for
+   more information.
+
+Docker デーモンにおいてユーザ名前空間が設定されていても、サービスに対してユーザ名前空間を無効にします。
+詳しくは :ref:`dockerd <disable-user-namespace-for-a-container>` を参照してください。
+
+.. > **Note**: This option is ignored when
+   > [deploying a stack in swarm mode](/engine/reference/commandline/stack_deploy.md)
+   > with a (version 3) Compose file.
+
+.. note::
+
+   Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
+
 .. _compose-file-volumes:
 
 volumes, volume_driver
