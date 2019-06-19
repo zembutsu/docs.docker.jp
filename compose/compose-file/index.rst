@@ -3119,6 +3119,8 @@ secrets
 また短い文法、長い文法を混在することも可能です。
 secret を定義しただけでは、サービスに対して secret へのアクセスを許可するものにはなりません。
 
+.. ### security_opt
+
 .. _compose-file-security_opt:
 
 security_opt
@@ -3126,13 +3128,25 @@ security_opt
 
 .. Override the default labeling scheme for each container.
 
-各コンテナに対するデフォルトのラベリング・スキーマ（labeling scheme）を上書きします。
+各コンテナにおけるデフォルトのラベリング・スキーム（labeling scheme）を上書きします。
+
+..  security_opt:
+      - label:user:USER
+      - label:role:ROLE
 
 .. code-block:: yaml
 
    security_opt:
      - label:user:USER
      - label:role:ROLE
+
+.. > **Note**: This option is ignored when
+   > [deploying a stack in swarm mode](/engine/reference/commandline/stack_deploy.md)
+   > with a (version 3) Compose file.
+
+.. note::
+
+   Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 
 .. -compose-file-stop_signal:
 
