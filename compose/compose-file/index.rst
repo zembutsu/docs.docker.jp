@@ -3777,6 +3777,38 @@ domainname, hostname, ipc, mac\_address, privileged, read\_only, shm\_size, stdi
    stdin_open: true
    tty: true
 
+.. ## Specifying durations
+
+.. _specifying-durations:
+
+時間の指定
+===============
+
+.. Some configuration options, such as the `interval` and `timeout` sub-options for
+   [`check`](#healthcheck), accept a duration as a string in a
+   format that looks like this:
+
+:ref:`check <compose-file-healthcheck>` のサブオプション ``interval``、``timeout`` のように、時間を設定するオプションがあります。
+これは以下のような書式による文字列を時間として受け付けるものです。
+
+..  2.5s
+    10s
+    1m30s
+    2h32m
+    5h34m56s
+
+.. code-block:: yaml
+
+   2.5s
+   10s
+   1m30s
+   2h32m
+   5h34m56s
+
+.. The supported units are `us`, `ms`, `s`, `m` and `h`.
+
+サポートされる単位は ``us``, ``ms``, ``s``, ``m``, ``h`` です。
+
 .. Volume configuration reference
 
 .. _volume-configuration-reference:
