@@ -3299,10 +3299,112 @@ Docker デーモンにおいてユーザ名前空間が設定されていても�
 
    Compose ファイルバージョン 3 においてこのオプションは、:doc:`スウォームモードでのスタックのデプロイ </engine/reference/commandline/stack_deploy>` を行う場合には無視されます。
 
+.. ### volumes
+
 .. _compose-file-volumes:
 
-volumes, volume_driver
-------------------------------
+volumes
+--------
+
+.. Mount host paths or named volumes, specified as sub-options to a service.
+
+マウントホストパスや名前つきボリュームを、サービスに対するサブオプションとして指定します。
+
+.. You can mount a host path as part of a definition for a single service, and
+   there is no need to define it in the top level `volumes` key.
+
+ホストパスのマウントは、単一サービスの定義の一部として行うことができます。
+これは最上位の `volumes`` キーにて定義する必要はありません。
+
+.. But, if you want to reuse a volume across multiple services, then define a named
+   volume in the [top-level `volumes` key](#volume-configuration-reference). Use
+   named volumes with [services, swarms, and stack
+   files](#volumes-for-services-swarms-and-stack-files).
+
+ただし複数のサービスにわたってボリュームを再利用したい場合は、:ref:`最上位の volumes キー <volume-configuration-reference>` において名前つきボリュームを定義してください。
+名前つきボリュームは :ref:`サービス、スウォーム、スタックファイル <volumes-for-services-swarms-and-stack-files>` において用いられます。
+
+.. > **Note**: The top-level
+   > [volumes](#volume-configuration-reference) key defines
+   > a named volume and references it from each service's `volumes` list. This replaces `volumes_from` in earlier versions of the Compose file format. See [Use volumes](/engine/admin/volumes/volumes.md) and [Volume
+   Plugins](/engine/extend/plugins_volume.md) for general information on volumes.
+
+.. note::
+
+   最上位の :ref:`volumes <volume-configuration-reference>` キーは名前つきボリュームを定義し、各サービスの ``volumes`` リストからこれを参照します。
+   これは Compose ファイルフォーマットのかつてのバージョンにおける ``volumes_from`` に置き換わるものです。
+   ボリュームに関する一般的な情報については :doc:`ボリュームの利用 </engine/admin/volumes/volumes>` や :doc:`ボリューム・プラグイン </engine/extend/plugins_volume>` を参照してください。
+
+.. This example shows a named volume (`mydata`) being used by the `web` service,
+   and a bind mount defined for a single service (first path under `db` service
+   `volumes`). The `db` service also uses a named volume called `dbdata` (second
+   path under `db` service `volumes`), but defines it using the old string format
+   for mounting a named volume. Named volumes must be listed under the top-level
+   `volumes` key, as shown.
+
+以下の例では名前つきボリューム（``mydata`` ）が ``web`` サービスにおいて利用されています。
+またバインドマウントが単一のサービス（``db`` サービスの ``volumes`` にある最初のパス）に対して定義されています。
+``db`` サービスはさらに ``dbdata`` という名前つきボリュームを利用しています（``db`` サービスの ``volumes`` の 2 つめのパス）が、その定義の仕方は、名前つきボリュームをマウントする古い文字列書式を使っています。
+名前つきボリュームは以下に示しているように、最上位の ``volumes`` キーのもとに列記されていなければなりません。
+
+.. ```none
+   version: "3.2"
+   services:
+     web:
+       image: nginx:alpine
+       volumes:
+         - type: volume
+           source: mydata
+           target: /data
+           volume:
+             nocopy: true
+         - type: bind
+           source: ./static
+           target: /opt/app/static
+
+     db:
+       image: postgres:latest
+       volumes:
+         - "/var/run/postgres/postgres.sock:/var/run/postgres/postgres.sock"
+         - "dbdata:/var/lib/postgresql/data"
+
+   volumes:
+     mydata:
+     dbdata:
+   ```
+
+.. code-block:: yaml
+
+   version: "3.2"
+   services:
+     web:
+       image: nginx:alpine
+       volumes:
+         - type: volume
+           source: mydata
+           target: /data
+           volume:
+             nocopy: true
+         - type: bind
+           source: ./static
+           target: /opt/app/static
+
+     db:
+       image: postgres:latest
+       volumes:
+         - "/var/run/postgres/postgres.sock:/var/run/postgres/postgres.sock"
+         - "dbdata:/var/lib/postgresql/data"
+
+   volumes:
+     mydata:
+     dbdata:
+
+.. > **Note**: See [Use volumes](/engine/admin/volumes/volumes.md) and [Volume
+   > Plugins](/engine/extend/plugins_volume.md) for general information on volumes.
+
+.. note::
+
+   ボリュームに関する一般的な情報については :doc:`ボリュームの利用 </engine/admin/volumes/volumes>` や :doc:`ボリューム・プラグイン </engine/extend/plugins_volume>` を参照してください。
 
 .. Mount paths or named volumes, optionally specifying a path on the host machine (HOST:CONTAINER), or an access mode (HOST:CONTAINER:ro). For version 2 files, named volumes need to be specified with the top-level volumes key. When using version 1, the Docker Engine will create the named volume automatically if it doesn’t exist.
 
