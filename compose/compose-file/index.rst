@@ -3558,6 +3558,76 @@ volumes
 
    長い文法は v3.2 から導入されました。
 
+.. #### Volumes for services, swarms, and stack files
+
+.. _volumes-for-services-swarms-and-stack-files:
+
+サービス、スウォーム、スタックファイルにおけるボリューム設定
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. When working with services, swarms, and `docker-stack.yml` files, keep in mind
+   that the tasks (containers) backing a service can be deployed on any node in a
+   swarm, which may be a different node each time the service is updated.
+
+サービス、スウォーム、``docker-stack.yml`` ファイルを扱っている際には気をつけておくべきことがあります。
+サービスのもとにあるタスク（コンテナ）はスォーム内のどのノードにでもデプロイされます。
+サービスは毎回、異なるノードとなり得るということです。
+
+.. In the absence of having named volumes with specified sources, Docker creates an
+   anonymous volume for each task backing a service. Anonymous volumes do not
+   persist after the associated containers are removed.
+
+ボリュームに名前をつけずに利用したとすると、Docker はサービスのもとにある各タスクに対して、名前のない匿名のボリュームを生成します。
+匿名ボリュームは、関連コンテナが削除された後は持続されません。
+
+.. If you want your data to persist, use a named volume and a volume driver that
+   is multi-host aware, so that the data is accessible from any node. Or, set
+   constraints on the service so that its tasks are deployed on a node that has the
+   volume present.
+
+データを維持しておきたい場合は、名前つきボリュームを設定し、複数ホストに対応したボリュームドライバを利用してください。
+そうすればデータはどのノードからでもアクセスできます。
+あるいはサービスに対する指定として、ボリュームが存在しているノードへタスクをデプロイするようにしてください。
+
+.. As an example, the `docker-stack.yml` file for the
+   [votingapp sample in Docker
+   Labs](https://github.com/docker/labs/blob/master/beginner/chapters/votingapp.md) defines a service called `db` that runs a `postgres` database. It is
+   configured as a named volume in order to persist the data on the swarm,
+   _and_ is constrained to run only on `manager` nodes. Here is the relevant snip-it from that file:
+
+例として `Docker Labs にある投票アプリ <https://github.com/docker/labs/blob/master/beginner/chapters/votingapp.md>`_ では、``docker-stack.yml`` にて ``postgres`` データベースを起動する ``db`` サービスが定義されています。
+そして名前つきボリュームを設定して、スウォーム内のデータを失わないようにしています。
+**さらに** それは ``manager`` ノードでのみ稼動するように限定しています。
+以下は該当するファイル部分の抜粋です。
+
+.. ```none
+   version: "3"
+   services:
+     db:
+       image: postgres:9.4
+       volumes:
+         - db-data:/var/lib/postgresql/data
+       networks:
+         - backend
+       deploy:
+         placement:
+           constraints: [node.role == manager]
+   ```
+
+.. code-block:: yaml
+
+   version: "3"
+   services:
+     db:
+       image: postgres:9.4
+       volumes:
+         - db-data:/var/lib/postgresql/data
+       networks:
+         - backend
+       deploy:
+         placement:
+           constraints: [node.role == manager]
+
 volumes_from
 --------------------
 
