@@ -3460,6 +3460,104 @@ volumes
      # 名前つきボリューム。
      - datavolume:/var/lib/mysql
 
+.. #### Long syntax
+
+.. _compose-file-volumes-long-syntax:
+
+長い文法
+^^^^^^^^^
+
+.. The long form syntax allows the configuration of additional fields that can't be
+   expressed in the short form.
+
+長い文法は追加の設定項目が加えられていて、短い文法では表現できないものです。
+
+.. - `type`: the mount type `volume`, `bind` or `tmpfs`
+   - `source`: the source of the mount, a path on the host for a bind mount, or the
+     name of a volume defined in the
+     [top-level `volumes` key](#volume-configuration-reference). Not applicable for a tmpfs mount.
+   - `target`: the path in the container where the volume will be mounted
+   - `read_only`: flag to set the volume as read-only
+   - `bind`: configure additional bind options
+     - `propagation`: the propagation mode used for the bind
+   - `volume`: configure additional volume options
+     - `nocopy`: flag to disable copying of data from a container when a volume is
+       created
+
+* ``type``: マウントタイプを表わす ``volume``, ``bind``, ``tmpfs`` のいずれかを指定します。
+* ``source``: マウント元。バインドマウントにおいてはホスト上のパスを指定します。
+  また :ref:`最上位の volumes キー <volume-configuration-reference>` で定義したボリューム名を指定します。
+  tmpfs マウントはできません。
+* ``target``: ボリュームがマウントされるコンテナ内のパスを指定します。
+* ``read_only``: ボリュームを読み込み専用に設定します。
+* ``bind``: 追加のバインドオプションを設定します。
+
+  * ``propagation``: バインドにおいて伝播モード（propagation mode）を利用します。
+
+* ``volume``: 追加のボリュームオプションを設定します。
+
+  * ``nocopy``: ボリュームの生成時にはコンテナからのデータコピーを無効にします。
+
+* ``tmpfs``: 追加の tmpfs オプションを設定します。
+
+  * ``size``: tmpfs マウントのサイズをバイト数で指定します。
+
+* ``consistency``: マウントに求める一貫性を指定します。以下のいずれか： ``consistent`` （ホストとコンテナは同一ビューを持ちます）、 ``cached`` （読み込みキャッシュ、ホストビューに権限あり）、``delegated`` (読み書きキャッシュ、コンテナビューに権限あり）
+
+.. ```none
+   version: "3.2"
+   services:
+     web:
+       image: nginx:alpine
+       ports:
+         - "80:80"
+       volumes:
+         - type: volume
+           source: mydata
+           target: /data
+           volume:
+             nocopy: true
+         - type: bind
+           source: ./static
+           target: /opt/app/static
+   
+   networks:
+     webnet:
+   
+   volumes:
+     mydata:
+   ```
+
+.. code-block:: yaml
+
+   version: "3.2"
+   services:
+     web:
+       image: nginx:alpine
+       ports:
+         - "80:80"
+       volumes:
+         - type: volume
+           source: mydata
+           target: /data
+           volume:
+             nocopy: true
+         - type: bind
+           source: ./static
+           target: /opt/app/static
+   
+   networks:
+     webnet:
+   
+   volumes:
+     mydata:
+
+.. > **Note:** The long syntax is new in v3.2
+
+.. note::
+
+   長い文法は v3.2 から導入されました。
+
 volumes_from
 --------------------
 
