@@ -3460,28 +3460,6 @@ volumes
      # 名前つきボリューム。
      - datavolume:/var/lib/mysql
 
-.. If you do not use a host path, you may specify a volume_driver.
-
-ホスト側のパスを指定せず、 ``volume_driver`` を指定したい場合があるかもしれません。
-
-.. code-block:: yaml
-
-   volume_driver: mydriver
-
-.. Note that for version 2 files, this driver will not apply to named volumes (you should use the driver option when declaring the volume instead). For version 1, both named volumes and container volumes will use the specified driver.
-
-:ref:`バージョン２のファイル <compose-file-version-2>` では、名前付きボリュームに対してドライバを適用できません（ :ref:`ボリュームを宣言する <volume-configuration-reference>` のではなく、 ``driver`` オプションを使ったほうが良いでしょう  ）。 :ref:`バージョン１ <compose-file-version-1>` の場合は、ドライバを指定すると名前付きボリュームにもコンテナのボリュームにも適用されます。
-
-..    Note: No path expansion will be done if you have also specified a volume_driver.
-
-.. note::
-
-   ``volume_driver`` も指定しても、パスは拡張されません。
-
-.. See Docker Volumes and Volume Plugins for more information.
-
-詳しい情報は :doc:`Docker ボリューム </engine/userguide/containers/dockervolumes>` と :doc:`ボリューム・プラグイン </engine/extend/plugins_volume>` をご覧ください。
-
 volumes_from
 --------------------
 
