@@ -3730,32 +3730,6 @@ restart
    restart: on-failure
    restart: unless-stopped
 
-volumes_from
---------------------
-
-.. Mount all of the volumes from another service or container, optionally specifying read-only access(ro) or read-write(rw).
-
-他のサービスやコンテナ上のボリュームをマウントします。オプションで、読み込み専用のアクセス（ ``ro`` ）や読み書き（ ``rw`` ）を指定できます。
-
-.. code-block:: yaml
-
-   volumes_from:
-    - service_name
-    - service_name:ro
-    - container:container_name
-    - container:container_name:rw
-
-.. Note: The container:... formats are only supported in the version 2 file format. In version 1, you can use container names without marking them as such:
-
-.. note::
-
-   ``コンテナ:...`` の形式をサポートしているのは :ref:`バージョン２のファイル形式 <compose-file-version-2>` のみです。 :ref:`バージョン１の場合 <compose-file-version-1>` は、次のように明示しなくてもコンテナ名を使えます。
-   
-   - service_name
-   - service_name:ro
-   - container_name
-   - container_name:rw
-
 .. cpu_shares, cpuset, domainname, entrypoint, hostname, ipc, mac_address, mem_limit, memswap_limit, privileged, read_only, restart, stdin_open, tty, user, working_dir
 
 .. _compose-options:
