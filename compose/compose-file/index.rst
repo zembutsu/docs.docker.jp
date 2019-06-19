@@ -3730,38 +3730,50 @@ restart
    restart: on-failure
    restart: unless-stopped
 
-.. cpu_shares, cpuset, domainname, entrypoint, hostname, ipc, mac_address, mem_limit, memswap_limit, privileged, read_only, restart, stdin_open, tty, user, working_dir
+.. ### domainname, hostname, ipc, mac\_address, privileged, read\_only, shm\_size, stdin\_open, tty, user, working\_dir
 
 .. _compose-options:
 
-その他
-----------
+domainname, hostname, ipc, mac\_address, privileged, read\_only, shm\_size, stdin\_open, tty, user, working\_dir
+------------------------------------------------------------------------------------------------------------------
 
-.. Each of these is a single value, analogous to its docker run counterpart.
+.. Each of these is a single value, analogous to its
+   [docker run](/engine/reference/run.md) counterpart.
 
-cpu_shares、 cpuset、 domainname、 entrypoint、 hostname、 ipc、 mac_address、 mem_limit、 memswap_limit、 privileged、 read_only、 restart、 stdin_open、 tty、 user、 working_dir は、それぞれ単一の値を持ちます。いずれも :doc:`docker run </engine/reference/run/>` コマンドのオプションに対応しています。
+ここに示すオプションはいずれも、値 1 つを設定するものであり、:doc:`docker run </engine/reference/run/>` のオプションに対応づいています。
+なお ``mac_address`` は古くなったオプションです。
+
+..  user: postgresql
+    working_dir: /code
+
+    domainname: foo.com
+    hostname: foo
+    ipc: host
+    mac_address: 02:42:ac:11:65:43
+
+    privileged: true
+
+
+    read_only: true
+    shm_size: 64M
+    stdin_open: true
+    tty: true
 
 .. code-block:: yaml
 
-   cpu_shares: 73
-   cpu_quota: 50000
-   cpuset: 0,1
-   
    user: postgresql
    working_dir: /code
-   
+
    domainname: foo.com
    hostname: foo
    ipc: host
    mac_address: 02:42:ac:11:65:43
-   
-   mem_limit: 1000000000
-   memswap_limit: 2000000000
+
    privileged: true
-   
-   restart: always
-   
+
+
    read_only: true
+   shm_size: 64M
    stdin_open: true
    tty: true
 
