@@ -3701,6 +3701,35 @@ Docker 17.04 CE Edge とそれ以上の 17.06 CE Edge や Stable においては
 
 このフラグの詳細、これにより解決される諸問題、``docker run`` での対応オプションについては Docker Desktop for Mac のトピック、:doc:`ボリュームマウント（共有ファイルシステム）でのパフォーマンスチューニング </docker-for-mac/osxfs-caching>` を参照してください。
 
+.. ### restart
+
+.. _compose-file-restart:
+
+restart
+--------
+
+.. `no` is the default restart policy, and it will not restart a container under
+   any circumstance. When `always` is specified, the container always restarts. The
+   `on-failure` policy restarts a container if the exit code indicates an
+   on-failure error.
+
+再起動ポリシー（restart policy）のデフォルトは ``no`` です。
+この場合はどういう状況であってもコンテナは再起動しません。
+``always`` を指定した場合、コンテナは常に再起動することになります。
+また ``on-failure`` ポリシーでは、終了コードが on-failure エラーを表わしている場合にコンテナが再起動します。
+
+..  restart: "no"
+    restart: always
+    restart: on-failure
+    restart: unless-stopped
+
+.. code-block:: yaml
+
+   restart: "no"
+   restart: always
+   restart: on-failure
+   restart: unless-stopped
+
 volumes_from
 --------------------
 
