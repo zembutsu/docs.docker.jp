@@ -3406,30 +3406,58 @@ volumes
 
    ボリュームに関する一般的な情報については :doc:`ボリュームの利用 </engine/admin/volumes/volumes>` や :doc:`ボリューム・プラグイン </engine/extend/plugins_volume>` を参照してください。
 
-.. Mount paths or named volumes, optionally specifying a path on the host machine (HOST:CONTAINER), or an access mode (HOST:CONTAINER:ro). For version 2 files, named volumes need to be specified with the top-level volumes key. When using version 1, the Docker Engine will create the named volume automatically if it doesn’t exist.
+.. #### Short syntax
 
-マウント・パスまたは名前を付けたボリュームは、オプションでホストマシン（ ``ホスト:コンテナ`` ）上のパス指定や、アクセス・モード（ ``ホスト:コンテナ:rw`` ） を指定できます。 :ref:`バージョン２のファイル <compose-file-version-2>` では名前を付けたボリュームを使うにはトップ・レベルの ``volumes`` :ref:`キー <volume-configuration-reference>` を指定する必要があります。 :ref:`バージョン１ <compose-file-version-1>` の場合は、ボリュームが存在していなければ Docker Engine が自動的に作成します。
+.. _compose-file-volumes-short-syntax:
 
-.. You can mount a relative path on the host, which will expand relative to the directory of the Compose configuration file being used. Relative paths should always begin with . or ...
+短い文法
+^^^^^^^^^
 
-ホスト上の相対パスをマウント可能です。相対パスは Compose 設定ファイルが使っているディレクトリを基準とします。相対パスは ``.`` または ``..`` で始まります。
+.. Optionally specify a path on the host machine
+   (`HOST:CONTAINER`), or an access mode (`HOST:CONTAINER:ro`).
+
+設定方法として、ホストマシンのパスを指定する方法（``HOST:CONTAINER`` ）や、さらにアクセスモードを指定する方法（``HOST:CONTAINER:ro`` ）があります。
+
+.. You can mount a relative path on the host, which will expand relative to
+   the directory of the Compose configuration file being used. Relative paths
+   should always begin with `.` or `..`.
+
+ホスト上の相対パスをマウントすることができます。
+これは、用いられている Compose 設定ファイルのディレクトリからの相対パスとして展開されます。
+相対パスは ``.`` または ``..`` で書き始める必要があります。
+
+..  volumes:
+      # Just specify a path and let the Engine create a volume
+      - /var/lib/mysql
+
+      # Specify an absolute path mapping
+      - /opt/data:/var/lib/mysql
+
+      # Path on the host, relative to the Compose file
+      - ./cache:/tmp/cache
+
+      # User-relative path
+      - ~/configs:/etc/configs/:ro
+
+      # Named volume
+      - datavolume:/var/lib/mysql
 
 .. code-block:: yaml
 
    volumes:
-     # パスを指定したら、Engine はボリュームを作成
+     # パス指定のみ。Engine にボリュームを生成させます。
      - /var/lib/mysql
-   
-     # 絶対パスを指定しての割り当て
+
+     # 絶対パスのマッピングを指定。
      - /opt/data:/var/lib/mysql
-   
-     # ホスト上のパスを指定する時、Compose ファイルからのパスを指定
+
+     # ホストからのパス指定。Compose ファイルからの相対パス。
      - ./cache:/tmp/cache
-   
-     # ユーザの相対パスを使用
+
+     # ユーザディレクトリからの相対パス。
      - ~/configs:/etc/configs/:ro
-   
-     # 名前付きボリューム（Named volume）
+
+     # 名前つきボリューム。
      - datavolume:/var/lib/mysql
 
 .. If you do not use a host path, you may specify a volume_driver.
