@@ -3628,6 +3628,79 @@ volumes
          placement:
            constraints: [node.role == manager]
 
+.. #### Caching options for volume mounts (Docker for Mac)
+
+.. _caching-options-for-volume-mounts-docker-desktop-for-mac:
+
+ボリュームマウントに対するキャッシュオプション（Docker for Mac）
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. On Docker 17.04 CE Edge and up, including 17.06 CE Edge and Stable, you can
+   configure container-and-host consistency requirements for bind-mounted
+   directories in Compose files to allow for better performance on read/write of
+   volume mounts. These options address issues specific to `osxfs` file sharing,
+   and therefore are only applicable on Docker for Mac.
+
+Docker 17.04 CE Edge とそれ以上の 17.06 CE Edge や Stable においては、Compose ファイル内にてバインドマウントするディレクトリの、コンテナ・ホスト間の一貫性を設定することができます。
+これによってボリュームの読み書き性能を向上させることができます。
+これを実現するオプションは ``osxfs`` ファイル共有に対する問題に対処しているため、Docker Desktop for Mac においてのみ利用可能です。
+
+.. The flags are:
+
+フラグとして以下があります。
+
+.. * `consistent`： Full consistency. The container runtime and the
+   host maintain an identical view of the mount at all times.  This is the default.
+
+* ``consistent``: 完全な一貫性を持ちます。
+  起動しているコンテナとホストは、常にマウント上を同一に見ることができます。
+  これがデフォルトです。
+
+.. * `cached`: The host's view of the mount is authoritative. There may be
+   delays before updates made on the host are visible within a container.
+
+* ``cached``： ホスト側マウントが優先されます。
+  ホスト上の更新が、コンテナ内で確認できるまでには遅延が起こりえます。
+
+.. * `delegated`: The container runtime's view of the mount is
+   authoritative. There may be delays before updates made in a container
+   are visible on the host.
+
+* ``delegated``： コンテナ実行時のコンテナ側マウントが優先されます。
+  コンテナ内での更新が、ホスト上で確認できるまでには遅延が起こりえます。
+
+.. Here is an example of configuring a volume as `cached`:
+
+以下はボリュームに ``cached`` を設定した例です。
+
+.. ```none
+   version: '3'
+   services:
+     php:
+       image: php:7.1-fpm
+       ports:
+         - 9000
+       volumes:
+         - .:/var/www/project:cached
+   ```
+
+.. code-block:: yaml
+
+   version: '3'
+   services:
+     php:
+       image: php:7.1-fpm
+       ports:
+         - 9000
+       volumes:
+         - .:/var/www/project:cached
+
+.. Full detail on these flags, the problems they solve, and their
+   `docker run` counterparts is in the Docker for Mac topic [Performance tuning for
+   volume mounts (shared filesystems)](/docker-for-mac/osxfs-caching.md).
+
+このフラグの詳細、これにより解決される諸問題、``docker run`` での対応オプションについては Docker Desktop for Mac のトピック、:doc:`ボリュームマウント（共有ファイルシステム）でのパフォーマンスチューニング </docker-for-mac/osxfs-caching>` を参照してください。
+
 volumes_from
 --------------------
 
