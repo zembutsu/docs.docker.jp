@@ -3809,16 +3809,77 @@ domainname, hostname, ipc, mac\_address, privileged, read\_only, shm\_size, stdi
 
 サポートされる単位は ``us``, ``ms``, ``s``, ``m``, ``h`` です。
 
-.. Volume configuration reference
+.. ## Volume configuration reference
 
 .. _volume-configuration-reference:
 
 ボリューム設定リファレンス
 ==============================
 
-.. While it is possible to declare volumes on the fly as part of the service declaration, this section allows you to create named volumes that can be reused across multiple services (without relying on volumes_from), and are easily retrieved and inspected using the docker command line or API. See the docker volume subcommand documentation for more information.
+.. While it is possible to declare [volumes](#volumes) on the file as part of the
+   service declaration, this section allows you to create named volumes (without
+   relying on `volumes_from`) that can be reused across multiple services, and are
+   easily retrieved and inspected using the docker command line or API. See the
+   [docker volume](/engine/reference/commandline/volume_create.md) subcommand
+   documentation for more information.
 
-サービス宣言の一部として、オン・ザ・フライでボリュームを宣言できます。このセクションでは名前付きボリューム（named volume）の作成方法を紹介します。このボリュームは複数のサービスを横断して再利用可能なものです（ ``volumes_from`` に依存しません ）。そして docker コマンドラインや API を使って、簡単に読み込みや調査が可能です。 :doc:`docker volumes </engine/reference/commandline/volume_create>` のサブコマンドの詳細から、詳しい情報をご覧ください。
+サービスの宣言の一部として、ファイル上に :ref:`volumes <compose-file-volumes>` を宣言することが可能ですが、このセクションでは（``volumes_from`` を利用せずに）名前つきボリュームを生成する方法を説明します。
+このボリュームは、複数のサービスにわたっての再利用が可能であり、docker コマンドラインや API を使って簡単に抽出したり確認したりすることができます。
+詳しくは :doc:`docker volume </engine/reference/commandline/volume_create>` のサブコマンドを確認してください。
+
+.. See [Use volumes](/engine/admin/volumes/volumes.md) and [Volume
+   Plugins](/engine/extend/plugins_volume.md) for general information on volumes.
+
+ボリュームに関する一般的な情報については :doc:`ボリュームの利用 </engine/admin/volumes/volumes>` や :doc:`ボリューム・プラグイン </engine/extend/plugins_volume>` を参照してください。
+
+.. Here's an example of a two-service setup where a database's data directory is
+   shared with another service as a volume so that it can be periodically backed
+   up:
+
+以下の例では 2 つのサービスを用います。
+データベースのデータディレクトリは、もう一方のサービスに対してボリュームとして共有させます。
+これによりデータが定期的に反映されます。
+
+..  version: "3"
+
+    services:
+      db:
+        image: db
+        volumes:
+          - data-volume:/var/lib/db
+      backup:
+        image: backup-service
+        volumes:
+          - data-volume:/var/lib/backup/data
+
+    volumes:
+      data-volume:
+
+.. code-block:: yaml
+
+   version: "3"
+
+   services:
+     db:
+       image: db
+       volumes:
+         - data-volume:/var/lib/db
+     backup:
+       image: backup-service
+       volumes:
+         - data-volume:/var/lib/backup/data
+
+   volumes:
+     data-volume:
+
+.. An entry under the top-level `volumes` key can be empty, in which case it will
+   use the default driver configured by the Engine (in most cases, this is the
+   `local` driver). Optionally, you can configure it with the following keys:
+
+最上位の ``volumes`` キーは指定しないようにすることもできます。
+その場合は Engine によってデフォルトで設定されているドライバが用いられます。
+（たいていは ``local`` ドライバとなります。）
+さらに追加で、以下のようなキーを設定することができます。
 
 .. driver
 
