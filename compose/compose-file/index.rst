@@ -4168,6 +4168,15 @@ driver_opts
      foo: "bar"
      baz: 1
 
+.. ### enable_ipv6
+
+enable_ipv6
+--------------------
+
+.. Enable IPv6 networking on this network.
+
+現在のネットワークにおいて IPv6 ネットワークを有効にします。
+
 .. ipam
 
 ipam
