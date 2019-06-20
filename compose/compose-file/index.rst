@@ -3904,14 +3904,25 @@ driver
 
    driver: foobar
 
+.. ### driver_opts
+
 .. driver_opts
 
 driver_opts
 --------------------
 
-.. Specify a list of options as key-value pairs to pass to the driver for this volume. Those options are driver-dependent - consult the driver’s documentation for more information. Optional.
+.. Specify a list of options as key-value pairs to pass to the driver for this
+   volume. Those options are driver-dependent - consult the driver's
+   documentation for more information. Optional.
 
-ボリュームが使うドライバに対して、オプションをキーバリューのペアで指定します。これらのオプションはドライバに依存します。オプションの詳細については、各ドライバのドキュメントをご確認ください。
+このボリュームが利用するドライバに対して、受け渡したいオプションをキーバリューペアのリストとして設定します。
+このオプションは各ドライバによって異なります。
+詳しくは各ドライバのドキュメントを参照してください。
+設定は任意です。
+
+..   driver_opts:
+       foo: "bar"
+       baz: 1
 
 .. code-block:: yaml
 
