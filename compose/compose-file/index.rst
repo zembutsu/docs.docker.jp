@@ -4274,18 +4274,22 @@ labels
      - "com.example.department=Finance"
      - "com.example.label-with-empty-value"
 
-.. external
+.. ### external
 
 external
-^^^^^^^^^^
+---------
 
-.. If set to true, specifies that this network has been created outside of Compose. docker-compose up will not attempt to create it, and will raise an error if it doesn’t exist.
+.. If set to `true`, specifies that this network has been created outside of
+   Compose. `docker-compose up` will not attempt to create it, and will raise
+   an error if it doesn't exist.
 
-このオプションを ``true`` に設定したら、Compose の外にネットワークを作成します（訳者注：Compose が管理していない Docker ネットワークを利用します、という意味）。 ``docker-compose up`` を実行してもネットワークを作成しません。もしネットワークが存在していなければ、エラーを返します。
+このオプションを ``true`` に設定することにより、Compose の外部において生成されているネットワークを設定します。
+``docker-compose up`` はネットワークを生成しないようになりますが、ネットワークが存在しなければエラーとなります。
 
-.. external cannot be used in conjunction with other network configuration keys (driver, driver_opts, ipam).
+.. `external` cannot be used in conjunction with other network configuration keys
+   (`driver`, `driver_opts`, `ipam`, `internal`).
 
-``external`` は他のネットワーク用の設定キー（ ``driver`` 、``driver_opts`` 、 ``ipam`` ） と一緒に使えません。
+``external`` は他のネットワーク設定キー（``driver``, ``driver_opts``, ``ipam``, ``internal`` ）と同時に用いることはできません
 
 .. In the example below, proxy is the gateway to the outside world. Instead of attemping to create a network called [projectname]_outside, Compose will look for an existing network simply called outside and connect the proxy service’s containers to it.
 
