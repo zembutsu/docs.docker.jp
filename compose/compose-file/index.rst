@@ -4291,14 +4291,35 @@ external
 
 ``external`` は他のネットワーク設定キー（``driver``, ``driver_opts``, ``ipam``, ``internal`` ）と同時に用いることはできません
 
-.. In the example below, proxy is the gateway to the outside world. Instead of attemping to create a network called [projectname]_outside, Compose will look for an existing network simply called outside and connect the proxy service’s containers to it.
+.. In the example below, `proxy` is the gateway to the outside world. Instead of
+   attempting to create a network called `[projectname]_outside`, Compose will
+   look for an existing network simply called `outside` and connect the `proxy`
+   service's containers to it.
 
-以下の例は、外の世界とのゲートウェイに ``proxy`` を使います。 ``[プロジェクト名]_outside`` という名称のネットワークを作成する代わりに、Compose は ``outside`` という名前で外部に存在するネットワークを探し出し、それを ``proxy`` サービスのコンテナに接続します。
+以下の例において ``proxy`` は外部ネットワークとの間のゲートウェイです。
+``[projectname]_outside`` というネットワークは生成されることはなく、Compose はすでに存在している ``outside`` という単純な名前のネットワークを探しにいって、``proxy`` サービスのコンテナに接続します。
+
+..  version: '2'
+
+    services:
+      proxy:
+        build: ./proxy
+        networks:
+          - outside
+          - default
+      app:
+        build: ./app
+        networks:
+          - default
+
+    networks:
+      outside:
+        external: true
 
 .. code-block:: yaml
 
    version: '2'
-   
+
    services:
      proxy:
        build: ./proxy
@@ -4309,7 +4330,7 @@ external
        build: ./app
        networks:
          - default
-   
+
    networks:
      outside:
        external: true
