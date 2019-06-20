@@ -4512,55 +4512,16 @@ secret の値となるのは ``file`` か ``external`` です。
 
 スタック内の各サービスに対しては、:ref:`secrets へのアクセス許可 <compose-file-secrets>` を行う必要があります。
 
-.. Variable substitution
+.. ## Variable substitution
 
 .. _compose-file-variable-substitution:
 
-変数の置き換え
+変数の置換
 ====================
 
-.. Your configuration options can contain environment variables. Compose uses the variable values from the shell environment in which docker-compose is run. For example, suppose the shell contains EXTERNAL_PORT=8000 and you supply this configuration:
+.. {% include content/compose-var-sub.md %}
 
-設定オプションでは環境変数も含めることができます。シェル上の Compose は ``docker-compose`` の実行時に環境変数を使えます。たとえば、シェルで ``EXTERNAL_PORT=8000`` という変数を設定ファイルで扱うには、次のようにします。
-
-.. code-block:: yaml
-
-   web:
-     build: .
-     ports:
-       - "${EXTERNAL_PORT}:5000"
-
-.. When you run docker-compose up with this configuration, Compose looks for the EXTERNAL_PORT environment variable in the shell and substitutes its value in. For this example, Compose resolves the port mapping to "8000:5000" before creating the `web` container.
-
-この設定で ``docker-compose up`` を実行したら、Compose は ``EXTERNAL_PORT`` 環境変数をシェル上で探し、それを値と置き換えます。この例では、Compose が ``web`` コンテナを作成する前に "8000:5000" のポート割り当てをします。
-
-.. If an environment variable is not set, Compose substitutes with an empty string. In the example above, if EXTERNAL_PORT is not set, the value for port mapping is `:5000` (which is of course an invalid port mapping, and will result in an error when attempting to create the container).
-
-環境変数が設定されていなければ、Compose は空の文字列に置き換えます。先の例では、 ``EXTERNAL_PORT`` が設定されなければ、 ポートの割り当ては ``:5000`` になります（もちろん、これは無効なポート割り当てなため、コンテナを作成しようとしてもエラーになります）。
-
-.. Both $VARIABLE and ${VARIABLE} syntax are supported. Extended shell-style features, such as ${VARIABLE-default} and ${VARIABLE/foo/bar}, are not supported.
-
-``$変数`` と ``${変数}`` の両方がサポートされています。シェルの拡張形式である ``$変数-default`` と ``${変数/foo/bar}`` はサポートされません。
-
-.. You can use a $$ (double-dollar sign) when your configuration needs a literal dollar sign. This also prevents Compose from interpolating a value, so a $$ allows you to refer to environment variables that you don’t want processed by Compose.
-
-``$$`` （二重ドル記号）を指定する時は、設定ファイル上でリテラルなドル記号の設定が必要です。Compose は値を補完しませんので、 ``$$`` の指定により、 Compose によって処理されずに環境変数を参照します。
-
-.. code-block:: yaml
-
-   web:
-     build: .
-     command: "$$VAR_NOT_INTERPOLATED_BY_COMPOSE"
-
-.. If you forget and use a single dollar sign ($), Compose interprets the value as an environment variable and will warn you:
-
-もしも間違えてドル記号（ ``$`` ）だけにしたら、 Compose は環境変数の値を解釈し、次のように警告を表示します。
-
-.. The VAR_NOT_INTERPOLATED_BY_COMPOSE is not set. Substituting an empty string.
-
-.. code-block:: bash
-
-   The VAR_NOT_INTERPOLATED_BY_COMPOSE is not set. Substituting an empty string.
+.. include:: ../../_includes/content/compose-var-sub.rst
 
 .. Compose documentation
 
