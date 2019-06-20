@@ -4221,6 +4221,18 @@ ipam
 
    ``gateway`` のような設定キーは、, 現時点ではバージョン 2 においてのみ利用できます。
 
+.. ### internal
+
+internal
+----------
+
+.. By default, Docker also connects a bridge network to it to provide external
+   connectivity. If you want to create an externally isolated overlay network,
+   you can set this option to `true`.
+
+デフォルトにおいて Docker はブリッジネットワークに接続する際に、外部接続機能も提供します。
+外部に独立した overlay ネットワークを生成したい場合、本オプションを ``true`` にします。
+
 .. external
 
 external
