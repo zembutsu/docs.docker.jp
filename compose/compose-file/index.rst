@@ -4523,23 +4523,23 @@ secret の値となるのは ``file`` か ``external`` です。
 
 .. include:: ../../_includes/content/compose-var-sub.rst
 
-.. Compose documentation
+.. ## Compose documentation
 
 Compose に関するドキュメント
 ==============================
 
-..    User guide
-    Installing Compose
-    Get started with Django
-    Get started with Rails
-    Get started with WordPress
-    Command line reference
+.. - [User guide](/compose/index.md)
+   - [Installing Compose](/compose/install/)
+   - [Compose file versions and upgrading](compose-versioning.md)
+   - [Get started with Docker](/get-started/)
+   - [Samples](/samples/)
+   - [Command line reference](/compose/reference/)
 
-* :doc:`/compose/overview`
+* :doc:`/compose/index`
 * :doc:`/compose/install`
-* :doc:`/compose/django`
-* :doc:`/compose/rails`
-* :doc:`/compose/wordpress`
+* :doc:`/compose/compose-versioning`
+* :doc:`/get-started/index`
+* :doc:`/samples/index`
 * :doc:`/compose/reference/index`
 
 .. seealso:: 
