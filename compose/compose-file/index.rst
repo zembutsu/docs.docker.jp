@@ -3881,14 +3881,24 @@ domainname, hostname, ipc, mac\_address, privileged, read\_only, shm\_size, stdi
 （たいていは ``local`` ドライバとなります。）
 さらに追加で、以下のようなキーを設定することができます。
 
-.. driver
+.. ### driver
+
+.. _volume-configuration_driver:
 
 driver
 ----------
 
-.. Specify which volume driver should be used for this volume. Defaults to local. The Docker Engine will return an error if the driver is not available.
+.. Specify which volume driver should be used for this volume. Defaults to whatever
+   driver the Docker Engine has been configured to use, which in most cases is
+   `local`. If the driver is not available, the Engine will return an error when
+   `docker-compose up` tries to create the volume.
 
-ボリューム・ドライバがどのボリュームを使うべきかを指定します。デフォルトは ``local`` です。ドライバを指定しなければ、Docker Engine はエラーを返します。
+どのボリュームドライバを現在のボリュームに対して用いるかを指定します。
+デフォルトは Docker Engine が利用するものとして設定されているドライバになります。
+たいていは ``local`` です。
+ドライバが利用できない場合、``docker-compose up`` によってボリューム生成が行われる際に Engine がエラーを返します。
+
+..   driver: foobar
 
 .. code-block:: yaml
 
