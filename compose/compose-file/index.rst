@@ -3930,35 +3930,54 @@ driver_opts
      foo: "bar"
      baz: 1
 
-.. external
+.. ### external
 
 .. _compose-file-external:
 
 external
-==========
+--------------------
 
-.. If set to true, specifies that this volume has been created outside of Compose. docker-compose up will not attempt to create it, and will raise an error if it doesn’t exist.
+.. If set to `true`, specifies that this volume has been created outside of
+   Compose. `docker-compose up` will not attempt to create it, and will raise
+   an error if it doesn't exist.
 
-このオプションを ``true`` に設定したら、Compose の外にあるボリュームを作成します（訳者注：Compose が管理していない Docker ボリュームを利用します、という意味）。 ``docker-compose up`` を実行してもボリュームを作成しません。もしボリュームが存在していなければ、エラーを返します。
+このオプションを ``true`` に設定することにより、Compose の外部において生成されているボリュームを設定します。
+``docker-compose up`` はボリュームを生成しないようになりますが、ボリュームが存在しなければエラーとなります。
 
-.. external cannot be used in conjunction with other volume configuration keys (driver, driver_opts).
+.. `external` cannot be used in conjunction with other volume configuration keys
+   (`driver`, `driver_opts`).
 
-``external`` は他のボリューム用の設定キー（ ``driver`` 、``driver_opts`` ） と一緒に使えません。
+``external`` は他のボリューム設定キー（``driver``, ``driver_opts`` ）と同時に用いることはできません。
 
-.. In the example below, instead of attemping to create a volume called [projectname]_data, Compose will look for an existing volume simply called data and mount it into the db service’s containers.
+.. In the example below, instead of attempting to create a volume called
+   `[projectname]_data`, Compose will look for an existing volume simply
+   called `data` and mount it into the `db` service's containers.
 
-以下の例は、 ``[プロジェクト名]_data`` という名称のボリュームを作成する代わりに、Compose は ``data`` という名前で外部に存在するボリュームを探し出し、それを ``db`` サービスのコンテナの中にマウントします。
+以下の例では ``[projectname]_data`` というボリュームは生成されることはなく、Compose はすでに存在している ``data`` という単純な名前のボリュームを探しにいきます。
+そしてこれを ``db`` サービスコンテナ内にマウントします。
+
+..  version: '2'
+
+    services:
+      db:
+        image: postgres
+        volumes:
+          - data:/var/lib/postgresql/data
+
+    volumes:
+      data:
+        external: true
 
 .. code-block:: yaml
 
    version: '2'
-   
+
    services:
      db:
        image: postgres
        volumes:
-         - data:/var/lib/postgres/data
-   
+         - data:/var/lib/postgresql/data
+
    volumes:
      data:
        external: true
