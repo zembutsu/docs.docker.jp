@@ -4233,6 +4233,47 @@ internal
 デフォルトにおいて Docker はブリッジネットワークに接続する際に、外部接続機能も提供します。
 外部に独立した overlay ネットワークを生成したい場合、本オプションを ``true`` にします。
 
+.. ### labels
+
+labels
+----------
+
+.. Add metadata to containers using
+   [Docker labels](/engine/userguide/labels-custom-metadata.md). You can use either
+   an array or a dictionary.
+
+:doc:`Docker labels </engine/userguide/labels-custom-metadata>` を使ってコンテナにメタデータを追加します。
+配列形式と辞書形式のいずれかにより指定します。
+
+
+.. It's recommended that you use reverse-DNS notation to prevent your labels from
+   conflicting with those used by other software.
+
+ここでは逆 DNS 記法とすることをお勧めします。
+この記法にしておけば、他のソフトウェアが用いるラベルとの競合が避けられるからです。
+
+..  labels:
+      com.example.description: "Financial transaction network"
+      com.example.department: "Finance"
+      com.example.label-with-empty-value: ""
+
+    labels:
+      - "com.example.description=Financial transaction network"
+      - "com.example.department=Finance"
+      - "com.example.label-with-empty-value"
+
+.. code-block:: yaml
+
+   labels:
+     com.example.description: "Financial transaction network"
+     com.example.department: "Finance"
+     com.example.label-with-empty-value: ""
+
+   labels:
+     - "com.example.description=Financial transaction network"
+     - "com.example.department=Finance"
+     - "com.example.label-with-empty-value"
+
 .. external
 
 external
