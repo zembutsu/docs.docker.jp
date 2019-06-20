@@ -4335,9 +4335,15 @@ external
      outside:
        external: true
 
-.. You can also specify the name of the network separately from the name used to refer to it within the Compose file:
+.. You can also specify the name of the network separately from the name used to
+   refer to it within the Compose file:
 
-また、Compose ファイルの中で使われている名前を参照し、ネットワーク名を指定可能です。
+ネットワーク名として指定する名前は、Compose ファイル内で参照されている名前以外でも指定することができます。
+
+..  networks:
+      outside:
+        external:
+          name: actual-name-of-network
 
 .. code-block:: yaml
 
