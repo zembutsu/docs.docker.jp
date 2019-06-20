@@ -4018,6 +4018,48 @@ external
      サービスタスクは新たなノード上においてスケジューリングされるので、`swarmkit <https://github.com/docker/swarmkit/blob/master/README.md>`_ がローカルノード上にボリュームを生成します。
      詳しくは `moby/moby#29976 <https://github.com/moby/moby/issues/29976>`_ を参照してください。
 
+.. ### labels
+
+.. _compose-file-volume-labels:
+
+labels
+-------
+
+.. Add metadata to containers using
+   [Docker labels](/engine/userguide/labels-custom-metadata.md). You can use either
+   an array or a dictionary.
+
+:doc:`Docker labels </engine/userguide/labels-custom-metadata>` を使ってコンテナにメタデータを追加します。
+配列形式と辞書形式のいずれかにより指定します。
+
+.. It's recommended that you use reverse-DNS notation to prevent your labels from
+   conflicting with those used by other software.
+
+ここでは逆 DNS 記法とすることをお勧めします。
+この記法にしておけば、他のソフトウェアが用いるラベルとの競合が避けられるからです。
+
+..  labels:
+      com.example.description: "Database volume"
+      com.example.department: "IT/Ops"
+      com.example.label-with-empty-value: ""
+
+    labels:
+      - "com.example.description=Database volume"
+      - "com.example.department=IT/Ops"
+      - "com.example.label-with-empty-value"
+
+.. code-block:: yaml
+
+   labels:
+     com.example.description: "Database volume"
+     com.example.department: "IT/Ops"
+     com.example.label-with-empty-value: ""
+
+   labels:
+     - "com.example.description=Database volume"
+     - "com.example.department=IT/Ops"
+     - "com.example.label-with-empty-value"
+
 .. Network configuration reference
 
 .. _network-configuration-reference:
