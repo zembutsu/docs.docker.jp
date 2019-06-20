@@ -4060,16 +4060,28 @@ labels
      - "com.example.department=IT/Ops"
      - "com.example.label-with-empty-value"
 
-.. Network configuration reference
+.. ## Network configuration reference
 
 .. _network-configuration-reference:
 
 ネットワーク設定リファレンス
 ==============================
 
-.. The top-level networks key lets you specify networks to be created. For a full explanation of Compose’s use of Docker networking features, see the Networking guide.
+.. The top-level `networks` key lets you specify networks to be created.
 
-ネットワークを作成するには、トップレベルの ``networks`` キーを使って指定します。Compose 上でネットワーク機能を使うための詳細情報は、 :doc:`networking` をご覧ください。
+最上位の ``networks`` キーは、生成するネットワークを指定します。
+
+.. * For a full explanation of Compose's use of Docker networking features and all
+   network driver options, see the [Networking guide](../networking.md).
+
+* Compose が利用する Docker ネットワーク機能やネットワークドライバのオプションに関して、詳細は :doc:`ネットワークガイド </compose/networking>` を参照してください。
+
+.. * For [Docker Labs](https://github.com/docker/labs/blob/master/README.md)
+   tutorials on networking, start with [Designing Scalable, Portable Docker
+   Container
+   Networks](https://github.com/docker/labs/blob/master/networking/README.md)
+
+* `Docker Labs <https://github.com/docker/labs/blob/master/README.md>`_ にあるネットワークのチュートリアルとして、`Designing Scalable, Portable Docker Container Networks <https://github.com/docker/labs/blob/master/networking/README.md>`_ を試してみてください。
 
 .. driver
 
