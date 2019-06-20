@@ -4083,22 +4083,27 @@ labels
 
 * `Docker Labs <https://github.com/docker/labs/blob/master/README.md>`_ にあるネットワークのチュートリアルとして、`Designing Scalable, Portable Docker Container Networks <https://github.com/docker/labs/blob/master/networking/README.md>`_ を試してみてください。
 
-.. driver
+.. ### driver
 
 driver
 ----------
 
 .. Specify which driver should be used for this network.
 
-対象のネットワークが使用するドライバを指定します。
+現在のネットワークにおいて利用するドライバを設定します。
 
-.. The default driver depends on how the Docker Engine you’re using is configured, but in most instances it will be bridge on a single host and overlay on a Swarm.
+.. The default driver depends on how the Docker Engine you're using is configured,
+   but in most instances it will be `bridge` on a single host and `overlay` on a
+   Swarm.
 
-デフォルトでどのドライバを使用するかは Docker Engine の設定に依存します。一般的には単一ホスト上であれば ``bridge`` でしょうし、 Swarm 上であれば ``overlay`` でしょう。
+デフォルトとなるドライバは、Docker Engine においてどのドライバを用いているかによって変わります。
+たいていの場合、単一ホストであれば ``bridge``、スウォーム上では ``overlay`` となります。
 
 .. The Docker Engine will return an error if the driver is not available.
 
-ドライバが使えなければ、Docker Engine はエラーを返します。
+ドライバが利用できない場合、Docker Engine はエラーを返します。
+
+..  driver: overlay
 
 .. code-block:: yaml
 
