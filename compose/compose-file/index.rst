@@ -3982,16 +3982,41 @@ external
      data:
        external: true
 
-.. You can also specify the name of the volume separately from the name used to refer to it within the Compose file:
+.. You can also specify the name of the volume separately from the name used to
+   refer to it within the Compose file:
 
-また、Compose ファイルの中で使われている名前を参照し、ボリューム名を指定可能です。
+ボリューム名として指定する名前は、Compose ファイル内で参照されている名前以外でも指定することができます。
+
+..  volumes:
+      data:
+        external:
+          name: actual-name-of-volume
 
 .. code-block:: yaml
 
-   volumes
+   volumes:
      data:
        external:
-         name: actual-name-of-volume（実際のボリューム名）
+         name: actual-name-of-volume
+
+.. > External volumes are always created with docker stack deploy
+   >
+   External volumes that do not exist _will be created_ if you use [docker stack
+   deploy](#deploy) to launch the app in [swarm mode](/engine/swarm/index.md)
+   (instead of [docker compose up](/compose/reference/up.md)). In swarm mode, a
+   volume is automatically created when it is defined by a service. As service
+   tasks are scheduled on new nodes,
+   [swarmkit](https://github.com/docker/swarmkit/blob/master/README.md) creates the
+   volume on the local node. To learn more, see
+   [moby/moby#29976](https://github.com/moby/moby/issues/29976).
+
+.. note::
+   external ボリュームは docker stack deploy により常に生成されます。
+     external ボリュームが存在しない場合に、:ref:`docker stack deploy <compose-file-deploy>` を実行してアプリを :doc:`スウォームモード </engine/swarm/index>` 内に導入すると、ボリュームが **生成されます** 。
+     （:doc:`docker compose up </compose/reference/up>` とは異なります。）
+     スウォームモードにおいて、サービスとして定義されているボリュームは自動生成されます。
+     サービスタスクは新たなノード上においてスケジューリングされるので、`swarmkit <https://github.com/docker/swarmkit/blob/master/README.md>`_ がローカルノード上にボリュームを生成します。
+     詳しくは `moby/moby#29976 <https://github.com/moby/moby/issues/29976>`_ を参照してください。
 
 .. Network configuration reference
 
