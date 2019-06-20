@@ -4352,6 +4352,88 @@ external
        external:
          name: actual-name-of-network
 
+.. ## configs configuration reference
+
+.. _configs-configuration-reference:
+
+configs 設定リファレンス
+=========================
+
+.. The top-level `configs` declaration defines or references
+   [configs](/engine/swarm/configs.md) which can be granted to the services in this
+   stack. The source of the config is either `file` or `external`.
+
+最上位の ``configs`` の宣言では、このスタックファイル内のサービスに対して適用する :doc:`configs </engine/swarm/configs>` を定義し参照します。
+config の値となるのは ``file`` か ``external`` です。
+
+.. - `file`: The config is created with the contents of the file at the specified
+     path.
+   - `external`: If set to true, specifies that this config has already been
+     created. Docker will not attempt to create it, and if it does not exist, a
+     `config not found` error occurs.
+
+* ``file``： config は、指定されたパスにあるファイルの内容に従って生成されます。
+* ``external``： true に設定されている場合、config がすでに定義済であることを設定します。
+  Dockder はこれを生成しないようになりますが、config が存在しなければ ``config not found`` というエラーが発生します。
+* ``name``： Docker における config オブジェクト名を設定します。
+  この設定は、特殊文字を含む config を参照する際に用いることができます。
+  name はそのまま用いられ、スタック名によるスコープは **行われません** 。
+  これはファイルフォーマットバージョン 3.5 において導入されたものです。
+
+.. In this example, `my_first_config` will be created (as
+   `<stack_name>_my_first_config)`when the stack is deployed,
+   and `my_second_config` already exists in Docker.
+
+以下の例においては、スタックがデプロイされる際に（``<stack_name>_my_first_config`` として） ``my_first_config`` が生成されます。
+また ``my_second_config`` は Docker にすでに定義済のものです。
+
+.. ```none
+   configs:
+     my_first_config:
+       file: ./config_data
+     my_second_config:
+       external: true
+   ```
+
+.. code-block:: yaml
+
+   configs:
+     my_first_config:
+       file: ./config_data
+     my_second_config:
+       external: true
+
+.. Another variant for external configs is when the name of the config in Docker
+   is different from the name that will exist within the service. The following
+   example modifies the previous one to use the external config called
+   `redis_config`.
+
+別の状況として、外部にある config を参照する際に、Docker における config 名と、サービス内にある config 名が異なる場合があります。
+以下は、前の例における config を、外部に定義されている ``redis_config`` というものに変更した例です。
+
+.. ```none
+   configs:
+     my_first_config:
+       file: ./config_data
+     my_second_config:
+       external:
+         name: redis_config
+   ```
+
+.. code-block:: yaml
+
+   configs:
+     my_first_config:
+       file: ./config_data
+     my_second_config:
+       external:
+         name: redis_config
+
+.. You still need to [grant access to the config](#configs) to each service in the
+   stack.
+
+スタック内の各サービスに対しては、:ref:`config へのアクセス許可 <compose-file-configs>` を行う必要があります。
+
 .. Versioning
 
 .. _compose-file-versioning:
