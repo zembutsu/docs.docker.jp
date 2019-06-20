@@ -4434,6 +4434,84 @@ config の値となるのは ``file`` か ``external`` です。
 
 スタック内の各サービスに対しては、:ref:`config へのアクセス許可 <compose-file-configs>` を行う必要があります。
 
+.. ## secrets configuration reference
+
+.. _secrets-configuration-reference:
+
+secrets 設定リファレンス
+=========================
+
+.. The top-level `secrets` declaration defines or references
+   [secrets](/engine/swarm/secrets.md) which can be granted to the services in this
+   stack. The source of the secret is either `file` or `external`.
+
+最上位の ``secrets`` の宣言では、このスタックファイル内のサービスに対して適用する :doc:`secrets </engine/swarm/secrets>` を定義し参照します。
+secret の値となるのは ``file`` か ``external`` です。
+
+.. - `file`: The secret is created with the contents of the file at the specified
+     path.
+   - `external`: If set to true, specifies that this secret has already been
+     created. Docker will not attempt to create it, and if it does not exist, a
+     `secret not found` error occurs.
+
+* ``file``： secret は、指定されたパスにあるファイルの内容に従って生成されます。
+* ``external``： true に設定されている場合、secret がすでに定義済であることを設定します。
+  Docker はこれを生成しないようになりますが、secret が存在しなければ ``secret not found`` というエラーが発生します。
+
+.. In this example, `my_first_secret` will be created (as
+   `<stack_name>_my_first_secret)`when the stack is deployed,
+   and `my_second_secret` already exists in Docker.
+
+以下の例においては、スタックがデプロイされる際に（``<stack_name>_my_first_secret`` として） ``my_first_secret`` が生成されます。
+また ``my_second_secret`` は Docker にすでに定義済のものです。
+
+.. ```none
+   secrets:
+     my_first_secret:
+       file: ./secret_data
+     my_second_secret:
+       external: true
+   ```
+
+.. code-block:: yaml
+
+   secrets:
+     my_first_secret:
+       file: ./secret_data
+     my_second_secret:
+       external: true
+
+.. Another variant for external secrets is when the name of the secret in Docker
+   is different from the name that will exist within the service. The following
+   example modifies the previous one to use the external secret called
+   `redis_secret`.
+
+別の状況として、外部にある secret を参照する際に、Docker における secret 名と、サービス内にある secret 名が異なる場合があります。
+以下は、前の例における secret を、外部に定義されている ``redis_secret`` というものに変更した例です。
+
+.. ```none
+   secrets:
+     my_first_secret:
+       file: ./secret_data
+     my_second_secret:
+       external:
+         name: redis_secret
+   ```
+
+.. code-block:: yaml
+
+   secrets:
+     my_first_secret:
+       file: ./secret_data
+     my_second_secret:
+       external:
+         name: redis_secret
+
+.. You still need to [grant access to the secrets](#secrets) to each service in the
+   stack.
+
+スタック内の各サービスに対しては、:ref:`secrets へのアクセス許可 <compose-file-secrets>` を行う必要があります。
+
 .. Versioning
 
 .. _compose-file-versioning:
