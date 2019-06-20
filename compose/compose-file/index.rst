@@ -4109,6 +4109,41 @@ driver
 
    driver: overlay
 
+.. #### bridge
+
+bridge
+^^^^^^^
+
+.. Docker defaults to using a `bridge` network on a single host. For examples of
+   how to work with bridge networks, see the Docker Labs tutorial on [Bridge
+   networking](https://github.com/docker/labs/blob/master/networking/A2-bridge-networking.md).
+
+単一ホストの場合、Docker はデフォルトとして ``bridge`` ネットワークを利用します。
+bridge ネットワークがどのように動作するかは、Docker Labs のチュートリアルである `ブリッジネットワーク <https://github.com/docker/labs/blob/master/networking/A2-bridge-networking.md>`_ の例を参照してください。
+
+.. #### overlay
+
+overlay
+^^^^^^^^
+
+.. The `overlay` driver creates a named network across multiple nodes in a
+   [swarm](/engine/swarm/).
+
+``overlay`` ドライバは、:doc:`スウォーム </engine/swarm/>` 内での複数ノードにわたって、名前づけされたネットワークを生成します。
+
+.. * For a working example of how to build and use an
+   `overlay` network with a service in swarm mode, see the Docker Labs tutorial on
+   [Overlay networking and service
+   discovery](https://github.com/docker/labs/blob/master/networking/A3-overlay-networking.md).
+
+* スウォームモードにて ``overlay`` ネットワークによるサービスを構築し利用する例として、Docker Labs のチュートリアル `Overlay networking and service discovery <https://github.com/docker/labs/blob/master/networking/A3-overlay-networking.md>`_ を参照してください。
+
+.. * For an in-depth look at how it works under the hood, see the
+   networking concepts lab on the [Overlay Driver Network
+   Architecture](https://github.com/docker/labs/blob/master/networking/concepts/06-overlay-networks.md).
+
+* さらに詳しく内部動作を知るためには、networking concepts lab にある `Overlay Driver Network Architecture <https://github.com/docker/labs/blob/master/networking/concepts/06-overlay-networks.md>`_ を参照してください。
+
 .. driver_opts
 
 driver_opts
