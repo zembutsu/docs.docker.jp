@@ -17,9 +17,33 @@ Docker ネットワーク・ドライバ・プラグイン
        :depth: 3
        :local:
 
-.. Docker network plugins enable Docker deployments to be extended to support a wide range of networking technologies, such as VXLAN, IPVLAN, MACVLAN or something completely different. Network driver plugins are supported via the LibNetwork project. Each plugin is implemented asa “remote driver” for LibNetwork, which shares plugin infrastructure with Docker. Effectively, network driver plugins are activated in the same way as other plugins, and use the same kind of protocol.
+.. # Engine network driver plugins
 
-Docker ネットワーク・プラグインは、Docker が広範囲のネットワーク技術のサポートによりデプロイできるように拡張されています。VXLAN、IPVLAN、MACVLAN 、あるいはこれらとも全く異なります。ネットワーク・ドライバ・プラグインは LibNetwork プロジェクトによってサポートされています。各ネットワーク・プラグインは LibNetwork の「リモート・ドライバ」であり、これは Docker とプラグイン基盤を共有するものです。効果的なのは、プラグイン基盤の共有によって、他のプラグインを同じように扱え、かつ同様のプロトコルを扱えることです。
+.. _engine-network-driver-plugins:
+
+Engine ネットワーク・ドライバ・プラグイン
+=============================================
+
+.. This document describes Docker Engine network driver plugins generally
+   available in Docker Engine. To view information on plugins
+   managed by Docker Engine, refer to [Docker Engine plugin system](index.md).
+
+ここでは Docker Engine において、一般的に利用可能な Docker Engine ネットワーク・ドライバ・プラグインについて説明します。
+Docker Engine が管理するプラグインに関する情報は :doc:`Docker Engine プラグイン・システム <index>` を参照してください。
+
+.. Docker Engine network plugins enable Engine deployments to be extended to
+   support a wide range of networking technologies, such as VXLAN, IPVLAN, MACVLAN
+   or something completely different. Network driver plugins are supported via the
+   LibNetwork project. Each plugin is implemented as a  "remote driver" for
+   LibNetwork, which shares plugin infrastructure with Engine. Effectively, network
+   driver plugins are activated in the same way as other plugins, and use the same
+   kind of protocol.
+
+Docker Engine ネットワーク・プラグインは、Engineによるデプロイメントを拡張して、非常に多くのネットワーク技術へのサポートを可能とします。
+対応するネットワーク技術としてたとえば VXLAN, IPVLAN, MACVLAN などがあり、これ以外にも全く異なる技術にも対応可能です。
+ネットワーク・ドライバ・プラグインは LibNetwork プロジェクトを通じてサポートされています。
+各プラグインは LibNetwork における「リモートドライバ」として実装されており、Engine におけるプラグイン基盤を共有しています。
+実際にネットワーク・ドライバ・プラグインは、他のプラグインと同様の方法で取り入れることができるものであり、同じようなプロトコルを利用しています。
 
 .. Using network driver plugins
 
