@@ -3,13 +3,13 @@
 .. doc version: 1.9
 .. check date: 2016/01/09
 
-.. Docker network driver plugins
+.. title: "Docker network driver plugins"
 
 .. _docker-network-driver-plugins:
 
-========================================
-Docker ネットワーク・プラグイン
-========================================
+==========================================
+Docker ネットワーク・ドライバ・プラグイン
+==========================================
 
 .. sidebar:: 目次
 
