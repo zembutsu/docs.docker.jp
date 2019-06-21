@@ -106,7 +106,7 @@ Compose ドキュメント
 * :doc:`wordpress`
 * :doc:`install`
 * :doc:`/compose/reference/index`
-* :doc:`/compose/compose-file`
+* :doc:`/compose/compose-file/index`
 
 .. seealso:: 
 

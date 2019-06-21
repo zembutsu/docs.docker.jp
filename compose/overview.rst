@@ -65,7 +65,7 @@ Compose を使うには、基本的に３つのステップを踏みます。
 
 .. For more information about the Compose file, see the Compose file reference
 
-Compose に関する更に詳しい情報は、 :doc:`Compose ファイル・リファレンス </compose/compose-file>` をご覧ください。
+Compose に関する更に詳しい情報は、 :doc:`Compose ファイル・リファレンス </compose/compose-file/index>` をご覧ください。
 
 .. Compose has commands for managing the whole lifecycle of your application:
 
@@ -93,7 +93,7 @@ Compose のドキュメント
 * :doc:`wordpress`
 * :doc:`faq`
 * :doc:`reference/index`
-* :doc:`compose-file`
+* :doc:`compose-file/index`
 
 .. Features
 
@@ -190,7 +190,7 @@ Compose は様々な使い方があります。一般的な利用例は、以下
 
 .. The Compose file provides a way to document and configure all of the application’s service dependencies (databases, queues, caches, web service APIs, etc). Using the Compose command line tool you can create and start one or more containers for each dependency with a single command (docker-compose up).
 
-:doc:`Compose ファイル <compose-file>` は、文章化と、アプリケーション全ての依存関係（データベース、キュー、キャッシュ、ウェブ・サービス、API 等）を設定するものです。Compose コマンドライン・ツールを使えば、コマンドを１つ（ ``docker-compose up`` ）実行するだけで、各依存関係に応じて１つまたは複数のコンテナを作成します。
+:doc:`Compose ファイル </compose/compose-file/index>` は、文章化と、アプリケーション全ての依存関係（データベース、キュー、キャッシュ、ウェブ・サービス、API 等）を設定するものです。Compose コマンドライン・ツールを使えば、コマンドを１つ（ ``docker-compose up`` ）実行するだけで、各依存関係に応じて１つまたは複数のコンテナを作成します。
 
 .. Together, these features provide a convenient way for developers to get started on a project. Compose can reduce a multi-page “developer getting started guide” to a single machine readable Compose file and a few commands.
 
@@ -203,7 +203,7 @@ Compose は様々な使い方があります。一般的な利用例は、以下
 
 .. An important part of any Continuous Deployment or Continuous Integration process is the automated test suite. Automated end-to-end testing requires an environment in which to run tests. Compose provides a convenient way to create and destroy isolated testing environments for your test suite. By defining the full environment in a Compose file you can create and destroy these environments in just a few commands:
 
-継続的デプロイや継続的インテグレーションのプロセスにおいて重要な部分は、自動テストの実装です。自動的なエンド間（end-to-end）のテストは、テストを行う環境が必要になります。テスト実装にあたり、Compose は個々のテスト環境の作成と破棄を便利に行う手法を提供します。 :doc:`Compose ファイル </compose/compose-file>` で定義した全ての環境は、いくつかのコマンドを実行するだけで作成・破棄できます。
+継続的デプロイや継続的インテグレーションのプロセスにおいて重要な部分は、自動テストの実装です。自動的なエンド間（end-to-end）のテストは、テストを行う環境が必要になります。テスト実装にあたり、Compose は個々のテスト環境の作成と破棄を便利に行う手法を提供します。 :doc:`Compose ファイル </compose/compose-file/index>` で定義した全ての環境は、いくつかのコマンドを実行するだけで作成・破棄できます。
 
 .. code-block:: bash
 

@@ -98,7 +98,7 @@ Dockerfile はアプリケーションのイメージ内容に含まれる、１
 
 .. The docker-compose.yml file describes the services that make your app. In this example those services are a web server and database. The compose file also describes which Docker images these services use, how they link together, any volumes they might need mounted inside the containers. Finally, the docker-compose.yml file describes which ports these services expose. See the docker-compose.yml reference for more information on how this file works.
 
-``docker-compose.yml`` ファイルは、アプリケーションを作るためのサービスを記述します。この例におけるサービスとはウェブサーバとデータベースです。また、Compose ファイルではサービスが利用する Docker イメージ、どのように相互にリンクするか、コンテナ内で必要となるボリュームをそれぞれ定義します。最後に ``docker-compose.yml`` ファイルでサービスを公開するポートを指定します。詳細な情報や動作に関しては :doc:`docker-compose.yml リファレンス </compose/compose-file>` をご覧ください。
+``docker-compose.yml`` ファイルは、アプリケーションを作るためのサービスを記述します。この例におけるサービスとはウェブサーバとデータベースです。また、Compose ファイルではサービスが利用する Docker イメージ、どのように相互にリンクするか、コンテナ内で必要となるボリュームをそれぞれ定義します。最後に ``docker-compose.yml`` ファイルでサービスを公開するポートを指定します。詳細な情報や動作に関しては :doc:`docker-compose.yml リファレンス </compose/compose-file/index>` をご覧ください。
 
 .. Add the following configuration to the file.
 
@@ -277,7 +277,7 @@ Compose の更なるドキュメント
 * :doc:`/compose/rails`
 * :doc:`/compose/wordpress`
 * :doc:`/compose/reference/index`
-* :doc:`/compose/compose-file`
+* :doc:`/compose/compose-file/index`
 
 .. seealso:: 
 

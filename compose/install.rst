@@ -214,7 +214,7 @@ Compose は作成されたコンテナにラベルがないことを検出した
 * :doc:`rails`
 * :doc:`wordpress`
 * :doc:`reference/index`
-* :doc:`compose-file`
+* :doc:`compose-file/index`
 
 .. seealso:: 
 

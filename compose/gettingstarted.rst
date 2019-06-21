@@ -289,7 +289,7 @@ Compose を ``docker-compose up -d`` で起動した場合は、次のように�
 
 * 次は、:doc:`Django </compose/django>` 、 :doc:`Rails </compose/rails>`  、 :doc:`WordPress </compose/wordpress>`  向けのクイックスタートガイドを試しましょう。
 * :doc:`/compose/reference/index`
-* :doc:`/compose/compose-file`
+* :doc:`/compose/compose-file/index`
 
 .. seealso:: 
 
