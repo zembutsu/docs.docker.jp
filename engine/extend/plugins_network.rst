@@ -136,17 +136,17 @@ Docker 1.12 から :doc:`スウォーム・モード </engine/swarm/>` と呼ば
 
 ネットワーク・ドライバ・プロトコル、およびプラグイン・アクティベーション・コール（plugin activation call）については、libnetwork の一部 https://github.com/docker/libnetwork/blob/master/docs/remote.md としてドキュメント化されています。
 
-.. Related Information
+.. # Related Information
 
 関連情報
 ====================
 
-.. To interact with the Docker maintainers and other interested users, se the IRC channel #docker-network.
+.. To interact with the Docker maintainers and other interested users, see the IRC channel `#docker-network`.
 
-Docker メンテナや他のユーザと対話するには、IRC チャンネルの ``#docker-network`` にお越し下さい。
+Docker メンテナや関心を寄せているユーザと会話をしてみたい方は、IRC チャネル ``#docker-network`` にアクセスしてください。
 
-..    Docker networks feature overview
-    The LibNetwork project
+.. -  [Docker networks feature overview](https://docs.docker.com/engine/userguide/networking/)
+   -  The [LibNetwork](https://github.com/docker/libnetwork) project
 
 * :doc:`Docker ネットワーク機能の概要 </engine/userguide/networking/index>`
 * `LibNetwork <https://github.com/docker/libnetwork>`_ プロジェクト
