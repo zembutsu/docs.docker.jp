@@ -45,6 +45,29 @@ Docker Engine ネットワーク・プラグインは、Engineによるデプロ
 各プラグインは LibNetwork における「リモートドライバ」として実装されており、Engine におけるプラグイン基盤を共有しています。
 実際にネットワーク・ドライバ・プラグインは、他のプラグインと同様の方法で取り入れることができるものであり、同じようなプロトコルを利用しています。
 
+.. ## Network driver plugins and swarm mode
+
+.. _network-driver-plugins-and-swarm-mode:
+
+ネットワーク・ドライバ・プラグインとスウォーム・モード
+=======================================================
+
+.. Docker 1.12 adds support for cluster management and orchestration called
+   [swarm mode](https://docs.docker.com/engine/swarm/). Docker Engine running in swarm mode currently
+   only supports the built-in overlay driver for networking. Therefore existing
+   networking plugins will not work in swarm mode.
+
+Docker 1.12 から :doc:`スウォーム・モード </engine/swarm/>` と呼ばれるクラスタ管理およびオーケストレーション機能がサポートされるようになりました。
+スウォーム・モードにおいて稼動する Docker Engine は、現時点ネットワークに関しては、ビルトインの overlay ドライバのみをサポートします。
+したがってすでに提供されているネットワーク・プラグインは、スウォーム・モードにおいては動作しません。
+
+.. When you run Docker Engine outside of swarm mode, all networking plugins that
+   worked in Docker 1.11 will continue to function normally. They do not require
+   any modification.
+
+スウォーム・モード以外で Docker Engine を稼動させると、Docker 1.1 において動作していたネットワーク・プラグインは引き続き正常に動作します。
+そこには特に修正を必要としません。
+
 .. Using network driver plugins
 
 .. _using-network-driver-plugins:
