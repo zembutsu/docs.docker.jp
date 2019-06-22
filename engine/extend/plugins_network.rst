@@ -111,16 +111,17 @@ Docker 1.12 から :doc:`スウォーム・モード </engine/swarm/>` と呼ば
 
    $ docker run --network=mynet busybox top
 
-.. Write a network plugin
+.. ## Write a network plugin
 
 .. _write-a-network-plugin:
 
-ネットワーク・プラグインを書くには
+ネットワーク・プラグインの開発
 ==================================
 
-.. Network plugins implement the Docker plugin API and the network plugin protocol
+.. Network plugins implement the [Docker plugin
+   API](plugin_api.md) and the network plugin protocol
 
-ネットワーク・プラグインの実装は、 :doc:`Docker プラグイン API <plugin_api>` のネットワーク・プラグイン・プロトコルをご覧ください。
+ネットワーク・プラグインは、:doc:`Docker プラグイン API <plugin_api>` とネットワーク・プラグイン・プロトコルにより実装されます。
 
 .. Network plugin protocol
 
