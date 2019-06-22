@@ -336,17 +336,18 @@ Docker のバイナリは Windows Server 2016 や Windows 10 にインストー�
 
        PS C:\> Start-Service docker
        ```
-   ::
 
-       PS C:\> Invoke-WebRequest https://download.docker.com/win/static/stable/x86_64//docker-{{ minor-version }}.0-ce.zip -UseBasicParsing -OutFile docker.zip
+   .. code-block:: batch
 
-       PS C:\> Expand-Archive docker.zip -DestinationPath $Env:ProgramFiles
+      PS C:\> Invoke-WebRequest https://download.docker.com/win/static/stable/x86_64//docker-17.06.0-ce.zip -UseBasicParsing -OutFile docker.zip
 
-       PS C:\> Remove-Item -Force docker.zip
+      PS C:\> Expand-Archive docker.zip -DestinationPath $Env:ProgramFiles
 
-       PS C:\> dockerd --register-service
+      PS C:\> Remove-Item -Force docker.zip
 
-       PS C:\> Start-Service docker
+      PS C:\> dockerd --register-service
+
+      PS C:\> Start-Service docker
 
 .. 2.  Verify that Docker is installed correctly by running the `hello-world`
        image.
