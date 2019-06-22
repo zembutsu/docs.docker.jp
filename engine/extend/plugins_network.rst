@@ -68,36 +68,48 @@ Docker 1.12 から :doc:`スウォーム・モード </engine/swarm/>` と呼ば
 スウォーム・モード以外で Docker Engine を稼動させると、Docker 1.1 において動作していたネットワーク・プラグインは引き続き正常に動作します。
 そこには特に修正を必要としません。
 
-.. Using network driver plugins
+.. ## Using network driver plugins
 
 .. _using-network-driver-plugins:
 
-ネットワーク・ドライバ・プラグインを使う
-========================================
+ネットワーク・ドライバ・プラグインの利用
+=========================================
 
-.. The means of installing and running a network driver plugin depend on the particular plugin. So, be sure to install your plugin according to the instructions obtained from the plugin developer.
+.. The means of installing and running a network driver plugin depend on the
+   particular plugin. So, be sure to install your plugin according to the
+   instructions obtained from the plugin developer.
 
-ネットワーク・ドライバ・プラグインのインストール実行は、個々のプラグインに依存します。そのため、プラグインをインストールするには、各プラグインの開発者から指示を得てください。
+ネットワーク・ドライバ・プラグインのインストール方法や実行方法は、個々のプラグインにより異なります。
+そこでプラグインをインストールする際には、プラグイン開発者が示す説明に従ってください。
 
-.. Once running however, network driver plugins are used just like the built-in network drivers: by being mentioned as a driver in network-oriented Docker commands. For example,
+.. Once running however, network driver plugins are used just like the built-in
+   network drivers: by being mentioned as a driver in network-oriented Docker
+   commands. For example,
 
-ネットワーク・ドライバを実行しても、内部ネットワーク・ドライバのように扱えないかもしれません。ネットワーク対応の Docker コマンドでドライバを操作します。例えば、次のようなコマンドです。
+ネットワーク・ドライバ・プラグインを実行することができれば、後はビルトインのネットワーク・ドライバと変わらずに利用していきます。
+つまりネットワーク関連の Docker コマンドにおいて、ドライバを取り扱うコマンドを用いていきます。
+たとえば以下のとおりです。
+
+..  $ docker network create --driver weave mynet
 
 .. code-block:: bash
 
    $ docker network create --driver weave mynet
 
-.. Some network driver plugins are listed in plugins
+.. Some network driver plugins are listed in [plugins](legacy_plugins.md)
 
-ネットワーク・ドライバのプラグイン一覧は、 :doc:`こちら <plugins>` をご覧ください。
+ネットワーク・ドライバ・プラグインの一覧が :doc:`プラグイン <legacy_plugins>` にあります。
 
-.. The mynet network is now owned by weave, so subsequent commands referring to that network will be sent to the plugin,
+.. The `mynet` network is now owned by `weave`, so subsequent commands
+   referring to that network will be sent to the plugin,
 
-``mynet`` ネットワークは ``weave`` の所有となりましたので、以下に続くコマンドは、プラグインの管理するネットワークに対して送信されます。
+``mynet`` ネットワークは ``weave`` により所有されたので、これ以降にネットワークを参照するコマンドは、プラグインに送信され実行されることになります。
+
+..  $ docker run --network=mynet busybox top
 
 .. code-block:: bash
 
-   $ docker run --net=mynet busybox top
+   $ docker run --network=mynet busybox top
 
 .. Write a network plugin
 
