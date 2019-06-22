@@ -123,16 +123,18 @@ Docker 1.12 から :doc:`スウォーム・モード </engine/swarm/>` と呼ば
 
 ネットワーク・プラグインは、:doc:`Docker プラグイン API <plugin_api>` とネットワーク・プラグイン・プロトコルにより実装されます。
 
-.. Network plugin protocol
+.. ## Network plugin protocol
 
 .. _network-plugin-protocol:
 
 ネットワーク・プラグイン・プロトコル
 ====================================
 
-.. The network driver protocol, in addition to the plugin activation call, is documented as part of libnetwork: https://github.com/docker/libnetwork/blob/master/docs/remote.md.
+.. The network driver protocol, in addition to the plugin activation call, is
+   documented as part of libnetwork:
+   [https://github.com/docker/libnetwork/blob/master/docs/remote.md](https://github.com/docker/libnetwork/blob/master/docs/remote.md).
 
-ネットワーク・ドライバ・プロトコルとは、プラグイン・アクティベーション・コール（plugin activation call）の追加です。詳細については libnetwork の該当ドキュメント https://github.com/docker/libnetwork/blob/master/docs/remote.md をご覧ください。
+ネットワーク・ドライバ・プロトコル、およびプラグイン・アクティベーション・コール（plugin activation call）については、libnetwork の一部 https://github.com/docker/libnetwork/blob/master/docs/remote.md としてドキュメント化されています。
 
 .. Related Information
 
