@@ -87,20 +87,33 @@ Docker Engine ボリューム・プラグインは、Amazon EBS のような外�
 * ボリューム・ドライバ・プラグインに対する初めてのサポート。
   (`#14659 <https://github.com/docker/docker/pull/14659>`_)
 
-.. Command-line changes
+.. ## Command-line changes
 
 .. _command-line-changes:
 
-コマンドラインの変更
-=====================
+コマンドラインによる変更
+=========================
 
-.. A volume plugin makes use of the -vand --volume-driver flag on the docker run command. The -v flag accepts a volume name and the --volume-driver flag a driver type, for example:
+.. To give a container access to a volume, use the `--volume` and `--volume-driver`
+   flags on the `docker container run` command.  The `--volume` (or `-v`) flag
+   accepts a volume name and path on the host, and the `--volume-driver` flag
+   accepts a driver type.
 
-ボリューム・プラグインを使うには ``docker run``  コマンドで ``-v`` と ``--volume-driver`` フラグを指定します。 ``-v`` フラグはボリューム名を受け付け、 ``--volume-driver`` フラグはドライバの種類を指定します。例えば、次のように実行します。
+コンテナからボリュームへアクセスするためには、``docker container run`` コマンドの ``--volume`` フラグや ``--volume-driver`` フラグを用います。
+``--volume`` （または ``-v`` ）フラグは、ボリューム名とホスト上のパスを指定します。
+また ``--volume-driver`` フラグはドライバ・タイプを指定します。
+
+.. ```bash
+   $ docker volume create --driver=flocker volumename
+
+   $ docker container run -it --volume volumename:/data busybox sh
+   ```
 
 .. code-block:: bash
 
-   $ docker run -ti -v volumename:/data --volume-driver=flocker   busybox sh
+   $ docker volume create --driver=flocker volumename
+
+   $ docker container run -it --volume volumename:/data busybox sh
 
 .. This command passes the volumename through to the volume plugin as a user-given name for the volume. The volumename must not begin with a /.
 
