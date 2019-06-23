@@ -8,7 +8,7 @@
 .. _write-a-volume-plugin:
 
 ========================================
-Docker ボリューム・プラグインを書く
+ボリューム・プラグインの記述
 ========================================
 
 .. sidebar:: 目次
@@ -17,9 +17,14 @@ Docker ボリューム・プラグインを書く
        :depth: 3
        :local:
 
-.. Docker volume plugins enable Docker deployments to be integrated with external storage systems, such as Amazon EBS, and enable data volumes to persist beyond the lifetime of a single Docker host. See the plugin documentation for more information.
+.. Docker Engine volume plugins enable Engine deployments to be integrated with
+   external storage systems such as Amazon EBS, and enable data volumes to persist
+   beyond the lifetime of a single Docker host. See the
+   [plugin documentation](legacy_plugins.md) for more information.
 
-Docker ボリューム・プラグインとは、Amazon EBS のような外部のストレージ・システムと統合した環境に Docker をデプロイできるようにします。そして、単一の Docker ホスト上で、データ・ボリュームを使う間はその一貫性をもたらします。詳しい情報は :doc:`プラグインのドキュメント <plugins>` をご覧ください。
+Docker Engine ボリューム・プラグインは、Amazon EBS のような外部ストレージシステムと統合した Engine デプロイメントを可能にするものです。
+そして単独の Docker ホスト上では維持できない、データボリュームの長期保存を可能にします。
+詳細は :doc:`プラグインのドキュメント <./legacy_plugins>` を参照してください。
 
 .. Command-line changes
 
