@@ -115,9 +115,27 @@ Docker Engine ボリューム・プラグインは、Amazon EBS のような外�
 
    $ docker container run -it --volume volumename:/data busybox sh
 
-.. This command passes the volumename through to the volume plugin as a user-given name for the volume. The volumename must not begin with a /.
+.. ### `--volume`
 
-このコマンドは、ユーザがボリュームで使う名前を ``volumename`` としてボリューム・プラグインに渡しています。 ``volumename`` は ``/`` で始まってはいけません。
+``--volume``
+-------------
+
+.. The `--volume` (or `-v`) flag takes a value that is in the format
+   `<volume_name>:<mountpoint>`. The two parts of the value are
+   separated by a colon (`:`) character.
+
+``--volume`` （または ``-v`` ）フラグは ``<volume_name>:<mountpoint>`` という書式の値をとります。
+この値の 2 つの部分はコロン（``:``）によって区切ります。
+
+.. - The volume name is a human-readable name for the volume, and cannot begin with
+     a `/` character. It is referred to as `volume_name` in the rest of this topic.
+   - The `Mountpoint` is the path on the host (v1) or in the plugin (v2) where the
+     volume has been made available.
+
+* ボリューム名は、人間が読み取れる文字を使って、ボリュームにつけた名前のことです。
+  ``/`` で始めることはできません。
+  これ以降では ``volume_name`` と呼び表わすことにします。
+* ``Mountpoint`` は、ホスト上のパス（v1 の場合）、またはプラグイン内のパス（v2 の場合）のいずれかであり、ボリュームが生成されている場所を示します。
 
 .. By having the user specify a volumename, a plugin can associate the volume with an external volume beyond the lifetime of a single container or container host. This can be used, for example, to move a stateful container from one server to another.
 
