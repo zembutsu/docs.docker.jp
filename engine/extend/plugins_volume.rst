@@ -26,6 +26,67 @@ Docker Engine ボリューム・プラグインは、Amazon EBS のような外�
 そして単独の Docker ホスト上では維持できない、データボリュームの長期保存を可能にします。
 詳細は :doc:`プラグインのドキュメント <./legacy_plugins>` を参照してください。
 
+.. ## Changelog
+
+.. _changelog:
+
+変更履歴
+=========
+
+.. ### 1.13.0
+
+1.13.0
+-------
+
+.. - If used as part of the v2 plugin architecture, mountpoints that are part of
+     paths returned by the plugin must be mounted under the directory specified by
+     `PropagatedMount` in the plugin configuration
+     ([#26398](https://github.com/docker/docker/pull/26398))
+
+* プラグイン・アーキテクチャ v2 を部分的に用いている場合、プラグインにより返されるパスで構成される mountpoints は、プラグイン設定内の ``PropagatedMount`` によって指定されるディレクトリ配下にマウントされるべき。
+  (`#26398 <https://github.com/docker/docker/pull/26398>`_)
+
+.. ### 1.12.0
+
+1.12.0
+-------
+
+.. - Add `Status` field to `VolumeDriver.Get` response
+     ([#21006](https://github.com/docker/docker/pull/21006#))
+   - Add `VolumeDriver.Capabilities` to get capabilities of the volume driver
+     ([#22077](https://github.com/docker/docker/pull/22077))
+
+* ``VolumeDriver.Get`` レスポンスに ``Status`` フィールドを追加。
+  (`#21006 <https://github.com/docker/docker/pull/21006#>`_)
+* ``VolumeDriver.Capabilities`` の追加。ボリューム・ドライバのケーパビリティ（capability）を取得する。
+  (`#22077 <https://github.com/docker/docker/pull/22077>`_)
+
+.. ### 1.10.0
+
+1.10.0
+-------
+
+.. - Add `VolumeDriver.Get` which gets the details about the volume
+     ([#16534](https://github.com/docker/docker/pull/16534))
+   - Add `VolumeDriver.List` which lists all volumes owned by the driver
+     ([#16534](https://github.com/docker/docker/pull/16534))
+
+* ``VolumeDriver.Get`` の追加。 ボリュームの詳細情報を取得する。
+  (`#16534 <https://github.com/docker/docker/pull/16534>`_)
+* ``VolumeDriver.List`` の追加。 ドライバが所有する全ボリューム一覧を取得する。
+  (`#16534 <https://github.com/docker/docker/pull/16534>`_)
+
+.. ### 1.8.0
+
+1.8.0
+------
+
+.. - Initial support for volume driver plugins
+     ([#14659](https://github.com/docker/docker/pull/14659))
+
+* ボリューム・ドライバ・プラグインに対する初めてのサポート。
+  (`#14659 <https://github.com/docker/docker/pull/14659>`_)
+
 .. Command-line changes
 
 .. _command-line-changes:
