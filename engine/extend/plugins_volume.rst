@@ -137,13 +137,17 @@ Docker Engine ボリューム・プラグインは、Amazon EBS のような外�
   これ以降では ``volume_name`` と呼び表わすことにします。
 * ``Mountpoint`` は、ホスト上のパス（v1 の場合）、またはプラグイン内のパス（v2 の場合）のいずれかであり、ボリュームが生成されている場所を示します。
 
-.. By having the user specify a volumename, a plugin can associate the volume with an external volume beyond the lifetime of a single container or container host. This can be used, for example, to move a stateful container from one server to another.
+.. ### `volumedriver`
 
-ユーザが ``volumename`` を指定したら、プラグインは１つのコンテナが稼働し続ける間、あるいはコンテナのホスト上における外部ボリュームをプラグインに関連づけます。これを使えば、例えばステートフルなコンテナを、あるサーバから別のサーバに移せます。
+``volumedriver``
+-----------------
 
-.. By specifying a volumedriver in conjunction with a volumename, users can use plugins such as Flocker to manage volumes external to a single host, such as those on EBS.
+.. Specifying a `volumedriver` in conjunction with a `volumename` allows you to
+   use plugins such as [Flocker](https://github.com/ScatterHQ/flocker) to manage
+   volumes external to a single host, such as those on EBS.
 
-``volumename`` と ``volumedriver`` を同時に使うよう指定したら、ユーザは `Flocker <https://clusterhq.com/docker-plugin/>`_ のような外部プラグインで単一ホスト上のボリュームや EBS のようなボリュームを管理します。
+``volumename`` とともに ``volumedriver`` を指定すると、`Flocker <https://github.com/ScatterHQ/flocker>`_ のようなプラグインが利用できるようになります。
+これにより 1 つのホストから、EBS 上などの外部にあるボリュームを管理できるようになります。
 
 .. Create a VolumeDriver
 
