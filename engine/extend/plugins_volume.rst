@@ -149,14 +149,18 @@ Docker Engine ボリューム・プラグインは、Amazon EBS のような外�
 ``volumename`` とともに ``volumedriver`` を指定すると、`Flocker <https://github.com/ScatterHQ/flocker>`_ のようなプラグインが利用できるようになります。
 これにより 1 つのホストから、EBS 上などの外部にあるボリュームを管理できるようになります。
 
-.. Create a VolumeDriver
+.. ## Create a VolumeDriver
 
-ボリューム・ドライバの作成
-==============================
+VolumeDriver の生成
+====================
 
-.. The container creation endpoint (/containers/create) accepts a VolumeDriver field of type string allowing to specify the name of the driver. It’s default value of "local" (the default driver for local volumes).
+.. The container creation endpoint (`/containers/create`) accepts a `VolumeDriver`
+   field of type `string` allowing to specify the name of the driver. If not
+   specified, it defaults to `"local"` (the default driver for local volumes).
 
-コンテナが作成用エンドポイント（  ``/containers/create`` ） の ``volumeDriver`` フィールドにおいて、 ``string`` タイプでドライバ名を指定します。デフォルトの値は ``"local"`` です（デフォルトのドライバは、local ボリュームです）。
+コンテナの生成エンドポイント（``/containers/create``）は、``string`` 型の ``VolumeDriver`` を受け付け、ドライバ名を指定することができます。
+指定されていない場合は、デフォルトの ``"local"`` になります。
+（デフォルトドライバはローカルボリューム向けのものです。）
 
 .. Volume plugin protocol
 
