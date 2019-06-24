@@ -311,20 +311,50 @@ Docker は、ユーザが指定するボリューム名によるボリューム�
 
 ``ID`` は、マウントを要求する呼び出し側の固有 ID です。
 
-.. Response:
+.. **Response**:
 
-**応答** :
+**レスポンス**:
 
-.. code-block:: bash
+- **v1**:
 
-   {
-       "Mountpoint": "/path/to/directory/on/host",
-       "Err": null
-   }
+  .. ```json
+     {
+         "Mountpoint": "/path/to/directory/on/host",
+         "Err": ""
+     }
+     ```
 
-.. Respond with the path on the host filesystem where the volume has been made available, and/or a string error if an error occurred.
+  .. code-block:: json
 
-ボリュームが利用可能になったり、あるいはエラーが発生したりする場合には、ホスト・ファイルシステム上のパスを返します。
+     {
+         "Mountpoint": "/path/to/directory/on/host",
+         "Err": ""
+     }
+
+- **v2**:
+
+  .. ```json
+     {
+         "Mountpoint": "/path/under/PropagatedMount",
+         "Err": ""
+     }
+     ```
+
+  .. code-block:: json
+
+     {
+         "Mountpoint": "/path/under/PropagatedMount",
+         "Err": ""
+     }
+
+.. `Mountpoint` is the path on the host (v1) or in the plugin (v2) where the volume
+   has been made available.
+
+``Mountpoint`` は、ホスト上のパス（v1 の場合）、またはプラグイン内のパス（v2 の場合）のいずれかであり、ボリュームが生成されている場所を示します。
+
+.. `Err` is either empty or contains an error string.
+
+``Err`` は空か、あるいはエラー文字列を含みます。
 
 /VolumeDriver.Path
 --------------------
