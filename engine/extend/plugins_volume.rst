@@ -379,20 +379,52 @@ Docker は、ユーザが指定するボリューム名によるボリューム�
 
 指定された ``volume_name`` のボリュームに対してパスを要求します。
 
-.. Response:
+.. **Response**:
+**レスポンス**:
 
-**応答** :
+- **v1**:
 
-.. code-block:: bash
+  .. ```json
+     {
+         "Mountpoin": "/path/to/directory/on/host",
+         "Err": ""
+     }
+     ```
 
-   {
-       "Mountpoint": "/path/to/directory/on/host",
-       "Err": null
-   }
+  .. code-block:: json
 
-.. Respond with the path on the host filesystem where the volume has been made available, and/or a string error if an error occurred.
+     {
+         "Mountpoin": "/path/to/directory/on/host",
+         "Err": ""
+     }
 
-ボリュームが利用可能になったり、あるいはエラーが発生したりする場合には、ホスト・ファイルシステム上のパスを返します。
+- **v2**:
+
+  .. ```json
+     {
+         "Mountpoint": "/path/under/PropagatedMount",
+         "Err": ""
+     }
+     ```
+
+  .. code-block:: json
+
+     {
+         "Mountpoint": "/path/under/PropagatedMount",
+         "Err": ""
+     }
+
+.. Respond with the path on the host (v1) or inside the plugin (v2) where the
+   volume has been made available, and/or a string error if an error occurred.
+
+ホスト上のパス（v1 の場合）、またはプラグイン内のパス（v2 の場合）のいずれか、ボリュームが生成されている場所を返します。
+エラーが発生した場合は、文字列によるエラーを返します。
+
+.. `Mountpoint` is optional. However, the plugin may be queried again later if one
+   is not provided.
+
+``Mountpoint`` は常に必要なものではありません。
+ただしプラグインが利用できない状態になったときに、もう一度検索のために利用できます。
 
 
 VolumeDriver.Unmount
