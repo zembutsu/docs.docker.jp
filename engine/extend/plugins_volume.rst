@@ -461,19 +461,24 @@ Docker は名前つきボリュームを利用していません。
 
 ``ID`` は、アンマウントを要求する呼び出し側の固有 ID です。
 
-.. Response:
+.. **Response**:
+**レスポンス**:
 
-**レスポンス**
+.. ```json
+   {
+       "Err": ""
+   }
+   ```
 
-.. code-block:: bash
+.. code-block:: json
 
    {
-       "Err": null
+       "Err": ""
    }
 
 .. Respond with a string error if an error occurred.
 
-エラーが発生したら、エラー文字列を返します。
+エラーが発生した場合は、文字列によるエラーを返します。
 
 .. seealso:: 
 
