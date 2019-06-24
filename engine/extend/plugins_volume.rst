@@ -356,22 +356,28 @@ Docker は、ユーザが指定するボリューム名によるボリューム�
 
 ``Err`` は空か、あるいはエラー文字列を含みます。
 
-/VolumeDriver.Path
---------------------
+.. ### `/VolumeDriver.Path`
 
-.. Request:
+``/VolumeDriver.Path``
+-----------------------
 
-**リクエスト** :
+.. **Request**:
+**リクエスト**:
 
-.. code-block:: bash
+.. ```json
+   {
+       "Name": "volume_name"
+   }
+   ```
+.. code-block:: json
 
    {
        "Name": "volume_name"
    }
 
-.. Docker needs reminding of the path to the volume on the host.
+.. Request the path to the volume with the given `volume_name`.
 
-Docker はホスト上のボリュームのパスを覚えておく必要があります。
+指定された ``volume_name`` のボリュームに対してパスを要求します。
 
 .. Response:
 
