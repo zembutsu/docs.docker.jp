@@ -258,17 +258,23 @@ Docker デーモンはボリュームを利用できるようにするために�
 指定されたボリュームをディスク上から削除します。
 このリクエストは ``docker rm -v`` により、関連づいたコンテナからボリュームを削除する際に実行されます。
 
-.. Response:
+.. **Response**:
+**レスポンス**:
 
-**応答** :
+.. ```json
+   {
+       "Err": ""
+   }
+   ```
+.. code-block:: json
 
    {
-       "Err": null
+       "Err": ""
    }
 
 .. Respond with a string error if an error occurred.
 
-エラーが発生した場合は、エラー文字列が表示されます。
+エラーが発生した場合は、文字列によるエラーを返します。
 
 /VolumeDriver.Mount
 --------------------
