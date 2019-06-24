@@ -427,23 +427,39 @@ Docker は、ユーザが指定するボリューム名によるボリューム�
 ただしプラグインが利用できない状態になったときに、もう一度検索のために利用できます。
 
 
-VolumeDriver.Unmount
-------------------------------
+.. ### `/VolumeDriver.Unmount`
 
-.. Request:
+``/VolumeDriver.Unmount``
+--------------------------
 
-**リクエスト** :
+.. **Request**:
+**リクエスト**:
 
+.. ```json
+   {
+       "Name": "volume_name",
+       "ID": "b87d7442095999a92b65b3d9691e697b61713829cc0ffd1bb72e4ccd51aa4d6c"
+   }
+   ```
 
-.. code-block:: bash
+.. code-block:: json
 
    {
-       "Name": "volume_name"
+       "Name": "volume_name",
+       "ID": "b87d7442095999a92b65b3d9691e697b61713829cc0ffd1bb72e4ccd51aa4d6c"
    }
 
-.. Indication that Docker no longer is using the named volume. This is called once per container stop. Plugin may deduce that it is safe to deprovision it at this point.
+.. Docker is no longer using the named volume. `Unmount` is called once per
+   container stop. Plugin may deduce that it is safe to deprovision the volume at
+   this point.
 
-Docker ホストに指定した名前のボリュームを使わないことを指示します。これはコンテナが停止すると呼び出されます。その時点でプラグインはデプロビジョンが安全に行われているとみなします。
+Docker は名前つきボリュームを利用していません。
+``Unmount`` はコンテナが停止するたびに 1 回だけ呼び出されます。
+プラグインは、この時点でボリュームを削除しておくのが安全かもしれません。
+
+.. `ID` is a unique ID for the caller that is requesting the mount.
+
+``ID`` は、アンマウントを要求する呼び出し側の固有 ID です。
 
 .. Response:
 
