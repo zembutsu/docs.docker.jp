@@ -233,22 +233,30 @@ Docker デーモンはボリュームを利用できるようにするために�
 
 エラーが発生した場合は、文字列によるエラーを返します。
 
-/VolumeDriver.Remove
---------------------
+.. ### `/VolumeDriver.Remove`
 
-.. Request:
+``/VolumeDriver.Remove``
+-------------------------
 
-**リクエスト** :
+.. **Request**:
+**リクエスト**:
 
-.. code-block:: bash
+.. ```json
+   {
+       "Name": "volume_name"
+   }
+   ```
+.. code-block:: json
 
    {
        "Name": "volume_name"
    }
 
-.. Delete the specified volume from disk. This request is issued when a user invokes docker rm -v to remove volumes associated with a container.
+.. Delete the specified volume from disk. This request is issued when a user
+   invokes `docker rm -v` to remove volumes associated with a container.
 
-ディスクから特定のボリュームを削除します。このリクエストはユーザから ``docker rm -v`` を呼び出されたとき、コンテナに関連するボリュームを削除します。
+指定されたボリュームをディスク上から削除します。
+このリクエストは ``docker rm -v`` により、関連づいたコンテナからボリュームを削除する際に実行されます。
 
 .. Response:
 
