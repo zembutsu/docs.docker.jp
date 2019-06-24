@@ -162,21 +162,28 @@ VolumeDriver の生成
 指定されていない場合は、デフォルトの ``"local"`` になります。
 （デフォルトドライバはローカルボリューム向けのものです。）
 
-.. Volume plugin protocol
-
-.. _volume-plugin-protocol:
+.. ## Volume plugin protocol
 
 ボリューム・プラグイン・プロトコル
 ========================================
 
-.. If a plugin registers itself as a VolumeDriver when activated, then it is expected to provide writeable paths on the host filesystem for the Docker daemon to provide to containers to consume.
+.. If a plugin registers itself as a `VolumeDriver` when activated, it must
+   provide the Docker Daemon with writeable paths on the host filesystem. The Docker
+   daemon provides these paths to containers to consume. The Docker daemon makes
+   the volumes available by bind-mounting the provided paths into the containers.
 
-プラグインは自身を ``VolumeDriver`` として登録した時に有効化されます。その後、Docker デーモンがファイルシステム上に、コンテナが使うための書き込み可能なパスを提供します。
+プラグインが有効化される際に ``VolumeDriver`` として自分自身を登録するのであれば、このプラグインは Docker デーモンに対して、ホストファイルシステム上の書き込み可能なパスを提供しなければなりません。
+Docker デーモンはそのパスをコンテナに提供して利用させます。
+Docker デーモンはボリュームを利用できるようにするために、そのパスをバインドマウントしてコンテナに提供しています。
 
-.. The Docker daemon handles bind-mounting the provided paths into user containers.
+.. > **Note**: Volume plugins should *not* write data to the `/var/lib/docker/`
+   > directory, including `/var/lib/docker/volumes`. The `/var/lib/docker/`
+   > directory is reserved for Docker.
 
-Docker デーモンはユーザのコンテナが指定したパスに対し、マウントの拘束（バインド）を扱います。
+.. note::
 
+   ボリューム・プラグインは、``/var/lib/docker/`` ディレクトリや ``/var/lib/docker/volumes`` にデータ書き込みを行っては **いけません** 。
+   ``/var/lib/docker/`` ディレクトリは Docker により予約されています。
 
 .. /VolumeDriver.Create
 
