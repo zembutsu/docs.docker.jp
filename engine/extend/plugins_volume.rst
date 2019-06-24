@@ -206,9 +206,14 @@ Docker デーモンはボリュームを利用できるようにするために�
        "Opts": {}
    }
 
-.. Instruct the plugin that the user wants to create a volume, given a user specified volume name. The plugin does not need to actually manifest the volume on the filesystem yet (until Mount is called). Opts is a map of driver specific options passed through from the user request.
+.. Instruct the plugin that the user wants to create a volume, given a user
+   specified volume name. The plugin does not need to actually manifest the
+   volume on the filesystem yet (until `Mount` is called).
+   `Opts` is a map of driver specific options passed through from the user request.
 
-プラグインはユーザが作成を望むボリュームを、ユーザが指定した名前で作成するよう命令します。プラグインは実際にファイルシステムのボリュームを明示する必要がありません（マウントがコールされるまで）。Opts はドライバ固有のオプションをユーザがリクエストする箇所です。
+プラグインに対して、指定するボリューム名によりユーザがボリュームを生成したいということを伝えます。
+プラグインはこのとき、ファイルシステム上のボリュームを明らかにすることは、（``Mount`` が呼び出されるまでは）まだ必要ではありません。
+``Opts`` は、ユーザ・リクエストを通じて受け渡されるドライバ固有オプションのマッピングです。
 
 .. Response:
 
