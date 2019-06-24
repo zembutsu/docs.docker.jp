@@ -276,22 +276,40 @@ Docker デーモンはボリュームを利用できるようにするために�
 
 エラーが発生した場合は、文字列によるエラーを返します。
 
-/VolumeDriver.Mount
---------------------
+.. ### `/VolumeDriver.Mount`
 
-.. Request:
+``/VolumeDriver.Mount``
+------------------------
 
-**リクエスト** :
+.. **Request**:
+**リクエスト**:
 
-.. code-block:: bash
+.. ```json
+   {
+       "Name": "volume_name",
+       "ID": "b87d7442095999a92b65b3d9691e697b61713829cc0ffd1bb72e4ccd51aa4d6c"
+   }
+   ```
+.. code-block:: json
 
    {
-       "Name": "volume_name"
+       "Name": "volume_name",
+       "ID": "b87d7442095999a92b65b3d9691e697b61713829cc0ffd1bb72e4ccd51aa4d6c"
    }
 
-.. Docker requires the plugin to provide a volume, given a user specified volume name. This is called once per container start. If the same volume_name is requested more than once, the plugin may need to keep track of each new mount request and provision at the first mount request and deprovision at the last corresponding unmount request.
+.. Docker requires the plugin to provide a volume, given a user specified volume
+   name. `Mount` is called once per container start. If the same `volume_name` is requested
+   more than once, the plugin may need to keep track of each new mount request and provision
+   at the first mount request and deprovision at the last corresponding unmount request.
 
-Docker でプラグインがボリュームを必要とする場合は、ユーザがボリューム名を指定する必要があります。これは、コンテナが開始される度に必要です。既に作成されているボリューム名で呼び出されると、プラグインは既にマウントされている箇所に対して、新しいマウント・リクエストとプロビジョンが行われると、アンマウント・リクエストが呼び出され、プロビジョニングが取り消されるまで追跡します。
+Docker は、ユーザが指定するボリューム名によるボリュームを提供するものとして、このプラグインを必要とします。
+``Mount`` はコンテナが起動するたびに 1 回だけ呼び出されます。
+``volume_name`` が重複して要求された場合、プラグインは各マウント要求を記録しておく必要があります。
+そしてマウントが要求されたときにマウント処理を行い、これに対応するアンマウントの要求のときにマウント解除を行うことになります。
+
+.. `ID` is a unique ID for the caller that is requesting the mount.
+
+``ID`` は、マウントを要求する呼び出し側の固有 ID です。
 
 .. Response:
 
