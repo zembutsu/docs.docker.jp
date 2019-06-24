@@ -480,6 +480,219 @@ Docker は名前つきボリュームを利用していません。
 
 エラーが発生した場合は、文字列によるエラーを返します。
 
+.. ### `/VolumeDriver.Get`
+
+``/VolumeDriver.Get``
+----------------------
+
+.. **Request**:
+**リクエスト**:
+
+.. ```json
+   {
+       "Name": "volume_name"
+   }
+   ```
+.. code-block:: json
+
+   {
+       "Name": "volume_name"
+   }
+
+.. Get info about `volume_name`.
+
+``volume_name`` に関する情報を取得します。
+
+
+.. **Response**:
+**レスポンス**:
+
+- **v1**:
+
+  .. ```json
+     {
+       "Volume": {
+         "Name": "volume_name",
+         "Mountpoint": "/path/to/directory/on/host",
+         "Status": {}
+       },
+       "Err": ""
+     }
+     ```
+
+  .. code-block:: json
+
+     {
+       "Volume": {
+         "Name": "volume_name",
+         "Mountpoint": "/path/to/directory/on/host",
+         "Status": {}
+       },
+       "Err": ""
+     }
+
+- **v2**:
+
+  .. ```json
+     {
+       "Volume": {
+         "Name": "volume_name",
+         "Mountpoint": "/path/under/PropagatedMount",
+         "Status": {}
+       },
+       "Err": ""
+     }
+     ```
+  .. code-block:: json
+
+     {
+       "Volume": {
+         "Name": "volume_name",
+         "Mountpoint": "/path/under/PropagatedMount",
+         "Status": {}
+       },
+       "Err": ""
+     }
+
+.. Respond with a string error if an error occurred. `Mountpoint` and `Status` are
+   optional.
+
+エラーが発生した場合は、文字列によるエラーを返します。
+``Mountpoint`` と ``Status`` は常に必要なものではありません。
+
+
+.. ### /VolumeDriver.List
+
+``/VolumeDriver.List``
+-----------------------
+
+.. **Request**:
+**リクエスト**:
+
+.. ```json
+   {}
+   ```
+.. code-block:: json
+
+   {}
+
+.. Get the list of volumes registered with the plugin.
+
+プラグインに登録されているボリュームの一覧を取得します。
+
+.. **Response**:
+**レスポンス**:
+
+- **v1**:
+
+  .. ```json
+     {
+       "Volumes": [
+         {
+           "Name": "volume_name",
+           "Mountpoint": "/path/to/directory/on/host"
+         }
+       ],
+       "Err": ""
+     }
+     ```
+  .. code-block:: json
+
+     {
+       "Volumes": [
+         {
+           "Name": "volume_name",
+           "Mountpoint": "/path/to/directory/on/host"
+         }
+       ],
+       "Err": ""
+     }
+
+- **v2**:
+
+  .. ```json
+     {
+       "Volumes": [
+         {
+           "Name": "volume_name",
+           "Mountpoint": "/path/under/PropagatedMount"
+         }
+       ],
+       "Err": ""
+     }
+     ```
+  .. code-block:: json
+
+     {
+       "Volumes": [
+         {
+           "Name": "volume_name",
+           "Mountpoint": "/path/under/PropagatedMount"
+         }
+       ],
+       "Err": ""
+     }
+
+.. Respond with a string error if an error occurred. `Mountpoint` is optional.
+
+エラーが発生した場合は、文字列によるエラーを返します。
+``Mountpoint`` は常に必要なものではありません。
+
+.. ### /VolumeDriver.Capabilities
+
+``/VolumeDriver.Capabilities``
+
+.. **Request**:
+**リクエスト**:
+
+.. ```json
+   {}
+   ```
+
+.. code-block:: json
+
+   {}
+
+.. Get the list of capabilities the driver supports.
+
+ドライバがサポートするケーパビリティ（capability）の一覧を取得します。
+
+.. The driver is not required to implement `Capabilities`. If it is not
+   implemented, the default values are used.
+
+ドライバは必ず ``Capalibities`` を実装しなければならないわけではありません。
+実装されていなければデフォルトの値が用いられます。
+
+.. **Response**:
+**レスポンス**:
+
+.. ```json
+   {
+     "Capabilities": {
+       "Scope": "global"
+     }
+   }
+   ```
+.. code-block:: json
+
+   {
+     "Capabilities": {
+       "Scope": "global"
+     }
+   }
+
+.. Supported scopes are `global` and `local`. Any other value in `Scope` will be
+   ignored, and `local` is used. `Scope` allows cluster managers to handle the
+   volume in different ways. For instance, a scope of `global`, signals to the
+   cluster manager that it only needs to create the volume once instead of on each
+   Docker host. More capabilities may be added in the future.
+
+サポートされているスコープは ``global`` と ``local`` です。
+``Scope`` において他の値があると無視されて ``local`` が用いられます。
+``Scope`` はクラスタ・マネージャに対して、さまざまな方法によりボリュームを取り扱えるようにします。
+たとえば ``global`` スコープは、クラスタ・マネージャに対して、ただ一度だけボリュームを生成すればよいことを伝えます。つまり Docker ホストの個々において、ボリューム生成は不要とします。
+ケーパビリティの機能は将来、さらに充足されるかもしれません。
+
 .. seealso:: 
 
    Write a volume plugin
