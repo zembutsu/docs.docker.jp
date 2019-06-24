@@ -185,16 +185,21 @@ Docker デーモンはボリュームを利用できるようにするために�
    ボリューム・プラグインは、``/var/lib/docker/`` ディレクトリや ``/var/lib/docker/volumes`` にデータ書き込みを行っては **いけません** 。
    ``/var/lib/docker/`` ディレクトリは Docker により予約されています。
 
-.. /VolumeDriver.Create
+.. ### `/VolumeDriver.Create`
 
-/VolumeDriver.Create
---------------------------
+``/VolumeDriver.Create``
+-------------------------
 
-..   Request:
+.. **Request**:
+**リクエスト**
 
-**リクエスト** :
-
-.. code-block:: bash
+.. ```json
+   {
+       "Name": "volume_name",
+       "Opts": {}
+   }
+   ```
+.. code-block:: json
 
    {
        "Name": "volume_name",
