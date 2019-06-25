@@ -117,18 +117,22 @@ Compose のネットワーク機能
 ``web`` コンテナ内では、``db`` への接続文字列は ``postgres://db:5432`` といったものになります。
 そしてホストマシン上からは、その接続文字列は ``postgres://{DOCKER_IP}:8001`` となります。
 
-.. Updating containers
+.. ## Updating containers
 
-コンテナのアップデート
-==============================
+コンテナの更新
+===============
 
-.. If you make a configuration change to a service and run docker-compose up to update it, the old container will be removed and the new one will join the network under a different IP address but the same name. Running containers will be able to look up that name and connect to the new address, but the old address will stop working.
+.. If you make a configuration change to a service and run `docker-compose up` to update it, the old container will be removed and the new one will join the network under a different IP address but the same name. Running containers will be able to look up that name and connect to the new address, but the old address will stop working.
 
-サービスの設定を変更するには、 ``docker-compose up`` を実行して、古いコンテナの削除と新しいコンテナをネットワーク下で起動します。IP アドレスは異なりますが、ホスト名は同じです。実行中のコンテナはその名前で名前解決が可能になり、新しい IP アドレスで接続できますが、古い IP アドレスは機能しなくなります。
+サービスに対する設定を変更して ``docker-compose up`` により更新を行うと、それまでのコンテナは削除されて新しいコンテナがネットワークに接続されます。
+このとき IP アドレスは異なることになりますが、ホスト名は変わりません。
+コンテナの実行によってホスト名による名前解決を行い、新たな IP アドレスへ接続します。
+それまでの古い IP アドレスは利用できなくなります。
 
-.. If any containers have connections open to the old container, they will be closed. It is a container’s responsibility to detect this condition, look up the name again and reconnect.
+.. If any containers have connections open to the old container, they will be closed. It is a container's responsibility to detect this condition, look up the name again and reconnect.
 
-もし古いコンテナに対して接続しているコンテナがあれば、切断されます。この状況検知はコンテナ側の責任であり、名前解決を再度行い再接続します。
+古いコンテナに対して接続を行っていたコンテナがあれば、その接続は切断されます。
+この状況を検出するのは各コンテナの責任であって、ホスト名を探して再接続が行われます。
 
 .. Links
 
