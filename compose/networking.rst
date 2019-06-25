@@ -199,20 +199,24 @@ Compose ファイルやアプリケーションコードへの変更は必要あ
 ただし明示的にこれを指定することもできます。
 詳しくは後述します。
 
-.. Specifying custom networks
+.. ## Specifying custom networks
 
 .. _specifying-custom-networks:
 
-カスタム・ネットワークの指定
-==============================
+独自のネットワーク設定
+=======================
 
-.. Instead of just using the default app network, you can specify your own networks with the top-level networks key. This lets you create more complex topologies and specify custom network drivers and options. You can also use it to connect services to externally-created networks which aren’t managed by Compose.
+.. Instead of just using the default app network, you can specify your own networks with the top-level `networks` key. This lets you create more complex topologies and specify [custom network drivers](/engine/extend/plugins_network/) and options. You can also use it to connect services to externally-created networks which aren't managed by Compose.
 
-デフォルトのアプリケーション用のネットワークを使う代わりに、自分で任意のネットワーク指定が可能です。そのためには、トップレベルの ``networks`` キーを（Composeファイルで）使います。これにより、より複雑なトポロジのネットワーク作成や、 :doc:`カスタム・ネットワーク・ドライバ </engine/extend/plugins_network>` やオプションを指定できます。また、Compose によって管理されない、外部に作成したネットワークにサービスも接続できます。
+デフォルトのアプリ用ネットワークを利用するのではなく、独自のネットワークを指定することができます。
+これは最上位の ``networks`` キーを使って行います。
+これを使えば、より複雑なネットワーク・トポロジを生成したり、:doc:`独自のネットワーク・ドライバ </engine/extend/plugins_network/>` とそのオプションを設定したりすることができます。
+さらには、Compose が管理していない、外部に生成されたネットワークに対してサービスを接続することもできます。
 
-.. Each service can specify what networks to connect to with the service-level networks key, which is a list of names referencing entries under the top-level networks key.
+.. Each service can specify what networks to connect to with the *service-level* `networks` key, which is a list of names referencing entries under the *top-level* `networks` key.
 
-*サービス・レベル* の ``networks`` キーを使うことで、各サービスがどのネットワークに接続するか定義できます。このキーは *トップ・レベル* の ``networks`` キー直下にあるエントリ一覧から名前を参照するものです。
+サービスレベルの定義となる ``networks`` キーを利用すれば、サービスごとにどのネットワークに接続するかを指定できます。
+指定する値はサービス名のリストであり、最上位の ``networks`` キーに指定されている値を参照するものです。
 
 .. Here’s an example Compose file defining two custom networks. The proxy service is isolated from the db service, because they do not share a network in common - only app can talk to both.
 
