@@ -297,32 +297,48 @@ Compose ファイルやアプリケーションコードへの変更は必要あ
 * :ref:`最上位の networks キー <network-configuration-reference>`
 * :ref:`サービスレベルの networks キー <compose-file-networks>`
 
-.. Configuring the default network
+.. ## Configuring the default network
 
 .. _configuring-the-default-network:
 
 デフォルト・ネットワークの設定
 ==============================
 
-.. Instead of (or as well as) specifying your own networks, you can also change the settings of the app-wide default network by defining an entry under networks named default:
+.. Instead of (or as well as) specifying your own networks, you can also change the settings of the app-wide default network by defining an entry under `networks` named `default`:
 
-自分でネットワークを定義する場合、しない場合どちらでも、アプリケーション全体に適用できるデフォルトのネットワークを ``networks`` の直下の ``default`` エントリで定義できます。
+独自のネットワーク設定は行わずに、あるいはそれを行った上でさらに、アプリに対するデフォルトネットワークの設定を変更することができます。
+これは ``networks`` のもとに ``default`` という項目を定義して行います。
 
-.. code-block:: bash
+..  version: "3"
+    services:
+    
+      web:
+        build: .
+        ports:
+          - "8000:8000"
+      db:
+        image: postgres
 
-   version: '2'
-   
+    networks:
+      default:
+        # Use a custom driver
+        driver: custom-driver-1
+
+.. code-block:: yaml
+
+   version: "3"
    services:
+   
      web:
        build: .
        ports:
          - "8000:8000"
      db:
        image: postgres
-   
+
    networks:
      default:
-       # Use a custom driver
+       # 独自のドライバを利用
        driver: custom-driver-1
 
 .. Using a pre-existing network
