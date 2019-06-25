@@ -75,17 +75,21 @@ Compose のネットワーク機能
        ports:
          - "8001:5432"
 
-.. When you run docker-compose up, the following happens:
+.. When you run `docker-compose up`, the following happens:
 
-..    A network called myapp_default is created.
-    A container is created using web’s configuration. It joins the network myapp_default under the name web.
-    A container is created using db’s configuration. It joins the network myapp_default under the name db.
+``docker-compose up`` を実行すると以下の結果になります。
 
-``docker-compose up`` を実行したら、次のように動作します。
+.. 1.  A network called `myapp_default` is created.
+   2.  A container is created using `web`'s configuration. It joins the network
+       `myapp_default` under the name `web`.
+   3.  A container is created using `db`'s configuration. It joins the network
+       `myapp_default` under the name `db`.
 
-1. ``myapp_default`` という名称のネットワークを作成します。
-2. ``web`` 設定を使ったコンテナを作成します。これをネットワーク ``myapp_default`` に対して、``web`` という名称で追加します。
-3. ``db`` 設定を使ったコンテナを作成します。これをネットワーク ``myapp_default`` に対して、 ``db`` という名称で追加します。
+1.  ``myapp_default`` というネットワークが生成されます。
+2.  ``web`` に関する設定に従って 1 つのコンテナが生成されます。
+    そしてそのコンテナは ``web`` という名前でネットワーク ``myapp_default`` に参加します。
+3.  ``db`` に関する設定に従って 1 つのコンテナが生成されます。
+    そしてそのコンテナは ``db`` という名前でネットワーク ``myapp_default`` に参加します。
 
 .. Each container can now look up the hostname web or db and get back the appropriate container’s IP address. For example, web’s application code could connect to the URL postgres://db:5432 and start using the Postgres database.
 
