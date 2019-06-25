@@ -283,19 +283,19 @@ Compose ファイルやアプリケーションコードへの変更は必要あ
          foo: "1"
          bar: "2"
 
-.. Networks can be configured with static IP addresses by setting the ipv4_address and/or ipv6_address for each attached network.
+.. Networks can be configured with static IP addresses by setting the [ipv4_address and/or ipv6_address](compose-file.md#ipv4-address-ipv6-address) for each attached network.
 
-ネットワークでは、接続したネットワーク上で :ref:`IPv4 アドレスと IPv6 アドレスの両方、またはいずれか <ipv4-address-ipv6-address>` を設定できます。
+接続するネットワークのそれぞれは、:ref:`ipv4_address または ipv6_address <ipv4-address-ipv6-address>` を使ってスタティック IP アドレスを設定することができます。
 
 .. For full details of the network configuration options available, see the following references:
 
-ネットワーク設定オプションに関する詳しい情報は、以下のリファレンスをご覧ください。
+ネットワーク設定に関して利用可能なオプションについては、以下のリファレンスを参照してください。
 
-..    Top-level networks key
-    Service-level networks key
+.. - [Top-level `networks` key](compose-file.md#network-configuration-reference)
+   - [Service-level `networks` key](compose-file.md#networks)
 
-* :ref:`トップ・レベル networks キー <network-configuration-reference>`
-* :ref:`サービス・レベル networks キー <compose-file-networks>`
+* :ref:`最上位の networks キー <network-configuration-reference>`
+* :ref:`サービスレベルの networks キー <compose-file-networks>`
 
 .. Configuring the default network
 
