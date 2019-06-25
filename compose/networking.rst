@@ -47,14 +47,24 @@ Compose のネットワーク機能
    そしてプロジェクト名はこれが稼動しているディレクトリ名に基づいて定まります。
    プロジェクト名は :doc:`--project-name フラグ </compose/reference/overview>` あるいは :ref:`環境変数 COMPOSE_PROJECT_NAME <compose-project-name>` を使って上書きすることができます。
 
-.. For example, suppose your app is in a directory called myapp, and your docker-compose.yml looks like this:
+.. For example, suppose your app is in a directory called `myapp`, and your `docker-compose.yml` looks like this:
 
-例として、アプリケーションを置いたディレクトリ名を ``myapp`` とし、``docker-compose.yml`` は次のような内容とします。
+たとえばアプリが ``myapp`` というディレクトリにあって、``docker-compose.yml`` が以下のような内容であるとします。
+
+..     version: "3"
+       services:
+         web:
+           build: .
+           ports:
+             - "8000:8000"
+         db:
+           image: postgres
+           ports:
+             - "8001:5432"
 
 .. code-block:: yaml
 
-   version: '2'
-   
+   version: "3"
    services:
      web:
        build: .
@@ -62,6 +72,8 @@ Compose のネットワーク機能
          - "8000:8000"
      db:
        image: postgres
+       ports:
+         - "8001:5432"
 
 .. When you run docker-compose up, the following happens:
 
