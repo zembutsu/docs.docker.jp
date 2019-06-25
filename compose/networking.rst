@@ -91,13 +91,31 @@ Compose のネットワーク機能
 3.  ``db`` に関する設定に従って 1 つのコンテナが生成されます。
     そしてそのコンテナは ``db`` という名前でネットワーク ``myapp_default`` に参加します。
 
-.. Each container can now look up the hostname web or db and get back the appropriate container’s IP address. For example, web’s application code could connect to the URL postgres://db:5432 and start using the Postgres database.
+.. Each container can now look up the hostname `web` or `db` and
+   get back the appropriate container's IP address. For example, `web`'s
+   application code could connect to the URL `postgres://db:5432` and start
+   using the Postgres database.
 
-各コンテナは、これでホスト名を ``web`` あるいは ``db`` で名前解決することにより、コンテナに割り当てられた IP アドレスが分かります。たとえば、``web`` アプリケーションのコードが URL  ``postgres://db:5432`` にアクセスできるようになり、PostgreSQL データベースを利用開始します。
+各コンテナはこれ以降、ホスト名 ``web`` と ``db`` を認識できるようになり、コンテナの IP アドレスも適切に取得できるようになります。
+たとえば ``web`` のアプリケーション・コードでは、URL ``postgres://db:5432`` を使ってのアクセスが可能となり、Postgres データベースの利用ができるようになります。
 
-.. Because web explicitly maps a port, it’s also accessible from the outside world via port 8000 on your Docker host’s network interface.
+.. It is important to note the distinction between `HOST_PORT` and `CONTAINER_PORT`.
+   In the above example, for `db`, the `HOST_PORT` is `8001` and the container port is
+   `5432` (postgres default). Networked service-to-service
+   communication use the `CONTAINER_PORT`. When `HOST_PORT` is defined,
+   the service is accessible outside the swarm as well.
 
-``web`` はポートの割り当てを明示しているため、Docker ホスト側のネットワーク・インターフェース上からも、ポート 8000 を通して外からアクセス可能です。
+``HOST_PORT`` と ``CONTAINER_PORT`` の違いについては理解しておくことが重要です。
+上の例の ``db`` では、``HOST_PORT`` が ``8001``、コンテナ・ポートが ``5432`` （postgres のデフォルト） になっています。
+ネットワークにより接続されているサービス間の通信は ``CONTAINER_PORT`` を利用します。
+``HOST_PORT`` を定義すると、このサービスはスウォームの外からもアクセスが可能になります。
+
+.. Within the `web` container, your connection string to `db` would look like
+   `postgres://db:5432`, and from the host machine, the connection string would
+   look like `postgres://{DOCKER_IP}:8001`.
+
+``web`` コンテナ内では、``db`` への接続文字列は ``postgres://db:5432`` といったものになります。
+そしてホストマシン上からは、その接続文字列は ``postgres://{DOCKER_IP}:8001`` となります。
 
 .. Updating containers
 
