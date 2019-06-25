@@ -134,33 +134,43 @@ Compose のネットワーク機能
 古いコンテナに対して接続を行っていたコンテナがあれば、その接続は切断されます。
 この状況を検出するのは各コンテナの責任であって、ホスト名を探して再接続が行われます。
 
-.. Links
+.. ## Links
 
-リンク（links）
-====================
+links
+======
 
-.. Docker links are a one-way, single-host communication system. They should now be considered deprecated, and you should update your app to use networking instead. In the majority of cases, this will simply involve removing the links sections from your docker-compose.yml.
+.. Links allow you to define extra aliases by which a service is reachable from another service. They are not required to enable services to communicate - by default, any service can reach any other service at that service's name. In the following example, `db` is reachable from `web` at the hostnames `db` and `database`:
 
-Docker のリンク（link）は、一方通行の単一ホスト上における通信システムです。この機能は廃止される可能性があり、アプリケーションはネットワーク機能を使うようにアップデートすべきです。多くの場合は、``docker-compose.yml`` で ``link`` セクションを削除するだけです。
+links は自サービスが他のサービスからアクセスできるように、追加でエイリアスを定義するものです。
+これはサービス間の通信を行うために必要となるわけではありません。
+デフォルトにおいてサービスは、サービス名を使って他サービスにアクセスできます。
+以下の例においては、``db`` は ``web`` からアクセス可能であり、ホスト名 ``db`` あるいは ``database`` を使ってアクセスできます。
 
-.. Links allow you to define extra aliases by which a service is reachable from another service. They are not required to enable services to communicate - by default, any service can reach any other service at that service’s name. In the following example, db is reachable from web at the hostnames db and database:
-
-リンク機能（links）とは、他のサービスから到達可能なエイリアス（別名）を定義するものです。サービス間で通信するために必要ではありません。すなわち、デフォルトでは、あらゆるサービスはサービス名を通して到達できます。以下の例では、 ``web`` から ``db`` に到達するには、ホスト名の ``db`` と（エイリアスの） ``database`` が使えます。
+..  version: "3"
+    services:
+      
+      web:
+        build: .
+        links:
+          - "db:database"
+      db:
+        image: postgres
 
 .. code-block:: yaml
 
-   version: '2'
-      services:
-        web:
-          build: .
-          links:
-            - "db:database"
-        db:
-          image: postgres
+   version: "3"
+   services:
+     
+     web:
+       build: .
+       links:
+         - "db:database"
+     db:
+       image: postgres
 
-.. See the links reference for more information.
+.. See the [links reference](compose-file.md#links) for more information.
 
-詳しい情報は :ref:`links リファレンス <compose-file-links>` をご覧ください。
+詳細は :ref:`links リファレンス <compose-file-links>` を参照してください。
 
 .. Multi-host networking
 
