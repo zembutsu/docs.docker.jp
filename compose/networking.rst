@@ -172,21 +172,32 @@ links は自サービスが他のサービスからアクセスできるよう�
 
 詳細は :ref:`links リファレンス <compose-file-links>` を参照してください。
 
-.. Multi-host networking
+.. ## Multi-host networking
 
 .. _multi-host-networking:
 
-マルチホスト・ネットワーキング
+複数ホストによるネットワーク
 ==============================
 
-.. When deploying a Compose application to a Swarm cluster, you can make use of the built-in overlay driver to enable multi-host communication between containers with no changes to your Compose file or application code.
+.. > **Note**: The instructions in this section refer to [legacy Docker Swarm](/compose/swarm.md) operations, and will only work when targeting a legacy Swarm cluster. For instructions on deploying a compose project to the newer integrated swarm mode consult the [Docker Stacks](/compose/bundles.md) documentation.
 
-:doc:`Compose アプリケーションを Swarm クラスタにデプロイする <swarm>` 時に、ビルトインの ``overlay`` ドライバを使い、複数のホストを通してコンテナ間の通信を可能にできます。そのために
-アプリケーションのコードや Compose ファイルを書き換える必要はありません。
+.. note::
 
-.. Consult the Getting started with multi-host networking to see how to set up a Swarm cluster. The cluster will use the overlay driver by default, but you can specify it explicitly if you prefer - see below for how to do this.
+   ここに示す手順は、:doc:`かつての Docker Swarm </compose/swarm>` の操作に基づいています。 
+   したがってかつてのスウォーム・クラスタを対象とする場合にのみ動作します。
+   Compose によるプロジェクトを、最新の統合されたスウォーム・モードにデプロイするには、:doc:`Docker Stacks </compose/bundles>` に示すドキュメントを参照してください。
 
-Swarm クラスタのセットアップの仕方は、 :doc:`複数のホストでネットワーク機能を使う方法 </engine/userguide/networking/get-started-overlay>` を参考にしてください。デフォルトは ``overlay`` ドライバを使いますが、任意のドライバを指定可能です。詳しくは後述します。
+.. When [deploying a Compose application to a Swarm cluster](swarm.md), you can make use of the built-in `overlay` driver to enable multi-host communication between containers with no changes to your Compose file or application code.
+
+:doc:`Compose アプリケーションをスウォーム・クラスタにデプロイする <swarm>` 際には、ビルトインの ``overlay`` ドライバを利用して、コンテナ間で複数ホストによる通信を行うことが可能です。
+Compose ファイルやアプリケーションコードへの変更は必要ありません。
+
+.. Consult the [Getting started with multi-host networking](/engine/userguide/networking/get-started-overlay/) to see how to set up a Swarm cluster. The cluster will use the `overlay` driver by default, but you can specify it explicitly if you prefer - see below for how to do this.
+
+:doc:`複数ホストによるネットワークをはじめよう </engine/userguide/networking/get-started-overlay/>` を参考に、スウォーム・クラスタの構築方法を確認してください。
+デフォルトでクラスタは ``overlay`` ドライバを用います。
+ただし明示的にこれを指定することもできます。
+詳しくは後述します。
 
 .. Specifying custom networks
 
