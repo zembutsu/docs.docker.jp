@@ -218,35 +218,66 @@ Compose ファイルやアプリケーションコードへの変更は必要あ
 サービスレベルの定義となる ``networks`` キーを利用すれば、サービスごとにどのネットワークに接続するかを指定できます。
 指定する値はサービス名のリストであり、最上位の ``networks`` キーに指定されている値を参照するものです。
 
-.. Here’s an example Compose file defining two custom networks. The proxy service is isolated from the db service, because they do not share a network in common - only app can talk to both.
+.. Here's an example Compose file defining two custom networks. The `proxy` service is isolated from the `db` service, because they do not share a network in common - only `app` can talk to both.
 
-以下の Compose ファイルの例では、２つのカスタム・ネットワークを定義しています。 ``proxy`` サービスと ``db`` サービスは独立しています。これは共通のネットワークに接続していないためです。 ``app`` のみが両方と通信できます。
+以下において Compose ファイルは、独自のネットワークを 2 つ定義しています。
+``proxy`` サービスは ``db`` サービスから切り離されています。
+というのも両者はネットワークを共有しないためです。
+そして ``app`` だけがその両者と通信を行います。
+
+..  version: "3"
+    services:
+      
+      proxy:
+        build: ./proxy
+        networks:
+          - frontend
+      app:
+        build: ./app
+        networks:
+          - frontend
+          - backend
+      db:
+        image: postgres
+        networks:
+          - backend
+
+    networks:
+      frontend:
+        # Use a custom driver
+        driver: custom-driver-1
+      backend:
+        # Use a custom driver which takes special options
+        driver: custom-driver-2
+        driver_opts:
+          foo: "1"
+          bar: "2"
 
 .. code-block:: yaml
 
-   version: '2'
-   
+   version: "3"
    services:
+     
      proxy:
        build: ./proxy
        networks:
-         - front
+         - frontend
      app:
        build: ./app
        networks:
-         - front
-         - back
+         - frontend
+         - backend
      db:
        image: postgres
        networks:
-         - back
-   
+         - backend
+
    networks:
-     front:
-       # Use a custom driver
+     frontend:
+       # 独自ドライバーの利用
        driver: custom-driver-1
-     back:
-       # Use a custom driver which takes special options
+     backend:
+       # 所定のオプションを用いる独自ドライバーの利用
        driver: custom-driver-2
        driver_opts:
          foo: "1"
