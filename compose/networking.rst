@@ -341,16 +341,21 @@ Compose ファイルやアプリケーションコードへの変更は必要あ
        # 独自のドライバを利用
        driver: custom-driver-1
 
-.. Using a pre-existing network
+.. ## Using a pre-existing network
 
 .. _using-a-pre-existing-network:
 
-既存のネットワークを使う
+既存ネットワークの利用
 ==============================
 
-.. If you want your containers to join a pre-existing network, use the external option:
+.. If you want your containers to join a pre-existing network, use the [`external` option](compose-file.md#network-configuration-reference):
 
-コンテナを既存のネットワークに接続したい場合は、 ``external`` :ref:`オプション <network-configuration-reference>` を使います。
+コンテナを既存のネットワークに接続したい場合は :ref:`external オプション <network-configuration-reference>` を利用します。
+
+..  networks:
+      default:
+        external:
+          name: my-pre-existing-network
 
 .. code-block:: yaml
 
@@ -359,9 +364,10 @@ Compose ファイルやアプリケーションコードへの変更は必要あ
        external:
          name: my-pre-existing-network
 
-.. Instead of attemping to create a network called [projectname]_default, Compose will look for a network called my-pre-existing-network and connect your app’s containers to it.
+.. Instead of attempting to create a network called `[projectname]_default`, Compose will look for a network called `my-pre-existing-network` and connect your app's containers to it.
 
-``[プロジェクト名]_default`` という名称のネットワークを作成しようとしなくても、Compose は ``my-pre-existing-network`` という名称のネットワークを探し出し、コンテナのアプリケーションを接続できます。
+Compose は ``[projectname]_default`` という名前のネットワークを生成しようとはせず、``my-pre-existing-network`` というネットワークを探し出して、アプリのコンテナをそこに接続します。
+
 
 .. seealso:: 
 
