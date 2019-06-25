@@ -21,21 +21,31 @@ Compose のネットワーク機能
        :depth: 3
        :local:
 
-.. Note: This document only applies if you’re using version 2 of the Compose file format. Networking features are not supported for version 1 (legacy) Compose files.
+.. > **Note**: This document only applies if you're using [version 2 or higher of the Compose file format](compose-file.md#versioning). Networking features are not supported for version 1 (legacy) Compose files.
 
 .. note::
+   ここに示す内容は Compose ファイルフォーマットの :doc:`バージョン 2 <compose-file/compose-file-v2>` と :doc:`それ以降 <compose-file/>` に適用されます。
+   ネットワーク機能は :doc:`（古い）バージョン 1 <compose-file/compose-file-v1>` ではサポートされません。
 
-   このドキュメントが適用されるのは :ref:`Compose ファイル・フォーマットのバージョン２ <compose-file-versioning>` を使う場合です。ネットワーク機能はバージョン１（過去）の Compose ファイルではサポートされていません。
+.. By default Compose sets up a single
+   [network](/engine/reference/commandline/network_create/) for your app. Each
+   container for a service joins the default network and is both *reachable* by
+   other containers on that network, and *discoverable* by them at a hostname
+   identical to the container name.
 
-.. By default Compose sets up a single network for your app. Each container for a service joins the default network and is both reachable by other containers on that network, and discoverable by them at a hostname identical to the container name.
+デフォルトで Compose は、アプリ向けに単一の :doc:`ネットワーク </engine/reference/commandline/network_create/>` を設定します。
+1 つのサービスを構成する各コンテナは、そのデフォルトのネットワークに参加するので、ネットワーク上の他のコンテナからのアクセスが可能です。
+さらにコンテナ名と同等のホスト名を用いてコンテナの識別が可能となります。
 
-デフォルトでは、Compose はアプリケーションに対して :doc:`ネットワーク </engine/reference/commandline/network_create>` を１つ設定します。各コンテナ上のサービスはデフォルト・ネットワークに参加したら、同一ネットワーク上の他のコンテナから接続できるようになります。また、ホスト名とコンテナ名でも発見可能になります。
+.. > **Note**: Your app's network is given a name based on the "project name",
+   > which is based on the name of the directory it lives in. You can override the
+   > project name with either the [`--project-name`
+   > flag](reference/overview.md) or the [`COMPOSE_PROJECT_NAME` environment
+   > variable](reference/envvars.md#compose-project-name).
 
-.. Note: Your app’s network is given a name based on the “project name”, which is based on the name of the directory it lives in. You can override the project name with either the --project-name flag or the COMPOSE_PROJECT_NAME environment variable.
-
-.. note::
-
-   アプリケーション用のネットワークには、"プロジェクト名" と同じ名前が割り当てられます。プロジェクト名とは、作業している基準の（ベースとなる）ディレクトリ名です。このプロジェクト名は ``--project-name`` :doc:`フラグ </compose/reference/overview>` か ``COMPOSE_PROJECT_NAME`` :ref:`環境変数 <compose-project-name>` で変更できます。
+   アプリのネットワークには「プロジェクト名」に基づいた名前がつけられます。
+   そしてプロジェクト名はこれが稼動しているディレクトリ名に基づいて定まります。
+   プロジェクト名は :doc:`--project-name フラグ </compose/reference/overview>` あるいは :ref:`環境変数 COMPOSE_PROJECT_NAME <compose-project-name>` を使って上書きすることができます。
 
 .. For example, suppose your app is in a directory called myapp, and your docker-compose.yml looks like this:
 
