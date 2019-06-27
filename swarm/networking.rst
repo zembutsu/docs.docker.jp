@@ -169,6 +169,25 @@ Swarm のもとで ``overlay`` ネットワークを生成する場合、``-d`` 
 ローカルなスコープのネットワークを（たとえば ``bridge`` ネットワークドライバを利用して）生成する場合は、``<node>/<name>`` という記述を行う必要があります。
 こうしないと、ネットワークがランダムに選び出されたノード上に生成されてしまいます。
 
+.. ```bash
+   $ docker network create node-0/bridge2 -b bridge
+   921817fefea521673217123abab223
+   $ docker network create node-1/bridge2 -b bridge
+   5262bbfe5616fef6627771289aacc2
+   $ docker network ls
+   NETWORK ID          NAME                   DRIVER
+   3dd50db9706d        node-0/host            host
+   09138343e80e        node-0/bridge          bridge
+   8834dbd552e5        node-0/none            null
+   42131321acab        node-0/swarm_network   overlay
+   921817fefea5        node-0/bridge2         bridge
+   45782acfe427        node-1/host            host
+   8926accb25fd        node-1/bridge          bridge
+   6382abccd23d        node-1/none            null
+   42131321acab        node-1/swarm_network   overlay
+   5262bbfe5616        node-1/bridge2         bridge
+   ```
+
 .. code-block:: bash
 
    $ docker network create node-0/bridge2 -b bridge
@@ -187,6 +206,13 @@ Swarm のもとで ``overlay`` ネットワークを生成する場合、``-d`` 
    6382abccd23d        node-1/none            null
    42131321acab        node-1/swarm_network   overlay
    5262bbfe5616        node-1/bridge2         bridge
+
+.. `--opt encrypted` is a feature only available in Docker Swarm mode. It's not supported in Swarm standalone.
+   Network encryption requires key management, which is outside the scope of Swarm.
+
+``--opt encrypted`` は Docker Swarm モードにおいてのみ利用可能な機能です。
+これはスタンドアロンの Swarm ではサポートされていません。
+ネットワークの暗号化には鍵の管理機能が必要で、これは Swarm の機能範囲には含まれません。
 
 .. Remove a network
 
