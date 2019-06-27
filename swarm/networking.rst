@@ -111,16 +111,20 @@ Swarm ノードからネットワーク一覧を確認します。
 
 上に示すように、各ネットワーク名の先頭にはノード名がつきます。
 
-.. Create a network 
+.. ## Create a network
 
 .. _create-a-network:
 
 ネットワークの作成
 ====================
 
-.. By default, swarm is using the overlay network driver, a global scope driver. A global-scope network driver creates a network across an entire Swarm cluster. When you create an overlay network under Swarm, you can omit the -d option:
+.. By default, Swarm is using the `overlay` network driver, a global-scope network
+   driver. A global-scope network driver creates a network across an entire Swarm cluster.
+   When you create an `overlay` network under Swarm, you can omit the `-d` option:
 
-デフォルトの Swarm クラスタは、ネットワーク全体を範囲とする ``overlay`` ネットワーク・ドライバを使います。ネットワーク全体を範囲とするドライバを使えば、Swarm クラスタ全体を横断するネットワークを作成できます。Swarm で ``overlay`` ネットワーク作成時は ``-d`` オプションを省略できます。
+デフォルトで Swarm は、グローバルなスコープを持つネットワークドライバ ``overlay`` を用います。
+グローバルスコープのネットワークドライバは、Swarm クラスタ全体にわたるネットワークを生成します。
+Swarm のもとで ``overlay`` ネットワークを生成する場合、``-d`` オプションは省略できます。
 
 .. code-block:: bash
 
