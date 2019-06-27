@@ -21,13 +21,23 @@ Swarm とコンテナのネットワーク
        :depth: 3
        :local:
 
-.. Docker Swarm is fully compatible with Docker’s networking features. This includes the multi-host networking feature which allows creation of custom container networks that span multiple Docker hosts.
+.. Docker Swarm is fully compatible with Docker's networking features. This
+   includes the multi-host networking feature which allows creation of custom
+   container networks that span multiple Docker hosts.
 
-Docker Swarm は Docker のネットワーク機能と完全な互換性があります。互換性の中には複数のホストに対するマルチホスト・ネットワーク機能も含まれます。これは複数の Docker ホストを横断するカスタム・コンテナ・ネットワークを作成する機能です。
+Docker Swarm は Docker のネットワーク機能と完全に互換性があります。
+マルチホストによるネットワーク機能も含みます。
+これは複数の Docker ホストにわたっての独自のコンテナ・ネットワークを生成できるものです。
 
-.. Before using Swarm with a custom network, read through the conceptual information in Docker container networking. You should also have walked through the Get started with multi-host networking example.
+.. Before using Swarm with a custom network, read through the conceptual
+   information in [Docker container
+   networking](/engine/userguide/networking/).
+   You should also have walked through the [Get started with multi-host
+   networking](/engine/userguide/networking/get-started-overlay/)
+   example.
 
-Swarm をカスタム・ネットワークで使う前に、:doc:`Docker コンテナ・ネットワーク </engine/userguide/networking/dockernetworks>` の概念に関する情報をお読みください。また、 :doc:`/engine/userguide/networking/get-started-overlay` のサンプルも試すべきでしょう。
+独自のネットワークに対して Swarm を使うには、:doc:`Docker コンテナのネットワーク </engine/userguide/networking/index>` についての概念を一通り読んでおいてください。
+また :doc:`マルチホストネットワークをはじめよう </engine/userguide/networking/get-started-overlay>` の例を試しておくことも必要でしょう。
 
 .. Create a custom network in a Swarm cluster
 
