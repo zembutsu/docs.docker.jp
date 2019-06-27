@@ -72,16 +72,18 @@ Docker の libkv プロジェクトを通じて、Docker では Consul、Etcd、
 
 Swarm の各ノード上にてデーモンの設定と再起動を行えば、ネットワークを生成できるようになります。
 
-.. List networks
+.. ## List networks
 
 .. _list-networks:
 
-ネットワークの一覧
-====================
+ネットワークの一覧確認
+=======================
 
-.. This example assumes there are two nodes node-0 and node-1 in the cluster. From a Swarm node, list the networks:
+.. This example assumes there are two nodes `node-0` and `node-1` in the cluster.
+   From a Swarm node, list the networks:
 
-以下は、クラスタ上に２のノード ``node-0`` と ``node-1`` がある場合の例です。Swarm ノードからネットワーク一覧を表示しています。
+以下の例では、クラスタ内に 2 つのノード ``node-0``、``node-1`` があるとします。
+Swarm ノードからネットワーク一覧を確認します。
 
 .. code-block:: bash
 
