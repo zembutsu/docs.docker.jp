@@ -39,16 +39,24 @@ Docker Swarm は Docker のネットワーク機能と完全に互換性があ�
 独自のネットワークに対して Swarm を使うには、:doc:`Docker コンテナのネットワーク </engine/userguide/networking/index>` についての概念を一通り読んでおいてください。
 また :doc:`マルチホストネットワークをはじめよう </engine/userguide/networking/get-started-overlay>` の例を試しておくことも必要でしょう。
 
-.. Create a custom network in a Swarm cluster
+.. ## Create a custom network in a Swarm cluster
 
 .. _create-a-custom-network-in-a-swarm-cluster:
 
-Swarm クラスタにカスタム・ネットワークを作成
+Swarm クラスタにおける独自ネットワークの生成
 ==================================================
 
-.. Multi-host networks require a key-value store. The key-value store holds information about the network state which includes discovery, networks, endpoints, IP addresses, and more. Through the Docker’s libkv project, Docker supports Consul, Etcd, and ZooKeeper key-value store backends. For details about the supported backends, refer to the libkv project.
+.. Multi-host networks require a key-value store. The key-value store holds
+   information about the network state which includes discovery, networks,
+   endpoints, IP addresses, and more. Through the Docker's libkv project, Docker
+   supports Consul, Etcd, and ZooKeeper key-value store backends. For details about
+   the supported backends, refer to the [libkv
+   project](https://github.com/docker/libkv).
 
-マルチホスト・ネットワーク機能を使うにはキーバリュー・ストアが必要です。キーバリュー・ストアはネットワークの情報を保持する場所です。ここにはディスカバリ情報、ネットワーク、エンドポイント、 IP アドレス等が含まれます。Docker の libkv プロジェクトの成果により、Docker は Consul 、Etcd 、ZooKeeper の各キーバリュー・ストア・バックエンドをサポートします。詳細は `libkv プロジェクト <https://github.com/docker/libkv>`_ をご覧ください。
+マルチホストネットワークでは、キーバリューを保存するストア（store）が必要になります。
+このキーバリューストアは、ネットワークの状態を表わす情報を保持するものであり、ネットワーク検出、ネットワーク自体の情報、エンドポイント、IP アドレスなどの情報があります。
+Docker の libkv プロジェクトを通じて、Docker では Consul、Etcd、ZooKeeper といったキーバリューストアバックエンドがサポートされます。
+サポートしているこのバックエンドの詳細は `libkv プロジェクト <https://github.com/docker/libkv>`_ を参照してください。
 
 .. To create a custom network, you must choose a key-value store backend and implement it on your network. Then, you configure the Docker Engine daemon to use this store. Two required parameters, --cluster-store and --cluster-advertise, refer to your key-value store server.
 
