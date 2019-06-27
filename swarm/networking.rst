@@ -263,21 +263,20 @@ Swarm のもとで ``overlay`` ネットワークを生成する場合、``-d`` 
 ``swarm_network`` が全ノードから削除されました。
 また ``bridge2`` は ``node-0`` からのみ削除されました。
 
-.. Docker Swarm documentation index
+.. ## Docker Swarm documentation index
 
-Docker Swarm ドキュメント目次
+Docker Swarm ドキュメントの例
 ==============================
 
-.. 
-    User guide
-    Scheduler strategies
-    Scheduler filters
-    Swarm API
+.. - [Docker Swarm overview](index.md)
+   - [Scheduler strategies](scheduler/strategy.md)
+   - [Scheduler filters](scheduler/filter.md)
+   - [Swarm API](swarm-api.md)
 
-* :doc:`ユーザ・ガイド </swarm/index>`
-* :doc:`スケジュール・ストラテジ </swarm/scheduler/strategy>`
-* :doc:`スケジューラ・フィルタ </swarm/scheduler/filter>`
-* :doc:`Swarm API </swarm/swarm-api>`
+* :doc:`Docker Swarm 概要 <index>`
+* :doc:`スケジュール・ストラテジ <scheduler/strategy>`
+* :doc:`スケジュール・フィルタ <scheduler/filter>`
+* :doc:`Swarm API <swarm-api>`
 
 .. seealso:: 
 
