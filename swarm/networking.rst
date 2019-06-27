@@ -85,6 +85,17 @@ Swarm の各ノード上にてデーモンの設定と再起動を行えば、�
 以下の例では、クラスタ内に 2 つのノード ``node-0``、``node-1`` があるとします。
 Swarm ノードからネットワーク一覧を確認します。
 
+.. ```bash
+   $ docker network ls
+   NETWORK ID          NAME                   DRIVER
+   3dd50db9706d        node-0/host            host
+   09138343e80e        node-0/bridge          bridge
+   8834dbd552e5        node-0/none            null
+   45782acfe427        node-1/host            host
+   8926accb25fd        node-1/bridge          bridge
+   6382abccd23d        node-1/none            null
+   ```
+
 .. code-block:: bash
 
    $ docker network ls
@@ -98,7 +109,7 @@ Swarm ノードからネットワーク一覧を確認します。
 
 .. As you can see, each network name is prefixed by the node name.
 
-このように、各ネットワーク名の接頭語がノード名になっていることが分かります。
+上に示すように、各ネットワーク名の先頭にはノード名がつきます。
 
 .. Create a network 
 
