@@ -45,17 +45,25 @@ Compose は :doc:`Docker links </engine/userguide/networking/default_network/doc
 
 サービスにおいて利用可能な環境変数を見るには、``docker-compose run SERVICE env`` を実行します。
 
-**name_PORT**
+.. <b><i>name</i>\_PORT</b><br>
+   Full URL, e.g. `DB_PORT=tcp://172.17.0.5:5432`
 
-.. Full URL, e.g. DB_PORT=tcp://172.17.0.5:5432
+.. raw:: html
 
-全ての URL です。例： ``DB_PORT=tcp://172.17.0.5:5432``
+   <b><i>name</i>_PORT</b>
 
-**name_PORT_num_protocol**
+完全な  URL。
+たとえば ``DB_PORT=tcp://172.17.0.5:5432``
 
-.. Full URL, e.g. DB_PORT_5432_TCP=tcp://172.17.0.5:5432
+.. <b><i>name</i>\_PORT\_<i>num</i>\_<i>protocol</i></b><br>
+   Full URL, e.g. `DB_PORT_5432_TCP=tcp://172.17.0.5:5432`
 
-全ての URL です。例： ``DB_PORT_5432_TCP=tcp://172.17.0.5:5432``
+.. raw:: html
+
+   <b><i>name</i>_PORT_<i>num</i>_<i>protocol</i></b>
+
+完全な  URL。
+たとえば ``DB_PORT_5432_TCP=tcp://172.17.0.5:5432``
 
 **name_PORT_num_protocol_ADDR**
 
