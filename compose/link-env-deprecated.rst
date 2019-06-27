@@ -7,12 +7,12 @@
 .. Commits on Feb 3, 2016 cf24c36c5549a2a87952da27c6e3d35974687e1c
 .. ----------------------------------------------------------------------------
 
-.. Link environment variables reference:
+.. title: Link environment variables (superseded)
 
-.. _link-environment-variables-reference:
+.. _link-environment-variables-superseded:
 
 =======================================
-リンク環境変数リファレンス
+リンク時の環境変数（機能修正）
 =======================================
 
 .. sidebar:: 目次
