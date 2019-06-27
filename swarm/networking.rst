@@ -214,14 +214,32 @@ Swarm のもとで ``overlay`` ネットワークを生成する場合、``-d`` 
 これはスタンドアロンの Swarm ではサポートされていません。
 ネットワークの暗号化には鍵の管理機能が必要で、これは Swarm の機能範囲には含まれません。
 
-.. Remove a network
+.. ## Remove a network
 
 ネットワークの削除
 ====================
 
-.. To remove a network you can use its ID or its name. If two different network have the same name, use may use <node>/<name>.
+.. To remove a network you can use its ID or its name. If two different networks
+   have the same name, include the `<node>` value:
 
-ネットワークの削除は、ネットワーク ID か ネットワーク名を使えます。異なる２つのネットワークが同じ名前の場合は、 ``<ノード名>/<名前>`` を使えます。
+ネットワークを削除するときは、ネットワーク ID かネットワーク名を用いた指定を行います。
+2 つの異なるネットワークが同一名である場合は、``<node>`` の記述を含めてください。
+
+.. ```bash
+   $ docker network rm swarm_network
+   42131321acab3233ba342443Ba4312
+   $ docker network rm node-0/bridge2
+   921817fefea521673217123abab223
+   $ docker network ls
+   NETWORK ID          NAME                   DRIVER
+   3dd50db9706d        node-0/host            host
+   09138343e80e        node-0/bridge          bridge
+   8834dbd552e5        node-0/none            null
+   45782acfe427        node-1/host            host
+   8926accb25fd        node-1/bridge          bridge
+   6382abccd23d        node-1/none            null
+   5262bbfe5616        node-1/bridge2         bridge
+   ```
 
 .. code-block:: bash
 
@@ -239,9 +257,11 @@ Swarm のもとで ``overlay`` ネットワークを生成する場合、``-d`` 
    6382abccd23d        node-1/none            null
    5262bbfe5616        node-1/bridge2         bridge
 
-.. swarm_network was removed from every node, bridge2 was removed only from node-0.
+.. The `swarm_network` was removed from every node. The `bridge2` was removed only
+   from `node-0`.
 
-``swarm_network``  は各ノードから削除されましたが、 ``bridge2`` は ``node-0`` からのみ削除されました。
+``swarm_network`` が全ノードから削除されました。
+また ``bridge2`` は ``node-0`` からのみ削除されました。
 
 .. Docker Swarm documentation index
 
