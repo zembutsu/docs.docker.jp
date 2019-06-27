@@ -163,9 +163,11 @@ Swarm のもとで ``overlay`` ネットワークを生成する場合、``-d`` 
 上に示されるように ``node-0/swarm_network`` と ``node-1/swarm_network`` は同じ ID を持ちます。
 クラスタ上にネットワークを生成すると、ノードすべてがアクセス可能になるわけです。
 
-.. If you want to want to create a local scope network (for example with the bridge driver) you should use <node>/<name> otherwise your network will be created on a random node.
+.. To create a local scope network (for example with the `bridge` network driver) you
+   should use `<node>/<name>` otherwise your network is created on a random node.
 
-ローカルな範囲でネットワークを作成したい場合は（例えば、ブリッジ・ドライバを使いたい時）、 ``<ノード名>/<名前>`` の形式でなければ、ランダムに選んだノード上でネットワークを作成します。
+ローカルなスコープのネットワークを（たとえば ``bridge`` ネットワークドライバを利用して）生成する場合は、``<node>/<name>`` という記述を行う必要があります。
+こうしないと、ネットワークがランダムに選び出されたノード上に生成されてしまいます。
 
 .. code-block:: bash
 
