@@ -58,13 +58,19 @@ Swarm クラスタにおける独自ネットワークの生成
 Docker の libkv プロジェクトを通じて、Docker では Consul、Etcd、ZooKeeper といったキーバリューストアバックエンドがサポートされます。
 サポートしているこのバックエンドの詳細は `libkv プロジェクト <https://github.com/docker/libkv>`_ を参照してください。
 
-.. To create a custom network, you must choose a key-value store backend and implement it on your network. Then, you configure the Docker Engine daemon to use this store. Two required parameters, --cluster-store and --cluster-advertise, refer to your key-value store server.
+.. To create a custom network, you must choose a key-value store backend and
+   implement it on your network. Then, you configure the Docker Engine daemon to
+   use this store. Two required parameters,  `--cluster-store` and
+   `--cluster-advertise`, refer to your key-value store server.
 
-カスタム・ネットワークを作成するには、キーバリュー・ストア・バックエンドを選択し、自分のネットワーク上に実装する必要があります。それから、Docker Engine デーモンの設定を変更し、キーバリュー・ストアにデータを保管できるようにします。キーバリュー・ストア用のサーバを参照するには ``--cluster-store`` と ``--cluster-advertise`` という２つのパラメータが必要です。
+独自のネットワークを生成するには、キーバリューストアバックエンドを 1 つ選んで、ネットワーク上に実装する必要があります。
+そして Docker Engine デーモンにおいて、このストアを利用する設定を行います。
+設定の際には 2 つのパラメータ、``--cluster-store``, ``--cluster-advertise`` を使って、キーバリューストアの存在するサーバを指定します。
 
-.. Once you’ve configured and restarted the daemon on each Swarm node, you are ready to create a network.
+.. Once you've configured and restarted the daemon on each Swarm node, you are
+   ready to create a network.
 
-Swarm の各ノード上にあるデーモンの設定変更・再起動を行えば、ネットワーク作成の準備が整います。
+Swarm の各ノード上にてデーモンの設定と再起動を行えば、ネットワークを生成できるようになります。
 
 .. List networks
 
