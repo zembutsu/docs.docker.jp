@@ -126,6 +126,21 @@ Swarm ノードからネットワーク一覧を確認します。
 グローバルスコープのネットワークドライバは、Swarm クラスタ全体にわたるネットワークを生成します。
 Swarm のもとで ``overlay`` ネットワークを生成する場合、``-d`` オプションは省略できます。
 
+.. ```bash
+   $ docker network create swarm_network
+   42131321acab3233ba342443Ba4312
+   $ docker network ls
+   NETWORK ID          NAME                   DRIVER
+   3dd50db9706d        node-0/host            host
+   09138343e80e        node-0/bridge          bridge
+   8834dbd552e5        node-0/none            null
+   42131321acab        node-0/swarm_network   overlay
+   45782acfe427        node-1/host            host
+   8926accb25fd        node-1/bridge          bridge
+   6382abccd23d        node-1/none            null
+   42131321acab        node-1/swarm_network   overlay
+   ```
+
 .. code-block:: bash
 
    $ docker network create swarm_network
@@ -141,9 +156,12 @@ Swarm のもとで ``overlay`` ネットワークを生成する場合、``-d`` 
    6382abccd23d        node-1/none            null
    42131321acab        node-1/swarm_network   overlay
 
-.. As you can see here, both the node-0/swarm_network and the node-1/swarm_network have the same ID. This is because when you create a network on the cluster, it is accessible from all the nodes.
+.. As you can see here, both the `node-0/swarm_network` and the
+   `node-1/swarm_network` have the same ID.  This is because when you create a
+   network on the cluster, it is accessible from all the nodes.
 
-ここで表示されているように、２つのノード上に ``node-0/swarm_network`` と ``node-1/swarm_network`` という同じ ID を持つネットワークがあります。これはクラスタに作成したネットワークであり、全てのノード上でアクセス可能なものです。
+上に示されるように ``node-0/swarm_network`` と ``node-1/swarm_network`` は同じ ID を持ちます。
+クラスタ上にネットワークを生成すると、ノードすべてがアクセス可能になるわけです。
 
 .. If you want to want to create a local scope network (for example with the bridge driver) you should use <node>/<name> otherwise your network will be created on a random node.
 
