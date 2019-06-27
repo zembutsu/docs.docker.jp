@@ -21,17 +21,17 @@
        :depth: 3
        :local:
 
-.. Note: Environment variables are no longer the recommended method for connecting to linked services. Instead, you should use the link name (by default, the name of the linked service) as the hostname to connect to. See the docker-compose.yml documentation for details.
+.. > **Note**: Environment variables are no longer the recommended method for connecting to linked services. Instead, you should use the link name (by default, the name of the linked service) as the hostname to connect to. See the [docker-compose.yml documentation](compose-file.md#links) for details.
+   >
+   > Environment variables will only be populated if you're using the [legacy version 1 Compose file format](compose-file.md#versioning).
 
 .. note::
 
-   サービスをリンクで接続する手法としては、環境変数の使用は推奨されなくなりました。そのかわりに、接続するホスト名として、名前を使ったリンクが可能です（デフォルトではサービスの名前でリンクします）。詳細は :ref:`docker-compose.yml ドキュメント <compose-file-links>` をご覧ください。
-
-.. Environment variables will only be populated if you’re using the legacy version 1 Compose file format.
-
-.. note::
-
-   環境変数を（Composeで自動的に扱えるように）は、 :ref:`過去の Compose ファイル形式バージョン１ <compose-file-version-1>` を使う場合のみです。
+   リンクされているサービスに接続する方法として、環境変数を用いることは推奨されなくなりました。
+   その代わりに、接続するホスト名としてリンク名（デフォルトはリンクされているサービス名）を用いてください。
+   詳しくは :doc:`docker-compose.yml ドキュメント <compose-file-links>` を参照してください。
+   
+   環境変数は :ref:`かつての Compose ファイルフォーマットバージョン 1 <compose-file-versioning>` においてのみ定義されます。
 
 .. Compose uses Docker links to expose services’ containers to one another. Each linked container injects a set of environment variables, each of which begins with the uppercase name of the container.
 
