@@ -33,13 +33,17 @@
    
    環境変数は :ref:`かつての Compose ファイルフォーマットバージョン 1 <compose-file-versioning>` においてのみ定義されます。
 
-.. Compose uses Docker links to expose services’ containers to one another. Each linked container injects a set of environment variables, each of which begins with the uppercase name of the container.
+.. Compose uses [Docker links](/engine/userguide/networking/default_network/dockerlinks.md)
+   to expose services' containers to one another. Each linked container injects a set of
+   environment variables, each of which begins with the uppercase name of the container.
 
-Compose はサービスのコンテナを他に公開するために、 :doc:`Docker リンク機能 </engine/userguide/networking/default_network/dockerlinks>` を使います。リンクされた各コンテナは環境変数のセットを持ます。環境変数は各コンテナ名を大文字にしたもので始まります。
+Compose は :doc:`Docker links </engine/userguide/networking/default_network/dockerlinks>` を利用して、サービスのコンテナをその他のコンテナに対して情報を公開します。
+リンクされたコンテナは複数の環境変数を提供します。
+各環境変数は、コンテナ名を大文字にしたものが先頭につきます。
 
-.. To see what environment variables are available to a service, run docker-compose run SERVICE env.
+.. To see what environment variables are available to a service, run `docker-compose run SERVICE env`.
 
-どのような環境変数が設定されているかを確認するには、 ``docker-compose run サービス名 env`` を実行します。
+サービスにおいて利用可能な環境変数を見るには、``docker-compose run SERVICE env`` を実行します。
 
 **name_PORT**
 
