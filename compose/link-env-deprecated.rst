@@ -65,29 +65,45 @@ Compose は :doc:`Docker links </engine/userguide/networking/default_network/doc
 完全な  URL。
 たとえば ``DB_PORT_5432_TCP=tcp://172.17.0.5:5432``
 
-**name_PORT_num_protocol_ADDR**
+.. <b><i>name</i>\_PORT\_<i>num</i>\_<i>protocol</i>\_ADDR</b><br>
+   Container's IP address, e.g. `DB_PORT_5432_TCP_ADDR=172.17.0.5`
 
-.. Container’s IP address, e.g. DB_PORT_5432_TCP_ADDR=172.17.0.5
+.. raw:: html
 
-コンテナの IP アドレスです。例： ``DB_PORT_5432_TCP_ADDR=172.17.0.5``
+   <b><i>name</i>_PORT_<i>num</i>_<i>protocol</i>_ADDR</b>
 
-**name_PORT_num_protocol_PORT**
+コンテナーの IP アドレス。
+たとえば ``DB_PORT_5432_TCP_ADDR=172.17.0.5``
 
-.. Exposed port number, e.g. DB_PORT_5432_TCP_PORT=5432
+.. <b><i>name</i>\_PORT\_<i>num</i>\_<i>protocol</i>\_PORT</b><br>
+   Exposed port number, e.g. `DB_PORT_5432_TCP_PORT=5432`
 
-公開するポート番号です。例： ``DB_PORT_5432_TCP_PORT=5432``
+.. raw:: html
 
-**name_PORT_num_protocol_PROTO**
+   <b><i>name</i>_PORT_<i>num</i>_<i>protocol</i>_PORT</b>
 
-.. Protocol (tcp or udp), e.g. DB_PORT_5432_TCP_PROTO=tcp
+公開されているポート番号。
+たとえば ``DB_PORT_5432_TCP_PORT=5432``
 
-プロトコル（tcp か udp ）を指定します。例： ``DB_PORT_5432_TCP_PROTO=tcp``
+.. <b><i>name</i>\_PORT\_<i>num</i>\_<i>protocol</i>\_PROTO</b><br>
+   Protocol (tcp or udp), e.g. `DB_PORT_5432_TCP_PROTO=tcp`
 
-**name_NAME**
+.. raw:: html
 
-.. Fully qualified container name, e.g. DB_1_NAME=/myapp_web_1/myapp_db_1
+   <b><i>name</i>_PORT_<i>num</i>_<i>protocol</i>_PROTO</b>
 
-コンテナの完全修飾名（fully qualified container name）を指定します。例： ``DB_1_NAME=/myapp_web_1/myapp_db_1``
+プロトコル（tcp または udp）。
+たとえば ``DB_PORT_5432_TCP_PROTO=tcp``
+
+.. <b><i>name</i>\_NAME</b><br>
+   Fully qualified container name, e.g. `DB_1_NAME=/myapp_web_1/myapp_db_1`
+
+.. raw:: html
+
+   <b><i>name</i>_NAME</b>
+
+完全修飾コンテナ名。
+たとえば ``DB_1_NAME=/myapp_web_1/myapp_db_1``
 
 .. Related Information
 
