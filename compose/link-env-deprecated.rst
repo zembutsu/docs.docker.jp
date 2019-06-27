@@ -122,6 +122,6 @@ Compose は :doc:`Docker links </engine/userguide/networking/default_network/doc
 
 .. seealso:: 
 
-   Link environment variables reference
+   Link environment variables (superseded)
       https://docs.docker.com/compose/link-env-deprecated/
 
