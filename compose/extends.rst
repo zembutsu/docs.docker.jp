@@ -21,13 +21,14 @@
 
 .. Compose supports two methods of sharing common configuration:
 
-Compose は２つのファイル共有方法をサポートしています。
+Compose がサポートする設定共有には 2 つの方法があります。
 
-..    Extending an entire Compose file by using multiple Compose files
-    Extending individual services with the extends field
+.. 1. Extending an entire Compose file by
+      [using multiple Compose files](extends.md#multiple-compose-files)
+   2. Extending individual services with [the `extends` field](extends.md#extending-services)
 
-1. Compose ファイル全体を :ref:`複数の Compose ファイルを使って <multiple-compose-files>` 拡張する。
-2. 個々のサービスを :ref:`\`extends\` フィールド <extending-services>` で拡張する。
+1. Compose ファイル全体を :ref:`複数の Compose ファイルの利用 <multiple-compose-files>` により拡張します。
+2. 個々のサービスを :ref:`extends フィールド <extending-services>` を使って拡張します。
 
 
 .. _multiple-compose-files:
