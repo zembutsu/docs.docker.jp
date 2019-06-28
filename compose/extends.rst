@@ -104,16 +104,20 @@ Compose はコマンドライン上に指定された順に、設定ファイル
 1 つは Compose アプリを異なる環境向けに切り替えるもの。
 もう 1 つは Compose アプリに対して管理タスクを実行するものです。
 
-.. Different environments
+.. #### Different environments
 
 .. _different-environments:
 
-異なる環境
+異なる環境向けの例
 ^^^^^^^^^^^^^^^^^^^^
 
-.. A common use case for multiple files is changing a development Compose app for a production-like environment (which may be production, staging or CI). To support these differences, you can split your Compose configuration into a few different files:
+.. A common use case for multiple files is changing a development Compose app
+   for a production-like environment (which may be production, staging or CI).
+   To support these differences, you can split your Compose configuration into
+   a few different files:
 
-複数のファイルを使う一般的な使用例は、開発環境のアプリ構成を、プロダクション風の環境（プロダクションかもしれませんし、ステージングや CI かもしれません）に変更することです。環境の違いをサポートするには、Compose 設定を複数のファイルに分割します。
+複数の設定ファイルを利用する例としてよくあるのは、開発環境向けの Compose アプリを、本番環境向けなど（本番環境、ステージング環境、CI 環境など）に切り替える場合です。
+こういった環境の違いに対応するには、Compose 設定ファイルをいくつかの設定ファイルに切り分けて行います。
 
 .. Start with a base file that defines the canonical configuration for the services.
 
