@@ -77,9 +77,19 @@ Compose ファイルが複数ある意味
 Compose はコマンドライン上に指定された順に、設定ファイルをマージします。
 詳細は :doc:`docker-compose コマンドリファレンス </compose/reference/overview>` の ``-f`` オプションに関する情報を参照してください。
 
-.. When you use multiple configuration files, you must make sure all paths in the files are relative to the base Compose file (the first Compose file specified with -f). This is required because override files need not be valid Compose files. Override files can contain small fragments of configuration. Tracking which fragment of a service is relative to which path is difficult and confusing, so to keep paths easier to understand, all paths must be defined relative to the base file.
+.. When you use multiple configuration files, you must make sure all paths in the
+   files are relative to the base Compose file (the first Compose file specified
+   with `-f`). This is required because override files need not be valid
+   Compose files. Override files can contain small fragments of configuration.
+   Tracking which fragment of a service is relative to which path is difficult and
+   confusing, so to keep paths easier to understand, all paths must be defined
+   relative to the base file.
 
-複数の設定ファイルを使う場合、全てのパスはベースになる Compose ファイル（ ``-f`` で１番めに指定したファイル）からの相対パスである必要があります。この指定が必要なのは、上書き用のファイルが適切な Compose ファイル形式でなくても構わないからです。上書きファイルは設定の一部だけでも問題ありません。相対パスで指定されたサービス断片の追跡は、難しく、混乱しがちです。そのため、パスが簡単に分かるようにするため、全てのパスの定義を、ベースファイルからの相対パスにする必要があります。
+複数の設定ファイルを利用する場合、各ファイルに記述されるパスは、基準となる Compose ファイル（1 つめの ``-f`` により指定された Compose ファイル）からの相対パスである必要があります。
+これは上書きするファイルが Compose ファイルとして有効である必要がないからです。
+上書きファイル内は、設定項目が部分的に含まれているだけで構いません。
+サービスに対する定義部分がどのパスからの相対パスとして定義されているのかといったことを追っていくのは、なかなか難しく理解しづらくなります。
+そこでパスを理解しやすくするために、パス指定はすべて、ベースとなるファイルからの相対パスとして定義するものとしています。
 
 .. Example use case
 
