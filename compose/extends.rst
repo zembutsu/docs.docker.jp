@@ -91,14 +91,18 @@ Compose はコマンドライン上に指定された順に、設定ファイル
 サービスに対する定義部分がどのパスからの相対パスとして定義されているのかといったことを追っていくのは、なかなか難しく理解しづらくなります。
 そこでパスを理解しやすくするために、パス指定はすべて、ベースとなるファイルからの相対パスとして定義するものとしています。
 
-.. Example use case
+.. ### Example use case
 
-使用例
+利用例
 ----------
 
-.. In this section are two common use cases for multiple compose files: changing a Compose app for different environments, and running administrative tasks against a Compose app.
+.. In this section are two common use cases for multiple compose files: changing a
+   Compose app for different environments, and running administrative tasks
+   against a Compose app.
 
-このセクションでは、複数の Compose ファイルを使う２つの例をとりあげます。環境の違いにより、構成するアプリを変更する方法。それと、Compose で実行したアプリケーションに対し、管理上のタスクを実行する方法です。
+この節では複数の Compose ファイルを利用する標準的な例を 2 つ示します。
+1 つは Compose アプリを異なる環境向けに切り替えるもの。
+もう 1 つは Compose アプリに対して管理タスクを実行するものです。
 
 .. Different environments
 
