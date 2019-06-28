@@ -119,9 +119,22 @@ Compose はコマンドライン上に指定された順に、設定ファイル
 複数の設定ファイルを利用する例としてよくあるのは、開発環境向けの Compose アプリを、本番環境向けなど（本番環境、ステージング環境、CI 環境など）に切り替える場合です。
 こういった環境の違いに対応するには、Compose 設定ファイルをいくつかの設定ファイルに切り分けて行います。
 
-.. Start with a base file that defines the canonical configuration for the services.
+.. Start with a base file that defines the canonical configuration for the
+   services.
 
-まず、サービスを正しく定義するベースファイルは次の通りです。
+まずはサービスの標準設定を行うベースファイルから始めます。
+
+..  web:
+      image: example/my_web_app:latest
+      links:
+        - db
+        - cache
+
+    db:
+      image: postgres:latest
+
+    cache:
+      image: redis:latest
 
 .. code-block:: yaml
    :caption: **docker-compose.yml**
@@ -131,14 +144,17 @@ Compose はコマンドライン上に指定された順に、設定ファイル
      links:
        - db
        - cache
-   
+
    db:
      image: postgres:latest
-   
+
    cache:
      image: redis:latest
 
-例として、開発環境用の設定に、ホスト上の同じポートを使用し、コードをボリュームとしてマウントし、web イメージを構築するものとします。
+.. In this example the development configuration exposes some ports to the
+   host, mounts our code as a volume, and builds the web image.
+
+この開発環境向け設定の例では、ホストに対してポートをいくつか公開し、ソースコードをボリュームとしてマウントした上で、ウェブイメージをビルドしています。
 
 .. code-block:: yaml
    :caption: **docker-compose.override.yml**
