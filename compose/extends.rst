@@ -43,11 +43,29 @@ Compose がサポートする設定共有には 2 つの方法があります。
 
 Compose ファイルを複数利用することにすれば、Compose によるアプリケーションを異なる環境、異なる作業フローに合わせてカスタマイズできます。
 
-デフォルトでは、Compose は２つのファイルを読み込みます。 ``docker-compose.yml`` と、オプションの ``docker-compose.override.yml`` （上書き用）ファイルです。慣例として、``docker-compose.yml`` には基本設定を含みます。上書きファイルとは、その名前が暗に示しているように、既存のサービスを新しいサービスに全て置き換えるものです。
+.. ### Understanding multiple Compose files
 
-.. If a service is defined in both files Compose merges the configurations using the rules described in Adding and overriding configuration.
+.. _understanding-multiple-compose-files:
 
-もし両方のファイルに定義があれば、Compose は追加された設定の情報でルールを上書きします。
+Compose ファイルが複数ある意味
+-------------------------------
+
+.. By default, Compose reads two files, a `docker-compose.yml` and an optional
+   `docker-compose.override.yml` file. By convention, the `docker-compose.yml`
+   contains your base configuration. The override file, as its name implies, can
+   contain configuration overrides for existing services or entirely new
+   services.
+
+デフォルトにおいて Compose は 2 つのファイルを読み込みます。
+``docker-compose.yml`` と、必要に応じて編集する ``docker-compose.override.yml`` です。
+慣習として ``docker-compose.yml`` には基本的な設定を含めます。
+``docker-compose.override.yml`` ファイルは、オーバーライドという表現が含まれていることから分かるように、既存のサービスあるいは新たに起動する全サービスに対しての上書き設定を行うものです。
+
+.. If a service is defined in both files, Compose merges the configurations using
+   the rules described in [Adding and overriding
+   configuration](extends.md#adding-and-overriding-configuration).
+
+サービスの定義が両方のファイルに存在した場合、Compose は :ref:`設定の追加と上書き <adding-and-overriding-configuration>` に示すルールに従って定義設定をマージします。
 
 .. To use multiple override files, or an override file with a different name, you can use the -f option to specify the list of files. Compose merges files in the order they’re specified on the command line. See the docker-compose command reference for more information about using -f.
 
