@@ -67,9 +67,15 @@ Compose ファイルが複数ある意味
 
 サービスの定義が両方のファイルに存在した場合、Compose は :ref:`設定の追加と上書き <adding-and-overriding-configuration>` に示すルールに従って定義設定をマージします。
 
-.. To use multiple override files, or an override file with a different name, you can use the -f option to specify the list of files. Compose merges files in the order they’re specified on the command line. See the docker-compose command reference for more information about using -f.
+.. To use multiple override files, or an override file with a different name, you
+   can use the `-f` option to specify the list of files. Compose merges files in
+   the order they're specified on the command line. See the [`docker-compose`
+   command reference](/compose/reference/overview.md) for more information about
+   using `-f`.
 
-複数の上書きファイルを使いたい場合や、違った名前で上書きしたい場合は、 ``-f`` オプションでファイルの一覧を指定可能です。Compose はコマンドライン上で指定した順番で、ファイルを統合します。詳細は :doc:`docker-compose コマンド・リファレンス </compose/reference/overview>`  の ``-f`` に関する情報をご覧ください。
+複数の上書きファイルがある場合、あるいは上書きファイルが 1 つであってもその名前を別にしている場合、``-f`` オプションを使って、ファイル名を列記して指定することができます。
+Compose はコマンドライン上に指定された順に、設定ファイルをマージします。
+詳細は :doc:`docker-compose コマンドリファレンス </compose/reference/overview>` の ``-f`` オプションに関する情報を参照してください。
 
 .. When you use multiple configuration files, you must make sure all paths in the files are relative to the base Compose file (the first Compose file specified with -f). This is required because override files need not be valid Compose files. Override files can contain small fragments of configuration. Tracking which fragment of a service is relative to which path is difficult and confusing, so to keep paths easier to understand, all paths must be defined relative to the base file.
 
