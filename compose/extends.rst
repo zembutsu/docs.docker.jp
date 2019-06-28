@@ -156,6 +156,26 @@ Compose はコマンドライン上に指定された順に、設定ファイル
 
 この開発環境向け設定の例では、ホストに対してポートをいくつか公開し、ソースコードをボリュームとしてマウントした上で、ウェブイメージをビルドしています。
 
+.. **docker-compose.override.yml**
+
+..  web:
+      build: .
+      volumes:
+        - '.:/code'
+      ports:
+        - 8883:80
+      environment:
+        DEBUG: 'true'
+
+    db:
+      command: '-d'
+      ports:
+        - 5432:5432
+
+    cache:
+      ports:
+        - 6379:6379
+
 .. code-block:: yaml
    :caption: **docker-compose.override.yml**
 
@@ -167,12 +187,12 @@ Compose はコマンドライン上に指定された順に、設定ファイル
        - 8883:80
      environment:
        DEBUG: 'true'
-   
+
    db:
      command: '-d'
      ports:
        - 5432:5432
-   
+
    cache:
      ports:
        - 6379:6379
