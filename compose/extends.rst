@@ -31,14 +31,17 @@ Compose がサポートする設定共有には 2 つの方法があります。
 2. 個々のサービスを :ref:`extends フィールド <extending-services>` を使って拡張します。
 
 
+.. ## Multiple Compose files
+
 .. _multiple-compose-files:
 
-.. Multiple Compose files
-
-複数の Compose ファイル
+複数の Compose ファイルの利用
 ==============================
 
-.. Using multiple Compose files enables you to customize a Compose application for different environments or different workflows.
+.. Using multiple Compose files enables you to customize a Compose application
+   for different environments or different workflows.
+
+Compose ファイルを複数利用することにすれば、Compose によるアプリケーションを異なる環境、異なる作業フローに合わせてカスタマイズできます。
 
 デフォルトでは、Compose は２つのファイルを読み込みます。 ``docker-compose.yml`` と、オプションの ``docker-compose.override.yml`` （上書き用）ファイルです。慣例として、``docker-compose.yml`` には基本設定を含みます。上書きファイルとは、その名前が暗に示しているように、既存のサービスを新しいサービスに全て置き換えるものです。
 
