@@ -255,18 +255,29 @@ Compose はコマンドライン上に指定された順に、設定ファイル
 
 本番環境での Compose 利用に関する情報は、:doc:`本番環境での Compose の利用 <production>` を参照してください。
 
-.. Administrative tasks
+.. #### Administrative tasks
 
-管理タスク
+管理タスクの例
 ^^^^^^^^^^^^^^^^^^^^
 
-.. Another common use case is running adhoc or administrative tasks against one or more services in a Compose app. This example demonstrates running a database backup.
+.. Another common use case is running adhoc or administrative tasks against one
+   or more services in a Compose app. This example demonstrates running a
+   database backup.
 
-他の一般的な使い方は、アドホックの実行や、構成アプリの１つまたは複数のサービスに対する管理タスクの実行です。ここでの例は、データベースのバックアップ実行をデモするものです。
+よく行われるもう 1 つの例は、Compose アプリにおけるサービスに対して、特別なタスクあるいは管理タスクを実行する場合です。
+ここでは、データベースバックアップを実行する例を示します。
 
-.. Start with a docker-compose.yml.
+.. Start with a **docker-compose.yml**.
 
-**docker-compose.yml** を次のようにします。
+**docker-compose.yml** から始めます。
+
+..  web:
+      image: example/my_web_app:latest
+      links:
+        - db
+
+    db:
+      image: postgres:latest
 
 .. code-block:: yaml
 
@@ -274,7 +285,7 @@ Compose はコマンドライン上に指定された順に、設定ファイル
      image: example/my_web_app:latest
      links:
        - db
-   
+
    db:
      image: postgres:latest
 
