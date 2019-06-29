@@ -235,19 +235,25 @@ Compose はコマンドライン上に指定された順に、設定ファイル
 
 .. To deploy with this production Compose file you can run
 
-このプロダクション向け Compose ファイルを使ってデプロイするには、次のように実行します。
+この本番環境向け Compose ファイルをデプロイするために、以下を実行します。
+
+..  docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
 .. code-block:: bash
 
    docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
-.. This deploys all three services using the configuration in docker-compose.yml and docker-compose.prod.yml (but not the dev configuration in docker-compose.override.yml).
+.. This deploys all three services using the configuration in
+   `docker-compose.yml` and `docker-compose.prod.yml` (but not the
+   dev configuration in `docker-compose.override.yml`).
 
-３つの全サービスがデプロイに使う設定が `docker-compose.yml` と `docker-compose.prod.yml` に含まれています（ `docker-compose.override.yml` に含まれる開発環境はありません）。
+これによって 3 つのサービスすべてがデプロイされますが、利用される設定は ``docker-compose.yml`` と ``docker-compose.prod.yml`` から読み込まれたものです。
+（``docker-compose.override.yml`` 内の開発環境向け設定は利用されません。）
 
-.. See production for more information about Compose in production.
+.. See [production](production.md) for more information about Compose in
+   production.
 
-Compose をプロダクションで使うための詳細情報は :doc:`プロダクション </compose/production>` をご覧ください。
+本番環境での Compose 利用に関する情報は、:doc:`本番環境での Compose の利用 <production>` を参照してください。
 
 .. Administrative tasks
 
