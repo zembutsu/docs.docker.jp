@@ -501,11 +501,18 @@ extends 設定の理解
 ウェブアプリケーションとキューワーカー（queue worker）です。
 この 2 つのサービスは同一のコードを用いるものであり、多くの設定オプションを共有します。
 
-.. In a common.yml we define the common configuration:
+.. In a **common.yml** we define the common configuration:
 
-**common.yml** ファイルでは、共通設定を定義します。
+**common.yml** では共通する設定を定義します。
 
-.. code-block:: bash
+..  app:
+      build: .
+      environment:
+        CONFIG_FILE_PATH: /code/config
+        API_KEY: xxxyyy
+      cpu_shares: 5
+
+.. code-block:: yaml
 
    app:
      build: .
