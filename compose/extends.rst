@@ -348,15 +348,29 @@ Compose はコマンドライン上に指定された順に、設定ファイル
    キーワードの追加、削除に関しては :ref:`バージョン 3 のまとめ <compose-versioning-version-3>` や :ref:`アップグレード方法 </compose/compose-file/compose-versioning-upgrading>` を参照してください。
    また `moby/moby#31101 <https://github.com/moby/moby/issues/31101)>`_ では、将来のバージョンにおいて、何らかの形式で ``extends`` をサポートする可能性について議論するスレッドがありますので、確認してみてください。
 
-.. Docker Compose’s extends keyword enables sharing of common configurations among different files, or even different projects entirely. Extending services is useful if you have several services that reuse a common set of configuration options. Using extends you can define a common set of service options in one place and refer to it from anywhere.
+.. Docker Compose's `extends` keyword enables sharing of common configurations
+   among different files, or even different projects entirely. Extending services
+   is useful if you have several services that reuse a common set of configuration
+   options. Using `extends` you can define a common set of service options in one
+   place and refer to it from anywhere.
 
-Docker Compose の ``extends`` （拡張）キーワードは、異なったファイル間で設定を共有できるだけでなく、異なったプロジェクトでも利用可能です。拡張サービスは複数のサービスを持っている場合、一般的な設定オプションの再利用に便利です。 ``extends`` を使えば、１箇所だけでなく、どこでも利用可能なサービス・オプションの共通セットを定義できます。
+Docker Compose の ``extends`` キーワードを使うと、さまざまな設定ファイルに共通する内容を共有することができます。
+それはまったく別のプロジェクト間でも可能です。
+ごく標準的な設定オプションを再利用しているサービスがいくつもある場合に、このサービス拡張機能を活用することができます。
+``extends`` を使って標準的なサービスオプションを 1 箇所に定義しておけば、それをどこからでも参照することができます。
 
-.. Note: links, volumes_from, and depends_on are never shared between services using >extends. These exceptions exist to avoid implicit dependencies—you always define links and volumes_from locally. This ensures dependencies between services are clearly visible when reading the current file. Defining these locally also ensures changes to the referenced file don’t result in breakage.
+.. Keep in mind that `links`, `volumes_from`, and `depends_on` are never shared
+   between services using `extends`. These exceptions exist to avoid implicit
+   dependencies; you always define `links` and `volumes_from` locally. This ensures
+   dependencies between services are clearly visible when reading the current file.
+   Defining these locally also ensures that changes to the referenced file don't
+   break anything.
 
-.. note::
-
-   ``extends`` を使っても ``links`` と ``volumes_form`` はサービスを共有しません。このような例外が存在しているのは、依存性が暗黙の内に発生しないようにするためです。 ``links`` と ``volumes_from`` は常にローカルで定義すべきです。そうすると、現在のファイルを読み込む時に、依存関係を明確化します。また、参照するファイルを変更したとしても、ローカルで定義する場合は壊れないようにします。
+``links``、``volumes_from``、``depends_on`` は、``extends`` を利用したサービス間での共有はされません。
+これらが例外となっているのは、気づかないうちに依存関係が発生してしまうことを避けるためです。
+``links`` や ``volumes_from`` はいつもローカルな定義に利用するものです。
+こうしているからこそ、そのときの設定ファイルを読めば、サービス間の依存関係がはっきりわかることになります。
+ローカルに定義しておくのは、参照されている側のファイルに変更が加わっても、影響がなく済むことにもつながります。
 
 .. Understand the extends configuration
 
