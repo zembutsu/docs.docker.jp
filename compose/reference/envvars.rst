@@ -118,13 +118,23 @@ Docker API は、クライアントが特定のバージョンを返す場合に
 この変数を用いるのは、そういった状況を一時的に解決するためです。
 具体的には、クライアントをアップグレードしたものの、サーバをまだアップグレードしていないような状況です。
 
-.. Running with this variable set and a known mismatch does prevent some Docker features from working properly. The exact features that fail would depend on the Docker client and server versions. For this reason, running with this variable set is only intended as a workaround and it is not officially supported.
+.. Running with this variable set and a known mismatch does prevent some Docker
+   features from working properly. The exact features that fail would depend on the
+   Docker client and server versions. For this reason, running with this variable
+   set is only intended as a workaround and it is not officially supported.
 
-この環境変数を設定したら、いくつかの Docker の機能が正常に動作しない可能性があります。実際にどのような挙動になるかは、クライアントとサーバのバージョンによって変わります。そのため、この環境変数を設定するのは、あくまで回避策であって、公式にサポートされている手法ではありません。
+この変数を設定したとしても、既知のバージョン不一致に該当していれば、Docker の機能が正常に動作しないことがあります。
+動作しない機能は、Docker クライアントやサーバのバージョンによって異なります。
+このことから、本変数を設定して実行するのはあくまで一時的な回避策であり、公式にサポートされるものではありません。
 
-.. If you run into problems running with this set, resolve the mismatch through upgrade and remove this setting to see if your problems resolve before notifying support.
+.. If you run into problems running with this set, resolve the mismatch through
+   upgrade and remove this setting to see if your problems resolve before notifying
+   support.
 
-もしこの環境変数を設定して何か問題が起きた場合は、サポートに解決策を訊ねる前に、バージョンの差違を解消した後、環境変数を削除してください。
+本変数を設定することで問題が発生する場合は、アップグレードを行ってバージョンの不一致を解消してください。
+そしてこの変数の定義を行わなかったらどうなるかを確認してください。
+それでも問題が解決しない場合はサポートに問い合わせてください。
+。
 
 .. DOCKER_HOST
 
