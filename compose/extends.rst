@@ -197,9 +197,16 @@ Compose はコマンドライン上に指定された順に、設定ファイル
      ports:
        - 6379:6379
 
-``docker-compose up`` を実行したら、この上書きファイルを自動的に読み込みます。
+.. When you run `docker-compose up` it reads the overrides automatically.
 
-次は、Compose を使ったアプリケーションをプロダクション環境で使えるようにします。そのために別の上書きファイルを作成します（このファイルは、異なる git リポジトリに保管されているか、あるいは異なるチームによって管理されているかもしれません）。
+``docker-compose up`` を実行すると、上書き用の設定ファイルが自動的に読み込まれます。
+
+.. Now, it would be nice to use this Compose app in a production environment. So,
+   create another override file (which might be stored in a different git
+   repo or managed by a different team).
+
+この Compose アプリは、このままでも十分に本番環境向けとすることができます。
+ただここでは、別の上書きファイルを生成します（このファイルは別の git リポジトリに含まれているとか、別の開発チームが管理するものであるかもしれません）。
 
 .. code-block:: yaml
    :caption: **docker-compose.prod.yml**
