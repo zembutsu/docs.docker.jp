@@ -208,6 +208,18 @@ Compose はコマンドライン上に指定された順に、設定ファイル
 この Compose アプリは、このままでも十分に本番環境向けとすることができます。
 ただここでは、別の上書きファイルを生成します（このファイルは別の git リポジトリに含まれているとか、別の開発チームが管理するものであるかもしれません）。
 
+.. **docker-compose.prod.yml**
+
+..  web:
+      ports:
+        - 80:80
+      environment:
+        PRODUCTION: 'true'
+
+    cache:
+      environment:
+        TTL: '500'
+
 .. code-block:: yaml
    :caption: **docker-compose.prod.yml**
 
@@ -216,7 +228,7 @@ Compose はコマンドライン上に指定された順に、設定ファイル
        - 80:80
      environment:
        PRODUCTION: 'true'
-   
+
    cache:
      environment:
        TTL: '500'
