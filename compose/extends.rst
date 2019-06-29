@@ -486,14 +486,20 @@ extends 設定の理解
      image: postgres
 
 
-.. Example use case
+.. ### Example use case
 
-使用例
+利用例
 ----------
 
-.. Extending an individual service is useful when you have multiple services that have a common configuration. The example below is a Compose app with two services: a web application and a queue worker. Both services use the same codebase and share many configuration options.
+.. Extending an individual service is useful when you have multiple services that
+   have a common configuration.  The example below is a Compose app with
+   two services: a web application and a queue worker. Both services use the same
+   codebase and share many configuration options.
 
-個々のサービス拡張は、複数のサービスが共通の設定を持っている場合に役立ちます。以下の例では、Compose アプリはウェブ・アプリケーションとキュー・ワーカー（queue worker）の、２つのサービスを持ちます。いずれのサービスも同じコードベースを使い、多くの設定オプションを共有します。
+複数のサービスを利用していてそこに共通設定が存在する場合に、単独のサービスを拡張することができるかもしれません。
+以下の例では Compose アプリにおいて 2 つのサービスがあります。
+ウェブアプリケーションとキューワーカー（queue worker）です。
+この 2 つのサービスは同一のコードを用いるものであり、多くの設定オプションを共有します。
 
 .. In a common.yml we define the common configuration:
 
