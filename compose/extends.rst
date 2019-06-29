@@ -289,7 +289,15 @@ Compose はコマンドライン上に指定された順に、設定ファイル
    db:
      image: postgres:latest
 
-**docker-compose.admin.yml**  に、データベースをエクスポートかバックアップする新しいサービスを追加します。
+.. In a **docker-compose.admin.yml** add a new service to run the database
+   export or backup.
+
+**docker-compose.admin.yml** において、新しいサービスを追加して、データベースのエクスポートまたはバックアップを行うようにします。
+
+..  dbadmin:
+      build: database_admin/
+      links:
+        - db
 
 .. code-block:: yaml
 
@@ -298,11 +306,16 @@ Compose はコマンドライン上に指定された順に、設定ファイル
      links:
        - db
 
-.. To start a normal environment run docker-compose up -d. To run a database backup, include the docker-compose.admin.yml as well.
+.. To start a normal environment run `docker-compose up -d`. To run a database
+   backup, include the `docker-compose.admin.yml` as well.
 
-通常の環境を開始するには ``docker-compose up -d`` を実行します。データベースのバックアップを行うには、``docker-compose.admin.yml`` も使います。
+通常の環境を起動するときは ``docker-compose up -d`` を実行します。
+またデータベースバックアップを実行するときは、``docker-compose.admin.yml`` も含めるようにして実行します。
 
-.. code-block:: bash
+..  docker-compose -f docker-compose.yml -f docker-compose.admin.yml \
+        run dbadmin db-backup
+
+.. code-block:: yaml
 
    docker-compose -f docker-compose.yml -f docker-compose.admin.yml \
        run dbadmin db-backup
