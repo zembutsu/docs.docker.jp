@@ -605,37 +605,28 @@ Compose では、元からあったサービスの定義を、ローカルのサ
    # 結果
    command: python otherapp.py
 
-.. In the case of build and image, using one in the local service causes Compose to discard the other, if it was defined in the original service.
+.. >  `build` and `image` in Compose file version 1
+   >
+   > In the case of `build` and `image`, when using
+   > [version 1 of the Compose file format](compose-file.md#version-1), using one
+   > option in the local service causes Compose to discard the other option if it
+   > was defined in the original service.
+   >
+   > For example, if the original service defines `image: webapp` and the
+   > local service defines `build: .` then the resulting service will have
+   > `build: .` and no `image` option.
+   >
+   > This is because `build` and `image` cannot be used together in a version 1
+   > file.
 
-``build`` と ``image`` の場合、ローカルでサービスの指定があれば、Compose は一方を破棄します。一方がオリジナルのサービスとして定義されている場合でもです。
-
-.. Example of image replacing build:
-
-image が build を置き換える例：
-
-.. code-block:: yaml
-
-   # 元のサービス
-   build: .
-   
-   # ローカルのサービス
-   image: redis
-   
-   # 結果
-   image: redis
-
-build がイメージを置き換える例：
-
-.. code-block:: yaml
-
-   # 元のサービス
-   image: redis
-   
-   # ローカルのサービス
-   build: .
-   
-   # 結果
-   build: .
+.. note::
+   Compose ファイルバージョン 1 における ``build`` と ``image``
+     :doc:`Compose ファイルフォーマットバージョン 1 </compose/compose-file/compose-file-v1>` における ``build`` と ``image`` の 2 つについて、ローカル定義に一方を用いた場合に、他方が元々のサービスに定義されていたとすると、その他方のオプションは無視されます。
+     
+     たとえば元のサービスに ``image: webapp`` が定義されていて、ローカルサービスでは ``build: .`` が定義されているとします。
+     このときの結果は ``build: .`` となり、``image`` オプションはなくなります。
+     
+     これはファイルフォーマットバージョン 1 においては、``build`` と ``image`` を同時に用いることができないためです。
 
 .. For the multi-value options ports, expose, external_links, dns and dns_search, and tmpfs, Compose concatenates both sets of values:
 
