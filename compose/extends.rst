@@ -321,10 +321,32 @@ Compose はコマンドライン上に指定された順に、設定ファイル
        run dbadmin db-backup
 
 
+.. ## Extending services
+
 .. _extending-services:
 
 サービスの拡張
 ====================
+
+.. > **Note**: The `extends` keyword is supported in earlier Compose file formats
+   up to Compose file version 2.1 (see [extends in
+   v1](/compose/compose-file/compose-file-v1.md#extends) and [extends in
+   v2](/compose/compose-file/compose-file-v2.md#extends)), but is not supported in
+   Compose version 3.x. See the [Version 3
+   summary](/compose/compose-file/compose-versioning.md#version-3) of keys added
+   and removed, along with information on [how to
+   upgrade](/compose/compose-file/compose-versioning.md#upgrading). See
+   [moby/moby#31101](https://github.com/moby/moby/issues/31101) to follow the
+   discussion thread on possibility of adding support for `extends` in some form in
+   future versions.
+
+.. note::
+
+   キーワード ``extends`` は、かつての Compose ファイルフォーマットバージョン 2.1 までにおいてサポートされます。
+   （:ref:`バージョン 1 における extends </compose/compose-file/compose-file-v1-extends>` と :ref:`バージョン 2 における extends </compose/compose-file/compose-file-v2-extends>` を参照のこと。）
+   これは Compose バージョン 3.x ではサポートされていません。
+   キーワードの追加、削除に関しては :ref:`バージョン 3 のまとめ <compose-versioning-version-3>` や :ref:`アップグレード方法 </compose/compose-file/compose-versioning-upgrading>` を参照してください。
+   また `moby/moby#31101 <https://github.com/moby/moby/issues/31101)>`_ では、将来のバージョンにおいて、何らかの形式で ``extends`` をサポートする可能性について議論するスレッドがありますので、確認してみてください。
 
 .. Docker Compose’s extends keyword enables sharing of common configurations among different files, or even different projects entirely. Extending services is useful if you have several services that reuse a common set of configuration options. Using extends you can define a common set of service options in one place and refer to it from anywhere.
 
