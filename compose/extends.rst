@@ -521,7 +521,29 @@ extends 設定の理解
        API_KEY: xxxyyy
      cpu_shares: 5
 
-**docker-compose.yml** では、共通設定を用いる具体的なサービスを定義します。
+.. In a **docker-compose.yml** we define the concrete services which use the
+   common configuration:
+
+**docker-compose.yml** では、上の共通設定を利用する具体的なサービスを定義します。
+
+..  webapp:
+      extends:
+        file: common.yml
+        service: app
+      command: /code/run_web_app
+      ports:
+        - 8080:8080
+      links:
+        - queue
+        - db
+
+    queue_worker:
+      extends:
+        file: common.yml
+        service: app
+      command: /code/run_worker
+      links:
+        - queue
 
 .. code-block:: yaml
 
@@ -535,7 +557,7 @@ extends 設定の理解
      links:
        - queue
        - db
-   
+
    queue_worker:
      extends:
        file: common.yml
