@@ -705,22 +705,22 @@ Compose では、元からあったサービスの定義を、ローカルのサ
      - BAZ=local
 
 
-.. Compose documentation
+.. ## Compose documentation
 
 Compose のドキュメント
 ==============================
 
-..
-    User guide
-    Installing Compose
-    Getting Started
-    Get started with Django
-    Get started with Rails
-    Get started with WordPress
-    Command line reference
-    Compose file reference
+.. - [User guide](index.md)
+   - [Installing Compose](install.md)
+   - [Getting Started](gettingstarted.md)
+   - [Get started with Django](django.md)
+   - [Get started with Rails](rails.md)
+   - [Get started with WordPress](wordpress.md)
+   - [Command line reference](./reference/index.md)
+   - [Compose file reference](compose-file.md)
 
 * :doc:`ユーザガイド </index>`
+* :doc:`/compose/install`
 * :doc:`/compose/gettingstarted`
 * :doc:`/compose/django`
 * :doc:`/compose/rails`
