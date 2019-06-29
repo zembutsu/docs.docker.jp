@@ -94,20 +94,29 @@ Compose ファイルへのパスを指定します。
 
 :doc:`コマンドラインオプション <overview>` の ``-f`` も参照してください。
 
-.. COMPOSE_API_VERSION
+.. ## COMPOSE\_API\_VERSION
 
 .. _compose-api-version:
 
 COMPOSE_API_VERSION
 ====================
 
-.. The Docker API only supports requests from clients which report a specific version. If you receive a client and server don't have same version error using docker-compose, you can workaround this error by setting this environment variable. Set the version value to match the server version.
+.. The Docker API only supports requests from clients which report a specific
+   version. If you receive a `client and server don't have same version` error using
+   `docker-compose`, you can workaround this error by setting this environment
+   variable. Set the version value to match the server version.
 
-Docker API は、明確なバージョンを報告するクライアントに対してのみ応答します。 ``docker-compose`` を使う時、 ``client and server don't have same version error`` というエラーが出る場合は、このエラーを回避するために環境変数を設定します。バージョンの値がサーバのバージョンと一致するように設定します。
+Docker API は、クライアントが特定のバージョンを返す場合に限って、クライアントからのリクエストに応じます。
+``docker-compose`` を利用する際に ``client and server don't have same version`` （クライアントとサーバのバージョンが一致しません）というエラーが発生した場合は、その回避策として、本環境変数を設定する方法があります。
+サーバのバージョンに合致するようなバージョン値をこの変数に設定することです。
 
-.. Setting this variable is intended as a workaround for situations where you need to run temporarily with a mismatch between the client and server version. For example, if you can upgrade the client but need to wait to upgrade the server.
+.. Setting this variable is intended as a workaround for situations where you need
+   to run temporarily with a mismatch between the client and server version. For
+   example, if you can upgrade the client but need to wait to upgrade the server.
 
-この変数を設定するのは、クライアントとサーバのバージョンが一致しない場合でも、一時的に回避してコマンドを実行したい場合です。たとえば、クライアントをアップグレードしていても、サーバのアップグレードまで待つ必要がある場合です。
+クライアントとサーバのバージョンが一致しないときであっても、実行が必要になる状況があります。
+この変数を用いるのは、そういった状況を一時的に解決するためです。
+具体的には、クライアントをアップグレードしたものの、サーバをまだアップグレードしていないような状況です。
 
 .. Running with this variable set and a known mismatch does prevent some Docker features from working properly. The exact features that fail would depend on the Docker client and server versions. For this reason, running with this variable set is only intended as a workaround and it is not officially supported.
 
