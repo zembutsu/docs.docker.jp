@@ -40,20 +40,30 @@ Docker Compose コマンドラインの動作を設定するものとして、�
    ここに示す環境変数の中には、:doc:`環境ファイル </compose/env-file>` を用いて設定できるものもあります。
 
 
-.. COMPOSE_PROJECT_NAME
+.. ## COMPOSE\_PROJECT\_NAME
 
 .. _compose-project-name:
 
 COMPOSE_PROJECT_NAME
 ====================
 
-.. Sets the project name. This value is prepended along with the service name to the container container on start up. For example, if you project name is myapp and it includes two services db and web then compose starts containers named myapp_db_1 and myapp_web_1 respectively.
+.. Sets the project name. This value is prepended along with the service name to
+   the container on start up. For example, if your project name is `myapp` and it
+   includes two services `db` and `web` then compose starts containers named
+   `myapp_db_1` and `myapp_web_1` respectively.
 
-プロジェクト名を設定します。この値はコンテナの起動時に、コンテナのサービス名の先頭に付けられます。たとえば、２つのサービス ``db`` と ``web`` を持つプロジェクトの名前を ``myapp`` としたら、Compose は ``myapp_db_1`` と ``myapp_web_1`` と名前の付いたコンテナをそれぞれ起動します。
+プロジェクト名を設定します。
+この値は、コンテナの起動時にサービス名の先頭につけられます。
+たとえばプロジェクト名が ``myapp`` であり、2 つのサービス ``db`` と ``web`` があるとします。
+Compose がコンテナを起動したときにつける名前は、それぞれ ``myapp_db_1`` と ``myapp_web_1`` です。
 
-.. Setting this is optional. If you do not set this, the COMPOSE_PROJECT_NAME defaults to the basename of the project directory. See also the -p command-line option.
+.. Setting this is optional. If you do not set this, the `COMPOSE_PROJECT_NAME`
+   defaults to the `basename` of the project directory. See also the `-p`
+   [command-line option](overview.md).
 
-このプロジェクト名の設定はオプションです。設定をしなければ、 ``COMPOSE_PROJECT_NAME`` （Composeのプロジェクト名）は、デフォルトではプロジェクトのディレクトリを ``ベース名`` にします。詳しくは :doc:`コマンドライン・オプション </compose/reference/overview>` ``-p`` をご覧ください。
+この変数を設定するのは任意です。
+変数を設定しなかった場合 ``COMPOSE_PROJECT_NAME`` のデフォルトは、プロジェクトディレクトリの ``basename`` となります。
+:doc:`コマンドラインオプション <overview>` の ``-p`` も参照してください。
 
 .. COMPOSE_FILE
 
