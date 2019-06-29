@@ -136,16 +136,17 @@ Docker API は、クライアントが特定のバージョンを返す場合に
 それでも問題が解決しない場合はサポートに問い合わせてください。
 。
 
-.. DOCKER_HOST
+.. ## DOCKER\_HOST
 
 .. _docker-host:
 
 DOCKER_HOST
 ====================
 
-.. Sets the URL of the docker daemon. As with the Docker client, defaults to unix:///var/run/docker.sock.
+.. Sets the URL of the `docker` daemon. As with the Docker client, defaults to `unix:///var/run/docker.sock`.
 
-``docker`` デーモンの URL を設定します。Docker クライアントのデフォルトは ``unix:///var/run/docker.sock`` です。
+``docker`` デーモンの URL を設定します。
+Docker クライアントと同じように、このデフォルト値は ``unix:///var/run/docker.sock`` です。
 
 DOCKER_TLS_VERIFY
 ====================
