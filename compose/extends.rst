@@ -730,6 +730,6 @@ Compose のドキュメント
 
 .. seealso:: 
 
-   Extending services and Compose files
+   Share Compose configurations between files and projects
       https://docs.docker.com/compose/extends/
 
