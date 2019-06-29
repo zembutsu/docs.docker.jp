@@ -665,22 +665,39 @@ Compose では、元からあったサービスの定義を、ローカルのサ
      - "4000"
      - "5000"
 
-.. In the case of environment, labels, volumes and devices, Compose “merges” entries together with locally-defined values taking precedence:
+.. In the case of `environment`, `labels`, `volumes` and `devices`, Compose
+   "merges" entries together with locally-defined values taking precedence:
 
-``environment`` 、 ``label`` 、``volumes`` 、 ``devices`` の場合、Compose はローカルで定義している値を優先して統合します。
+``environment``、 ``labels``、 ``volumes``、 ``devices`` の場合、Compose は設定内容を "マージ" して、ローカル定義の値が優先するようにします。
+
+..  # original service
+    environment:
+      - FOO=original
+      - BAR=original
+
+    # local service
+    environment:
+      - BAR=local
+      - BAZ=local
+
+    # result
+    environment:
+      - FOO=original
+      - BAR=local
+      - BAZ=local
 
 .. code-block:: yaml
 
-   # 元のサービス
+   # 元からのサービス
    environment:
      - FOO=original
      - BAR=original
-   
-   # ローカルのサービス
+
+   # ローカル定義のサービス
    environment:
      - BAR=local
      - BAZ=local
-   
+
    # 結果
    environment:
      - FOO=original
