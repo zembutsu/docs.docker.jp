@@ -372,14 +372,21 @@ Docker Compose の ``extends`` キーワードを使うと、さまざまな設�
 こうしているからこそ、そのときの設定ファイルを読めば、サービス間の依存関係がはっきりわかることになります。
 ローカルに定義しておくのは、参照されている側のファイルに変更が加わっても、影響がなく済むことにもつながります。
 
-.. Understand the extends configuration
+.. ### Understand the extends configuration
 
 extends 設定の理解
 --------------------
 
-.. When defining any service in docker-compose.yml, you can declare that you are extending another service like this:
+.. When defining any service in `docker-compose.yml`, you can declare that you are
+   extending another service like this:
 
-``docker-compose.yml`` で定義したあらゆるサービスは、次のようにして他のサービスからの拡張（extend）を宣言を宣言できます。
+``docker-compose.yml`` 内にサービスを定義するときには、どのようなサービスであっても、別のサービスを拡張するように宣言できます。
+たとえば以下のとおりです。
+
+..  web:
+      extends:
+        file: common-services.yml
+        service: webapp
 
 .. code-block:: yaml
 
