@@ -418,9 +418,11 @@ extends 設定の理解
      volumes:
        - "/data"
 
-.. In this case, you’ll get exactly the same result as if you wrote docker-compose.yml with the same build, ports and volumes configuration values defined directly under web.
+.. In this case, you'll get exactly the same result as if you wrote
+   `docker-compose.yml` with the same `build`, `ports` and `volumes` configuration
+   values defined directly under `web`.
 
-この例のように、同様の ``docker-compose.yml`` の記述を行えば、``web`` サービスに対する ``build`` 、 ``ports`` 、 ``volumes`` 設定が常に同じになります。
+この例では、``docker-compose.yml`` ファイル内の ``web`` の直下に、``build``、``ports``、``volumes`` の設定を行った場合と同じ結果を得ることができます。
 
 .. You can go further and define (or re-define) configuration locally in docker-compose.yml:
 
