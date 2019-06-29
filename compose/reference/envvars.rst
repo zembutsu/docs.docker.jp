@@ -172,12 +172,18 @@ DOCKER_CERT_PATH
 TLS 検証に用いられる各種ファイル、``ca.pem``, ``cert.pem``, ``key.pem`` のパスを設定します。
 デフォルトは ``~/.docker`` です。
 
+.. ## COMPOSE\_HTTP\_TIMEOUT
+
+.. _compose_http_timeout:
+
 COMPOSE_HTTP_TIMEOUT
 ====================
 
-.. Configures the time (in seconds) a request to the Docker daemon is allowed to hang before Compose considers it failed. Defaults to 60 seconds.
+.. Configures the time (in seconds) a request to the Docker daemon is allowed to hang before Compose considers
+   it failed. Defaults to 60 seconds.
 
-Compose が Docker デーモンに対する処理が失敗（fail）したとみなす時間（秒単位）を設定します。デフォルトは 60 秒です。
+Docker デーモンへの処理要求にあたって、Compose の処理は失敗していなくても、デーモンをハングアップさせる所要時間を（秒単位で）指定します。
+デフォルトは 60 秒です。
 
 .. Related Information
 
