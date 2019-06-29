@@ -455,9 +455,21 @@ extends 設定の理解
      extends: web
      cpu_shares: 10
 
-.. You can also write other services and link your web service to them:
+.. You can also write other services and link your `web` service to them:
 
-あるいは、他のサービスから ``web`` サービスにリンクも可能です。
+また他のサービスを記述して、``web`` サービスからそのサービスへリンクすることも可能です。
+
+..  web:
+      extends:
+        file: common-services.yml
+        service: webapp
+      environment:
+        - DEBUG=1
+      cpu_shares: 5
+      links:
+        - db
+    db:
+      image: postgres
 
 .. code-block:: yaml
 
