@@ -65,16 +65,34 @@ Compose がコンテナを起動したときにつける名前は、それぞれ
 変数を設定しなかった場合 ``COMPOSE_PROJECT_NAME`` のデフォルトは、プロジェクトディレクトリの ``basename`` となります。
 :doc:`コマンドラインオプション <overview>` の ``-p`` も参照してください。
 
-.. COMPOSE_FILE
+.. ## COMPOSE\_FILE
 
 .. _compose-file:
 
 COMPOSE_FILE
 ====================
 
-.. Specify the file containing the compose configuration. If not provided, Compose looks for a file named docker-compose.yml in the current directory and then each parent directory in succession until a file by that name is found. See also the -f command-line option.
+.. Specify the path to a Compose file. If not provided, Compose looks for a file named
+   `docker-compose.yml` in the current directory and then each parent directory in
+   succession until a file by that name is found.
 
-Compose 設定を含むファイルを指定します。指定しなければ、Compose は現在のディレクトリにある ``docker-compose.yml`` という名称のファイルを探します。あるいは、親ディレクトリにあれば、そちらを使います。詳しくは :doc:`コマンドライン・オプション </compose/reference/overview>` ``-f`` をご覧ください。
+Compose ファイルへのパスを指定します。
+指定されなかった場合、Compose はカレントディレクトリ内の ``docker-compose.yml`` というファイルを探します。
+そしてファイルが見つからなければ、この名前のファイルを見つけるまで親ディレクトリを順にたどって探します。
+
+.. This variable supports multiple Compose files separated by a path separator (on
+   Linux and macOS the path separator is `:`, on Windows it is `;`). For example:
+   `COMPOSE_FILE=docker-compose.yml:docker-compose.prod.yml`. The path separator
+   can also be customized using `COMPOSE_PATH_SEPARATOR`.
+
+この変数は複数の Compose ファイルの指定をサポートしています。
+複数のパスはセパレータで区切ります（パスセパレータは Linux や macOS では ``:``、Windows では ``;``）。
+たとえば ``COMPOSE_FILE=docker-compose.yml:docker-compose.prod.yml`` とします。
+パスセパレータは ``COMPOSE_PATH_SEPARATOR`` を使って変更することもできます。
+
+.. See also the `-f` [command-line option](overview.md).
+
+:doc:`コマンドラインオプション <overview>` の ``-f`` も参照してください。
 
 .. COMPOSE_API_VERSION
 
