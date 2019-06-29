@@ -148,12 +148,17 @@ DOCKER_HOST
 ``docker`` デーモンの URL を設定します。
 Docker クライアントと同じように、このデフォルト値は ``unix:///var/run/docker.sock`` です。
 
+.. ## DOCKER\_TLS\_VERIFY
+
+.. _docker_tls_verify:
+
 DOCKER_TLS_VERIFY
 ====================
 
-.. When set to anything other than an empty string, enables TLS communication with the docker daemon.
+.. When set to anything other than an empty string, enables TLS communication with
+   the `docker` daemon.
 
-空白以外の何らかの値をセットしたら、 ``docker`` デーモンとの TLS 通信を有効化します。
+この変数が空文字以外であれば、``docker`` デーモンとの TLS 通信を有効にします。
 
 DOCKER_CERT_PATH
 ====================
