@@ -395,9 +395,19 @@ extends 設定の理解
        file: common-services.yml
        service: webapp
 
-.. This instructs Compose to re-use the configuration for the webapp service defined in the common-services.yml file. Suppose that common-services.yml looks like this:
+.. This instructs Compose to re-use the configuration for the `webapp` service
+   defined in the `common-services.yml` file. Suppose that `common-services.yml`
+   looks like this:
 
-これは ``common-services.yml`` ファイルで定義した ``webapp`` サービスの設定を、Compose に再利用するよう命令しています。ここでの ``common-services.yml`` は、次のようなものと仮定します。
+上の設定は Compose に対して、``common-services.yml`` ファイル内に定義されている ``webapp`` サービスの設定を再利用することを指示しています。
+``common-services.yml`` は以下のようになっているとします。
+
+..  webapp:
+      build: .
+      ports:
+        - "8000:8000"
+      volumes:
+        - "/data"
 
 .. code-block:: yaml
 
