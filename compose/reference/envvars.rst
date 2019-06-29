@@ -160,12 +160,17 @@ DOCKER_TLS_VERIFY
 
 この変数が空文字以外であれば、``docker`` デーモンとの TLS 通信を有効にします。
 
+.. ## DOCKER\_CERT\_PATH
+
+.. _docker_cert_path:
+
 DOCKER_CERT_PATH
 ====================
 
-.. Configures the path to the ca.pem, cert.pem, and key.pem files used for TLS verification. Defaults to ~/.docker.
+.. Configures the path to the `ca.pem`, `cert.pem`, and `key.pem` files used for TLS verification. Defaults to `~/.docker`.
 
-TLS 認証に使う ``ca.pem`` 、 ``cert.pem`` 、``key.pem``  ファイルのパスを設定します。デフォルトは ``~/.docker`` です。
+TLS 検証に用いられる各種ファイル、``ca.pem``, ``cert.pem``, ``key.pem`` のパスを設定します。
+デフォルトは ``~/.docker`` です。
 
 COMPOSE_HTTP_TIMEOUT
 ====================
