@@ -7,12 +7,12 @@
 .. Commits on Mar 25, 2016 dcdcf4869b6df77e16e243ace9e49c136d336b78
 .. -------------------------------------------------------------------
 
-.. CLI Environment Variables
+.. title: Compose CLI environment variables
 
-.. _cli-environment-variables:
+.. _compose-cli-environment-variables:
 
 =======================================
-CLI 環境変数
+Compose CLI 環境変数
 =======================================
 
 .. sidebar:: 目次
