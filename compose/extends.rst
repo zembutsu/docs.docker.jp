@@ -566,16 +566,19 @@ extends 設定の理解
      links:
        - queue
 
-.. Adding and overriding configuration
+.. ## Adding and overriding configuration
 
 .. _adding-and-overriding-configuration:
 
 設定の追加と上書き
 ====================
 
-.. Compose copies configurations from the original service over to the local one. If a configuration option is defined in both the original service the local service, the local value replaces or extends the original value.
+.. Compose copies configurations from the original service over to the local one.
+   If a configuration option is defined in both the original service and the local
+   service, the local value *replaces* or *extends* the original value.
 
-Compose は本来のサービス設定を、（訳者注：extends を使う時や、複数ファイルの読み込み時に）各所に対してコピー（引き継ぎ）します。もしも、設定オプションが元のサービスと、ローカル（直近の設定）のサービスの両方で定義された場合、ローカルの値は置き換えられるか、元の値を拡張します。
+Compose では、元からあったサービスの定義を、ローカルのサービス定義に向けてコピーします。
+設定オプションが元々のサービスとローカルのサービスの両方にて定義されていた場合は、元のサービスの値はローカルの値によって **置き換えられる** か、あるいは **拡張されます** 。
 
 .. For single-value options like image, command or mem_limit, the new value replaces the old value.
 
