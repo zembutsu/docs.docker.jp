@@ -424,9 +424,22 @@ extends 設定の理解
 
 この例では、``docker-compose.yml`` ファイル内の ``web`` の直下に、``build``、``ports``、``volumes`` の設定を行った場合と同じ結果を得ることができます。
 
-.. You can go further and define (or re-define) configuration locally in docker-compose.yml:
+.. You can go further and define (or re-define) configuration locally in
+   `docker-compose.yml`:
 
-更に ``docker-compose.yml`` でローカル環境の設定（再設定）も行えます。
+さらに ``docker-compose.yml`` 内には、ローカルでの設定内容を定義あるいは再定義することができます。
+
+..  web:
+      extends:
+        file: common-services.yml
+        service: webapp
+      environment:
+        - DEBUG=1
+      cpu_shares: 5
+
+    important_web:
+      extends: web
+      cpu_shares: 10
 
 .. code-block:: yaml
 
@@ -437,7 +450,7 @@ extends 設定の理解
      environment:
        - DEBUG=1
      cpu_shares: 5
-   
+
    important_web:
      extends: web
      cpu_shares: 10
