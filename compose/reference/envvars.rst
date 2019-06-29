@@ -23,17 +23,21 @@ Compose CLI 環境変数
 
 .. Several environment variables are available for you to configure the Docker Compose command-line behaviour.
 
-Docker Compose のコマンドラインでの動作を設定するために、複数の環境変数を利用可能です。
+Docker Compose コマンドラインの動作を設定するものとして、数種類の環境変数が利用できます。
 
-.. Variables starting with DOCKER_ are the same as those used to configure the Docker command-line client. If you’re using docker-machine, then the eval "$(docker-machine env my-docker-vm)" command should set them to their correct values. (In this example, my-docker-vm is the name of a machine you created.)
+.. Variables starting with `DOCKER_` are the same as those used to configure the
+   Docker command-line client. If you're using `docker-machine`, then the `eval "$(docker-machine env my-docker-vm)"` command should set them to their correct values. (In this example, `my-docker-vm` is the name of a machine you created.)
 
-``DOCKER_`` で始まる環境変数は、Docker コマンドライン・クライアントで用いられている設定と同じです。もしも ``docker-machine`` を使っているのであれば、 ``eval "$(docker-machine env my-docker-vm)"`` コマンドで適切な環境変数の値を設定します（この例では、 ``my-docker-vm`` は Docker Machine で作成したマシンの名前です ）。
+``DOCKER_`` が先頭につく変数は、Docker コマンドラインクライアントの設定に用いられる環境変数と同じです。
+``docker-machine`` を利用している場合は、``eval "$(docker-machine env my-docker-vm)"`` コマンドを実行することで、各環境変数に適切な値が設定されます。
+（この例では ``my-docker-vm`` が生成されているマシン名です。）
 
-.. Note: Some of these variables can also be provided using an environment file
+.. > **Note**: Some of these variables can also be provided using an
+   > [environment file](/compose/env-file.md)
 
 .. note::
 
-   :doc:`環境ファイル </compose/env-file>` を使っても変数を指定できます。
+   ここに示す環境変数の中には、:doc:`環境ファイル </compose/env-file>` を用いて設定できるものもあります。
 
 
 .. COMPOSE_PROJECT_NAME
