@@ -580,18 +580,28 @@ extends 設定の理解
 Compose では、元からあったサービスの定義を、ローカルのサービス定義に向けてコピーします。
 設定オプションが元々のサービスとローカルのサービスの両方にて定義されていた場合は、元のサービスの値はローカルの値によって **置き換えられる** か、あるいは **拡張されます** 。
 
-.. For single-value options like image, command or mem_limit, the new value replaces the old value.
+.. For single-value options like `image`, `command` or `mem_limit`, the new value
+   replaces the old value.
 
-``image`` 、``command`` 、 ``mem_limit`` のような単一値のオプションは、古い値が新しい値に置き換わります。
+1 つの値しか持たないオプション、たとえば ``image``、``command``、``mem_limit`` のようなものは、古い値が新しい値に置き換えられます。
+
+..  # original service
+    command: python app.py
+
+    # local service
+    command: python otherapp.py
+
+    # result
+    command: python otherapp.py
 
 .. code-block:: yaml
 
-   # 元のサービス
+   # 元からのサービス
    command: python app.py
-   
-   # ローカルのサービス
+
+   # ローカル定義のサービス
    command: python otherapp.py
-   
+
    # 結果
    command: python otherapp.py
 
