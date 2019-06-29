@@ -628,21 +628,37 @@ Compose では、元からあったサービスの定義を、ローカルのサ
      
      これはファイルフォーマットバージョン 1 においては、``build`` と ``image`` を同時に用いることができないためです。
 
-.. For the multi-value options ports, expose, external_links, dns and dns_search, and tmpfs, Compose concatenates both sets of values:
+.. For the **multi-value options** `ports`, `expose`, `external_links`, `dns`,
+   `dns_search`, and `tmpfs`, Compose concatenates both sets of values:
 
-**複数の値を持つオプション**、``ports`` 、 ``expose`` 、 ``external_links`` 、 ``dns`` 、 ``dns_search`` 、 ``tmpfs`` の場合、Compose は両方の値を連結します。
+**複数の値を持つオプション**、つまり ``ports``、 ``expose``、 ``external_links``、 ``dns``、 ``dns_search``、 ``tmpfs`` では、両者の設定をつなぎ合わせます。
+
+..  # original service
+    expose:
+      - "3000"
+
+    # local service
+    expose:
+      - "4000"
+      - "5000"
+
+    # result
+    expose:
+      - "3000"
+      - "4000"
+      - "5000"
 
 .. code-block:: yaml
 
-   # 元のサービス
+   # 元からのサービス
    expose:
      - "3000"
-   
-   # ローカルのサービス
+
+   # ローカル定義のサービス
    expose:
      - "4000"
      - "5000"
-   
+
    # 結果
    expose:
      - "3000"
