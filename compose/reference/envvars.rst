@@ -200,6 +200,22 @@ COMPOSE_TLS_VERSION
 デフォルトは ``TLSv1`` です。
 また対応している値は ``TLSv1``, ``TLSv1_1``, ``TLSv1_2`` です。
 
+.. ## COMPOSE\_CONVERT\_WINDOWS\_PATHS
+
+.. _compose_convert_windows_paths:
+
+COMPOSE_CONVERT_WINDOWS_PATHS
+==============================
+
+.. Enable path conversion from Windows-style to Unix-style in volume definitions.
+   Users of Docker Machine and Docker Toolbox on Windows should always set this. Defaults to `0`.
+   Supported values: `true` or `1` to enable, `false` or `0` to disable.
+
+ボリュームの定義において、パスの記述に関して Windows 書式と Unix 書式の変換を有効にします。
+Windows 上の Docker Machine と Docker Toolbox を利用するユーザーは、必ず本変数を設定しておきます。
+デフォルトは ``0`` です。
+また対応している値として ``true`` または ``1`` は有効を意味し、``false`` または ``0`` は無効を意味します。
+
 .. Related Information
 
 関連情報
