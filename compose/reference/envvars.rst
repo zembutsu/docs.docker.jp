@@ -244,6 +244,6 @@ COMPOSE_PATH_SEPARATOR
 
 .. seealso:: 
 
-   CLI Environment Variables
+   Compose CLI environment variables
       https://docs.docker.com/compose/reference/envvars/
 
