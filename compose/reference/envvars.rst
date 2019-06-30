@@ -185,6 +185,21 @@ COMPOSE_HTTP_TIMEOUT
 Docker デーモンへの処理要求にあたって、Compose の処理は失敗していなくても、デーモンをハングアップさせる所要時間を（秒単位で）指定します。
 デフォルトは 60 秒です。
 
+.. ## COMPOSE\_TLS\_VERSION
+
+.. _compose_tls_version:
+
+COMPOSE_TLS_VERSION
+====================
+
+.. Configure which TLS version is used for TLS communication with the `docker`
+   daemon. Defaults to `TLSv1`.
+   Supported values are: `TLSv1`, `TLSv1_1`, `TLSv1_2`.
+
+``docker`` デーモンとの TLS 通信に用いられる TLS バージョンを指定します。
+デフォルトは ``TLSv1`` です。
+また対応している値は ``TLSv1``, ``TLSv1_1``, ``TLSv1_2`` です。
+
 .. Related Information
 
 関連情報
