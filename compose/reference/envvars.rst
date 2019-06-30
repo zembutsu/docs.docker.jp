@@ -216,6 +216,18 @@ Windows 上の Docker Machine と Docker Toolbox を利用するユーザーは�
 デフォルトは ``0`` です。
 また対応している値として ``true`` または ``1`` は有効を意味し、``false`` または ``0`` は無効を意味します。
 
+.. ## COMPOSE\_PATH\_SEPARATOR
+
+.. _compose_path_separator:
+
+COMPOSE_PATH_SEPARATOR
+=======================
+
+.. If set, the value of the `COMPOSE_FILE` environment variable will be separated
+   using this character as path separator.
+
+これが設定されている場合に、環境変数 ``COMPOSE_FILE`` の設定値に対して、パスを区切る文字として本変数の設定値を用います。
+
 .. Related Information
 
 関連情報
