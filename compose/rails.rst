@@ -376,9 +376,34 @@ Docker on Mac あるいは Docker on Windows を利用している場合、``rai
    Created database 'myapp_development'
    Created database 'myapp_test'
 
-.. That’s it. Your app should now be running on port 3000 on your Docker daemon. If you’re using Docker Machine, then docker-machine ip MACHINE_VM returns the Docker host IP address.
+.. ### View the Rails welcome page!
 
-以上です。これで Docker デーモン上のポート 3000 でアプリケーションが動作しているでしょう。もし :doc:`Docker Machine </machine/index>` を使っている場合は、``docker-machine ip 仮想マシン名`` で Docker ホストの IP アドレスを確認できます。
+Rails の「ようこそ」ページの確認
+---------------------------------
+
+.. That's it. Your app should now be running on port 3000 on your Docker daemon.
+
+以上です。
+Docker デーモンを通じて、アプリがポート 3000 番を使って実行されています。
+
+.. On Docker for Mac and Docker for Windows, go to `http://localhost:3000` on a web
+   browser to see the Rails Welcome.
+
+Docker Desktop for Mac や Docker Desktop for Windows の場合は、ウェブ・ブラウザから ``http://localhost:3000`` にアクセスすれば Rails のようこそページを確認できます。
+
+.. If you are using [Docker Machine](/machine/overview.md), then `docker-machine ip
+   MACHINE_VM` returns the Docker host IP address, to which you can append the port
+   (`<Docker-Host-IP>:3000`).
+
+:doc:`Docker Machine </machine/overview>` を利用している場合は、``docker-machine ip MACHINE_VM`` を実行すると Docker ホストの IP アドレスを得ることができます。
+これにポート番号をつけて利用します。
+（``<Docker-Host-IP>:3000`` ）
+
+.. ![Rails example](images/rails-welcome.png)
+
+.. image:: /images/rails-welcome.png
+      :scale: 60%
+      :alt: Rails の例
 
 
 .. More Compose documentation
