@@ -170,14 +170,54 @@ Dockerfile の記述方法の詳細は :ref:`Docker ユーザ・ガイド <build
 そしてこのイメージを利用して、新たに生成されたコンテナ内にて ``rails new`` を実行します。
 処理が完了すれば、できたてのアプリが生成されているはずです。
 
+.. List the files.
+
+ファイル一覧を見てみます。
+
+.. ```shell
+   $ ls -l
+   total 64
+   -rw-r--r--   1 vmb  staff   222 Jun  7 12:05 Dockerfile
+   -rw-r--r--   1 vmb  staff  1738 Jun  7 12:09 Gemfile
+   -rw-r--r--   1 vmb  staff  4297 Jun  7 12:09 Gemfile.lock
+   -rw-r--r--   1 vmb  staff   374 Jun  7 12:09 README.md
+   -rw-r--r--   1 vmb  staff   227 Jun  7 12:09 Rakefile
+   drwxr-xr-x  10 vmb  staff   340 Jun  7 12:09 app
+   drwxr-xr-x   8 vmb  staff   272 Jun  7 12:09 bin
+   drwxr-xr-x  14 vmb  staff   476 Jun  7 12:09 config
+   -rw-r--r--   1 vmb  staff   130 Jun  7 12:09 config.ru
+   drwxr-xr-x   3 vmb  staff   102 Jun  7 12:09 db
+   -rw-r--r--   1 vmb  staff   211 Jun  7 12:06 docker-compose.yml
+   drwxr-xr-x   4 vmb  staff   136 Jun  7 12:09 lib
+   drwxr-xr-x   3 vmb  staff   102 Jun  7 12:09 log
+   drwxr-xr-x   9 vmb  staff   306 Jun  7 12:09 public
+   drwxr-xr-x   9 vmb  staff   306 Jun  7 12:09 test
+   drwxr-xr-x   4 vmb  staff   136 Jun  7 12:09 tmp
+   drwxr-xr-x   3 vmb  staff   102 Jun  7 12:09 vendor
+   
+   ```
+
 .. code-block:: bash
 
-    $ ls
-    Dockerfile   app          docker-compose.yml      tmp
-    Gemfile      bin          lib          vendor
-    Gemfile.lock config       log
-    README.rdoc  config.ru    public
-    Rakefile     db           test
+   $ ls -l
+   total 64
+   -rw-r--r--   1 vmb  staff   222 Jun  7 12:05 Dockerfile
+   -rw-r--r--   1 vmb  staff  1738 Jun  7 12:09 Gemfile
+   -rw-r--r--   1 vmb  staff  4297 Jun  7 12:09 Gemfile.lock
+   -rw-r--r--   1 vmb  staff   374 Jun  7 12:09 README.md
+   -rw-r--r--   1 vmb  staff   227 Jun  7 12:09 Rakefile
+   drwxr-xr-x  10 vmb  staff   340 Jun  7 12:09 app
+   drwxr-xr-x   8 vmb  staff   272 Jun  7 12:09 bin
+   drwxr-xr-x  14 vmb  staff   476 Jun  7 12:09 config
+   -rw-r--r--   1 vmb  staff   130 Jun  7 12:09 config.ru
+   drwxr-xr-x   3 vmb  staff   102 Jun  7 12:09 db
+   -rw-r--r--   1 vmb  staff   211 Jun  7 12:06 docker-compose.yml
+   drwxr-xr-x   4 vmb  staff   136 Jun  7 12:09 lib
+   drwxr-xr-x   3 vmb  staff   102 Jun  7 12:09 log
+   drwxr-xr-x   9 vmb  staff   306 Jun  7 12:09 public
+   drwxr-xr-x   9 vmb  staff   306 Jun  7 12:09 test
+   drwxr-xr-x   4 vmb  staff   136 Jun  7 12:09 tmp
+   drwxr-xr-x   3 vmb  staff   102 Jun  7 12:09 vendor
 
 .. The files rails new created are owned by root. This happens because the container runs as the root user. Change the ownership of the new files.
 
