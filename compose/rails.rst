@@ -479,6 +479,52 @@ Docker Desktop for Mac や Docker Desktop for Windows の場合は、ウェブ�
 2. 以下のコマンドを別の端末から実行して、データベースを再起動します。
    ``docker-compose run web rake db:create``
 
+.. ### Rebuild the application
+
+アプリケーションの再ビルド
+---------------------------
+
+.. If you make changes to the Gemfile or the Compose file to try out some different
+   configurations, you will need to rebuild. Some changes will require only
+   `docker-compose up --build`, but a full rebuild requires a re-run of
+   `docker-compose run web bundle install` to sync changes in the `Gemfile.lock` to
+   the host, followed by `docker-compose up --build`.
+
+Gemfile や Compose ファイルを編集して、いろいろと別の設定とした場合には、再ビルドが必要になります。
+変更内容によっては ``docker-compose up --build`` だけで済む場合もあります。
+しかし完全に再ビルドを行うには、``docker-compose run web bundle install`` を再度実行して、ホストにおける ``Gemfile.lock`` の変更と同期を取ることが必要になります。
+その後に ``docker-compose up --build`` を実行します。
+
+.. Here is an example of the first case, where a full rebuild is not necessary.
+   Suppose you simply want to change the exposed port on the local host from `3000`
+   in our first example to `3001`. Make the change to the Compose file to expose
+   port `3000` on the container through a new port, `3001`, on the host, and save
+   the changes:
+
+以下に示すのは前者、つまり完全な再ビルドは必要としない例です。
+ローカルホスト側の公開ポートを ``3000`` から ``3001`` に変更する場合を取り上げます。
+Compose ファイルにおいて、コンテナ側にて ``3000`` としているポートを新たなポート ``3001`` に変更します。
+そしてこの変更を保存します。
+
+.. ```none
+   ports: - "3001:3000"
+   ```
+.. code-block:: yaml
+
+   ports: - "3001:3000"
+
+.. Now, rebuild and restart the app with `docker-compose up --build`, then restart
+   the database: `docker-compose run web rake db:create`.
+
+再ビルドとアプリの再起動は ``docker-compose up --build`` により行います。
+そしてデータベースの再起動は ``docker-compose run web rake db:create`` を実行します。
+
+.. Inside the container, your app is running on the same port as before `3000`, but
+   the Rails Welcome is now available on `http://localhost:3001` on your local
+   host.
+
+コンテナ内部において、アプリはそれまでと変わらないポート ``3000`` で稼動していますが、ローカルホスト上から Rails ようこそページにアクセスするのは ``http://localhost:3001`` となります。
+
 
 .. More Compose documentation
 
