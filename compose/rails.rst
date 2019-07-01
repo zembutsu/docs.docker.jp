@@ -319,15 +319,32 @@ Docker on Mac あるいは Docker on Windows を利用している場合、``rai
 
    docker-compose up
 
-.. If all’s well, you should see some PostgreSQL output, and then—after a few seconds—the familiar refrain:
+.. If all's well, you should see some PostgreSQL output, and then—after a few
+   seconds—the familiar refrain:
 
-上手くいけば、次のような PostgreSQL の出力が見え、数秒後、似たような表示を繰り返します。
+正常に動作すれば、PostgreSQL による出力が確認できるはずです。
+そしてすぐに、いつもの出力が続きます。
 
 .. code-block:: bash
 
-   myapp_web_1 | [2014-01-17 17:16:29] INFO  WEBrick 1.3.1
-   myapp_web_1 | [2014-01-17 17:16:29] INFO  ruby 2.2.0 (2014-12-25) [x86_64-linux-gnu]
-   myapp_web_1 | [2014-01-17 17:16:29] INFO  WEBrick::HTTPServer#start: pid=1 port=3000
+   Starting rails_db_1 ...
+   Starting rails_db_1 ... done
+   Recreating rails_web_1 ...
+   Recreating rails_web_1 ... done
+   Attaching to rails_db_1, rails_web_1
+   db_1   | LOG:  database system was shut down at 2017-06-07 19:12:02 UTC
+   db_1   | LOG:  MultiXact member wraparound protections are now enabled
+   db_1   | LOG:  database system is ready to accept connections
+   db_1   | LOG:  autovacuum launcher started
+   web_1  | => Booting Puma
+   web_1  | => Rails 5.0.0.1 application starting in development on http://0.0.0.0:3000
+   web_1  | => Run `rails server -h` for more startup options
+   web_1  | Puma starting in single mode...
+   web_1  | * Version 3.9.1 (ruby 2.3.3-p222), codename: Private Caller
+   web_1  | * Min threads: 5, max threads: 5
+   web_1  | * Environment: development
+   web_1  | * Listening on tcp://0.0.0.0:3000
+   web_1  | Use Ctrl-C to stop
 
 .. Finally, you need to create the database. In another terminal, run:
 
