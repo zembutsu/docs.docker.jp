@@ -162,9 +162,13 @@ Dockerfile の記述方法の詳細は :ref:`Docker ユーザ・ガイド <build
 
    docker-compose run web rails new . --force --database=postgresql
 
-.. First, Compose will build the image for the web service using the Dockerfile. Then it’ll run rails new inside a new container, using that image. Once it’s done, you should have generated a fresh app:
+.. First, Compose will build the image for the `web` service using the
+   `Dockerfile`. Then it will run `rails new` inside a new container, using that
+   image. Once it's done, you should have generated a fresh app.
 
-Compose はまず ``Dockerfile`` を使い ``web`` サービスのイメージを構築します。それからそのイメージを使った新しいコンテナの中で、``rails new`` を実行します。完了すると、次のように新しいアプリが作成されています。
+最初に Compose は ``Dockerfile`` を用いて ``web`` サービスに対するイメージをビルドします。
+そしてこのイメージを利用して、新たに生成されたコンテナ内にて ``rails new`` を実行します。
+処理が完了すれば、できたてのアプリが生成されているはずです。
 
 .. code-block:: bash
 
