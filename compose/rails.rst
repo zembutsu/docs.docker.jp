@@ -146,18 +146,21 @@ Dockerfile の記述方法の詳細は :ref:`Docker ユーザ・ガイド <build
 
    このファイルの拡張子は ``.yml`` と ``.yaml`` のどちらでも構いません。
 
-.. Build the project
+.. ### Build the project
 
-プロジェクトの構築
-====================
+プロジェクトのビルド
+---------------------
 
-.. With those three files in place, you can now generate the Rails skeleton app using docker-compose run:
+.. With those four files in place, you can now generate the Rails skeleton app
+   using [docker-compose run](/compose/reference/run/):
 
-これらの３つのファイルを用い、``docker-compose run`` コマンドを使い新しい Rails スケルトン・アプリを作成します。
+ここまでの 4 つのファイルを使って :doc:`docker-compose run </compose/reference/run>` を実行し、Rails アプリのひながたを生成します。
+
+..  docker-compose run web rails new . --force --database=postgresql
 
 .. code-block:: bash
 
-   $ docker-compose run web rails new . --force --database=postgresql --skip-bundle
+   docker-compose run web rails new . --force --database=postgresql
 
 .. First, Compose will build the image for the web service using the Dockerfile. Then it’ll run rails new inside a new container, using that image. Once it’s done, you should have generated a fresh app:
 
