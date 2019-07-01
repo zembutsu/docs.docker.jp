@@ -63,16 +63,29 @@
    RUN bundle install
    ADD . /myapp
 
-これはイメージ内にアプリケーションのコードを送ります。ここでは Ruby イメージを使い、Bundler や内部の依存関係を持つコンテナを作成します。 ``Dockerfile`` の書き方など詳細情報については、 :ref:`Docker ユーザ・ガイド <building-an-image-from-a-dockerfile>` や :doc:`Dockerfile リファレンス </engine//reference/builder>` をご覧ください。
+.. That'll put your application code inside an image that will build a container
+   with Ruby, Bundler and all your dependencies inside it. For more information on
+   how to write Dockerfiles, see the [Docker user
+   guide](/engine/tutorials/dockerimages.md#building-an-image-from-a-dockerfile)
+   and the [Dockerfile reference](/engine/reference/builder.md).
 
-.. Next, create a bootstrap Gemfile which just loads Rails. It’ll be overwritten in a moment by rails new.
+上の設定はイメージ内部にアプリケーション・コードを置きます。
+そして Ruby、Bundler などの依存パッケージすべてをコンテナ内部においてビルドします。
+Dockerfile の記述方法の詳細は :ref:`Docker ユーザ・ガイド <building-an-image-from-a-dockerfile>` や :doc:`Dockerfile リファレンス </engine/reference/builder>` を参照してください。
 
-次に Rails を読み込むだけのブートストラップ用の ``Gemfile`` を作成します。``rails new`` によって上書きされます。
+.. Next, create a bootstrap `Gemfile` which just loads Rails. It'll be overwritten
+   in a moment by `rails new`.
+
+次にブートストラップを行うファイル ``Gemfile`` を生成して、Rails をロードできるようにします。
+このファイルは ``rails new`` を行ったタイミングで書き換わります。
+
+..  source 'https://rubygems.org'
+    gem 'rails', '5.0.0.1'
 
 .. code-block:: ruby
 
    source 'https://rubygems.org'
-   gem 'rails', '4.2.0'
+   gem 'rails', '5.0.0.1'
 
 .. You’ll need an empty Gemfile.lock in order to build our Dockerfile.
 
