@@ -526,9 +526,9 @@ Compose ファイルにおいて、コンテナ側にて ``3000`` としてい�
 コンテナ内部において、アプリはそれまでと変わらないポート ``3000`` で稼動していますが、ローカルホスト上から Rails ようこそページにアクセスするのは ``http://localhost:3001`` となります。
 
 
-.. More Compose documentation
+.. ## More Compose documentation
 
-Compose の更なるドキュメント
+Compose ドキュメント
 ==============================
 
 ..
