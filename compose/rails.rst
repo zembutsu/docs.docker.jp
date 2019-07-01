@@ -7,10 +7,10 @@
 .. Commits on Mar 28, 2016 93901ec4805b0a72ba71ae910d3214e4856cd876
 .. ----------------------------------------------------------------------------
 
-.. Quickstart Guide: Compose and Rails
+.. title: "Quickstart: Compose and Rails"
 
 =================================================
-クイックスタート・ガイド：Docker Compose と Rails
+クィックスタート: Compose と Rails
 =================================================
 
 .. sidebar:: 目次
