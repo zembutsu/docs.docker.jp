@@ -348,11 +348,14 @@ Docker on Mac あるいは Docker on Windows を利用している場合、``rai
 
 .. Finally, you need to create the database. In another terminal, run:
 
-最後にデータベースを作成する必要があります。他のターミナルで、次のように実行します。
+最後にデータベースを生成することが必要です。
+別の端末から以下を実行します。
+
+..  docker-compose run web rake db:create
 
 .. code-block:: bash
 
-   $ docker-compose run web rake db:create
+   docker-compose run web rake db:create
 
 .. That’s it. Your app should now be running on port 3000 on your Docker daemon. If you’re using Docker Machine, then docker-machine ip MACHINE_VM returns the Docker host IP address.
 
