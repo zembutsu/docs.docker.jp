@@ -309,13 +309,15 @@ Docker on Mac あるいは Docker on Windows を利用している場合、``rai
      <<: *default
      database: myapp_test
 
-.. You can now boot the app with:
+.. You can now boot the app with [docker-compose up](/compose/reference/up/):
 
-これでアプリケーションを起動できます。
+:doc:`docker-compose up </compose/reference/up>` によりアプリを起動します。
+
+..  docker-compose up
 
 .. code-block:: bash
 
-   $ docker-compose up
+   docker-compose up
 
 .. If all’s well, you should see some PostgreSQL output, and then—after a few seconds—the familiar refrain:
 
