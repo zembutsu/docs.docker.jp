@@ -253,14 +253,20 @@ Docker on Mac あるいは Docker on Windows を利用している場合、``rai
    docker-compose build
 
 
-.. Connect the database
+.. ### Connect the database
 
-データベースに接続
-====================
+データベースの接続設定
+-----------------------
 
-.. The app is now bootable, but you’re not quite there yet. By default, Rails expects a database to be running on localhost - so you need to point it at the db container instead. You also need to change the database and username to align with the defaults set by the postgres image.
+.. The app is now bootable, but you're not quite there yet. By default, Rails
+   expects a database to be running on `localhost` - so you need to point it at the
+   `db` container instead. You also need to change the database and username to
+   align with the defaults set by the `postgres` image.
 
-アプリケーションが実行可能になりましたが、まだ足りないものがあります。デフォルトでは、データベースは ``localhost`` で実行するとみなされます。そのため、``db`` コンテナに指示しなくてはいけません。``postgres`` イメージにデフォルトで設定されている database と username を変更する必要があります。
+アプリは実行可能ですが、実行するのはまだです。
+デフォルトで Rails は ``localhost`` において実行されているデータベースを用います。
+したがってここでは ``db`` コンテナを用いるように書き換える必要があります。
+また ``postgres`` イメージにおいて設定されているデフォルトのデータベース名、ユーザ名を変更することも必要です。
 
 .. Replace the contents of config/database.yml with the following:
 
