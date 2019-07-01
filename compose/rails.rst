@@ -239,13 +239,18 @@ Linux 上で Docker を利用している場合、``rails new`` により生成�
 
 Docker on Mac あるいは Docker on Windows を利用している場合、``rails new`` により生成されたファイルも含め、すべてのファイルに対しての所有権は、正しく設定されているはずです。
 
-.. Now that you’ve got a new Gemfile, you need to build the image again. (This, and changes to the Dockerfile itself, should be the only times you’ll need to rebuild.)
+.. Now that you’ve got a new Gemfile, you need to build the image again. (This, and
+   changes to the `Gemfile` or the Dockerfile, should be the only times you’ll need
+   to rebuild.)
 
-これで新しい ``Gemfile`` ができたので、イメージを再構築する必要があります（つまり、Dockerfile の更新時、必要に応じて再起動を行うべきです）。
+ここに新たな Gemfile が作成されたので、イメージを再ビルドすることが必要です。
+（再ビルドが必要になるのは、今の時点、あるいは ``Gemfile`` や Dockerfile を修正したときだけです。）
+
+..  docker-compose build
 
 .. code-block:: bash
 
-   $ docker-compose build
+   docker-compose build
 
 
 .. Connect the database
