@@ -87,13 +87,15 @@ Dockerfile の記述方法の詳細は :ref:`Docker ユーザ・ガイド <build
    source 'https://rubygems.org'
    gem 'rails', '5.0.0.1'
 
-.. You’ll need an empty Gemfile.lock in order to build our Dockerfile.
+.. You'll need an empty `Gemfile.lock` in order to build our `Dockerfile`.
 
-そして ``Dockerfile`` の構築には、空の ``Gemfile.lock`` が必要です。
+空のファイル ``Gemfile.lock`` を生成して ``Dockerfile`` のビルドができるようにします。
+
+..  touch Gemfile.lock
 
 .. code-block:: bash
 
-   $ touch Gemfile.lock
+   touch Gemfile.lock
 
 .. Finally, docker-compose.yml is where the magic happens. This file describes the services that comprise your app (a database and a web app), how to get each one’s Docker image (the database just runs on a pre-made PostgreSQL image, and the web app is built from the current directory), and the configuration needed to link them together and expose the web app’s port.
 
