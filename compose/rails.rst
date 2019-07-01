@@ -268,20 +268,42 @@ Docker on Mac あるいは Docker on Windows を利用している場合、``rai
 したがってここでは ``db`` コンテナを用いるように書き換える必要があります。
 また ``postgres`` イメージにおいて設定されているデフォルトのデータベース名、ユーザ名を変更することも必要です。
 
-.. Replace the contents of config/database.yml with the following:
+.. Replace the contents of `config/database.yml` with the following:
 
-``config/database.yml`` を次のように置き換えます。
+``config/database.yml`` の記述内容を以下のように書き換えます。
 
-.. code-block:: yaml
-
-   development: &default
+.. ```none
+   default: &default
      adapter: postgresql
      encoding: unicode
-     database: postgres
-     pool: 5
+     host: db
      username: postgres
      password:
+     pool: 5
+   
+   development:
+     <<: *default
+     database: myapp_development
+   
+   
+   test:
+     <<: *default
+     database: myapp_test
+   ```
+.. code-block:: yaml
+
+   default: &default
+     adapter: postgresql
+     encoding: unicode
      host: db
+     username: postgres
+     password:
+     pool: 5
+   
+   development:
+     <<: *default
+     database: myapp_development
+   
    
    test:
      <<: *default
