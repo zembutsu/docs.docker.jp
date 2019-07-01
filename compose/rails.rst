@@ -239,14 +239,6 @@ Linux 上で Docker を利用している場合、``rails new`` により生成�
 
 Docker on Mac あるいは Docker on Windows を利用している場合、``rails new`` により生成されたファイルも含め、すべてのファイルに対しての所有権は、正しく設定されているはずです。
 
-.. Uncomment the line in your new Gemfile which loads therubyracer, so you’ve got a Javascript runtime:
-
-新しい ``Gemfile`` から ``therubyracer`` を読み込む行をアンコメントします。これは Javascript のランタイムを入手したからです。
-
-.. code-block:: ruby
-
-   gem 'therubyracer', platforms: :ruby
-
 .. Now that you’ve got a new Gemfile, you need to build the image again. (This, and changes to the Dockerfile itself, should be the only times you’ll need to rebuild.)
 
 これで新しい ``Gemfile`` ができたので、イメージを再構築する必要があります（つまり、Dockerfile の更新時、必要に応じて再起動を行うべきです）。
