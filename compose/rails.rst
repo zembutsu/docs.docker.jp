@@ -19,9 +19,12 @@
        :depth: 3
        :local:
 
-.. This quick-start guide demonstrates how to use Docker Compose to set up and run a simple Rails/PostgreSQL app. Before starting, you’ll need to have Compose installed.
+.. This Quickstart guide will show you how to use Docker Compose to set up and run
+   a Rails/PostgreSQL app. Before starting, you'll need to have [Compose
+   installed](install.md).
 
-このクイックスタート・ガイドは Docker Compose を使い、簡単な Rails/PostgreSQL アプリをセットアップします。事前に :doc:`Compose のインストール </compose/install>` が必要です。
+このクィックスタートガイドでは Docker Compose を使って、簡単な Rails/PostgreSQL アプリを設定し実行する手順を示します。
+はじめるには :doc:`Compose のインストール <install>` が必要です。
 
 .. Define the project
 
