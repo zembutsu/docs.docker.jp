@@ -97,13 +97,36 @@ Dockerfile の記述方法の詳細は :ref:`Docker ユーザ・ガイド <build
 
    touch Gemfile.lock
 
-.. Finally, docker-compose.yml is where the magic happens. This file describes the services that comprise your app (a database and a web app), how to get each one’s Docker image (the database just runs on a pre-made PostgreSQL image, and the web app is built from the current directory), and the configuration needed to link them together and expose the web app’s port.
+.. Finally, `docker-compose.yml` is where the magic happens. This file describes
+   the services that comprise your app (a database and a web app), how to get each
+   one's Docker image (the database just runs on a pre-made PostgreSQL image, and
+   the web app is built from the current directory), and the configuration needed
+   to link them together and expose the web app's port.
 
-最後に ``docker-compose.yml`` というファイルに、これら全てを結び付けます。アプリケーション構成するサービス（ここでは、ウェブサーバとデータベースです）を定義します。構成とは、使用する Docker イメージ（データベースは既製の PostgreSQL イメージを使い、ウェブ・アプリケーションは現在のディレクトリで構築します）と、必要であればどこをリンクするかや、ウェブ・アプリケーションの公開用ポートを記述します。
+最後に ``docker-compose.yml`` が取りまとめてくれます。
+このファイルには、データベースとウェブという 2 つのアプリを含んだサービスが定義されています。
+そしてそれぞれの Docker イメージをどう作るかが示されています。
+（データベースは既存の PostgreSQL イメージにより動作します。
+ウェブアプリはカレントディレクトリ内に生成されます。）
+また、リンクによってそれを結び合わせることが設定されていて、ウェブ・アプリのポートは外部に公開されています。
+
+..  version: '3'
+    services:
+      db:
+        image: postgres
+      web:
+        build: .
+        command: bundle exec rails s -p 3000 -b '0.0.0.0'
+        volumes:
+          - .:/myapp
+        ports:
+          - "3000:3000"
+        depends_on:
+          - db
 
 .. code-block:: yaml
 
-   version: '2'
+   version: '3'
    services:
      db:
        image: postgres
