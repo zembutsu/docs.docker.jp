@@ -463,6 +463,22 @@ Docker Desktop for Mac や Docker Desktop for Windows の場合は、ウェブ�
 
 このエラーを解決するには、``tmp/pids/server.pid`` を削除してから、再び ``docker-compose up`` を実行すれば、アプリケーションを再起動することができます。
 
+.. ### Restart the application
+
+アプリケーションの再起動
+-------------------------
+
+.. To restart the application:
+
+アプリケーションを再起動するには、以下を実行します。
+
+.. 1. Run `docker-compose up` in the project directory.
+   2. Run this command in another terminal to restart the database: `docker-compose run web rake db:create`
+
+1. プロジェクト・ディレクトリにて ``docker-compose up`` を実行します。
+2. 以下のコマンドを別の端末から実行して、データベースを再起動します。
+   ``docker-compose run web rake db:create``
+
 
 .. More Compose documentation
 
