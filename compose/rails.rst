@@ -26,18 +26,35 @@
 このクィックスタートガイドでは Docker Compose を使って、簡単な Rails/PostgreSQL アプリを設定し実行する手順を示します。
 はじめるには :doc:`Compose のインストール <install>` が必要です。
 
-.. Define the project
+.. ### Define the project
 
-プロジェクトを定義
-====================
+プロジェクトの定義
+-------------------
 
-.. Start by setting up the three files you’ll need to build the app. First, since your app is going to run inside a Docker container containing all of its dependencies, you’ll need to define exactly what needs to be included in the container. This is done using a file called Dockerfile. To begin with, the Dockerfile consists of:
+.. Start by setting up the four files you'll need to build the app. First, since
+   your app is going to run inside a Docker container containing all of its
+   dependencies, you'll need to define exactly what needs to be included in the
+   container. This is done using a file called `Dockerfile`. To begin with, the
+   Dockerfile consists of:
 
-アプリケーションを構築するため、３つのファイルをセットアップしていきます。まずアプリケーションを実行する前に、 Docker コンテナ内には、依存関係のある全ての準備が必要になります。そのため、コンテナ中で何が必要なのかを、正確に定義しなくてはいけません。この定義に使うのが ``Dockerfile`` と呼ばれるファイルです。まずはじめに、Dockerfile は次のような構成です。
+アプリのビルドに必要となる 4 つのファイルを作るところから始めます。
+まずアプリケーションは、その依存パッケージも含め、すべてを Docker コンテナの内部にて実行するようにします。
+そこでコンテナ内に含めるものが何であるのかは、正確に定義する必要があります。
+これを行うのが ``Dockerfile`` というファイルです。
+まずは Dockerfile を以下のようにします。
+
+..  FROM ruby:2.3.3
+    RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
+    RUN mkdir /myapp
+    WORKDIR /myapp
+    ADD Gemfile /myapp/Gemfile
+    ADD Gemfile.lock /myapp/Gemfile.lock
+    RUN bundle install
+    ADD . /myapp
 
 .. code-block:: dockerfile
 
-   FROM ruby:2.2.0
+   FROM ruby:2.3.3
    RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
    RUN mkdir /myapp
    WORKDIR /myapp
