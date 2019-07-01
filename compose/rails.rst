@@ -357,6 +357,25 @@ Docker on Mac あるいは Docker on Windows を利用している場合、``rai
 
    docker-compose run web rake db:create
 
+.. Here is an example of the output from that command:
+
+コマンドから出力される結果は、たとえば以下のようになります。
+
+.. ```none
+   vmb at snapair in ~/sandbox/rails
+   $ docker-compose run web rake db:create
+   Starting rails_db_1 ... done
+   Created database 'myapp_development'
+   Created database 'myapp_test'
+   ```
+.. code-block:: bash
+
+   vmb at snapair in ~/sandbox/rails
+   $ docker-compose run web rake db:create
+   Starting rails_db_1 ... done
+   Created database 'myapp_development'
+   Created database 'myapp_test'
+
 .. That’s it. Your app should now be running on port 3000 on your Docker daemon. If you’re using Docker Machine, then docker-machine ip MACHINE_VM returns the Docker host IP address.
 
 以上です。これで Docker デーモン上のポート 3000 でアプリケーションが動作しているでしょう。もし :doc:`Docker Machine </machine/index>` を使っている場合は、``docker-machine ip 仮想マシン名`` で Docker ホストの IP アドレスを確認できます。
