@@ -405,6 +405,64 @@ Docker Desktop for Mac や Docker Desktop for Windows の場合は、ウェブ�
       :scale: 60%
       :alt: Rails の例
 
+.. ### Stop the application
+
+アプリケーションの停止
+-----------------------
+
+.. To stop the application, run [docker-compose down](/compose/reference/down/) in
+   your project directory. You can use the same terminal window in which you
+   started the database, or another one where you have access to a command prompt.
+   This is a clean way to stop the application.
+
+アプリケーションを停止するには、プロジェクト・ディレクトリにおいて :doc:`docker-compose down </compose/reference/down>` を実行します。
+この場合に用いる端末画面は、データベースを起動したときと同じものを用いるか、あるいはコマンド・プロンプトにアクセスできる別画面であっても構いません。
+これがアプリケーションを適切に停止する方法です。
+
+.. ```none
+   vmb at snapair in ~/sandbox/rails
+   $ docker-compose down
+   Stopping rails_web_1 ... done
+   Stopping rails_db_1 ... done
+   Removing rails_web_run_1 ... done
+   Removing rails_web_1 ... done
+   Removing rails_db_1 ... done
+   Removing network rails_default
+   
+   ```
+.. code-block:: bash
+
+   vmb at snapair in ~/sandbox/rails
+   $ docker-compose down
+   Stopping rails_web_1 ... done
+   Stopping rails_db_1 ... done
+   Removing rails_web_run_1 ... done
+   Removing rails_web_1 ... done
+   Removing rails_db_1 ... done
+   Removing network rails_default
+   
+
+.. You can also stop the application with `Ctrl-C` in the same shell in which you
+   executed the `docker-compose up`.  If you stop the app this way, and attempt to
+   restart it, you might get the following error:
+
+アプリケーションの停止はまた、``docker-compose up`` を実行したシェルにおいて ``Ctrl-C`` を入力することでも実現できます。
+ただしこの方法で停止した場合に、さらに再起動しようとすると、以下のようなエラーが発生するかもしません。
+
+.. ```none
+   web_1 | A server is already
+   running. Check /myapp/tmp/pids/server.pid.
+   ```
+.. code-block:: bash
+
+   web_1 | A server is already
+   running. Check /myapp/tmp/pids/server.pid.
+
+.. To resolve this, delete the file `tmp/pids/server.pid`, and then re-start the
+   application with `docker-compose up`.
+
+このエラーを解決するには、``tmp/pids/server.pid`` を削除してから、再び ``docker-compose up`` を実行すれば、アプリケーションを再起動することができます。
+
 
 .. More Compose documentation
 
