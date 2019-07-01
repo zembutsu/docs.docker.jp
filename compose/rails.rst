@@ -550,6 +550,6 @@ Compose ドキュメント
 
 .. seealso:: 
 
-   Quickstart: Docker Compose and Rails
+   Quickstart: Compose and Rails
       https://docs.docker.com/compose/rails/
 
