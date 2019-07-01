@@ -140,6 +140,12 @@ Dockerfile の記述方法の詳細は :ref:`Docker ユーザ・ガイド <build
        depends_on:
          - db
    
+.. >**Tip**: You can use either a `.yml` or `.yaml` extension for this file.
+
+.. tip::
+
+   このファイルの拡張子は ``.yml`` と ``.yaml`` のどちらでも構いません。
+
 .. Build the project
 
 プロジェクトの構築
