@@ -244,7 +244,7 @@ Docker on Mac あるいは Docker on Windows を利用している場合、``rai
    to rebuild.)
 
 ここに新たな Gemfile が作成されたので、イメージを再ビルドすることが必要です。
-（再ビルドが必要になるのは、今の時点、あるいは ``Gemfile`` や Dockerfile を修正したときだけです。）
+（再ビルドが必要になるのは、今の時点、あるいは一般的には ``Gemfile`` や Dockerfile を修正したときだけです。）
 
 ..  docker-compose build
 
