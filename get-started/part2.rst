@@ -71,7 +71,7 @@ Docker であれば、移動可能な Python ランタイムをイメージ内�
 
 .. These portable images are defined by something called a Dockerfile.
 
-移動可能なイメージは ``Dockerifle`` と呼ばれるモノで定義します。
+移動可能なイメージは ``Dockerfile`` と呼ばれるモノで定義します。
 
 .. Define a container with a Dockerfile
 
