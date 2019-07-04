@@ -227,26 +227,28 @@ Docker Compose を使うと、Docker コンテナとして生成される独立�
    WordPress のマルチサイトは、ポート ``80`` と ``443`` 上においてのみ動作します。
    ``0.0.0.0`` の ``80`` や ``443`` （あるいは設定したポート） へのバインディングに関するエラーが発生したら、WordPress に割り当てたポートが、すでに別のサービスによって利用されていることが考えられます。
 
-.. Bring up WordPress in a web browser
+.. ### Bring up WordPress in a web browser
 
 .. _bring-up-wordpress-in-a-web-browser:
 
-ウェブ・ブラウザで WordPress を開く
+ウェブ・ブラウザ上での WordPress の起動
 ========================================
 
-.. If you're using Docker Machine, then docker-machine ip MACHINE_VM gives you the machine address and you can open http://MACHINE_VM_IP:8000 in a browser.
+.. At this point, WordPress should be running on port `8000` of your Docker Host,
+   and you can complete the "famous five-minute installation" as a WordPress
+   administrator.
 
-:doc:`Docker Machine </machine/index>` を使っている場合は、 ``docker-machine ip マシン名`` を実行するとマシンの IP アドレスを表示します。そしてブラウザで ``http://マシンのIP:8000`` を開きます。
+この時点で WordPress は Docker ホスト上のポート ``8000`` 番を使って稼動しています。
+そこで WordPress の管理者となって「よく知られた 5 分インストール」を行うことができます。
 
-.. At this point, WordPress should be running on port 8000 of your Docker Host, and you can complete the "famous five-minute installation" as a WordPress administrator.
-
-この時点では WordPress は Docker ホスト上のポート 8000 で動作しています。そして、WordPress の管理者にとっては「有名な５分間のインストール」を行うだけです。
-
-.. NOTE: The Wordpress site will not be immediately available on port 8000 because the containers are still being initialized and may take a couple of minutes before the first load.
+.. > **Note**: The WordPress site will not be immediately available on port `8000`
+   because the containers are still being initialized and may take a couple of
+   minutes before the first load.
 
 .. note::
 
-   WordPress のサイトはポート 8000 で即時利用可能になりません。なぜなら、初回読み込み時にはコンテナの初期化のために２~３分ほど必要な場合があるためです。
+   WordPress サイトはポート ``8000`` を使って稼動していると述べましたが、即座に利用できるわけではありません。
+   コンテナは初期化を行っている最中であり、初回の読み込み処理には数分の時間を要するからです。
 
 .. image:: ./images/wordpress-lang.png
    :scale: 60%
