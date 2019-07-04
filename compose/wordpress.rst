@@ -156,18 +156,44 @@ Docker Compose を使うと、Docker コンテナとして生成される独立�
       * WordPress のマルチサイトは、ポート ``80`` と ``443`` 上においてのみ動作します。
 
 
-.. Build the project
+.. ### Build the project
 
 プロジェクトの構築
 ====================
 
-.. Now, run docker-compose up -d from your project directory.
+.. Now, run `docker-compose up -d` from your project directory.
 
-あとは、プロジェクト用ディレクトリで ``docker-compose up -d`` を実行します。
+プロジェクトディレクトリ上にて ``docker-compose up -d`` を実行します。
 
-.. This pulls the needed images, and starts the wordpress and database containers, as shown in the example below.
+.. This runs [docker-compose up](/compose/reference/up/) in detached mode, pulls
+   the needed images, and starts the wordpress and database containers, as shown in
+   the example below.
 
-必要なイメージを取得し、wordpress とデータベースのコンテナを起動します。次のように画面に表示します。
+これはデタッチモードにより :doc:`docker-compose up </compose/reference/up>` を実行し、不足する Docker イメージがあれば取得します。
+そして WordPress と データベースの両コンテナを起動します。
+たとえば以下のようになります。
+
+.. ```
+   $ docker-compose up -d
+   Creating network "my_wordpress_default" with the default driver
+   Pulling db (mysql:5.7)...
+   5.7: Pulling from library/mysql
+   efd26ecc9548: Pull complete
+   a3ed95caeb02: Pull complete
+   ...
+   Digest: sha256:34a0aca88e85f2efa5edff1cea77cf5d3147ad93545dbec99cfe705b03c520de
+   Status: Downloaded newer image for mysql:5.7
+   Pulling wordpress (wordpress:latest)...
+   latest: Pulling from library/wordpress
+   efd26ecc9548: Already exists
+   a3ed95caeb02: Pull complete
+   589a9d9a7c64: Pull complete
+   ...
+   Digest: sha256:ed28506ae44d5def89075fd5c01456610cd6c64006addfe5210b8c675881aff6
+   Status: Downloaded newer image for wordpress:latest
+   Creating my_wordpress_db_1
+   Creating my_wordpress_wordpress_1
+   ```
 
 .. code-block:: bash
 
