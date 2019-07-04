@@ -291,19 +291,18 @@ Docker Desktop for Mac や Docker Desktop for Windows を利用している場�
 
 ``docker-compose down --volumes`` コマンドを実行すると、コンテナとデフォルトネットワーク、さらに WordPress データベースも削除します。
 
-.. More Compose documentation
+.. ## More Compose documentation
 
-Compose の更なるドキュメント
+Compose ドキュメント
 ==============================
 
-..
-    User guide
-    Installing Compose
-    Getting Started
-    Get started with Django
-    Get started with Rails
-    Command line reference
-    Compose file reference
+.. - [User guide](/compose/index.md)
+   - [Installing Compose](/compose/install.md)
+   - [Getting Started](/compose/gettingstarted.md)
+   - [Get started with Django](/compose/django.md)
+   - [Get started with Rails](/compose/rails.md)
+   - [Command line reference](/compose/reference/index.md)
+   - [Compose file reference](/compose/compose-file/index.md)
 
 * :doc:`ユーザガイド <index>`
 * :doc:`/compose/install`
