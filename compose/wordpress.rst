@@ -7,10 +7,10 @@
 .. Commits on Apr 9, 2016 4192a009da5cbae5c811b3b965e4ecb4572c95f6
 .. ----------------------------------------------------------------------------
 
-.. Quickstart Guide: Docker Compose and WordPress
+.. title: "Quickstart: Compose and WordPress"
 
 =====================================================
-クイックスタート・ガイド：Docker Compose と Wordpress
+クィックスタート: Compose と WordPress
 =====================================================
 
 .. sidebar:: 目次
