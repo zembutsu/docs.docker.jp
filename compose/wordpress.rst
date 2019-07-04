@@ -33,19 +33,31 @@ Docker Compose を使うと、Docker コンテナとして生成される独立�
 プロジェクトの定義
 ====================
 
-..    Create an empty project directory.
+.. 1.  Create an empty project directory.
 
-1. プロジェクト用の空のディレクトリを作成します。
+1. プロジェクト用の空のディレクトリを生成します。
 
-..    You can name the directory something easy for you to remember. This directory is the context for your application image. The directory should only contain resources to build that image.
+   ..  You can name the directory something easy for you to remember.
+       This directory is the context for your application image. The
+       directory should only contain resources to build that image.
 
-覚えやすい名前のディレクトリを作成します。このディレクトリがアプリケーション・イメージの内容（コンテクスト）となるものです。ディレクトリには、イメージ構築に関するリソースのみ置くべきです。
+   ディレクトリ名は覚えやすいものにします。
+   このディレクトリはアプリケーションイメージのコンテキストディレクトリとなります。
+   このディレクトリには、イメージをビルドするために必要となるものだけを含めるようにします。
 
-.. This project directory will contain a docker-compose.yaml file which will be complete in itself for a good starter wordpress project.
+   ..  This project directory will contain a `docker-compose.yml` file which will
+       be complete in itself for a good starter wordpress project.
 
-プロジェクト用ディレクトリには ``docker-compose.yml`` ファイルを置きます。このファイル自身が wordpress プロジェクトの良いスタートを切ります。
+   このプロジェクトディレクトリに ``docker-compose.yml`` ファイルを置きます。
+   このファイルそのものが、WordPress プロジェクトを開始するための内容をすべて含むものとなります。
 
-.. Change directories into your project directory.
+   ..  >**Tip**: You can use either a `.yml` or `.yaml` extension for
+       this file. They both work.
+
+   .. note::
+
+      このファイルの拡張子は ``.yml`` と ``.yaml`` のどちらでも構いません。
+      いずれであっても動作します。
 
 2. ディレクトリをプロジェクト用ディレクトリに変更します。
 
