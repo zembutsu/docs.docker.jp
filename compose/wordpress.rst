@@ -73,37 +73,72 @@ Docker Compose を使うと、Docker コンテナとして生成される独立�
 
       cd my_wordpress/
 
-.. Create a docker-compose.yml file that will start your Wordpress blog and a separate MySQL instance with a volume mount for data persistence:
+   .. 3.  Create a `docker-compose.yml` file that will start your
+          `WordPress` blog and a separate `MySQL` instance with a volume
+          mount for data persistence:
 
-3. ``docker-compose.yml`` ファイルを作成します。このファイルは ``wordpress`` ブログと ``MySQL`` インスタンスを個別に起動します。 ``MySQL`` インスタンスはデータを保持するためにボリュームをマウントします。
+3. ``docker-compose.yml`` ファイルを生成します。
+   このファイルが ``WordPress`` ブログを起動します。
+   それとは別に、データ保存のためにボリュームマウントを使った ``MySQL`` インスタンスを生成します。
 
-.. code-block:: yaml
+   ..  ```none
+       version: '3'
 
-   version: '2'
-   services:
-     db:
-       image: mysql:5.7
+       services:
+          db:
+            image: mysql:5.7
+            volumes:
+              - db_data:/var/lib/mysql
+            restart: always
+            environment:
+              MYSQL_ROOT_PASSWORD: somewordpress
+              MYSQL_DATABASE: wordpress
+              MYSQL_USER: wordpress
+              MYSQL_PASSWORD: wordpress
+
+          wordpress:
+            depends_on:
+              - db
+            image: wordpress:latest
+            ports:
+              - "8000:80"
+            restart: always
+            environment:
+              WORDPRESS_DB_HOST: db:3306
+              WORDPRESS_DB_USER: wordpress
+              WORDPRESS_DB_PASSWORD: wordpress
        volumes:
-         - "./.data/db:/var/lib/mysql"
-       restart: always
-       environment:
-         MYSQL_ROOT_PASSWORD: wordpress
-         MYSQL_DATABASE: wordpress
-         MYSQL_USER: wordpress
-         MYSQL_PASSWORD: wordpress
-   
-     wordpress:
-       depends_on:
-         - db
-       image: wordpress:latest
-       links:
-         - db
-       ports:
-         - "8000:80"
-       restart: always
-       environment:
-         WORDPRESS_DB_HOST: db:3306
-         WORDPRESS_DB_PASSWORD: wordpress
+           db_data:
+       ```
+   .. code-block:: yaml
+
+      version: '3'
+
+      services:
+         db:
+           image: mysql:5.7
+           volumes:
+             - db_data:/var/lib/mysql
+           restart: always
+           environment:
+             MYSQL_ROOT_PASSWORD: somewordpress
+             MYSQL_DATABASE: wordpress
+             MYSQL_USER: wordpress
+             MYSQL_PASSWORD: wordpress
+
+         wordpress:
+           depends_on:
+             - db
+           image: wordpress:latest
+           ports:
+             - "8000:80"
+           restart: always
+           environment:
+             WORDPRESS_DB_HOST: db:3306
+             WORDPRESS_DB_USER: wordpress
+             WORDPRESS_DB_PASSWORD: wordpress
+      volumes:
+          db_data:
 
 .. NOTE: The folder ./.data/db will be automatically created in the project directory alongside the docker-compose.yml which will persist any updates made by wordpress to the database.
 
