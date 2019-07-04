@@ -59,15 +59,19 @@ Docker Compose を使うと、Docker コンテナとして生成される独立�
       このファイルの拡張子は ``.yml`` と ``.yaml`` のどちらでも構いません。
       いずれであっても動作します。
 
-2. ディレクトリをプロジェクト用ディレクトリに変更します。
+   .. 2.  Change directories into your project directory.
 
-.. For example, if you named your directory my_wordpress:
+2. プロジェクトディレクトリに移動します。
 
-たとえば、ディレクトリ名が ``my_wordpress`` の場合は：
+   .. For example, if you named your directory `my_wordpress`:
 
-.. code-block:: bash
+   そのディレクトリをたとえば ``my_wordpress`` としていた場合、以下のようになります。
 
-   $ cd my-wordpress/
+   ..      cd my_wordpress/
+
+   .. code-block:: bash
+
+      cd my_wordpress/
 
 .. Create a docker-compose.yml file that will start your Wordpress blog and a separate MySQL instance with a volume mount for data persistence:
 
