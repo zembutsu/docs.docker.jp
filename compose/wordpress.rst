@@ -275,6 +275,22 @@ Docker Desktop for Mac や Docker Desktop for Windows を利用している場�
    :scale: 60%
    :alt: WordPress ようこそ画面
 
+.. ### Shutdown and cleanup
+
+シャットダウンとクリーンアップ
+========================================
+
+.. The command [docker-compose down](/compose/reference/down.md) removes the
+   containers and default network, but preserves your Wordpress database.
+
+:doc:`docker-compose down </compose/reference/down>` コマンドを実行すると、コンテナとデフォルトネットワークが削除されます。
+ただし WordPress データベースは残ります。
+
+.. The command `docker-compose down --volumes` removes the containers, default
+   network, and the Wordpress database.
+
+``docker-compose down --volumes`` コマンドを実行すると、コンテナとデフォルトネットワーク、さらに WordPress データベースも削除します。
+
 .. More Compose documentation
 
 Compose の更なるドキュメント
