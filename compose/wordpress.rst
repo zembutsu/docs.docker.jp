@@ -250,14 +250,30 @@ Docker Compose を使うと、Docker コンテナとして生成される独立�
    WordPress サイトはポート ``8000`` を使って稼動していると述べましたが、即座に利用できるわけではありません。
    コンテナは初期化を行っている最中であり、初回の読み込み処理には数分の時間を要するからです。
 
+.. If you are using [Docker Machine](/machine/index.md), you can run the command
+   `docker-machine ip MACHINE_VM` to get the machine address, and then open
+   `http://MACHINE_VM_IP:8000` in a web browser.
+
+:doc:`Docker Machine </machine/index>` を利用している場合は、``docker-machine ip MACHINE_VM`` を実行してマシンの IP アドレスを取得できます。
+そこでウェブ・ブラウザから ``http://MACHINE_VM_IP:8000`` にアクセスしてください。
+
+.. If you are using Docker for Mac or Docker for Windows, you can use
+   `http://localhost` as the IP address, and open `http://localhost:8000` in a web
+   browser.
+
+Docker Desktop for Mac や Docker Desktop for Windows を利用している場合、IP アドレスとしては ``http://localhost`` を利用し、ウェブ・ブラウザから ``http://localhost:8000`` にアクセスしてください。
+
+.. ![Choose language for WordPress install](images/wordpress-lang.png)
+
 .. image:: ./images/wordpress-lang.png
    :scale: 60%
    :alt: WordPress 言語選択
-   
+
+.. ![WordPress Welcome](images/wordpress-welcome.png)
 
 .. image:: ./images/wordpress-welcome.png
    :scale: 60%
-   :alt: WordPress 初期設定
+   :alt: WordPress ようこそ画面
 
 .. More Compose documentation
 
