@@ -217,6 +217,16 @@ Docker Compose を使うと、Docker コンテナとして生成される独立�
    Creating my_wordpress_db_1
    Creating my_wordpress_wordpress_1
 
+.. > **Note**: WordPress Multisite works only on ports `80` and/or `443`.
+   If you get an error message about binding `0.0.0.0` to port `80` or `443`
+   (depending on which one you specified), it is likely that the port you
+   configured for WordPress is already in use by another service.
+
+.. note::
+
+   WordPress のマルチサイトは、ポート ``80`` と ``443`` 上においてのみ動作します。
+   ``0.0.0.0`` の ``80`` や ``443`` （あるいは設定したポート） へのバインディングに関するエラーが発生したら、WordPress に割り当てたポートが、すでに別のサービスによって利用されていることが考えられます。
+
 .. Bring up WordPress in a web browser
 
 .. _bring-up-wordpress-in-a-web-browser:
