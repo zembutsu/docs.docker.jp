@@ -28,7 +28,7 @@ Docker Compose を使うと、Docker コンテナとして生成される独立�
 このクイックスタート・ガイドは、Docker Compose を使った WordPress の設定と実行方法を示すものです。
 はじめるには :doc:`Compose のインストール <install>` が必要です。
 
-.. Define the project
+.. ### Define the project
 
 プロジェクトの定義
 ====================
