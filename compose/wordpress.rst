@@ -140,11 +140,20 @@ Docker Compose を使うと、Docker コンテナとして生成される独立�
       volumes:
           db_data:
 
-.. NOTE: The folder ./.data/db will be automatically created in the project directory alongside the docker-compose.yml which will persist any updates made by wordpress to the database.
+   .. > **Notes**:
+      >
+      * The docker volume `db_data` persists any updates made by Wordpress
+      to the database. [Learn more about docker volumes](/engine/tutorials/dockervolumes.md)
+      >
+      * WordPress Multisite works only on ports `80` and `443`.
+      {: .note-vanilla}
 
-.. note::
+   .. note::
 
-   ``docker-compose.yml`` があるプロジェクトのディレクトリ内に  ``./.data/db`` ディレクトリを自動的に作成します。wordpress がデータベースに対して更新したあらゆるデータは、このディレクトリで保持します。
+      * Docker ボリューム ``db_data`` は、WordPress 上から実行されるデータ更新をデータベースに保存します。
+        詳細は :doc:`Docker ボリューム </engine/admin/volumes/volumes>` を参照してください。
+
+      * WordPress のマルチサイトは、ポート ``80`` と ``443`` 上においてのみ動作します。
 
 
 .. Build the project
