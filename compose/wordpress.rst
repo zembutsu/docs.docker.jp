@@ -239,7 +239,7 @@ Docker Compose を使うと、Docker コンテナとして生成される独立�
    administrator.
 
 この時点で WordPress は Docker ホスト上のポート ``8000`` 番を使って稼動しています。
-そこで WordPress の管理者となって「よく知られた 5 分インストール」を行うことができます。
+そこで WordPress の管理者となって「よく知られた 5 分でインストール」を行うことができます。
 
 .. > **Note**: The WordPress site will not be immediately available on port `8000`
    because the containers are still being initialized and may take a couple of
