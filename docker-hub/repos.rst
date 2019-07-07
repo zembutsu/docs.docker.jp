@@ -5,12 +5,12 @@
 .. check date: 2016/03/11
 .. -------------------------------------------------------------------
 
-.. Your Hub repositories
+.. title: Repositories on Docker Hub
 
-.. _your-hub-repositories:
+.. _repositories-on-docker-hub:
 
 ========================================
-自分用 Docker Hub レジストリ
+Docker Hub 上のレジストリ
 ========================================
 
 .. Docker Hub repositories let you share images with co-workers, customers, or the Docker community at large. If you’re building your images internally, either on your own Docker daemon, or using your own Continuous integration services, you can push them to a Docker Hub repository that you add to your Docker Hub user or organization account.
