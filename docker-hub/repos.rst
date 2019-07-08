@@ -358,15 +358,18 @@ Docker Hub リポジトリのウェブフックを使えば、リポジトリ上
 ウェブフック呼び出しは、JSON 形式による HTTP POST リクエストです。
 たとえば以下のようなものです。
 
-.. Example webhook JSON payload:
+.. *Example webhook JSON payload:*
 
+**JSON 形式のウェブフック例**
+
+.. ```json
    {
      "callback_url": "https://registry.hub.docker.com/u/svendowideit/busybox/hook/2141bc0cdec4hebec411i4c1g40242eg110020/",
      "push_data": {
        "images": [
            "27d47432a69bca5f2700e4dff7de0388ed65f9d3fb1ec645e2bc24c223dc1cc3",
            "51a9c7c1f8bb2fa19bcd09789a34e63f35abb80044bc10196e304f6634cc582c",
-           ...
+           "..."
        ],
        "pushed_at": 1.417566822e+09,
        "pusher": "svendowideit"
@@ -386,6 +389,38 @@ Docker Hub リポジトリのウェブフックを使えば、リポジトリ上
        "repo_url": "https://registry.hub.docker.com/u/svendowideit/busybox/",
        "star_count": 0,
        "status": "Active"
+     }
+   }
+   ```
+.. code-block:: json
+
+   {
+     "callback_url": "https://registry.hub.docker.com/u/svendowideit/busybox/hook/2141bc0cdec4hebec411i4c1g40242eg110020/",
+     "push_data": {
+       "images": [
+           "27d47432a69bca5f2700e4dff7de0388ed65f9d3fb1ec645e2bc24c223dc1cc3",
+           "51a9c7c1f8bb2fa19bcd09789a34e63f35abb80044bc10196e304f6634cc582c",
+           "..."
+       ],
+       "pushed_at": 1.417566822e+09,
+       "pusher": "svendowideit"
+     },
+     "repository": {
+       "comment_count": 0,
+       "date_created": 1.417566665e+09,
+       "description": "",
+       "full_description": "webhook triggered from a 'docker push'",
+       "is_official": false,
+       "is_private": false,
+       "is_trusted": false,
+       "name": "busybox",
+       "namespace": "svendowideit",
+       "owner": "svendowideit",
+       "repo_name": "svendowideit/busybox",
+       "repo_url": "https://registry.hub.docker.com/u/svendowideit/busybox/",
+       "star_count": 0,
+       "status": "Active"
+     }
    }
 
 ..    Note: If you want to test your webhook, we recommend using a tool like requestb.in. Also note, the Docker Hub server can’t be filtered by IP address.
