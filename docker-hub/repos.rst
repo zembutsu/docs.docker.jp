@@ -319,9 +319,17 @@ Docker Hub の 1 ユーザーアカウントに対しては、無料で 1 つの
 しかし公開レジストリ上において、ブラウズしたり中身を検索したりすることはできません。
 また公開リポジトリとは異なり、キャッシュは行われません。
 
-.. It is possible to give access to a private repository to those whom you designate (i.e., collaborators) from its “Settings” page. From there, you can also switch repository status (public to private, or vice-versa). You will need to have an available private repository slot open before you can do such a switch. If you don’t have any available, you can always upgrade your Docker Hub plan.
+.. It is possible to give access to a private repository to those whom you
+   designate (i.e., collaborators) from its "Settings" page. From there, you can
+   also switch repository status (*public* to *private*, or vice-versa). You will
+   need to have an available private repository slot open before you can do such a
+   switch. If you don't have any available, you can always upgrade your
+   [Docker Hub](https://hub.docker.com/account/billing-plans/) plan.
 
-プライベート・リポジトリにアクセスできるようにするには、「Settings」ページから対象者を指定（例： collaborators）する必要があります。それから、リポジトリの状態を変更します（パブリックをプライベートにしたり、あるいはその逆です）。プライベート・リポジトリに切り替えられるのは、空きスロット分だけです。もし足りない場合は、 `Docker Hub <https://hub.docker.com/account/billing-plans/>`_ プランのアップグレードをご検討ください。
+プライベート・リポジトリに対して、指定した者からのアクセスを許可にするには「Settings」ページにて設定します。
+その設定ページでは、リポジトリのステータス切り替えを行うこともできます（公開からプライベートへ、あるいはその逆）。
+プライベート・リポジトリへの切り替えを行う場合には、プライベート・リポジトリ用の利用可能スロットが必要です。
+利用可能スロットがない場合は、`Docker Hub <https://hub.docker.com/account/billing-plans/>`_ プランのアップグレードを行ってください。
 
 .. Webhooks
 
