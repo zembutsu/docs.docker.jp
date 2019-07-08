@@ -230,16 +230,19 @@ Docker Hub 上でのリポジトリ新規生成
 星マークをつけるのは、好きなリポジトリが何かを公開する方法として使えます。
 またお気に入りのリポジトリをブックマークしておくということもできます。
 
-.. Comments
+.. ## Comments
 
 .. _repos-comments:
 
 コメント
 ==========
 
-.. You can interact with other members of the Docker community and maintainers by leaving comments on repositories. If you find any comments that are not appropriate, you can flag them for review.
+.. You can interact with other members of the Docker community and maintainers by
+   leaving comments on repositories. If you find any comments that are not
+   appropriate, you can flag them for review.
 
-リポジトリにコメントを残すことで、Docker コミュニティの他のメンバやメンテナと、やりとりできます。適切ではないコメントがあれば、削除用のフラグも付けられます。
+Docker コミュニティや保守担当メンバーとの間で、リポジトリにコメントを書き込んでやり取りすることができます。
+不適切に思うコメントがある場合には、フラグづけを行ってレビューを求めることができます。
 
 .. Collaborators and their role
 
