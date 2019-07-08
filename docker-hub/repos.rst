@@ -10,7 +10,7 @@
 .. _repositories-on-docker-hub:
 
 ========================================
-Docker Hub 上のレジストリ
+Docker Hub 上のリポジトリ
 ========================================
 
 .. Docker Hub repositories let you share images with co-workers, customers, or the
@@ -536,5 +536,5 @@ Docker Hub リポジトリのウェブフックを使えば、リポジトリ上
 
 .. seealso:: 
 
-   Your Hub repositories
+   Repositories on Docker Hub
       https://docs.docker.com/docker-hub/repos/
