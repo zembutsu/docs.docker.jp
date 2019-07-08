@@ -299,15 +299,17 @@ Docker Hub 上において組織とチームに関する機能を利用すれば
 Docker Hub の 1 ユーザーアカウントに対しては、無料で 1 つのプライベートリポジトリを生成することができます（これはメンバーとなっている組織においては利用できません）。
 ユーザーアカウントにおいて、それ以上のプライベートリポジトリを必要とする場合は、`Docker Hub <https://hub.docker.com/account/billing-plans/>`_ プランをアップグレードしてください。
 
-.. Once the private repository is created, you can push and pull images to and from it using Docker.
+.. Once the private repository is created, you can `push` and `pull` images to and
+   from it using Docker.
 
-プライベート・リポジトリが作成されたら、 Docker を使ってイメージの ``push`` と ``pull`` ができるようになります。
+プライベート・リポジトリを生成したら Docker を利用して、イメージの ``push`` や ``pull`` ができるようになります。
 
-..    Note: You need to be signed in and have access to work with a private repository.
+.. > **Note**: You need to be signed in and have access to work with a
+   > private repository.
 
 .. note::
 
-   プライベート・リポジトリにアクセスして操作するには、Docker Hub にログインしている必要があります。
+   プライベート・リポジトリにアクセスして作業を進めるには、サインインが必要です。
 
 .. Private repositories are just like public ones. However, it isn’t possible to browse them or search their content on the public registry. They do not get cached the same way as a public repository either.
 
