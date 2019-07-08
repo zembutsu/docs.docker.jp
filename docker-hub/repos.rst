@@ -67,9 +67,18 @@ Docker Hub リポジトリは、共同作業者、顧客、Docker コミュニ�
    tutum/centos                         Centos image with SSH access. For the root...   13                   [OK]
    ...
 
-.. There you can see two example results: centos and ansible/centos7-ansible. The second result shows that it comes from the public repository of a user, named ansible/, while the first result, centos, doesn’t explicitly list a repository which means that it comes from the top-level namespace for Official Repositories. The / character separates a user’s repository from the image name.
+.. There you can see two example results: `centos` and `ansible/centos7-ansible`.
+   The second result shows that it comes from the public repository of a user,
+   named `ansible/`, while the first result, `centos`, doesn't explicitly list a
+   repository which means that it comes from the top-level namespace for [Official
+   Repositories](official_repos.md). The `/` character separates a user's
+   repository from the image name.
 
-``centos`` と ``ansible/centos7-ansible`` という、２種類の結果が表示されました。１番目の ``centos`` にはリポジトリ名がありません。つまり、これは :doc:`公式リポジトリ <official_repos>` 向けのトップ・レベル名前空間を意味します。２番目の結果は、 ``ansible/`` という公開リポジトリ名のユーザによるものです。文字 ``/`` によって、ユーザのリポジトリ名とイメージ名を分けています。
+上では ``centos`` と ``ansible/centos7-ansible`` という 2 つの結果が示されました。
+2 つめの結果は、``ansible/`` というユーザが所有する公開リポジトリであることがわかります。
+その一方、1 つめの結果 である ``centos`` にはリポジトリに関する情報が明確には示されていません。
+というのも 1 つめは :doc:`公式イメージ <official_images>` における最上位の名前空間であることを意味しています。
+文字 ``/`` は、ユーザのリポジトリ名とイメージ名を分けるためのものです。
 
 .. Once you’ve found the image you want, you can download it with docker pull <imagename>:
 
