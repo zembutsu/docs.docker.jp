@@ -261,15 +261,21 @@ Docker コミュニティや保守担当メンバーとの間で、リポジト�
 ただしコラボレータは、管理操作を実行する権限までは与えられません。
 したがってリポジトリを削除したり、リポジトリをプライベートから公開に変更したりするようなことはできません。
 
-..    Note: A collaborator cannot add other collaborators. Only the owner of the repository has administrative access.
+.. > **Note**:
+   > A collaborator cannot add other collaborators. Only the owner of
+   > the repository has administrative access.
 
 .. note::
 
-   コラボレータは他のコラボレータを追加できません。リポジトリの所有者のみが、管理アクセスを持っています。
+   コラボレータが他のコラボレータを追加することはできません。
+   リポジトリに対する管理アクセスが可能なのは、その所有者のみです。
 
-.. You can also assign more granular collaborator rights (“Read”, “Write”, or “Admin”) on Docker Hub by using organizations and teams. For more information see the organizations documentation.
+.. You can also assign more granular collaborator rights ("Read", "Write", or
+   "Admin") on Docker Hub by using organizations and teams. For more information
+   see the [organizations documentation](/docker-hub/orgs.md).
 
-また、Docker Hub を組織やチームで使う場合は、コラボレータの権限詳細（「Read」「Write」「Admin」のいずれか）を割り当てられます。詳細な情報は、 :doc:`組織に関するドキュメント <orgs>` をご覧ください。
+Docker Hub 上において組織とチームに関する機能を利用すれば、コラボレータのより詳細な権限（「読み込み」、「書き込み」、「管理」）を割り当てることが可能になります。
+詳細は :doc:`組織に関するドキュメント <orgs>` を参照してください。
 
 .. Private repositories
 
