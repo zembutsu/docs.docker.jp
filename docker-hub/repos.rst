@@ -348,9 +348,15 @@ Docker Hub の 1 ユーザーアカウントに対しては、無料で 1 つの
 Docker Hub リポジトリのウェブフックを使えば、リポジトリ上に新たなイメージがプッシュされた際に、このことを関係者、サービス、他のアプリケーションに通知できます（これは自動ビルドリポジトリでも利用可能です）。
 たとえばイメージが公開されたらすぐに、自動テストやデプロイを実行するようにできます。
 
-.. To get started adding webhooks, go to the desired repository in the Hub, and click “Webhooks” under the “Settings” box. A webhook is called only after a successful push is made. The webhook calls are HTTP POST requests with a JSON payload similar to the example shown below.
+.. To get started adding webhooks, go to the desired repository in the Hub, and
+   click "Webhooks" under the "Settings" box. A webhook is called only after a
+   successful `push` is made. The webhook calls are HTTP POST requests with a JSON
+   payload similar to the example shown below.
 
-webhook を追加するには、Docker Hub 上の任意のリポジトリに移動し、「Setting」ボックスの下にある「Webhooks」をクリックします。webhook が呼び出されるのは、イメージの ``push`` が完了したときです。 webhook コールは JSON 形式の HTTP POST リクエストであり、次のようなものです。
+ウェブフックの追加を行うには、Docker Hub 内の対象リポジトリを表示して、「Settings」ボックス内にある「Webhooks」をクリックします。
+ウェブフックが呼び出されるのは、イメージのプッシュが正常に行われたときです。
+ウェブフック呼び出しは、JSON 形式による HTTP POST リクエストです。
+たとえば以下のようなものです。
 
 .. Example webhook JSON payload:
 
