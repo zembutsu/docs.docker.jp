@@ -429,8 +429,8 @@ Docker Hub リポジトリのウェブフックを使えば、リポジトリ上
 
 .. note::
 
-   ウェブフックをテストしたい場合、`requestb.in <http://requestb.in/>` のようなツールを利用することをお勧めします。
-   なお Docker Hub サーバは IP アドレスのフィルターができないので注意してください。
+   ウェブフックをテストしたい場合、`requestb.in <http://requestb.in/>`_ のようなツールを利用することをお勧めします。
+   なお Docker Hub サーバは IP アドレスによるフィルタリングができないので注意してください。
 
 .. Webhook chains
 
