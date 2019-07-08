@@ -108,20 +108,26 @@ Docker Hub リポジトリは、共同作業者、顧客、Docker コミュニ�
 
 イメージを入手したので、ここからコンテナを実行することができます。
 
-.. Viewing repository tags
+.. ## Viewing repository tags
 
 .. _viewing-repository-tags:
 
-リポジトリ・タグの表示
+リポジトリ・タグの参照
 ==============================
 
-.. Docker Hub’s repository “Tags” view shows you the available tags and the size of the associated image.
+.. Docker Hub's repository "Tags" view shows you the available tags and the size
+   of the associated image.
 
-Docker Hub のリポジトリで「Tags」を表示すると、利用可能なタグや関連づけられるイメージの容量が表示されます。
+Docker Hub リポジトリ上の「タグ」（Tags）画面では、利用可能なタグと、関連するイメージのサイズ情報が示されています。
 
-.. Image sizes are the cumulative space taken up by the image and all its parent images. This is also the disk space used by the contents of the Tar file created when you docker save an image.
+.. Image sizes are the cumulative space taken up by the image and all its parent
+   images. This is also the disk space used by the contents of the Tar file created
+   when you `docker save` an image.
 
-イメージ容量とは、イメージや親イメージの累積容量です。またこの容量は、イメージを ``docker save`` で中身を tar ファイル化したときの容量もあります。
+イメージサイズは、そのイメージと親イメージを含んだすべての容量です。
+これはイメージを保存する際に ``docker save`` によって生成される .tar ファイルの容量でもあります。
+
+.. ![images/busybox-image-tags.png](/docker-hub/images/busybox-image-tags.png)
 
 .. image:: ./images/busybox-image-tags.png
    :scale: 60%
