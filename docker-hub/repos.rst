@@ -456,32 +456,34 @@ Docker Hub リポジトリのウェブフックを使えば、リポジトリ上
 これに続く URL ごとの呼び出しは、最初のコールバックが確認された後に行われます。
 
 
-.. Validating a callback
+.. ### Validating a callback
 
 .. _validating-a-callback:
 
-コールバックの確認
+コールバックの検証
 --------------------
 
 .. In order to validate a callback in a webhook chain, you need to
 
-webhook 連鎖のコールバックを確認するには、次のようにします。
+ウェブフック・チェーンにおいてコールバックを検証するには、以下が必要になります。
 
-..    Retrieve the callback_url value in the request’s JSON payload.
-    Send a POST request to this URL containing a valid JSON body.
+.. 1. Retrieve the `callback_url` value in the request's JSON payload.
+   1. Send a POST request to this URL containing a valid JSON body.
 
-1. リクエストする JSON ペイロードに ``callback_url`` 値を入れてから、読み込む
-2. 有効な JSON の内容に含まれる URL に対して、POST リクエストが送信
+1. リクエストにおける JSON データ内の ``callback_url`` 値を取り出します。
+2. 取得したその URL に対して、適正な JSON データ本体とともに POST リクエストを送信します。
 
-..    Note: A chain request will only be considered complete once the last callback has been validated.
+.. > **Note**: A chain request will only be considered complete once the last
+   > callback has been validated.
 
 .. note::
 
-  最後のコールバックが正常だった場合のみ、 連鎖リクエストが完了したとみなされます。
+   最後のコールバックが正常であれば、チェーンによるリクエストは完了したものとみなされます。
 
-.. To help you debug or simply view the results of your webhook(s), view the “History” of the webhook available on its settings page.
+.. To help you debug or simply view the results of your webhook(s), view the
+   "History" of the webhook available on its settings page.
 
-webhook のデバッグを簡単にしたり、結果を単に表示したい場合は、設定ページにある webhook の「History」をご覧ください。
+ウェブフックの処理結果をデバッグする、あるいは単に確認する場合は、Settings ページ上にあるウェブフックの「History」を参照してください。
 
 .. Callback JSON data
 
