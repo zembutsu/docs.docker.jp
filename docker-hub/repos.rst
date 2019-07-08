@@ -13,15 +13,26 @@
 Docker Hub 上のレジストリ
 ========================================
 
-.. Docker Hub repositories let you share images with co-workers, customers, or the Docker community at large. If you’re building your images internally, either on your own Docker daemon, or using your own Continuous integration services, you can push them to a Docker Hub repository that you add to your Docker Hub user or organization account.
+.. Docker Hub repositories let you share images with co-workers, customers, or the
+   Docker community at large. If you're building your images internally, either on
+   your own Docker daemon, or using your own Continuous integration services, you
+   can push them to a Docker Hub repository that you add to your Docker Hub user or
+   organization account.
 
-Docker Hub リポジトリは自分のイメージを同僚や顧客と共有するだけでなく、世界中の Docker コミュニティに対して公開します。イメージと内部向けに構築している場合、自分の Docker デーモンか自分たちの継続的インテグレーション・サービスを使い、Docker Hub リポジトリにイメージを送信するでしょう。このとき、Docker Hub のユーザもしくは組織のアカウントで追加できます。
+Docker Hub リポジトリは、共同作業者、顧客、Docker コミュニティ全般に対してコンテナの共有を可能にします。
+イメージの構築を内部で行っているとして、Docker デーモンを扱っていたり、継続的インテグレーションサービスを利用していたりする場合、これらを Docker Hub リポジトリにプッシュすることができます。
+そのリポジトリは、自身の Docker Hub ユーザー、組織で利用するアカウントのいずれでも問いません。
 
-.. Alternatively, if the source code for your Docker image is on GitHub or Bitbucket, you can use an “Automated build” repository, which is built by the Docker Hub services. See the automated builds documentation to read about the extra functionality provided by those services.
+.. Alternatively, if the source code for your Docker image is on GitHub or
+   Bitbucket, you can use an "Automated build" repository, which is built by the
+   Docker Hub services. See the [automated builds documentation](/docker-hub/builds.md) to read
+   about the extra functionality provided by those services.
 
-あるいは、Docker イメージのソース・コードが GitHub か Bitbucket に置かれているなら、「自動構築（Automated build）」リポジトリが使えます。これは Docker Hub サービスによって自動構築されるものです。これらのサービスが提供する更なる機能については、 :doc:`自動構築のドキュメント <builds>` をご覧ください。
+別の方法として Docker イメージのソースコードを GitHub や Bitbucket 上に管理しているなら、「自動ビルド」（Automated build）リポジトリを利用することができます。
+これは Docker Hub サービスによってビルドされるものです。
+このサービスにはさまざまな機能が提供されているので、詳しくは :doc:`自動ビルドのドキュメント <builds>` を参照してください。
 
-.. repositories
+.. ![repositories](/docker-hub/images/repos.png)
 
 .. image:: ./images/repos.png
    :scale: 60%
