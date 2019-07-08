@@ -133,20 +133,32 @@ Docker Hub リポジトリ上の「タグ」（Tags）画面では、利用可�
    :scale: 60%
    :alt: タグの一覧
 
-.. Creating a new repository on Docker Hub
+.. ## Creating a new repository on Docker Hub
 
 .. _creating-a-new-repository-on-docker-hub:
 
-Docker Hub 上に新しいリポジトリを作成
+Docker Hub 上でのリポジトリ新規生成
 ========================================
 
-.. When you first create a Docker Hub user, you will have a “Get started with Docker Hub.” screen, from which you can click directly into “Create Repository”. You can also use the “Create ▼” menu to “Create Repository”.
+.. When you first create a Docker Hub user, you will have a "Get started with
+   Docker Hub." screen, from which you can click directly into "Create Repository".
+   You can also use the "Create &#x25BC;" menu to "Create Repository".
 
-Docker Hub ユーザを作成すると、「Get started with Docker Hub」画面が表示されます。ここから「Create Repository」（リポジトリの作成）をクリックします。あるいは「Create ▼」メニューから「Create Repository」を選びます。
+初めて Docker Hub ユーザーを生成した際には「Get started with Docker Hub」画面が表示されます。
+ここから「Create Repository」を直接クリックします。
+あるいは「Create ▼」メニューを利用して「Create Repository」を実行することもできます。
 
-.. When creating a new repository, you can choose to put it in your Hub account’s namespace, or that of any organization that you are in the “Owners” team. The Repository Name will need to be unique in that namespace, can be two to 255 characters, and can only contain lowercase letters, numbers or - and _.
+.. When creating a new repository, you can choose to put it in your Docker ID
+   namespace, or that of any [organization](/docker-hub/orgs.md) that you are in the "Owners"
+   team. The Repository Name will need to be unique in that namespace, can be two
+   to 255 characters, and can only contain lowercase letters, numbers or `-` and
+   `_`.
 
-新しいリポジトリを作成すると、アカウントの名前空間をそこに使うか、あるいは :doc:`組織 <orgs>` の指定でチームが「所有」するかを選べます。リポジトリ名はユニークな名前空間である必要があり、2文字から255文字までの小文字・数字・ ``-`` ・ ``_`` が利用できます。
+リポジトリを新規に生成する際には、そのリポジトリをどこに置くかを選択することができます。
+1 つは自身の Docker ID 名前空間内です。
+もう 1 つは :doc:`組織 <orgs>` の名前空間であって、「所有者」（Owners）チームに属している場合です。
+リポジトリ名は、その名前空間内においてユニークである必要があります。
+そして 2 文字以上 255 文字までで構成され、英小文字、数字、``-``、 ``_`` を用いることができます。
 
 .. The “Short Description” of 100 characters will be used in the search results, while the “Full Description” can be used as the Readme for the repository, and can use Markdown to add simple formatting.
 
