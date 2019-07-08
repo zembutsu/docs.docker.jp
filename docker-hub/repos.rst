@@ -485,24 +485,33 @@ Docker Hub リポジトリのウェブフックを使えば、リポジトリ上
 
 ウェブフックの処理結果をデバッグする、あるいは単に確認する場合は、Settings ページ上にあるウェブフックの「History」を参照してください。
 
-.. Callback JSON data
+.. #### Callback JSON data
 
-JSON データのコールバック
-------------------------------
+コールバック JSON データ
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. The following parameters are recognized in callback data:
 
-以下のパラメータがコールバック・データとして認められています。
+コールバックデータ内では、以下のパラメータが認識されます。
 
-..    state (required): Accepted values are success, failure and error. If the state isn’t success, the webhook chain will be interrupted.
-    description: A string containing miscellaneous information that will be available on the Docker Hub. Maximum 255 characters.
-    context: A string containing the context of the operation. Can be retrieved from the Docker Hub. Maximum 100 characters.
-    target_url: The URL where the results of the operation can be found. Can be retrieved on the Docker Hub.
+.. * `state` (required): Accepted values are `success`, `failure`, and `error`.
+     If the state isn't `success`, the webhook chain will be interrupted.
+   * `description`: A string containing miscellaneous information that will be
+     available on the Docker Hub. Maximum 255 characters.
+   * `context`: A string containing the context of the operation. Can be retrieved
+     from the Docker Hub. Maximum 100 characters.
+   * `target_url`: The URL where the results of the operation can be found. Can be
+     retrieved on the Docker Hub.
 
-* ``state`` （必須）： ``success`` 、 ``failure`` 、 ``error`` の値を受信。 ``success`` でなければ、webhook 連鎖は中断。
-* ``description`` ：Docker Hub で利用可能な様々な説明を含む文字列。最大255文字。
-* ``context`` ：操作に関連するコンテキストを含む文字列。Docker Hub が受信可能。最大100文字。
-* ``target_url`` ：オペレーションで得られた結果を送る URL 。Docker Hub が受信可能。
+* ``state`` （必須）： 許容される値は ``success``, ``failure``, ``error`` のいずれか。
+  この値が ``success`` でない場合、ウェブフック・チェーンは中断されます。
+* ``description`` ： Docker Hub 上にて利用可能なさまざまな情報を含んだ文字列。
+  最大 255 文字。
+* ``context`` ： 操作に関するコンテキストを含む文字列。
+  Docker Hub から抽出される情報。
+  最大 100 文字。
+* ``target_url`` ： 操作結果として得られた URL。
+  Docker Hub から抽出される情報。
 
 .. Example callback payload:
 
