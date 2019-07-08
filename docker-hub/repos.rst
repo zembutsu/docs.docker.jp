@@ -173,16 +173,31 @@ Docker Hub 上でのリポジトリ新規生成
 
 「Create」ボタンをクリックした後は、``docker push`` を実行してこの Hub ベースのリポジトリに対してイメージをプッシュすることが必要です。
 
-.. Pushing a repository image to Docker Hub
+.. ## Pushing a repository image to Docker Hub
 
 .. _pushing-a-repository-image-to-docker-hub:
 
-リポジトリのイメージを Docker Hub に送信
+リポジトリの Docker Hub へのプッシュ
 ========================================
 
-.. In order to push a repository to the Docker Hub, you need to name your local image using your Docker Hub username, and the repository name that you created in the previous step. You can add multiple images to a repository, by adding a specific :<tag> to it (for example docs/base:testing). If its not specified, the tag defaults to latest. You can name your local images either when you build it, using docker build -t <hub-user>/<repo-name>[:<tag>], by re-tagging an existing local image docker tag <existing-image> <hub-user>/<repo-name>[:<tag>], or by using docker commit <exiting-container> <hub-user>/<repo-name>[:<tag>] to commit changes. See Working with Docker images for a detailed description.
+.. In order to push a repository to the Docker Hub, you need to
+   name your local image using your Docker Hub username, and the
+   repository name that you created in the previous step.
+   You can add multiple images to a repository, by adding a specific `:<tag>` to
+   it (for example `docs/base:testing`). If it's not specified, the tag defaults to
+   `latest`.
+   You can name your local images either when you build it, using
+   `docker build -t <hub-user>/<repo-name>[:<tag>]`,
+   by re-tagging an existing local image `docker tag <existing-image> <hub-user>/<repo-name>[:<tag>]`,
+   or by using `docker commit <exiting-container> <hub-user>/<repo-name>[:<tag>]` to commit
+   changes.
 
-Docker Hub にリポジトリを送信するには、自分のローカル・イメージが Docker Hub のユーザ名を使い、かつ、そのリポジトリ名は前のステップで作成したものである必要があります。これはイメージに対して ``:<タグ>`` を追加することで、リポジトリに複数のイメージを追加できます（例： ``docs/base::testing`` ）。もし指定されなければ、デフォルトのタグは ``latest`` になります。ローカルのイメージに名前を付けるには、 ``docker build -t <Docker Hub ユーザ名>/<リポジトリ名>[:<タグ>]`` の形式になるよう既存のローカル・イメージを ``docker tag <既存イメージ> <docker Hub ユーザ名>/<リポジトリ名>[:<タグ>]`` で再度タグ付けします。あるいは、 ``docker commit <既存のコンテナ名> <Docker Hub ユーザ名>/<リポジトリ名>[:<タグ>]`` でコミットを変更します。詳細については :doc:`Docker イメージの働き </engine/userguide/containers/dockerimages>`  をご覧ください。
+リポジトリを Docker Hub へプッシュするには、利用している Docker Hub ユーザ名を使って、ローカルイメージに名前をつける必要があります。
+また前の手順において生成したリポジトリ名を用いる必要があります。
+リポジトリへは複数のイメージを追加することができます。
+その際にはイメージを特定するタグを ``:<tag>`` のようにつけます（たとえば ``docs/base:testing`` ）。
+このタグ指定を行わなかった場合、タグにはデフォルトとして ``latest`` がつきます。
+ローカルイメージに名前をつけるのは、ビルド時には ``docker build -t <hub-user>/<repo-name>[:<tag>]`` のようにして行いますが、すでにあるローカルイメージに対しては ``docker tag <existing-image> <hub-user>/<repo-name>[:<tag>]``、またコミットの際には ``docker commit <existing-container> <hub-user>/<repo-name>[:<tag>]`` としてタグ名を再設定することができます。
 
 .. Now you can push this repository to the registry designated by its name or tag.
 
