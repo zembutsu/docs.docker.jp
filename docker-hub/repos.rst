@@ -80,9 +80,18 @@ Docker Hub リポジトリは、共同作業者、顧客、Docker コミュニ�
 というのも 1 つめは :doc:`公式イメージ <official_images>` における最上位の名前空間であることを意味しています。
 文字 ``/`` は、ユーザのリポジトリ名とイメージ名を分けるためのものです。
 
-.. Once you’ve found the image you want, you can download it with docker pull <imagename>:
+.. Once you've found the image you want, you can download it with `docker pull <imagename>`:
 
-欲しいイメージが見つかったら、 ``docker pull <イメージ名>`` でダウンロードできます。
+目的のイメージが見つかったら ``docker pull <imagename>`` によってダウンロードします。
+
+..  $ docker pull centos
+    latest: Pulling from centos
+    6941bfcbbfca: Pull complete
+    41459f052977: Pull complete
+    fd44297e2ddb: Already exists
+    centos:latest: The image you are pulling has been verified. Important: image verification is a tech preview feature and should not be relied on to provide security.
+    Digest: sha256:d601d3b928eb2954653c59e65862aabb31edefa868bd5148a41fa45004c12288
+    Status: Downloaded newer image for centos:latest
 
 .. code-block:: bash
 
@@ -97,7 +106,7 @@ Docker Hub リポジトリは、共同作業者、顧客、Docker コミュニ�
 
 .. You now have an image from which you can run containers.
 
-イメージを手に入れた後は、コンテナを実行できます。
+イメージを入手したので、ここからコンテナを実行することができます。
 
 .. Viewing repository tags
 
