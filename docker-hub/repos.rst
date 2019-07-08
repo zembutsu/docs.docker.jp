@@ -423,11 +423,14 @@ Docker Hub リポジトリのウェブフックを使えば、リポジトリ上
      }
    }
 
-..    Note: If you want to test your webhook, we recommend using a tool like requestb.in. Also note, the Docker Hub server can’t be filtered by IP address.
+.. >**Note**: If you want to test your webhook, we recommend using a tool like
+   >[requestb.in](http://requestb.in/). Also note, the Docker Hub server can't be
+   >filtered by IP address.
 
 .. note::
 
-   自分で webhook をテストしたい場合は、 `requestdb.in <http://requestb.in/>`_ のようなサービスの利用を推奨します。また、Docker Hub サーバは IP アドレスのフィルタができないのでご注意ください。
+   ウェブフックをテストしたい場合、`requestb.in <http://requestb.in/>` のようなツールを利用することをお勧めします。
+   なお Docker Hub サーバは IP アドレスのフィルターができないので注意してください。
 
 .. Webhook chains
 
