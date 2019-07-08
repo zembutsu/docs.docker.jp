@@ -160,13 +160,18 @@ Docker Hub 上でのリポジトリ新規生成
 リポジトリ名は、その名前空間内においてユニークである必要があります。
 そして 2 文字以上 255 文字までで構成され、英小文字、数字、``-``、 ``_`` を用いることができます。
 
-.. The “Short Description” of 100 characters will be used in the search results, while the “Full Description” can be used as the Readme for the repository, and can use Markdown to add simple formatting.
+.. The "Short Description" of 100 characters will be used in the search results,
+   while the "Full Description" can be used as the Readme for the repository, and
+   can use Markdown to add simple formatting.
 
-「Short Description」（短い説明）の100文字は、検索結果に表示されます。「Full Description」（全ての説明）はリポジトリの Readme に表示されるもので、マークダウンを使って書式を追加できます。
+「Short Description」（簡易説明）の 100 文字は検索結果に表示されます。
+「Full Description」（詳細説明）は、リポジトリの Readme として利用できます。
+またマークダウンを使って簡単な書式を加えることができます。
 
-.. After you hit the “Create” button, you then need to docker push images to that Hub based repository.
+.. After you hit the "Create" button, you then need to `docker push` images to that
+   Hub based repository.
 
-「Create」ボタンを実行した後、 ``docker push`` コマンドでイメージを Docker Hub リポジトリに送信する必要があります。
+「Create」ボタンをクリックした後は、``docker push`` を実行してこの Hub ベースのリポジトリに対してイメージをプッシュすることが必要です。
 
 .. Pushing a repository image to Docker Hub
 
