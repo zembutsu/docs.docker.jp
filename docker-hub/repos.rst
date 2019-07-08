@@ -513,9 +513,16 @@ Docker Hub リポジトリのウェブフックを使えば、リポジトリ上
 * ``target_url`` ： 操作結果として得られた URL。
   Docker Hub から抽出される情報。
 
-.. Example callback payload:
+.. *Example callback payload:*
 
-コールバック・ペイロードの例
+**コールバック・データの例**
+
+..  {
+      "state": "success",
+      "description": "387 tests PASSED",
+      "context": "Continuous integration by Acme CI",
+      "target_url": "http://ci.acme.com/results/afd339c1c3d27"
+    }
 
 .. code-block:: json
 
