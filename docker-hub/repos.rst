@@ -331,16 +331,22 @@ Docker Hub の 1 ユーザーアカウントに対しては、無料で 1 つの
 プライベート・リポジトリへの切り替えを行う場合には、プライベート・リポジトリ用の利用可能スロットが必要です。
 利用可能スロットがない場合は、`Docker Hub <https://hub.docker.com/account/billing-plans/>`_ プランのアップグレードを行ってください。
 
-.. Webhooks
+.. ## Webhooks
 
 .. _repos-webhooks:
 
-ウェブ・フック
+ウェブフック
 ====================
 
-.. A webhook is an HTTP call-back triggered by a specific event. You can use a Hub repository webhook to notify people, services, and other applications after a new image is pushed to your repository (this also happens for Automated builds). For example, you can trigger an automated test or deployment to happen as soon as the image is available.
+.. A webhook is an HTTP call-back triggered by a specific event. You can use a Hub
+   repository webhook to notify people, services, and other applications after a
+   new image is pushed to your repository (this also happens for Automated builds).
+   For example, you can trigger an automated test or deployment to happen as soon
+   as the image is available.
 
-webhook は特定のイベントによって HTTP コールバックを行います（トリガします）。Docker Hub リポジトリの webhook を使って、人々、サービス、他のアプリケーションに対して、自分のリポジトリに新しいイメージが送信されたと知らせることができます（さらに、自動構築も行えます）。例えば、自動テストのトリガとしたり、イメージが利用可能になったらすぐデプロイする使い方です。
+ウェブフック（webhook）は、特定のイベントにより駆動される HTTP コールバックです。
+Docker Hub リポジトリのウェブフックを使えば、リポジトリ上に新たなイメージがプッシュされた際に、このことを関係者、サービス、他のアプリケーションに通知できます（これは自動ビルドリポジトリでも利用可能です）。
+たとえばイメージが公開されたらすぐに、自動テストやデプロイを実行するようにできます。
 
 .. To get started adding webhooks, go to the desired repository in the Hub, and click “Webhooks” under the “Settings” box. A webhook is called only after a successful push is made. The webhook calls are HTTP POST requests with a JSON payload similar to the example shown below.
 
