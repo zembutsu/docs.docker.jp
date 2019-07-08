@@ -289,9 +289,15 @@ Docker Hub 上において組織とチームに関する機能を利用すれば
 プライベート・リポジトリは、イメージがあるリポジトリをプライベートに管理できるようにするものです。
 自身のアカウント用でも、また組織や開発チーム用でも管理可能です。
 
-.. To work with a private repository on Docker Hub, you will need to add one via the Add Repository button. You get one private repository for free with your Docker Hub user account (not usable for organizations you’re a member of). If you need more accounts you can upgrade your Docker Hub plan.
+.. To work with a private repository on [Docker Hub](https://hub.docker.com), you
+   will need to add one using the [Add Repository](https://hub.docker.com/add/repository/) button. You get one private
+   repository for free with your Docker Hub user account (not usable for
+   organizations you're a member of). If you need more accounts you can upgrade
+   your [Docker Hub](https://hub.docker.com/account/billing-plans/) plan.
 
-`Docker Hub <https://hub.docker.com/>`__ 上でプライベート・リポジトリを使うには、 `Add Repository <https://hub.docker.com/add/repository/>`_ ボタンから追加する必要があります。Docker Hub ユーザ・アカウントは１つのプライベート・リポジトリを無料で利用できます（あなたが組織の一員であれば使いづらいでしょう）。さらにアカウントが必要であれば、 `Docker Hub <https://hub.docker.com/account/billing-plans/>`_ プランのアップグレードをご検討ください。
+`Docker Hub <https://hub.docker.com/>`__ 上においてプライベート・リポジトリを使う場合は、`Add Repository <https://hub.docker.com/add/repository/>`_ ボタンから追加することができます。
+Docker Hub の 1 ユーザーアカウントに対しては、無料で 1 つのプライベートリポジトリを生成することができます（これはメンバーとなっている組織においては利用できません）。
+ユーザーアカウントにおいて、それ以上のプライベートリポジトリを必要とする場合は、`Docker Hub <https://hub.docker.com/account/billing-plans/>`_ プランをアップグレードしてください。
 
 .. Once the private repository is created, you can push and pull images to and from it using Docker.
 
