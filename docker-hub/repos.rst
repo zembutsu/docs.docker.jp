@@ -244,16 +244,22 @@ Docker Hub 上でのリポジトリ新規生成
 Docker コミュニティや保守担当メンバーとの間で、リポジトリにコメントを書き込んでやり取りすることができます。
 不適切に思うコメントがある場合には、フラグづけを行ってレビューを求めることができます。
 
-.. Collaborators and their role
+.. ## Collaborators and their role
 
 .. repos-collaborators-and-their-role:
 
-コラボレータとロール
-====================
+コラボレータとそのロール
+=========================
 
-.. A collaborator is someone you want to give access to a private repository. Once designated, they can push and pull to your repositories. They will not be allowed to perform any administrative tasks such as deleting the repository or changing its status from private to public.
+.. A collaborator is someone you want to give access to a private repository. Once
+   designated, they can `push` and `pull` to your repositories. They will not be
+   allowed to perform any administrative tasks such as deleting the repository or
+   changing its status from private to public.
 
-コラボレータ（collaborator）とは、プライベート・リポジトリに対するアクセスを与えたい人です。かつてはリポジトリに対して ``push`` や ``pull`` するために設計されました。コラボレータはリポジトリの削除といった管理用のタスクは行えず、プライベートからパブリックにステータスの変更もできません。
+コラボレータ（collaborator）とは、プライベートリポジトリに対してアクセスする許可を与えた人のことです。
+この許可を与えたら、コラボレータはプライベートリポジトリに対して ``push`` や ``pull`` を行えるようになります。
+ただしコラボレータは、管理操作を実行する権限までは与えられません。
+したがってリポジトリを削除したり、リポジトリをプライベートから公開に変更したりするようなことはできません。
 
 ..    Note: A collaborator cannot add other collaborators. Only the owner of the repository has administrative access.
 
