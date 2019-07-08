@@ -201,15 +201,19 @@ Docker Hub 上でのリポジトリ新規生成
 
 .. Now you can push this repository to the registry designated by its name or tag.
 
-これで任意のレジストリに対し、このリポジトリを名前かタグで送信（push）できます。
+このリポジトリを、名前またはタグにより指定したレジストリにプッシュします。
+
+..  $ docker push <hub-user>/<repo-name>:<tag>
 
 .. code-block:: bash
 
    $ docker push <hub-user>/<repo-name>:<tag>
 
-.. The image will then be uploaded and available for use by your team-mates and/or the community.
+.. The image will then be uploaded and available for use by your team-mates and/or
+   the community.
 
-イメージのアップロードが完了すると、チームメイトが、あるいはコミュニティでも利用可能になります。
+そのイメージがアップロードされます。
+こうして開発チームメンバーやコミュニティが利用できるようになります。
 
 .. Stars
 
