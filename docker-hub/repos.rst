@@ -432,20 +432,28 @@ Docker Hub リポジトリのウェブフックを使えば、リポジトリ上
    ウェブフックをテストしたい場合、`requestb.in <http://requestb.in/>`_ のようなツールを利用することをお勧めします。
    なお Docker Hub サーバは IP アドレスによるフィルタリングができないので注意してください。
 
-.. Webhook chains
+.. ### Webhook chains
 
 .. _webhook-chains:
 
-ウェブ・フックの連鎖
+ウェブフック・チェーン
 ------------------------------
 
-.. Webhook chains allow you to chain calls to multiple services. For example, you can use this to trigger a deployment of your container only after it has been successfully tested, then update a separate Changelog once the deployment is complete. After clicking the “Add webhook” button, simply add as many URLs as necessary in your chain.
+.. Webhook chains allow you to chain calls to multiple services. For example, you
+   can use this to trigger a deployment of your container only after it has been
+   successfully tested, then update a separate Changelog once the deployment is
+   complete. After clicking the "Add webhook" button, simply add as many URLs as
+   necessary in your chain.
 
-webhook の連鎖により、複数のサービスにコールを連鎖（chain）できます。例えば、テストが作成するときのみコンテナをデプロイするトリガを行い、デプロイが終わったら別の Changelog を更新します。「Add webhook」ボタンをクリックしたら、単純に連鎖させるために必要な URL を列挙します。
+ウェブフック・チェーン（webhook chain）は、ウェブフック呼び出しを複数サービスに向けて連鎖して行うものです。
+たとえば手元にあるコンテナーのテストが正常終了した後に、このコンテナーのデプロイイベントを起動し、デプロイが完全に行われたときに限って、別に存在する ChangeLog を更新するような場合です。
+「Add webhook」ボタンをクリックしたら、単に連鎖に必要な数の URL を加えるだけで実現できます。
 
-.. The first webhook in a chain will be called after a successful push. Subsequent URLs will be contacted after the callback has been validated.
+.. The first webhook in a chain will be called after a successful push. Subsequent
+   URLs will be contacted after the callback has been validated.
 
-webhook で１番目の連鎖は、 push が成功した後に実行されます。以降の URL はコールバックが確認されたら処理されます。
+チェーン内にある最初のウェブフックは、プッシュが成功した直後に呼び出されます。
+これに続く URL ごとの呼び出しは、最初のコールバックが確認された後に行われます。
 
 
 .. Validating a callback
