@@ -215,16 +215,20 @@ Docker Hub 上でのリポジトリ新規生成
 そのイメージがアップロードされます。
 こうして開発チームメンバーやコミュニティが利用できるようになります。
 
-.. Stars
+.. ## Stars
 
 .. _repos-stars:
 
-スター
+星マーク
 ==========
 
-.. Your repositories can be starred and you can star repositories in return. Stars are a way to show that you like a repository. They are also an easy way of bookmarking your favorites.
+.. Your repositories can be starred and you can star repositories in return. Stars
+   are a way to show that you like a repository. They are also an easy way of
+   bookmarking your favorites.
 
-リポジトリはスターされることができ、あなたがお返しにリポジトリをスターすることもできます。スターはあなたが好きなリポジトリを公開する手法です。また、好きなものをブックマークするのにも簡単な方法です。
+リポジトリは他の方から星マークをつけてもらうことがあり、逆に他のリポジトリへ星マークをつけることができます。
+星マークをつけるのは、好きなリポジトリが何かを公開する方法として使えます。
+またお気に入りのリポジトリをブックマークしておくということもできます。
 
 .. Comments
 
