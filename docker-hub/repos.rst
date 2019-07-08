@@ -277,14 +277,17 @@ Docker コミュニティや保守担当メンバーとの間で、リポジト�
 Docker Hub 上において組織とチームに関する機能を利用すれば、コラボレータのより詳細な権限（「読み込み」、「書き込み」、「管理」）を割り当てることが可能になります。
 詳細は :doc:`組織に関するドキュメント <orgs>` を参照してください。
 
-.. Private repositories
+.. ## Private repositories
 
 プライベート・リポジトリ
 ==============================
 
-.. Private repositories allow you to have repositories that contain images that you want to keep private, either to your own account or within an organization or team.
+.. Private repositories allow you to have repositories that contain images that you
+   want to keep private, either to your own account or within an organization or
+   team.
 
-プライベート・リポジトリとは、自分のアカウントや組織・チームの中で、プライベートなままにしておきたいイメージを置けるリポジトリです。
+プライベート・リポジトリは、イメージがあるリポジトリをプライベートに管理できるようにするものです。
+自身のアカウント用でも、また組織や開発チーム用でも管理可能です。
 
 .. To work with a private repository on Docker Hub, you will need to add one via the Add Repository button. You get one private repository for free with your Docker Hub user account (not usable for organizations you’re a member of). If you need more accounts you can upgrade your Docker Hub plan.
 
