@@ -311,9 +311,13 @@ Docker Hub の 1 ユーザーアカウントに対しては、無料で 1 つの
 
    プライベート・リポジトリにアクセスして作業を進めるには、サインインが必要です。
 
-.. Private repositories are just like public ones. However, it isn’t possible to browse them or search their content on the public registry. They do not get cached the same way as a public repository either.
+.. Private repositories are just like public ones. However, it isn't possible to
+   browse them or search their content on the public registry. They do not get
+   cached the same way as a public repository either.
 
-プライベート・リポジトリはパブリック・リポジトリのように見えます。しかし、パブリック・リポジトリの検索結果には表示されません。同様にパブリック・リポジトリと同じように取得することもできません。
+プライベート・リポジトリは、公開リポジトリと同じようなものです。
+しかし公開レジストリ上において、ブラウズしたり中身を検索したりすることはできません。
+また公開リポジトリとは異なり、キャッシュは行われません。
 
 .. It is possible to give access to a private repository to those whom you designate (i.e., collaborators) from its “Settings” page. From there, you can also switch repository status (public to private, or vice-versa). You will need to have an available private repository slot open before you can do such a switch. If you don’t have any available, you can always upgrade your Docker Hub plan.
 
