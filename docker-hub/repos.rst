@@ -38,22 +38,31 @@ Docker Hub リポジトリは、共同作業者、顧客、Docker コミュニ�
    :scale: 60%
    :alt: リポジトリ
 
-.. Searching for images
+.. ## Searching for images
 
 .. _searching-for-images:
 
 イメージの検索
 ====================
 
-.. You can search the Docker Hub registry via its search interface or by using the command line interface. Searching can find images by image name, user name, or description:
+.. You can search the [Docker Hub](https://hub.docker.com) registry via its search
+   interface or by using the command line interface. Searching can find images by
+   image name, user name, or description:
 
-`Docker Hub <https://hub.docker.com/>`__ レジストリは、検索用インターフェースかコマンドライン・インターフェースを使って検索出来ます。検索は、イメージ名、ユーザ名、説明に対して行えます。
+`Docker Hub <https://hub.docker.com>`_ のレジストリは、検索インターフェース、あるいはコマンドラインインターフェースを使って検索することができます。
+検索の際には、イメージ名、ユーザー名、説明を用いて検索することができます。
 
+..  $ docker search centos
+    NAME                                 DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+    centos                               The official build of CentOS.                   1034      [OK]
+    ansible/centos7-ansible              Ansible on Centos7                              43                   [OK]
+    tutum/centos                         Centos image with SSH access. For the root...   13                   [OK]
+    ...
 .. code-block:: bash
 
    $ docker search centos
    NAME                                 DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
-   centos                               The official build of CentOS.                   1034      [OK]       
+   centos                               The official build of CentOS.                   1034      [OK]
    ansible/centos7-ansible              Ansible on Centos7                              43                   [OK]
    tutum/centos                         Centos image with SSH access. For the root...   13                   [OK]
    ...
