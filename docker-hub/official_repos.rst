@@ -20,9 +20,13 @@ Docker Hub 上の公式リポジトリ
 Docker の `公式イメージ <https://hub.docker.com/search?q=&type=image&image_filter=official>`_ は Docker Hub 上において提供される、厳選された Docker リポジトリです。
 これは以下のことを意識して提供されています。
 
-..    Provide essential base OS repositories (for example, ubuntu, centos) that serve as the starting point for the majority of users.
+.. * Provide essential base OS repositories (for example,
+     [ubuntu](https://hub.docker.com/_/ubuntu/),
+     [centos](https://hub.docker.com/_/centos/)) that serve as the
+     starting point for the majority of users.
 
-* 必要不可欠なベース OS リポジトリ（例： `ubuntu <https://hub.docker.com/_/ubuntu/>`_ 、 `centos <https://hub.docker.com/_/centos/>`_ ）を提供し、多くのユーザにとっての開始点となるものです。
+* 基本的なベース OS となるリポジトリを提供します。
+  （たとえば `ubuntu <https://hub.docker.com/_/ubuntu/>`_ , `centos <https://hub.docker.com/_/centos/>`_ などのように）数多くのユーザにとってスタート地点となるものです。
 
 ..    Provide drop-in solutions for popular programming language runtimes, data stores, and other services, similar to what a Platform-as-a-Service (PAAS) would offer.
 
