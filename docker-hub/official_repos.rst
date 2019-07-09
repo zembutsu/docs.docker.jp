@@ -97,9 +97,15 @@ Docker を初めて利用するユーザは、公式イメージを用いてプ�
 そして一般的な利用を前提にして設計されています。
 上級者の方は ``Dockerfile`` を勉強する一環として、公式イメージをレビューしていただくことをお願いします。
 
-.. A common rationale for diverging from Official Repositories is to optimize for image size. For instance, many of the programming language stack images contain a complete build toolchain to support installation of modules that depend on optimized code. An advanced user could build a custom image with just the necessary pre-compiled libraries to save space.
+.. A common rationale for diverging from Official Repositories is to optimize for
+   image size. For instance, many of the programming language stack images contain
+   a complete build toolchain to support installation of modules that depend on
+   optimized code. An advanced user could build a custom image with just the
+   necessary pre-compiled libraries to save space.
 
-公式リポジトリからの分岐は、一般的にイメージ容量の最適化が求められます。例えば、多くのプログラミング言語か重ねられたイメージで、モジュールのインストールをサポートしているツールチェーンを構築するのは、コードの最適化に依存します。高度なユーザであれば、コンパイル済みの必要なライブラリのみのイメージを構築することで、容量を節約できます。
+公式イメージを取得した後に目指すことは、イメージサイズの最適化です。
+たとえばプログラミング言語イメージには、たいていは完全なビルドツールチェーンが含まれていて、最適化コードによるモジュールをインストールできるようにしています。
+上級者は独自のイメージをビルドする際には、プリコンパイル済ライブラリを必要な分のみ含めることで、容量を節約することができるかもしれません。
 
 .. A number of language stacks such as python and ruby have -slim tag variants designed to fill the need for optimization. Even when these “slim” variants are insufficient, it is still recommended to inherit from an Official Repository base OS image to leverage the ongoing maintenance work, rather than duplicating these efforts.
 
