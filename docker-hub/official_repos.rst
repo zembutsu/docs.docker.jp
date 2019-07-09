@@ -58,9 +58,13 @@ Docker の `公式イメージ <https://hub.docker.com/search?q=&type=image&imag
   Docker Hub における組織（organization）アカウントもこの目的で利用することができます。
   このアカウントを用いるのであれば、公開しようとするものに対して十分な検証がなくても、また制約を設けなくても、気楽に提供できます。
 
-.. Docker, Inc. sponsors a dedicated team that is responsible for reviewing and publishing all Official Repositories content. This team works in collaboration with upstream software maintainers, security experts, and the broader Docker community.
+.. Docker, Inc. sponsors a dedicated team that is responsible for reviewing and
+   publishing all Official Repositories content. This team works in collaboration
+   with upstream software maintainers, security experts, and the broader Docker
+   community.
 
-Docker 社は、全ての公式リポジトリの内容に関し、レビューと公開に責任を持つ専用チームを提供しています。このチームは、上流のソフトウェア・メンテナ、セキュリティ専門家、幅広い Docker コミュニティと協調しています。
+Docker 社としては、公式イメージに関わるさまざまな内容に関して、レビューと公開を担当する専門チームを支援しています。
+このチームは、ソフトウェア開発元の保守担当、セキュリティ専門家、Docker コミュニティの幅広い方々と共同して作業を進めています。
 
 .. While it is preferrable to have upstream software authors maintaining their corresponding Official Repositories, this is not a strict requirement. Creating and maintaining images for Official Repositories is a public process. It takes place openly on GitHub where participation is encouraged. Anyone can provide feedback, contribute code, suggest process changes, or even propose a new Official Repository.
 
