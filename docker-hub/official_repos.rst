@@ -13,9 +13,12 @@
 Docker Hub 上の公式リポジトリ
 ========================================
 
-.. The Docker Official Repositories are a curated set of Docker repositories that are promoted on Docker Hub. They are designed to:
+.. The Docker [Official Repositories](https://hub.docker.com/official/) are a
+   curated set of Docker repositories that are promoted on Docker Hub. They are
+   designed to:
 
-`公式リポジトリ（Official Repositories） <http://registry.hub.docker.com/official>`_ とは、Docker Hub 上でプロモートされている Docker リポジトリの集まりです。これらは次のように設計されています。
+Docker の `公式イメージ <https://hub.docker.com/search?q=&type=image&image_filter=official>`_ は Docker Hub 上において提供される、厳選された Docker リポジトリです。
+これは以下のことを意識して提供されています。
 
 ..    Provide essential base OS repositories (for example, ubuntu, centos) that serve as the starting point for the majority of users.
 
