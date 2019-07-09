@@ -80,16 +80,22 @@ GitHub 上にて公開で行われているため、そこに参加すること�
 どなたであっても、フィードバック、コード提供、プロセス変更の提案、さらには新たな公式イメージの提案までもが提供できるわけです。
 
 
-.. Should I use Official Repositories?
+.. ## Should I use Official Repositories?
 
 .. _should-i-use-official-repositories:
 
 公式リポジトリを使うべきですか？
 ==================================
 
-.. New Docker users are encouraged to use the Official Repositories in their projects. These repositories have clear documentation, promote best practices, and are designed for the most common use cases. Advanced users are encouraged to review the Official Repositories as part of their Dockerfile learning process.
+.. New Docker users are encouraged to use the Official Repositories in their
+   projects. These repositories have clear documentation, promote best practices,
+   and are designed for the most common use cases. Advanced users are encouraged to
+   review the Official Repositories as part of their `Dockerfile` learning process.
 
-新しい Docker ユーザにとって、各プロジェクトの公式リポジトリは励みになります。これらのリポジトリには、明確なドキュメントがあり、ベスト・プラクティスを提供し、そして、一般的な利用例のために設計されています。高度なユーザにとっては公式リポジトリにある ``Dockerfile`` が学習プロセスにおいて役立つでしょう。
+Docker を初めて利用するユーザは、公式イメージを用いてプロジェクトを構築することをお勧めしています。
+このイメージには分かり易いドキュメントがあって、ベストプラクティスを示しています。
+そして一般的な利用を前提にして設計されています。
+上級者の方は ``Dockerfile`` を勉強する一環として、公式イメージをレビューしていただくことをお願いします。
 
 .. A common rationale for diverging from Official Repositories is to optimize for image size. For instance, many of the programming language stack images contain a complete build toolchain to support installation of modules that depend on optimized code. An advanced user could build a custom image with just the necessary pre-compiled libraries to save space.
 
