@@ -41,13 +41,22 @@ Docker の `公式イメージ <https://hub.docker.com/search?q=&type=image&imag
 * ``Dockerfile`` の :doc:`ベスト・プラクティス </engine/userguide/eng-image/dockerfile_best-practices/>`  の例として示し、わかりやすいドキュメントを提供します。
   これによって ``Dockerfile`` を作成する際のリファレンスとなるようにします。
 
-..    Ensure that security updates are applied in a timely manner. This is particularly important as many Official Repositories are some of the most popular on Docker Hub.
+.. * Ensure that security updates are applied in a timely manner. This is
+     particularly important as many Official Repositories are some of the most
+     popular on Docker Hub.
 
-* 適時セキュリティ・アップデートを確実に提供します。特に、Docker Hub 上の多く有名な公式リポジトリにとって重要です。
+* 適切なタイミングでセキュリティ・アップデートを適用するようにします。
+  これは特に重要なことです。
+  Docker Hub 上における公式イメージは、人気を得ているものが数多くあるからです。
 
-..    Provide a channel for software vendors to redistribute up-to-date and supported versions of their products. Organization accounts on Docker Hub can also serve this purpose, without the careful review or restrictions on what can be published.
+.. * Provide a channel for software vendors to redistribute up-to-date and
+     supported versions of their products. Organization accounts on Docker Hub can
+     also serve this purpose, without the careful review or restrictions on what
+     can be published.
 
-* ソフトウェア・ベンダにとって、更新やプロダクトのサポート・バージョンを配布するチャンネルを提供します。Docker Hub 上の Organization アカウントも同様の役割を提供できますが、こちらは何が公開されるかの注意深いレビューや規約がありません。
+* ソフトウェア・ベンダに対して、製品の最新版や正規版を配布するチャネルとして提供します。
+  Docker Hub における組織（organization）アカウントもこの目的で利用することができます。
+  このアカウントを用いるのであれば、公開しようとするものに対して十分な検証がなくても、また制約を設けなくても、気楽に提供できます。
 
 .. Docker, Inc. sponsors a dedicated team that is responsible for reviewing and publishing all Official Repositories content. This team works in collaboration with upstream software maintainers, security experts, and the broader Docker community.
 
