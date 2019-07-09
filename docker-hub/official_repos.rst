@@ -28,9 +28,11 @@ Docker の `公式イメージ <https://hub.docker.com/search?q=&type=image&imag
 * 基本的なベース OS となるリポジトリを提供します。
   （たとえば `ubuntu <https://hub.docker.com/_/ubuntu/>`_ , `centos <https://hub.docker.com/_/centos/>`_ などのように）数多くのユーザにとってスタート地点となるものです。
 
-..    Provide drop-in solutions for popular programming language runtimes, data stores, and other services, similar to what a Platform-as-a-Service (PAAS) would offer.
+.. * Provide drop-in solutions for popular programming language runtimes, data
+     stores, and other services, similar to what a Platform-as-a-Service (PAAS)
+     would offer.
 
-* 有名なプログラミング言語、データ・ストア、他のサービス、プラットフォーム・アス・ア・サービス（PaaS）のような、各種ソリューションの集まりを提供します。
+* 代表的なプログラミング言語環境、データストア、各種サービスといった、PAAS（Platform-as-a-Service）が提供するものにも似た、一時的な実現環境を提供します。
 
 ..    Exemplify Dockerfile best practices and provide clear documentation to serve as a reference for other Dockerfile authors.
 
