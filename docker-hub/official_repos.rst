@@ -166,16 +166,23 @@ Docker セキュリティ・スキャニングの結果を見るには、以下�
 タグの詳細ページにクリック移動すれば、イメージ内のどのレイヤに、あるいはレイヤ内のどのコンポーネントにぜい弱性があるかの詳細情報を見ることができます。
 個々のぜい弱なコンポーネントをクリックすると、ぜい弱性に関する詳細が表示され、公式の CVE 報告へのリンクが示されます。
 
-.. How can I get involved?
+.. ## How can I get involved?
 
 .. _how-can-i-get-involved:
 
-私が改良できますか？
-====================
+どうやったら参加できますか？
+=============================
 
-.. All Official Repositories contain a User Feedback section in their documentation which covers the details for that specific repository. In most cases, the GitHub repository which contains the Dockerfiles for an Official Repository also has an active issue tracker. General feedback and support questions should be directed to #docker-library on Freenode IRC.
+.. All Official Repositories contain a **User Feedback** section in their
+   documentation which covers the details for that specific repository. In most
+   cases, the GitHub repository which contains the Dockerfiles for an Official
+   Repository also has an active issue tracker. General feedback and support
+   questions should be directed to `#docker-library` on Freenode IRC.
 
-公式リポジトリには、ドキュメントには **User Feedback** （ユーザ・フィードバック）セクションがあり、対象のリポジトリに関する詳細を扱います。多くの場合、GitHub リポジトリには公式リポジトリの Dockerfile が含まれています。また、issue トラッカーも利用できます。一般的なフィードバックとサポートの質問は、Freenode IRC 上の ``#docker-library`` で直接行うべきです。
+すべての公式イメージのページにはドキュメントが含まれていて、そのリポジトリに対する詳細が説明されています。
+そしてその中に **User Feedback** の節があります。
+たいていの場合 GitHub リポジトリには、公式リポジトリに対する Dockerfile が含まれており、さらに有効な issue トラッカーも提供されています。
+一般的なフィードバックやサポートに関する質問は、Freenode IRC 上の ``#docker-library`` に対して行ってください。
 
 .. How do I create a new Official Repository?
 
