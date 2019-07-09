@@ -107,9 +107,18 @@ Docker を初めて利用するユーザは、公式イメージを用いてプ�
 たとえばプログラミング言語イメージには、たいていは完全なビルドツールチェーンが含まれていて、最適化コードによるモジュールをインストールできるようにしています。
 上級者は独自のイメージをビルドする際には、プリコンパイル済ライブラリを必要な分のみ含めることで、容量を節約することができるかもしれません。
 
-.. A number of language stacks such as python and ruby have -slim tag variants designed to fill the need for optimization. Even when these “slim” variants are insufficient, it is still recommended to inherit from an Official Repository base OS image to leverage the ongoing maintenance work, rather than duplicating these efforts.
+.. A number of language stacks such as
+   [python](https://hub.docker.com/_/python/) and
+   [ruby](https://hub.docker.com/_/ruby/) have `-slim` tag variants
+   designed to fill the need for optimization. Even when these "slim" variants are
+   insufficient, it is still recommended to inherit from an Official Repository
+   base OS image to leverage the ongoing maintenance work, rather than duplicating
+   these efforts.
 
-`python <https://hub.docker.com/_/python/>`_ と `ruby <https://hub.docker.com/_/ruby/>`_ のように、いくつかの言語スタックは ``-slim`` タグを持っており、これら最適化のために異なった形で設計されています。「slim」派生だけでは不十分なため、公式リポジトリをベースとした OS イメージからの継承を推奨します。これはメンテナンスの継続を重複して行うよりも効果的だからです。
+`python <https://hub.docker.com/_/python/>`_ や `ruby <https://hub.docker.com/_/ruby/>`_ のような数多くのプログラミング言語環境向けには ``-slim`` というタグをつけています。
+これは最適化への要求を満たす目的で作られています。
+この「slim」でも不十分に感じる方は、公式イメージ内のベース OS イメージから派生イメージを作り上げて、その後も保守を行っていただくことをお勧めします。
+同じやり方を繰り返しても無駄かもしれないからです。
 
 .. How can I get involved?
 
