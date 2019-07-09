@@ -120,6 +120,52 @@ Docker を初めて利用するユーザは、公式イメージを用いてプ�
 この「slim」でも不十分に感じる方は、公式イメージ内のベース OS イメージから派生イメージを作り上げて、その後も保守を行っていただくことをお勧めします。
 同じやり方を繰り返しても無駄かもしれないからです。
 
+.. ## How do I know the Official Repositories are secure?
+
+.. _how-do-i-know-the-official-repositories-are-secure:
+
+公式リポジトリの安全性はどうすればわかりますか？
+=======================================================
+
+.. Docker provides a preview version of Docker Cloud's
+   [Security Scanning service](/docker-cloud/builds/image-scan/) for all of the
+   Official Repositories located on Docker Hub. These security scan results provide
+   valuable information about which images contain security vulnerabilities, which
+   you should use to help you choose secure components for your own projects.
+
+Docker Hub 上の公式リポジトリに対しては、Docker Cloud の :doc:`セキュリティ・スキャニング・サービス </docker-cloud/builds/image-scan/>` プレビュー版が提供されます。
+このセキュリティ・スキャンから重要な情報が得られます。
+つまり、どのイメージにセキュリティぜい弱性が含まれるか、プロジェクトにとって利用すべきセキュアなコンポーネントにはどのようなものがあるかを知らせてくれます。
+
+.. To view the Docker Security Scanning results:
+
+Docker セキュリティ・スキャニングの結果を見るには、以下を行います。
+
+.. 1. Make sure you're logged in to Docker Hub.
+       You can view Official Images even while logged out, however the scan results are only available once you log in.
+   2. Navigate to the official repository whose security scan you want to view.
+   3. Click the `Tags` tab to see a list of tags and their security scan summaries.
+       ![](images/scan-drilldown.gif)
+
+1. Docker Hub にログインできていることを確認します。
+   公式イメージはログアウトしていても見ることができます。
+   しかしスキャン結果を見るためにはログインしている必要があります。
+2. セキュリティ・スキャン結果を見たい公式リポジトリを表示します。
+3. タブ ``Tags`` をクリックします。
+   タグの一覧とともにセキュリティ・スキャンの概要をみることができます。
+
+   ..  ![](images/scan-drilldown.gif)
+   .. image:: images/scan-drilldown.gif
+      :scale: 60%
+
+.. You can click into a tag's detail page to see more information about which
+   layers in the image and which components within the layer are vulnerable.
+   Details including a link to the official CVE report for the vulnerability appear
+   when you click an individual vulnerable component.
+
+タグの詳細ページにクリック移動すれば、イメージ内のどのレイヤに、あるいはレイヤ内のどのコンポーネントにぜい弱性があるかの詳細情報を見ることができます。
+個々のぜい弱なコンポーネントをクリックすると、ぜい弱性に関する詳細が表示され、公式の CVE 報告へのリンクが示されます。
+
 .. How can I get involved?
 
 .. _how-can-i-get-involved:
