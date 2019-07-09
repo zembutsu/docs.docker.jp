@@ -34,9 +34,12 @@ Docker の `公式イメージ <https://hub.docker.com/search?q=&type=image&imag
 
 * 代表的なプログラミング言語環境、データストア、各種サービスといった、PAAS（Platform-as-a-Service）が提供するものにも似た、一時的な実現環境を提供します。
 
-..    Exemplify Dockerfile best practices and provide clear documentation to serve as a reference for other Dockerfile authors.
+.. * Exemplify [`Dockerfile` best practices](/engine/userguide/eng-image/dockerfile_best-practices/)
+     and provide clear documentation to serve as a reference for other `Dockerfile`
+     authors.
 
-* ``Dockerfile`` の :doc:`ベスト・プラクティス </engine/userguide/eng-image/dockerfile_best-practice>` を提示し、他の ``Dockerfile`` 著者のリファレンスを提供します。
+* ``Dockerfile`` の :doc:`ベスト・プラクティス </engine/userguide/eng-image/dockerfile_best-practices/>`  の例として示し、わかりやすいドキュメントを提供します。
+  これによって ``Dockerfile`` を作成する際のリファレンスとなるようにします。
 
 ..    Ensure that security updates are applied in a timely manner. This is particularly important as many Official Repositories are some of the most popular on Docker Hub.
 
