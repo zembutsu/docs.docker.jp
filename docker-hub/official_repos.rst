@@ -66,9 +66,19 @@ Docker の `公式イメージ <https://hub.docker.com/search?q=&type=image&imag
 Docker 社としては、公式イメージに関わるさまざまな内容に関して、レビューと公開を担当する専門チームを支援しています。
 このチームは、ソフトウェア開発元の保守担当、セキュリティ専門家、Docker コミュニティの幅広い方々と共同して作業を進めています。
 
-.. While it is preferrable to have upstream software authors maintaining their corresponding Official Repositories, this is not a strict requirement. Creating and maintaining images for Official Repositories is a public process. It takes place openly on GitHub where participation is encouraged. Anyone can provide feedback, contribute code, suggest process changes, or even propose a new Official Repository.
+.. While it is preferable to have upstream software authors maintaining their
+   corresponding Official Repositories, this is not a strict requirement. Creating
+   and maintaining images for Official Repositories is a public process. It takes
+   place openly on GitHub where participation is encouraged. Anyone can provide
+   feedback, contribute code, suggest process changes, or even propose a new
+   Official Repository.
 
-上流のソフトウェア作者が対応する公式リポジトリのメンテナンスにあたり、その優先度を厳密に要求していません。公式リポジトリのイメージ作成・管理は公開されたプロセスです。これらは GitHub 上で展開されています。誰でもフィードバック、コードの貢献、プロセス変更の提案、あるいは新しい公式リポジトリの提案も可能です。
+ソフトウェア開発者が、担当している公式イメージを保守することが好ましいのは言うまでもありません。
+しかしこれを厳密に要求することはしていません。
+そもそも公式イメージを生成して保守していくことは、公開で行われている作業です。
+GitHub 上にて公開で行われているため、そこに参加することが大いに推奨されています。
+どなたであっても、フィードバック、コード提供、プロセス変更の提案、さらには新たな公式イメージの提案までもが提供できるわけです。
+
 
 .. Should I use Official Repositories?
 
