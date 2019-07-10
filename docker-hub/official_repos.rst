@@ -184,19 +184,23 @@ Docker セキュリティ・スキャニングの結果を見るには、以下�
 たいていの場合 GitHub リポジトリには、公式リポジトリに対する Dockerfile が含まれており、さらに有効な issue トラッカーも提供されています。
 一般的なフィードバックやサポートに関する質問は、Freenode IRC 上の ``#docker-library`` に対して行ってください。
 
-.. How do I create a new Official Repository?
+.. ## How do I create a new Official Repository?
 
 .. how-do-i-create-a-new-official-repository:
 
-私が新しい公式リポジトリを作成できますか？
+どうすれば公式リポジトリを生成できますか？
 ==================================================
 
-.. From a high level, an Official Repository starts out as a proposal in the form of a set of GitHub pull requests. You’ll find detailed and objective proposal requirements in the following GitHub repositories:
+.. From a high level, an Official Repository starts out as a proposal in the form
+   of a set of GitHub pull requests. You'll find detailed and objective proposal
+   requirements in the following GitHub repositories:
 
-上位の手法としては、GitHub におけるプルリクエストの提案によって、公式リポジトリが動き出します。以下の GitHub リポジトリで詳細や提案に必要なものが確認できます。
+高度なレベルで話をすると、公式リポジトリは、GitHub のプルリクエストという形での提案から始まります。
+詳細な具体的な提案のあり方については、以下の GitHub リポジトリに示されています。
 
-..    docker-library/official-images
-..    docker-library/docs
+.. * [docker-library/official-images](https://github.com/docker-library/official-images)
+
+   * [docker-library/docs](https://github.com/docker-library/docs)
 
 * `docker-library/official-images <https://github.com/docker-library/official-images>`_
 
