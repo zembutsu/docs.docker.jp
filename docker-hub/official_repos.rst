@@ -17,7 +17,7 @@ Docker Hub 上の公式リポジトリ
    curated set of Docker repositories that are promoted on Docker Hub. They are
    designed to:
 
-Docker の `公式イメージ <https://hub.docker.com/search?q=&type=image&image_filter=official>`_ は Docker Hub 上において提供される、厳選された Docker リポジトリです。
+Docker の `公式リポジトリ <https://hub.docker.com/official/>`_ は Docker Hub 上において提供される、厳選された Docker リポジトリです。
 これは以下のことを意識して提供されています。
 
 .. * Provide essential base OS repositories (for example,
@@ -47,7 +47,7 @@ Docker の `公式イメージ <https://hub.docker.com/search?q=&type=image&imag
 
 * 適切なタイミングでセキュリティ・アップデートを適用するようにします。
   これは特に重要なことです。
-  Docker Hub 上における公式イメージは、人気を得ているものが数多くあるからです。
+  Docker Hub 上における公式リポジトリは、人気を得ているものが数多くあるからです。
 
 .. * Provide a channel for software vendors to redistribute up-to-date and
      supported versions of their products. Organization accounts on Docker Hub can
@@ -63,7 +63,7 @@ Docker の `公式イメージ <https://hub.docker.com/search?q=&type=image&imag
    with upstream software maintainers, security experts, and the broader Docker
    community.
 
-Docker 社としては、公式イメージに関わるさまざまな内容に関して、レビューと公開を担当する専門チームを支援しています。
+Docker 社としては、公式リポジトリに関わるさまざまな内容に関して、レビューと公開を担当する専門チームを支援しています。
 このチームは、ソフトウェア開発元の保守担当、セキュリティ専門家、Docker コミュニティの幅広い方々と共同して作業を進めています。
 
 .. While it is preferable to have upstream software authors maintaining their
@@ -73,11 +73,11 @@ Docker 社としては、公式イメージに関わるさまざまな内容に�
    feedback, contribute code, suggest process changes, or even propose a new
    Official Repository.
 
-公式イメージの保守は、ソフトウェア開発元の担当者が行うことが好ましいのは言うまでもありません。
+公式リポジトリの保守は、ソフトウェア開発元の担当者が行うことが好ましいのは言うまでもありません。
 しかしこれを厳密に要求することはしていません。
-そもそも公式イメージを生成して保守していくことは、公開で行われている作業です。
+そもそも公式リポジトリを生成して保守していくことは、公開で行われている作業です。
 GitHub 上にて公開で行われているため、そこに参加することが大いに推奨されています。
-どなたであっても、フィードバック、コード提供、プロセス変更の提案、さらには新たな公式イメージの提案までもが提供できるわけです。
+どなたであっても、フィードバック、コード提供、プロセス変更の提案、さらには新たな公式リポジトリの提案までもが提供できるわけです。
 
 
 .. ## Should I use Official Repositories?
@@ -92,10 +92,10 @@ GitHub 上にて公開で行われているため、そこに参加すること�
    and are designed for the most common use cases. Advanced users are encouraged to
    review the Official Repositories as part of their `Dockerfile` learning process.
 
-Docker を初めて利用するユーザは、公式イメージを用いてプロジェクトを構築することをお勧めしています。
-このイメージには分かり易いドキュメントがあって、ベストプラクティスを示しています。
+Docker を初めて利用するユーザは、公式リポジトリを用いてプロジェクトを構築することをお勧めしています。
+このリポジトリには分かり易いドキュメントがあって、ベストプラクティスを示しています。
 そして一般的な利用を前提にして設計されています。
-上級者の方は ``Dockerfile`` を勉強する一環として、公式イメージをレビューしていただくことをお願いします。
+上級者の方は ``Dockerfile`` を勉強する一環として、公式リポジトリをレビューしていただくことをお願いします。
 
 .. A common rationale for diverging from Official Repositories is to optimize for
    image size. For instance, many of the programming language stack images contain
@@ -103,7 +103,7 @@ Docker を初めて利用するユーザは、公式イメージを用いてプ�
    optimized code. An advanced user could build a custom image with just the
    necessary pre-compiled libraries to save space.
 
-公式イメージを取得した後に目指すことは、イメージサイズの最適化です。
+公式リポジトリを取得した後に目指すことは、イメージサイズの最適化です。
 たとえばプログラミング言語イメージには、たいていは完全なビルドツールチェーンが含まれていて、最適化コードによるモジュールをインストールできるようにしています。
 上級者は独自のイメージをビルドする際には、プリコンパイル済ライブラリを必要な分のみ含めることで、容量を節約することができるかもしれません。
 
@@ -117,7 +117,7 @@ Docker を初めて利用するユーザは、公式イメージを用いてプ�
 
 `python <https://hub.docker.com/_/python/>`_ や `ruby <https://hub.docker.com/_/ruby/>`_ のような数多くのプログラミング言語環境向けには ``-slim`` というタグをつけています。
 これは最適化への要求を満たす目的で作られています。
-この「slim」でも不十分に感じる方は、公式イメージ内のベース OS イメージから派生イメージを作り上げて、その後も保守を行っていただくことをお勧めします。
+この「slim」でも不十分に感じる方は、公式リポジトリ内のベース OS イメージから派生イメージを作り上げて、その後も保守を行っていただくことをお勧めします。
 同じやり方を繰り返しても無駄かもしれないからです。
 
 .. ## How do I know the Official Repositories are secure?
@@ -179,7 +179,7 @@ Docker セキュリティ・スキャニングの結果を見るには、以下�
    Repository also has an active issue tracker. General feedback and support
    questions should be directed to `#docker-library` on Freenode IRC.
 
-すべての公式イメージのページにはドキュメントが含まれていて、そのリポジトリに対する詳細が説明されています。
+すべての公式リポジトリのページにはドキュメントが含まれていて、そのリポジトリに対する詳細が説明されています。
 そしてその中に **User Feedback** の節があります。
 たいていの場合 GitHub リポジトリには、公式リポジトリに対する Dockerfile が含まれており、さらに有効な issue トラッカーも提供されています。
 一般的なフィードバックやサポートに関する質問は、Freenode IRC 上の ``#docker-library`` に対して行ってください。
@@ -235,7 +235,7 @@ Docker セキュリティ・スキャニングの結果を見るには、以下�
 
 新たな提案が受け付けられたら、その提案者はイメージを常に最新状態とし、ユーザ・フィードバックに返信する責任があります。
 公式リポジトリ・チームには、Docker Hub 上にイメージとドキュメントを公開する義務が発生します。
-公式イメージを更新していくことは、レビューを行うことは少ないかもしれませんが、プルリクエストの作業に似ています。
+公式リポジトリを更新していくことは、レビューを行うことは少ないかもしれませんが、プルリクエストの作業に似ています。
 公式リポジトリ・チームは、あらゆる活動を最大限管理し、品質リスクやセキュリティ問題の発生を抑えます。
 
 
