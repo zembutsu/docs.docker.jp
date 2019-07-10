@@ -238,12 +238,6 @@ Docker セキュリティ・スキャニングの結果を見るには、以下�
 公式イメージを更新していくことは、レビューを行うことは少ないかもしれませんが、プルリクエストの作業に似ています。
 公式リポジトリ・チームは、あらゆる活動を最大限管理し、品質リスクやセキュリティ問題の発生を抑えます。
 
-..    Note: If you are interested in proposing an Official Repository, but would like to discuss it with Docker, Inc. privately first, please send your inquiries to partners@docker.com. There is no fast-track or pay-for-status option.
-
-.. note::
-
-   もし公式リポジトリの提案に興味があるとき、まず Docker 社とプライベートに議論したい場合は、リクエストを partners@docker.com にお送りください。ただし、迅速ではありませんし、支払いオプションもありません。
-
 
 .. seealso:: 
 
