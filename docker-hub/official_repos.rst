@@ -213,9 +213,17 @@ Docker セキュリティ・スキャニングの結果を見るには、以下�
 公式リポジトリ・チームは、コミュニティに貢献して頂ける方の助けも借りながら、正式に各提案をレビューし、提案者へのフィードバックを行っています。
 ただし提案を受け付けてからレビューを開始するまでには、多少もたつくことがあるかもしれません。
 
-.. There are also subjective considerations during the review process. These subjective concerns boil down to the basic question: “is this image generally useful?” For example, the python Official Repository is “generally useful” to the large Python developer community, whereas an obscure text adventure game written in Python last week is not.
+.. There are also subjective considerations during the review process. These
+   subjective concerns boil down to the basic question: "is this image generally
+   useful?" For example, the [python](https://hub.docker.com/_/python/)
+   Official Repository is "generally useful" to the large Python developer
+   community, whereas an obscure text adventure game written in Python last week is
+   not.
 
-また、レビューのプロセス中では主観的な判断も含まれます。主観的な事項は、基本的な質問で煮詰めます「このイメージは一般的に使いやすいだろうか？」　たとえば `python <https://hub.docker.com/_/python/>`_ 公式リポジトリでは、大きな Python 開発コミュニティにとって「一般的に使いやすいか」です。これが先週 Python で書かれた無名のアドベンチャー・ゲームだとしてもです。
+レビューを行っていく際には、主観的な議論となることもあります。
+そのような主観的な疑問は、「このイメージは汎用的に使えますか？」といった単純な質問に帰着します。
+たとえば `python <https://hub.docker.com/_/python/>`_ の公式リポジトリは、幅広い Python 開発コミュニティにとって「汎用的に使えます」と言えます。
+ところが「先週作った Python のアドベンチャーゲーム」といったあいまいな文章では、何も答えられません。
 
 .. When a new proposal is accepted, the author becomes responsibile for keeping their images up-to-date and responding to user feedback. The Official Repositories team becomes responsibile for publishing the images and documentation on Docker Hub. Updates to the Official Repository follow the same pull request process, though with less review. The Official Repositories team ultimately acts as a gatekeeper for all changes, which helps mitigate the risk of quality and security issues from being introduced.
 
