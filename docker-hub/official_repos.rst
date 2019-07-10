@@ -225,9 +225,18 @@ Docker セキュリティ・スキャニングの結果を見るには、以下�
 たとえば `python <https://hub.docker.com/_/python/>`_ の公式リポジトリは、幅広い Python 開発コミュニティにとって「汎用的に使えます」と言えます。
 ところが「先週作った Python のアドベンチャーゲーム」といったあいまいな文章では、何も答えられません。
 
-.. When a new proposal is accepted, the author becomes responsibile for keeping their images up-to-date and responding to user feedback. The Official Repositories team becomes responsibile for publishing the images and documentation on Docker Hub. Updates to the Official Repository follow the same pull request process, though with less review. The Official Repositories team ultimately acts as a gatekeeper for all changes, which helps mitigate the risk of quality and security issues from being introduced.
+.. Once a new proposal is accepted, the author is responsible for keeping
+   their images up-to-date and responding to user feedback. The Official
+   Repositories team becomes responsible for publishing the images and
+   documentation on Docker Hub. Updates to the Official Repository follow the same
+   pull request process, though with less review. The Official Repositories team
+   ultimately acts as a gatekeeper for all changes, which helps mitigate the risk
+   of quality and security issues from being introduced.
 
-新しい提案が承認されると、作者はイメージの更新やユーザのフィードバック対応の継続に対する責任があります。公式リポジトリ・チームはイメージの配布と Docker Hub 上のドキュメントに対する責任があります。公式リポジトリの更新にあたり、複数のプルリクエストはレビューの少ないプロセスを辿ることもあるでしょう。公式リポジトリチームは、全ての変更に対して最終的に対応する門番です。公式リポジトリチームが、品質に対するリスクやセキュリティ問題が発生しないよう助力します。
+新たな提案が受け付けられたら、その提案者はイメージを常に最新状態とし、ユーザ・フィードバックに返信する責任があります。
+公式リポジトリ・チームには、Docker Hub 上にイメージとドキュメントを公開する義務が発生します。
+公式イメージを更新していくことは、レビューを行うことは少ないかもしれませんが、プルリクエストの作業に似ています。
+公式リポジトリ・チームは、あらゆる活動を最大限管理し、品質リスクやセキュリティ問題の発生を抑えます。
 
 ..    Note: If you are interested in proposing an Official Repository, but would like to discuss it with Docker, Inc. privately first, please send your inquiries to partners@docker.com. There is no fast-track or pay-for-status option.
 
