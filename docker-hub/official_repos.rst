@@ -206,9 +206,12 @@ Docker セキュリティ・スキャニングの結果を見るには、以下�
 
 * `docker-library/docs <https://github.com/docker-library/docs>`_
 
-.. The Official Repositories team, with help from community contributors, formally review each proposal and provide feedback to the author. This initial review process may require a bit of back and forth before the proposal is accepted.
+.. The Official Repositories team, with help from community contributors, formally
+   review each proposal and provide feedback to the author. This initial review
+   process may require a bit of back and forth before the proposal is accepted.
 
-公式リポジトリ・チームは、コミュニティのコントリビュータの助けにより、作者に対して提案やフィードバックを公式に提供します。この初期レビュー・プロセスには、提案が承認されるまでに行ったり来たりすることがあります。
+公式リポジトリ・チームは、コミュニティに貢献して頂ける方の助けも借りながら、正式に各提案をレビューし、提案者へのフィードバックを行っています。
+ただし提案を受け付けてからレビューを開始するまでには、多少もたつくことがあるかもしれません。
 
 .. There are also subjective considerations during the review process. These subjective concerns boil down to the basic question: “is this image generally useful?” For example, the python Official Repository is “generally useful” to the large Python developer community, whereas an obscure text adventure game written in Python last week is not.
 
