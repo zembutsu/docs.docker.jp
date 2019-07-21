@@ -64,13 +64,19 @@ Engine 1.10 によって Registry 2.3 にプッシュされたイメージは、
    Error response from daemon: unsupported schema version 2 for tag TAGNAME
    （デーモンからのエラー： タグ TAGNAME に対してスキーマバージョン 2 はサポートされません）
 
-.. Docker Content Trust heavily relies on pull by digest. As a result, images pushed from the Engine 1.10 CLI to a 2.3 Registry cannot be pulled by older Engine CLIs (< 1.10) with Docker Content Trust enabled.
+.. Docker Content Trust heavily relies on pull by digest. As a result, images
+   pushed from the Engine 1.10 CLI to a 2.3 Registry cannot be pulled by older
+   Engine CLIs (< 1.10) with Docker Content Trust enabled.
 
-Docker Content Trust は、この digest 値に強く依存しています。そのため、Engine 1.10 のコマンドラインで Registry 2.3 にイメージを送信したとしても、Docker Content Trust を有効化した古い Engine 用の CLI （バージョン 1.10 より小さい）では、イメージを取得（pull）できません。
+Docker Content Trust は、ダイジェスト値によるイメージの取得機能に大きく依存しています。
+したがって Engine 1.10 CLI から Registry 2.3 にプッシュされたイメージは、Docker Content Trust を有効にしていても、古いバージョンの Engine CLI （1.10 以前）ではプルすることはできません。
 
-.. If you are using an older Registry version (< 2.3), this problem does not occur with any version of the Engine CLI; push, pull, with and without content trust work as you would expect.
+.. If you are using an older Registry version (< 2.3), this problem does not occur
+   with any version of the Engine CLI; push, pull, with and without content trust
+   work as you would expect.
 
-Registry の古いバージョン（2.3 より小さい）を使っている場合は、どのエンジンの CLI を使って送受信（push、pull）しても問題ありません。ただし、Content Trust を使っていない場合に限ります。
+かつての Registry バージョン（2.3 以前）を利用している場合は、Docker Engine CLI がどのバージョンであっても問題ありません。
+プッシュやプルでも、また Docker Content Trust を利用するしないに関係なく、思いどおりに動くはずです。
 
 .. Docker Content Trust
 
