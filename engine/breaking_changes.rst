@@ -45,18 +45,24 @@ Engine 1.10
 
 1.10 のリリースにおいては、互換性を維持しない変更が 2 つ存在し、Registry と Docker Content Trust に影響を与えています。
 
-.. Registry
+**Registry**
 
-Registry
-----------
+.. Registry 2.3 includes improvements to the image manifest that caused a
+   breaking change. Images pushed by Engine 1.10 to a Registry 2.3 cannot be
+   pulled by digest by older Engine versions. A `docker pull` that encounters this
+   situation returns the following error:
 
-.. Registry 2.3 includes improvements to the image manifest that have caused a breaking change. Images pushed by Engine 1.10 to a Registry 2.3 cannot be pulled by digest by older Engine versions. A docker pull that encounters this situation returns the following error:
+Registry 2.3 においてはイメージマニフェストに対する変更が行われ、これは下位互換性のないものとなりました。
+Engine 1.10 によって Registry 2.3 にプッシュされたイメージは、古い Engine バージョンを用いた場合には、ダイジェスト値を用いたプルができません。
+``docker pull`` がこの状況において実行されると、以下のようなエラーが返されます。
 
-Registry 2.3 はイメージのマニフェストという改良を取り込んだため、破壊的変更をもたらしました。Engine 1.10 から Registry 2.3 にイメージを送信しても、古いバージョンの Engine で digest 値を計算したものは取得できません。 ``docker pull`` を実行しても、次のようなエラーが表示されます。
-
-.. code-block:: bash
+.. ```none
+    Error response from daemon: unsupported schema version 2 for tag TAGNAME
+   ```
+::
 
    Error response from daemon: unsupported schema version 2 for tag TAGNAME
+   （デーモンからのエラー： タグ TAGNAME に対してスキーマバージョン 2 はサポートされません）
 
 .. Docker Content Trust heavily relies on pull by digest. As a result, images pushed from the Engine 1.10 CLI to a 2.3 Registry cannot be pulled by older Engine CLIs (< 1.10) with Docker Content Trust enabled.
 
