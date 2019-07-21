@@ -33,21 +33,6 @@ Docker Engine の各リリースでは、前バージョンとの下位互換性
 
 どのような場合でも将来的に削除する予定の機能は、前もって 3 リリースの期間は議論を継続し、:doc:`廃止機能 <deprecated>` において文書化しています。
 
-.. Engine 1.12
-
-.. _engine-112:
-
-Engine 1.12
-====================
-
-.. Docker clients <= 1.9.2 used an invalid Host header when making request to the
-   daemon. Docker 1.12 is built using golang 1.6 which is now checking the validity
-   of the Host header and as such clients <= 1.9.2 can't talk anymore to the daemon. 
-   [An environment variable was added to overcome this issue.](reference/commandline/dockerd.md#miscellaneous-options)
-
-Docker クライアント 1.9.2 以下でデーモンにリクエストしても、ホストヘッダが無効です。Docker 1.12 は Go 言語 1.6 を用いて構築しており、新しいホスト・メッダの有効性を確認します。そのため、クライアント 1.9.2 以下はデーモンと通信できません。 :ref:`この問題に対応するため、環境変数を追加しました <dockerd-miscellaneous-options>` 。
-
-
 .. Engine 1.10
 
 .. _engine-110:
