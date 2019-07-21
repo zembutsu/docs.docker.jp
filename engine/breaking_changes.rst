@@ -78,14 +78,14 @@ Docker Content Trust は、ダイジェスト値によるイメージの取得�
 かつての Registry バージョン（2.3 以前）を利用している場合は、Docker Engine CLI がどのバージョンであっても問題ありません。
 プッシュやプルでも、また Docker Content Trust を利用するしないに関係なく、思いどおりに動くはずです。
 
-.. Docker Content Trust
+**Docker Content Trust**
 
-Docker Content Trust
---------------------
+.. Engine older than the current 1.10 cannot pull images from repositories that
+   have enabled key delegation. Key delegation is a feature which requires a
+   manual action to enable.
 
-.. Engine older than the current 1.10 cannot pull images from repositories that have enabled key delegation. Key delegation is a feature which requires a manual action to enable.
-
-現在の Engine 1.10 よりも古いバージョンでは、key delegation（鍵の権限委譲）のためリポジトリからイメージを取得（pull）できません。key delegation 機能は手動で有効化する必要があります。
+現在の Docker Engine 1.10 よりも古いバージョンでは、認証鍵の委任機能を持っているレポジトリからのイメージ取得ができません。
+認証鍵の委任を有効にするためには、手動での操作を必要とします。
 
 .. seealso:: 
 
