@@ -33,16 +33,17 @@ Docker Engine の各リリースでは、前バージョンとの下位互換性
 
 どのような場合でも将来的に削除する予定の機能は、前もって 3 リリースの期間は議論を継続し、:doc:`廃止機能 <deprecated>` において文書化しています。
 
-.. Engine 1.10
+.. ## Engine 1.10
 
 .. _engine-110:
 
 Engine 1.10
 ====================
 
-.. There were two breaking changes in the 1.10 release.
+.. There were two breaking changes in the 1.10 release that affected
+   Registry and Docker Content Trust:
 
-1.10 のリリースにあたり、２つの破壊的変更（breaking change）があります。
+1.10 のリリースにおいては、互換性を維持しない変更が 2 つ存在し、Registry と Docker Content Trust に影響を与えています。
 
 .. Registry
 
