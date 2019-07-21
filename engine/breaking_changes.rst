@@ -21,13 +21,17 @@
        :depth: 3
        :local:
 
-.. Every Engine release strives to be backward compatible with its predecessors. In all cases, the policy is that feature removal is communicated two releases in advance and documented as part of the deprecated features page.
+.. Every Engine release strives to be backward compatible with its predecessors,
+   and interface stability is always a priority at Docker.
 
-各 Engine をリリースする度に、前のバージョンとの下位互換性を持つように努めています。全てのケースにおいて、機能を廃止するのは２つ先のバージョンというポリシーを持っており、 :doc:`廃止機能 <deprecated>` のページでドキュメント化しています。
+Docker Engine の各リリースでは、前バージョンとの下位互換性を保つように努めています。
+インターフェースを安定させることは Docker において常に最重要なことです。
 
-.. Unfortunately, Docker is a fast moving project, and newly introduced features may sometime introduce breaking changes and/or incompatibilities. This page documents these by Engine version.
+.. In all cases, feature removal is communicated three releases
+   in advance and documented as part of the [deprecated features](deprecated.md)
+   page.
 
-残念ながら、Docker は非常に動いているプロジェクトであり、新しく導入した機能は変更や互換性を弱めてしまうかもしれません。このページでは各エンジンのバージョンごとに文書化しています。
+どのような場合でも将来的に削除する予定の機能は、前もって 3 リリースの期間は議論を継続し、:doc:`廃止機能 <deprecated>` において文書化しています。
 
 .. Engine 1.12
 
