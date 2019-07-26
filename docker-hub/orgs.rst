@@ -28,18 +28,19 @@ Docker Hub の `組織 <https://hub.docker.com/organizations/>`_ （organization
 リポジトリを生成できるのは、組織の所有者グループに属するユーザーに限定されます。
 したがって Docker イメージに対するアクセスを制限した配布が可能となり、新イメージの公開ができるのはどの Docker Hub ユーザーとするかを設定することができます。
 
-.. Creating and viewing organizations
+.. ### Creating and viewing organizations
 
-.. _creating-and-viewing-organizations:
+.. _creating-and-viewing-organizations
 
-organizations の作成と表示
+組織の生成と確認
 ------------------------------
 
-.. You can see which organizations you belong to and add new organizations by clicking “Organizations” in the top nav bar.
+.. You can see which organizations you belong to and add new organizations by
+   clicking **Organizations** in the top nav bar.
 
-新しい organizations を追加するには、トップ・ナビゲーション・バーの「Organizations」をクリックします。
+所属する組織は何かを確認し、または新たな組織を追加するには、最上段にあるナビゲーションバーの **Organizations** をクリックします。
 
-.. organizations
+.. ![organizations](images/orgs.png)
 
 .. image:: ./images/orgs.png
    :scale: 60%
