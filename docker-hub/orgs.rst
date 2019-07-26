@@ -46,26 +46,27 @@ Docker Hub の `組織 <https://hub.docker.com/organizations/>`_ （organization
    :scale: 60%
    :alt: organizations 画面
 
-.. Organization teams
+.. ### Organization teams
 
 .. _organization-teams:
 
-Organization teams
+組織内のチーム
 --------------------
 
-.. Users in the “Owners” team of an organization can create and modify the membership of all teams.
+.. Users in the "Owners" team of an organization can create and modify the
+   membership of all teams.
 
-organization の「Owners」チームのユーザが、チーム全体に対するメンバの追加や変更を行えます。
+組織内の「所有者」（Owners）チームに属するユーザであれば、すべてのチームにおけるメンバの追加や削除を行うことができます。
 
 .. Other users can only see teams they belong to.
 
-他のユーザは、チームに所属していれば参照可能となります。
+それ以外のユーザは、自身が属するチームのみを参照することができます。
 
-.. teams
+.. ![teams](images/groups.png)
 
 .. image:: ./images/groups.png
    :scale: 60%
-   :alt: teams画面
+   :alt: チーム
 
 .. Repository team permissions
 
