@@ -13,16 +13,20 @@
 Docker Hub における組織とチーム
 ========================================
 
-.. Overview
+.. Docker Hub [organizations](https://hub.docker.com/organizations/) let you create
+   teams so you can give colleagues access to shared image repositories. A Docker
+   Hub organization can contain public and private repositories just like a user
+   account. Access to push or pull for these repositories is allocated by defining
+   teams of users and then assigning team rights to specific repositories.
+   Repository creation is limited to users in the organization owner's group. This
+   allows you to distribute limited access Docker images, and to select which
+   Docker Hub users can publish new images.
 
-.. _organizations-and-teams-overview:
-
-概要
-==========
-
-.. Docker Hub organizations let you create teams so you can give colleagues access to shared image repositories. A Docker Hub organization can contain public and private repositories just like a user account. Access to push or pull for these repositories is allocated by defining teams of users and then assigning team rights to specific repositories. Repository creation is limited to users in the organization owner’s group. This allows you to distribute limited access Docker images, and to select which Docker Hub users can publish new images.
-
-Docker Hub の `organizations <https://hub.docker.com/organizations/>`_  機能は、共有イメージ・リポジトリに仲間がアクセス可能なチームを作成します。Docker Hub の organization には、通常のユーザ・アカウントのように、パブリックかプライベートなリポジトリが含まれます。特定のリポジトリに対してチームの権限を与えられたユーザが、リポジトリに対して送信・取得といったアクセスが可能になります。リポジトリの作成は、organization の所有者グループ（owner group）のみに限定されています。これにより、Docker イメージの配布を限定したままにでき、特定の Docker Hub ユーザが新しいイメージを公開できるように指定できます。
+Docker Hub の `組織 <https://hub.docker.com/organizations/>`_ （organizations）は、チームの生成を行い、チームメンバーがイメージリポジトリを共有アクセスできるようにするものです。
+ユーザーアカウントと同じように、組織にも公開リポジトリとプライベートリポジトリがあります。
+このリポジトリに対してプッシュやプルを行う権限は、ユーザーのチーム定義によって定められ、特定のリポジトリに対するチームの権限として与えます。
+リポジトリを生成できるのは、組織の所有者グループに属するユーザーに限定されます。
+したがって Docker イメージに対するアクセスを制限した配布が可能となり、新イメージの公開ができるのはどの Docker Hub ユーザーとするかを設定することができます。
 
 .. Creating and viewing organizations
 
