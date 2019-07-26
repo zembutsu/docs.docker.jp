@@ -119,5 +119,5 @@ Docker Hub の `組織 <https://hub.docker.com/organizations/>`_ （organization
 
 .. seealso:: 
 
-   Organizations and teams
+   Organizations and teams in Docker Hub
       https://docs.docker.com/docker-hub/orgs/
