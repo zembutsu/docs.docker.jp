@@ -102,13 +102,15 @@ Docker Hub の `組織 <https://hub.docker.com/organizations/>`_ （organization
 - ``Write`` （書き込み）権限は、Docker Hub 上の自動ビルドではないリポジトリに対してプッシュすることができます。
 - ``Admin`` （管理）権限は、リポジトリに対して "Description"、"Collaborators" の権限、"Public/Private" の別を編集したり、"Delete" を行ったりすることができます。
 
-..    Note: A User who has not yet verified their email address will only have Read access to the repository, regardless of the rights their team membership has given them.
+.. > **Note**: A User who has not yet verified their email address will only have
+   > `Read` access to the repository, regardless of the rights their team
+   > membership has given them.
 
 .. note::
 
-   メールアドレスの確認できないユーザは、チームのメンバに所属し適切な権限を割り与えていたとしても、リポジトリに対しては ``Read`` 権限しか与えられません。
+   メールアドレスの検証が済んでいないユーザは、たとえチームメンバとしての権限が与えられていても、リポジトリに対しては ``Read`` 権限しか与えられません。
 
-.. Organization repository collaborators
+.. ![Organization repository collaborators](images/org-repo-collaborators.png)
 
 .. image:: ./images/org-repo-collaborators.png
    :scale: 60%
