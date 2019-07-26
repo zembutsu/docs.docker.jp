@@ -5,12 +5,12 @@
 .. check date: 2016/03/11
 .. -------------------------------------------------------------------
 
-.. Organizations and teams
+.. title: Organizations and teams in Docker Hub
 
-.. _organizations-and-teams:
+.. _organizations-and-teams-in-docker-hub
 
 ========================================
-Organizations と teams (組織とチーム)
+Docker Hub における組織とチーム
 ========================================
 
 .. Overview
