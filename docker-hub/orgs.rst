@@ -68,7 +68,7 @@ Docker Hub の `組織 <https://hub.docker.com/organizations/>`_ （organization
    :scale: 60%
    :alt: チーム
 
-.. Repository team permissions
+.. ### Repository team permissions
 
 .. _repository-team-permissions:
 
@@ -77,11 +77,16 @@ Docker Hub の `組織 <https://hub.docker.com/organizations/>`_ （organization
 
 .. Use teams to manage who can interact with your repositories.
 
-teams（チーム）はリポジトリを操作できるユーザを管理します。
+チームを使って、どのユーザがリポジトリを操作できるかを管理します。
 
-.. You need to be a member of the organization’s “Owners” team to create a new team, Hub repository, or automated build. As an “Owner”, you then delegate the following repository access rights to a team using the “Collaborators” section of the repository view:
+.. You need to be a member of the organization's "Owners" team to create a new
+   team, Hub repository, or automated build. As an "Owner", you then delegate the
+   following repository access rights to a team using the "Collaborators" section
+   of the repository view.
 
-新しいチームの作成、Hub リポジトリの作成、自動構築をするには、organization の「Owners」（所有者）チームのメンバである必要があります。「Owner」であれば、対象のリポジトリに対して権限を与えるため、リポジトリの画面で「Collaborators」セクションを選べます。
+チーム、Hub リポジトリの新規生成、自動ビルドの設定を行うためには、その組織の「所有者」チームのメンバである必要があります。
+「所有者」となって、以下のようなリポジトリアクセスの権限をチームに対して与えます。
+これはリポジトリ画面の「Collaborators」セクションから行います。
 
 ..    Read access allows a user to view, search, and pull a private repository in the same way as they can a public repository.
     Write access users are able to push to non-automated repositories on the Docker Hub.
