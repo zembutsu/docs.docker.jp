@@ -94,13 +94,13 @@ Docker Hub の `組織 <https://hub.docker.com/organizations/>`_ （organization
 パーミッションは積み上げられるような性質を持っています。
 たとえば書き込みパーミッションがあったとすると、それは自動的に読み込みパーミッションも有していることになります。
 
-..    Read access allows a user to view, search, and pull a private repository in the same way as they can a public repository.
-    Write access users are able to push to non-automated repositories on the Docker Hub.
-    Admin access allows the user to modify the repositories “Description”, “Collaborators” rights, “Public/Private” visibility and “Delete”.
+.. - `Read` access allows users to view, search, and pull a private repository in the same way as they can a public repository.
+   - `Write` access allows users to push to non-automated repositories on the Docker Hub.
+   - `Admin` access allows users to modify the repositories "Description", "Collaborators" rights, "Public/Private" visibility and "Delete".
 
-* ``Read`` （読み込み）権限は、ユーザに対してプライベート・リポジトリをパブリック・リポジトリと同じように表示・検索・取得をできるようにします。
-* ``Write`` （書き込み）権限は、Docker Hub のリポジトリに対して、手動で送信（push）できるようにします。
-* ``Admin`` （管理）権限は、リポジトリに対するユーザの「Description」「Collaborators」権限設定、「Public/Private」の可視性や、「Delete」を行えます。
+- ``Read`` （読み込み）権限は、公開リポジトリに対する操作と同じように、 プライベート・リポジトリの参照、検索、プルを行うことができます。
+- ``Write`` （書き込み）権限は、Docker Hub 上の自動ビルドではないリポジトリに対してプッシュすることができます。
+- ``Admin`` （管理）権限は、リポジトリに対して "Description"、"Collaborators" の権限、"Public/Private" の別を編集したり、"Delete" を行ったりすることができます。
 
 ..    Note: A User who has not yet verified their email address will only have Read access to the repository, regardless of the rights their team membership has given them.
 
