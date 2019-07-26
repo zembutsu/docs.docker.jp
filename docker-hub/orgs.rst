@@ -88,6 +88,12 @@ Docker Hub の `組織 <https://hub.docker.com/organizations/>`_ （organization
 「所有者」となって、以下のようなリポジトリアクセスの権限をチームに対して与えます。
 これはリポジトリ画面の「Collaborators」セクションから行います。
 
+.. Permissions are cumulative. For example, if you have Write permissions, you
+   automatically have Read permissions:
+
+パーミッションは積み上げられるような性質を持っています。
+たとえば書き込みパーミッションがあったとすると、それは自動的に読み込みパーミッションも有していることになります。
+
 ..    Read access allows a user to view, search, and pull a private repository in the same way as they can a public repository.
     Write access users are able to push to non-automated repositories on the Docker Hub.
     Admin access allows the user to modify the repositories “Description”, “Collaborators” rights, “Public/Private” visibility and “Delete”.
