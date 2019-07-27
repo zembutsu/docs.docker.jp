@@ -121,9 +121,16 @@ Docker イメージは一連のレイヤから構成されます。
 コンテナが削除されると、その書き込みレイヤも同じく削除されます。
 ただしその元にあったイメージは、変更されずに残ります。
 
-.. Because each container has its own thin writable container layer and all data is stored in this container layer, this means that multiple containers can share access to the same underlying image and yet have their own data state. The diagram below shows multiple containers sharing the same Ubuntu 15.04 image.
+.. Because each container has its own writable container layer, and all changes are
+   stored in this container layer, multiple containers can share access to the same
+   underlying image and yet have their own data state. The diagram below shows
+   multiple containers sharing the same Ubuntu 15.04 image.
 
-それぞれのコンテナは、自分自身で書き込み可能なレイヤを持ちますので、全てのデータは対象のコンテナレイヤに保管します。つまり、複数のコンテナが根底にあるイメージを共有アクセスすることができ、それぞれのコンテナ自身がデータをも管理できるのを意味します。次の図は複数のコンテナが同じ Ubuntu 15.04 イメージを共有しています。
+複数のコンテナを見た場合、そのコンテナごとに個々の書き込み可能なコンテナ・レイヤがあって、データ更新結果はそのコンテナ・レイヤに保存されます。
+したがって複数コンテナでは、同一のイメージを共有しながらアクセスすることができ、しかも個々に見れば独自の状態を持つことができることになります。
+以下の図は、Ubuntu 15.04 という同一のイメージを共有する複数コンテナを示しています。
+
+.. ![](images/sharing-layers.jpg)
 
 .. image:: ./images/sharing-layers.png
    :scale: 60%
