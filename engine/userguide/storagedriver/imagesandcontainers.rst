@@ -104,16 +104,22 @@ Docker イメージは一連のレイヤから構成されます。
 **ストレージドライバー** というものは、そういった各レイヤーが互いにやり取りできるようにします。
 さまざまなストレージドライバーが利用可能であり、利用状況に応じて一長一短があります。
 
-.. Container and layers
+.. ## Container and layers
 
 .. _container-and-layers:
 
 コンテナとレイヤ
 ====================
 
-.. The major difference between a container and an image is this writable layer. All writes to the container that add new or modifying existing data are stored in this writable layer. When the container is deleted the writeable layer is also deleted. The image remains unchanged.
+.. The major difference between a container and an image is the top writable layer.
+   All writes to the container that add new or modify existing data are stored in
+   this writable layer. When the container is deleted, the writable layer is also
+   deleted. The underlying image remains unchanged.
 
-.. コンテナとイメージとの主な違いは、書き込み可能なレイヤ（writable layer）です。全てのコンテナに対する書き込み、つまり、新しいファイルの追加や既存のデータに対する変更は、この書き込み可能なレイヤに保管されます。コンテナが書き込み可能なレイヤを削除すると、コンテナも削除されます。イメージは変更されないままです。
+コンテナとイメージの大きな違いは、最上部に書き込みレイヤがあるかどうかです。
+コンテナに対して新たに加えられたり修正されたりしたデータは、すべてこの書き込みレイヤに保存されます。
+コンテナが削除されると、その書き込みレイヤも同じく削除されます。
+ただしその元にあったイメージは、変更されずに残ります。
 
 .. Because each container has its own thin writable container layer and all data is stored in this container layer, this means that multiple containers can share access to the same underlying image and yet have their own data state. The diagram below shows multiple containers sharing the same Ubuntu 15.04 image.
 
