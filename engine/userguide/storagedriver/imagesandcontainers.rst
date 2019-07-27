@@ -36,18 +36,66 @@
 
 Docker がイメージ内やコンテナ内にてデータをどのように管理するのかを理解しておけば、コンテナ作りやアプリケーション Docker 化の最良な方法、さらに稼動時のパフォーマンス低下を回避する方法が身につくはずです。
 
-.. Images and layers
+.. ## Images and layers
 
 イメージとレイヤ
 ====================
 
-.. Docker images are a series of read-only layers that are stacked on top of each other to form a single unified view. The first image in the stack is called a base image and all the other layers are stacked on top of this layer. The diagram below shows the Ubuntu 15:04 image comprising 4 stacked image layers.
+.. A Docker image is built up from a series of layers. Each layer represents an
+   instruction in the image's Dockerfile. Each layer except the very last one is
+   read-only. Consider the following Dockerfile:
 
-Docker イメージは読み込み専用（read-only）レイヤのセットです。それぞれのレイヤが層（スタック）として積み重なり、１つに統合された形に見えます。この１番めの層を *ベース・イメージ (base image)* と呼び、他の全てのレイヤは、このベース・イメージのレイヤ上に積み重なります。次の図は、 Ubuntu 15.04 イメージが４つのイメージ・レイヤを組みあわせて構成されているのが分かります。
+Docker イメージは一連のレイヤから構成されます。
+個々のレイヤは、そのイメージの Dockerfile 内にある 1 つの命令に対応づいています。
+一番最後にあるレイヤを除き、これ以外はすべて読み込み専用のレイヤです。
+たとえば以下のような Dockerfile を考えてみます。
 
-.. image:: ./images/image-layers.png
+.. ```conf
+   FROM ubuntu:15.04
+   COPY . /app
+   RUN make /app
+   CMD python /app/app.py
+   ```
+.. code-block:: yaml
+
+   FROM ubuntu:15.04
+   COPY . /app
+   RUN make /app
+   CMD python /app/app.py
+
+.. This Dockerfile contains four commands, each of which creates a layer.  The
+   `FROM` statement starts out by creating a layer from the `ubuntu:15.04` image.
+   The `COPY` command adds some files from your Docker client's current directory.
+   The `RUN` command builds your application using the `make` command. Finally,
+   the last layer specifies what command to run within the container.
+
+この Dockerfile には 4 つのコマンドがあります。
+コマンドのそれぞれが 1 つのレイヤを生成します。
+まずは ``FROM`` 命令によって ``ubuntu:15.04`` イメージから 1 つのレイヤが生成されるところから始まります。
+``COPY`` 命令は Docker クライアントのカレントディレクトリから複数のファイルを追加します。
+``RUN`` 命令は ``make`` コマンドを実行してアプリケーションをビルドします。
+そして最後のレイヤが、コンテナ内にて実行するべきコマンドを指定しています。
+
+.. Each layer is only a set of differences from the layer before it. The layers are
+   stacked on top of each other. When you create a new container, you add a new
+   writable layer on top of the underlying layers. This layer is often called the
+   "container layer". All changes made to the running container, such as writing
+   new files, modifying existing files, and deleting files, are written to this thin
+   writable container layer. The diagram below shows a container based on the Ubuntu
+   15.04 image.
+
+各レイヤは、その直前のレイヤからの差異だけを保持します。
+そしてレイヤは順に積み上げられていきます。
+新しいコンテナを生成したときには、それまで存在していたレイヤ群の最上部に、新たな書き込み可能なレイヤが加えられます。
+このレイヤは「コンテナ・レイヤ」と呼ばれることがあります。
+実行中のコンテナに対して実行される変更処理すべて、たとえば新規ファイル生成、既存ファイル修正、ファイル削除といったことは、その薄い皮のような書き込み可能なコンテナ・レイヤに対して書き込まれます。
+以下の図は Ubuntu 15.04 イメージに基づいて生成されたコンテナを表わしています。
+
+.. ![Docker image layers](images/container-layers.jpg)
+
+.. image:: ./images/container-layers.png
    :scale: 60%
-   :alt: イメージ層
+   :alt: Docker イメージレイヤ
 
 .. The Docker storage driver is responsible for stacking these layers and providing a single unified view.
 
