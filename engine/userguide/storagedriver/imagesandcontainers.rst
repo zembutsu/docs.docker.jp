@@ -136,9 +136,22 @@ Docker イメージは一連のレイヤから構成されます。
    :scale: 60%
    :alt: レイヤの共有
 
-.. A storage driver is responsible for enabling and managing both the image layers and the writeable container layer. How a storage driver accomplishes these behaviors can vary. Two key technologies behind Docker image and container management are stackable image layers and copy-on-write (CoW).
+.. > **Note**: If you need multiple images to have shared access to the exact
+   > same data, store this data in a Docker volume and mount it into your
+   > containers.
 
-ストレージ・ドライバは、イメージ・レイヤと書き込み可能なコンテナ・レイヤの両方を有効化・管理する責任があります。ストレージ・ドライバは様々な方法で処理をします。Docker イメージとコンテナ管理という２つの重要な技術の裏側にあるのは、積み上げ可能なイメージ・レイヤとコピー・オン・ライト（CoW）です。
+.. note::
+
+   複数イメージを必要としていて、さらに同一のデータを共有してアクセスしたい場合は、そのデータを Docker ボリュームに保存して、コンテナ内でそれをマウントします。
+
+.. Docker uses storage drivers to manage the contents of the image layers and the
+   writable container layer. Each storage driver handles the implementation
+   differently, but all drivers use stackable image layers and the copy-on-write
+   (CoW) strategy.
+
+Docker はストレージ・ドライバを利用して、イメージ・レイヤと書き込み可能なコンテナ・レイヤの各内容を管理します。
+さまざまなストレージ・ドライバでは、異なる実装によりデータを扱います。
+しかしどのようなドライバであっても、積み上げ可能な（stackable）イメージ・レイヤを取り扱い、コピー・オン・ライト（copy-on-write; CoW）方式を採用します。
 
 .. The copy-on-write strategy
 
