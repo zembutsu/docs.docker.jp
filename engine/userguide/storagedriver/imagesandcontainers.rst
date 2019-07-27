@@ -7,12 +7,12 @@
 .. Commits on May 14, 2016 d0ab1c360f5af7b92ab3f414e42ad817e0bd3059
 .. ---------------------------------------------------------------------------
 
-.. Understand images, containers, and storage driver
+.. title: About images, containers, and storage drivers
 
-.. _understand-images-containers-and-storage-driver:
+.. _about-images-containers-and-storage-drivers:
 
 ==================================================
-イメージ、コンテナ、ストレージ・ドライバの理解
+イメージ、コンテナ、ストレージ・ドライバについて
 ==================================================
 
 .. sidebar:: 目次
