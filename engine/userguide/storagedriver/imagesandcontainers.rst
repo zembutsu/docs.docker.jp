@@ -30,6 +30,12 @@
 さらにそのイメージをコンテナがどのように利用するのかを理解しておくことも重要です。
 つまりイメージとコンテナの双方の操作を可能とする技術に関して、おおまかに知っておく必要があります。
 
+.. Understanding how Docker manages the data within your images and containers will
+   help you understand the best way to design your containers and Dockerize your
+   applications, and avoid performance problems along the way.
+
+Docker がイメージ内やコンテナ内にてデータをどのように管理するのかを理解しておけば、コンテナ作りやアプリケーション Docker 化の最良な方法、さらに稼動時のパフォーマンス低下を回避する方法が身につくはずです。
+
 .. Images and layers
 
 イメージとレイヤ
