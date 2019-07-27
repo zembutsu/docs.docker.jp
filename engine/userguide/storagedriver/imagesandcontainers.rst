@@ -239,12 +239,12 @@ Docker はストレージ・ドライバを利用して、イメージ・レイ�
 こうすることで入出力を最小限に抑え、次に続くレイヤの各サイズも増やさずに済みます。
 この利点に関しては、さらに詳しく後述します。
 
-.. Sharing promotes smaller images
+.. ### Sharing promotes smaller images
 
 .. _sharing-promotes-smaller-images:
 
-共有を促進する小さなイメージ
-------------------------------
+共有によりイメージサイズはより小さく
+-------------------------------------
 
 .. This section looks at image layers and copy-on-write technology. All image and container layers exist inside the Docker host’s local storage area and are managed by the storage driver. On Linux-based Docker hosts this is usually located under /var/lib/docker/.
 
