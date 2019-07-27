@@ -97,9 +97,12 @@ Docker イメージは一連のレイヤから構成されます。
    :scale: 60%
    :alt: Docker イメージレイヤ
 
-.. The Docker storage driver is responsible for stacking these layers and providing a single unified view.
+.. A _storage driver_ handles the details about the way these layers interact with
+   each other. Different storage drivers are available, which have advantages
+   and disadvantages in different situations.
 
-Docker ストレージ・ドライバは、これらレイヤを積み重ねて単一に見えるようにする役割があります。
+**ストレージドライバー** というものは、そういった各レイヤーが互いにやり取りできるようにします。
+さまざまなストレージドライバーが利用可能であり、利用状況に応じて一長一短があります。
 
 .. When you make a change inside a container by, for example, adding a new file to the Ubuntu 15.04 image, you add a new layer on top of the underlying image stack. This change creates a new image layer containing the newly added file. Each image layer has its own universal unique identifier (UUID) and each successive image layer builds on top of the image layer below it.
 
