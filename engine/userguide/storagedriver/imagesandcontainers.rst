@@ -21,11 +21,14 @@
        :depth: 3
        :local:
 
-.. To use storage drivers effectively, you must understand how Docker builds and stores images. Then, you need an understanding of how these images are used in containers. Finally, you’ll need a short introduction to the technologies that enable both images and container operations.
+.. To use storage drivers effectively, you must understand how Docker builds and
+   stores images. Then, you need an understanding of how these images are used by
+   containers. Finally, you'll need a short introduction to the technologies that
+   enable both images and container operations.
 
-.. To use storage drivers effectively, you must understand how Docker builds and stores images. Then, you need an understanding of how these images are used by containers. Finally, you’ll need a short introduction to the technologies that enable both images and container operations.
-
-ストレージ・ドライバを効率的に使うには、Docker がどのようにイメージを構築・保管するかの理解が欠かせません。そして、これらのイメージがコンテナでどのように使われているかの理解が必要です。最後に、イメージとコンテナの両方を操作するための技術に対する、簡単な紹介をします。
+ストレージ・ドライバを効率よく利用するためには、Docker がどのようにしてイメージをビルドし保存するのかを理解しておく必要があります。
+さらにそのイメージをコンテナがどのように利用するのかを理解しておくことも重要です。
+つまりイメージとコンテナの双方の操作を可能とする技術に関して、おおまかに知っておく必要があります。
 
 .. Images and layers
 
