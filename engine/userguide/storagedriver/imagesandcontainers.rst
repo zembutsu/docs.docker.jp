@@ -153,6 +153,70 @@ Docker はストレージ・ドライバを利用して、イメージ・レイ�
 さまざまなストレージ・ドライバでは、異なる実装によりデータを扱います。
 しかしどのようなドライバであっても、積み上げ可能な（stackable）イメージ・レイヤを取り扱い、コピー・オン・ライト（copy-on-write; CoW）方式を採用します。
 
+.. ## Container size on disk
+
+.. _container-size-on-disk:
+
+ディスク上のコンテナ・サイズ
+=============================
+
+.. To view the approximate size of a running container, you can use the `docker ps -s`
+   command. Two different columns relate to size.
+
+稼働中コンテナの概算サイズを確認するには ``docker ps -s`` コマンドを実行します。
+サイズに関連した 2 つのデータがカラム表示されます。
+
+.. - `size`: the amount of data (on disk) that is used for the writable layer of
+     each container
+
+* ``size``: （ディスク上の）データ総量。
+  各コンテナの書き込みレイヤが利用するデータ部分です。
+
+.. - `virtual size`: the amount of data used for the read-only image data
+     used by the container. Multiple containers may share some or all read-only
+     image data. Two containers started from the same image share 100% of the
+     read-only data, while two containers with different images which have layers
+     in common share those common layers. Therefore, you can't just total the
+     virtual sizes. This will over-estimate the total disk usage by a potentially
+     non-trivial amount.
+
+* ``virtual size``: コンテナにおいて利用されている読み込み専用のイメージデータと、コンテナの書き込みレイヤの ``size`` を足し合わせたデータ総量。
+  複数コンテナにおいては、読み込み専用イメージデータの全部または一部を共有しているかもしれません。
+  1 つのイメージをベースとして作った 2 つのコンテナでは、読み込み専用データを 100% 共有します。
+  一方で 2 つの異なるイメージが一部に共通するレイヤを持っていて、そこからそれぞれに 2 つのコンテナを作ったとすると、共有するのはその共通レイヤ部分のみです。
+  したがって ``virtual size`` は単純に足し合わせで計算できるものではありません。
+  これはディスク総量を多く見積もってしまい、その量は無視できないほどになることがあります。
+
+.. The total disk space used by all of the running containers on disk is some
+   combination of each container's `size` and the `virtual size` values. If
+   multiple containers have exactly the same `virtual size`, they are likely
+   started from the same exact image.
+
+起動しているコンテナすべてが利用するディスク総量は、各コンテナの ``size`` と ``virtual size`` を適宜組み合わせた値になります。
+複数コンテナが同一の ``virtual size`` になっていたら、各コンテナは同一のイメージをベースにしていると考えられます。
+
+.. This also does not count the following additional ways a container can take up
+   disk space:
+
+またコンテナがディスク領域を消費するものであっても、以下に示す状況はディスク総量の算定には含まれません。
+
+.. - Disk space used for log files if you use the `json-file` logging driver. This
+     can be non-trivial if your container generates a large amount of logging data
+     and log rotation is not configured.
+   - Volumes and bind mounts used by the container.
+   - Disk space used for the container's configuration files, which are typically
+     small.
+   - Memory written to disk (if swapping is enabled).
+   - Checkpoints, if you're using the experimental checkpoint/restore feature.
+
+* ロギング・ドライバ ``json-file`` を利用している場合に、そのログファイルが利用するディスク量。
+  コンテナにおいてログ出力を大量に行っていて、ログローテーションを用いていない場合には、このディスク量は無視できないものになります。
+* コンテナが利用するボリュームやバインドマウント。
+* コンテナの設定ファイルが利用するディスク領域。
+  そのデータ容量は少ないのが普通です。
+* （スワップが有効である場合に）ディスクに書き込まれるメモリデータ。
+* 試験的な checkpoint/restore 機能を利用している場合のチェックポイント。
+
 .. The copy-on-write strategy
 
 .. _the-copy-on-write-strategy:
