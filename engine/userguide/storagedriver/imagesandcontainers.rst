@@ -543,12 +543,12 @@ Docker にとって 1 つめのイメージにおけるレイヤはすべて取�
       したがってローカルシステム上では利用することができません。
       この表示は無視して構いません。
 
-.. Copying makes containers efficient
+.. ### Copying makes containers efficient
 
-.. _copying-maked-containers-efficient:
+.. _copying-makes-containers-efficient:
 
-コンテナを効率的にコピー
-------------------------------
+コピーによりコンテナーを効率的に
+---------------------------------
 
 .. You learned earlier that a container a Docker image with a thin writable, container layer added. The diagram below shows the layers of a container based on the ubuntu:15.04 image:
 
