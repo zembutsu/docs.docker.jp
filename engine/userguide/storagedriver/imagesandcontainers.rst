@@ -560,9 +560,14 @@ Docker にとって 1 つめのイメージにおけるレイヤはすべて取�
 コンテナが変更を行っていないファイルは、その書き込みレイヤにはコピーされません。
 つまり書き込みレイヤは、できるだけ容量が小さく抑えられることになります。
 
-.. When an existing file in a container is modified, Docker uses the storage driver to perform a copy-on-write operation. The specifics of operation depends on the storage driver. For the AUFS and OverlayFS storage drivers, the copy-on-write operation is pretty much as follows:
+.. When an existing file in a container is modified, the storage driver performs a
+   copy-on-write operation. The specifics steps involved depend on the specific
+   storage driver. For the default `aufs` driver and the `overlay` and `overlay2`
+   drivers, the copy-on-write operation follows this rough sequence:
 
-コンテナの中で書き込み作業が発生したら、Docker はストレージ・ドライバでコピー・オン・ライト処理を実行します。この処理はストレージ・ドライバに依存します。AUFS と OverlayFS ストレージ・ドライバは、コピー・オン・ライト処理を、おおよそ次のように行います。
+コンテナ内にあるファイルが修正されると、ストレージ・ドライバはコピー・オン・ライト方式により動作します。
+そこで実行される各処理は、ストレージ・ドライバによってさまざまです。
+``aufs``, ``overlay``, ``overlay2`` といったドライバの場合、だいたい以下のような順にコピー・オン・ライト方式による処理が行われます。
 
 ..    Search through the layers for the file to update. The process starts at the top, newest layer and works down to the base layer one-at-a-time.
     Perform a “copy-up” operation on the first copy of the file that is found. A “copy up” copies the file up to the container’s own thin writable layer.
