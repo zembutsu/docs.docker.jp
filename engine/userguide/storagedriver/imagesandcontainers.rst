@@ -550,21 +550,15 @@ Docker にとって 1 つめのイメージにおけるレイヤはすべて取�
 コピーによりコンテナーを効率的に
 ---------------------------------
 
-.. You learned earlier that a container a Docker image with a thin writable, container layer added. The diagram below shows the layers of a container based on the ubuntu:15.04 image:
+.. When you start a container, a thin writable container layer is added on top of
+   the other layers. Any changes the container makes to the filesystem are stored
+   here. Any files the container does not change do not get copied to this writable
+   layer. This means that the writable layer is as small as possible.
 
-先ほど学んだように、Docker イメージのコンテナとは、書き込み可能なコンテナ・レイヤを追加したものです。以下の図は ``ubuntu:15.04`` をコンテナのベース・レイヤと下層レイヤを表示しています。
-
-.. image:: ./images/container-layers-cas.png
-   :scale: 60%
-   :alt: コンテナ・レイヤとイメージ
-
-.. All writes made to a container are stored in the thin writable container layer. The other layers are read-only (RO) image layers and can’t be changed. This means that multiple containers can safely share a single underlying image. The diagram below shows multiple containers sharing a single copy of the ubuntu:15.04 image. Each container has its own thin RW layer, but they all share a single instance of the ubuntu:15.04 image:
-
-コンテナに対する全ての書き込みは、書き込み可能なコンテナ・レイヤに保管されます。他のレイヤは読み込み専用（read-only、RO）のイメージ・レイヤであり、変更できません。つまり、複数のコンテナが下層にある１つのイメージを安全に共有できます。以下の図は、複数のコンテナが ``ubuntu:15.04`` イメージのコピーを共有しています。各コンテナは自分自身で読み書き可能なレイヤを持っていますが、どれもが ubuntu:15.04 イメージという単一のインスタンス（イメージ）を共有しています。
-
-.. image:: ./images/sharing-layers.png
-   :scale: 60%
-   :alt: レイヤの共有
+コンテナを起動すると、それまであったレイヤの最上部に、書き込み可能な薄いコンテナ・レイヤが加えられます。
+コンテナがファイルシステムに対して行った変更は、すべてそこに保存されます。
+コンテナが変更を行っていないファイルは、その書き込みレイヤにはコピーされません。
+つまり書き込みレイヤは、できるだけ容量が小さく抑えられることになります。
 
 .. When an existing file in a container is modified, Docker uses the storage driver to perform a copy-on-write operation. The specifics of operation depends on the storage driver. For the AUFS and OverlayFS storage drivers, the copy-on-write operation is pretty much as follows:
 
