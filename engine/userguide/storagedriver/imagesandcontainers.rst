@@ -589,13 +589,19 @@ Docker にとって 1 つめのイメージにおけるレイヤはすべて取�
 * 修正が発生すると、コピーを行ったそのファイルが処理されます。
   つまりコンテナは、下位のレイヤ内に存在している読み込み専用のそのファイルを見にいくことはありません。
 
-.. BTFS, ZFS, and other drivers handle the copy-on-write differently. You can read more about the methods of these drivers later in their detailed descriptions.
+.. Btrfs, ZFS, and other drivers handle the copy-on-write differently. You can
+   read more about the methods of these drivers later in their detailed
+   descriptions.
 
-BTRFS、ZFS 、その他のドライバは、コピー・オン・ライトを異なった方法で処理します。これらのドライバの手法については、後述するそれぞれの詳細説明をご覧ください。
+Btrfs, ZFS といったドライバにおけるコピー・オン・ライト方式は、これとは異なります。
+そのようなドライバが行う手法の詳細は、後述するそれぞれの詳細説明を参照してください。
 
-.. Containers that write a lot of data will consume more space than containers that do not. This is because most write operations consume new space in the containers thin writable top layer. If your container needs to write a lot of data, you can use a data volume.
+.. Containers that write a lot of data will consume more space than containers
+   that do not. This is because most write operations consume new space in the
+   container's thin writable top layer.
 
-たくさんのデータが書き込まれたコンテナは、何もしないコンテナに比べて多くのディスク容量を消費します。これは書き込み操作の発生によって、コンテナの薄い書き込み可能なレイヤ上に、更に新しい領域を消費するためです。もしコンテナが多くのデータを使う必要があるのであれば、データ・ボリュームを使うこともできます。
+データを大量に書き込むようなコンテナは、そういった書き込みを行わないコンテナに比べて、データ領域をより多く消費します。
+コンテナの最上位にある書き込み可能な薄いレイヤ上に対して書き込み処理を行うことは、たいていが新たなデータ領域を必要とするためです。
 
 .. A copy-up operation can incur a noticeable performance overhead. This overhead is different depending on which storage driver is in use. However, large files, lots of layers, and deep directory trees can make the impact more noticeable. Fortunately, the operation only occurs the first time any particular file is modified. Subsequent modifications to the same file do not cause a copy-up operation and can operate directly on the file’s existing copy already present in container layer.
 
