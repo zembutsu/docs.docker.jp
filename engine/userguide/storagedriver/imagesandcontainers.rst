@@ -673,23 +673,26 @@ Btrfs, ZFS といったドライバにおけるコピー・オン・ライト方
         38fa94212a419a082e6a6b87a8e2ec4a44dd327d7069b85892a707e3fc818544
         1a174fc216cccf18ec7d4fe14e008e30130b11ede0f0f94a87982e310cf2e765
 
-..    Run the docker ps command to verify the 5 containers are running.
+.. 2.  Run the `docker ps` command to verify the 5 containers are running.
 
-2. ``docker ps`` コマンドを実行し、５つのコンテナが実行中なのを確認します。
+2. ``docker ps`` コマンドを実行して、5 つのコンテナが実行中であることを確認します。
 
-.. code-block:: bash
+   ..  ```bash
+       CONTAINER ID        IMAGE                     COMMAND                  CREATED              STATUS              PORTS               NAMES
+       1a174fc216cc        acme/my-final-image:1.0   "bash"                   About a minute ago   Up About a minute                       my_container_5
+       38fa94212a41        acme/my-final-image:1.0   "bash"                   About a minute ago   Up About a minute                       my_container_4
+       1e7264576d78        acme/my-final-image:1.0   "bash"                   About a minute ago   Up About a minute                       my_container_3
+       dcad7101795e        acme/my-final-image:1.0   "bash"                   About a minute ago   Up About a minute                       my_container_2
+       c36785c423ec        acme/my-final-image:1.0   "bash"                   About a minute ago   Up About a minute                       my_container_1
+       ```
+   .. code-block:: bash
 
-   $ docker ps
-   CONTAINER ID    IMAGE             COMMAND    CREATED              STATUS              PORTS    NAMES
-   0ad25d06bdf6    changed-ubuntu    "bash"     About a minute ago   Up About a minute            stoic_ptolemy
-   8eb24b3b2d24    changed-ubuntu    "bash"     About a minute ago   Up About a minute            pensive_bartik
-   a651680bd6c2    changed-ubuntu    "bash"     2 minutes ago        Up 2 minutes                 hopeful_turing
-   9280e777d109    changed-ubuntu    "bash"     2 minutes ago        Up 2 minutes                 backstabbing_mahavira
-   75bab0d54f3c    changed-ubuntu    "bash"     2 minutes ago        Up 2 minutes                 boring_pasteur
-
-..    The output above shows 5 running containers, all sharing the changed-ubuntu image. Each CONTAINER ID is derived from the UUID when creating each container.
-
-上記の結果から、 ``changed-ubuntu`` イメージを全て共有する５つのコンテナが実行中だと分かります。それぞれの ``コンテナ ID`` は各コンテナ作成時の UUID から与えられています。
+      CONTAINER ID        IMAGE                     COMMAND                  CREATED              STATUS              PORTS               NAMES
+      1a174fc216cc        acme/my-final-image:1.0   "bash"                   About a minute ago   Up About a minute                       my_container_5
+      38fa94212a41        acme/my-final-image:1.0   "bash"                   About a minute ago   Up About a minute                       my_container_4
+      1e7264576d78        acme/my-final-image:1.0   "bash"                   About a minute ago   Up About a minute                       my_container_3
+      dcad7101795e        acme/my-final-image:1.0   "bash"                   About a minute ago   Up About a minute                       my_container_2
+      c36785c423ec        acme/my-final-image:1.0   "bash"                   About a minute ago   Up About a minute                       my_container_1
 
 ..    List the contents of the local storage area.
 
