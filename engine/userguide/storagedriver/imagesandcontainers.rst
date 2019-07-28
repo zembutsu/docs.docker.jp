@@ -278,6 +278,271 @@ Docker はストレージ・ドライバを利用して、イメージ・レイ�
    Digest: sha256:5e279a9df07990286cce22e1b0f5b0490629ca6d187698746ae5e28e604a640e
    Status: Downloaded newer image for ubuntu:15.04
 
+.. Each of these layers is stored in its own directory inside the Docker host's
+   local storage area. To examine the layers on the filesystem, list the contents
+   of `/var/lib/docker/<storage-driver>/layers/`. This example uses `aufs`, which
+   is the default storage driver:
+
+各レイヤは、Docker ホストのローカル保存領域内にて、それぞれのディレクトリ配下に保存されます。
+ファイルシステム上のレイヤデータを確認するなら、``/var/lib/docker/<storage-driver>/layers/`` の内容を一覧表示します。
+以下はデフォルトのストレージ・ドライバである ``aufs`` の例です。
+
+.. ```bash
+   $ ls /var/lib/docker/aufs/layers
+   1d6674ff835b10f76e354806e16b950f91a191d3b471236609ab13a930275e24
+   5dbb0cbe0148cf447b9464a358c1587be586058d9a4c9ce079320265e2bb94e7
+   bef7199f2ed8e86fa4ada1309cfad3089e0542fec8894690529e4c04a7ca2d73
+   ebf814eccfe98f2704660ca1d844e4348db3b5ccc637eb905d4818fbfb00a06a
+   ```
+.. code-block:: bash
+
+   $ ls /var/lib/docker/aufs/layers
+   1d6674ff835b10f76e354806e16b950f91a191d3b471236609ab13a930275e24
+   5dbb0cbe0148cf447b9464a358c1587be586058d9a4c9ce079320265e2bb94e7
+   bef7199f2ed8e86fa4ada1309cfad3089e0542fec8894690529e4c04a7ca2d73
+   ebf814eccfe98f2704660ca1d844e4348db3b5ccc637eb905d4818fbfb00a06a
+
+.. The directory names do not correspond to the layer IDs (this has been true since
+   Docker 1.10).
+
+ディレクトリ名はレイヤ ID に対応するものではありません。
+（Docker 1.10 以前は対応づいていました。）
+
+.. Now imagine that you have two different Dockerfiles. You use the first one to
+   create an image called `acme/my-base-image:1.0`.
+
+ここで 2 つの異なる Dockerfile を利用している状況を考えます。
+1 つめの Dockerfile からは ``acme/my-base-image:1.0`` というイメージが作られるものとします。
+
+.. ```conf
+   FROM ubuntu:16.10
+   COPY . /app
+   ```
+.. code-block:: yaml
+
+   FROM ubuntu:16.10
+   COPY . /app
+
+.. The second one is based on `acme/my-base-image:1.0`, but has some additional
+   layers:
+
+2 つめの Dockerfile は ``acme/my-base-image:1.0`` をベースとして、さらにレイヤを追加するものとします。
+
+.. ```conf
+   FROM acme/my-base-image:1.0
+   CMD /app/hello.sh
+   ```
+.. code-block:: yaml
+
+   FROM acme/my-base-image:1.0
+   CMD /app/hello.sh
+
+.. The second image contains all the layers from the first image, plus a new layer
+   with the `CMD` instruction, and a read-write container layer. Docker already
+   has all the layers from the first image, so it does not need to pull them again.
+   The two images will share any layers they have in common.
+
+2 つめのイメージには 1 つめのイメージが持つレイヤがすべて含まれ、さらに ``CMD`` 命令による新たなレイヤと、読み書き可能なコンテナ・レイヤが加わっています。
+Docker にとって 1 つめのイメージにおけるレイヤはすべて取得済であるため、再度プルによって取得する必要がありません。
+2 つのイメージにおいて共通して存在しているレイヤは、すべて共有します。
+
+.. If you build images from the two Dockerfiles, you can use `docker images` and
+   `docker history` commands to verify that the cryptographic IDs of the shared
+   layers are the same.
+
+この 2 つの Dockerfile からイメージをビルドした場合、``docker image`` や ``docker history`` コマンドを使ってみると、共有されているレイヤに対する暗号化 ID は同一になっていることがわかります。
+
+.. 1.  Make a new directory `cow-test/` and change into it.
+
+1. 新規に ``cow-test/`` というディレクトリを生成して移動します。
+
+   .. 2.  Within `cow-test/`, create a new file with the following contents:
+
+2. ``cow-test/`` ディレクトリにて、以下の内容で新規ファイルを生成します。
+
+   ..  ```bash
+       #!/bin/sh
+       echo "Hello world"
+       ```
+   .. code-block:: bash
+
+      #!/bin/sh
+      echo "Hello world"
+
+   ..  Save the file, and make it executable:
+
+   ファイルを保存して実行可能にします。
+
+   ..  ```bash
+       chmod +x hello.sh
+       ```
+   .. code-block:: bash
+
+      chmod +x hello.sh
+
+.. 3.  Copy the contents of the first Dockerfile above into a new file called
+       `Dockerfile.base`.
+
+3. 前述した 1 つめの Dockerfile の内容を、新規ファイル ``Dockerfile.base`` にコピーします。
+
+.. 4.  Copy the contents of the second Dockerfile above into a new file called
+       `Dockerfile`.
+
+4. 前述した 2 つめの Dockerfile の内容を、新規ファイル ``Dockerfile`` にコピーします。
+
+.. 5.  Within the `cow-test/` directory, build the first image.
+
+5.  ``cow-test/`` ディレクトリ内にて 1 つめのイメージをビルドします。
+
+   ..  ```bash
+       $ docker build -t acme/my-base-image:1.0 -f Dockerfile.base .
+
+       Sending build context to Docker daemon  4.096kB
+       Step 1/2 : FROM ubuntu:16.10
+        ---> 31005225a745
+       Step 2/2 : COPY . /app
+        ---> Using cache
+        ---> bd09118bcef6
+       Successfully built bd09118bcef6
+       Successfully tagged acme/my-base-image:1.0
+       ```
+   .. code-block:: bash
+
+      $ docker build -t acme/my-base-image:1.0 -f Dockerfile.base .
+
+      Sending build context to Docker daemon  4.096kB
+      Step 1/2 : FROM ubuntu:16.10
+       ---> 31005225a745
+      Step 2/2 : COPY . /app
+       ---> Using cache
+       ---> bd09118bcef6
+      Successfully built bd09118bcef6
+      Successfully tagged acme/my-base-image:1.0
+
+.. 6.  Build the second image.
+
+6. 2 つめのイメージをビルドします。
+
+   ..  ```bash
+       $ docker build -t acme/my-final-image:1.0 -f Dockerfile .
+
+       Sending build context to Docker daemon  4.096kB
+       Step 1/2 : FROM acme/my-base-image:1.0
+        ---> bd09118bcef6
+       Step 2/2 : CMD /app/hello.sh
+        ---> Running in a07b694759ba
+        ---> dbf995fc07ff
+       Removing intermediate container a07b694759ba
+       Successfully built dbf995fc07ff
+       Successfully tagged acme/my-final-image:1.0
+       ```
+   .. code-block:: bash
+
+      $ docker build -t acme/my-final-image:1.0 -f Dockerfile .
+
+      Sending build context to Docker daemon  4.096kB
+      Step 1/2 : FROM acme/my-base-image:1.0
+       ---> bd09118bcef6
+      Step 2/2 : CMD /app/hello.sh
+       ---> Running in a07b694759ba
+       ---> dbf995fc07ff
+      Removing intermediate container a07b694759ba
+      Successfully built dbf995fc07ff
+      Successfully tagged acme/my-final-image:1.0
+
+.. 7.  Check out the sizes of the images:
+
+7. 2 つのイメージのサイズを確認します。
+
+   ..  ```bash
+       $ docker images
+
+       REPOSITORY                                            TAG                          IMAGE ID            CREATED             SIZE
+       acme/my-final-image                                   1.0                          dbf995fc07ff        58 seconds ago      103MB
+       acme/my-base-image                                    1.0                          bd09118bcef6        3 minutes ago       103MB
+       ```
+   .. code-block:: bash
+
+      $ docker images
+
+      REPOSITORY                                            TAG                          IMAGE ID            CREATED             SIZE
+      acme/my-final-image                                   1.0                          dbf995fc07ff        58 seconds ago      103MB
+      acme/my-base-image                                    1.0                          bd09118bcef6        3 minutes ago       103MB
+
+.. 8.  Check out the layers that comprise each image:
+
+8. それぞれのイメージに含まれるレイヤを確認します。
+
+   ..  ```bash
+       $ docker history bd09118bcef6
+       IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+       bd09118bcef6        4 minutes ago       /bin/sh -c #(nop) COPY dir:35a7eb158c1504e...   100B                
+       31005225a745        3 months ago        /bin/sh -c #(nop)  CMD ["/bin/bash"]            0B                  
+       <missing>           3 months ago        /bin/sh -c mkdir -p /run/systemd && echo '...   7B                  
+       <missing>           3 months ago        /bin/sh -c sed -i 's/^#\s*\(deb.*universe\...   2.78kB              
+       <missing>           3 months ago        /bin/sh -c rm -rf /var/lib/apt/lists/*          0B                  
+       <missing>           3 months ago        /bin/sh -c set -xe   && echo '#!/bin/sh' >...   745B                
+       <missing>           3 months ago        /bin/sh -c #(nop) ADD file:eef57983bd66e3a...   103MB      
+       ```
+   .. code-block:: bash
+
+      $ docker history bd09118bcef6
+      IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+      bd09118bcef6        4 minutes ago       /bin/sh -c #(nop) COPY dir:35a7eb158c1504e...   100B                
+      31005225a745        3 months ago        /bin/sh -c #(nop)  CMD ["/bin/bash"]            0B                  
+      <missing>           3 months ago        /bin/sh -c mkdir -p /run/systemd && echo '...   7B                  
+      <missing>           3 months ago        /bin/sh -c sed -i 's/^#\s*\(deb.*universe\...   2.78kB              
+      <missing>           3 months ago        /bin/sh -c rm -rf /var/lib/apt/lists/*          0B                  
+      <missing>           3 months ago        /bin/sh -c set -xe   && echo '#!/bin/sh' >...   745B                
+      <missing>           3 months ago        /bin/sh -c #(nop) ADD file:eef57983bd66e3a...   103MB      
+
+   ..  ```bash
+       $ docker history dbf995fc07ff
+
+       IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+       dbf995fc07ff        3 minutes ago       /bin/sh -c #(nop)  CMD ["/bin/sh" "-c" "/a...   0B                  
+       bd09118bcef6        5 minutes ago       /bin/sh -c #(nop) COPY dir:35a7eb158c1504e...   100B                
+       31005225a745        3 months ago        /bin/sh -c #(nop)  CMD ["/bin/bash"]            0B                  
+       <missing>           3 months ago        /bin/sh -c mkdir -p /run/systemd && echo '...   7B                  
+       <missing>           3 months ago        /bin/sh -c sed -i 's/^#\s*\(deb.*universe\...   2.78kB              
+       <missing>           3 months ago        /bin/sh -c rm -rf /var/lib/apt/lists/*          0B                  
+       <missing>           3 months ago        /bin/sh -c set -xe   && echo '#!/bin/sh' >...   745B                
+       <missing>           3 months ago        /bin/sh -c #(nop) ADD file:eef57983bd66e3a...   103MB  
+       ```
+   .. code-block:: bash
+
+      $ docker history dbf995fc07ff
+
+      IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+      dbf995fc07ff        3 minutes ago       /bin/sh -c #(nop)  CMD ["/bin/sh" "-c" "/a...   0B                  
+      bd09118bcef6        5 minutes ago       /bin/sh -c #(nop) COPY dir:35a7eb158c1504e...   100B                
+      31005225a745        3 months ago        /bin/sh -c #(nop)  CMD ["/bin/bash"]            0B                  
+      <missing>           3 months ago        /bin/sh -c mkdir -p /run/systemd && echo '...   7B                  
+      <missing>           3 months ago        /bin/sh -c sed -i 's/^#\s*\(deb.*universe\...   2.78kB              
+      <missing>           3 months ago        /bin/sh -c rm -rf /var/lib/apt/lists/*          0B                  
+      <missing>           3 months ago        /bin/sh -c set -xe   && echo '#!/bin/sh' >...   745B                
+      <missing>           3 months ago        /bin/sh -c #(nop) ADD file:eef57983bd66e3a...   103MB  
+
+   ..  Notice that all the layers are identical except the top layer of the second
+       image. All the other layers are shared between the two images, and are only
+       stored once in `/var/lib/docker/`. The new layer actually doesn't take any
+       room at all, because it is not changing any files, but only running a command.
+
+    ほぼすべてのレイヤが同一であって、ただ 2 つめのイメージの最上位レイヤだけが違うのがわかります。
+    これを除けば、すべてのレイヤが 2 つのイメージ間で共有されているので、各レイヤは ``/var/lib/docker/`` には一度しか保存されません。
+    新たにできたレイヤは、まったくと言ってよいほどに容量をとっていません。
+    というのも、そのレイヤは何かのファイルを変更するわけでなく、単にコマンドを実行するだけのものであるからです。
+
+   ..  > **Note**: The `<missing>` lines in the `docker history` output indicate
+       > that those layers were built on another system and are not available
+       > locally. This can be ignored.
+
+   .. note::
+
+      ``docker history`` の出力において ``<missing>`` として示される行は、そのレイヤが他のシステムにおいてビルドされていることを示しています。
+      したがってローカルシステム上では利用することができません。
+      この表示は無視して構いません。
+
 .. Copying makes containers efficient
 
 .. _copying-maked-containers-efficient:
