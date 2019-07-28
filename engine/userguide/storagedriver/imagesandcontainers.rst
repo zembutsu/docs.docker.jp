@@ -603,6 +603,19 @@ Btrfs, ZFS といったドライバにおけるコピー・オン・ライト方
 データを大量に書き込むようなコンテナは、そういった書き込みを行わないコンテナに比べて、データ領域をより多く消費します。
 コンテナの最上位にある書き込み可能な薄いレイヤ上に対して書き込み処理を行うことは、たいていが新たなデータ領域を必要とするためです。
 
+.. > **Note**: for write-heavy applications, you should not store the data in
+   > the container. Instead, use Docker volumes, which are independent of the
+   > running container and are designed to be efficient for I/O. In addition,
+   > volumes can be shared among containers and do not increase the size of your
+   > container's writable layer.
+
+.. note::
+
+   書き込みが頻繁に行われるアプリケーションにおいては、コンテナ内にデータを保存するべきではありません。
+   かわりに Docker ボリュームを利用してください。
+   Docker ボリュームは起動されるコンテナからは独立していて、効率的な入出力を行うように設計されています。
+   さらにボリュームは複数のコンテナ間での共有が可能であり、書き込みレイヤのサイズを増加させることもありません。
+
 .. A copy-up operation can incur a noticeable performance overhead. This overhead is different depending on which storage driver is in use. However, large files, lots of layers, and deep directory trees can make the impact more noticeable. Fortunately, the operation only occurs the first time any particular file is modified. Subsequent modifications to the same file do not cause a copy-up operation and can operate directly on the file’s existing copy already present in container layer.
 
 コピー開始処理は、顕著な性能のオーバーヘッド（処理時間の増加）を招きます。このオーバーヘッドは、利用するストレージ・ドライバによって異なります。しかし、大きなファイル、多くのレイヤ、深いディレクトリ・ツリーが顕著な影響を与えます。幸いにも、これらの処理が行われるのは、何らかのファイルに対する変更が初めて行われた時だけです。同じファイルに対する変更が再度行われても、コピー開始処理は行われず、コンテナ・レイヤ上に既にコピーしてあるファイルに対してのみ変更を加えます。
