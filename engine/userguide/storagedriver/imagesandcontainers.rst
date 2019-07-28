@@ -815,5 +815,5 @@ Btrfs, ZFS といったドライバにおけるコピー・オン・ライト方
 
 .. seealso:: 
 
-   Understand images, containers, and storage drivers
+   About images, containers, and storage drivers
       https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/
