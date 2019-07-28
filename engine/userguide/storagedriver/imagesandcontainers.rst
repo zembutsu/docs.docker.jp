@@ -694,18 +694,28 @@ Btrfs, ZFS といったドライバにおけるコピー・オン・ライト方
       dcad7101795e        acme/my-final-image:1.0   "bash"                   About a minute ago   Up About a minute                       my_container_2
       c36785c423ec        acme/my-final-image:1.0   "bash"                   About a minute ago   Up About a minute                       my_container_1
 
-..    List the contents of the local storage area.
+.. 3.  List the contents of the local storage area.
 
-3. ローカル・ストレージ領域のコンテナ一覧を表示します。
+3. ローカルの保存ディレクトリの内容を一覧表示します。
 
-.. code-block:: bash
+   ..  ```bash
+       $ sudo ls /var/lib/docker/containers
 
-   $ sudo ls containers
-   0ad25d06bdf6fca0dedc38301b2aff7478b3e1ce3d1acd676573bba57cb1cfef  9280e777d109e2eb4b13ab211553516124a3d4d4280a0edfc7abf75c59024d47
-   75bab0d54f3cf193cfdc3a86483466363f442fba30859f7dcd1b816b6ede82d4  a651680bd6c2ef64902e154eeb8a064b85c9abf08ac46f922ad8dfc11bb5cd8a
-   8eb24b3b2d246f225b24f2fca39625aaad71689c392a7b552b78baf264647373
+       1a174fc216cccf18ec7d4fe14e008e30130b11ede0f0f94a87982e310cf2e765
+       1e7264576d78a3134fbaf7829bc24b1d96017cf2bc046b7cd8b08b5775c33d0c
+       38fa94212a419a082e6a6b87a8e2ec4a44dd327d7069b85892a707e3fc818544
+       c36785c423ec7e0422b2af7364a7ba4da6146cbba7981a0951fcc3fa0430c409
+       dcad7101795e4206e637d9358a818e5c32e13b349e62b00bf05cd5a4343ea513
+       ```
+   .. code-block:: bash
 
-（訳者注：上記コマンドは、 ``/var/lib/docker`` ディレクトリで実行してください。）
+      $ sudo ls /var/lib/docker/containers
+
+      1a174fc216cccf18ec7d4fe14e008e30130b11ede0f0f94a87982e310cf2e765
+      1e7264576d78a3134fbaf7829bc24b1d96017cf2bc046b7cd8b08b5775c33d0c
+      38fa94212a419a082e6a6b87a8e2ec4a44dd327d7069b85892a707e3fc818544
+      c36785c423ec7e0422b2af7364a7ba4da6146cbba7981a0951fcc3fa0430c409
+      dcad7101795e4206e637d9358a818e5c32e13b349e62b00bf05cd5a4343ea513
 
 .. Docker’s copy-on-write strategy not only reduces the amount of space consumed by containers, it also reduces the time required to start a container. At start time, Docker only has to create the thin writable layer for each container. The diagram below shows these 5 containers sharing a single read-only (RO) copy of the changed-ubuntu image.
 
