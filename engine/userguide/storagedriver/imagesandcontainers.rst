@@ -616,9 +616,16 @@ Btrfs, ZFS といったドライバにおけるコピー・オン・ライト方
    Docker ボリュームは起動されるコンテナからは独立していて、効率的な入出力を行うように設計されています。
    さらにボリュームは複数のコンテナ間での共有が可能であり、書き込みレイヤのサイズを増加させることもありません。
 
-.. A copy-up operation can incur a noticeable performance overhead. This overhead is different depending on which storage driver is in use. However, large files, lots of layers, and deep directory trees can make the impact more noticeable. Fortunately, the operation only occurs the first time any particular file is modified. Subsequent modifications to the same file do not cause a copy-up operation and can operate directly on the file’s existing copy already present in container layer.
+.. A `copy_up` operation can incur a noticeable performance overhead. This overhead
+   is different depending on which storage driver is in use. Large files,
+   lots of layers, and deep directory trees can make the impact more noticeable.
+   This is mitigated by the fact that each `copy_up` operation only occurs the first
+   time a given file is modified.
 
-コピー開始処理は、顕著な性能のオーバーヘッド（処理時間の増加）を招きます。このオーバーヘッドは、利用するストレージ・ドライバによって異なります。しかし、大きなファイル、多くのレイヤ、深いディレクトリ・ツリーが顕著な影響を与えます。幸いにも、これらの処理が行われるのは、何らかのファイルに対する変更が初めて行われた時だけです。同じファイルに対する変更が再度行われても、コピー開始処理は行われず、コンテナ・レイヤ上に既にコピーしてあるファイルに対してのみ変更を加えます。
+``copy_up`` 処理は際立った性能のオーバーヘッドを招きます。
+このオーバーヘッドは、利用しているストレージ・ドライバによってさまざまです。
+大容量ファイル、多数のレイヤ、深いディレクトリ階層といったものが、さらに影響します。
+``copy_up`` 処理は対象となるファイルが初めて修正されたときにだけ実行されるので、オーバーヘッドはそれでも最小限に抑えられています。
 
 .. Let’s see what happens if we spin up 5 containers based on our changed-ubuntu image we built earlier:
 
