@@ -246,17 +246,30 @@ Docker はストレージ・ドライバを利用して、イメージ・レイ�
 共有によりイメージサイズはより小さく
 -------------------------------------
 
-.. This section looks at image layers and copy-on-write technology. All image and container layers exist inside the Docker host’s local storage area and are managed by the storage driver. On Linux-based Docker hosts this is usually located under /var/lib/docker/.
+.. When you use `docker pull` to pull down an image from a repository, or when you
+   create a container from an image that does not yet exist locally, each layer is
+   pulled down separately, and stored in Docker's local storage area, which is
+   usually `/var/lib/docker/` on Linux hosts. You can see these layers being pulled
+   in this example:
 
-このセクションではイメージ・レイヤとコピー・オン・ライト技術（copy-on-write）を見ていきます。全てのイメージとコンテナ・レイヤは Docker ホスト上の *ローカル・ストレージ領域* に存在し、ストレージ・ドライバによって管理されます。Linux をベースとする Docker ホストでは、通常は ``/var/lib/docker/`` 以下です。
+``docker pull`` を実行してリポジトリからイメージをプルするとき、あるいはイメージから新たにコンテナを生成するにあたってそのイメージがまだローカルに生成されていないとき、各レイヤはプルによって個別に取得されて、Docker のローカル保存領域、たとえば Linux では通常 ``/var/lib/docker/`` に保存されます。
+取得された各レイヤは、以下の例のようにして確認することができます。
 
-.. The Docker client reports on image layers when instructed to pull and push images with docker pull and docker push. The command below pulls the ubuntu:15.04 Docker image from Docker Hub.
-
-イメージ取得・送信する ``docker pull`` と ``docker push`` 命令の実行時、Docker クライアントはイメージ・レイヤについて報告します。以下のコマンドは、 Docker Hub から ``ubuntu:15.04`` Docker イメージを取得（pull）しています。
-
+.. ```bash
+   $ docker pull ubuntu:15.04
+   
+   15.04: Pulling from library/ubuntu
+   1ba8ac955b97: Pull complete
+   f157c4e5ede7: Pull complete
+   0b7e98f84c4c: Pull complete
+   a3ed95caeb02: Pull complete
+   Digest: sha256:5e279a9df07990286cce22e1b0f5b0490629ca6d187698746ae5e28e604a640e
+   Status: Downloaded newer image for ubuntu:15.04
+   ```
 .. code-block:: bash
 
    $ docker pull ubuntu:15.04
+   
    15.04: Pulling from library/ubuntu
    1ba8ac955b97: Pull complete
    f157c4e5ede7: Pull complete
