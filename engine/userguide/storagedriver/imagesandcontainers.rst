@@ -744,17 +744,20 @@ Btrfs, ZFS といったドライバにおけるコピー・オン・ライト方
 
    各コンテナは、ファイルシステム上において 32k しか容量をとっていません。
 
-.. Docker’s copy-on-write strategy not only reduces the amount of space consumed by containers, it also reduces the time required to start a container. At start time, Docker only has to create the thin writable layer for each container. The diagram below shows these 5 containers sharing a single read-only (RO) copy of the changed-ubuntu image.
+.. Not only does copy-on-write save space, but it also reduces start-up time.
+   When you start a container (or multiple containers from the same image), Docker
+   only needs to create the thin writable container layer.
 
-Docker のコピー・オン・ライト方式により、コンテナによるディスク容量の消費を減らすだけではなく、コンテナ起動時の時間も短縮します。起動時に、Docker はコンテナごとに薄い書き込み可能なレイヤを作成します。次の図は ``changed-ubuntu`` イメージの読み込み専用のコピーを、５つのコンテナで共有しています。
+コピー・オン・ライト方式は容量を抑えるだけでなく、起動時間も節約します。
+コンテナを起動するとき（あるいは同一イメージからなる複数コンテナを起動するとき）、Docker が必要とするのは、書き込み可能な薄いコンテナ・レイヤを生成することだけだからです。
 
-.. image:: ./images/shared-uuid.png
-   :scale: 60%
-   :alt: レイヤの共有
+.. If Docker had to make an entire copy of the underlying image stack each time it
+   started a new container, container start times and disk space used would be
+   significantly increased. This would be similar to the way that virtual machines
+   work, with one or more virtual disks per virtual machine.
 
-.. If Docker had to make an entire copy of the underlying image stack each time it started a new container, container start times and disk space used would be significantly increased.
-
-もし新しいコンテナを開始する度に元になるイメージ・レイヤ全体をコピーするのであれば、コンテナの起動時間とディスク使用量が著しく増えてしまうでしょう。
+仮に Docker が新たなコンテナを起動するたびに、その元にあるイメージ層をすべてコピーしなければならないとしたら、起動時間やディスク容量は著しく増大しているはずです。
+このことは仮想マシン技術において、複数の仮想ディスクが仮想マシン 1 つに対して動作している様子にも似ています。
 
 .. Data volumes and the storage driver
 
