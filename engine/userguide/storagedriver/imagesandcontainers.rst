@@ -627,9 +627,18 @@ Btrfs, ZFS といったドライバにおけるコピー・オン・ライト方
 大容量ファイル、多数のレイヤ、深いディレクトリ階層といったものが、さらに影響します。
 ``copy_up`` 処理は対象となるファイルが初めて修正されたときにだけ実行されるので、オーバーヘッドはそれでも最小限に抑えられています。
 
-.. Let’s see what happens if we spin up 5 containers based on our changed-ubuntu image we built earlier:
+.. To verify the way that copy-on-write works, the following procedures spins up 5
+   containers based on the `acme/my-final-image:1.0` image we built earlier and
+   examines how much room they take up.
 
-先ほど構築した ``changed-ubuntu`` イメージの元となる５つのコンテナに対し、何が起こっているのか見ていきましょう。
+コピー・オン・ライトが動作している様子を確認するため、以下の例においては、前述した ``acme/my-final-image:1.0`` イメージをベースとする 5 つのコンテナを見ていきます。
+そして各コンテナがどれだけの容量を消費しているかを確認します。
+
+.. > **Note**: This procedure won't work on Docker for Mac or Docker for Windows.
+
+.. note::
+
+   以下の手順は Docker Desktop for Mac または Docker Desktop for Windows では動作しません。
 
 ..    From a terminal on your Docker host, run the following docker run command 5 times.
 
