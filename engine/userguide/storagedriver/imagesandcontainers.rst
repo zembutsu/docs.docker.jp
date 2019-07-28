@@ -569,13 +569,25 @@ Docker にとって 1 つめのイメージにおけるレイヤはすべて取�
 そこで実行される各処理は、ストレージ・ドライバによってさまざまです。
 ``aufs``, ``overlay``, ``overlay2`` といったドライバの場合、だいたい以下のような順にコピー・オン・ライト方式による処理が行われます。
 
-..    Search through the layers for the file to update. The process starts at the top, newest layer and works down to the base layer one-at-a-time.
-    Perform a “copy-up” operation on the first copy of the file that is found. A “copy up” copies the file up to the container’s own thin writable layer.
-    Modify the copy of the file in container’s thin writable layer.
+.. *  Search through the image layers for the file to update. The process starts
+      at the newest layer and works down to the base layer one layer at a time.
+      When results are found, they are added to a cache to speed future operations.
 
-* レイヤ上のファイルが更新されていないか確認します。まずこの手順が新しいレイヤに対して行われ、以降は１つ１つのベースになったレイヤをたどります。
-* ファイルに対して初めての処理が始まると「コピー開始」（copy-up）をします。「コピー開始」とは、コンテナ自身が持つ薄い書き込み可能なレイヤから、ファイルをコピーすることです。
-* コンテナの薄い書き込み可能なレイヤに *ファイル* を *コピー* してから、（そのファイルに）変更を加えます。
+* 更新するべきファイルをイメージ・レイヤ内から探します。
+  この処理は最新のレイヤから始まって、ベース・レイヤに向けて順に降りていき、一度に 1 つのレイヤを処理していきます。
+  ファイルが見つかるとこれをキャッシュに加えて、次回以降の処理スピードを上げることに備えます。
+
+.. *  Perform a `copy_up` operation on the first copy of the file that is found, to
+      copy the file to the container's writable layer.
+
+* 見つかったファイルを初めてコピーするときには ``copy_up`` という処理が行われます。
+  これによってそのファイルをコンテナの書き込みレイヤにコピーします。
+
+.. *  Any modifications are made to this copy of the file, and the container cannot
+      see the read-only copy of the file that exists in the lower layer.
+
+* 修正が発生すると、コピーを行ったそのファイルが処理されます。
+  つまりコンテナは、下位のレイヤ内に存在している読み込み専用のそのファイルを見にいくことはありません。
 
 .. BTFS, ZFS, and other drivers handle the copy-on-write differently. You can read more about the methods of these drivers later in their detailed descriptions.
 
