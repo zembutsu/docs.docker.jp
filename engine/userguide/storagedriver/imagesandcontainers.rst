@@ -640,26 +640,38 @@ Btrfs, ZFS といったドライバにおけるコピー・オン・ライト方
 
    以下の手順は Docker Desktop for Mac または Docker Desktop for Windows では動作しません。
 
-..    From a terminal on your Docker host, run the following docker run command 5 times.
+.. 1.  From a terminal on your Docker host, run the following `docker run` commands.
+       The strings at the end are the IDs of each container.
 
-1. Docker ホスト上のターミナルで、 次のように ``docker run`` コマンドを５回実行します。
+1. Docker ホスト上の端末画面から、以下のような ``docker run`` コマンドを実行します。
+   各行の終わりには、各コンテナの ID を入力します。
 
-.. code-block:: bash
+   ..  ```bash
+       $ docker run -dit --name my_container_1 acme/my-final-image:1.0 bash \
+         && docker run -dit --name my_container_2 acme/my-final-image:1.0 bash \
+         && docker run -dit --name my_container_3 acme/my-final-image:1.0 bash \
+         && docker run -dit --name my_container_4 acme/my-final-image:1.0 bash \
+         && docker run -dit --name my_container_5 acme/my-final-image:1.0 bash
 
-   $ docker run -dit changed-ubuntu bash
-   75bab0d54f3cf193cfdc3a86483466363f442fba30859f7dcd1b816b6ede82d4
-   $ docker run -dit changed-ubuntu bash
-   9280e777d109e2eb4b13ab211553516124a3d4d4280a0edfc7abf75c59024d47
-   $ docker run -dit changed-ubuntu bash
-   a651680bd6c2ef64902e154eeb8a064b85c9abf08ac46f922ad8dfc11bb5cd8a
-   $ docker run -dit changed-ubuntu bash
-   8eb24b3b2d246f225b24f2fca39625aaad71689c392a7b552b78baf264647373
-   $ docker run -dit changed-ubuntu bash
-   0ad25d06bdf6fca0dedc38301b2aff7478b3e1ce3d1acd676573bba57cb1cfef
+         c36785c423ec7e0422b2af7364a7ba4da6146cbba7981a0951fcc3fa0430c409
+         dcad7101795e4206e637d9358a818e5c32e13b349e62b00bf05cd5a4343ea513
+         1e7264576d78a3134fbaf7829bc24b1d96017cf2bc046b7cd8b08b5775c33d0c
+         38fa94212a419a082e6a6b87a8e2ec4a44dd327d7069b85892a707e3fc818544
+         1a174fc216cccf18ec7d4fe14e008e30130b11ede0f0f94a87982e310cf2e765
+       ```
+   .. code-block:: bash
 
-.. This launches 5 containers based on the changed-ubuntu image. As each container is created, Docker adds a writable layer and assigns it a random UUID. This is the value returned from the docker run command.
+      $ docker run -dit --name my_container_1 acme/my-final-image:1.0 bash \
+        && docker run -dit --name my_container_2 acme/my-final-image:1.0 bash \
+        && docker run -dit --name my_container_3 acme/my-final-image:1.0 bash \
+        && docker run -dit --name my_container_4 acme/my-final-image:1.0 bash \
+        && docker run -dit --name my_container_5 acme/my-final-image:1.0 bash
 
-これは ``changed-ubuntu`` イメージを元に、５つのコンテナを起動します。コンテナを作成したことで、Docker は書き込みレイヤを追加し、そこにランダムな UUID を割り当てます。この値は、 ``docker run`` コマンドを実行して返ってきたものです。
+        c36785c423ec7e0422b2af7364a7ba4da6146cbba7981a0951fcc3fa0430c409
+        dcad7101795e4206e637d9358a818e5c32e13b349e62b00bf05cd5a4343ea513
+        1e7264576d78a3134fbaf7829bc24b1d96017cf2bc046b7cd8b08b5775c33d0c
+        38fa94212a419a082e6a6b87a8e2ec4a44dd327d7069b85892a707e3fc818544
+        1a174fc216cccf18ec7d4fe14e008e30130b11ede0f0f94a87982e310cf2e765
 
 ..    Run the docker ps command to verify the 5 containers are running.
 
