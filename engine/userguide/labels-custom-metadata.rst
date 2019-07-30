@@ -47,15 +47,21 @@ Docker オブジェクト・ラベル
 イメージを構成したり、ライセンス情報を記録したり、コンテナー、ボリューム、ネットワーク間の関係性を書きとめたりといったものです。
 業務やアプリケーションにとって意義のあることなら、どのようなものでも含めて構いません。
 
-.. Label keys and values
+.. ## Label keys and values
+
 .. _label-keys-and-values:
 
 ラベルのキーとバリュー
 ==============================
 
-.. A label is a key-value pair, stored as a string. You can specify multiple labels for an object, but each key-value pair must be unique within an object. If the same key is given multiple values, the most-recently-written value overwrites all previous values.
+.. A label is a key-value pair, stored as a string. You can specify multiple labels
+   for an object, but each key-value pair must be unique within an object. If the
+   same key is given multiple values, the most-recently-written value overwrites
+   all previous values.
 
-ラベルとはキーバリュー・ペアを文字列に保管します。オブジェクトに対して複数のラベルを指定可能ですが、各キーバリュー・ペアはオブジェクト内でユニーク（訳者注；「重複できない」意味）である必要があります。同じキーに複数の値を指定すると、これまでの全ての値は、直近の値で上書きされます。
+ラベルはキーバリュー・ペアの形式であり、文字列として保存されます。
+オブジェクトに対しては複数のラベルを指定することができますが、各キーバリュー・ペアは 1 つのオブジェクト内で一意である必要があります。
+1 つのキーに対して複数の値が設定されていた場合、古い値は最後に書き込まれた値により上書きされます。
 
 .. Key format recommendations
 
