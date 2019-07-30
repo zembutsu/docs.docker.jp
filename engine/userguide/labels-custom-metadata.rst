@@ -116,15 +116,23 @@ Docker ユーザが利用するイメージは、たいていは他の組織が�
 上のようなガイドラインは現時点において強制されるものではありません。
 特定の用途において、さらに追加のガイドラインが適用されるかもしれません。
 
-.. Value guidelines
+.. ### Value guidelines
+
 .. _value-guidelines:
 
-バリューのガイドライン
+バリューに関するガイドライン
 ------------------------------
 
-.. Label values can contain any data type that can be represented as a string, including (but not limited to) JSON, XML, CSV, or YAML. The only requirement is that the value be serialized to a string first, using a mechanism specific to the type of structure. For instance, to serialize JSON into a string, you might use the JSON.stringify() JavaScript method.
+.. Label values can contain any data type that can be represented as a string,
+   including (but not limited to) JSON, XML, CSV, or YAML. The only requirement is
+   that the value be serialized to a string first, using a mechanism specific to
+   the type of structure. For instance, to serialize JSON into a string, you might
+   use the `JSON.stringify()` JavaScript method.
 
-ラベルの値には、文字列であれば JSON、XML、CSV、YAML など（に制限されません）、あらゆる種類のデータをを入れられます。値が連続している文字列であるのは必要ですが、あとは各々の構造に従います。たとえば、整形した JSON を文字列にするには ``JSON.stringify()`` JavaScirpt メソッドが使えるでしょう。
+ラベルのバリューには、文字列として表現できるものであれば、どんな型のデータでも含めることができます。
+たとえば JSON, XML, CSV, YAML があり、これ以外にもまだあります。
+唯一必要になることは、そのデータ型の構造に従った形で、文字列としてシリアライズされたものであることです。
+たとえば JSON データを文字列にシリアライズするには、JavaScript メソッドでは ``JSON.stringify()`` を利用するかもしれません。
 
 .. Since Docker does not deserialize the value, you cannot treat a JSON or XML document as a nested structure when querying or filtering by label value unless you build this functionality into third-party tooling.
 
