@@ -110,9 +110,11 @@ Docker ユーザが利用するイメージは、たいていは他の組織が�
   ラベルのキーに名前空間が指定されていないものは、CLI が用いるものとしています。
   ユーザにとって CLI 実行の際、Docker オブジェクトに対して入力しやすい短いラベル文字列を指定できるようにするためです。
 
-.. These guidelines are not currently enforced and additional guidelines may apply to specific use cases.
+.. These guidelines are not currently enforced and additional guidelines may apply
+   to specific use cases.
 
-これらのガイドラインは、現時点において強制するものではありません。また、特定用途に対するガイドラインが追加される可能性があります。
+上のようなガイドラインは現時点において強制されるものではありません。
+特定の用途において、さらに追加のガイドラインが適用されるかもしれません。
 
 .. Value guidelines
 .. _value-guidelines:
