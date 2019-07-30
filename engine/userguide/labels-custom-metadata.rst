@@ -39,9 +39,13 @@ Docker オブジェクト・ラベル
 * Swarm ノード
 * Swarm サービス
 
-.. You can use labels to organize your images, record licensing information, annotate relationships between containers, volumes, and networks, or in any way that makes sense for your business or application.
+.. You can use labels to organize your images, record licensing information, annotate
+   relationships between containers, volumes, and networks, or in any way that makes
+   sense for your business or application.
 
-ラベルはイメージ管理のために利用できます。ライセンス情報の記録、コンテナやボリュームやネットワーク間の関係性を記録、ビジネスやアプリケーションに役立つために使えます。
+ラベルはさまざまな目的で利用することができます。
+イメージを構成したり、ライセンス情報を記録したり、コンテナー、ボリューム、ネットワーク間の関係性を書きとめたりといったものです。
+業務やアプリケーションにとって意義のあることなら、どのようなものでも含めて構いません。
 
 .. Label keys and values
 .. _label-keys-and-values:
