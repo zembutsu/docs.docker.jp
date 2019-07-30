@@ -134,9 +134,12 @@ Docker ユーザが利用するイメージは、たいていは他の組織が�
 唯一必要になることは、そのデータ型の構造に従った形で、文字列としてシリアライズされたものであることです。
 たとえば JSON データを文字列にシリアライズするには、JavaScript メソッドでは ``JSON.stringify()`` を利用するかもしれません。
 
-.. Since Docker does not deserialize the value, you cannot treat a JSON or XML document as a nested structure when querying or filtering by label value unless you build this functionality into third-party tooling.
+.. Since Docker does not deserialize the value, you cannot treat a JSON or XML
+   document as a nested structure when querying or filtering by label value unless
+   you build this functionality into third-party tooling.
 
-Dockerはバリューの構造解釈ができないので、 JSON や XML ドキュメントのようなネストされた構造の場合、サードパーティ製ツールでは、クエリやフィルタを利用できません。
+Docker ではそのバリューをデシリアライズしないため、ラベルを用いた検索やフィルタリングをする際には、ネスト構造になっている JSON や XML ドキュメントを取り扱うことはできません。
+これを実現するためにはサードパーティ製のツール類に、そういった機能を組み入れる必要があります。
 
 .. Manage labels on objects
 .. _manage-labels-on-oabjects:
