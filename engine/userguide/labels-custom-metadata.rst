@@ -63,14 +63,21 @@ Docker オブジェクト・ラベル
 オブジェクトに対しては複数のラベルを指定することができますが、各キーバリュー・ペアは 1 つのオブジェクト内で一意である必要があります。
 1 つのキーに対して複数の値が設定されていた場合、古い値は最後に書き込まれた値により上書きされます。
 
-.. Key format recommendations
+.. ### Key format recommendations
 
-推奨するキーの書式
---------------------
+推奨されるキーの書式
+---------------------
 
-.. A label key is the left-hand side of the key-value pair. Keys are alphanumeric strings which may contain periods (.) and hyphens (-). Most Docker users use images created by other organizations, and the following guidelines help to prevent inadvertent duplication of labels across objects, especially if you plan to use labels as a mechanism for automation.
+.. A label _key_ is the left-hand side of the key-value pair. Keys are alphanumeric
+   strings which may contain periods (`.`) and hyphens (`-`). Most Docker users use
+   images created by other organizations, and the following guidelines help to
+   prevent inadvertent duplication of labels across objects, especially if you plan
+   to use labels as a mechanism for automation.
 
-ラベルのキー（ `key` ）はキーバリュー・ペアの左側です。キーは英数字とピリオド（ ``.`` ）とハイフン（ ``-`` ）を含む文字列です。多くの Docker ユーザは、他の組織が作成したイメージを使います。そのため、ガイドラインに従えばオブジェクト間で不意にラベルが重複するのを避けられるでしょう。特に、ラベルを自動化の仕組みに使うのを計画している場合です。
+ラベルにおけるキーは、キーバリュー・ペアの左側を指します。
+キーに含めることができる文字は、英数字、ピリオド（``.``）、ハイフン（``-``）です。
+Docker ユーザが利用するイメージは、たいていは他の組織が作り出したものであるため、ここに示すガイドラインに従っていれば、オブジェクト間でのラベル定義を不用意に重複させるようなことがなくなります。
+自動化の仕組みの中でラベルを利用する場合は、特にこのことが重要になります。
 
 ..    Authors of third-party tools should prefix each label key with the reverse DNS notation of a domain they own, such as com.example.some-label.
     Do not use a domain in your label key without the domain owner’s permission.
