@@ -79,17 +79,36 @@ Docker オブジェクト・ラベル
 Docker ユーザが利用するイメージは、たいていは他の組織が作り出したものであるため、ここに示すガイドラインに従っていれば、オブジェクト間でのラベル定義を不用意に重複させるようなことがなくなります。
 自動化の仕組みの中でラベルを利用する場合は、特にこのことが重要になります。
 
-..    Authors of third-party tools should prefix each label key with the reverse DNS notation of a domain they own, such as com.example.some-label.
-    Do not use a domain in your label key without the domain owner’s permission.
-    The com.docker.*, io.docker.*, and org.dockerproject.* namespaces are reserved by Docker for internal use.
-    Label keys should begin and end with a lower-case letter and should only contain lower-case alphanumeric characters, the period character (.), and the hyphen character (-). Consecutive periods or hyphens are not allowed.
-    The period character (.) separates namespace “fields”. Label keys without namespaces are reserved for CLI use, allowing users of the CLI to interactively label Docker objects using shorter typing-friendly strings.
+.. - Authors of third-party tools should prefix each label key with the
+     reverse DNS notation of a domain they own, such as `com.example.some-label`.
 
-* サードパーティ製ツールの作者は、各ラベルのキーの冒頭に、 ``com.example.some-label`` のように、 自分のドメインの逆引き DNS 記法を使うべきです。
-* ドメイン所有者の許可無くラベルのキーにドメインを使ってはいけません。
-* ``com.docker.*`` と ``org.dockerproject.*`` の名前空間は、Docker の内部利用のために予約されています。
-* ラベル・キーの始めと終わりは小文字であるべきです。利用可能なのは小文字のアルファベットと、ピリオド文字（ ``.`` ）、ハイフン文字（ ``-`` ）です。ピリオドとハイフンの連続は利用できません。
-* ピリオド文字（ ``.`` ）名前空間の「フィールド」を分けます。名前空間のないラベル・キーは CLI が使うために予約されています。これは Docker オブジェクトのラベルを ユーザが CLI を使って入力しやすくするためです。
+* サードパーティ製ツールの開発者は、各ラベルのプリフィックスとして、自身が所有するドメインの逆 DNS 記法を用いるようにします。
+  たとえば ``com.example.some-label`` といったものです。
+
+.. - Do not use a domain in your label key without the domain owner's permission.
+
+* ドメイン所有者の許可なく、ラベルのキーにそのドメイン名を使ってはいけません。
+
+.. - The `com.docker.*`, `io.docker.*`, and `org.dockerproject.*` namespaces are
+     reserved by Docker for internal use.
+
+* 以下の名前空間 ``com.docker.*``, ``io.docker.*``, ``org.dockerproject.*`` は、Docker が内部利用のために予約しています。
+
+.. - Label keys should begin and end with a lower-case letter and should only
+     contain lower-case alphanumeric characters, the period character (`.`), and
+     the hyphen character (`-`). Consecutive periods or hyphens are not allowed.
+
+* ラベルのキーの始まりと終わりの 1 文字は英小文字とします。
+  そして文字列全体は、英小文字と数字、ピリオド（``.``）、ハイフン（``-``）を用いるようにします。
+  そしてピリオドとハイフンは連続して用いないようにします。
+
+.. - The period character (`.`) separates namespace "fields". Label keys without
+     namespaces are reserved for CLI use, allowing users of the CLI to interactively
+     label Docker objects using shorter typing-friendly strings.
+
+* ピリオド（``.``）は名前空間の「項目」を区切るものです。
+  ラベルのキーに名前空間が指定されていないものは、CLI が用いるものとしています。
+  ユーザにとって CLI 実行の際、Docker オブジェクトに対して入力しやすい短いラベル文字列を指定できるようにするためです。
 
 .. These guidelines are not currently enforced and additional guidelines may apply to specific use cases.
 
