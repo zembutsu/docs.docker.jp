@@ -156,9 +156,13 @@ Docker ではそのバリューをデシリアライズしないため、ラベ�
 ラベルがサポートされている各オブジェクトには、ラベルの追加や管理を行う機能が備わっていて、そのオブジェクトに関連づいたラベルとして取り扱うことができます。
 以下に示すリンクは、Docker デプロイにおいて利用するラベルを学ぶ上で役立つものです。
 
-.. Labels on images, containers, local daemons, volumes, and networks are static for the lifetime of the object. To change these labels you must recreate the object. Labels on swarm nodes and services can be updated dynamically.
+.. Labels on images, containers, local daemons, volumes, and networks are static for
+   the lifetime of the object. To change these labels you must recreate the object.
+   Labels on swarm nodes and services can be updated dynamically.
 
-イメージ、コンテナ、ローカル・デーモン、ボリューム、ネットワークのラベルは、オブジェクトの利用中は固定（static）です。これらのラベルを変えるためには、オブジェクトの再作成が必要です。swarm ノードとサービスのラベルは動的に変更できます。
+イメージ、コンテナ、ローカル・デーモン、ボリューム、ネットワークといったオブジェクトにおいては、そのオブジェクトが存在する間、ラベルは静的で不変なものです。
+ラベルを変更するためにはオブジェクトを再生成する必要があります。
+Swarm ノードと Swarm サービスにおけるラベルは動的に変更することができます。
 
 ..    Images and containers
         Adding labels to images
