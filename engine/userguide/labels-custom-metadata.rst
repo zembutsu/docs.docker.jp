@@ -141,15 +141,20 @@ Docker ユーザが利用するイメージは、たいていは他の組織が�
 Docker ではそのバリューをデシリアライズしないため、ラベルを用いた検索やフィルタリングをする際には、ネスト構造になっている JSON や XML ドキュメントを取り扱うことはできません。
 これを実現するためにはサードパーティ製のツール類に、そういった機能を組み入れる必要があります。
 
-.. Manage labels on objects
-.. _manage-labels-on-oabjects:
+.. ## Manage labels on objects
+
+.. _manage-labels-on-objects:
 
 オブジェクトにおけるラベルの管理
 ========================================
 
-.. nEach type of object with support for labels has mechanisms for adding and managing them and using them as they relate to that type of object. These links provide a good place to start learning about how you can use labels in your Docker deployments.
+.. Each type of object with support for labels has mechanisms for adding and
+   managing them and using them as they relate to that type of object. These links
+   provide a good place to start learning about how you can use labels in your
+   Docker deployments.
 
-各オブジェクト・タイプには、ラベルを追加・管理する仕組みが備わっています。そして、オブジェクトのタイプを関連付けるためにも使えます。以下のリンクは Docker のデプロイ時、どのようにラベルを使うかを学ぶのに役立ちます。
+ラベルがサポートされている各オブジェクトには、ラベルの追加や管理を行う機能が備わっていて、そのオブジェクトに関連づいたラベルとして取り扱うことができます。
+以下に示すリンクは、Docker デプロイにおいて利用するラベルを学ぶ上で役立つものです。
 
 .. Labels on images, containers, local daemons, volumes, and networks are static for the lifetime of the object. To change these labels you must recreate the object. Labels on swarm nodes and services can be updated dynamically.
 
