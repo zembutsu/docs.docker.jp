@@ -232,5 +232,5 @@ Swarm ノードと Swarm サービスにおけるラベルは動的に変更す�
 
 .. seealso:: 
 
-   Apply custom metadata
+   Docker object labels
       https://docs.docker.com/engine/userguide/labels-custom-metadata/
