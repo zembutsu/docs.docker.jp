@@ -200,11 +200,11 @@ Docker のネットワーク機能が導入されてからも、リンクを生�
 
    127.0.0.1:49155
 
-..    Note: The -p flag can be used multiple times to configure multiple ports.
-
+.. > **Note**:
+   > The `-p` flag can be used multiple times to configure multiple ports.
 .. note::
 
-   複数のポート設定は、``-p`` フラグを複数指定します。
+   ``-p`` フラグは複数個の指定が可能であり、これにより複数ポートの指定を行うことができます。
 
 .. Connect with the linking system
 
