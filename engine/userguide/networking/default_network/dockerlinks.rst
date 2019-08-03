@@ -37,9 +37,28 @@
 Docker のネットワーク機能が導入されてからも、リンクを生成することはできます。
 ただしデフォルトの ``bridge`` ネットワークであるか、:ref:`ユーザ定義のネットワーク <linking-containers-in-user-defined-networks>` であるかによって、その動作は異なることになります。
 
-.. This section briefly discusses connecting via a network port and then goes into detail on container linking in default bridge network.
+.. This section briefly discusses connecting via a network port and then goes into
+   detail on container linking in default `bridge` network.
 
-このセクションではネットワーク・ポートの接続と、それらをデフォルトの ``bridge`` ネットワーク上のコンテナ上でリンクする方法を簡単に扱います。
+この節においてはネットワークポートを通じてネットワークに接続する方法を簡単に説明した上で、デフォルトの ``bridge`` ネットワーク内でのコンテナ・リンクを行う方法へ進んでいきます。
+
+.. >**Warning**:
+   >The `--link` flag is a deprecated legacy feature of Docker. It may eventually
+   be removed. Unless you absolutely need to continue using it, we recommend that you use
+   user-defined networks to facilitate communication between two containers instead of using
+   `--link`. One feature that user-defined networks do not support that you can do
+   with `--link` is sharing environmental variables between containers. However,
+   you can use other mechanisms such as volumes to share environment variables
+   between containers in a more controlled way.
+   {:.warning}
+
+.. warning::
+
+   Docker の ``--link`` フラグは過去の機能です。
+   そのうちに削除されるかもしれません。
+   この機能を確実に必要としているのでなければ ``--link`` を使わず、2 つのコンテナ間の通信を実現するユーザ定義のネットワークを利用することをお勧めします。
+   ``--link`` に存在していて、ユーザ定義のネットワークにない機能は、コンテナ間で環境変数を共有できる機能です。
+   ただしボリュームのような別の機能を使えば、コンテナ間での環境変数の共有は、より制御しやすく利用できます。
 
 .. Connect using network port mapping
 
