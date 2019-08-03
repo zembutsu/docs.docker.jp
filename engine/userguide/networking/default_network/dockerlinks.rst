@@ -414,13 +414,29 @@ Docker がリンクを確立するためには、コンテナの名前が重要�
 
    [/db:/web/db]
 
-.. You can see that the web container is now linked to the db container web/db. Which allows it to access information about the db container.
+.. You can see that the `web` container is now linked to the `db` container
+   `web/db`. Which allows it to access information about the `db` container.
 
-これで ``web`` コンテナは ``db`` コンテナに ``web/db`` としてリンクされました。これを使い、 ``db`` コンテナに対する接続情報を得られます。
+``web`` コンテナが ``db`` コンテナにリンクされ ``web/db`` となっているのがわかります。
+これにより ``db`` コンテナに関する情報にアクセスできるようになりました。
 
-.. So what does linking the containers actually do? You’ve learned that a link allows a source container to provide information about itself to a recipient container. In our example, the recipient, web, can access information about the source db. To do this, Docker creates a secure tunnel between the containers that doesn’t need to expose any ports externally on the container; you’ll note when we started the db container we did not use either the -P or -p flags. That’s a big benefit of linking: we don’t need to expose the source container, here the PostgreSQL database, to the network.
+.. So what does linking the containers actually do? You've learned that a link allows a
+   source container to provide information about itself to a recipient container. In
+   our example, the recipient, `web`, can access information about the source `db`. To do
+   this, Docker creates a secure tunnel between the containers that doesn't need to
+   expose any ports externally on the container; you'll note when we started the
+   `db` container we did not use either the `-P` or `-p` flags. That's a big benefit of
+   linking: we don't need to expose the source container, here the PostgreSQL database, to
+   the network.
 
-コンテナに対するリンクとは、実際には何をしているのでしょうか？ これまで学んだように、リンクとは、送信元コンテナが送信先コンテナに送るため、自分自身の情報を提供します。今回の例では、受信者は ``web`` であり、元になる ``db`` に関する接続情報を入手できます。これにより、Docker はコンテナ間で安全なトンネルを作成します。つまり、 ``db`` コンテナを開始する時に、 ``-P`` や ``-p`` フラグを使う必要がありません。これはリンク機能の大きな利点です。これは、元のコンテナのポートを公開する必要がありません。今回の例では、 PostgreSQL データベースをネットワークに接続する必要はありません。
+コンテナのリンク機能は実際には何をしているでしょう？
+リンクを使うと、情報発信元となるコンテナそのものの情報を、受信先コンテナに提供できるということを、すでに学びました。
+上の例においては情報を受け取るコンテナが ``web`` であり、情報元となる ``db`` の情報にアクセスできるというものです。
+Docker はこのとき、コンテナ間にセキュアなトンネルを作り出します。
+そこではコンテナから外部に向けてポートを公開する必要がないようにしています。
+そもそも ``db`` コンテナを起動する際には、``-P`` フラグも ``-p`` フラグも使っていませんでした。
+これこそがリンクシステムの優れたところです。
+情報元となるコンテナ、つまり上の例では PostgreSQL データベースを、ネットワーク上に公開していなくても構わないということです。
 
 .. Docker exposes connectivity information for the source container to the recipient container in two ways:
 
