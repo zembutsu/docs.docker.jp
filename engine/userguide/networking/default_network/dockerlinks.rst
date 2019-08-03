@@ -537,13 +537,23 @@ Docker は ``--link`` パラメータに基づいて、対象とするコンテ�
 * ``prefix_PROTO`` 変数： URL に対するプロトコル。
   たとえば ``WEBDB_PORT_5432_TCP_PROTO=tcp`` など。
 
-.. If the container exposes multiple ports, an environment variable set is defined for each one. This means, for example, if a container exposes 4 ports that Docker creates 12 environment variables, 3 for each port.
+.. If the container exposes multiple ports, an environment variable set is
+   defined for each one. This means, for example, if a container exposes 4 ports
+   that Docker creates 12 environment variables, 3 for each port.
 
-もしコンテナが複数のポートを公開している場合は、それぞれのポートを定義する環境変数が作成されます。つまり、例えばコンテナが４つのポートを公開しているのであれば、Docker はポートごとに３つの環境変数を作成するため、合計12個の変数を作成します。
+コンテナが複数ポートを公開している場合は、個々のポートに対して環境変数が定義されます。
+これはたとえば、コンテナが 4 つのポートを公開していたとすると、1 つのポートに対して 3 つの環境変数、つまり全部で 12 個の環境変数が定義されることになります。
 
-.. Additionally, Docker creates an environment variable called <alias>_PORT. This variable contains the URL of the source container’s first exposed port. The ‘first’ port is defined as the exposed port with the lowest number. For example, consider the WEBDB_PORT=tcp://172.17.0.82:5432 variable. If that port is used for both tcp and udp, then the tcp one is specified.
+.. Additionally, Docker creates an environment variable called `<alias>_PORT`.
+   This variable contains the URL of the source container's first exposed port.
+   The 'first' port is defined as the exposed port with the lowest number.
+   For example, consider the `WEBDB_PORT=tcp://172.17.0.82:5432` variable. If
+   that port is used for both tcp and udp, then the tcp one is specified.
 
-更に、Docker は ``<エイリアス>_ポート`` の環境変数も作成します。この変数にはソース・コンテナが１番めに公開しているポートの URL を含みます。「１番め」のポートとは、公開しているポートのうち、最も低い番号です。例えば、 ``WEBDB_PORT=tcp://172.17.0.82:5432`` のような変数が考えられます。もし、ポートが tcp と udp の両方を使っているのであれば、tcp のポートだけが指定されます。
+さらに ``<alias>_PORT`` という環境変数も生成されます。
+この変数には、発信元コンテナの一番初めの公開ポートを用いた URL が定義されます。
+この「一番初めの」というのは、公開ポート番号の中で最も小さなものを指します。
+たとえば ``WEBDB_PORT=tcp://172.17.0.82:5432`` という変数があったとして、このポートが tcp、udp の双方で利用されている場合、tcp が設定されます。
 
 .. Finally, Docker also exposes each Docker originated environment variable from the source container as an environment variable in the target. For each variable Docker creates an <alias>_ENV_<name> variable in the target container. The variable’s value is set to the value Docker used when it started the source container.
 
