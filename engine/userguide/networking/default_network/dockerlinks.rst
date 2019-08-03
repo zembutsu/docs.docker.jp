@@ -137,14 +137,22 @@ Docker のネットワーク機能が導入されてからも、リンクを生�
 
    $ docker run -d -p 8000-9000:5000 training/webapp python app.py
 
-.. This would bind port 5000 in the container to a randomly available port between 8000 and 9000 on the host.
+.. This would bind port 5000 in the container to a randomly available port
+   between 8000 and 9000 on the host.
 
-これはコンテナのポート 5000 を、ホスト側のポート 8000 ～ 9000 の範囲において、利用可能なポートをランダムに割り当てます。
+これによるとコンテナの 5000 番ポートは、ホスト上の 8000 から 9000 の中で利用可能なポートがランダムに選び出されます。
 
-.. There are also a few other ways you can configure the -p flag. By default the -p flag will bind the specified port to all interfaces on the host machine. But you can also specify a binding to a specific interface, for example only to the localhost.
+.. There are also a few other ways you can configure the `-p` flag. By
+   default the `-p` flag will bind the specified port to all interfaces on
+   the host machine. But you can also specify a binding to a specific
+   interface, for example only to the `localhost`.
 
-また、 ``-p`` フラグは他の目的のためにも設定できます。デフォルトの ``-p`` フラグは、ホスト側マシンの全てのインターフェースに対する特定のポートを使用します。ですが、特定のインターフェースの使用を明示することが可能です。例えば、 ``localhost`` のみの指定は、次のようにします。
+``-p`` フラグの設定方法には他にもいくつかあります。
+デフォルトにおいて ``-p`` フラグは、ホストマシン上のすべてのインターフェースに対して、指定されたポートを割り当てます。
+しかし特定のインターフェースに対しての割り当てを行うこともできます。
+たとえば以下は ``loalhost`` にのみ割り当てる例です。
 
+..  $ docker run -d -p 127.0.0.1:80:5000 training/webapp python app.py
 .. code-block:: bash
 
    $ docker run -d -p 127.0.0.1:80:5000 training/webapp python app.py
