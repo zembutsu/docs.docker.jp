@@ -555,9 +555,15 @@ Docker は ``--link`` パラメータに基づいて、対象とするコンテ�
 この「一番初めの」というのは、公開ポート番号の中で最も小さなものを指します。
 たとえば ``WEBDB_PORT=tcp://172.17.0.82:5432`` という変数があったとして、このポートが tcp、udp の双方で利用されている場合、tcp が設定されます。
 
-.. Finally, Docker also exposes each Docker originated environment variable from the source container as an environment variable in the target. For each variable Docker creates an <alias>_ENV_<name> variable in the target container. The variable’s value is set to the value Docker used when it started the source container.
+.. Finally, Docker also exposes each Docker originated environment variable
+   from the source container as an environment variable in the target. For each
+   variable Docker creates an `<alias>_ENV_<name>` variable in the target
+   container. The variable's value is set to the value Docker used when it
+   started the source container.
 
-最後に、ソース・コンテナ上の Docker に由来する環境変数は、ターゲット上でも環境変数として使えるように公開されます。Docker が作成した各環境変数 ``<エイリアス>_ENV_<名前>`` が、ターゲットのコンテナから参照できます。これら環境変数の値は、ソース・コンテナが起動した時の値を使います。
+最後に、発信元コンテナにおいて Docker が元から定義している環境変数が、対象とするコンテナ上の環境変数として公開されます。
+各変数に対しては、対象コンテナ上に ``<alias>_ENV_<name>`` という変数が生成されます。
+この変数の値は、発信元コンテナが起動する際に、Docker が利用した値が設定されます。
 
 .. Returning back to our database example, you can run the env command to list the specified container’s environment variables.
 
