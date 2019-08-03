@@ -715,11 +715,14 @@ Docker 環境変数に関する重要事項
 そしてそれは ``172.17.0.5`` であることがわかりました。
 このように ``/etc/hosts`` の設定項目を用いてアプリケーションを設定すれば、``db`` コンテナを利用することができます。
 
-..    Note: You can link multiple recipient containers to a single source. For example, you could have multiple (differently named) web containers attached to your db container.
-
+.. > **Note**:
+   > You can link multiple recipient containers to a single source. For
+   > example, you could have multiple (differently named) web containers attached to your
+   >`db` container.
 .. note::
 
-   １つのソース・コンテナから、複数の送信先コンテナにリンクできます。例えば、複数の（異なった名前の）ウェブ・コンテナが、 ``db`` コンテナに接続できます。
+   情報発信元となる 1 つのコンテナに対して、受信先となるコンテナを複数リンクすることができます。
+   たとえば複数の（名前の異なる）ウェブ・コンテナを ``db`` コンテナにリンクすることもできます。
 
 .. If you restart the source container, the linked containers /etc/hosts files will be automatically updated with the source container’s new IP address, allowing linked communication to continue.
 
