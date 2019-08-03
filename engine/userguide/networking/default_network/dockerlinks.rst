@@ -213,11 +213,14 @@ Docker のネットワーク機能が導入されてからも、リンクを生�
 リンク・システムを用いた接続
 ==============================
 
-.. Note: This section covers the legacy link feature in the default bridge network. Please refer to linking containers in user-defined networks for more information on links in user-defined networks.
-
+.. > **Note**:
+   > This section covers the legacy link feature in the default `bridge` network.
+   > Please refer to [linking containers in user-defined networks](/engine/userguide/networking/work-with-networks.md#linking-containers-in-user-defined-networks)
+   > for more information on links in user-defined networks.
 .. note::
 
-   このセクションが扱うのはデフォルトの ``ブリッジ`` ネットワークにおけるレガシーのリンク機能です。ユーザ定義ネットワーク上での詳しい情報は、:ref:`ユーザ定義ネットワークにおけるコンテナのリンクの仕方 <linking-containers-in-user-defined-networks>` をご覧ください。
+   この節ではデフォルトの ``bridge`` ネットワーク内の古い機能であるリンク機能について説明します。
+   ユーザ定義ネットワーク上のリンクに関しては :ref:`ユーザ定義ネットワークでのコンテナのリンク <linking-containers-in-user-defined-networks>` を参照してください。
 
 .. Network port mappings are not the only way Docker containers can connect to one another. Docker also has a linking system that allows you to link multiple containers together and send connection information from one to another. When containers are linked, information about a source container can be sent to a recipient container. This allows the recipient to see selected data describing aspects of the source container.
 
