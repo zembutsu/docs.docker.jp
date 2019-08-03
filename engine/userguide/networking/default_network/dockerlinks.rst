@@ -498,25 +498,26 @@ Docker は ``--link`` パラメータに基づいて、対象とするコンテ�
 たとえば ``web`` という名前の新たなコンテナが、``--link db:webdb`` という指定を通じてデータベースコンテナ ``db`` にリンクしているとします。
 このとき ``web`` コンテナ内には ``WEBDB_NAME=/web/webdb`` という環境変数が生成されます。
 
-.. Docker also defines a set of environment variables for each port exposed by the source container. Each variable has a unique prefix in the form:
+.. Docker also defines a set of environment variables for each port exposed by the
+   source container. Each variable has a unique prefix in the form:
 
-また Docker は、ソース・コンテナが公開している各ポートの環境変数も定義します。各変数には、ユニークな接頭語を付けています。
+さらに情報発信元となるコンテナが公開しているポートに対しても、環境変数が定義されます。
+各変数には一意なプリフィックスがつけられます。
 
-.. code-block:: bash
-
-   <名前>_PORT_<ポート番号>_<プロトコル>
+``<name>_PORT_<port>_<protocol>``
 
 .. The components in this prefix are:
 
-この接頭語の要素は、次の通りです。
+プリフィックスは以下のものから構成されます。
 
-..    the alias <name> specified in the --link parameter (for example, webdb)
-    the <port> number exposed
-    a <protocol> which is either TCP or UDP
+.. * the alias `<name>` specified in the `--link` parameter (for example, `webdb`)
+   * the `<port>` number exposed
+   * a `<protocol>` which is either TCP or UDP
 
-* エイリアスの ``<名前>`` を ``--link`` パラメータで指定している場合（例： ``webdb`` ）
-* 公開している ``<ポート>`` 番号
-* TCP もしくは UDP の ``<プロトコル>``
+* ``<name>``： ``--link`` パラメータによって指定されたエイリアス名。
+  (たとえば ``webdb``)
+* ``<port>``： 公開されているポート番号。
+* ``<protocol>``： TCP、 UDP いずれかのプロトコル。
 
 .. Docker uses this prefix format to define three distinct environment variables:
 
