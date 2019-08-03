@@ -339,14 +339,17 @@ Docker がリンクを確立するためには、コンテナの名前が重要�
 
    $ docker run -d --name db training/postgres
 
-.. This creates a new container called db from the training/postgres image, which contains a PostgreSQL database.
+.. This creates a new container called `db` from the `training/postgres`
+   image, which contains a PostgreSQL database.
 
-これは PostgreSQL データベースを含む ``training/postgres`` イメージを使い、 ``db`` という名称のコンテナを作成します。
+上のコマンドは、PostgreSQL データベースを含む ``training/postgres`` イメージから ``db`` という新規のコンテナを生成します。
 
-.. Now, you need to delete the web container you created previously so you can replace it with a linked one:
+.. Now, you need to delete the `web` container you created previously so you can replace it
+   with a linked one:
 
-次は、先ほどの手順で ``web`` コンテナを既に作成しているのであれば、リンク可能なコンテナに置き換えるため、削除する必要があります。
+先ほど生成した ``web`` コンテナは、リンクされた状態のコンテナとするために、いったんここで削除する必要があります。
 
+..  $ docker rm -f web
 .. code-block:: bash
 
    $ docker rm -f web
