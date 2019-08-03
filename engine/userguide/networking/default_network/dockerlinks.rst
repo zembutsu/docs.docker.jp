@@ -180,13 +180,24 @@ Docker のネットワーク機能が導入されてからも、リンクを生�
 
    $ docker run -d -p 127.0.0.1:80:5000/udp training/webapp python app.py
 
-.. You also learned about the useful docker port shortcut which showed us the current port bindings. This is also useful for showing you specific port configurations. For example, if you’ve bound the container port to the localhost on the host machine, then the docker port output will reflect that.
+.. You also learned about the useful `docker port` shortcut which showed us the
+   current port bindings. This is also useful for showing you specific port
+   configurations. For example, if you've bound the container port to the
+   `localhost` on the host machine, then the `docker port` output will reflect that.
 
-また、便利な ``docker port`` ショートカットについても学びました。これは現在ポートが割り当てられている情報も含みます。これは、特定のポートに対する設定を確認するのにも便利です。例えば、ホストマシン上の ``localhost`` にコンテナのポートを割り当てている場合、 ``docker port`` を実行すると次のような出力を返します。
+便利なコマンド ``docker port`` についてはこれまでにも使ってきました。
+これによって現時点でのポート割り当ての状況がすぐにわかります。
+また特定のポートがどのように設定されているかがわかります。
+たとえばコンテナの特定のポートを、ホストマシンの ``localhost`` に割り当てていたとします。
+``docker port`` コマンドの出力には、そのことが示されます。
 
+..  $ docker port nostalgic_morse 5000
+
+    127.0.0.1:49155
 .. code-block:: bash
 
    $ docker port nostalgic_morse 5000
+
    127.0.0.1:49155
 
 ..    Note: The -p flag can be used multiple times to configure multiple ports.
