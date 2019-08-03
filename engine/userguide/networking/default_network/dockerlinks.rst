@@ -565,13 +565,28 @@ Docker は ``--link`` パラメータに基づいて、対象とするコンテ�
 各変数に対しては、対象コンテナ上に ``<alias>_ENV_<name>`` という変数が生成されます。
 この変数の値は、発信元コンテナが起動する際に、Docker が利用した値が設定されます。
 
-.. Returning back to our database example, you can run the env command to list the specified container’s environment variables.
+.. Returning back to our database example, you can run the `env`
+   command to list the specified container's environment variables.
 
-データベースの例に戻りましょう。 ``env`` コマンドを実行したら、指定したコンテナの環境変数一覧を表示します。
+データベースの例に戻ります。
+``env`` コマンドを実行して、指定するコンテナ上の環境変数を一覧表示してみます。
 
+.. ```
+       $ docker run --rm --name web2 --link db:db training/webapp env
+   
+       . . .
+       DB_NAME=/web2/db
+       DB_PORT=tcp://172.17.0.5:5432
+       DB_PORT_5432_TCP=tcp://172.17.0.5:5432
+       DB_PORT_5432_TCP_PROTO=tcp
+       DB_PORT_5432_TCP_PORT=5432
+       DB_PORT_5432_TCP_ADDR=172.17.0.5
+       . . .
+   ```
 .. code-block:: bash
 
    $ docker run --rm --name web2 --link db:db training/webapp env
+
    . . .
    DB_NAME=/web2/db
    DB_PORT=tcp://172.17.0.5:5432
