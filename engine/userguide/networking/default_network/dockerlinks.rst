@@ -634,21 +634,33 @@ Docker 環境変数に関する重要事項
 こういった環境変数の設定は、そのコンテナの初期処理段階でのみ行われます。
 デーモンの中には ``sshd`` などのように、接続を実現するために起動するシェルにおいて、そのような変数を破棄するものもあります。
 
-.. Updating the /etc/hosts file
+.. ### Updating the `/etc/hosts` file
 
 .. _updating-the-etchosts-file:
 
 ``/etc/hosts`` ファイルの更新
 ------------------------------
 
-.. In addition to the environment variables, Docker adds a host entry for the source container to the /etc/hosts file. Here’s an entry for the web container:
+.. In addition to the environment variables, Docker adds a host entry for the
+   source container to the `/etc/hosts` file. Here's an entry for the `web`
+   container:
 
-環境変数について追記しますと、 Docker は ``/etc/hosts`` ファイルに、元になったコンテナのエントリを追加します。ここでは ``web`` コンテナのエントリを見てみましょう。
+環境変数とは別に Docker は、発信元コンテナを示すホスト設定を ``/etc/hosts`` ファイルに加えます。
+以下は ``web`` コンテナに対するホスト設定の例です。
 
+..  $ docker run -t -i --rm --link db:webdb training/webapp /bin/bash
+
+    root@aed84ee21bde:/opt/webapp# cat /etc/hosts
+
+    172.17.0.7  aed84ee21bde
+    . . .
+    172.17.0.5  webdb 6e5cdeb2d300 db
 .. code-block:: bash
 
    $ docker run -t -i --rm --link db:webdb training/webapp /bin/bash
+
    root@aed84ee21bde:/opt/webapp# cat /etc/hosts
+
    172.17.0.7  aed84ee21bde
    . . .
    172.17.0.5  webdb 6e5cdeb2d300 db
