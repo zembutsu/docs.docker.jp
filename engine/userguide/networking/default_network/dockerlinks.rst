@@ -222,9 +222,18 @@ Docker のネットワーク機能が導入されてからも、リンクを生�
    この節ではデフォルトの ``bridge`` ネットワーク内の古い機能であるリンク機能について説明します。
    ユーザ定義ネットワーク上のリンクに関しては :ref:`ユーザ定義ネットワークでのコンテナのリンク <linking-containers-in-user-defined-networks>` を参照してください。
 
-.. Network port mappings are not the only way Docker containers can connect to one another. Docker also has a linking system that allows you to link multiple containers together and send connection information from one to another. When containers are linked, information about a source container can be sent to a recipient container. This allows the recipient to see selected data describing aspects of the source container.
+.. Network port mappings are not the only way Docker containers can connect to one
+   another. Docker also has a linking system that allows you to link multiple
+   containers together and send connection information from one to another. When
+   containers are linked, information about a source container can be sent to a
+   recipient container. This allows the recipient to see selected data describing
+   aspects of the source container.
 
-Docker コンテナが他のコンテナに接続する方法は、ネットワーク・ポートの割り当て（mapping）だけではありません。Docker にはリンク・システム（linking system）もあります。これは、複数のコンテナを一緒にリンクするもので、あるコンテナから別のコンテナに対する接続情報を送信します。コンテナをリンクしたら、ソース・コンテナに関する情報が、受信者側のコンテナに送られます。これにより、受信者側は送信元のコンテナを示す説明データを選ぶことができます。
+Docker コンテナを別のコンテナと接続させるのは、ネットワークのポート割り当てだけが唯一の方法ではありません。
+Docker にはリンクシステム（linking system）があります。
+このシステムにより複数のコンテナは互いにリンクすることが可能となり、接続情報をやり取りできるようになります。
+複数のコンテナがリンクされていると、1 つのコンテナの情報を別のコンテナに送信することが可能です。
+つまり情報を受け取る側のコンテナは、情報元のコンテナに関する情報の中から、必要な情報を取り出して見ることができます。
 
 .. The importance of naming
 
