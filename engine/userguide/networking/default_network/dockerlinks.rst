@@ -612,11 +612,11 @@ Docker は ``--link`` パラメータに基づいて、対象とするコンテ�
 その際の接続はセキュアでありプライベートなものです。
 そしてリンクしている ``web`` コンテナだけが、``db`` コンテナとの通信を行うことができます。
 
-.. Important notes on Docker environment variables
+.. ### Important notes on Docker environment variables
 
 .. _important-notes-on-docker-environment-variables:
 
-Docker 環境変数に関する重要な注意
+Docker 環境変数に関する重要事項
 ----------------------------------------
 
 .. Unlike host entries in the /etc/hosts file, IP addresses stored in the environment variables are not automatically updated if the source container is restarted. We recommend using the host entries in /etc/hosts to resolve the IP address of linked containers.
