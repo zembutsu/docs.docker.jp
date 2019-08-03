@@ -374,13 +374,19 @@ Docker がリンクを確立するためには、コンテナの名前が重要�
 
    --link <name または id>:alias
 
-.. Where name is the name of the container we’re linking to and alias is an alias for the link name. You’ll see how that alias gets used shortly. The --link flag also takes the form:
+.. Where `name` is the name of the container we're linking to and `alias` is an
+   alias for the link name. You'll see how that alias gets used shortly.
+   The `--link` flag also takes the form:
 
-``名前`` の場所はリンクしようとしているコンテナ名の場所であり、 ``エイリアス`` はリンク名の別名です。 ``--link`` フラグは、次のような形式もあります。
+ここで ``name`` はリンクするコンテナの名前を指定します。
+また ``alias`` はリンク名に対するエイリアス名の定義です。
+このエイリアス名は簡単に利用することができます。
+``--link`` フラグは以下の書式でも構いません。
 
+..	--link <name or id>
 .. code-block:: bash
 
-   --link <名前 or id>
+   --link <name または id>
 
 .. In which case the alias will match the name. You could have written the previous example as:
 
