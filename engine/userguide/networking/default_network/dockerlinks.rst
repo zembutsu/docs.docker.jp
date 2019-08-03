@@ -206,11 +206,11 @@ Docker のネットワーク機能が導入されてからも、リンクを生�
 
    ``-p`` フラグは複数個の指定が可能であり、これにより複数ポートの指定を行うことができます。
 
-.. Connect with the linking system
+.. ## Connect with the linking system
 
 .. _connect-with-the-linking-system:
 
-リンクしているシステムに接続
+リンク・システムを用いた接続
 ==============================
 
 .. Note: This section covers the legacy link feature in the default bridge network. Please refer to linking containers in user-defined networks for more information on links in user-defined networks.
