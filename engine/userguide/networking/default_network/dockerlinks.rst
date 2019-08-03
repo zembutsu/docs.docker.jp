@@ -294,15 +294,25 @@ Docker がリンクを確立するためには、コンテナの名前が重要�
    CONTAINER ID  IMAGE                  COMMAND        CREATED       STATUS       PORTS                    NAMES
    aed84ee21bde  training/webapp:latest python app.py  12 hours ago  Up 2 seconds 0.0.0.0:49154->5000/tcp  web
 
-.. You can also use docker inspect to return the container’s name.
+.. You can also use `docker inspect` to return the container's name.
 
-あるいは ``docker inspect`` を使い、表示結果からコンテナ名の確認もできます。
+``docker inspect`` の結果からも、コンテナ名を得ることができます。
 
-..    Note: Container names have to be unique. That means you can only call one container web. If you want to re-use a container name you must delete the old container (with docker rm) before you can create a new container with the same name. As an alternative you can use the --rm flag with the docker run command. This will delete the container immediately after it is stopped.
-
+.. > **Note**:
+   > Container names have to be unique. That means you can only call
+   > one container `web`. If you want to re-use a container name you must delete
+   > the old container (with `docker rm`) before you can create a new
+   > container with the same name. As an alternative you can use the `--rm`
+   > flag with the `docker run` command. This will delete the container
+   > immediately after it is stopped.
 .. note::
 
-   コンテナ名はユニーク（一意）である必要があります。つまり、 ``web`` と呼べるコンテナは１つだけです。コンテナ名を再利用したい場合は、同じ名前で新しいコンテナを作成する前に、古いコンテナの削除（ ``docker rm`` を使用 ）が必要です。あるいは別の方法として、 ``docker run`` コマンドの実行時に ``--rm`` フラグを指定します。これは、コンテナが停止したら、直ちにコンテナを削除するオプションです。
+   コンテナ名は一意である必要があります。
+   つまり ``web`` と呼ぶことができるコンテナは 1 つだけということです。
+   コンテナ名を再利用したい場合は、それまでの古いコンテナを（``docker container rm`` を使って）削除する必要があります。
+   その後であれば、同一名のコンテナを生成して利用することができます。
+   これとは別に ``docker run`` の ``--rm`` フラグを利用する方法もあります。
+   この方法ではそれまでのコンテナが停止され、すぐに削除されます。
 
 .. Communication across links
 
