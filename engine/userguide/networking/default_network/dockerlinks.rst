@@ -478,11 +478,16 @@ Docker は ``--link`` パラメータに基づいて、対象とするコンテ�
 
 このような環境変数があることによって、発信元コンテナに関する情報を、目的としているコンテナ内部においてプログラムレベルで検出できるようになります。
 
-..    Warning: It is important to understand that all environment variables originating from Docker within a container are made available to any container that links to it. This could have serious security implications if sensitive data is stored in them.
-
+.. > **Warning**:
+   > It is important to understand that *all* environment variables originating
+   > from Docker within a container are made available to *any* container
+   > that links to it. This could have serious security implications if sensitive
+   > data is stored in them.
+   {:.warning}
 .. warning::
 
-   重要な理解が必要なのは、Docker がコンテナに関して作成する *全て* の環境変数が、リンクされた *あらゆる* コンテナで利用できることです。これにより、機密事項を扱うデータをコンテナに保管する場合は、セキュリティに関する重大な影響を及ぼす場合があります。
+   コンテナ内の環境変数のうち Docker がもともと提供している環境変数はすべて、リンクしているどのコンテナからも利用可能である点を、十分に留意しておいてください。
+   その環境変数の中に重要な機密情報が含まれていたら、重大なセキュリティ問題にもなります。
 
 .. Docker sets an <alias>_NAME environment variable for each target container listed in the --link parameter. For example, if a new container called web is linked to a database container called db via --link db:webdb, then Docker creates a WEBDB_NAME=/web/webdb variable in the web container.
 
