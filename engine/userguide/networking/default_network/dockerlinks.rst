@@ -261,9 +261,11 @@ Docker がリンクを確立するためには、コンテナの名前が重要�
 1. コンテナが実現する特定の機能に合わせて、それを表わす名称にしておくと覚えやすく便利です。
    たとえばウェブ・アプリケーションを含んだコンテナには ``web`` という名前をつけます。
 
-..    It provides Docker with a reference point that allows it to refer to other containers, for example, you can specify to link the container web to container db.
+.. 2. It provides Docker with a reference point that allows it to refer to other
+      containers, for example, you can specify to link the container `web` to container `db`.
 
-2. Docker で他のコンテナが参照できるようにするための、リファレンス・ポイント（参照地点）を提供します。例えば、 ``web`` コンテナを ``db`` コンテナへリンクします。
+2. 名前は、他のコンテナから参照させるための参照名となります。
+   たとえば ``web`` コンテナからのリンクとして、``db`` という名前の別のコンテナを指定することができます。
 
 .. You can name your container by using the --name flag, for example:
 
