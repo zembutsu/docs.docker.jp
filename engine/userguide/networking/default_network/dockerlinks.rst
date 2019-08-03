@@ -438,12 +438,13 @@ Docker はこのとき、コンテナ間にセキュアなトンネルを作り�
 これこそがリンクシステムの優れたところです。
 情報元となるコンテナ、つまり上の例では PostgreSQL データベースを、ネットワーク上に公開していなくても構わないということです。
 
-.. Docker exposes connectivity information for the source container to the recipient container in two ways:
+.. Docker exposes connectivity information for the source container to the
+   recipient container in two ways:
 
-Docker が元コンテナから送信先コンテナに接続情報を渡すには、２つの方法があります。
+情報元のコンテナから受信先のコンテナに公開される接続情報は、以下の 2 つの手段を通じて受け渡されます。
 
-..    Environment variables,
-    Updating the /etc/hosts file.
+.. * Environment variables,
+   * Updating the `/etc/hosts` file.
 
 * 環境変数
 * ``/etc/hosts`` ファイルの更新
