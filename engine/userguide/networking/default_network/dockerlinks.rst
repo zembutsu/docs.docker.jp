@@ -21,9 +21,10 @@
        :depth: 3
        :local:
 
-.. The information in this section explains legacy container links within the Docker default bridge. This is a bridge network named bridge created automatically when you install Docker.
+.. The information in this section explains legacy container links within the Docker default `bridge` network which is created automatically when you install Docker.
 
-このセクションで説明する過去（レガシー）のコンテナ・リンク機能に関する情報は、Docker のデフォルト・ブリッジ内でのみ扱えます。デフォルト・ブリッジとは ``bridge`` という名称の ``ブリッジ`` ネットワークであり、Docker をインストールすると自動的に作成されます。
+ここでは古い機能であるコンテナ・リンクについて説明します。
+これは Docker のデフォルトである ``bridge`` ネットワーク内にあるもので、この ``bridge`` ネットワークは Docker をインストールした際に自動的に生成されます。
 
 .. Before the Docker networks feature, you could use the Docker link feature to allow containers to discover each other and securely transfer information about one container to another container. With the introduction of the Docker networks feature, you can still create links but they behave differently between default bridge network and user defined networks
 
