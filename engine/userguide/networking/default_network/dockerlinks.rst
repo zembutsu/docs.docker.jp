@@ -119,13 +119,19 @@ Docker のネットワーク機能が導入されてからも、リンクを生�
 
    $ docker run -d -p 80:5000 training/webapp python app.py
 
-.. And you saw why this isn’t such a great idea because it constrains you to only one container on that specific port.
+.. And you saw why this isn't such a great idea because it constrains you to
+   only one container on that specific port.
 
-そしてこの方法は、なぜ悪い考えのでしょうか。それは、特定のコンテナが特定のポートを拘束するからです。
+ただしこれはあまり良い方法でないのは、すでにお分かりでしょう。
+これでは、特定のポートを指定できるのが、ただ一つのコンテナでしかないからです。
 
-.. Instead, you may specify a range of host ports to bind a container port to that is different than the default ephemeral port range:
+.. Instead, you may specify a range of host ports to bind a container port to
+   that is different than the default *ephemeral port range*:
 
-そうではなく、コンテナのポートを割り当てるには、デフォルトのエフェメラル・ポート範囲内を使うよりも、自分でホスト側のポート範囲を指定した方が望ましいでしょう。
+上とは違って、コンテナ・ポートに対して、ホストのポート範囲を指定することができます。
+この範囲は「エフェメラル・ポート」の範囲とは異なるものです。
+
+..  $ docker run -d -p 8000-9000:5000 training/webapp python app.py
 
 .. code-block:: bash
 
