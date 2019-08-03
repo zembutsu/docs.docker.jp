@@ -276,13 +276,21 @@ Docker がリンクを確立するためには、コンテナの名前が重要�
 
    $ docker run -d -P --name web training/webapp python app.py
 
-.. This launches a new container and uses the --name flag to name the container web. You can see the container’s name using the docker ps command.
+.. This launches a new container and uses the `--name` flag to
+   name the container `web`. You can see the container's name using the
+   `docker ps` command.
 
-これは新しいコンテナを起動し、 ``--name`` フラグでコンテナ名を ``web`` とします。コンテナ名は ``docker ps`` コマンドで見られます。
+上のコマンドは、新規にコンテナを起動させ、``--name`` フラグの情報からコンテナに ``web`` という名前をつけます。
+``docker ps`` コマンドによってコンテナ名を確認することができます。
 
+..  $ docker ps -l
+
+    CONTAINER ID  IMAGE                  COMMAND        CREATED       STATUS       PORTS                    NAMES
+    aed84ee21bde  training/webapp:latest python app.py  12 hours ago  Up 2 seconds 0.0.0.0:49154->5000/tcp  web
 .. code-block:: bash
 
    $ docker ps -l
+
    CONTAINER ID  IMAGE                  COMMAND        CREATED       STATUS       PORTS                    NAMES
    aed84ee21bde  training/webapp:latest python app.py  12 hours ago  Up 2 seconds 0.0.0.0:49154->5000/tcp  web
 
