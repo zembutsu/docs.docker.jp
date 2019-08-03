@@ -596,9 +596,21 @@ Docker は ``--link`` パラメータに基づいて、対象とするコンテ�
    DB_PORT_5432_TCP_ADDR=172.17.0.5
    . . .
 
-.. You can see that Docker has created a series of environment variables with useful information about the source db container. Each variable is prefixed with DB_, which is populated from the alias you specified above. If the alias were db1, the variables would be prefixed with DB1_. You can use these environment variables to configure your applications to connect to the database on the db container. The connection will be secure and private; only the linked web container will be able to talk to the db container.
+.. You can see that Docker has created a series of environment variables with
+   useful information about the source `db` container. Each variable is prefixed
+   with
+   `DB_`, which is populated from the `alias` you specified above. If the `alias`
+   were `db1`, the variables would be prefixed with `DB1_`. You can use these
+   environment variables to configure your applications to connect to the database
+   on the `db` container. The connection will be secure and private; only the
+   linked `web` container will be able to talk to the `db` container.
 
-このように、Docker は環境変数を作成しており、そこには元になった ``ソース`` コンテナに関する便利な情報を含みます。各変数にある接頭語 ``DB_`` とは、先ほど指定した ``エイリアス`` から割り当てられています。もし ``alias`` が ``db1`` であれば、環境変数の接頭語は ``DB1_`` になります。これらの環境変数を使い、アプリケーションが ``db`` コンテナ上のデータベースに接続する設定も可能です。接続は安全かつプライベートなものですが、これはリンクされた ``web`` コンテナと ``db`` コンテナが通信できるようにするだけです。
+この出力から、情報元である ``db`` コンテナに関して必要となる情報が、環境変数としていくつも生成されているのがわかります。
+各環境変数には ``DB_`` というプリフィックスがつけられていて、これは上で指定した ``alias`` から命名されたものです。
+``alias`` を ``db1`` としていたら、環境変数のプリフィックスは ``DB1_`` になっていたはずです。
+この環境変数を使えば、``db`` コンテナ上にあるデータベースに、アプリケーションから接続する設定を行うことができます。
+その際の接続はセキュアでありプライベートなものです。
+そしてリンクしている ``web`` コンテナだけが、``db`` コンテナとの通信を行うことができます。
 
 .. Important notes on Docker environment variables
 
