@@ -473,9 +473,10 @@ Docker は ``--link`` パラメータに基づいて、対象とするコンテ�
 * 情報元のコンテナにおける Dockerfile に記述された ``ENV`` コマンド
 * 情報元のコンテナを ``docker run`` によって起動する際の、``-e``, ``--env``, ``--env-file`` オプション
 
-.. These environment variables enable programmatic discovery from within the target container of information related to the source container.
+.. These environment variables enable programmatic discovery from within the
+   target container of information related to the source container.
 
-これらの環境変数は、ディスカバリのプログラム化を実現します。これはターゲットのコンテナ内の情報に、ソース・コンテナに関連する情報を含みまます。
+このような環境変数があることによって、発信元コンテナに関する情報を、目的としているコンテナ内部においてプログラムレベルで検出できるようになります。
 
 ..    Warning: It is important to understand that all environment variables originating from Docker within a container are made available to any container that links to it. This could have serious security implications if sensitive data is stored in them.
 
