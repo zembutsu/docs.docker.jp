@@ -26,9 +26,16 @@
 ここでは古い機能であるコンテナ・リンクについて説明します。
 これは Docker のデフォルトである ``bridge`` ネットワーク内にあるもので、この ``bridge`` ネットワークは Docker をインストールした際に自動的に生成されます。
 
-.. Before the Docker networks feature, you could use the Docker link feature to allow containers to discover each other and securely transfer information about one container to another container. With the introduction of the Docker networks feature, you can still create links but they behave differently between default bridge network and user defined networks
+.. Before the [Docker networks feature](/engine/userguide/networking/index.md), you could use the
+   Docker link feature to allow containers to discover each other and securely
+   transfer information about one container to another container. With the
+   introduction of the Docker networks feature, you can still create links but they
+   behave differently between default `bridge` network and
+   [user defined networks](/engine/userguide/networking/work-with-networks.md#linking-containers-in-user-defined-networks).
 
-:doc:`Docker にネットワーク機能 </engine/userguide/networking/dockernetworks>` を導入するまでは、この Docker リンク機能によって、あるコンテナから別のコンテナに対してコンテナ間で相互の発見をし、安全に転送する情報を得られました。これから Docker ネットワーク機能を学ぶのであれば注意点があります。今もリンク機能を使いコンテナを作成できます。ただし、デフォルトの ``ブリッジ`` ネットワークと :ref:`ユーザ定義ネットワーク <linking-containers-in-user-defined-networks>` では、サポートされている機能が異なるのでご注意ください。
+:doc:`Docker のネットワーク機能 </engine/userguide/networking/index>` が提供される以前は、Docker のリンク機能によって複数のコンテナが互いを検出し、一方から他方への情報送信を安全に行うようにしていました。
+Docker のネットワーク機能が導入されてからも、リンクを生成することはできます。
+ただしデフォルトの ``bridge`` ネットワークであるか、:ref:`ユーザ定義のネットワーク <linking-containers-in-user-defined-networks>` であるかによって、その動作は異なることになります。
 
 .. This section briefly discusses connecting via a network port and then goes into detail on container linking in default bridge network.
 
