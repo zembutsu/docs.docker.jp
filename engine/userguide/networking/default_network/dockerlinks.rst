@@ -242,9 +242,17 @@ Docker にはリンクシステム（linking system）があります。
 名前づけの重要性
 --------------------
 
-.. To establish links, Docker relies on the names of your containers. You’ve already seen that each container you create has an automatically created name; indeed you’ve become familiar with our old friend nostalgic_morse during this guide. You can also name containers yourself. This naming provides two useful functions:
+.. To establish links, Docker relies on the names of your containers.
+   You've already seen that each container you create has an automatically
+   created name; indeed you've become familiar with our old friend
+   `nostalgic_morse` during this guide. You can also name containers
+   yourself. This naming provides two useful functions:
 
-Docker でリンク機能を使うとき、コンテナ名に依存します。既に見てきたように、各コンテナを作成すると自動的に名前が作成されます。実際、このガイドでは ``nostalgic_morse`` という古い友人のような名前でした。コンテナ名は自分でも名付けられます。この名付けは２つの便利な機能を提供します。
+Docker がリンクを確立するためには、コンテナの名前が重要になります。
+これまでコンテナを生成した際には、各コンテナに自動的に名前がつけられることを見てきました。
+実際にここまでの説明においては、おなじみの ``nostalgic_morse`` という名前を用いています。
+コンテナの名前は自由につけることができます。
+名前をつけることによって、以下の 2 点が得られます。
 
 ..     It can be useful to name containers that do specific functions in a way that makes it easier for you to remember them, for example naming a container containing a web application web.
 
