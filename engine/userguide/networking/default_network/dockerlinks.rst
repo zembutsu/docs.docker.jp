@@ -86,13 +86,23 @@ Docker のネットワーク機能が導入されてからも、リンクを生�
    そして Docker にはさまざまなネットワーク設定方法があります。
    Docker のネットワーク機能の詳細は :doc:`こちら </engine/userguide/networking/index>` を参照してください。
 
-.. When that container was created, the -P flag was used to automatically map any network port inside it to a random high port within an ephemeral port range on your Docker host. Next, when docker ps was run, you saw that port 5000 in the container was bound to port 49155 on the host.
+.. When that container was created, the `-P` flag was used to automatically map
+   any network port inside it to a random high port within an *ephemeral port
+   range* on your Docker host. Next, when `docker ps` was run, you saw that port
+   5000 in the container was bound to port 49155 on the host.
 
-コンテナの作成時に ``-P`` フラグを使えば、自動的にコンテナ内部のネットワーク・ポートを、ランダムなハイポート（Docker ホスト上のエフェメラル・ポート範囲内）に割り当てます。次は ``docker ps`` を実行時、コンテナ内のポート 5000 が、ホスト側の 49115 に接続していると分かります。
+このコンテナの生成時には ``-P`` フラグが指定されているので、コンテナ内部のネットワークポートはすべて、Docker ホスト上の「エフェメラルポート」範囲内にあるランダムな高位ポートに自動的に割り当てられます。
+その後に ``docker ps`` を実行すれば、コンテナ内の 5000 番ポートが、ホスト上の 49155 番ポートに割り当てられているのがわかります。
+
+..  $ docker ps nostalgic_morse
+
+    CONTAINER ID  IMAGE                   COMMAND       CREATED        STATUS        PORTS                    NAMES
+    bc533791f3f5  training/webapp:latest  python app.py 5 seconds ago  Up 2 seconds  0.0.0.0:49155->5000/tcp  nostalgic_morse
 
 .. code-block:: bash
 
    $ docker ps nostalgic_morse
+
    CONTAINER ID  IMAGE                   COMMAND       CREATED        STATUS        PORTS                    NAMES
    bc533791f3f5  training/webapp:latest  python app.py 5 seconds ago  Up 2 seconds  0.0.0.0:49155->5000/tcp  nostalgic_morse
 
