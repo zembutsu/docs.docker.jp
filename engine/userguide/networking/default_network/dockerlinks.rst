@@ -521,15 +521,21 @@ Docker は ``--link`` パラメータに基づいて、対象とするコンテ�
 
 .. Docker uses this prefix format to define three distinct environment variables:
 
-Docker はこれら接頭語の形式を、３つの異なる環境変数で使います。
+このプリフィックスの書式から、以下の 3 つの環境変数が定義されます。
 
-..    The prefix_ADDR variable contains the IP Address from the URL, for example WEBDB_PORT_5432_TCP_ADDR=172.17.0.82.
-    The prefix_PORT variable contains just the port number from the URL for example WEBDB_PORT_5432_TCP_PORT=5432.
-    The prefix_PROTO variable contains just the protocol from the URL for example WEBDB_PORT_5432_TCP_PROTO=tcp.
+.. * The `prefix_ADDR` variable contains the IP Address from the URL, for
+   example `WEBDB_PORT_5432_TCP_ADDR=172.17.0.82`.
+   * The `prefix_PORT` variable contains just the port number from the URL for
+   example `WEBDB_PORT_5432_TCP_PORT=5432`.
+   * The `prefix_PROTO` variable contains just the protocol from the URL for
+   example `WEBDB_PORT_5432_TCP_PROTO=tcp`.
 
-* ``prefix_ADDR`` 変数は、URL 用の IP アドレスを含む。例： ``WEBDB_PORT_5432_TCP_ADDR=172.17.0.82``
-* ``prefix_PORT`` 変数は、URL 用のポート番号を含む。例： ``WEBDB_PORT_5432_TCP_PORT=5432``
-* ``prefix_PROTO`` 変数は URL 用のプロトコルを含む。例： ``WEBDB_PORT_5432_TCP_PROTO=tcp``
+* ``prefix_ADDR`` 変数： URL に対する IP アドレス。
+  たとえば ``WEBDB_PORT_5432_TCP_ADDR=172.17.0.82`` など。
+* ``prefix_PORT`` 変数： URL に対するポート番号。
+  たとえば ``WEBDB_PORT_5432_TCP_PORT=5432`` など。
+* ``prefix_PROTO`` 変数： URL に対するプロトコル。
+  たとえば ``WEBDB_PORT_5432_TCP_PROTO=tcp`` など。
 
 .. If the container exposes multiple ports, an environment variable set is defined for each one. This means, for example, if a container exposes 4 ports that Docker creates 12 environment variables, 3 for each port.
 
