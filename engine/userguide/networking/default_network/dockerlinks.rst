@@ -665,14 +665,35 @@ Docker 環境変数に関する重要事項
    . . .
    172.17.0.5  webdb 6e5cdeb2d300 db
 
-.. You can see two relevant host entries. The first is an entry for the web container that uses the Container ID as a host name. The second entry uses the link alias to reference the IP address of the db container. In addition to the alias you provide, the linked container’s name--if unique from the alias provided to the --link parameter--and the linked container’s hostname will also be added in /etc/hosts for the linked container’s IP address. You can ping that host now via any of these entries:
+.. You can see two relevant host entries. The first is an entry for the `web`
+   container that uses the Container ID as a host name. The second entry uses the
+   link alias to reference the IP address of the `db` container. In addition to
+   the alias you provide, the linked container's name--if unique from the alias
+   provided to the `--link` parameter--and the linked container's hostname will
+   also be added in `/etc/hosts` for the linked container's IP address. You can ping
+   that host now via any of these entries:
 
-関係あるホスト２つのエントリが見えます。１行めエントリは、 ``web`` コンテナのものであり、コンテナ ID がホスト名として使われています。２つめのエントリは ``db`` コンテナのものであり、IP アドレスの参照にエイリアスが使われています。エイリアスの指定に加えて、もし ``--link`` パラメータで指定したエイリアスがユニークであれば、リンクされるコンテナのホスト名もまた ``/etc/hosts`` でコンテナの IP アドレスをリンクします。これでホスト上では、これらのエントリを通して ping できます。
+上においては、関連する 2 つの設定を見ることができます。
+1 つめは ``web`` コンテナに対する設定であり、ホスト名としてコンテナ ID が用いられています。
+2 つめの設定では、``db`` コンテナの IP アドレスを参照する、リンク機能のエイリアスを用いています。
+エイリアス名の他に、リンクされたコンテナ名も追加されています。
+そして ``--link`` パラメータによって指定されたエイリアスとホスト名が異なっていれば、このホスト名も、``/etc/hosts`` 内のリンクされたコンテナの IP アドレスに対して追加されます。
+設定項目の要素のどれを使っても ping を実行することができます。
 
+..  root@aed84ee21bde:/opt/webapp# apt-get install -yqq inetutils-ping
+
+    root@aed84ee21bde:/opt/webapp# ping webdb
+
+    PING webdb (172.17.0.5): 48 data bytes
+    56 bytes from 172.17.0.5: icmp_seq=0 ttl=64 time=0.267 ms
+    56 bytes from 172.17.0.5: icmp_seq=1 ttl=64 time=0.250 ms
+    56 bytes from 172.17.0.5: icmp_seq=2 ttl=64 time=0.256 ms
 .. code-block:: bash
 
    root@aed84ee21bde:/opt/webapp# apt-get install -yqq inetutils-ping
+
    root@aed84ee21bde:/opt/webapp# ping webdb
+
    PING webdb (172.17.0.5): 48 data bytes
    56 bytes from 172.17.0.5: icmp_seq=0 ttl=64 time=0.267 ms
    56 bytes from 172.17.0.5: icmp_seq=1 ttl=64 time=0.250 ms
