@@ -254,9 +254,12 @@ Docker がリンクを確立するためには、コンテナの名前が重要�
 コンテナの名前は自由につけることができます。
 名前をつけることによって、以下の 2 点が得られます。
 
-..     It can be useful to name containers that do specific functions in a way that makes it easier for you to remember them, for example naming a container containing a web application web.
+.. 1. It can be useful to name containers that do specific functions in a way
+      that makes it easier for you to remember them, for example naming a
+      container containing a web application `web`.
 
-1. コンテナに名前を付けるのは、コンテナの名前を覚えておくためなど、特定の役割には便利です。例えば、ウェブ・アプリケーションのコンテナには ``web`` と名付けます。
+1. コンテナが実現する特定の機能に合わせて、それを表わす名称にしておくと覚えやすく便利です。
+   たとえばウェブ・アプリケーションを含んだコンテナには ``web`` という名前をつけます。
 
 ..    It provides Docker with a reference point that allows it to refer to other containers, for example, you can specify to link the container web to container db.
 
