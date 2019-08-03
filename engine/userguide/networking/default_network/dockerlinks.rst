@@ -388,10 +388,13 @@ Docker がリンクを確立するためには、コンテナの名前が重要�
 
    --link <name または id>
 
-.. In which case the alias will match the name. You could have written the previous example as:
+.. In which case the alias will match the name. You could have written the previous
+   example as:
 
-このケースではエイリアスはコンテナ名と一致しています。先ほどの例は、次のようにも書き換えられます。
+この場合、エイリアスはリンク名そのものになります。
+先ほどの実行例は、以下のようにすることもできます。
 
+..  $ docker run -d -P --name web --link db training/webapp python app.py
 .. code-block:: bash
 
    $ docker run -d -P --name web --link db training/webapp python app.py
