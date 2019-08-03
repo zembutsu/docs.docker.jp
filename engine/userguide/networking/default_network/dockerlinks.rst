@@ -321,10 +321,20 @@ Docker がリンクを確立するためには、コンテナの名前が重要�
 リンク間の通信
 ====================
 
-.. Links allow containers to discover each other and securely transfer information about one container to another container. When you set up a link, you create a conduit between a source container and a recipient container. The recipient can then access select data about the source. To create a link, you use the --link flag. First, create a new container, this time one containing a database.
+.. Links allow containers to discover each other and securely transfer information
+   about one container to another container. When you set up a link, you create a
+   conduit between a source container and a recipient container. The recipient can
+   then access select data about the source. To create a link, you use the `--link`
+   flag. First, create a new container, this time one containing a database.
 
-コンテナに対するリンクによりお互いのことを発見（discover）し、あるコンテナから別のコンテナに対して安全に転送する情報を得られます。リンクを設定したら、送信元コンテナから送信先コンテナに対する導線を作成します。リンクを作成するには、 ``--link`` フラグを使います。まず、新しいコンテナを作成します。今回はデータベースを含むコンテナを作成します。
+リンク機能によって複数のコンテナが互いを検出し、一方から他方への情報送信を安全に行うことができます。
+リンク機能を設定すると、情報発信元のコンテナと受信先のコンテナの間に経路が生成されます。
+そして受信先コンテナは、発信元コンテナに関する情報を選び出してアクセスできるようになります。
+リンクの生成には `--link` フラグを使います。
+そこで以下では、まず新たなコンテナを生成します。
+今回はデータベースを含むコンテナーです。
 
+..  $ docker run -d --name db training/postgres
 .. code-block:: bash
 
    $ docker run -d --name db training/postgres
