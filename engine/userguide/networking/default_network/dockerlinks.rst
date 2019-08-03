@@ -619,13 +619,20 @@ Docker は ``--link`` パラメータに基づいて、対象とするコンテ�
 Docker 環境変数に関する重要事項
 ----------------------------------------
 
-.. Unlike host entries in the /etc/hosts file, IP addresses stored in the environment variables are not automatically updated if the source container is restarted. We recommend using the host entries in /etc/hosts to resolve the IP address of linked containers.
+.. Unlike host entries in the [`/etc/hosts` file](#updating-the-etchosts-file),
+   IP addresses stored in the environment variables are not automatically updated
+   if the source container is restarted. We recommend using the host entries in
+   `/etc/hosts` to resolve the IP address of linked containers.
 
-``/etc/hosts`` :ref:`ファイル <updating-the-etchosts-file>` のエントリとは違い、もし元になったコンテナが再起動しても、保管されている IP アドレスの情報は自動的に更新されません。リンクするコンテナの IP アドレスを名前解決するには、 ``/etc/hosts`` エントリの利用をお勧めします。
+``/etc/hosts`` :ref:`ファイル <updating-the-etchosts-file>` におけるホストの設定とは違って、環境変数内に保存された IP アドレスは、発信元のコンテナが再起動されたときに自動的に更新されません。
+リンクされたコンテナの IP アドレスを取得するためには、``/etc/hosts`` に設定することをお勧めします。
 
-.. These environment variables are only set for the first process in the container. Some daemons, such as sshd, will scrub them when spawning shells for connection.
+.. These environment variables are only set for the first process in the
+   container. Some daemons, such as `sshd`, will scrub them when spawning shells
+   for connection.
 
-これらの環境変数が作成されるのは、コンテナの初期段階のみです。 ``sshd`` のようなデーモンであれば、シェルへの接続が生じた時に確定します。
+こういった環境変数の設定は、そのコンテナの初期処理段階でのみ行われます。
+デーモンの中には ``sshd`` などのように、接続を実現するために起動するシェルにおいて、そのような変数を破棄するものもあります。
 
 .. Updating the /etc/hosts file
 
