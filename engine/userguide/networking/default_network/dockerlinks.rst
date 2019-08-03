@@ -449,16 +449,22 @@ Docker はこのとき、コンテナ間にセキュアなトンネルを作り�
 * 環境変数
 * ``/etc/hosts`` ファイルの更新
 
-.. Environment variables
+.. ### Environment variables
 
 .. _environment-variables:
 
 環境変数
 ----------
 
-.. Docker creates several environment variables when you link containers. Docker automatically creates environment variables in the target container based on the --link parameters. It will also expose all environment variables originating from Docker from the source container. These include variables from:
+.. Docker creates several environment variables when you link containers. Docker
+   automatically creates environment variables in the target container based on
+   the `--link` parameters. It will also expose all environment variables
+   originating from Docker from the source container. These include variables from:
 
-Docker はリンクするコンテナに対する様々な環境変数を作成します。Docker は ``--link`` パラメータで指定したコンテナを対象とする環境変数を、自動的に作成します。また、Docker は参照元とするコンテナの環境変数も作成します。これらの環境変数を使うには、次のようにします。
+コンテナをリンクすると、環境変数が数種類作り出されます。
+Docker は ``--link`` パラメータに基づいて、対象とするコンテナ上に自動的に環境変数を作り出すものです。
+また発信元コンテナからは、Docker がもともと提供している環境変数もすべて公開されています。
+そういった環境変数は以下に基づくものです。
 
 ..    the ENV commands in the source container’s Dockerfile
     the -e, --env and --env-file options on the docker run command when the source container is started
