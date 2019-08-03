@@ -399,13 +399,19 @@ Docker がリンクを確立するためには、コンテナの名前が重要�
 
    $ docker run -d -P --name web --link db training/webapp python app.py
 
-.. Next, inspect your linked containers with docker inspect:
+.. Next, inspect your linked containers with `docker inspect`:
 
-次は、 ``docker inspect`` でリンクしコンテナを確認しましょう。
+次にリンクしたコンテナを ``docker inspect`` によって確認してみます。
 
+..  {% raw %}
+    $ docker inspect -f "{{ .HostConfig.Links }}" web
+
+    [/db:/web/db]
+    {% endraw %}
 .. code-block:: bash
 
    $ docker inspect -f "{{ .HostConfig.Links }}" web
+
    [/db:/web/db]
 
 .. You can see that the web container is now linked to the db container web/db. Which allows it to access information about the db container.
