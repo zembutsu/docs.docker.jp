@@ -466,11 +466,12 @@ Docker は ``--link`` パラメータに基づいて、対象とするコンテ�
 また発信元コンテナからは、Docker がもともと提供している環境変数もすべて公開されています。
 そういった環境変数は以下に基づくものです。
 
-..    the ENV commands in the source container’s Dockerfile
-    the -e, --env and --env-file options on the docker run command when the source container is started
+.. * the `ENV` commands in the source container's Dockerfile
+   * the `-e`, `--env`, and `--env-file` options on the `docker run`
+   command when the source container is started
 
-* ソース・コンテナの Dockerfile で ``ENV`` コマンドを使用
-* ソース・コンテナの開始時に、``docker run`` コマンドで ``-e``  、 ``--env`` 、 ``--env-file`` オプションを使用
+* 情報元のコンテナにおける Dockerfile に記述された ``ENV`` コマンド
+* 情報元のコンテナを ``docker run`` によって起動する際の、``-e``, ``--env``, ``--env-file`` オプション
 
 .. These environment variables enable programmatic discovery from within the target container of information related to the source container.
 
