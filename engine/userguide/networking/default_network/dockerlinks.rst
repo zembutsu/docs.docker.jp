@@ -60,17 +60,18 @@ Docker のネットワーク機能が導入されてからも、リンクを生�
    ``--link`` に存在していて、ユーザ定義のネットワークにない機能は、コンテナ間で環境変数を共有できる機能です。
    ただしボリュームのような別の機能を使えば、コンテナ間での環境変数の共有は、より制御しやすく利用できます。
 
-.. Connect using network port mapping
+.. ## Connect using network port mapping
 
 .. _connect-using-network-port-mapping:
 
-ネットワークのポート・マッピングで接続
-========================================
+ネットワーク・ポート・マッピングを利用した接続
+===============================================
 
-.. In the Using Docker section, you created a container that ran a Python Flask application:
+.. Let's say you used this command to run a simple Python Flask application:
 
-:doc:`Docker を使う</engine/userguide/containers/usingdocker>` のセクションでは、Python Flask アプリケーションを動かすコンテナを、次のように作成しました。
+以下のコマンドによって Python Flask アプリケーションを起動しているとします。
 
+..  $ docker run -d -P training/webapp python app.py
 .. code-block:: bash
 
    $ docker run -d -P training/webapp python app.py
