@@ -235,11 +235,11 @@ Docker にはリンクシステム（linking system）があります。
 複数のコンテナがリンクされていると、1 つのコンテナの情報を別のコンテナに送信することが可能です。
 つまり情報を受け取る側のコンテナは、情報元のコンテナに関する情報の中から、必要な情報を取り出して見ることができます。
 
-.. The importance of naming
+.. ### The importance of naming
 
 .. _the-importance-of-naming:
 
-名前付けの重要さ
+名前づけの重要性
 --------------------
 
 .. To establish links, Docker relies on the names of your containers. You’ve already seen that each container you create has an automatically created name; indeed you’ve become familiar with our old friend nostalgic_morse during this guide. You can also name containers yourself. This naming provides two useful functions:
