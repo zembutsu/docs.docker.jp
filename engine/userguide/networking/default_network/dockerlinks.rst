@@ -267,10 +267,11 @@ Docker がリンクを確立するためには、コンテナの名前が重要�
 2. 名前は、他のコンテナから参照させるための参照名となります。
    たとえば ``web`` コンテナからのリンクとして、``db`` という名前の別のコンテナを指定することができます。
 
-.. You can name your container by using the --name flag, for example:
+.. You can name your container by using the `--name` flag, for example:
 
-コンテナ名を指定するには ``--name`` フラグを使います。例：
+たとえば以下のようにして ``--name`` フラグを使ってコンテナに名前をつけることができます。
 
+..  $ docker run -d -P --name web training/webapp python app.py
 .. code-block:: bash
 
    $ docker run -d -P --name web training/webapp python app.py
