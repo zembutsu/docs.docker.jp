@@ -724,16 +724,34 @@ Docker 環境変数に関する重要事項
    情報発信元となる 1 つのコンテナに対して、受信先となるコンテナを複数リンクすることができます。
    たとえば複数の（名前の異なる）ウェブ・コンテナを ``db`` コンテナにリンクすることもできます。
 
-.. If you restart the source container, the linked containers /etc/hosts files will be automatically updated with the source container’s new IP address, allowing linked communication to continue.
+.. If you restart the source container, the linked containers `/etc/hosts` files
+   will be automatically updated with the source container's new IP address,
+   allowing linked communication to continue.
 
-ソース・コンテナを再起動したら、リンクされたコンテナの ``/etc/hosts`` ファイルはソース・コンテナの IP アドレスを自動的に更新し、継続して通信できるようにします。
+情報発信元となるコンテナを再起動すると、リンクされたコンテナ内の ``/etc/hosts`` ファイルは自動的に更新されて、発信元コンテナの新たな IP アドレスが設定されます。
+こうしてリンクされた通信状態が維持されます。
 
+..  $ docker restart db
+
+    db
+
+    $ docker run -t -i --rm --link db:db training/webapp /bin/bash
+
+    root@aed84ee21bde:/opt/webapp# cat /etc/hosts
+
+    172.17.0.7  aed84ee21bde
+    . . .
+    172.17.0.9  db
 .. code-block:: bash
 
    $ docker restart db
+
    db
+
    $ docker run -t -i --rm --link db:db training/webapp /bin/bash
+
    root@aed84ee21bde:/opt/webapp# cat /etc/hosts
+
    172.17.0.7  aed84ee21bde
    . . .
    172.17.0.9  db
