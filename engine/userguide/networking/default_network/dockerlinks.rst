@@ -157,14 +157,17 @@ Docker のネットワーク機能が導入されてからも、リンクを生�
 
    $ docker run -d -p 127.0.0.1:80:5000 training/webapp python app.py
 
-.. This would bind port 5000 inside the container to port 80 on the localhost or 127.0.0.1 interface on the host machine.
+.. This would bind port 5000 inside the container to port 80 on the
+   `localhost` or `127.0.0.1` interface on the host machine.
 
-これはコンテナ内のポート 5000 を、ホスト側マシン上の ``localhost`` か ``127.0.0.1`` インターフェース上のポート 80 に割り当てます。
+上はコンテナ内の 5000 番ポートを、ホストマシン上の 80 番ポートに割り当てますが、これが行われるのは ``localhost`` つまり ``127.0.0.1`` インターフェースに対してのみです。
 
-.. Or, to bind port 5000 of the container to a dynamic port but only on the localhost, you could use:
+.. Or, to bind port 5000 of the container to a dynamic port but only on the
+   `localhost`, you could use:
 
-あるいは、コンテナ内のポート 5000 を、ホスト側へ動的に割り当てるますが、 ``localhost`` だけ使いたい時は次のようにします。
+コンテナ内の 5000 番ポートを ``localhost`` 上の動的ポートに割り当てるなら、以下のようにします。
 
+..  $ docker run -d -p 127.0.0.1::5000 training/webapp python app.py
 .. code-block:: bash
 
    $ docker run -d -p 127.0.0.1::5000 training/webapp python app.py
