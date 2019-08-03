@@ -314,11 +314,11 @@ Docker がリンクを確立するためには、コンテナの名前が重要�
    これとは別に ``docker run`` の ``--rm`` フラグを利用する方法もあります。
    この方法ではそれまでのコンテナが停止され、すぐに削除されます。
 
-.. Communication across links
+.. ## Communication across links
 
 .. _communication-across-links:
 
-リンクを横断する通信
+リンク間の通信
 ====================
 
 .. Links allow containers to discover each other and securely transfer information about one container to another container. When you set up a link, you create a conduit between a source container and a recipient container. The recipient can then access select data about the source. To create a link, you use the --link flag. First, create a new container, this time one containing a database.
