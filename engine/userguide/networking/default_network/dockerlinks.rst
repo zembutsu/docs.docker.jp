@@ -699,15 +699,21 @@ Docker 環境変数に関する重要事項
    56 bytes from 172.17.0.5: icmp_seq=1 ttl=64 time=0.250 ms
    56 bytes from 172.17.0.5: icmp_seq=2 ttl=64 time=0.256 ms
 
-..    Note: In the example, you’ll note you had to install ping because it was not included in the container initially.
-
+.. > **Note**:
+   > In the example, you'll note you had to install `ping` because it was not included
+   > in the container initially.
 .. note::
 
-   この例で ``ping`` をインストールしているのは、コンテナの初期状態では入っていないためです。
+   ここに示す例においては ``ping`` をインストールしています。
+   このコンテナの初期状態ではインストールされていないためです。
 
-.. Here, you used the ping command to ping the db container using its host entry, which resolves to 172.17.0.5. You can use this host entry to configure an application to make use of your db container.
+.. Here, you used the `ping` command to ping the `db` container using its host entry,
+   which resolves to `172.17.0.5`. You can use this host entry to configure an application
+   to make use of your `db` container.
 
-これで、 ``db`` コンテナに対して ``ping`` コマンドを実行する時は、 hosts エントリにある ``172.17.0.5`` を名前解決して ping します。この hosts のエントリの設定を使えば、アプリケーションが ``db`` コンテナに接続する設定で使えます。
+上では ``db`` コンテナに対しての ``ping`` コマンド実行において、``/etc/hosts`` の設定項目を利用しました。
+そしてそれは ``172.17.0.5`` であることがわかりました。
+このように ``/etc/hosts`` の設定項目を用いてアプリケーションを設定すれば、``db`` コンテナを利用することができます。
 
 ..    Note: You can link multiple recipient containers to a single source. For example, you could have multiple (differently named) web containers attached to your db container.
 
