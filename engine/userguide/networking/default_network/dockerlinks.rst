@@ -354,10 +354,11 @@ Docker がリンクを確立するためには、コンテナの名前が重要�
 
    $ docker rm -f web
 
-.. Now, create a new web container and link it with your db container.
+.. Now, create a new `web` container and link it with your `db` container.
 
-次は、 ``db`` コンテナにリンクする新しい ``web`` コンテナを作成します。。
+新たな ``web`` コンテナを生成して ``db`` コンテナにリンクします。
 
+..  $ docker run -d -P --name web --link db:db training/webapp python app.py
 .. code-block:: bash
 
    $ docker run -d -P --name web --link db:db training/webapp python app.py
