@@ -363,13 +363,16 @@ Docker がリンクを確立するためには、コンテナの名前が重要�
 
    $ docker run -d -P --name web --link db:db training/webapp python app.py
 
-.. This will link the new web container with the db container you created earlier. The --link flag takes the form:
+.. This will link the new `web` container with the `db` container you created
+   earlier. The `--link` flag takes the form:
 
-これは先ほど作成した ``db`` コンテナを新しい ``web`` コンテナにリンクするものです。 ``--link`` フラグは次のような形式です。
+これにより、新しい ``web`` コンテナが、直前に生成した ``db`` コンテナにリンクされます。
+``--link`` フラグは以下のような書式です。
 
+..  --link <name or id>:alias
 .. code-block:: bash
 
-   --link <名前 or id>:エイリアス
+   --link <name または id>:alias
 
 .. Where name is the name of the container we’re linking to and alias is an alias for the link name. You’ll see how that alias gets used shortly. The --link flag also takes the form:
 
