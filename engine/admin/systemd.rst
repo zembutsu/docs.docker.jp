@@ -19,9 +19,11 @@ systemd における Docker の設定と管理
        :depth: 3
        :local:
 
-.. Many Linux distributions use systemd to start the Docker daemon. This document shows a few examples of how to customise Docker’s settings.
+.. Many Linux distributions use systemd to start the Docker daemon. This document
+   shows a few examples of how to customize Docker's settings.
 
-多くの Linux ディストリビューションは systemd を使って Docker デーモンを起動します。このドキュメントは、様々な Docker の設定例を紹介します。
+Linux ディストリビューションでは、Docker デーモンの起動に systemd を用いるものが多くあります。
+このドキュメントでは Docker の設定例をいくつか示します。
 
 .. Starting the Docker daemon
 
