@@ -79,20 +79,22 @@ Docker をインストールしたら Docker デーモンを起動する必要�
 
 Docker をシステムブート時に起動したい場合は :ref:`システムブート時の Docker 起動設定 <configure-docker-to-start-on-boot>` を参照してください。
 
-.. Custom Docker daemon options
+.. ## Custom Docker daemon options
 
 .. _custom-docker-daemon-options:
 
-Docker デーモンのオプション変更
+Docker デーモンオプションのカスタマイズ
 ========================================
 
-.. There are a number of ways to configure the daemon flags and environment variables for your Docker daemon.
+.. There are a number of ways to configure the daemon flags and environment variables
+   for your Docker daemon. The recommended way is to use the platform-independent
+   `daemon.json` file, which is located in `/etc/docker/` on Linux by default. See
+   [Daemon configuration file](/engine/reference/commandline/dockerd.md/#daemon-configuration-file).
 
-Docker デーモンの設定を変更するには、多くのフラグを使う方法と、環境変数を使う方法があります。
-
-.. The recommended way is to use a systemd drop-in file (as described in the systemd.unit documentation). These are local files named <something>.conf in the /etc/systemd/system/docker.service.d directory. This could also be /etc/systemd/system/docker.service, which also works for overriding the defaults from /lib/systemd/system/docker.service.
-
-推奨する方法は、systemd 用のファイルを使うことです（詳細は `systemd.unit <https://www.freedesktop.org/software/systemd/man/systemd.unit.html>`_ ドキュメントに記述があります）。ローカルの設定ファイルは ``/etc/systemd/system/docker.service.d`` ディレクトリに ``<何らかの名前>.conf`` があります。もしかすると ``/etc/systemd/system/docker.service`` かもしれません。これは ``/lib/systemd/system/docker.service`` にあるデフォルト設定を上書きします。
+Docker デーモンに対してのデーモンフラグや環境変数を設定する方法はいろいろあります。
+推奨されるのは、プラットフォームに依存しない ``daemon.json`` ファイルを用いる方法です。
+この ``daemon.json`` ファイルは Linux においてはデフォルトで ``/etc/docker/`` に置かれます。
+詳しくは :ref:`デーモン設定ファイル <daemon-configuration-file>` を参照してください。
 
 .. However, if you had previously used a package which had an EnvironmentFile (often pointing to /etc/sysconfig/docker) then for backwards compatibility, you drop a file with a .conf extension into the /etc/systemd/system/docker.service.d directory including the following:
 
