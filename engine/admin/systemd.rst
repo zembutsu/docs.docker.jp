@@ -25,16 +25,27 @@ systemd における Docker の設定と管理
 Linux ディストリビューションでは、Docker デーモンの起動に systemd を用いるものが多くあります。
 このドキュメントでは Docker の設定例をいくつか示します。
 
-.. Starting the Docker daemon
+.. ## Start the Docker daemon
 
-.. _starting-the-docker-daemon:
+.. _start-the-docker-daemon:
 
 Docker デーモンの起動
 ==============================
 
-.. Once Docker is installed, you will need to start the Docker daemon.
+.. ### Start manually
 
-Docker をインストールしたら、Docker デーモンを起動する必要があります。
+.. _start-manually:
+
+手動で起動する場合
+------------------------------
+
+.. Once Docker is installed, you will need to start the Docker daemon.
+   Most Linux distributions use `systemctl` to start services. If you
+   do not have `systemctl`, use the `service` command.
+
+Docker をインストールしたら Docker デーモンを起動する必要があります。
+たいていの Linux ディストリビューションでは ``systemctl`` を使ってサービスを起動します。
+``systemctl`` がない場合は ``service`` コマンドを使ってください。
 
 .. code-block:: bash
 
