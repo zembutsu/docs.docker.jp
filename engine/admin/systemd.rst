@@ -104,16 +104,17 @@ Docker デーモンに対してのデーモンフラグや環境変数を設定�
 以下の例では 2 つのオプションを設定しています。
 ``daemon.json`` による仕組みで設定できないものに :ref:`HTTP プロキシ <http-proxy>` があります。
 
-.. Runtime directory and storage driver
+.. ### Runtime directory and storage driver
 
 .. _runtime-directory-and-storage-driver:
 
-実行時のディレクトリとストレージ・ドライバ
+実行時の利用ディレクトリとストレージ・ドライバ
 --------------------------------------------------
 
-.. You may want to control the disk space used for Docker images, containers and volumes by moving it to a separate partition.
+.. You may want to control the disk space used for Docker images, containers,
+   and volumes by moving it to a separate partition.
 
-Docker イメージ、コンテナ、ボリュームを別々のパーティションのディスク・スペースで管理したくなるでしょう。
+Docker のイメージ、コンテナー、ボリュームは、別のパーティションを使ってディスク管理を行いたいと考えるかもしれません。
 
 .. In this example, we’ll assume that your docker.service file looks something like:
 
