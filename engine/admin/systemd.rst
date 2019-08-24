@@ -47,11 +47,25 @@ Docker をインストールしたら Docker デーモンを起動する必要�
 たいていの Linux ディストリビューションでは ``systemctl`` を使ってサービスを起動します。
 ``systemctl`` がない場合は ``service`` コマンドを使ってください。
 
-.. code-block:: bash
+.. - **`systemctl`**:
+- ``systemctl`` の場合
 
-   $ sudo systemctl start docker
-   # 他のディストリビューションでは、次のように実行します
-   $ sudo service docker start
+  .. ```bash
+     $ sudo systemctl start docker
+     ```
+  .. code-block:: bash
+
+     $ sudo systemctl start docker
+
+.. - **`service`**:
+- ``service`` の場合
+
+  .. ```bash
+     $ sudo service docker start
+     ```
+  .. code-block:: bash
+
+     $ sudo service docker start
 
 .. If you want Docker to start at boot, you should also:
 
