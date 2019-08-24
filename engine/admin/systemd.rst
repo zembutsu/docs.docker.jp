@@ -116,60 +116,6 @@ Docker デーモンに対してのデーモンフラグや環境変数を設定�
 
 Docker のイメージ、コンテナー、ボリュームは、別のパーティションを使ってディスク管理を行いたいと考えるかもしれません。
 
-.. In this example, we’ll assume that your docker.service file looks something like:
-
-この例では、次のような ``docker.service`` ファイルがあるものとします。
-
-.. code-block:: bash
-
-   [Unit]
-   Description=Docker Application Container Engine
-   Documentation=https://docs.docker.com
-   After=network.target docker.socket
-   Requires=docker.socket
-   
-   [Service]
-   Type=notify
-   ExecStart=/usr/bin/docker daemon -H fd://
-   LimitNOFILE=1048576
-   LimitNPROC=1048576
-   TasksMax=1048576
-   
-   [Install]
-   Also=docker.socket
-
-.. This will allow us to add extra flags via a drop-in file (mentioned above) by placing a file containing the following in the /etc/systemd/system/docker.service.d directory:
-
-これはドロップイン・ファイル（先ほど扱いました）を経由して外部フラグを追加できます。以下の内容を含むファイルを ``/etc/systemd/system/docker.service.d`` に作成します。
-
-.. code-block:: bash
-
-   [Service]
-   ExecStart=
-   ExecStart=/usr/bin/docker daemon -H fd:// --graph="/mnt/docker-data" --storage-driver=overlay
-
-.. You can also set other environment variables in this file, for example, the HTTP_PROXY environment variables described below.
-
-このファイルに他の環境変数も設定できます。例えば、 ``HTTP_PROXY`` 環境変数を下に追加することもできるでしょう。
-
-.. To modify the ExecStart configuration, specify an empty configuration followed by a new configuration as follows:
-
-ExecSart 設定を変更するには、空の設定の次の行に、新しい設定を追加します。
-
-.. code-block:: bash
-
-   [Service]
-   ExecStart=
-   ExecStart=/usr/bin/docker daemon -H fd:// --bip=172.17.42.1/16
-
-.. If you fail to specify an empty configuration, Docker reports an error such as:
-
-空の設定があると失敗しますので、次のように表示されるでしょう。
-
-.. code-block:: bash
-
-   docker.service has more than one ExecStart= setting, which is only allowed for Type=oneshot services. Refusing.
-
 .. _systemd-http-proxy:
 
 .. HTTP proxy
