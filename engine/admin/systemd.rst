@@ -7,10 +7,10 @@
 .. Commits on Jun 2, 2016 c1be45fa38e82054dcad606d71446a662524f2d5
 .. ---------------------------------------------------------------------------
 
-.. Control and configure Docker with systemd
+.. title: Control and configure Docker with systemd
 
 =======================================
-systemd で Docker の管理・設定
+systemd における Docker の設定と管理
 =======================================
 
 .. sidebar:: 目次
