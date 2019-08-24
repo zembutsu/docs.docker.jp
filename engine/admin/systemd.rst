@@ -96,47 +96,6 @@ Docker デーモンに対してのデーモンフラグや環境変数を設定�
 この ``daemon.json`` ファイルは Linux においてはデフォルトで ``/etc/docker/`` に置かれます。
 詳しくは :ref:`デーモン設定ファイル <daemon-configuration-file>` を参照してください。
 
-.. However, if you had previously used a package which had an EnvironmentFile (often pointing to /etc/sysconfig/docker) then for backwards compatibility, you drop a file with a .conf extension into the /etc/systemd/system/docker.service.d directory including the following:
-
-一方で、既にパッケージを使ってインストールしていた場合は ``環境設定ファイル`` （通常は ``/etc/sysconfig/docker`` ） があるかもしれません。これは後方互換性のためです。このファイルの内容は、 ``/etc/systemd/system/docker.service.d`` ディレクトリにあるファイルに落とし込めます。
-
-.. code-block:: bash
-
-   [Service]
-   EnvironmentFile=-/etc/sysconfig/docker
-   EnvironmentFile=-/etc/sysconfig/docker-storage
-   EnvironmentFile=-/etc/sysconfig/docker-network
-   ExecStart=
-   ExecStart=/usr/bin/docker daemon -H fd:// $OPTIONS \
-             $DOCKER_STORAGE_OPTIONS \
-             $DOCKER_NETWORK_OPTIONS \
-             $BLOCK_REGISTRY \
-             $INSECURE_REGISTRY
-
-.. To check if the docker.service uses an EnvironmentFile:
-
-``docker.service`` が ``環境設定ファイル`` を使っているか確認します。
-
-.. code-block:: bash
-
-   $ systemctl show docker | grep EnvironmentFile
-   EnvironmentFile=-/etc/sysconfig/docker (ignore_errors=yes)
-
-.. Alternatively, find out where the service file is located:
-
-あるいは、サービス用のファイルがどこにあるか探します。
-
-.. code-block:: bash
-
-   $ systemctl status docker | grep Loaded
-   FragmentPath=/usr/lib/systemd/system/docker.service
-   $ grep EnvironmentFile /usr/lib/systemd/system/docker.service
-   EnvironmentFile=-/etc/sysconfig/docker
-
-.. You can customize the Docker daemon options using override files as explained in the HTTP Proxy example below. The files located in /usr/lib/systemd/system or /lib/systemd/system contain the default options and should not be edited.
-
-Docker デーモンのオプションは、以下の :ref:`HTTP Proxy 例 <systemd-http-proxy>` で説明するようなファイルを使って上書き可能です。このファイルは ``/usr/lib/systemd/system`` か ``/lib/systemd/system`` にありますが、デフォルトのオプション設定は変更すべきではありません。
-
 .. Runtime directory and storage driver
 
 .. _runtime-directory-and-storage-driver:
