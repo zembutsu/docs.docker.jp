@@ -67,15 +67,17 @@ Docker をインストールしたら Docker デーモンを起動する必要�
 
      $ sudo service docker start
 
-.. If you want Docker to start at boot, you should also:
+.. ### Start automatically at system boot
 
-また、Docker をブート時に自動起動するには、次のように実行すべきです。
+.. _start-automatically-at-system-boot:
 
-.. code-block:: bash
+システムブート時に自動起動する場合
+-----------------------------------
 
-   $ sudo systemctl enable docker
-   # 他のディストリビューションでは、次のように実行します
-   $ sudo chkconfig docker on
+.. If you want Docker to start at boot, see
+   [Configure Docker to start on boot](/engine/installation/linux/linux-postinstall.md/#configure-docker-to-start-on-boot).
+
+Docker をシステムブート時に起動したい場合は :ref:`システムブート時の Docker 起動設定 <configure-docker-to-start-on-boot>` を参照してください。
 
 .. Custom Docker daemon options
 
