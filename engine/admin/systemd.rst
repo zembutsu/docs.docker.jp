@@ -116,6 +116,23 @@ Docker デーモンに対してのデーモンフラグや環境変数を設定�
 
 Docker のイメージ、コンテナー、ボリュームは、別のパーティションを使ってディスク管理を行いたいと考えるかもしれません。
 
+.. To accomplish this, set the following flags in the `daemon.json` file:
+
+これを行うには ``daemon.json`` ファイルにおいて、以下のようなフラグ設定を行います。
+
+.. ```none
+   {
+       "graph": "/mnt/docker-data",
+       "storage-driver": "overlay"
+   }
+   ```
+.. code-block:: json
+
+   {
+       "graph": "/mnt/docker-data",
+       "storage-driver": "overlay"
+   }
+
 .. _systemd-http-proxy:
 
 .. HTTP proxy
