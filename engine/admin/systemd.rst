@@ -96,6 +96,14 @@ Docker デーモンに対してのデーモンフラグや環境変数を設定�
 この ``daemon.json`` ファイルは Linux においてはデフォルトで ``/etc/docker/`` に置かれます。
 詳しくは :ref:`デーモン設定ファイル <daemon-configuration-file>` を参照してください。
 
+.. You can configure nearly all daemon configuration options using `daemon.json`. The following
+   example configures two options. One thing you cannot configure using `daemon.json` mechanism is
+   a [HTTP proxy](#http-proxy).
+
+``daemon.json`` を使うと、デーモン・オプションはほぼすべて設定することができます。
+以下の例では 2 つのオプションを設定しています。
+``daemon.json`` による仕組みで設定できないものに :ref:`HTTP プロキシ <http-proxy>` があります。
+
 .. Runtime directory and storage driver
 
 .. _runtime-directory-and-storage-driver:
