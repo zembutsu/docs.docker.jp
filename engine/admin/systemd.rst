@@ -196,13 +196,28 @@ Docker デーモンではその起動環境において ``HTTP_PROXY``, ``HTTPS_
        [Service]
        Environment="HTTPS_PROXY=https://proxy.example.com:443/"
 
-.. If you have internal Docker registries that you need to contact without proxying you can specify them via the NO_PROXY environment variable:
+.. 3.  If you have internal Docker registries that you need to contact without
+       proxying you can specify them via the `NO_PROXY` environment variable:
 
-内部の Docker レジストリがあれば、プロキシを通さずに通信できるようにするため、 ``NO_PROXY`` 環境変数を指定します。
+3.  内部に Docker レジストリがあって、プロキシを介さずに接続する必要がある場合は、環境変数 ``NO_PROXY`` を通じて設定することができます。
 
-.. code-block:: bash
+   ..  ```conf
+       Environment="HTTP_PROXY=http://proxy.example.com:80/" "NO_PROXY=localhost,127.0.0.1,docker-registry.somecorporation.com"
+       ```
+   .. code-block:: conf
 
-   Environment="HTTP_PROXY=http://proxy.example.com:80/"    "NO_PROXY=localhost,127.0.0.1,docker-registry.somecorporation.com"
+      Environment="HTTP_PROXY=http://proxy.example.com:80/" "NO_PROXY=localhost,127.0.0.1,docker-registry.somecorporation.com"
+
+   ..  Or, if you are behind an HTTPS proxy server:
+
+   また HTTPS プロキシサーバであれば以下のようになります。
+
+   ..  ```conf
+       Environment="HTTPS_PROXY=https://proxy.example.com:443/" "NO_PROXY=localhost,127.0.0.1,docker-registry.somecorporation.com"
+       ```
+   .. code-block:: conf
+
+      Environment="HTTPS_PROXY=https://proxy.example.com:443/" "NO_PROXY=localhost,127.0.0.1,docker-registry.somecorporation.com"
 
 .. Flush changes:
 
