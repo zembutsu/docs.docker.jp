@@ -282,5 +282,5 @@ systemd ユニットファイルの手動作成
 
 .. seealso:: 
 
-   Quickstart Docker Engine
-      https://docs.docker.com/engine/quickstart/
+   Control and configure Docker with systemd
+      https://docs.docker.com/engine/admin/systemd/
