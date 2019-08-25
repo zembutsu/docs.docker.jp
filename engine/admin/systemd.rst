@@ -167,14 +167,34 @@ Docker デーモンではその起動環境において ``HTTP_PROXY``, ``HTTPS_
 
        $ mkdir -p /etc/systemd/system/docker.service.d
 
-.. Now create a file called /etc/systemd/system/docker.service.d/http-proxy.conf that adds the HTTP_PROXY environment variable:
+.. 2.  Create a file called `/etc/systemd/system/docker.service.d/http-proxy.conf`
+       that adds the `HTTP_PROXY` environment variable:
 
-次は ``/etc/systemd/system/docker.service.d/http-proxy.conf`` ファイルを作成し、 ``HTTP_PROXY`` 環境変数を追加します。
+2.  ``/etc/systemd/system/docker.service.d/http-proxy.conf`` というファイルを生成して、そこに環境変数 ``HTTP_PROXY`` の設定を書きます。
 
-.. code-block:: bash
+   ..  ```conf
+       [Service]
+       Environment="HTTP_PROXY=http://proxy.example.com:80/"
+       ```
+   .. code-block:: conf
 
-   [Service]
-   Environment="HTTP_PROXY=http://proxy.example.com:80/"
+       [Service]
+       Environment="HTTP_PROXY=http://proxy.example.com:80/"
+
+   ..  Or, if you are behind an HTTPS proxy server, create a file called
+       `/etc/systemd/system/docker.service.d/https-proxy.conf`
+       that adds the `HTTPS_PROXY` environment variable:
+
+   また HTTPS プロキシサーバを利用している場合には ``/etc/systemd/system/docker.service.d/https-proxy.conf`` というファイルを生成して、そこに環境変数 ``HTTPS_PROXY`` の設定を書きます。
+
+   ..  ```conf
+       [Service]
+       Environment="HTTPS_PROXY=https://proxy.example.com:443/"
+       ```
+   .. code-block:: conf
+
+       [Service]
+       Environment="HTTPS_PROXY=https://proxy.example.com:443/"
 
 .. If you have internal Docker registries that you need to contact without proxying you can specify them via the NO_PROXY environment variable:
 
