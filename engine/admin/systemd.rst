@@ -152,9 +152,10 @@ Docker デーモンではその起動環境において ``HTTP_PROXY``, ``HTTPS_
 
 以下は、デフォルトの ``docker.service`` ファイルを上書き設定する例です。
 
-.. If you are behind an HTTP proxy server, for example in corporate settings, you will need to add this configuration in the Docker systemd service file.
+.. If you are behind an HTTP or HTTPS proxy server, for example in corporate settings,
+   you will need to add this configuration in the Docker systemd service file.
 
-HTTP プロキシサーバの背後にいる場合、ここではオフィスで設定する例として、Docker の systemd サービス・ファイルに設定を追加する必要があるものとします。
+企業内で設定されるような HTTP あるいは HTTPS プロキシサーバを利用している場合は、Docker systemd サービスファイルに、これらの設定を加える必要があります。
 
 .. First, create a systemd drop-in directory for the docker service:
 
