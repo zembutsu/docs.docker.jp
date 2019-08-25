@@ -157,13 +157,15 @@ Docker デーモンではその起動環境において ``HTTP_PROXY``, ``HTTPS_
 
 企業内で設定されるような HTTP あるいは HTTPS プロキシサーバを利用している場合は、Docker systemd サービスファイルに、これらの設定を加える必要があります。
 
-.. First, create a systemd drop-in directory for the docker service:
+.. 1.  Create a systemd drop-in directory for the docker service:
+1.  Docker サービスに対応した systemd のドロップイン・ディレクトリを生成します。
 
-まず、docker サービス向けの systemd ドロップイン・ディレクトリを作成します。
+   ..  ```bash
+       $ mkdir -p /etc/systemd/system/docker.service.d
+       ```
+   .. code-block:: bash
 
-.. code-block:: bash
-
-   mkdir /etc/systemd/system/docker.service.d
+       $ mkdir -p /etc/systemd/system/docker.service.d
 
 .. Now create a file called /etc/systemd/system/docker.service.d/http-proxy.conf that adds the HTTP_PROXY environment variable:
 
