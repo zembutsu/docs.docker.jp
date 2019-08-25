@@ -133,16 +133,24 @@ Docker のイメージ、コンテナー、ボリュームは、別のパーテ�
        "storage-driver": "overlay"
    }
 
-.. _systemd-http-proxy:
+.. ### HTTP/HTTPS proxy
 
-.. HTTP proxy
+.. _systemd-httphttps-proxy:
 
-HTTP プロキシ
+HTTP/HTTPS プロキシ
 --------------------
 
-.. This example overrides the default docker.service file.
+.. The Docker daemon uses the `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` environmental variables in
+   its start-up environment to configure HTTP or HTTPS proxy behavior. You cannot configure
 
-この例はデフォルトの ``docker.service`` ファイルを上書きします。
+.. these environment variables using the `daemon.json` file.
+
+Docker デーモンではその起動環境において ``HTTP_PROXY``, ``HTTPS_PROXY``, ``NO_PROXY`` という環境変数を利用して、HTTP または HTTPS プロキシの動作を定めています。
+この環境変数による設定は ``daemon.json`` ファイルを用いて行うことはできません。
+
+.. This example overrides the default `docker.service` file.
+
+以下は、デフォルトの ``docker.service`` ファイルを上書き設定する例です。
 
 .. If you are behind an HTTP proxy server, for example in corporate settings, you will need to add this configuration in the Docker systemd service file.
 
