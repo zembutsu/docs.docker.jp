@@ -102,7 +102,7 @@ Docker デーモンに対してのデーモンフラグや環境変数を設定�
 
 ``daemon.json`` を使うと、デーモン・オプションはほぼすべて設定することができます。
 以下の例では 2 つのオプションを設定しています。
-``daemon.json`` による仕組みで設定できないものに :ref:`HTTP プロキシ <http-proxy>` があります。
+``daemon.json`` による仕組みで設定できないものに :ref:`HTTP プロキシ <systemd-httphttps-proxy>` があります。
 
 .. ### Runtime directory and storage driver
 
