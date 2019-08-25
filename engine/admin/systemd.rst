@@ -219,30 +219,50 @@ Docker デーモンではその起動環境において ``HTTP_PROXY``, ``HTTPS_
 
       Environment="HTTPS_PROXY=https://proxy.example.com:443/" "NO_PROXY=localhost,127.0.0.1,docker-registry.somecorporation.com"
 
-.. Flush changes:
+.. 4.  Flush changes:
+4.  設定を反映します。
 
-設定を反映します。
+   ..  ```bash
+       $ sudo systemctl daemon-reload
+       ```
+   .. code-block:: bash
 
-.. code-block:: bash
+      $ sudo systemctl daemon-reload
 
-    $ sudo systemctl daemon-reload
+.. 5.  Restart Docker:
+5.  Docker を再起動します。
 
-.. Verify that the configuration has been loaded:
+   ..  ```bash
+       $ sudo systemctl restart docker
+       ```
+   .. code-block:: bash
 
-設定ファイルが読み込まれたのを確認します。
+      $ sudo systemctl restart docker
 
-.. code-block:: bash
+.. 6.  Verify that the configuration has been loaded:
+6.  設定がロードされていることを確認します。
 
-   $ systemctl show --property=Environment docker
-   Environment=HTTP_PROXY=http://proxy.example.com:80/
+   ..  ```bash
+       $ systemctl show --property=Environment docker
+       Environment=HTTP_PROXY=http://proxy.example.com:80/
+       ```
+   .. code-block:: bash
 
-.. Restart Docker:
+      $ systemctl show --property=Environment docker
+      Environment=HTTP_PROXY=http://proxy.example.com:80/
 
-Docker を再起動します。
+   ..  Or, if you are behind an HTTPS proxy server:
 
-.. code-block:: bash
+   HTTPS プロキシサーバの場合は以下のとおりです。
 
-   $ sudo systemctl restart docker
+   ..  ```bash
+       $ systemctl show --property=Environment docker
+       Environment=HTTPS_PROXY=https://proxy.example.com:443/
+       ```
+   .. code-block:: bash
+
+      $ systemctl show --property=Environment docker
+      Environment=HTTPS_PROXY=https://proxy.example.com:443/
 
 .. Manually creating the systemd unit files
 
