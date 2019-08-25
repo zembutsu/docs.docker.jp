@@ -264,16 +264,21 @@ Docker デーモンではその起動環境において ``HTTP_PROXY``, ``HTTPS_
       $ systemctl show --property=Environment docker
       Environment=HTTPS_PROXY=https://proxy.example.com:443/
 
-.. Manually creating the systemd unit files
+.. ## Manually create the systemd unit files
 
-.. _manually-creating-the-systemd-unit-files:
+.. _manually-create-the-systemd-unit-files:
 
 systemd ユニットファイルの手動作成
 ========================================
 
-.. When installing the binary without a package, you may want to integrate Docker with systemd. For this, simply install the two unit files (service and socket) from the github repository to /etc/systemd/system.
+.. When installing the binary without a package, you may want
+   to integrate Docker with systemd. For this, install the two unit files
+   (`service` and `socket`) from [the github
+   repository](https://github.com/moby/moby/tree/master/contrib/init/systemd)
+   to `/etc/systemd/system`.
 
-パッケージを使わずにバイナリをインストールした場合でも、Docker と systemd を連動したくなるでしょう。簡単に実現するには、単純に `GitHub リポジトリ <https://github.com/docker/docker/tree/master/contrib/init/systemd>`_ にある２つのユニットファイル（サービスとソケット用）を ``/etc/systemd/system`` に置くだけです。
+パッケージを利用せずにインストールを行った場合は、systemd を用いた Docker の設定が必要になるはずです。
+これを行うには 2 つのユニットファイル（``service`` と ``socket`` ）を `Github リポジトリ <https://github.com/moby/moby/tree/master/contrib/init/systemd>`_ から入手して ``/etc/systemd/system`` に置いてください。
 
 .. seealso:: 
 
