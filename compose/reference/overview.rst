@@ -71,7 +71,7 @@ docker-compose コマンド概要
 
 .. Use the -f flag to specify the location of a Compose configuration file. You can supply multiple -f configuration files. When you supply multiple files, Compose combines them into a single configuration. Compose builds the configuration in the order you supply the files. Subsequent files override and add to their successors.
 
-Compose 設定ファイルの場所を指定するには、 ``-f`` フラグを使います。複数の ``-f`` 設定ファイルを指定できます。複数のファイルをシチエしたら、Compose は１つの設定ファイルに連結します。Compose はファイルを指定した順番で構築します。後に続くファイルは、既に実行したものを上書き・追加します。
+Compose 設定ファイルの場所を指定するには、 ``-f`` フラグを使います。複数の ``-f`` 設定ファイルを指定できます。複数のファイルを指定した場合、１つの設定ファイルに指定した順番で連結され、後のファイルにより前のファイルの内容が上書き・追加されます。
 
 .. For example, consider this command line:
 
