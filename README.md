@@ -25,7 +25,7 @@ docker run --rm -v `pwd`:/mnt docsdockerjp/latex make clean html
 `Emergency stop.` を避けるために、あらかじめ `\xe2\x80\x93` (EN DASH)を `--` に変換しておきます。
 
 ```
-grep -r '–' . | cut -d : -f 1 | sort | uniq | xargs -I%% perl -pi -e 's/–/--/g' "%%"
+grep -Flr '–' . | xargs -n1 sed -i 's/–/--/g'
 ```
 
 そしてビルド
