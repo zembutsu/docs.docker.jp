@@ -301,6 +301,22 @@ CLI リファレンス
 * :doc:`/engine/reference/commandline/container`
 * :doc:`Dockerfile リファレンス </engine/reference/builder>` 
 
+   docker build -t friendlyname .               # このディレクトリ内にある DockerFile でイメージ作成
+   docker run -p 4000:80 friendlyname  # "friendlyname" の実行にあたり、ポート 4000 を 80 に割り当て
+   docker run -d -p 4000:80 friendlyname                            # 同じですが、デタッチド・モード
+   docker container ls                                                  # 全ての実行中コンテナを表示
+   docker container ls -a                                       # 停止中も含めて全てのコンテナを表示
+   docker container stop <hash>                                       # 指定したコンテナを丁寧に停止
+   docker container kill <hash>                               # 指定したコンテナを強制シャットダウン
+   docker container rm <hash>                                   # マシン上から指定したコンテナを削除
+   docker container rm $(docker container ls -a -q)                           # 全てのコンテナを削除
+   docker image ls -a                                               # マシン上の全てのイメージを表示
+   docker image rm <image id>                                       # マシン上の特定のイメージを削除
+   docker image rm $(docker image ls -a -q)                         # マシン上の全てのイメージを削除
+   docker login                                       # CLI セッションで Docker の認証を行いログイン
+   docker tag <image> username/repository:tag      # レジストリにアップロードする <image> にタグ付け
+   docker push username/repository:tag                                  # タグ付けしたイメージを送信
+   docker run username/repository:tag                               # レジストリにあるイメージを実行
 
 .. seealso::
 
