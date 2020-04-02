@@ -106,7 +106,7 @@ Docker コマンドラインは、ホームディレクトリ ``$HOME`` にあ�
 
 .. Docker manages most of the files in the configuration directory and you should not modify them. However, you can modify the config.json file to control certain aspects of how the docker command behaves.
 
-Docker は設定ディレクトリにある大部分のファイルを管理していますので、これらを自分で変更すべきではありません。しかし、 ``docker`` コマンドの居津を制御するため、 ``config.json`` を *編集できます* 。
+Docker は設定ディレクトリにある大部分のファイルを管理していますので、これらを自分で変更すべきではありません。しかし、 ``docker`` コマンド挙動を制御するため、 ``config.json`` を *編集できます* 。
 
 .. Currently, you can modify the docker command behavior using environment variables or command-line options. You can also use options within config.json to modify some of the same behavior. When using these mechanisms, you must keep in mind the order of precedence among them. Command line options override environment variables and environment variables override properties you specify in a config.json file.
 
