@@ -92,7 +92,7 @@ Mac で Docker ソフトウェアを実行するには OS X 10.8 「Mountain Lio
 
 .. Press Continue to install the toolbox.
 
-4. Contine を押すと Toolbox のインストールに進みます。
+4. Continue を押すと Toolbox のインストールに進みます。
 
 .. The installer presents you with options to customize the standard installation.
 
