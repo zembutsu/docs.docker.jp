@@ -212,12 +212,12 @@ Docker Hub の機能
 1. `Docker Hub アカウント <https://hub.docker.com/>`_ を作成してログインします。
 2. `Linked Accounts <https://hub.docker.com/settings/linked-accounts>`_ （アカウントのリンク）から自分の GitHub もしくは Bitbucket アカウントをリンクします。
 3. `Create Repository <https://hub.docker.com/repository/create>`_ (リポジトリの作成)からリポジトリを作成します。
-3. リポジトリの Builds から Configure Automated Builds を選択し自動構築の設定をします。
-4. 選択した GitHub もしくは Bitbucket プロジェクト上で、構築内容を ``Dockerfile`` にまとめます。
-5. 必要があれば構築時のブランチを指定します（デフォルトは ``master`` ブランチです）。
-6. 自動構築名を指定します。
-7. 構築時に追加するオプションの Docker タグを指定します。
-8. ``Dockerfile`` の場所を指定します。デフォルトは ``/`` です。
+4. リポジトリの Builds から Configure Automated Builds を選択し自動構築の設定をします。
+5. 選択した GitHub もしくは Bitbucket プロジェクト上で、構築内容を ``Dockerfile`` にまとめます。
+6. 必要があれば構築時のブランチを指定します（デフォルトは ``master`` ブランチです）。
+7. 自動構築名を指定します。
+8. 構築時に追加するオプションの Docker タグを指定します。
+9. ``Dockerfile`` の場所を指定します。デフォルトは ``/`` です。
 
 .. Once the Automated Build is configured it will automatically trigger a build and, in a few minutes, you should see your new Automated Build on the Docker Hub Registry. It will stay in sync with your GitHub and Bitbucket repository until you deactivate the Automated Build.
 
