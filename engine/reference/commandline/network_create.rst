@@ -195,7 +195,7 @@ Usage:  docker network create [OPTIONS]
    * - ``com.docker.network.bridge.host_binding_ipv4``
      - ``--ip``
      - コンテナのポートをバインドする時の、デフォルト IP アドレスを指定
-   * - ``com.docker.network.bridge.mtu``
+   * - ``com.docker.network.driver.mtu``
      - ``--mtu``
      - コンテナのネットワーク MTU を指定
 
