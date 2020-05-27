@@ -38,7 +38,7 @@ Docker は `Go テンプレート <https://golang.org/pkg/text/template/>`_ を�
 * :doc:`docker log タグの形式 </engine/admin/logging/log_tags>`
 * :doc:`docker network inspect の形式 </engine/reference/commandline/network_inspect>`
 * :ref:`docker ps の形式 <ps-formatting>`
-* :doc:`docker volume inspect の形式 </engine/reference/commandline/network_inspect>`
+* :doc:`docker volume inspect の形式 </engine/reference/commandline/volume_inspect>`
 * :ref:`docker version の形式 <version-examples>`
 
 .. Template functions
