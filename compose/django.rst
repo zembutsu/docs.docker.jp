@@ -110,6 +110,8 @@ Dockerfile はアプリケーションのイメージ内容に含まれる、１
    services:
      db:
        image: postgres
+       environment:
+         POSTGRES_PASSWORD: "postgres"
      web:
        build: .
        command: python manage.py runserver 0.0.0.0:8000
@@ -220,6 +222,7 @@ Docker を Mac あるいは Windows 上で動かしている場合は、 ``djang
            'ENGINE': 'django.db.backends.postgresql_psycopg2',
            'NAME': 'postgres',
            'USER': 'postgres',
+           'PASSWORD': 'postgres',
            'HOST': 'db',
            'PORT': 5432,
        }
