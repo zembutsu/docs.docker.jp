@@ -108,7 +108,7 @@ build
 .. _compose-file-context:
 
 context
-----------
+^^^^^^^^^^
 
 ..     Version 2 file format only. In version 1, just use build.
 
@@ -138,7 +138,7 @@ Compose は生成時の名前で構築・タグ付けし、それがイメージ
 .. _compose-file-dockerfile:
 
 dockerfile
-----------
+^^^^^^^^^^
 
 .. Alternate Dockerfile.
 
@@ -174,7 +174,7 @@ Compose は構築時に別のファイルを使えます。構築時のパスも
 .. _compose-file-args:
 
 args
-----------
+^^^^^^^^^^
 
 ..    Version 2 file format only.
 
@@ -1172,7 +1172,7 @@ driver_opts
 .. _compose-file-external:
 
 external
-==========
+^^^^^^^^^^
 
 .. If set to true, specifies that this volume has been created outside of Compose. docker-compose up will not attempt to create it, and will raise an error if it doesn’t exist.
 
