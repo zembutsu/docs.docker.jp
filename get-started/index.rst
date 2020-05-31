@@ -42,7 +42,7 @@ Part 1：概要説明とセットアップ
 
 .. The application itself is very simple so that you are not too distracted by what the code is doing. After all, the value of Docker is in how it can build, ship, and run applications; it’s totally agnostic as to what your application actually does.
 
-アプリケーションそのものは非常にシンプルです。そのため、コードが何をしているか、あまり気に留める必要はありません。それよりも、 Docker の価値とは、アプリケーションをどのように構築（build）・移動（ship）・実行（run）するかにあります。言い換えれば、実際に皆さんのアプリケーションが何なのかに依存しません。
+アプリケーションそのものは非常にシンプルです。そのため、プログラムが行っていることが分からなくなるようなことはありません。何といっても  Docker の真価は、アプリケーションをどのように構築（build）・移動（ship）・実行（run）するかというところにあります。皆さんのアプリケーションが実際に何をするのかには関係がないのです。
 
 .. Prerequisites
 
@@ -51,11 +51,11 @@ Part 1：概要説明とセットアップ
 
 .. While we’ll define concepts along the way, it is good for you to understand what Docker is and why you would use Docker before we begin.
 
-概念の定義に関しては、 チュートリアルを進める前に `Docker とは何か？（英語） <https://www.docker.com/what-docker>`_ や `Docker 利用例（英語） <https://www.docker.com/use-cases>`_ の理解が役立つでしょう。
+これから用語の定義を示していきます。あらかじめ `Docker とは何か？（英語） <https://www.docker.com/what-docker>`_ や `なぜ Docker を使うのか（英語） <https://www.docker.com/use-cases>`_ を読んでおけば理解に役立つでしょう。
 
 .. We also need to assume you are familiar with a few concepts before we continue:
 
-また、このまま進むには、以下の概念を熟知している必要があります。
+また以下の用語については理解できているものとして話を進めていきます。
 
 ..    IP Addresses and Ports
     Virtual Machines
@@ -82,11 +82,11 @@ Part 1：概要説明とセットアップ
 
 .. A container is a runtime instance of an image—what the image becomes in memory when actually executed. It runs completely isolated from the host environment by default, only accessing host files and ports if configured to do so.
 
-**コンテナ（container）** とはイメージのランタイム・インスタンス（runtime instance；実行状態にあるモノ）です。言い換えれば、イメージからメモリ内に展開し、実際に実行する何かです。
+**コンテナ（container）** とはイメージのランタイム・インスタンス（runtime instance；実行状態にあるモノ）です。そのイメージがメモリ上に置かれ実行されている状態のものです。デフォルトにおいてコンテナはホスト環境からは独立していますが、設定を行えばはホストのファイルやポートにアクセスできます。
 
 .. Containers run apps natively on the host machine’s kernel. They have better performance characteristics than virtual machines that only get virtual access to host resources through a hypervisor. Containers can get native access, each one running in a discrete process, taking no more memory than any other executable.
 
-ホストマシンのカーネル上で、コンテナはアプリケーションをネイティブに（訳者注；何らかのプログラムを通さず、直接の意味）実行します。仮想マシンでは、ホスト上のリソースにハイパーバイザを通してしかアクセスできません。そのため、コンテナは仮想マシンよりも性能が良くなります。コンテナはネイティブにアクセス可能であり、各々のプロセスは分離して実行し、メモリは実行に必要な容量のみ確保します。
+ホストマシンのカーネル上で、コンテナはアプリケーションをネイティブに（訳者注；何らかのプログラムを通さず、直接の意味）実行します。仮想マシンでは、ホスト上のリソースにハイパーバイザを通してしかアクセスできません。そのためコンテナには仮想マシン以上の性能特性があります。コンテナはネイティブにアクセス可能であり、個々のコンテナは分離されたプロセス内で動作します。したがって通常の実行モジュールに比べてもメモリ消費が少なくて済ます。
 
 .. Containers vs. virtual machines
 
@@ -97,7 +97,7 @@ Part 1：概要説明とセットアップ
 
 .. Consider this diagram comparing virtual machines to containers:
 
-図を使い、仮想マシンとコンテナの比較を考察します。
+以下の図を用いて、仮想マシンとコンテナの違いを見ていきます。
 
 .. Virtual Machine diagram
 
@@ -112,7 +112,7 @@ Part 1：概要説明とセットアップ
 
 .. Virtual machines run guest operating systems—note the OS layer in each box. This is resource intensive, and the resulting disk image and application state is an entanglement of OS settings, system-installed dependencies, OS security patches, and other easy-to-lose, hard-to-replicate ephemera.
 
-仮想マシンはゲスト・オペレーティング・システム上で動作します。この図では、それぞれの箱が OS 層です。仮想マシンはリソース集中型です。その結果、ディスク・イメージとアプリケーションの状態は、 OS の状態やシステムにインストールされた依存関係、OS セキュリティ・パッチによる影響を受けます。また、簡単に（アプリケーションの状態が）失われやすく、短時間での複製は大変です。
+仮想マシンではゲスト・オペレーティング・システムが稼動します。図における枠内の OS 層にあたります。仮想マシンはリソース負荷が高くなります。生成されるディスク・イメージやアプリケーションの状態は、さまざまな要素が複雑に入り組んでしまいます。OS の設定、インストールパッケージ、セキュリティパッチなどです。いずれも一時的なものにすぎず、どうなったかすぐ分からなくなるし、再構成するのも難しいものです。
 
 .. Container diagram
 
@@ -127,7 +127,7 @@ Part 1：概要説明とセットアップ
 
 .. Containers can share a single kernel, and the only information that needs to be in a container image is the executable and its package dependencies, which never need to be installed on the host system. These processes run like native processes, and you can manage them individually by running commands like docker ps—just like you would run ps on Linux to see active processes. Finally, because they contain all their dependencies, there is no configuration entanglement; a containerized app “runs anywhere.”
 
-コンテナは１つのカーネルを共有できます。また、コンテナ・イメージに必要なのは、実行可能なものとパッケージの依存性に関する情報のみです。これらはホストシステム上へインストールする必要が一切ありません。そして、これらのプロセスはネイティブなプロセスのように実行可能であり、 ``docker ps`` のようなコマンドを使い、個々に管理可能です。 この ``ps`` は Linux 上でアクティブなプロセスを表示します。つまり、このように全ての依存関係を含むため、設定の複雑化もありません。すなわち、コンテナ化（containerized）したアプリは "どこでも動く"（run anywhere）のです。
+コンテナは複数であっても１つのカーネルを共有します。コンテナイメージにとって必要なものは、実行モジュールと依存パッケージの情報のみです。これはホストシステム上にインストールされていなくても構いません。各プロセスはネイティブプロセスのように動作するので、``docker ps`` というコマンドを使って個々に管理できます。 ちょうど Linux 上でアクティブプロセスを確認する時に ``ps`` を実行するのと同じです。つまり、依存関係がすべて含まれているため、入り組んだ設定となることもありません。コンテナ化（containerized）されたアプリはどこでも動く（run anywhere）ということです。
 
 .. Setup
 
@@ -136,7 +136,7 @@ Part 1：概要説明とセットアップ
 
 .. Before we get started, make sure your system has the latest version of Docker installed.
 
-チュートリアルを進める前に、皆さんのシステム上に Docker 最新版がインストールされているのを確認してください。
+説明を進める前に、皆さんのシステム上に Docker 最新版がインストールされていることを確認してください。
 
 .. Install Docker
 
@@ -165,7 +165,7 @@ Part 1：概要説明とセットアップ
 
 .. Now would also be a good time to make sure you are using version 1.13 or higher. Run docker --version to check it out.
 
-また、バージョン 1.13 以上を使っているかどうかを確認する良い機会です。
+ここでバージョン 1.13 以上を使っているかどうか確認してみてください。`docker --version` によって確認することができます。
 
 .. code-block:: bash
 
@@ -183,7 +183,7 @@ Part 1：概要説明とセットアップ
 
 .. The unit of scale being an individual, portable executable has vast implications. It means CI/CD can push updates to any part of a distributed application, system dependencies are not an issue, and resource density is increased. Orchestration of scaling behavior is a matter of spinning up new executables, not new VM hosts.
 
-スケールの単位は１から始まりポータブルに実行可能なため、広大に拡がります。つまり、あらゆる分散アプリケーションにおいて、システムの依存関係による問題を起こさずに CI/CD による push 更新が可能であり、リソースの集約度が高まります。スケールするオーケストレーションの挙動とは、新しい実行ファイルを展開するのみであり、新しい仮想ホストではありません。
+取り扱う単位が、個別化し可搬性のある実行モジュールになるということには、極めて重要な意味があります。つまり継続的インテグレーション (CI)/継続的デリバリ (CD) においては、提供するアプリケーションのどの部分であっても容易に更新が可能となることを意味します。システムへの依存はもはや問題になることはなく、リソースの集約がさらに高まります。このような規模のプログラムを寄せ集めて実行できるわけですから、いかに素早く実行モジュールを提供できるかが問題になるのであって、新たな VM ホストを作り出す話ではないのです。
 
 .. We’ll be learning about all of these things, but first let’s learn to walk.
 
