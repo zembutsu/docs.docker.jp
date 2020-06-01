@@ -125,7 +125,7 @@ Compose は `pypi <https://pypi.python.org/pypi/docker-compose>`_ から ``pip``
 
 .. Compose can also be run inside a container, from a small bash script wrapper. To install compose as a container run:
 
-Compose コンテナの中でも、小さな bash スクリプトのラッパーを通することが可能です。Compose をコンテナとして実行・インストールするには、次のようにします。
+Compose は小さな bash スクリプトのラッパーを通すことで、コンテナの中でも実行可能です。コンテナとして実行する Compose をインストールするには、次のようにします。
 
 .. code-block:: bash
 
