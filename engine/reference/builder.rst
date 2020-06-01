@@ -2865,55 +2865,93 @@ Dockerfile に ``ARG`` 変数が定義されていて、その値が前回のビ
 ONBUILD
 ==========
 
-.. ONBUILD [INSTRUCTION]
+   ..  ONBUILD [INSTRUCTION]
 
 .. code-block:: dockerfile
 
-   ONBUILD [命令]
+   ONBUILD [INSTRUCTION]
 
-.. The ONBUILD instruction adds to the image a trigger instruction to be executed at a later time, when the image is used as the base for another build. The trigger will be executed in the context of the downstream build, as if it had been inserted immediately after the FROM instruction in the downstream Dockerfile.
+.. The `ONBUILD` instruction adds to the image a *trigger* instruction to
+   be executed at a later time, when the image is used as the base for
+   another build. The trigger will be executed in the context of the
+   downstream build, as if it had been inserted immediately after the
+   `FROM` instruction in the downstream `Dockerfile`.
 
-イメージは他で構築したイメージを元にしている時、``ONBUILD`` 命令はイメージに対して最終的に実行する *トリガ* 命令を追加します。トリガは構築後に行うもので、 ``Dockerfile`` で ``FROM`` 命令のあとに書くことができます。
+``ONBUILD`` 命令は、イメージに対して **トリガ** 命令（trigger instruction）を追加します。
+トリガ命令は後々実行されるものであり、そのイメージが他のビルドにおけるベースイメージとして用いられたときに実行されます。
+このトリガ命令は、後続のビルドコンテキスト内で実行されます。
+後続の ``Dockerfile`` 内での ``FROM`` 命令の直後に、その命令が挿入されたかのようにして動作します。
 
 .. Any build instruction can be registered as a trigger.
 
-あらゆる構築時の命令をトリガとして登録可能です。
+どのようなビルド命令でも、トリガ命令として登録することができます。
 
-.. This is useful if you are building an image which will be used as a base to build other images, for example an application build environment or a daemon which may be customized with user-specific configuration.
+.. This is useful if you are building an image which will be used as a base
+   to build other images, for example an application build environment or a
+   daemon which may be customized with user-specific configuration.
 
-これは他のイメージからイメージを構築する時に役立つでしょう。例えば、アプリケーションの開発環境やデーモンは、ユーザごとに設定をカスタマイズする可能性があります。
+この命令は、他のイメージのビルドに用いることを意図したイメージをビルドする際に利用できます。
+たとえばアプリケーションやデーモンの開発環境であって、ユーザ特有の設定を行うような場合です。
 
-.. For example, if your image is a reusable Python application builder, it will require application source code to be added in a particular directory, and it might require a build script to be called after that. You can’t just call ADD and RUN now, because you don’t yet have access to the application source code, and it will be different for each application build. You could simply provide application developers with a boilerplate Dockerfile to copy-paste into their application, but that is inefficient, error-prone and difficult to update because it mixes with application-specific code.
+.. For example, if your image is a reusable Python application builder, it
+   will require application source code to be added in a particular
+   directory, and it might require a build script to be called *after*
+   that. You can't just call `ADD` and `RUN` now, because you don't yet
+   have access to the application source code, and it will be different for
+   each application build. You could simply provide application developers
+   with a boilerplate `Dockerfile` to copy-paste into their application, but
+   that is inefficient, error-prone and difficult to update because it
+   mixes with application-specific code.
 
-例えば、イメージが Python アプリケーション・ビルダーを再利用する時、アプリケーションのソースコードを適切なディレクトリに追加し、その後、構築スクリプトを実行することもあるでしょう。この時点では ``ADD`` と ``RUN`` を呼び出せません。なぜなら、まだアプリケーションのソースコードにアクセスしておらず、個々のアプリケーション構築によって異なるからです。アプリケーションの開発者は、ボイラープレートである ``Dockerfile`` をコピーペーストでアプリケーションを入れるように編集するだけです。ですが、これは効率的ではなく、エラーを引き起こしやすく、アプリケーション固有のコードが混在することで更新が大変になります。
+たとえば、繰り返し利用できる Python アプリケーション環境イメージがあるとします。
+そしてこのイメージにおいては、アプリケーションソースコードを所定のディレクトリに配置することが必要であって、さらにソースを配置した後にソースビルドを行うスクリプトを加えたいとします。
+このままでは ``ADD`` と ``RUN`` を単に呼び出すだけでは実現できません。
+それはアプリケーションソースコードがまだわかっていないからであり、ソースコードはアプリケーション環境ごとに異なるからです。
+アプリケーション開発者に向けて、ひながたとなる ``Dockerfile`` を提供して、コピーペーストした上でアプリケーションに組み入れるようにすることも考えられます。
+しかしこれでは不十分であり、エラーも起こしやすくなります。
+そしてアプリケーションに特有のコードが含まれることになるので、更新作業も大変になります。
 
-.. The solution is to use ONBUILD to register advance instructions to run later, during the next build stage.
+.. The solution is to use `ONBUILD` to register advance instructions to
+   run later, during the next build stage.
 
-この解決方法として、 ``ONBUILD`` を使い、実行後に別の構築ステージに進む上位命令を登録することです。
+これを解決するには ``ONBUILD`` を利用します。
+後々実行する追加の命令を登録しておき、次のビルドステージにおいて実行させるものです。
 
 .. Here’s how it works:
 
 これは次のように動作します。
 
-..    When it encounters an ONBUILD instruction, the builder adds a trigger to the metadata of the image being built. The instruction does not otherwise affect the current build.
+.. 1. When it encounters an `ONBUILD` instruction, the builder adds a
+      trigger to the metadata of the image being built. The instruction
+      does not otherwise affect the current build.
+.. 2. At the end of the build, a list of all triggers is stored in the
+      image manifest, under the key `OnBuild`. They can be inspected with
+      the `docker inspect` command.
+.. 3. Later the image may be used as a base for a new build, using the
+      `FROM` instruction. As part of processing the `FROM` instruction,
+      the downstream builder looks for `ONBUILD` triggers, and executes
+      them in the same order they were registered. If any of the triggers
+      fail, the `FROM` instruction is aborted which in turn causes the
+      build to fail. If all triggers succeed, the `FROM` instruction
+      completes and the build continues as usual.
+.. 4. Triggers are cleared from the final image after being executed. In
+      other words they are not inherited by "grand-children" builds.
 
-1. ``ONBUILD`` 命令が呼び出されると、ビルダーはイメージ構築時のメタデータの中にトリガを追加します。
-
-..     At the end of the build, a list of all triggers is stored in the image manifest, under the key OnBuild. They can be inspected with the docker inspect command.
-
-2. 構築が完了したら、全てのトリガはイメージのマニフェスト内の  ``OnBuild`` キー配下に保管されます。この構築時点では、命令は何ら影響を与えません。
-
-..    Later the image may be used as a base for a new build, using the FROM instruction. As part of processing the FROM instruction, the downstream builder looks for ONBUILD triggers, and executes them in the same order they were registered. If any of the triggers fail, the FROM instruction is aborted which in turn causes the build to fail. If all triggers succeed, the FROM instruction completes and the build continues as usual.
-
-3. このイメージは後で何らかのイメージの元になります。その時は ``FROM`` 命令で呼び出されます。 ``FROM`` 命令の処理の一部として、ダウンストリームのビルダーは ``ONBULID`` トリガを探し、登録された順番で実行します。もしトリガが失敗したら、 ``FROM`` 命令は処理を中断し、ビルドを失敗とします。もし全てのトリガが成功したら、 ``FROM`` 命令は完了し、以降は通常の構築が進みます。
-
-..    Triggers are cleared from the final image after being executed. In other words they are not inherited by “grand-children” builds.
-
-4. 実行する前に、最終的なイメージ上からトリガが削除されます。言い替えると構築された「孫」には、何ら親子関係がありません。
+1. ``ONBUILD`` 命令があると、現在ビルドしているイメージのメタデータに対してトリガが追加されます。
+   この命令は現在のビルドには影響を与えません。
+2. ビルドの最後に、トリガの一覧がイメージマニフェスト内の ``OnBuild`` というキーのもとに保存されます。
+   この情報は ``docker inspect`` コマンドを使って確認することができます。
+3. 次のビルドにおけるベースイメージとして、このイメージを利用します。
+   その指定には ``FROM`` 命令を用います。
+   ``FROM`` 命令の処理の中で、後続ビルド処理が ``ONBUILD`` トリガを見つけると、それが登録された順に実行していきます。
+   トリガが 1 つでも失敗したら、``FROM`` 命令は中断され、ビルドが失敗することになります。
+   すべてのトリガが成功したら ``FROM`` 命令の処理が終わり、ビルド処理がその後に続きます。
+4. トリガは、イメージが実行された後は、イメージ内から削除されます。
+   別の言い方をすれば、「孫」のビルドにまでは受け継がれないということです。
 
 .. For example you might add something like this:
 
-次のような例の記述を追加するでしょう。
+例として以下のようなことを追加する場合が考えられます。
 
 .. code-block:: dockerfile
 
@@ -2922,30 +2960,38 @@ ONBUILD
    ONBUILD RUN /usr/local/bin/python-build --dir /app/src
    [...]
 
-..     Warning: Chaining ONBUILD instructions using ONBUILD ONBUILD isn’t allowed.
+.. > **Warning**: Chaining `ONBUILD` instructions using `ONBUILD ONBUILD` isn't allowed.
 
 .. warning::
 
-   ``ONBUILD ONBUILD`` 命令を使って ``ONBULID`` 命令の上書きはできません。
+   ``ONBUILD`` 命令をつなぎ合わせた命令、``ONBUILD ONBUILD`` は実現することはできません。
 
-..     Warning: The ONBUILD instruction may not trigger FROM or MAINTAINER instructions.
+.. > **Warning**: The `ONBUILD` instruction may not trigger `FROM` or `MAINTAINER` instructions.
 
-.. ``ONBUILD`` 命令は ``FROM`` や ``MAINTAINER`` をトリガとしてみなさないでしょう。
+.. warning::
+
+   ``ONBUILD`` 命令は ``FROM`` 命令や ``MAINTAINER`` 命令をトリガーとすることはできません。
 
 .. _stopsignal:
 
 STOPSIGNAL
 ==========
 
-.. STOPSIGNAL signal
+   ..  STOPSIGNAL signal
 
 .. code-block:: dockerfile
 
-   STOPSIGNAL シグナル
+   STOPSIGNAL signal
 
-.. The STOPSIGNAL instruction sets the system call signal that will be sent to the container to exit. This signal can be a valid unsigned number that matches a position in the kernel’s syscall table, for instance 9, or a signal name in the format SIGNAME, for instance SIGKILL.
+.. The `STOPSIGNAL` instruction sets the system call signal that will be sent to the container to exit.
+   This signal can be a valid unsigned number that matches a position in the kernel's syscall table, for instance 9,
+   or a signal name in the format SIGNAME, for instance SIGKILL.
 
-``STOPSIGNAL`` 命令は、コンテナを終了する時に送信するための、システム・コール・シグナルを設定します。シグナルはカーネルの syscall テーブルと一致する、有効な番号の必要があります。例えば、9 あるいはシグナル名 SIGNAME や、 SIGKILL などです。
+``STOPSIGNAL`` 命令はシステムコールシグナルを設定するものであり、コンテナが終了するときに送信されます。
+シグナルは負ではない整数値であり、カーネルのシステムコールテーブル内に合致するものを指定します。
+たとえば 9 などです。
+あるいは SIGNAME という形式のシグナル名を指定します。
+たとえば SIGKILL などです。
 
 .. HEALTHCHECK
 
@@ -2958,80 +3004,119 @@ HEALTHCHECK
 
 ``HEALTHCHECK`` 命令は２つの形式があります：
 
-..    HEALTHCHECK [OPTIONS] CMD command (check container health by running a command inside the container)
-    HEALTHCHECK NONE (disable any healthcheck inherited from the base image)
+.. * `HEALTHCHECK [OPTIONS] CMD command` (check container health by running a command inside the container)
+   * `HEALTHCHECK NONE` (disable any healthcheck inherited from the base image)
 
-* ``HEALTHCHECK [オプション] CMD コマンド`` （コンテナ内でコマンドを実行して、コンテナの正常性を確認）
-* ``HEALTHCHECK NONE``  （ベース・イメージからのヘルスチェック継承を無効化）
+* ``HEALTHCHECK [OPTIONS] CMD command`` (コンテナ内部でコマンドを実行し、コンテナをヘルスチェック)
+* ``HEALTHCHECK NONE`` (ベースイメージが行うヘルスチェックを無効化)
 
-.. The HEALTHCHECK instruction tells Docker how to test a container to check that it is still working. This can detect cases such as a web server that is stuck in an infinite loop and unable to handle new connections, even though the server process is still running.
+.. The `HEALTHCHECK` instruction tells Docker how to test a container to check that
+   it is still working. This can detect cases such as a web server that is stuck in
+   an infinite loop and unable to handle new connections, even though the server
+   process is still running.
 
-``HEALTHCHECK`` 命令は、 Docker に対してコンテナの正常性をどのように確認（テスト）するかを伝えます。これはウェブ・サーバがループで塞がってしまい、新しい接続を受け付けられないような状態を検出できます。サーバプロセスが実行中でも、応答が無ければ検出します。
+``HEALTHCHECK`` 命令は、コンテナが動作していることをチェックする方法を指定するものです。
+この機能はたとえば、ウェブサーバのプロセスが稼動はしているものの、無限ループに陥っていて新たな接続を受け入れられない状態を検知する場合などに利用できます。
 
-.. When a container has a healthcheck specified, it has a health status in addition to its normal status. This status is initially starting. Whenever a health check passes, it becomes healthy (whatever state it was previously in). After a certain number of consecutive failures, it becomes unhealthy.
+.. When a container has a healthcheck specified, it has a _health status_ in
+   addition to its normal status. This status is initially `starting`. Whenever a
+   health check passes, it becomes `healthy` (whatever state it was previously in).
+   After a certain number of consecutive failures, it becomes `unhealthy`.
 
-コンテナのヘルスチェック（healthcheck）を有効化すると、通常の状態に加え、ヘルス・ステータス（health status）を追加します。こちらの初期ステータスは ``starting`` （起動中）です。ヘルスチェックが正常であれば、ステータスは（以前の状態にかかわらず） ``healthy`` （正常）になります。特定回、連続して失敗したら、ステータスは ``unhealthy``  （異常）になります。
+コンテナーヘルスチェックが設定されていると、通常のステータスに加えて **ヘルスステータス** を持つことになります。
+このステータスの初期値は ``starting`` です。
+ヘルスチェックが行われると、このステータスは（それまでにどんなステータスであっても） ``healthy`` となります。
+ある一定数、連続してチェックに失敗すると、そのステータスは ``unhealty`` となります。
 
 .. The options that can appear before CMD are:
 
 ``CMD`` より前に記述するオプションは、以下の通りです。
 
-* ``--interval=間隔`` (デフォルト: 30s)
-* ``--timeout=間隔`` (デフォルト: 30s)
-* ``--retries=N``  (デフォルト: 3)
+.. * `--interval=DURATION` (default: `30s`)
+   * `--timeout=DURATION` (default: `30s`)
+   * `--start-period=DURATION` (default: `0s`)
+   * `--retries=N` (default: `3`)
 
-.. The health check will first run interval seconds after the container is started, and then again interval seconds after each previous check completes.
+* ``--interval=DURATION`` (デフォルト: `30s`)
+* ``--timeout=DURATION`` (デフォルト: `30s`)
+* ``--start-period=DURATION`` (デフォルト: `0s`)
+* ``--retries=N`` (default: `3`)
 
-ヘルス・チェックは、まず最初の **interval** （間隔）秒の後、コンテナを起動します。そして **interval** 秒後に直近の確認を行います。
+.. The health check will first run **interval** seconds after the container is
+   started, and then again **interval** seconds after each previous check completes.
 
-.. If a single run of the check takes longer than timeout seconds then the check is considered to have failed.
+ヘルスチェックは、コンテナが起動した **interval** 秒後に最初に起動されます。
+そして直前のヘルスチェックが完了した **interval** 秒後に、再び実行されます。
 
-確認に **timeout** （タイムアウト）秒を越えるようであれば、確認は失敗とみなします。
+.. If a single run of the check takes longer than **timeout** seconds then the check
+   is considered to have failed.
 
-.. It takes retries consecutive failures of the health check for the container to be considered unhealthy.
+1 回のヘルスチェックが **timeout** 秒以上かかったとき、そのチェックは失敗したものとして扱われます。
 
-コンテナに対するヘルスチェックが連続して失敗したら、コンテナは ``unhealthy`` とみなします。
+.. It takes **retries** consecutive failures of the health check for the container
+   to be considered `unhealthy`.
 
-.. There can only be one HEALTHCHECK instruction in a Dockerfile. If you list more than one then only the last HEALTHCHECK will take effect.
+コンテナに対するヘルスチェックが **retries** 回分、連続して失敗した場合は ``unhealthy`` とみなされます。
 
-これらの処理は ``Dockerfile`` で命令がある場合のみです。複数の ``HEALTHCHECK`` があれば、最後の１つだけ有効です。
+.. **start period** provides initialization time for containers that need time to bootstrap.
+   Probe failure during that period will not be counted towards the maximum number of retries.
+   However, if a health check succeeds during the start period, the container is considered
+   started and all consecutive failures will be counted towards the maximum number of retries.
 
-.. The command after the CMD keyword can be either a shell command (e.g. HEALTHCHECK CMD /bin/check-running) or an exec array (as with other Dockerfile commands; see e.g. ENTRYPOINT for details).
+**開始時間** （start period）は、コンテナが起動するまでに必要となる初期化時間を設定します。
+この時間内にヘルスチェックの失敗が発生したとしても、 **retries** 数の最大を越えたかどうかの判断は行われません。
+ただしこの開始時間内にヘルスチェックが 1 つでも成功したら、コンテナは起動済であるとみなされます。
+そこで、それ以降にヘルスチェックが失敗したら、**retries** 数の最大を越えたかどうかがカウントされます。
 
-``CMD`` キーワード後のコマンドは、シェル・コマンド（例： ``HEALTHCHECK CMD /bin/check-running`` ）あるいは exec 配列（こちらは Dockerfile の他コマンドと同様です。例えば ``ENTRYPOINT`` の詳細をご覧ください ）です。
+.. There can only be one `HEALTHCHECK` instruction in a Dockerfile. If you list
+   more than one then only the last `HEALTHCHECK` will take effect.
 
-.. The command's exit status indicates the health status of the container. The possible values are:
+1 つの Dockerfile に記述できる ``HEALTHCHECK`` 命令はただ 1 つです。
+複数の ``HEALTHCHECK`` を記述しても、最後の命令しか効果はありません。
 
-コマンドはコンテナのヘルス・ステータスの終了コードを検出できます。値は以下の通りです。
+.. The command after the `CMD` keyword can be either a shell command (e.g. `HEALTHCHECK
+   CMD /bin/check-running`) or an _exec_ array (as with other Dockerfile commands;
+   see e.g. `ENTRYPOINT` for details).
 
-..    0: success - the container is healthy and ready for use
-    1: unhealthy - the container is not working correctly
-    2: starting - the container is not ready for use yet, but is working correctly
+``CMD`` キーワードの後ろにあるコマンドは、シェルコマンド（たとえば ``HEALTHCHECK CMD /bin/check-running``）か、あるいは exec 形式の配列（他の Dockerfile コマンド、たとえば ``ENTRYPOINT`` にあるもの）のいずれかを指定します。
 
-* 0: success（成功） - コンテナは正常であり、使う準備が整っています
-* 1: unhealthy（障害） - コンテナは正常に動作していません
-* 2: starting（起動中） - まだコンテナの利用準備が整っていませんが、正常に動作しています
+.. The command's exit status indicates the health status of the container.
+   The possible values are:
 
-.. If the probe returns 2 ("starting") when the container has already moved out of the "starting" state then it is treated as "unhealthy" instead.
+そのコマンドの終了ステータスが、コンテナのヘルスステータスを表わします。
+返される値は以下となります。
 
-監視結果が 2（"starting"）であれば、コンテナは起動しはじめており「起動中」の状態であり、「unhealthy」状態ではありません。
+.. - 0: success - the container is healthy and ready for use
+   - 1: unhealthy - the container is not working correctly
+   - 2: reserved - do not use this exit code
 
-.. For example, to check every five minutes or so that a web-server is able to serve the site's main page within three seconds:
+* 0: 成功（success） - コンテナは健康であり、利用が可能です。
+* 1: 不健康（unhealthy） - コンテナは正常に動作していません。
+* 2: 予約（reserved） - このコードを戻り値として利用してはなりません。
 
-たとえば、５分ごとにウエブ・サーバがサイトのメインページを３秒以内に表示するかどうかを確認するには、次のように指定します。
+.. For example, to check every five minutes or so that a web-server is able to
+   serve the site's main page within three seconds:
+
+たとえば 5 分間に 1 回のチェックとして、ウェブサーバが 3 秒以内にサイトのメインページを提供できているかを確認するには、以下のようにします。
 
 .. code-block:: dockerfile
 
    HEALTHCHECK --interval=5m --timeout=3s \
      CMD curl -f http://localhost/ || exit 1
 
-.. To help debug failing probes, any output text (UTF-8 encoded) that the command writes on stdout or stderr will be stored in the health status and can be queried with docker inspect. Such output should be kept short (only the first 4096 bytes are stored currently).
+.. To help debug failing probes, any output text (UTF-8 encoded) that the command writes
+   on stdout or stderr will be stored in the health status and can be queried with
+   `docker inspect`. Such output should be kept short (only the first 4096 bytes
+   are stored currently).
 
-監視失敗時はデバッグしやすくなるように、コマンド実行時の標準出力や標準エラー出力といった、あらゆる出力テキスト（UTF-8 エンコード）はヘルス・ステータスに格納され、 ``docker inspect`` で確認可能です。この出力結果は短くして保存されます（現時点では始めから 4096 バイトのみ保存）。
+ヘルスチェックにが失敗しても、それをデバッグしやすくするために、そのコマンドが標準出力あるいは標準エラー出力へ書き込んだ文字列（UTF-8 エンコーディング）は、すべてヘルスステータス内に保存されます。
+``docker inspect`` を使えば、すべて確認することができます。
+ただしその出力は切り詰められます（現時点においては最初の 4096 バイト分のみを出力します）。
 
-.. When the health status of a container changes, a health_status event is generated with the new status.
+.. When the health status of a container changes, a `health_status` event is
+   generated with the new status.
 
-コンテナのヘルス・ステータスが変われば、 ``health_status`` イベントが新しいステータスを生成します。
+コンテナのヘルスステータスが変更されると、``health_status`` イベントが生成されて、新たなヘルスステータスになります。
 
 .. The HEALTHCHECK feature was added in Docker 1.12.
 
@@ -3044,47 +3129,79 @@ HEALTHCHECK
 SHELL
 ==========
 
-.. code-block:: dockerfile
-
-   SHELL ["実行可能なファイル", "パラメータ"]
-
-.. The SHELL instruction allows the default shell used for the shell form of commands to be overridden. The default shell on Linux is ["/bin/sh", "-c"], and on Windows is ["cmd", "/S", "/C"]. The SHELL instruction must be written in JSON form in a Dockerfile.
-
-``SHELL`` 命令は、シェル形式でコマンド実行時における、デフォルトのシェルを上書きします。 Linux 上でのデフォルトのシェルは ``["/bin/sh", "-c"]`` です。Windows は ``["cmd", "/S", "/C"]`` です。 ``SHELL`` 命令は Dockerfile で JSON 形式での記述が必要です。
-
-.. The SHELL instruction is particularly useful on Windows where there are two commonly used and quite different native shells: cmd and powershell, as well as alternate shells available including sh.
-
-``SHELL`` 命令はとりわけ Windows で便利です。全く異なるネイティブなシェル ``cmd`` と ``powershell``  だけでなく、代わりのシェルとして ``sh`` も指定できます。
-
-.. The SHELL instruction can appear multiple times. Each SHELL instruction overrides all previous SHELL instructions, and affects all subsequent instructions. For example:
-
-``SHELL`` 命令は複数回指定できます。 ``SHELL`` 命令ごとに、これまでの ``SHELL`` 命令を上書きし、以降の命令全てに反映します。例：
+   ..  SHELL ["executable", "parameters"]
 
 .. code-block:: dockerfile
 
-   FROM windowsservercore
-   
-   # cmd /S /C echo default として実行する
+   SHELL ["executable", "parameters"]
+
+.. The `SHELL` instruction allows the default shell used for the *shell* form of
+   commands to be overridden. The default shell on Linux is `["/bin/sh", "-c"]`, and on
+   Windows is `["cmd", "/S", "/C"]`. The `SHELL` instruction *must* be written in JSON
+   form in a Dockerfile.
+
+``SHELL`` 命令は、各種コマンドのシェル形式において用いられるデフォルトのシェルを、上書き設定するために利用します。
+デフォルトのシェルは Linux 上では ``["/bin/sh", "-c"]``、Windows 上では ``["cmd", "/S", "/C"]`` です。
+``SHELL`` 命令は Dockerfile 内において JSON 形式で記述しなければなりません。
+
+.. The `SHELL` instruction is particularly useful on Windows where there are
+   two commonly used and quite different native shells: `cmd` and `powershell`, as
+   well as alternate shells available including `sh`.
+
+``SHELL`` 命令は特に Windows 上において利用されます。
+Windows には主に 2 つのネイティブなシェル、つまり ``cmd`` と ``powershell`` があり、両者はかなり異なります。
+しかも ``sh`` のような、さらに別のシェルも利用することができます。
+
+.. The `SHELL` instruction can appear multiple times. Each `SHELL` instruction overrides
+   all previous `SHELL` instructions, and affects all subsequent instructions. For example:
+
+``SHELL`` 命令は、何度でも記述できます。
+個々の ``SHELL`` 命令は、それより前の ``SHELL`` 命令の値を上書きし、それ以降の命令に効果を及ぼします。
+たとえば以下のとおりです。
+
+   ..  FROM microsoft/windowsservercore
+
+       # Executed as cmd /S /C echo default
+       RUN echo default
+
+       # Executed as cmd /S /C powershell -command Write-Host default
+       RUN powershell -command Write-Host default
+
+       # Executed as powershell -command Write-Host hello
+       SHELL ["powershell", "-command"]
+       RUN Write-Host hello
+
+       # Executed as cmd /S /C echo hello
+       SHELL ["cmd", "/S"", "/C"]
+       RUN echo hello
+
+.. code-block:: dockerfile
+
+   FROM microsoft/windowsservercore
+
+   # 以下のように実行： cmd /S /C echo default
    RUN echo default
-   
-   # cmd /S /C powershell -command Write-Host default として実行する
+
+   # 以下のように実行： cmd /S /C powershell -command Write-Host default
    RUN powershell -command Write-Host default
-   
-   # powershell -command Write-Host hello として実行する
+
+   # 以下のように実行： powershell -command Write-Host hello
    SHELL ["powershell", "-command"]
    RUN Write-Host hello
-   
-   # cmd /S /C echo hello として実行する
-   SHELL ["cmd", "/S"", "/C"]
+
+   # 以下のように実行： cmd /S /C echo hello
+   SHELL ["cmd", "/S", "/C"]
    RUN echo hello
 
-.. The following instructions can be affected by the SHELL instruction when the shell form of them is used in a Dockerfile: RUN, CMD and ENTRYPOINT.
+.. The following instructions can be affected by the `SHELL` instruction when the
+   *shell* form of them is used in a Dockerfile: `RUN`, `CMD` and `ENTRYPOINT`.
 
-Dockerfile の ``RUN``  、 ``CMD`` 、``ENTRYPOINT`` のシェルは、 ``SHELL`` 命令以後にあれば影響を受けます。
+Dockerfile において ``RUN``、``CMD``、``ENTRYPOINT`` の各コマンドをシェル形式で記述した際には、``SHELL`` 命令の設定による影響が及びます。
 
-.. The following example is a common pattern found on Windows which can be streamlined by using the SHELL instruction:
+.. The following example is a common pattern found on Windows which can be
+   streamlined by using the `SHELL` instruction:
 
-次の例は Windows で一般的に見受けられるパターンですが、 ``SHELL`` 命令で簡素化できます。
+以下に示す例は、Windows 上において見られる普通の実行パターンですが、``SHELL`` 命令を使って簡単に実現することができます。
 
 .. code-block:: dockerfile
 
@@ -3094,19 +3211,25 @@ Dockerfile の ``RUN``  、 ``CMD`` 、``ENTRYPOINT`` のシェルは、 ``SHELL
 
 .. The command invoked by docker will be:
 
-このコマンドは、Docker によって次のように処理されます。
+Docker によって実行されるコマンドは以下となります。
 
 .. code-block:: shell
 
    cmd /S /C powershell -command Execute-MyCmdlet -param1 "c:\foo.txt"
 
-.. This is inefficient for two reasons. First, there is an un-necessary cmd.exe command processor (aka shell) being invoked. Second, each RUN instruction in the shell form requires an extra powershell -command prefixing the command.
+.. This is inefficient for two reasons. First, there is an un-necessary cmd.exe command
+   processor (aka shell) being invoked. Second, each `RUN` instruction in the *shell*
+   form requires an extra `powershell -command` prefixing the command.
 
-これが非効率なのは、２つの理由があります。１つは不要な cmd.exe プロセッサ（いわゆるシェル）が呼び出されること。もう１つは各 ``RUN`` 命令ごとに追加の ``powershell -command`` コマンドが実行されるためです。
+これは効率的ではなく、そこには 2 つの理由があります。
+1 つめは、コマンドプロセッサー cmd.exe（つまりはシェル）が不要に呼び出されているからです。
+2 つめは、シェル形式の ``RUN`` 命令において、常に ``powershell -command`` を各コマンドの頭につけて実行しなければならないからです。
 
-.. To make this more efficient, one of two mechanisms can be employed. One is to use the JSON form of the RUN command such as:
+.. To make this more efficient, one of two mechanisms can be employed. One is to
+   use the JSON form of the RUN command such as:
 
-効率的にするには、２つの仕組みを採用します。１つは RUN 命令を次のように JSON 形式で使います。
+これを効率化するには、2 つあるメカニズムの 1 つを取り入れることです。
+1 つは、RUN コマンドの JSON 形式を使って、以下のようにします。
 
 .. code-block:: dockerfile
 
@@ -3114,15 +3237,30 @@ Dockerfile の ``RUN``  、 ``CMD`` 、``ENTRYPOINT`` のシェルは、 ``SHELL
    RUN ["powershell", "-command", "Execute-MyCmdlet", "-param1 \"c:\\foo.txt\""]
    ...
 
-.. While the JSON form is unambiguous and does not use the un-necessary cmd.exe, it does require more verbosity through double-quoting and escaping. The alternate mechanism is to use the SHELL instruction and the shell form, making a more natural syntax for Windows users, especially when combined with the escape parser directive:
+.. While the JSON form is unambiguous and does not use the un-necessary cmd.exe,
+   it does require more verbosity through double-quoting and escaping. The alternate
+   mechanism is to use the `SHELL` instruction and the *shell* form,
+   making a more natural syntax for Windows users, especially when combined with
+   the `escape` parser directive:
 
-JSON 形式は明確なものであり、不確実な cmd.exe を使いません。そのため、JSON 形式はダブル・クォートで囲み、エスケープするといった冗長な記述が必要です。他の方法としては、 ``SHELL`` 命令でシェル形式を使えば、Windows 利用者にとっても自然な構文になります。 ``escape`` パーサ・ディレクティブと一緒に使えば尚更です。
+JSON 形式を使えば、あいまいさはなくなり、不要な cmd.exe を使うこともなくなります。
+しかしダブルクォートやエスケープを行うことも必要となり、より多くを記述することにもなります。
+もう 1 つの方法は ``SHELL`` 命令とシェル形式を使って、Windows ユーザーにとって、より自然な文法で実現するやり方です。
+特にパーサーディレクティブ ``escape`` を組み合わせて実現します。
+
+   ..  # escape=`
+
+       FROM microsoft/nanoserver
+       SHELL ["powershell","-command"]
+       RUN New-Item -ItemType Directory C:\Example
+       ADD Execute-MyCmdlet.ps1 c:\example\
+       RUN c:\example\Execute-MyCmdlet -sample 'hello world'
 
 .. code-block:: dockerfile
 
    # escape=`
-   
-   FROM windowsservercore
+
+   FROM microsoft/nanoserver
    SHELL ["powershell","-command"]
    RUN New-Item -ItemType Directory C:\Example
    ADD Execute-MyCmdlet.ps1 c:\example\
@@ -3130,20 +3268,20 @@ JSON 形式は明確なものであり、不確実な cmd.exe を使いません
 
 .. Resulting in:
 
-実行結果：
+これは以下のようになります。
 
 .. code-block:: shell
 
    PS E:\docker\build\shell> docker build -t shell .
-   Sending build context to Docker daemon 3.584 kB
-   Step 1 : FROM windowsservercore
-    ---> 5bc36a335344
-   Step 2 : SHELL powershell -command
-    ---> Running in 87d7a64c9751
-    ---> 4327358436c1
-   Removing intermediate container 87d7a64c9751
-   Step 3 : RUN New-Item -ItemType Directory C:\Example
-    ---> Running in 3e6ba16b8df9
+   Sending build context to Docker daemon 4.096 kB
+   Step 1/5 : FROM microsoft/nanoserver
+    ---> 22738ff49c6d
+   Step 2/5 : SHELL powershell -command
+    ---> Running in 6fcdb6855ae2
+    ---> 6331462d4300
+   Removing intermediate container 6fcdb6855ae2
+   Step 3/5 : RUN New-Item -ItemType Directory C:\Example
+    ---> Running in d0eef8386e97
    
    
        Directory: C:\
@@ -3151,42 +3289,48 @@ JSON 形式は明確なものであり、不確実な cmd.exe を使いません
    
    Mode                LastWriteTime         Length Name
    ----                -------------         ------ ----
-   d-----         6/2/2016   2:59 PM                Example
+   d-----       10/28/2016  11:26 AM                Example
    
    
-    ---> 1f1dfdcec085
-   Removing intermediate container 3e6ba16b8df9
-   Step 4 : ADD Execute-MyCmdlet.ps1 c:\example\
-    ---> 6770b4c17f29
-   Removing intermediate container b139e34291dc
-   Step 5 : RUN c:\example\Execute-MyCmdlet -sample 'hello world'
-    ---> Running in abdcf50dfd1f
-   Hello from Execute-MyCmdlet.ps1 - passed hello world
-    ---> ba0e25255fda
-   Removing intermediate container abdcf50dfd1f
-   Successfully built ba0e25255fda
+    ---> 3f2fbf1395d9
+   Removing intermediate container d0eef8386e97
+   Step 4/5 : ADD Execute-MyCmdlet.ps1 c:\example\
+    ---> a955b2621c31
+   Removing intermediate container b825593d39fc
+   Step 5/5 : RUN c:\example\Execute-MyCmdlet 'hello world'
+    ---> Running in be6d8e63fe75
+   hello world
+    ---> 8e559e9bf424
+   Removing intermediate container be6d8e63fe75
+   Successfully built 8e559e9bf424
    PS E:\docker\build\shell>
 
-.. The SHELL instruction could also be used to modify the way in which a shell operates. For example, using SHELL cmd /S /C /V:ON|OFF on Windows, delayed environment variable expansion semantics could be modified.
+.. The `SHELL` instruction could also be used to modify the way in which
+   a shell operates. For example, using `SHELL cmd /S /C /V:ON|OFF` on Windows, delayed
+   environment variable expansion semantics could be modified.
 
-``SHELL`` 命令はシェルの実行者でも変更できます。たとえば Windows 上で ``SHELL cmd /S /C /V:ON|OFF`` を使うと、環境変数の遅延拡張セマンティクス（delayed environment variable expansion semantics）を変更できます。
+``SHELL`` 命令はまた、シェルの動作を変更する際にも利用することができます。
+たとえば Windows 上において ``SHELL cmd /S /C /V:ON|OFF`` を実行すると、遅延環境変数の展開方法を変更することができます。
 
-.. The SHELL instruction can also be used on Linux should an alternate shell be required such zsh, csh, tcsh and others.
+.. The `SHELL` instruction can also be used on Linux should an alternate shell be
+   required such as `zsh`, `csh`, `tcsh` and others.
 
-``SHELL`` 命令は Linux 上でも利用できます。 ``zsh`` 、 ``csh`` 、``tcsh``  など別のシェルを指定できます。
+``SHELL`` 命令は Linux において、``zsh``、``csh``、``tcsh`` などのシェルが必要となる場合にも利用することができます。
 
 .. The SHELL feature was added in Docker 1.12.
 
 ``SHELL`` 機能は Docker 1.12 で追加されました。
 
-.. Dockerfile examples
+.. ## Dockerfile examples
 
-Dockerfile の例
+Dockerfile の記述例
 ====================
 
-.. Below you can see some examples of Dockerfile syntax. If you’re interested in something more realistic, take a look at the list of Dockerization examples.
+.. Below you can see some examples of Dockerfile syntax. If you're interested in
+   something more realistic, take a look at the list of [Dockerization examples](https://docs.docker.com/engine/examples/).
 
-以下で Dockerfile 構文の例を参照できます。実際の環境に興味があれば、 :doc:`Docker 化の例 </engine/examples/index>` をご覧ください。
+以下では Dockerfile の文法例をいくつか示します。
+より実践的なところに興味がある場合は :doc:`Docker 化のサンプル </engine/examples/index>` を参照してください。
 
 .. code-block:: dockerfile
 
