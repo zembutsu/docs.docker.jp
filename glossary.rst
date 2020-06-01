@@ -639,19 +639,19 @@ Docker 及びユニオン・ファイル・システムの詳細は、 :doc:`/en
 
 .. A volume is a specially-designated directory within one or more containers that bypasses the Union File System. Volumes are designed to persist data, independent of the container’s life cycle. Docker therefore never automatically delete volumes when you remove a container, nor will it “garbage collect” volumes that are no longer referenced by a container. Also known as: data volume
 
-ボリュームとは特別に設計されたディレクトリであり、ユニオン・ファイル・システムを迂回し、複数のコンテナ内で使えます。ボリュームは永続的なデータを保管するために設計されており、コンテナのライフサイクルとは独立しています。そのため、Docker はコンテナの削除時に、ボリュームを決して自動的に削除しません。そればかりか「ガベージ・コレクト」（ゴミ収集；garbage collect）ボリュームとして、コンテナからは参照できないようにもできます。これは *データ・ボリューム（data volume）* とも呼ばれます。
+ボリュームとは、いくつかのコンテナ内にて用いられる特定のディレクトリのことであり、ユニオン・ファイル・システムを通じて利用されます。ボリュームはデータを永続的に保持する目的で設計されており、コンテナのライフサイクルには影響されません。したがってコンテナを削除したとしても、Docker はボリュームを自動的に削除するようなことはしません。たとえコンテナから参照されなくなったボリュームであっても、「ガベージ・コレクト」により失われることもありません。これは *データ・ボリューム（data volume）* とも呼ばれます。
 
 .. There are three types of volumes: host, anonymous, and named:
 
-ボリュームは、ホスト（*host*）、匿名（*anonymous*）、名前付き（*named*）の3種類です。
+ボリュームには、ホスト（*host*）、匿名（*anonymous*）、名前付き（*named*）という３種類のタイプがあります。
 
 ..    A host volume lives on the Docker host’s filesystem and can be accessed from within the container.
 ..    A named volume is a volume which Docker manages where on disk the volume is created, but it is given a name.
 ..    An anonymous volume is similar to a named volume, however, it can be difficult, to refer to the same volume over time when it is an anonymous volumes. Docker handle where the files are stored.
 
    * **ホスト・ボリューム（host volume）** は Docker ホストのファイルシステム上に存在し、コンテナ内部からもアクセスできます。
-   * **名前付きボリューム（named volume）** は Docker が管理するディスク上に作成されたボリュームであり、名前を指定しています。
-   * **匿名ボリューム（anonymous volume）**  は名前付きボリュームと似ていますが、匿名ボリュームとして作成すると対象となるボリュームを特定するのが大変で、時間がかかります。Docker がファイルをどこに保管するか処理します。
+   * **名前付きボリューム（named volume）** は、Docker が管理するボリュームであり、ディスク上に生成されます。そこには名前がつけられます。
+   * **匿名ボリューム（anonymous volume）**  は名前付きボリュームと似ています。ただし複雑な仕組みにより、匿名ボリュームである間も一意のボリュームとして参照されます。Docker はファイルを保存する場所として取り扱います。
 
 
 .. seealso:: 
