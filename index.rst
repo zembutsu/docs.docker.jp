@@ -133,11 +133,6 @@ Docker を使い、コンテナをベースとしたアプリケーションを�
 Doc v17.06 目次
 ====================
 
-.. toctree::
-   :caption: Glossary - 用語集
-   :maxdepth: 1
-
-   glossary.rst
 
 .. toctree::
    :caption: Guide - ガイド

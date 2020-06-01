@@ -32,13 +32,14 @@ Part 4：Swarm
     Be sure your image works as a deployed container. Run this command, slotting in your info for username, repo, and tag: docker run -p 80:80 username/repo:tag, then visit http://localhost/.
     Have a copy of your docker-compose.yml from Part 3 handy.
 
-* :doc:`Docker バージョン 1.13 以上のインストール </engine/installation/index>`
-* :doc:`Docker Machine </machine/overview>` を入手。 Docker for Mac と Docker for Windows ではインストール済みですので、このまま読み進めてください。Linux システムでは :ref:`直接インストール <installing-machine-directly>_ が必要です。Widows 10 システム上で Hyper-V が入っていなければ、 :doc:`Docker Toolbox </toolbox/overview>` をお使い下さい。
-* :doc:`Part 1 <index>` の概要を読んでいること
-* :doc:`Part 2 <part>` のコンテナの作成方法学んでいること
-* 自分で作成した ``friendlyhello`` イメージを :ref:`レジストリに送信 <share-your-image>` して公開済みなのを確認します。ここでは、この共有イメージを使います。
-* イメージをコンテナとしてデプロイできるのを確認します。次のコマンドを実行しますが、 ``ユーザ名`` と ``リポジトリ`` ``タグ`` は皆さんのものに置き換えます。コマンドは ``docker run -p 80:80 ユーザ名/リポジトリ:タグ`` です。そして ``http://localhost/`` を表示します。
-* :doc:`Part 3 <part3>` で扱った ``docker-compose.yml`` のコピーを持っていること
+* :doc:`Docker バージョン 1.13 またはそれ以上をインストールしていること。</engine/installation/index>`
+* :doc:`Part 3 の必要条件 </get-started/part3.md#prerequisites>` で説明した :doc:`Docker Compose </engine/installation/index>` を入手していること。
+* :doc:`Docker Machine </machine/overview>` を入手していること。 Docker for Mac と Docker for Windows ではインストール済みであるが Linux システムでは :ref:`直接インストール <installing-machine-directly>_ が必要。Widows 10 Home のように Windows 10 システム上に Hyper-V が入っていない場合は、 :doc:`Docker Toolbox </toolbox/overview>` が必要。
+* :doc:`Part 1 <index>` の概要を読んでいること。
+* :doc:`Part 2 <part>` のコンテナの作成方法を理解していること。
+* :ref:`レジストリに送信 <share-your-image>` して作成した ``friendlyhello`` イメージが共有可能であることを確認します。ここではその共有イメージを使います。
+* デプロイしたコンテナとしてイメージが動作することを確認します。以下のコマンドを実行してください。`docker run -p 80:80 username/repo:tag` ここで username、repo、tag の部分は各環境に合わせて書き換えてください。そして ``http://localhost/`` にアクセスします。
+* :doc:`Part 3 <part3>` で扱った ``docker-compose.yml`` ファイルが用意できていること。
 
 .. Introduction
 
@@ -47,11 +48,11 @@ Part 4：Swarm
 
 .. In part 3, you took an app you wrote in part 2, and defined how it should run in production by turning it into a service, scaling it up 5x in the process.
 
-:doc:`Part 3 <part3>` では、 :doc:`Part 2 <part2>` で書いたアプリを元に、プロダクションで実行可能にサービスとして調整したものを定義し、５つのプロセスへとスケールアップしました。
+:doc:`Part 3 <part3>` では、 :doc:`Part 2 <part2>` で書いたアプリを元に、本番環境において実行可能なサービスとして調整したものを定義し、プロセス数を５倍にスケールアップしました。
 
 .. Here in part 4, you deploy this application onto a cluster, running it on multiple machines. Multi-container, multi-machine applications are made possible by joining multiple machines into a “Dockerized” cluster called a swarm.
 
-この Part 4 では、アプリケーションをクラスタにデプロイし、複数のマシン上で実行します。複数のコンテナ、複数のマシンにおけるアプリケーションは、 **swarm** （スウォーム）と呼ぶ複数のマシンが参加する「Docker化」（Dockerized）クラスタで利用可能になります。
+この Part 4 では、デプロイするアプリケーションをクラスタにして、複数のマシン上で実行します。複数コンテナ、複数マシンによるアプリケーションは、各マシンを「Docker化」（Dockerized）したクラスタ、すなわち **swarm** （スウォーム）と呼ばれるものに集約することによって実現されます。
 
 .. _understanding-swarm-clusters:
 
@@ -62,19 +63,22 @@ Swarm クラスタの理解
 
 .. A swarm is a group of machines that are running Docker and joined into a cluster. After that has happened, you continue to run the Docker commands you’re used to, but now they are executed on a cluster by a swarm manager. The machines in a swarm can be physical or virtual. After joining a swarm, they are referred to as nodes.
 
-swarm とは Docker が動作し、クラスタに参加しているマシン・グループです。swarm を使えば、Docker コマンドをこれまで通り使い続けながら、 **swarm マネージャ** を通してクラスタ上で実行可能になります。swarm 上のマシンは物理あるいは仮想どちらも使えます。swarm に加わった後は、これらは **ノード** として参照されます。
+swarm とは Docker の動作するマシンがひとまとまりとなってクラスタを構成するものです。swarm を使うようになると、これまで使ってきた Docker コマンドは引き続き用いることにはなりますが、今度はクラスタに対しての **swarm マネージャ** として処理操作を行うものとなります。swarm 内のマシンは物理マシン、仮想マシンのいずれでも構いません。マシンを swarm に含めた後は、 **ノード** として参照されます。
 
 .. Swarm managers can use several strategies to run containers, such as “emptiest node” – which fills the least utilized machines with containers. Or “global”, which ensures that each machine gets exactly one instance of the specified container. You instruct the swarm manager to use these strategies in the Compose file, just like the one you have already been using.
 
-swarm マネージャはコンテナの実行時、複数のストラテジ（strategy；計画、方針）を扱います。例えば「emptiest node」（最も空いているノード）であれば、最も使われていないマシンが選ばれます。あるいは「global」（グローバル）であれば、特定の１つのマシンだけでなく、すべてのマシン上で特定のコンテナを実行します。このように様々なストラテジがありますが、 swarm マネージャには Compose ファイルを通して命令できます。
+swarm マネージャでは、コンテナの実行にあたってストラテジというものが指定できます。たとえば「emptiest node」（最も空いているノード）です。これは最も使われていないマシンをコンテナに割り当てます。「global」というものは、個々のマシンには、指定されたコンテナの１インスタンスのみを割り当てます。swarm マネージャに対してのストラテジ指定は Compose ファイルにて行います。既に利用してきたファイルです。
 
 .. Swarm managers are the only machines in a swarm that can execute your commands, or authorize other machines to join the swarm as workers. Workers are just there to provide capacity and do not have the authority to tell any other machine what it can and cannot do.
 
-swarm マネージャは swarm における単なるマシンであり、コマンドの実行や、swarm に参加したマシンを **ワーカ（workers）** として認証できます。ワーカは収容能力（キャパシティ）を提供するのみであり、他のマシンに対して何ができる・できないといった権限を持ちません。
+swarm マネージャは swarm 内でコマンド実行ができる唯一のマシンです。
+そして他のマシンの swarm への参加を認証します。
+swarm に参加したマシンは **ワーカ** （worker）と呼ばれます。
+ワーカは処理提供するために加えられたわけですが、他のマシンの機能を制約する権限を持つわけではありません。
 
 .. Up until now, you have been using Docker in a single-host mode on your local machine. But Docker also can be switched into swarm mode, and that’s what enables the use of swarms. Enabling swarm mode instantly makes the current machine a swarm manager. From then on, Docker will run the commands you execute on the swarm you’re managing, rather than just on the current machine.
 
-これまではローカルマシン上の単一ホスト上で動く Docker を使ってきました。しかし、Docker は **swarm mode**  に切り替え可能であり、swarm（クラスタ）上でも利用できます。現在のマシンを swarm マネージャとしたら、簡単に swarm モードを有効化できます。あとは、現在のマシンで Docker を操作する代わりに、swarm クラスタ上で処理します。
+これまではローカルマシン上において、シングルホストモードにより Docker を利用してきました。Docker は **swarm モード** に切り替えることが可能であり、このモードにすることで swarm が利用できるようになります。swarm を有効にした時点で現在のマシンが swarm マネージャとなります。これ以降の Docker に対するコマンドは swarm に対して実行されます。もうそれまでのマシンに対して実行するものではなくなります。
 
 .. Set up your swarm
 
@@ -85,7 +89,7 @@ swarm のセットアップ
 
 .. A swarm is made up of multiple nodes, which can be either physical or virtual machines. The basic concept is simple enough: run docker swarm init to enable swarm mode and make your current machine a swarm manager, then run docker swarm join on other machines to have them join the swarm as workers. Choose a tab below to see how this plays out in various contexts. We’ll use VMs to quickly create a two-machine cluster and turn it into a swarm.
 
-swarm は複数のノードで構成します。物理マシンまたは仮想マシンどちらでもノードになれます。基本概念は極めてシンプルです。 ``docker swarm init`` を実行すると、 swarm mode を有効化し、現在のマシンを swarm マネージャにします。そして ``docker swarm join`` を実行し、他のマシンをワーカとして swarm に追加します。環境に応じて以下の項目を読み進めてください。ここでは２つの仮想マシンを素早く作成し、swarm に追加します。
+swarm は複数のノードにより構成されます。それは物理マシン、仮想マシンのどちらでも構いません。基本的な考え方はとても簡単です。 ``docker swarm init`` の実行により swarm モードが有効となり、現在のマシンが swarm マネージャになります。その後に他のマシンから ``docker swarm join`` を実行すると、そのマシンはワーカとして swarm に参加できます。この仕組みがさまざまな環境においてどのように動作するか、以下のタブを切り替えて確認してください。以下では仮想環境を用いて、２つのマシンによるクラスタをさっと作り出して、これを swarm に切り替えます。
 
 .. Create a cluster
 
@@ -110,7 +114,7 @@ swarm は複数のノードで構成します。物理マシンまたは仮想�
 
 .. note::
 
-   WIndows 10 のような Hyper-V をインストールした WIndows システムをお使いの場合、Hyper-V を利用する代わりに VirtualBox のインストールが必要です。ページ下方の Hyper-V に関する項目をご覧ください。
+   Windows 10 のように Hyper-V が搭載された Windows システムの場合、VirtualBox のインストールは不要であり、かわりに Hyper-V を利用してください。上記の Hyper-V に関するタブをクリックして Hyper-V システムの手順を参照してください。`Docker Toolbox </toolbox/overview>`_ を利用する場合は、その一部としてすでに VirtualBox がインストールされるため、このまま先に進んでください。
 
 .. Now, create a couple of VMs using docker-machine, using the VirtualBox driver:
 
@@ -121,22 +125,22 @@ swarm は複数のノードで構成します。物理マシンまたは仮想�
    $ docker-machine create --driver virtualbox myvm1
    $ docker-machine create --driver virtualbox myvm2
 
-ローカルマシン上の仮想マシン（Windows 10/Hyper-V）
+ローカルマシン上の仮想マシン（Windows 10）
 ----------------------------------------------------------------------
 
 .. First, quickly create a virtual switch for your VMs to share, so they will be able to connect to each other.
 
-まず、仮想マシンが共有する仮想スイッチを作成したら、仮想マシンがお互い接続可能になります。
+はじめに、仮想マシンが共有する仮想スイッチを作成して、仮想マシンが互いに接続できるようにします。
 
 ..    Launch Hyper-V Manager
     Click Virtual Switch Manager in the right-hand menu
     Click Create Virtual Switch of type External
     Give it the name myswitch, and check the box to share your host machine’s active network adapter
 
-1. Hyper-V マネージャを起動
-2. 右側メニューにある **Virtual Switch Manager** をクリック
-3. **Create Virtual Switch** の **External** タイプをクリック
-4. 名前を **myswitch** に指定子、ホストマシンのアクティブ・ネットワーク・アダプタとの共有ボックスにチェックを入れる
+1. Hyper-V マネージャーを起動
+2. 右側のメニューにある **仮想スイッチ マネージャー** をクリック
+3. **仮想スイッチの作成** のタイプ **外部** をクリック
+4. ``myswitch`` という名称に設定し、ホストマシンのアクティブ・ネットワーク・アダプタとの共有ボックスにチェックを入れる
 
 .. Now, create a couple of virtual machines using our node management tool, docker-machine:
 

@@ -224,7 +224,7 @@ Docker でリンク機能を使うとき、コンテナ名に依存します。�
 
 .. Now, create a new web container and link it with your db container.
 
-次は、 ``db`` コンテナにリンクする新しい ``web`` コンテナを作成します。。
+次は、 ``db`` コンテナにリンクする新しい ``web`` コンテナを作成します。
 
 .. code-block:: bash
 

@@ -12,7 +12,7 @@
 .. _controlling-startup-order-in-compose:
 
 ==============================
-Compose の起動順番を制御
+Compose における起動順の制御
 ==============================
 
 .. sidebar:: 目次
@@ -21,73 +21,121 @@ Compose の起動順番を制御
        :depth: 3
        :local:
 
-.. You can control the order of service startup with the depends_on option. Compose always starts containers in dependency order, where dependencies are determined by depends_on, links, volumes_from and network_mode: "service:...".
+.. You can control the order of service startup with the
+   [depends_on](compose-file.md#depends-on) option. Compose always starts
+   containers in dependency order, where dependencies are determined by
+   `depends_on`, `links`, `volumes_from`, and `network_mode: "service:..."`.
 
-:ref:`compose-file-depends_on` オプションを使えば、サービスの起動順番を制御できます。Compose は常に依存関係に従ってコンテナを起動しようとします。依存関係とは、 ``depends_on`` 、 ``links`` 、 ``volumes_form`` 、 ``network_mode: "サービス:..."`` を指定している場合です。
+サービスの起動順は、:ref:`compose-file-depends_on` オプションを使って制御することができます。
+Compose では必ず依存順に応じて、コンテナーの起動を行いますが、この依存順とは ``depends_on`` 、 ``links`` 、 ``volumes_from`` 、 ``network_mode: "サービス:..."`` によって決定します。
 
-.. However, Compose will not wait until a container is “ready” (whatever that means for your particular application) - only until it’s running. There’s a good reason for this.
+.. However, Compose will not wait until a container is "ready" (whatever that means
+   for your particular application) - only until it's running. There's a good
+   reason for this.
 
-しかしながら、Compose はコンテナの準備が「整う」まで待ちません（つまり、特定のアプリケーションが利用可能になるまで待ちません）。単に起動するだけです。これには理由があります。
+しかし起動時の場合、Compose はコンテナーが "準備状態" になって初めて制御を待ちます。
+（これがアプリケーションにとってどのような意味になるかには無関係です。）
+つまり稼動していることが必要です。
+これには十分な理由があります。
 
-.. The problem of waiting for a database (for example) to be ready is really just a subset of a much larger problem of distributed systems. In production, your database could become unavailable or move hosts at any time. Your application needs to be resilient to these types of failures.
+.. The problem of waiting for a database (for example) to be ready is really just
+   a subset of a much larger problem of distributed systems. In production, your
+   database could become unavailable or move hosts at any time. Your application
+   needs to be resilient to these types of failures.
 
-たとえば、データベースの準備が整うまで待つのであれば、そのことが分散システム全体に対する大きな問題になり得ます。プロダクションでは、データベースは利用不可能になったり、あるいは別のホストに移動したりする場合があるでしょう。アプリケーションは、障害発生に対して復旧する必要があるためです。
+たとえばデータベースが準備状態になるまで待ち続けたとすると、分散システムにおいては非常に大きな問題となります。
+本番環境であれば利用不能となって、すぐにホストを切り替えなければならなくなります。
+アプリケーションは、このような状況に柔軟に対応できるものでなくてはなりません。
 
-.. To handle this, your application should attempt to re-establish a connection to the database after a failure. If the application retries the connection, it should eventually be able to connect to the database.
+.. To handle this, your application should attempt to re-establish a connection to
+   the database after a failure. If the application retries the connection,
+   it should eventually be able to connect to the database.
 
-データベースに対する接続が失敗したら、アプリケーションは再接続を試みるように扱わなくてはいけません。アプリケーションは再接続を試みるため、データベースへの接続を定期的に行う必要があるでしょう。
+こういったことを取り扱う際には、データベースへの接続に失敗した後に、接続を再度確立するようにアプリケーションを設計しておくことが必要です。
+アプリケーションが再接続を行えば、そのうちデータベースへの接続が成功します。
 
-.. The best solution is to perform this check in your application code, both at startup and whenever a connection is lost for any reason. However, if you don’t need this level of resilience, you can work around the problem with a wrapper script:
+.. The best solution is to perform this check in your application code, both at
+   startup and whenever a connection is lost for any reason. However, if you don't
+   need this level of resilience, you can work around the problem with a wrapper
+   script:
 
-この問題を解決するベストな方法は、アプリケーションのコード上で解決することです。起動時に、あるいは何らかの理由によって接続できない場合にです。しかしながら、このレベルの復旧が必要なければ、ラッパー用のスクリプトを書くことでも対処できます。
+最適な方法は、再接続をアプリケーションコード内で行うことです。
+これは起動時にも行い、さらに何らかの理由で接続が断たれた際にも行います。
+もっともそれほどの柔軟性を必要としないのであれば、以下のようなラッパースクリプトを使ってこの問題を回避する方法もあります。
 
-..    Use a tool such as wait-for-it or dockerize. These are small wrapper scripts which you can include in your application’s image and will poll a given host and port until it’s accepting TCP connections.
+.. -   Use a tool such as [wait-for-it](https://github.com/vishnubob/wait-for-it),
+       [dockerize](https://github.com/jwilder/dockerize) or sh-compatible
+       [wait-for](https://github.com/Eficode/wait-for). These are small
+       wrapper scripts which you can include in your application's image and will
+       poll a given host and port until it's accepting TCP connections.
 
-* `wait-for-it <https://github.com/vishnubob/wait-for-it>`_ や `dockerize <https://github.com/jwilder/dockerize>`_ のようなツールを使います。これらはラッパー用のスクリプトであり、アプリケーションのイメージに含めることができます。また特定のホスト側のポートに対して、TCP 接続を受け入れ可能です。
+*   `wait-for-it <https://github.com/vishnubob/wait-for-it>`_ 、 `dockerize <https://github.com/jwilder/dockerize>`_ 、あるいはシェル互換の `wait-for <https://github.com/Eficode/wait-for>`_ を利用します。
+    これは非常に小さなラッパースクリプトです。
+    これをアプリケーションイメージに含めて、指定されたホストが TCP 接続を受け入れるまでの間、指定ポートに問い合わせを行うようにすることができます。
 
-..    Supposing your application’s image has a CMD set in its Dockerfile, you can wrap it by setting the entrypoint in docker-compose.yml:
+   ..  For example, to use `wait-for-it.sh` or `wait-for` to wrap your service's command:
 
-アプリケーションのイメージに適用するためには、Dockerfile の ``CMD`` 命令でラップできるように ``docker-compose.yml`` の entrypoint を設定します。
+   たとえば ``wait-for-it.sh`` または ``wait-for`` を使って、サービスコマンドをラップするには以下のようにします。
 
-.. code-block:: yaml
+   .. code-block:: yaml
 
-   version: "2"
-   services:
-     web:
-       build: .
-       ports:
-         - "80:8000"
-       depends_on:
-         - "db"
-       entrypoint: ./wait-for-it.sh db:5432
-     db:
-       image: postgres
+      version: "2"
+      services:
+        web:
+          build: .
+          ports:
+            - "80:8000"
+          depends_on:
+            - "db"
+          command: ["./wait-for-it.sh", "db:5432", "--", "python", "app.py"]
+        db:
+          image: postgres
 
-..     Write your own wrapper script to perform a more application-specific health check. For example, you might want to wait until Postgres is definitely ready to accept commands:
+   ..  >**Tip**: There are limitations to this first solution; e.g., it doesn't verify when a specific service is really ready. If you add more arguments to the command, you'll need to use the `bash shift` command with a loop, as shown in the next example.
 
-* アプリケーションが独自にヘルスチェックを行えるよう、スクリプトをラッパーすることも可能です。たとえば、Postgres コマンドが使えるようになるまで待ちたい場合を考えてみましょう。
+   .. tip::
 
-.. code-block:: bash
+      この解決方法には限界があります。
+      たとえば指定するサービスが、本当に準備状態であるかどうかは確認できません。
+      コマンドにさらに引数を追加して ``bash shift`` を利用し、ループによって対処するのが次の例です。
 
-   #!/bin/bash
-   
-   set -e
-   
-   host="$1"
-   shift
-   cmd="$@"
-   
-   until psql -h "$host" -U "postgres" -c '\l'; do
-     >&2 echo "Postgres is unavailable - sleeping"
-     sleep 1
-   done
-   
-   >&2 echo "Postgres is up - executing command"
-   exec $cmd
+.. -   Alternatively, write your own wrapper script to perform a more application-specific health
+       check. For example, you might want to wait until Postgres is definitely
+       ready to accept commands:
 
-..     You can use this as a wrapper script as in the previous example, by setting entrypoint: ./wait-for-postgres.sh db.
+*   別の方法として、独自にラッパースクリプトを用意して、アプリケーション特有のヘルスチェックを実現することも考えられます。
+    たとえば、Postgres が完全に準備状態になって、コマンドを受け付けるようになるまで待ちたいとするなら、以下のスクリプトを用意します。
 
-このラッパー・スクリプトの例を使うには、 ``entrypoint: ./wait-for-postgres.sh db`` と指定します。
+   .. code-block:: bash
+
+      #!/bin/bash
+      # wait-for-postgres.sh
+
+      set -e
+
+      host="$1"
+      shift
+      cmd="$@"
+
+      until psql -h "$host" -U "postgres" -c '\l'; do
+        >&2 echo "Postgres is unavailable - sleeping"
+        sleep 1
+      done
+
+      >&2 echo "Postgres is up - executing command"
+      exec $cmd
+
+   ..  You can use this as a wrapper script as in the previous example, by setting:
+
+   このラッパースクリプトを先の例において利用するには、以下のように設定します。
+
+   ..  ```none
+       command: ["./wait-for-postgres.sh", "db", "python", "app.py"]
+       ```
+
+   ::
+
+      command: ["./wait-for-postgres.sh", "db", "python", "app.py"]
 
 .. Compose documentation
 
@@ -96,15 +144,15 @@ Compose ドキュメント
 
 ..     Installing Compose
     Get started with Django
-    Get started with Rails
     Get started with WordPress
+    Get started with Rails
     Command line reference
     Compose file reference
 
 * :doc:`install`
 * :doc:`django`
 * :doc:`wordpress`
-* :doc:`install`
+* :doc:`rails`
 * :doc:`/compose/reference/index`
 * :doc:`/compose/compose-file`
 
