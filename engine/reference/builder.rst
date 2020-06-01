@@ -1857,44 +1857,69 @@ ENTRYPOINT
 
 ENTRYPOINT には２つの形式があります。
 
-..    ENTRYPOINT ["executable", "param1", "param2"] (exec form, preferred)
-    ENTRYPOINT command param1 param2 (shell form)
+.. - `ENTRYPOINT ["executable", "param1", "param2"]`
+     (*exec* form, preferred)
+   - `ENTRYPOINT command param1 param2`
+     (*shell* form)
 
-* ``ENTRYPOINT ["実行可能なもの", "パラメータ１", "パラメータ２"]`` （ *exec* 形式、推奨）
-* ``ENTRYPOINT コマンド パラメータ１ パラメータ２`` （ *シェル* 形式）
+* ``ENTRYPOINT ["executable", "param1", "param2"]`` （exec 形式、推奨）
+* ``ENTRYPOINT command param1 param2`` （シェル形式）
 
-.. An ENTRYPOINT allows you to configure a container that will run as an executable.
+.. An `ENTRYPOINT` allows you to configure a container that will run as an executable.
 
-``ENTRYPOINT`` はコンテナが実行するファイルを設定します。
+``ENTRYPOINT`` は、コンテナを実行モジュールのようにして実行する設定を行ないます。
 
-.. For example, the following will start nginx with its default content, listening on port 80:
+.. For example, the following will start nginx with its default content, listening
+   on port 80:
 
-例えば、次の例は nginx をデフォルトの内容で開始し、ポート 80 を開きます。
+たとえば以下の例では、nginx をデフォルト設定で起動します。
+ポートは 80 番を利用します。
 
 .. code-block:: bash
 
     docker run -i -t --rm -p 80:80 nginx
 
-.. Command line arguments to docker run <image> will be appended after all elements in an exec form ENTRYPOINT, and will override all elements specified using CMD. This allows arguments to be passed to the entry point, i.e., docker run <image> -d will pass the -d argument to the entry point. You can override the ENTRYPOINT instruction using the docker run --entrypoint flag.
+.. Command line arguments to `docker run <image>` will be appended after all
+   elements in an *exec* form `ENTRYPOINT`, and will override all elements specified
+   using `CMD`.
+   This allows arguments to be passed to the entry point, i.e., `docker run <image> -d`
+   will pass the `-d` argument to the entry point.
+   You can override the `ENTRYPOINT` instruction using the `docker run --entrypoint`
+   flag.
 
-コマンドラインで ``docker run <イメージ>`` コマンドに引数を付けますと、*exec* 形式 の ``ENTRYPOINT`` で指定した全要素の後に追加します。そして、この時に ``CMD`` を使って指定していた要素を上書きします。この動きにより、引数はエントリ・ポイント（訳者注：指定されたバイナリ）に渡されます。例えば、 ``docker run <イメージ> -d`` は、引数 ``-d`` をエントリポイントに渡します。 ``ENTRYPOINT`` 命令を上書きするには、 ``docker run --entrypoint`` フラグを使います。
+``docker run <image>`` に対するコマンドライン引数は、exec 形式の ``ENTRYPOINT`` の指定要素の後に付け加えられます。
+そして ``CMD`` において指定された引数は上書きされます。
+これはつまり、引数をエントリーポイントに受け渡すことができるということです。
+たとえば ``docker run <image> -d`` としたときの ``-d`` は、引数としてエントリーポイントに渡されます。
+``docker run --entrypoint`` を利用すれば ``ENTRYPOINT`` の内容を上書きすることができます。
 
-.. The shell form prevents any CMD or run command line arguments from being used, but has the disadvantage that your ENTRYPOINT will be started as a subcommand of /bin/sh -c, which does not pass signals. This means that the executable will not be the container’s PID 1 - and will not receive Unix signals - so your executable will not receive a SIGTERM from docker stop <container>.
+.. The *shell* form prevents any `CMD` or `run` command line arguments from being
+   used, but has the disadvantage that your `ENTRYPOINT` will be started as a
+   subcommand of `/bin/sh -c`, which does not pass signals.
+   This means that the executable will not be the container's `PID 1` - and
+   will _not_ receive Unix signals - so your executable will not receive a
+   `SIGTERM` from `docker stop <container>`.
 
-*シェル* 形式では ``CMD`` や ``run`` コマンド行の引数を使えないという不利な点があります。 ``ENTRYPOINT`` は ``/bin/sh -c`` のサブコマンドとして実行されるため、シグナルを渡せません。つまり、何かを実行してもコンテナの ``PID 1`` にはなりません。そして、 Unix シグナルを受け付け *ません*。そのため、実行ファイルは ``docker stop <コンテナ>`` を実行しても、 ``SIGTERM``  を受信しません。
+シェル形式では ``CMD`` や ``run`` のコマンドライン引数は受け付けずに処理を行います。
+ただし ``ENTRYPOINT`` は ``/bin/sh -c`` のサブコマンドとして起動されるので、シグナルを送信しません。
+これはつまり、実行モジュールがコンテナの ``PID 1`` にはならず、Unix のシグナルを受信しないということです。
+したがって ``docker stop <container>`` が実行されても、その実行モジュールは ``SIGTERM`` を受信しないことになります。
 
-.. Only the last ENTRYPOINT instruction in the Dockerfile will have an effect.
+.. Only the last `ENTRYPOINT` instruction in the `Dockerfile` will have an effect.
 
-なお、 ``Dockerfile`` の最後に現れた ``ENTRYPOINT`` 命令のみ有効です。
+``ENTRYPOINT`` 命令は複数記述されていても、最後の命令しか処理されません。
 
 .. Exec form ENTRYPOINT example
 
 exec 形式の ENTRYPOINT 例
 ------------------------------
 
-.. You can use the exec form of ENTRYPOINT to set fairly stable default commands and arguments and then use either form of CMD to set additional defaults that are more likely to be changed.
+.. You can use the *exec* form of `ENTRYPOINT` to set fairly stable default commands
+   and arguments and then use either form of `CMD` to set additional defaults that
+   are more likely to be changed.
 
-``ENTRYPOINT`` の *exec* 形式を使い、適切なデフォルトのコマンドと引数を指定します。それから ``CMD`` を使い、変更する可能性のある追加のデフォルト引数も指定します。
+``ENTRYPOINT`` の exec 形式は、デフォルト実行するコマンドおよび引数として、ほぼ変わることがないものを設定します。
+そして ``CMD`` 命令の 2 つある書式のいずれでもよいので、変更が必要になりそうな内容を追加で設定します。
 
 .. code-block:: dockerfile
 
@@ -1902,9 +1927,9 @@ exec 形式の ENTRYPOINT 例
    ENTRYPOINT ["top", "-b"]
    CMD ["-c"]
 
-.. When you run the container, you can see that top is the only process:
+.. When you run the container, you can see that `top` is the only process:
 
-コンテナを実行したら、 ``top`` のプロセスが１つだけ見えます。
+コンテナを実行すると、ただ 1 つのプロセスとして ``top`` があるのがわかります。
 
 .. code-block:: bash
 
@@ -1918,9 +1943,9 @@ exec 形式の ENTRYPOINT 例
      PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND
        1 root      20   0   19744   2336   2080 R  0.0  0.1   0:00.04 top
 
-.. To examine the result further, you can use docker exec:
+.. To examine the result further, you can use `docker exec`:
 
-より詳細なテストをするには、 ``docker exec`` コマンドが使えます。
+さらに詳しく見るには ``docker exec`` を実行します。
 
 .. code-block:: bash
 
@@ -1929,13 +1954,14 @@ exec 形式の ENTRYPOINT 例
    root         1  2.6  0.1  19752  2352 ?        Ss+  08:24   0:00 top -b -H
    root         7  0.0  0.1  15572  2164 ?        R+   08:25   0:00 ps aux
 
-.. And you can gracefully request top to shut down using docker stop test.
+.. And you can gracefully request `top` to shut down using `docker stop test`.
 
-それから、``docker stop test`` を使い ``top`` を停止するよう、通常のリクエストを行えます。
+``top`` を適切に終了させるには ``docker stop test`` を実行します。
 
-.. The following Dockerfile shows using the ENTRYPOINT to run Apache in the foreground (i.e., as PID 1):
+.. The following `Dockerfile` shows using the `ENTRYPOINT` to run Apache in the
+   foreground (i.e., as `PID 1`):
 
-次の ``Dockerfile`` は ``ENTRYPOINT`` を使って Apache をフォアグラウンドで実行します（つまり、 ``PID 1`` として）。
+次の ``Dockerfile`` は、Apache をフォアグラウンドで（つまり ``PID 1`` として）実行するような ``ENTRYPOINT`` の例を示しています。
 
 .. code-block:: dockerfile
 
@@ -1945,9 +1971,11 @@ exec 形式の ENTRYPOINT 例
    VOLUME ["/var/www", "/var/log/apache2", "/etc/apache2"]
    ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 
-.. If you need to write a starter script for a single executable, you can ensure that the final executable receives the Unix signals by using exec and gosu commands:
+.. If you need to write a starter script for a single executable, you can ensure that
+   the final executable receives the Unix signals by using `exec` and `gosu`
+   commands:
 
-もし実行するだけの起動スクリプトを書く必要があれば、最後に実行するコマンドが Unix シグナルを受信できるよう、 ``exec`` と ``gosu`` コマンドを使うことで可能になります。
+1 つの実行モジュールを起動するスクリプトを書く場合、最終実行される実行モジュールが Unix シグナルを受信できるようにするには ``exec`` あるいは ``gosu`` を用います。
 
 .. code-block:: bash
 
@@ -1966,17 +1994,21 @@ exec 形式の ENTRYPOINT 例
    
    exec "$@"
 
-.. Lastly, if you need to do some extra cleanup (or communicate with other containers) on shutdown, or are co-ordinating more than one executable, you may need to ensure that the ENTRYPOINT script receives the Unix signals, passes them on, and then does some more work:
+.. Lastly, if you need to do some extra cleanup (or communicate with other containers)
+   on shutdown, or are co-ordinating more than one executable, you may need to ensure
+   that the `ENTRYPOINT` script receives the Unix signals, passes them on, and then
+   does some more work:
 
-もしも、シャットダウン時に何らかの追加クリーンアップ（あるいは、他のコンテナとの通信）が必要な場合や、１つ以上の実行ファイルと連携したい場合は、 ``ENTRYPOINT`` のスクリプトが Unix シグナルを受信出来るようにし、それを使って様々な処理を行います。
+シャットダウンの際に追加でクリーンアップするようなコマンドを実行したい（他のコンテナとの通信を行ないたい）場合、あるいは複数の実行モジュールを連動して動かしている場合は、``ENTRYPOINT`` のスクリプトが確実に Unix シグナルを受信し、これを受けて動作するようにすることが必要になるかもしれません。
 
 .. code-block:: bash
 
    #!/bin/sh
-   # メモ：これは sh を使っていますので、busyboy コンテナでも動きます
+   # メモ: ここで sh を用いました。したがって busybox コンテナーでも動作します。
    
-   # サービス停止時に手動でもクリーンアップが必要な場合は trap を使います。
-   # あるいは１つのコンテナ内に複数のサービスを起動する必要があります。
+   # ここで trap を用います。サービスが停止した後に手動でクリーンアップする
+   # コマンドを実行するにはこれも必要となります。
+   # こうしておかないと、1 つのコンテナーで複数サービスを起動しなければなりません。
    trap "echo TRAPed signal" HUP INT QUIT TERM
    
    # ここからバックグラウンドでサービスを開始します
@@ -1985,15 +2017,18 @@ exec 形式の ENTRYPOINT 例
    echo "[hit enter key to exit] or run 'docker stop <container>'"
    read
    
-   # ここからサービスを停止し、クリーンアップします
+   # ここでサービスを停止しクリーンアップします。
    echo "stopping apache"
    /usr/sbin/apachectl stop
    
    echo "exited $0"
 
-.. If you run this image with docker run -it --rm -p 80:80 --name test apache, you can then examine the container’s processes with docker exec, or docker top, and then ask the script to stop Apache:
+.. If you run this image with `docker run -it --rm -p 80:80 --name test apache`,
+   you can then examine the container's processes with `docker exec`, or `docker top`,
+   and then ask the script to stop Apache:
 
-このイメージを ``docker run -it --rm -p 80:80 --name test apache`` で実行したら、コンテナのプロセス状態を ``docker exec`` や ``docker top`` で調べられます。それから、スクリプトに Apache 停止を依頼します。
+このイメージを ``docker run -it --rm -p 80:80 --name test apache`` により実行したら、このコンテナのプロセスは ``docker exec`` や ``docker top`` を使って確認することができます。
+そしてこのスクリプトから Apache を停止させます。
 
 .. code-block:: bash
 
@@ -2016,41 +2051,67 @@ exec 形式の ENTRYPOINT 例
    user	0m 0.03s
    sys	0m 0.03s
 
-..    Note: you can over ride the ENTRYPOINT setting using --entrypoint, but this can only set the binary to exec (no sh -c will be used).
+.. > **Note:** you can override the `ENTRYPOINT` setting using `--entrypoint`,
+   > but this can only set the binary to *exec* (no `sh -c` will be used).
 
 .. note::
 
-   ``ENTRYPIONT`` 設定は ``--entrypoint``  を使って上書きできますが、設定できるのはバイナリが実行可能な場合のみです（ ``sh -c`` が使われていない時のみ ）。
+   ``--entrypoint`` を使うと ``ENTRYPOINT`` の設定を上書きすることができます。
+   ただしこの場合は、実行モジュールを exec 形式にできるだけです。
+   （``sh -c`` は利用されません。）
 
-..    Note: The exec form is parsed as a JSON array, which means that you must use double-quotes (“) around words not single-quotes (‘).
-
-.. note::
-
-   *exec* 形式は JSON 配列でパースされます。つまり、語句はシングルクォート(')ではなく、ダブルクォート(")で囲む必要があります。
-
-..    Note: Unlike the shell form, the exec form does not invoke a command shell. This means that normal shell processing does not happen. For example, ENTRYPOINT [ "echo", "$HOME" ] will not do variable substitution on $HOME. If you want shell processing then either use the shell form or execute a shell directly, for example: ENTRYPOINT [ "sh", "-c", "echo $HOME" ]. Variables that are defined in the Dockerfileusing ENV, will be substituted by the Dockerfile parser.
+.. > **Note**:
+   > The *exec* form is parsed as a JSON array, which means that
+   > you must use double-quotes (") around words not single-quotes (').
 
 .. note::
 
-   *シェル* 形式とは異なり、 *exec* 形式はシェルを呼び出しません。つまり、通常のシェル上の処理はされません。例えば、 ``ENTRYPOINT ["echo", "$HOME"]`` は ``$HOME`` を変数展開しません。シェル上の処理が必要であれば、 *シェル* 形式を使うか、シェルを直接実行します。例： ``ENTRYPOINT [ "sh", "-c", "echo $HOME" ]``。変数は ``Dockerfile`` で ``ENV`` を使って定義することができ、 ``Dockerfile`` パーサー上で展開されます。
+   exec 形式は JSON 配列として解釈されます。
+   したがって文字列をくくるのはダブルクォート（"）であり、シングルクォート（'）は用いてはなりません。
+
+.. > **Note**:
+   > Unlike the *shell* form, the *exec* form does not invoke a command shell.
+   > This means that normal shell processing does not happen. For example,
+   > `ENTRYPOINT [ "echo", "$HOME" ]` will not do variable substitution on `$HOME`.
+   > If you want shell processing then either use the *shell* form or execute
+   > a shell directly, for example: `ENTRYPOINT [ "sh", "-c", "echo $HOME" ]`.
+   > When using the exec form and executing a shell directly, as in the case for
+   > the shell form, it is the shell that is doing the environment variable
+   > expansion, not docker.
+
+.. note::
+
+   シェル形式とは違って exec 形式はコマンドシェルを起動しません。
+   これはつまり、ごく普通のシェル処理とはならないということです。
+   たとえば ``ENTRYPOINT [ "echo", "$HOME" ]`` を実行したとすると、`$HOME` の変数置換は行われません。
+   シェル処理が行われるようにしたければ、シェル形式を利用するか、あるいはシェルを直接実行するようにします。
+   たとえば ``ENTRYPOINT [ "sh", "-c", "echo $HOME" ]`` とします。
+   exec 形式によってシェルを直接起動した場合、シェル形式の場合でも同じですが、変数置換を行うのはシェルであって、docker ではありません。
 
 .. Shell form ENTRYPOINT example
 
 シェル形式の ENTRYPOINT 例
 ------------------------------
 
-.. You can specify a plain string for the ENTRYPOINT and it will execute in /bin/sh -c. This form will use shell processing to substitute shell environment variables, and will ignore any CMD or docker run command line arguments. To ensure that docker stop will signal any long running ENTRYPOINT executable correctly, you need to remember to start it with exec:
+.. You can specify a plain string for the `ENTRYPOINT` and it will execute in `/bin/sh -c`.
+   This form will use shell processing to substitute shell environment variables,
+   and will ignore any `CMD` or `docker run` command line arguments.
+   To ensure that `docker stop` will signal any long running `ENTRYPOINT` executable
+   correctly, you need to remember to start it with `exec`:
 
-``ENTRYPOINT`` に文字列を指定したら、 ``/bin/sh -c`` で実行されます。この形式はシェルの処理を使いますので、シェル上の環境変数を展開し、 ``CMD`` や ``docker run`` コマンド行の引数を無視します。 ``docker stop`` で ``ENTRYPOINT`` で指定している実行ファイルにシグナルを送りたい場合は、 ``exec`` を使う必要があるのを思い出してください。
+``ENTRYPOINT`` に指定した文字列は、そのまま ``/bin/sh -c`` の中で実行されます。
+この形式は、シェル環境変数を置換しながらシェル処理を実行します。
+そして ``CMD`` や ``docker run`` におけるコマンドライン引数は無視します。
+``ENTRYPOINT`` による実行モジュールがどれだけ実行し続けていても、確実に ``docker stop`` によりシグナル送信ができるようにするためには、忘れずに ``exec`` をつけて実行する必要があります。
 
 .. code-block:: dockerfile
 
    FROM ubuntu
    ENTRYPOINT exec top -b
 
-.. When you run this image, you’ll see the single PID 1 process:
+.. When you run this image, you'll see the single `PID 1` process:
 
-このイメージを実行したら、単一の ``PID 1`` プロセスが表示されます。
+上のイメージを実行すると、``PID 1`` のプロセスがただ 1 つだけあるのがわかります。
 
 .. code-block:: bash
 
@@ -2061,21 +2122,27 @@ exec 形式の ENTRYPOINT 例
      PID  PPID USER     STAT   VSZ %VSZ %CPU COMMAND
        1     0 root     R     3164   0%   0% top -b
 
-.. Which will exit cleanly on docker stop:
+.. Which will exit cleanly on `docker stop`:
 
-終了するには、 ``docker stop`` を実行します。
+きれいに終了させるには ``docker stop`` を実行します。
+
+   ..  $ /usr/bin/time docker stop test
+       test
+       real	0m 0.20s
+       user	0m 0.02s
+       sys	0m 0.04s
 
 .. code-block:: bash
 
    $ /usr/bin/time docker stop test
    test
-   real    0m 0.20s
-   user    0m 0.02s
-   sys 0m 0.04s
+   real	0m 0.20s
+   user	0m 0.02s
+   sys	0m 0.04s
 
-.. If you forget to add exec to the beginning of your ENTRYPOINT:
+.. If you forget to add `exec` to the beginning of your `ENTRYPOINT`:
 
-``ENTRYPOINT`` に ``exec`` を追加し忘れたとします。
+仮に ``ENTRYPOINT`` の先頭に ``exec`` を記述し忘れたとします。
 
 .. code-block:: dockerfile
 
@@ -2085,7 +2152,8 @@ exec 形式の ENTRYPOINT 例
 
 .. You can then run it (giving it a name for the next step):
 
-次のように実行します（次のステップで名前を使います）。
+そして以下のように実行したとします。
+（名前をつけておいて次のステップで使います。）
 
 .. code-block:: bash
 
@@ -2097,13 +2165,26 @@ exec 形式の ENTRYPOINT 例
        1     0 root     S     3168   0%   0% /bin/sh -c top -b cmd cmd2
        7     1 root     R     3164   0%   0% top -b
 
-.. You can see from the output of top that the specified ENTRYPOINT is not PID 1.
+.. You can see from the output of `top` that the specified `ENTRYPOINT` is not `PID 1`.
 
-``top`` の出力から、 ``ENTRYPOINT`` が ``PID 1`` ではないことが分かるでしょう。
+``ENTRYPOINT`` によって指定された ``top`` の出力は ``PID 1`` ではないことがわかります。
 
-.. If you then run docker stop test, the container will not exit cleanly - the stop command will be forced to send a SIGKILL after the timeout:
+.. If you then run `docker stop test`, the container will not exit cleanly - the
+   `stop` command will be forced to send a `SIGKILL` after the timeout:
 
-それから ``docker stop test`` を実行しても、コンテナはすぐに終了しません。これは ``stop`` コマンドがタイムアウト後、``SIGKILL`` を強制送信したからです。
+この後に ``docker stop test`` を実行しても、コンテナはきれいに終了しません。
+``stop`` コマンドは、タイムアウトの後に強制的に ``SIGKILL`` を送信することになるからです。
+
+   ..  $ docker exec -it test ps aux
+       PID   USER     COMMAND
+           1 root     /bin/sh -c top -b cmd cmd2
+           7 root     top -b
+           8 root     ps aux
+       $ /usr/bin/time docker stop test
+       test
+       real	0m 10.19s
+       user	0m 0.04s
+       sys	0m 0.03s
 
 .. code-block:: bash
 
@@ -2114,40 +2195,43 @@ exec 形式の ENTRYPOINT 例
        8 root     ps aux
    $ /usr/bin/time docker stop test
    test
-   real    0m 10.19s
-   user    0m 0.04s
-   sys 0m 0.03s
+   real	0m 10.19s
+   user	0m 0.04s
+   sys	0m 0.03s
 
-.. Understand how CMD and ENTRYPOINT interact
+.. ### Understand how CMD and ENTRYPOINT interact
 
 .. _understand-how-cmd-and-entrypoint-interact:
 
-CMD と ENTRYPOINT がどのように作用するか学ぶ
+CMD と ENTRYPOINT の関連について
 ==================================================
 
-.. Both CMD and ENTRYPOINT instructions define what command gets executed when running a container. There are few rules that describe their co-operation.
+.. Both `CMD` and `ENTRYPOINT` instructions define what command gets executed when running a container.
+   There are few rules that describe their co-operation.
 
-``CMD`` と ``ENTRYPOINT`` 命令はコンテナ起動時に実行するコマンドを定義します。両方を記述する時、動作には複数のルールがあります。
+``CMD`` 命令も ``ENTRYPOINT`` 命令も、ともにコンテナ起動時に実行するコマンドを定義するものです。
+両方が動作する際に必要となるルールがいくらかあります。
 
-..    Dockerfile should specify at least one of CMD or ENTRYPOINT commands.
+.. 1. Dockerfile should specify at least one of `CMD` or `ENTRYPOINT` commands.
 
-1. Dockerfile には少なくとも１つの ``CMD`` または ``ENTRYPOINT`` 命令を含むべきです。
+1. Dockerfile には、``CMD`` または ``ENTRYPOINT`` のいずれかが、少なくとも 1 つ必要です。
 
-..    ENTRYPOINT should be defined when using the container as an executable.
+.. 2. `ENTRYPOINT` should be defined when using the container as an executable.
 
-2. ``ENTRYPOINT`` は実行可能なコンテナとして定義する時に使うべきです。
+2. ``ENTRYPOINT`` は、コンテナを実行モジュールとして実行する際に利用します。
 
-..    CMD should be used as a way of defining default arguments for an ENTRYPOINT command or for executing an ad-hoc command in a container.
+.. 3. `CMD` should be used as a way of defining default arguments for an `ENTRYPOINT` command
+   or for executing an ad-hoc command in a container.
 
-3. コンテナをアドホック（その場その場）で実行するコマンドを ``ENTRYPOINT`` にする場合、そのデフォルトの引数の指定として ``CMD`` を指定すべきです。
+3. ``CMD`` は、``ENTRYPOINT`` のデフォルト引数を定義するため、あるいはその時点でのみコマンド実行を行うために利用します。
 
-..    CMD will be overridden when running the container with alternative arguments.
+.. 4. `CMD` will be overridden when running the container with alternative arguments.
 
-4. ``CMD`` はコンテナ実行時に引数を指定すると上書します。
+4. ``CMD`` はコンテナ実行時に、別の引数によって上書きされることがあります。
 
-.. The table below shows what command is executed for different ENTRYPOINT / CMD combinations:
+.. The table below shows what command is executed for different `ENTRYPOINT` / `CMD` combinations:
 
-以下の表は ``ENTRYPOINT`` / ``CMD`` を組み合わせたコマンドの実行結果です。
+以下の表は、``ENTRYPOINT`` と ``CMD`` の組み合わせに従って実行されるコマンドを示しています。
 
 .. list-table::
    :header-rows: 1
@@ -2182,13 +2266,28 @@ VOLUME
 
    VOLUME ["/data"]
 
-.. The VOLUME instruction creates a mount point with the specified name and marks it as holding externally mounted volumes from native host or other containers. The value can be a JSON array, VOLUME ["/var/log/"], or a plain string with multiple arguments, such as VOLUME /var/log or VOLUME /var/log /var/db. For more information/examples and mounting instructions via the Docker client, refer to Share Directories via Volumes documentation.
+.. The `VOLUME` instruction creates a mount point with the specified name
+   and marks it as holding externally mounted volumes from native host or other
+   containers. The value can be a JSON array, `VOLUME ["/var/log/"]`, or a plain
+   string with multiple arguments, such as `VOLUME /var/log` or `VOLUME /var/log
+   /var/db`. For more information/examples and mounting instructions via the
+   Docker client, refer to
+   [*Share Directories via Volumes*](https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-host-directory-as-a-data-volume)
+   documentation.
 
-``VOLUME`` 命令は指定した名前でマウントポイントを作成し、他のホストやコンテナから外部マウント可能なボリュームにします。指定する値は ``VOLUME ["/var/log"]`` といったJSON 配列になるべきです。あるいは文字列で ``VOLUME /var/log`` や ``VOLUME /var/log /var/db`` のように、複数の引数を書くこともできます。Docker クライアントを使ったマウント命令や詳しい情報やサンプルは :ref:`ボリュームを経由してディレクトリを共有 <mount-a-host-directory-as-a-data-volume>` をご覧ください。
+``VOLUME`` 命令は指定された名前を使ってマウントポイントを生成します。
+そして自ホストまたは他のコンテナからマウントされたボリュームとして、そのマウントポイントを扱います。
+指定する値は JSON 配列として ``VOLUME ["/var/log/"]`` のようにするか、あるいは単純な文字列を複数与えます。
+たとえば ``VOLUME /var/log`` や ``VOLUME /var/log /var/db`` などです。
+Docker クライアントを通じたマウントに関する情報、利用例などに関しては :ref:`ボリュームを通じたディレクトリの共有 <mount-a-host-directory-as-a-data-volume>` を参照してください。
 
-.. The docker run command initializes the newly created volume with any data that exists at the specified location within the base image. For example, consider the following Dockerfile snippet:
+.. The `docker run` command initializes the newly created volume with any data
+   that exists at the specified location within the base image. For example,
+   consider the following Dockerfile snippet:
 
-``docker run`` コマンドは、ベース・イメージから指定した場所に、データを保存する場所として新規作成したボリュームを初期化します。例えば、次の Dockerfile をご覧ください。
+``docker run`` コマンドは、新たに生成するボリュームを初期化します。
+ベースイメージ内の指定したディレクトリに、データが存在していても構いません。
+たとえば以下のような Dockerfile の記述部分があったとします。
 
 .. code-block:: dockerfile
 
@@ -2197,34 +2296,91 @@ VOLUME
    RUN echo "hello world" > /myvol/greeting
    VOLUME /myvol
 
-.. This Dockerfile results in an image that causes docker run, to create a new mount point at /myvol and copy the greeting file into the newly created volume.
+.. This Dockerfile results in an image that causes `docker run`, to
+   create a new mount point at `/myvol` and copy the  `greeting` file
+   into the newly created volume.
 
-この Dockerfile によって作られたイメージは、 ``docker run`` を実行したら、新しいマウント・ポイント ``/myvol`` を作成し、``greeting`` ファイルを直近で作成したボリュームにコピーします。
+この Dockerfile はイメージに対する処理として、``docker run`` により ``/myvol`` というマウントポイントを新たに生成し、そのボリュームの中に ``greeting`` ファイルをコピーします。
 
-..     Note: If any build steps change the data within the volume after it has been declared, those changes will be discarded.
+.. ### Notes about specifying volumes
 
-.. note::
+.. _notes-about-specifying-volumes:
 
-   構築ステップでボリューム内においてあらゆる変更を加えても、宣言後に内容は破棄されます。
+ボリュームの指定に関して
+-------------------------
 
-..    Note: The list is parsed as a JSON array, which means that you must use double-quotes (“) around words not single-quotes (‘).
+.. Keep the following things in mind about volumes in the `Dockerfile`.
 
-.. note::
+``Dockerfile`` におけるボリューム設定に関しては、以下のことを覚えておいてください。
 
-   リストは JSON 配列でパースされます。これが意味するのは、単語はシングルクォート(')で囲むのではなく、ダブルクォート(")を使う必要があります。
+.. - **Volumes on Windows-based containers**: When using Windows-based containers,
+     the destination of a volume inside the container must be one of:
+
+* **Windows ベースのコンテナでのボリューム**: Windows ベースのコンテナを利用しているときは、コンテナ内部のボリューム先は、以下のいずれかでなければなりません。
+
+  .. - a non-existing or empty directory
+     - a drive other than `C:`
+
+  * 存在していないディレクトリ、または空のディレクトリ
+  * ``C:`` 以下のドライブ
+
+.. - **Changing the volume from within the Dockerfile**: If any build steps change the
+     data within the volume after it has been declared, those changes will be discarded.
+
+* **Dockerfile 内からのボリューム変更**: ボリュームを宣言した後に、そのボリューム内のデータを変更する処理があったとしても、そのような変更は無視され処理されません。
+
+.. - **JSON formatting**: The list is parsed as a JSON array.
+     You must enclose words with double quotes (`"`)rather than single quotes (`'`).
+
+* **JSON 形式**: 引数リストは JSON 配列として扱われます。
+  したがって文字列をくくるのはダブルクォート（``"``）であり、シングルクォート（``'``）は用いてはなりません。
+
+.. - **The host directory is declared at container run-time**: The host directory
+     (the mountpoint) is, by its nature, host-dependent. This is to preserve image
+     portability. since a given host directory can't be guaranteed to be available
+     on all hosts.For this reason, you can't mount a host directory from
+     within the Dockerfile. The `VOLUME` instruction does not support specifying a `host-dir`
+     parameter.  You must specify the mountpoint when you create or run the container.
+
+* **コンテナ実行時に宣言されるホストディレクトリ**: ホストディレクトリ（マウントポイント）は、その性質からして、ホストに依存するものです。
+  これはイメージの可搬性を確保するためなので、設定されたホストディレクトリが、あらゆるホスト上にて利用可能になるかどうかの保証はありません。
+  このため、Dockerfile の内部からホストディレクトリをマウントすることはできません。
+  つまり ``VOLUME`` 命令は ``host-dir`` （ホストのディレクトリを指定する）パラメータをサポートしていません。
+  マウントポイントの指定は、コンテナを生成、実行するときに行う必要があります。
 
 .. _user:
 
 USER
 ==========
 
+..     USER <user>[:<group>]
+   or
+       USER <UID>[:<GID>]
+
 .. code-block:: dockerfile
 
-   USER daemon
+   USER <user>[:<group>]
 
-.. The USER instruction sets the user name or UID to use when running the image and for any RUN, CMD and ENTRYPOINT instructions that follow it in the Dockerfile.
+または
 
-``USER`` 命令セットはユーザ名か UID を使います。これはイメージを ``RUN`` 、 ``CMD`` 、 ``ENTRYPOINT`` 命令で実行時のものであり、 ``Dockerfile`` で指定します。
+.. code-block:: dockerfile
+
+   USER <UID>[:<GID>]
+
+.. The `USER` instruction sets the user name (or UID) and optionally the user
+   group (or GID) to use when running the image and for any `RUN`, `CMD` and
+   `ENTRYPOINT` instructions that follow it in the `Dockerfile`.
+
+``USER`` 命令は、ユーザ名（または UID）と、オプションとしてユーザグループ（または GID）を指定します。
+そしてイメージが実行されるとき、``Dockerfile`` 内の後続の ``RUN``、``CMD``、``ENTRYPOINT`` の各命令においてこの情報を利用します。
+
+.. > **Warning**:
+   > When the user does doesn't have a primary group then the image (or the next
+   > instructions) will be run with the `root` group.
+
+.. warning::
+
+   ユーザにプライマリグループがない場合、イメージ（あるいは次の命令）は ``root`` グループとして実行されます。
 
 .. _workdir:
 
@@ -2235,13 +2391,23 @@ WORKDIR
 
    WORKDIR /path/to/workdir
 
-.. The WORKDIR instruction sets the working directory for any RUN, CMD, ENTRYPOINT, COPY and ADD instructions that follow it in the Dockerfile. If the WORKDIR doesn't exist, it will be created even if it's not used in any subsequent `Dockerfile` instruction.
+.. The `WORKDIR` instruction sets the working directory for any `RUN`, `CMD`,
+   `ENTRYPOINT`, `COPY` and `ADD` instructions that follow it in the `Dockerfile`.
+   If the `WORKDIR` doesn't exist, it will be created even if it's not used in any
+   subsequent `Dockerfile` instruction.
 
-``WORKDIR`` 命令セットは ``Dockerfile`` で ``RUN`` 、 ``CMD`` 、 ``ENTRYPOINT`` 、 ``COPY`` 、 ``ADD`` 命令実行時の作業ディレクトリ（working directory）を指定します。もし ``WORKDIR`` が存在しなければ、 ``Dockerfile`` 命令内で使用しなくてもディレクトリを作成します。
+``WORKDIR`` 命令はワークディレクトリを設定します。
+``Dockerfile`` 内にてその後に続く ``RUN``、``CMD``、``ENTRYPOINT``、``COPY``、``ADD`` の各命令において利用することができます。
+``WORKDIR`` が存在しないときは生成されます。
+これはたとえ、この後にワークディレクトリが利用されていなくても生成されます。
 
-.. It can be used multiple times in the one Dockerfile. If a relative path is provided, it will be relative to the path of the previous WORKDIR instruction. For example:
+.. The `WORKDIR` instruction can be used multiple times in a `Dockerfile`. If a
+   relative path is provided, it will be relative to the path of the previous
+   `WORKDIR` instruction. For example:
 
-１つの ``Dockerfile`` で複数回の利用が可能です。パスを指定したら、 ``WORKDIR`` 命令は直前に指定した相対パスに切り替えます。例：
+``WORKDIR`` 命令は ``Dockerfile`` 内にて複数利用することができます。
+ディレクトリ指定に相対パスが用いられた場合、そのパスは、直前の ``WORKDIR`` 命令からの相対パスとなります。
+たとえば以下のとおりです。
 
 .. code-block:: dockerfile
 
@@ -2250,13 +2416,18 @@ WORKDIR
    WORKDIR c
    RUN pwd
 
-.. The output of the final pwd command in this Dockerfile would be /a/b/c.
+.. The output of the final `pwd` command in this `Dockerfile` would be
+   `/a/b/c`.
 
-この ``Dockerfile`` を使えば、最後の ``pwd`` コマンドの出力は ``/a/b/c`` になります。
+上の ``Dockerfile`` の最後の ``pwd`` コマンドは ``/a/b/c`` という出力結果を返します。
 
-.. The WORKDIR instruction can resolve environment variables previously set using ENV. You can only use environment variables explicitly set in the Dockerfile. For example:
+.. The `WORKDIR` instruction can resolve environment variables previously set using
+   `ENV`. You can only use environment variables explicitly set in the `Dockerfile`.
+   For example:
 
-``WORKDIR`` 命令は ``ENV`` 命令を使った環境変数も展開できます。環境変数を使うには ``Dockerfile`` で明確に定義する必要があります。例：
+``WORKDIR`` 命令では、その前に ``ENV`` によって設定された環境変数を解釈します。
+環境変数は ``Dockerfile`` の中で明示的に設定したものだけが利用可能です。
+たとえば以下のようになります。
 
 .. code-block:: dockerfile
 
@@ -2264,30 +2435,40 @@ WORKDIR
    WORKDIR $DIRPATH/$DIRNAME
    RUN pwd
 
-..    The output of the final pwd command in this Dockerfile would be /path/$DIRNAME
+.. The output of the final `pwd` command in this `Dockerfile` would be
+   `/path/$DIRNAME`
 
-この ``Dockerfile`` を使えば、最後の ``pwd`` コマンドの出力は ``/path/$DIRNAME`` になります。
+上の ``Dockerfile`` の最後の ``pwd`` コマンドは  ``/path/$DIRNAME`` という出力結果を返します。
 
 .. _arg:
 
 ARG
 ==========
 
+   ..  ARG <name>[=<default value>]
+
 .. code-block:: dockerfile
 
-   ARG <名前>[=<デフォルト値>]
+   ARG <name>[=<default value>]
 
-.. The ARG instruction defines a variable that users can pass at build-time to the builder with the docker build command using the --build-arg <varname>=<value> flag. If a user specifies a build argument that was not defined in the Dockerfile, the build outputs an error.
+.. The `ARG` instruction defines a variable that users can pass at build-time to
+   the builder with the `docker build` command using the `--build-arg <varname>=<value>`
+   flag. If a user specifies a build argument that was not
+   defined in the Dockerfile, the build outputs a warning.
 
-``ARG`` 命令は、構築時に作業者が ``docker build`` コマンドで使う変数、 ``--build-arg <変数名>=<値>`` フラグを定義するものです。ユーザが構築時に引数を指定しても Dockerfile で定義されていなければ、構築時に次のようなエラーが出ます。
+``ARG`` 命令は変数を定義して、ビルド時にその値を受け渡します。
+これは ``docker build`` コマンドにおいて ``--build-arg <varname>=<value>`` フラグを利用して行います。
+指定したビルド引数（build argument）が Dockerfile 内において定義されていない場合は、ビルド処理時に警告メッセージが出力されます。
 
 .. code-block:: bash
 
    One or more build-args were not consumed, failing build.
 
-.. The Dockerfile author can define a single variable by specifying ARG once or many variables by specifying ARG more than once. For example, a valid Dockerfile:
+.. A Dockerfile may include one or more `ARG` instructions. For example,
+   the following is a valid Dockerfile:
 
-Dockerfile の作者は ``ARG`` 変数を１度だけ定義するだけでなく、複数の ``ARG`` を指定可能です。有効な Dockerfile の例：
+Dockerfile には複数の ``ARG`` 命令を含めることもできます。
+たとえば以下の Dockerfile は有効な例です。
 
 .. code-block:: dockerfile
 
@@ -2296,9 +2477,25 @@ Dockerfile の作者は ``ARG`` 変数を１度だけ定義するだけでなく
    ARG buildno
    ...
 
-.. A Dockerfile author may optionally specify a default value for an ARG instruction:
+.. > **Warning:** It is not recommended to use build-time variables for
+   >  passing secrets like github keys, user credentials etc. Build-time variable
+   >  values are visible to any user of the image with the `docker history` command.
 
-Dockerfile の作者は、オプションで ``ARG`` 命令のデフォルト値を指定できます。
+.. warning::
+
+   ビルド時の変数として、github キーや認証情報などの秘密の情報を設定することは、お勧めできません。
+   ビルド変数の値は、イメージを利用する他人が ``docker history`` コマンドを実行すれば容易に見ることができてしまうからです。
+
+.. ### Default values
+
+.. _default_values:
+
+デフォルト値
+-------------
+
+.. An `ARG` instruction can optionally include a default value:
+
+``ARG`` 命令にはオプションとしてデフォルト値を設定することができます。
 
 .. code-block:: dockerfile
 
@@ -2307,15 +2504,36 @@ Dockerfile の作者は、オプションで ``ARG`` 命令のデフォルト値
    ARG buildno=1
    ...
 
-.. If an ARG value has a default and if there is no value passed at build-time, the builder uses the default.
+.. If an `ARG` instruction has a default value and if there is no value passed
+   at build-time, the builder uses the default.
 
-``ARG`` がデフォルト値を持っている場合、構築時に値の指定が無ければ、このデフォルト値を使います。
+``ARG`` 命令にデフォルト値が設定されていて、ビルド時に値設定が行われなければ、デフォルト値が用いられます。
 
-.. An ARG variable definition comes into effect from the line on which it is defined in the Dockerfile not from the argument’s use on the command-line or elsewhere. For example, consider this Dockerfile:
+.. ### Scope
 
-``ARG`` 変数は ``Dockerfile`` で記述した行以降で効果があります。ただし、コマンドライン上で引数の指定が無い場合です。次の Dockerfile の例を見てみましょう。
+.. _scope:
+
+変数スコープ
+-------------
+
+.. An `ARG` variable definition comes into effect from the line on which it is
+   defined in the `Dockerfile` not from the argument's use on the command-line or
+   elsewhere.  For example, consider this Dockerfile:
+
+``ARG`` による値定義が有効になるのは、``Dockerfile`` 内の記述行以降です。
+コマンドラインなどにおいて用いられるときではありません。
+たとえば以下のような Dockerfile を見てみます。
+
+.. ```
+   1 FROM busybox
+   2 USER ${user:-some_user}
+   3 ARG user
+   4 USER $user
+   ...
+   ```
 
 .. code-block:: dockerfile
+   :linenos:
 
    FROM busybox
    USER ${user:-some_user}
@@ -2325,27 +2543,73 @@ Dockerfile の作者は、オプションで ``ARG`` 命令のデフォルト値
 
 .. A user builds this file by calling:
 
-   ユーザは構築時に次のように呼び出します。
+このファイルをビルドするには以下を実行します。
 
 .. code-block:: bash
 
    $ docker build --build-arg user=what_user Dockerfile
 
-.. The USER at line 2 evaluates to some_user as the user variable is defined on the subsequent line 3. The USER at line 4 evaluates to what_user as user is defined and the what_user value was passed on the command line. Prior to its definition by an ARG instruction, any use of a variable results in an empty string.
+.. The `USER` at line 2 evaluates to `some_user` as the `user` variable is defined on the
+   subsequent line 3. The `USER` at line 4 evaluates to `what_user` as `user` is
+   defined and the `what_user` value was passed on the command line. Prior to its definition by an
+   `ARG` instruction, any use of a variable results in an empty string.
 
-２行めの ``USER`` は ``some_user`` を、３行めサブシーケントで定義された ``user`` 変数として評価します。４行めでは ``what_user`` を ``USER`` で定義したものと評価し、 ``what_user`` 値はコマンドラインで指定したものになります。 ``ARG`` 命令で定義するまで、あらゆる変数は空の文字列です。
+2 行めの ``USER`` が ``some-user`` として評価されます。
+これは ``user`` 変数が、直後の 3 行めにおいて定義されているからです。
+そして 4 行めの ``USER`` は ``what_user`` として評価されます。
+``user`` が定義済であって、コマンドラインから ``what_user`` という値が受け渡されたからです。
+``ARG`` 命令による定義を行うまで、その変数を利用しても空の文字列として扱われます。
 
-..    Note: It is not recommended to use build-time variables for passing secrets like github keys, user credentials etc.
+.. An `ARG` instruction goes out of scope at the end of the build
+   stage where it was defined. To use an arg in multiple stages, each stage must
+   include the `ARG` instruction.
 
-.. note::
+``ARG`` 命令の変数スコープは、それが定義されたビルドステージが終了するときまでです。
+複数のビルドステージにおいて ``ARG`` を利用する場合は、個々に ``ARG`` 命令を指定する必要があります。
 
-   構築時の変数として、GitHub の鍵やユーザの証明書などの秘密情報を含むのは、推奨される使い方ではありません。
-
-.. You can use an ARG or an ENV instruction to specify variables that are available to the RUN instruction. Environment variables defined using the ENV instruction always override an ARG instruction of the same name. Consider this Dockerfile with an ENV and ARG instruction.
-
-``ARG`` や ``ENV`` 命令を ``RUN`` 命令のための環境変数にも利用できます。 ``ENV`` 命令を使った環境変数の定義は、常に同じ名前の ``ARG`` 命令を上書きします。Dockerfile における ``ENV`` と ``ARG`` 命令を考えましょう。
+.. ```
+   FROM busybox
+   ARG SETTINGS
+   RUN ./run/setup $SETTINGS
+   
+   FROM busybox
+   ARG SETTINGS
+   RUN ./run/other $SETTINGS
+   ```
 
 .. code-block:: dockerfile
+
+   FROM busybox
+   ARG SETTINGS
+   RUN ./run/setup $SETTINGS
+
+   FROM busybox
+   ARG SETTINGS
+   RUN ./run/other $SETTINGS
+
+.. ### Using ARG variables
+
+.. _using-arg-variables:
+
+ARG 変数の利用
+---------------
+
+.. You can use an `ARG` or an `ENV` instruction to specify variables that are
+   available to the `RUN` instruction. Environment variables defined using the
+   `ENV` instruction always override an `ARG` instruction of the same name. Consider
+   this Dockerfile with an `ENV` and `ARG` instruction.
+
+``ARG`` 命令や ``ENV`` 命令において変数を指定し、それを ``RUN`` 命令にて用いることができます。
+``ENV`` 命令を使って定義された環境変数は、``ARG`` 命令において同名の変数が指定されていたとしても優先されます。
+以下のように ``ENV`` 命令と ``ARG`` 命令を含む Dockerfile があるとします。
+
+.. 1 FROM ubuntu
+   2 ARG CONT_IMG_VER
+   3 ENV CONT_IMG_VER v1.0.0
+   4 RUN echo $CONT_IMG_VER
+
+.. code-block:: dockerfile
+   :linenos:
 
    FROM ubuntu
    ARG CONT_IMG_VER
@@ -2354,46 +2618,80 @@ Dockerfile の作者は、オプションで ``ARG`` 命令のデフォルト値
 
 .. Then, assume this image is built with this command:
 
-それから、イメージを次のように起動します。
+そしてこのイメージを以下のコマンドによりビルドしたとします。
 
 .. code-block:: bash
 
    $ docker build --build-arg CONT_IMG_VER=v2.0.1 Dockerfile
 
-.. In this case, the RUN instruction uses v1.0.0 instead of the ARG setting passed by the user:v2.0.1 This behavior is similar to a shell script where a locally scoped variable overrides the variables passed as arguments or inherited from environment, from its point of definition.
+.. In this case, the `RUN` instruction uses `v1.0.0` instead of the `ARG` setting
+   passed by the user:`v2.0.1` This behavior is similar to a shell
+   script where a locally scoped variable overrides the variables passed as
+   arguments or inherited from environment, from its point of definition.
 
-この例では、 ``RUN`` 命令は ``v1.0.0`` の代わりに、 ``ARG`` でユーザから渡された ``v2.0.1`` を使います。この動作はシェルスクリプトの挙動に似ています。ローカルのスコープにある環境変数が、与えられた引数や上位の環境変数によって上書きするようなものです。
+この例において ``RUN`` 命令は ``v1.0.0`` という値を採用します。
+コマンドラインから ``v2.0.1`` が受け渡され ``ARG`` の値に設定されますが、それが用いられるわけではありません。
+これはちょうどシェルスクリプトにおいて行われる動きに似ています。
+ローカルなスコープを持つ変数は、指定された引数や環境から受け継いだ変数よりも優先されます。
 
-.. Using the example above but a different ENV specification you can create more useful interactions between ARG and ENV instructions:
+.. Using the example above but a different `ENV` specification you can create more
+   useful interactions between `ARG` and `ENV` instructions:
 
-上記の ``ENV`` 指定の他にも、更に ``ARG`` と ``ENV`` を使いやすくする指定も可能です。
+上の例を利用しつつ ``ENV`` のもう 1 つ別の仕様を用いると、さらに ``ARG`` と ``ENV`` の組み合わせによる以下のような利用もできます。
+
+.. 1 FROM ubuntu
+   2 ARG CONT_IMG_VER
+   3 ENV CONT_IMG_VER ${CONT_IMG_VER:-v1.0.0}
+   4 RUN echo $CONT_IMG_VER
 
 .. code-block:: dockerfile
+   :linenos:
 
    FROM ubuntu
    ARG CONT_IMG_VER
    ENV CONT_IMG_VER ${CONT_IMG_VER:-v1.0.0}
    RUN echo $CONT_IMG_VER
 
-.. Unlike an ARG instruction, ENV values are always persisted in the built image. Consider a docker build without the --build-arg flag:
+.. Unlike an `ARG` instruction, `ENV` values are always persisted in the built
+   image. Consider a docker build without the `--build-arg` flag:
 
-``ARG`` 命令とは異なり、構築時の ``ENV`` 値は常に一定です。docker build で --build-arg フラグを使わない場合を考えてみましょう。
+``ARG`` 命令とは違って ``ENV`` による値はビルドイメージ内に常に保持されます。
+以下のような ``--build-arg`` フラグのない ``docker build`` を見てみます。
+
+.. ```
+   $ docker build .
+   ```
 
 .. code-block:: bash
 
-   $ docker build Dockerfile
+   $ docker build .
 
-.. Using this Dockerfile example, CONT_IMG_VER is still persisted in the image but its value would be v1.0.0 as it is the default set in line 3 by the ENV instruction.
+.. Using this Dockerfile example, `CONT_IMG_VER` is still persisted in the image but
+   its value would be `v1.0.0` as it is the default set in line 3 by the `ENV` instruction.
 
-この Dockerfile の例では、 ``CONT_IMG_VER`` はイメージの中では変わりませんが、３行めの ``ENV`` 命令でデフォルト値を設定することにより、値は ``v1.0.0`` となります。
+上の Dockerfile の例を用いると、``CONT_IMG_VER`` の値はイメージ内に保持されますが、その値は ``v1.0.0`` になります。
+これは 3 行めの ``ENV`` 命令で設定されているデフォルト値です。
 
-.. The variable expansion technique in this example allows you to pass arguments from the command line and persist them in the final image by leveraging the ENV instruction. Variable expansion is only supported for a limited set of Dockerfile instructions.
+.. The variable expansion technique in this example allows you to pass arguments
+   from the command line and persist them in the final image by leveraging the
+   `ENV` instruction. Variable expansion is only supported for [a limited set of
+   Dockerfile instructions.](#environment-replacement)
 
-この例における変数展開のテクニックは、コマンドラインから引数を渡せるようにし、 ``ENV`` 命令を使うことで最終的に一貫したイメージを作成します。サポートされている変数展開は :ref:`Dockerfile 命令の一部 <environment-replacement>` のみです。
+この例で見たように変数展開の手法では、コマンドラインから引数を受け渡すことが可能であり、``ENV`` 命令を用いればその値を最終イメージに残すことができます。
+変数展開は、:ref:`特定の Dockerfile 命令 <environment-replacement>` においてのみサポートされます。
 
-.. Docker has a set of predefined ARG variables that you can use without a corresponding ARG instruction in the Dockerfile.
+.. ### Predefined ARGs
 
-Docker は Dockerfile に対応する ``ARG`` 命令が無くても、既定の ``ARG`` 変数セットを持っています。
+.. _predefined-args:
+
+定義済 ARG 変数
+----------------
+
+.. Docker has a set of predefined `ARG` variables that you can use without a
+   corresponding `ARG` instruction in the Dockerfile.
+
+Docker にはあらかじめ定義された ``ARG`` 変数があります。
+これは Dockerfile において ``ARG`` 命令を指定しなくても利用することができます。
 
 * ``HTTP_PROXY``
 * ``http_proxy``
@@ -2404,20 +2702,93 @@ Docker は Dockerfile に対応する ``ARG`` 命令が無くても、既定の 
 * ``NO_PROXY``
 * ``no_proxy``
 
-.. To use these, simply pass them on the command line using the --build-arg <varname>=<value> flag.
+.. To use these, simply pass them on the command line using the flag:
 
-これらを使うには、コマンドラインで ``--build-arg <変数名>=<値>`` フラグを単に渡すだけです。
+これを利用する場合は、コマンドラインから以下のフラグを与えるだけです。
 
-.. Impact on build caching
+.. ```
+   --build-arg <varname>=<value>
+   ```
+
+.. code-block:: bash
+
+   --build-arg <varname>=<value>
+
+.. By default, these pre-defined variables are excluded from the output of
+   `docker history`. Excluding them reduces the risk of accidentally leaking
+   sensitive authentication information in an `HTTP_PROXY` variable.
+
+デフォルトにおいて、これらの定義済変数は ``docker history`` による出力からは除外されます。
+除外する理由は、``HTTP_PROXY`` などの各変数内にある重要な認証情報が漏洩するリスクを軽減するためです。
+
+.. For example, consider building the following Dockerfile using
+   `--build-arg HTTP_PROXY=http://user:pass@proxy.lon.example.com`
+
+たとえば ``--build-arg HTTP_PROXY=http://user:pass@proxy.lon.example.com`` という引数を用いて、以下の Dockerfile をビルドするとします。
+
+.. ``` Dockerfile
+   FROM ubuntu
+   RUN echo "Hello World"
+   ```
+
+.. code-block:: dockerfile
+
+   FROM ubuntu
+   RUN echo "Hello World"
+
+.. In this case, the value of the `HTTP_PROXY` variable is not available in the
+   `docker history` and is not cached. If you were to change location, and your
+   proxy server changed to `http://user:pass@proxy.sfo.example.com`, a subsequent
+   build does not result in a cache miss.
+
+この場合、``HTTP_PROXY`` 変数の値は ``docker history`` から取得することはできず、キャッシュにも含まれていません。
+したがって URL が変更され、プロキシサーバーも ``http://user:pass@proxy.sfo.example.com`` に変更したとしても、この後に続くビルド処理において、キャッシュ・ミスは発生しません。
+
+.. If you need to override this behaviour then you may do so by adding an `ARG`
+   statement in the Dockerfile as follows:
+
+この動作を取り消す必要がある場合は、以下のように Dockerfile 内に ``ARG`` 命令を加えれば実現できます。
+
+.. ``` Dockerfile
+   FROM ubuntu
+   ARG HTTP_PROXY
+   RUN echo "Hello World"
+   ```
+
+.. code-block:: dockerfile
+
+   FROM ubuntu
+   ARG HTTP_PROXY
+   RUN echo "Hello World"
+
+.. When building this Dockerfile, the `HTTP_PROXY` is preserved in the
+   `docker history`, and changing its value invalidates the build cache.
+
+この Dockerfile がビルドされるとき、``HTTP_PROXY`` は ``docker history`` に保存されます。
+そしてその値を変更すると、ビルドキャッシュは無効化されます。
+
+.. ### Impact on build caching
 
 .. _impact-on-build-caching:
 
-構築キャッシュの影響
---------------------
+ビルドキャッシュへの影響
+-------------------------
 
-.. ARG variables are not persisted into the built image as ENV variables are. However, ARG variables do impact the build cache in similar ways. If a Dockerfile defines an ARG variable whose value is different from a previous build, then a "cache miss" occurs upon its first usage, not its definition. In particular, all `RUN` instructions following an `ARG` instruction use the `ARG` variable implicitly (as an environment variable), thus can cause a cache miss.
+.. `ARG` variables are not persisted into the built image as `ENV` variables are.
+   However, `ARG` variables do impact the build cache in similar ways. If a
+   Dockerfile defines an `ARG` variable whose value is different from a previous
+   build, then a "cache miss" occurs upon its first usage, not its definition. In
+   particular, all `RUN` instructions following an `ARG` instruction use the `ARG`
+   variable implicitly (as an environment variable), thus can cause a cache miss.
+   All predefined `ARG` variables are exempt from caching unless there is a
+   matching `ARG` statement in the `Dockerfile`.
 
-``ARG`` 変数は、イメージ構築時の ``ENV`` 変数のように残り続けません。しかし、 ``ARG`` 変数は構築キャッシュで似たような方法として扱えます。もし Dockerfile で ``ARG`` 変数を定義したら、この値が以前の値と違う時は、以降で ``ARG`` 変数が出た時「キャッシュ・ミス」を発生します。これは、値を定義していなくても発生します。特に、すべての ``RUN`` 命令は ``ARG`` 変数を（環境変数から）暗黙的に使おうとするため、結果としてキャッシュ・ミスを引き起こします。
+``ARG`` 変数は ``ENV`` 変数とは違って、ビルドイメージの中に保持されません。
+しかし ``ARG`` 変数はビルドキャッシュへ同じような影響を及ぼします。
+Dockerfile に ``ARG`` 変数が定義されていて、その値が前回のビルドとは異なった値が設定されたとします。
+このとき「キャッシュ・ミス」（cache miss）が発生しますが、それは初めて利用されたときであり、定義された段階ではありません。
+特に ``ARG`` 命令に続く ``RUN`` 命令は、``ARG`` 変数の値を（環境変数として）暗に利用しますが、そこでキャッシュ・ミスが起こります。
+定義済の ``ARG`` 変数は、``Dockerfile`` 内に ``ARG`` 行がない限りは、キャッシュは行われません。
 
 .. For example, consider these two Dockerfile:
 
@@ -2437,13 +2808,18 @@ Docker は Dockerfile に対応する ``ARG`` 命令が無くても、既定の 
    ARG CONT_IMG_VER
    RUN echo hello
 
-.. If you specify --build-arg CONT_IMG_VER=<value> on the command line, in both cases, the specification on line 2 does not cause a cache miss; line 3 does cause a cache miss.ARG CONT_IMG_VER causes the RUN line to be identified as the same as running CONT_IMG_VER=<value> echo hello, so if the <value> changes, we get a cache miss.
+.. If you specify `--build-arg CONT_IMG_VER=<value>` on the command line, in both
+   cases, the specification on line 2 does not cause a cache miss; line 3 does
+   cause a cache miss.`ARG CONT_IMG_VER` causes the RUN line to be identified
+   as the same as running `CONT_IMG_VER=<value>` echo hello, so if the `<value>`
+   changes, we get a cache miss.
 
-``--build-arg CONT_IMG_VER=<値>`` をコマンドライン上で指定すると、どちらの場合も２行目はキャッシュ・ミスを引き起こします。さらに３行目もキャッシュ・ミスになります。 ``ARG CONT_IMG_VER`` は RUN 行で ``CONT_IMG_VER=<値>`` で echo hello と同じにしたいのであれば、 ``<値>`` の編億がキャッシュ・ミスになります。
+コマンドラインから ``--build-arg CONT_IMG_VER=<value>`` を指定すると 2 つの例ともに、2 行めの記述ではキャッシュ・ミスが起きず、3 行めで発生します。
+``ARG CONT_IMG_VER`` は、``RUN`` 行において ``CONT_IMG_VER=<value>`` echo hello と同等のことが実行されるので、``<value>`` が変更されると、キャッシュ・ミスが起こるということです。
 
 .. Consider another example under the same command line:
 
-同じコマンド行で別の例を考えます。
+もう 1 つの例を、同じコマンドライン実行を行って利用するとします。
 
 .. code-block:: dockerfile
    :linenos:
@@ -2453,13 +2829,19 @@ Docker は Dockerfile に対応する ``ARG`` 命令が無くても、既定の 
    ENV CONT_IMG_VER $CONT_IMG_VER
    RUN echo $CONT_IMG_VER
 
-.. In this example, the cache miss occurs on line 3. The miss happens because the variable’s value in the ENV references the ARG variable and that variable is changed through the command line. In this example, the ENV command causes the image to include the value.
+.. In this example, the cache miss occurs on line 3. The miss happens because
+   the variable's value in the `ENV` references the `ARG` variable and that
+   variable is changed through the command line. In this example, the `ENV`
+   command causes the image to include the value.
 
-この例では、キャッシュミスが３行めで発生します。ミスが起こるのは ``ENV`` 変数が ``ARG`` 変数を参照しているのと、この変数がコマンドラインで変わるためです。例における ``ENV`` コマンドはイメージの中で処理されるものです。
+この例においてキャッシュ・ミスは 3 行めで発生します。
+これは ``ENV`` における変数値が ``ARG`` 変数を参照しており、その変数値がコマンドラインから変更されるために起きます。
+この例では ``ENV`` コマンドがイメージに対して変数値を書き込むものとなります。
 
-.. If an ENV instruction overrides an ARG instruction of the same name, like this Dockerfile:
+.. If an `ENV` instruction overrides an `ARG` instruction of the same name, like
+   this Dockerfile:
 
-もし ``ENV`` 命令を同じ名前の ``ARG`` 命令で、次のように上書きしたらどうでしょう。
+``ENV`` 命令が ``ARG`` 命令の同一変数名を上書きする例を見てみます。
 
 .. code-block:: dockerfile
    :linenos:
@@ -2469,9 +2851,13 @@ Docker は Dockerfile に対応する ``ARG`` 命令が無くても、既定の 
    ENV CONT_IMG_VER hello
    RUN echo $CONT_IMG_VER
 
-.. Line 3 does not cause a cache miss because the value of CONT_IMG_VER is a constant (hello). As a result, the environment variables and values used on the RUN (line 4) doesn’t change between builds.
+.. Line 3 does not cause a cache miss because the value of `CONT_IMG_VER` is a
+   constant (`hello`). As a result, the environment variables and values used on
+   the `RUN` (line 4) doesn't change between builds.
 
-３行めはキャッシュミスを引き起こしません。 ``CONT_IMG_VAR`` は固定（ ``hello`` ）だからです。そのため、環境変数と値は ``RUN``  （４行め）で使われますが、構築時に変わりません。
+3 行めにおいてキャッシュ・ミスは発生しません。
+これは ``CONT_IMG_VER`` が定数（``hello``）であるからです。
+その結果、4 行めの ``RUN`` 命令において用いられる環境変数およびその値は、ビルドの際に変更されません。
 
 
 .. _onbuild:
