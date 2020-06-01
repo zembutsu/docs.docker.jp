@@ -25,6 +25,7 @@ Docker Compose
    rails.rst
    wordpress.rst
    env-file.rst
+   environment-variables.rst
    extends.rst
    networking.rst
    production.rst
