@@ -159,7 +159,7 @@
 
 ..    The fortunes program has a command that prints out wise sayings for our whale to say. So, the first step is to install it. This line adds the fortune program using the apt-get program. If these sound all very cryptic to you, don’t worry. As long as you type the words correctly, they will work for you!
 
-``fortunes`` プログラムは賢そうな言葉を表示するプログラムです。これを今回のこの鯨プログラムに喋らせます。そのための最初のステップは、ソフトウェアのインストールです。この行は ``apt-get`` プログラムを使い ``fourtune``  プログラムをインストールします。もしかしたら暗号めいて見えるかもしれませんが、心配しなくても大丈夫です。正確に入力さえしれば、正しく動いてくれます！
+``fortunes`` プログラムは賢そうな言葉を表示するプログラムです。これを今回のこの鯨プログラムに喋らせます。そのための最初のステップは、ソフトウェアのインストールです。この行は ``apt-get`` プログラムを使い ``fourtune``  プログラムをインストールします。もしかしたら暗号めいて見えるかもしれませんが、心配しなくても大丈夫です。正確に入力さえすれば、正しく動いてくれます！
 
 ..    Once the image has the software it needs, you instruct the software to run when the image is loaded.
 

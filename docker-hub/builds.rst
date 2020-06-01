@@ -23,7 +23,7 @@ Docker Hub の自動構築
 
 * イメージの構築は、指定した通り確実に行われます。
 * ``Dockerfile`` は Docker Hub リポジトリの誰もがアクセス可能です。
-* コード画変更されると、リポジトリも自動的に更新されます。
+* コードが変更されると、リポジトリも自動的に更新されます。
 
 .. Automated Builds are supported for both public and private repositories on both GitHub and Bitbucket.
 
