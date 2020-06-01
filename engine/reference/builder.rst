@@ -439,7 +439,7 @@ CLI は ``.dockerignore`` ファイルを行ごとに隔てて解釈します。
 
 .. If a line in `.dockerignore` file starts with `#` in column 1, then this line is considered as a comment and is ignored before interpreted by the CLI.
 
-``.dockerignore`` ファイルの１行目が ``#`` で始まる場合は、この合はコメントであると見なされ、CLI の処理からは無視されます。
+``.dockerignore`` ファイルの１行目が ``#`` で始まる場合は、この行はコメントであると見なされ、CLI の処理からは無視されます。
 
 .. Here is an example .dockerignore file:
 

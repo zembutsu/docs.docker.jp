@@ -182,7 +182,7 @@ Docker Hub の機能
 
 .. Sometimes you have images you don’t want to make public and share with everyone. So Docker Hub allows you to have private repositories. You can sign up for a plan here.
 
-イメージを一般公開せず、誰とも共有したくない場合があります。そのような時は Docker Hub のプライベート・リポジトリが利用できます。サインアップや料金プランは、 `こちらを <https://registry.hub.docker.com/plans/>`_ ご覧ください。
+イメージを一般公開せず、誰とも共有したくない場合があります。そのような時は Docker Hub のプライベート・リポジトリが利用できます。サインアップや料金プランは、 `こちらを <https://registry.hub.docker.com/pricing/>`_ ご覧ください。
 
 .. Organizations and teams
 
@@ -191,7 +191,7 @@ Docker Hub の機能
 
 .. One of the useful aspects of private repositories is that you can share them only with members of your organization or team. Docker Hub lets you create organizations where you can collaborate with your colleagues and manage private repositories. You can learn how to create and manage an organization here.
 
-プライベート・リポジトリの便利な機能の１つは、組織やチームにおける特定メンバーのみとの共有です。Docker Hub 上で組織（organization）を作り、同僚と協力しながらプライベート・リポジトリの管理が可能です。組織の作成や管理方法については `こちら <https://registry.hub.docker.com/account/organizations/>`_ をご覧ください。
+プライベート・リポジトリの便利な機能の１つは、組織やチームにおける特定メンバーのみとの共有です。Docker Hub 上で組織（organization）を作り、同僚と協力しながらプライベート・リポジトリの管理が可能です。組織の作成や管理方法については `こちら <https://registry.hub.docker.com/pricing/?plan=team>`_ をご覧ください。
 
 .. Automated Builds
 
@@ -210,13 +210,14 @@ Docker Hub の機能
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. `Docker Hub アカウント <https://hub.docker.com/>`_ を作成してログインします。
-2. `Linked Accounts & Services <https://hub.docker.com/account/authorized-services/>`_ （アカウントとサービスのリンク）から自分の GitHub もしくは Bitbucket アカウントをリンクします。
-3. `自動構築の設定 <https://hub.docker.com/add/automated-build/github/orgs/>`_ をします。
-4. 選択した GitHub もしくは Bitbucket プロジェクト上で、構築内容を ``Dockerfile`` にまとめます。
-5. 必要があれば構築時のブランチを指定します（デフォルトは ``master`` ブランチです）。
-6. 自動構築名を指定します。
-7. 構築時に追加するオプションの Docker タグを指定します。
-8. ``Dockerfile`` の場所を指定します。デフォルトは ``/`` です。
+2. `Linked Accounts <https://hub.docker.com/settings/linked-accounts>`_ （アカウントのリンク）から自分の GitHub もしくは Bitbucket アカウントをリンクします。
+3. `Create Repository <https://hub.docker.com/repository/create>`_ (リポジトリの作成)からリポジトリを作成します。
+4. リポジトリの Builds から Configure Automated Builds を選択し自動構築の設定をします。
+5. 選択した GitHub もしくは Bitbucket プロジェクト上で、構築内容を ``Dockerfile`` にまとめます。
+6. 必要があれば構築時のブランチを指定します（デフォルトは ``master`` ブランチです）。
+7. 自動構築名を指定します。
+8. 構築時に追加するオプションの Docker タグを指定します。
+9. ``Dockerfile`` の場所を指定します。デフォルトは ``/`` です。
 
 .. Once the Automated Build is configured it will automatically trigger a build and, in a few minutes, you should see your new Automated Build on the Docker Hub Registry. It will stay in sync with your GitHub and Bitbucket repository until you deactivate the Automated Build.
 
