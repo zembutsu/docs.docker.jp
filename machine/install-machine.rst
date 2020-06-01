@@ -19,85 +19,147 @@ Docker Machine のインストール
        :depth: 3
        :local:
 
-.. On OS X and Windows, Machine is installed along with other Docker products when you install the Docker Toolbox. For details on installing Docker Toolbox, see the Mac OS X installation instructions or Windows installation instructions.
+.. On macOS and Windows, Machine is installed along with other Docker products when
+   you install the [Docker for Mac](/docker-for-mac/index.md), [Docker for
+   Windows](/docker-for-windows/index.md), or [Docker
+   Toolbox](/toolbox/overview.md).
 
-OS X と Windows の場合は、Docker Toolbox をインストールしたら、他の Docker プロダクトと一緒にインストールします。Docker Toolbox の詳細は、:doc:`Mac OS X インストールガイド</engine/installation/mac>`  か :doc:`Windows インストールガイド</engine/installation/windows>` をご覧ください。
+macOS と Windows の場合 :doc:`Docker for Mac </docker-for-mac/index>` 、 :doc:`Docker for Windows </docker-for-windows/index>` 、 :doc:`Docker Toolbox </toolbox/overview>` をインストールしたら、数ある Docker 製品とともに Docker Machine が同時にインストールされます。
 
-.. If you want only Docker Machine, you can install the Machine binaries directly by following the instructions in the next section. You can find the latest versions of the binaries are on the docker/machine release page on GitHub.
+.. If you want only Docker Machine, you can install the Machine binaries directly
+   by following the instructions in the next section. You can find the latest
+   versions of the binaries on the [docker/machine release
+   page](https://github.com/docker/machine/releases/){: target="_blank" class="_" }
+   on GitHub.
 
-Docker Machine だけインストールしたい場合は、Machine のバイナリを直接インストールできます。詳細は次のセクションをご覧ください。また、最新版のバイナリは GitHub 上の `docker/machine リリース・ページ <https://github.com/docker/machine/releases/>`_ 上で確認できます。
+Docker Machine だけをインストールしたい場合は、次の節で示す手順に従って Docker Machine のバイナリを直接インストールすることができます。
+GitHub 上の `docker/machine リリース・ページ <https://github.com/docker/machine/releases/>`_ に、最新のバイナリバージョンがあります。
 
-.. Installing Machine Directly
+.. ## Installing Machine directly
 
 .. _installing-machine-directly:
 
-Machine を直接インストール
-==============================
+Docker Machine の直接インストール
+=================================
 
-..    Install the Docker binary.
+.. 1.  Install [Docker](/engine/installation/index.md){: target="_blank" class="_" }.
 
-1. :doc:`Docker クライアント（docker という名称のバイナリ・ファイル </engine/installation/index>` をインストールします。
+1.  :doc:`Docker </engine/installation/index>` をインストールします。
 
-..    Download the Docker Machine binary and extract it to your PATH.
+.. 2.  Download the Docker Machine binary and extract it to your PATH.
 
-2. Docker Machine のバイナリ・ファイル（docker-machine）をダウンロードし、PATH に展開します。
+2.  Docker Machine のバイナリをダウンロードして実行パスに展開します。
 
-Mac OS X もしくは Linux の場合：
+   .. If you are running on **macOS**:
 
-.. code-block:: bash
+   **macOS** を利用している場合:
 
-   $ curl -L https://github.com/docker/machine/releases/download/v0.7.0/docker-machine-`uname -s`-`uname -m` > /usr/local/bin/docker-machine && \
-   chmod +x /usr/local/bin/docker-machine
+   ..  ```console
+       $ curl -L https://github.com/docker/machine/releases/download/v{{machineversion}}/docker-machine-`uname -s`-`uname -m` >/usr/local/bin/docker-machine && \
+     chmod +x /usr/local/bin/docker-machine
+       ```
 
-Windows 上の git bash の場合：
+   .. code-block:: bash
 
-.. code-block:: bash
+      $ curl -L https://github.com/docker/machine/releases/download/v0.12.2/docker-machine-`uname -s`-`uname -m` >/usr/local/bin/docker-machine && \
+      chmod +x /usr/local/bin/docker-machine
 
-   $ if [[ ! -d "$HOME/bin" ]]; then mkdir -p "$HOME/bin"; fi && \
-   curl -L https://github.com/docker/machine/releases/download/v0.7.0/docker-machine-Windows-x86_64.exe > "$HOME/bin/docker-machine.exe" && \
-   chmod +x "$HOME/bin/docker-machine.exe"
+   .. If you are running on **Linux**:
 
-.. Otherwise, download one of the releases from the docker/machine release page directly.
+   **Linux** を利用している場合:
 
-あるいは、 `docker/machine リリース・ページ <https://github.com/docker/machine/releases/>`_ から直接ダウンロードします。
+   ..  ```console
+       $ curl -L https://github.com/docker/machine/releases/download/v{{machineversion}}/docker-machine-`uname -s`-`uname -m` >/tmp/docker-machine &&
+       chmod +x /tmp/docker-machine &&
+       sudo cp /tmp/docker-machine /usr/local/bin/docker-machine
+       ```
 
-..    Check the installation by displaying the Machine version:
+   .. code-block:: bash
 
-3. Machine のバージョンを表示して、インストールを確認します。
+      $ curl -L https://github.com/docker/machine/releases/download/v0.12.2/docker-machine-`uname -s`-`uname -m` >/tmp/docker-machine &&
+      chmod +x /tmp/docker-machine &&
+      sudo cp /tmp/docker-machine /usr/local/bin/docker-machine
 
-.. code-block:: bash
+   .. If you are running with **Windows** with [Git BASH](https://git-for-windows.github.io/){: target="_blank" class="_"}:
 
-   $ docker-machine version
-   docker-machine version 0.7.0, build 61388e9
+   **Windows** 上において `Git BASH <https://git-for-windows.github.io/>`_ を利用している場合:
+
+   .. code-block:: bash
+
+      $ if [[ ! -d "$HOME/bin" ]]; then mkdir -p "$HOME/bin"; fi && \
+      curl -L https://github.com/docker/machine/releases/download/v0.12.2/docker-machine-Windows-x86_64.exe > "$HOME/bin/docker-machine.exe" && \
+      chmod +x "$HOME/bin/docker-machine.exe"
+
+   ..  > The above command will work on Windows only if you use a
+       terminal emulater such as [Git BASH](https://git-for-windows.github.io/){: target="_blank" class="_"}, which supports Linux commands like `chmod`.
+       {: .important}
+
+   .. important::
+
+      上のコマンドは Windows 上において実行していますが、これができるのは `Git BASH <https://git-for-windows.github.io/>`_ などを利用して、 ``chmod`` といった Linux コマンドをサポートしている端末エミュレーターを使っているからです。
+
+   ..  Otherwise, download one of the releases from the [docker/machine release
+       page](https://github.com/docker/machine/releases/){: target="_blank" class="_" } directly.
+
+   上記以外は `docker/machine リリース・ページ <https://github.com/docker/machine/releases/>`_ からバイナリ・リリースを直接ダウンロードしてください。
+
+.. 3.  Check the installation by displaying the Machine version:
+
+3.  インストール後の確認として Machine のバージョンを表示してみます。
+
+   ..      $ docker-machine version
+           docker-machine version {{machineversion}}, build 9371605
+
+   .. code-block:: bash
+
+      $ docker-machine version
+      docker-machine version 0.12.2, build 9371605
 
 .. Installing bash completion scripts
 
 bash 補完スクリプトのインストール
 ========================================
 
-.. The Machine repository supplies several bash scripts that add features such as:
+.. The Machine repository supplies several `bash` scripts that add features such
+   as:
 
-Machine 用のリポジトリには次の機能を持つ ``bash`` スクリプトがあります。
+Machine リポジトリには便利な ``bash`` スクリプトがあり、以下のような機能を利用できます。
 
-..    command completion
-    a function that displays the active machine in your shell prompt
-    a function wrapper that adds a docker-machine use subcommand to switch the active machine
+.. -   command completion
+   -   a function that displays the active machine in your shell prompt
+   -   a function wrapper that adds a `docker-machine use` subcommand to switch the
+       active machine
 
-* コマンド補完
-* シェル・プロンプトにアクティブなホストを表示
-* ``docker-machine use`` サブコマンドを追加し、アクティブなマシンを切り替えるラッパー
+*   コマンド補完
+*   シェルプロンプト内にアクティブなマシンを表示する機能
+*   アクティブマシンを切り替えるサブコマンド ``docker-machine use`` を実現するラッパー
 
-.. To install the scripts, copy or link them into your /etc/bash_completion.d or /usr/local/etc/bash_completion.d file. To enable the docker-machine shell prompt, add $(__docker-machine-ps1) to your PS1 setting in ~/.bashrc.
+.. Confirm the version and save scripts to `/etc/bash_completion.d` or
+   `/usr/local/etc/bash_completion.d`:
 
-スクリプトをインストールするには、 ``/etc/bash_completion.d`` か ``/usr/local/etc/bash_completion.d`` にファイルをコピーするかリンクします。 ``docker-machine`` シェル・プロンプトを有効化するには、 ``~/.bashrc``  の ``PS1`` に ``$(__docker-machine-ps1)`` を追加します。
+スクリプトのバージョンを確認し保存します。
+保存先は ``/etc/bash_completion.d`` または ``/usr/local/etc/bash_completion.d`` とします。
 
 .. code-block:: bash
 
-   PS1='[\u@\h \W$(__docker-machine-ps1)]\$ '
+   scripts=( docker-machine-prompt.bash docker-machine-wrapper.bash docker-machine.bash ); for i in "${scripts[@]}"; do sudo wget https://raw.githubusercontent.com/docker/machine/v0.12.2/contrib/completion/bash/${i} -P /etc/bash_completion.d; done
 
-.. You can find additional documentation in the comments at the top of each script.
+.. To enable the `docker-machine` shell
+   prompt, add `$(__docker_machine_ps1)` to your `PS1` setting in `~/.bashrc`.
 
-詳細なドキュメントは、 `各スクリプト <https://github.com/docker/machine/tree/master/contrib/completion/bash>`_ の文頭にあるコメントをご覧ください。
+``docker-machine`` のシェル・プロンプトを有効にするために、``~/.bashrc`` 内の ``PS1`` を ``$(__docker_machine_ps1)`` とします。
+
+.. ```
+   PS1='[\u@\h \W$(__docker_machine_ps1)]\$ '
+   ```
+
+.. code-block:: bash
+
+   PS1='[\u@\h \W$(__docker_machine_ps1)]\$ '
+
+.. You can find additional documentation in the comments at the [top of each script](https://github.com/docker/machine/tree/master/contrib/completion/bash){: target="_blank" class="_"}.
+
+詳細な情報は `各スクリプトの上段 <https://github.com/docker/machine/tree/master/contrib/completion/bash>`_  にコメントとして記述されています。
 
 .. Where to go next
 

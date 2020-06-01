@@ -33,7 +33,7 @@ tag
 
 .. A tag name may contain lowercase and uppercase characters, digits, underscores, periods and dashes. A tag name may not start with a period or a dash and may contain a maximum of 128 characters.
 
-タグ名に含まれるのは（アルファベット）小文字と大文字、数字、アンダースコア、ピリオド、スラッシュです。タグ名はピリオドやダッシュで開始できません。そして最大で 128 文字です。
+タグ名に含まれるのは（アルファベット）小文字と大文字、数字、アンダースコア、ピリオド、ダッシュです。タグ名はピリオドやダッシュで開始できません。そして最大で 128 文字です。
 
 .. You can group your images together using names and tags, and then upload them to Share Images via Repositories.
 

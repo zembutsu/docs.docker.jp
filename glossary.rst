@@ -217,7 +217,7 @@ Docker for Windows
 
 .. Docker for Windows is an easy-to-install, lightweight Docker development environment designed specifically for Windows 10 systems that support Microsoft Hyper-V (Professional, Enterprise and Education). Docker for Windows uses Hyper-V for virtualization, and runs as a native Windows app. It works with Windows Server 2016, and gives you the ability to set up and run Windows containers as well as the standard Linux containers, with an option to switch between the two. Docker for Windows is the best solution if you want to build, debug, test, package, and ship Dockerized applications from Windows machines. Docker for Windows supersedes Docker Toolbox as state-of-the-art Docker on Windows.
 
-:doc:`Docker for Windows </docker-for-windows/index>` は、Microsoft Hyper-V（Professional、Enterprise、Education）をサポートしているWindows 10 システム向けに特化した、軽量な Docker 開発環境として設計されています。Docker for Windows はネイティブな Windows アプリケーション実行のため、Hyper-V 仮想化を使います。標準的な Linux コンテナと同じように、２つのオプションを切り替えるだけで、Windows コンテナの迅速なセットアップや実行を Windows Server 2016 上でも行えます。Windows マシン上で Docker 対応アプリケーションの開発・構築・テスト・パッケージ・移動をしたい場合に、ベストな解決作です。Windows マシン上で Docker を使うにあたり、Docker for Mac は :ref:`Docker Toolbox <toolbox>` の後継としての位置付け です。
+:doc:`Docker for Windows </docker-for-windows/index>` は、Microsoft Hyper-V（Professional、Enterprise、Education）をサポートしているWindows 10 システム向けに特化した、軽量な Docker 開発環境として設計されています。Docker for Windows はネイティブな Windows アプリケーション実行のため、Hyper-V 仮想化を使います。標準的な Linux コンテナと同じように、２つのオプションを切り替えるだけで、Windows コンテナの迅速なセットアップや実行を Windows Server 2016 上でも行えます。Windows マシン上で Docker 対応アプリケーションの開発・構築・テスト・パッケージ・移動をしたい場合に、ベストな解決作です。Windows マシン上で Docker を使うにあたり、Docker for Windows は :ref:`Docker Toolbox <toolbox>` の後継としての位置付け です。
 
 .. Docker Hub
 
@@ -389,7 +389,7 @@ Machine
 
 .. A Linux namespace is a Linux kernel feature that isolates and vitualizes system resources. Processes which restricted to a namespace can only interact with resources or processes that are part of the same namespace. Namespaces are an important part of Docker’s isolation model. Namespaces exist for each type of resource, including net (networking), mnt (storage), pid (processes), uts (hostname control), and user (UID mapping). For more information about namespaces, see Docker run reference and Introduction to user namespaces.
 
-`Linux 名前空間（namespace；ネームスペース） <http://man7.org/linux/man-pages/man7/namespaces.7.html>`_ は  Linux カーネルの分離（isolate）と仮想システム・リソース機能です。名前空間によって制限されたプロセスは、お味名前空間内のリソースやプロセスとしかやりとりできません。名前空間は Docker の分離モデルにおける重要な部分です。名前空間は各リソース・タイプごとに存在しています。リソース・タイプとは ``net`` （ネットワーク機能）、 ``mnt`` （ストレージ）、 ``pid`` （プロセス）、 ``uts`` （ホスト名の制御）、 ``user`` （UID 割り当て）です。名前空間に関する詳しい情報は、 :doc:`Docker run リファレンス </engine/reference/run>` と `ユーザ名前空間入門（英語） <https://success.docker.com/KBase/Introduction_to_User_Namespaces_in_Docker_Engine>`_ をご覧ください。
+`Linux 名前空間（namespace；ネームスペース） <http://man7.org/linux/man-pages/man7/namespaces.7.html>`_ は  Linux カーネルの分離（isolate）と仮想システム・リソース機能です。名前空間によって制限されたプロセスは、同じ名前空間内のリソースやプロセスとしかやりとりできません。名前空間は Docker の分離モデルにおける重要な部分です。名前空間は各リソース・タイプごとに存在しています。リソース・タイプとは ``net`` （ネットワーク機能）、 ``mnt`` （ストレージ）、 ``pid`` （プロセス）、 ``uts`` （ホスト名の制御）、 ``user`` （UID 割り当て）です。名前空間に関する詳しい情報は、 :doc:`Docker run リファレンス </engine/reference/run>` と `ユーザ名前空間入門（英語） <https://success.docker.com/KBase/Introduction_to_User_Namespaces_in_Docker_Engine>`_ をご覧ください。
 
 
 .. _node:
@@ -532,7 +532,7 @@ Docker Swarm と Docker Engine の swarm モードを混同しないでくださ
 
 .. Docker Swarm is the name of a standalone native clustering tool for Docker. Docker Swarm pools together several Docker hosts and exposes them as a single virtual Docker host. It serves the standard Docker API, so any tool that already works with Docker can now transparently scale up to multiple hosts.
 
-Docker Swarm は Docker 用に独立したネイティブなクラスタリング・ツールです。Docker Swarm は複数の DOcker ホストを一緒にまとめ（プールし）、１つの仮想的な Docker ホストのように装います。Swarm は標準 Docker API を提供するため、既に Docker で使えるツールであれば、複数のホスト上で透過的にスケールさせることができます。
+Docker Swarm は Docker 用に独立したネイティブなクラスタリング・ツールです。Docker Swarm は複数の Dcker ホストを一緒にまとめ（プールし）、１つの仮想的な Docker ホストのように装います。Swarm は標準 Docker API を提供するため、既に Docker で使えるツールであれば、複数のホスト上で透過的にスケールさせることができます。
 
 .. Also known as : docker-swarm
 
@@ -639,19 +639,19 @@ Docker 及びユニオン・ファイル・システムの詳細は、 :doc:`/en
 
 .. A volume is a specially-designated directory within one or more containers that bypasses the Union File System. Volumes are designed to persist data, independent of the container’s life cycle. Docker therefore never automatically delete volumes when you remove a container, nor will it “garbage collect” volumes that are no longer referenced by a container. Also known as: data volume
 
-ボリュームとは特別に設計されたディレクトリであり、ユニオン・ファイル・システムを迂回し、複数のコンテナ内で使えます。ボリュームは永続的なデータを保管するために設計されており、コンテナのライフサイクルとは独立しています。そのため、Docker はコンテナの削除時に、ボリュームを決して自動的に削除しません。そればかりか「ガベージ・コレクト」（ゴミ収集；garbage collect）ボリュームとして、コンテナからは参照できないようにもできます。これは *データ・ボリューム（data volume）* とも呼ばれます。
+ボリュームとは、いくつかのコンテナ内にて用いられる特定のディレクトリのことであり、ユニオン・ファイル・システムを通じて利用されます。ボリュームはデータを永続的に保持する目的で設計されており、コンテナのライフサイクルには影響されません。したがってコンテナを削除したとしても、Docker はボリュームを自動的に削除するようなことはしません。たとえコンテナから参照されなくなったボリュームであっても、「ガベージ・コレクト」により失われることもありません。これは *データ・ボリューム（data volume）* とも呼ばれます。
 
 .. There are three types of volumes: host, anonymous, and named:
 
-ボリュームは、ホスト（*host*）、匿名（*anonymous*）、名前付き（*named*）の3種類です。
+ボリュームには、ホスト（*host*）、匿名（*anonymous*）、名前付き（*named*）という３種類のタイプがあります。
 
 ..    A host volume lives on the Docker host’s filesystem and can be accessed from within the container.
 ..    A named volume is a volume which Docker manages where on disk the volume is created, but it is given a name.
 ..    An anonymous volume is similar to a named volume, however, it can be difficult, to refer to the same volume over time when it is an anonymous volumes. Docker handle where the files are stored.
 
    * **ホスト・ボリューム（host volume）** は Docker ホストのファイルシステム上に存在し、コンテナ内部からもアクセスできます。
-   * **名前付きボリューム（named volume）** は Docker が管理するディスク上に作成されたボリュームであり、名前を指定しています。
-   * **匿名ボリューム（anonymous volume）**  は名前付きボリュームと似ていますが、匿名ボリュームとして作成すると対象となるボリュームを特定するのが大変で、時間がかかります。Docker がファイルをどこに保管するか処理します。
+   * **名前付きボリューム（named volume）** は、Docker が管理するボリュームであり、ディスク上に生成されます。そこには名前がつけられます。
+   * **匿名ボリューム（anonymous volume）**  は名前付きボリュームと似ています。ただし複雑な仕組みにより、匿名ボリュームである間も一意のボリュームとして参照されます。Docker はファイルを保存する場所として取り扱います。
 
 
 .. seealso:: 
