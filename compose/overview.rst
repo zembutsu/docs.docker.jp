@@ -23,11 +23,11 @@ Docker Compose 概要
 
 .. Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a Compose file to configure your application’s services. Then, using a single command, you create and start all the services from your configuration. To learn more about all the features of Compose see the list of features.
 
-Compose とは、複数のコンテナを使う Docker アプリケーションを、定義・実行するツールです。Compose はアプリケーションのサービスの設定に、Compose ファイルを使います。そして、コマンドを１つ実行するだけで、設定した全てのサービスを作成・起動します。Compose の全機能一覧について学ぶには、 :ref:`機能一覧 <compose-features>` をご覧ください。
+Compose とは、複数のコンテナを定義し実行する Docker アプリケーションのためのツールです。Compose においては YAML ファイルを使ってアプリケーションサービスの設定を行います。コマンドを１つ実行するだけで、設定内容に基づいたアプリケーションサービスの生成、起動を行います。Compose の機能一覧については、 :ref:`機能一覧 <compose-features>` をご覧ください。
 
-.. Compose is great for development, testing, and staging environments, as well as CI workflows. You can learn more about each case in Common Use Cases.
+.. Compose works in all environments: production, staging, development, testing, as well as CI workflows. You can learn more about each case in Common Use Cases.
 
-Compose は開発環境、テスト、ステージング環境だけでなく、CI ワークフローにも適しています。それぞれの使い方の詳細を学ぶには、 :ref:`一般的な利用例 <compose-common-use-cases>` をご覧ください。
+Compose は本番環境、ステージング環境、開発環境において動作し、CI ワークフローとしても利用することができます。それぞれの使い方については、 :ref:`一般的な利用例 <compose-common-use-cases>` を確認してください。
 
 .. Using Compose is basically a three-step process.
 
@@ -37,8 +37,8 @@ Compose を使うには、基本的に３つのステップを踏みます。
     Define the services that make up your app in docker-compose.yml so they can be run together in an isolated environment.
     Lastly, run docker-compose up and Compose will start and run your entire app.
 
-1. アプリケーションの環境を ``Dockerfile`` ファイルで定義します。このファイルは、どこでも再利用可能です。
-2. アプリケーションを構成する各サービスを ``docker-compose.yml`` ファイルで定義します。そうすることで、独立した環境を一斉に実行できるようにします。
+1. アプリケーション環境を ``Dockerfile`` に定義します。こうしてその環境は再構築が可能となります。
+2. アプリケーションを構成するサービスを ``docker-compose.yml`` ファイル内に定義します。こうすることで、各サービスは独立した環境において起動することになります。
 3. 最後に、``docker-compose up`` を実行したら、Compose はアプリケーション全体を起動・実行します。
 
 .. A docker-compose.yml looks like this:
@@ -47,17 +47,17 @@ Compose を使うには、基本的に３つのステップを踏みます。
 
 .. code-block:: yaml
 
-   version: '2'
+   version: '3'
    services:
      web:
        build: .
        ports:
-        - "5000:5000"
+       - "5000:5000"
        volumes:
-        - .:/code
-        - logvolume01:/var/log
+       - .:/code
+       - logvolume01:/var/log
        links:
-        - redis
+       - redis
      redis:
        image: redis
    volumes:
@@ -65,7 +65,7 @@ Compose を使うには、基本的に３つのステップを踏みます。
 
 .. For more information about the Compose file, see the Compose file reference
 
-Compose に関する更に詳しい情報は、 :doc:`Compose ファイル・リファレンス </compose/compose-file>` をご覧ください。
+Compose ファイルに関するさらに詳しい情報は、 :doc:`Compose ファイル・リファレンス </compose/compose-file>` をご覧ください。
 
 .. Compose has commands for managing the whole lifecycle of your application:
 
@@ -104,7 +104,7 @@ Compose のドキュメント
 
 .. The features of Compose that make it effective are:
 
-Compose には効率的な機能があります。
+Compose には特徴的な以下の機能があります。
 
 ..    Multiple isolated environments on a single host
     Preserve volume data when containers are created
@@ -123,7 +123,7 @@ Compose には効率的な機能があります。
 
 .. Compose uses a project name to isolate environments from each other. You can use this project name to:
 
-Compose は別々の環境の分離にプロジェクト名を使います。このプロジェクト名は次の用途で使えます。
+Compose はプロジェクト名というものを用いて各環境を分離します。このプロジェクト名はさまざまに異なる用途に利用することができます。
 
 ..    on a dev host, to create multiple copies of a single environment (ex: you want to run a stable copy for each feature branch of a project)
     on a CI server, to keep builds from interfering with each other, you can set the project name to a unique build number
@@ -135,7 +135,7 @@ Compose は別々の環境の分離にプロジェクト名を使います。こ
 
 .. The default project name is the basename of the project directory. You can set a custom project name by using the -p command line option or the COMPOSE_PROJECT_NAME environment variable.
 
-標準のプロジェクト名は、プロジェクトが存在するディレクトリ名です。プロジェクト名を変更するには、 :doc:`コマンドラインのオプション </compose/reference/overview>` で ``-p`` を指定するか、 :ref:`環境変数 <compose-project-name>` の ``COMPOSE_PROJECT_NAME`` を指定します。
+プロジェクト名はデフォルトでは、プロジェクトが存在するディレクトリ名となります。プロジェクト名を指定するには、 :doc:`コマンドラインのオプション </compose/reference/overview>` の ``-p`` を指定するか、 :ref:`環境変数 <compose-project-name>` の ``COMPOSE_PROJECT_NAME`` を使って指定します。
 
 .. _preserve-volume-data-when-containers-are-created:
 
@@ -144,7 +144,11 @@ Compose は別々の環境の分離にプロジェクト名を使います。こ
 
 .. Compose preserves all volumes used by your services. When docker-compose up runs, if it finds any containers from previous runs, it copies the volumes from the old container to the new container. This process ensures that any data you’ve created in volumes isn’t lost.
 
-Compose はサービスが使う全てのボリュームを保持（preserve）します。 ``docker-compose up`` を実行時、以前に実行済みのコンテナが見つかれば、古いコンテナから新しいコンテナにボリュームをコピーします。この処理により、ボリューム内で作成したデータを失わないように守ります。
+Compose は、サービスによって利用されているボリュームをすべて保護します。``docker-compose up`` が実行されたときに、コンテナがそれ以前に実行されていたものであれば、以前のコンテナから現在のコンテナに向けてボリュームをコピーします。この処理において、ボリューム内に作り出されていたデータは失われることはありません。
+
+.. If you use docker-compose on a Windows machine, see Environment variables and adjust the necessary environment variables for your specific needs.
+
+Windows 上において docker-compose を利用している場合には、:doc:`環境変数 </reference/envvars>`_ を参考にし、状況に応じて必要となる環境変数を定めてください。
 
 .. _only-recreate-containers-that-have-changed:
 
@@ -153,7 +157,7 @@ Compose はサービスが使う全てのボリュームを保持（preserve）�
 
 .. Compose caches the configuration used to create a container. When you restart a service that has not changed, Compose re-uses the existing containers. Re-using containers means that you can make changes to your environment very quickly.
 
-Compose はコンテナ作成時に使う設定情報をキャッシュします。サービスの再起動時に、内容に変更がなければ、Compose は既存のコンテナを再利用します。コンテナの再利用とは、環境をとても速く作り直せるのを意味します。
+Compose はコンテナが生成されたときの設定情報をキャッシュに保存します。設定内容に変更のないサービスが再起動された場合、Compose はすでにあるサービスを再利用します。再利用されるということは、全体として環境への変更がすばやくできることを意味します。
 
 .. _variables-and-moving-a-composition-between-environments:
 
@@ -186,15 +190,15 @@ Compose は様々な使い方があります。一般的な利用例は、以下
 
 .. When you’re developing software, the ability to run an application in an isolated environment and interact with it is crucial. The Compose command line tool can be used to create the environment and interact with it.
 
-ソフトウェアの開発時であれば、アプリケーションを別々の環境で相互にやりとりするのは重要です。Compose のコマンドライン・ツールは環境の作成と、相互のやりとりのために使えます。
+ソフトウェアを開発する上で、アプリケーションを分離された環境内にて実行させ、しかも正しくアクセスできるようにすることが極めて重要です。Compose のコマンドラインツールを用いることで、環境生成と環境へのアクセスを行うことができます。
 
 .. The Compose file provides a way to document and configure all of the application’s service dependencies (databases, queues, caches, web service APIs, etc). Using the Compose command line tool you can create and start one or more containers for each dependency with a single command (docker-compose up).
 
-:doc:`Compose ファイル <compose-file>` は、文章化と、アプリケーション全ての依存関係（データベース、キュー、キャッシュ、ウェブ・サービス、API 等）を設定するものです。Compose コマンドライン・ツールを使えば、コマンドを１つ（ ``docker-compose up`` ）実行するだけで、各依存関係に応じて１つまたは複数のコンテナを作成します。
+:doc:`Compose ファイル <compose-file>` は、アプリケーションにおけるサービスの依存関係（データベース、キュー、キャッシュ、ウェブ・サービス API など）を設定するものです。Compose コマンドライン・ツールを使うと、いくつでもコンテナを生成、起動でき、しかもコマンド（ ``docker-compose up`` ）を１つ実行するだけで、依存関係も正しく考慮してくれます。
 
 .. Together, these features provide a convenient way for developers to get started on a project. Compose can reduce a multi-page “developer getting started guide” to a single machine readable Compose file and a few commands.
 
-同時に、開発者がプロジェクトを開始する時に役立つ機能を提供します。Compose は、複数のページにわたる「開発者向け導入手順書」を減らします。それをマシンが読み込み可能な Compose ファイルと、いくつかのコマンドで実現します。
+さらにこういった機能は、プロジェクトに取りかかろうとしている開発者にとっても便利なものです。Compose は、分厚く仕上がっている「開発者向け導入手順書」のページ数を減らすものになり、ただ１つの Compose ファイルと数えるほどのコマンドだけになります。
 
 .. Automated testing environments
 
@@ -203,7 +207,7 @@ Compose は様々な使い方があります。一般的な利用例は、以下
 
 .. An important part of any Continuous Deployment or Continuous Integration process is the automated test suite. Automated end-to-end testing requires an environment in which to run tests. Compose provides a convenient way to create and destroy isolated testing environments for your test suite. By defining the full environment in a Compose file you can create and destroy these environments in just a few commands:
 
-継続的デプロイや継続的インテグレーションのプロセスにおいて重要な部分は、自動テストの実装です。自動的なエンド間（end-to-end）のテストは、テストを行う環境が必要になります。テスト実装にあたり、Compose は個々のテスト環境の作成と破棄を便利に行う手法を提供します。 :doc:`Compose ファイル </compose/compose-file>` で定義した全ての環境は、いくつかのコマンドを実行するだけで作成・破棄できます。
+継続的デプロイや継続的インテグレーションのプロセスにおいて、自動テストスイートは極めて重要です。もれることなくテストを自動化させるためには、そのためのテスト環境が必要になるものです。Compose ではテストスイートに対応して、分離されたテスト環境の生成とデプロイを便利に行う機能を提供しています。 :doc:`Compose ファイル </compose/compose-file>` 内に必要な環境定義を行っておけば、テスト環境の生成と削除は、ごく簡単なコマンドだけで実現できます。
 
 .. code-block:: bash
 
@@ -214,16 +218,16 @@ Compose は様々な使い方があります。一般的な利用例は、以下
 
 .. Single host deployment
 
-単一ホストへのデプロイ
+単一ホストのデプロイ
 ------------------------------
 
 .. Compose has traditionally been focused on development and testing workflows, but with each release we’re making progress on more production-oriented features. You can use Compose to deploy to a remote Docker Engine. The Docker Engine may be a single instance provisioned with Docker Machine or an entire Docker Swarm cluster.
 
-これまでの Compose は、開発やテストにおけるワークフローに注力してきました。しかしリリースごとに、私たちはプロダクションに対応した機能を実装し続けています。Compose をリモートの Docker Engine におけるデプロイにも利用できます。Docker Engine とは、 :doc:`Docker Machine </machine/index>` で自動作成された単一のマシンかもしれませんし、 :doc:`Docker Swarm </swarm/index>`  クラスタかもしれません。
+Compose はこれまで、開発環境やテスト環境でのワークフローに注目してきました。しかしリリースを重ねるにつれて、本番環境を意識した機能を充実させるように進化しています。Compose はリモートにある Docker Engine に対してもデプロイすることができます。Docker Engine とは、 :doc:`Docker Machine </machine/index>` で提供される単一インスタンスであったり、 :doc:`Docker Swarm </swarm/index>`  クラスタ一式である場合もあります。
 
 .. For details on using production-oriented features, see compose in production in this documentation.
 
-プロダクション向け機能の詳細な使い方は、 :doc:`プロダクションの構成 </compose/production>` をご覧ください。
+本番環境向けの機能の使い方については、 :doc:`プロダクションの構成 </compose/production>` をご覧ください。
 
 .. Release Notes
 
