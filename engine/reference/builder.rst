@@ -19,26 +19,45 @@ Dockerfile リファレンス
        :depth: 3
        :local:
 
-.. Docker can build images automatically by reading the instructions from a Dockerfile. A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image. Using docker build users can create an automated build that executes several command-line instructions in succession.
+.. Docker can build images automatically by reading the instructions from a
+   `Dockerfile`. A `Dockerfile` is a text document that contains all the commands a
+   user could call on the command line to assemble an image. Using `docker build`
+   users can create an automated build that executes several command-line
+   instructions in succession.
 
-Docker は ``Dockerfile`` から命令を読み込み、自動的にイメージを構築できます。 ``Dockerfile`` はテキスト形式のドキュメントであり、コマンドライン上でイメージを作り上げる命令を全て記述します。ユーザは ``docker build`` を使い、複数のコマンド行の命令を順次実行し、イメージを自動構築します。
+Docker は ``Dockerfile`` から命令を読み込んで、自動的にイメージをビルドします。
+``Dockerfile`` はテキストファイルであり、イメージを作り上げるために実行するコマンドラインコマンドを、すべてこのファイルに含めることができます。
+``docker build`` を実行すると、順次コマンドライン命令を自動化した処理が行われて、ビルド結果となるイメージが得られます。
 
-.. This page describes the commands you can use in a Dockerfile. When you are done reading this page, refer to the Dockerfile Best Practices for a tip-oriented guide.
+.. This page describes the commands you can use in a `Dockerfile`. When you are
+   done reading this page, refer to the [`Dockerfile` Best
+   Practices](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/) for a tip-oriented guide.
 
-このページでは ``Dockerfile`` 内で利用可能な命令を説明します。ページを読み終えたら、より便利に使うための ``Dockerfile`` の :doc:`ベスト・プラクティス </engine/userguide/eng-image/dockerfile_best-practice>` もご覧ください。
+ここでは ``Dockerfile`` において利用可能なコマンドを説明します。
+このページを読み終えたら、さまざまなガイドとなる ``Dockerfile`` の :doc:`ベスト・プラクティス </engine/userguide/eng-image/dockerfile_best-practices>` を参照してください。
 
-.. Usage
+.. ## Usage
 
-使い方
+利用方法
 ==========
 
-.. The docker build command builds an image from a Dockerfile and a context. The build’s context is the files at a specified location PATH or URL. The PATH is a directory on your local filesystem. The URL is a the location of a Git repository.
+.. The [`docker build`](commandline/build.md) command builds an image from
+   a `Dockerfile` and a *context*. The build's context is the set of files at a
+   specified location `PATH` or `URL`. The `PATH` is a directory on your local
+   filesystem. The `URL` is a Git repository location.
 
-``docker build`` コマンドは ``Dockerfile`` と *コンテクスト(context；イメージに含まれる「内容」の意味)* に従ってイメージを構築します。構築用コンテクストとは、ファイルを示す ``PATH``  や ``URL`` の場所です。 ``PATH`` はローカルのファイルシステム上のディレクトリです。 ``URL`` は Git リポジトリの場所です。
+:doc:`docker build </engine/reference/commandline/build>` コマンドは、``Dockerfile`` と **コンテキスト** （context）からイメージをビルドします。
+ビルドにおけるコンテキストとは、指定された ``PATH`` または ``URL`` にある一連のファイルのことです。
+``PATH`` はローカルファイルシステム内のディレクトリを表わします。
+``URL`` は Git のリポジトリ URL のことです。
 
-.. A context is processed recursively. So, a PATH includes any subdirectories and the URL includes the repository and its submodules. A simple build command that uses the current directory as context:
+.. A context is processed recursively. So, a `PATH` includes any subdirectories and
+   the `URL` includes the repository and its submodules. This example shows a
+   build command that uses the current directory as context:
 
-コンテクストの処理は再帰的です。そのため、 ``PATH`` にはサブディレクトリを含みます。また ``URL`` であればリポジトリと、そのサブモジュールも含みます。単に build コマンドを実行したら、現在のディレクトリをコンテクストとして使います。
+コンテキストは再帰的に処理されます。
+つまり ``PATH`` の場合はサブディレクトリがすべて含まれ、``URL`` の場合はリポジトリとそのサブモジュールが含まれます。
+以下の例におけるビルドコマンドは、コンテキストとしてカレントディレクトリを用いるものです。
 
 .. code-block:: bash
 
@@ -46,123 +65,264 @@ Docker は ``Dockerfile`` から命令を読み込み、自動的にイメージ
    Sending build context to Docker daemon  6.51 MB
    ...
 
-.. The build is run by the Docker daemon, not by the CLI. The first thing a build process does is send the entire context (recursively) to the daemon. In most cases, it’s best to start with an empty directory as context and keep your Dockerfile in that directory. Add only the files needed for building the Dockerfile.
+.. The build is run by the Docker daemon, not by the CLI. The first thing a build
+   process does is send the entire context (recursively) to the daemon.  In most
+   cases, it's best to start with an empty directory as context and keep your
+   Dockerfile in that directory. Add only the files needed for building the
+   Dockerfile.
 
-構築を処理するのは Docker デーモンであり、 CLI ではありません。まずはじめの構築プロセスは、対象のコンテクスト（再帰的）をデーモンに送信することです。多くの場合、空のディレクトリをコンテクストとして使いますので、Dockerfile をそのディレクトリ設置できます。Dockerfile の構築に必要なファイルのみを（ディレクトリに）追加します。
+ビルド処理は Docker デーモンが行うものであって CLI により行われるものではありません。
+ビルド処理の開始時にまず行われるのは、コンテキスト全体を（再帰的に）デーモンに送信することです。
+普通はコンテキストとして空のディレクトリを用意して、そこに Dockerfile を置きます。
+そのディレクトリへは、Dockerfile の構築に必要となるファイルのみを置くようにします。
 
-..    Warning: Do not use your root directory, /, as the PATH as it causes the build to transfer the entire contents of your hard drive to the Docker daemon.
+.. >**Warning**: Do not use your root directory, `/`, as the `PATH` as it causes
+   >the build to transfer the entire contents of your hard drive to the Docker
+   >daemon.
 
 .. warning::
 
-   ``PATH`` として自分のルート・ディレクトリ ``/`` を使わないでください。これは、自分のハードディスクに含まれる内容を、Docker デーモンに転送しようとするためです。
+   ``PATH`` に対して root ディレクトリ ``/`` を指定することはやめてください。
+   これを行うとビルド時に Docker デーモンに対して、ハードディスクの内容すべてを送り込むことになってしまいます。
 
-.. To use a file in the build context, the Dockerfile refers to the file specified in an instruction, for example, a COPY instruction. To increase the build’s performance, exclude files and directories by adding a .dockerignore file to the context directory. For information about how to create a .dockerignore file see the documentation on this page.
+.. To use a file in the build context, the `Dockerfile` refers to the file specified
+   in an instruction, for example,  a `COPY` instruction. To increase the build's
+   performance, exclude files and directories by adding a `.dockerignore` file to
+   the context directory.  For information about how to [create a `.dockerignore`
+   file](#dockerignore-file) see the documentation on this page.
 
-``Dockerfile`` に記述した ``COPY`` 命令などで使うファイル指定を参照し、コンテクスト（内容物の意味）を構築します。構築パフォーマンスを向上するためには、 ``.dockerignore`` ファイルにファイルやディレクトリを追加し、コンテクスト・ディレクトリから除外できます。より詳しい情報は、 :ref:`.dockerignore ファイルの作成 <dockerignore-file>` をご覧ください。
+ビルドコンテキスト内のファイルを利用する場合、``Dockerfile`` では命令を記述する際にファイル参照を指定します。
+たとえば ``COPY`` 命令の対象として参照します。
+ビルド時の処理性能を上げるために、コンテキストディレクトリ内に ``.dockerignore`` ファイルを追加し、不要なファイルやディレクトリは除外するようにします。
+詳しくはこのページ内の :ref:`.dockerignore` ファイルの生成方法 <#dockerignore-file>` を参照してください。
 
-.. Traditionally, the Dockerfile is called Dockerfile and located in the root of the context. You use the -f flag with docker build to point to a Dockerfile anywhere in your file system.
+.. Traditionally, the `Dockerfile` is called `Dockerfile` and located in the root
+   of the context. You use the `-f` flag with `docker build` to point to a Dockerfile
+   anywhere in your file system.
 
-伝統的に ``Dockerfile`` は、``Dockerfile`` とコンテクストがあるルートの場所を示します。 ``docker build`` 時に ``-f`` フラグを使えば、システム上のどこに Dockerfile があるか指定できます。
+慣例として ``Dockerfile`` は ``Dockerfile`` と命名されています。
+またこのファイルはコンテキストディレクトリのトップに置かれます。
+``docker build`` の ``-f`` フラグを用いれば、Dockerfile がファイルシステム内のどこにあっても指定することができます。
 
 .. code-block:: bash
 
    $ docker build -f /path/to/a/Dockerfile .
 
-.. You can specify a repository and tag at which to save the new image if the build succeeds:
+.. You can specify a repository and tag at which to save the new image if
+   the build succeeds:
 
-新しいイメージの構築に成功する時は、新しいイメージにリポジトリとタグを指定できます。
+イメージのビルドが成功した後の保存先として、リポジトリとタグを指定することができます。
 
 .. code-block:: bash
 
    $ docker build -t shykes/myapp .
 
-.. The Docker daemon runs the instructions in the Dockerfile one-by-one, committing the result of each instruction to a new image if necessary, before finally outputting the ID of your new image. The Docker daemon will automatically clean up the context you sent.
+.. To tag the image into multiple repositories after the build,
+   add multiple `-t` parameters when you run the `build` command:
 
-Docker デーモンは ``Dockerfile`` の命令を1行ずつ実行し、必要があれば命令ごとにイメージをコミットし、最終的に新しいイメージ ID を出力します。Docker デーモンは送信したコンテクストを自動的に削除します。
+ビルドの際に複数のリポジトリに対してイメージをタグづけするには、``build`` コマンドの実行時に ``-t`` パラメータを複数指定します。
 
-.. Note that each instruction is run independently, and causes a new image to be created - so RUN cd /tmp will not have any effect on the next instructions.
+   ..  $ docker build -t shykes/myapp:1.0.2 -t shykes/myapp:latest .
 
-各命令は独立して実行されるのでご注意ください。新しいイメージの作成時、 ``RUN cd /tmp`` を実行したとしても、次の命令には何ら影響を与えません。
+::
 
-.. Whenever possible, Docker will re-use the intermediate images (cache), to accelerate the docker build process significantly. This is indicated by the Using cache message in the console output. (For more information, see the Build cache section) in the Dockerfile best practices guide:
+   $ docker build -t shykes/myapp:1.0.2 -t shykes/myapp:latest .
 
-Docker は可能であればいつでも中間イメージ（キャッシュ）を再利用します。これは ``docker build`` 処理を速くするためです。コンソール出力に ``Using cache`` （キャッシュを利用中）の文字列が表示されます。より詳しい情報は ``Dockerfile`` ベスト・プラクティス・ガイドの :ref:`構築キャッシュ <build-cache>` をご覧ください。
+.. Before the Docker daemon runs the instructions in the `Dockerfile`, it performs
+   a preliminary validation of the `Dockerfile` and returns an error if the syntax is incorrect:
+
+``Dockerfile`` 内に記述されている命令を Docker デーモンが実行する際には、事前に ``Dockerfile`` が検証され、文法の誤りがある場合にはエラーが返されます。
+
+   ..  $ docker build -t test/myapp .
+       Sending build context to Docker daemon 2.048 kB
+       Error response from daemon: Unknown instruction: RUNCMD
+
+::
+
+   $ docker build -t test/myapp .
+   Sending build context to Docker daemon 2.048 kB
+   Error response from daemon: Unknown instruction: RUNCMD
+
+.. The Docker daemon runs the instructions in the `Dockerfile` one-by-one,
+   committing the result of each instruction
+   to a new image if necessary, before finally outputting the ID of your
+   new image. The Docker daemon will automatically clean up the context you
+   sent.
+
+Docker デーモンは ``Dockerfile`` 内の命令を 1 つずつ実行し、必要な場合にはビルドイメージ内にその処理結果を確定します。
+最後にビルドイメージの ID を出力します。
+Docker デーモンは、送信されたコンテキスト内容を自動的にクリアします。
+
+.. Note that each instruction is run independently, and causes a new image
+   to be created - so `RUN cd /tmp` will not have any effect on the next
+   instructions.
+
+各命令は個別に実行されます。
+それによって新たなイメージがビルドされます。
+したがって、たとえば ``RUN cd /tmp`` を実行したとしても、次の命令には何の効果も与えません。
+
+.. Whenever possible, Docker will re-use the intermediate images (cache),
+   to accelerate the `docker build` process significantly. This is indicated by
+   the `Using cache` message in the console output.
+   (For more information, see the [Build cache section](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/#build-cache) in the
+   `Dockerfile` best practices guide):
+
+Docker は可能な限り中間イメージ（キャッシュ）を再利用しようとします。
+これは ``docker build`` 処理を速くするためです。
+その場合は、端末画面に ``Using cache`` というメッセージが出力されます。
+（詳細については ``Dockerfile`` のベストプラクティスガイドにある :ref:`ビルドキャッシュの説明 <build-cache>` を参照してください。）
+
+   ..  $ docker build -t svendowideit/ambassador .
+       Sending build context to Docker daemon 15.36 kB
+       Step 1/4 : FROM alpine:3.2
+        ---> 31f630c65071
+       Step 2/4 : MAINTAINER SvenDowideit@home.org.au
+        ---> Using cache
+        ---> 2a1c91448f5f
+       Step 3/4 : RUN apk update &&      apk add socat &&        rm -r /var/cache/
+        ---> Using cache
+        ---> 21ed6e7fbb73
+       Step 4/4 : CMD env | grep _TCP= | (sed 's/.*_PORT_\([0-9]*\)_TCP=tcp:\/\/\(.*\):\(.*\)/socat -t 100000000 TCP4-LISTEN:\1,fork,reuseaddr TCP4:\2:\3 \&/' && echo wait) | sh
+        ---> Using cache
+        ---> 7ea8aef582cc
+       Successfully built 7ea8aef582cc
 
 .. code-block:: bash
 
    $ docker build -t svendowideit/ambassador .
    Sending build context to Docker daemon 15.36 kB
-   Step 0 : FROM alpine:3.2
+   Step 1/4 : FROM alpine:3.2
     ---> 31f630c65071
-   Step 1 : MAINTAINER SvenDowideit@home.org.au
+   Step 2/4 : MAINTAINER SvenDowideit@home.org.au
     ---> Using cache
     ---> 2a1c91448f5f
-   Step 2 : RUN apk update &&      apk add socat &&        rm -r /var/cache/
+   Step 3/4 : RUN apk update &&      apk add socat &&        rm -r /var/cache/
     ---> Using cache
     ---> 21ed6e7fbb73
-   Step 3 : CMD env | grep _TCP= | sed 's/.*_PORT_\([0-9]*\)_TCP=tcp:\/\/\(.*\):\(.*\)/socat -t 100000000 TCP4-LISTEN:\1,fork,reuseaddr TCP4:\2:\3 \&/' && echo wait) | sh
+   Step 4/4 : CMD env | grep _TCP= | (sed 's/.*_PORT_\([0-9]*\)_TCP=tcp:\/\/\(.*\):\(.*\)/socat -t 100000000 TCP4-LISTEN:\1,fork,reuseaddr TCP4:\2:\3 \&/' && echo wait) | sh
     ---> Using cache
     ---> 7ea8aef582cc
    Successfully built 7ea8aef582cc
 
-.. When you’re done with your build, you’re ready to look into Pushing a repository to its registry.
+.. Build cache is only used from images that have a local parent chain. This means
+   that these images were created by previous builds or the whole chain of images
+   was loaded with `docker load`. If you wish to use build cache of a specific
+   image you can specify it with `--cache-from` option. Images specified with
+   `--cache-from` do not need to have a parent chain and may be pulled from other
+   registries.
 
-構築が終わったら、:doc:`レジストリにリポジトリを送信 </engine/userguide/containers/dockerrepos>` する準備が整います。
+ビルドキャッシュは、ローカルにて親イメージへのつながりを持ったイメージからのみ利用されます。
+利用されるイメージとはつまり、前回のビルドによって生成されたイメージか、あるいは ``docker load`` によってロードされたイメージのいずれかです。
+ビルドキャッシュを特定のイメージから利用したい場合は ``--cache-from`` オプションを指定します。
+``--cache-from`` オプションが用いられた場合に、そのイメージは親イメージへのつながりを持っている必要はなく、他のレジストリから取得するイメージであっても構いません。
 
-.. Format
+.. When you're done with your build, you're ready to look into [*Pushing a
+   repository to its registry*](https://docs.docker.com/engine/tutorials/dockerrepos/#/contributing-to-docker-hub).
 
-書式
+ビルドに関する操作を終えたら、次は :doc:`リポジトリをレジストリへ送信 </engine/tutorials/dockerrepos>` を読んでみてください。
+
+.. ## Format
+
+記述書式
 ==========
 
-.. Here is the format of the Dockerfile:
+.. Here is the format of the `Dockerfile`:
 
-ここでは ``Dockerfile`` の書式を説明します。
+ここに ``Dockerfile`` の記述書式を示します。
 
-.. code-block:: dockerfile
-
-   # コメント
-   命令 引数
-
-.. The instruction is not case-sensitive, however convention is for them to be UPPERCASE in order to distinguish them from arguments more easily.
-
-命令（instruction）は大文字と小文字を区別しません。しかし引数（arguments）を簡単に見分けられるよう、大文字にするのが便利です。
-
-.. Docker runs the instructions in a Dockerfile in order. The first instruction must be `FROM` in order to specify the Base Image from which you are building.
-
-Docker は ``Dockerfile`` の命令を順番に実行します。イメージ構築にあたり :ref:`ベース・イメージ <base-image>` を指定するため、 **１行めの命令は「FROM」であるべき** です。
-
-
-.. Docker treats lines that begin with # as a comment, unless the line is a valid parser directive. A # marker anywhere else in a line is treated as an argument. This allows statements like:
-
-Docker は有効な :ref:`パーサ・ディレクティブ <parser-directives>` でなければ、 ``#`` で *始まる* 行をコメントとみなします。 ``#`` マークは行における以降の文字をコメントとみなします。コメントは次のような書き方ができます。
+.. ```Dockerfile
+   # Comment
+   INSTRUCTION arguments
 
 .. code-block:: dockerfile
 
-   # コメント
-   RUN echo '良い感じもの何かを # 実行しています'
+   # Comment
+   INSTRUCTION arguments
+
+
+.. The instruction is not case-sensitive. However, convention is for them to
+   be UPPERCASE to distinguish them from arguments more easily.
+
+命令（instruction）は大文字小文字を区別しません。
+ただし慣習として大文字とします。
+そうすることで引数（arguments）との区別をつけやすくします。
+
+.. Docker runs instructions in a `Dockerfile` in order. A `Dockerfile` **must
+   start with a \`FROM\` instruction**. The `FROM` instruction specifies the [*Base
+   Image*](glossary.md#base-image) from which you are building. `FROM` may only be
+   preceded by one or more `ARG` instructions, which declare arguments that are used
+   in `FROM` lines in the `Dockerfile`.
+
+Docker は ``Dockerfile`` 内の命令を記述順に実行します。
+``Dockerfile`` は必ず ``FROM`` **命令で** 始めなければなりません。
+``FROM`` 命令は、ビルドするイメージに対しての :ref:`ベースイメージ <base-image>` を指定するものです。
+``FROM`` よりも先に記述できる命令として ``ARG`` があります。
+これは ``FROM`` において用いられる引数を宣言するものです。
+
+
+.. Docker treats lines that *begin* with `#` as a comment, unless the line is
+   a valid [parser directive](#parser-directives). A `#` marker anywhere
+   else in a line is treated as an argument. This allows statements like:
+
+行頭が ``#`` で始まる行はコメントとして扱われます。
+ただし例外として :ref:`パーサ・ディレクティブ <parser-directives>` があります。
+行途中の ``#`` は単なる引数として扱われます。
+以下のような行記述が可能です。
+
+.. ```Dockerfile
+   # Comment
+   RUN echo 'we are running some # of cool things'
+   ```
+
+.. code-block:: dockerfile
+
+   # Comment
+   RUN echo 'we are running some # of cool things'
 
 .. Line continuation characters are not supported in comments.
 
-行中で命令の文字列が継続している場合は、コメント扱いしません。
+コメントにおいて行継続を指示する文字はサポートされていません。
 
-.. Parser directives
+.. ## Parser directives
 
 .. _parser-directives:
 
-パーサ・ディレクティブ（parser directive）
+パーサ・ディレクティブ
 ==================================================
 
-.. Parser directives are optional, and affect the way in which subsequent lines in a Dockerfile are handled. Parser directives do not add layers to the build, and will not be shown as a build step. Parser directives are written as a special type of comment in the form # directive=value. A single directive may only be used once.
+.. Parser directives are optional, and affect the way in which subsequent lines
+   in a `Dockerfile` are handled. Parser directives do not add layers to the build,
+   and will not be shown as a build step. Parser directives are written as a
+   special type of comment in the form `# directive=value`. A single directive
+   may only be used once.
 
-パーサ・ディレクティブはオプションです。 ``Dockerfile`` 中では、次に続く行にも影響を与えます。パーサ・ディレクティブは構築時にレイヤを追加しませんので、構築ステップでは表示されません。パーサ・ディレクティブは ``# ディレクティブ=値`` という特別な種類のコメントとして記述します。１つのディレクティブは１度しか使われません。
+パーサ・ディレクティブ（parser directive）を利用することは任意です。
+これは ``Dockerfile`` 内のその後に続く記述行を取り扱う方法を指示するものです。
+パーサ・ディレクティブはビルドされるイメージにレイヤを追加しません。
+したがってビルドステップとして表示されることはありません。
+パーサ・ディレクティブは、特別なコメントの記述方法をとるもので、`# ディレクティブ＝値` という書式です。
+同一のディレクティブは一度しか記述できません。
 
-.. Once a comment, empty line or builder instruction has been processed, Docker no longer looks for parser directives. Instead it treats anything formatted as a parser directive as a comment and does not attempt to validate if it might be a parser directive. Therefore, all parser directives must be at the very top of a Dockerfile.
+.. Once a comment, empty line or builder instruction has been processed, Docker
+   no longer looks for parser directives. Instead it treats anything formatted
+   as a parser directive as a comment and does not attempt to validate if it might
+   be a parser directive. Therefore, all parser directives must be at the very
+   top of a `Dockerfile`.
 
-コメントがあれば、空行または構築命令があったとしても、 Docker はパーサ・ディレクティブを探しません。そのかわり、あらゆる書式をパーサ・ディレクティブではなくコメントとみなすため、有効なパーサ・ディレクティブとはみなしません。そのため、全てのパーサ・ディレクティブは ``Dockerfile``  の限りなく上に書くべきです。
+コメント、空行、ビルド命令が一つでも読み込まれたら、それ以降 Docker はパーサ・ディレクティブの処理を行いません。
+その場合、パーサ・ディレクティブの書式で記述されていても、それはコメントとして扱われます。
+そしてパーサ・ディレクティブとして適切な書式であるかどうかも確認しません。
+したがってパーサ・ディレクティブは ``Dockerfile`` の冒頭に記述しなければなりません。
 
-.. Parser directives are not case-sensitive. However, convention is for them to be lowercase. Convention is also to include a blank line following any parser directives. Line continuation characters are not supported in parser directives.
+.. Parser directives are not case-sensitive. However, convention is for them to
+   be lowercase. Convention is also to include a blank line following any
+   parser directives. Line continuation characters are not supported in parser
+   directives.
 
-パーサ・ディレクティブは大文字と小文字を区別しません。しかしながら、小文字での記述が便利です。パーサ・ディレクティブの後に空白行を入れるのも便利です。行を継続する文字列は、パーサ・ディレクティブではサポートされません。
+パーサ・ディレクティブは大文字小文字を区別しません。
+ただし慣習として小文字とします。
+同じく慣習として、パーサ・ディレクティブの次には空行を 1 行挿入します。
+パーサ・ディレクティブにおいて、行継続を指示する文字はサポートされていません。
 
 .. Due to these rules, the following examples are all invalid:
 
@@ -179,7 +339,7 @@ Docker は有効な :ref:`パーサ・ディレクティブ <parser-directives>`
 
 .. Invalid due to appearing twice:
 
-２つ並ぶ場合は無効：
+二度出現するため無効：
 
 .. code-block:: dockerfile
 
@@ -214,17 +374,27 @@ Docker は有効な :ref:`パーサ・ディレクティブ <parser-directives>`
 # unknowndirective=value
 # knowndirective=value
 
-.. Non line-breaking whitespace is permitted in a parser directive. Hence, the following lines are all treated identically:
+.. Non line-breaking whitespace is permitted in a parser directive. Hence, the
+   following lines are all treated identically:
 
-行を壊さない空白行はパーサ・ディレクティブとして使えます。従って、以下の行はすべて同一として扱う：
+改行ではないホワイトスペースは、パーサ・ディレクティブにおいて記述することができます。
+そこで、以下の各行はすべて同一のものとして扱われます。
+
+.. ```Dockerfile
+   #directive=value
+   # directive =value
+   #	directive= value
+   # directive = value
+   #	  dIrEcTiVe=value
+   ```
 
 .. code-block:: dockerfile
 
    #directive=value
    # directive =value
-   #   directive= value
+   #	directive= value
    # directive = value
-   #     dIrEcTiVe=value
+   #	  dIrEcTiVe=value
 
 .. The following parser directive is supported:
 
@@ -251,128 +421,220 @@ escape
 
    # escape=` (バッククォート)
 
-.. The escape directive sets the character used to escape characters in a Dockerfile. If not specified, the default escape character is \.
+.. The `escape` directive sets the character used to escape characters in a
+   `Dockerfile`. If not specified, the default escape character is `\`.
 
-``escape`` ディレクティブは ``Dockerfile`` で使うエスケープ文字をセットします。指定しなければ、デフォルトのエスケープ文字は ``\`` です。
+ディレクティブ ``escape`` は、``Dockerfile`` 内でエスケープ文字として用いる文字を設定します。
+設定していない場合は、デフォルトとして `\` が用いられます。
 
-.. The escape character is used both to escape characters in a line, and to escape a newline. This allows a Dockerfile instruction to span multiple lines. Note that regardless of whether the escape parser directive is included in a Dockerfile, escaping is not performed in a RUN command, except at the end of a line.
 
-エスケープ文字を使うのは、行におけるエスケープ文字と、新しい行にエスケープする（つなげる）ための両方です。これにより、 ``Dockerfile`` の命令を複数行に記述できます。 ``Dockerfile`` で ``escape`` パーサ・ディレクティブを指定しなければ ``RUN`` 命令でもエスケープ処理はされませんが、行の最後は除くのでご注意ください。
+.. The escape character is used both to escape characters in a line, and to
+   escape a newline. This allows a `Dockerfile` instruction to
+   span multiple lines. Note that regardless of whether the `escape` parser
+   directive is included in a `Dockerfile`, *escaping is not performed in
+   a `RUN` command, except at the end of a line.*
 
-.. Setting the escape character to ` is especially useful on Windows, where \ is the directory path separator. ` is consistent with Windows PowerShell.
+エスケープ文字は行途中での文字をエスケープするものと、行継続をエスケープするものがあります。
+行継続のエスケープを使うと ``Dockerfile`` 内の命令を複数行に分けることができます。
+``Dockerfile`` に ``escape`` パーサ・ディレクティブを記述していたとしても、``RUN`` コマンドの途中でのエスケープは無効であり、行末の行継続エスケープのみ利用することができます。
 
-エスケープ文字に 「`」 を指定するのは ``Windows`` 上で役立ちます。 ``\`` はディレクトリのパスのパーサ（区切り）だからです。 「`」 は `Windows PowerShell <https://technet.microsoft.com/en-us/library/hh847755.aspx>`_ で次の行をつなぎます。
+.. Setting the escape character to `` ` `` is especially useful on
+   `Windows`, where `\` is the directory path separator. `` ` `` is consistent
+   with [Windows PowerShell](https://technet.microsoft.com/en-us/library/hh847755.aspx).
 
-.. Consider the following example which would fail in a non-obvious way on Windows. The second \ at the end of the second line would be interpreted as an escape for the newline, instead of a target of the escape from the first \. Similarly, the \ at the end of the third line would, assuming it was actually handled as an instruction, cause it be treated as a line continuation. The result of this dockerfile is that second and third lines are considered a single instruction:
+``Windows`` においてはエスケープ文字を「`」とします。
+``\`` はディレクトリ・セパレータとなっているためです。
+「`」は `Windows PowerShell <https://technet.microsoft.com/en-us/library/hh847755.aspx>`_ 上でも利用できます。
 
-以下では Windows では明確にエラーが出る例を考えます。２行目末尾の２つめの ``\`` は、１つめの ``\`` のエスケープとして処理されるのではなく、新しい行のためのエスケープとして扱われます。同様に３行目末尾の ``\`` は次の行に命令が継続するものとして扱われます。この dockerfile を使った結果、２行目と３行目は１つの命令として見なされます。
+.. Consider the following example which would fail in a non-obvious way on
+   `Windows`. The second `\` at the end of the second line would be interpreted as an
+   escape for the newline, instead of a target of the escape from the first `\`.
+   Similarly, the `\` at the end of the third line would, assuming it was actually
+   handled as an instruction, cause it be treated as a line continuation. The result
+   of this dockerfile is that second and third lines are considered a single
+   instruction:
+
+以下のような ``Windows`` 上の例を見てみます。
+これはよく分からずに失敗してしまう例です。
+2 行めの行末にある 2 つめの ``\`` は、次の行への継続を表わすエスケープと解釈されます。
+つまり 1 つめの ``\`` をエスケープするものとはなりません。
+同様に 3 行めの行末にある ``\`` も、この行が正しく命令として解釈されるものであっても、行継続として扱われることになります。
+結果としてこの Dockerfile の 2 行めと 3 行めは、一続きの記述行とみなされます。
+
+.. ```Dockerfile
+   FROM microsoft/nanoserver
+   COPY testfile.txt c:\\
+   RUN dir c:\
+   ```
 
 .. code-block:: dockerfile
 
-   FROM windowsservercore
+   FROM microsoft/nanoserver
    COPY testfile.txt c:\\
    RUN dir c:\
 
 .. Results in:
 
-実行結果：
+この Dockerfile を用いると以下の結果になります。
+
+   ..  PS C:\John> docker build -t cmd .
+       Sending build context to Docker daemon 3.072 kB
+       Step 1/2 : FROM microsoft/nanoserver
+        ---> 22738ff49c6d
+       Step 2/2 : COPY testfile.txt c:\RUN dir c:
+       GetFileAttributesEx c:RUN: The system cannot find the file specified.
+       PS C:\John>
 
 .. code-block:: powershell
 
    PS C:\John> docker build -t cmd .
    Sending build context to Docker daemon 3.072 kB
-   Step 1 : FROM windowsservercore
-    ---> dbfee88ee9fd
-   Step 2 : COPY testfile.txt c:RUN dir c:
+   Step 1/2 : FROM microsoft/nanoserver
+    ---> 22738ff49c6d
+   Step 2/2 : COPY testfile.txt c:\RUN dir c:
    GetFileAttributesEx c:RUN: The system cannot find the file specified.
    PS C:\John>
 
-.. One solution to the above would be to use / as the target of both the COPY instruction, and dir. However, this syntax is, at best, confusing as it is not natural for paths on Windows, and at worst, error prone as not all commands on Windows support / as the path separator.
+.. One solution to the above would be to use `/` as the target of both the `COPY`
+   instruction, and `dir`. However, this syntax is, at best, confusing as it is not
+   natural for paths on `Windows`, and at worst, error prone as not all commands on
+   `Windows` support `/` as the path separator.
 
-解決方法の１つは、 ``COPY``  命令とディレクトリで ``/`` を使う方法です。しかしながら、構文上ベストなのは ``Windows`` 上のパスを普通に扱うことであり、最悪なのは ``Windows`` 上でパスの区切りとして ``/`` を指定するとエラーを起こしがちです。
+上を解決するには ``COPY`` 命令と ``dir`` の対象において ``/`` を用います。
+ただし ``Windows`` 上における普通のパス記述とは違う文法であるため混乱しやすく、さらに ``Windows`` のあらゆるコマンドがパス・セパレータとして  ``/`` をサポートしているわけではないので、エラーになることもあります。
 
-.. By adding the escape parser directive, the following Dockerfile succeeds as expected with the use of natural platform semantics for file paths on Windows:
+.. By adding the `escape` parser directive, the following `Dockerfile` succeeds as
+   expected with the use of natural platform semantics for file paths on `Windows`:
 
-``escape`` パーサ・ディレクティブを追加することで、次の ``Dockerfile`` は ``Windows`` 上のファイル・パスを期待通りに処理します。
+パーサ・ディレクティブ ``escape`` を利用すれば、``Windows`` 上のファイル・パスの文法をそのままに、期待どおりに ``Dockerfile`` が動作してくれます。
+
+   ..  # escape=`
+
+       FROM microsoft/nanoserver
+       COPY testfile.txt c:\
+       RUN dir c:\
 
 .. code-block:: dockerfile
 
    # escape=`
-   
-   FROM windowsservercore
+
+   FROM microsoft/nanoserver
    COPY testfile.txt c:\
    RUN dir c:\
 
 .. Results in:
 
-実行結果：
+上を処理に用いると以下のようになります。
+
+   ..  PS C:\John> docker build -t succeeds --no-cache=true .
+       Sending build context to Docker daemon 3.072 kB
+       Step 1/3 : FROM microsoft/nanoserver
+        ---> 22738ff49c6d
+       Step 2/3 : COPY testfile.txt c:\
+        ---> 96655de338de
+       Removing intermediate container 4db9acbb1682
+       Step 3/3 : RUN dir c:\
+        ---> Running in a2c157f842f5
+        Volume in drive C has no label.
+        Volume Serial Number is 7E6D-E0F7
+
+        Directory of c:\
+
+       10/05/2016  05:04 PM             1,894 License.txt
+       10/05/2016  02:22 PM    <DIR>          Program Files
+       10/05/2016  02:14 PM    <DIR>          Program Files (x86)
+       10/28/2016  11:18 AM                62 testfile.txt
+       10/28/2016  11:20 AM    <DIR>          Users
+       10/28/2016  11:20 AM    <DIR>          Windows
+                  2 File(s)          1,956 bytes
+                  4 Dir(s)  21,259,096,064 bytes free
+        ---> 01c7f3bef04f
+       Removing intermediate container a2c157f842f5
+       Successfully built 01c7f3bef04f
+       PS C:\John>
 
 .. code-block:: powershell
 
    PS C:\John> docker build -t succeeds --no-cache=true .
    Sending build context to Docker daemon 3.072 kB
-   Step 1 : FROM windowsservercore
-    ---> dbfee88ee9fd
-   Step 2 : COPY testfile.txt c:\
-    ---> 99ceb62e90df
-   Removing intermediate container 62afbe726221
-   Step 3 : RUN dir c:\
-    ---> Running in a5ff53ad6323
+   Step 1/3 : FROM microsoft/nanoserver
+    ---> 22738ff49c6d
+   Step 2/3 : COPY testfile.txt c:\
+    ---> 96655de338de
+   Removing intermediate container 4db9acbb1682
+   Step 3/3 : RUN dir c:\
+    ---> Running in a2c157f842f5
     Volume in drive C has no label.
-    Volume Serial Number is 1440-27FA
-   
+    Volume Serial Number is 7E6D-E0F7
+
     Directory of c:\
-   
-   03/25/2016  05:28 AM    <DIR>          inetpub
-   03/25/2016  04:22 AM    <DIR>          PerfLogs
-   04/22/2016  10:59 PM    <DIR>          Program Files
-   03/25/2016  04:22 AM    <DIR>          Program Files (x86)
-   04/18/2016  09:26 AM                 4 testfile.txt
-   04/22/2016  10:59 PM    <DIR>          Users
-   04/22/2016  10:59 PM    <DIR>          Windows
-                  1 File(s)              4 bytes
-                  6 Dir(s)  21,252,689,920 bytes free
-    ---> 2569aa19abef
-   Removing intermediate container a5ff53ad6323
-   Successfully built 2569aa19abef
+
+   10/05/2016  05:04 PM             1,894 License.txt
+   10/05/2016  02:22 PM    <DIR>          Program Files
+   10/05/2016  02:14 PM    <DIR>          Program Files (x86)
+   10/28/2016  11:18 AM                62 testfile.txt
+   10/28/2016  11:20 AM    <DIR>          Users
+   10/28/2016  11:20 AM    <DIR>          Windows
+              2 File(s)          1,956 bytes
+              4 Dir(s)  21,259,096,064 bytes free
+    ---> 01c7f3bef04f
+   Removing intermediate container a2c157f842f5
+   Successfully built 01c7f3bef04f
    PS C:\John>
 
-.. Environment replacement:
+.. ## Environment replacement
 
 .. _environment-replacement:
 
-環境変数の置き換え
+環境変数の置換
 ====================
 
-.. Environment variables (declared with the ENV statement) can also be used in certain instructions as variables to be interpreted by the Dockerfile. Escapes are also handled for including variable-like syntax into a statement literally.
+.. Environment variables (declared with [the `ENV` statement](#env)) can also be
+   used in certain instructions as variables to be interpreted by the
+   `Dockerfile`. Escapes are also handled for including variable-like syntax
+   into a statement literally.
 
-``Dockerfile`` は環境変数（ :ref:`env 命令 <env>` で宣言）も解釈できます。命令文字（ステートメント・リテラル）中では、変数の様な構文でエスケープ・シーケンスも扱えます。
+``Dockerfile`` の :ref:`ENV 構文 <#env>` により宣言される環境変数は、特定の命令において変数として解釈されます。
+エスケープについても構文内にリテラルを含めることから、変数と同様の扱いと考えられます。
 
-.. Environment variables are notated in the Dockerfile either with $variable_name or ${variable_name}. They are treated equivalently and the brace syntax is typically used to address issues with variable names with no whitespace, like ${foo}_bar.
+.. Environment variables are notated in the `Dockerfile` either with
+   `$variable_name` or `${variable_name}`. They are treated equivalently and the
+   brace syntax is typically used to address issues with variable names with no
+   whitespace, like `${foo}_bar`.
 
-``Dockerfile`` の中では、環境変数を ``$variable_name`` または ``${variable_name}`` の形式で記述します。これらは同等に扱われます。固定用の構文として典型的に使われるのは、空白スペースを変数名に入れず ``${foo}_bar`` のような変数名で割り当てることです。
+``Dockerfile`` における環境変数の記述書式は、``$variable_name`` あるいは ``${variable_name}`` のいずれかが可能です。
+両者は同等のものですが、ブレースを用いた記述は ``${foo}_bar`` といった記述のように、変数名にホワイトスペースを含めないようにするために利用されます。
 
-.. The ${variable_name} syntax also supports a few of the standard bash modifiers as specified below:
+.. The `${variable_name}` syntax also supports a few of the standard `bash`
+   modifiers as specified below:
 
-``${変数の_名前}`` 構文は、次のような ``bash`` の変更をサポートしています。
+``${variable_name}`` という書式は、標準的な ``bash`` の修飾書式をいくつかサポートしています。
+たとえば以下のものです。
 
-..    ${variable:-word} indicates that if variable is set then the result will be that value. If variable is not set then word will be the result.
-    ${variable:+word} indicates that if variable is set then word will be the result, otherwise the result is the empty string.
+.. * `${variable:-word}` indicates that if `variable` is set then the result
+     will be that value. If `variable` is not set then `word` will be the result.
+   * `${variable:+word}` indicates that if `variable` is set then `word` will be
+     the result, otherwise the result is the empty string.
 
-* ``${変数:-文字}`` は、 ``変数`` を設定したら、その値を使うことを意味します。もし ``変数`` がセットされ無ければ、 ``文字`` が設定されます。
-* ``${変数:+文字}`` は、 ``変数`` を設定したら、``文字`` を使います。 ``変数`` がセットされなければ、空白のままにします。
+* ``${variable:-word}`` は、``variable`` が設定されているとき、この結果はその値となります。
+  ``variable`` が設定されていないとき、``word`` が結果となります。
+* ``${variable:+word}`` は、``variable`` が設定されているとき、この結果は ``word`` となります。
+  ``variable`` が設定されていないとき、結果は空文字となります。
 
-.. In all cases, word can be any string, including additional environment variables.
+.. In all cases, `word` can be any string, including additional environment
+   variables.
 
-いずれの場合でも、 ``文字`` とは何らかの文字列であり、追加の環境変数を含みます。
+どの例においても、``word`` は文字列であれば何でもよく、さらに別の環境変数を含んでいても構いません。
 
-.. Escaping is possible by adding a \ before the variable: \$foo or \${foo}, for example, will translate to $foo and ${foo} literals respectively.
+.. Escaping is possible by adding a `\` before the variable: `\$foo` or `\${foo}`,
+   for example, will translate to `$foo` and `${foo}` literals respectively.
 
-エスケープするには ``\$foo`` や ``\${foo}`` のように、変数名の前に ``\`` を付けます。例えば、 ``$foo`` と ``${foo}`` リテラルは別々のものです。
+変数名をエスケープすることも可能で、変数名の前に ``\$foo`` や ``\${foo}`` のように ``\`` をつけます。
+こうすると、この例はそれぞれ ``$foo``、``${foo}`` という文字列そのものとして解釈されます。
 
-.. Example (parsed representation is displayed after the #):
+.. Example (parsed representation is displayed after the `#`):
 
-例（変数展開したものは、 ``#`` のあとに表示）：
+記述例 （`#` の後に変数解釈した結果を表示）
 
 .. code-block:: dockerfile
 
@@ -382,9 +644,10 @@ escape
    ADD . $foo       # ADD . /bar
    COPY \$foo /quux # COPY $foo /quux
 
-.. Environment variables are supported by the following list of instructions in the Dockerfile:
+.. Environment variables are supported by the following list of instructions in
+   the `Dockerfile`:
 
-以下の命令で ``Dockerfile`` における環境変数の利用がサポートされています。
+環境変数は、以下に示す ``Dockerfile`` 内の命令においてサポートされます。
 
 * ``ADD``
 * ``COPY``
@@ -400,19 +663,24 @@ escape
 
 同様に、
 
-..    ONBUILD (when combined with one of the supported instructions above)
+.. * `ONBUILD` (when combined with one of the supported instructions above)
 
-* ``ONBUILD`` （上記の命令と組み合わせて使う場合にサポートされます）
+* ``ONBUILD`` （上記のサポート対象の命令と組み合わせて用いる場合）
 
-..    Note: prior to 1.4, ONBUILD instructions did NOT support environment variable, even when combined with any of the instructions listed above.
+.. > **Note**:
+   > prior to 1.4, `ONBUILD` instructions did **NOT** support environment
+   > variable, even when combined with any of the instructions listed above.
 
 .. note::
 
-   1.4 より前のバージョンでは、環境変数における ``ONBUILD`` 命令と上記の命令の組み合わせはサポート **していません** 。
+   Docker バージョン 1.4 より以前では ``ONBUILD`` 命令は環境変数をサポートしていません。
+   一覧にあげた命令との組み合わせで用いる場合も同様です。
 
-.. Environment variable substitution will use the same value for each variable throughout the entire command. In other words, in this example:
+.. Environment variable substitution will use the same value for each variable
+   throughout the entire instruction. In other words, in this example:
 
-環境変数を使う代わりに、各変数をコマンド上で利用できます。次の例を見ましょう。
+環境変数の置換は、命令全体の中で個々の変数ごとに同一の値が用いられます。
+これを説明するために以下の例を見ます。
 
 .. code-block:: dockerfile
 
@@ -420,26 +688,49 @@ escape
    ENV abc=bye def=$abc
    ENV ghi=$abc
 
-.. will result in def having a value of hello, not bye. However, ghi will have a value of bye because it is not part of the same command that set abc to bye.
+.. will result in `def` having a value of `hello`, not `bye`. However,
+   `ghi` will have a value of `bye` because it is not part of the same instruction 
+   that set `abc` to `bye`.
 
-この結果は、 ``def`` の値が ``hello`` であり、 ``bye`` ではありません。しかしながら ``ghi`` の値は ``bye`` になります。これは ``abc`` を ``bye`` に設定するのと同じコマンド行ではないためです。
+この結果、``def`` は ``hello`` になります。
+``bye`` ではありません。
+しかし ``ghi`` は ``bye`` になります。
+``ghi`` を設定している行は、 ``abc`` に ``bye`` を設定している命令と同一箇所ではないからです。
 
 .. _dockerignore-file:
 
 .dockerignore ファイル
 ==============================
 
-.. Before the docker CLI sends the context to the docker daemon, it looks for a file named .dockerignore in the root directory of the context. If this file exists, the CLI modifies the context to exclude files and directories that match patterns in it. This helps to avoid unnecessarily sending large or sensitive files and directories to the daemon and potentially adding them to images using ADD or COPY.
+.. Before the docker CLI sends the context to the docker daemon, it looks
+   for a file named `.dockerignore` in the root directory of the context.
+   If this file exists, the CLI modifies the context to exclude files and
+   directories that match patterns in it.  This helps to avoid
+   unnecessarily sending large or sensitive files and directories to the
+   daemon and potentially adding them to images using `ADD` or `COPY`.
 
-docker CLI がコンテクストを docker デーモンに送る前に、コンテクストのルートディレクトリ内の ``.dockerignore`` ファイルを探します。もしファイルが存在していれば、CLI はパターンに一致するファイルとディレクトリを除外するためにコンテクストを修正します。これは、大きかったり取り扱いに注意が必要だったりするファイルやディレクトリをデーモンに送ってしまうこと、および、``ADD`` や ``COPY`` を使って潜在的にそれらをイメージに追加してしまうことを回避するのに役立ちます。
+Docker の CLI によってコンテキストが Docker デーモンに送信される前には、コンテキストのルートディレクトリの ``.dockerignore`` というファイルが参照されます。
+このファイルが存在したら、CLI はそこに記述されたパターンにマッチするようなファイルやディレクトリを除外した上で、コンテキストを扱います。
+必要もないのに、巨大なファイルや取り扱い注意のファイルを不用意に送信してしまうことが避けられ、``ADD`` や ``COPY`` を使ってイメージに間違って送信してしまうことを防ぐことができます。
 
-.. The CLI interprets the .dockerignore file as a newline-separated list of patterns similar to the file globs of Unix shells. For the purposes of matching, the root of the context is considered to be both the working and the root directory. For example, the patterns /foo/bar and foo/bar both exclude a file or directory named bar in the foo subdirectory of PATH or in the root of the git repository located at URL. Neither excludes anything else.
+.. The CLI interprets the `.dockerignore` file as a newline-separated
+   list of patterns similar to the file globs of Unix shells.  For the
+   purposes of matching, the root of the context is considered to be both
+   the working and the root directory.  For example, the patterns
+   `/foo/bar` and `foo/bar` both exclude a file or directory named `bar`
+   in the `foo` subdirectory of `PATH` or in the root of the git
+   repository located at `URL`.  Neither excludes anything else.
 
-CLI は ``.dockerignore`` ファイルを行ごとに隔てて解釈します。行の一致パターンは Unix シェル上のものに似ています。パターンがコンテクストの root に一致すると考えられる場合は、root ディレクトリとして動作します。例えば、パターン ``/foo/bar`` と ``foo/bar`` がある場合、いずれも ``PATH`` における ``foo`` サブディレクトリの ``bar`` ファイルを削除します。あるいは ``URL`` の場所にある git のルートでもです。どちらでも除外されます。
+CLI は ``.dockerignore`` ファイルを各行ごとに区切られた設定一覧として捉えます。
+ちょうど Unix シェルにおけるファイルグロブ（glob）と同様です。
+マッチング処理の都合上、コンテキストのルートは、ワーキングディレクトリとルートディレクトリの双方であるものとしてみなされます。
+たとえばパターンとして ``/foo/bar`` と ``foo/bar`` があったとすると、``PATH`` 上であればサブディレクトリ ``foo`` 内、``URL`` であればその git レポジトリ内の、いずれも ``bar`` というファイルまたはディレクトリを除外します。
+その他のものについては除外対象としません。
 
-.. If a line in `.dockerignore` file starts with `#` in column 1, then this line is considered as a comment and is ignored before interpreted by the CLI.
+.. If a line in `.dockerignore` file starts with `#` in column 1, then this line is
+   considered as a comment and is ignored before interpreted by the CLI.
 
-``.dockerignore`` ファイルの１行目が ``#`` で始まる場合は、この行はコメントであると見なされ、CLI の処理からは無視されます。
+``.dockerignore`` ファイルの各行頭の第 1 カラムめに ``#`` があれば、その行はコメントとみなされて、CLI による解釈が行われず無視されます。
 
 .. Here is an example .dockerignore file:
 
@@ -456,38 +747,64 @@ CLI は ``.dockerignore`` ファイルを行ごとに隔てて解釈します。
 
 このファイルは構築時に以下の動作をします。
 
-.. Rule 	Behavior
+.. | Rule           | Behavior                                                                                                                                                                     |
+   |----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   | `# comment`    | Ignored.                 |
+   | `*/temp*`      | Exclude files and directories whose names start with `temp` in any immediate subdirectory of the root.  For example, the plain file `/somedir/temporary.txt` is excluded, as is the directory `/somedir/temp`.                 |
+   | `*/*/temp*`    | Exclude files and directories starting with `temp` from any subdirectory that is two levels below the root. For example, `/somedir/subdir/temporary.txt` is excluded. |
+   | `temp?`        | Exclude files and directories in the root directory whose names are a one-character extension of `temp`.  For example, `/tempa` and `/tempb` are excluded.
+
 .. 表にする(todo)
 
-.. */temp* 	Exclude files and directories whose names start with temp in any immediate subdirectory of the root. For example, the plain file /somedir/temporary.txt is excluded, as is the directory /somedir/temp.
-   */*/temp* 	Exclude files and directories starting with temp from any subdirectory that is two levels below the root. For example, /somedir/subdir/temporary.txt is excluded.
-   temp? 	Exclude files and directories in the root directory whose names are a one-character extension of temp. For example, /tempa and /tempb are excluded.
+* ``# comment`` … 無視されます。
+* ``*/temp*`` … ルートディレクトリの直下にあるサブディレクトリ内にて、``temp`` で始まる名称のファイルまたはディレクトリすべてを除外します。たとえば通常のファイル ``/somedir/temporary.txt`` は除外されます。ディレクトリ ``/somedir/temp`` も同様です。
+* ``*/*/temp*`` … ルートから 2 階層下までのサブディレクトリ内にて、``temp`` で始まる名称のファイルまたはディレクトリすべてを除外します。たとえば ``/somedir/subdir/temporary.txt`` は除外されます。
+* ``temp?`` … ルートディレクトリにあるファイルやディレクトリであって、``temp`` にもう 1 文字ついた名前のものを除外します。たとえば ``/tempa`` や ``/tempb`` が除外されます。
 
-* ``# コメント`` … 無視します。
-* ``*/temp*`` … ルート以下のあらゆるサブディレクトリを含め、 ``temp`` で始まる名称のファイルとディレクトリを除外します。例えば、テキストファイル ``/somedir/temporary.txt`` は除外しますし、ディレクトリ ``/somedir/temp`` も除外します。
-* ``*/*/temp*`` … ルートから２レベル以下の ``temp`` で 始まる名称のファイルとディレクトリを除外します。例えば ``/somedir/subdir/temporary.txt`` を除外します。
-* ``temp?`` … ルートディレクトリにあるファイル名が ``temp`` と１文字一致するファイルとディレクトリを除外します。例えば、 ``/tempa`` と ``/tempb`` を除外します。
+.. Matching is done using Go's
+   [filepath.Match](http://golang.org/pkg/path/filepath#Match) rules.  A
+   preprocessing step removes leading and trailing whitespace and
+   eliminates `.` and `..` elements using Go's
+   [filepath.Clean](http://golang.org/pkg/path/filepath/#Clean).  Lines
+   that are blank after preprocessing are ignored.
 
-.. Matching is done using Go’s filepath.Match rules. A preprocessing step removes leading and trailing whitespace and eliminates . and .. elements using Go’s filepath.Clean. Lines that are blank after preprocessing are ignored.
+パターンマッチングには Go 言語の `filepath.Match <http://golang.org/pkg/path/filepath#Match>`_ ルールが用いられています。
+マッチングの前処理として、文字列前後のホワイトスペースは取り除かれ、Go 言語の `filepath.Clean <http://golang.org/pkg/path/filepath/#Clean>`_ によって ``.`` と ``..`` が除外されます。
+前処理を行った後の空行は無視されます。
 
-一致には Go 言語の `filepath.Match <http://golang.org/pkg/path/filepath#Match>`_ ルールを使います。処理前のステップでは、空白スペースと ``.`` と ``..`` 要素を Go 言語の `filepath.Clean <http://golang.org/pkg/path/filepath/#Clean>`_ を用いて除外します。
+.. Beyond Go's filepath.Match rules, Docker also supports a special
+   wildcard string `**` that matches any number of directories (including
+   zero). For example, `**/*.go` will exclude all files that end with `.go`
+   that are found in all directories, including the root of the build context.
 
-.. Lines starting with ! (exclamation mark) can be used to make exceptions to exclusions. The following is an example .dockerignore file that uses this mechanism:
+Docker では Go 言語の filepath.Match ルールを拡張して、特別なワイルドカード文字列 ``**`` をサポートしています。
+これは複数のディレクトリ（ゼロ個を含む）にマッチします。
+たとえば ``**/*.go`` は、ファイル名が ``.go`` で終わるものであって、どのサブディレクトリにあるものであってもマッチします。
+ビルドコンテキストのルートも含まれます。
 
-行を ``!`` （エクスクラメーション・マーク）で始めると、除外ルールとして使えます。以下の例は ``.dockerignore`` ファイルでこの仕組みを使ったものです。
+.. Lines starting with `!` (exclamation mark) can be used to make exceptions
+   to exclusions.  The following is an example `.dockerignore` file that
+   uses this mechanism:
+
+行頭を感嘆符 ``!`` で書き始めると、それは除外に対しての例外を指定するものとなります。
+以下の ``.dockerignore`` はこれを用いる例です。
 
 .. code-block:: bash
 
    *.md
    !README.md
 
-.. All markdown files except README.md are excluded from the context.
+.. All markdown files *except* `README.md` are excluded from the context.
 
-`README.md` を除く全てのマークダウンファイルが、コンテントから除外されます。
+マークダウンファイルがすべてコンテキストから除外されますが、``README.md`` だけは **除外されません** 。
 
-.. The placement of ! exception rules influences the behavior: the last line of the .dockerignore that matches a particular file determines whether it is included or excluded. Consider the following example:
+.. The placement of `!` exception rules influences the behavior: the last
+   line of the `.dockerignore` that matches a particular file determines
+   whether it is included or excluded.  Consider the following example:
 
-``!`` 除外ルールが影響を与えるのは、 ``.dockerignore`` ファイルに書いた場所以降に一致するパターンが現れた時、含めるか除外するかを決めます。次の例で考えて見ましょう。
+``!`` による例外ルールは、それを記述した位置によって処理に影響します。
+特定のファイルが含まれるのか除外されるのかは、そのファイルがマッチする ``.dockerignore`` 内の最終の行によって決まります。
+以下の例を考えてみます。
 
 .. code-block:: bash
 
@@ -495,9 +812,11 @@ CLI は ``.dockerignore`` ファイルを行ごとに隔てて解釈します。
    !README*.md
    README-secret.md
 
-.. No markdown files are included in the context except README files other than README-secret.md.
+.. No markdown files are included in the context except README files other than
+   `README-secret.md`.
 
-README を含むファイル以外は、``README-secret.md`` も含め、残り全てのマークダウンファイルが除外対象です。
+コンテキストにあるマークダウンファイルはすべて除外されます。
+例外として README ファイルは含まれることになりますが、ただし ``README-secret.md`` は除外されます。
 
 .. Now consider this example:
 
@@ -509,23 +828,36 @@ README を含むファイル以外は、``README-secret.md`` も含め、残り�
    README-secret.md
    !README*.md
 
-.. All of the README files are included. The middle line has no effect because !README*.md matches README-secret.md and comes last.
+.. All of the README files are included.  The middle line has no effect because
+   `!README*.md` matches `README-secret.md` and comes last.
 
-README を含む全てのファイル除外します。真ん中の行 ``README-secret.md`` は最終行の ``!README*.md`` に一致するため、何の影響もありません。
+README ファイルはすべて含まれます。
+2 行めは意味をなしていません。
+なぜなら ``!README*.md`` には ``README-secret.md`` がマッチすることになり、しかも ``!README*.md`` が最後に記述されているからです。
 
-.. You can even use the .dockerignore file to exclude the Dockerfile and .dockerignore files. These files are still sent to the daemon because it needs them to do its job. But the ADD and COPY commands do not copy them to image.
+.. You can even use the `.dockerignore` file to exclude the `Dockerfile`
+   and `.dockerignore` files.  These files are still sent to the daemon
+   because it needs them to do its job.  But the `ADD` and `COPY` instructions
+   do not copy them to the image.
 
-``.dockerignore`` ファイルは ``Dockerfile`` と ``.dockerignore`` ファイルの除外にも使えます。それでも、これらのファイルはジョブを処理するためデーモンに送信されます。しかし ``ADD`` と ``COPY`` コマンドは、これらをイメージ内にコピーしません。
+``.dockerignore`` ファイルを使って ``Dockerfile`` や ``.dockerignore`` ファイルを除外することもできます。
+除外したとしてもこの 2 つのファイルはデーモンに送信されます。
+この 2 つのファイルはデーモンの処理に必要なものであるからです。
+ただし ``ADD`` 命令や ``COPY`` 命令では、この 2 つのファイルはイメージにコピーされません。
 
-.. Finally, you may want to specify which files to include in the context, rather than which to exclude. To achieve this, specify * as the first pattern, followed by one or more ! exception patterns.
+.. Finally, you may want to specify which files to include in the
+   context, rather than which to exclude. To achieve this, specify `*` as
+   the first pattern, followed by one or more `!` exception patterns.
 
-最後に、特定のファイルのみコンテクストに含め、他を除外したい場合があるでしょう。実行するには、始めに ``*`` パターンに指定し、以下１つまたは複数の ``!`` 例外パターンを記述します。
+除外したいファイルを指定するのではなく、含めたいファイルを指定したい場合があります。
+これを実現するには、冒頭のマッチングパターンとして ``*`` を指定します。
+そしてこれに続けて、例外となるパターンを ``!`` を使って指定します。
 
-.. Note: For historical reasons, the pattern . is ignored.
+.. **Note**: For historical reasons, the pattern `.` is ignored.
 
 .. note::
 
-   歴史的な理由により、 ``.`` パターンは無視されます。
+   これまでの開発経緯によりパターン ``.`` は無視されます。
 
 .. _from:
 
