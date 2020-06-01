@@ -864,50 +864,126 @@ README ファイルはすべて含まれます。
 FROM
 ==========
 
+   ..  FROM <image> [AS <name>]
+
 .. code-block:: dockerfile
 
-   FROM <イメージ>
+   FROM <image> [AS <name>]
 
 または
 
+   ..  FROM <image>[:<tag>] [AS <name>]
+
 .. code-block:: dockerfile
 
-   FROM <イメージ>:<タグ>
+   FROM <image>[:<tag>] [AS <name>]
 
 または
 
-.. code-block:: dockerfile
-
-   FROM <イメージ>@<digest>
-
-.. The FROM instruction sets the Base Image for subsequent instructions. As such, a valid Dockerfile must have FROM as its first instruction. The image can be any valid image -- it is especially easy to start by pulling an image from the Public Repositories.
-
-``FROM`` 命令は、以降の命令で使う :ref:`ベース・イメージ <base-image>` を指定します。あるいは、有効な ``Dockerfile`` は、１行めを ``FROM`` 命令で指定する必要があります。イメージとは、あらゆる有効なものが利用できます。 :doc:`パブリック・リポジトリ </engine/userguide/containers/dockerrepos>` から **イメージを取得する** 方法が一番簡単です。
-
-..    FROM must be the first non-comment instruction in the Dockerfile.
-
-* ``Dockerfile`` では、コメント以外では ``FROM`` を一番始めに書く必要があります。
-
-..    FROM can appear multiple times within a single Dockerfile in order to create multiple images. Simply make a note of the last image ID output by the commit before each new FROM command.
-
-* 単一の ``Dockerfile`` から複数のイメージを作成するため、複数の ``FROM`` を指定できます。各 ``FROM`` 命令ごとに自動的にコミットし、最新のイメージ ID が出力されるのを覚えておいてください。
-
-..    The tag or digest values are optional. If you omit either of them, the builder assumes a latest by default. The builder returns an error if it cannot match the tag value.
-
-* ``タグ`` や ``digest`` 値はオプションです。省略した場合、ビルダーはデフォルトの ``latest`` とみなします。ビルダーは一致する ``tag`` 値が無ければエラーを返します。
-
-.. _maintainer:
-
-MAINTAINER
-==========
+   ..  FROM <image>[@<digest>] [AS <name>]
 
 .. code-block:: dockerfile
 
-    MAINTAINER <名前>
+   FROM <image>[@<digest>] [AS <name>]
 
-.. The MAINTAINER instruction allows you to set the Author field of the generated images.
+.. The `FROM` instruction initializes a new build stage and sets the 
+   [*Base Image*](glossary.md#base-image) for subsequent instructions. As such, a 
+   valid `Dockerfile` must start with a `FROM` instruction. The image can be
+   any valid image – it is especially easy to start by **pulling an image** from 
+   the [*Public Repositories*](https://docs.docker.com/engine/tutorials/dockerrepos/).
 
-``MAINTAINER`` 命令は、生成するイメージの *Author* （作者）フィールドを指定します。
+``FROM`` 命令は、イメージビルドのための処理ステージを初期化し、:ref:`ベース・イメージ <base-image>` を設定します。後続の命令がこれに続きます。
+このため、正しい ``Dockerfile`` は ``FROM`` 命令から始めなければなりません。
+ベース・イメージは正しいものであれば何でも構いません。
+簡単に取り掛かりたいときは、`公開リポジトリ <https://docs.docker.com/engine/tutorials/dockerrepos/>`_ から **イメージを取得** します。
+
+.. - `ARG` is the only instruction that may precede `FROM` in the `Dockerfile`.
+     See [Understand how ARG and FROM interact](#understand-how-arg-and-from-interact).
+
+* ``Dockerfile`` 内にて ``ARG`` は、``FROM`` よりも前に記述できる唯一の命令です。
+  :ref:`ARG と FROM の関連について <understand-how-arg-and-from-interact>` を参照してください。
+
+.. - `FROM` can appear multiple times within a single `Dockerfile` to 
+     create multiple images or use one build stage as a dependency for another.
+     Simply make a note of the last image ID output by the commit before each new 
+     `FROM` instruction. Each `FROM` instruction clears any state created by previous
+     instructions.
+
+* 1 つの ``Dockerfile`` 内に ``FROM`` を複数記述することが可能です。
+  これは複数のイメージを生成するため、あるいは 1 つのビルドステージを使って依存イメージをビルドするために行います。
+  各 ``FROM`` 命令までのコミットによって出力される最終のイメージ ID は書き留めておいてください。
+  個々の ``FROM`` 命令は、それ以前の命令により作り出された状態を何も変更しません。
+
+.. - Optionally a name can be given to a new build stage by adding `AS name` to the 
+     `FROM` instruction. The name can be used in subsequent `FROM` and
+     `COPY --from=<name|index>` instructions to refer to the image built in this stage.
+
+* オプションとして、新たなビルドステージに対しては名前をつけることができます。
+  これは ``FROM`` 命令の ``AS name`` により行います。
+  この名前は後続の ``FROM`` や ``COPY --from=<name|index>`` 命令において利用することができ、このビルドステージにおいてビルドされたイメージを参照します。
+
+.. - The `tag` or `digest` values are optional. If you omit either of them, the 
+     builder assumes a `latest` tag by default. The builder returns an error if it
+     cannot find the `tag` value.
+
+* ``tag`` と ``digest`` の設定はオプションです。
+  これを省略した場合、デフォルトである ``latest`` タグが指定されたものとして扱われます。
+  ``tag`` の値に合致するものがなければ、エラーが返されます。
+
+.. ### Understand how ARG and FROM interact
+
+.. _understand-how-arg-and-from-interact:
+
+ARG と FROM の関連について
+--------------------------
+
+.. `FROM` instructions support variables that are declared by any `ARG` 
+   instructions that occur before the first `FROM`.
+
+``FROM`` 命令では、``ARG`` 命令によって宣言された変数すべてを参照できます。
+この ``ARG`` 命令は、初出の ``FROM`` 命令よりも前に記述します。
+
+
+.. ```Dockerfile
+   ARG  CODE_VERSION=latest
+   FROM base:${CODE_VERSION}
+   CMD  /code/run-app
+   
+   FROM extras:${CODE_VERSION}
+   CMD  /code/run-extras
+   ```
+
+.. code-block:: dockerfile
+
+   ARG  CODE_VERSION=latest
+   FROM base:${CODE_VERSION}
+   CMD  /code/run-app
+
+   FROM extras:${CODE_VERSION}
+   CMD  /code/run-extras
+
+.. An `ARG` declared before a `FROM` is outside of a build stage, so it
+   can't be used in any instruction after a `FROM`. To use the default value of
+   an `ARG` declared before the first `FROM` use an `ARG` instruction without
+   a value inside of a build stage:
+
+``FROM`` よりも前に宣言されている ``ARG`` は、ビルドステージ内に含まれるものではありません。
+したがって ``FROM`` 以降の命令において利用することはできません。
+初出の ``FROM`` よりも前に宣言された ``ARG`` の値を利用するには、ビルドステージ内において ``ARG`` 命令を、値を設定することなく利用します。
+
+.. ```Dockerfile
+   ARG VERSION=latest
+   FROM busybox:$VERSION
+   ARG VERSION
+   RUN echo $VERSION > image_version
+   ```
+
+.. code-block:: dockerfile
+
+   ARG VERSION=latest
+   FROM busybox:$VERSION
+   ARG VERSION
+   RUN echo $VERSION > image_version
 
 .. _run:
 
@@ -918,31 +994,45 @@ RUN
 
 RUN には２つの形式があります。
 
-..  RUN <command> (shell form, the command is run in a shell - /bin/sh -c)
-    RUN ["executable", "param1", "param2"] (exec form)
+.. - `RUN <command>` (*shell* form, the command is run in a shell, which by
+   default is `/bin/sh -c` on Linux or `cmd /S /C` on Windows)
+   - `RUN ["executable", "param1", "param2"]` (*exec* form)
 
-* ``RUN <コマンド>`` （シェル形式、コマンドを実行する。Linux 上のデフォルトは ``/bin/sh -c`` であり、Windows 上 ``cmd /S /C`` ）
-* ``RUN ["実行バイナリ", "パラメータ１", "パラメータ２"]`` （ *exec* 形式）
+* ``RUN <command>`` （シェル形式、コマンドはシェル内で実行される、シェルとはデフォルトで Linux なら ``/bin/sh -c``、Windows なら ``cmd /S /C``）
+* ``RUN ["executable", "param1", "param2"]`` （exec 形式）
 
-.. The RUN instruction will execute any commands in a new layer on top of the current image and commit the results. The resulting committed image will be used for the next step in the Dockerfile.
+.. The `RUN` instruction will execute any commands in a new layer on top of the
+   current image and commit the results. The resulting committed image will be
+   used for the next step in the `Dockerfile`.
 
-``RUN`` 命令は既存イメージ上の新しいレイヤで、あらゆるコマンドを実行し、その結果をコミットする命令です。コミットの結果得られたイメージは、 ``Dockerfile`` の次のステップで使われます。
+``RUN`` 命令は、現在のイメージの最上位の最新レイヤーにおいて、あらゆるコマンドを実行します。
+そして処理結果を確定します。
+結果が確定したイメージは、``Dockerfile`` の次のステップにおいて利用されていきます。
 
-.. Layering RUN instructions and generating commits conforms to the core concepts of Docker where commits are cheap and containers can be created from any point in an image’s history, much like source control.
+.. Layering `RUN` instructions and generating commits conforms to the core
+   concepts of Docker where commits are cheap and containers can be created from
+   any point in an image's history, much like source control.
 
-``RUN`` 命令の積み重ねとコミットによるイメージ生成は、 Docker の中心となるコンセプト（概念）に従ったものです。コミットは簡単であり、ソース・コントロールのように、イメージの履歴上のあらゆる場所からコンテナを作成可能です。
+``RUN`` 命令をレイヤー上にて扱い処理確定を行うこの方法は、Docker の根本的な考え方に基づいています。
+この際の処理確定は容易なものであって、イメージの処理履歴上のどの時点からでもコンテナーを復元できます。
+この様子はソース管理システムに似ています。
 
-.. The exec form makes it possible to avoid shell string munging, and to RUN commands using a base image that does not contain the specified shell executable.
+.. The *exec* form makes it possible to avoid shell string munging, and to `RUN`
+   commands using a base image that does not contain the specified shell executable.
 
-*exec* 形式はシェルの文字列を変更できないようにします。また、 指定されたシェル実行環境がベース・イメージに含まれなくても ``RUN`` コマンドを使えます。
+exec 形式は、シェル文字列が置換されないようにします。
+そして ``RUN`` の実行にあたっては、特定のシェル変数を含まないベースイメージを用います。
 
-.. The default shell for the *shell* form can be changed using the `SHELL` command.
+.. The default shell for the *shell* form can be changed using the `SHELL`
+   command.
 
-デフォルトの *shell* のシェルを変更するには ``SHELL`` コマンドで変更できます。
- 
-.. In the shell form you can use a \ (backslash) to continue a single RUN instruction onto the next line. For example, consider these two lines:
+シェル形式にて用いるデフォルトのシェルを変更するには ``SHELL`` コマンドを使います。
 
-*シェル* 形式では、RUN 命令を ``\`` （バックスラッシュ）を使い、次の行と連結します。例えば、次の２行があるとします。
+.. In the *shell* form you can use a `\` (backslash) to continue a single
+   RUN instruction onto the next line. For example, consider these two lines:
+
+シェル形式においては ``\``（バックスラッシュ）を用いて、1 つの RUN 命令を次行にわたって記述することができます。
+たとえば以下のような 2 行があるとします。
 
 .. code-block:: dockerfile
 
@@ -951,39 +1041,76 @@ RUN には２つの形式があります。
 
 .. Together they are equivalent to this single line:
 
-これは、次のように１行にできます。
+上は 2 行を合わせて、以下の 1 行としたものと同じです。
 
 .. code-block:: dockerfile
 
    RUN /bin/bash -c 'source $HOME/.bashrc ; echo $HOME'
 
-..    Note: To use a different shell, other than ‘/bin/sh’, use the exec form passing in the desired shell. For example, RUN ["/bin/bash", "-c", "echo hello"]
+.. > **Note**:
+   > To use a different shell, other than '/bin/sh', use the *exec* form
+   > passing in the desired shell. For example,
+   > `RUN ["/bin/bash", "-c", "echo hello"]`
 
 .. note::
 
-   「/bin/sh/」以外のシェルを使いたい場合は、exec 形式で任意のシェルを指定します。例： ``RUN ["/bin/bash", "-c", "echo hello"]`` 。
+   '/bin/sh' 以外の別のシェルを利用する場合は、exec 形式を用いて、目的とするシェルを引数に与えます。
+   たとえば ``RUN ["/bin/bash", "-c", "echo hello"]`` とします。
 
-..    Note: The exec form is parsed as a JSON array, which means that you must use double-quotes (“) around words not single-quotes (‘).
-
-.. note::
-
-   exec 形式は JSON 配列でパースされます。つまり、文字を囲むのはシングル・クォート(') ではなくダブル・クォート(")を使う必要があります。
-
-..    Note: Unlike the shell form, the exec form does not invoke a command shell. This means that normal shell processing does not happen. For example, RUN [ "echo", "$HOME" ] will not do variable substitution on $HOME. If you want shell processing then either use the shell form or execute a shell directly, for example: RUN [ "sh", "-c", "echo", "$HOME" ].
+.. > **Note**:
+   > The *exec* form is parsed as a JSON array, which means that
+   > you must use double-quotes (") around words not single-quotes (').
 
 .. note::
 
-   *シェル* 形式と異なり、 *exec* 形式はコマンド・シェルを呼び出しません。つまり、通常のシェルによる処理が行われません。例えば ``RUN [ "echo", "$HOME" ]`` は ``$HOME`` の変数展開を行いません。シェルによる処理を行いたい場合は、 *シェル* 形式を使うか、あるいはシェルを直接指定します。例： ``RUN [ "sh", "-c", "echo", "$HOME" ]`` 。
+   exec 形式は JSON 配列として解釈されます。
+   したがって文字列をくくるのはダブル・クォート（"）であり、シングル・クォート（'）は用いてはなりません。
 
-.. Note: In the JSON form, it is necessary to escape backslashes. This is particularly relevant on Windows where the backslash is the path seperator. The following line would otherwise be treated as shell form due to not being valid JSON, and fail in an unexpected way: RUN ["c:\windows\system32\tasklist.exe"] The correct syntax for this example is: RUN ["c:\\windows\\system32\\tasklist.exe"]
+.. > **Note**:
+   > Unlike the *shell* form, the *exec* form does not invoke a command shell.
+   > This means that normal shell processing does not happen. For example,
+   > `RUN [ "echo", "$HOME" ]` will not do variable substitution on `$HOME`.
+   > If you want shell processing then either use the *shell* form or execute
+   > a shell directly, for example: `RUN [ "sh", "-c", "echo $HOME" ]`.
+   > When using the exec form and executing a shell directly, as in the case for
+   > the shell form, it is the shell that is doing the environment variable
+   > expansion, not docker.
 
 .. note::
 
-   JSON 形式では、バック・スラッシュはエスケープが必要です。特に関係があるのは Windows でパス区切りにバック・スラッシュを使う場合です。次の行は JSON 形式ではなくシェル形式と見なされエラーになります： ``RUN ["c:\windows\system32\tasklist.exe"]`` 。適切な構文は ``RUN ["c:\\windows\\system32\\tasklist.exe"]`` です。
+   シェル形式とは違って exec 形式はコマンドシェルを起動しません。
+   これはつまり、ごく普通のシェル処理とはならないということです。
+   たとえば ``RUN [ "echo", "$HOME" ]`` を実行したとすると、``$HOME`` の変数置換は行われません。
+   シェル処理が行われるようにしたければ、シェル形式を利用するか、あるいはシェルを直接実行するようにします。
+   たとえば ``RUN [ "sh", "-c", "echo $HOME" ]`` とします。
+   exec 形式によってシェルを直接起動した場合、シェル形式の場合でも同じですが、変数置換を行うのはシェルであって、docker ではありません。
 
-.. The cache for RUN instructions isn’t invalidated automatically during the next build. The cache for an instruction like RUN apt-get dist-upgrade -y will be reused during the next build. The cache for RUN instructions can be invalidated by using the --no-cache flag, for example docker build --no-cache.
+.. > **Note**:
+   > In the *JSON* form, it is necessary to escape backslashes. This is
+   > particularly relevant on Windows where the backslash is the path separator.
+   > The following line would otherwise be treated as *shell* form due to not
+   > being valid JSON, and fail in an unexpected way:
+   > `RUN ["c:\windows\system32\tasklist.exe"]`
+   > The correct syntax for this example is:
+   > `RUN ["c:\\windows\\system32\\tasklist.exe"]`
 
-次の構築時、``RUN`` 命令によるキャッシュは自動的に無効化できません。 ``RUN apt-get dist-upgrade -y`` のような命令のキャッシュがあれば、次の構築時に再利用されます。 ``RUN`` 命令でキャッシュを使いたくない場合は、 ``--no-cache`` フラグを使います。例： ``docker build --no-cache`` .
+.. note::
+
+   JSON 記述においてバックスラッシュはエスケープする必要があります。
+   特に関係してくるのは Windows であり、Windows ではパス・セパレータにバックスラッシュを用います。
+   ``RUN ["c:\windows\system32\tasklist.exe"]`` という記述例は、適正な JSON 記述ではないことになるため、シェル形式として扱われ、思いどおりの動作はせずエラーとなります。
+   正しくは ``RUN ["c:\\windows\\system32\\tasklist.exe"]`` と記述します。
+
+.. The cache for `RUN` instructions isn't invalidated automatically during
+   the next build. The cache for an instruction like
+   `RUN apt-get dist-upgrade -y` will be reused during the next build. The
+   cache for `RUN` instructions can be invalidated by using the `--no-cache`
+   flag, for example `docker build --no-cache`.
+
+``RUN`` 命令に対するキャッシュは、次のビルドの際、その無効化は自動的に行われません。
+``RUN apt-get dist-upgrade -y`` のような命令に対するキャッシュは、次のビルドの際にも再利用されます。
+``RUN`` 命令に対するキャッシュを無効にするためには ``--no-cache`` フラグを利用します。
+たとえば ``docker build --no-cache`` とします。
 
 .. See the Dockerfile Best Practices guide for more information.
 
@@ -998,17 +1125,24 @@ RUN には２つの形式があります。
 既知の問題(RUN)
 --------------------
 
-..    Issue 783 is about file permissions problems that can occur when using the AUFS file system. You might notice it during an attempt to rm a file, for example.
+.. - [Issue 783](https://github.com/docker/docker/issues/783) is about file
+     permissions problems that can occur when using the AUFS file system. You
+     might notice it during an attempt to `rm` a file, for example.
 
-* `Issue 783 <https://github.com/docker/docker/issues/783>`_ は、AUFS ファイルシステム使用時、ファイルのパーミッションに関する問題が起こり得ます。例えば、ファイルを ``rm`` しようとする場合は注意が必要です。
+* `Issue 783 <https://github.com/docker/docker/issues/783>`_ はファイル・パーミッションに関する問題を取り上げていて、ファイルシステムに AUFS を用いている場合に発生します。
+  たとえば ``rm`` によってファイルを削除しようとしたときに、これが発生する場合があります。
 
-.. For systems that have recent aufs version (i.e., dirperm1 mount option can be set), docker will attempt to fix the issue automatically by mounting the layers with dirperm1 option. More details on dirperm1 option can be found at aufs man page
+  .. For systems that have recent aufs version (i.e., `dirperm1` mount option can
+     be set), docker will attempt to fix the issue automatically by mounting
+     the layers with `dirperm1` option. More details on `dirperm1` option can be
+     found at [`aufs` man page](https://github.com/sfjro/aufs3-linux/tree/aufs3.18/Documentation/filesystems/aufs)
 
-最近の aufs バージョンを使っているシステムでは（例： ``dirperm1`` マウント・オプションが利用可能 ）、docker は ``dirperm1`` オプションのレイヤをマウント時、自動的に問題を修正しようとします。 ``dirperm1`` オプションに関する詳細は、 ``aufs`` `man ページ <http://aufs.sourceforge.net/aufs3/man.html>`_ をご覧ください。
+  aufs の最新バージョンを利用するシステム（つまりマウントオプション ``dirperm1`` を設定可能なシステム）の場合、docker はレイヤーに対して ``dirperm1`` オプションをつけてマウントすることで、この問題を自動的に解消するように試みます。
+  ``dirperm1`` オプションに関する詳細は ``aufs`` の `man ページ <https://github.com/sfjro/aufs3-linux/tree/aufs3.18/Documentation/filesystems/aufs>`_ を参照してください。
 
-.. If your system doesn’t have support for dirperm1, the issue describes a workaround.
+  .. If your system doesn't have support for `dirperm1`, the issue describes a workaround.
 
-システムが ``dirperm1`` をサポートしていない場合は、issue に回避方法があります。
+  ``dirperm1`` をサポートしていないシステムの場合は、issue に示される回避方法を参照してください。
 
 .. _cmd:
 
@@ -1019,75 +1153,118 @@ CMD
 
 ``CMD`` には３つの形式があります。
 
-..    CMD ["executable","param1","param2"] (exec form, this is the preferred form)
-    CMD ["param1","param2"] (as default parameters to ENTRYPOINT)
-    CMD command param1 param2 (shell form)
+.. - `CMD ["executable","param1","param2"]` (*exec* form, this is the preferred form)
+   - `CMD ["param1","param2"]` (as *default parameters to ENTRYPOINT*)
+   - `CMD command param1 param2` (*shell* form)
 
-* ``CMD ["実行バイナリ", "パラメータ１", "パラメータ２"]`` （ *exec* 形式、推奨する形式）
-* ``CMD ["パラメータ１", "パラメータ２"]`` （ *ENTRYPOINT* のデフォルト・パラメータ）
-* ``CMD <コマンド>`` （シェル形式）
+* ``CMD ["executable","param1","param2"]`` (exec 形式、この形式が推奨される)
+* ``CMD ["param1","param2"]`` ( ``ENTRYPOINT`` のデフォルト・パラメータとして)
+* ``CMD command param1 param2`` (シェル形式)
 
-.. There can only be one CMD instruction in a Dockerfile. If you list more than one CMD then only the last CMD will take effect.
+.. There can only be one `CMD` instruction in a `Dockerfile`. If you list more than one `CMD`
+   then only the last `CMD` will take effect.
 
-``Dockerfile`` で ``CMD`` 命令を一度だけ指定できます。複数の ``CMD`` がある場合、最も後ろの ``CMD`` のみ有効です。
+``Dockerfile`` では ``CMD`` 命令を 1 つしか記述できません。
+仮に複数の ``CMD`` を記述しても、最後の ``CMD`` 命令しか処理されません。
 
-.. The main purpose of a CMD is to provide defaults for an executing container. These defaults can include an executable, or they can omit the executable, in which case you must specify an ENTRYPOINT instruction as well.
+.. **The main purpose of a `CMD` is to provide defaults for an executing
+   container.** These defaults can include an executable, or they can omit
+   the executable, in which case you must specify an `ENTRYPOINT`
+   instruction as well.
 
-``CMD`` の主な目的は、 **コンテナ実行時のデフォルトを提供します** 。 デフォルトには、実行可能なコマンドが含まれているか、あるいは省略されるかもしれません。省略時は ``ENTRYPOINT`` 命令で同様に指定する必要があります。
+``CMD`` 命令の主目的は、**コンテナの実行時のデフォルト処理を設定することです。**
+この処理設定においては、実行モジュールを含める場合と、実行モジュールを省略する場合があります。
+省略する場合は ``ENTRYPOINT`` 命令を合わせて指定する必要があります。
 
-..     Note: If CMD is used to provide default arguments for the ENTRYPOINT instruction, both the CMD and ENTRYPOINT instructions should be specified with the JSON array format.
-
-.. note::
-
-   ``ENTRYPOINT`` 命令のデフォルトの引数として ``CMD`` を使う場合、 ``CMD`` と ``ENTRYPOINT`` 命令の両方が JSON 配列フォーマットになっている必要があります。
-
-..     Note: The exec form is parsed as a JSON array, which means that you must use double-quotes (“) around words not single-quotes (‘).
-
-.. note::
-
-   *exec* 形式は JSON 配列でパースされます。つまり、文字を囲むのはシングル・クォート(') ではなくダブル・クォート(")を使う必要があります。
-
-..     Note: Unlike the shell form, the exec form does not invoke a command shell. This means that normal shell processing does not happen. For example, CMD [ "echo", "$HOME" ] will not do variable substitution on $HOME. If you want shell processing then either use the shell form or execute a shell directly, for example: CMD [ "sh", "-c", "echo", "$HOME" ].
+.. > **Note**:
+   > If `CMD` is used to provide default arguments for the `ENTRYPOINT`
+   > instruction, both the `CMD` and `ENTRYPOINT` instructions should be specified
+   > with the JSON array format.
 
 .. note::
 
-   *シェル* 形式と異なり、 *exec* 形式はコマンド・シェルを呼び出しません。つまり、通常のシェルによる処理が行われません。例えば ``CMD [ "echo", "$HOME" ]`` は ``$HOME`` の変数展開を行いません。シェルによる処理を行いたい場合は、 *シェル* 形式を使うか、あるいはシェルを直接使います。例： ``CMD [ "sh", "-c", "echo", "$HOME" ]`` 。
+   ``ENTRYPOINT`` 命令に対するデフォルト引数を設定する目的で ``CMD`` 命令を用いる場合、``CMD`` と ``ENTRYPOINT`` の両命令とも、JSON 配列形式で指定しなければなりません。
 
-.. When used in the shell or exec formats, the CMD instruction sets the command to be executed when running the image.
+.. > **Note**:
+   > The *exec* form is parsed as a JSON array, which means that
+   > you must use double-quotes (") around words not single-quotes (').
 
-シェルあるいは exec 形式を使う時、 ``CMD`` 命令はイメージで実行するコマンドを指定します。
+.. note::
 
-.. If you use the shell form of the CMD, then the <command> will execute in /bin/sh -c:
+   exec 形式は JSON 配列として解釈されます。
+   したがって文字列をくくるのはダブル・クォート（"）であり、シングル・クォート（'）は用いてはなりません。
 
-``CMD`` を *シェル* 形式で使えば、 ``<コマンド>`` は ``/bin/sh -c`` で実行されます。
+.. > **Note**:
+   > Unlike the *shell* form, the *exec* form does not invoke a command shell.
+   > This means that normal shell processing does not happen. For example,
+   > `CMD [ "echo", "$HOME" ]` will not do variable substitution on `$HOME`.
+   > If you want shell processing then either use the *shell* form or execute
+   > a shell directly, for example: `CMD [ "sh", "-c", "echo $HOME" ]`.
+   > When using the exec form and executing a shell directly, as in the case for
+   > the shell form, it is the shell that is doing the environment variable
+   > expansion, not docker.
+
+.. note::
+
+   シェル形式とは違って exec 形式はコマンドシェルを起動しません。
+   これはつまり、ごく普通のシェル処理とはならないということです。
+   たとえば ``RUN [ "echo", "$HOME" ]`` を実行したとすると、``$HOME`` の変数置換は行われません。
+   シェル処理が行われるようにしたければ、シェル形式を利用するか、あるいはシェルを直接実行するようにします。
+   たとえば ``RUN [ "sh", "-c", "echo $HOME" ]`` とします。
+   exec 形式によってシェルを直接起動した場合、シェル形式の場合でも同じですが、変数置換を行うのはシェルであって、docker ではありません。
+
+.. When used in the shell or exec formats, the `CMD` instruction sets the command
+   to be executed when running the image.
+
+シェル形式または exec 形式を用いる場合、``CMD`` 命令は、イメージが起動されたときに実行するコマンドを指定します。
+
+.. If you use the *shell* form of the `CMD`, then the `<command>` will execute in
+   `/bin/sh -c`:
+
+シェル形式を用いる場合、``<command>`` は ``/bin/sh -c`` の中で実行されます。
 
 .. code-block:: dockerfile
 
    FROM ubuntu
    CMD echo "This is a test." | wc -
 
-.. If you want to run your <command> without a shell then you must express the command as a JSON array and give the full path to the executable. This array form is the preferred format of CMD. Any additional parameters must be individually expressed as strings in the array:
+.. If you want to **run your** `<command>` **without a shell** then you must
+   express the command as a JSON array and give the full path to the executable.
+   **This array form is the preferred format of `CMD`.** Any additional parameters
+   must be individually expressed as strings in the array:
 
-**<コマンド>をシェルを使わずに実行** したい場合、コマンドを JSON 配列で記述し、実行可能なフルパスで指定する必要があります。 **配列の形式が CMD では望ましい形式です** 。あらゆる追加パラメータは個々の配列の文字列として指定する必要があります。
+``<command>`` **をシェル実行することなく実行** したい場合は、そのコマンドを JSON 配列として表現し、またそのコマンドの実行モジュールへのフルパスを指定しなければなりません。
+**この配列書式は** ``CMD`` **において推奨される記述です。**
+パラメータを追加する必要がある場合は、配列内にて文字列として記述します。
 
 .. code-block:: dockerfile
 
    FROM ubuntu
    CMD ["/usr/bin/wc","--help"]
 
-.. If you would like your container to run the same executable every time, then you should consider using ENTRYPOINT in combination with CMD. See ENTRYPOINT.
+.. If you would like your container to run the same executable every time, then
+   you should consider using `ENTRYPOINT` in combination with `CMD`. See
+   [*ENTRYPOINT*](#entrypoint).
 
-もしコンテナで毎回同じものを実行するのであれば、 ``CMD`` と ``ENTRYPOINT`` の使用を検討ください。詳細は :ref:`ENTRYPOINT <entrypoint>` をご覧ください。
+コンテナにおいて毎回同じ実行モジュールを起動させたい場合は、``CMD`` 命令と ``ENTRYPOINT`` 命令を合わせて利用することを考えてみてください。
+:ref:`ENTRYPOINT <entrypoint>` を参照のこと。
 
-.. If the user specifies arguments to docker run then they will override the default specified in CMD.
+.. If the user specifies arguments to `docker run` then they will override the
+   default specified in `CMD`.
 
-ユーザが ``docker run`` で引数を指定した時、これらは ``CMD`` で指定したデフォルトを上書きします。
+``docker run`` において引数を指定することで、``CMD`` 命令に指定されたデフォルトを上書きすることができます。
 
-..    Note: don’t confuse RUN with CMD. RUN actually runs a command and commits the result; CMD does not execute anything at build time, but specifies the intended command for the image.
+.. > **Note**:
+   > Don't confuse `RUN` with `CMD`. `RUN` actually runs a command and commits
+   > the result; `CMD` does not execute anything at build time, but specifies
+   > the intended command for the image.
 
 .. note::
 
-   ``RUN`` と ``CMD`` を混同しないでください。 ``RUN`` が実際に行っているのは、コマンドの実行と結果のコミットです。一方の ``CMD`` は構築時には何もしませんが、イメージで実行するコマンドを指定します。
+   ``RUN`` と ``CMD`` を混同しないようにしてください。
+   ``RUN`` は実際にコマンドが実行されて、結果を確定させます。
+   一方 ``CMD`` はイメージビルド時には何も実行しません。
+   イメージに対して実行する予定のコマンドを指示するものです。
 
 .. _builder-label:
 
@@ -1098,9 +1275,15 @@ LABEL
 
    LABEL <key>=<value> <key>=<value> <key>=<value> ...
 
-.. The LABEL instruction adds metadata to an image. A LABEL is a key-value pair. To include spaces within a LABEL value, use quotes and backslashes as you would in command-line parsing. A few usage examples:
+.. The `LABEL` instruction adds metadata to an image. A `LABEL` is a
+   key-value pair. To include spaces within a `LABEL` value, use quotes and
+   backslashes as you would in command-line parsing. A few usage examples:
 
-``LABEL`` 命令はイメージにメタデータを追加します。 ``LABEL`` はキーとバリューのペアです。 ``LABEL`` の値に空白スペースを含む場合はクォートを使いますし、コマンドラインの分割にバックスラッシュを使います。使用例：
+``LABEL`` 命令はイメージに対してメタデータを追加します。
+``LABEL`` ではキーバリューペアによる記述を行います。
+値に空白などを含める場合は、クォートとバックスラッシュを用います。
+これはコマンドライン処理において行うことと同じです。
+以下に簡単な例を示します。
 
 .. code-block:: dockerfile
 
@@ -1110,9 +1293,16 @@ LABEL
    LABEL description="This text illustrates \
    that label-values can span multiple lines."
 
-.. An image can have more than one label. To specify multiple labels, Docker recommends combining labels into a single LABEL instruction where possible. Each LABEL instruction produces a new layer which can result in an inefficient image if you use many labels. This example results in a single image layer.
+.. An image can have more than one label. To specify multiple labels,
+   Docker recommends combining labels into a single `LABEL` instruction where
+   possible. Each `LABEL` instruction produces a new layer which can result in an
+   inefficient image if you use many labels. This example results in a single image
+   layer.
 
-イメージは複数のラベルを持てます。複数のラベルを指定したら、 Docker は可能であれば１つの ``LABEL`` にすることをお勧めします。各 ``LABEL`` 命令は新しいレイヤを準備しますが、多くのラベルを使えば、それだけレイヤを使います。次の例は１つのイメージ・レイヤを使うものです。
+イメージには複数のラベルを含めることができます。
+複数のラベルを指定する場合、可能であれば ``LABEL`` 命令の記述を 1 行とすることをお勧めします。
+``LABEL`` 命令 1 つからは新しいレイヤが生成されますが、多数のラベルを利用すると、非効率なイメージがビルドされてしまいます。
+以下の例は、ただ 1 つのイメージ・レイヤを作るものです。
 
 .. code-block:: dockerfile
 
@@ -1120,7 +1310,7 @@ LABEL
 
 .. The above can also be written as:
 
-上記の例は、次のようにも書き換えられます。
+上記の例は、以下のように書くこともできます。
 
 .. code-block:: dockerfile
 
@@ -1128,13 +1318,16 @@ LABEL
          multi.label2="value2" \
          other="value3"
 
-.. Labels are additive including LABELs in FROM images. If Docker encounters a label/key that already exists, the new value overrides any previous labels with identical keys.
+.. Labels are additive including `LABEL`s in `FROM` images. If Docker
+   encounters a label/key that already exists, the new value overrides any previous
+   labels with identical keys.
 
-ラベルには、``FROM`` イメージが使う ``LABEL`` も含まれています。ラベルのキーが既に存在している時、Docker は特定のキーを持つラベルの値を上書きします。
+ラベルには ``FROM`` に指定されたイメージ内の ``LABEL`` 命令も含まれます。
+ラベルのキーが既に存在していた場合、そのキーに対応する古い値は、新しい値によって上書きされます。
 
-.. To view an image’s labels, use the docker inspect command.
+.. To view an image's labels, use the `docker inspect` command.
 
-イメージが使っているラベルを確認するには、 ``docker inspect`` コマンドを使います。
+イメージのラベルを参照するには ``docker inspect`` コマンドを用います。
 
 .. code-block:: bash
 
@@ -1148,6 +1341,40 @@ LABEL
        "other": "value3"
    },
 
+.. ## MAINTAINER (deprecated)
+
+.. _maintainer:
+
+MAINTAINER（廃止予定）
+=======================
+
+   ..  MAINTAINER <name>
+
+.. code-block:: dockerfile
+
+    MAINTAINER <name>
+
+.. The `MAINTAINER` instruction sets the *Author* field of the generated images.
+   The `LABEL` instruction is a much more flexible version of this and you should use
+   it instead, as it enables setting any metadata you require, and can be viewed
+   easily, for example with `docker inspect`. To set a label corresponding to the
+   `MAINTAINER` field you could use:
+
+``MAINTAINER`` 命令は、ビルドされるイメージの *Author* フィールドを設定します。
+``LABEL`` 命令を使った方がこれよりも柔軟に対応できるため、``LABEL`` を使うようにします。
+そうすれば必要なメタデータとしてどのようにでも設定ができて、``docker inspect`` を用いて簡単に参照することができます。
+``MAINTAINER`` フィールドに相当するラベルを作るには、以下のようにします。
+
+   ..  LABEL maintainer="SvenDowideit@home.org.au"
+
+.. code-block:: dockerfile
+
+   LABEL maintainer="SvenDowideit@home.org.au"
+
+.. This will then be visible from `docker inspect` with the other labels.
+
+こうすれば ``docker inspect`` によってラベルをすべて確認することができます。
+
 .. _expose:
 
 EXPOSE
@@ -1157,13 +1384,27 @@ EXPOSE
 
    EXPOSE <port> [<port>...]
 
-.. The EXPOSE instruction informs Docker that the container listens on the specified network ports at runtime. EXPOSE does not make the ports of the container accessible to the host. To do that, you must use either the -p flag to publish a range of ports or the -P flag to publish all of the exposed ports. You can expose one port number and publish it externally under another number.
+.. The `EXPOSE` instruction informs Docker that the container listens on the
+   specified network ports at runtime. `EXPOSE` does not make the ports of the
+   container accessible to the host. To do that, you must use either the `-p` flag
+   to publish a range of ports or the `-P` flag to publish all of the exposed
+   ports. You can expose one port number and publish it externally under another
+   number.
 
-``EXPOSE`` 命令は、特定のネットワーク・ポートをコンテナが実行時にリッスンすることを Docker に伝えます。 ``EXPOSE`` があっても、これだけではホストからコンテナにアクセスできるようにしません。アクセスするには、 ``-p`` フラグを使ってポートの公開範囲を指定するか、 ``-P`` フラグで全ての露出ポートを公開する必要があります。外部への公開時は他のポート番号も利用可能です。
+``EXPOSE`` 命令はコンテナの実行時に、所定ネットワーク上のどのポートをリッスンするかを指定します。
+``EXPOSE`` はコンテナーのポートをホストが利用できるようにするものではありません。
+利用できるようにするためには ``-p`` フラグを使ってポートの公開範囲を指定するか、 ``-P`` フラグによって expose したポートをすべて公開する必要があります。
+1 つのポート番号を expose して、これを外部に向けては別の番号により公開することも可能です。
 
-.. To set up port redirection on the host system, see using the -P flag. The Docker network feature supports creating networks without the need to expose ports within the network, for detailed information see the overview of this feature).
+.. To set up port redirection on the host system, see [using the -P
+   flag](run.md#expose-incoming-ports). The Docker network feature supports
+   creating networks without the need to expose ports within the network, for
+   detailed information see the  [overview of this
+   feature](https://docs.docker.com/engine/userguide/networking/)).
 
-ホストシステム上でポート転送を使うには、 :ref:`-P フラグを使う <expose-incoming-ports>` をご覧ください。Docker のネットワーク機能は、ネットワーク内でポートを公開しないネットワークを作成可能です。詳細な情報は :doc:`機能概要 </engine/userguide/networking/index>` をご覧ください。
+ホストシステム上にてポート転送を行う場合は、:ref:`-P フラグの利用 <expose-incoming-ports>` を参照してください。
+Docker のネットワークにおいては、ネットワーク内でポートを expose しなくてもネットワークを生成できる機能がサポートされています。
+詳しくは :doc:`ネットワーク機能の概要 </engine/userguide/networking/index>` を参照してください。
 
 .. _env:
 
@@ -1175,17 +1416,35 @@ ENV
    ENV <key> <value>
    ENV <key>=<value> ...
 
-.. The ENV instruction sets the environment variable <key> to the value <value>. This value will be in the environment of all “descendant” Dockerfile commands and can be replaced inline in many as well.
+.. The `ENV` instruction sets the environment variable `<key>` to the value
+   `<value>`. This value will be in the environment of all "descendant"
+   `Dockerfile` commands and can be [replaced inline](#environment-replacement) in
+   many as well.
 
-``ENV`` 命令は、環境変数 ``<key>`` と 値 ``<value>`` のセットです。値は ``Dockerfile`` から派生する全てのコマンド環境で利用でき、 :ref:`インラインで置き換え <environment-replacement>` も可能です。
+``ENV`` 命令は、環境変数 ``<key>`` に ``<value>`` という値を設定します。
+``Dockerfile`` 内の後続命令の環境において、環境変数の値は維持されます。
+また、いろいろと :ref:`インラインにて変更 <environment-replacement>` することもできます。
 
-.. The ENV instruction has two forms. The first form, ENV <key> <value>, will set a single variable to a value. The entire string after the first space will be treated as the <value> - including characters such as spaces and quotes.
+.. The `ENV` instruction has two forms. The first form, `ENV <key> <value>`,
+   will set a single variable to a value. The entire string after the first
+   space will be treated as the `<value>` - including characters such as
+   spaces and quotes.
 
-``ENV`` 命令は２つの形式があります。１つめは、 ``ENV <key> <value>`` であり、変数に対して１つの値を設定します。はじめの空白以降の文字列が ``<value>`` に含まれます。ここには空白もクォートも含まれます。
+``ENV`` 命令には 2 つの書式があります。
+1 つめの書式は ``ENV <key> <value>`` です。
+1 つの変数に対して 1 つの値を設定します。
+全体の文字列のうち、最初の空白文字以降がすべて ``<value>`` として扱われます。
+そこには空白やクォートを含んでいて構いません。
 
-.. The second form, ENV <key>=<value> ..., allows for multiple variables to be set at one time. Notice that the second form uses the equals sign (=) in the syntax, while the first form does not. Like command line parsing, quotes and backslashes can be used to include spaces within values.
+.. The second form, `ENV <key>=<value> ...`, allows for multiple variables to
+   be set at one time. Notice that the second form uses the equals sign (=)
+   in the syntax, while the first form does not. Like command line parsing,
+   quotes and backslashes can be used to include spaces within values.
 
-２つめの形式は ``ENV <key>=<value> ...`` です。これは一度に複数の変数を指定できます。先ほどと違い、構文の２つめにイコールサイン（=）があるので気を付けてください。コマンドラインの分割、クォート、バックスラッシュは、空白スペースも含めて値になります。
+2 つめの書式は ``ENV <key>=<value> ...`` です。
+これは一度に複数の値を設定できる形です。
+この書式では等号（=）を用いており、1 つめの書式とは異なります。
+コマンドライン上の解析で行われることと同じように、クォートやバックスラッシュを使えば、値の中に空白などを含めることができます。
 
 .. For example:
 
@@ -1206,19 +1465,31 @@ ENV
    ENV myDog Rex The Dog
    ENV myCat fluffy
 
-.. will yield the same net results in the final container, but the first form is preferred because it produces a single cache layer.
+.. will yield the same net results in the final image, but the first form
+   is preferred because it produces a single cache layer.
 
-この例では、どちらも最終的に同じ結果をコンテナにもたらしますが、私たちが推奨するのは前者です。理由は前者であれば単一のキャッシュ・レイヤしか使わないからです。
+上の 2 つは最終的に同じ結果をイメージに書き入れます。
+ただし 1 つめの書式が望ましいものです。
+1 つめは単一のキャッシュ・レイヤしか生成しないからです。
 
-.. The environment variables set using ENV will persist when a container is run from the resulting image. You can view the values using docker inspect, and change them using docker run --env <key>=<value>.
+.. The environment variables set using `ENV` will persist when a container is run
+   from the resulting image. You can view the values using `docker inspect`, and
+   change them using `docker run --env <key>=<value>`.
 
-環境変数の設定に ``ENV`` を使えば、作成したイメージを使ってコンテナを実行しても有効です。どのような値が設定されているかは ``docker inspect`` で確認でき、変更するには ``docker run --env <key>=<value>`` を使います。
+``ENV`` を用いて設定された環境変数は、そのイメージから実行されたコンテナであれば維持されます。
+環境変数の参照は ``docker inspect`` を用い、値の変更は ``docker run --env <key>=<value>`` により行うことができます。
 
-..    Note: Environment persistence can cause unexpected side effects. For example, setting ENV DEBIAN_FRONTEND noninteractive may confuse apt-get users on a Debian-based image. To set a value for a single command, use RUN <key>=<value> <command>.
+.. > **Note**:
+   > Environment persistence can cause unexpected side effects. For example,
+   > setting `ENV DEBIAN_FRONTEND noninteractive` may confuse apt-get
+   > users on a Debian-based image. To set a value for a single command, use
+   > `RUN <key>=<value> <command>`.
 
 .. note::
 
-   環境変数の一貫性は予期しない影響を与える場合があります。例えば、 ``ENV DEBIAN_FRONTEND noninteractive`` が設定されていると、Debian ベースのイメージで apt-get の利用者が混乱するかもしれません。１つのコマンドだけで値を設定するには、 ``RUN <key>=<value> <コマンド>`` を使います。
+   環境変数が維持されると、思わぬ副作用を引き起こすことがあります。
+   たとえば ``ENV DEBIAN_FRONTEND noninteractive`` という設定を行なっていると、Debian ベースのイメージにおいて apt-get を使う際には混乱を起こすかもしれません。
+   1 つのコマンドには 1 つの値のみを設定するには ``RUN <key>=<value> <command>`` を実行します。
 
 .. _add:
 
@@ -1227,123 +1498,214 @@ ADD
 
 .. ADD has two forms:
 
-Add は２つの形式があります。
+ADD には 2 つの書式があります。
 
-..    ADD <src>... <dest>
-    ADD ["<src>",... "<dest>"] (this form is required for paths containing whitespace)
+.. - `ADD <src>... <dest>`
+   - `ADD ["<src>",... "<dest>"]` (this form is required for paths containing
+   whitespace)
 
-* ``ADD <ソース>... <送信先>``
-* ``ADD ["<ソース>", ... "<送信先>"]`` （この形式はパスに空白スペースを使う場合に必要）
+* ``ADD <src>... <dest>``
+* ``ADD ["<src>",... "<dest>"]`` （この書式はホワイトスペースを含むパスを用いる場合に必要）
 
-.. The ADD instruction copies new files, directories or remote file URLs from <src> and adds them to the filesystem of the container at the path <dest>.
+.. The `ADD` instruction copies new files, directories or remote file URLs from `<src>`
+   and adds them to the filesystem of the image at the path `<dest>`.
 
-``ADD`` 命令は ``<ソース>`` にある新しいファイルやディレクトリをコピー、あるいはリモートの URL からコピーします。それから、コンテナ内のファイルシステム上にある ``送信先`` に指定されたパスに追加します。
+``ADD`` 命令は ``<src>`` に示されるファイル、ディレクトリ、リモートファイル URL をコピーして、イメージ内のファイルシステム上のパス ``<dest>`` にこれらを加えます。
 
-.. Multiple <src> resource may be specified but if they are files or directories then they must be relative to the source directory that is being built (the context of the build).
+.. Multiple `<src>` resource may be specified but if they are files or
+   directories then they must be relative to the source directory that is
+   being built (the context of the build).
 
-複数の ``<ソース>`` リソースを指定できます。この時、ファイルやディレクトリはソースディレクトリ（構築時のコンテクスト）からの相対パス上に存在しないと構築できません。
+``<src>`` には複数のソースを指定することが可能です。
+ソースとしてファイルあるいはディレクトリが指定されている場合、そのパスは生成されたソース・ディレクトリ（ビルド・コンテキスト）からの相対パスでなければなりません。
 
-.. Each <src> may contain wildcards and matching will be done using Go’s filepath.Match rules. For example:
+.. Each `<src>` may contain wildcards and matching will be done using Go's
+   [filepath.Match](http://golang.org/pkg/path/filepath#Match) rules. For example:
 
-それぞれの ``<ソース>`` にはワイルドカードと Go 言語の `filepath.Match <http://golang.org/pkg/path/filepath#Match>`_ ルールに一致するパターンが使えます。例えば、次のような記述です。
+``<src>`` にはワイルドカードを含めることができます。
+その場合、マッチング処理は Go 言語の `filepath.Match <http://golang.org/pkg/path/filepath#Match>`_ ルールに従って行われます。
+記述例は以下のとおりです。
 
 .. code-block:: dockerfile
 
    ADD hom* /mydir/        # "hom" で始まる全てのファイルを追加
    ADD hom?.txt /mydir/    # ? は１文字だけ一致します。例： "home.txt"
 
-.. The <dest> is an absolute path, or a path relative to WORKDIR, into which the source will be copied inside the destination container.
+.. The `<dest>` is an absolute path, or a path relative to `WORKDIR`, into which
+   the source will be copied inside the destination container.
 
-``<送信先>`` は絶対パスです。あるいは、パスは ``WORKDIR`` からの相対パスです。ソースにあるものが、対象となる送信先コンテナの中にコピーされます。
+``<dest>`` は絶対パスか、あるいは ``WORKDIR`` からの相対パスにより指定します。
+対象としているコンテナ内において、そのパスに対してソースがコピーされます。
 
 .. code-block:: dockerfile
 
    ADD test relativeDir/          # "test" を `WORKDIR`/relativeDir/ （相対ディレクトリ）に追加
    ADD test /absoluteDir/          # "test" を /absoluteDir/ （絶対ディレクトリ）に追加
 
+.. When adding files or directories that contain special characters (such as `[`
+   and `]`), you need to escape those paths following the Golang rules to prevent
+   them from being treated as a matching pattern. For example, to add a file
+   named `arr[0].txt`, use the following;
+
+ファイルやディレクトリを追加する際に、その名前の中に（ ``[`` や ``]`` のような）特殊な文字が含まれている場合は、Go 言語のルールに従ってパス名をエスケープする必要があります。
+これはパターン・マッチングとして扱われないようにするものです。
+たとえば ``arr[0].txt`` というファイルを追加する場合は、以下のようにします。
+
+   ..  ADD arr[[]0].txt /mydir/    # copy a file named "arr[0].txt" to /mydir/
+
+.. code-block:: dockerfile
+
+   ADD arr[[]0].txt /mydir/    # "arr[0].txt" というファイルを /mydir/ へコピー
+
 .. All new files and directories are created with a UID and GID of 0.
 
-追加される新しいファイルやディレクトリは、全て UID と GID が 0 として作成されます。
+ADD されるファイルやディレクトリの UID と GID は、すべて 0 として生成されます。
 
-.. In the case where <src> is a remote file URL, the destination will have permissions of 600. If the remote file being retrieved has an HTTP Last-Modified header, the timestamp from that header will be used to set the mtime on the destination file. However, like any other file processed during an ADD, mtime will not be included in the determination of whether or not the file has changed and the cache should be updated.
+.. In the case where `<src>` is a remote file URL, the destination will
+   have permissions of 600. If the remote file being retrieved has an HTTP
+   `Last-Modified` header, the timestamp from that header will be used
+   to set the `mtime` on the destination file. However, like any other file
+   processed during an `ADD`, `mtime` will not be included in the determination
+   of whether or not the file has changed and the cache should be updated.
 
-``<ソース>`` がリモート URL の場合は、送信先のパーミッションは 600 にします。もしリモートのファイルが HTTP ``Last-Modified`` ヘッダを返す場合は、このヘッダの情報を元に送信先ファイルの ``mtime`` を指定するのに使います。しかしながら、 ``ADD`` を使ったファイルをコピーする手順では、 ``mtime`` はファイルが更新されたかどうかの決定には使われず、ファイルが更新されればキャッシュも更新されます。
+``<src>`` にリモートファイル URL が指定された場合、コピー先のパーミッションは 600 となります。
+リモートファイルの取得時に HTTP の ``Last-Modified`` ヘッダが含まれている場合は、ヘッダに書かれたタイムスタンプを利用して、コピー先ファイルの ``mtime`` を設定します。
+ただし ``ADD`` によって処理されるファイルが何であっても、ファイルが変更されたかどうか、そしてキャッシュを更新するべきかどうかは ``mtime`` によって判断されるわけではありません。
 
-..    Note: If you build by passing a Dockerfile through STDIN (docker build - < somefile), there is no build context, so the Dockerfile can only contain a URL based ADD instruction. You can also pass a compressed archive through STDIN: (docker build - < archive.tar.gz), the Dockerfile at the root of the archive and the rest of the archive will get used at the context of the build.
+.. > **Note**:
+   > If you build by passing a `Dockerfile` through STDIN (`docker
+   > build - < somefile`), there is no build context, so the `Dockerfile`
+   > can only contain a URL based `ADD` instruction. You can also pass a
+   > compressed archive through STDIN: (`docker build - < archive.tar.gz`),
+   > the `Dockerfile` at the root of the archive and the rest of the
+   > archive will be used as the context of the build.
 
 .. note::
 
-   ``Dockerfile`` を標準入力（ ``docker build - < 何らかのファイル`` ）を通して構築しようとしても。構築時のコンテントは存在しないため、 ``Dockerfile`` には URL を指定する ``ADD`` 命令のみ記述可能です。また、圧縮ファイルを標準入力（ ``docker build - < archive.tar.gz`` ）を通すことができ、アーカイブに含まれるルートに ``Dockerfile`` があれば、構築時のコンテクストとしてアーカイブが使われます。
+   ``Dockerfile`` を標準入力から生成する場合（ ``docker build - < somefile`` ）は、ビルド・コンテキストが存在していないことになるので、``ADD`` 命令には URL の指定しか利用できません。
+   また標準入力から圧縮アーカイブを入力する場合（ ``docker build - < archive.tar.gz`` ）は、そのアーカイブのルートにある ``Dockerfile`` と、アーカイブ内のファイルすべてが、ビルド時のコンテキストとなります。
 
-..    Note: If your URL files are protected using authentication, you will need to use RUN wget, RUN curl or use another tool from within the container as the ADD instruction does not support authentication.
+.. > **Note**:
+   > If your URL files are protected using authentication, you
+   > will need to use `RUN wget`, `RUN curl` or use another tool from
+   > within the container as the `ADD` instruction does not support
+   > authentication.
 
 .. note::
 
-   URL で指定したファイルに認証がかかっている場合は、 ``RUN wget`` や ``RUN curl`` や他のツールを使う必要があります。これは ``ADD`` 命令が認証機能をサポートしていないからです。
+   URL ファイルが認証によって保護されている場合は、``RUN wget`` や ``RUN curl`` あるいは同様のツールをコンテナ内から利用する必要があります。``ADD`` 命令は認証処理をサポートしていません。
 
-..    Note: The first encountered ADD instruction will invalidate the cache for all following instructions from the Dockerfile if the contents of <src> have changed. This includes invalidating the cache for RUN instructions. See the Dockerfile Best Practices guide for more information.
+.. > **Note**:
+   > The first encountered `ADD` instruction will invalidate the cache for all
+   > following instructions from the Dockerfile if the contents of `<src>` have
+   > changed. This includes invalidating the cache for `RUN` instructions.
+   > See the [`Dockerfile` Best Practices
+   guide](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/#/build-cache) for more information.
 
 .. note::
 
-   ``ADD`` 命令の処理時、まず ``<ソース>`` に含まれる内容が変更されていれば、以降の ``Dockerfile`` に書かれている命令のキャッシュを全て無効化します。これは ``RUN`` 命令のキャッシュ無効化も含まれます。より詳細な情報については ``Dockerfile`` の :ref:`ベスト・プラクティス・ガイド <build-cache>` をご覧ください。
+   ``ADD`` 命令の ``<src>`` の内容が変更されていた場合、その ``ADD`` 命令以降に続く命令のキャッシュはすべて無効化されます。
+   そこには ``RUN`` 命令に対するキャッシュの無効化も含まれます。
+   詳しくは ``Dockerfile`` の :ref:`ベスト・プラクティス・ガイド <build-cache>` を参照してください。
 
 .. ADD obeys the following rules:
 
 ``ADD`` は以下のルールに従います。
 
-..    The <src> path must be inside the context of the build; you cannot ADD ../something /something, because the first step of a docker build is to send the context directory (and subdirectories) to the docker daemon.
+.. - The `<src>` path must be inside the *context* of the build;
+     you cannot `ADD ../something /something`, because the first step of a
+     `docker build` is to send the context directory (and subdirectories) to the
+     docker daemon.
 
-* ``<ソース>`` パスは、構築時の *コンテント* 内にある必要があります。そのため、 ``ADD ../something /something`` の指定はできません。 ``docker build`` の最初のステップで、コンテクストのディレクトリ（と、サブディレクトリ）を docker デーモンに送るためです。
+* ``<src>`` のパス指定は、ビルド **コンテキスト** 内でなければならないため、たとえば ``ADD ../something /something`` といったことはできません。
+  ``docker build`` の最初の処理ステップでは、コンテキスト・ディレクトリ（およびそのサブディレクトリ）を Docker デーモンに送信するところから始まるためです。
 
-..    If <src> is a URL and <dest> does not end with a trailing slash, then a file is downloaded from the URL and copied to <dest>.
+.. - If `<src>` is a URL and `<dest>` does not end with a trailing slash, then a
+     file is downloaded from the URL and copied to `<dest>`.
 
-* ``<ソース>`` が URL であり、 ``<送信先>`` の末尾にスラッシュが無い場合、URL からファイルをダウンロードし、 ``<送信先>`` にコピーします。
+* ``<src>`` が URL 指定であって ``<dest>`` の最後にスラッシュが指定されていない場合、そのファイルを URL よりダウンロードして ``<dest>`` にコピーします。
 
-..    If <src> is a URL and <dest> does end with a trailing slash, then the filename is inferred from the URL and the file is downloaded to <dest>/<filename>. For instance, ADD http://example.com/foobar / would create the file /foobar. The URL must have a nontrivial path so that an appropriate filename can be discovered in this case (http://example.com will not work).
+.. - If `<src>` is a URL and `<dest>` does end with a trailing slash, then the
+     filename is inferred from the URL and the file is downloaded to
+     `<dest>/<filename>`. For instance, `ADD http://example.com/foobar /` would
+     create the file `/foobar`. The URL must have a nontrivial path so that an
+     appropriate filename can be discovered in this case (`http://example.com`
+     will not work).
 
-* もし ``<ソース>`` が URL であり、 ``<送信先>`` の末尾がスラッシュの場合、URL からファイル名を推測し、ファイルを ``<送信先>/<ファイル名>`` にダウンロードします。例えば、 ``ADD http://example.com/foobar /`` は、 ``/foobar`` ファイルを作成します。URL には何らかのパスが必要です。これは適切なファイル名を見つけられない場合があるためです（今回の例では、 ``http://example.com`` の指定は動作しません）。
+* ``<src>`` が URL 指定であって ``<dest>`` の最後にスラッシュが指定された場合、ファイルが指定されたものとして扱われ、URL からダウンロードして ``<dest>/<filename>`` にコピーします。
+  たとえば ``ADD http://example.com/foobar /`` という記述は ``/foobar`` というファイルを作ることになります。
+  URL には正確なパス指定が必要です。
+  上の記述であれば、適切なファイルが見つけ出されます。
+  （ ``http://example.com`` では正しく動作しません。）
 
-..    If <src> is a directory, the entire contents of the directory are copied, including filesystem metadata.
+.. - If `<src>` is a directory, the entire contents of the directory are copied,
+     including filesystem metadata.
 
-* ``<ソース>`` がディレクトリの場合、ディレクトリの内容の全てをコピーします。これにはファイルシステムのメタデータを含みます。
+* ``<src>`` がディレクトリである場合、そのディレクトリ内の内容がすべてコピーされます。
+  ファイルシステムのメタデータも含まれます。
 
-..    Note: The directory itself is not copied, just its contents.
+  .. > **Note**:
+     > The directory itself is not copied, just its contents.
 
-.. note::
+  .. note::
 
-   ディレクトリ自身はコピーされません。ディレクトリは単なるコンテントの入れ物です。
+      ディレクトリそのものはコピーされません。
+      コピーされるのはその中身です。
 
-..    If <src> is a local tar archive in a recognized compression format (identity, gzip, bzip2 or xz) then it is unpacked as a directory. Resources from remote URLs are not decompressed. When a directory is copied or unpacked, it has the same behavior as tar -x: the result is the union of:
+.. - If `<src>` is a *local* tar archive in a recognized compression format
+     (identity, gzip, bzip2 or xz) then it is unpacked as a directory. Resources
+     from *remote* URLs are **not** decompressed. When a directory is copied or
+     unpacked, it has the same behavior as `tar -x`, the result is the union of:
 
-* もし ``<ソース>`` が *ローカル* にある tar アーカイブの場合、圧縮フォーマットを認識します（gzip、bzip2、xz を認識）。それからディレクトリに展開します。 *リモート* の URL が指定された場合は展開 **しません**。ディレクトリにコピーまたは展開する時は、 ``tar -x`` と同じ働きをします。結果は次の処理を同時に行います。
+* ``<src>`` が **ローカル** にある tar アーカイブであって、認識できるフォーマット（gzip、bzip2、xz）である場合、1 つのディレクトリ配下に展開されます。
+  **リモート** URL の場合は展開 **されません** 。
+  ディレクトリのコピーあるいは展開の仕方は ``tar -x`` と同等です。
+  つまりその結果は以下の 2 つのいずれかに従います。
 
-..        Whatever existed at the destination path and
-..        The contents of the source tree, with conflicts resolved in favor of “2.” on a file-by-file basis.
+  ..  1. Whatever existed at the destination path and
+      2. The contents of the source tree, with conflicts resolved in favor
+         of "2." on a file-by-file basis.
 
-1. 送信先のパスが存在しているかどうか
-2. ファイル単位の原則に従って、ソース・ツリーの内容と衝突しないかどうか「2」を繰り返す
+  1. コピー先に指定されていれば、それが存在しているかどうかに関わらず。あるいは、
+  2. ソース・ツリーの内容に従って各ファイルごとに行う。衝突が発生した場合は 2. を優先する。
 
-.. Note: Whether a file is identified as a recognized compression format or not is done solely based on the contents of the file, not the name of the file. For example, if an empty file happens to end with .tar.gz this will not be recognized as a compressed file and will not generate any kind of decompression error message, rather the file will simply be copied to the destination.
+  .. > **Note**:
+     > Whether a file is identified as a recognized compression format or not
+     > is done solely based on the contents of the file, not the name of the file.
+     > For example, if an empty file happens to end with `.tar.gz` this will not
+     > be recognized as a compressed file and **will not** generate any kind of
+     > decompression error message, rather the file will simply be copied to the
+     > destination.
 
-.. note::
+  .. note::
 
-   ファイルが圧縮フォーマットと認識するか、あるいはファイルの集まりをベースにしているのかは、ファイルの名前では判断しません。例えば、空のファイル名の拡張子が ``.tar.gz`` だとしても、圧縮ファイルと認識しないため、展開エラーのメッセージを表示 **しません** 。そして単純に送信先にファイルをコピーします。
+     圧縮されたファイルが認識可能なフォーマットであるかどうかは、そのファイル内容に基づいて確認されます。
+     名前によって判断されるわけではありません。
+     たとえば、空のファイルの名前の末尾がたまたま ``.tar.gz`` となっていた場合、圧縮ファイルとして認識されないため、解凍に失敗したといったエラーメッセージは一切 **出ることはなく** 、このファイルはコピー先に向けて単純にコピーされるだけです。
 
-..    If <src> is any other kind of file, it is copied individually along with its metadata. In this case, if <dest> ends with a trailing slash /, it will be considered a directory and the contents of <src> will be written at <dest>/base(<src>).
+.. - If `<src>` is any other kind of file, it is copied individually along with
+     its metadata. In this case, if `<dest>` ends with a trailing slash `/`, it
+     will be considered a directory and the contents of `<src>` will be written
+     at `<dest>/base(<src>)`.
 
-* もし ``<ソース>`` がファイル以外であれば、個々のメタデータと一緒にコピーします。 ``<送信先>`` の末尾がスラッシュ ``/`` で終わる場合は、ディレクトリであるとみなし、 ``<ソース>`` の内容を ``<送信先>/base(<ソース>)`` に書き込みます。
+* ``<src>`` が上に示す以外のファイルであった場合、メタデータも含めて個々にコピーされます。
+  このとき ``<dest>`` が ``/`` で終わっていたらディレクトリとみなされるので、``<src>`` の内容は ``<dest>/base(<src>)`` に書き込まれることになります。
 
-..    If multiple <src> resources are specified, either directly or due to the use of a wildcard, then <dest> must be a directory, and it must end with a slash /.
+.. - If multiple `<src>` resources are specified, either directly or due to the
+     use of a wildcard, then `<dest>` must be a directory, and it must end with
+     a slash `/`.
 
-* もし複数の ``<ソース>`` リソースが指定された場合や、ディレクトリやワイルドカードを使った場合、 ``<送信先>`` は必ずディレクトリになり、最後はスラッシュ ``/`` にしなければいけません。
+* 複数の ``<src>`` が直接指定された場合、あるいはワイルドカードを用いて指定された場合、``<dest>`` はディレクトリとする必要があり、末尾には ``/`` をつけなければなりません。
 
-..    If <dest> does not end with a trailing slash, it will be considered a regular file and the contents of <src> will be written at <dest>.
+.. - If `<dest>` does not end with a trailing slash, it will be considered a
+     regular file and the contents of `<src>` will be written at `<dest>`.
 
-* もし ``<送信先>`` の末尾がスラッシュで終わらなければ、通常のファイルとみなされ、 ``<ソース>`` の内容は ``<送信先>`` として書き込まれます。
+* ``<dest>`` の末尾にスラッシュがなかった場合、通常のファイルとみなされるため、``<src>`` の内容は ``<dest>`` に書き込まれることになります。
 
-..    If <dest> doesn’t exist, it is created along with all missing directories in its path.
+.. - If `<dest>` doesn't exist, it is created along with all missing directories
+     in its path.
 
-* ``<送信先>`` が存在しなければ、パスに存在しないディレクトリを作成します。
+* ``<dest>`` のパス内のディレクトリが存在しなかった場合、すべて生成されます。
 
 .. _copy:
 
@@ -1354,81 +1716,137 @@ COPY
 
 COPY は２つの形式があります。
 
-..    COPY <src>... <dest>
-    COPY ["<src>",... "<dest>"] (this form is required for paths containing whitespace)
+.. - `COPY <src>... <dest>`
+   - `COPY ["<src>",... "<dest>"]` (this form is required for paths containing
+   whitespace)
 
-* ``COPY <ソース>... <送信先>``
-* ``COPY ["<ソース>",... "<送信先>"]`` （この形式はパスに空白スペースを使う場合に必要）
+* ``COPY <src>... <dest>``
+* ``COPY ["<src>",... "<dest>"]`` （パスにホワイトスペースを含む場合にこの書式が必要）
 
-.. The COPY instruction copies new files or directories from <src> and adds them to the filesystem of the container at the path <dest>.
+.. The `COPY` instruction copies new files or directories from `<src>`
+   and adds them to the filesystem of the container at the path `<dest>`.
 
-``COPY`` 命令は ``<ソース>`` にある新しいファイルやディレクトリをコピーするもので、コンテナ内のファイルシステム上にある ``<送信先>`` に指定されたパスに追加します。
+``COPY`` 命令は ``<src>`` からファイルやディレクトリを新たにコピーして、コンテナ内のファイルシステムのパス ``<dest>`` に追加します。
 
-.. Multiple <src> resource may be specified but they must be relative to the source directory that is being built (the context of the build).
+.. Multiple `<src>` resource may be specified but they must be relative
+   to the source directory that is being built (the context of the build).
 
-複数の ``<ソース>`` リソースを指定できます。この時、ソースディレクトリ（構築時のコンテクスト）からの相対パス上に存在しないと構築できません。
+``<src>`` には複数のソースを指定することが可能です。
+ソースとしてファイルあるいはディレクトリが指定されている場合、そのパスは生成されたソース・ディレクトリ（ビルド・コンテキスト）からの相対パスでなければなりません。
 
-.. Each <src> may contain wildcards and matching will be done using Go’s filepath.Match rules. For example:
+.. Each `<src>` may contain wildcards and matching will be done using Go's
+   [filepath.Match](http://golang.org/pkg/path/filepath#Match) rules. For example:
 
-それぞれの ``<ソース>`` にはワイルドカードと Go 言語の `filepath.Match <http://golang.org/pkg/path/filepath#Match>`_ ルールに一致するパターンが使えます。例えば、次のような記述です。
+``<src>`` にはワイルドカードを含めることができます。
+その場合、マッチング処理は Go 言語の `filepath.Match <http://golang.org/pkg/path/filepath#Match>`_ ルールに従って行われます。
+記述例は以下のとおりです。
 
 .. code-block:: dockerfile
 
    COPY hom* /mydir/        # "hom" で始まる全てのファイルを追加
    COPY hom?.txt /mydir/    # ? は１文字だけ一致します。例： "home.txt"
 
-.. The <dest> is an absolute path, or a path relative to WORKDIR, into which the source will be copied inside the destination container.
+.. The `<dest>` is an absolute path, or a path relative to `WORKDIR`, into which
+   the source will be copied inside the destination container.
 
-``<送信先>`` は絶対パスです。あるいは、パスは ``WORKDIR`` からの相対パスです。ソースにあるものが、対象となる送信先コンテナの中にコピーされます。
+``<dest>`` は絶対パスか、あるいは ``WORKDIR`` からの相対パスにより指定します。
+対象としているコンテナ内において、そのパスに対してソースがコピーされます。
 
 .. code-block:: dockerfile
 
    COPY test relativeDir/   # "test" を `WORKDIR`/relativeDir/ （相対ディレクトリ）に追加
    COPY test /absoluteDir/   # "test" を /absoluteDir/ （絶対ディレクトリ）に追加
 
+.. When copying files or directories that contain special characters (such as `[`
+   and `]`), you need to escape those paths following the Golang rules to prevent
+   them from being treated as a matching pattern. For example, to copy a file
+   named `arr[0].txt`, use the following;
+
+ファイルやディレクトリを追加する際に、その名前の中に（ ``[`` や ``]`` のような）特殊な文字が含まれている場合は、Go 言語のルールに従ってパス名をエスケープする必要があります。
+これはパターン・マッチングとして扱われないようにするものです。
+たとえば ``arr[0].txt`` というファイルを追加する場合は、以下のようにします。
+
+   .. COPY arr[[]0].txt /mydir/    # copy a file named "arr[0].txt" to /mydir/
+
+.. code-block:: dockerfile
+
+   COPY arr[[]0].txt /mydir/    # "arr[0].txt" というファイルを /mydir/ へコピー
+
 .. All new files and directories are created with a UID and GID of 0.
 
-追加される新しいファイルやディレクトリは、全て UID と GID が 0 として作成されます。
+コピーされるファイルやディレクトリの UID と GID は、すべて 0 として生成されます。
 
-..    Note: If you build using STDIN (docker build - < somefile), there is no build context, so COPY can’t be used.
+.. > **Note**:
+   > If you build using STDIN (`docker build - < somefile`), there is no
+   > build context, so `COPY` can't be used.
 
 .. note::
 
-   標準入力（ ``docker build - < 何らかのファイル`` ）を使って構築しようとしても、構築時のコンテントは存在しないため、 ``COPY`` を使えません。
+  ``Dockerfile`` を標準入力から生成する場合（ ``docker build - < somefile`` ）は、ビルド・コンテキストが存在していないことになるので、``COPY`` 命令は利用することができません。
+
+.. Optionally `COPY` accepts a flag `--from=<name|index>` that can be used to set
+   the source location to a previous build stage (created with `FROM .. AS <name>`)
+   that will be used instead of a build context sent by the user. The flag also 
+   accepts a numeric index assigned for all previous build stages started with 
+   `FROM` instruction. In case a build stage with a specified name can't be found an 
+   image with the same name is attempted to be used instead.
+
+オプションとして ``COPY`` にはフラグ ``--from=<name|index>`` があります。
+これは実行済のビルド・ステージ（ ``FROM .. AS <name>`` により生成）におけるソース・ディレクトリを設定するものです。
+これがあると、ユーザーが指定したビルド・コンテキストのかわりに、設定されたディレクトリが用いられます。
+このフラグは数値インデックスを指定することも可能です。
+この数値インデックスは、``FROM`` 命令から始まる実行済のビルド・ステージすべてに割り当てられている値です。
+指定されたビルド・ステージがその名前では見つけられなかった場合、指定された数値によって見つけ出します。
 
 .. COPY obeys the following rules:
 
 ``COPY`` は以下のルールに従います。
 
-..    The <src> path must be inside the context of the build; you cannot COPY ../something /something, because the first step of a docker build is to send the context directory (and subdirectories) to the docker daemon.
+.. - The `<src>` path must be inside the *context* of the build;
+     you cannot `COPY ../something /something`, because the first step of a
+     `docker build` is to send the context directory (and subdirectories) to the
+     docker daemon.
 
-* ``<ソース>`` パスは、構築時の *コンテント* 内にある必要があります。そのため、 ``COPY ../something /something`` の指定はできません。 ``docker build`` の最初のステップで、コンテクストのディレクトリ（と、サブディレクトリ）を docker デーモンに送るためです。
+* ``<src>`` のパス指定は、ビルド **コンテキスト** 内でなければならないため、たとえば ``COPY ../something /something`` といったことはできません。
+  ``docker build`` の最初の処理ステップでは、コンテキスト・ディレクトリ（およびそのサブディレクトリ）を Docker デーモンに送信するところから始まるためです。
 
-..    If <src> is a directory, the entire contents of the directory are copied, including filesystem metadata.
+.. - If `<src>` is a directory, the entire contents of the directory are copied,
+     including filesystem metadata.
 
-* ``<ソース>`` がディレクトリの場合、ディレクトリ内容の全てをコピーします。これにはファイルシステムのメタデータを含みます。
+* ``<src>`` がディレクトリである場合、そのディレクトリ内の内容がすべてコピーされます。
+  ファイルシステムのメタデータも含まれます。
 
-..    Note: The directory itself is not copied, just its contents.
+  .. > **Note**:
+     > The directory itself is not copied, just its contents.
 
-.. note::
+  .. note::
 
-   ディレクトリ自身はコピーしません。ディレクトリは単なるコンテントの入れ物です。
+     ディレクトリそのものはコピーされません。
+     コピーされるのはその中身です。
 
-..     If <src> is any other kind of file, it is copied individually along with its metadata. In this case, if <dest> ends with a trailing slash /, it will be considered a directory and the contents of <src> will be written at <dest>/base(<src>).
+.. - If `<src>` is any other kind of file, it is copied individually along with
+     its metadata. In this case, if `<dest>` ends with a trailing slash `/`, it
+     will be considered a directory and the contents of `<src>` will be written
+     at `<dest>/base(<src>)`.
 
-* もし ``<ソース>`` がファイル以外であれば、個々のメタデータと一緒にコピーします。 ``<送信先>`` の末尾がスラッシュ ``/`` で終わる場合は、ディレクトリであるとみなし、 ``<ソース>`` の内容を ``<送信先>/base(<ソース>)`` に書き込みます。
+* ``<src>`` が上に示す以外のファイルであった場合、メタデータも含めて個々にコピーされます。
+  このとき ``<dest>`` が ``/`` で終わっていたらディレクトリとみなされるので、``<src>`` の内容は ``<dest>/base(<src>)`` に書き込まれることになります。
 
-..    If multiple <src> resources are specified, either directly or due to the use of a wildcard, then <dest> must be a directory, and it must end with a slash /.
+.. - If multiple `<src>` resources are specified, either directly or due to the
+     use of a wildcard, then `<dest>` must be a directory, and it must end with
+     a slash `/`.
 
-* もし複数の ``<ソース>`` リソースが指定された場合や、ディレクトリやワイルドカードを使った場合、 ``<送信先>`` は必ずディレクトリになり、最後はスラッシュ ``/`` にしなければいけません。
+* 複数の ``<src>`` が直接指定された場合、あるいはワイルドカードを用いて指定された場合、``<dest>`` はディレクトリとする必要があり、末尾には ``/`` をつけなければなりません。
 
-..    If <dest> does not end with a trailing slash, it will be considered a regular file and the contents of <src> will be written at <dest>.
+.. - If `<dest>` does not end with a trailing slash, it will be considered a
+     regular file and the contents of `<src>` will be written at `<dest>`.
 
-* もし ``<送信先>`` の末尾がスラッシュで終わらなければ、通常のファイルとみなされ、 ``<ソース>`` の内容は ``<送信先>`` として書き込まれます。
+* ``<dest>`` の末尾にスラッシュがなかった場合、通常のファイルとみなされるため、``<src>`` の内容が ``<dest>`` に書き込まれます。
 
-..    If <dest> doesn’t exist, it is created along with all missing directories in its path.
+.. - If `<dest>` doesn't exist, it is created along with all missing directories
+     in its path.
 
-* ``<送信先>`` が存在しなければ、パスに存在しないディレクトリを作成します。
+* ``<dest>`` のパス内のディレクトリが存在しなかった場合、すべて生成されます。
 
 .. _entrypoint:
 
