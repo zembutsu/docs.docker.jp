@@ -95,7 +95,7 @@ Docker 1.10 は、新しい連想（コンテント・アドレッサブル；co
 
 .. Existing images, those created and pulled by earlier versions of Docker, need to be migrated before they can be used with the new model. This migration involves calculating new secure checksums and is performed automatically the first time you start an updated Docker daemon. After the migration is complete, all images and tags will have brand new secure IDs.
 
-既存イメージとは、以前のバージョンの Docker で作成、あるいは取得したものです。これらは新しいモデルで使う前に、変換が必要です。以降時には、新しい安全なチェックサムを計算します。この計算は更新した Docker デーモンを初回起動時、自動的に行われます。移行が終わったら、全てのイメージとタグが新しい安全な ID に更新されます。
+既存イメージとは、以前のバージョンの Docker で作成、あるいは取得したものです。これらは新しいモデルで使う前に、変換が必要です。移行時には、新しい安全なチェックサムを計算します。この計算は更新した Docker デーモンを初回起動時、自動的に行われます。移行が終わったら、全てのイメージとタグが新しい安全な ID に更新されます。
 
 .. Although the migration is automatic and transparent, it is computationally intensive. This means it can take time if you have lots of image data. During this time your Docker daemon will not respond to other requests.
 

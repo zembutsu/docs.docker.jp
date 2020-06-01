@@ -51,7 +51,7 @@ Docker Hub は無料で使えます。登録にはユーザ名、パスワード
 
 ..    Press Signup.
 
-3. Signup（サインアップ）を押します。
+3. Sign Up（サインアップ）を押します。
 
 ..    The browser displays the welcome to Docker Hub page.
 

@@ -20,7 +20,7 @@
 
 .. In this section, you tag and push your docker-whale image to your newly created repository. When you are done, you test the repository by pulling your new image.
 
-このセクションでは ``docker-whale`` イメージにタグを付け、先ほど作成した自分のリポジトリにイメージを送信します。作業が後は、自分の新しいイメージをリポジトリから取得できるか確認します。
+このセクションでは ``docker-whale`` イメージにタグを付け、先ほど作成した自分のリポジトリにイメージを送信します。作業の後は、自分の新しいイメージをリポジトリから取得できるか確認します。
 
 .. Step 1: Tag and push the image
 

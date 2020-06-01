@@ -212,7 +212,7 @@ extends 設定の理解
 
 .. When defining any service in docker-compose.yml, you can declare that you are extending another service like this:
 
-``docker-compose.yml`` で定義したあらゆるサービスは、次のようにして他のサービスからの拡張（extend）を宣言を宣言できます。
+``docker-compose.yml`` で定義したあらゆるサービスは、次のようにして他のサービスからの拡張（extend）を宣言できます。
 
 .. code-block:: yaml
 

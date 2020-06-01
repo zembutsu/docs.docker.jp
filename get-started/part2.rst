@@ -71,7 +71,7 @@ Docker であれば、移動可能な Python ランタイムをイメージ内�
 
 .. These portable images are defined by something called a Dockerfile.
 
-移動可能なイメージは ``Dockerifle`` と呼ばれるモノで定義します。
+移動可能なイメージは ``Dockerfile`` と呼ばれるモノで定義します。
 
 .. Define a container with a Dockerfile
 
@@ -457,7 +457,7 @@ Docker アカウントをお持ちでなければ、 `cloud.docker.com <https://
 
 .. code-block:: bash
 
-   docker build -t friendlyname .               # このディレクトリ内にある DockerCile でイメージ作成
+   docker build -t friendlyname .               # このディレクトリ内にある DockerFile でイメージ作成
    docker run -p 4000:80 friendlyname  # "friendlyname" の実行にあたり、ポート 4000 を 80 に割り当て
    docker run -d -p 4000:80 friendlyname                            # 同じですが、デタッチド・モード
    docker container ls                                                  # 全ての実行中コンテナを表示
