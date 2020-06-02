@@ -7,10 +7,10 @@
 .. Commits on Jun 2, 2016 c1be45fa38e82054dcad606d71446a662524f2d5
 .. ---------------------------------------------------------------------------
 
-.. Control and configure Docker with systemd
+.. title: Control and configure Docker with systemd
 
 =======================================
-systemd で Docker の管理・設定
+systemd における Docker の設定と管理
 =======================================
 
 .. sidebar:: 目次
@@ -19,235 +19,268 @@ systemd で Docker の管理・設定
        :depth: 3
        :local:
 
-.. Many Linux distributions use systemd to start the Docker daemon. This document shows a few examples of how to customise Docker’s settings.
+.. Many Linux distributions use systemd to start the Docker daemon. This document
+   shows a few examples of how to customize Docker's settings.
 
-多くの Linux ディストリビューションは systemd を使って Docker デーモンを起動します。このドキュメントは、様々な Docker の設定例を紹介します。
+Linux ディストリビューションでは、Docker デーモンの起動に systemd を用いるものが多くあります。
+このドキュメントでは Docker の設定例をいくつか示します。
 
-.. Starting the Docker daemon
+.. ## Start the Docker daemon
 
-.. _starting-the-docker-daemon:
+.. _start-the-docker-daemon:
 
 Docker デーモンの起動
 ==============================
 
+.. ### Start manually
+
+.. _start-manually:
+
+手動で起動する場合
+------------------------------
+
 .. Once Docker is installed, you will need to start the Docker daemon.
+   Most Linux distributions use `systemctl` to start services. If you
+   do not have `systemctl`, use the `service` command.
 
-Docker をインストールしたら、Docker デーモンを起動する必要があります。
+Docker をインストールしたら Docker デーモンを起動する必要があります。
+たいていの Linux ディストリビューションでは ``systemctl`` を使ってサービスを起動します。
+``systemctl`` がない場合は ``service`` コマンドを使ってください。
 
-.. code-block:: bash
+.. - **`systemctl`**:
+- ``systemctl`` の場合
 
-   $ sudo systemctl start docker
-   # 他のディストリビューションでは、次のように実行します
-   $ sudo service docker start
+  .. ```bash
+     $ sudo systemctl start docker
+     ```
+  .. code-block:: bash
 
-.. If you want Docker to start at boot, you should also:
+     $ sudo systemctl start docker
 
-また、Docker をブート時に自動起動するには、次のように実行すべきです。
+.. - **`service`**:
+- ``service`` の場合
 
-.. code-block:: bash
+  .. ```bash
+     $ sudo service docker start
+     ```
+  .. code-block:: bash
 
-   $ sudo systemctl enable docker
-   # 他のディストリビューションでは、次のように実行します
-   $ sudo chkconfig docker on
+     $ sudo service docker start
 
-.. Custom Docker daemon options
+.. ### Start automatically at system boot
+
+.. _start-automatically-at-system-boot:
+
+システムブート時に自動起動する場合
+-----------------------------------
+
+.. If you want Docker to start at boot, see
+   [Configure Docker to start on boot](/engine/installation/linux/linux-postinstall.md/#configure-docker-to-start-on-boot).
+
+Docker をシステムブート時に起動したい場合は :ref:`システムブート時の Docker 起動設定 <configure-docker-to-start-on-boot>` を参照してください。
+
+.. ## Custom Docker daemon options
 
 .. _custom-docker-daemon-options:
 
-Docker デーモンのオプション変更
+Docker デーモンオプションのカスタマイズ
 ========================================
 
-.. There are a number of ways to configure the daemon flags and environment variables for your Docker daemon.
+.. There are a number of ways to configure the daemon flags and environment variables
+   for your Docker daemon. The recommended way is to use the platform-independent
+   `daemon.json` file, which is located in `/etc/docker/` on Linux by default. See
+   [Daemon configuration file](/engine/reference/commandline/dockerd.md/#daemon-configuration-file).
 
-Docker デーモンの設定を変更するには、多くのフラグを使う方法と、環境変数を使う方法があります。
+Docker デーモンに対してのデーモンフラグや環境変数を設定する方法はいろいろあります。
+推奨されるのは、プラットフォームに依存しない ``daemon.json`` ファイルを用いる方法です。
+この ``daemon.json`` ファイルは Linux においてはデフォルトで ``/etc/docker/`` に置かれます。
+詳しくは :ref:`デーモン設定ファイル <daemon-configuration-file>` を参照してください。
 
-.. The recommended way is to use a systemd drop-in file (as described in the systemd.unit documentation). These are local files named <something>.conf in the /etc/systemd/system/docker.service.d directory. This could also be /etc/systemd/system/docker.service, which also works for overriding the defaults from /lib/systemd/system/docker.service.
+.. You can configure nearly all daemon configuration options using `daemon.json`. The following
+   example configures two options. One thing you cannot configure using `daemon.json` mechanism is
+   a [HTTP proxy](#http-proxy).
 
-推奨する方法は、systemd 用のファイルを使うことです（詳細は `systemd.unit <https://www.freedesktop.org/software/systemd/man/systemd.unit.html>`_ ドキュメントに記述があります）。ローカルの設定ファイルは ``/etc/systemd/system/docker.service.d`` ディレクトリに ``<何らかの名前>.conf`` があります。もしかすると ``/etc/systemd/system/docker.service`` かもしれません。これは ``/lib/systemd/system/docker.service`` にあるデフォルト設定を上書きします。
+``daemon.json`` を使うと、デーモン・オプションはほぼすべて設定することができます。
+以下の例では 2 つのオプションを設定しています。
+``daemon.json`` による仕組みで設定できないものに :ref:`HTTP プロキシ <systemd-httphttps-proxy>` があります。
 
-.. However, if you had previously used a package which had an EnvironmentFile (often pointing to /etc/sysconfig/docker) then for backwards compatibility, you drop a file with a .conf extension into the /etc/systemd/system/docker.service.d directory including the following:
-
-一方で、既にパッケージを使ってインストールしていた場合は ``環境設定ファイル`` （通常は ``/etc/sysconfig/docker`` ） があるかもしれません。これは後方互換性のためです。このファイルの内容は、 ``/etc/systemd/system/docker.service.d`` ディレクトリにあるファイルに落とし込めます。
-
-.. code-block:: bash
-
-   [Service]
-   EnvironmentFile=-/etc/sysconfig/docker
-   EnvironmentFile=-/etc/sysconfig/docker-storage
-   EnvironmentFile=-/etc/sysconfig/docker-network
-   ExecStart=
-   ExecStart=/usr/bin/docker daemon -H fd:// $OPTIONS \
-             $DOCKER_STORAGE_OPTIONS \
-             $DOCKER_NETWORK_OPTIONS \
-             $BLOCK_REGISTRY \
-             $INSECURE_REGISTRY
-
-.. To check if the docker.service uses an EnvironmentFile:
-
-``docker.service`` が ``環境設定ファイル`` を使っているか確認します。
-
-.. code-block:: bash
-
-   $ systemctl show docker | grep EnvironmentFile
-   EnvironmentFile=-/etc/sysconfig/docker (ignore_errors=yes)
-
-.. Alternatively, find out where the service file is located:
-
-あるいは、サービス用のファイルがどこにあるか探します。
-
-.. code-block:: bash
-
-   $ systemctl status docker | grep Loaded
-   FragmentPath=/usr/lib/systemd/system/docker.service
-   $ grep EnvironmentFile /usr/lib/systemd/system/docker.service
-   EnvironmentFile=-/etc/sysconfig/docker
-
-.. You can customize the Docker daemon options using override files as explained in the HTTP Proxy example below. The files located in /usr/lib/systemd/system or /lib/systemd/system contain the default options and should not be edited.
-
-Docker デーモンのオプションは、以下の :ref:`HTTP Proxy 例 <systemd-http-proxy>` で説明するようなファイルを使って上書き可能です。このファイルは ``/usr/lib/systemd/system`` か ``/lib/systemd/system`` にありますが、デフォルトのオプション設定は変更すべきではありません。
-
-.. Runtime directory and storage driver
+.. ### Runtime directory and storage driver
 
 .. _runtime-directory-and-storage-driver:
 
-実行時のディレクトリとストレージ・ドライバ
+実行時の利用ディレクトリとストレージ・ドライバ
 --------------------------------------------------
 
-.. You may want to control the disk space used for Docker images, containers and volumes by moving it to a separate partition.
+.. You may want to control the disk space used for Docker images, containers,
+   and volumes by moving it to a separate partition.
 
-Docker イメージ、コンテナ、ボリュームを別々のパーティションのディスク・スペースで管理したくなるでしょう。
+Docker のイメージ、コンテナー、ボリュームは、別のパーティションを使ってディスク管理を行いたいと考えるかもしれません。
 
-.. In this example, we’ll assume that your docker.service file looks something like:
+.. To accomplish this, set the following flags in the `daemon.json` file:
 
-この例では、次のような ``docker.service`` ファイルがあるものとします。
+これを行うには ``daemon.json`` ファイルにおいて、以下のようなフラグ設定を行います。
 
-.. code-block:: bash
+.. ```none
+   {
+       "graph": "/mnt/docker-data",
+       "storage-driver": "overlay"
+   }
+   ```
+.. code-block:: json
 
-   [Unit]
-   Description=Docker Application Container Engine
-   Documentation=https://docs.docker.com
-   After=network.target docker.socket
-   Requires=docker.socket
-   
-   [Service]
-   Type=notify
-   ExecStart=/usr/bin/docker daemon -H fd://
-   LimitNOFILE=1048576
-   LimitNPROC=1048576
-   TasksMax=1048576
-   
-   [Install]
-   Also=docker.socket
+   {
+       "graph": "/mnt/docker-data",
+       "storage-driver": "overlay"
+   }
 
-.. This will allow us to add extra flags via a drop-in file (mentioned above) by placing a file containing the following in the /etc/systemd/system/docker.service.d directory:
+.. ### HTTP/HTTPS proxy
 
-これはドロップイン・ファイル（先ほど扱いました）を経由して外部フラグを追加できます。以下の内容を含むファイルを ``/etc/systemd/system/docker.service.d`` に作成します。
+.. _systemd-httphttps-proxy:
 
-.. code-block:: bash
-
-   [Service]
-   ExecStart=
-   ExecStart=/usr/bin/docker daemon -H fd:// --graph="/mnt/docker-data" --storage-driver=overlay
-
-.. You can also set other environment variables in this file, for example, the HTTP_PROXY environment variables described below.
-
-このファイルに他の環境変数も設定できます。例えば、 ``HTTP_PROXY`` 環境変数を下に追加することもできるでしょう。
-
-.. To modify the ExecStart configuration, specify an empty configuration followed by a new configuration as follows:
-
-ExecSart 設定を変更するには、空の設定の次の行に、新しい設定を追加します。
-
-.. code-block:: bash
-
-   [Service]
-   ExecStart=
-   ExecStart=/usr/bin/docker daemon -H fd:// --bip=172.17.42.1/16
-
-.. If you fail to specify an empty configuration, Docker reports an error such as:
-
-空の設定があると失敗しますので、次のように表示されるでしょう。
-
-.. code-block:: bash
-
-   docker.service has more than one ExecStart= setting, which is only allowed for Type=oneshot services. Refusing.
-
-.. _systemd-http-proxy:
-
-.. HTTP proxy
-
-HTTP プロキシ
+HTTP/HTTPS プロキシ
 --------------------
 
-.. This example overrides the default docker.service file.
+.. The Docker daemon uses the `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` environmental variables in
+   its start-up environment to configure HTTP or HTTPS proxy behavior. You cannot configure
 
-この例はデフォルトの ``docker.service`` ファイルを上書きします。
+.. these environment variables using the `daemon.json` file.
 
-.. If you are behind an HTTP proxy server, for example in corporate settings, you will need to add this configuration in the Docker systemd service file.
+Docker デーモンではその起動環境において ``HTTP_PROXY``, ``HTTPS_PROXY``, ``NO_PROXY`` という環境変数を利用して、HTTP または HTTPS プロキシの動作を定めています。
+この環境変数による設定は ``daemon.json`` ファイルを用いて行うことはできません。
 
-HTTP プロキシサーバの背後にいる場合、ここではオフィスで設定する例として、Docker の systemd サービス・ファイルに設定を追加する必要があるものとします。
+.. This example overrides the default `docker.service` file.
 
-.. First, create a systemd drop-in directory for the docker service:
+以下は、デフォルトの ``docker.service`` ファイルを上書き設定する例です。
 
-まず、docker サービス向けの systemd ドロップイン・ディレクトリを作成します。
+.. If you are behind an HTTP or HTTPS proxy server, for example in corporate settings,
+   you will need to add this configuration in the Docker systemd service file.
 
-.. code-block:: bash
+企業内で設定されるような HTTP あるいは HTTPS プロキシサーバを利用している場合は、Docker systemd サービスファイルに、これらの設定を加える必要があります。
 
-   mkdir /etc/systemd/system/docker.service.d
+.. 1.  Create a systemd drop-in directory for the docker service:
+1.  Docker サービスに対応した systemd のドロップイン・ディレクトリを生成します。
 
-.. Now create a file called /etc/systemd/system/docker.service.d/http-proxy.conf that adds the HTTP_PROXY environment variable:
+   ..  ```bash
+       $ mkdir -p /etc/systemd/system/docker.service.d
+       ```
+   .. code-block:: bash
 
-次は ``/etc/systemd/system/docker.service.d/http-proxy.conf`` ファイルを作成し、 ``HTTP_PROXY`` 環境変数を追加します。
+       $ mkdir -p /etc/systemd/system/docker.service.d
 
-.. code-block:: bash
+.. 2.  Create a file called `/etc/systemd/system/docker.service.d/http-proxy.conf`
+       that adds the `HTTP_PROXY` environment variable:
 
-   [Service]
-   Environment="HTTP_PROXY=http://proxy.example.com:80/"
+2.  ``/etc/systemd/system/docker.service.d/http-proxy.conf`` というファイルを生成して、そこに環境変数 ``HTTP_PROXY`` の設定を書きます。
 
-.. If you have internal Docker registries that you need to contact without proxying you can specify them via the NO_PROXY environment variable:
+   ..  ```conf
+       [Service]
+       Environment="HTTP_PROXY=http://proxy.example.com:80/"
+       ```
+   .. code-block:: conf
 
-内部の Docker レジストリがあれば、プロキシを通さずに通信できるようにするため、 ``NO_PROXY`` 環境変数を指定します。
+       [Service]
+       Environment="HTTP_PROXY=http://proxy.example.com:80/"
 
-.. code-block:: bash
+   ..  Or, if you are behind an HTTPS proxy server, create a file called
+       `/etc/systemd/system/docker.service.d/https-proxy.conf`
+       that adds the `HTTPS_PROXY` environment variable:
 
-   Environment="HTTP_PROXY=http://proxy.example.com:80/"    "NO_PROXY=localhost,127.0.0.1,docker-registry.somecorporation.com"
+   また HTTPS プロキシサーバを利用している場合には ``/etc/systemd/system/docker.service.d/https-proxy.conf`` というファイルを生成して、そこに環境変数 ``HTTPS_PROXY`` の設定を書きます。
 
-.. Flush changes:
+   ..  ```conf
+       [Service]
+       Environment="HTTPS_PROXY=https://proxy.example.com:443/"
+       ```
+   .. code-block:: conf
 
-設定を反映します。
+       [Service]
+       Environment="HTTPS_PROXY=https://proxy.example.com:443/"
 
-.. code-block:: bash
+.. 3.  If you have internal Docker registries that you need to contact without
+       proxying you can specify them via the `NO_PROXY` environment variable:
 
-    $ sudo systemctl daemon-reload
+3.  内部に Docker レジストリがあって、プロキシを介さずに接続する必要がある場合は、環境変数 ``NO_PROXY`` を通じて設定することができます。
 
-.. Verify that the configuration has been loaded:
+   ..  ```conf
+       Environment="HTTP_PROXY=http://proxy.example.com:80/" "NO_PROXY=localhost,127.0.0.1,docker-registry.somecorporation.com"
+       ```
+   .. code-block:: conf
 
-設定ファイルが読み込まれたのを確認します。
+      Environment="HTTP_PROXY=http://proxy.example.com:80/" "NO_PROXY=localhost,127.0.0.1,docker-registry.somecorporation.com"
 
-.. code-block:: bash
+   ..  Or, if you are behind an HTTPS proxy server:
 
-   $ systemctl show --property=Environment docker
-   Environment=HTTP_PROXY=http://proxy.example.com:80/
+   また HTTPS プロキシサーバであれば以下のようになります。
 
-.. Restart Docker:
+   ..  ```conf
+       Environment="HTTPS_PROXY=https://proxy.example.com:443/" "NO_PROXY=localhost,127.0.0.1,docker-registry.somecorporation.com"
+       ```
+   .. code-block:: conf
 
-Docker を再起動します。
+      Environment="HTTPS_PROXY=https://proxy.example.com:443/" "NO_PROXY=localhost,127.0.0.1,docker-registry.somecorporation.com"
 
-.. code-block:: bash
+.. 4.  Flush changes:
+4.  設定を反映します。
 
-   $ sudo systemctl restart docker
+   ..  ```bash
+       $ sudo systemctl daemon-reload
+       ```
+   .. code-block:: bash
 
-.. Manually creating the systemd unit files
+      $ sudo systemctl daemon-reload
 
-.. _manually-creating-the-systemd-unit-files:
+.. 5.  Restart Docker:
+5.  Docker を再起動します。
+
+   ..  ```bash
+       $ sudo systemctl restart docker
+       ```
+   .. code-block:: bash
+
+      $ sudo systemctl restart docker
+
+.. 6.  Verify that the configuration has been loaded:
+6.  設定がロードされていることを確認します。
+
+   ..  ```bash
+       $ systemctl show --property=Environment docker
+       Environment=HTTP_PROXY=http://proxy.example.com:80/
+       ```
+   .. code-block:: bash
+
+      $ systemctl show --property=Environment docker
+      Environment=HTTP_PROXY=http://proxy.example.com:80/
+
+   ..  Or, if you are behind an HTTPS proxy server:
+
+   HTTPS プロキシサーバの場合は以下のとおりです。
+
+   ..  ```bash
+       $ systemctl show --property=Environment docker
+       Environment=HTTPS_PROXY=https://proxy.example.com:443/
+       ```
+   .. code-block:: bash
+
+      $ systemctl show --property=Environment docker
+      Environment=HTTPS_PROXY=https://proxy.example.com:443/
+
+.. ## Manually create the systemd unit files
+
+.. _manually-create-the-systemd-unit-files:
 
 systemd ユニットファイルの手動作成
 ========================================
 
-.. When installing the binary without a package, you may want to integrate Docker with systemd. For this, simply install the two unit files (service and socket) from the github repository to /etc/systemd/system.
+.. When installing the binary without a package, you may want
+   to integrate Docker with systemd. For this, install the two unit files
+   (`service` and `socket`) from [the github
+   repository](https://github.com/moby/moby/tree/master/contrib/init/systemd)
+   to `/etc/systemd/system`.
 
-パッケージを使わずにバイナリをインストールした場合でも、Docker と systemd を連動したくなるでしょう。簡単に実現するには、単純に `GitHub リポジトリ <https://github.com/docker/docker/tree/master/contrib/init/systemd>`_ にある２つのユニットファイル（サービスとソケット用）を ``/etc/systemd/system`` に置くだけです。
+パッケージを利用せずにインストールを行った場合は、systemd を用いた Docker の設定が必要になるはずです。
+これを行うには 2 つのユニットファイル（``service`` と ``socket`` ）を `Github リポジトリ <https://github.com/moby/moby/tree/master/contrib/init/systemd>`_ から入手して ``/etc/systemd/system`` に置いてください。
 
 .. seealso:: 
 
-   Quickstart Docker Engine
-      https://docs.docker.com/engine/quickstart/
+   Control and configure Docker with systemd
+      https://docs.docker.com/engine/admin/systemd/

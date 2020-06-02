@@ -30,13 +30,13 @@ Part 3：サービス
     Make sure you have published the friendlyhello image you created by pushing it to a registry. We’ll use that shared image here.
     Be sure your image works as a deployed container. Run this command, slotting in your info for username, repo, and tag: docker run -p 80:80 username/repo:tag, then visit http://localhost/.
 
-* :doc:`Docker バージョン 1.13 以上のインストール </engine/installation/index>`
+* :doc:`Docker バージョン 1.13 またはそれ以上をインストールすること。</engine/installation/index>`
 .. ↓実際の手順では不要なため、コメントアウト
 .. * :doc:`Docker Compose </compose/overview>` を入手。 Docker for Mac と Docker for Windows ではインストール済みなので、このまま読み進めてください。Linux システムでは `直接インストール <https://github.com/docker/compose/releases>`_ が必要です。Widows 10 システム上で Hyper-V が入っていなければ、 :doc:`Docker Toolbox </toolbox/overview>` をお使い下さい。
-* :doc:`Part 1 <index>` の概要を読んでいること
-* :doc:`Part 2 <part>` のコンテナの作成方法学んでいること
-* 自分で作成した ``friendlyhello`` イメージを :ref:`レジストリに送信 <share-your-image>` して公開済みなのを確認します。ここでは、この共有イメージを使います。
-* イメージをコンテナとしてデプロイできるのを確認します。次のコマンドを実行しますが、 ``ユーザ名`` と ``リポジトリ`` ``タグ`` は皆さんのものに置き換えます。コマンドは ``docker run -p 80:80 ユーザ名/リポジトリ:タグ`` です。そして ``http://localhost/`` を表示します。
+* :doc:`Part 1 <index>` の概要説明を読んでいること。
+* :doc:`Part 2 <part>` のコンテナの作成方法を学んでいること。
+* :ref:`レジストリに送信 <share-your-image>` して作成した ``friendlyhello`` イメージが共有可能であることを確認します。ここではその共有イメージを使います。
+* デプロイしたコンテナとしてイメージが動作することを確認します。以下のコマンドを実行してください。`docker run -p 80:80 username/repo:tag`  ここで username、repo、tag の部分は各環境に合わせて書き換えてください。そして ``http://localhost/`` にアクセスします。
 
 .. Introduction
 
@@ -45,12 +45,13 @@ Part 3：サービス
 
 .. In part 3, we scale our application and enable load-balancing. To do this, we must go one level up in the hierarchy of a distributed application: the service.
 
-Part 3では、アプリケーションをスケールアウトし、負荷分散（ロード・バランシング）を有効にします。そのためには、分散アプリケーション階層においてレベルを上げるする必要があります。すなわち、 **サービス（service）** にです。
+Part 3では、アプリケーションをスケールアップして、負荷分散（ロード・バランシング）を有効にします。こうするためには、分散アプリケーションのレベルを一段あげる必要があります。**サービス化** するということです。
 
 ..    Stack
     Services (ここにいます)
     Container 
 
+* スタック
 * サービス ``Services`` （今ここにいます）
 * コンテナ（ :doc:`part 2 <part2>` で扱いました）
 
@@ -63,15 +64,15 @@ Part 3では、アプリケーションをスケールアウトし、負荷分�
 
 .. In a distributed application, different pieces of the app are called “services.” For example, if you imagine a video sharing site, it probably includes a service for storing application data in a database, a service for video transcoding in the background after a user uploads something, a service for the front-end, and so on.
 
-分散アプリケーションにおいて、アプリケーションにおける「サービス」と呼ばれる部分は異なる構成要素です。例えば、動画共有サイトをご想像ください。このサービスではアプリケーションのデータをデータベースに保管するでしょうし、ユーザが何かをアップロードしたらバックグラウンドでビデオ変換サービスが走るでしょうし、フロントエンド向けのサービス等もあるでしょう。
+分散アプリケーションにおいては、その中に他の要素とは性格が異なる「サービス」と呼ばれるものがあります。例えば動画共有サイトを考えてみてください。おそらくはアプリケーションデータをデータベースに保存するためのサービスがあり、ユーザがデータをアップロードしたときにバックグラウンドでビデオ変換するサービスがあり、フロントエンドのサービスもあるでしょう。
 
 .. Services are really just “containers in production.” A service only runs one image, but it codifies the way that image runs—what ports it should use, how many replicas of the container should run so the service has the capacity it needs, and so on. Scaling a service changes the number of container instances running that piece of software, assigning more computing resources to the service in the process.
 
-サービスとは、正に「本番環境におけるコンテナ」なのです。サービスは１つのイメージしか実行しません。しかし、イメージ実行にはコード化の手法を用います。例えば、何番のポートを使うか、サービスのキャパシティ（収容能力）に応じてコンテナの複製（レプリカ）を幾つ作成したらよいのか等です。サービスのスケール（規模）を変えるには、ソフトウェアのパーツとしての実行するコンテナ・インスタンス数の変更、すなわち、プロセス中のサービスに対して更に大きな計算資源を割り当てます。
+サービスとは正に「稼動するコンテナ」なのです。どのサービスも実行するイメージはただ一つですが、そこにはイメージの動作方法がコーディングされています。ポートは何番を使うか、サービスが持つべき性能を発揮するにはレプリカをいくつ用いればよいか、などです。サービスの規模を大きくすると、このソフトウエアを実行するコンテナ・インスタンスの数が変わります。またプロセス内で実行されるこのサービスへのコンピュータ・リソース割り当てが増えます。
 
 .. Luckily it’s very easy to define, run, and scale services with the Docker platform – just write a docker-compose.yml file.
 
-幸運にも、Docker プラットフォームにおいては、サービスの定義、実行、スケールが非常に簡単です。これらを ``docker-compose.yml`` ファイルに書くだけです。
+うれしいことに Docker では簡単にサービスの定義、実行、規模変更を行うことができます。ただ ``docker-compose.yml`` ファイルを書くだけです。
 
 .. Your first docker-compose.yml file
 
@@ -82,7 +83,7 @@ Part 3では、アプリケーションをスケールアウトし、負荷分�
 
 .. A docker-compose.yml file is a YAML file that defines how Docker containers should behave in production.
 
-``docker-compose.yml`` ファイルとは YAML ファイルであり、プロダクションにおける Docker コンテナのあるべき挙動を定義します。
+``docker-compose.yml`` ファイルは YAML ファイルであり、Docker コンテナがどのように動作するかを定義します。
 
 ``docker-compose.yml``
 
@@ -114,7 +115,7 @@ Part 3では、アプリケーションをスケールアウトし、負荷分�
 
 .. This docker-compose.yml file tells Docker to do the following:
 
-この ``docker-compose.yml`` ファイルで Docker に以下の作業を伝えます：
+この ``docker-compose.yml`` ファイルが Docker に対して以下の指示を行います:
 
 ..    Pull the image we uploaded in step 2 from the registry.
     Run 5 instances of that image as a service called web, limiting each one to use, at most, 10% of the CPU (across all cores), and 50MB of RAM.
@@ -123,10 +124,10 @@ Part 3では、アプリケーションをスケールアウトし、負荷分�
     Instruct web’s containers to share port 80 via a load-balanced network called webnet. (Internally, the containers themselves will publish to web’s port 80 at an ephemeral port.)
     Define the webnet network with the default settings (which is a load-balanced overlay network).
 
-* :doc:`Step 2 でアップロードしたイメージ` をレジストリから取得
-* ``web`` という名前のサービスとして、イメージのインスタンスを５つ実行。それぞれのインスタンスには最大で CPU の 10% （全てのコアを横断して）かつメモリを 50MB に制限
-* コンテナが停止すると、直ちに再起動
-* ホスト側のポート 80 を、 ``web`` のポート 80 に割り当て
+* :doc:`Step 2 でアップロードしたイメージ` をレジストリから取得。
+* イメージのインスタンスを５つ実行し ``web`` という名前のサービスとして実行。それぞれのインスタンスは（全てのコアを通じて）最大で CPU の 10% の利用までに制限し、RAM は 50MB とする。
+* コンテナが停止したときは、すぐに再起動。
+* ホスト側のポート 80 を ``web`` のポート 80 に割り当て。
 * ``web`` のコンテナに対し、 ``webnet`` という名前の負荷分散ネットワークを経由してポート 80 を共有するよう命令（内部では、コンテナ自身の一時的なポートとして、 ``web`` のポート 80 を公開 ）
 * デフォルトの設定として ``webnet`` ネットワークを定義（負荷分散されるオーバレイ・ネットワーク）
 
@@ -149,7 +150,7 @@ Part 3では、アプリケーションをスケールアウトし、負荷分�
 .. Before we can use the docker stack deploy command we’ll first run:
 
 
-まず始めに、 ``docker stack deploy`` コマンドの実行が必要です。
+``docker stack deploy`` コマンドを実行する前に、以下を実行します：
 
 .. code-block:: bash
 
@@ -159,11 +160,11 @@ Part 3では、アプリケーションをスケールアウトし、負荷分�
 
 .. note::
 
-   このコマンドの意味については :doc:`Part 4 <part4>` で扱います。もしも ``docker swarm init`` コマンドを実行しなければ、 "this node is not a swarm manager." （このノードは swarm マネージャではありません）とエラーが出ます。
+   このコマンドの意味については :doc:`Part 4 <part4>` で説明します。もしも ``docker swarm init`` コマンドを実行しなければ、 "this node is not a swarm manager." （このノードは swarm マネージャではありません）とエラーが出ることになります。
 
 .. Now let’s run it. You have to give your app a name. Here, it is set to getstartedlab:
 
-次はコマンドを実行しましょう。アプリに名前を付ける必要があります。ここでは ``getstartedlab`` と指定します：
+次のコマンドを実行します。アプリには名前を付ける必要があります。ここでは ``getstartedlab`` と指定します：
 
 .. code-block:: bash
 
@@ -171,19 +172,23 @@ Part 3では、アプリケーションをスケールアウトし、負荷分�
 
 .. Our single service stack is running 5 container instances of our deployed image on one host. Let’s investigate.
 
-サービス・スタックでは、ホスト上にデプロイしたイメージを使った５つのコンテナインスタンスが実行中です。詳細を調べましょう。
+一つのサービス・スタックから、ホストにデプロイしたイメージに対するコンテナ・インスタンスが５つ稼動しました。中身を確認してみましょう。
 
 .. Get the service ID for the one service in our application:
 
-アプリケーションのサービスが持つサービス ID を取得します。
+アプリケーション内に稼動しているサービスの ID を取得します。
 
 .. code-block:: bash
 
    docker service ls
 
+.. You'll see output for the `web` service, prepended with your app name. If you named it the same as shown in this example, the name will be `getstartedlab_web`. The service ID is listed as well, along with the number of replicas, image name, and exposed ports.
+
+``web`` サービスに関する情報が出力されます。アプリ名も行先頭に表示されます。上で示した例と同じ名前をつけていれば ``getstartedlab_web`` が表示されたはずです。サービス ID をはじめ、レプリカ数、イメージ名、公開ポートもともに一覧表示されます。
+
 .. Docker swarms run tasks that spawn containers. Tasks have state and their own IDs:
 
-Docker swarm（クラスタ）は作成したコンテナを、タスクとして実行します。タスクは状態（state）と各々が自身の ID を持ちます。
+Docker swarm は、コンテナを作成するタスクを実行します。タスクには状態（state）とそれぞれに ID がつきます。タスクの一覧を見てみます。
 
 .. code-block:: bash
 
@@ -193,11 +198,11 @@ Docker swarm（クラスタ）は作成したコンテナを、タスクとし�
 
 .. note::
 
-   Docker が swarm クラスタをサポートするにあたって、 SwarmKit と呼ばれるプロジェクトを構築に用いています。SwarmKit のタスクにコンテナは必須ではありませんが、Docker swarm のタスクにはコンテナの作成が定義されています。
+   Docker の swarm サポート機能は、SwarmKit と呼ばれるプロジェクトを利用して構築されています。SwarmKit のタスクはコンテナになる必要はありませんが、Docker swarm のタスクはコンテナを作成するように定義されています。
 
 .. Let’s inspect one task and limit the ouput to container ID:
 
-それでは、タスクを調べ、コンテナ ID の出力を確認しましょう。
+タスクを調べてみます。コンテナ ID を指定して出力を行います。
 
 .. code-block:: bash
 
@@ -205,7 +210,9 @@ Docker swarm（クラスタ）は作成したコンテナを、タスクとし�
 
 .. Vice versa, inspect the container ID, and extract the task ID:
 
-同様に、コンテナ ID を調べ、タスク ID を展開しましょう。
+逆も同様で、コンテナ ID を調べることでタスク ID を得ることもできます。
+
+初めに ``docker container ls`` を実行してコンテナ ID を得てから、以下を実行します：
 
 .. code-block:: bash
 
@@ -219,15 +226,15 @@ Docker swarm（クラスタ）は作成したコンテナを、タスクとし�
 
    docker container ls -q
 
-.. You can run curl http://localhost several times in a row, or go to that URL in your browser and hit refresh a few times. Either way, you’ll see the container ID change, demonstrating the load-balancing; with each request, one of the 5 replicas is chosen, in a round-robin fashion, to respond.
+.. You can run curl http://localhost several times in a row, or go to that URL in your browser and hit refresh a few times. Either way, you’ll see the container ID change, demonstrating the load-balancing; with each request, one of the 5 replicas is chosen, in a round-robin fashion, to respond. The container IDs will match your output from the previous command (`docker container ls -q`).
 
-``curl http://localhost`` コマンドを何度も実行するか、ブラウザで URL を何度か再読み込みします。そうしますと、アクセスごとにコンテナ ID の表示が変わり、負荷分散が動作しているのがわかります。つまり、５つのレプリカのうち１つが選ばれる、ラウンドロビン方式で応答します。
+``curl http://localhost`` コマンドを順に数回実行するか、あるいはブラウザでこの URL を表示して何回か再読み込みをしてみてください。どちらの方法でもコンテナ ID が変化して、各リクエストごとに５つのレプリカのうちの１つがラウンドロビン方式により選ばれて応答します。これにより負荷分散が機能していることが分かります。コンテナ ID は先ほどのコマンド（``docker container ls -q``）の出力に合致しているはずです。
 
 ..    Note: At this stage, it may take up to 30 seconds for the containers to respond to HTTP requests. This is not indicative of Docker or swarm performance, but rather an unmet Redis dependency that we will address later in the tutorial.
 
 .. note::
 
-   この段階では、コンテナが HTTP リクエストに応答するまで 30 秒ほどかかります。これは Docker や swarm の性能によるものではなく、Redis の依存関係による影響です。本件についてはチュートリアルの後半で扱います。
+   この段階では、コンテナが HTTP リクエストに応答するまで 30 秒ほどかかります。これは Docker や swarm の性能によるものではなく、Redis の依存関係による影響です。このことはチュートリアル内で後に説明します。
 
 .. Scale the app
 
@@ -236,7 +243,7 @@ Docker swarm（クラスタ）は作成したコンテナを、タスクとし�
 
 .. You can scale the app by changing the replicas value in docker-compose.yml, saving the change, and re-running the docker stack deploy command:
 
-``docker-compose.yml`` の ``replicas`` 値の変更し、アプリをスケールできます。変更を保存したら、 ``docker stack deploy`` コマンドを再度実行します。
+``docker-compose.yml`` の ``replicas`` の値を変更すれば、アプリのスケールを変更できます。変更を保存したら、 ``docker stack deploy`` コマンドを再度実行します。
 
 .. code-block:: bash
 
@@ -248,7 +255,7 @@ Docker は現状のまま更新を行いますので、スタックの停止や�
 
 .. Now, re-run docker container ls -q to see the deployed instances reconfigured. If you scaled up the replicas, more tasks, and hence, more containers, are started.
 
-次は ``docker container ls -q`` を再度実行しますと、指定したインスタンスのデプロイを確認できます。レプリカをスケールアップしていれば、より多くのタスクが起動しますので、より多くのコンテナが起動します。
+もう一度 ``docker container ls -q`` を実行してみると、デプロイしたインスタンスが再設定されたことが確認できます。レプリカをスケールアップしていれば、より多くのタスクが起動するので、つまりより多くのコンテナが起動します。
 
 .. Take down the app and the swarm
 
@@ -267,17 +274,17 @@ Docker は現状のまま更新を行いますので、スタックの停止や�
 
 .. This removes the app, but our one-node swarm is still up and running (as shown by docker node ls). Take down the swarm with docker swarm leave --force.
 
-これはアプリケーションを削除（remove）しますが、１つの swarm ノードは起動および実行したままです（ ``docker node ls`` で表示します）。swarm （クラスタ）を停止するには ``docker swarm leave --force`` を実行します。
+このコマンドはアプリケーションを削除しますが、これまでの swarm 単一ノードは立ち上がったまま実行し続けます（ ``docker node ls`` により確認できます）。swarm を停止するには ``docker swarm leave --force`` を実行します。
 
 .. It’s as easy as that to stand up and scale your app with Docker. You’ve taken a huge step towards learning how to run containers in production. Up next, you will learn how to run this app as a bonafide swarm on a cluster of Docker machines.
 
-Docker はアプリケーションの起動だけでなくスケールも非常に簡単です。コンテナをプロダクションで動かす方法を学ぶのに、大きな前進です。次は、Docker マシンのクラスタ上で動作する swarm で、このアプリを動かす方法を学びましょう。
+Docker においてはアプリケーションの起動もスケールアップも非常に簡単です。ここまでにコンテナを実稼動させる方法を学びました。大きく前進しました。次に学ぶのは、複数の Docker マシンによるクラスタ上にて、本当の意味で swarm としてのアプリを実行する方法です。
 
 ..    Note: Compose files like this are used to define applications with Docker, and can be uploaded to cloud providers using Docker Cloud, or on any hardware or cloud provider you choose with Docker Enterprise Edition.
 
 .. note::
 
-   Docker では今回使ったような Compose ファイルでアプリケーションを定義します。そして、 :doc:`Docker Cloud </docker-cloud/index>` を用いたクラウド・プロバイダへのアップロードや、 `Docker Enterprise エディション <https://www.docker.com/enterprise-edition>`_ で任意のハードウェアやクラウド・プロバイダを利用できます。
+   今回使ったような Compose ファイルは Docker においてアプリケーションを定義するために用います。そして :doc:`Docker Cloud </docker-cloud/index>` を用いてクラウド・プロバイダへのアップロードを行います。つまり他のハードウェアや、 `Docker Enterprise エディション <https://www.docker.com/enterprise-edition>`_ において選定したクラウド・プロバイダへのアップロードを行うものです。
 
 .. On to “Part 4” »
 
@@ -285,30 +292,30 @@ Docker はアプリケーションの起動だけでなくスケールも非常�
 
 .. Recap and cheat sheet (optional)
 
-まとめとチート・シート（オプション）
-========================================
+まとめと早見表（おまけ）
+=========================
 
 .. Here’s a terminal recording of what was covered on this page:
 
-`このページで扱ったターミナルの録画 <https://asciinema.org/a/b5gai4rnflh7r0kie01fx6lip>`_ がこちらです。
+`このページで扱った端末操作の録画 <https://asciinema.org/a/b5gai4rnflh7r0kie01fx6lip>`_ がこちらです。
 
 .. To recap, while typing docker run is simple enough, the true implementation of a container in production is running it as a service. Services codify a container’s behavior in a Compose file, and this file can be used to scale, limit, and redeploy our app. Changes to the service can be applied in place, as it runs, using the same command that launched the service: docker stack deploy.
 
-復習として ``docker run`` を実行するだけで、コンテナをプロダクションにおけるサービスとして正に実装されているのが分かるでしょう。コンテナの挙動をサービスとして Compose ファイルでコード化し、これを使ったアプリのスケール、制限、再デプロイに用いられます。サービスに対するする変更とは、変更箇所を書き換えての適用であり、サービスを起動するときと同じコマンド ``docker stack deploy`` を実行するだけです。
+要するに ``docker run`` と入力するのが非常に簡単なことではあるものの、実稼動させるコンテナの真の実現方法は、それをサービスとして稼動させることです。サービスは Compose ファイルにおいてコンテナの動作を定義します。このファイルによってアプリのスケールアップ、制限、再デプロイを実現します。サービスへの変更は、稼動中であろうとも適切に反映されます。その際のコマンドはサービスを起動させたときの ``docker stack deploy`` と同じようにして実現できます。
 
 .. Some commands to explore at this stage:
 
-現時点における複数のコマンドを見てみましょう。
+ここまでのコマンドをまとめます。
 
 .. code-block:: bash
 
-   docker stack ls                                          # スタックやアプリ一覧
-   docker stack deploy -c <composefile> <appname>  # 特定の Compose ファイルを実行
-   docker service ls                          # アプリに関係ある実行中サービス一覧
-   docker service ps <service>                        # アプリに関係あるタスク一覧
+   docker stack ls                                        # スタックやアプリの一覧
+   docker stack deploy -c <composefile> <appname> # 指定する Compose ファイルの実行
+   docker service ls                          # アプリに関連する実行中サービス一覧
+   docker service ps <service>                        # アプリに関連するタスク一覧
    docker inspect <task or container>                 # タスクまたはコンテナの調査
    docker container ls -q                                     # コンテナ ID の一覧
-   docker stack rm <appname>                                # アプリケーションの解体
+   docker stack rm <appname>                              # アプリケーションの解体
 
 .. seealso::
 
