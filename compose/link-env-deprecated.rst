@@ -7,12 +7,12 @@
 .. Commits on Feb 3, 2016 cf24c36c5549a2a87952da27c6e3d35974687e1c
 .. ----------------------------------------------------------------------------
 
-.. Link environment variables reference:
+.. title: Link environment variables (superseded)
 
-.. _link-environment-variables-reference:
+.. _link-environment-variables-superseded:
 
 =======================================
-リンク環境変数リファレンス
+リンク時の環境変数（機能修正）
 =======================================
 
 .. sidebar:: 目次
@@ -21,61 +21,89 @@
        :depth: 3
        :local:
 
-.. Note: Environment variables are no longer the recommended method for connecting to linked services. Instead, you should use the link name (by default, the name of the linked service) as the hostname to connect to. See the docker-compose.yml documentation for details.
+.. > **Note**: Environment variables are no longer the recommended method for connecting to linked services. Instead, you should use the link name (by default, the name of the linked service) as the hostname to connect to. See the [docker-compose.yml documentation](compose-file.md#links) for details.
+   >
+   > Environment variables will only be populated if you're using the [legacy version 1 Compose file format](compose-file.md#versioning).
 
 .. note::
 
-   サービスをリンクで接続する手法としては、環境変数の使用は推奨されなくなりました。そのかわりに、接続するホスト名として、名前を使ったリンクが可能です（デフォルトではサービスの名前でリンクします）。詳細は :ref:`docker-compose.yml ドキュメント <compose-file-links>` をご覧ください。
+   リンクされているサービスに接続する方法として、環境変数を用いることは推奨されなくなりました。
+   その代わりに、接続するホスト名としてリンク名（デフォルトはリンクされているサービス名）を用いてください。
+   詳しくは :doc:`docker-compose.yml ドキュメント <compose-file-links>` を参照してください。
+   
+   環境変数は :ref:`かつての Compose ファイルフォーマットバージョン 1 <compose-file-versioning>` においてのみ定義されます。
 
-.. Environment variables will only be populated if you’re using the legacy version 1 Compose file format.
+.. Compose uses [Docker links](/engine/userguide/networking/default_network/dockerlinks.md)
+   to expose services' containers to one another. Each linked container injects a set of
+   environment variables, each of which begins with the uppercase name of the container.
 
-.. note::
+Compose は :doc:`Docker links </engine/userguide/networking/default_network/dockerlinks>` を利用して、サービスのコンテナをその他のコンテナに対して情報を公開します。
+リンクされたコンテナは複数の環境変数を提供します。
+各環境変数は、コンテナ名を大文字にしたものが先頭につきます。
 
-   環境変数を（Composeで自動的に扱えるように）は、 :ref:`過去の Compose ファイル形式バージョン１ <compose-file-version-1>` を使う場合のみです。
+.. To see what environment variables are available to a service, run `docker-compose run SERVICE env`.
 
-.. Compose uses Docker links to expose services’ containers to one another. Each linked container injects a set of environment variables, each of which begins with the uppercase name of the container.
+サービスにおいて利用可能な環境変数を見るには、``docker-compose run SERVICE env`` を実行します。
 
-Compose はサービスのコンテナを他に公開するために、 :doc:`Docker リンク機能 </engine/userguide/networking/default_network/dockerlinks>` を使います。リンクされた各コンテナは環境変数のセットを持ます。環境変数は各コンテナ名を大文字にしたもので始まります。
+.. <b><i>name</i>\_PORT</b><br>
+   Full URL, e.g. `DB_PORT=tcp://172.17.0.5:5432`
 
-.. To see what environment variables are available to a service, run docker-compose run SERVICE env.
+.. raw:: html
 
-どのような環境変数が設定されているかを確認するには、 ``docker-compose run サービス名 env`` を実行します。
+   <b><i>name</i>_PORT</b>
 
-**name_PORT**
+完全な  URL。
+たとえば ``DB_PORT=tcp://172.17.0.5:5432``
 
-.. Full URL, e.g. DB_PORT=tcp://172.17.0.5:5432
+.. <b><i>name</i>\_PORT\_<i>num</i>\_<i>protocol</i></b><br>
+   Full URL, e.g. `DB_PORT_5432_TCP=tcp://172.17.0.5:5432`
 
-全ての URL です。例： ``DB_PORT=tcp://172.17.0.5:5432``
+.. raw:: html
 
-**name_PORT_num_protocol**
+   <b><i>name</i>_PORT_<i>num</i>_<i>protocol</i></b>
 
-.. Full URL, e.g. DB_PORT_5432_TCP=tcp://172.17.0.5:5432
+完全な  URL。
+たとえば ``DB_PORT_5432_TCP=tcp://172.17.0.5:5432``
 
-全ての URL です。例： ``DB_PORT_5432_TCP=tcp://172.17.0.5:5432``
+.. <b><i>name</i>\_PORT\_<i>num</i>\_<i>protocol</i>\_ADDR</b><br>
+   Container's IP address, e.g. `DB_PORT_5432_TCP_ADDR=172.17.0.5`
 
-**name_PORT_num_protocol_ADDR**
+.. raw:: html
 
-.. Container’s IP address, e.g. DB_PORT_5432_TCP_ADDR=172.17.0.5
+   <b><i>name</i>_PORT_<i>num</i>_<i>protocol</i>_ADDR</b>
 
-コンテナの IP アドレスです。例： ``DB_PORT_5432_TCP_ADDR=172.17.0.5``
+コンテナーの IP アドレス。
+たとえば ``DB_PORT_5432_TCP_ADDR=172.17.0.5``
 
-**name_PORT_num_protocol_PORT**
+.. <b><i>name</i>\_PORT\_<i>num</i>\_<i>protocol</i>\_PORT</b><br>
+   Exposed port number, e.g. `DB_PORT_5432_TCP_PORT=5432`
 
-.. Exposed port number, e.g. DB_PORT_5432_TCP_PORT=5432
+.. raw:: html
 
-公開するポート番号です。例： ``DB_PORT_5432_TCP_PORT=5432``
+   <b><i>name</i>_PORT_<i>num</i>_<i>protocol</i>_PORT</b>
 
-**name_PORT_num_protocol_PROTO**
+公開されているポート番号。
+たとえば ``DB_PORT_5432_TCP_PORT=5432``
 
-.. Protocol (tcp or udp), e.g. DB_PORT_5432_TCP_PROTO=tcp
+.. <b><i>name</i>\_PORT\_<i>num</i>\_<i>protocol</i>\_PROTO</b><br>
+   Protocol (tcp or udp), e.g. `DB_PORT_5432_TCP_PROTO=tcp`
 
-プロトコル（tcp か udp ）を指定します。例： ``DB_PORT_5432_TCP_PROTO=tcp``
+.. raw:: html
 
-**name_NAME**
+   <b><i>name</i>_PORT_<i>num</i>_<i>protocol</i>_PROTO</b>
 
-.. Fully qualified container name, e.g. DB_1_NAME=/myapp_web_1/myapp_db_1
+プロトコル（tcp または udp）。
+たとえば ``DB_PORT_5432_TCP_PROTO=tcp``
 
-コンテナの完全修飾名（fully qualified container name）を指定します。例： ``DB_1_NAME=/myapp_web_1/myapp_db_1``
+.. <b><i>name</i>\_NAME</b><br>
+   Fully qualified container name, e.g. `DB_1_NAME=/myapp_web_1/myapp_db_1`
+
+.. raw:: html
+
+   <b><i>name</i>_NAME</b>
+
+完全修飾コンテナ名。
+たとえば ``DB_1_NAME=/myapp_web_1/myapp_db_1``
 
 .. Related Information
 
@@ -94,6 +122,6 @@ Compose はサービスのコンテナを他に公開するために、 :doc:`Do
 
 .. seealso:: 
 
-   Link environment variables reference
+   Link environment variables (superseded)
       https://docs.docker.com/compose/link-env-deprecated/
 

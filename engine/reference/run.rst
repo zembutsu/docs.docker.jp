@@ -1153,7 +1153,7 @@ CPU 共有制限
 
 .. The proportion will only apply when CPU-intensive processes are running. When tasks in one container are idle, other containers can use the left-over CPU time. The actual amount of CPU time will vary depending on the number of containers running on the system.
 
-割合が適用されるのは　CPU に対する処理が集中する時のみです。あるコンテナのタスクがアイドル（何もしていない待機状態）であれば、他のコンテナは CPU 時間の余剰を利用できます。実際に割り当てられる CPU 時間の量は、システム上で実行するコンテナの下図に非常に依存します。
+割合が適用されるのは　CPU に対する処理が集中する時のみです。あるコンテナのタスクがアイドル（何もしていない待機状態）であれば、他のコンテナは CPU 時間の余剰を利用できます。実際に割り当てられる CPU 時間の量は、システム上で実行するコンテナの数に非常に依存します。
 
 .. For example, consider three containers, one has a cpu-share of 1024 and two others have a cpu-share setting of 512. When processes in all three containers attempt to use 100% of CPU, the first container would receive 50% of the total CPU time. If you add a fourth container with a cpu-share of 1024, the first container only gets 33% of the CPU. The remaining containers receive 16.5%, 16.5% and 33% of the CPU.
 

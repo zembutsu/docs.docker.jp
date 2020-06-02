@@ -130,7 +130,7 @@ Docker Engine をインストールしたら、Docker Engine は自動的に ``b
 
 .. When creating a custom network, the default network driver (i.e. bridge) has additional options that can be passed. The following are those options and the equivalent docker daemon flags used for docker0 bridge:
 
-カスタム・ネットワークの作成時、デフォルトのネットワーク・ドライバ（例： ``bridge`` ）は追加オプションを指定できます。dokcer0 ブリッジにおいては、Docker デーモンのフラグで指定するのと同等の以下の設定が利用できます。
+カスタム・ネットワークの作成時、デフォルトのネットワーク・ドライバ（例： ``bridge`` ）は追加オプションを指定できます。docker0 ブリッジにおいては、Docker デーモンのフラグで指定するのと同等の以下の設定が利用できます。
 
 .. list-table::
    :header-rows: 1

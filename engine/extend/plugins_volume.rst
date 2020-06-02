@@ -8,7 +8,7 @@
 .. _write-a-volume-plugin:
 
 ========================================
-Docker ボリューム・プラグインを書く
+ボリューム・プラグインの記述
 ========================================
 
 .. sidebar:: 目次
@@ -17,221 +17,681 @@ Docker ボリューム・プラグインを書く
        :depth: 3
        :local:
 
-.. Docker volume plugins enable Docker deployments to be integrated with external storage systems, such as Amazon EBS, and enable data volumes to persist beyond the lifetime of a single Docker host. See the plugin documentation for more information.
+.. Docker Engine volume plugins enable Engine deployments to be integrated with
+   external storage systems such as Amazon EBS, and enable data volumes to persist
+   beyond the lifetime of a single Docker host. See the
+   [plugin documentation](legacy_plugins.md) for more information.
 
-Docker ボリューム・プラグインとは、Amazon EBS のような外部のストレージ・システムと統合した環境に Docker をデプロイできるようにします。そして、単一の Docker ホスト上で、データ・ボリュームを使う間はその一貫性をもたらします。詳しい情報は :doc:`プラグインのドキュメント <plugins>` をご覧ください。
+Docker Engine ボリューム・プラグインは、Amazon EBS のような外部ストレージシステムと統合した Engine デプロイメントを可能にするものです。
+そして単独の Docker ホスト上では維持できない、データボリュームの長期保存を可能にします。
+詳細は :doc:`プラグインのドキュメント <./legacy_plugins>` を参照してください。
 
-.. Command-line changes
+.. ## Changelog
+
+.. _changelog:
+
+変更履歴
+=========
+
+.. ### 1.13.0
+
+1.13.0
+-------
+
+.. - If used as part of the v2 plugin architecture, mountpoints that are part of
+     paths returned by the plugin must be mounted under the directory specified by
+     `PropagatedMount` in the plugin configuration
+     ([#26398](https://github.com/docker/docker/pull/26398))
+
+* プラグイン・アーキテクチャ v2 を部分的に用いている場合、プラグインにより返されるパスで構成される mountpoints は、プラグイン設定内の ``PropagatedMount`` によって指定されるディレクトリ配下にマウントされるべき。
+  (`#26398 <https://github.com/docker/docker/pull/26398>`_)
+
+.. ### 1.12.0
+
+1.12.0
+-------
+
+.. - Add `Status` field to `VolumeDriver.Get` response
+     ([#21006](https://github.com/docker/docker/pull/21006#))
+   - Add `VolumeDriver.Capabilities` to get capabilities of the volume driver
+     ([#22077](https://github.com/docker/docker/pull/22077))
+
+* ``VolumeDriver.Get`` レスポンスに ``Status`` フィールドを追加。
+  (`#21006 <https://github.com/docker/docker/pull/21006#>`_)
+* ``VolumeDriver.Capabilities`` の追加。ボリューム・ドライバのケーパビリティ（capability）を取得する。
+  (`#22077 <https://github.com/docker/docker/pull/22077>`_)
+
+.. ### 1.10.0
+
+1.10.0
+-------
+
+.. - Add `VolumeDriver.Get` which gets the details about the volume
+     ([#16534](https://github.com/docker/docker/pull/16534))
+   - Add `VolumeDriver.List` which lists all volumes owned by the driver
+     ([#16534](https://github.com/docker/docker/pull/16534))
+
+* ``VolumeDriver.Get`` の追加。 ボリュームの詳細情報を取得する。
+  (`#16534 <https://github.com/docker/docker/pull/16534>`_)
+* ``VolumeDriver.List`` の追加。 ドライバが所有する全ボリューム一覧を取得する。
+  (`#16534 <https://github.com/docker/docker/pull/16534>`_)
+
+.. ### 1.8.0
+
+1.8.0
+------
+
+.. - Initial support for volume driver plugins
+     ([#14659](https://github.com/docker/docker/pull/14659))
+
+* ボリューム・ドライバ・プラグインに対する初めてのサポート。
+  (`#14659 <https://github.com/docker/docker/pull/14659>`_)
+
+.. ## Command-line changes
 
 .. _command-line-changes:
 
-コマンドラインの変更
-=====================
+コマンドラインによる変更
+=========================
 
-.. A volume plugin makes use of the -vand --volume-driver flag on the docker run command. The -v flag accepts a volume name and the --volume-driver flag a driver type, for example:
+.. To give a container access to a volume, use the `--volume` and `--volume-driver`
+   flags on the `docker container run` command.  The `--volume` (or `-v`) flag
+   accepts a volume name and path on the host, and the `--volume-driver` flag
+   accepts a driver type.
 
-ボリューム・プラグインを使うには ``docker run``  コマンドで ``-v`` と ``--volume-driver`` フラグを指定します。 ``-v`` フラグはボリューム名を受け付け、 ``--volume-driver`` フラグはドライバの種類を指定します。例えば、次のように実行します。
+コンテナからボリュームへアクセスするためには、``docker container run`` コマンドの ``--volume`` フラグや ``--volume-driver`` フラグを用います。
+``--volume`` （または ``-v`` ）フラグは、ボリューム名とホスト上のパスを指定します。
+また ``--volume-driver`` フラグはドライバ・タイプを指定します。
+
+.. ```bash
+   $ docker volume create --driver=flocker volumename
+
+   $ docker container run -it --volume volumename:/data busybox sh
+   ```
 
 .. code-block:: bash
 
-   $ docker run -ti -v volumename:/data --volume-driver=flocker   busybox sh
+   $ docker volume create --driver=flocker volumename
 
-.. This command passes the volumename through to the volume plugin as a user-given name for the volume. The volumename must not begin with a /.
+   $ docker container run -it --volume volumename:/data busybox sh
 
-このコマンドは、ユーザがボリュームで使う名前を ``volumename`` としてボリューム・プラグインに渡しています。 ``volumename`` は ``/`` で始まってはいけません。
+.. ### `--volume`
 
-.. By having the user specify a volumename, a plugin can associate the volume with an external volume beyond the lifetime of a single container or container host. This can be used, for example, to move a stateful container from one server to another.
+``--volume``
+-------------
 
-ユーザが ``volumename`` を指定したら、プラグインは１つのコンテナが稼働し続ける間、あるいはコンテナのホスト上における外部ボリュームをプラグインに関連づけます。これを使えば、例えばステートフルなコンテナを、あるサーバから別のサーバに移せます。
+.. The `--volume` (or `-v`) flag takes a value that is in the format
+   `<volume_name>:<mountpoint>`. The two parts of the value are
+   separated by a colon (`:`) character.
 
-.. By specifying a volumedriver in conjunction with a volumename, users can use plugins such as Flocker to manage volumes external to a single host, such as those on EBS.
+``--volume`` （または ``-v`` ）フラグは ``<volume_name>:<mountpoint>`` という書式の値をとります。
+この値の 2 つの部分はコロン（``:``）によって区切ります。
 
-``volumename`` と ``volumedriver`` を同時に使うよう指定したら、ユーザは `Flocker <https://clusterhq.com/docker-plugin/>`_ のような外部プラグインで単一ホスト上のボリュームや EBS のようなボリュームを管理します。
+.. - The volume name is a human-readable name for the volume, and cannot begin with
+     a `/` character. It is referred to as `volume_name` in the rest of this topic.
+   - The `Mountpoint` is the path on the host (v1) or in the plugin (v2) where the
+     volume has been made available.
 
-.. Create a VolumeDriver
+* ボリューム名は、人間が読み取れる文字を使って、ボリュームにつけた名前のことです。
+  ``/`` で始めることはできません。
+  これ以降では ``volume_name`` と呼び表わすことにします。
+* ``Mountpoint`` は、ホスト上のパス（v1 の場合）、またはプラグイン内のパス（v2 の場合）のいずれかであり、ボリュームが生成されている場所を示します。
 
-ボリューム・ドライバの作成
-==============================
+.. ### `volumedriver`
 
-.. The container creation endpoint (/containers/create) accepts a VolumeDriver field of type string allowing to specify the name of the driver. It’s default value of "local" (the default driver for local volumes).
+``volumedriver``
+-----------------
 
-コンテナが作成用エンドポイント（  ``/containers/create`` ） の ``volumeDriver`` フィールドにおいて、 ``string`` タイプでドライバ名を指定します。デフォルトの値は ``"local"`` です（デフォルトのドライバは、local ボリュームです）。
+.. Specifying a `volumedriver` in conjunction with a `volumename` allows you to
+   use plugins such as [Flocker](https://github.com/ScatterHQ/flocker) to manage
+   volumes external to a single host, such as those on EBS.
 
-.. Volume plugin protocol
+``volumename`` とともに ``volumedriver`` を指定すると、`Flocker <https://github.com/ScatterHQ/flocker>`_ のようなプラグインが利用できるようになります。
+これにより 1 つのホストから、EBS 上などの外部にあるボリュームを管理できるようになります。
 
-.. _volume-plugin-protocol:
+.. ## Create a VolumeDriver
+
+VolumeDriver の生成
+====================
+
+.. The container creation endpoint (`/containers/create`) accepts a `VolumeDriver`
+   field of type `string` allowing to specify the name of the driver. If not
+   specified, it defaults to `"local"` (the default driver for local volumes).
+
+コンテナの生成エンドポイント（``/containers/create``）は、``string`` 型の ``VolumeDriver`` を受け付け、ドライバ名を指定することができます。
+指定されていない場合は、デフォルトの ``"local"`` になります。
+（デフォルトドライバはローカルボリューム向けのものです。）
+
+.. ## Volume plugin protocol
 
 ボリューム・プラグイン・プロトコル
 ========================================
 
-.. If a plugin registers itself as a VolumeDriver when activated, then it is expected to provide writeable paths on the host filesystem for the Docker daemon to provide to containers to consume.
+.. If a plugin registers itself as a `VolumeDriver` when activated, it must
+   provide the Docker Daemon with writeable paths on the host filesystem. The Docker
+   daemon provides these paths to containers to consume. The Docker daemon makes
+   the volumes available by bind-mounting the provided paths into the containers.
 
-プラグインは自身を ``VolumeDriver`` として登録した時に有効化されます。その後、Docker デーモンがファイルシステム上に、コンテナが使うための書き込み可能なパスを提供します。
+プラグインが有効化される際に ``VolumeDriver`` として自分自身を登録するのであれば、このプラグインは Docker デーモンに対して、ホストファイルシステム上の書き込み可能なパスを提供しなければなりません。
+Docker デーモンはそのパスをコンテナに提供して利用させます。
+Docker デーモンはボリュームを利用できるようにするために、そのパスをバインドマウントしてコンテナに提供しています。
 
-.. The Docker daemon handles bind-mounting the provided paths into user containers.
+.. > **Note**: Volume plugins should *not* write data to the `/var/lib/docker/`
+   > directory, including `/var/lib/docker/volumes`. The `/var/lib/docker/`
+   > directory is reserved for Docker.
 
-Docker デーモンはユーザのコンテナが指定したパスに対し、マウントの拘束（バインド）を扱います。
+.. note::
 
+   ボリューム・プラグインは、``/var/lib/docker/`` ディレクトリや ``/var/lib/docker/volumes`` にデータ書き込みを行っては **いけません** 。
+   ``/var/lib/docker/`` ディレクトリは Docker により予約されています。
 
-.. /VolumeDriver.Create
+.. ### `/VolumeDriver.Create`
 
-/VolumeDriver.Create
---------------------------
+``/VolumeDriver.Create``
+-------------------------
 
-..   Request:
+.. **Request**:
+**リクエスト**
 
-**リクエスト** :
-
-.. code-block:: bash
+.. ```json
+   {
+       "Name": "volume_name",
+       "Opts": {}
+   }
+   ```
+.. code-block:: json
 
    {
        "Name": "volume_name",
        "Opts": {}
    }
 
-.. Instruct the plugin that the user wants to create a volume, given a user specified volume name. The plugin does not need to actually manifest the volume on the filesystem yet (until Mount is called). Opts is a map of driver specific options passed through from the user request.
+.. Instruct the plugin that the user wants to create a volume, given a user
+   specified volume name. The plugin does not need to actually manifest the
+   volume on the filesystem yet (until `Mount` is called).
+   `Opts` is a map of driver specific options passed through from the user request.
 
-プラグインはユーザが作成を望むボリュームを、ユーザが指定した名前で作成するよう命令します。プラグインは実際にファイルシステムのボリュームを明示する必要がありません（マウントがコールされるまで）。Opts はドライバ固有のオプションをユーザがリクエストする箇所です。
+プラグインに対して、指定するボリューム名によりユーザがボリュームを生成したいということを伝えます。
+プラグインはこのとき、ファイルシステム上のボリュームを明らかにすることは、（``Mount`` が呼び出されるまでは）まだ必要ではありません。
+``Opts`` は、ユーザ・リクエストを通じて受け渡されるドライバ固有オプションのマッピングです。
 
-.. Response:
+.. **Response**:
+**レスポンス**:
 
-**応答** :
-
-.. code-block:: bash
+.. ```json
+   {
+       "Err": ""
+   }
+   ```
+.. code-block:: json
 
    {
-       "Err": null
+       "Err": ""
    }
 
 .. Respond with a string error if an error occurred.
 
-エラーが発生した場合は、エラー文字列が表示されます。
+エラーが発生した場合は、文字列によるエラーを返します。
 
-/VolumeDriver.Remove
---------------------
+.. ### `/VolumeDriver.Remove`
 
-.. Request:
+``/VolumeDriver.Remove``
+-------------------------
 
-**リクエスト** :
+.. **Request**:
+**リクエスト**:
 
-.. code-block:: bash
+.. ```json
+   {
+       "Name": "volume_name"
+   }
+   ```
+.. code-block:: json
 
    {
        "Name": "volume_name"
    }
 
-.. Delete the specified volume from disk. This request is issued when a user invokes docker rm -v to remove volumes associated with a container.
+.. Delete the specified volume from disk. This request is issued when a user
+   invokes `docker rm -v` to remove volumes associated with a container.
 
-ディスクから特定のボリュームを削除します。このリクエストはユーザから ``docker rm -v`` を呼び出されたとき、コンテナに関連するボリュームを削除します。
+指定されたボリュームをディスク上から削除します。
+このリクエストは ``docker rm -v`` により、関連づいたコンテナからボリュームを削除する際に実行されます。
 
-.. Response:
+.. **Response**:
+**レスポンス**:
 
-**応答** :
+.. ```json
+   {
+       "Err": ""
+   }
+   ```
+.. code-block:: json
 
    {
-       "Err": null
+       "Err": ""
    }
 
 .. Respond with a string error if an error occurred.
 
-エラーが発生した場合は、エラー文字列が表示されます。
+エラーが発生した場合は、文字列によるエラーを返します。
 
-/VolumeDriver.Mount
---------------------
+.. ### `/VolumeDriver.Mount`
 
-.. Request:
+``/VolumeDriver.Mount``
+------------------------
 
-**リクエスト** :
+.. **Request**:
+**リクエスト**:
 
-.. code-block:: bash
+.. ```json
+   {
+       "Name": "volume_name",
+       "ID": "b87d7442095999a92b65b3d9691e697b61713829cc0ffd1bb72e4ccd51aa4d6c"
+   }
+   ```
+.. code-block:: json
+
+   {
+       "Name": "volume_name",
+       "ID": "b87d7442095999a92b65b3d9691e697b61713829cc0ffd1bb72e4ccd51aa4d6c"
+   }
+
+.. Docker requires the plugin to provide a volume, given a user specified volume
+   name. `Mount` is called once per container start. If the same `volume_name` is requested
+   more than once, the plugin may need to keep track of each new mount request and provision
+   at the first mount request and deprovision at the last corresponding unmount request.
+
+Docker は、ユーザが指定するボリューム名によるボリュームを提供するものとして、このプラグインを必要とします。
+``Mount`` はコンテナが起動するたびに 1 回だけ呼び出されます。
+``volume_name`` が重複して要求された場合、プラグインは各マウント要求を記録しておく必要があります。
+そしてマウントが要求されたときにマウント処理を行い、これに対応するアンマウントの要求のときにマウント解除を行うことになります。
+
+.. `ID` is a unique ID for the caller that is requesting the mount.
+
+``ID`` は、マウントを要求する呼び出し側の固有 ID です。
+
+.. **Response**:
+
+**レスポンス**:
+
+- **v1**:
+
+  .. ```json
+     {
+         "Mountpoint": "/path/to/directory/on/host",
+         "Err": ""
+     }
+     ```
+
+  .. code-block:: json
+
+     {
+         "Mountpoint": "/path/to/directory/on/host",
+         "Err": ""
+     }
+
+- **v2**:
+
+  .. ```json
+     {
+         "Mountpoint": "/path/under/PropagatedMount",
+         "Err": ""
+     }
+     ```
+
+  .. code-block:: json
+
+     {
+         "Mountpoint": "/path/under/PropagatedMount",
+         "Err": ""
+     }
+
+.. `Mountpoint` is the path on the host (v1) or in the plugin (v2) where the volume
+   has been made available.
+
+``Mountpoint`` は、ホスト上のパス（v1 の場合）、またはプラグイン内のパス（v2 の場合）のいずれかであり、ボリュームが生成されている場所を示します。
+
+.. `Err` is either empty or contains an error string.
+
+``Err`` は空か、あるいはエラー文字列を含みます。
+
+.. ### `/VolumeDriver.Path`
+
+``/VolumeDriver.Path``
+-----------------------
+
+.. **Request**:
+**リクエスト**:
+
+.. ```json
+   {
+       "Name": "volume_name"
+   }
+   ```
+.. code-block:: json
 
    {
        "Name": "volume_name"
    }
 
-.. Docker requires the plugin to provide a volume, given a user specified volume name. This is called once per container start. If the same volume_name is requested more than once, the plugin may need to keep track of each new mount request and provision at the first mount request and deprovision at the last corresponding unmount request.
+.. Request the path to the volume with the given `volume_name`.
 
-Docker でプラグインがボリュームを必要とする場合は、ユーザがボリューム名を指定する必要があります。これは、コンテナが開始される度に必要です。既に作成されているボリューム名で呼び出されると、プラグインは既にマウントされている箇所に対して、新しいマウント・リクエストとプロビジョンが行われると、アンマウント・リクエストが呼び出され、プロビジョニングが取り消されるまで追跡します。
+指定された ``volume_name`` のボリュームに対してパスを要求します。
 
-.. Response:
+.. **Response**:
+**レスポンス**:
 
-**応答** :
+- **v1**:
 
-.. code-block:: bash
+  .. ```json
+     {
+         "Mountpoin": "/path/to/directory/on/host",
+         "Err": ""
+     }
+     ```
+
+  .. code-block:: json
+
+     {
+         "Mountpoin": "/path/to/directory/on/host",
+         "Err": ""
+     }
+
+- **v2**:
+
+  .. ```json
+     {
+         "Mountpoint": "/path/under/PropagatedMount",
+         "Err": ""
+     }
+     ```
+
+  .. code-block:: json
+
+     {
+         "Mountpoint": "/path/under/PropagatedMount",
+         "Err": ""
+     }
+
+.. Respond with the path on the host (v1) or inside the plugin (v2) where the
+   volume has been made available, and/or a string error if an error occurred.
+
+ホスト上のパス（v1 の場合）、またはプラグイン内のパス（v2 の場合）のいずれか、ボリュームが生成されている場所を返します。
+エラーが発生した場合は、文字列によるエラーを返します。
+
+.. `Mountpoint` is optional. However, the plugin may be queried again later if one
+   is not provided.
+
+``Mountpoint`` は常に必要なものではありません。
+ただしプラグインが利用できない状態になったときに、もう一度検索のために利用できます。
+
+
+.. ### `/VolumeDriver.Unmount`
+
+``/VolumeDriver.Unmount``
+--------------------------
+
+.. **Request**:
+**リクエスト**:
+
+.. ```json
+   {
+       "Name": "volume_name",
+       "ID": "b87d7442095999a92b65b3d9691e697b61713829cc0ffd1bb72e4ccd51aa4d6c"
+   }
+   ```
+
+.. code-block:: json
 
    {
-       "Mountpoint": "/path/to/directory/on/host",
-       "Err": null
+       "Name": "volume_name",
+       "ID": "b87d7442095999a92b65b3d9691e697b61713829cc0ffd1bb72e4ccd51aa4d6c"
    }
 
-.. Respond with the path on the host filesystem where the volume has been made available, and/or a string error if an error occurred.
+.. Docker is no longer using the named volume. `Unmount` is called once per
+   container stop. Plugin may deduce that it is safe to deprovision the volume at
+   this point.
 
-ボリュームが利用可能になったり、あるいはエラーが発生したりする場合には、ホスト・ファイルシステム上のパスを返します。
+Docker は名前つきボリュームを利用していません。
+``Unmount`` はコンテナが停止するたびに 1 回だけ呼び出されます。
+プラグインは、この時点でボリュームを削除しておくのが安全かもしれません。
 
-/VolumeDriver.Path
---------------------
+.. `ID` is a unique ID for the caller that is requesting the mount.
 
-.. Request:
+``ID`` は、アンマウントを要求する呼び出し側の固有 ID です。
 
-**リクエスト** :
+.. **Response**:
+**レスポンス**:
 
-.. code-block:: bash
-
+.. ```json
    {
-       "Name": "volume_name"
+       "Err": ""
    }
+   ```
 
-.. Docker needs reminding of the path to the volume on the host.
-
-Docker はホスト上のボリュームのパスを覚えておく必要があります。
-
-.. Response:
-
-**応答** :
-
-.. code-block:: bash
+.. code-block:: json
 
    {
-       "Mountpoint": "/path/to/directory/on/host",
-       "Err": null
-   }
-
-.. Respond with the path on the host filesystem where the volume has been made available, and/or a string error if an error occurred.
-
-ボリュームが利用可能になったり、あるいはエラーが発生したりする場合には、ホスト・ファイルシステム上のパスを返します。
-
-
-VolumeDriver.Unmount
-------------------------------
-
-.. Request:
-
-**リクエスト** :
-
-
-.. code-block:: bash
-
-   {
-       "Name": "volume_name"
-   }
-
-.. Indication that Docker no longer is using the named volume. This is called once per container stop. Plugin may deduce that it is safe to deprovision it at this point.
-
-Docker ホストに指定した名前のボリュームを使わないことを指示します。これはコンテナが停止すると呼び出されます。その時点でプラグインはデプロビジョンが安全に行われているとみなします。
-
-.. Response:
-
-**レスポンス**
-
-.. code-block:: bash
-
-   {
-       "Err": null
+       "Err": ""
    }
 
 .. Respond with a string error if an error occurred.
 
-エラーが発生したら、エラー文字列を返します。
+エラーが発生した場合は、文字列によるエラーを返します。
+
+.. ### `/VolumeDriver.Get`
+
+``/VolumeDriver.Get``
+----------------------
+
+.. **Request**:
+**リクエスト**:
+
+.. ```json
+   {
+       "Name": "volume_name"
+   }
+   ```
+.. code-block:: json
+
+   {
+       "Name": "volume_name"
+   }
+
+.. Get info about `volume_name`.
+
+``volume_name`` に関する情報を取得します。
+
+
+.. **Response**:
+**レスポンス**:
+
+- **v1**:
+
+  .. ```json
+     {
+       "Volume": {
+         "Name": "volume_name",
+         "Mountpoint": "/path/to/directory/on/host",
+         "Status": {}
+       },
+       "Err": ""
+     }
+     ```
+
+  .. code-block:: json
+
+     {
+       "Volume": {
+         "Name": "volume_name",
+         "Mountpoint": "/path/to/directory/on/host",
+         "Status": {}
+       },
+       "Err": ""
+     }
+
+- **v2**:
+
+  .. ```json
+     {
+       "Volume": {
+         "Name": "volume_name",
+         "Mountpoint": "/path/under/PropagatedMount",
+         "Status": {}
+       },
+       "Err": ""
+     }
+     ```
+  .. code-block:: json
+
+     {
+       "Volume": {
+         "Name": "volume_name",
+         "Mountpoint": "/path/under/PropagatedMount",
+         "Status": {}
+       },
+       "Err": ""
+     }
+
+.. Respond with a string error if an error occurred. `Mountpoint` and `Status` are
+   optional.
+
+エラーが発生した場合は、文字列によるエラーを返します。
+``Mountpoint`` と ``Status`` は常に必要なものではありません。
+
+
+.. ### /VolumeDriver.List
+
+``/VolumeDriver.List``
+-----------------------
+
+.. **Request**:
+**リクエスト**:
+
+.. ```json
+   {}
+   ```
+.. code-block:: json
+
+   {}
+
+.. Get the list of volumes registered with the plugin.
+
+プラグインに登録されているボリュームの一覧を取得します。
+
+.. **Response**:
+**レスポンス**:
+
+- **v1**:
+
+  .. ```json
+     {
+       "Volumes": [
+         {
+           "Name": "volume_name",
+           "Mountpoint": "/path/to/directory/on/host"
+         }
+       ],
+       "Err": ""
+     }
+     ```
+  .. code-block:: json
+
+     {
+       "Volumes": [
+         {
+           "Name": "volume_name",
+           "Mountpoint": "/path/to/directory/on/host"
+         }
+       ],
+       "Err": ""
+     }
+
+- **v2**:
+
+  .. ```json
+     {
+       "Volumes": [
+         {
+           "Name": "volume_name",
+           "Mountpoint": "/path/under/PropagatedMount"
+         }
+       ],
+       "Err": ""
+     }
+     ```
+  .. code-block:: json
+
+     {
+       "Volumes": [
+         {
+           "Name": "volume_name",
+           "Mountpoint": "/path/under/PropagatedMount"
+         }
+       ],
+       "Err": ""
+     }
+
+.. Respond with a string error if an error occurred. `Mountpoint` is optional.
+
+エラーが発生した場合は、文字列によるエラーを返します。
+``Mountpoint`` は常に必要なものではありません。
+
+.. ### /VolumeDriver.Capabilities
+
+``/VolumeDriver.Capabilities``
+
+.. **Request**:
+**リクエスト**:
+
+.. ```json
+   {}
+   ```
+
+.. code-block:: json
+
+   {}
+
+.. Get the list of capabilities the driver supports.
+
+ドライバがサポートするケーパビリティ（capability）の一覧を取得します。
+
+.. The driver is not required to implement `Capabilities`. If it is not
+   implemented, the default values are used.
+
+ドライバは必ず ``Capalibities`` を実装しなければならないわけではありません。
+実装されていなければデフォルトの値が用いられます。
+
+.. **Response**:
+**レスポンス**:
+
+.. ```json
+   {
+     "Capabilities": {
+       "Scope": "global"
+     }
+   }
+   ```
+.. code-block:: json
+
+   {
+     "Capabilities": {
+       "Scope": "global"
+     }
+   }
+
+.. Supported scopes are `global` and `local`. Any other value in `Scope` will be
+   ignored, and `local` is used. `Scope` allows cluster managers to handle the
+   volume in different ways. For instance, a scope of `global`, signals to the
+   cluster manager that it only needs to create the volume once instead of on each
+   Docker host. More capabilities may be added in the future.
+
+サポートされているスコープは ``global`` と ``local`` です。
+``Scope`` において他の値があると無視されて ``local`` が用いられます。
+``Scope`` はクラスタ・マネージャに対して、さまざまな方法によりボリュームを取り扱えるようにします。
+たとえば ``global`` スコープは、クラスタ・マネージャに対して、ただ一度だけボリュームを生成すればよいことを伝えます。つまり Docker ホストの個々において、ボリューム生成は不要とします。
+ケーパビリティの機能は将来、さらに充足されるかもしれません。
 
 .. seealso:: 
 

@@ -30,7 +30,7 @@ Docker コミュニティ版（CE）は開発者や小さなチームが Docker 
 ..    Stable gives you reliable updates every quarter
     Edge gives you new features every month
 
-* **stable（安定版）** は4ヶ月ごとに安定した更新を行います
+* **stable（安定版）** は3ヶ月ごとに安定した更新を行います
 * **edge（エッジ）** は毎月新機能を追加します
 
 .. For more information about Docker CE, see Docker Community Edition.
@@ -39,7 +39,7 @@ Docker CE に関する詳しい情報は、 `Docker Community Edition（英語�
 
 .. Docker Enterprise Edition (EE) is designed for enterprise development and IT teams who build, ship, and run business critical applications in production at scale. For more information about Docker EE, including purchasing options, see Docker Enterprise Edition.
 
-Docker エンタープライズ版（EE）はエンタープライズにおける開発と IT チーム向けに設計されており、プロダクションでスケールするようなビジネスにとって重要なアプリケーションを構築・移動・実行します。
+Docker エンタープライズ版（EE）は、エンタープライズ開発向けや IT チーム向けに設計されています。最重要のビジネスアプリケーションが、稼働中にその規模を拡大していっても、アプリケーションの構築、導入、実行を容易に実現できます。Docker EE や購入オプションに関する詳細は `Docker Enterprise Edition（英語） <https://www.docker.com/enterprise-edition/>`_ を参照してください。
 
 .. list-table::
    :widths: 100 20 20 20 20
@@ -153,12 +153,12 @@ Digital Ocean、Packet、SoftLayer、あるいは皆さん自身のクラウド�
 
 .. _time-based-release-schedule:
 
-時間を基準としたリリース予定
+各月のリリース予定
 ==============================
 
 .. Starting with Docker 17.03, Docker uses a time-based release schedule, outlined below.
 
-Docker 17.03 以降、Docker は時間を基準としたりりース（time-based release）予定しています。概要は以下の通りです。
+Docker 17.03 以降、Docker は月ごとにリリース予定を設けています。概要は以下の通りです。
 
 .. list-table::
    :header-rows: 1
@@ -232,7 +232,7 @@ Docker 17.03 以降、Docker は時間を基準としたりりース（time-base
 
 .. Instructions for installing prior releases of Docker can be found in the Docker archives.
 
-以前にリリースした Docker のインストール方法は、 :doc:`Docker アーカイブ </dockerarchve/index>` にあるかもしれません。
+以前にリリースした Docker のインストール方法は、 :doc:`Docker アーカイブ </dockerarchve/index>` にあります。
 
 .. Docker Cloud
 
@@ -243,7 +243,7 @@ Docker Cloud
 
 .. You can use Docker Cloud to automatically provision and manage your cloud instances.
 
-Docker Cloud を使えば、各クラウド環境上に自動的にセットアップできます。
+Docker Cloud を使えば、クラウドインスタンスのセットアップや管理を自動的に行うことができます。
 
 ..    Amazon Web Services setup guide
     DigitalOcean setup guide

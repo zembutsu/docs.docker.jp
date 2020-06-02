@@ -23,7 +23,7 @@
 
 .. If you are working your way through the user guide, you just built and ran a simple application. You’ve also built in your own images. This section teaches you how to network your containers.
 
-これまでのユーザ・ガイドでは、単純なアプリケーションを構築して実行しました。また、自分でイメージの構築をしました。このセクションでは、コンテナをどのように接続するかを学びます。
+これまでのユーザ・ガイドを通じて、単純なアプリケーションを構築して実行してきました。さらにイメージ構築も行いました。このセクションでは、コンテナをネットワーク接続する方法を説明します。
 
 .. Name a container
 
@@ -203,7 +203,7 @@ Docker Engine はブリッジ・ネットワークとオーバレイ・ネット
 
 .. The -d flag tells Docker to use the bridge driver for the new network. You could have left this flag off as bridge is the default value for this flag. Go ahead and list the networks on your machine:
 
-Docker に対して新しいネットワークで使用する ``bridge`` ドライバを指定するには、 ``-d`` フラグを使います。このフラグを指定しなくても、同様にこの ``bridge`` フラグが適用されます。マシン上のネットワーク一覧を表示します。
+Docker に対して ``-d`` フラグを指定するのは、新たなネットワークに対応する ``bridge`` ドライバを利用するためです。この場合のフラグ指定は行わなくても構いません。というのもこのフラグのデフォルト値は ``bridge`` であるからです。次にマシン上のネットワーク一覧を確認します。
 
 .. code-block:: bash
 
@@ -216,7 +216,7 @@ Docker に対して新しいネットワークで使用する ``bridge`` ドラ�
 
 .. If you inspect the network, you’ll find that it has nothing in it.
 
-このネットワークを調査しても、中にはコンテナが存在しないのが分かります。
+そのネットワークを確認してみると、中には何も入っていないことがわかります。
 
 .. code-block:: bash
 
@@ -231,13 +231,14 @@ Docker に対して新しいネットワークで使用する ``bridge`` ドラ�
                "Driver": "default",
                "Config": [
                    {
-                       "Subnet": "172.18.0.0/16",
-                       "Gateway": "172.18.0.1/16"
+                       "Subnet": "10.0.0.0/24",
+                       "Gateway": "10.0.0.1"
                    }
                ]
            },
            "Containers": {},
-           "Options": {}
+           "Options": {},
+           "Labels": {}
        }
    ]
 
@@ -250,11 +251,11 @@ Docker に対して新しいネットワークで使用する ``bridge`` ドラ�
 
 .. To build web applications that act in concert but do so securely, create a network. Networks, by definition, provide complete isolation for containers. You can add containers to a network when you first run a container.
 
-ウェブ・アプリケーションの構築にあたり、安全性を高めるためにネットワークを作成します。ネットワークとは、コンテナの完全な分離を提供するものと定義します。コンテナを実行する時に、コンテナをネットワークに追加できます。
+ウェブ・アプリケーションを正しく動作させ、しかも安全性をもったものとして構築するには、ネットワークを生成することです。ネットワークは当然のこととして、各コンテナの完全な独立性を作り出します。コンテナの初回起動時に、同時にネットワークへコンテナを追加することができます。
 
 .. Launch a container running a PostgreSQL database and pass it the --net=my-bridge-network flag to connect it to your new network:
 
-PostgreSQL データベースを実行するコンテナを起動します。``--net=my-bridge-network`` フラグを付けて、新しいネットワークに接続します。
+PostgreSQL データベースを実行させているコンテナを起動するなら、``--net=my-bridge-network`` をつけ、新たなネットワークにそのコンテナを接続します。
 
 .. code-block:: bash
 
@@ -262,7 +263,7 @@ PostgreSQL データベースを実行するコンテナを起動します。``-
 
 .. If you inspect your my-bridge-network you’ll see it has a container attached. You can also inspect your container to see where it is connected:
 
-``my-bridge-network`` を調べると、コンテナがアタッチ（接続）しているのが分かります。同様にコンテナを調べても、どこに接続しているのか分かります。
+``my-bridge-network`` を確認してみると、コンテナが加わっていることが分かります。コンテナを確認してみると、どこに接続されているかも分かります。
 
 .. code-block:: bash
 
@@ -271,7 +272,7 @@ PostgreSQL データベースを実行するコンテナを起動します。``-
 
 .. Now, go ahead and start your by now familiar web application. This time leave off the -P flag and also don’t specify a network.
 
-次に進み、近くでウェブ・アプリケーションを起動します。今回は ``-P`` フラグもネットワークも指定しません。
+操作を続けます。おなじみのウェブ・アプリケーションを起動させます。今回はネットワークの指定は行いません。
 
 .. code-block:: bash
 
@@ -279,7 +280,7 @@ PostgreSQL データベースを実行するコンテナを起動します。``-
 
 .. Which network is your web application running under? Inspect the application and you’ll find it is running in the default bridge network.
 
-ウェブ・アプリケーションはどのネットワーク上で実行しているのでしょうか。アプリケーションを調査したら、標準の ``bridge`` ネットワークで実行していることが分かります。
+ウェブ・アプリケーション ``web`` はどのネットワークのもとで稼動しているのでしょう。アプリケーションを調べてみれば分かります。それはデフォルトの ``bridge`` ネットワークです。
 
 .. code-block:: bash
 
@@ -288,7 +289,7 @@ PostgreSQL データベースを実行するコンテナを起動します。``-
 
 .. Then, get the IP address of your web
 
-次に web の IP アドレスを取得しましょう。
+次に ``web`` の IP アドレスを取得しましょう。
 
 .. code-block:: bash
 
@@ -315,7 +316,7 @@ PostgreSQL データベースを実行するコンテナを起動します。``-
 
 .. Docker networking allows you to attach a container to as many networks as you like. You can also attach an already running container. Go ahead and attach your running web app to the my-bridge-network.
 
-Docker のネットワーク機能は、必要に応じてコンテナに対して多くのネットワークを接続（attach）できます。接続は、実行中のコンテナに対しても可能です。次に、実行中の ``web`` アプリケーションを ``my-bridge-network`` に接続します。
+Docker のネットワーク機能において、コンテナは必要な分だけネットワークに接続することができます。ネットワークが稼働中であっても構いません。では次の操作として、実行中の ``web`` アプリケーションを ``my-bridge-network`` に接続します。
 
 .. code-block:: bash
 
@@ -327,12 +328,11 @@ Docker のネットワーク機能は、必要に応じてコンテナに対し�
 
 .. code-block:: bash
 
-   $ docker exec -it db bash
    root@a205f0dd33b2:/# ping web
-   PING web (172.19.0.3) 56(84) bytes of data.
-   64 bytes from web (172.19.0.3): icmp_seq=1 ttl=64 time=0.095 ms
-   64 bytes from web (172.19.0.3): icmp_seq=2 ttl=64 time=0.060 ms
-   64 bytes from web (172.19.0.3): icmp_seq=3 ttl=64 time=0.066 ms
+   PING web (10.0.0.2) 56(84) bytes of data.
+   64 bytes from web (10.0.0.2): icmp_seq=1 ttl=64 time=0.095 ms
+   64 bytes from web (10.0.0.2): icmp_seq=2 ttl=64 time=0.060 ms
+   64 bytes from web (10.0.0.2): icmp_seq=3 ttl=64 time=0.066 ms
    ^C
    --- web ping statistics ---
    3 packets transmitted, 3 received, 0% packet loss, time 2000ms
