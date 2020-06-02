@@ -21,126 +21,338 @@ Docker Compose のインストール
        :depth: 3
        :local:
 
-.. You can run Compose on OS X, Windows and 64-bit Linux. To install it, you’ll need to install Docker first.
+.. You can run Compose on macOS, Windows and 64-bit Linux.
 
-Compose は OS X、Windows、64-bit Linux で実行可能です。Compose をインストールするには、まず Docker のインストールが必要です。
+Compose は macOS、Windows、64-bit Linux で実行可能です。
 
-.. To install Compose, do the following:
+..   ## Prerequisites
 
-Compose のインストールは、次のように実行します。
+必要条件
+==========
 
-..    Install Docker Engine version 1.7.1 or greater:
-        Mac OS X installation (Toolbox installation includes both Engine and Compose)
-        Ubuntu installation
-        other system installations
+..   Docker Compose relies on Docker Engine for any meaningful work, so make sure you
+     have Docker Engine installed either locally or remote, depending on your setup.
 
-1. Docker Engine 1.7.1 以上をインストールします。
+Docker Compose は数々の動作を行うために Docker Engine を必要とします。したがって Docker Engine がインストール済であることを確認してください。設定状況に合わせてインストール先はローカルでもリモートでも構いません。
 
-   * :doc:`Mac OS X へのインストール </engine/installation/mac>`  （Toolbox のインストールに、Engine と Compose が含まれます）
-   * :doc:`Ubuntu へのインストール </engine/installation/linux/ubuntulinux>`
-   * :doc:`その他システムへのインストール </engine/installation/index>`
+..   - On desktop systems like Docker for Mac and Windows, Docker Compose is
+     included as part of those desktop installs.
 
-.. Mac OS X users are done installing. Others should continue to the next step.
-.. 2. Mac OS X ユーザと Windows ユーザはインストールが完了しています。他の環境は次のステップに進みます。
+* Docker for Mac や Docker for Windows のようなデスクトップの場合、Docker Compose はその一部に含まれてすでにインストールされているはずです。
 
-.. The Docker Toolbox installation includes both Engine and Compose, so Mac and Windows users are done installing. Others should continue to the next step.
+..   - On Linux systems, first install the
+     [Docker](/engine/installation/index.md#server){: target="_blank" class="_"}
+     for your OS as described on the Get Docker page, then come back here for
+     instructions on installing Compose on
+     Linux systems.
 
-2. Docker Toolbox を使えば、 Engine と Compose の両方をインストールします。そのため、 Mac および Windows ユーザは、これでインストール完了です。次のステップに進んでも構いません。
+* Linux システムの場合はまずはじめに、Docker を手に入れるのページに示している各 OS ごとの :doc:`Docker </engine/installation/index>` をインストールします。そしてここの手順に戻り Linux システム向けの Compose をインストールします。
 
-.. Go to the Compose repository release page on GitHub.
+..   ## Install Compose
 
-3. `GitHub 上にある Compose リポジトリのリリース・ページ <https://github.com/docker/compose/releases>`_ に移動します。
+Compose のインストール
+======================
 
-.. Follow the instructions from the release page and run the curl command, which the release page specifies, in your terminal.
+..   Follow the instructions below to install Compose on Mac, Windows, Windows Server
+     2016, or Linux systems, or find out about alternatives like using the `pip`
+     Python package manager or installing Compose as a container.
 
-4. リリース・ページの指示に従い、ターミナル上で ``curl`` コマンドを実行します。
+Compose を Mac、Windows、Windows Server 2016、Linux にインストールする場合は、以下の手順に従ってください。他の方法として Python パッケージ・マネージャである ``pip`` を使う方法や、コンテナとして Compose をインストールする方法もあります。
 
-.. Note: If you get a “Permission denied” error, your /usr/local/bin directory probably isn’t writable and you’ll need to install Compose as the superuser. Run sudo -i, then the two commands below, then exit.
+.. raw:: html
 
-.. note::
+   <!-- href タグを workaround として追加 -->
+   <ul class="nav nav-tabs">
+   <li class="active"><a data-toggle="tab" data-target="#macOS" href="#macOS">Mac</a></li>
+   <li><a data-toggle="tab" data-target="#windows" href="#windows">Windows</a></li>
+   <li><a data-toggle="tab" data-target="#linux" href="#linux">Linux</a></li>
+   <li><a data-toggle="tab" data-target="#alternatives" href="#alternatives">その他のインストール</a></li>
+   </ul>
+   <div class="tab-content">
+   <div id="macOS" class="tab-pane fade in active" markdown="1">
 
-   もし "Permission denied" エラーが表示される場合は、``/usr/local/bin`` ディレクトリに対する書き込み権限がありません。その場合は Compose をスーパーユーザで実行する必要があります。``sudo -i`` を実行し、２つのコマンドを実行してから ``exit`` します。
+..   ### Install Compose on macOS
 
-次の例は、コマンドの書式に関する説明です。
+macOS における Compose のインストール
+-------------------------------------
+
+..   **Docker for Mac** and **Docker Toolbox** already include Compose along
+     with other Docker apps, so Mac users do not need to install Compose separately.
+     Docker install instructions for these are here:
+
+**Docker for Mac** と **Docker Toolbox** には、Compose も各種 Docker アプリもすべて含んでいます。したがって Mac ユーザは個別に Compose をインストールする必要はありません。Docker のインストール手順は以下となります。
+
+..     * [Get Docker for Mac](/docker-for-mac/install.md)
+       * [Get Docker Toolbox](/toolbox/overview.md) (for older systems)
+
+* :doc:`Docker for Mac の入手</docker-for-mac/index>`
+* :doc:`Docker Toolbox の入手</toolbox/overview>` (古いシステム向け)
+
+.. raw:: html
+
+   </div>
+   <div id="windows" class="tab-pane fade" markdown="1">
+
+..   ### Install Compose on Windows desktop systems
+
+Windows における Compose のインストール
+---------------------------------------------------
+
+..   **Docker for Windows** and **Docker Toolbox** already include Compose
+     along with other Docker apps, so most Windows users do not need to
+     install Compose separately. Docker install instructions for these are here:
+
+**Docker for Windows** と **Docker Toolbox** には、Compose も各種 Docker アプリもすべて含んでいます。したがって Windows ユーザは個別に Compose をインストールする必要はありません。Docker のインストール手順は以下となります。
+
+..   * [Get Docker for Windows](/docker-for-windows/install.md)
+     * [Get Docker Toolbox](/toolbox/overview.md) (for older systems)
+
+* :doc:`Docker for Windows の入手</docker-for-windows/index>`
+* :doc:`Docker Toolbox の入手</toolbox/overview>` (古いシステム向け)
+
+..   **If you are running the Docker daemon and client directly on Microsoft
+     Windows Server 2016** (with [Docker EE for Windows Server 2016](/engine/installation/windows/docker-ee.md), you _do_ need to install
+     Docker Compose. To do so, follow these steps:
+
+:doc:`Docker Engine - Enterprise</engine/installation/docker-ee>` を使って Microsoft Windows Server 上において Docker デーモンやクライアントを 直接動かしている場合は、Docker Compose をインストールする必要があります。以下の３つの手順を進めてください。
+
+..   1.  Start an "elevated" PowerShell (run it as administrator).
+         Search for PowerShell, right-click, and choose
+         **Run as administrator**. When asked if you want to allow this app
+         to make changes to your device, click **Yes**.
+
+1. PowerShell を管理者権限で起動します。つまり PowerShell を見つけたら右クリックして **管理者として実行** を選びます。PowerShell がデバイスへの変更をしても良いかどうかを尋ねられたら **Yes** をクリックします。
+
+..       In PowerShell, run the following command to download
+         Docker Compose, replacing `$dockerComposeVersion` with the specific
+         version of Compose you want to use:
+
+PowerShell において以下のコマンドを実行して Docker Compose をダウンロードします。``$dockerComposeVersion`` の部分は、インストールしたい Compose のバージョンに置き換えてください。
+
+..    ```none
+      Invoke-WebRequest "https://github.com/docker/compose/releases/download/$dockerComposeVersion/docker-compose-Windows-x86_64.exe" -UseBasicParsing -OutFile $Env:ProgramFiles\docker\docker-compose.exe
+
+.. code-block:: powershell
+
+   Invoke-WebRequest "https://github.com/docker/compose/releases/download/$dockerComposeVersion/docker-compose-Windows-x86_64.exe" -UseBasicParsing -OutFile $Env:ProgramFiles\docker\docker-compose.exe
+
+..       For example, to download Compose version {{composeversion}},
+         the command is:
+
+例えば Compose バージョン 1.16.1 をダウンロードするには、以下のコマンドを実行します。
+
+..    ```none
+      Invoke-WebRequest "https://github.com/docker/compose/releases/download/{{composeversion}}/docker-compose-Windows-x86_64.exe" -UseBasicParsing -OutFile $Env:ProgramFiles\docker\docker-compose.exe
+
+.. code-block:: powershell
+
+   Invoke-WebRequest "https://github.com/docker/compose/releases/download/1.16.1/docker-compose-Windows-x86_64.exe" -UseBasicParsing -OutFile $Env:ProgramFiles\docker\docker-compose.exe
+
+..    >  Use the latest Compose release number in the download command.
+      >
+      > As already mentioned, the above command is an _example_, and
+      it may become out-of-date once in a while. Always follow the
+      command pattern shown above it. If you cut-and-paste an example,
+      check which release it specifies and, if needed,
+      replace `$dockerComposeVersion` with the release number that
+      you want. Compose releases are also available for direct download
+      on the [Compose repository release page on GitHub](https://github.com/docker/compose/releases){:target="_blank" class="_"}.
+      {: .important}
+
+.. important::
+
+   ダウンロードコマンド内での Compose 最新リリース番号の利用
+      すでに説明しているように、上に示したコマンドは一つの例ですから、すでに古いリリース番号になっているかもしれません。
+      コマンドの入力方法は上に示すものと同様に行ってください。
+      上の例をカット・アンド・ペーストして利用する場合は、必ずリリース番号を確認してください。
+      そして必要に応じて、``$dockerComposeVersion`` の部分は必要としているリリース番号に書き換えてください。
+      Compose の各リリースは、`GitHub 上にある Compose リポジトリのリリースページ <https://github.com/docker/compose/releases>`_ から入手することができます。
+
+..  2.  Run the executable to install Compose.
+
+2.  実行モジュールを実行して Compose をインストールします。
+
+.. raw:: html
+
+   </div>
+   <div id="linux" class="tab-pane fade" markdown="1">
+
+..   ### Install Compose on Linux systems
+
+Linux における Compose のインストール
+-------------------------------------
+
+..   On **Linux**, you can download the Docker Compose binary from the [Compose
+     repository release page on GitHub](https://github.com/docker/compose/releases){:
+     target="_blank" class="_"}. Follow the instructions from the link, which involve
+     running the `curl` command in your terminal to download the binaries. These step
+     by step instructions are also included below.
+
+**Linux** においては `GitHub 上の Compose リポジトリのリリースページ <https://github.com/docker/compose/releases>`_ から Docker Compose のバイナリをダウンロードします。リンク先にある手順に従い、端末から ``curl`` コマンドを実行してバイナリをダウンロードします。この手順は以下にも示します。
+
+..  1.  Run this command to download the latest version of Docker Compose:
+
+1.  以下のコマンドを実行して Docker Compose 最新版をダウンロードします。
+
+..    ```bash
 
 .. code-block:: bash
 
-   curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+   sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 
-.. If you have problems installing with curl, see Alternative Install Options.
+..     > Use the latest Compose release number in the download command.
+       >
+       The above command is an _example_, and it may become out-of-date. To ensure you have the latest version, check the [Compose repository release page on GitHub](https://github.com/docker/compose/releases){: target="_blank" class="_"}.
+       {: .important}
+
+.. important::
+
+   ダウンロードコマンド内での Compose 最新リリース番号の利用
+      上に示したコマンドは一つの例ですから、すでに古いリリース番号になっているかもしれません。
+      最新版であるかどうかは `GitHub 上にある Compose リポジトリのリリースページ <https://github.com/docker/compose/releases>`_ を確認してください。
+
+..       If you have problems installing with `curl`, see
+         [Alternative Install Options](install.md#alternative-install-options).
 
 ``curl`` でのインストールに問題がある場合は、 :ref:`alternative-install-option` をご覧ください。
 
-.. Apply executable permissions to the binary:
+..   2.  Apply executable permissions to the binary:
 
-5. バイナリに対して実行権限を追加します。
+2. バイナリに対して実行権限を付与します。
+
+..       ```bash
 
 .. code-block:: bash
 
-   $ chmod +x /usr/local/bin/docker-compose
+   sudo chmod +x /usr/local/bin/docker-compose
 
-.. Optionally, install command completion for the bash and zsh shell.
+..   3.  Optionally, install [command completion](completion.md) for the
+         `bash` and `zsh` shell.
 
-6. オプションで、``bash`` や ``zsh`` シェルの :doc:`コマンドライン補完 </compose/completion>` をインストールします。
+3. オプションとして、``bash`` や ``zsh`` シェルの :doc:`コマンドライン補完 </compose/completion>` をインストールします。
 
-.. Test the installation.
+..   4.  Test the installation.
 
-7. インストールを確認します。
+4. インストールを確認します。
+
+..    ```bash
 
 .. code-block:: bash
 
    $ docker-compose --version
-   docker-compose version: 1.6.2
+   docker-compose version 1.16.1, build 1719ceb
+
+.. raw:: html
+
+   </div>
+   <div id="alternatives" class="tab-pane fade" markdown="1">
 
 .. Alternative install options
 
-.. _alternative-install-option:
-
-他のインストール方法
-==============================
-
-.. Install using pip
-
-pip でインストール
+その他のインストール
 --------------------
 
-.. Compose can be installed from pypi using pip. If you install using pip it is highly recommended that you use a virtualenv because many operating systems have python system packages that conflict with docker-compose dependencies. See the virtualenv tutorial to get started.
+..   - [Install using pip](#install-using-pip)
+     - [Install as a container](#install-as-a-container)
 
-Compose は `pypi <https://pypi.python.org/pypi/docker-compose>`_ から ``pip`` を使いインストールできます。インストールに ``pip`` を使う場合、 `virtualenv <https://virtualenv.pypa.io/en/latest/>`_ の利用を強く推奨します。これは多くのオペレーティング・システム上の Python システム・パッケージと、docker-compose の依存性に競合する可能性があるためです。詳しくは `virtualenv チュートリアル（英語） <http://docs.python-guide.org/en/latest/dev/virtualenvs/>`_ をご覧ください。
+- :ref:`install-using-pip`
+- :ref:`install-as-a-container`
 
+..   #### Install using pip
+
+.. _install-using-pip:
+
+pip を利用したインストール
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+..   Compose can be installed from
+     [pypi](https://pypi.python.org/pypi/docker-compose) using `pip`. If you install
+     using `pip`, we recommend that you use a
+     [virtualenv](https://virtualenv.pypa.io/en/latest/) because many operating
+     systems have python system packages that conflict with docker-compose
+     dependencies. See the [virtualenv
+     tutorial](http://docs.python-guide.org/en/latest/dev/virtualenvs/) to get
+     started.
+
+Compose は、``pip`` を使って `pypi <https://pypi.python.org/pypi/docker-compose>`_ からインストールできます。インストールに ``pip`` を使う場合、 `virtualenv <https://virtualenv.pypa.io/en/latest/>`_ の利用をお奨めします。なぜなら多くのオペレーティング・システムにおいて、docker-compose が依存するパッケージ類が、システム内の python パッケージと競合することがあるためです。`virtualenv チュートリアル（英語） <http://docs.python-guide.org/en/latest/dev/virtualenvs/>`_ をご覧ください。
+
+..  ```bash
 .. code-block:: bash
 
-   $ pip install docker-compose
+   pip install docker-compose
 
-.. Note: pip version 6.0 or greater is required.
+..   if you are not using virtualenv,
 
+virtualenv を利用しない場合は以下を実行します。
+
+..   ```bash
+.. code-block:: bash
+
+   sudo pip install docker-compose
+
+..   > pip version 6.0 or greater is required.
 .. note::
 
-   pip バージョン 6.0 以上が必要です。
+   pip バージョンは 6.0 以上が必要です。
 
-.. Install as a container
 
-コンテナとしてインストール
-------------------------------
+..   #### Install as a container
 
-.. Compose can also be run inside a container, from a small bash script wrapper. To install compose as a container run:
+.. _install-as-a-container:
 
-Compose コンテナの中でも、小さな bash スクリプトのラッパーを通することが可能です。Compose をコンテナとして実行・インストールするには、次のようにします。
 
+コンテナとしてのインストール
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+..   Compose can also be run inside a container, from a small bash script wrapper. To
+     install compose as a container run this command. Be sure to replace the version
+     number with the one that you want, if this example is out-of-date:
+
+Compose コンテナの中でも、小さな bash スクリプトのラッパーを通することが可能です。
+Compose をコンテナとして実行・インストールするには、次のようにします。
+
+..   ```bash
 .. code-block:: bash
 
-   $ curl -L https://github.com/docker/compose/releases/download/1.6.2/run.sh > /usr/local/bin/docker-compose
-   $ chmod +x /usr/local/bin/docker-compose
+   $ sudo curl -L --fail https://github.com/docker/compose/releases/download/1.16.1/run.sh -o /usr/local/bin/docker-compose
+   $ sudo chmod +x /usr/local/bin/docker-compose
 
+..   >  Use the latest Compose release number in the download command.
+     >
+     The above command is an _example_, and it may become out-of-date once in a
+     while. Check which release it specifies and, if needed, replace the given
+     release number with the one that you want. Compose releases are also listed and
+     available for direct download on the [Compose repository release page on
+     GitHub](https://github.com/docker/compose/releases){: target="_blank"
+     class="_"}.
+     {: .important}
 
-.. Master builds
+.. important::
+
+   ダウンロードコマンド内での Compose 最新リリース番号の利用
+      上に示したコマンドは一つの例ですから、すでに古いリリース番号になっているかもしれません。
+      必ずリリース番号を確認してください。
+      そして必要に応じてリリース番号を書き換えてください。
+      Compose の各リリースは、`GitHub 上にある Compose リポジトリのリリースページ <https://github.com/docker/compose/releases>`_ から入手することができます。
+
+.. raw:: html
+
+   </div>
+   </div>
+
+.. ## Master builds
 
 マスターのビルド
-====================
+=================
 
-.. If you’re interested in trying out a pre-release build you can download a binary from https://dl.bintray.com/docker-compose/master/. Pre-release builds allow you to try out new features before they are released, but may be less stable.
+..   If you're interested in trying out a pre-release build you can download a binary
+     from
+     [https://dl.bintray.com/docker-compose/master/](https://dl.bintray.com/docker-compose/master/).
+     Pre-release builds allow you to try out new features before they are released,
+     but may be less stable.
 
-リリース直前（プレリリース）のビルドに興味があれば、バイナリを https://dl.bintray.com/docker-compose/master/ からダウンロードできます。プレリリース版のビルドにより、リリース前に新機能を試せますが、安定性に欠けるかもしれません。
+プレリリース版を試してみたい方は、https://dl.bintray.com/docker-compose/master/ からバイナリをダウンロードできます。
+プレリリース版を使えば、正式リリース前に新たな機能を試すことができます。ただし安定性に欠けるかもしれません。
 
 .. Upgrading
 
@@ -149,11 +361,11 @@ Compose コンテナの中でも、小さな bash スクリプトのラッパー
 
 .. If you’re upgrading from Compose 1.2 or earlier, you’ll need to remove or migrate your existing containers after upgrading Compose. This is because, as of version 1.3, Compose uses Docker labels to keep track of containers, and so they need to be recreated with labels added.
 
-Compose 1.2 以前からアップグレードする場合、Compose を更新後、既存のコンテナの削除・移行が必要です。これは Compose バージョン 1.3 がコンテナ追跡用に Docker ラベルを用いているためであり、ラベルを追加したものへと置き換える必要があります。
+バージョン 1.2 以前の Compose をアップグレードする場合には、アップグレードをした後にそれまで使っていたコンテナを削除するか移行する必要があります。Compose バージョン 1.3 以降においては、コンテナの追跡を行うための Docker ラベルというものが利用されるようになったからです。つまり古いコンテナはこのラベルをつけて再生成する必要があります。
 
 .. If Compose detects containers that were created without labels, it will refuse to run so that you don’t end up with two sets of them. If you want to keep using your existing containers (for example, because they have data volumes you want to preserve) you can use compose 1.5.x to migrate them with the following command:
 
-Compose は作成されたコンテナにラベルがないことを検出したら、実行を拒否し、処理停止と表示します。既存のコンテナを Compose 1.5.x 以降も使い続けたい場合（たとえば、コンテナにデータ・ボリュームがあり、使い続けたい場合）は、次のコマンドで移行できます。
+Docker ラベルを持っていないコンテナであることが検出されると、Compose はそのようなコンテナの実行を拒否するため利用することができません。それまで使っていたコンテナを引き続き利用したい場合（たとえばデータボリュームを用いてデータ保存をしている場合）、Compose 1.5.x を使って、以下のようなコマンドによりデータ移行を行うことができます。
 
 .. code-block:: bash
 
@@ -161,7 +373,7 @@ Compose は作成されたコンテナにラベルがないことを検出した
 
 .. Alternatively, if you’re not worried about keeping them, you can remove them. Compose will just create new ones.
 
-あるいは、コンテナを持ち続ける必要がなければ、削除できます。Compose は新しいコンテナを作成します。
+コンテナを維持しておく必要がないのであれば、削除するだけで構いません。Compose は新しくコンテナを生成してくれます。
 
 .. code-block:: bash
 
@@ -174,7 +386,7 @@ Compose は作成されたコンテナにラベルがないことを検出した
 
 .. To uninstall Docker Compose if you installed using curl:
 
-``curl`` を使って Docker Compose をインストールした場合は、次のように削除します。
+``curl`` を使って Docker Compose をインストールしていた場合は、次のようにしてアンインストールします。
 
 .. code-block:: bash
 
@@ -182,7 +394,7 @@ Compose は作成されたコンテナにラベルがないことを検出した
 
 .. To uninstall Docker Compose if you installed using pip:
 
-``pip`` を使って Docker Compose をインストールした場合は、次のように削除します。
+``pip`` を使って Docker Compose をインストールしていた場合は、次のようにしてアンインストールします。
 
 .. code-block:: bash
 
@@ -192,12 +404,13 @@ Compose は作成されたコンテナにラベルがないことを検出した
 
 .. note::
 
-   もし "Permission denied" エラーが表示される場合は、コマンドを実行する前に、``docker-compose`` を削除するための適切な権限が必要です。強制的に削除するには ``sudo`` をあらかじめ実行してから、再度先ほどのコマンドを実行します。
+   "Permission denied" エラーが出たときは
+      上のコマンドのいずれかを実行したときに "Permission denied" エラーが発生したら、それは ``docker-compose`` を削除するための適切な権限がないことが考えられます。どうしても削除したいときは、上のコマンドの先頭に ``sudo`` をつけて、もう一度コマンドを実行してください。
 
 .. Where to go next
 
-次はどこへ行きますか
-====================
+次は何を読みますか
+==================
 
 .. 
     User guide

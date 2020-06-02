@@ -380,13 +380,9 @@ extends 設定の理解
 .. When defining any service in `docker-compose.yml`, you can declare that you are
    extending another service like this:
 
+
 ``docker-compose.yml`` 内にサービスを定義するときには、どのようなサービスであっても、別のサービスを拡張するように宣言できます。
 たとえば以下のとおりです。
-
-..  web:
-      extends:
-        file: common-services.yml
-        service: webapp
 
 .. code-block:: yaml
 

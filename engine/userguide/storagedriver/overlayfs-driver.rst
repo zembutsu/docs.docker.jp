@@ -152,7 +152,7 @@ OverlayFS は２つのレイヤだけ扱います。つまり、複数にレイ�
 
 .. The “merged” directory is effectively the containers mount point. This is where the unified view of the image (“lowerdir”) and container (“upperdir”) is exposed. Any changes written to the container are immediately reflected in this directory.
 
-「marged」（統合）ディレクトリは効率的なコンテナのマウント・ポイントです。これは、イメージ（「lowerdier」）とコンテナ（「upperdir」）を統合して表示する場所です。あらゆるコンテナに対する書き込みは、直ちにこのディレクトリに反映されます。
+「merged」（統合）ディレクトリは効率的なコンテナのマウント・ポイントです。これは、イメージ（「lowerdir」）とコンテナ（「upperdir」）を統合して表示する場所です。あらゆるコンテナに対する書き込みは、直ちにこのディレクトリに反映されます。
 
 .. The “work” directory is required for OverlayFS to function. It is used for things such as copy_up operations.
 
