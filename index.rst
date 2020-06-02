@@ -5,8 +5,8 @@
    contain the root `toctree` directive.
 .. -----------------------------------------------------------------------------
 .. URL: https://docs.docker.com/
-   doc version: 17.06
-.. check date: 2017/09/01
+   doc version: 19.03 (current)
+.. check date: 2020/06/03
 .. -----------------------------------------------------------------------------
 
 .. Welcome to Docker-docs-ja's documentation!
@@ -20,7 +20,7 @@ Docker ドキュメント日本語化プロジェクト
 
 .. attention::
 
-  * Docker `17.06`  向けにドキュメントの改訂作業中です(2017年9月現在)。一部古い場合がありますので、ご注意ください。
+  * Docker `v19.03 (current)`  向けにドキュメントの改訂作業中です(2020年6月現在)。一部古い場合がありますので、ご注意ください。
   * Docker のドキュメントは常に変わり続けています。最新の情報については `公式ドキュメント <https://docs.docker.com/>`_ をご覧ください。
   * 本プロジェクトは有志による翻訳プロジェクトです。お気づきの点がございましたら、 `issue <https://github.com/zembutsu/docs.docker.jp/issues>`_ や `Pull Request <https://github.com/zembutsu/docs.docker.jp/pulls>`_ でお知らせ願います。
 
@@ -130,7 +130,7 @@ Docker を使い、コンテナをベースとしたアプリケーションを�
 
 ----
 
-Doc v17.06 目次
+Doc v19.03 目次
 ====================
 
 
