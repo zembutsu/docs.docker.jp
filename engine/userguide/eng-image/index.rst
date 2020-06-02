@@ -13,5 +13,5 @@
 
    dockerfile_best-practices
    baseimages
-   multistage-buil/
+   multistage-build
    image_management
