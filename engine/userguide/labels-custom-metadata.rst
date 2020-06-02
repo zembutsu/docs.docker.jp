@@ -39,72 +39,130 @@ Docker オブジェクト・ラベル
 * Swarm ノード
 * Swarm サービス
 
-.. You can use labels to organize your images, record licensing information, annotate relationships between containers, volumes, and networks, or in any way that makes sense for your business or application.
+.. You can use labels to organize your images, record licensing information, annotate
+   relationships between containers, volumes, and networks, or in any way that makes
+   sense for your business or application.
 
-ラベルはイメージ管理のために利用できます。ライセンス情報の記録、コンテナやボリュームやネットワーク間の関係性を記録、ビジネスやアプリケーションに役立つために使えます。
+ラベルはさまざまな目的で利用することができます。
+イメージを構成したり、ライセンス情報を記録したり、コンテナー、ボリューム、ネットワーク間の関係性を書きとめたりといったものです。
+業務やアプリケーションにとって意義のあることなら、どのようなものでも含めて構いません。
 
-.. Label keys and values
+.. ## Label keys and values
+
 .. _label-keys-and-values:
 
 ラベルのキーとバリュー
 ==============================
 
-.. A label is a key-value pair, stored as a string. You can specify multiple labels for an object, but each key-value pair must be unique within an object. If the same key is given multiple values, the most-recently-written value overwrites all previous values.
+.. A label is a key-value pair, stored as a string. You can specify multiple labels
+   for an object, but each key-value pair must be unique within an object. If the
+   same key is given multiple values, the most-recently-written value overwrites
+   all previous values.
 
-ラベルとはキーバリュー・ペアを文字列に保管します。オブジェクトに対して複数のラベルを指定可能ですが、各キーバリュー・ペアはオブジェクト内でユニーク（訳者注；「重複できない」意味）である必要があります。同じキーに複数の値を指定すると、これまでの全ての値は、直近の値で上書きされます。
+ラベルはキーバリュー・ペアの形式であり、文字列として保存されます。
+オブジェクトに対しては複数のラベルを指定することができますが、各キーバリュー・ペアは 1 つのオブジェクト内で一意である必要があります。
+1 つのキーに対して複数の値が設定されていた場合、古い値は最後に書き込まれた値により上書きされます。
 
-.. Key format recommendations
+.. ### Key format recommendations
 
-推奨するキーの書式
---------------------
+推奨されるキーの書式
+---------------------
 
-.. A label key is the left-hand side of the key-value pair. Keys are alphanumeric strings which may contain periods (.) and hyphens (-). Most Docker users use images created by other organizations, and the following guidelines help to prevent inadvertent duplication of labels across objects, especially if you plan to use labels as a mechanism for automation.
+.. A label _key_ is the left-hand side of the key-value pair. Keys are alphanumeric
+   strings which may contain periods (`.`) and hyphens (`-`). Most Docker users use
+   images created by other organizations, and the following guidelines help to
+   prevent inadvertent duplication of labels across objects, especially if you plan
+   to use labels as a mechanism for automation.
 
-ラベルのキー（ `key` ）はキーバリュー・ペアの左側です。キーは英数字とピリオド（ ``.`` ）とハイフン（ ``-`` ）を含む文字列です。多くの Docker ユーザは、他の組織が作成したイメージを使います。そのため、ガイドラインに従えばオブジェクト間で不意にラベルが重複するのを避けられるでしょう。特に、ラベルを自動化の仕組みに使うのを計画している場合です。
+ラベルにおけるキーは、キーバリュー・ペアの左側を指します。
+キーに含めることができる文字は、英数字、ピリオド（``.``）、ハイフン（``-``）です。
+Docker ユーザが利用するイメージは、たいていは他の組織が作り出したものであるため、ここに示すガイドラインに従っていれば、オブジェクト間でのラベル定義を不用意に重複させるようなことがなくなります。
+自動化の仕組みの中でラベルを利用する場合は、特にこのことが重要になります。
 
-..    Authors of third-party tools should prefix each label key with the reverse DNS notation of a domain they own, such as com.example.some-label.
-    Do not use a domain in your label key without the domain owner’s permission.
-    The com.docker.*, io.docker.*, and org.dockerproject.* namespaces are reserved by Docker for internal use.
-    Label keys should begin and end with a lower-case letter and should only contain lower-case alphanumeric characters, the period character (.), and the hyphen character (-). Consecutive periods or hyphens are not allowed.
-    The period character (.) separates namespace “fields”. Label keys without namespaces are reserved for CLI use, allowing users of the CLI to interactively label Docker objects using shorter typing-friendly strings.
+.. - Authors of third-party tools should prefix each label key with the
+     reverse DNS notation of a domain they own, such as `com.example.some-label`.
 
-* サードパーティ製ツールの作者は、各ラベルのキーの冒頭に、 ``com.example.some-label`` のように、 自分のドメインの逆引き DNS 記法を使うべきです。
-* ドメイン所有者の許可無くラベルのキーにドメインを使ってはいけません。
-* ``com.docker.*`` と ``org.dockerproject.*`` の名前空間は、Docker の内部利用のために予約されています。
-* ラベル・キーの始めと終わりは小文字であるべきです。利用可能なのは小文字のアルファベットと、ピリオド文字（ ``.`` ）、ハイフン文字（ ``-`` ）です。ピリオドとハイフンの連続は利用できません。
-* ピリオド文字（ ``.`` ）名前空間の「フィールド」を分けます。名前空間のないラベル・キーは CLI が使うために予約されています。これは Docker オブジェクトのラベルを ユーザが CLI を使って入力しやすくするためです。
+* サードパーティ製ツールの開発者は、各ラベルのプリフィックスとして、自身が所有するドメインの逆 DNS 記法を用いるようにします。
+  たとえば ``com.example.some-label`` といったものです。
 
-.. These guidelines are not currently enforced and additional guidelines may apply to specific use cases.
+.. - Do not use a domain in your label key without the domain owner's permission.
 
-これらのガイドラインは、現時点において強制するものではありません。また、特定用途に対するガイドラインが追加される可能性があります。
+* ドメイン所有者の許可なく、ラベルのキーにそのドメイン名を使ってはいけません。
 
-.. Value guidelines
+.. - The `com.docker.*`, `io.docker.*`, and `org.dockerproject.*` namespaces are
+     reserved by Docker for internal use.
+
+* 以下の名前空間 ``com.docker.*``, ``io.docker.*``, ``org.dockerproject.*`` は、Docker が内部利用のために予約しています。
+
+.. - Label keys should begin and end with a lower-case letter and should only
+     contain lower-case alphanumeric characters, the period character (`.`), and
+     the hyphen character (`-`). Consecutive periods or hyphens are not allowed.
+
+* ラベルのキーの始まりと終わりの 1 文字は英小文字とします。
+  そして文字列全体は、英小文字と数字、ピリオド（``.``）、ハイフン（``-``）を用いるようにします。
+  そしてピリオドとハイフンは連続して用いないようにします。
+
+.. - The period character (`.`) separates namespace "fields". Label keys without
+     namespaces are reserved for CLI use, allowing users of the CLI to interactively
+     label Docker objects using shorter typing-friendly strings.
+
+* ピリオド（``.``）は名前空間の「項目」を区切るものです。
+  ラベルのキーに名前空間が指定されていないものは、CLI が用いるものとしています。
+  ユーザにとって CLI 実行の際、Docker オブジェクトに対して入力しやすい短いラベル文字列を指定できるようにするためです。
+
+.. These guidelines are not currently enforced and additional guidelines may apply
+   to specific use cases.
+
+上のようなガイドラインは現時点において強制されるものではありません。
+特定の用途において、さらに追加のガイドラインが適用されるかもしれません。
+
+.. ### Value guidelines
+
 .. _value-guidelines:
 
-バリューのガイドライン
+バリューに関するガイドライン
 ------------------------------
 
-.. Label values can contain any data type that can be represented as a string, including (but not limited to) JSON, XML, CSV, or YAML. The only requirement is that the value be serialized to a string first, using a mechanism specific to the type of structure. For instance, to serialize JSON into a string, you might use the JSON.stringify() JavaScript method.
+.. Label values can contain any data type that can be represented as a string,
+   including (but not limited to) JSON, XML, CSV, or YAML. The only requirement is
+   that the value be serialized to a string first, using a mechanism specific to
+   the type of structure. For instance, to serialize JSON into a string, you might
+   use the `JSON.stringify()` JavaScript method.
 
-ラベルの値には、文字列であれば JSON、XML、CSV、YAML など（に制限されません）、あらゆる種類のデータをを入れられます。値が連続している文字列であるのは必要ですが、あとは各々の構造に従います。たとえば、整形した JSON を文字列にするには ``JSON.stringify()`` JavaScirpt メソッドが使えるでしょう。
+ラベルのバリューには、文字列として表現できるものであれば、どんな型のデータでも含めることができます。
+たとえば JSON, XML, CSV, YAML があり、これ以外にもまだあります。
+唯一必要になることは、そのデータ型の構造に従った形で、文字列としてシリアライズされたものであることです。
+たとえば JSON データを文字列にシリアライズするには、JavaScript メソッドでは ``JSON.stringify()`` を利用するかもしれません。
 
-.. Since Docker does not deserialize the value, you cannot treat a JSON or XML document as a nested structure when querying or filtering by label value unless you build this functionality into third-party tooling.
+.. Since Docker does not deserialize the value, you cannot treat a JSON or XML
+   document as a nested structure when querying or filtering by label value unless
+   you build this functionality into third-party tooling.
 
-Dockerはバリューの構造解釈ができないので、 JSON や XML ドキュメントのようなネストされた構造の場合、サードパーティ製ツールでは、クエリやフィルタを利用できません。
+Docker ではそのバリューをデシリアライズしないため、ラベルを用いた検索やフィルタリングをする際には、ネスト構造になっている JSON や XML ドキュメントを取り扱うことはできません。
+これを実現するためにはサードパーティ製のツール類に、そういった機能を組み入れる必要があります。
 
-.. Manage labels on objects
-.. _manage-labels-on-oabjects:
+.. ## Manage labels on objects
+
+.. _manage-labels-on-objects:
 
 オブジェクトにおけるラベルの管理
 ========================================
 
-.. nEach type of object with support for labels has mechanisms for adding and managing them and using them as they relate to that type of object. These links provide a good place to start learning about how you can use labels in your Docker deployments.
+.. Each type of object with support for labels has mechanisms for adding and
+   managing them and using them as they relate to that type of object. These links
+   provide a good place to start learning about how you can use labels in your
+   Docker deployments.
 
-各オブジェクト・タイプには、ラベルを追加・管理する仕組みが備わっています。そして、オブジェクトのタイプを関連付けるためにも使えます。以下のリンクは Docker のデプロイ時、どのようにラベルを使うかを学ぶのに役立ちます。
+ラベルがサポートされている各オブジェクトには、ラベルの追加や管理を行う機能が備わっていて、そのオブジェクトに関連づいたラベルとして取り扱うことができます。
+以下に示すリンクは、Docker デプロイにおいて利用するラベルを学ぶ上で役立つものです。
 
-.. Labels on images, containers, local daemons, volumes, and networks are static for the lifetime of the object. To change these labels you must recreate the object. Labels on swarm nodes and services can be updated dynamically.
+.. Labels on images, containers, local daemons, volumes, and networks are static for
+   the lifetime of the object. To change these labels you must recreate the object.
+   Labels on swarm nodes and services can be updated dynamically.
 
-イメージ、コンテナ、ローカル・デーモン、ボリューム、ネットワークのラベルは、オブジェクトの利用中は固定（static）です。これらのラベルを変えるためには、オブジェクトの再作成が必要です。swarm ノードとサービスのラベルは動的に変更できます。
+イメージ、コンテナ、ローカル・デーモン、ボリューム、ネットワークといったオブジェクトにおいては、そのオブジェクトが存在する間、ラベルは静的で不変なものです。
+ラベルを変更するためにはオブジェクトを再生成する必要があります。
+Swarm ノードと Swarm サービスにおけるラベルは動的に変更することができます。
 
 ..    Images and containers
         Adding labels to images
@@ -174,5 +232,5 @@ Dockerはバリューの構造解釈ができないので、 JSON や XML ドキ
 
 .. seealso:: 
 
-   Apply custom metadata
+   Docker object labels
       https://docs.docker.com/engine/userguide/labels-custom-metadata/
