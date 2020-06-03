@@ -128,50 +128,44 @@ Docker を使い、コンテナをベースとしたアプリケーションを�
    複数のコンテナを使うアプリケーションを定義します。
 
 
-----
+---
 
 Doc v19.03 目次
 ====================
 
-
 .. toctree::
-   :caption: Guide - ガイド
+   :caption: Guides - ガイド
    :maxdepth: 1
 
    engine/installation/toc.rst
    get-started/toc.rst
-   ユーザガイド <engine/toc.rst>
+
 
 .. toctree::
-   :caption: Docker Compose
-   :maxdepth: 2
+   :caption: Product manuals - マニュアル
+   :maxdepth: 1
 
-   compose/toc.rst
-
-.. toctree::
-   :caption: Docker Hub
-   :maxdepth: 2
-
-   docker-hub/index.rst
-
-.. toctree::
-   :caption: Docker Machine
-   :maxdepth: 2
-
-   machine/index.rst
-
-.. toctree::
-   :caption: Docker Toolbox
-   :maxdepth: 2
-
+   Docker Engine <engine/toc.rst>
+   Docker Compose <compose/toc.rst>
+   Docker Hub <docker-hub/index.rst>
+   Docker Machine <machine/index.rst>
    Docker Toolbox <toolbox/index.rst>
-
-.. toctree::
-   :caption: コンポーネント・プロジェクト
-   :maxdepth: 2
-
    registry/toc.rst
    swarm/toc.rst
+
+.. toctree::
+   :caption: Reference - 参考資料
+   :maxdepth: 1
+
+   コマンドライン・リファレンス <engine/reference/index.rst>
+   Dockerfile リファレンス <engine/reference/builder.rst>
+   Compose file リファレンス <compose/reference/toc.rst>
+   glossary.rst
+
+
+.. toctree::
+   :caption: Samples - サンプル
+   :maxdepth: 1
 
 
 About
@@ -182,7 +176,6 @@ About
    :caption: Docker について
 
    release-notes.rst
-   glossary.rst
    about.rst
    guide.rst
    pdf-download.rst
