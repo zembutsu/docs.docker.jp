@@ -7,12 +7,12 @@
 .. Commits on May 14, 2016 d0ab1c360f5af7b92ab3f414e42ad817e0bd3059
 .. ---------------------------------------------------------------------------
 
-.. Understand images, containers, and storage driver
+.. title: About images, containers, and storage drivers
 
-.. _understand-images-containers-and-storage-driver:
+.. _about-images-containers-and-storage-drivers:
 
 ==================================================
-イメージ、コンテナ、ストレージ・ドライバの理解
+イメージ、コンテナ、ストレージ・ドライバについて
 ==================================================
 
 .. sidebar:: 目次
@@ -21,224 +21,255 @@
        :depth: 3
        :local:
 
-.. To use storage drivers effectively, you must understand how Docker builds and stores images. Then, you need an understanding of how these images are used in containers. Finally, you’ll need a short introduction to the technologies that enable both images and container operations.
+.. To use storage drivers effectively, you must understand how Docker builds and
+   stores images. Then, you need an understanding of how these images are used by
+   containers. Finally, you'll need a short introduction to the technologies that
+   enable both images and container operations.
 
-.. To use storage drivers effectively, you must understand how Docker builds and stores images. Then, you need an understanding of how these images are used by containers. Finally, you’ll need a short introduction to the technologies that enable both images and container operations.
+ストレージ・ドライバを効率よく利用するためには、Docker がどのようにしてイメージをビルドし保存するのかを理解しておく必要があります。
+さらにそのイメージをコンテナがどのように利用するのかを理解しておくことも重要です。
+つまりイメージとコンテナの双方の操作を可能とする技術に関して、おおまかに知っておく必要があります。
 
-ストレージ・ドライバを効率的に使うには、Docker がどのようにイメージを構築・保管するかの理解が欠かせません。そして、これらのイメージがコンテナでどのように使われているかの理解が必要です。最後に、イメージとコンテナの両方を操作するための技術に対する、簡単な紹介をします。
+.. Understanding how Docker manages the data within your images and containers will
+   help you understand the best way to design your containers and Dockerize your
+   applications, and avoid performance problems along the way.
 
-.. Images and layers
+Docker がイメージ内やコンテナ内にてデータをどのように管理するのかを理解しておけば、コンテナ作りやアプリケーション Docker 化の最良な方法、さらに稼動時のパフォーマンス低下を回避する方法が身につくはずです。
+
+.. ## Images and layers
 
 イメージとレイヤ
 ====================
 
-.. Docker images are a series of read-only layers that are stacked on top of each other to form a single unified view. The first image in the stack is called a base image and all the other layers are stacked on top of this layer. The diagram below shows the Ubuntu 15:04 image comprising 4 stacked image layers.
+.. A Docker image is built up from a series of layers. Each layer represents an
+   instruction in the image's Dockerfile. Each layer except the very last one is
+   read-only. Consider the following Dockerfile:
 
-Docker イメージは読み込み専用（read-only）レイヤのセットです。それぞれのレイヤが層（スタック）として積み重なり、１つに統合された形に見えます。この１番めの層を *ベース・イメージ (base image)* と呼び、他の全てのレイヤは、このベース・イメージのレイヤ上に積み重なります。次の図は、 Ubuntu 15.04 イメージが４つのイメージ・レイヤを組みあわせて構成されているのが分かります。
+Docker イメージは一連のレイヤから構成されます。
+個々のレイヤは、そのイメージの Dockerfile 内にある 1 つの命令に対応づいています。
+一番最後にあるレイヤを除き、これ以外はすべて読み込み専用のレイヤです。
+たとえば以下のような Dockerfile を考えてみます。
 
-.. image:: ./images/image-layers.png
-   :scale: 60%
-   :alt: イメージ層
+.. ```conf
+   FROM ubuntu:15.04
+   COPY . /app
+   RUN make /app
+   CMD python /app/app.py
+   ```
+.. code-block:: yaml
 
-.. The Docker storage driver is responsible for stacking these layers and providing a single unified view.
+   FROM ubuntu:15.04
+   COPY . /app
+   RUN make /app
+   CMD python /app/app.py
 
-Docker ストレージ・ドライバは、これらレイヤを積み重ねて単一に見えるようにする役割があります。
+.. This Dockerfile contains four commands, each of which creates a layer.  The
+   `FROM` statement starts out by creating a layer from the `ubuntu:15.04` image.
+   The `COPY` command adds some files from your Docker client's current directory.
+   The `RUN` command builds your application using the `make` command. Finally,
+   the last layer specifies what command to run within the container.
 
-.. When you make a change inside a container by, for example, adding a new file to the Ubuntu 15.04 image, you add a new layer on top of the underlying image stack. This change creates a new image layer containing the newly added file. Each image layer has its own universal unique identifier (UUID) and each successive image layer builds on top of the image layer below it.
+この Dockerfile には 4 つのコマンドがあります。
+コマンドのそれぞれが 1 つのレイヤを生成します。
+まずは ``FROM`` 命令によって ``ubuntu:15.04`` イメージから 1 つのレイヤが生成されるところから始まります。
+``COPY`` 命令は Docker クライアントのカレントディレクトリから複数のファイルを追加します。
+``RUN`` 命令は ``make`` コマンドを実行してアプリケーションをビルドします。
+そして最後のレイヤが、コンテナ内にて実行するべきコマンドを指定しています。
 
-コンテナ内部に変更を加えた時を考えます。例えば、Ubuntu 15.04 イメージ上に新しくファイルを追加したら、下にあるイメージ層の上に、新しいレイヤを追加します。この変更は、新しく追加したファイルを含む新しいレイヤを作成します。各イメージ・レイヤは自身の UUID（universal unique identifier）を持っており、下の方にあるイメージの上に、連続したイメージ・レイヤを構築します。
+.. Each layer is only a set of differences from the layer before it. The layers are
+   stacked on top of each other. When you create a new container, you add a new
+   writable layer on top of the underlying layers. This layer is often called the
+   "container layer". All changes made to the running container, such as writing
+   new files, modifying existing files, and deleting files, are written to this thin
+   writable container layer. The diagram below shows a container based on the Ubuntu
+   15.04 image.
 
-.. Containers (in the storage context) are a combination of a Docker image with a thin writable layer added to the top known as the container layer. The diagram below shows a container running the Ubuntu 15.04 image.
+各レイヤは、その直前のレイヤからの差異だけを保持します。
+そしてレイヤは順に積み上げられていきます。
+新しいコンテナを生成したときには、それまで存在していたレイヤ群の最上部に、新たな書き込み可能なレイヤが加えられます。
+このレイヤは「コンテナ・レイヤ」と呼ばれることがあります。
+実行中のコンテナに対して実行される変更処理すべて、たとえば新規ファイル生成、既存ファイル修正、ファイル削除といったことは、その薄い皮のような書き込み可能なコンテナ・レイヤに対して書き込まれます。
+以下の図は Ubuntu 15.04 イメージに基づいて生成されたコンテナを表わしています。
 
-コンテナ（ストレージの内容を含みます）は Docker イメージと薄い書き込み可能なレイヤとを連結したものです。この書き込み可能なレイヤは一番上にあり、 *コンテナ・レイヤ（container layer）* と呼ばれます。以下の図は ubuntu 15.04 イメージの実行状態です。
+.. ![Docker image layers](images/container-layers.jpg)
 
 .. image:: ./images/container-layers.png
    :scale: 60%
-   :alt: コンテナ・レイヤとイメージ
+   :alt: Docker イメージレイヤ
 
-.. Content addressable storage
+.. A _storage driver_ handles the details about the way these layers interact with
+   each other. Different storage drivers are available, which have advantages
+   and disadvantages in different situations.
 
-.. _content-addressable-storage:
+**ストレージドライバー** というものは、そういった各レイヤーが互いにやり取りできるようにします。
+さまざまなストレージドライバーが利用可能であり、利用状況に応じて一長一短があります。
 
-連想ストレージ
-----------------------------------------
-
-.. Docker 1.10 introduced a new content addressable storage model. This is a completely new way to address image and layer data on disk. Previously, image and layer data was referenced and stored using a randomly generated UUID. In the new model this is replaced by a secure content hash.
-
-Docker 1.10 は、新しい連想（コンテント・アドレッサブル；content adressable）ストレージ・モデルを導入しました。これはイメージとレイヤをディスクで扱うための、全く新しい手法です。従来のイメージとレイヤのデータは、ランダムに生成した UUID を使って保管・参照していました。新しいモデルでは、これを安全な *コンテント・ハッシュ（content hash）* に置き換えます。
-
-.. The new model improves security, provides a built-in way to avoid ID collisions, and guarantees data integrity after pull, push, load, and save operations. It also enables better sharing of layers by allowing many images to freely share their layers even if they didn’t come from the same build.
-
-新しいモデルはセキュリティを改善します。ID の重複を防ぐ機能を持っており、pull ・ push ・ load ・ save 操作を実施後のデータ保証を完全なものとします。また、同時に構築していなくても、多くイメージが各レイヤを自由に共有可能にもなりました。
-
-.. The diagram below shows an updated version of the previous diagram, highlighting the changes implemented by Docker 1.10.
-
-次の図は、従来バージョンの図を更新したものです。Docker 1.10 で実装された変更をハイライトしています。
-
-.. image:: ./images/container-layers-cas.png
-   :scale: 60%
-   :alt: コンテナ・レイヤとイメージ
-
-.. As can be seen, all image layer IDs are cryptographic hashes, whereas the container ID is still a randomly generated UUID.
-
-こちらにある通り、まだコンテナ ID がランダムな UUID であるのに対して、全てのイメージ・レイヤの ID は暗号化ハッシュです。
-
-.. There are several things to note regarding the new model. These include:
-
-新しいモデルに関しては、いくつかの注意点があります。
-
-..    Migration of existing images
-    Image and layer filesystem structures
-
-1. 既存イメージの移行
-2. イメージとレイヤのファイルシステム構造
-
-.. Existing images, those created and pulled by earlier versions of Docker, need to be migrated before they can be used with the new model. This migration involves calculating new secure checksums and is performed automatically the first time you start an updated Docker daemon. After the migration is complete, all images and tags will have brand new secure IDs.
-
-既存イメージとは、以前のバージョンの Docker で作成、あるいは取得したものです。これらは新しいモデルで使う前に、変換が必要です。移行時には、新しい安全なチェックサムを計算します。この計算は更新した Docker デーモンを初回起動時、自動的に行われます。移行が終わったら、全てのイメージとタグが新しい安全な ID に更新されます。
-
-.. Although the migration is automatic and transparent, it is computationally intensive. This means it can take time if you have lots of image data. During this time your Docker daemon will not respond to other requests.
-
-移行は自動的かつ透過的に行われますが、多くの計算を必要とします。つまり、イメージ・データが大量にあれば、時間がかかることを意味します。移行している間、Docker デーモンは他のリクエストに応答しません。
-
-.. A migration tool exists that allows you to migrate existing images to the new format before upgrading your Docker daemon. This means that upgraded Docker daemons do not need to perform the migration in-band, and therefore avoids any associated downtime. It also provides a way to manually migrate existing images so that they can be distributed to other Docker daemons in your environment that are already running the latest versions of Docker.
-
-新しいイメージへの移行を、Docker デーモンをアップグレードする前に行えるツールがあります。つまり、移行に時間をかけないので、停止時間の発生を避けられます。また、既存のイメージを手動で移行できますので、最新バージョンの Docker が既に動いている環境への移行も可能です。
-
-.. The migration tool is provided by Docker, Inc., and runs as a container. You can download it from https://github.com/docker/v1.10-migrator/releases.
-
-Docker 社が提供している移行ツールは、コンテナとして実行できます。 https://github.com/docker/v1.10-migrator/releases からダウンロードできます。
-
-.. While running the “migrator” image you need to expose your Docker host’s data directory to the container. If you are using the default Docker data path, the command to run the container will look like this
-
-「migrator」イメージの実行中は、Docker ホストのデータ・ディレクトリをコンテナに対して公開する必要があります。Docker データを置く場所がデフォルトであれば、コマンドラインでコンテナを実行するには、次のようにします。
-
-.. code-block:: bash
-
-   $ sudo docker run --rm -v /var/lib/docker:/var/lib/docker docker/v1.10-migrator
-
-.. If you use the devicemapper storage driver, you will need to include the --privileged option so that the container has access to your storage devices.
-
-``devicemapper`` ストレージ・ドライバを使っている場合は、 ``--privileged`` オプションを使ってコンテナがストレージ・デバイスにアクセスできるようにする必要があります。
-
-.. Migration example
-
-.. _migration-example:
-
-移行例
-----------
-
-.. The following example shows the migration tool in use on a Docker host running version 1.9.1 of the Docker daemon and the AUFS storage driver. The Docker host is running on a t2.micro AWS EC2 instance with 1 vCPU, 1GB RAM, and a single 8GB general purpose SSD EBS volume. The Docker data directory (/var/lib/docker) was consuming 2GB of space.
-
-以下の例は、 Docker デーモンのホスト・バージョンが 1.9.1 で、 AUFS ストレージ・ドライバを使っている環境を移行します。Docker ホストは *t2.micro** AWS EC2 インスタンス上で動いており、1 vCPU 、1GB メモリ、8GB の SSD EBS ボリュームを持っています。Docker のデータ・ディレクトリ（ ``/var/lib/docker`` ）は 2GB の容量を使っています。
-
-.. code-block:: bash
-
-   $ docker images
-   REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-   jenkins             latest              285c9f0f9d3d        17 hours ago        708.5 MB
-   mysql               latest              d39c3fa09ced        8 days ago          360.3 MB
-   mongo               latest              a74137af4532        13 days ago         317.4 MB
-   postgres            latest              9aae83d4127f        13 days ago         270.7 MB
-   redis               latest              8bccd73928d9        2 weeks ago         151.3 MB
-   centos              latest              c8a648134623        4 weeks ago         196.6 MB
-   ubuntu              15.04               c8be1ac8145a        7 weeks ago         131.3 MB
-   
-   $ sudo du -hs /var/lib/docker
-   2.0G    /var/lib/docker
-   
-   $ time docker run --rm -v /var/lib/docker:/var/lib/docker docker/v1.10-migrator
-   Unable to find image 'docker/v1.10-migrator:latest' locally
-   latest: Pulling from docker/v1.10-migrator
-   ed1f33c5883d: Pull complete
-   b3ca410aa2c1: Pull complete
-   2b9c6ed9099e: Pull complete
-   dce7e318b173: Pull complete
-   Digest: sha256:bd2b245d5d22dd94ec4a8417a9b81bb5e90b171031c6e216484db3fe300c2097
-   Status: Downloaded newer image for docker/v1.10-migrator:latest
-   time="2016-01-27T12:31:06Z" level=debug msg="Assembling tar data for 01e70da302a553ba13485ad020a0d77dbb47575a31c4f48221137bb08f45878d from /var/lib/docker/aufs/diff/01e70da302a553ba13485ad020a0d77dbb47575a31c4f48221137bb08f45878d"
-   time="2016-01-27T12:31:06Z" level=debug msg="Assembling tar data for 07ac220aeeef9febf1ac16a9d1a4eff7ef3c8cbf5ed0be6b6f4c35952ed7920d from /var/lib/docker/aufs/diff/07ac220aeeef9febf1ac16a9d1a4eff7ef3c8cbf5ed0be6b6f4c35952ed7920d"
-   <snip>
-   time="2016-01-27T12:32:00Z" level=debug msg="layer dbacfa057b30b1feaf15937c28bd8ca0d6c634fc311ccc35bd8d56d017595d5b took 10.80 seconds"
-   
-   real    0m59.583s
-   user    0m0.046s
-   sys     0m0.008s
-
-.. The Unix time command prepends the docker run command to produce timings for the operation. As can be seen, the overall time taken to migrate 7 images comprising 2GB of disk space took approximately 1 minute. However, this included the time taken to pull the docker/v1.10-migrator image (approximately 3.5 seconds). The same operation on an m4.10xlarge EC2 instance with 40 vCPUs, 160GB RAM and an 8GB provisioned IOPS EBS volume resulted in the following improved timings:
-
-Unix の ``time`` コマンドを ``docker run`` コマンドより前に付け、処理時間を計測します。表示されているように、2GB の容量を消費している７つのディスク・イメージの移行に、おおよそ１分かかっています。しかし、これには ``docker/v1.10-migrator`` イメージの取得（約3.5秒）も含みます。同じ処理を m4.10xlarge EC2 インスタンス、40 VCPU 、160GB のメモリ、8GB の provisioned IOPS EBS ボリュームであれば、次のような結果になります。
-
-.. code-block:: bash
-
-   real    0m9.871s
-   user    0m0.094s
-   sys     0m0.021s
-
-.. This shows that the migration operation is affected by the hardware spec of the machine performing the migration.
-
-以上の結果から、処理時間は移行をするマシンのハードウェア性能に影響を受けることが分かります。
-
-.. Container and layers
+.. ## Container and layers
 
 .. _container-and-layers:
 
 コンテナとレイヤ
 ====================
 
-.. The major difference between a container and an image is this writable layer. All writes to the container that add new or modifying existing data are stored in this writable layer. When the container is deleted the writeable layer is also deleted. The image remains unchanged.
+.. The major difference between a container and an image is the top writable layer.
+   All writes to the container that add new or modify existing data are stored in
+   this writable layer. When the container is deleted, the writable layer is also
+   deleted. The underlying image remains unchanged.
 
-.. コンテナとイメージとの主な違いは、書き込み可能なレイヤ（writable layer）です。全てのコンテナに対する書き込み、つまり、新しいファイルの追加や既存のデータに対する変更は、この書き込み可能なレイヤに保管されます。コンテナが書き込み可能なレイヤを削除すると、コンテナも削除されます。イメージは変更されないままです。
+コンテナとイメージの大きな違いは、最上部に書き込みレイヤがあるかどうかです。
+コンテナに対して新たに加えられたり修正されたりしたデータは、すべてこの書き込みレイヤに保存されます。
+コンテナが削除されると、その書き込みレイヤも同じく削除されます。
+ただしその元にあったイメージは、変更されずに残ります。
 
-.. Because each container has its own thin writable container layer and all data is stored in this container layer, this means that multiple containers can share access to the same underlying image and yet have their own data state. The diagram below shows multiple containers sharing the same Ubuntu 15.04 image.
+.. Because each container has its own writable container layer, and all changes are
+   stored in this container layer, multiple containers can share access to the same
+   underlying image and yet have their own data state. The diagram below shows
+   multiple containers sharing the same Ubuntu 15.04 image.
 
-それぞれのコンテナは、自分自身で書き込み可能なレイヤを持ちますので、全てのデータは対象のコンテナレイヤに保管します。つまり、複数のコンテナが根底にあるイメージを共有アクセスすることができ、それぞれのコンテナ自身がデータをも管理できるのを意味します。次の図は複数のコンテナが同じ Ubuntu 15.04 イメージを共有しています。
+複数のコンテナを見た場合、そのコンテナごとに個々の書き込み可能なコンテナ・レイヤがあって、データ更新結果はそのコンテナ・レイヤに保存されます。
+したがって複数コンテナでは、同一のイメージを共有しながらアクセスすることができ、しかも個々に見れば独自の状態を持つことができることになります。
+以下の図は、Ubuntu 15.04 という同一のイメージを共有する複数コンテナを示しています。
+
+.. ![](images/sharing-layers.jpg)
 
 .. image:: ./images/sharing-layers.png
    :scale: 60%
    :alt: レイヤの共有
 
-.. A storage driver is responsible for enabling and managing both the image layers and the writeable container layer. How a storage driver accomplishes these behaviors can vary. Two key technologies behind Docker image and container management are stackable image layers and copy-on-write (CoW).
+.. > **Note**: If you need multiple images to have shared access to the exact
+   > same data, store this data in a Docker volume and mount it into your
+   > containers.
 
-ストレージ・ドライバは、イメージ・レイヤと書き込み可能なコンテナ・レイヤの両方を有効化・管理する責任があります。ストレージ・ドライバは様々な方法で処理をします。Docker イメージとコンテナ管理という２つの重要な技術の裏側にあるのは、積み上げ可能なイメージ・レイヤとコピー・オン・ライト（CoW）です。
+.. note::
 
-.. The copy-on-write strategy
+   複数イメージを必要としていて、さらに同一のデータを共有してアクセスしたい場合は、そのデータを Docker ボリュームに保存して、コンテナ内でそれをマウントします。
 
-.. _the-copy-on-write-strategy:
+.. Docker uses storage drivers to manage the contents of the image layers and the
+   writable container layer. Each storage driver handles the implementation
+   differently, but all drivers use stackable image layers and the copy-on-write
+   (CoW) strategy.
+
+Docker はストレージ・ドライバを利用して、イメージ・レイヤと書き込み可能なコンテナ・レイヤの各内容を管理します。
+さまざまなストレージ・ドライバでは、異なる実装によりデータを扱います。
+しかしどのようなドライバであっても、積み上げ可能な（stackable）イメージ・レイヤを取り扱い、コピー・オン・ライト（copy-on-write; CoW）方式を採用します。
+
+.. ## Container size on disk
+
+.. _container-size-on-disk:
+
+ディスク上のコンテナ・サイズ
+=============================
+
+.. To view the approximate size of a running container, you can use the `docker ps -s`
+   command. Two different columns relate to size.
+
+稼働中コンテナの概算サイズを確認するには ``docker ps -s`` コマンドを実行します。
+サイズに関連した 2 つのデータがカラム表示されます。
+
+.. - `size`: the amount of data (on disk) that is used for the writable layer of
+     each container
+
+* ``size``: （ディスク上の）データ総量。
+  各コンテナの書き込みレイヤが利用するデータ部分です。
+
+.. - `virtual size`: the amount of data used for the read-only image data
+     used by the container. Multiple containers may share some or all read-only
+     image data. Two containers started from the same image share 100% of the
+     read-only data, while two containers with different images which have layers
+     in common share those common layers. Therefore, you can't just total the
+     virtual sizes. This will over-estimate the total disk usage by a potentially
+     non-trivial amount.
+
+* ``virtual size``: コンテナにおいて利用されている読み込み専用のイメージデータと、コンテナの書き込みレイヤの ``size`` を足し合わせたデータ総量。
+  複数コンテナにおいては、読み込み専用イメージデータの全部または一部を共有しているかもしれません。
+  1 つのイメージをベースとして作った 2 つのコンテナでは、読み込み専用データを 100% 共有します。
+  一方で 2 つの異なるイメージが一部に共通するレイヤを持っていて、そこからそれぞれに 2 つのコンテナを作ったとすると、共有するのはその共通レイヤ部分のみです。
+  したがって ``virtual size`` は単純に足し合わせで計算できるものではありません。
+  これはディスク総量を多く見積もってしまい、その量は無視できないほどになることがあります。
+
+.. The total disk space used by all of the running containers on disk is some
+   combination of each container's `size` and the `virtual size` values. If
+   multiple containers have exactly the same `virtual size`, they are likely
+   started from the same exact image.
+
+起動しているコンテナすべてが利用するディスク総量は、各コンテナの ``size`` と ``virtual size`` を適宜組み合わせた値になります。
+複数コンテナが同一の ``virtual size`` になっていたら、各コンテナは同一のイメージをベースにしていると考えられます。
+
+.. This also does not count the following additional ways a container can take up
+   disk space:
+
+またコンテナがディスク領域を消費するものであっても、以下に示す状況はディスク総量の算定には含まれません。
+
+.. - Disk space used for log files if you use the `json-file` logging driver. This
+     can be non-trivial if your container generates a large amount of logging data
+     and log rotation is not configured.
+   - Volumes and bind mounts used by the container.
+   - Disk space used for the container's configuration files, which are typically
+     small.
+   - Memory written to disk (if swapping is enabled).
+   - Checkpoints, if you're using the experimental checkpoint/restore feature.
+
+* ロギング・ドライバ ``json-file`` を利用している場合に、そのログファイルが利用するディスク量。
+  コンテナにおいてログ出力を大量に行っていて、ログローテーションを用いていない場合には、このディスク量は無視できないものになります。
+* コンテナが利用するボリュームやバインドマウント。
+* コンテナの設定ファイルが利用するディスク領域。
+  そのデータ容量は少ないのが普通です。
+* （スワップが有効である場合に）ディスクに書き込まれるメモリデータ。
+* 試験的な checkpoint/restore 機能を利用している場合のチェックポイント。
+
+.. ## The copy-on-write (CoW) strategy
+
+.. _the-copy-on-write-cow-strategy:
 
 コピー・オン・ライト方式
 ==============================
 
-.. Sharing is a good way to optimize resources. People do this instinctively in daily life. For example, twins Jane and Joseph taking an Algebra class at different times from different teachers can share the same exercise book by passing it between each other. Now, suppose Jane gets an assignment to complete the homework on page 11 in the book. At that point, Jane copy page 11, complete the homework, and hand in her copy. The original exercise book is unchanged and only Jane has a copy of the changed page 11.
+.. Copy-on-write is a strategy of sharing and copying files for maximum efficiency.
+   If a file or directory exists in a lower layer within the image, and another
+   layer (including the writable layer) needs read access to it, it just uses the
+   existing file. The first time another layer needs to modify the file (when
+   building the image or running the container), the file is copied into that layer
+   and modified. This minimizes I/O and the size of each of the subsequent layers.
+   These advantages are explained in more depth below.
 
-共有とはリソース最適化のための良い手法です。人々はこれを日常生活通で無意識に行っています。例えば双子の Jane と Joseph が代数学のクラスを受ける時、回数や先生が違っても、同じ教科書を相互に共有できます。ある日、Jane が本のページ11にある宿題を片付けようとしています。その時  Jane はページ11をコピーし、宿題を終えたら、そのコピーを提出します。Jane はページ 11 のコピーに対する変更を加えただけであり、オリジナルの教科書には手を加えていません。
+コピーオンライト（copy-on-write; CoW）は、ファイルの共有とコピーを最も効率よく行う方式です。
+イメージ内の下の方にあるレイヤに、ファイルやディレクトリが存在していた場合に、別のレイヤ（書き込みレイヤを含む）からの読み込みアクセスが必要であるとします。
+このときには、当然のことながら存在しているそのファイルを利用します。
+そのファイルを修正する必要のある別のレイヤがあったとすると、これを初めて修正するとき（イメージがビルドされたときやコンテナが起動したときなど）、そのファイルはレイヤにコピーされた上で修正されます。
+こうすることで入出力を最小限に抑え、次に続くレイヤの各サイズも増やさずに済みます。
+この利点に関しては、さらに詳しく後述します。
 
-.. Copy-on-write is a similar strategy of sharing and copying. In this strategy, system processes that need the same data share the same instance of that data rather than having their own copy. At some point, if one process needs to modify or write to the data, only then does the operating system make a copy of the data for that process to use. Only the process that needs to write has access to the data copy. All the other processes continue to use the original data.
-
-コピー・オン・ライト（copy-on-write、cow）とは、共有とコピーのストラテジ（訳者注：方針、戦略の意味、ここでは方式と訳します）に似ています。このストラテジは、システム・プロセスが自分自身でデータのコピーを持つより、同一インスタンス上にあるデータ共有を必要とします。書き込む必要があるプロセスのみが、データのコピーにアクセスできます。その他のプロセスは、オリジナルのデータを使い続けられます。
-
-.. Docker uses a copy-on-write technology with both images and containers. This CoW strategy optimizes both image disk space usage and the performance of container start times. The next sections look at how copy-on-write is leveraged with images and containers through sharing and copying.
-
-Docker はコピー・オン・ライト技術をイメージとコンテナの両方に使います。この CoW 方式はイメージのディスク使用量とコンテナ実行時のパフォーマンスの両方を最適化します。次のセクションでは、イメージとコンテナの共有とコピーにおいて、コピー・オン・ライトがどのように動作してるのかを見てきます。
-
-.. Sharing promotes smaller images
+.. ### Sharing promotes smaller images
 
 .. _sharing-promotes-smaller-images:
 
-共有を促進する小さなイメージ
-------------------------------
+共有によりイメージサイズはより小さく
+-------------------------------------
 
-.. This section looks at image layers and copy-on-write technology. All image and container layers exist inside the Docker host’s local storage area and are managed by the storage driver. On Linux-based Docker hosts this is usually located under /var/lib/docker/.
+.. When you use `docker pull` to pull down an image from a repository, or when you
+   create a container from an image that does not yet exist locally, each layer is
+   pulled down separately, and stored in Docker's local storage area, which is
+   usually `/var/lib/docker/` on Linux hosts. You can see these layers being pulled
+   in this example:
 
-このセクションではイメージ・レイヤとコピー・オン・ライト技術（copy-on-write）を見ていきます。全てのイメージとコンテナ・レイヤは Docker ホスト上の *ローカル・ストレージ領域* に存在し、ストレージ・ドライバによって管理されます。Linux をベースとする Docker ホストでは、通常は ``/var/lib/docker/`` 以下です。
+``docker pull`` を実行してリポジトリからイメージをプルするとき、あるいはイメージから新たにコンテナを生成するにあたってそのイメージがまだローカルに生成されていないとき、各レイヤはプルによって個別に取得されて、Docker のローカル保存領域、たとえば Linux では通常 ``/var/lib/docker/`` に保存されます。
+取得された各レイヤは、以下の例のようにして確認することができます。
 
-.. The Docker client reports on image layers when instructed to pull and push images with docker pull and docker push. The command below pulls the ubuntu:15.04 Docker image from Docker Hub.
-
-イメージ取得・送信する ``docker pull`` と ``docker push`` 命令の実行時、Docker クライアントはイメージ・レイヤについて報告します。以下のコマンドは、 Docker Hub から ``ubuntu:15.04`` Docker イメージを取得（pull）しています。
-
+.. ```bash
+   $ docker pull ubuntu:15.04
+   
+   15.04: Pulling from library/ubuntu
+   1ba8ac955b97: Pull complete
+   f157c4e5ede7: Pull complete
+   0b7e98f84c4c: Pull complete
+   a3ed95caeb02: Pull complete
+   Digest: sha256:5e279a9df07990286cce22e1b0f5b0490629ca6d187698746ae5e28e604a640e
+   Status: Downloaded newer image for ubuntu:15.04
+   ```
 .. code-block:: bash
 
    $ docker pull ubuntu:15.04
+   
    15.04: Pulling from library/ubuntu
    1ba8ac955b97: Pull complete
    f157c4e5ede7: Pull complete
@@ -247,300 +278,486 @@ Docker はコピー・オン・ライト技術をイメージとコンテナの�
    Digest: sha256:5e279a9df07990286cce22e1b0f5b0490629ca6d187698746ae5e28e604a640e
    Status: Downloaded newer image for ubuntu:15.04
 
-.. From the output, you’ll see that the command actually pulls 4 image layers. Each of the above lines lists an image layer and its UUID or cryptographic hash. The combination of these four layers makes up the ubuntu:15.04 Docker image.
+.. Each of these layers is stored in its own directory inside the Docker host's
+   local storage area. To examine the layers on the filesystem, list the contents
+   of `/var/lib/docker/<storage-driver>/layers/`. This example uses `aufs`, which
+   is the default storage driver:
 
-この出力から、このコマンドが実際には４つのイメージ・レイヤを取得したのが分かります。上記のそれぞれの行が、イメージとその UUID か暗号化ハッシュです。これら４つのレイヤの組みあわせにより、 ``ubuntu:15.04`` Docker イメージを作り上げています。
+各レイヤは、Docker ホストのローカル保存領域内にて、それぞれのディレクトリ配下に保存されます。
+ファイルシステム上のレイヤデータを確認するなら、``/var/lib/docker/<storage-driver>/layers/`` の内容を一覧表示します。
+以下はデフォルトのストレージ・ドライバである ``aufs`` の例です。
 
-.. Each of these layers is stored in its own directory inside the Docker host’s local storage are.
-
-これらの各レイヤは、Docker ホスト上のローカル・ストレージ領域に保管します。
-
-.. Versions of Docker prior to 1.10 stored each layer in a directory with the same name as the image layer ID. However, this is not the case for images pulled with Docker version 1.10 and later. For example, the command below shows an image being pulled from Docker Hub, followed by a directory listing on a host running version 1.9.1 of the Docker Engine.
-
-Docker バージョン 1.10 未満までは、各レイヤをイメージ・レイヤ ID と同じ名前のディレクトリに格納していました。しかし、Docker バージョン 1.10 移行では、イメージを取得してもこのようになりません。例えば、Docker Engine バージョン 1.9.1 が動いているホスト上で、 Docker Hub からイメージをダウンロードするコマンドを実行した結果です。
-
-.. code-block:: bash
-
-   $  docker pull ubuntu:15.04
-   15.04: Pulling from library/ubuntu
-   47984b517ca9: Pull complete
-   df6e891a3ea9: Pull complete
-   e65155041eed: Pull complete
-   c8be1ac8145a: Pull complete
-   Digest: sha256:5e279a9df07990286cce22e1b0f5b0490629ca6d187698746ae5e28e604a640e
-   Status: Downloaded newer image for ubuntu:15.04
-   
+.. ```bash
    $ ls /var/lib/docker/aufs/layers
-   47984b517ca9ca0312aced5c9698753ffa964c2015f2a5f18e5efa9848cf30e2
-   c8be1ac8145a6e59a55667f573883749ad66eaeef92b4df17e5ea1260e2d7356
-   df6e891a3ea9cdce2a388a2cf1b1711629557454fd120abd5be6d32329a0e0ac
-   e65155041eed7ec58dea78d90286048055ca75d41ea893c7246e794389ecf203
-
-.. The image layers are stored in the Docker host’s local storage area. Typically, the local storage area is in the host’s /var/lib/docker directory. Depending on which storage driver the local storage area may be in a different location. You can list the layers in the local storage area. The following example shows the storage as it appears under the AUFS storage driver:
-.. (1.9 までの文章、削除予定; @zembutsu)
-.. イメージ・レイヤは Docker ホスト上のローカル・ストレージ領域に保管されます。典型的なローカル・ストレージ領域の場所は、ホスト上の ``/var/lib/docker``  ディレクトリです。ストレージ・ドライバの種類により、ローカル・ストレージ領域の場所は変わる場合があります。以下の例では、 AUFS ストレージ・ドライバが使うディレクトリを表示しています。
-
-.. Notice how the four directories match up with the layer IDs of the downloaded image. Now compare this with the same operations performed on a host running version 1.10 of the Docker Engine.
-
-４つのディレクトリが、イメージをダウンロードしたレイヤの ID と一致しているのが分かるでしょう。これと同じ処理を Docker Engine バージョン 1.10 上で行いましょう。
-
+   1d6674ff835b10f76e354806e16b950f91a191d3b471236609ab13a930275e24
+   5dbb0cbe0148cf447b9464a358c1587be586058d9a4c9ce079320265e2bb94e7
+   bef7199f2ed8e86fa4ada1309cfad3089e0542fec8894690529e4c04a7ca2d73
+   ebf814eccfe98f2704660ca1d844e4348db3b5ccc637eb905d4818fbfb00a06a
+   ```
 .. code-block:: bash
 
-   $ docker pull ubuntu:15.04
-   15.04: Pulling from library/ubuntu
-   1ba8ac955b97: Pull complete
-   f157c4e5ede7: Pull complete
-   0b7e98f84c4c: Pull complete
-   a3ed95caeb02: Pull complete
-   Digest: sha256:5e279a9df07990286cce22e1b0f5b0490629ca6d187698746ae5e28e604a640e
-   Status: Downloaded newer image for ubuntu:15.04
-   
-   $ ls /var/lib/docker/aufs/layers/
+   $ ls /var/lib/docker/aufs/layers
    1d6674ff835b10f76e354806e16b950f91a191d3b471236609ab13a930275e24
    5dbb0cbe0148cf447b9464a358c1587be586058d9a4c9ce079320265e2bb94e7
    bef7199f2ed8e86fa4ada1309cfad3089e0542fec8894690529e4c04a7ca2d73
    ebf814eccfe98f2704660ca1d844e4348db3b5ccc637eb905d4818fbfb00a06a
 
-.. See how the four directories do not match up with the image layer IDs pulled in the previous step.
+.. The directory names do not correspond to the layer IDs (this has been true since
+   Docker 1.10).
 
-先ほどの結果とは異なり、４つのディレクトリは取得したイメージ・レイヤ ID と対応しません。
+ディレクトリ名はレイヤ ID に対応するものではありません。
+（Docker 1.10 以前は対応づいていました。）
 
-.. Despite the differences between image management before and after version 1.10, all versions of Docker still allow images to share layers. For example, If you pull an image that shares some of the same image layers as an image that has already been pulled, the Docker daemon recognizes this, and only pulls the layers it doesn’t already have stored locally. After the second pull, the two images will share any common image layers.
+.. Now imagine that you have two different Dockerfiles. You use the first one to
+   create an image called `acme/my-base-image:1.0`.
 
-このように、バージョン 1.10 前後ではイメージの管理に違いがあります。しかし全ての Docker バージョンにおいて、イメージはレイヤを共有できます。例えば、イメージを ``pull`` （取得）する時、既に取得済みの同じイメージ・レイヤがあれば、Docker は状況を認識してイメージを共有します。そして、ローカルに存在しないイメージのみ取得します。２つめ以降の pull は、共通イメージ・レイヤにある２つのイメージを共有しています。
+ここで 2 つの異なる Dockerfile を利用している状況を考えます。
+1 つめの Dockerfile からは ``acme/my-base-image:1.0`` というイメージが作られるものとします。
 
-.. If you pull another image that shares some of the same image layers as the ubuntu:15.04 image, the Docker daemon recognize this, and only pull the layers it hasn’t already stored. After the second pull, the two images will share any common image layers.
-.. (1.9向け文章のため削除予定 @zembutsu)
-.. もし、別のイメージを ``pull`` （取得）するとき、そのイメージが ``ubuntu:15.04`` イメージと同じイメージ・レイヤが共通している場合、Docker デーモンはこの状況を認識し、まだ手許に取得していないイメージのみをダウンロードします。それから、２つめのイメージを取得すると、この２つのイメージは、共通のイメージ・レイヤとして共有されるようになります。
+.. ```conf
+   FROM ubuntu:16.10
+   COPY . /app
+   ```
+.. code-block:: yaml
 
-.. You can illustrate this now for yourself. Starting the ubuntu:15.04 image that you just pulled, make a change to it, and build a new image based on the change. One way to do this is using a Dockerfile and the docker build command.
+   FROM ubuntu:16.10
+   COPY . /app
 
-これで、自分で実例を示して理解できるでしょう。 ``ubuntu:15.04`` イメージを使うため、まずは取得（pull）し、変更を加え、その変更に基づく新しいイメージを構築します。この作業を行う方法の１つが、 Dockerfile と ``docker build`` コマンドを使う方法です。
+.. The second one is based on `acme/my-base-image:1.0`, but has some additional
+   layers:
 
-.. In an empty directory, create a simple Dockerfile that starts with the ubuntu:15.04 image.
+2 つめの Dockerfile は ``acme/my-base-image:1.0`` をベースとして、さらにレイヤを追加するものとします。
 
-1. 空のディレクトリに、 ``Dockerfile`` を作成します。 ubuntu:15.04 イメージの指定から記述します。
+.. ```conf
+   FROM acme/my-base-image:1.0
+   CMD /app/hello.sh
+   ```
+.. code-block:: yaml
 
-.. code-block:: bash
+   FROM acme/my-base-image:1.0
+   CMD /app/hello.sh
 
-   FROM ubuntu:15.04
+.. The second image contains all the layers from the first image, plus a new layer
+   with the `CMD` instruction, and a read-write container layer. Docker already
+   has all the layers from the first image, so it does not need to pull them again.
+   The two images will share any layers they have in common.
 
-.. Add a new file called “newfile” in the image’s /tmp directory with the text “Hello world” in it.
+2 つめのイメージには 1 つめのイメージが持つレイヤがすべて含まれ、さらに ``CMD`` 命令による新たなレイヤと、読み書き可能なコンテナ・レイヤが加わっています。
+Docker にとって 1 つめのイメージにおけるレイヤはすべて取得済であるため、再度プルによって取得する必要がありません。
+2 つのイメージにおいて共通して存在しているレイヤは、すべて共有します。
 
-2. 「newfile」 という名称の新規ファイルを、イメージの ``/tmp``  ディレクトリに作成します。ファイル内には「Hello world」の文字も入れます。
+.. If you build images from the two Dockerfiles, you can use `docker images` and
+   `docker history` commands to verify that the cryptographic IDs of the shared
+   layers are the same.
 
-.. When you are done, the Dockerfile contains two lines:
+この 2 つの Dockerfile からイメージをビルドした場合、``docker image`` や ``docker history`` コマンドを使ってみると、共有されているレイヤに対する暗号化 ID は同一になっていることがわかります。
 
-作業が終われば、 ``Dockerfile`` は次の２行になっています。
+.. 1.  Make a new directory `cow-test/` and change into it.
 
-.. code-block:: bash
+1. 新規に ``cow-test/`` というディレクトリを生成して移動します。
 
-   FROM ubuntu:15.04
-   
-   RUN echo "Hello world" > /tmp/newfile
+   .. 2.  Within `cow-test/`, create a new file with the following contents:
 
-..    Save and close the file.
+2. ``cow-test/`` ディレクトリにて、以下の内容で新規ファイルを生成します。
 
-3. ファイルを保存して閉じます。
+   ..  ```bash
+       #!/bin/sh
+       echo "Hello world"
+       ```
+   .. code-block:: bash
 
-..    From a terminal in the same folder as your Dockerfile, run the following command:
+      #!/bin/sh
+      echo "Hello world"
 
-4. ターミナルから、作成した ``Dockerfile`` と同じディレクトリ上に移動し、以下のコマンドを実行します。
+   ..  Save the file, and make it executable:
 
-.. code-block:: bash
+   ファイルを保存して実行可能にします。
 
-   $ docker build -t changed-ubuntu .
-   Sending build context to Docker daemon 2.048 kB
-   Step 1 : FROM ubuntu:15.04
-    ---> 3f7bcee56709
-   Step 2 : RUN echo "Hello world" > /tmp/newfile
-    ---> Running in d14acd6fad4e
-    ---> 94e6b7d2c720
-   Removing intermediate container d14acd6fad4e
-   Successfully built 94e6b7d2c720
+   ..  ```bash
+       chmod +x hello.sh
+       ```
+   .. code-block:: bash
 
-..        Note: The period (.) at the end of the above command is important. It tells the docker build command to use the current working directory as its build context.
+      chmod +x hello.sh
+
+.. 3.  Copy the contents of the first Dockerfile above into a new file called
+       `Dockerfile.base`.
+
+3. 前述した 1 つめの Dockerfile の内容を、新規ファイル ``Dockerfile.base`` にコピーします。
+
+.. 4.  Copy the contents of the second Dockerfile above into a new file called
+       `Dockerfile`.
+
+4. 前述した 2 つめの Dockerfile の内容を、新規ファイル ``Dockerfile`` にコピーします。
+
+.. 5.  Within the `cow-test/` directory, build the first image.
+
+5.  ``cow-test/`` ディレクトリ内にて 1 つめのイメージをビルドします。
+
+   ..  ```bash
+       $ docker build -t acme/my-base-image:1.0 -f Dockerfile.base .
+
+       Sending build context to Docker daemon  4.096kB
+       Step 1/2 : FROM ubuntu:16.10
+        ---> 31005225a745
+       Step 2/2 : COPY . /app
+        ---> Using cache
+        ---> bd09118bcef6
+       Successfully built bd09118bcef6
+       Successfully tagged acme/my-base-image:1.0
+       ```
+   .. code-block:: bash
+
+      $ docker build -t acme/my-base-image:1.0 -f Dockerfile.base .
+
+      Sending build context to Docker daemon  4.096kB
+      Step 1/2 : FROM ubuntu:16.10
+       ---> 31005225a745
+      Step 2/2 : COPY . /app
+       ---> Using cache
+       ---> bd09118bcef6
+      Successfully built bd09118bcef6
+      Successfully tagged acme/my-base-image:1.0
+
+.. 6.  Build the second image.
+
+6. 2 つめのイメージをビルドします。
+
+   ..  ```bash
+       $ docker build -t acme/my-final-image:1.0 -f Dockerfile .
+
+       Sending build context to Docker daemon  4.096kB
+       Step 1/2 : FROM acme/my-base-image:1.0
+        ---> bd09118bcef6
+       Step 2/2 : CMD /app/hello.sh
+        ---> Running in a07b694759ba
+        ---> dbf995fc07ff
+       Removing intermediate container a07b694759ba
+       Successfully built dbf995fc07ff
+       Successfully tagged acme/my-final-image:1.0
+       ```
+   .. code-block:: bash
+
+      $ docker build -t acme/my-final-image:1.0 -f Dockerfile .
+
+      Sending build context to Docker daemon  4.096kB
+      Step 1/2 : FROM acme/my-base-image:1.0
+       ---> bd09118bcef6
+      Step 2/2 : CMD /app/hello.sh
+       ---> Running in a07b694759ba
+       ---> dbf995fc07ff
+      Removing intermediate container a07b694759ba
+      Successfully built dbf995fc07ff
+      Successfully tagged acme/my-final-image:1.0
+
+.. 7.  Check out the sizes of the images:
+
+7. 2 つのイメージのサイズを確認します。
+
+   ..  ```bash
+       $ docker images
+
+       REPOSITORY                                            TAG                          IMAGE ID            CREATED             SIZE
+       acme/my-final-image                                   1.0                          dbf995fc07ff        58 seconds ago      103MB
+       acme/my-base-image                                    1.0                          bd09118bcef6        3 minutes ago       103MB
+       ```
+   .. code-block:: bash
+
+      $ docker images
+
+      REPOSITORY                                            TAG                          IMAGE ID            CREATED             SIZE
+      acme/my-final-image                                   1.0                          dbf995fc07ff        58 seconds ago      103MB
+      acme/my-base-image                                    1.0                          bd09118bcef6        3 minutes ago       103MB
+
+.. 8.  Check out the layers that comprise each image:
+
+8. それぞれのイメージに含まれるレイヤを確認します。
+
+   ..  ```bash
+       $ docker history bd09118bcef6
+       IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+       bd09118bcef6        4 minutes ago       /bin/sh -c #(nop) COPY dir:35a7eb158c1504e...   100B                
+       31005225a745        3 months ago        /bin/sh -c #(nop)  CMD ["/bin/bash"]            0B                  
+       <missing>           3 months ago        /bin/sh -c mkdir -p /run/systemd && echo '...   7B                  
+       <missing>           3 months ago        /bin/sh -c sed -i 's/^#\s*\(deb.*universe\...   2.78kB              
+       <missing>           3 months ago        /bin/sh -c rm -rf /var/lib/apt/lists/*          0B                  
+       <missing>           3 months ago        /bin/sh -c set -xe   && echo '#!/bin/sh' >...   745B                
+       <missing>           3 months ago        /bin/sh -c #(nop) ADD file:eef57983bd66e3a...   103MB      
+       ```
+   .. code-block:: bash
+
+      $ docker history bd09118bcef6
+      IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+      bd09118bcef6        4 minutes ago       /bin/sh -c #(nop) COPY dir:35a7eb158c1504e...   100B                
+      31005225a745        3 months ago        /bin/sh -c #(nop)  CMD ["/bin/bash"]            0B                  
+      <missing>           3 months ago        /bin/sh -c mkdir -p /run/systemd && echo '...   7B                  
+      <missing>           3 months ago        /bin/sh -c sed -i 's/^#\s*\(deb.*universe\...   2.78kB              
+      <missing>           3 months ago        /bin/sh -c rm -rf /var/lib/apt/lists/*          0B                  
+      <missing>           3 months ago        /bin/sh -c set -xe   && echo '#!/bin/sh' >...   745B                
+      <missing>           3 months ago        /bin/sh -c #(nop) ADD file:eef57983bd66e3a...   103MB      
+
+   ..  ```bash
+       $ docker history dbf995fc07ff
+
+       IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+       dbf995fc07ff        3 minutes ago       /bin/sh -c #(nop)  CMD ["/bin/sh" "-c" "/a...   0B                  
+       bd09118bcef6        5 minutes ago       /bin/sh -c #(nop) COPY dir:35a7eb158c1504e...   100B                
+       31005225a745        3 months ago        /bin/sh -c #(nop)  CMD ["/bin/bash"]            0B                  
+       <missing>           3 months ago        /bin/sh -c mkdir -p /run/systemd && echo '...   7B                  
+       <missing>           3 months ago        /bin/sh -c sed -i 's/^#\s*\(deb.*universe\...   2.78kB              
+       <missing>           3 months ago        /bin/sh -c rm -rf /var/lib/apt/lists/*          0B                  
+       <missing>           3 months ago        /bin/sh -c set -xe   && echo '#!/bin/sh' >...   745B                
+       <missing>           3 months ago        /bin/sh -c #(nop) ADD file:eef57983bd66e3a...   103MB  
+       ```
+   .. code-block:: bash
+
+      $ docker history dbf995fc07ff
+
+      IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+      dbf995fc07ff        3 minutes ago       /bin/sh -c #(nop)  CMD ["/bin/sh" "-c" "/a...   0B                  
+      bd09118bcef6        5 minutes ago       /bin/sh -c #(nop) COPY dir:35a7eb158c1504e...   100B                
+      31005225a745        3 months ago        /bin/sh -c #(nop)  CMD ["/bin/bash"]            0B                  
+      <missing>           3 months ago        /bin/sh -c mkdir -p /run/systemd && echo '...   7B                  
+      <missing>           3 months ago        /bin/sh -c sed -i 's/^#\s*\(deb.*universe\...   2.78kB              
+      <missing>           3 months ago        /bin/sh -c rm -rf /var/lib/apt/lists/*          0B                  
+      <missing>           3 months ago        /bin/sh -c set -xe   && echo '#!/bin/sh' >...   745B                
+      <missing>           3 months ago        /bin/sh -c #(nop) ADD file:eef57983bd66e3a...   103MB  
+
+   ..  Notice that all the layers are identical except the top layer of the second
+       image. All the other layers are shared between the two images, and are only
+       stored once in `/var/lib/docker/`. The new layer actually doesn't take any
+       room at all, because it is not changing any files, but only running a command.
+
+    ほぼすべてのレイヤが同一であって、ただ 2 つめのイメージの最上位レイヤだけが違うのがわかります。
+    これを除けば、すべてのレイヤが 2 つのイメージ間で共有されているので、各レイヤは ``/var/lib/docker/`` には一度しか保存されません。
+    新たにできたレイヤは、まったくと言ってよいほどに容量をとっていません。
+    というのも、そのレイヤは何かのファイルを変更するわけでなく、単にコマンドを実行するだけのものであるからです。
+
+   ..  > **Note**: The `<missing>` lines in the `docker history` output indicate
+       > that those layers were built on another system and are not available
+       > locally. This can be ignored.
+
+   .. note::
+
+      ``docker history`` の出力において ``<missing>`` として示される行は、そのレイヤが他のシステムにおいてビルドされていることを示しています。
+      したがってローカルシステム上では利用することができません。
+      この表示は無視して構いません。
+
+.. ### Copying makes containers efficient
+
+.. _copying-makes-containers-efficient:
+
+コピーによりコンテナーを効率的に
+---------------------------------
+
+.. When you start a container, a thin writable container layer is added on top of
+   the other layers. Any changes the container makes to the filesystem are stored
+   here. Any files the container does not change do not get copied to this writable
+   layer. This means that the writable layer is as small as possible.
+
+コンテナを起動すると、それまであったレイヤの最上部に、書き込み可能な薄いコンテナ・レイヤが加えられます。
+コンテナがファイルシステムに対して行った変更は、すべてそこに保存されます。
+コンテナが変更を行っていないファイルは、その書き込みレイヤにはコピーされません。
+つまり書き込みレイヤは、できるだけ容量が小さく抑えられることになります。
+
+.. When an existing file in a container is modified, the storage driver performs a
+   copy-on-write operation. The specifics steps involved depend on the specific
+   storage driver. For the default `aufs` driver and the `overlay` and `overlay2`
+   drivers, the copy-on-write operation follows this rough sequence:
+
+コンテナ内にあるファイルが修正されると、ストレージ・ドライバはコピー・オン・ライト方式により動作します。
+そこで実行される各処理は、ストレージ・ドライバによってさまざまです。
+``aufs``, ``overlay``, ``overlay2`` といったドライバの場合、だいたい以下のような順にコピー・オン・ライト方式による処理が行われます。
+
+.. *  Search through the image layers for the file to update. The process starts
+      at the newest layer and works down to the base layer one layer at a time.
+      When results are found, they are added to a cache to speed future operations.
+
+* 更新するべきファイルをイメージ・レイヤ内から探します。
+  この処理は最新のレイヤから始まって、ベース・レイヤに向けて順に降りていき、一度に 1 つのレイヤを処理していきます。
+  ファイルが見つかるとこれをキャッシュに加えて、次回以降の処理スピードを上げることに備えます。
+
+.. *  Perform a `copy_up` operation on the first copy of the file that is found, to
+      copy the file to the container's writable layer.
+
+* 見つかったファイルを初めてコピーするときには ``copy_up`` という処理が行われます。
+  これによってそのファイルをコンテナの書き込みレイヤにコピーします。
+
+.. *  Any modifications are made to this copy of the file, and the container cannot
+      see the read-only copy of the file that exists in the lower layer.
+
+* 修正が発生すると、コピーを行ったそのファイルが処理されます。
+  つまりコンテナは、下位のレイヤ内に存在している読み込み専用のそのファイルを見にいくことはありません。
+
+.. Btrfs, ZFS, and other drivers handle the copy-on-write differently. You can
+   read more about the methods of these drivers later in their detailed
+   descriptions.
+
+Btrfs, ZFS といったドライバにおけるコピー・オン・ライト方式は、これとは異なります。
+そのようなドライバが行う手法の詳細は、後述するそれぞれの詳細説明を参照してください。
+
+.. Containers that write a lot of data will consume more space than containers
+   that do not. This is because most write operations consume new space in the
+   container's thin writable top layer.
+
+データを大量に書き込むようなコンテナは、そういった書き込みを行わないコンテナに比べて、データ領域をより多く消費します。
+コンテナの最上位にある書き込み可能な薄いレイヤ上に対して書き込み処理を行うことは、たいていが新たなデータ領域を必要とするためです。
+
+.. > **Note**: for write-heavy applications, you should not store the data in
+   > the container. Instead, use Docker volumes, which are independent of the
+   > running container and are designed to be efficient for I/O. In addition,
+   > volumes can be shared among containers and do not increase the size of your
+   > container's writable layer.
 
 .. note::
 
-   上記のコマンドの末尾にあるピリオド（.）は重要です。これは ``docker build`` コマンドに対して、現在の作業用ディレクトリを構築時のコンテクスト（内容物）に含めると伝えるものです。
+   書き込みが頻繁に行われるアプリケーションにおいては、コンテナ内にデータを保存するべきではありません。
+   かわりに Docker ボリュームを利用してください。
+   Docker ボリュームは起動されるコンテナからは独立していて、効率的な入出力を行うように設計されています。
+   さらにボリュームは複数のコンテナ間での共有が可能であり、書き込みレイヤのサイズを増加させることもありません。
 
-..    The output above shows a new image with image ID 94e6b7d2c720.
+.. A `copy_up` operation can incur a noticeable performance overhead. This overhead
+   is different depending on which storage driver is in use. Large files,
+   lots of layers, and deep directory trees can make the impact more noticeable.
+   This is mitigated by the fact that each `copy_up` operation only occurs the first
+   time a given file is modified.
 
-この結果から、新しいイメージのイメージ ID が ``94e6b7d2c720`` だと分かります。
+``copy_up`` 処理は際立った性能のオーバーヘッドを招きます。
+このオーバーヘッドは、利用しているストレージ・ドライバによってさまざまです。
+大容量ファイル、多数のレイヤ、深いディレクトリ階層といったものが、さらに影響します。
+``copy_up`` 処理は対象となるファイルが初めて修正されたときにだけ実行されるので、オーバーヘッドはそれでも最小限に抑えられています。
 
-..     Run the docker images command to verify the new changed-ubuntu image is
-.. in the Docker host’s local storage area.
+.. To verify the way that copy-on-write works, the following procedures spins up 5
+   containers based on the `acme/my-final-image:1.0` image we built earlier and
+   examines how much room they take up.
 
-5. ``docker images`` コマンドを実行します。
+コピー・オン・ライトが動作している様子を確認するため、以下の例においては、前述した ``acme/my-final-image:1.0`` イメージをベースとする 5 つのコンテナを見ていきます。
+そして各コンテナがどれだけの容量を消費しているかを確認します。
 
-6. Docker ホスト上のローカル・ストレージ領域に、新しい ``changed-ubuntu`` イメージが作成されているかどうかを確認します。
-
-.. code-block:: bash
-
-   REPOSITORY       TAG      IMAGE ID       CREATED           SIZE
-   changed-ubuntu   latest   03b964f68d06   33 seconds ago    131.4 MB
-   ubuntu           15.04    013f3d01d247   6 weeks ago       131.3 MB
-
-..    Run the docker history command to see which image layers were used to create the new changed-ubuntu image.
-
-7. ``docker history`` コマンドを実行します。
-
-8. 新しい ``changed-ubuntu`` イメージが何のイメージによって作成されたか分かります。
-
-.. code-block:: bash
-
-   $ docker history changed-ubuntu
-   IMAGE               CREATED              CREATED BY                                      SIZE        COMMENT
-   94e6b7d2c720        2 minutes ago       /bin/sh -c echo "Hello world" > /tmp/newfile    12 B 
-   3f7bcee56709        6 weeks ago         /bin/sh -c #(nop) CMD ["/bin/bash"]             0 B  
-   <missing>           6 weeks ago         /bin/sh -c sed -i 's/^#\s*\(deb.*universe\)$/   1.879 kB
-   <missing>           6 weeks ago         /bin/sh -c echo '#!/bin/sh' > /usr/sbin/polic   701 B
-   <missing>           6 weeks ago         /bin/sh -c #(nop) ADD file:8e4943cd86e9b2ca13   131.3 MB
-
-..   The docker history output shows the new 94e6b7d2c720 image layer at the top. You know that this is the new image layer added because it was created by the echo "Hello world" > /tmp/newfile command in your Dockerfile. The 4 image layers below it are the exact same image layers that make up the ubuntu:15.04 image.
-
-``docker history`` の出力から、新しい ``94e6b7d2c720`` イメージ・レイヤが一番上にあることが分かります。 ``03b964f68d06`` レイヤとは、先ほどの ``Dockerfile`` で ``echo "Hello world" > /tmp/newfile`` コマンドでファイルを追加したものだと分かります。そして、４つのイメージ・レイヤは、先ほど ``ubuntu:15.04`` イメージを構築する時に使ったレイヤと一致していることが分かります。
-
-..   Note: Under the content addressable storage model introduced with Docker 1.10, image history data is no longer stored in a config file with each image layer. It is now stored as a string of text in a single config file that relates to the overall image. This can result in some image layers showing as “missing” in the output of the docker history command. This is normal behaviour and can be ignored.
-..    You may hear images like these referred to as flat images.
+.. > **Note**: This procedure won't work on Docker for Mac or Docker for Windows.
 
 .. note::
 
-   Docker 1.10 で導入された連想ストレージ・モデル（content addressable storage model）下では、イメージの履歴データは各イメージ・レイヤの設定ファイル上に保存されません。これからは、イメージ全体に関連する、単一の設定ファイル上の文字列に保管されます。これにより、 ``docker history`` コマンドを実行したら、いくつかのイメージ・レイヤは「missing」（行方不明）と表示されるでしょう。しかしこれは通常の動作であり、無視して構いません。
-   
-   これらのイメージを *フラット・イメージ (flat images)* として読んでいるのを耳にしているかも知れません。
+   以下の手順は Docker Desktop for Mac または Docker Desktop for Windows では動作しません。
 
-.. Notice the new changed-ubuntu image does not have its own copies of every layer. As can be seen in the diagram below, the new image is sharing it’s four underlying layers with the ubuntu:15.04 image.
+.. 1.  From a terminal on your Docker host, run the following `docker run` commands.
+       The strings at the end are the IDs of each container.
 
-新しい ``changed-ubuntu`` イメージは各レイヤのコピーを自分自身で持っていないことに注意してください。下図にあるように、``ubuntu:15.04`` イメージの下にある４つのレイヤを、新しいイメージでも共有しているのです。
+1. Docker ホスト上の端末画面から、以下のような ``docker run`` コマンドを実行します。
+   各行の終わりには、各コンテナの ID を入力します。
 
-.. image:: ./images/saving-space.png
-   :scale: 60%
-   :alt: レイヤの共有
+   ..  ```bash
+       $ docker run -dit --name my_container_1 acme/my-final-image:1.0 bash \
+         && docker run -dit --name my_container_2 acme/my-final-image:1.0 bash \
+         && docker run -dit --name my_container_3 acme/my-final-image:1.0 bash \
+         && docker run -dit --name my_container_4 acme/my-final-image:1.0 bash \
+         && docker run -dit --name my_container_5 acme/my-final-image:1.0 bash
 
-.. The docker history command also shows the size of each image layer. As you can see, the 94e6b7d2c720 layer is only consuming 12 Bytes of disk space. This means that the changed-ubuntu image we just created is only consuming an additional 12 Bytes of disk space on the Docker host - all layers below the 94e6b7d2c720 layer already exist on the Docker host and are shared by other images.
+         c36785c423ec7e0422b2af7364a7ba4da6146cbba7981a0951fcc3fa0430c409
+         dcad7101795e4206e637d9358a818e5c32e13b349e62b00bf05cd5a4343ea513
+         1e7264576d78a3134fbaf7829bc24b1d96017cf2bc046b7cd8b08b5775c33d0c
+         38fa94212a419a082e6a6b87a8e2ec4a44dd327d7069b85892a707e3fc818544
+         1a174fc216cccf18ec7d4fe14e008e30130b11ede0f0f94a87982e310cf2e765
+       ```
+   .. code-block:: bash
 
-また、``docker history`` コマンドは各イメージ・レイヤのサイズも表示します。 ``94e6b7d2c720`` は 12 バイトのディスク容量です。つまり、 ``changed-ubuntu`` は Docker ホスト上の 12 バイトのディスク容量しか消費しません。これは、 ``94e6b7d2c720`` よりも下層のレイヤにあたるものが Docker ホスト上に存在しており、これらは ``changed-ubuntu`` イメージとして共有されているからです。
+      $ docker run -dit --name my_container_1 acme/my-final-image:1.0 bash \
+        && docker run -dit --name my_container_2 acme/my-final-image:1.0 bash \
+        && docker run -dit --name my_container_3 acme/my-final-image:1.0 bash \
+        && docker run -dit --name my_container_4 acme/my-final-image:1.0 bash \
+        && docker run -dit --name my_container_5 acme/my-final-image:1.0 bash
 
-.. This sharing of image layers is what makes Docker images and containers so space efficient.
+        c36785c423ec7e0422b2af7364a7ba4da6146cbba7981a0951fcc3fa0430c409
+        dcad7101795e4206e637d9358a818e5c32e13b349e62b00bf05cd5a4343ea513
+        1e7264576d78a3134fbaf7829bc24b1d96017cf2bc046b7cd8b08b5775c33d0c
+        38fa94212a419a082e6a6b87a8e2ec4a44dd327d7069b85892a707e3fc818544
+        1a174fc216cccf18ec7d4fe14e008e30130b11ede0f0f94a87982e310cf2e765
 
-このイメージ・レイヤの共有により、Docker イメージとコンテナの領域を効率的に扱えます。
+.. 2.  Run the `docker ps` command to verify the 5 containers are running.
 
-.. Copying makes containers efficient
+2. ``docker ps`` コマンドを実行して、5 つのコンテナが実行中であることを確認します。
 
-.. _copying-maked-containers-efficient:
+   ..  ```bash
+       CONTAINER ID        IMAGE                     COMMAND                  CREATED              STATUS              PORTS               NAMES
+       1a174fc216cc        acme/my-final-image:1.0   "bash"                   About a minute ago   Up About a minute                       my_container_5
+       38fa94212a41        acme/my-final-image:1.0   "bash"                   About a minute ago   Up About a minute                       my_container_4
+       1e7264576d78        acme/my-final-image:1.0   "bash"                   About a minute ago   Up About a minute                       my_container_3
+       dcad7101795e        acme/my-final-image:1.0   "bash"                   About a minute ago   Up About a minute                       my_container_2
+       c36785c423ec        acme/my-final-image:1.0   "bash"                   About a minute ago   Up About a minute                       my_container_1
+       ```
+   .. code-block:: bash
 
-コンテナを効率的にコピー
-------------------------------
+      CONTAINER ID        IMAGE                     COMMAND                  CREATED              STATUS              PORTS               NAMES
+      1a174fc216cc        acme/my-final-image:1.0   "bash"                   About a minute ago   Up About a minute                       my_container_5
+      38fa94212a41        acme/my-final-image:1.0   "bash"                   About a minute ago   Up About a minute                       my_container_4
+      1e7264576d78        acme/my-final-image:1.0   "bash"                   About a minute ago   Up About a minute                       my_container_3
+      dcad7101795e        acme/my-final-image:1.0   "bash"                   About a minute ago   Up About a minute                       my_container_2
+      c36785c423ec        acme/my-final-image:1.0   "bash"                   About a minute ago   Up About a minute                       my_container_1
 
-.. You learned earlier that a container a Docker image with a thin writable, container layer added. The diagram below shows the layers of a container based on the ubuntu:15.04 image:
+.. 3.  List the contents of the local storage area.
 
-先ほど学んだように、Docker イメージのコンテナとは、書き込み可能なコンテナ・レイヤを追加したものです。以下の図は ``ubuntu:15.04`` をコンテナのベース・レイヤと下層レイヤを表示しています。
+3. ローカルの保存ディレクトリの内容を一覧表示します。
 
-.. image:: ./images/container-layers-cas.png
-   :scale: 60%
-   :alt: コンテナ・レイヤとイメージ
+   ..  ```bash
+       $ sudo ls /var/lib/docker/containers
 
-.. All writes made to a container are stored in the thin writable container layer. The other layers are read-only (RO) image layers and can’t be changed. This means that multiple containers can safely share a single underlying image. The diagram below shows multiple containers sharing a single copy of the ubuntu:15.04 image. Each container has its own thin RW layer, but they all share a single instance of the ubuntu:15.04 image:
+       1a174fc216cccf18ec7d4fe14e008e30130b11ede0f0f94a87982e310cf2e765
+       1e7264576d78a3134fbaf7829bc24b1d96017cf2bc046b7cd8b08b5775c33d0c
+       38fa94212a419a082e6a6b87a8e2ec4a44dd327d7069b85892a707e3fc818544
+       c36785c423ec7e0422b2af7364a7ba4da6146cbba7981a0951fcc3fa0430c409
+       dcad7101795e4206e637d9358a818e5c32e13b349e62b00bf05cd5a4343ea513
+       ```
+   .. code-block:: bash
 
-コンテナに対する全ての書き込みは、書き込み可能なコンテナ・レイヤに保管されます。他のレイヤは読み込み専用（read-only、RO）のイメージ・レイヤであり、変更できません。つまり、複数のコンテナが下層にある１つのイメージを安全に共有できます。以下の図は、複数のコンテナが ``ubuntu:15.04`` イメージのコピーを共有しています。各コンテナは自分自身で読み書き可能なレイヤを持っていますが、どれもが ubuntu:15.04 イメージという単一のインスタンス（イメージ）を共有しています。
+      $ sudo ls /var/lib/docker/containers
 
-.. image:: ./images/sharing-layers.png
-   :scale: 60%
-   :alt: レイヤの共有
+      1a174fc216cccf18ec7d4fe14e008e30130b11ede0f0f94a87982e310cf2e765
+      1e7264576d78a3134fbaf7829bc24b1d96017cf2bc046b7cd8b08b5775c33d0c
+      38fa94212a419a082e6a6b87a8e2ec4a44dd327d7069b85892a707e3fc818544
+      c36785c423ec7e0422b2af7364a7ba4da6146cbba7981a0951fcc3fa0430c409
+      dcad7101795e4206e637d9358a818e5c32e13b349e62b00bf05cd5a4343ea513
 
-.. When an existing file in a container is modified, Docker uses the storage driver to perform a copy-on-write operation. The specifics of operation depends on the storage driver. For the AUFS and OverlayFS storage drivers, the copy-on-write operation is pretty much as follows:
+.. 4.  Now check out their sizes:
 
-コンテナの中で書き込み作業が発生したら、Docker はストレージ・ドライバでコピー・オン・ライト処理を実行します。この処理はストレージ・ドライバに依存します。AUFS と OverlayFS ストレージ・ドライバは、コピー・オン・ライト処理を、おおよそ次のように行います。
+4. 各サイズを確認します。
 
-..    Search through the layers for the file to update. The process starts at the top, newest layer and works down to the base layer one-at-a-time.
-    Perform a “copy-up” operation on the first copy of the file that is found. A “copy up” copies the file up to the container’s own thin writable layer.
-    Modify the copy of the file in container’s thin writable layer.
+   ..  ```bash
+       $ sudo du -sh /var/lib/docker/containers/*
 
-* レイヤ上のファイルが更新されていないか確認します。まずこの手順が新しいレイヤに対して行われ、以降は１つ１つのベースになったレイヤをたどります。
-* ファイルに対して初めての処理が始まると「コピー開始」（copy-up）をします。「コピー開始」とは、コンテナ自身が持つ薄い書き込み可能なレイヤから、ファイルをコピーすることです。
-* コンテナの薄い書き込み可能なレイヤに *ファイル* を *コピー* してから、（そのファイルに）変更を加えます。
+       32K  /var/lib/docker/containers/1a174fc216cccf18ec7d4fe14e008e30130b11ede0f0f94a87982e310cf2e765
+       32K  /var/lib/docker/containers/1e7264576d78a3134fbaf7829bc24b1d96017cf2bc046b7cd8b08b5775c33d0c
+       32K  /var/lib/docker/containers/38fa94212a419a082e6a6b87a8e2ec4a44dd327d7069b85892a707e3fc818544
+       32K  /var/lib/docker/containers/c36785c423ec7e0422b2af7364a7ba4da6146cbba7981a0951fcc3fa0430c409
+       32K  /var/lib/docker/containers/dcad7101795e4206e637d9358a818e5c32e13b349e62b00bf05cd5a4343ea513
+       ```
+   .. code-block:: bash
 
-.. BTFS, ZFS, and other drivers handle the copy-on-write differently. You can read more about the methods of these drivers later in their detailed descriptions.
+      $ sudo du -sh /var/lib/docker/containers/*
 
-BTRFS、ZFS 、その他のドライバは、コピー・オン・ライトを異なった方法で処理します。これらのドライバの手法については、後述するそれぞれの詳細説明をご覧ください。
+      32K  /var/lib/docker/containers/1a174fc216cccf18ec7d4fe14e008e30130b11ede0f0f94a87982e310cf2e765
+      32K  /var/lib/docker/containers/1e7264576d78a3134fbaf7829bc24b1d96017cf2bc046b7cd8b08b5775c33d0c
+      32K  /var/lib/docker/containers/38fa94212a419a082e6a6b87a8e2ec4a44dd327d7069b85892a707e3fc818544
+      32K  /var/lib/docker/containers/c36785c423ec7e0422b2af7364a7ba4da6146cbba7981a0951fcc3fa0430c409
+      32K  /var/lib/docker/containers/dcad7101795e4206e637d9358a818e5c32e13b349e62b00bf05cd5a4343ea513
 
-.. Containers that write a lot of data will consume more space than containers that do not. This is because most write operations consume new space in the containers thin writable top layer. If your container needs to write a lot of data, you can use a data volume.
+   ..  Each of these containers only takes up 32k of space on the filesystem.
 
-たくさんのデータが書き込まれたコンテナは、何もしないコンテナに比べて多くのディスク容量を消費します。これは書き込み操作の発生によって、コンテナの薄い書き込み可能なレイヤ上に、更に新しい領域を消費するためです。もしコンテナが多くのデータを使う必要があるのであれば、データ・ボリュームを使うこともできます。
+   各コンテナは、ファイルシステム上において 32k しか容量をとっていません。
 
-.. A copy-up operation can incur a noticeable performance overhead. This overhead is different depending on which storage driver is in use. However, large files, lots of layers, and deep directory trees can make the impact more noticeable. Fortunately, the operation only occurs the first time any particular file is modified. Subsequent modifications to the same file do not cause a copy-up operation and can operate directly on the file’s existing copy already present in container layer.
+.. Not only does copy-on-write save space, but it also reduces start-up time.
+   When you start a container (or multiple containers from the same image), Docker
+   only needs to create the thin writable container layer.
 
-コピー開始処理は、顕著な性能のオーバーヘッド（処理時間の増加）を招きます。このオーバーヘッドは、利用するストレージ・ドライバによって異なります。しかし、大きなファイル、多くのレイヤ、深いディレクトリ・ツリーが顕著な影響を与えます。幸いにも、これらの処理が行われるのは、何らかのファイルに対する変更が初めて行われた時だけです。同じファイルに対する変更が再度行われても、コピー開始処理は行われず、コンテナ・レイヤ上に既にコピーしてあるファイルに対してのみ変更を加えます。
+コピー・オン・ライト方式は容量を抑えるだけでなく、起動時間も節約します。
+コンテナを起動するとき（あるいは同一イメージからなる複数コンテナを起動するとき）、Docker が必要とするのは、書き込み可能な薄いコンテナ・レイヤを生成することだけだからです。
 
-.. Let’s see what happens if we spin up 5 containers based on our changed-ubuntu image we built earlier:
+.. If Docker had to make an entire copy of the underlying image stack each time it
+   started a new container, container start times and disk space used would be
+   significantly increased. This would be similar to the way that virtual machines
+   work, with one or more virtual disks per virtual machine.
 
-先ほど構築した ``changed-ubuntu`` イメージの元となる５つのコンテナに対し、何が起こっているのか見ていきましょう。
-
-..    From a terminal on your Docker host, run the following docker run command 5 times.
-
-1. Docker ホスト上のターミナルで、 次のように ``docker run`` コマンドを５回実行します。
-
-.. code-block:: bash
-
-   $ docker run -dit changed-ubuntu bash
-   75bab0d54f3cf193cfdc3a86483466363f442fba30859f7dcd1b816b6ede82d4
-   $ docker run -dit changed-ubuntu bash
-   9280e777d109e2eb4b13ab211553516124a3d4d4280a0edfc7abf75c59024d47
-   $ docker run -dit changed-ubuntu bash
-   a651680bd6c2ef64902e154eeb8a064b85c9abf08ac46f922ad8dfc11bb5cd8a
-   $ docker run -dit changed-ubuntu bash
-   8eb24b3b2d246f225b24f2fca39625aaad71689c392a7b552b78baf264647373
-   $ docker run -dit changed-ubuntu bash
-   0ad25d06bdf6fca0dedc38301b2aff7478b3e1ce3d1acd676573bba57cb1cfef
-
-.. This launches 5 containers based on the changed-ubuntu image. As each container is created, Docker adds a writable layer and assigns it a random UUID. This is the value returned from the docker run command.
-
-これは ``changed-ubuntu`` イメージを元に、５つのコンテナを起動します。コンテナを作成したことで、Docker は書き込みレイヤを追加し、そこにランダムな UUID を割り当てます。この値は、 ``docker run`` コマンドを実行して返ってきたものです。
-
-..    Run the docker ps command to verify the 5 containers are running.
-
-2. ``docker ps`` コマンドを実行し、５つのコンテナが実行中なのを確認します。
-
-.. code-block:: bash
-
-   $ docker ps
-   CONTAINER ID    IMAGE             COMMAND    CREATED              STATUS              PORTS    NAMES
-   0ad25d06bdf6    changed-ubuntu    "bash"     About a minute ago   Up About a minute            stoic_ptolemy
-   8eb24b3b2d24    changed-ubuntu    "bash"     About a minute ago   Up About a minute            pensive_bartik
-   a651680bd6c2    changed-ubuntu    "bash"     2 minutes ago        Up 2 minutes                 hopeful_turing
-   9280e777d109    changed-ubuntu    "bash"     2 minutes ago        Up 2 minutes                 backstabbing_mahavira
-   75bab0d54f3c    changed-ubuntu    "bash"     2 minutes ago        Up 2 minutes                 boring_pasteur
-
-..    The output above shows 5 running containers, all sharing the changed-ubuntu image. Each CONTAINER ID is derived from the UUID when creating each container.
-
-上記の結果から、 ``changed-ubuntu`` イメージを全て共有する５つのコンテナが実行中だと分かります。それぞれの ``コンテナ ID`` は各コンテナ作成時の UUID から与えられています。
-
-..    List the contents of the local storage area.
-
-3. ローカル・ストレージ領域のコンテナ一覧を表示します。
-
-.. code-block:: bash
-
-   $ sudo ls containers
-   0ad25d06bdf6fca0dedc38301b2aff7478b3e1ce3d1acd676573bba57cb1cfef  9280e777d109e2eb4b13ab211553516124a3d4d4280a0edfc7abf75c59024d47
-   75bab0d54f3cf193cfdc3a86483466363f442fba30859f7dcd1b816b6ede82d4  a651680bd6c2ef64902e154eeb8a064b85c9abf08ac46f922ad8dfc11bb5cd8a
-   8eb24b3b2d246f225b24f2fca39625aaad71689c392a7b552b78baf264647373
-
-（訳者注：上記コマンドは、 ``/var/lib/docker`` ディレクトリで実行してください。）
-
-.. Docker’s copy-on-write strategy not only reduces the amount of space consumed by containers, it also reduces the time required to start a container. At start time, Docker only has to create the thin writable layer for each container. The diagram below shows these 5 containers sharing a single read-only (RO) copy of the changed-ubuntu image.
-
-Docker のコピー・オン・ライト方式により、コンテナによるディスク容量の消費を減らすだけではなく、コンテナ起動時の時間も短縮します。起動時に、Docker はコンテナごとに薄い書き込み可能なレイヤを作成します。次の図は ``changed-ubuntu`` イメージの読み込み専用のコピーを、５つのコンテナで共有しています。
-
-.. image:: ./images/shared-uuid.png
-   :scale: 60%
-   :alt: レイヤの共有
-
-.. If Docker had to make an entire copy of the underlying image stack each time it started a new container, container start times and disk space used would be significantly increased.
-
-もし新しいコンテナを開始する度に元になるイメージ・レイヤ全体をコピーするのであれば、コンテナの起動時間とディスク使用量が著しく増えてしまうでしょう。
+仮に Docker が新たなコンテナを起動するたびに、その元にあるイメージ層をすべてコピーしなければならないとしたら、起動時間やディスク容量は著しく増大しているはずです。
+このことは仮想マシン技術において、複数の仮想ディスクが仮想マシン 1 つに対して動作している様子にも似ています。
 
 .. Data volumes and the storage driver
 
@@ -598,5 +815,5 @@ Docker のコピー・オン・ライト方式により、コンテナによる�
 
 .. seealso:: 
 
-   Understand images, containers, and storage drivers
+   About images, containers, and storage drivers
       https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/

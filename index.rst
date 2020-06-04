@@ -196,6 +196,7 @@ Docs archive
    :maxdepth: 1
    :caption: Docs アーカイブ
 
+   v17.06 <http://docs.docker.jp/v17.06/>
    v1.12 <http://docs.docker.jp/v1.12/>
    v1.11 <http://docs.docker.jp/v1.11/>
    v1.10 <http://docs.docker.jp/v1.10/>
