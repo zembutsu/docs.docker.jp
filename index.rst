@@ -137,8 +137,14 @@ Doc v19.03 目次
    :caption: Guides - ガイド
    :maxdepth: 1
 
-   engine/installation/toc.rst
+   get-docker.rst
    get-started/toc.rst
+   develop/toc.rst
+   production.rst
+   opensoruce/toc.rst
+   docsarchive.rst
+
+
 
 
 .. toctree::
@@ -147,6 +153,7 @@ Doc v19.03 目次
 
    Docker Engine <engine/toc.rst>
    Docker Compose <compose/toc.rst>
+   Docker Desktop <desktop/toc.rst>
    Docker Hub <docker-hub/index.rst>
    Docker Machine <machine/index.rst>
    Docker Toolbox <toolbox/index.rst>
