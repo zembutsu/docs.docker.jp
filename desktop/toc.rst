@@ -1,7 +1,7 @@
 .. -*- coding: utf-8 -*-
 .. 
 .. doc version: 19.03
-.. check date: 2020/06/04
+.. check date: 2020/06/06
 .. -----------------------------------------------------------------------------
 
 .. Docker Desktop
@@ -13,11 +13,10 @@ Docker Desktop
 ========================================
 
 .. toctree::
-   :hidden:
 
    概要 <index.rst>
-   Mac <docker-for-mac/toc.rst>
-   Windows <docker-for-windows/toc.rst>
-   ダッシュボード <desktop/dashboard.rst>
-   オープンソース・ライセンス <opensource/index.rst>
+   Mac </docker-for-mac/index.rst>
+   Windows </docker-for-windows/toc.rst>
+   ダッシュボード </desktop/dashboard.rst>
+   オープンソース・ライセンス </desktop/opensource/index.rst>
 
