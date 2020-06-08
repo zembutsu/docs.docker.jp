@@ -26,6 +26,6 @@ Docker Desktop for Mac
    troubleshoot.rst
    faq.rst
    release-notes.rst
-   edge-release-note.rst
+   edge-release-notes.rst
    mutagen-caching.rst
 
