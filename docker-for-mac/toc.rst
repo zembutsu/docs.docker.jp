@@ -15,7 +15,7 @@ Docker Desktop for Mac
 .. toctree::
 
    install.rst
-   docker-for-mac.rst
+   index.rst
    kubernetes.rst
    docker-toolbox.rst
    multi-arch.rst

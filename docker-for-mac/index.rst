@@ -692,6 +692,99 @@ Fish-shell もまた、タブ補完による `補完システム <https://fishsh
 
 .. _mac-give-feedback-and-get-help:
 
+フィードバックやヘルプを得るには
+========================================
+
+.. To get help from the community, review current user topics, join or start a discussion, log on to our Docker Desktop for Mac forum.
+
+コミュニティからのヘルプを得たり、現在のユーザートピックを見たり、ディスカッションに参加・開始するには `Docker Desktop for Mac forum <https://forums.docker.com/c/docker-for-mac>`_ にログオンください。
+
+.. To report bugs or problems, log on to Docker Desktop for Mac issues on GitHub, where you can review community reported issues, and file new ones. See Logs and Troubleshooting for more details.
+
+バグや問題の報告をするには、 `GitHub の Mac issues <https://github.com/docker/for-mac/issues>`_  にログオンし、そこでコミュニティに報告された報告を見たり、新しい課題を追加できます。詳細は [ログとトラブルシューティング] をご覧ください。
+
+.. For information about providing feedback on the documentation or update it yourself, see Contribute to documentation.
+
+ドキュメントのに対するフェイードバックの提供や、自分自身で更新する方法は、 :doc:`コントリビュート </opensource/toc>` のドキュメントをご覧ください。
+
+.. Docker Hub
+
+.. _mac-docker-hub:
+
+Docker Hub
+====================
+
+.. Select Sign in /Create Docker ID from the Docker Desktop menu to access your Docker Hub account. Once logged in, you can access your Docker Hub repositories and organizations directly from the Docker Desktop menu.
+
+自分の `Docker Hub <https://hub.docker.com/>`_  アカウントでアクセスするには、Docker Desktop のメニューから **Sing in/Create Docker ID ** （サインイン/Docker ID 作成）を選びます。一度ログインしておけば、Docker Desktop のメニューから Docker Hub リポジトリに直接アクセス可能になります。
+
+.. For more information, refer to the following Docker Hub topics:
+
+詳しい情報は、以下の :doc:`Docker Hub 記事 </docker-hub/toc) をご覧ください。
+
+..    Organizations and Teams in Docker Hub
+    Builds
+
+* :doc:`/docker-hub/orgs`
+* :doc:`/docker-hub/builds`
+
+.. Two-factor authentication
+
+.. _mac-two-factor-authentication:
+
+二要素認証
+--------------------
+
+.. Docker Desktop enables you to sign into Docker Hub using two-factor authentication. Two-factor authentication provides an extra layer of security when accessing your Docker Hub account.
+
+Docker Desktop では、Docker Hub へのログインに二要素認証（Two-factor authentication）を有効化できます。二要素認証は Docker Hub アカウントにアクセスするとき、追加のセキュリティ段階を提供します。
+
+.. You must enable two-factor authentication in Docker Hub before signing into your Docker Hub account through Docker Desktop. For instructions, see Enable two-factor authentication for Docker Hub.
+
+Docker Hub での二要素認証を有効化する前に、Docker Desktop を通して Docker Hub アカウントにサインインする必要があります。手順は :doc:`Docker Hub で二要素認証を有効にする </docker-hub/2fa>` をご覧ください。
+
+.. After you have enabled two-factor authentication:
+
+二要素認証を有効化した後、
+
+..   Go to the Docker Desktop menu and then select Sign in / Create Docker ID.
+
+1. Docker Desktop のメニューから「 **Sign in / Create Docker ID** 」を選択。
+
+..    Enter your Docker ID and password and click Sign in.
+
+2. Docker ID とパスワードを入力し、 **Sign in** （サインイン）をクリック。
+
+..    After you have successfully signed in, Docker Desktop prompts you to enter the authentication code. Enter the six-digit code from your phone and then click Verify.
+
+3. サインインに成功した後、 Docker Desktop で認証コード（authentication code）の入力を求める画面が開きます。電話に届いた6桁のコードを入力し、 **Verify** （確認）をクリックします。
+
+.. Docker Desktop 2FA
+
+.. After you have successfully authenticated, you can access your organizations and repositories directly from the Docker Desktop menu.
+
+認証に成功したら、Docker Desktop のメニューから organization やリポジトリにアクセス可能になります。
+
+.. Where to go next
+
+次は何をしますか
+====================
+
+..    Try out the walkthrough at Get Started.
+
+* :doc:`始めましょう </get-started/index>` を一通り試しましょう。
+
+..    Dig in deeper with Docker Labs example walkthroughs and source code.
+
+* `Docker Labs <https://github.com/docker/labs/>`_  の例を通したりソースコードを深く掘り下げましょう。
+
+..    For a summary of Docker command line interface (CLI) commands, see Docker CLI Reference Guide.
+
+* Docker コマンドライン・インターフェース（CLI）コマンドのまとめについては、 :doc:`Docker CLI リファレンスガイド </engine/api>` をご覧ください。
+
+..    Check out the blog post, What’s New in Docker 17.06 Community Edition (CE).
+
+* `What's New in Docker 17.06 Community Edition (CE) <https://blog.docker.com/2017/07/whats-new-docker-17-06-community-edition-ce/>`_ のブログ記事をご覧ください。
 
 
 .. seealso:: 
