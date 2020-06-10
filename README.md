@@ -2,7 +2,7 @@
 
 http://docs.docker.jp
 
-Here is a translated documents  of Docker Version 1.13. 
+Here is a translated documents  of Docker Version v19.03. 
 Original (English) version is here; https://docs.docker.com/ 
 
 # build

@@ -5,8 +5,8 @@
    contain the root `toctree` directive.
 .. -----------------------------------------------------------------------------
 .. URL: https://docs.docker.com/
-   doc version: 17.06
-.. check date: 2017/09/01
+   doc version: 19.03 (current)
+.. check date: 2020/06/03
 .. -----------------------------------------------------------------------------
 
 .. Welcome to Docker-docs-ja's documentation!
@@ -20,7 +20,7 @@ Docker ドキュメント日本語化プロジェクト
 
 .. attention::
 
-  * Docker `17.06`  向けにドキュメントの改訂作業中です(2017年9月現在)。一部古い場合がありますので、ご注意ください。
+  * Docker `v19.03 (current)`  向けにドキュメントの改訂作業中です(2020年6月現在)。一部古い場合がありますので、ご注意ください。
   * Docker のドキュメントは常に変わり続けています。最新の情報については `公式ドキュメント <https://docs.docker.com/>`_ をご覧ください。
   * 本プロジェクトは有志による翻訳プロジェクトです。お気づきの点がございましたら、 `issue <https://github.com/zembutsu/docs.docker.jp/issues>`_ や `Pull Request <https://github.com/zembutsu/docs.docker.jp/pulls>`_ でお知らせ願います。
 
@@ -128,50 +128,51 @@ Docker を使い、コンテナをベースとしたアプリケーションを�
    複数のコンテナを使うアプリケーションを定義します。
 
 
-----
+---
 
-Doc v17.06 目次
+Doc v19.03 目次
 ====================
 
-
 .. toctree::
-   :caption: Guide - ガイド
+   :caption: Guides - ガイド
    :maxdepth: 1
 
-   engine/installation/toc.rst
+   get-docker.rst
    get-started/toc.rst
-   ユーザガイド <engine/toc.rst>
+   develop/toc.rst
+   production.rst
+   opensoruce/toc.rst
+   docsarchive.rst
+
+
+
 
 .. toctree::
-   :caption: Docker Compose
-   :maxdepth: 2
+   :caption: Product manuals - マニュアル
+   :maxdepth: 1
 
-   compose/toc.rst
-
-.. toctree::
-   :caption: Docker Hub
-   :maxdepth: 2
-
-   docker-hub/index.rst
-
-.. toctree::
-   :caption: Docker Machine
-   :maxdepth: 2
-
-   machine/index.rst
-
-.. toctree::
-   :caption: Docker Toolbox
-   :maxdepth: 2
-
+   Docker Engine <engine/toc.rst>
+   Docker Compose <compose/toc.rst>
+   Docker Desktop <desktop/toc.rst>
+   Docker Hub <docker-hub/index.rst>
+   Docker Machine <machine/index.rst>
    Docker Toolbox <toolbox/index.rst>
-
-.. toctree::
-   :caption: コンポーネント・プロジェクト
-   :maxdepth: 2
-
    registry/toc.rst
    swarm/toc.rst
+
+.. toctree::
+   :caption: Reference - 参考資料
+   :maxdepth: 1
+
+   コマンドライン・リファレンス <engine/reference/index.rst>
+   Dockerfile リファレンス <engine/reference/builder.rst>
+   Compose file リファレンス <compose/reference/toc.rst>
+   glossary.rst
+
+
+.. toctree::
+   :caption: Samples - サンプル
+   :maxdepth: 1
 
 
 About
@@ -182,7 +183,6 @@ About
    :caption: Docker について
 
    release-notes.rst
-   glossary.rst
    about.rst
    guide.rst
    pdf-download.rst
