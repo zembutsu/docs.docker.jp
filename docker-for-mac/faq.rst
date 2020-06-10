@@ -1,17 +1,17 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/docker-for-mac/troubleshoot/
+.. URL: https://docs.docker.com/docker-for-mac/faqs/
    doc version: 19.03
-      https://github.com/docker/docker.github.io/blob/master/docker-for-mac/troubleshoot.md
+      https://github.com/docker/docker.github.io/blob/master/docker-for-mac/faqs.md
 .. check date: 2020/06/10
-.. Commits on May 2-, 2020 a7806de7c56672370ec17c35cf9811f61a800a42
+.. Commits on Apr 23, 2020 087e391397a825aa21d9f81755d4b201ff5c4c06
 .. -----------------------------------------------------------------------------
 
-.. Logs and troubleshooting
+.. Frequently asked questions (FAQ)
 
-.. _mac-logs-and-troubleshooting:
+.. _mac-frequently-asked-questions-faq
 
 ==================================================
-ログとトラブルシューティング
+よくある質問と回答 [FAQ]
 ==================================================
 
 .. sidebar:: 目次
@@ -20,448 +20,334 @@
        :depth: 3
        :local:
 
-.. This page contains information on how to diagnose and troubleshoot Docker Desktop issues, send logs and communicate with the Docker Desktop team, use our forums and Success Center, browse and log issues on GitHub, and find workarounds for known problems.
 
-このページに含む情報は、どのようにして原因を追及し、問題を解決し、ログを送信し、Docker Desktop のチームとやりとりし、フォーラムやナレッジ・ハブで使ったり、GitHub 上で問題を見たり記録したり、既知の問題に対する回避策を発見する方法です。
+.. Stable and Edge releases 
 
-.. Troubleshoot
+.. _mac-stable-and-edge-releases:
 
-.. _docker-mac-trobuleshoot:
-
-トラブルシュート
+Stable と Edge リリース
 ==================================================
 
-.. Choose whale menu > Troubleshoot from the menu bar to see the troubleshoot options.
+.. How do I get the Stable or the Edge version of Docker Desktop?
 
-メニューバーにある Docker のアイコン > **Troubleshoot** を選択し、トラブルシュートのオプションを表示します。
+.. _mac-how-do-i-get-the-stable-or-the-edge-version-of-docker-desktop:
 
-.. Uninstall or reset Docker
+Docker Desktop の Stable か Edge 版を入手するには、どうしたら良いでしょうか？
+--------------------------------------------------------------------------------
 
-.. The Troubleshoot page contains the following options:
+.. You can download the Stable or the Edge version of Docker Desktop from Docker Hub.
 
-トラブルシュートのページには、以下のオプションを含みます。
+Docker Desktop の Stable や Edge 版は `Docker Hub <https://hub.docker.com/editions/community/docker-ce-desktop-windows/>`_ からダウンロードできます。
 
-..    Restart Docker Desktop: Select to restart Docker Desktop.
+.. For installation instructions, see Install Docker Desktop on Mac.
 
-* **Restart Docker Desktop** （Docker Desktop の再起動）: 選択すると、Docker Desktop を再起動します。
+インストール手順は :doc:`Mac に Docker Desktop をインストール <install>` を御覧ください。
 
-..    Run Diagnostics: Select this option to diagnose any issues on Docker Desktop. For detailed information about diagnostics, see Diagnose problems, send feedback, and create GitHub issues.
+.. What is the difference between the Stable and Edge versions of Docker Desktop?
 
-* **Run Diagnostics** （診断の開始）: このオプションを選択すると、Docker Desktop 上のあらゆる問題を診断します。診断に関する詳細情報は、 :ref:`mac-diagnose-problems-send-feedback-and-create-github-issues` を御覧ください。
+.. _mac-what-is-the-difference-between-the-stable-and-edge-versions-of-docker-desktop:
 
-..    Reset Kubernetes cluster: Select this option to delete all stacks and Kubernetes resources. For more information, see Kubernetes.
+Docker Desktop の Stable 版と Edge 版の違いは何ですか？
+------------------------------------------------------------
 
-* **Reset Kubernetes cluster** （Kubernetes クラスタのリセット）: このオプションを選択すると、全てのスタックと Kubernetes リソースを削除します。詳しい情報は :ref:`Kubernetes <mac-kubernetes>` を御覧ください。
+.. Two different download channels are available in the Community version of Docker Desktop:
 
-..    Reset disk image: This option resets all Docker data without a reset to factory defaults. Selecting this option results in the loss of existing settings.
+Docker Desktop のコミュニティ版では、2つのダウンロード・チャンネルがあります。
 
-* **Reset disk image** （ディスク・イメージのリセット）：設定などを初期値のデフォルトに戻さず、全ての Docker データをリセットします。このオプションを選択した結果、既存の設定は消滅します。
+.. The Stable channel provides a general availability release-ready installer for a fully baked and tested, more reliable app. The Stable version of Docker Desktop comes with the latest released version of Docker Engine. The release schedule is synched with Docker Engine releases and patch releases. On the Stable channel, you can select whether to send usage statistics and other data.
 
-..    Reset to factory defaults: Choose this option to reset all options on Docker Desktop to their initial state, the same as when Docker Desktop was first installed.
+**Stable チャンネル** は、完全に固められ、テスト済みであり、信頼できるアプリケーションとして、一般的に利用可能な準備が調っているリリースのインストーラを提供します。リリース時期は Docker エンジンのリリースとパッチ（修正版）リリースに同期しています。Stable チャンネルでは、利用状況統計や他のデータを送信するかどうか選択できます。
 
-* **Reset to factory defaults** （初期値のデフォルトにリセット）: このオプションを選択すると、Docker Desktop の全てのオプションを初期値にリセットし、Docker Desktop が始めてインストールされたのと同じ状態にします。
+.. The Edge channel provides an installer with new features we are working on, but is not necessarily fully tested. It comes with the experimental version of Docker Engine. Bugs, crashes, and issues are more likely to occur with the Edge version, but you get a chance to preview new functionality, experiment, and provide feedback as the apps evolve. Releases are typically more frequent than for Stable, often one or more per month. Usage statistics and crash reports are sent by default. You do not have the option to disable this on the Edge channel.
 
-..    Uninstall: Choose this option to remove Docker Desktop from your system.
+**Edge チャンネル** は、開発中の新機能を含むインストーラを提供しますが、必要なテストを十分に行っていません。Docker エンジンの実験的なバージョンを含みます。そのため、Edge バージョンの利用時には、バグ、クラッシュなど問題が発生する可能性があります。しかし、新機能のお試しや経験を得られるチャンスとなり、Docker Desktop の進化に対するフィードバックを提供します。一般的に、Edge リリースは Stable に比べ頻繁にリリースがあります。おおよそ、一ヶ月か一ヶ月おきのリリースです。デフォルトで利用統計情報やクラッシュ報告が送信されます。Edge チャンネルでは、これを無効化するオプションはありません。
 
-* **Uninstall** （アンインストール）：このオプションを選択すると、システム上から Docker Desktop を削除します。
+.. Can I switch between Stable and Edge versions of Docker Desktop?
 
-..    Uninstall Docker Desktop from the command line
+.. _mac-can-i-switch-between-stable-and-edge-versions-of-docker-desktop
 
-..    To uninstall Docker Desktop from a terminal, run: <DockerforMacPath> --uninstall. If your instance is installed in the default location, this command provides a clean uninstall:
+Docker Desktop の Stable と Edge 版を切り替えできますか？
+------------------------------------------------------------
 
-.. note:: **コマンドラインから Docker Desktop のアンインストール**
+.. Yes, you can switch between Stable and Edge versions. You can try out the Edge releases to see what’s new, then go back to Stable for other work. However, you can only have one version of Docker Desktop installed at a time. For more information, see Switch between Stable and Edge versions.
 
-   ターミナルから Docker Desktop をアンインストールするには、 :code:`<DockerforMacのパス> --uninstall` を実行します。実態がデフォルトの場所へインストールしている場合は、このコマンドの実行によってクリーンにアンインストールできます。
-   
-   .. code-block:: bash
-   
-      $ /Applications/Docker.app/Contents/MacOS/Docker --uninstall
-       Docker is running, exiting...
-       Docker uninstalled successfully. You can move the Docker application to the trash.
-   
-   コマンドラインでアンインストールを試みようとする時は、先の例とは異なり、アプリを機能的に見つけられないため、メニュー上からはアンインストールできません。
+はい、Stable と Edge 版を切り替え可能です。Edge リリースで何が新しくなったか試してみた後、Stable に戻って他のことができます。しかしながら、 **一度に Docker Desktop をインストールできるバージョンは、１つのみ** です。詳しい情報は :ref:`mac-switch-between-stable-and-edge-versions` を御覧ください。
 
-..    You might want to use the command-line uninstall if, for example, you find that the app is non-functional, and you cannot uninstall it from the menu.
+.. What is Docker.app?
 
-.. Diagnose problems, send feedback, and create GitHub issues
+.. _what-is-docker-app:
 
-.. _mac-diagnose-problems-send-feedback-and-create-github-issues:
-
-問題の診断、フィードバック送信、GItHub issues の作成
-=======================================================
-
-
-.. In-app diagnostics
-
-.. _mac-in-app-diagnostics:
-
-アプリ内診断
+Docker.app とは何ですか？
 --------------------------------------------------
 
-.. If you encounter problems for which you do not find solutions in this documentation, on Docker Desktop issues on GitHub, or the Docker Desktop forum, we can help you troubleshoot the log data.
+.. Docker.app is Docker Desktop on Mac. It bundles the Docker client and Docker Engine. Docker.app uses the macOS Hypervisor.framework to run containers, which means that a separate VirtualBox is not required to run Docker Desktop.
 
-発生した問題が、このページ内のドキュメントで解決できない場合は、 `GitHub の Docker Desktop <https://github.com/docker/for-mac/issues>`_ や `Docker Desktop for Mac forum <https://forums.docker.com/c/docker-for-mac>`_ で、ログデータのトラブルシュートに役立つ可能性があります。
-
-.. Choose whale menu > Troubleshoot > Run Diagnostics.
-
-Docker アイコン > **Troubleshoot**  > **Run Diagnostics** を選択します。
+`Docker.app` は Mac 上の Docker Desktop です。Docker クライアントと Docker Engine が同梱されています。 `Docker.app` は macOS Hypervisor.framework でコンテナを実行します。つまり Docker Desktop の実行に、別途 VirtualBox をセットアップする必要がありません。
 
 
-.. Diagnose & Feedback
+.. What are the system requirements for Docker Desktop?
 
-.. Once the diagnostics are available, you can upload them and obtain a Diagnostic ID, which must be provided when communicating with the Docker team. For more information on our policy regarding personal data, see how is personal data handled in Docker Desktop.
+.. _mac-what-are-the-system-requirements-for-docker-desktop:
 
-**Diagnose & Feedback** ウインドウが開始されたら、診断情報の収集が始まります。診断情報が取得可能であれば、アップロードするときに必要となる **Diagnostic ID** を得られます。これは Docker チームとやりとりするときに必須です。私たちの個人データ取り扱いポリシーに関する情報は :ref:`mac-how-is-personal-data-handled-in-docker-desktop` を御覧ください。
-
-.. Diagnostics & Feedback with ID
-
-.. If you click Report an issue, this opens Docker Desktop for Mac issues on GitHub in your web browser in a “New issue” template. Add the details before submitting the issue. Do not forget to copy/paste your diagnostic ID.
-
-**Report an issue** （問題を報告）をクリックすると `GitHub 上の Docker Desktop for Mac issues <https://github.com/docker/for-mac/issues/>`_ をウェブブラウザで開き、送信前に必要な一式が揃った "New issue" テンプレートが適用されます。その際に Diagnostic ID （診断 ID）の添付を忘れないでください。
-
-
-.. Diagnosing from the terminal
-
-.. _diagnosing-from-the-terminal:
-
-ターミナルから診断
+Docker Desktop のシステム動作条件は何ですか？
 --------------------------------------------------
 
-.. In some cases, it is useful to run the diagnostics yourself, for instance, if Docker Desktop cannot start.
+.. You need a Mac that supports hardware virtualization. For more information, see Docker Desktop Mac system requirements.
 
-例えば Docker Desktop for Mac が開始できないなど、場合によっては自分での診断実行が役立つ場合もあります。
+システム動作条件に関する情報は、 :ref:`Docker Desktop Mac システム動作条件 <mac-system-requirements>` を御覧ください。
 
-.. First, locate the com.docker.diagnose tool. If you have installed Docker Desktop in the Applications directory, then it is located at /Applications/Docker.app/Contents/MacOS/com.docker.diagnose.
+.. What is an experimental feature?
 
-まず :code:`com.docker.diagnose` を探します。大抵は :code:`/Applications/Docker.app/Contents/MacOS/com.docker.diagnose` 
-にあるでしょう。
+.. _mac-what-is-an-experimental-feature:
 
-.. To create and upload diagnostics, run:
-
-診断の作成とアップロードをするには、次のコマンドを実行します：
-
-.. code-block:: bash
-
-   $ /Applications/Docker.app/Contents/MacOS/com.docker.diagnose gather -upload
-
-.. After the diagnostics have finished, you should have the following output, containing your diagnostics ID:
-
-診断が終了したら、以下のように診断 ID を含む出力になります。
-
-.. code-block:: bash
-
-   Diagnostics Bundle: /tmp/B8CF8400-47B3-4068-ADA4-3BBDCE3985D9/20190726143610.zip
-   Diagnostics ID:     B8CF8400-47B3-4068-ADA4-3BBDCE3985D9/20190726143610 (uploaded)
-   Diagnostics Bundle: /tmp/BE9AFAAF-F68B-41D0-9D12-84760E6B8740/20190905152051.zip
-   Diagnostics ID:     BE9AFAAF-F68B-41D0-9D12-84760E6B8740/20190905152051 (uploaded)
-
-.. The diagnostics ID (here BE9AFAAF-F68B-41D0-9D12-84760E6B8740/20190905152051) is composed of your user ID (BE9AFAAF-F68B-41D0-9D12-84760E6B8740) and a timestamp (20190905152051). Ensure you provide the full diagnostics ID, and not just the user ID.
-
-診断 ID （ここでは BE9AFAAF-F68B-41D0-9D12-84760E6B8740/20190905152051）にはユーザ ID （BE9AFAAF-F68B-41D0-9D12-84760E6B8740）とタイムスタンプ（20190905152051）が合わさっています。診断 ID 全体を見て、ユーザ ID のみではないことを確認します。
-
-.. To view the contents of the diagnostic file, run:
-
-診断ファイルの内容を表示するには、次のように実行します。
-
-.. code-block:: bash
-
-   $ open /tmp/BE9AFAAF-F68B-41D0-9D12-84760E6B8740/20190905152051.zip
-
-.. Check the logs
-
-.. _mac-check-the-logs:
-
-ログの確認
+実験的機能（experimental features）とは何ですか？
 ==================================================
 
-.. In addition to using the diagnose and feedback option to submit logs, you can browse the logs yourself. The following documentation is about macOS 10.12 onwards; for older versions, see older documentation.
+.. Experimental features provide early access to future product functionality. These features are intended for testing and feedback only as they may change between releases without warning or can be removed entirely from a future release. Experimental features must not be used in production environments. Docker does not offer support for experimental features.
 
-診断とフィードバックオプションによるログ送信だけでなく、自分自身でログを確認できます。以下のドキュメントは macOS 10.12 移行のものです。もしも古いバージョンであれば `古いドキュメント <https://github.com/docker/docker.github.io/blob/v17.12/docker-for-mac/troubleshoot.md#check-the-logs>`_ をご覧ください。
-
-.. In a terminal
-
-.. _mac-in-a-terminal:
-
-ターミナル上で
---------------------------------------------------
-
-.. To watch the live flow of Docker Desktop logs in the command line, run the following script from your favorite shell.
-
-コマンドライン上で Docker Desktop ログのライブフロー（live flow）を表示するには、任意のシェルで以下のスクリプトを実行します。
-
-.. code-block:: bash
-
-   $ pred='process matches ".*(ocker|vpnkit).*"
-     || (process in {"taskgated-helper", "launchservicesd", "kernel"} && eventMessage contains[c] "docker")'
-   $ /usr/bin/log stream --style syslog --level=debug --color=always --predicate "$pred"
-
-.. Alternatively, to collect the last day of logs (1d) in a file, run:
+実験的機能とは、今後のプロダクト機能を早期に利用できます。各機能のテストやフィードバックのみを目的としており、今後のリリースでは予告のない変更や、将来的なリリースでは機能全体が削除される場合があります。実験的機能はプロダクション環境で利用すべきではありません。実験的機能に対し、Docker はサポートを提供しません。
 
 
-あるいは、直近1日のログ（ :code:`1d` ） をファイルに集めるには、次の様に実行します。
+..    To enable experimental features in the Docker CLI, edit the config.json file and set experimental to enabled.
 
-.. code-block:: bash
+..    To enable experimental features from the Docker Desktop menu, click Settings (Preferences on macOS) > Command Line and then turn on the Enable experimental features toggle. Click Apply & Restart.
 
-   $ /usr/bin/log show --debug --info --style syslog --last 1d --predicate "$pred" >/tmp/logs.txt
+.. attention::
 
-.. In the Console app
+   Docker CLI で実験的機能を有効にするには、 :code:`config.json` ファイルを編集し、 :code:`experimental` を enabled（有効）にしてください。
+   Docker Desktop のメニューから実験的機能を有効にするには、  **Settings** （macOS は **Preferences** ）> **Command Line**  をクリックし、それから **Enable experimental features** トグルを有効に切り替えます。 **Apply & Restart** （適用と再起動）をクリックします。
 
-.. _mac-in-the-console-app:
+.. For a list of current experimental features in the Docker CLI, see Docker CLI Experimental features.
 
-アプリケーション上で
---------------------------------------------------
+Docker CLI の現時点における実験的機能の一覧は、 `Docker CLI Experimental features <https://github.com/docker/cli/blob/master/experimental/README.md>`_  をご覧ください。
 
-.. Macs provide a built-in log viewer, named “Console”, which you can use to check Docker logs.
+.. How do I?
 
-Mac には "Console" という内蔵ログビュアーがあります。これを使って Docker のログを確認できます。
+.. _mac-how-do-i:
 
-.. The Console lives in /Applications/Utilities; you can search for it with Spotlight Search.
-
-Console は :code:`/Applications/Utilities` にあります。これはスポットライト検索で見つけられます。
-
-.. To read the Docker app log messages, type docker in the Console window search bar and press Enter. Then select ANY to expand the drop-down list next to your docker search entry, and select Process.
-
-Docker アプリのログ・メッセージを読むには、 Console ウインドウの検索バーで :code:`docker` と入力し、エンターを押します。それから `ANY` を選択肢、ドロップダウンリストを展開し、その横にある :code:`docker` と検索語を入力し、 `Press` を押します。
-
-.. Mac Console search for Docker app
-
-.. You can use the Console Log Query to search logs, filter the results in various ways, and create reports.
-
-Console ログクエリを使ってログを検索でき、様々な方法で結果をフィルだしたり、レポートを作成したりできます。
-
-.. Troubleshooting
-
-.. _mac-troubleshooting:
-
-トラブルシューティング
+どうしたらいいでしょうか？
 ==================================================
 
-.. Make sure certificates are set up correctly
 
-.. _mac-make-sure-certificates-are-set-up-correctly:
+.. How do I connect to the remote Docker Engine API?
 
-証明書の正しいセットアップを確実にする
+.. _mac-how-do-i-connect-to-the-remote-docker-engine-api:
+
+リモートの Docker Engine API に接続するには？
 --------------------------------------------------
 
-.. Docker Desktop ignores certificates listed under insecure registries, and does not send client certificates to them. Commands like docker run that attempt to pull from the registry produces error messages on the command line, for example:
+.. You might need to provide the location of the Engine API for Docker clients and development tools.
 
-Docker Desktop は安全ではないレジストリ（insecure registry）上にある証明書を無視します。また、そちらに対してクライアント証明書も送りません。 :code:`docker run` のようなコマンドでは、レジストリからの取得（pull）を試みても、次のようなコマンドライン上のエラーメッセージを表示します。
+Docker クライアントと開発ツール用のために、 Engine API の場所を指定する必要があるでしょう。
+
+.. On Docker Desktop, clients can connect to the Docker Engine through a Unix socket: unix:///var/run/docker.sock.
+
+Docker Desktop では、Docker Engine は、 Unix ソケット :code:`unix:///var/run/docker.sock` では接続できません。
+
+.. See also Docker Engine API and Docker Desktop for Mac forums topic Using pycharm Docker plugin...
+
+`Docker Engine API <https://docs.docker.com/engine/api/>`_ と、 Docker Desktop for Mac フォーラムの `Using pycharm Docker plugin... <https://forums.docker.com/t/using-pycharm-docker-plugin-with-docker-beta/8617>`_ トピックをご覧ください。
+
+.. If you are working with applications like Apache Maven that expect settings for DOCKER_HOST and DOCKER_CERT_PATH environment variables, specify these to connect to Docker instances through Unix sockets. For example:
+
+もしも `Apache Maven <https://maven.apache.org/>`_ のようなアプリケーションを動作中であれば、 :code:`DOCKER_HOST` と :code:`DOCKER_CERT_PATH` 環境変数の設定が必要でしょう。特にこれらで Docker にアクセスするためには Unix ソケットの指定が必要です。例：
 
 .. code-block:: bash
 
-   Error response from daemon: Get http://192.168.203.139:5858/v2/: malformed HTTP response "\x15\x03\x01\x00\x02\x02"
+   export DOCKER_HOST=unix:///var/run/docker.sock
 
-.. As well as on the registry. For example:
+.. How do I connect from a container to a service on the host?
 
-レジストリ側でも同様にエラーが出ます。こちらが例です。
+.. _mac-how-do-i-connect-from-a-container-to-a-service-on-the-host:
 
-.. code-block:: bash
-
-   2019/06/20 18:15:30 http: TLS handshake error from 192.168.203.139:52882: tls: client didn't provide a certificate
-   2019/06/20 18:15:30 http: TLS handshake error from 192.168.203.139:52883: tls: first record does not look like a TLS handshake
-
-.. For more about using client and server side certificates, see Adding TLS certificates in the Getting Started topic.
-
-クライアントとサーバ側証明書の使用に関しては、導入ガイドのトピックにある :ref:`mac-add-tls-certificates` を御覧ください。
-
-.. Docker Desktop does not start if Mac user account and home folder are renamed after installing the app
-
-.. _mac-docker-desktop-does-not-start:
-
-アプリをインストール後、Mac ユーザアカウントとホームフォルダの名称を変更したら、 Docker Desktop が起動しません
-------------------------------------------------------------------------------------------------------------------------
-
-.. See Do I need to reinstall Docker Desktop if I change the name of my macOS account? in the FAQs.
-
-FAQ にある :ref:`do-i-need-to-reinstall-docker-for-mac-if-i-change-the-name-of-my-macos-account` をご覧ください。
-
-.. Volume mounting requires file sharing for any project directories outside of /Users
-
-.. _mac-volume-mounting-requires-file-sharing:
-
-`/Users` 以外のプロジェクト・ディレクトリをファイル共有するため、ボリュームのマウントが必要な場合
-------------------------------------------------------------------------------------------------------------------------
-
-.. If you are using mounted volumes and get runtime errors indicating an application file is not found, access to a volume mount is denied, or a service cannot start, such as when using Docker Compose, you might need to enable file sharing.
-
-:doc:`Docker Compose </compose/gettingstarted>` 等を使う場合、もしもマウント・ボリュームを使用していて、実行時にアプリケーション・ファイルが見つからない、ボリューム・マウントへのアクセスが拒否、サービスが起動できないなどのエラーが出る時は、 :ref:`ファイル共有 <mac-preferences-file-sharing>` を有効化する必要があるかもしれません。
-
-.. Volume mounting requires shared drives for projects that live outside of the /Users directory. Go to whale menu > Preferences > Resources > File sharing and share the drive that contains the Dockerfile and volume.
-
-:code:`/Users` ディレクトリの外をボリュームマウントするには、プロジェクトに対してドライブ共有する必要があります。 **鯨アイコン > Preferences > Resources > File sharing**  に移動し、Dockerfile とボリュームを含むドライブを共有します。
-
-.. Incompatible CPU detected
-
-.. _mac-incompatible-cpu-detected:
-
-互換性がない CPU の検出
+ホスト上のサービスにコンテナから接続するには？
 --------------------------------------------------
 
-.. Docker Desktop requires a processor (CPU) that supports virtualization and, more specifically, the Apple Hypervisor framework. Docker Desktop is only compatible with Mac systems that have a CPU that supports the Hypervisor framework. Most Macs built in 2010 and later support it,as described in the Apple Hypervisor Framework documentation about supported hardware:
+.. Mac has a changing IP address (or none if you have no network access). We recommend that you attach an unused IP to the lo0 interface on the Mac so that containers can connect to this address.
 
-Docker Desktop が必要なのは、仮想化をサポートしているプロセッサ（CPU）と、とりわけ  `Apple Hypervisor framework <https://developer.apple.com/documentation/hypervisor>`_ です。 Docker Desktop が適合するのは、このハイパーバイザ・フレームワークをサポートしている CPU を搭載する Mac システムのみです。多くの Mac は 2010 年以降、最近まで製造されたものであり、サポートしています。詳細は Apple Hypervisor Framework ドキュメントにサポートしているハードウェアの情報があります。
+Mac は変動 IP アドレスを持ちます（あるいは、ネットワーク接続がなければ存在しません）。私たちが推奨するのは IP を使わず、Mac 上の :code:`lo0` インターフェースを使い、コンテナはこのアドレスで接続します。
 
-.. Generally, machines with an Intel VT-x feature set that includes Extended Page Tables (EPT) and Unrestricted Mode are supported.
+.. For more information and examples, see I want to connect from a container to a service on the host in the Networking topic.
 
-`一般的に、Intel VT-x 機能ががセットされたマシンには、Extended Page Table (EPT) と Unrestricted モードがサポートされています。`
+Docker Desktop for Mac のネットワーク機能についての情報は :doc:`ネットワーク機能 <networking>` の :ref:`mac-i-want-to-connect-from-a-container-to-a-service-on-the-host` を御覧ください。
 
-.. To check if your Mac supports the Hypervisor framework, run the following command in a terminal window.
+.. How do I connect to a container from Mac?
 
-自分の Mac が Hypervisor frametowk をサポートしているかどうか確認するには、ターミナルウインドウ上で以下のコマンドを実行します。
+.. _mac-how-do-i-connect-to-a-container-from-mac
 
-.. code-block:: bash
+Mac からコンテナに接続するには？
+--------------------------------------------------
 
-   sysctl kern.hv_support
+.. We recommend that you publish a port, or connect from another container. You can use the same method on Linux if the container is on an overlay network and not a bridge network, as these are not routed.
 
-.. If your Mac supports the Hypervisor Framework, the command prints kern.hv_support: 1.
+私たちが推奨するのはポートの公開か、他のコンテナからの接続です。コンテナがオーバレイ・ネットワークを使う場合は、Linux と同じような手法が使えますが、ブリッジ・ネットワークの場合は経路付け（ルーティング）されず使えません。
 
-もしも Mac がハイパーバイザ・フレームワークをサポートしていたら、コマンドの結果は :code:`kern.hv_support: 1` です。
+.. For more information and examples, see I want to connect to a container from the Mac in the Networking topic.
 
-.. If not, the command prints kern.hv_support: 0.
+詳細な情報と例はは :doc:`ネットワーク機能 <networking>` の :ref:`i-want-to-connect-to-a-container-from-the-mac` を御覧ください。
 
-もしサポートしていなければ、コマンドの結果は :code:`kern.hv_support: 0` です。
+.. Can I use an SSH agent inside a container?
 
-.. See also, Hypervisor Framework Reference in the Apple documentation, and Docker Desktop Mac system requirements.
+.. _mac-can-i-use-an-ssh-agent-inside-a-container:
+コンテナ内で SSH エージェントを使えますか？
+--------------------------------------------------
 
-また、Apple のドキュメント `Hypervisor Framework Reference <https://developer.apple.com/library/mac/documentation/DriversKernelHardware/Reference/Hypervisor/>`_ と Docker Desktop :ref:`Mac システム要件 <mac-system-requirements>` をご覧ください。
+.. Yes, you can use the host’s SSH agent inside a container. For more information, see SSH agent forwarding.
 
-.. Workarounds for common problems
+はい、ホスト側の SSH エージェントをコンテナ内でも利用できます。詳しい情報は、 :ref:`osxfs-ssh-agent-forwarding` をご覧ください。
 
-.. _mac-workarounds-for-common-problems:
+.. How do I add custom CA certificates?
 
-共通する問題の回避策
-----------------------------------------
+.. _mac-how-do-i-add-custom-ca-certificates:
+どのようにしてカスタム CA 証明書を追加しますか？
+--------------------------------------------------
 
-..    If Docker Desktop fails to install or start properly on Mac:
-        Make sure you quit Docker Desktop before installing a new version of the application (whale menu > Quit Docker Desktop). Otherwise, you get an “application in use” error when you try to copy the new app from the .dmg to /Applications.
-        Restart your Mac to stop / discard any vestige of the daemon running from the previously installed version.
-        Run the uninstall commands from the menu.
+.. Docker Desktop supports all trusted certificate authorities (CAs) (root or intermediate). For more information on adding server and client side certs, see Add TLS certificates in the Getting Started topic.
 
+Docker Desktop は全ての信頼された認証局（root または中間）をサポートしています。サーバとクライアント側それぞれの証明書を追加するための情報は、導入ガイドの :ref:`mac-add-tls-certificates` トピックをご覧ください。
 
-* Mac で Docker Desktop のインストールに失敗するか、適切に起動しない：
-   * アプリケーションの新しいバージョンをインストールする前に、Docker Desktop を確実に終了しておきます（鯨アイコン > **Quit Docker Desktop** ）。そうしなければ、新しいアプリケーションを :code:`.dmg`  から :code:`/Applications` にコピーしようとしても、 "アプリケーションが使用中です" とエラーが出ます。
-   * 以前にインストールしたバージョンが動作していたデーモンの停止と、その痕跡を無くすために、 Mac の再起動をします。
-   * メニューからアンインストールのコマンドを実行します。
+.. How do I add client certificates?
 
-..    If docker commands aren’t working properly or as expected, you may need to unset some environment variables, to make sure you are not using the legacy Docker Machine environment in your shell or command window. Unset the DOCKER_HOST environment variable and related variables.
-        If you use bash, use the following command: unset ${!DOCKER_*}
-        For other shells, unset each environment variable individually as described in Setting up to run Docker Desktop on Mac in Docker Desktop on Mac vs. Docker Toolbox.
+.. _mac-how do i add client certificates:
+どのようにしてクライアント証明書を追加しますか？
+--------------------------------------------------
 
-* もし :code:`docker` コマンドが適切または期待通りに動作しない場合は、シェルまたはコマンド画面で古い Docker Machine 環境を使用していないことを確認し、いくつかの環境変数を削除する必要があるかもしれません。 :code:`DOCKER_HOST` 環境変数と関連する変数をアンセットします。
-   * bash を使用中であれば、次のコマンドを実行します： :code:`unset ${!DOCKER_*}` 
-   * それ以外のシェルでは、各環境変数を :doc:`docker-toolbox` の :ref:`setting-up-to-run-docker-desktop-on-mac` に書いてある手順に従い、個々にアンセットします。
+.. For information on adding client certificates, see Add client certificates in the Getting Started topic.
 
-..    Network connections fail if the macOS Firewall is set to “Block all incoming connections”. You can enable the firewall, but bootpd must be allowed incoming connections so that the VM can get an IP address.
+クライアント証明書を追加するための情報は、導入ガイドの :ref:`mac-add-client-certificates` トピックをご覧ください。
 
-* macOS ファイアウォールを「外部からの接続を全てブロック」（Block all incoming connections）に設定している場合、ネットワーク通信に失敗します。ファイアウォールは有効化できますが、仮想マシンが IP アドレスを取得できるようにするため、 :code:`bootpd` に対して外部からの接続（incoming connections）を許可する必要があります。
+.. Can I pass through a USB device to a container?
 
-..    For the hello-world-nginx example, Docker Desktop must be running to get to the web server on http://localhost/. Make sure that the Docker icon is displayed on the menu bar, and that you run the Docker commands in a shell that is connected to the Docker Desktop Engine (not Engine from Toolbox). Otherwise, you might start the webserver container but get a “web page not available” error when you go to localhost. For more information on distinguishing between the two environments, see Docker Desktop on Mac vs. Docker Toolbox.
+.. _mac-can-i-pass-through-a-usb-device-to-a-container:
 
-* :code:`hello-world-nginx` を例に挙げると、 Docker Desktop は :code:`http://localhost/` 上のウェブサーバに到達する必要があります。メニューバーに Docker アイコンが表示されているのを確認し、それからシェル上で Docker コマンドを実行し、Docker Desktop Engine に接続しているかどうかを確認します（Toolbox 上の Engine ではありません）。そうでなければ、ウェブサーバ用コンテナの起動はできますが、 :code:`localhost` に移動しても「ウェブページが表示できません」とエラーが出るでしょう。2つの環境間の区別に関する情報は :doc:`docker-toolbox` をご覧ください。
+USB デバイスをコンテナにパススルーできますか？
+--------------------------------------------------
 
-..    If you see errors like Bind for 0.0.0.0:8080 failed: port is already allocated or listen tcp:0.0.0.0:8080: bind: address is already in use:
-        These errors are often caused by some other software on the Mac using those ports.
-        Run lsof -i tcp:8080 to discover the name and pid of the other process and decide whether to shut the other process down, or to use a different port in your docker app.
+.. Unfortunately, it is not possible to pass through a USB device (or a serial port) to a container as it requires support at the hypervisor level.
 
-* :code:`Bind for 0.0.0.0:8080 failed: port is already allocated` （ポートが既に割り当て済みです）や :code:`listen tcp tcp:0.0.0.0:8080: bind: address is already in use` のようなエラーが出る場合は：
-   * Mac 上の他のソフトウェアによって対象ポートが既に利用されているため、エラーが起こる場合があります。
-   * :code:`lsof -i tcp:8080` を実行し、他のプロセスの名前と pid を確認し、他のプロセスを停止するかどうかを決めます。あるいは、docker アプリケーションが他のポートを使うようにします。
+残念ながら、USB デバイス（あるいはシリアルポート）はコンテナへのパススルーができません。これはハイパーバイザ・レベルのサポートを必要とするからです。
 
-.. Known issues
+.. Can I run Docker Desktop in nested virtualization scenarios?
 
-.. _mac-known-issues:
+.. _mac-can-i-run-docker-desktop-in-nested-virtualization-scenarios:
 
-既知の問題
+ネスト化した仮想化シナリオで Docker Desktop を動かせられますか？
+----------------------------------------------------------------------
+
+.. Docker Desktop can run inside a Windows 10 VM running on apps like Parallels or VMware Fusion on a Mac provided that the VM is properly configured. However, problems and intermittent failures may still occur due to the way these apps virtualize the hardware. For these reasons, Docker Desktop is not supported in nested virtualization scenarios. It might work in some cases, and not in others. For more information, see Running Docker Desktop in nested virtualization scenarios.
+
+Paralles や VMware Fusion on a Mac が提供する Windows 10 仮想マシン内で、仮想マシンを適切に設定していれば Docker Desktop は実行可能です。しかしながら、ハードウェアを仮想化したアプリケーションを使うため、問題や断続的な停止が発生する可能性があります。これらの理由により、 **ネスト化した仮想化シナリオで Docker Desktop はサポート対象外です** 。詳しい情報は、 :ref:`running-docker-desktop-in-nested-virtualization-scenarios` をご覧ください。
+
+.. Components of Docker Desktop
+
+.. _mac-components-of-docker-desktop:
+
+Docker Desktop のコンポーネント
 ==================================================
 
-..    IPv6 is not (yet) supported on Docker Desktop.
+.. What is HyperKit?
 
-* IPv6 は（まだ） Docker Desktop 上ではサポートされていません。
+.. _what-is-hyperkit:
 
-..    You might encounter errors when using docker-compose up with Docker Desktop (ValueError: Extra Data). We’ve identified this is likely related to data and/or events being passed all at once rather than one by one, so sometimes the data comes back as 2+ objects concatenated and causes an error.
+HyperKit とは何ですか？
+--------------------------------------------------
 
-* Docker Desktop で :code:`docker-compose up`  の実行時にエラーが出るかもしれません（  :code:`ValueError: Extra Data` ）。この現象が発生するのは、関連するデータのイベントが１つ１つ処理されるのではなく、一度にすべて処理されるためです。そのため、２つ以上のオブジェクトが連続して戻るようなデータがあれば、まれにエラーを引き起こします。
+.. HyperKit is a hypervisor built on top of the Hypervisor.framework in macOS. It runs entirely in userspace and has no other dependencies.
 
-..    Force-ejecting the .dmg after running Docker.app from it can cause the whale icon to become unresponsive, Docker tasks to show as not responding in the Activity Monitor, and for some processes to consume a large amount of CPU resources. Reboot and restart Docker to resolve these issues.
+HyperKit はmacOS の Hypervisor.framerowk 上に構築されたハイパーバイザです。これは他の依存関係なく、ユーザ空間全体を実行できます。
 
-* :code:`Docker.app` の実行後、 :code:`.dmg` を強制イジェクトすると、鯨のアイコンが反応しなくなります。また、アクティビティモニタでは、いくつかのプロセスが CPU リソースの大部分を消費してしまい、Docker が無反応なように見えます。この問題を解決するには、リブートして Docker を再起動します。
+.. We use HyperKit to eliminate the need for other VM products, such as Oracle VirtualBox or VMWare Fusion.
 
-..    Docker does not auto-start on login even when it is enabled in whale menu > Preferences. This is related to a set of issues with Docker helper, registration, and versioning.
+私たちが HyperKit を採用するのは、 Oracle VirtualBox や VMWare Fusion のような他の仮想マシンプロダクトの必要性を無くすためです。
 
-* Docker を鯨のアイコン > Preferences でログイン時に自動起動を設定しても、有効にならない場合があります。これは Docker ヘルパー、登録、バージョンに関連する一連の問題です。
+.. What is the benefit of HyperKit?
 
-..    Docker Desktop uses the HyperKit hypervisor (https://github.com/docker/hyperkit) in macOS 10.10 Yosemite and higher. If you are developing with tools that have conflicts with HyperKit, such as Intel Hardware Accelerated Execution Manager (HAXM), the current workaround is not to run them at the same time. You can pause HyperKit by quitting Docker Desktop temporarily while you work with HAXM. This allows you to continue work with the other tools and prevent HyperKit from interfering.
+.. _mac-what-is-the-benefit-of-hyperkit:
 
-* macOS 10.10 Yosemite 以降では、Docker Desktop は :code:`HyperKit` ハイパーバイザ（ https://github.com/docker/hyperkit ）を使います。`Intel Hardware Accelerated Execution Manager (HAXM) <https://software.intel.com/en-us/android/articles/intel-hardware-accelerated-execution-manager/>`_ のような :code:`HyperKit` と競合するようなツールで開発を行っている場合、同時に両者を実行するための回避策は、現時点ではありません。一時的に Docker Desktop を終了して :code:`HyperKit` を停止すると、 HAXM を利用できます。これにより :code:`HyperKit` による干渉を防ぎながら、他のツールも利用し続けることができます。
+HyperKit の利点は何ですか？
+--------------------------------------------------
 
-..    If you are working with applications like Apache Maven that expect settings for DOCKER_HOST and DOCKER_CERT_PATH environment variables, specify these to connect to Docker instances through Unix sockets. For example:
+.. HyperKit is thinner than VirtualBox and VMWare fusion, and the version we include is customized for Docker workloads on Mac.
 
-* `Apache Maven <https://maven.apache.org/>`_ のようなアプリケーションを使っている場合に、 :code:`DOCKER_HOST ` と :code:`DOCKER_CERT_PATH` 環境変数をそれぞれ設定し、Docker に対して Unix ソケットを通して接続するように設定を試みる場合があります。その場合は、次のようにします。
+HyperKit は VirtualBox や VMware fusion よりも薄く、Mac 上で Docker ワークロード向けにカスタマイズしたバージョンだからです。
 
-.. code-block:: bash
+.. Why is com.docker.vmnetd running after I quit the app?
 
-    export DOCKER_HOST=unix:///var/run/docker.sock
+.. _mac--why-is-com.docker.vmnetd-running-after-i-quit-the-app:
 
-..    docker-compose 1.7.1 performs DNS unnecessary lookups for localunixsocket.local which can take 5s to timeout on some networks. If docker-compose commands seem very slow but seem to speed up when the network is disabled, try appending 127.0.0.1 localunixsocket.local to the file /etc/hosts. Alternatively you could create a plain-text TCP proxy on localhost:1234 using:
+アプリ終了後、どうして com.docker.vmnetd が動くのですか？
+------------------------------------------------------------
 
-* :code:`docker-compose` 1.7.1 は :code:`localunixsocket.local` という不要な DNS 名前解決を処理するため、同一ネットワーク上で 5 秒のタイムアウトを引き起こします。もしも :code:`docker-compose` コマンドの処理が非常に遅く、ネットワークを無効化しても速度が向上しない場合は、ファイル :code:`/etc/hosts` に :code:`127.0.0.1 localunixsocket.local` の追加を試みてください。別の方法として、 localhost:1234 を使うプレインテキストの TCP プロキシを作成することもできます。
+.. The privileged helper process com.docker.vmnetd is started by launchd and runs in the background. The process does not consume any resources unless Docker.app connects to it, so it’s safe to ignore.
 
-.. code-block:: bash
+特権ヘルパー・プロセス :code:`com.docker.vmnetd`  は :code:`launched` によって開始され、バックグラウンドで動作します。このプロセスは Docker.app が接続していなければリソースを消費しないため、無視しても構いません。
 
-    docker run -d -v /var/run/docker.sock:/var/run/docker.sock -p 127.0.0.1:1234:1234 bobrik/socat TCP-LISTEN:1234,fork UNIX-CONNECT:/var/run/docker.sock
 
-..    and then export DOCKER_HOST=tcp://localhost:1234.
+.. Feedback
 
-それから :code:`export DOCKER_HOST=tcp://localhost:1234.` です。
+.. _mac-faq-feedback:
 
-..    There are a number of issues with the performance of directories bind-mounted with osxfs. In particular, writes of small blocks, and traversals of large directories are currently slow. Additionally, containers that perform large numbers of directory operations, such as repeated scans of large directory trees, may suffer from poor performance. Applications that behave in this way include:
-        rake
-        ember build
-        Symfony
-        Magento
-        Zend Framework
-        PHP applications that use Composer to install dependencies in a vendor folder
+フィードバック
+==================================================
 
-* :code:`osxfs` ではディレクトリのバインド・マウントによる性能上の問題がいくつかあります。とくに、小さなブロックへの書き込みと、大きなディレクトリの再帰的な表示です。さらに、大きなディレクトリ階層を繰り返しスキャンするような、コンテナが非常に多いディレクトリの操作をすると、乏しいパフォーマンスに陥る可能性があります。このような挙動となりうるアプリケーションには：
+.. What kind of feedback are we looking for?
 
-   * :code:`rake`
-   * :code:`ember build`
-   * Symfony
-   * Magento
-   * Zend Framework
-   * PHP アプリケーションのうち、 `Composer <https://getcomposer.org/>`_ で :code:`vendor` フォルダに依存関係をインストールする場合
-   この挙動を回避するには、ベンダーまたはサードパーティ・ライブラリ Docker ボリュームの中に入れ、 `osxfs` マウントの外で一時的にファイルシステム処理を行うようにします。そして、 Unison や :code:`rsync` のようなサードパーティ製ツールを使い、コンテナのディレクトリとバインド・マウントしたディレクトリリ間を同期します。私たちは数々の技術を用いながら :code:`osxfs` 性能改善にアクティブに取り組んでいます。詳細を学ぶには、 :ref:`osxfs-performance-issues-solutions-and-roadmap` をご覧ください。
+.. _mac-what kind of feedback are we looking for:
 
-..    As a work-around for this behavior, you can put vendor or third-party library directories in Docker volumes, perform temporary file system operations outside of osxfs mounts, and use third-party tools like Unison or rsync to synchronize between container directories and bind-mounted directories. We are actively working on osxfs performance using a number of different techniques. To learn more, see the topic on Performance issues, solutions, and roadmap.
+どのような種類のフィードバックが求められていますか？
+------------------------------------------------------------
 
-..    If your system does not have access to an NTP server, then after a hibernate the time seen by Docker Desktop may be considerably out of sync with the host. Furthermore, the time may slowly drift out of sync during use. To manually reset the time after hibernation, run:
+.. Everything is fair game. We’d like your impressions on the download-install process, startup, functionality available, the GUI, usefulness of the app, command line integration, and so on. Tell us about problems, what you like, or functionality you’d like to see added.
 
-* システムが NTP サーバにアクセスできなければ、Docker Desktop が一時休止後に見える時間の関係で、ホストとの同期が外れてしまう可能性があります。さらに同期のために用いる時間が少々ずれる可能性があります。一時休止後に手動でリセットするには、次のコマンドを実行します。
-.. code-block:: bash
+全てが対象です。私たちはダウンロード、インストール手順、起動、利用可能な機能、GUI、アプリケーションの使いやすさ、コマンドライン統合、などなど、皆さんの所感を求めています。問題があれば、何をしたいのか、どのような機能が欲しいのかを教えてください。
 
-    docker run --rm --privileged alpine hwclock -s
+.. What if I have problems or questions?
 
-..    Or, to resolve both issues, you can add the local clock as a low-priority (high stratum) fallback NTP time source for the host. To do this, edit the host’s /etc/ntp-restrict.conf to add:
+.. _mac-what if i have problems or questions:
 
-あるいは、両方の問題を解決するには、ホストをソースとするフォールバック NTP 時間を低プライオリティ（high stratum）のローカルクロックとして追加する方法があります。これのするには、ホスト側の :code:`/etc/ntp-restrict.conf`  に追加します。
+問題や質問がある場合は、どうしたら良いでしょうか？
+--------------------------------------------------
 
-.. code-block:: bash
+.. You can find information about diagnosing and troubleshooting common issues in the Logs and Troubleshooting topic.
 
-    server 127.127.1.1              # LCL, local clock
-    fudge  127.127.1.1 stratum 12   # increase stratum
+診断やトラブルシューティングに関する共通課題の情報は、 :doc:`troubleshoot` の記事にあります。
 
-..    Then restart the NTP service with:
+.. If you do not find a solution in Troubleshooting, browse issues on Docker Desktop for Mac issues on GitHub or create a new one. You can also create new issues based on diagnostics. To learn more, see Diagnose problems, send feedback, and create GitHub issues.
 
-それから、次のコマンドで NTP サービスを再起動します。
+トラブルシューティングで解決策が見つからなければ、 `GitHub の Docker Desktop for Mac の issue <https://github.com/docker/for-mac/issues>`_ を見るか、新しい issue を作成してください。また、診断結果に基づいて新しい issue の作成もできます。詳細を学ぶには :ref:`mac-diagnose-problems-send-feedback-and-create-github-issues` を御覧ください。
 
-.. code-block:: bash
+.. The Docker Desktop for Mac forum provides discussion threads as well, and you can create discussion topics there, but we recommend using the GitHub issues over the forums for better tracking and response.
 
-    sudo launchctl unload /System/Library/LaunchDaemons/org.ntp.ntpd.plist
-    sudo launchctl load /System/Library/LaunchDaemons/org.ntp.ntpd.plist
+`Docker Desktop for Mac フォーラム <https://forums.docker.com/c/docker-for-windows>`_ には議論のスレッドがあります。そちらでも議論のトピックを作成できますが、私たちが推奨するのはフォーラムではなく GitHub issue を使う方が、追跡可能かつ反応も良いです。
 
+.. How can I opt out of sending my usage data?
+
+.. _mac-how can i opt out of sending my usage data:
+
+私の利用統計データの送信を停止できますか？
+--------------------------------------------------
+
+.. If you do not want to send of usage data, use the Stable channel. For more information, see What is the difference between the Stable and Edge versions of Docker Desktop.
+
+利用統計データの送信を行いたくなければ、 Stable チャンネルを御利用ください。詳しい情報については、 :ref:`mac-what-is-the-difference-between-the-stable-and-edge-versions-of-docker-desktop` を御覧ください。
+
+.. How is personal data handled in Docker Desktop?
+
+.. _mac-how is personal data handled in docker desktop:
+
+Docker Desktop での個人データの取り扱いはどのようになっていますか？
+----------------------------------------------------------------------
+
+.. When uploading diagnostics to help Docker with investigating issues, the uploaded diagnostics bundle may contain personal data such as usernames and IP addresses. The diagnostics bundles are only accessible to Docker, Inc. employees who are directly involved in diagnosing Docker Desktop issues.
+
+アップロードされた診断情報は、Docker の問題調査に役立ちますが、ユーザ名や IP アドレスなど個人情報がアップロードされる診断データに含まれる場合があります。診断データにアクセス可能なのは、Docker Desktop の問題を直接解析する Docker, Inc. の従業員のみです。
+
+.. By default Docker, Inc. will delete uploaded diagnostics bundles after 30 days unless they are referenced in an open issue on the docker/for-mac or docker/for-win issue trackers. If an issue is closed, Docker, Inc. will remove the referenced diagnostics bundles within 30 days. You may also request the removal of a diagnostics bundle by either specifying the diagnostics ID or via your GitHub ID (if the diagnostics ID is mentioned in a GitHub issue). Docker, Inc. will only use the data in the diagnostics bundle to investigate specific user issues, but may derive high-level (non personal) metrics such as the rate of issues from it.
+
+`docker/for-mac <https://github.com/docker/for-mac/issues>`_ や  `docker/for-win <https://github.com/docker/for-win/issues>`_ の issue トラッカーで、オープンになっていても参照の必要がなければ、Docker, Inc. はアップロードされた診断情報を通常 30 日で削除します。もし issue がクローズされれば、Docker, Inc. は参照された診断情報を 30 日以内に削除します。また、診断 ID かGitHub ID（診断 ID が GitHub issue で使われている場合は）のどちらかで、診断情報の削除要求が可能です。 Docker, Inc. は診断情報のデータを、特定のユーザに対する調査にのみ用いますが、そこから発生する頻度などハイレベル（個人に依存しない）なメトリクスを得る場合もあります。
 
 
 .. seealso:: 
 
    Frequently asked questions (FAQ)
-      https://docs.docker.com/docker-for-mac/troubleshoot/
+      https://docs.docker.com/docker-for-mac/faqs/
