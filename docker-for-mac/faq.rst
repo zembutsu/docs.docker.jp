@@ -184,7 +184,7 @@ Mac からコンテナに接続するには？
 
 .. For more information and examples, see I want to connect to a container from the Mac in the Networking topic.
 
-詳細な情報と例はは :doc:`ネットワーク機能 <networking>` の :ref:`i-want-to-connect-to-a-container-from-the-mac` を御覧ください。
+詳細な情報と例は :doc:`ネットワーク機能 <networking>` の :ref:`i-want-to-connect-to-a-container-from-the-mac` を御覧ください。
 
 .. Can I use an SSH agent inside a container?
 
