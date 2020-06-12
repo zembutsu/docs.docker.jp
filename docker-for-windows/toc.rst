@@ -1,12 +1,12 @@
 .. -*- coding: utf-8 -*-
 .. 
 .. doc version: 19.03
-.. check date: 2020/06/06
+.. check date: 2020/06/11
 .. -----------------------------------------------------------------------------
 
 .. Docker Desktop for Windows
 
-.. _docker-desktop-for-windowstoc:
+.. _docker-desktop-for-windows-toc:
 
 ========================================
 Docker Desktop for Windows
@@ -23,6 +23,6 @@ Docker Desktop for Windows
    troubleshoot.rst
    faq.rst
    release-notes.rst
-   edge-release-note.rst
+   edge-release-notes.rst
    wsl.rst
 

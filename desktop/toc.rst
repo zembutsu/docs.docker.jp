@@ -18,5 +18,6 @@ Docker Desktop
    Mac </docker-for-mac/toc.rst>
    Windows </docker-for-windows/toc.rst>
    ダッシュボード </desktop/dashboard.rst>
-   オープンソース・ライセンス </desktop/opensource/index.rst>
+   オープンソース・ライセンス </desktop/opensource.rst>
+
 

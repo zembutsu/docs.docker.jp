@@ -8,7 +8,7 @@
 
 .. Install Docker Desktop on Mac
 
-.. _-nstall-docker-desktop-on-mac:
+.. _install-docker-desktop-on-mac:
 
 =======================================
 Mac に Docker Desktop をインストール
