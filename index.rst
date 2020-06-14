@@ -174,6 +174,7 @@ Doc v19.03 目次
    :caption: Samples - サンプル
    :maxdepth: 1
 
+   sample/index.rst
 
 About
 ==============================
