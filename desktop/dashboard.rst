@@ -14,6 +14,12 @@
 Docker Desktop ダッシュボード
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents::
+       :depth: 3
+       :local:
+
 .. The Docker Desktop Dashboard provides a simple interface that enables you to interact with containers and applications, and manage the lifecycle of your applications directly from your machine. The Dashboard UI shows all running, stopped, and started containers with their status. It provides an intuitive interface to perform common actions to inspect, interact with, and manage your Docker objects including containers and Docker Compose-based applications.
 
 Docker Desktop のダッシュボードは、コンテナやアプリケーションの操作や、マシン上のアプリケーションのライフサイクルを直接管理するための、シンプルなインターフェースを提供します。ダッシュボードのユーザ・インターフェースで、実行中や停止中の前コンテナの稼働状態や、実行中であればその状態を表示します。直感的なインターフェースを通して、コンテナを含む Docker オブジェクトと Docker Compose ベースのアプリケーションに対し、調査、アクション、管理するために共通する処理を行います。
