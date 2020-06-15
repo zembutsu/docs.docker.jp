@@ -31,102 +31,23 @@ Docker ドキュメント日本語化プロジェクト
 Docker ドキュメント
 ==========================================
 
-.. Get started with Docker
+* :doc:`始めましょう </get-started/index>`
+   * Docker の基礎とアプリケーションをコンテナ化する利点を学びます。
 
-.. _get-started-with-docker:
+* :doc:`ダウンロードとインストール <get-docker>`
+   * Docker をダウンロードし、マシン上に 簡単な数ステップでインストールします。
 
-Docker を始めましょう
-------------------------------
+* :doc:`ガイド </develop/index>`
+   * Docker 環境のセットアップ方法と、アプリケーションをコンテナ化し始める方法を学びます。
 
-.. Try our new multi-part walkthrough that goes from writing your first app, data storage, networking, and swarms, ending with your app running on production servers in the cloud. Total reading time is less than an hour!
+* :doc:`最新情報（リリースノート） </release-notes/index>`
+   *  クールな新機能、更新情報、バグ修正に関して学びます。
 
-複数のパートにわたる新しい手引きを試しましょう。手引きでは初めてのアプリケーションを書き、データ保存、ネットワーク機能、クラスタの各機能を通し、最終的にはクラウド上のプロダクション・サーバ上でアプリケーションを実行します。すべてを読むのに１時間もかかりません！
+* :doc:`プロダクト・マニュアル </engine/index>`
+   * マニュアルにザッと目を通し、Docker プロダクトの使い方を学びます。
 
-.. Get started with Docker
-
-* :doc:`Docker を始めましょう </get-started/index>`
-
-.. Docker Editions
-
-.. _docker-editions:
-
-Docker のエディションについて
-==============================
-
-.. Docker Enterprise Edition
-
-.. _docker-enterprise-edition:
-
-Docker エンタープライズ・エディション
-----------------------------------------
-
-.. Designed for enterprise development and IT teams who build, ship, and run business critical applications in production at scale. Integrated, certified, and supported to provide enterprises with the most secure container platform in the industry to modernize all applications. Docker EE Advanced comes with enterprise add-ons like UCP and DTR.
-
-ビジネスにおいて重要なアプリケーションを構築、移動、そして本番環境でスケールさせるような、エンタープライズの開発と IT チームのために設計されています。統合、認証された、エンタープライズが提供するサポートを受け、全てのアプリケーションを現代化するため、業界における最も安全なコンテナ・プラットフォームです。Docker EE は UCP と DTR のようなエンタープライズ向けアドオンを備えています。
-
-.. Learn more about Docker EE
-
-* :ref:`Docker EE について学ぶ <platform-support-matrix>`
-
-.. Docker Community Edition
-
-Docker コミュニティ・エディション
-----------------------------------------
-
-.. Get started with Docker and experimenting with container-based apps. Docker CE is available on many platforms, from desktop to cloud to server. Build and share containers and automate the development pipeline from a single environment. Choose the Edge channel to get fast access to the latest features, or the Stable channel for more predictability.
-
-Docker を使い、コンテナをベースとしたアプリケーションを体験しましょう。Docker CE はデスクトップからクラウドのサーバに至るまで、多くのプラットフォームで利用可能です。単一の環境から自動デプロイ・パイプラインを通し、コンテナを構築・共有します。最新機能をいち早く得たい場合は Edge（エッジ）チャンネルを、あるいは、（挙動が）より予測可能な Stable（ステーブル；安定）チャンネルをお選び下さい。
-
-.. Learn more about Docker CE
-
-* :ref:`Docker CE について学ぶ <platform-support-matrix>`
-
-.. _components:
-
-構成要素
-==========
-
-* :doc:`Docker for Mac </docker-for-mac/index>`
-
-   Mac 上で全ての Docker ツールを実行するために、OS X サンドボックス・セキュリティ・モデルを使うネイティブなアプリケーションです。
-
-* :doc:`Docker for Windows </docker-for-windows/overview>`
-
-   Windows コンピュータ上で全ての Docker ツールを実行するためのネイティブ Windows アプリケーションです。
-
-* Docker for Linux
-
-   コンピュータにインストール済みの Linux ディストリビューション上に Docker をインストールします。
-
-* :doc:`Docker Engine （エンジン）</engine/installation/index>`
-
-   Docker イメージを作成し、Docker コンテナを実行します。
-   v.1.12.0 以降は、Engine の :doc:`swarm モード </engine/swarm/index>` にコンテナのオーケストレーション機能が含まれます。
-
-* :doc:`Docker Hub （ハブ） </docker-hub/overview>`
-
-   イメージの管理と構築のためのホステッド・レジストリ・サービスです。
-
-* Docker Cloud （クラウド）
-
-   ホスト上にDocker イメージの構築、テスト、デプロイするホステッド・サービスです。
-
-* Docker Trusted Registry （トラステッド・レジストリ）
-
-   [DTR] でイメージの保管と署名をします。
-
-* Docker Universal Control Plane （ユニバーサル・コントロール・プレーン）
-
-   [UCP] はオンプレミス上の Docker ホストのクラスタを１台から管理します。
-
-* :doc:`Docker Machine （マシン） </machine/overview>`
-
-   ネットワークまたはクラウド上へ自動的にコンテナをプロビジョニングします。Windows、mac OS、Linux で使えます。
-
-* :doc:`Docker Compose （コンポーズ） </compose/overview>`
-
-   複数のコンテナを使うアプリケーションを定義します。
-
+* :doc:`リファレンス </reference/index>`
+   * CLI と API リファレンス文章をザッとを通します。
 
 ---
 
