@@ -4,17 +4,16 @@
 .. check date: 2020/06/16
 .. -----------------------------------------------------------------------------
 
-..  Get Started-toc:
+..  Quickstart-toc:
 
 ========================================
-Get started - 始めましょう
+クイックスタート
 ========================================
 
 .. toctree::
    :maxdepth: 3
-   :titlesonly:
 
-   overview.rst
-   クイックスタート <quickstart.rst>
-   resources.rst
+   index.rst
+   Part 2：イメージの構築と実行<part2.rst>
+   Part 3：Docker Hub でイメージ共有<part3.rst>
 

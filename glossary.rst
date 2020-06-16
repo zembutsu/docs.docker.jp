@@ -1,9 +1,11 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/glossary/
-.. SOURCE: https://github.com/docker/docker.github.io/blob/master/glossary.md
-.. check date: 2017/06/20
-.. -------------------------------------------------------------------
-
+   doc version: 19.03
+      https://github.com/docker/docker.github.io/blob/master/glossary.md
+      https://github.com/docker/docker.github.io/blob/master/_data/glossary.yaml
+.. check date: 2020/06/15
+.. Commits on Dec 5, 2019 9338de3edee88277adcf32b6743459e50ce64209
+.. -----------------------------------------------------------------------------
 
 .. Glossary
 
@@ -19,93 +21,77 @@
        :depth: 3
        :local:
 
-.. To see a definition for a term, and all topics in the documentation that have been tagged with that term, click any entry below:
 
-用語の定義や、ドキュメント内でタグ付けされたトピックを参照するには、各項目をクリックしてください。
+.. _amd64:
+
+amd64
+========================================
+
+AMD64 とは、インテルの x86 アーキテクチャの AMD による 64 ビット拡張であり、x86_64 （または x86-64） とも呼びます。
 
 
-.. aufs
-
-.. _glossary-aufs:
+.. _glossary-aufs
 
 aufs
-==========
+========================================
 
-.. aufs (advanced multi layered unification filesystem) is a Linux filesystem that Docker supports as a storage backend. It implements the union mount for Linux file systems.
-
-aufs （advanced multi layered unification filesystem；複数のレイヤを統合した高度なファイルシステム、の意味）は Linux の ファイルシステム であり、Docker がサポートするストレージ用のバックエンドです。
-
-.. Base image
+aufs （advanced multi layered unification filesystem；複数のレイヤを統合した高度なファイルシステム、の意味）は Linux の :ref:`ファイルシステム <glossary-filesystem>` であり、Docker がサポートするストレージ用のバックエンドです。Linux ファイルシステムに対する `ユニオン・マウント（Union mount） <https://en.wikipedia.org/wiki/Union_mount>`_  の実装です。
 
 .. _base-image:
 
 ベース・イメージ（base image）
-==============================
+========================================
 
-.. An image that has no parent is a base image.
+Dockerfile 内で親イメージを持たないものを **ベース・イメージ** と呼びます。Dockerfile では ``FROM scratch`` 命令を使って作成できます。
 
-親イメージを持たないイメージを、 **ベース・イメージ** と呼びます。
-
-.. boot2docker
-
-.. _glossary-boot2docker:
+.. _boot2docker:
 
 boot2docker
-====================
-
-.. boot2docker is a lightweight Linux distribution made specifically to run Docker containers. The boot2docker management tool for Mac and Windows was deprecated and replaced by docker-machine which you can install with the Docker Toolbox.
+========================================
 
 `boot2docker <http://boot2docker.io/>`_ （ブート・トゥ・ドッカー）は Docker コンテナの実行に特化した Linux ディストリビューションです。Mac 及び Windows 向けの boot2docker は、Docker Toolbox のインストールに含まれる ``docker-machine`` に置き換えられました。
 
-.. btrfs
+.. _btrfs:
 
 btrfs
-==========
+========================================
 
-.. btrfs (B-tree file system) is a Linux filesystem that Docker supports as a storage backend. It is a copy-on-write filesystem.
-
-btrfs （B-tree file system；ビー・ツリー・ファイルシステム、バター・エフエス）は、Docker がストレージ用のバックエンドとしてサポートする Linux の :ref:`ファイルシステム <filesystem>` です。これは :ref:`コピー・オン・ライト <copy-on-write>` のファイルシステムです。
-
-.. build
+btrfs （B-tree file system；ビー・ツリー・ファイルシステム）は、Docker がストレージ用のバックエンドとしてサポートする Linux の :ref:`ファイルシステム <filesystem>` です。これは :ref:`コピー・オン・ライト <copy-on-write>` のファイルシステムです。
 
 .. _build:
 
-ビルド（build）
-====================
-
-.. build is the process of building Docker images using a Dockerfile. The build uses a Dockerfile and a “context”. The context is the set of files in the directory in which the image is built.
+build
+========================================
 
 ビルド（build）とは、 :ref:`Dockerfile` を使って Docker イメージを構築する方法です。構築時には Dockerfile と「コンテクスト」（内容物の意味）を使います。コンテクストとは、イメージ構築に必要なファイル群が置かれているディレクトリです。
-
-.. cgroups
 
 .. _cgroups:
 
 cgroups
-==========
+========================================
 
-.. cgroups is a Linux kernel feature that limits, accounts for, and isolates the resource usage (CPU, memory, disk I/O, network, etc.) of a collection of processes. Docker relies on cgroups to control and isolate resource limits.
-
-cgroups （control groups；コントロール・グループ）は Linux カーネルの機能であり、プロセスの集合が使うリソース（CPU、メモリ、ディスク I/O、ネットワーク等）を制限・計算・隔離します。Docker はリソース上限の管理と隔離に cgroups を使います。
-
-.. Also known as : control groups
+cgroups （control groups；コントロール・グループ）は Linux カーネルの機能であり、プロセスの集合が使うリソース（CPU、メモリ、ディスク I/O、ネットワーク等）を制限・計算・隔離（isolate）します。Docker はリソース上限の管理と隔離に cgroups を使います。
 
 *cgroups の別名：control groups*
 
-.. Compose
+.. _cluster:
 
-.. _compose:
+クラスタ（cluster）
+========================================
 
-Compose
-==========
+クラスタとは、ワークロードの実行と可用性をもたらすために連携するマシンのグループです。
 
-.. Compose is a tool for defining and running complex applications with Docker. With compose, you define a multi-container application in a single file, then spin your application up in a single command which does everything that needs to be done to get it running.
+.. _Compose:
+
+Compose（コンポーズ）
+========================================
 
 :doc:`Compose </compose/index>` （コンポーズ）は、Docker で複雑なアプリケーションの実行と定義をするツールです。Compose を使えば、１つのファイルに複数のコンテナ・アプリケーションを定義しておき、コマンドを１つ実行するだけで、アプリケーションを使うために必要な全てを実行します。
 
 .. Also known as : docker-compose, fig
 
 *Compose の別名： docker-compose、fig*
+
 
 .. Definition of: copy-on-write
 
@@ -116,11 +102,11 @@ Compose
 
 .. Docker uses a copy-on-write technique and a union file system for both images and containers to optimize resources and speed performance. Multiple copies of an entity share the same instance and each one makes only specific changes to its unique layer.
 
-Docker はイメージとコンテナのリソース最適化とスピード性能のために、 :doc:`コピー・オン・ライト </engine/userguide/storagedriver/imagesandcontainers>` 技術と :ref:`union-file-system` を使います。
+Docker はイメージとコンテナのリソース最適化とスピード性能のために、 :doc:`コピー・オン・ライト </engine/userguide/storagedriver/imagesandcontainers>` 技術と :ref:`union-file-system` を使います。同じインスタンス（Docker コンテナや Docker イメージ）であれば、実体（となるイメージ・レイヤ）の複数のコピーを共有します。また、それぞれのレイヤに対する変更は、対象となるレイヤにのみ反映します。
 
 .. Multiple containers can share access to the same image, and make container-specific changes on a writable layer which is deleted when the container is removed. This speeds up container start times and performance.
 
-複数のコンテナは同じイメージに共有してアクセスできます。そして、コンテナの書き込み可能なレイヤに対する固有の変更が可能であり、コンテナ削除時にこのレイヤは削除されます。
+複数のコンテナは同じイメージに共有してアクセスできます。そして、コンテナの書き込み可能なレイヤに対する固有の変更が可能であり、コンテナ削除時にこのレイヤは削除します。これがコンテナの開始時間とパフォーマンスの速度を向上します。
 
 .. Images are essentially layers of filesystems typically predicated on a base image under a writable layer, and built up with layers of differences from the base image. This minimizes the footprint of the image and enables shared development.
 
@@ -140,7 +126,7 @@ Docker の文脈におけるコピー・オン・ライトの詳細は、 :doc:`
 
 .. A container is a runtime instance of a docker image.
 
-コンテナ（container）は :ref:`docker イメージ <image>` を実行するときの実体（runtime instance）です。
+コンテナ（container）は :ref:`docker イメージ <image>` を実行するときの実体（インスタンス）です。
 
 .. A Docker container consists of
 
@@ -156,18 +142,7 @@ Docker コンテナには、次のものを含みます。
 
 .. The concept is borrowed from Shipping Containers, which define a standard to ship goods globally. Docker defines a standard to ship software.
 
-Docker コンテナの概念は、輸送用のコンテナから拝借したものです。コンテナは物を世界的に輸送するために標準が定義されています。Docker はソフトウェアを送るための標準を定義しています。
-
-.. data volume
-
-.. _data-volume:
-
-.. データ・ボリューム
-.. ====================
-
-.. A data volume is a specially-designated directory within one or more containers that bypasses the Union File System. Data volumes are designed to persist data, independent of the container’s life cycle. Docker therefore never automatically delete volumes when you remove a container, nor will it “garbage collect” volumes that are no longer referenced by a container.
-
-.. データ・ボリューム（data volume）は、コンテナ内部でユニオン・ファイル・システムを迂回するため特別に設計されたディレクトリです。データ・ボリュームは長期的なデータ保管のために設計されており、コンテナのライフサイクルからは独立しています。そのため、コンテナを削除してもボリュームが自動的に消されることは有り得ませんし、コンテナから参照されなくなったボリュームが「掃除」（garbage collect）されることもありません。
+Docker コンテナの概念は、輸送用のコンテナから拝借したものです。コンテナはモノを世界的に輸送するために標準が定義されています。Docker はソフトウェアを送るための標準を定義しています。
 
 .. Docker
 
@@ -186,18 +161,13 @@ Docker （ドッカー）には次の意味があります。
 * Docker プロジェクト全体を指す言葉であり、開発者やシステム管理者がアプリケーションを開発・移動・実行するためのプラットフォームです。
 * ホスト上で動く docker デーモンのプロセスであり、イメージとコンテナを管理します。Docker Engine（エンジン）とも呼びます。
 
+.. _docker-enterprise:
 
-.. Definition of: Docker Datacenter
-
-.. _docker-datacenter:
-
-Docker Datacenter
+Docker Enterprise
 ====================
 
-.. The Docker Datacenter is subscription-based service enabling enterprises to leverage a platform built by Docker, for Docker. The Docker native tools are integrated to create an on premises CaaS platform, allowing organizations to save time and seamlessly take applications built in dev to production.
+Docker Enterprise は、コンテナ化したアプリケーションをクラウドもしくはオンプレミス上にデプロイ可能な、構築、移動、実行するためのプラットフォームです。この中には Docker のテスト済み及び認定されたバージョンと、アプリケーションを管理するウェブ UI と、サポートを含みます。
 
-
-Docker Datacenter（データセンタ）は Docker で構築するプラットフォームをエンタープライズに強化するもので、サブスクリプションを基本とする Docker 向けのサービスです。Docker ネイティブのツールが統合されることで、オンプレミスの CaaS プラットフォームを構築でき、組織における時間の接続や、開発からプロダクションへのアプリケーション構築をシームレスに行えます。
 
 .. Definition of: Docker for Mac
 
@@ -208,7 +178,7 @@ Docker for Mac
 
 .. Docker for Mac is an easy-to-install, lightweight Docker development environment designed specifically for the Mac. A native Mac application, Docker for Mac uses the macOS Hypervisor framework, networking, and filesystem. It’s the best solution if you want to build, debug, test, package, and ship Dockerized applications on a Mac. Docker for Mac supersedes Docker Toolbox as state-of-the-art Docker on macOS.
 
-:doc:`Docker for Mac </docker-for-mac/index>` は、 Mac 向けに特化したインストールが簡単で、軽量な Docker 開発環境として設計されています。ネイティブな Mac アプリケーション実行のため、Docker for Mac は macOS のハイパーバイザ・フレームワーク、ネットワーク機能、ファイルシステムを使います。 Mac 上で Docker 対応アプリケーションの開発・構築・テスト・パッケージ・移動をしたい場合に、ベストな解決策です。macOS 上で Docker を使うにあたり、Docker for Mac は :ref:`Docker Toolbox <toolbox>` の後継としての位置付け です。
+:doc:`Docker for Mac </docker-for-mac/index>` は、 Mac 向けに特化したインストールが簡単で、軽量な Docker 開発環境として設計されています。ネイティブな Mac アプリケーション実行のため、Docker for Mac は macOS のハイパーバイザ・フレームワーク、ネットワーク機能、ファイルシステムを使います。 Mac 上で Docker 対応アプリケーションの開発・構築・テスト・パッケージ・移動をしたい場合に、ベストな解決策です。macOS 上で Docker を使うにあたり、Docker for Mac は :ref:`Docker Toolbox <toolbox>` の後継としての位置付けです。
 
 .. _docker-for-windows:
 
@@ -321,12 +291,12 @@ Kitematic
 
 .. A legacy GUI, bundled with Docker Toolbox, for managing Docker containers. We recommend upgrading to Docker for Mac or Docker for Windows, which have superseded Kitematic.
 
-以前からある Docker コンテナ管理用 GUI であり、 `Docker Toolbox <https://docs.docker.com/glossary/?term=toolbox>`_ に同梱されていました。Kitematic に代わる `Docker for Mac <https://docs.docker.com/glossary/?term=docker-for-mac>`_  か `Docker for Windows <https://docs.docker.com/glossary/?term=docker-for-windows/>`_ への更新を推奨します。
+以前からある Docker コンテナ管理用 GUI であり、 :ref:`Docker Toolbox <toolbox>` に同梱されていました。Kitematic に代わる :doc:`Docker for Mac  </docker-for-mac/index>`  や :doc:`Docker for Windows </docker-for-windows/index>` への更新を推奨します。
 
 .. _layter:
 
-レイヤ
-==========
+レイヤ（layer）
+====================
 
 .. In an image, a layer is modification to the image, represented by an instruction in the Dockerfile. Layers are applied in sequence to the base image to create the final image. When an image is updated or rebuilt, only layers that change need to be updated, and unchanged layers are cached locally. This is part of why Docker images are so fast and lightweight. The sizes of each layer add up to equal the size of the final image.
 
@@ -376,7 +346,7 @@ Machine
 
 .. Machine is a Docker tool which makes it really easy to create Docker hosts on your computer, on cloud providers and inside your own data center. It creates servers, installs Docker on them, then configures the Docker client to talk to them.
 
-`Machine <https://github.com/docker/machine>`_ （マシン）は Docker ホストを簡単に作成できるようにするツールであり、クラウド・プロバイダ上やデータセンタでも利用できます。Machine はサーバを作成し、そこに Docker をインストールし、Docker クライアントで通信できるように設定します。
+:doc:`Machine </machine/index>` （マシン）は Docker ホストを簡単に作成できるようにするツールであり、クラウド・プロバイダ上やデータセンタでも利用できます。Machine はサーバを作成し、そこに Docker をインストールし、Docker クライアントで通信できるように設定します。
 
 .. Also known as : docker-machine
 
@@ -399,9 +369,7 @@ Machine
 
 .. A node is a physical or virtual machine running an instance of the Docker Engine in swarm mode.
 
-.. :doc:`ノード </engine/swarm/how-swarm-mode-works/nodes>` とは、swarm モード上における Docker Engine が動作している物理または仮想マシンを指します。
-
-ノードとは、swarm モード上における Docker Engine が動作している物理または仮想マシンを指します。
+:doc:`ノード </engine/swarm/how-swarm-mode-works/nodes>` とは、 :ref:`swarm モード <swarm-mode>` 上における Docker Engine が動作している物理または仮想マシンで動作する実体（インスタンス）を指します。
 
 .. Manager nodes perform swarm management and orchestration duties. By default manager nodes are also worker nodes.
 
@@ -433,6 +401,25 @@ Machine
 .. OverlayFS is a filesystem service for Linux which implements a union mount for other file systems. It is supported by the Docker daemon as a storage driver.
 
 OverlayFS は、他のファイルシステムに対する `ユニオン・マウント <http://en.wikipedia.org/wiki/Union_mount>`__ を Linux に実装するもので、 :ref:`ファイルシステム <filesystem>` 向けのサービスです。
+
+
+.. _parent-image:
+
+親イメージ（parent image）
+==============================
+
+.. An image’s parent image is the image designated in the FROM directive in the image’s Dockerfile. All subsequent commands are based on this parent image. A Dockerfile with the FROM scratch directive uses no parent image, and creates a base image.
+
+イメージの **親イメージ** とは、イメージの Dockerfile 中にある ``FROM`` 命令で指定したイメージです。以降に続く全てのコマンドは、この親イメージをベースにしています。Dockerfile で ``FROM scratch`` 命令を使うと、親イメージを持たず、 **ベース・イメージ** を作成します。
+
+.. _persistent-storage:
+
+持続的ストレージ（persistent storage）
+========================================
+
+.. Persistent storage or volume storage provides a way for a user to add a persistent layer to the running container’s file system. This persistent layer could live on the container host or an external device. The lifecycle of this persistent layer is not connected to the lifecycle of the container, allowing a user to retain state.
+
+持続的ストレージやボリューム・ストレージは、実行中コンテナのファイスシステム上で、持続的なレイヤ（persistent layer）をユーザに対して提供します。持続的なレイヤは、コンテナのホスト上や外部デバイスに残り続けます。この持続的なレイヤのライフサイクルは、コンテナのライフサイクルとは繋がっておらず、ユーザは状態を維持できます。
 
 .. registry
 
@@ -504,7 +491,7 @@ Swarm モードのサービス・ディスカバリは、swarm クラスタ内�
 
 .. You don’t need to expose service-specific ports to make the service available to other services on the same overlay network. The swarm’s internal load balancer automatically distributes requests to the service VIP among the active tasks.
 
-サービスごとにポートを公開する必要がないため、同じオーバレイ・ネットワーク上で他のサービスが動いているかどうかを確認する必要はありません。アクティブなタスクごとサービス用の VIP を持ち、swarm の内部ロードランサはリクエストごとにアクセスを分散します。
+サービスごとにポートを公開する必要がないため、同じオーバレイ・ネットワーク上で他のサービスが動いているかどうかを確認する必要はありません。アクティブなタスクごとサービス用の VIP を持ち、swarm の内部ロードバランサはリクエストごとにアクセスを分散します。
 
 
 .. Swarm
@@ -516,7 +503,7 @@ Swarm
 
 .. A swarm is a cluster of one or more Docker Engines running in swarm mode.
 
-:doc:`swarm </engine/swarm/index>` とは swarm モードで動作する Docker Engine のクラスタのことです。
+:doc:`swarm </engine/swarm/index>` とは :ref:`swarm モード <glossary-swarm-mode>` で動作する Docker Engine のクラスタのことです。
 
 
 .. Docker Swarm
@@ -537,6 +524,17 @@ Docker Swarm は Docker 用に独立したネイティブなクラスタリン�
 .. Also known as : docker-swarm
 
 *別名：docker-swarm*
+
+
+.. _glossary-swarm-mode:
+
+swarm モード
+====================
+
+.. Swarm mode refers to cluster management and orchestration features embedded in Docker Engine. When you initialize a new swarm (cluster) or join nodes to a swarm, the Docker Engine runs in swarm mode.
+
+:doc:`Swarm モード </engine/swarm/index>` とは、 Docker Engine 内蔵で、クラスタ管理とオーケストレーション機能拡張を指します。新しい swarm（クラスタ）を初期化するか、あるいはノードが swarm に加わると、Docker Engine は swarm モードで稼働します。
+
 
 .. tag
 
@@ -576,7 +574,7 @@ Docker Swarm は Docker 用に独立したネイティブなクラスタリン�
 
 .. Toolbox
 
-.. _Toolbox:
+.. _toolbox:
 
 Toolbox
 ==========
@@ -603,7 +601,7 @@ Windows 10 で Microsoft Hyper-V のサポートがあれば（Professional、En
 
 .. Union file systems implement a union mount and operate by creating layers. Docker uses union file systems in conjunction with copy-on-write techniques to provide the building blocks for containers, making them very lightweight and fast.
 
-ユニオン・ファイル・システム（Union file system）は `ユニオン・マウント <https://en.wikipedia.org/wiki/Union_mount>`_ の実装であり、レイヤ作成時に処理するものです。Docker はユニオン・ファイル・システムで結語するために :ref:`copy-on-write` 技術を使い、非常に軽量勝つ高速なコンテナ用のブロックを構築します。
+ユニオン・ファイル・システム（Union file system）は `ユニオン・マウント <https://en.wikipedia.org/wiki/Union_mount>`_ の実装であり、レイヤ作成時に処理するものです。Docker はユニオン・ファイル・システムで結語するために :ref:`copy-on-write` 技術を使い、非常に軽量かつ高速なコンテナ用のブロックを構築します。
 
 .. For more on Docker and union file systems, see Docker and AUFS in practice, Docker and Btrfs in practice, and Docker and OverlayFS in practice.
 
@@ -652,6 +650,15 @@ Docker 及びユニオン・ファイル・システムの詳細は、 :doc:`/en
    * **ホスト・ボリューム（host volume）** は Docker ホストのファイルシステム上に存在し、コンテナ内部からもアクセスできます。
    * **名前付きボリューム（named volume）** は、Docker が管理するボリュームであり、ディスク上に生成されます。そこには名前がつけられます。
    * **匿名ボリューム（anonymous volume）**  は名前付きボリュームと似ています。ただし複雑な仕組みにより、匿名ボリュームである間も一意のボリュームとして参照されます。Docker はファイルを保存する場所として取り扱います。
+
+.. _x86_64:
+
+x86_64
+==========
+
+.. x86_64 (or x86-64) refers to a 64-bit instruction set invented by AMD as an extension of Intel’s x86 architecture. AMD calls its x86_64 architecture, AMD64, and Intel calls its implementation, Intel 64.
+
+x86_64 (または x86-64) は、インテルの x86 アーキテクチャの AMD による 64 ビット拡張命令のセットです。AMD は自身のアーキレクチャを x86_64 アーキテクチャ、 AMD64 と呼び、インテルはこの実装を Intel 64 と呼びます。
 
 
 .. seealso:: 
