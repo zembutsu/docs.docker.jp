@@ -45,7 +45,7 @@ commit
 
 .. The --change option will apply Dockerfile instructions to the image that is created. Supported Dockerfile instructions: CMD|ENTRYPOINT|ENV|EXPOSE|LABEL|ONBUILD|USER|VOLUME|WORKDIR
 
-``--cache`` オプションは ``Dockerfile`` の命令でイメージが作られる時のみ適用されます。対応している ``Dockerfile`` 命令は、 ``CMD`` 、 ``ENTRYPOINT`` 、 ``ENV`` 、 ``EXPOSE`` 、 ``LABEL`` 、 ``ONBUILD`` 、 ``USER`` 、 ``VOLUME`` 、 ``WORKDIR`` です。
+``--change`` オプションは ``Dockerfile`` の命令でイメージが作られる時のみ適用されます。対応している ``Dockerfile`` 命令は、 ``CMD`` 、 ``ENTRYPOINT`` 、 ``ENV`` 、 ``EXPOSE`` 、 ``LABEL`` 、 ``ONBUILD`` 、 ``USER`` 、 ``VOLUME`` 、 ``WORKDIR`` です。
 
 .. Commit a container
 
