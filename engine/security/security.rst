@@ -203,9 +203,23 @@ Docker の強力な機能の中には、この問題が直接関係するもの�
 （TCP ソケットは、VM の外にあるローカルマシン上に直接 Docker を起動したときに、CSRF (cross-site request forgery) 攻撃を受けやすくなります。）
 そこで従来からある Unix パーミッションチェックを利用して、制御ソケットへのアクセスを制限する必要があります。
 
-.. You can also expose the REST API over HTTP if you explicitly decide to do so. However, if you do that, being aware of the above mentioned security implication, you should ensure that it will be reachable only from a trusted network or VPN; or protected with e.g., stunnel and client SSL certificates. You can also secure them with HTTPS and certificates.
+.. You can also expose the REST API over HTTP if you explicitly decide to do so.
+   However, if you do that, be aware of the above mentioned security
+   implications.
+   Note that even if you have a firewall to limit accesses to the REST API 
+   endpoint from other hosts in the network, the endpoint can be still accessible
+   from containers, and it can easily result in the privilege escalation.
+   Therefore it is *mandatory* to secure API endpoints with 
+   [HTTPS and certificates](https.md).
+   It is also recommended to ensure that it is reachable only from a trusted
+   network or VPN.
 
-明示的に HTTP 上で REST API を晒すことも可能です。しかし、そのように設定すべきではありません。上記で言及したセキュリティ実装のため、信頼できるネットワークや VPN 、 ``stunnel`` やクライアント SSL 証明が利用できる所でのみ使うべきです。より安全にするためには :doc:`HTTPS と証明書 <https>` を利用できます。
+また明確に意図するのであれば、REST API を HTTP を介して送ることもできます。
+ただしこれを行った場合には、前述したセキュリティの脅威に関して注意しておくことが必要です。
+ファイルウォールを利用していて、ネットワーク内の他ホストから REST API エンドポイントへのアクセスを制限しているとします。
+それでもそのエンドポイントはコンテナからアクセスが可能であるため、アクセス権限を容易に昇格させることができてしまいます。
+したがって :doc:`HTTPS と 証明書 <https>` を用いたセキュアな API エンドポイントの利用が必須となります。
+また信頼できるネットワークや VPN からのみ到達可能とするような対処も求められます。
 
 .. The daemon is also potentially vulnerable to other inputs, such as image loading from either disk with ‘docker load’, or from the network with ‘docker pull’. This has been a focus of improvement in the community, especially for ‘pull’ security. While these overlap, it should be noted that ‘docker load’ is a mechanism for backup and restore and is not currently considered a secure mechanism for loading images. As of Docker 1.3.2, images are now extracted in a chrooted subprocess on Linux/Unix platforms, being the first-step in a wider effort toward privilege separation.
 
