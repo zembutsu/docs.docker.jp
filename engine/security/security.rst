@@ -240,9 +240,16 @@ Docker 1.3.2 において、イメージの抽出は Linux/Unix プラットフ�
 Docker 1.10.0 になるとイメージはすべて、イメージデータの暗号化チェックサムによって保存されアクセスされるようになりました。
 既存イメージに対して攻撃を仕掛けられる可能性を軽減するものです。
 
-.. Finally, if you run Docker on a server, it is recommended to run exclusively Docker in the server, and move all other services within containers controlled by Docker. Of course, it is fine to keep your favorite admin tools (probably at least an SSH server), as well as existing monitoring/supervision processes (e.g., NRPE, collectd, etc).
+.. Finally, if you run Docker on a server, it is recommended to run
+   exclusively Docker on the server, and move all other services within
+   containers controlled by Docker. Of course, it is fine to keep your
+   favorite admin tools (probably at least an SSH server), as well as
+   existing monitoring/supervision processes, such as NRPE and collectd.
 
-なお、Docker をサーバで動かす場合は、サーバ上で Docker 以外を動かさないことを推奨します。そして、他のサービスは Docker によって管理されるコンテナに移動しましょう。もちろん、好きな管理ツール（おそらく SSH サーバでしょう）や既存の監視・管理プロセス（例： NRPE、collectd、等）はそのままで構いません。
+サーバ上に Docker を稼動させる際には、Docker だけを動かすようにすることをお勧めします。
+さらに他のサービスは Docker によって管理されたコンテナ内に移動するようにしてください。
+もちろんお気に入りの管理ツール（おそらく SSH サーバには最低必要なものでしょう）があれば、引き続き利用してください。
+同様に NRPE や collectd のような既存の監視プロセスを利用してもかまいません。
 
 .. Linux kernel capabilities
 
