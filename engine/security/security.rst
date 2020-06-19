@@ -162,9 +162,23 @@ Docker デーモンの攻撃領域
 デーモンの起動には :doc:`rootless モード </engine/security/rootless>` (試験的機能) を用いるのでない限りは ``root`` 権限を必要とします。
 したがって重要な点をいくつか意識しておく必要があります。
 
-.. First of all, only trusted users should be allowed to control your Docker daemon. This is a direct consequence of some powerful Docker features. Specifically, Docker allows you to share a directory between the Docker host and a guest container; and it allows you to do so without limiting the access rights of the container. This means that you can start a container where the /host directory will be the / directory on your host; and the container will be able to alter your host filesystem without any restriction. This is similar to how virtualization systems allow filesystem resource sharing. Nothing prevents you from sharing your root filesystem (or even your root block device) with a virtual machine.
+.. First of all, **only trusted users should be allowed to control your
+   Docker daemon**. This is a direct consequence of some powerful Docker
+   features. Specifically, Docker allows you to share a directory between
+   the Docker host and a guest container; and it allows you to do so
+   without limiting the access rights of the container. This means that you
+   can start a container where the `/host` directory is the `/` directory
+   on your host; and the container can alter your host filesystem
+   without any restriction. This is similar to how virtualization systems
+   allow filesystem resource sharing. Nothing prevents you from sharing your
+   root filesystem (or even your root block device) with a virtual machine.
 
-まずはじめに、 **信頼する利用者だけ、Docker デーモンに対するアクセスを許可するべき** です。これは Docker がもたらす強力な機能を直接扱うためです。特に、Docker は Docker ホストとゲストコンテナ間でディレクトリを共有できます。そして、それにより、コンテナ内に対する適切なアクセス権限が無くても、ディレクトリを使えるようになる可能性があります。つまりコンテナの ``/host`` ディレクトリは、ホスト上の ``/`` ディレクトリとしても実行可能です。それだけではありません。コンテナは何ら制限を受けずに、ホスト上のファイルシステム上に対する修正が可能になります。これは仮想化システムによるファイルシステム・リソースの共有に似ています。仮想マシン上における自分のルート・ファイルシステム（ルート・ブロック・デバイスも同様）の共有を阻止する方法はありません。
+まず第一に、**Docker デーモンを制御できるのは信頼できるユーザーのみとすべき** ということです。
+Docker の強力な機能の中には、この問題が直接関係するものがあります。
+特に Docker においては Docker ホストとゲストコンテナの間でのディレクトリ共有が可能であり、つまりコンテナのアクセス権拡大を許しているわけです。
+ということは、コンテナの ``/host`` ディレクトリをホスト上の ``/`` ディレクトリに割り当ててコンテナを起動できることを意味し、それはコンテナが何ら制限なくホストのファイルシステムを変更できてしまうことになります。
+ちょうど仮想化システムがファイルシステムというリソースをどのように共有するかという問題と同じです。
+仮想マシンを使ってルートファイルシステムを（あるいはルートブロックデバイスでさえ）共有化できてしまうことは、防ぎようがありません。
 
 .. This has a strong security implication: for example, if you instrument Docker from a web server to provision containers through an API, you should be even more careful than usual with parameter checking, to make sure that a malicious user cannot pass crafted parameters causing Docker to create arbitrary containers.
 
