@@ -281,9 +281,15 @@ Linux カーネルのケーパビリティ
 コンテナーセキュリティにおいてこれは実に多くのことを意味します。
 どういうことなのか見ていきます。
 
-.. Your average server (bare metal or virtual machine) needs to run a bunch of processes as root. Those typically include SSH, cron, syslogd; hardware management tools (e.g., load modules), network configuration tools (e.g., to handle DHCP, WPA, or VPNs), and much more. A container is very different, because almost all of those tasks are handled by the infrastructure around the container:
+.. Typical servers run several processes as `root`, including the SSH daemon,
+   `cron` daemon, logging daemons, kernel modules, network configuration tools,
+   and more. A container is different, because almost all of those tasks are
+   handled by the infrastructure around the container:
 
-あなたの平均的なサーバ（ベアメタルでも、仮想マシンでも）が必要とするのは、root として実行される一連のプロセスです。典型的なものに SSH、cron、syslogd が含まれるでしょう。あるいは、ハードウェア管理ツール（例：load  モジュール）、ネットワーク設定ツール（例：DHCP、WPA、VPN を取り扱うもの）、等々があります。ですが、コンテナは非常に異なります。なぜなら、これらのタスクのほぼ全てが、コンテナの中という基盤上で処理されるからです。
+典型的なサーバであれば、プロセスの多くは ``root`` によって起動されています。
+たとえば SSH デーモン、``cron`` デーモン、ログデーモン、カーネルモジュール、ネットワーク設定ツールなどです。
+ただコンテナでは話が違います。
+そもそもこういったタスクのほぼすべては、コンテナ外部にあるインフラストラクチャによって取り扱われるものだからです。
 
 ..    SSH access will typically be managed by a single server running on the Docker host;
 
