@@ -180,9 +180,16 @@ Docker の強力な機能の中には、この問題が直接関係するもの�
 ちょうど仮想化システムがファイルシステムというリソースをどのように共有するかという問題と同じです。
 仮想マシンを使ってルートファイルシステムを（あるいはルートブロックデバイスでさえ）共有化できてしまうことは、防ぎようがありません。
 
-.. This has a strong security implication: for example, if you instrument Docker from a web server to provision containers through an API, you should be even more careful than usual with parameter checking, to make sure that a malicious user cannot pass crafted parameters causing Docker to create arbitrary containers.
+.. This has a strong security implication: for example, if you instrument Docker
+   from a web server to provision containers through an API, you should be
+   even more careful than usual with parameter checking, to make sure that
+   a malicious user cannot pass crafted parameters causing Docker to create
+   arbitrary containers.
 
-これはセキュリティに重大な影響を及ぼします。例えば、Docker の API を通してウェブ・サーバ用コンテナをプロビジョンしたいとします。通常通りパラメータの確認に注意を払うべきです。ここでは、悪意のあるユーザが手の込んだパラメータを使い、Docker が余分なコンテナを作成不可能にしてください。
+これはセキュリティに重大な影響を及ぼします。
+たとえば Docker の API を通じて、ウェブ・サーバをコンテナにプロビジョニングするとします。
+このときには、通常以上に十分なパラメータ・チェックを行う必要があります。
+そして悪意のあるユーザーがパラメータに細工をしたとしても、Docker から任意のコンテナが生成されないようにすることが重要です。
 
 .. For this reason, the REST API endpoint (used by the Docker CLI to communicate with the Docker daemon) changed in Docker 0.5.2, and now uses a UNIX socket instead of a TCP socket bound on 127.0.0.1 (the latter being prone to cross-site request forgery attacks if you happen to run Docker directly on your local machine, outside of a VM). You can then use traditional UNIX permission checks to limit access to the control socket.
 
