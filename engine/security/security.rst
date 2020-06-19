@@ -291,9 +291,10 @@ Linux カーネルのケーパビリティ
 ただコンテナでは話が違います。
 そもそもこういったタスクのほぼすべては、コンテナ外部にあるインフラストラクチャによって取り扱われるものだからです。
 
-..    SSH access will typically be managed by a single server running on the Docker host;
+..  - SSH access are typically managed by a single server running on
+      the Docker host;
 
-* SSH 接続は、 Docker ホストのサーバ上を管理する典型的な手法です。
+* SSH アクセスを管理するのは、通常は Docker ホスト上に稼動するサーバープロセスです。
 
 ..     cron, when necessary, should run as a user process, dedicated and tailored for the app that needs its scheduling service, rather than as a platform-wide facility;
 
