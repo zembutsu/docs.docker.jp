@@ -140,9 +140,11 @@ Docker コンテナは LXC コンテナによく似ています。
 特に重要となるのが、公開あるいはプライベート PaaS のようなマルチテナント型プラットフォームにおいてです。
 いずれかのアプリケーションが誤動作をし始めたとしても、安定した稼動（とパフォーマンス）を保証するものです。
 
-.. Control Groups have been around for a while as well: the code was started in 2006, and initially merged in kernel 2.6.24.
+.. Control Groups have been around for a while as well: the code was
+   started in 2006, and initially merged in kernel 2.6.24.
 
-コントロール・グループも同様に、以前から存在していました。コードは 2006 年から書き始めら、カーネルに 2.6.24 で初めてマージされました。
+コントロール・グループも同じく、登場してからさほど経過していません。
+その開発は 2006 年に始まり、カーネルに初めてマージされたのは 2.6.24 のときです。
 
 .. Docker daemon attack surface
 
