@@ -115,9 +115,18 @@ Docker コンテナは LXC コンテナによく似ています。
 コントロール・グループ
 ==============================
 
-.. Control Groups are another key component of Linux Containers. They implement resource accounting and limiting. They provide many useful metrics, but they also help ensure that each container gets its fair share of memory, CPU, disk I/O; and, more importantly, that a single container cannot bring the system down by exhausting one of those resources.
+.. Control Groups are another key component of Linux Containers. They
+   implement resource accounting and limiting. They provide many
+   useful metrics, but they also help ensure that each container gets
+   its fair share of memory, CPU, disk I/O; and, more importantly, that a
+   single container cannot bring the system down by exhausting one of those
+   resources.
 
-コントロール・グループは Linux コンテナにおけるもう１つの重要なコンポーネントです。これはリソースの計測と制限を実装しています。これらは多くの便利なメトリクス（監視上の指標）を提供するだけでなく、各コンテナが必要な共有リソース（メモリ、CPU、ディスク I/O）の割り当て保証にも役立ちます。更に重要なのは、単一のコンテナが膨大なリソースを消費しても、システムダウンを引き起こさない点です。
+コントロール・グループは、Linux コンテナ技術のもう一つの重要コンポーネントです。
+これはリソース管理と利用制限を実装します。
+これにより有用なメトリクスが数多く提供されます。
+そしてこの機能はメモリ、CPU、ディスク I/O を各コンテナが共有して利用できるようにします。
+さらに重要なのは、たった 1 つのコンテナがリソースを大量消費し、それがシステムダウンにつながるようなことはありません。
 
 .. So while they do not play a role in preventing one container from accessing or affecting the data and processes of another container, they are essential to fend off some denial-of-service attacks. They are particularly important on multi-tenant platforms, like public and private PaaS, to guarantee a consistent uptime (and performance) even when some applications start to misbehave.
 
