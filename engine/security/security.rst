@@ -62,9 +62,30 @@ Docker コンテナは LXC コンテナによく似ています。
 **名前空間とは、初めて提供された最もストレートな形の分離技術のことです**。
 コンテナ内部にて起動されるプロセスからは、他のコンテナ内部やホストシステム内のプロセスを参照することはできず、また影響もほぼ及ぼしません。
 
-.. Each container also gets its own network stack, meaning that a container doesn’t get privileged access to the sockets or interfaces of another container. Of course, if the host system is setup accordingly, containers can interact with each other through their respective network interfaces — just like they can interact with external hosts. When you specify public ports for your containers or use links then IP traffic is allowed between containers. They can ping each other, send/receive UDP packets, and establish TCP connections, but that can be restricted if necessary. From a network architecture point of view, all containers on a given Docker host are sitting on bridge interfaces. This means that they are just like physical machines connected through a common Ethernet switch; no more, no less.
+.. **Each container also gets its own network stack**, meaning that a
+   container doesn't get privileged access to the sockets or interfaces
+   of another container. Of course, if the host system is setup
+   accordingly, containers can interact with each other through their
+   respective network interfaces — just like they can interact with
+   external hosts. When you specify public ports for your containers or use
+   [*links*](../../network/links.md)
+   then IP traffic is allowed between containers. They can ping each other,
+   send/receive UDP packets, and establish TCP connections, but that can be
+   restricted if necessary. From a network architecture point of view, all
+   containers on a given Docker host are sitting on bridge interfaces. This
+   means that they are just like physical machines connected through a
+   common Ethernet switch; no more, no less.
 
-**各コンテナは自分自身のネットワーク・スタックを持ちます** 。つまり、コンテナはソケットや他のコンテナのインターフェースに対する特権（privileged）アクセスが得られません。もちろん、ホストシステムが適切に設定されている必要があります。そうしておけば、コンテナが相互に適切なネットワーク・インターフェースを通して通信できるようになります。ホストの外と通信できるのも同様です。コンテナに対して公開用のポートを指定するか、:doc:`リンク機能 </engine/userguide/networking/default_network/dockerlinks>` を使うことで、コンテナ間での IP 通信が許可されます。お互いに ping できるようになり、UDP パケットの送受信や、TCP 接続が確立されます。しかし、必要があれば制限を設けられます。ネットワーク・アーキテクチャの視点から考えますと、全てのコンテナは特定のホスト上のブリッジ・インターフェースを備えています。つまりこれは、物理マシン上で共通のイーサネット・スイッチを使っているのと同じような状態を意味します。それ以上でも、それ以下でもありません。 
+**各コンテナでは独自のネットワークスタックを用います**。
+これはつまり、別のコンテナのソケットやインターフェースへアクセスする際に、特権的なアクセス権限を有していないということです。
+もちろんホストシステムが適切に設定されていれば、コンテナ間はそれぞれのネットワークインターフェースを介して通信を行うことができます。
+外部にあるホストとの間で通信しているようなものです。
+コンテナに対して公開ポートを指定するか、あるいは :doc:`リンク機能 </engine/userguide/networking/default_network/dockerlinks>` を利用すれば、コンテナ間での IP トラフィックが許可されます。
+その場合コンテナ間にて互いに ping を行い、UDP パケットの送受信することで TCP コネクションが確立されます。
+ただし状況に応じて制限がかけられることもあります。
+ネットワークアーキテクチャの点でいうと、特定の Docker ホスト上にあるコンテナはすべて、ブリッジインターフェース上に置かれます。
+これは各コンテナがあたかも実際に存在する物理的なマシンのようであり、共有するイーサネットスイッチにより通信を行っているようなものです。
+これ以上でもなく、これ以下でもありません。
 
 .. How mature is the code providing kernel namespaces and private networking? Kernel namespaces were introduced between kernel version 2.6.15 and 2.6.26. This means that since July 2008 (date of the 2.6.26 release), namespace code has been exercised and scrutinized on a large number of production systems. And there is more: the design and inspiration for the namespaces code are even older. Namespaces are actually an effort to reimplement the features of OpenVZ in such a way that they could be merged within the mainstream kernel. And OpenVZ was initially released in 2005, so both the design and the implementation are pretty mature.
 
