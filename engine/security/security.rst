@@ -258,9 +258,11 @@ Docker 1.10.0 になるとイメージはすべて、イメージデータの暗
 Linux カーネルのケーパビリティ
 ==============================
 
-.. By default, Docker starts containers with a restricted set of capabilities. What does that mean?
+.. By default, Docker starts containers with a restricted set of
+   capabilities. What does that mean?
 
-デフォルトでは Docker はケーパビリティ（capability；「能力」や「機能」の意味）を抑えた状態でコンテナを起動します。つまり、これはどのような意味でしょうか。
+デフォルトにおいて Docker は、ケーパビリティを限定的に利用してコンテナを起動します。
+これはどういう意味でしょう。
 
 .. Capabilities turn the binary “root/non-root” dichotomy into a fine-grained access control system. Processes (like web servers) that just need to bind on a port below 1024 do not have to run as root: they can just be granted the net_bind_service capability instead. And there are many other capabilities, for almost all the specific areas where root privileges are usually needed.
 
