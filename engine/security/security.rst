@@ -25,15 +25,18 @@ Docker のセキュリティ
 
 Docker のセキュリティを考えてみる上では、主要な観点が 4 つあります。
 
-..    the intrinsic security of the kernel and its support for namespaces and cgroups;
-    the attack surface of the Docker daemon itself;
-    loopholes in the container configuration profile, either by default, or when customized by users.
-    the “hardening” security features of the kernel and how they interact with containers.
+.. - the intrinsic security of the kernel and its support for
+     namespaces and cgroups;
+   - the attack surface of the Docker daemon itself;
+   - loopholes in the container configuration profile, either by default,
+     or when customized by users.
+   - the "hardening" security features of the kernel and how they
+     interact with containers.
 
-* カーネルに起因するセキュリティと、カーネルがサポートする名前空間と cgroups について
-* Docker デーモン自身が直面する攻撃について
-* コンテナ設定プロファイル（デフォルトでもユーザによってカスタマイズされた場合も含む）における抜け道について
-* カーネルのセキュリティ「硬化」（hardening）機能と、コンテナへの対応。
+* カーネルに元からあるセキュリティと名前空間や cgroup のサポート。
+* Docker デーモンそのものの攻撃領域。
+* コンテナ設定プロファイルにおける抜け穴。デフォルトの場合だけでなくユーザーによるカスタマイズ時も含む。
+* セキュリティ強化されたカーネル機能とそれがコンテナとやり取りする方法。
 
 .. Kernel namespaces
 
