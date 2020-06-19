@@ -128,9 +128,17 @@ Docker コンテナは LXC コンテナによく似ています。
 そしてこの機能はメモリ、CPU、ディスク I/O を各コンテナが共有して利用できるようにします。
 さらに重要なのは、たった 1 つのコンテナがリソースを大量消費し、それがシステムダウンにつながるようなことはありません。
 
-.. So while they do not play a role in preventing one container from accessing or affecting the data and processes of another container, they are essential to fend off some denial-of-service attacks. They are particularly important on multi-tenant platforms, like public and private PaaS, to guarantee a consistent uptime (and performance) even when some applications start to misbehave.
+.. So while they do not play a role in preventing one container from
+   accessing or affecting the data and processes of another container, they
+   are essential to fend off some denial-of-service attacks. They are
+   particularly important on multi-tenant platforms, like public and
+   private PaaS, to guarantee a consistent uptime (and performance) even
+   when some applications start to misbehave.
 
-そのため、あるコンテナが他のコンテナからアクセスできませんし、データに対する何らかのアクセスや影響を及ぼすこともありません。これはあらゆるサービス拒否（denial-of-service）攻撃の本質です。特に重要なのはマルチテナントなプラットフォーム、例えばパブリックやプライベートな PaaS において、特定のアプリケーションが誤った動作をしても、一定の稼働（とパフォーマンス）を保証します。
+この機能の役割は、あるコンテナから別コンテナのデータやプロセスに対して、アクセスや変更を防ぐというものではありません。
+これはサービス妨害攻撃を防ぐという重要な役割を持っています。
+特に重要となるのが、公開あるいはプライベート PaaS のようなマルチテナント型プラットフォームにおいてです。
+いずれかのアプリケーションが誤動作をし始めたとしても、安定した稼動（とパフォーマンス）を保証するものです。
 
 .. Control Groups have been around for a while as well: the code was started in 2006, and initially merged in kernel 2.6.24.
 
