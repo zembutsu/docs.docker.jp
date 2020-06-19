@@ -240,10 +240,6 @@ Docker 1.3.2 において、イメージの抽出は Linux/Unix プラットフ�
 Docker 1.10.0 になるとイメージはすべて、イメージデータの暗号化チェックサムによって保存されアクセスされるようになりました。
 既存イメージに対して攻撃を仕掛けられる可能性を軽減するものです。
 
-.. Eventually, it is expected that the Docker daemon will run restricted privileges, delegating operations well-audited sub-processes, each with its own (very limited) scope of Linux capabilities, virtual network setup, filesystem management, etc. That is, most likely, pieces of the Docker engine itself will run inside of containers.
-
-最終的には、Docker デーモンは制限された権限下で動作するようになるでしょう。それぞれが自身の（あるいは限定された） Linux ケーパビリティ（capability；「能力」や「機能」の意味）、仮想ネットワークのセットアップ、ファイルシステム管理といった、サブプロセスごとに委任したオペレーションを監査できるようになることを期待しています。
-
 .. Finally, if you run Docker on a server, it is recommended to run exclusively Docker in the server, and move all other services within containers controlled by Docker. Of course, it is fine to keep your favorite admin tools (probably at least an SSH server), as well as existing monitoring/supervision processes (e.g., NRPE, collectd, etc).
 
 なお、Docker をサーバで動かす場合は、サーバ上で Docker 以外を動かさないことを推奨します。そして、他のサービスは Docker によって管理されるコンテナに移動しましょう。もちろん、好きな管理ツール（おそらく SSH サーバでしょう）や既存の監視・管理プロセス（例： NRPE、collectd、等）はそのままで構いません。
