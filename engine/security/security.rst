@@ -191,9 +191,17 @@ Docker の強力な機能の中には、この問題が直接関係するもの�
 このときには、通常以上に十分なパラメータ・チェックを行う必要があります。
 そして悪意のあるユーザーがパラメータに細工をしたとしても、Docker から任意のコンテナが生成されないようにすることが重要です。
 
-.. For this reason, the REST API endpoint (used by the Docker CLI to communicate with the Docker daemon) changed in Docker 0.5.2, and now uses a UNIX socket instead of a TCP socket bound on 127.0.0.1 (the latter being prone to cross-site request forgery attacks if you happen to run Docker directly on your local machine, outside of a VM). You can then use traditional UNIX permission checks to limit access to the control socket.
+.. For this reason, the REST API endpoint (used by the Docker CLI to
+   communicate with the Docker daemon) changed in Docker 0.5.2, and now
+   uses a UNIX socket instead of a TCP socket bound on 127.0.0.1 (the
+   latter being prone to cross-site request forgery attacks if you happen to run
+   Docker directly on your local machine, outside of a VM). You can then
+   use traditional UNIX permission checks to limit access to the control
+   socket.
 
-この理由により、REST API エンドポイント（Docker CLI が Docker デーモンとの通信に使います）が Docker 0.5.2 で変更されました。現在は 127.0.0.1 上の TCP ソケットに代わり、 UNIX ソケットを使います（最近はローカルのマシン上の Docker に対して、仮想マシンの外から直接クロスサイト・リクエスト・フォージェリ、CSRF を行う傾向があります）。伝統的な Unix パーミッションを確認し、ソケットに対するアクセスを制限するような管理が必要です。
+このことから REST API のエンドポイント（Docker デーモンとやり取りするために Docker CLI により用いられるもの）が Docker 0.5.2 において変更され、127.0.0.1 にバインドされる TCP ソケットではなく UNIX ソケットを用いるようになりました。
+（TCP ソケットは、VM の外にあるローカルマシン上に直接 Docker を起動したときに、CSRF (cross-site request forgery) 攻撃を受けやすくなります。）
+そこで従来からある Unix パーミッションチェックを利用して、制御ソケットへのアクセスを制限する必要があります。
 
 .. You can also expose the REST API over HTTP if you explicitly decide to do so. However, if you do that, being aware of the above mentioned security implication, you should ensure that it will be reachable only from a trusted network or VPN; or protected with e.g., stunnel and client SSL certificates. You can also secure them with HTTPS and certificates.
 
