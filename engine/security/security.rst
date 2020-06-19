@@ -264,9 +264,17 @@ Linux カーネルのケーパビリティ
 デフォルトにおいて Docker は、ケーパビリティを限定的に利用してコンテナを起動します。
 これはどういう意味でしょう。
 
-.. Capabilities turn the binary “root/non-root” dichotomy into a fine-grained access control system. Processes (like web servers) that just need to bind on a port below 1024 do not have to run as root: they can just be granted the net_bind_service capability instead. And there are many other capabilities, for almost all the specific areas where root privileges are usually needed.
+.. Capabilities turn the binary "root/non-root" dichotomy into a
+   fine-grained access control system. Processes (like web servers) that
+   just need to bind on a port below 1024 do not need to run as root: they
+   can just be granted the `net_bind_service` capability instead. And there
+   are many other capabilities, for almost all the specific areas where root
+   privileges are usually needed.
 
-ケーパビリティとは、「root」か「root以外か」といったバイナリの二分法によって分類する、きめ細かなアクセス制御システムです。（ウェブサーバのような）プロセスがポート 1024 以下でポートをバインドする必要がある時、root 権限でなければ実行できません。そこで ``net_bind_service`` ケーパビリティを使い、権限を与えます。他にも多くのケーパビリティがあります。大部分は特定の条件下で root 特権を利用できるようにするものです。
+ケーパビリティとは「ルートか非ルートか」という 2 値による区分けを、アクセス制御システム上に対してきめ細かく実現するものです。
+1024 番ポート以下に割り当てさえすればよいプロセス（たとえばウェブ・サーバ）なら、root として実行する必要はありません。
+代わりに ``net_bind_service`` ケーパビリティを与えるだけで十分です。
+この他にも数多くのケーパビリティがあるので、root 権限が通常必要とされる場面のほとんどすべてに利用することができます。
 
 .. This means a lot for container security; let’s see why!
 
