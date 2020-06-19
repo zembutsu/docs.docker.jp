@@ -87,9 +87,26 @@ Docker コンテナは LXC コンテナによく似ています。
 これは各コンテナがあたかも実際に存在する物理的なマシンのようであり、共有するイーサネットスイッチにより通信を行っているようなものです。
 これ以上でもなく、これ以下でもありません。
 
-.. How mature is the code providing kernel namespaces and private networking? Kernel namespaces were introduced between kernel version 2.6.15 and 2.6.26. This means that since July 2008 (date of the 2.6.26 release), namespace code has been exercised and scrutinized on a large number of production systems. And there is more: the design and inspiration for the namespaces code are even older. Namespaces are actually an effort to reimplement the features of OpenVZ in such a way that they could be merged within the mainstream kernel. And OpenVZ was initially released in 2005, so both the design and the implementation are pretty mature.
+.. How mature is the code providing kernel namespaces and private
+   networking? Kernel namespaces were introduced [between kernel version
+   2.6.15 and
+   2.6.26](http://man7.org/linux/man-pages/man7/namespaces.7.html).
+   This means that since July 2008 (date of the 2.6.26 release
+   ), namespace code has been exercised and scrutinized on a large
+   number of production systems. And there is more: the design and
+   inspiration for the namespaces code are even older. Namespaces are
+   actually an effort to reimplement the features of [OpenVZ](
+   http://en.wikipedia.org/wiki/OpenVZ) in such a way that they could be
+   merged within the mainstream kernel. And OpenVZ was initially released
+   in 2005, so both the design and the implementation are pretty mature.
 
-カーネルの名前空間を提供するコードやプライベート・ネットワーキングの成熟度とは、どの程度でしょうか。カーネルの名前空間は `カーネル 2.6.15 から 2.6.26 の間 <http://lxc.sourceforge.net/index.php/about/kernel-namespaces/>`_ に導入されました。これが意味するのは、2008年6月にリリースされた（リリース 2.6.26 ）名前空間のコードは、多数のプロダクション・システム上で動作・精査されています。更にもう１つ。名前区間コードの設計と発想はやや古いものです。名前空間が効果的に実装された例としては `OpenVZ <http://ja.wikipedia.org/wiki/OpenVZ>`_ があり、カーネルのメインストリームとしてマージされたこともありました。OpenVZ の初期リリースは 2005 年であり、設計と実装は、多少成熟していると言えるでしょう。
+ではカーネルの名前空間やプライベートネットワーク機能のソースコードは、成熟したものになっているでしょうか。
+カーネルの名前空間が導入されたのは `カーネル 2.6.15 から 2.6.26 の間 <http://lxc.sourceforge.net/index.php/about/kernel-namespaces/>`_  です。
+つまり 2008 年 6 月（2.6.26 のリリース日）以降、名前空間のソースコードは、数多くの本番環境システムを通じて検証が続いている状態です。
+それだけではありません。
+名前空間のソースコードの設計と発想は、もはや古いものになっています。
+そもそも名前空間は `OpenVZ <http://ja.wikipedia.org/wiki/OpenVZ>`_ の機能を再実装するという努力から生まれたものであり、カーネルのメインストリームにマージされることを目指したものです。
+ちなみに OpenVZ が初めてリリースされたのは 2005 年であり、その設計と実装はともに十分成熟しています。
 
 .. Control groups
 
