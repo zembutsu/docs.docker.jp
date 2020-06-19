@@ -21,9 +21,9 @@ Docker のセキュリティ
        :depth: 3
        :local:
 
-.. There are three major areas to consider when reviewing Docker security:
+.. There are four major areas to consider when reviewing Docker security:
 
-Docker のセキュリティには、主に３つの検討項目があります。
+Docker のセキュリティを考えてみる上では、主要な観点が 4 つあります。
 
 ..    the intrinsic security of the kernel and its support for namespaces and cgroups;
     the attack surface of the Docker daemon itself;
