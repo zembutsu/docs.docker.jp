@@ -54,9 +54,13 @@ Docker コンテナは LXC コンテナによく似ています。
 どちらも同じようなセキュリティ機能を持っています。
 ``docker run`` によってコンテナを起動させると Docker の内部処理では、コンテナが利用する名前空間やコントロールグループが生成されます。
 
-.. Namespaces provide the first and most straightforward form of isolation: processes running within a container cannot see, and even less affect, processes running in another container, or in the host system.
+.. **Namespaces provide the first and most straightforward form of
+   isolation**: processes running within a container cannot see, and even
+   less affect, processes running in another container, or in the host
+   system.
 
-**名前空間は、一流かつ最も簡単な方法で分離（isolation）を提供します**。これによりコンテナの中で実行しているプロセスは、他のコンテナやホスト上のプロセスから見えなくなり、影響すら受けません。
+**名前空間とは、初めて提供された最もストレートな形の分離技術のことです**。
+コンテナ内部にて起動されるプロセスからは、他のコンテナ内部やホストシステム内のプロセスを参照することはできず、また影響もほぼ及ぼしません。
 
 .. Each container also gets its own network stack, meaning that a container doesn’t get privileged access to the sockets or interfaces of another container. Of course, if the host system is setup accordingly, containers can interact with each other through their respective network interfaces — just like they can interact with external hosts. When you specify public ports for your containers or use links then IP traffic is allowed between containers. They can ping each other, send/receive UDP packets, and establish TCP connections, but that can be restricted if necessary. From a network architecture point of view, all containers on a given Docker host are sitting on bridge interfaces. This means that they are just like physical machines connected through a common Ethernet switch; no more, no less.
 
