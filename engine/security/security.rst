@@ -276,9 +276,10 @@ Linux カーネルのケーパビリティ
 代わりに ``net_bind_service`` ケーパビリティを与えるだけで十分です。
 この他にも数多くのケーパビリティがあるので、root 権限が通常必要とされる場面のほとんどすべてに利用することができます。
 
-.. This means a lot for container security; let’s see why!
+.. This means a lot for container security; let's see why!
 
-つまり、コンテナのセキュリティを高めます。理由を見ていきましょう！
+コンテナーセキュリティにおいてこれは実に多くのことを意味します。
+どういうことなのか見ていきます。
 
 .. Your average server (bare metal or virtual machine) needs to run a bunch of processes as root. Those typically include SSH, cron, syslogd; hardware management tools (e.g., load modules), network configuration tools (e.g., to handle DHCP, WPA, or VPNs), and much more. A container is very different, because almost all of those tasks are handled by the infrastructure around the container:
 
