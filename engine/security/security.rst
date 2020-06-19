@@ -45,9 +45,14 @@ Docker のセキュリティを考えてみる上では、主要な観点が 4 �
 カーネルの名前空間
 ====================
 
-.. Docker containers are very similar to LXC containers, and they have similar security features. When you start a container with docker run, behind the scenes Docker creates a set of namespaces and control groups for the container.
+.. Docker containers are very similar to LXC containers, and they have
+   similar security features. When you start a container with
+   `docker run`, behind the scenes Docker creates a set of namespaces and control
+   groups for the container.
 
-Docker コンテナは LXC コンテナに非常に似ており、類似のセキュリティ機能を持っています。コンテナを ``docker run`` で起動する時、その背後で Docker がコンテナ向けの名前空間とコントロール・グループを作成します。
+Docker コンテナは LXC コンテナによく似ています。
+どちらも同じようなセキュリティ機能を持っています。
+``docker run`` によってコンテナを起動させると Docker の内部処理では、コンテナが利用する名前空間やコントロールグループが生成されます。
 
 .. Namespaces provide the first and most straightforward form of isolation: processes running within a container cannot see, and even less affect, processes running in another container, or in the host system.
 
