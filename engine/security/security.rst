@@ -150,7 +150,7 @@ Docker コンテナは LXC コンテナによく似ています。
 
 .. _docker-daemon-attack-surface:
 
-Docker デーモンが直面する攻撃
+Docker デーモンの攻撃領域
 ==============================
 
 .. Running containers (and applications) with Docker implies running the Docker daemon. This daemon currently requires root privileges, and you should therefore be aware of some important details.
