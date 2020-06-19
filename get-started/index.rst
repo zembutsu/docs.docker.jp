@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/get-started/
-   doc version: 17.06
+   doc version: 19.03
       https://github.com/docker/docker.github.io/blob/master/get-started/index.md
-.. check date: 2017/09/02
-.. Commits on Aug 27, 2017 4445f27581bd2d190ecd69b6ca31b8dc04b2b9e3
+.. check date: 2020/06/16
+.. Commits on Jun 4, 2020 cf3c9ab3e970e2be6fb09360994200e46d02b603
 .. -----------------------------------------------------------------------------
 
 .. Get Started, Part 1: Orientation and Setup
@@ -22,178 +22,191 @@ Part 1：概要説明とセットアップ
 
 ようこそ！ 皆さんが Docker の使い方を学ぼうとしており、私たちは嬉しく思います。
 
-.. In this six-part tutorial, you will:
+.. This page contains step-by-step instructions on how to get started with Docker. We also recommend the video walkthrough from Dockercon 2020.
 
+このページでは段階的な手順に従って、Docker の始め方を学びます。また、 Dockercon 2020 の映像を見るのも推奨します。
+
+.. image:: ./images/get-started.png
+   :scale: 60%
+   :target: https://docker.events.cube365.net/docker/dockercon/content/Videos/hgMFTyX5kYKmTPWZo
+
+.. The Docker Quickstart training module teaches you how to:
+
+このクイックスタート・トレーニングでは、次の方法を伝授します：
 このチュートリアルは６つのパートで構成されています。
 
-..    Get set up and oriented, on this page.
-    Build and run your first app
-    Turn your app into a scaling service
-    Span your service across multiple machines
-    Add a visitor counter that persists data
-    Deploy your swarm to production
+..  Set up your Docker environment (on this page)
+    Build and run your image
+    Share images on Docker Hub
 
 1. セットアップと概要説明、このページです。
-2. :doc:`初めてのアプリを構築・実行 <part2>` 
-3. :doc:`アプリをスケールするサービスに変える <part3>` 
-4. :doc:`複数のマシンにまたがってサービスを展開 <part4>` 
-5. :doc:`来訪者カウンタで残しておくデータの追加 <part5>` 
-6. :doc:`swarm をプロダクションにデプロイ <part6>` 
+2. :doc:`イメージの構築と実行 <part2>` 
+3. :doc:`イメージを Docker Hub で共有 <part3>` 
 
-.. The application itself is very simple so that you are not too distracted by what the code is doing. After all, the value of Docker is in how it can build, ship, and run applications; it’s totally agnostic as to what your application actually does.
+.. Docker concepts
 
-アプリケーションそのものは非常にシンプルです。そのため、プログラムが行っていることが分からなくなるようなことはありません。何といっても  Docker の真価は、アプリケーションをどのように構築（build）・移動（ship）・実行（run）するかというところにあります。皆さんのアプリケーションが実際に何をするのかには関係がないのです。
+.. _docker-concepts:
 
-.. Prerequisites
-
-必要条件
-==========
-
-.. While we’ll define concepts along the way, it is good for you to understand what Docker is and why you would use Docker before we begin.
-
-これから用語の定義を示していきます。あらかじめ `Docker とは何か？（英語） <https://www.docker.com/what-docker>`_ や `なぜ Docker を使うのか（英語） <https://www.docker.com/use-cases>`_ を読んでおけば理解に役立つでしょう。
-
-.. We also need to assume you are familiar with a few concepts before we continue:
-
-また以下の用語については理解できているものとして話を進めていきます。
-
-..    IP Addresses and Ports
-    Virtual Machines
-    Editing configuration files
-    Basic familiarity with the ideas of code dependencies and building
-    Machine resource usage terms, like CPU percentages, RAM use in bytes, etc.
-
-* IP アドレスとポート
-* 仮想マシン
-* 設定ファイルの編集
-* コード実行に関する依存関係と構築に関する考えについて、基本の熟知
-* CPU 使用率、メモリをバイトで扱うなど、マシン・リソースの使用に関する用語
-
-.. A brief explanation of containers
-
-.. _a-brief-explanation-of-containers:
-
-コンテナの概要を説明
+Docker の概念
 ====================
 
-.. An image is a lightweight, stand-alone, executable package that includes everything needed to run a piece of software, including the code, a runtime, libraries, environment variables, and config files.
+.. Docker is a platform for developers and sysadmins to build, run, and share applications with containers. The use of containers to deploy applications is called containerization. Containers are not new, but their use for easily deploying applications is.
 
-**イメージ（image）** とは実行可能なパッケージであり、軽量で、単独で動作（stand-alone）します。パッケージにはコード、ランタイム、ライブラリ、環境変数、設定ファイルなど、ソフトウェアの実行に必要な部品すべてを含みます。
+Docker とは開発者やシステム管理者が、コンテナでアプリケーションを **構築（build）、実行（run）、共有（share）**するためのプラットフォームです。アプリケーションをデプロイするために、コンテナを利用する事をコンテナ化（ `containerization` ）と呼びます。コンテナは新しくありませんが、コンテナを使えばアプリケーションのデプロイがより簡単になります。
 
-.. A container is a runtime instance of an image—what the image becomes in memory when actually executed. It runs completely isolated from the host environment by default, only accessing host files and ports if configured to do so.
+.. Containerization is increasingly popular because containers are:
 
-**コンテナ（container）** とはイメージのランタイム・インスタンス（runtime instance；実行状態にあるモノ）です。そのイメージがメモリ上に置かれ実行されている状態のものです。デフォルトにおいてコンテナはホスト環境からは独立していますが、設定を行えばはホストのファイルやポートにアクセスできます。
+ますますコンテナ化の人気が高まるのは、コンテナには以下の特長があるためです。
 
-.. Containers run apps natively on the host machine’s kernel. They have better performance characteristics than virtual machines that only get virtual access to host resources through a hypervisor. Containers can get native access, each one running in a discrete process, taking no more memory than any other executable.
+..  Flexible: Even the most complex applications can be containerized.
+    Lightweight: Containers leverage and share the host kernel, making them much more efficient in terms of system resources than virtual machines.
+    Portable: You can build locally, deploy to the cloud, and run anywhere.
+    Loosely coupled: Containers are highly self sufficient and encapsulated, allowing you to replace or upgrade one without disrupting others.
+    Scalable: You can increase and automatically distribute container replicas across a datacenter.
+    Secure: Containers apply aggressive constraints and isolations to processes without any configuration required on the part of the user.
 
-ホストマシンのカーネル上で、コンテナはアプリケーションをネイティブに（訳者注；何らかのプログラムを通さず、直接の意味）実行します。仮想マシンでは、ホスト上のリソースにハイパーバイザを通してしかアクセスできません。そのためコンテナには仮想マシン以上の性能特性があります。コンテナはネイティブにアクセス可能であり、個々のコンテナは分離されたプロセス内で動作します。したがって通常の実行モジュールに比べてもメモリ消費が少なくて済ます。
+* **柔軟（Flexible）** ：最も複雑なアプリケーションですらコンテナ化できます。
+* **軽量（Lightweight）** ：ホスト・カーネルをコンテナは活用・共有するので、システムリソースに関しては仮想マシンよりも効率的に扱えます。
+* **可搬性（Portable）** ：ローカルで構築し、クラウドにデプロイし、どこでも実行できます。
+* **疎結合（Loosely coupled）** ：コンテナは、コンテナ自身のことは自分で完結し、カプセル化しています。そのため、他の何らかの中断をしなくても、置き換えやアップグレードが可能です。
+* **拡張性（Scalable）** ：データセンタ内の至るところで、複製したコンテナの追加と自動分散が可能です。
+* **安全（Secure）** ：利用者による設定がなくても、コンテナは積極的な制限と分離（isolate）をプロセスに適用します。
 
-.. Containers vs. virtual machines
+.. Images and containers
 
-.. _containers-vs-virtual-machines:
+.. _images-and-containers:
+
+イメージとコンテナ
+------------------------------
+
+.. Fundamentally, a container is nothing but a running process, with some added encapsulation features applied to it in order to keep it isolated from the host and from other containers. One of the most important aspects of container isolation is that each container interacts with its own private filesystem; this filesystem is provided by a Docker image. An image includes everything needed to run an application - the code or binary, runtimes, dependencies, and any other filesystem objects required.
+
+基本的に、コンテナは何もしませんが、プロセスが走っています。このプロセスは、ホストと他のコンテナから隔離（isolate）し続けるために、複数のカプセル化する機能をプロセスに対して追加しています。コンテナ隔離（isolation）の最も重要な特長とは、各コンテナが自分自身のプライベート・ファイルシステムとやりとりできる点です。すなわち、このファイスシステムは Docker **イメージ**  によって提供されます。イメージに含まれるのは、アプリケーションの実行に必要な全てです。たとえば、コード、バイナリ、ランタイム、依存関係、その他の必要なあらゆるファイルシステム・オブジェクトです。
+
+.. Containers and virtual machines
+
+.. _containers-and-virtual-machines:
 
 コンテナと仮想マシン
-====================
+------------------------------
 
-.. Consider this diagram comparing virtual machines to containers:
+.. A container runs natively on Linux and shares the kernel of the host machine with other containers. It runs a discrete process, taking no more memory than any other executable, making it lightweight.
 
-以下の図を用いて、仮想マシンとコンテナの違いを見ていきます。
-
-.. Virtual Machine diagram
-
-仮想マシン概念
---------------------
-
-.. Virtual machine stack example
-
-.. figure:: ./images/vm.png
-   :scale: 50 %
-   :alt: 仮想マシンスタックの例
-
-.. Virtual machines run guest operating systems—note the OS layer in each box. This is resource intensive, and the resulting disk image and application state is an entanglement of OS settings, system-installed dependencies, OS security patches, and other easy-to-lose, hard-to-replicate ephemera.
-
-仮想マシンではゲスト・オペレーティング・システムが稼動します。図における枠内の OS 層にあたります。仮想マシンはリソース負荷が高くなります。生成されるディスク・イメージやアプリケーションの状態は、さまざまな要素が複雑に入り組んでしまいます。OS の設定、インストールパッケージ、セキュリティパッチなどです。いずれも一時的なものにすぎず、どうなったかすぐ分からなくなるし、再構成するのも難しいものです。
-
-.. Container diagram
-
-コンテナ概念
---------------------
-
-.. Container stack example
+コンテナは Linux 上でネイティブに実行し、ホストマシン上のカーネルを他のコンテナと共有します。コンテナは離れたプロセスを実行しますが、実行するもの以外でメモリを必要としないため、軽量になります。
 
 .. figure:: ./images/container.png
    :scale: 50 %
    :alt: コンテナスタックの例
 
-.. Containers can share a single kernel, and the only information that needs to be in a container image is the executable and its package dependencies, which never need to be installed on the host system. These processes run like native processes, and you can manage them individually by running commands like docker ps—just like you would run ps on Linux to see active processes. Finally, because they contain all their dependencies, there is no configuration entanglement; a containerized app “runs anywhere.”
 
-コンテナは複数であっても１つのカーネルを共有します。コンテナイメージにとって必要なものは、実行モジュールと依存パッケージの情報のみです。これはホストシステム上にインストールされていなくても構いません。各プロセスはネイティブプロセスのように動作するので、``docker ps`` というコマンドを使って個々に管理できます。 ちょうど Linux 上でアクティブプロセスを確認する時に ``ps`` を実行するのと同じです。つまり、依存関係がすべて含まれているため、入り組んだ設定となることもありません。コンテナ化（containerized）されたアプリはどこでも動く（run anywhere）ということです。
+.. By contrast, a virtual machine (VM) runs a full-blown “guest” operating system with virtual access to host resources through a hypervisor. In general, VMs incur a lot of overhead beyond what is being consumed by your application logic.
 
-.. Setup
+一方で、 **仮想マシン**  （VM）はハイパーバイザを通してホスト・リソースに仮想的にアクセスし、完全な "ゲスト" オペレーティングシステム実行します。一般的に、アプリケーションのロジックで何を消費するかによりますが、それよりも多くのオーバヘッドを仮想マシンでは受けます。
 
-セットアップ
---------------------
-
-.. Before we get started, make sure your system has the latest version of Docker installed.
-
-説明を進める前に、皆さんのシステム上に Docker 最新版がインストールされていることを確認してください。
-
-.. Install Docker
-
-* :doc:`/engine/installation/index`
-
-..    Note: version 1.13 or higher is required
-
-.. note::
-
-   Docker バージョン 1.13 以上が必要です。
-
-.. You should be able to run docker run hello-world and see a response like this:
+.. figure:: ./images/vm.png
+   :scale: 50 %
+   :alt: 仮想マシンスタックの例
 
 
-``docker run hello-world`` を実行したら、次のように表示されます。
+.. Set up your Docker environment
+
+.. _set-up-your-docker-environment:
+
+Docker 環境をセットアップ
+==============================
+
+.. Download and install Docker Desktop
+
+.. _download-and-install-docker-desktop:
+
+Docker デスクトップのダウンロードとインストール
+--------------------------------------------------
+
+.. Docker Desktop is an easy-to-install application for your Mac or Windows environment that enables you to start coding and containerizing in minutes. Docker Desktop includes everything you need to build, run, and share containerized applications right from your machine.
+
+Docker Desktop は Mac や Windows 環境に簡単にインストールできるアプリケーションです。これにより、ものの数分でコーディングやコンテナ化を始められます。Docker Desktop にはコンテナ化したアプリケーションを、マシン上で直ちに構築、実行、共有するために必要な全てを含みます。
+
+.. Follow the instructions appropriate for your operating system to download and install Docker Desktop:
+
+オペレーティングシステムに適切な手順に従い、Docker Desktop のダウンロードとインストールを行います。
+
+..  Docker Desktop for Mac
+    Docker Desktop for Windows
+
+* :doc:`Docker Desktop for Mac </docker-for-mac/install>`
+* :doc:`Docker Desktop for Windows </docker-for-windows/install>`
+
+.. Test Docker version
+
+.. _test-docker-version:
+
+Docker バージョンのテスト
+------------------------------
+
+.. After you’ve successfully installed Docker Desktop, open a terminal and run docker --version to check the version of Docker installed on your machine.
+
+Docker Desktop のインストールに精巧したら、ターミナルを開き、 ``docker --version`` を実行し、マシン上にインストールした Docker のバージョンを確認します。
+
+.. code-block:: bash
+
+   $ docker --version
+   Docker version 19.03.5, build 633a0ea
+
+.. Test Docker installation
+
+.. _test_docker-installation:
+
+Docker インストールのテスト
+------------------------------
+
+..    Test that your installation works by running the hello-world Docker image:
+
+1. `hello-world <https://hub.docker.com/_/hello-world/>`_ Docker イメージを実行し、インストールが正常に行われたかどうかを確認します。
 
 .. code-block:: bash
 
    $ docker run hello-world
    
+   Unable to find image 'hello-world:latest' locally
+   latest: Pulling from library/hello-world
+   ca4f61b1923c: Pull complete
+   Digest: sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7
+   Status: Downloaded newer image for hello-world:latest
+   
    Hello from Docker!
    This message shows that your installation appears to be working correctly.
-   
-   To generate this message, Docker took the following steps:
-   ...(省略)...
+   ...
 
-.. Now would also be a good time to make sure you are using version 1.13 or higher. Run docker --version to check it out.
+..    Run docker image ls to list the hello-world image that you downloaded to your machine.
 
-ここでバージョン 1.13 以上を使っているかどうか確認してみてください。`docker --version` によって確認することができます。
+2. ``docker image ls`` を実行し、マシン上にダウンロードした ``hello-world`` イメージが一覧にあるかどうか確認します。
+
+..    List the hello-world container (spawned by the image) which exits after displaying its message. If it is still running, you do not need the --all option:
+
+3. メッセージを表示して終了した ``hello-world`` コンテナ（イメージから生成）が一覧にあるかどうかを確認します。もしまだ実行中であれば、 ``--all`` オプションは不要です。
 
 .. code-block:: bash
 
-   $ docker --version
-   Docker version 17.05.0-ce-rc1, build 2878a85
+   $ docker ps --all
+   
+   CONTAINER ID     IMAGE           COMMAND      CREATED            STATUS
+   54f4984ed6a8     hello-world     "/hello"     20 seconds ago     Exited (0) 19 seconds ago
 
-.. If you see messages like the ones above, you are ready to begin your journey.
-
-このようなメッセージが表示されれば、旅に出る準備が整いました。
 
 .. Conclusion
 
 まとめ
 ==========
 
-.. The unit of scale being an individual, portable executable has vast implications. It means CI/CD can push updates to any part of a distributed application, system dependencies are not an issue, and resource density is increased. Orchestration of scaling behavior is a matter of spinning up new executables, not new VM hosts.
+.. At this point, you’ve installed Docker Desktop on your development machine, and ran a quick test to ensure you are set up to build and run your first containerized application.
 
-取り扱う単位が、個別化し可搬性のある実行モジュールになるということには、極めて重要な意味があります。つまり継続的インテグレーション (CI)/継続的デリバリ (CD) においては、提供するアプリケーションのどの部分であっても容易に更新が可能となることを意味します。システムへの依存はもはや問題になることはなく、リソースの集約がさらに高まります。このような規模のプログラムを寄せ集めて実行できるわけですから、いかに素早く実行モジュールを提供できるかが問題になるのであって、新たな VM ホストを作り出す話ではないのです。
-
-.. We’ll be learning about all of these things, but first let’s learn to walk.
-
-これらの全てを学ぶ前に、今は前に進みましょう。
+この段階では、皆さんの開発マシン上に Docker Desktop をインストールし、初めてのコンテナ化アプリケーションを構築・実行し、セットアップが問題なかったどうかを簡単にテストしました。
 
 * :doc:`パート２に進む <part2>`
 
 .. seealso::
 
-   Get Started, Part 1: Orientation and Setup | Docker Documentation
+   Orientation and setup
       https://docs.docker.com/get-started/
 
 

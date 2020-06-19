@@ -176,7 +176,7 @@ Docker デーモンに ``-H`` オプションを指定すると、特定の IP �
 
 .. Similarly, the Docker client can use -H to connect to a custom port. The Docker client will default to connecting to unix:///var/run/docker.sock on Linux, and tcp://127.0.0.1:2376 on Windows.
 
-同様に、 Docker クライアントは ``-H`` を使い任意のポートに節即できます。 Docker クライアントはデフォルトで、Linux であれば ``unix:///var/run/docker.sock`` へ、Windows であれば ``tcp://127.0.0.1:2376`` に接続します。
+同様に、 Docker クライアントは ``-H`` を使い任意のポートに接続できます。 Docker クライアントはデフォルトで、Linux であれば ``unix:///var/run/docker.sock`` へ、Windows であれば ``tcp://127.0.0.1:2376`` に接続します。
 
 .. -H accepts host and port assignment in the following format:
 

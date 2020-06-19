@@ -5,8 +5,8 @@
    contain the root `toctree` directive.
 .. -----------------------------------------------------------------------------
 .. URL: https://docs.docker.com/
-   doc version: 17.06
-.. check date: 2017/09/01
+   doc version: 19.03 (current)
+.. check date: 2020/06/03
 .. -----------------------------------------------------------------------------
 
 .. Welcome to Docker-docs-ja's documentation!
@@ -20,7 +20,7 @@ Docker ドキュメント日本語化プロジェクト
 
 .. attention::
 
-  * Docker `17.06`  向けにドキュメントの改訂作業中です(2017年9月現在)。一部古い場合がありますので、ご注意ください。
+  * Docker `v19.03 (current)`  向けにドキュメントの改訂作業中です(2020年6月現在)。一部古い場合がありますので、ご注意ください。
   * Docker のドキュメントは常に変わり続けています。最新の情報については `公式ドキュメント <https://docs.docker.com/>`_ をご覧ください。
   * 本プロジェクトは有志による翻訳プロジェクトです。お気づきの点がございましたら、 `issue <https://github.com/zembutsu/docs.docker.jp/issues>`_ や `Pull Request <https://github.com/zembutsu/docs.docker.jp/pulls>`_ でお知らせ願います。
 
@@ -31,148 +31,71 @@ Docker ドキュメント日本語化プロジェクト
 Docker ドキュメント
 ==========================================
 
-.. Get started with Docker
+* :doc:`始めましょう </get-started/index>`
+   * Docker の基礎とアプリケーションをコンテナ化する利点を学びます。
 
-.. _get-started-with-docker:
+* :doc:`ダウンロードとインストール <get-docker>`
+   * Docker をダウンロードし、マシン上に 簡単な数ステップでインストールします。
 
-Docker を始めましょう
-------------------------------
+* :doc:`ガイド </develop/index>`
+   * Docker 環境のセットアップ方法と、アプリケーションをコンテナ化し始める方法を学びます。
 
-.. Try our new multi-part walkthrough that goes from writing your first app, data storage, networking, and swarms, ending with your app running on production servers in the cloud. Total reading time is less than an hour!
+* :doc:`最新情報（リリースノート） </release-notes>`
+   *  クールな新機能、更新情報、バグ修正に関して学びます。
 
-複数のパートにわたる新しい手引きを試しましょう。手引きでは初めてのアプリケーションを書き、データ保存、ネットワーク機能、クラスタの各機能を通し、最終的にはクラウド上のプロダクション・サーバ上でアプリケーションを実行します。すべてを読むのに１時間もかかりません！
+* :doc:`プロダクト・マニュアル </engine/index>`
+   * マニュアルにザッと目を通し、Docker プロダクトの使い方を学びます。
 
-.. Get started with Docker
+* :doc:`リファレンス </reference/index>`
+   * CLI と API リファレンス文章をザッと目を通します。
 
-* :doc:`Docker を始めましょう </get-started/index>`
+---
 
-.. Docker Editions
-
-.. _docker-editions:
-
-Docker のエディションについて
-==============================
-
-.. Docker Enterprise Edition
-
-.. _docker-enterprise-edition:
-
-Docker エンタープライズ・エディション
-----------------------------------------
-
-.. Designed for enterprise development and IT teams who build, ship, and run business critical applications in production at scale. Integrated, certified, and supported to provide enterprises with the most secure container platform in the industry to modernize all applications. Docker EE Advanced comes with enterprise add-ons like UCP and DTR.
-
-ビジネスにおいて重要なアプリケーションを構築、移動、そして本番環境でスケールさせるような、エンタープライズの開発と IT チームのために設計されています。統合、認証された、エンタープライズが提供するサポートを受け、全てのアプリケーションを現代化するため、業界における最も安全なコンテナ・プラットフォームです。Docker EE は UCP と DTR のようなエンタープライズ向けアドオンを備えています。
-
-.. Learn more about Docker EE
-
-* :ref:`Docker EE について学ぶ <platform-support-matrix>`
-
-.. Docker Community Edition
-
-Docker コミュニティ・エディション
-----------------------------------------
-
-.. Get started with Docker and experimenting with container-based apps. Docker CE is available on many platforms, from desktop to cloud to server. Build and share containers and automate the development pipeline from a single environment. Choose the Edge channel to get fast access to the latest features, or the Stable channel for more predictability.
-
-Docker を使い、コンテナをベースとしたアプリケーションを体験しましょう。Docker CE はデスクトップからクラウドのサーバに至るまで、多くのプラットフォームで利用可能です。単一の環境から自動デプロイ・パイプラインを通し、コンテナを構築・共有します。最新機能をいち早く得たい場合は Edge（エッジ）チャンネルを、あるいは、（挙動が）より予測可能な Stable（ステーブル；安定）チャンネルをお選び下さい。
-
-.. Learn more about Docker CE
-
-* :ref:`Docker CE について学ぶ <platform-support-matrix>`
-
-.. _components:
-
-構成要素
-==========
-
-* :doc:`Docker for Mac </docker-for-mac/index>`
-
-   Mac 上で全ての Docker ツールを実行するために、OS X サンドボックス・セキュリティ・モデルを使うネイティブなアプリケーションです。
-
-* :doc:`Docker for Windows </docker-for-windows/overview>`
-
-   Windows コンピュータ上で全ての Docker ツールを実行するためのネイティブ Windows アプリケーションです。
-
-* Docker for Linux
-
-   コンピュータにインストール済みの Linux ディストリビューション上に Docker をインストールします。
-
-* :doc:`Docker Engine （エンジン）</engine/installation/index>`
-
-   Docker イメージを作成し、Docker コンテナを実行します。
-   v.1.12.0 以降は、Engine の :doc:`swarm モード </engine/swarm/index>` にコンテナのオーケストレーション機能が含まれます。
-
-* :doc:`Docker Hub （ハブ） </docker-hub/overview>`
-
-   イメージの管理と構築のためのホステッド・レジストリ・サービスです。
-
-* Docker Cloud （クラウド）
-
-   ホスト上にDocker イメージの構築、テスト、デプロイするホステッド・サービスです。
-
-* Docker Trusted Registry （トラステッド・レジストリ）
-
-   [DTR] でイメージの保管と署名をします。
-
-* Docker Universal Control Plane （ユニバーサル・コントロール・プレーン）
-
-   [UCP] はオンプレミス上の Docker ホストのクラスタを１台から管理します。
-
-* :doc:`Docker Machine （マシン） </machine/overview>`
-
-   ネットワークまたはクラウド上へ自動的にコンテナをプロビジョニングします。Windows、mac OS、Linux で使えます。
-
-* :doc:`Docker Compose （コンポーズ） </compose/overview>`
-
-   複数のコンテナを使うアプリケーションを定義します。
-
-
-----
-
-Doc v17.06 目次
+Doc v19.03 目次
 ====================
 
-
 .. toctree::
-   :caption: Guide - ガイド
+   :caption: Guides - ガイド
    :maxdepth: 1
 
-   engine/installation/toc.rst
+   get-docker.rst
    get-started/toc.rst
-   ユーザガイド <engine/toc.rst>
+   develop/toc.rst
+   production.rst
+   opensoruce/toc.rst
+   docsarchive.rst
+
+
+
 
 .. toctree::
-   :caption: Docker Compose
-   :maxdepth: 2
+   :caption: Product manuals - マニュアル
+   :maxdepth: 1
 
-   compose/toc.rst
-
-.. toctree::
-   :caption: Docker Hub
-   :maxdepth: 2
-
-   docker-hub/index.rst
-
-.. toctree::
-   :caption: Docker Machine
-   :maxdepth: 2
-
-   machine/index.rst
-
-.. toctree::
-   :caption: Docker Toolbox
-   :maxdepth: 2
-
+   Docker Engine <engine/toc.rst>
+   Docker Compose <compose/toc.rst>
+   Docker Desktop <desktop/toc.rst>
+   Docker Hub <docker-hub/index.rst>
+   Docker Machine <machine/index.rst>
    Docker Toolbox <toolbox/index.rst>
-
-.. toctree::
-   :caption: コンポーネント・プロジェクト
-   :maxdepth: 2
-
    registry/toc.rst
    swarm/toc.rst
 
+.. toctree::
+   :caption: Reference - 参考資料
+   :maxdepth: 1
+
+   コマンドライン・リファレンス <engine/reference/index.rst>
+   Dockerfile リファレンス <engine/reference/builder.rst>
+   Compose file リファレンス <compose/reference/toc.rst>
+   glossary.rst
+
+
+.. toctree::
+   :caption: Samples - サンプル
+   :maxdepth: 1
+
+   sample/index.rst
 
 About
 ==============================
@@ -182,7 +105,6 @@ About
    :caption: Docker について
 
    release-notes.rst
-   glossary.rst
    about.rst
    guide.rst
    pdf-download.rst
