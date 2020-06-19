@@ -153,9 +153,14 @@ Docker コンテナは LXC コンテナによく似ています。
 Docker デーモンの攻撃領域
 ==============================
 
-.. Running containers (and applications) with Docker implies running the Docker daemon. This daemon currently requires root privileges, and you should therefore be aware of some important details.
+.. Running containers (and applications) with Docker implies running the
+   Docker daemon. This daemon requires `root` privileges unless you opt-in
+   to [Rootless mode](rootless.md) (experimental), and you should therefore
+   be aware of some important details.
 
-Docker を使ったコンテナ（とアプリケーション）を実行するとは、Docker デーモンの稼働を意味します。このデーモンは現時点で ``root`` 特権が必要であり、それゆえ、いくつか重要な点に配慮が必要です。
+コンテナ（およびアプリケーション）を Docker とともに動作させるということは、暗に Docker デーモンを動作させるということです。
+デーモンの起動には :doc:`rootless モード </engine/security/rootless>` (試験的機能) を用いるのでない限りは ``root`` 権限を必要とします。
+したがって重要な点をいくつか意識しておく必要があります。
 
 .. First of all, only trusted users should be allowed to control your Docker daemon. This is a direct consequence of some powerful Docker features. Specifically, Docker allows you to share a directory between the Docker host and a guest container; and it allows you to do so without limiting the access rights of the container. This means that you can start a container where the /host directory will be the / directory on your host; and the container will be able to alter your host filesystem without any restriction. This is similar to how virtualization systems allow filesystem resource sharing. Nothing prevents you from sharing your root filesystem (or even your root block device) with a virtual machine.
 
