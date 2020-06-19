@@ -221,6 +221,11 @@ Docker の強力な機能の中には、この問題が直接関係するもの�
 したがって :doc:`HTTPS と 証明書 <https>` を用いたセキュアな API エンドポイントの利用が必須となります。
 また信頼できるネットワークや VPN からのみ到達可能とするような対処も求められます。
 
+.. You can also use `DOCKER_HOST=ssh://USER@HOST` or `ssh -L /path/to/docker.sock:/var/run/docker.sock`
+   instead if you prefer SSH over TLS.
+
+SSH over TLS を実現したいのであれば、``DOCKER_HOST=ssh://USER@HOST`` や ``ssh -L /path/to/docker.sock:/var/run/docker.sock`` を用いることもできます。
+
 .. The daemon is also potentially vulnerable to other inputs, such as image loading from either disk with ‘docker load’, or from the network with ‘docker pull’. This has been a focus of improvement in the community, especially for ‘pull’ security. While these overlap, it should be noted that ‘docker load’ is a mechanism for backup and restore and is not currently considered a secure mechanism for loading images. As of Docker 1.3.2, images are now extracted in a chrooted subprocess on Linux/Unix platforms, being the first-step in a wider effort toward privilege separation.
 
 また、デーモンは入力に関する脆弱性を潜在的に持っています。これはディスク上で ``docker load`` 、あるいはネットワーク上で ``docker pull`` を使いイメージを読み込む時です。これはコミュニティにおける改良に焦点がおかれており、特に安全に ``pull`` するためです。これまでの部分と重複しますが、 ``docker load`` はバックアップや修復のための仕組みです。しかし、イメージの読み込みにあたっては、現時点で安全な仕組みではないと考えられていることに注意してください。Docker 1.3.2 からは、イメージは Linux/Unix プラットフォームの chroot サブ・プロセスとして展開されるようになりました。これは広範囲にわたる特権分離問題に対する第一歩です。
