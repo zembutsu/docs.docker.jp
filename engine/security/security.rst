@@ -296,9 +296,12 @@ Linux カーネルのケーパビリティ
 
 * SSH アクセスを管理するのは、通常は Docker ホスト上に稼動するサーバープロセスです。
 
-..     cron, when necessary, should run as a user process, dedicated and tailored for the app that needs its scheduling service, rather than as a platform-wide facility;
+..  - `cron`, when necessary, should run as a user
+      process, dedicated and tailored for the app that needs its
+      scheduling service, rather than as a platform-wide facility;
 
-* ``cron`` は、必要があればユーザ・プロセスとして実行可能です。プラットフォーム上のファシリティを広範囲に使うのではなく、専用、もしくはアプリケーションが個別に必要なサービスをスケジュールします。
+* ``cron`` は必要な場合は、ユーザ・プロセスとして起動させます。
+  スケジュール・サービスを必要とするアプリ向けに特化させるものであり、プラットフォーム全体の機能として用いるものではありません。
 
 ..    log management will also typically be handed to Docker, or by third-party services like Loggly or Splunk;
 
