@@ -358,9 +358,19 @@ Linux カーネルのケーパビリティ
 
 上記のようなことをすれば、たとえ侵入者がコンテナ内の root 権限を得ようとしても、重大なダメージを及ぼすことはまず困難であり、またホストの権限まで奪うようなことにはなりません。
 
-.. This won’t affect regular web apps; but malicious users will find that the arsenal at their disposal has shrunk considerably! By default Docker drops all capabilities except those needed, a whitelist instead of a blacklist approach. You can see a full list of available capabilities in Linux manpages.
+.. This doesn't affect regular web apps, but reduces the vectors of attack by
+   malicious users considerably. By default Docker
+   drops all capabilities except [those
+   needed](https://github.com/moby/moby/blob/master/oci/defaults.go#L14-L30),
+   a whitelist instead of a blacklist approach. You can see a full list of
+   available capabilities in [Linux
+   manpages](http://man7.org/linux/man-pages/man7/capabilities.7.html).
 
-通常のウェブ・アプリケーションには影響を与えません。しかし、悪意のあるユーザであれば、自分たちが自由に使える武器が減ったと分かるでしょう！ Docker は `必要に応じて <https://github.com/docker/docker/blob/master/daemon/execdriver/native/template/default_template.go>`_ 全てのケーパビリティを除外し、ブラックリストからホワイトリストに除外する方法も使えます。利用可能なケーパビリティについては、 `Linux の man ページ <http://man7.org/linux/man-pages/man7/capabilities.7.html>`_ をご覧ください。
+普通のウェブ・アプリに対しての影響はありません。
+しかも悪意あるユーザからの攻撃はかなり抑えられることになります。
+デフォルトで Dockerは全ケーパビリティを拒否した上で、`必要となるケーパビリティ <https://github.com/moby/moby/blob/master/oci/defaults.go#L14-L30>`_ を用います。
+つまりブラックリスト方式ではなくホワイトリスト方式をとるものです。
+利用可能なケーパビリティの一覧は `Linux man ページ <http://man7.org/linux/man-pages/man7/capabilities.7.html>`_ を参照してください。
 
 .. One primary risk with running Docker containers is that the default set of capabilities and mounts given to a container may provide incomplete isolation, either independently, or when used in combination with kernel vulnerabilities.
 
