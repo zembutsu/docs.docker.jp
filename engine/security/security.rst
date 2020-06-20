@@ -456,9 +456,17 @@ Docker Content Trust の署名認証方法の詳細は :doc:`Docker における
   これに対して Docker 固有の設定は不要です。
   なぜならこのセキュリティ機能はシステム全体に適用されるものであって、コンテナーからは切り離されているものだからです。
 
-..    If your distribution comes with security model templates for Docker containers, you can use them out of the box. For instance, we ship a template that works with AppArmor and Red Hat comes with SELinux policies for Docker. These templates provide an extra safety net (even though it overlaps greatly with capabilities).
+..  - If your distribution comes with security model templates for
+      Docker containers, you can use them out of the box. For instance, we
+      ship a template that works with AppArmor and Red Hat comes with SELinux
+      policies for Docker. These templates provide an extra safety net (even
+      though it overlaps greatly with capabilities).
 
-* ディストリビューションに Docker コンテナに対応したセキュリティ・モデル・テンプレートがあれば、それを利用可能です。例えば、私たちは AppArmor で動作するテンプレートを提供しています。また、Red hat は Docker 対応の SELinux ポリシーを提供しています。これらのテンプレートは外部のセーフティーネットを提供します（ケーパビリティと大いに重複する部分もありますが）。
+* 利用しているディストリビューションに Docker コンテナ用のセキュリティ・モデル・テンプレートが用意されているなら、それをそのまま利用することができます。
+  たとえば AppArmor にて動作するテンプレートを我々は提供しています。
+  また Red Hat は Docker 向けの SELinux ポリシーを提供しています。
+  こういったテンプレートは追加の安全策となるものです。
+  （もっともケーパビリティとかなりの部分で重複するところがあります。）
 
 ..    You can define your own policies using your favorite access control mechanism.
 
