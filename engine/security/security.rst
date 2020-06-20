@@ -524,6 +524,10 @@ AppArmor、SELinux、GRSEC、あるいはセキュリティを堅牢にする適
 
 Docker をより安全にする方法を検討している方は、Docker コミュニティ・フォーラムにおいて、機能リクエスト、プル・リクエスト、コメントをお寄せください。
 
+.. ## Related information
+
+.. _related-information:
+
 関連情報
 ==========
 
