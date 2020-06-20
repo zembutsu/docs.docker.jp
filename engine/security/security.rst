@@ -436,9 +436,13 @@ Docker Content Trust の署名認証方法の詳細は :doc:`Docker における
 ケーパビリティは、最近の Linux カーネルが提供する多くのセキュリティ機能の一つです。
 もちろんよく知られた既存のシステムとして、TOMOYO、AppArmor、SELinux、GRSEC を利用するのでもかまいません。
 
-.. While Docker currently only enables capabilities, it doesn’t interfere with the other systems. This means that there are many different ways to harden a Docker host. Here are a few examples.
+.. While Docker currently only enables capabilities, it doesn't interfere
+   with the other systems. This means that there are many different ways to
+   harden a Docker host. Here are a few examples.
 
-現時点の Docker はケーパビリティの有効化しかできず、他のシステムには干渉できません。つまり、Docker ホストを堅牢にするには様々な異なった方法があります。以下は複数の例です。
+現時点において Docker はケーパビリティを有効にするだけであって、他のシステムを妨害するものではありません。
+そこで Docker ホストのセキュリティ向上には、いくらでも方法が残されています。
+以下に数例を示します。
 
 ..     You can run a kernel with GRSEC and PAX. This will add many safety checks, both at compile-time and run-time; it will also defeat many exploits, thanks to techniques like address randomization. It doesn’t require Docker-specific configuration, since those security features apply system-wide, independent of containers.
 
