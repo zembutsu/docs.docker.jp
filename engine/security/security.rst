@@ -328,9 +328,14 @@ Linux カーネルのケーパビリティ
    つまり ``ifconfig``、``route``、ip コマンド類は実行する必要がありません。
    （ただしコンテナがルータやファイアウォールとして動作するように構築しているのであれば別です。）
 
-.. This means that in most cases, containers will not need “real” root privileges at all. And therefore, containers can run with a reduced capability set; meaning that “root” within a container has much less privileges than the real “root”. For instance, it is possible to:
+.. This means that in most cases, containers do not need "real" root
+   privileges *at all*. And therefore, containers can run with a reduced
+   capability set; meaning that "root" within a container has much less
+   privileges than the real "root". For instance, it is possible to:
 
-これらが意味するのは、大部分のケースにおいて、コンテナを「本当の」 root 特権で動かす必要は *全く無い* ということです。それゆえ、コンテナはケーパビリティの組み合わせを減らして実行できるのです。つまり、コンテナ内の「root」は、実際の「root」よりも権限が少ないことを意味します。例えば、次のような使い方があります。
+上からわかるように、たいていの場合、コンテナが「本当の」root 権限を必要とすることは **まったくない** ということです。
+つまりコンテナは、ケーパビリティを最小限にして実行可能であって、コンテナ内の「root」は、本当の「root」よりも少ない権限で済むことを意味します。
+したがって以下のようなことが可能になります。
 
 ..    deny all “mount” operations;
     deny access to raw sockets (to prevent packet spoofing);
