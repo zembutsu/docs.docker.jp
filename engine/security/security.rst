@@ -444,9 +444,17 @@ Docker Content Trust の署名認証方法の詳細は :doc:`Docker における
 そこで Docker ホストのセキュリティ向上には、いくらでも方法が残されています。
 以下に数例を示します。
 
-..     You can run a kernel with GRSEC and PAX. This will add many safety checks, both at compile-time and run-time; it will also defeat many exploits, thanks to techniques like address randomization. It doesn’t require Docker-specific configuration, since those security features apply system-wide, independent of containers.
+..  - You can run a kernel with GRSEC and PAX. This adds many safety
+      checks, both at compile-time and run-time; it also defeats many
+      exploits, thanks to techniques like address randomization. It doesn't
+      require Docker-specific configuration, since those security features
+      apply system-wide, independent of containers.
 
-* カーネルで GRSEC と PAX を実行できます。これにより、コンパイル時と実行時の安全チェック機能をもたらします。アドレスランダム化のような技術に頼る、多くの exploit を無効化します。Docker 固有の設定は不要です。コンテナとは独立して、システムの広範囲にわたるセキュリティ機能を提供します。
+* GRSEC や PAX を利用してカーネルを起動することができます。
+  これにより、コンパイル時や実行時に多くの安全性チェックを行うことができます。
+  またアドレスのランダム化のような技術のおかげで、悪用の機会を大きく減らすことができます。
+  これに対して Docker 固有の設定は不要です。
+  なぜならこのセキュリティ機能はシステム全体に適用されるものであって、コンテナーからは切り離されているものだからです。
 
 ..    If your distribution comes with security model templates for Docker containers, you can use them out of the box. For instance, we ship a template that works with AppArmor and Red Hat comes with SELinux policies for Docker. These templates provide an extra safety net (even though it overlaps greatly with capabilities).
 
