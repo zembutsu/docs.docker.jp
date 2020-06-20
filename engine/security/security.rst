@@ -492,10 +492,14 @@ Docker 1.10 から Docker デーモンが直接、ユーザー名前空間をサ
 コンテナーからのブレイクアウトのリスクを軽減することにつながります。
 利用可能な機能ではあるのですが、デフォルトでは有効化されていません。
 
-.. （1.11 で追加）
-.. Refer to the daemon command in the command line reference for more information on this feature. Additional information on the implementation of User Namespaces in Docker can be found in this blog post.
+.. Refer to the [daemon command](../reference/commandline/dockerd.md#daemon-user-namespace-options)
+   in the command line reference for more information on this feature.
+   Additional information on the implementation of User Namespaces in Docker
+   can be found in
+   [this blog post](https://integratedcode.us/2015/10/13/user-namespaces-have-arrived-in-docker/).
 
-こちらの機能に関するより詳しい情報は :ref:`daemon コマンド <daemon-user-namespace-options>` のリファレンスをご覧ください。Docker におけるユーザ名前空間の実装に関する詳細情報は `こちらのブログ投稿 <https://integratedcode.us/2015/10/13/user-namespaces-have-arrived-in-docker/>`_  をご覧ください。
+この機能に関しての詳細は、コマンドライン・リファレンス内の :ref:`daemon コマンド <daemon-user-namespace-options>` を参照してください。
+Docker 内のユーザ名前空間に対する実装については `こちらのブログ投稿 <https://integratedcode.us/2015/10/13/user-namespaces-have-arrived-in-docker/>`_ に詳細が示されています。
 
 .. Conclusions
 
