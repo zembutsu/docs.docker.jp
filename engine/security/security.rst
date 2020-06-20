@@ -380,9 +380,15 @@ Linux カーネルのケーパビリティ
 Docker コンテナ実行時の主なリスクと言えば、コンテナに与えられるデフォルトのケーパビリティやマウント状況だけでは、完全なコンテナ分離にはならないことです。
 独立となっていない場合や、カーネルのぜい弱性との組み合わせによることも考えられます。
 
-.. Docker supports the addition and removal of capabilities, allowing use of a non-default profile. This may make Docker more secure through capability removal, or less secure through the addition of capabilities. The best practice for users would be to remove all capabilities except those explicitly required for their processes.
+.. Docker supports the addition and removal of capabilities, allowing use
+   of a non-default profile. This may make Docker more secure through
+   capability removal, or less secure through the addition of capabilities.
+   The best practice for users would be to remove all capabilities except
+   those explicitly required for their processes.
 
-Docker はケーパビリティの追加と削除をサポートしますので、デフォルトで何も無いプロファイルも扱えます。これにより、ケーパビリティが削除されても Docker は安全ですが、ケーパビリティを追加する時はセキュリティが低下します。利用にあたってのベストプラクティスは、各プロセスが明らかに必要なケーパビリティを除き、全て削除することです。
+Docker のデフォルトにはないプロファイルを使えば、ケーパビリティの追加および削除が可能になります。
+これを使ってケーパビリティを削除すれば、Docker は一層安全な状態になり、ケーパビリティを加えれば、それだけ安全性は低下することになります。
+ユーザにとってのベストプラクティスは、全ケーパビリティは削除した上で、実行するプロセスに必要となるもののみを明示的に利用する方法をとることでしょう。
 
 .. Other kernel security features
 
