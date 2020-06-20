@@ -519,9 +519,10 @@ Docker コンテナはデフォルトにおいて十分に安全なものです�
 
 AppArmor、SELinux、GRSEC、あるいはセキュリティを堅牢にする適切なシステムを用いれば、安全性をさらに高めることができます。
 
-.. Last but not least, if you see interesting security features in other containerization systems, these are simply kernels features that may be implemented in Docker as well. We welcome users to submit issues, pull requests, and communicate via the mailing list.
+.. If you think of ways to make docker more secure, we welcome feature requests,
+   pull requests, or comments on the Docker community forums.
 
-最後ですが疎かにできないのは、他のコンテナ化システムのセキュリティ機能に興味があれば、それらは Docker と同じようにシンプルにカーネルの機能を実装しているのが分かるでしょう。私たちは皆さんからの問題報告、プルリクエスト、メーリングリストにおける議論を歓迎します。
+Docker をより安全にする方法を検討している方は、Docker コミュニティ・フォーラムにおいて、機能リクエスト、プル・リクエスト、コメントをお寄せください。
 
 関連情報
 ==========
