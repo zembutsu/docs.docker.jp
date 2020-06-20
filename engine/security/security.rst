@@ -468,9 +468,10 @@ Docker Content Trust の署名認証方法の詳細は :doc:`Docker における
   こういったテンプレートは追加の安全策となるものです。
   （もっともケーパビリティとかなりの部分で重複するところがあります。）
 
-..    You can define your own policies using your favorite access control mechanism.
+..  - You can define your own policies using your favorite access control
+      mechanism.
 
-* 好みのアクセス管理メカニズムを使って、自分自身でポリシーを制限できます。
+* 好みのアクセス管理メカニズムを使って、独自にセキュリティポリシーを定義することができます。
 
 .. Just like there are many third-party tools to augment Docker containers with e.g., special network topologies or shared filesystems, you can expect to see tools to harden existing Docker containers without affecting Docker’s core.
 
