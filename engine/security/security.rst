@@ -303,9 +303,11 @@ Linux カーネルのケーパビリティ
 * ``cron`` は必要な場合は、ユーザ・プロセスとして起動させます。
   スケジュール・サービスを必要とするアプリ向けに特化させるものであり、プラットフォーム全体の機能として用いるものではありません。
 
-..    log management will also typically be handed to Docker, or by third-party services like Loggly or Splunk;
+..  - log management is also typically handed to Docker, or to
+      third-party services like Loggly or Splunk;
 
-* ログ管理もまた Docker の典型的な処理であり、あるいはサードパーティー製の Loggly や Splunk を使うでしょう。
+* ログ管理も通常は Docker が取り扱います。
+  あるいは Loggly や Splunk といったサードパーティ製のサービスを利用することもあります。
 
 ..    hardware management is irrelevant, meaning that you never need to run udevd or equivalent daemons within containers;
 
