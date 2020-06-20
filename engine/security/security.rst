@@ -508,9 +508,11 @@ Docker 内のユーザ名前空間に対する実装については `こちら�
 まとめ
 ==========
 
-.. Docker containers are, by default, quite secure; especially if you take care of running your processes inside the containers as non-privileged users (i.e., non-root).
+.. Docker containers are, by default, quite secure; especially if you
+   run your processes as non-privileged users inside the container.
 
-デフォルトの Docker コンテナは安全です。それには、コンテナ内のプロセスを、特権の無いユーザ（例： root 以外のユーザ）で実行するように管理します。
+Docker コンテナはデフォルトにおいて十分に安全なものです。
+コンテナ内部にて非特権ユーザによりプロセスを稼動させていれば、より安全です。
 
 .. You can add an extra layer of safety by enabling AppArmor, SELinux, GRSEC, or your favorite hardening solution.
 
