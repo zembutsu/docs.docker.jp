@@ -531,6 +531,11 @@ Docker をより安全にする方法を検討している方は、Docker コミ
 関連情報
 ==========
 
+.. * [Use trusted images](trust/index.md)
+   * [Seccomp security profiles for Docker](seccomp.md)
+   * [AppArmor security profiles for Docker](apparmor.md)
+   * [On the Security of Containers (2014)](https://medium.com/@ewindisch/on-the-security-of-containers-2c60ffe25a9e)
+
 * :doc:`trust/index`
 * :doc:`seccomp`
 * :doc:`apparmor`
