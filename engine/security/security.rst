@@ -481,10 +481,16 @@ Docker Content Trust の署名認証方法の詳細は :doc:`Docker における
 特別なネットワーク・トポロジーや共有ファイルシステムの構築が可能です。
 このようなツールは Docker 自体を修正することなく Docker 機能を強力にするためのものです。
 
-.. （1.11 で追加）
-.. As of Docker 1.10 User Namespaces are supported directly by the docker daemon. This feature allows for the root user in a container to be mapped to a non uid-0 user outside the container, which can help to mitigate the risks of container breakout. This facility is available but not enabled by default.
+.. As of Docker 1.10 User Namespaces are supported directly by the docker
+   daemon. This feature allows for the root user in a container to be mapped
+   to a non uid-0 user outside the container, which can help to mitigate the
+   risks of container breakout. This facility is available but not enabled
+   by default.
 
-Docker 1.10 以降は Docker デーモンがユーザ名前空間（User Namespaces）を直接サポートしました。この機能により、コンテナ内の root ユーザをコンテナ外の uid 0 以外のユーザに割り当て（マッピング）できるようになります。コンテナからブレイクアウト（脱獄）する危険性を軽減する手助けとなるでしょう。この実装は利用可能ですが、デフォルトでは有効ではありません。
+Docker 1.10 から Docker デーモンが直接、ユーザー名前空間をサポートするようになりました。
+この機能を使えば、コンテナー内の root ユーザーを、コンテナー外部の uid がゼロではないユーザーに対して割り当てできるようになります。
+コンテナーからのブレイクアウトのリスクを軽減することにつながります。
+利用可能な機能ではあるのですが、デフォルトでは有効化されていません。
 
 .. （1.11 で追加）
 .. Refer to the daemon command in the command line reference for more information on this feature. Additional information on the implementation of User Namespaces in Docker can be found in this blog post.
