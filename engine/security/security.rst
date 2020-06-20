@@ -316,9 +316,17 @@ Linux カーネルのケーパビリティ
 * ハードウェアを管理することは的はずれです。
   コンテナ内部において ``udevd`` やそれに類するデーモンを起動させる必要はまったくありません。
 
-..    network management happens outside of the containers, enforcing separation of concerns as much as possible, meaning that a container should never need to perform ifconfig, route, or ip commands (except when a container is specifically engineered to behave like a router or firewall, of course).
+..  - network management happens outside of the containers, enforcing
+      separation of concerns as much as possible, meaning that a container
+      should never need to perform `ifconfig`,
+      `route`, or ip commands (except when a container
+      is specifically engineered to behave like a router or firewall, of
+      course).
 
-* ネットワーク管理はコンテナの外で行われので、懸念されうる事項を分離します。つまり、コンテナでは ``ifconfig`` 、 ``route`` 、 ``ip`` コマンドを実行する必要がありません（ただし、コンテナでルータやファイアウォール等の振る舞いを処理させる場合は、もちろん除きます）。
+ - ネットワーク管理はコンテナ外部で行われるものです。
+   可能な限り考えなくても済むものです。
+   つまり ``ifconfig``、``route``、ip コマンド類は実行する必要がありません。
+   （ただしコンテナがルータやファイアウォールとして動作するように構築しているのであれば別です。）
 
 .. This means that in most cases, containers will not need “real” root privileges at all. And therefore, containers can run with a reduced capability set; meaning that “root” within a container has much less privileges than the real “root”. For instance, it is possible to:
 
