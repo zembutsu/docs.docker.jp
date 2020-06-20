@@ -352,9 +352,11 @@ Linux カーネルのケーパビリティ
 * モジュールロードを許可しない。
 * その他もろもろ。
 
-.. This means that even if an intruder manages to escalate to root within a container, it will be much harder to do serious damage, or to escalate to the host.
+.. This means that even if an intruder manages to escalate to root within a
+   container, it is much harder to do serious damage, or to escalate
+   to the host.
 
-これが意味するのは、侵入者がコンテナ内で root に昇格しようとしても、深刻なダメージを与えるのが困難であり、ホストにも影響を与えられません。
+上記のようなことをすれば、たとえ侵入者がコンテナ内の root 権限を得ようとしても、重大なダメージを及ぼすことはまず困難であり、またホストの権限まで奪うようなことにはなりません。
 
 .. This won’t affect regular web apps; but malicious users will find that the arsenal at their disposal has shrunk considerably! By default Docker drops all capabilities except those needed, a whitelist instead of a blacklist approach. You can see a full list of available capabilities in Linux manpages.
 
