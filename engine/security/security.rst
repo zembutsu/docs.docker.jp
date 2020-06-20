@@ -390,6 +390,37 @@ Docker のデフォルトにはないプロファイルを使えば、ケーパ�
 これを使ってケーパビリティを削除すれば、Docker は一層安全な状態になり、ケーパビリティを加えれば、それだけ安全性は低下することになります。
 ユーザにとってのベストプラクティスは、全ケーパビリティは削除した上で、実行するプロセスに必要となるもののみを明示的に利用する方法をとることでしょう。
 
+.. ## Docker Content Trust Signature Verification
+
+.. _docker-content-trust-signature-verification:
+
+Docker Content Trust の署名認証
+================================
+
+.. The Docker Engine can be configured to only run signed images. The Docker Content 
+   Trust signature verification feature is built directly into the `dockerd` binary.  
+   This is configured in the Dockerd configuration file. 
+
+Docker Engine では、署名されているイメージだけを実行するように設定することができます。
+Docker Content Trust における署名認証は ``dockerd`` 実行モジュール内に直接ビルドされています。
+この機能は dockerd の設定ファイルを通じて設定することができます。
+
+.. To enable this feature, trustpinning can be configured in `daemon.json`, whereby 
+   only repositories signed with a user-specified root key can be pulled and run.
+
+この機能を有効にするには ``daemon.json`` において ``trust-pinning`` により設定します。
+これにより、ユーザが指定したルート鍵によって署名されたリポジトリに対してのみ、イメージをプルして実行できるようになります。
+
+.. This feature provides more insight to administrators than previously available with
+   the CLI for enforcing and performing image signature verification. 
+
+以前は CLI においてイメージに対する署名認証を実現していましたが、この機能によって管理者の理解がより深く浸透しました。
+
+.. For more information on configuring Docker Content Trust Signature Verificiation, go to 
+   [Content trust in Docker](trust/content_trust.md).
+
+Docker Content Trust の署名認証方法の詳細は :doc:`Docker における Content trust <trust/content_trust>` に進んでください。
+
 .. Other kernel security features
 
 .. _security-other_kernel_security_features:
