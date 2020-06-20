@@ -473,9 +473,13 @@ Docker Content Trust の署名認証方法の詳細は :doc:`Docker における
 
 * 好みのアクセス管理メカニズムを使って、独自にセキュリティポリシーを定義することができます。
 
-.. Just like there are many third-party tools to augment Docker containers with e.g., special network topologies or shared filesystems, you can expect to see tools to harden existing Docker containers without affecting Docker’s core.
+.. Just as you can use third-party tools to augment Docker containers, including
+   special network topologies or shared filesystems, tools exist to harden Docker
+   containers without the need to modify Docker itself.
 
-Docker コンテナと連携する多くのサードパーティー製ツールが提供されています。例えば、特別なネットワーク・トポロジーや共有ファイルシステムです。これらは Docker のコアの影響を受けずに、既存の Docker コンテナを堅牢にするものです。
+同じように Docker 機能を増強させるサードバーティ製ツールを利用することもできます。
+特別なネットワーク・トポロジーや共有ファイルシステムの構築が可能です。
+このようなツールは Docker 自体を修正することなく Docker 機能を強力にするためのものです。
 
 .. （1.11で削除）
 .. Recent improvements in Linux namespaces will soon allow to run full-featured containers without root privileges, thanks to the new user namespace. This is covered in detail here. Moreover, this will solve the problem caused by sharing filesystems between host and guest, since the user namespace allows users within containers (including the root user) to be mapped to other users in the host system.
