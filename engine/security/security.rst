@@ -372,9 +372,13 @@ Linux カーネルのケーパビリティ
 つまりブラックリスト方式ではなくホワイトリスト方式をとるものです。
 利用可能なケーパビリティの一覧は `Linux man ページ <http://man7.org/linux/man-pages/man7/capabilities.7.html>`_ を参照してください。
 
-.. One primary risk with running Docker containers is that the default set of capabilities and mounts given to a container may provide incomplete isolation, either independently, or when used in combination with kernel vulnerabilities.
+.. One primary risk with running Docker containers is that the default set
+   of capabilities and mounts given to a container may provide incomplete
+   isolation, either independently, or when used in combination with
+   kernel vulnerabilities.
 
-Docker コンテナ実行にあたり、最も重要なリスクというのは、デフォルトのケーパビリティのセットとコンテナに対するマウントにより、不完全な分離（独立性、あるいは、カーネルの脆弱性と組み合わせ）をもたらすかもしれない点です
+Docker コンテナ実行時の主なリスクと言えば、コンテナに与えられるデフォルトのケーパビリティやマウント状況だけでは、完全なコンテナ分離にはならないことです。
+独立となっていない場合や、カーネルのぜい弱性との組み合わせによることも考えられます。
 
 .. Docker supports the addition and removal of capabilities, allowing use of a non-default profile. This may make Docker more secure through capability removal, or less secure through the addition of capabilities. The best practice for users would be to remove all capabilities except those explicitly required for their processes.
 
