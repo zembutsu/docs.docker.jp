@@ -309,9 +309,12 @@ Linux カーネルのケーパビリティ
 * ログ管理も通常は Docker が取り扱います。
   あるいは Loggly や Splunk といったサードパーティ製のサービスを利用することもあります。
 
-..    hardware management is irrelevant, meaning that you never need to run udevd or equivalent daemons within containers;
+..  - hardware management is irrelevant, meaning that you never need to
+      run `udevd` or equivalent daemons within
+      containers;
 
-* ハードウェア管理には適していません。これはコンテナ内で ``udevd`` や同等のデーモンを実行できないためです。
+* ハードウェアを管理することは的はずれです。
+  コンテナ内部において ``udevd`` やそれに類するデーモンを起動させる必要はまったくありません。
 
 ..    network management happens outside of the containers, enforcing separation of concerns as much as possible, meaning that a container should never need to perform ifconfig, route, or ip commands (except when a container is specifically engineered to behave like a router or firewall, of course).
 
