@@ -514,9 +514,10 @@ Docker 内のユーザ名前空間に対する実装については `こちら�
 Docker コンテナはデフォルトにおいて十分に安全なものです。
 コンテナ内部にて非特権ユーザによりプロセスを稼動させていれば、より安全です。
 
-.. You can add an extra layer of safety by enabling AppArmor, SELinux, GRSEC, or your favorite hardening solution.
+.. You can add an extra layer of safety by enabling AppArmor, SELinux,
+   GRSEC, or another appropriate hardening system.
 
-AppArmor、SELinux、GRSEC など任意の堅牢化ソリューションを有効化することで、更に安全なレイヤを追加できます。
+AppArmor、SELinux、GRSEC、あるいはセキュリティを堅牢にする適切なシステムを用いれば、安全性をさらに高めることができます。
 
 .. Last but not least, if you see interesting security features in other containerization systems, these are simply kernels features that may be implemented in Docker as well. We welcome users to submit issues, pull requests, and communicate via the mailing list.
 
