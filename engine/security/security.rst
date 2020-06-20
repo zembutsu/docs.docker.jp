@@ -428,9 +428,13 @@ Docker Content Trust の署名認証方法の詳細は :doc:`Docker における
 その他のカーネル・セキュリティ機能
 ========================================
 
-.. Capabilities are just one of the many security features provided by modern Linux kernels. It is also possible to leverage existing, well-known systems like TOMOYO, AppArmor, SELinux, GRSEC, etc. with Docker.
+.. Capabilities are just one of the many security features provided by
+   modern Linux kernels. It is also possible to leverage existing,
+   well-known systems like TOMOYO, AppArmor, SELinux, GRSEC, etc. with
+   Docker.
 
-ケーパビリティは、最近の Linux カーネルで提供されている、様々なセキュリティ機能の１つです。他にも既存のよく知られている TOMOYO、AppArmor、SELinux、GRSEC のようなシステムが Docker で使えます。
+ケーパビリティは、最近の Linux カーネルが提供する多くのセキュリティ機能の一つです。
+もちろんよく知られた既存のシステムとして、TOMOYO、AppArmor、SELinux、GRSEC を利用するのでもかまいません。
 
 .. While Docker currently only enables capabilities, it doesn’t interfere with the other systems. This means that there are many different ways to harden a Docker host. Here are a few examples.
 
