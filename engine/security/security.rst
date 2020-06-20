@@ -481,21 +481,6 @@ Docker Content Trust の署名認証方法の詳細は :doc:`Docker における
 特別なネットワーク・トポロジーや共有ファイルシステムの構築が可能です。
 このようなツールは Docker 自体を修正することなく Docker 機能を強力にするためのものです。
 
-.. （1.11で削除）
-.. Recent improvements in Linux namespaces will soon allow to run full-featured containers without root privileges, thanks to the new user namespace. This is covered in detail here. Moreover, this will solve the problem caused by sharing filesystems between host and guest, since the user namespace allows users within containers (including the root user) to be mapped to other users in the host system.
-
-.. 直近の Linux 名前空間に対する改良によって、新しいユーザ名前空間の力を使い、まもなく root 特権無しに全てのコンテナ機能が使えるようになるでしょう。詳細は `こちら <http://s3hh.wordpress.com/2013/07/19/creating-and-using-containers-without-privilege/>`_ で扱っています。更に、これはホストとゲストに関する共用ファイルシステムによって引き起こされる問題も解決できるかもしれません。これはユーザ名前空間がコンテナ内のユーザをホスト上のユーザ（rootも含まれます）に割り当て（マッピング）できるようにするためです。
-
-.. （1.11で削除）
-.. Today, Docker does not directly support user namespaces, but they may still be utilized by Docker containers on supported kernels, by directly using the clone syscall, or utilizing the ‘unshare’ utility. Using this, some users may find it possible to drop more capabilities from their process as user namespaces provide an artificial capabilities set. Likewise, however, this artificial capabilities set may require use of ‘capsh’ to restrict the user-namespace capabilities set when using ‘unshare’.
-
-.. 今日、Docker はユーザ名前空間を直接サポートしていません。しかし、Docker コンテナの実行をサポートしているカーネルでは利用可能なものです。直接使うには syscall をクローンするか、 'unshare' ユーティリティを使います。これらを使い、ユーザ名前空間が提供するアーティフィカル・ケーパビリティ・セット（artificial capabilities set）から、特定のユーザに対するケーパビリティを無効化できることが分かるでしょう。しかしながら、このアーティフィカル・ケーパビリティ・セットを `unshare` で使う時は、ユーザ名前空間で制限するために 'capsh' が必要になるかもしれません。
-
-.. （1.11で削除）
-.. Eventually, it is expected that Docker will have direct, native support for user-namespaces, simplifying the process of hardening containers.
-
-.. 最終的には、Docker が直接ユーザ名前空間をサポートし、コンテナ上のプロセス堅牢化を簡単に行えるようになるでしょう。
-
 .. （1.11 で追加）
 .. As of Docker 1.10 User Namespaces are supported directly by the docker daemon. This feature allows for the root user in a container to be mapped to a non uid-0 user outside the container, which can help to mitigate the risks of container breakout. This facility is available but not enabled by default.
 
