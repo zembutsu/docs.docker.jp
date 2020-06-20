@@ -337,17 +337,20 @@ Linux カーネルのケーパビリティ
 つまりコンテナは、ケーパビリティを最小限にして実行可能であって、コンテナ内の「root」は、本当の「root」よりも少ない権限で済むことを意味します。
 したがって以下のようなことが可能になります。
 
-..    deny all “mount” operations;
-    deny access to raw sockets (to prevent packet spoofing);
-    deny access to some filesystem operations, like creating new device nodes, changing the owner of files, or altering attributes (including the immutable flag);
-    deny module loading;
-    and many others.
+..  - deny all "mount" operations;
+    - deny access to raw sockets (to prevent packet spoofing);
+    - deny access to some filesystem operations, like creating new device
+      nodes, changing the owner of files, or altering attributes (including
+      the immutable flag);
+    - deny module loading;
+    - and many others.
 
-* 全ての「mount」操作を拒否
-* raw ソケットへのアクセスを拒否（パケット・スプーフィングを阻止）
-* ファイルシステムに関するいくつかの操作を拒否（新しいデバイス・ノードの作成、ファイル所有者の変更、immutable フラグを含む属性の変更）
-* モジュールの読み込みを禁止
-* などなど
+* 「mount」操作はすべて許可しない。
+* 生の（raw）ソケットへのアクセスを許可しない。（パケット・スプーフィング防止のため）
+* ファイルシステムへの所定操作を許可しない。
+  デバイス・ノードの新規生成、ファイルの所有者変更、属性変更（変更不能フラグを含む）など。
+* モジュールロードを許可しない。
+* その他もろもろ。
 
 .. This means that even if an intruder manages to escalate to root within a container, it will be much harder to do serious damage, or to escalate to the host.
 
