@@ -710,94 +710,51 @@ CMD
 
 :ref:`Dockerfile リファレンスの CMD コマンド <cmd>`
 
-.. The `CMD` instruction should be used to run the software contained by your
-   image, along with any arguments. `CMD` should almost always be used in the
-   form of `CMD [“executable”, “param1”, “param2”…]`. Thus, if the image is for a
-   service, such as Apache and Rails, you would run something like
-   `CMD ["apache2","-DFOREGROUND"]`. Indeed, this form of the instruction is
-   recommended for any service-based image.
+.. The CMD instruction should be used to run the software contained in your image, along with any arguments. CMD should almost always be used in the form of CMD ["executable", "param1", "param2"…]. Thus, if the image is for a service, such as Apache and Rails, you would run something like CMD ["apache2","-DFOREGROUND"]. Indeed, this form of the instruction is recommended for any service-based image.
 
-``CMD`` コマンドは、イメージ内に含まれるソフトウェアを実行するために用いるもので、引数を指定して実行します。
-``CMD`` はほぼ、``CMD ["実行モジュール名", "引数1", "引数2" …]`` の形式をとります。
-Apache や Rails のようにサービスをともなうイメージに対しては、たとえば ``CMD ["apache2","-DFOREGROUND"]`` といったコマンド実行になります。
-実際にサービスベースのイメージに対しては、この実行形式が推奨されます。
+``CMD`` コマンドは、イメージ内に含まれるソフトウェアを実行するために用いるもので、引数を指定して実行します。``CMD`` はほぼ、``CMD ["実行モジュール名", "引数1", "引数2" …]`` の形式をとります。Apache や Rails のようにサービスをともなうイメージに対しては、たとえば ``CMD ["apache2","-DFOREGROUND"]`` といったコマンド実行になります。実際にサービスベースのイメージに対しては、この実行形式が推奨されます。
 
-.. In most other cases, `CMD` should be given an interactive shell, such as bash, python
-   and perl. For example, `CMD ["perl", "-de0"]`, `CMD ["python"]`, or
-   `CMD [“php”, “-a”]`. Using this form means that when you execute something like
-   `docker run -it python`, you’ll get dropped into a usable shell, ready to go.
-   `CMD` should rarely be used in the manner of `CMD [“param”, “param”]` in
-   conjunction with [`ENTRYPOINT`](../../reference/builder.md#entrypoint), unless
-   you and your expected users are already quite familiar with how `ENTRYPOINT`
-   works.
+.. In most other cases, CMD should be given an interactive shell, such as bash, python and perl. For example, CMD ["perl", "-de0"], CMD ["python"], or CMD ["php", "-a"]. Using this form means that when you execute something like docker run -it python, you’ll get dropped into a usable shell, ready to go. CMD should rarely be used in the manner of CMD ["param", "param"] in conjunction with ENTRYPOINT, unless you and your expected users are already quite familiar with how ENTRYPOINT works.
 
-上記以外では、 ``CMD`` に対して bash、python、perl などインタラクティブシェルを与えることが行われます。
-たとえば ``CMD ["perl", "-de0"]`` 、 ``CMD ["python"]`` 、 ``CMD ["php", "-a"]`` といった具合です。
-この実行形式を利用するということは、たとえば ``docker run -it python`` というコマンドを実行したときに、指定したシェルの中に入り込んで、処理を進めていくことを意味します。
-``CMD`` と ``ENTRYPOINT`` を組み合わせて用いる ``CMD ["引数", "引数"]`` という実行形式がありますが、これを利用するのはまれです。
-開発者自身や利用者にとって ``ENTRYPOINT`` がどのように動作するのかが十分に分かっていないなら、用いないようにしましょう。
+ほどんどのケースでは、 ``CMD`` に対して bash、python、perl などインタラクティブシェルを与えています。たとえば ``CMD ["perl", "-de0"]`` 、 ``CMD ["python"]`` 、 ``CMD ["php", "-a"]`` といった具合です。この実行形式を利用するということは、たとえば ``docker run -it python`` というコマンドを実行したときに、指定したシェルの中に入り込んで、処理を進めていくことを意味します。``CMD`` と ``ENTRYPOINT`` を組み合わせて用いる ``CMD ["引数", "引数"]`` という実行形式がありますが、これを利用するのはまれです。開発者自身や利用者にとって ``ENTRYPOINT`` がどのように動作するのかが十分に理解していないなら、用いないようにしましょう。
 
 .. EXPOSE
 
 EXPOSE
 ----------
 
-.. [Dockerfile reference for the EXPOSE instruction](../../reference/builder.md#expose)
+.. Dockerfile reference for the EXPOSE instruction
 
 :ref:`Dockerfile リファレンスの EXPOSE コマンド <expose>`
 
-.. The `EXPOSE` instruction indicates the ports on which a container will listen
-   for connections. Consequently, you should use the common, traditional port for
-   your application. For example, an image containing the Apache web server would
-   use `EXPOSE 80`, while an image containing MongoDB would use `EXPOSE 27017` and
-   so on.
+.. The EXPOSE instruction indicates the ports on which a container listens for connections. Consequently, you should use the common, traditional port for your application. For example, an image containing the Apache web server would use EXPOSE 80, while an image containing MongoDB would use EXPOSE 27017 and so on.
 
-``EXPOSE`` コマンドは、コンテナが接続のためにリッスンするポートを指定します。
-当然のことながらアプリケーションにおいては、標準的なポートを利用します。
-たとえば Apache ウェブ・サーバを含んでいるイメージに対しては ``EXPOSE 80`` を使います。
-また MongoDB を含んでいれば ``EXPOSE 27017`` を使うことになります。
+``EXPOSE`` コマンドは、コンテナが接続のためにリッスンするポートを指定します。当然のことながらアプリケーションにおいては、標準的なポートを利用します。たとえば Apache ウェブ・サーバを含んでいるイメージに対しては ``EXPOSE 80`` を使います。また MongoDB を含んでいれば ``EXPOSE 27017`` を使うことになります。
 
-.. For external access, your users can execute `docker run` with a flag indicating
-   how to map the specified port to the port of their choice.
-   For container linking, Docker provides environment variables for the path from
-   the recipient container back to the source (ie, `MYSQL_PORT_3306_TCP`).
+.. For external access, your users can execute docker run with a flag indicating how to map the specified port to the port of their choice. For container linking, Docker provides environment variables for the path from the recipient container back to the source (ie, MYSQL_PORT_3306_TCP).
 
-外部からアクセスできるようにするため、これを実行するユーザは ``docker run`` にフラグをつけて実行します。
-そのフラグとは、指定されているポートを、自分が取り決めるどのようなポートに割り当てるかを指示するものです。
-Docker のリンク機能においては環境変数が利用できます。
-受け側のコンテナが提供元をたどることができるようにするものです（例: ``MYSQL_PORT_3306_TCP`` ）。
+外部からアクセスできるようにするため、これを実行するユーザは ``docker run`` にフラグをつけて実行します。そのフラグとは、指定されているポートを、自分が取り決めるどのようなポートに割り当てるかを指示するものです。Docker のリンク機能においては環境変数が利用できます。受け側のコンテナが提供元をたどることができるようにするものです（例: ``MYSQL_PORT_3306_TCP`` ）。
 
 .. ENV
 
 ENV
 ----------
 
-.. [Dockerfile reference for the ENV instruction](../../reference/builder.md#env)
+.. Dockerfile reference for the ENV instruction
 
 :ref:`Dockerfile リファレンスの ENV コマンド <env>`
 
-.. In order to make new software easier to run, you can use `ENV` to update the
-   `PATH` environment variable for the software your container installs. For
-   example, `ENV PATH /usr/local/nginx/bin:$PATH` will ensure that `CMD [“nginx”]`
-   just works.
+.. To make new software easier to run, you can use ENV to update the PATH environment variable for the software your container installs. For example, ENV PATH /usr/local/nginx/bin:$PATH ensures that CMD ["nginx"] just works.
 
-新しいソフトウェアに対しては ``ENV`` を用いれば簡単にそのソフトウェアを実行できます。
-コンテナがインストールするソフトウェアに必要な環境変数 ``PATH`` を、この ``ENV`` を使って更新します。
-たとえば ``ENV PATH /usr/local/nginx/bin:$PATH`` を実行すれば、 ``CMD ["nginx"]`` が確実に動作するようになります。
+新しいソフトウェアに対しては ``ENV`` を用いれば簡単にそのソフトウェアを実行できます。コンテナがインストールするソフトウェアに必要な環境変数 ``PATH`` を、この ``ENV`` を使って更新します。たとえば ``ENV PATH /usr/local/nginx/bin:$PATH`` を実行すれば、 ``CMD ["nginx"]`` が確実に動作するようになります。
 
-.. The `ENV` instruction is also useful for providing required environment
-   variables specific to services you wish to containerize, such as Postgres’s
-   `PGDATA`.
+.. The ENV instruction is also useful for providing required environment variables specific to services you wish to containerize, such as Postgres’s PGDATA.
 
-``ENV`` コマンドは、必要となる環境変数を設定するときにも利用します。
-たとえば Postgres の ``PGDATA`` のように、コンテナ化したいサービスに固有の環境変数が設定できます。
+``ENV`` コマンドは、必要となる環境変数を設定するときにも利用します。たとえば Postgres の ``PGDATA`` のように、コンテナ化したいサービスに固有の環境変数が設定できます。
 
-.. Lastly, `ENV` can also be used to set commonly used version numbers so that
-   version bumps are easier to maintain, as seen in the following example:
+.. Lastly, ENV can also be used to set commonly used version numbers so that version bumps are easier to maintain, as seen in the following example:
 
-また ``ENV`` は普段利用している各種バージョン番号を設定しておくときにも利用されます。
-これによってバージョンを混同することなく、管理が容易になります。
-たとえば以下がその例です。
+また ``ENV`` は普段利用している各種バージョン番号を設定しておくときにも利用されます。これによってバージョンを混同することなく、管理が容易になります。たとえば以下がその例です。
 
 .. code-block:: bash
 
@@ -806,46 +763,61 @@ ENV
    RUN curl -SL http://example.com/postgres-$PG_VERSION.tar.xz | tar -xJC /usr/src/postgress && …
    ENV PATH /usr/local/postgres-$PG_MAJOR/bin:$PATH
 
-.. Similar to having constant variables in a program (as opposed to hard-coding
-   values), this approach lets you change a single `ENV` instruction to
-   auto-magically bump the version of the software in your container.
+.. Similar to having constant variables in a program (as opposed to hard-coding values), this approach lets you change a single ENV instruction to auto-magically bump the version of the software in your container.
 
-プログラムにおける（ハードコーディングではない）定数定義と同じことで、この方法をとっておくのが便利です。
-ただ１つの ``ENV`` コマンドを変更するだけで、コンテナ内のソフトウェアバージョンは、いとも簡単に変えてしまうことができるからです。
+プログラムにおける（ハードコーディングではない）定数定義と同じことで、この方法をとっておくのが便利です。ただ１つの ``ENV`` コマンドを変更するだけで、コンテナ内のソフトウェアバージョンは、いとも簡単に変えてしまうことができるからです。
+
+.. Each ENV line creates a new intermediate layer, just like RUN commands. This means that even if you unset the environment variable in a future layer, it still persists in this layer and its value can’t be dumped. You can test this by creating a Dockerfile like the following, and then building it.
+
+``RUN`` 命令のように、各  ``ENV``  行によって新しい中間レイヤを作成します。つまり、以降のレイヤで環境変数をアンセットしても、このレイヤが値を保持するため、値を排除できません。この挙動は以下ような Dockerfile で確認できますので、構築してみましょう。
+
+.. code-block:: bash
+
+   FROM alpine
+   ENV ADMIN_USER="mark"
+   RUN echo $ADMIN_USER > ./mark
+   RUN unset ADMIN_USER
+
+.. code-block:: bash
+
+   $ docker run --rm test sh -c 'echo $ADMIN_USER'
+   
+   mark
+
+.. To prevent this, and really unset the environment variable, use a RUN command with shell commands, to set, use, and unset the variable all in a single layer. You can separate your commands with ; or &&. If you use the second method, and one of the commands fails, the docker build also fails. This is usually a good idea. Using \ as a line continuation character for Linux Dockerfiles improves readability. You could also put all of the commands into a shell script and have the RUN command just run that shell script.
+
+この挙動を避けるには、 ``RUN`` 命令でシェルのコマンドを使い、環境変数を実際にアンセットします。ただし、レイヤ内の環境変数の指定とアンセットを、１つのレイヤで指定する必要があります。コマンドは ``;`` や ``&`` で分割できます。ただし、 ``&`` を使う場合、どこかの行の１つでも失敗すると、 ``docker build`` そのものが失敗します。 ``\`` をライン継続文字として使う方が、 Linux Dockerfile の読み込みやすさを改善します。また、コマンドのすべてをシェルスクリプトにし、そのスクリプトを ``RUN`` コマンドとして実行する方法もあります。
+
+.. code-block:: bash
+
+   FROM alpine
+   RUN export ADMIN_USER="mark" \
+       && echo $ADMIN_USER > ./mark \
+       && unset ADMIN_USER
+   CMD sh
+
+.. code-block:: bash
+
+   $ docker run --rm test sh -c 'echo $ADMIN_USER'
 
 .. ADD or COPY
 
 ADD と COPY
 --------------------
 
-.. [Dockerfile reference for the ADD instruction](../../reference/builder.md#add)<br/>
-   [Dockerfile reference for the COPY instruction](../../reference/builder.md#copy)
+..  Dockerfile reference for the ADD instruction
+    Dockerfile reference for the COPY instruction
 
 :ref:`Dockerfile リファレンスの ADD コマンド <add>`
 :ref:`Dockerfile リファレンスの COPY コマンド <copy>`
 
-.. Although `ADD` and `COPY` are functionally similar, generally speaking, `COPY`
-   is preferred. That’s because it’s more transparent than `ADD`. `COPY` only
-   supports the basic copying of local files into the container, while `ADD` has
-   some features (like local-only tar extraction and remote URL support) that are
-   not immediately obvious. Consequently, the best use for `ADD` is local tar file
-   auto-extraction into the image, as in `ADD rootfs.tar.xz /`.
+.. Although ADD and COPY are functionally similar, generally speaking, COPY is preferred. That’s because it’s more transparent than ADD. COPY only supports the basic copying of local files into the container, while ADD has some features (like local-only tar extraction and remote URL support) that are not immediately obvious. Consequently, the best use for ADD is local tar file auto-extraction into the image, as in ADD rootfs.tar.xz /.
 
-``ADD`` と ``COPY`` の機能は似ていますが、一般的には ``COPY`` が選ばれます。
-それは ``ADD`` よりも機能がはっきりしているからです。
-``COPY`` は単に、基本的なコピー機能を使ってローカルファイルをコンテナにコピーするだけです。
-一方 ``ADD`` には特定の機能（ローカルでの tar 展開やリモート URL サポート）があり、これはすぐにわかるものではありません。
-結局 ``ADD`` の最も適切な利用場面は、ローカルの tar ファイルを自動的に展開してイメージに書き込むときです。
-たとえば ``ADD rootfs.tar.xz /`` といったコマンドになります。
+``ADD`` と ``COPY`` の機能は似ていますが、一般的には ``COPY`` を優先します。それは ``ADD`` よりも機能がはっきりしているからです。``COPY`` は単に、基本的なコピー機能を使ってローカルファイルをコンテナにコピーするだけです。一方 ``ADD`` には特定の機能（ローカルでの tar 展開やリモート URL サポート）があり、これはすぐにわかるものではありません。結局 ``ADD`` の最も適切な利用場面は、ローカルの tar ファイルを自動的に展開してイメージに書き込むときです。たとえば ``ADD rootfs.tar.xz /`` といったコマンドになります。
 
-.. If you have multiple `Dockerfile` steps that use different files from your
-   context, `COPY` them individually, rather than all at once. This will ensure that
-   each step's build cache is only invalidated (forcing the step to be re-run) if the
-   specifically required files change.
+.. If you have multiple Dockerfile steps that use different files from your context, COPY them individually, rather than all at once. This ensures that each step’s build cache is only invalidated (forcing the step to be re-run) if the specifically required files change.
 
-``Dockerfile`` 内の複数ステップにおいて異なるファイルをコピーするときには、一度にすべてをコピーするのではなく、 ``COPY`` を使って個別にコピーしてください。
-こうしておくと、個々のステップに対するキャッシュのビルドは最低限に抑えることができます。
-つまり指定されているファイルが変更になったときのみキャッシュが無効化されます（そのステップは再実行されます）。
+``Dockerfile`` 内の複数ステップにおいて異なるファイルをコピーするときには、一度にすべてをコピーするのではなく、 ``COPY`` を使って個別にコピーしてください。こうしておくと、個々のステップに対するキャッシュのビルドは最低限に抑えることができます。つまり指定されているファイルが変更になったときのみキャッシュが無効化されます（そのステップは再実行されます）。
 
 .. For example:
 
@@ -857,21 +829,13 @@ ADD と COPY
    RUN pip install /tmp/requirements.txt
    COPY . /tmp/
 
-.. Results in fewer cache invalidations for the `RUN` step, than if you put the
-   `COPY . /tmp/` before it.
+.. Results in fewer cache invalidations for the RUN step, than if you put the COPY . /tmp/ before it.
 
 ``RUN`` コマンドのステップより前に ``COPY . /tmp/`` を実行していたとしたら、それに比べて上の例はキャッシュ無効化の可能性が低くなっています。
 
-.. Because image size matters, using `ADD` to fetch packages from remote URLs is
-   strongly discouraged; you should use `curl` or `wget` instead. That way you can
-   delete the files you no longer need after they've been extracted and you won't
-   have to add another layer in your image. For example, you should avoid doing
-   things like:
+.. Because image size matters, using ADD to fetch packages from remote URLs is strongly discouraged; you should use curl or wget instead. That way you can delete the files you no longer need after they’ve been extracted and you don’t have to add another layer in your image. For example, you should avoid doing things like:
 
-イメージ・サイズの問題があるので、 ``ADD`` を用いてリモート URL からパッケージを取得することはやめてください。
-かわりに ``curl`` や ``wget`` を使ってください。
-こうしておくことで、ファイルを取得し展開した後や、イメージ内の他のレイヤにファイルを加える必要がないのであれば、その後にファイルを削除することができます。
-たとえば以下に示すのは、やってはいけない例です。
+イメージ・サイズの問題があるので、 ``ADD`` を用いてリモート URL からパッケージを取得することはやめてください。かわりに ``curl`` や ``wget`` を使ってください。こうしておくことで、ファイルを取得し展開した後や、イメージ内の他のレイヤにファイルを加える必要がないのであれば、その後にファイルを削除することができます。たとえば以下に示すのは、やってはいけない例です。
 
 .. code-block:: bash
 
@@ -890,8 +854,7 @@ ADD と COPY
        | tar -xJC /usr/src/things \
        && make -C /usr/src/things all
 
-.. For other items (files, directories) that do not require `ADD`’s tar
-   auto-extraction capability, you should always use `COPY`.
+.. For other items (files, directories) that do not require ADD’s tar auto-extraction capability, you should always use COPY.
 
 ``ADD`` の自動展開機能を必要としないもの（ファイルやディレクトリ）に対しては、常に ``COPY`` を使うようにしてください。
 
@@ -900,16 +863,13 @@ ADD と COPY
 ENTRYPOINT
 ----------
 
-.. [Dockerfile reference for the ENTRYPOINT instruction](../../reference/builder.md#entrypoint)
+.. Dockerfile reference for the ENTRYPOINT instruction
 
 :ref:`Dockerfile リファレンスの ENTRYPOINT コマンド <entrypoint>`
 
-.. The best use for `ENTRYPOINT` is to set the image's main command, allowing that
-   image to be run as though it was that command (and then use `CMD` as the
-   default flags).
+.. The best use for ENTRYPOINT is to set the image’s main command, allowing that image to be run as though it was that command (and then use CMD as the default flags).
 
-``ENTRYPOINT`` の最適な利用方法は、イメージに対してメインのコマンドを設定することです。
-これを設定すると、イメージをそのコマンドそのものであるかのようにして実行できます（その次に ``CMD`` を使ってデフォルトフラグを指定します）。
+``ENTRYPOINT`` の最適な利用方法は、イメージに対してメインのコマンドを設定することです。これを設定すると、イメージをそのコマンドそのものであるかのようにして実行できます（その次に ``CMD`` を使ってデフォルトフラグを指定します）。
 
 .. Let's start with an example of an image for the command line tool `s3cmd`:
 
@@ -936,21 +896,15 @@ ENTRYPOINT
 
    $ docker run s3cmd ls s3://mybucket
 
-.. This is useful because the image name can double as a reference to the binary as
-   shown in the command above.
+.. This is useful because the image name can double as a reference to the binary as shown in the command above.
 
 このコマンドのようにして、イメージ名がバイナリへの参照としても使えるので便利です。
 
-.. The `ENTRYPOINT` instruction can also be used in combination with a helper
-   script, allowing it to function in a similar way to the command above, even
-   when starting the tool may require more than one step.
+.. The ENTRYPOINT instruction can also be used in combination with a helper script, allowing it to function in a similar way to the command above, even when starting the tool may require more than one step.
 
-``ENTRYPOINT`` コマンドはヘルパースクリプトとの組み合わせにより利用することもできます。
-そのスクリプトは、上記のコマンド例と同じように機能させられます。
-たとえ対象ツールの起動に複数ステップを要するような場合でも、それが可能です。
+``ENTRYPOINT`` コマンドはヘルパースクリプトとの組み合わせにより利用することもできます。そのスクリプトは、上記のコマンド例と同じように機能させられます。たとえ対象ツールの起動に複数ステップを要するような場合でも、それが可能です。
 
-.. For example, the [Postgres Official Image](https://hub.docker.com/_/postgres/)
-   uses the following script as its `ENTRYPOINT`:
+.. For example, the Postgres Official Image uses the following script as its ENTRYPOINT:
 
 たとえば `Postgres 公式イメージ <https://hub.docker.com/_/postgres/>`_ は次のスクリプトを ``ENTRYPOINT`` として使っています。
 
@@ -971,19 +925,14 @@ ENTRYPOINT
    
    exec "$@"
 
-.. > **Note**:
-   > This script uses [the `exec` Bash command](http://wiki.bash-hackers.org/commands/builtin/exec)
-   > so that the final running application becomes the container's PID 1. This allows
-   > the application to receive any Unix signals sent to the container.
-   > See the [`ENTRYPOINT`](../../reference/builder.md#entrypoint)
-   > help for more details.
+..  Configure app as PID 1
+    This script uses the exec Bash command so that the final running application becomes the container’s PID 1. This allows the application to receive any Unix signals sent to the container. For more, see the ENTRYPOINT reference.
 
 .. note::
 
-   このスクリプトは `Bash コマンドの exec <http://wiki.bash-hackers.org/commands/builtin/exec>`_ を用います。
-   このため最終的に実行されたアプリケーションが、コンテナの PID として 1 を持つことになります。
-   こうなるとそのアプリケーションは、コンテナに送信された Unix シグナルをすべて受信できるようになります。
-   詳細は :ref:`ENTRYPOINT <entrypoint>` を参照してください。
+   **PID 1 としてアプリを設定** 
+
+   このスクリプトは `Bash コマンドの exec <http://wiki.bash-hackers.org/commands/builtin/exec>`_ を用います。 このため最終的に実行されたアプリケーションが、コンテナの PID として 1 を持つことになります。 こうなるとそのアプリケーションは、コンテナに送信された Unix シグナルをすべて受信できるようになります。 詳細は :ref:`ENTRYPOINT <entrypoint>` を参照してください。
 
 .. The helper script is copied into the container and run via ENTRYPOINT on container start:
 
@@ -993,6 +942,7 @@ ENTRYPOINT
 
    COPY ./docker-entrypoint.sh /
    ENTRYPOINT ["/docker-entrypoint.sh"]
+   CMD ["postgres"]
 
 .. This script allows the user to interact with Postgres in several ways.
 
@@ -1027,74 +977,43 @@ ENTRYPOINT
 VOLUME
 ----------
 
-.. [Dockerfile reference for the VOLUME instruction](../../reference/builder.md#volume)
+.. Dockerfile reference for the VOLUME instruction
 
 :ref:`Dockerfile リファレンスの VOLUME コマンド <volume>`
 
-.. The `VOLUME` instruction should be used to expose any database storage area,
-   configuration storage, or files/folders created by your docker container. You
-   are strongly encouraged to use `VOLUME` for any mutable and/or user-serviceable
-   parts of your image.
+.. The VOLUME instruction should be used to expose any database storage area, configuration storage, or files/folders created by your docker container. You are strongly encouraged to use VOLUME for any mutable and/or user-serviceable parts of your image.
 
-``VOLUME`` コマンドは、データベース・ストレージ領域、設定用ストレージ、Docker コンテナによって作成されるファイルやフォルダの公開に使います。
-イメージの可変的な部分、あるいはユーザが設定可能な部分については VOLUME の利用が強く推奨されます。
+``VOLUME`` コマンドは、データベース・ストレージ領域、設定用ストレージ、Docker コンテナによって作成されるファイルやフォルダの公開に使います。イメージの可変的な部分、あるいはユーザが設定可能な部分については VOLUME の利用が強く推奨されます。
 
 .. USER
 
 USER
 ----------
 
-.. [Dockerfile reference for the USER instruction](../../reference/builder.md#user)
+.. Dockerfile reference for the USER instruction
 
 :ref:`Dockerfile リファレンスの USER コマンド <user>`
 
-.. If a service can run without privileges, use `USER` to change to a non-root
-   user. Start by creating the user and group in the `Dockerfile` with something
-   like `RUN groupadd -r postgres && useradd --no-log-init -r -g postgres postgres`.
+.. If a service can run without privileges, use USER to change to a non-root user. Start by creating the user and group in the Dockerfile with something like RUN groupadd -r postgres && useradd --no-log-init -r -g postgres postgres.
 
-サービスが特権ユーザでなくても実行できる場合は、 ``USER`` を用いて非 root ユーザに変更します。
-ユーザとグループを生成するところから始めてください。
-``Dockerfile`` 内にてたとえば  ``RUN groupadd -r postgres && useradd -r -g postgres postgres`` のようなコマンドを実行します。
+サービスが特権ユーザでなくても実行できる場合は、 ``USER`` を用いて非 root ユーザに変更します。ユーザとグループを生成するところから始めてください。``Dockerfile`` 内にてたとえば  ``RUN groupadd -r postgres && useradd -r -g postgres postgres`` のようなコマンドを実行します。
 
-.. > **Note**: Users and groups in an image get a non-deterministic
-   > UID/GID in that the “next” UID/GID gets assigned regardless of image
-   > rebuilds. So, if it’s critical, you should assign an explicit UID/GID.
+..  Consider an explicit UID/GID
+   Users and groups in an image are assigned a non-deterministic UID/GID in that the “next” UID/GID is assigned regardless of image rebuilds. So, if it’s critical, you should assign an explicit UID/GID.
+   Due to an unresolved bug in the Go archive/tar package’s handling of sparse files, attempting to create a user with a significantly large UID inside a Docker container can lead to disk exhaustion because /var/log/faillog in the container layer is filled with NULL (\0) characters. A workaround is to pass the --no-log-init flag to useradd. The Debian/Ubuntu adduser wrapper does not support this flag.
 
 .. note::
 
-   イメージ内のユーザとグループに割り当てられる UID、GID は確定的なものではありません。
-   イメージが再構築されるかどうかには関係なく、「次の」値が UID、GID に割り当てられます。
-   これが問題となる場合は、UID、GID を明示的に割り当ててください。
+   イメージ内のユーザとグループに割り当てられる UID、GID は確定的なものではありません。イメージが再構築されるかどうかには関係なく、「次の」値が UID、GID に割り当てられます。これが問題となる場合は、UID、GID を明示的に割り当ててください。
 
-.. > **Note**: Due to an [unresolved bug](https://github.com/golang/go/issues/13548)
-   > in the Go archive/tar package's handling of sparse files, attempting to
-   > create a user with a sufficiently large UID inside a Docker container can
-   > lead to disk exhaustion as `/var/log/faillog` in the container layer is
-   > filled with NUL (\0) characters.  Passing the `--no-log-init` flag to
-   > useradd works around this issue.  The Debian/Ubuntu `adduser` wrapper
-   > does not support the `--no-log-init` flag and should be avoided.
+   Go 言語の archive/tar パッケージが取り扱うスパースファイルにおいて `未解決のバグ <https://github.com/golang/go/issues/13548>`_ があります。これは Docker コンテナ内にて非常に大きな値の UID を使ってユーザを生成しようとするため、ディスク消費が異常に発生します。コンテナ・レイヤ内の ``/var/log/faillog`` が NUL (\\0) キャラクタにより埋められてしまいます。useradd に対して ``--no-log-init`` フラグをつけることで、とりあえずこの問題は回避できます。ただし Debian/Ubuntu の ``adduser`` ラッパーは ``--no-log-init`` フラグをサポートしていないため、利用することはできません。
 
-.. note::
+.. Avoid installing or using sudo as it has unpredictable TTY and signal-forwarding behavior that can cause problems. If you absolutely need functionality similar to sudo, such as initializing the daemon as root but running it as non-root, consider using “gosu”.
 
-   Go 言語の archive/tar パッケージが取り扱うスパースファイルにおいて
-   `未解決のバグ <https://github.com/golang/go/issues/13548>`_ があります。
-   これは Docker コンテナ内にて非常に大きな値の UID を使ってユーザを生成しようとするため、ディスク消費が異常に発生します。
-   コンテナ・レイヤ内の ``/var/log/faillog`` が NUL (\\0) キャラクタにより埋められてしまいます。
-   useradd に対して ``--no-log-init`` フラグをつけることで、とりあえずこの問題は回避できます。
-   ただし Debian/Ubuntu の ``adduser`` ラッパーは ``--no-log-init`` フラグをサポートしていないため、利用することはできません。
-
-.. You should avoid installing or using `sudo` since it has unpredictable TTY and
-   signal-forwarding behavior that can cause more problems than it solves. If
-   you absolutely need functionality similar to `sudo` (e.g., initializing the
-   daemon as root but running it as non-root), you may be able to use
-   [“gosu”](https://github.com/tianon/gosu).
-
-``sudo`` のインストールとその利用は避けてください。
-TTY やシグナル送信が予期しない動作をするため、解決できることは少なく、多くの問題を引き起こすことになります。
+``sudo`` のインストールとその利用は避けてください。TTY やシグナル送信が予期しない動作をするため、多くの問題を引き起こすことになります。
 ``sudo`` と同様の機能（たとえばデーモンの初期化を root により行い、起動は root 以外で行うなど）を実現する必要がある場合は、 `gosu <https://github.com/tianon/gosu>`_ を使うとよいかもしれません。
 
-.. Lastly, to reduce layers and complexity, avoid switching `USER` back
-   and forth frequently.
+.. Lastly, to reduce layers and complexity, avoid switching USER back and forth frequently.
 
 レイヤ数を減らしたり複雑にならないようにするためには、 ``USER`` の設定を何度も繰り返すのは避けてください。
 
@@ -1103,67 +1022,46 @@ TTY やシグナル送信が予期しない動作をするため、解決でき�
 WORKDIR
 ----------
 
-.. [Dockerfile reference for the WORKDIR instruction](../../reference/builder.md#workdir)
+.. Dockerfile reference for the WORKDIR instruction
 
 :ref:`Dockerfile リファレンスの WORKDIR コマンド <workdir>`
 
-.. For clarity and reliability, you should always use absolute paths for your
-   `WORKDIR`. Also, you should use `WORKDIR` instead of  proliferating
-   instructions like `RUN cd … && do-something`, which are hard to read,
-   troubleshoot, and maintain.
+.. For clarity and reliability, you should always use absolute paths for your WORKDIR. Also, you should use WORKDIR instead of proliferating instructions like RUN cd … && do-something, which are hard to read, troubleshoot, and maintain.
 
-``WORKDIR`` に設定するパスは、分かり易く確実なものとするために、絶対パス指定としてください。
-また ``RUN cd … && do-something`` といった長くなる一方のコマンドを書くくらいなら、 ``WORKDIR`` を利用してください。
-そのような書き方は読みにくく、トラブル発生時には解決しにくく保守が困難になるためです。
+``WORKDIR`` に設定するパスは、分かり易く確実なものとするために、絶対パス指定としてください。また ``RUN cd … && do-something`` といった長くなる一方のコマンドを書くくらいなら、 ``WORKDIR`` を利用してください。そのような書き方は読みにくく、トラブル発生時には解決しにくく保守が困難になるためです。
 
 .. ONBUILD
 
 ONBUILD
 ----------
 
-.. [Dockerfile reference for the ONBUILD instruction](../../reference/builder.md#onbuild)
+.. Dockerfile reference for the ONBUILD instruction
 
 :ref:`Dockerfile リファレンスの ONBUILD コマンド <onbuild>`
 
-.. An `ONBUILD` command executes after the current `Dockerfile` build completes.
-   `ONBUILD` executes in any child image derived `FROM` the current image.  Think
-   of the `ONBUILD` command as an instruction the parent `Dockerfile` gives
-   to the child `Dockerfile`.
+.. An ONBUILD command executes after the current Dockerfile build completes. ONBUILD executes in any child image derived FROM the current image. Think of the ONBUILD command as an instruction the parent Dockerfile gives to the child Dockerfile.
 
-``ONBUILD`` コマンドは、 ``Dockerfile`` によるビルドが完了した後に実行されます。
-``ONBUILD`` は、現在のイメージから ``FROM`` によって派生した子イメージにおいて実行されます。
-つまり ``ONBUILD`` とは、親の ``Dockerfile`` から子どもの ``Dockerfile`` へ与える命令であると言えます。
+``ONBUILD`` コマンドは、 ``Dockerfile`` によるビルドが完了した後に実行されます。``ONBUILD`` は、現在のイメージから ``FROM`` によって派生した子イメージにおいて実行されます。つまり ``ONBUILD`` とは、親の ``Dockerfile`` から子どもの ``Dockerfile`` へ与える命令であると言えます。
 
-.. A Docker build executes `ONBUILD` commands before any command in a child
-   `Dockerfile`.
+.. A Docker build executes ONBUILD commands before any command in a child Dockerfile.
 
 Docker によるビルドにおいては ``ONBUILD`` の実行が済んでから、子イメージのコマンド実行が行われます。
 
-.. `ONBUILD` is useful for images that are going to be built `FROM` a given
-   image. For example, you would use `ONBUILD` for a language stack image that
-   builds arbitrary user software written in that language within the
-   `Dockerfile`, as you can see in [Ruby’s `ONBUILD` variants](https://github.com/docker-library/ruby/blob/master/2.4/jessie/onbuild/Dockerfile).
+.. ONBUILD is useful for images that are going to be built FROM a given image. For example, you would use ONBUILD for a language stack image that builds arbitrary user software written in that language within the Dockerfile, as you can see in Ruby’s ONBUILD variants.
 
-``ONBUILD`` は、所定のイメージから ``FROM`` を使ってイメージをビルドしようとするときに利用できます。
-たとえば特定言語のスタックイメージは ``ONBUILD`` を利用します。
-``Dockerfile`` 内にて、その言語で書かれたどのようなユーザ・ソフトウェアであってもビルドすることができます。
-その例として `Ruby's ONBUILD variants <https://github.com/docker-library/ruby/blob/master/2.1/onbuild/Dockerfile>`_ があります。
+``ONBUILD`` は、所定のイメージから ``FROM`` を使ってイメージをビルドしようとするときに利用できます。たとえば特定言語のスタックイメージは ``ONBUILD`` を利用します。``Dockerfile`` 内にて、その言語で書かれたどのようなユーザ・ソフトウェアであってもビルドすることができます。その例として `Ruby's ONBUILD variants <https://github.com/docker-library/ruby/blob/master/2.1/onbuild/Dockerfile>`_ があります。
 
-.. Images built from `ONBUILD` should get a separate tag, for example:
-   `ruby:1.9-onbuild` or `ruby:2.0-onbuild`.
+.. Images built with ONBUILD should get a separate tag, for example: ruby:1.9-onbuild or ruby:2.0-onbuild.
 
-``ONBUILD`` によって構築するイメージは、異なったタグを指定してください。
-たとえば ``ruby:1.9-onbuild`` と ``ruby:2.0-onbuild`` などです。
+``ONBUILD`` によって構築するイメージは、異なったタグを指定してください。たとえば ``ruby:1.9-onbuild`` と ``ruby:2.0-onbuild`` などです。
 
-.. Be careful when putting `ADD` or `COPY` in `ONBUILD`. The “onbuild” image will
-   fail catastrophically if the new build's context is missing the resource being
-   added. Adding a separate tag, as recommended above, will help mitigate this by
-   allowing the `Dockerfile` author to make a choice.
+.. Be careful when putting ADD or COPY in ONBUILD. The “onbuild” image fails catastrophically if the new build’s context is missing the resource being added. Adding a separate tag, as recommended above, helps mitigate this by allowing the Dockerfile author to make a choice.
 
-``ONBUILD`` において ``ADD`` や ``COPY`` を用いるときは注意してください。
-"onbuild" イメージが新たにビルドされる際に、追加しようとしているリソースが見つからなかったとしたら、このイメージは復旧できない状態になります。上に示したように個別にタグをつけておけば、 ``Dockerfile`` の開発者にとっても判断ができるようになるので、不測の事態は軽減されます。
+``ONBUILD`` において ``ADD`` や ``COPY`` を用いるときは注意してください。"onbuild" イメージが新たにビルドされる際に、追加しようとしているリソースが見つからなかったとしたら、このイメージは復旧できない状態になります。上に示したように個別にタグをつけておけば、 ``Dockerfile`` の開発者にとっても判断ができるようになるので、不測の事態は軽減されます。
 
 .. Examples for Official Repositories
+
+.. _examples-for-official-images:
 
 公式リポジトリの例
 ====================

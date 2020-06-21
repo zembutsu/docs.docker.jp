@@ -15,6 +15,6 @@ Docker で開発
    :titlesonly:
 
    概要 <index.rst>
-   dev-best-practices.rst
+   ベストプラクティス <dev-best-practices.rst>
    develop-images/toc.rst
 
