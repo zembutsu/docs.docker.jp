@@ -88,7 +88,7 @@ scratch を使ってシンプルな親イメージを作成
 
 .. While scratch appears in Docker’s repository on the hub, you can’t pull it, run it, or tag any image with the name scratch. Instead, you can refer to it in your Dockerfile. For example, to create a minimal container using scratch:
 
-Docker Hub の Docker リポジトリに ``scratch`` 命令が出てきても、 ``scratch`` という名前でイメージの取得・送信・実行・タグ付けはできません。そのかわり、 ``Dockerifle`` の中から酸素茹で来ます。たとえば、最も小さなコンテナを ``scratch`` をｔ使って作成するには、次のようになります。
+Docker Hub の Docker リポジトリに ``scratch`` 命令が出てきても、 ``scratch`` という名前でイメージの取得・送信・実行・タグ付けはできません。そのかわり、 ``Dockerifle`` の中から参照できるものです。たとえば、最も小さなコンテナを ``scratch`` を使って作成するには、次のようになります。
 
 ::
 

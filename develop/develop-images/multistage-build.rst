@@ -135,7 +135,7 @@
 
 .. You only need the single Dockerfile. You don’t need a separate build script, either. Just run docker build.
 
-あなたが必要なのは１つの Dockerfile だけです。。構築スクリプトを分ける必要はありません。 ``docker build`` を実行するだけです。
+あなたが必要なのは１つの Dockerfile だけです。構築スクリプトを分ける必要はありません。 ``docker build`` を実行するだけです。
 
 .. code-block:: bash
 
