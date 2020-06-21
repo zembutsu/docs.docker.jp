@@ -33,12 +33,14 @@ Kubernetes にデプロイ
 
 * :doc:`概要説明とセットアップ <index>` に記述された Docker Desktop のダウンロードとインストール
 * :doc:`Part 2 <part2>` でアプリケーションのコンテナ化を一通り行う
-* Docker Desktop 上で Kubernetes 機能が有効かされていることを確認
+* Docker Desktop 上で Kubernetes 機能が有効化されていることを確認
 
    * **Mac** ：メニューバー内の Docker アイコンをクリックし、 **Preferences**  に移動し、「Kubernetes」の横に緑のライトが点等していること
    * **Mac** ：システムトレイ内の Docker アイコンをクリックし、 **Settings**  に移動し、「Kubernetes」の横に緑のライトが点等していること
 
 ..    If Kubernetes isn’t running, follow the instructions in Orchestration of this tutorial to finish setting it up.
+
+もし Kubernetes が起動していなければ、 :doc:`オーケストレーション <orchestration>` の手順を確認し、セットアップを完了してから以下の手順に進みます。
 
 
 .. Introduction
@@ -126,7 +128,7 @@ Kubernetes 内の全てのコンテナは pod （ポッド）としてスケジ�
 * いくつかの ``metadata``  は、オブジェクトに対して名前のようなものを適用
 * ``spec``  で指定するのは、オブジェクトに対するパラメータと設定の全て
 
-Deploy and check your application
+.. Deploy and check your application
 
 .. _deploy-and-check-your-application:
 
