@@ -14,7 +14,7 @@
    :maxdepth: 3
    :titlesonly:
 
-   オーケストレーション </orchestratoin/toc.rst>
+   オーケストレーション </get-started/orchestration-toc.rst>
    全オブジェクト設定 </config/objects.rst>
    デーモン設定 </config/daemon/toc.rst>
    Prometheus メトリクス収集 </config/daemon/prometheus>
