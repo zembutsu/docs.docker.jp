@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/engine/userguide/labels-custom-metadata/
-   doc version: 17.06
-      https://github.com/docker/docker.github.io/blob/master/engine/userguide/eng-image/labels-custom-metadata.md
-.. check date: 2017/09/23
-.. Commits on Aug 18, 2017 1df865ac7552fd2c865b7bc1bafa0016235a1a5a
+.. URL: https://docs.docker.com/config/labels-custom-metadata/
+   doc version: 19.03
+      https://github.com/docker/docker.github.io/blob/master/config/labels-custom-metadata.md
+.. check date: 2020/06/21
+.. Commits on Apr 23, 2020 b0f90615659ac1319e8d8a57bb914e49d174242e
 .. ---------------------------------------------------------------------------
 
 .. Docker object labels
@@ -233,4 +233,4 @@ Swarm ノードと Swarm サービスにおけるラベルは動的に変更す�
 .. seealso:: 
 
    Docker object labels
-      https://docs.docker.com/engine/userguide/labels-custom-metadata/
+      https://docs.docker.com/config/labels-custom-metadata/

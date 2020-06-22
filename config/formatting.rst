@@ -1,18 +1,17 @@
 ﻿.. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/engine/admin/formatting/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/formatting.md
-   doc version: 1.12
-      https://github.com/docker/docker/commits/master/docs/admin/formatting.md
-.. check date: 2016/07/09
-.. Commits on Jun 22, 2016 01f9cbc3663cf134ca427e4f8b98bba637f6655e
+.. URL: https://docs.docker.com/config/formatting/
+.. SOURCE: https://github.com/docker/docker.github.io/blob/master/config/formatting.md
+   doc version: 19.03
+.. check date: 2020/06/21
+.. Commits on Apr 13, 2020 7f66d7783f886cf4aa50c81b9f85869b7ebf6874
 .. ---------------------------------------------------------------------------
 
-.. Formatting reference
+.. Format command and log output
 
-.. _formatting-reference:
+.. _format-command-and-log-output:
 
 ============================================================
-フォーマット・リファレンス
+format コマンドとログ出力
 ============================================================
 
 .. sidebar:: 目次
@@ -21,111 +20,120 @@
        :depth: 3
        :local:
 
-.. Docker uses Go templates to allow users manipulate the output format of certain commands and log drivers. Each command a driver provides a detailed list of elements they support in their templates:
+.. Docker uses Go templates which you can use to manipulate the output format of certain commands and log drivers.
 
-Docker は `Go テンプレート <https://golang.org/pkg/text/template/>`_ を使い、様々なコマンドやログ・ドライバの出力を操作できます。各コマンドはテンプレートを使って要素の詳細を表示できます。
+Docker は `Go テンプレート <https://golang.org/pkg/text/template/>`_ を使い、様々なコマンドやログ・ドライバの出力を操作できます。
 
-..    Docker Images formatting
-    Docker Inspect formatting
-    Docker Log Tag formatting
-    Docker Network Inspect formatting
-    Docker PS formatting
-    Docker Volume Inspect formatting
-    Docker Version formatting
+.. Docker provides a set of basic functions to manipulate template elements. All of these examples use the docker inspect command, but many other CLI commands have a --format flag, and many of the CLI command references include examples of customizing the output format.
 
-* :ref:`docker images の形式 <images-formatting>`
-* :ref:`docker inspect の形式 <inspect-examples>`
-* :doc:`docker log タグの形式 </engine/admin/logging/log_tags>`
-* :doc:`docker network inspect の形式 </engine/reference/commandline/network_inspect>`
-* :ref:`docker ps の形式 <ps-formatting>`
-* :doc:`docker volume inspect の形式 </engine/reference/commandline/volume_inspect>`
-* :ref:`docker version の形式 <version-examples>`
-
-.. Template functions
-
-.. _template-functions:
-
-テンプレート関数
-====================
-
-.. Docker provides a set of basic functions to manipulate template elements. This is the complete list of the available functions with examples:
-
-Docker はテンプレート要素を操作する基本的な関数セットを提供しています。以下は利用可能な関数のと例の一覧です。
+Docker は基本的な機能群として、操作可能なテンプレートを提供します。以下の例ではすべて ``docker inspect`` コマンドを使っていますが、他の CLI コマンドも ``--format`` フラグを持ち、多くの CLI コマンドリファレンス中でも、出力形式をカスタマイスする例があります。
 
 .. Join
 
 Join
-----------
+==========
 
-.. Join concatenates a list of strings to create a single string. It puts a separator between each element in the list.
+.. join concatenates a list of strings to create a single string. It puts a separator between each element in the list.
 
-Join 連結子は１行の中で要素を一覧表示します。セパレータはリスト中の各要素を分割します。
+``join`` 連結子は１行の中で要素を一覧表示します。セパレータはリスト中の各要素を分割します。
 
-.. code-block:: bash
+::
 
-   $ docker ps --format '{{join .Names " or "}}'
+   docker inspect --format '{{join .Args " , "}}' container
 
-.. Json
 
-Json
-----------
+table
+==========
 
-.. Json encodes an element as a json string.
+.. table specifies which fields you want to see its output.
 
-Json は要素を JSON 文字列としてエンコードします。
+``table`` は、どのフィールドを表示したいか指定します。
 
-.. code-block:: bash
+::
 
-   $ docker inspect --format '{{json .Mounts}}' container
+   docker image list --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}\t{{.Size}}"
 
-.. Lower
+
+json
+==========
+
+.. json encodes an element as a json string.
+
+``json`` は要素を JSON 文字列としてエンコードします。
+
+::
+
+   docker inspect --format '{{json .Mounts}}' container
 
 Lower
-----------
+==========
 
-.. Lower turns a string into its lower case representation.
+..lLower turns a string into its lower case representation.
 
-Lower は文字列を小文字で返します。
+``lower`` は文字列を小文字に変換して表示します。
 
-.. code-block:: bash
+::
 
-   $ docker inspect --format "{{lower .Name}}" container
+   docker inspect --format "{{lower .Name}}" container
 
-.. Split
+split
+==========
 
-Split
-----------
+.. `plit slices a string into a list of strings separated by a separator.
 
-.. Split slices a string into a list of strings separated by a separator.
+``split`` は文字列をセパレータの文字列で分割して表示します。
 
-文字列をセパレータの文字列で分割して表示します。
+::
 
-.. code-block:: bash
+   docker inspect --format '{{split .Image ":"}}'
 
-   # docker inspect --format '{{split (join .Names "/") "/"}}' container
+title
+==========
 
-Title
-----------
+.. title capitalizes the first character of a string.
 
-.. Title capitalizes a string.
+``title`` は行の初めの文字列を大文字に変化して表示します。
 
-文字列を大文字で始めます。
+::
 
-.. code-block:: bash
+   docker inspect --format "{{title .Name}}" container
 
-   $ docker inspect --format "{{title .Name}}" container
 
-Upper
-----------
+upper
+==========
 
-.. Upper turms a string into its upper case representation.
+.. upper transforms a string into its uppercase representation.
 
-文字列をすべて大文字にします。
+``upper``  は文字列をすべて大文字に変換して表示します。
 
-.. code-block:: bash
+::
 
-   $ docker inspect --format "{{upper .Name}}" container
+   docker inspect --format "{{upper .Name}}" container
+
+
+println
+==========
+
+.. println prints each value on a new line.
+
+``println`` は各値を新しい列に表示します。
+
+::
+
+   docker inspect --format='{{range .NetworkSettings.Networks}}{{println .IPAddress}}{{end}}' container
+
+.. To find out what data can be printed, show all content as json:
+
+.. hint::
+
+   どのようなデータを表示可能かどうか調べるためには、全ての内容を json として表示します。
+
+   ::
+   
+      docker container ls --format='{{json .}}'
+
+
 
 .. seealso:: 
-   Formatting reference
-      https://docs.docker.com/engine/admin/formatting/
+   Format command and log output
+      https://docs.docker.com/config/formatting/
