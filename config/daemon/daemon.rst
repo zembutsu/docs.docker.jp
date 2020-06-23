@@ -1,18 +1,17 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/engine/admin/configuring/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/configuring.md
-   doc version: 1.12
-      https://github.com/docker/docker/commits/master/docs/admin/configuring.md
-.. check date: 2016/06/21
-.. Commits on Jun 14, 2016 3020081e94277410984c62d12f88de3d4f258681
+.. URL: https://docs.docker.com/config/daemon/
+.. SOURCE: https://github.com/docker/docker.github.io/blob/master/config/daemon/index.md
+   doc version: 19.03
+.. check date: 2020/06/22
+.. Commits on Apr 23, 2020 b0f90615659ac1319e8d8a57bb914e49d174242e
 .. ---------------------------------------------------------------------------
 
-.. Configuring and running Docker on various distributions
+.. Configure and troubleshoot the Docker daemon
 
-.. _configuring-and-running Docker on various distributions:
+..-_configure-and-troubleshoot-the-docker-daemon:
 
 ============================================================
-各システムの Docker 設定と実行
+Docker デーモンの設定とトラブルシュート
 ============================================================
 
 .. sidebar:: 目次
@@ -21,22 +20,39 @@
        :depth: 3
        :local:
 
-.. After successfully installing Docker, the docker daemon runs with its default configuration.
+.. After successfully installing and starting Docker, the dockerd daemon runs with its default configuration. This topic shows how to customize the configuration, start the daemon manually, and troubleshoot and debug the daemon if you run into issues.
 
-Docker のインストールに成功したら、 ``docker`` デーモンはデフォルトの設定で動いています。
+Docker のインストールに成功したら、 ``dockerd`` デーモンはデフォルトの設定で動いています。このトピックで扱うのは、どのようにして設定を変更するか、手動でデーモンを起動する方法、トラブルシュート、実行に問題があればデーモンのデバッグの仕方です。
 
-.. In a production environment, system administrators typically configure the docker daemon to start and stop according to an organization’s requirements. In most cases, the system administrator configures a process manager such as SysVinit, Upstart, or systemd to manage the docker daemon’s start and stop.
+.. Start the daemon using operating system utilities
 
-プロダクション環境では、システム管理者は組織における必要性に従い、 ``docker`` デーモンの設定を変更し、起動・停止するでしょう。ほとんどの場合、システム管理者は ``docker`` デーモンの起動・停止のために ``SysVinit`` 、 ``Upstart`` 、 ``systemd`` といったプロセス・マネージャを設定するでしょう。
+.. _start-the-daemon-using-operating-system-utilities:
 
-.. Running the docker daemon directly
+オペレーティングシステムのユーティリティでデーモンを起動
+============================================================
 
-docker デーモンを直接実行
+.. On a typical installation the Docker daemon is started by a system utility, not manually by a user. This makes it easier to automatically start Docker when the machine reboots.
+
+Docker デーモンを典型的にインストールすると、Docker デーモンの起動はユーザが手動で行うのではなく、システム・ユーティリティによって起動されます。これにより、マシンの再起動時に、自動的に Docker を起動するのが簡単になります。
+
+.. The command to start Docker depends on your operating system. Check the correct page under Install Docker. To configure Docker to start automatically at system boot, see Configure Docker to start on boot.
+
+Docker の起動コマンドは、利用しているオペレーティングシステムに依存します。 :doc:`Docker インストール </engine/install>` 以下にある適切なページをご覧ください。システム起動時の Docker 自動起動に関する調整は、 :ref:`ブート時に Docker を起動する設定 <configure-docker-to-start-on-boot>` をご覧ください。
+
+.. Start the daemon manually
+
+.. _start-the-daemon-manually:
+
+デーモンを手動で起動
 ==============================
 
-.. The docker daemon can be run directly using the dockerd command. By default it listens on the Unix socket unix:///var/run/docker.sock
+.. If you don’t want to use a system utility to manage the Docker daemon, or just want to test things out, you can manually run it using the dockerd command. You may need to use sudo, depending on your operating system configuration.
 
-``docker`` デーモンは ``dockerd`` コマンドで直接操作できます。デフォルトでは Unix ソケット ``unix:///var/run/docker.sock`` をリッスンします。
+システム・ユーティリティを使わずに Docker デーモンを管理したい場合や、純粋にテストだけを行いたい場合に、 ``dockerd`` コマンドを使って手動で実行できます。場合によっては ``sudo`` が必要になるかもしれませんが、お使いのオペレーティングシステムの設定に依存します。
+
+.. When you start Docker this way, it runs in the foreground and sends its logs directly to your terminal.
+
+Docker をこの方法で起動すると、Docker はフォアグラウンドで実行され、自身のログはターミナル上に直接送ります。
 
 .. code-block:: bash
 
@@ -45,401 +61,379 @@ docker デーモンを直接実行
    INFO[0000] +job init_networkdriver()
    INFO[0000] +job serveapi(unix:///var/run/docker.sock)
    INFO[0000] Listening for HTTP on unix (/var/run/docker.sock)
-   ...
-   ...
 
-.. Configuring the docker daemon directly
+.. To stop Docker when you have started it manually, issue a Ctrl+C in your terminal.
 
-docker デーモンを直接設定
+手動で起動した Docker を停止するには、ターミナル上で ``Ctrl+C`` を実行します。
+
+.. Configure the Docker daemon
+
+.. _configure-the-docker-daemon:
+
+Docker デーモンの設定
 ==============================
 
-.. If you’re running the docker daemon directly by running docker daemon instead of using a process manager, you can append the configuration options to the docker run command directly. Other options can be passed to the docker daemon to configure it.
+.. There are two ways to configure the Docker daemon:
 
-プロセス・マネージャの代わりに、``docker daemon`` コマンドを使って ``docker`` デーモンを直接実行できます。 ``docker`` をコマンドで直接実行時に、オプション設定を追加可能です。 ``docker`` デーモンを設定するための他のオプションも追加できます。
+Dockre デーモンの設定を変更するには、２つの方法があります。
 
-.. Some of the daemon’s options are:
+..  Use a JSON configuration file. This is the preferred option, since it keeps all configurations in a single place.
+    Use flags when starting dockerd.
 
-デーモンで利用可能なオプション：
+* JSON 設定ファイルを使う方法。全ての設定情報を１ヵ所にまとめているため、望ましいオプション
+* ``docker`` で起動時にフラグを付ける方法
 
-.. Flag 	Description
-   -D, --debug=false 	Enable or disable debug mode. By default, this is false.
-   -H,--host=[] 	Daemon socket(s) to connect to.
-   --tls=false 	Enable or disable TLS. By default, this is false.
+.. You can use both of these options together as long as you don’t specify the same option both as a flag and in the JSON file. If that happens, the Docker daemon won’t start and prints an error message.
 
-.. list-table::
-   :widths: 50 50
-   :header-rows: 1
-   
-   * - フラグ
-     - 説明
-   * - ``-D`` , ``--debug=false``
-     - デバッグ・モードの有効化と無効化。デフォルトは false
-   * - ``-H`` , ``--host=[]``
-     - デーモンが接続するソケット
-   * - ``--tls=false``
-     - TLS の有効化と無効化。デフォルトは false
+フラグと JSON ファイルで同じオプションを指定しなければ、両方の選択肢を同時に利用できます。その際、 Docker デーモンが起動できなければ、エラーメッセージを表示します。
 
-.. Here is an example of running the docker daemon with configuration options:
+.. To configure the Docker daemon using a JSON file, create a file at /etc/docker/daemon.json on Linux systems, or C:\ProgramData\docker\config\daemon.json on Windows. On MacOS go to the whale in the taskbar > Preferences > Daemon > Advanced.
 
-以下は ``docker`` デーモンに設定オプションを付けて実行する例です。
+Docker デーモンを JSON ファイルで設定するには、Linux システム上では ``/etc/docker/daemon.jso`` にファイルを作成するか、Windows 上では ``C:\ProgramData\docker\config\daemon.json`` を作成します。Mac OS ではタスクバーの鯨アイコンから Preferences > Daemon > Advanced を選択します。
+
+.. Here’s what the configuration file looks like:
+
+設定ファイルとは、以下のような形式です。
+
+.. code-block:: json
+
+   {
+     "debug": true,
+     "tls": true,
+     "tlscert": "/var/docker/server.pem",
+     "tlskey": "/var/docker/serverkey.pem",
+     "hosts": ["tcp://192.168.59.3:2376"]
+   }
+
+.. With this configuration the Docker daemon runs in debug mode, uses TLS, and listens for traffic routed to 192.168.59.3 on port 2376. You can learn what configuration options are available in the dockerd reference docs
+
+この設定を使って Docker デーモンを起動すると、デバッグモードで起動し、TLS を使い、 ``192.168.59.3`` のポート ``2376`` へリッスンしているトラフィックを転送します。設定情報のオプションに関する情報は :ref:`dockerd リファレンス・ドキュメント <daemon-configuration-file>` をご覧ください。
+
+.. You can also start the Docker daemon manually and configure it using flags. This can be useful for troubleshooting problems.
+
+また、Docker デーモンを手動かつフラグを設定して起動することもできます。これは問題のトラブルシューティングに役立ちます。
+
+.. Here’s an example of how to manually start the Docker daemon, using the same configurations as above:
+
+以下の理恵は、Docker デーモンを手動で起動し、先ほどの設定と同じオプションを指定しています。
 
 .. code-block:: bash
 
-   $ dockerd -D --tls=true --tlscert=/var/docker/server.pem    --tlskey=/var/docker/serverkey.pem -H tcp://192.168.59.3:2376
+   dockerd --debug \
+     --tls=true \
+     --tlscert=/var/docker/server.pem \
+     --tlskey=/var/docker/serverkey.pem \
+     --host tcp://192.168.59.3:2376
 
-.. These options :
+.. You can learn what configuration options are available in the dockerd reference docs, or by running:
 
-３つのオプションがあります：
+どのような設定オプションが利用可能かどうかを知るには、 :doc:`dockerd リファレンス・ドキュメント</engine/reference/commandline/dockerd>` か、次のように実行します。
 
-..    Enable -D (debug) mode
-    Set tls to true with the server certificate and key specified using --tlscert and --tlskey respectively
-    Listen for connections on tcp://192.168.59.3:2376
+.. code-block:: bash
 
-* ``-D`` （デバッグ）モードの有効化
-* ``tls`` を有効にするため、サーバ証明書と鍵を ``--tlscert`` と ``--tlskey`` で個々に指定
-* ``tcp://192.168.59.3:2376`` への接続をリッスン
+   dockerd --help
 
-.. The command line reference has the complete list of daemon flags with explanations.
+.. Many specific configuration options are discussed throughout the Docker documentation. Some places to go next include:
 
-コマンドライン・リファレンスの :doc:`デーモンのフラグ一覧 </engine/reference/commandline/dockerd>` に説明があります。
+Docker ドキュメント上で、様々な設定オプションが話題に上がっています。次にご覧ください。
 
-.. Daemon debugging
+..  Automatically start containers
+    Limit a container’s resources
+    Configure storage drivers
+    Container security
 
-.. _daemon-debugging:
+* :doc:`/config/containers/start-containers-automatically`
+* :doc:`/config/containers/resource_constraints`
+* :doc:`/storage/storagedriver/select-storage-driver`
+* :doc:`/engine/security`
 
-デーモンのデバッグ
---------------------
+.. Docker daemon directory
 
-.. As noted above, setting the log level of the daemon to “debug” or enabling debug mode with -D allows the administrator or operator to gain much more knowledge about the runtime activity of the daemon. If faced with a non-responsive daemon, the administrator can force a full stack trace of all threads to be added to the daemon log by sending the SIGUSR1 signal to the Docker daemon. A common way to send this signal is using the kill command on Linux systems. For example, kill -USR1 <daemon-pid> sends the SIGUSR1 signal to the daemon process, causing the stack dump to be added to the daemon log.
+.. _docker-daemon-directory:
 
-更に捕捉しますと、管理者やオペレータがデーモンの実行時の挙動に関して、更に詳細な情報を得るには、デーモンのログレベルを「debug」に設定するか、 ``-D`` オプションを付けてデバッグ・モードにします。デーモンからの応答が無くても、Docker デーモンに対して ``SIGUSR1``  シグナルを送信することで、デーモンのログに追加された全てのスレッドを強制的に追跡します。Linux システム上でシグナルを送る一般的な方法は ``kill`` シグナルを使います。例えば ``kill -USR1 <デーモンのpid>`` を実行したら、デーモンのプロセスに ``SIGUSR1`` シグナルを送信し、スタック・ダンプをデーモンのログに追加します。
+Docker デーモンのディレクトリ
+==============================
 
-..    Note: The log level setting of the daemon must be at least “info” level and above for the stack trace to be saved to the logfile. By default the daemon’s log level is set to “info”.
+.. The Docker daemon persists all data in a single directory. This tracks everything related to Docker, including containers, images, volumes, service definition, and secrets.
+
+Docker デーモンは全てのデータを１つのディレクトリ内に保存します。この場所に Docker に関連する全てがおかれており、コンテナ、イメージ、ボリューム、サービス定義、シークレットがあります。
+
+.. By default this directory is:
+
+このディレクトリはデフォルトで、以下の通りです。
+
+..  /var/lib/docker on Linux.
+    C:\ProgramData\docker on Windows.
+
+* Linux 上では ``/var/lib/docker`` 
+* Windows 上では ``C:\ProgramData\docker`` 
+
+.. You can configure the Docker daemon to use a different directory, using the data-root configuration option.
+
+Docker デーモンの設定により、オプションで ``data-root`` を設定すると 、ここで利用するディレクトリを変更できます。
+
+.. Since the state of a Docker daemon is kept on this directory, make sure you use a dedicated directory for each daemon. If two daemons share the same directory, for example, an NFS share, you are going to experience errors that are difficult to troubleshoot.
+
+Docker デーモンはこのディレクトリ上で状態を保持するため、各デーモンがそれぞれ専用のディレクトリを使う必要があります。例えば NFS 共有のようなディレクトリで、もしも２つのデーモンが同じディレクトリを共有すると、問題解決が困難なエラーに直面することになるでしょう。
+
+.. Troubleshoot the daemon
+
+.. _troubleshoot-the-daemon:
+
+デーモンのトラブルシュート
+==============================
+
+.. You can enable debugging on the daemon to learn about the runtime activity of the daemon and to aid in troubleshooting. If the daemon is completely non-responsive, you can also force a full stack trace of all threads to be added to the daemon log by sending the SIGUSR signal to the Docker daemon.
+
+デーモンに対するデバッギングを有効化すると、デーモンのランタイム動作に関して知ることができるようになり、トラブルシューティングに役立ちます。もし、デーモンが完全に無応答であれば、Docker デーモンに対して ``SIGUSR`` シグナルを送信し、全てのスレッドに対してデーモンのログを追加出来るよう、 :ref:`スタック・トレースの強制によるログ記録 <force-a-stack-trace-to-be-logged>` も行えます。
+
+.. Troubleshoot conflicts between the daemon.json and startup scripts
+
+.. _troubleshoot-conflicts-between-the-daemon.json-and-startup-scripts:
+
+``daemon.json`` とスタートアップ・スクリプト間で競合した時のトラブルシュート
+--------------------------------------------------------------------------------
+
+.. If you use a daemon.json file and also pass options to the dockerd command manually or using start-up scripts, and these options conflict, Docker fails to start with an error such as:
+
+``daemon.json`` ファイルの利用と、 ``dockerd`` コマンドに対して手動もしくはスタートアップ・スクリプトでオプション指定の利用を同時に利用すると、お互いのオプションが競合するとき、Dockerあ起動できず、次のようなエラーを出力します。
+
+::
+
+   unable to configure the Docker daemon with file /etc/docker/daemon.json:
+   the following directives are specified both as a flag and in the configuration
+   file: hosts: (from flag: [unix:///var/run/docker.sock], from file: [tcp://127.0.0.1:2376])
+
+.. If you see an error similar to this one and you are starting the daemon manually with flags, you may need to adjust your flags or the daemon.json to remove the conflict.
+
+もしも、フラグを付けてデーモンを手動で起動するときと似たようなエラーであれば、フラグの設定を調整するか、衝突を避けるために ``daemon.json`` を削除します。
+
+..    Note: If you see this specific error, continue to the next section for a workaround.
 
 .. note::
 
-  スタック・トレースをログに保存するには、 デーモンのログレベルの設定は少なくとも「info」レベル以上にする必要があります。デフォルトのデーモンのログレベルは「info」に設定されています。
+   これが何らかの具体的なエラーであれば、 :ref:`次のセクション <use-the-hosts-key-in-daemonjson-with-systemd>` を参照して回避してください。
 
-.. The daemon will continue operating after handling the SIGUSR1 signal and dumping the stack traces to the log. The stack traces can be used to determine the state of all goroutines and threads within the daemon.
+.. If you are starting Docker using your operating system’s init scripts, you may need to override the defaults in these scripts in ways that are specific to the operating system.
 
-デーモンは ``SIGUSR1`` シグナルを受け取った後、スタック・トレースをダンプしてログに出力します。スタック・トレースはデーモン内部の全ての goroutine の状態とスレッドの把握に使えます。
+オペレーティングシステムの init スクリプトで Docker を起動しようとしている場合は、特定のオペレーティングシステムを対象としたデフォルトのスタートアップ・スクリプトで上書きする必要があるかもしれません。
 
-.. Ubuntu
+.. Use the hosts key in daemon.json with systemd
 
-Ubuntu
-==========
+.. _:use-the-hosts-key-in-daemonjson-with-systemd:
 
-.. As of 14.04, Ubuntu uses Upstart as a process manager. By default, Upstart jobs are located in /etc/init and the docker Upstart job can be found at /etc/init/docker.conf.
+systemd で daemon.json にホストキーを使う
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Ubuntu ``14.04`` からはプロセス・マネージャに Upstart を使います。デフォルトでは、Upstart のジョブは ``/etc/init`` に保管され、 ``docker`` Upstart ジョブは ``/etc/init/docker.conf`` にあります。
+.. One notable example of a configuration conflict that is difficult to troubleshoot is when you want to specify a different daemon address from the default. Docker listens on a socket by default. On Debian and Ubuntu systems using systemd, this means that a host flag -H is always used when starting dockerd. If you specify a hosts entry in the daemon.json, this causes a configuration conflict (as in the above message) and Docker fails to start.
 
-.. After successfully installing Docker for Ubuntu, you can check the running status using Upstart in this way:
+設定が競合する有名な例として、デーモンをデフォルトとは異なる場所へ指定しようとする時は、トラブルシュートが大変です。Docker はデフォルトでソケットを通してリッスンしようとします。Debian と Ubuntu のシステム上では ``systemd`` を使います。つまり、 ``dockerd`` の起動時に、常にホストフラグ ``-H`` を使うのを意味します。もしも ``daemon.json`` に ``hosts`` エントリを指定しても、これによって（前述の）設定ファイルの競合を引き起こし、Docker は起動に失敗します。
 
-:doc:`Ubuntu で Docker のインストール </engine/installation/linux/ubuntulinux>` に成功した後、Upstart で稼働状態を確認するには、次のようにします。
+.. To work around this problem, create a new file /etc/systemd/system/docker.service.d/docker.conf with the following contents, to remove the -H argument that is used when starting the daemon by default.
 
-.. code-block:: bash
+この問題に対処するには、以下の内容の新しいファイル ``/etc/systemd/system/docker.service.d/docker.conf`` を作成し、デフォルトでデーモン起動時に  ``-H`` 引数を使わないよう削除します。
 
-   $ sudo status docker
-   docker start/running, process 989
-
-.. Running Docker
-
-コンテナの実行
---------------------
-
-.. You can start/stop/restart the docker daemon using
-
-``docker`` デーモンは次のように開始・停止・再起動できます。
-
-.. code-block:: bash
-
-   $ sudo start docker
-   
-   $ sudo stop docker
-   
-   $ sudo restart docker
-
-.. Configuring Docker
-
-Docker の設定
---------------------
-
-.. The instructions below depict configuring Docker on a system that uses upstart as the process manager. As of Ubuntu 15.04, Ubuntu uses systemd as its process manager. For Ubuntu 15.04 and higher, refer to control and configure Docker with systemd.
-
-以下の例は、プロセス・マネージャに ``upstart`` を使い Docker システムを設定する方法です。Ubuntu 15.04 以降はプロセス・マネージャに ``systemd`` を使います。Ubuntu 15.04 以降は、 :doc:`systemd` をご覧ください。
-
-.. You configure the docker daemon in the /etc/default/docker file on your system. You do this by specifying values in a DOCKER_OPTS variable.
-
-システム上にある ``docker`` デーモンの設定は、 ``/etc/default/docker`` ファイルを編集します。ここに ``DOCKER_OPTS`` 環境変数を指定可能です。
-
-.. To configure Docker options:
-
-Docker オプションの設定を変更するには：
-
-..    Log into your host as a user with sudo or root privileges.
-
-1. ホストに ``sudo`` や ``root`` 特権を持つユーザでログインします。
-
-..    If you don’t have one, create the /etc/default/docker file on your host. Depending on how you installed Docker, you may already have this file.
-
-2. ホスト上に ``/etc/default/docker`` ファイルがなければ作成します。Docker のインストール方法によっては、既にファイルが作成されている場合があります。
-
-..    Open the file with your favorite editor.
-
-3. 任意のエディタでファイルを開きます。
-
-.. code-block:: bash
-
-   $ sudo vi /etc/default/docker
-
-..    Add a DOCKER_OPTS variable with the following options. These options are appended to the docker daemon’s run command.
-
-4. ``DOCKER_OPTS`` 変数に、次のオプションを指定します。これらのオプションは ``docker`` デーモンを実行する時に追加されます。
-
-.. code-block:: bash
-
-   DOCKER_OPTS="-D --tls=true --tlscert=/var/docker/server.pem --tlskey=/var/docker/serverkey.pem -H tcp://192.168.59.3:2376"
-
-.. These options :
-
-これらのオプションの意味は：
-
-..    Enable -D (debug) mode
-    Set tls to true with the server certificate and key specified using --tlscert and --tlskey respectively
-    Listen for connections on tcp://192.168.59.3:2376
-
-* ``-D`` （デバッグ）モードの有効化
-* ``tls`` を有効にするため、サーバ証明書と鍵を ``--tlscert`` と ``--tlskey`` で個々に指定
-* ``tcp://192.168.59.3:2376`` への接続をリッスン
-
-.. The command line reference has the complete list of daemon flags with explanations.
-
-コマンドライン・リファレンスの :doc:`デーモンのフラグ一覧 </engine/reference/commandline/dockerd>` に説明があります。
-
-..     Save and close the file.
-
-5. ファイルを保存して閉じます。
-
-..    Restart the docker daemon.
-
-6. ``docker`` デーモンを再起動します。
-
-.. code-block:: bash
-
-   $ sudo restart docker
-
-..    Verify that the docker daemon is running as specified with the ps command.
-
-7. ``docker`` デーモンが指定したオプションで実行しているか、 ``ps`` コマンドで確認します。
-
-.. code-block:: bash
-
-   $ ps aux | grep docker | grep -v grep
-
-.. Logs
-
-ログ
-----------
-
-.. By default logs for Upstart jobs are located in /var/log/upstart and the logs for docker daemon can be located at /var/log/upstart/docker.log
-
-Upstart ジョブのログは、デフォルトでは ``/var/log/upstart`` に保管されており、 ``docker`` デーモンのログは ``/var/log/upstart/docker.log`` にあります。
-
-.. code-block:: bash
-
-   $ tail -f /var/log/upstart/docker.log
-   INFO[0000] Loading containers: done.
-   INFO[0000] Docker daemon commit=1b09a95-unsupported graphdriver=aufs version=1.11.0-dev
-   INFO[0000] +job acceptconnections()
-   INFO[0000] -job acceptconnections() = OK (0)
-   INFO[0000] Daemon has completed initialization
-
-.. CentOS / Red Hat Enterprise Linux / Fedora
-
-CentOS / Red Hat Enterprise Linux / Fedora
-==================================================
-
-.. As of 7.x, CentOS and RHEL use systemd as the process manager. As of 21, Fedora uses systemd as its process manager.
-
-CentOS と RHEL の ``7.x`` 以降では、プロセス・マネージャに ``systemd`` を使います。Fedora ``21`` 以降は、プロセス・マネージャに ``systemd`` を使います。
-
-.. After successfully installing Docker for CentOS/Red Hat Enterprise Linux/Fedora, you can check the running status in this way:
-
-:doc:`CentOS </engine/installation/linux/centos>` 、 :doc:`Red Hat Enterprise Linux </engine/installation/linux/rhel>` 、 :doc:`Fedora </engine/installation/linux/fedora>` に Docker をインストール後は、次のように稼働状態を確認できます。
-
-.. code-block:: bash
-
-   $ sudo systemctl status docker
-
-.. Running Docker
-
-Docker の実行
---------------------
-
-.. You can start/stop/restart the docker daemon using
-
-``docker`` デーモンは次のように開始・停止・再起動できます。
-
-.. code-block:: bash
-
-   $ sudo systemctl start docker
-   
-   $ sudo systemctl stop docker
-   
-   $ sudo systemctl restart docker
-
-.. If you want Docker to start at boot, you should also:
-
-Docker をブート時に起動するようにするには、次のように実行すべきです。
-
-.. code-block:: bash
-
-   $ sudo systemctl enable docker
-
-.. Configuring Docker
-
-Docker の設定
---------------------
-
-.. For CentOS 7.x and RHEL 7.x you can control and configure Docker with systemd.
-
-CentOS 7.x と RHEL 7.x では :doc:`systemd で Docker を管理・設定できます <systemd>` 。
-
-.. Previously, for CentOS 6.x and RHEL 6.x you would configure the docker daemon in the /etc/sysconfig/docker file on your system. You would do this by specifying values in a other_args variable. For a short time in CentOS 7.x and RHEL 7.x you would specify values in a OPTIONS variable. This is no longer recommended in favor of using systemd directly.
-
-以前の CentOS 6.x や RHEL 6.x の場合は、システム上にある ``docker`` デーモンの設定は ``/etc/default/docker`` ファイルを編集し、ここで様々な変数を設定します。CentOS 7.x と RHEL 7.x では、この変数名が ``OPTIONS`` になります。CentOS 6.x と RHEL 6.x では、この変数名は ``other_args`` です。このセクションでは CentOS 7 の ``docker`` デーモンを例に説明します。
-
-.. For this section, we will use CentOS 7.x as an example to configure the docker daemon.
-
-.. このセクションでは、CentOS 7.x で ``docker`` デーモンを設定する例をみていきます。
-
-.. To configure Docker options:
-
-Docker オプションの設定を変更するには：
-
-..    Log into your host as a user with sudo or root privileges.
-
-1. ホストに ``sudo`` や ``root`` 特権を持つユーザでログインします。
-
-.. Create the /etc/systemd/system/docker.service.d directory.
-
-2. ``/etc/systemd/system/docker.service.d`` ディレクトリを作成します。
-
-.. code-block:: bash
-
-   $ sudo mkdir /etc/systemd/system/docker.service.d
-
-.. Create a /etc/systemd/system/docker.service.d/docker.conf file. 
-
-3. ``/etc/systemd/system/docker.service.d/docker.conf`` ファイルを作成します。
-
-.. Open the file with your favorite editor
-
-4. 任意のエディタでファイルを開きます。
-
-.. code-block:: bash
-
-   $ sudo vi /etc/systemd/system/docker.service.d/docker.conf
-
-.. Override the ExecStart configuration from your docker.service file to customize the docker daemon. To modify the ExecStart configuration you have to specify an empty configuration followed by a new one as follows:
-
-5. ``docker`` デーモンの設定を変更するため、 ``docker.service`` ファイルの ``ExecStart`` 設定を上書きします。 ``ExecStart`` 設定を変更するためには、新しい設定行を追加する前に、次のように空の設定行を追加します。
-
-.. code-block:: bash
+::
 
    [Service]
    ExecStart=
-   ExecStart=/usr/bin/dockerd -H fd:// -D --tls=true --tlscert=/var/docker/server.pem --tlskey=/var/docker/serverkey.pem -H tcp://192.168.59.3:2376
+   ExecStart=/usr/bin/dockerd
 
-.. These options :
+.. There are other times when you might need to configure systemd with Docker, such as configuring a HTTP or HTTPS proxy.
 
-これらのオプションの意味は：
+他にも、 :ref:`HTTP や HTTPS プロキシの設定 <httphttps-proxy>` のように、Docker で ``systemd`` の設定が必要になる場合があるでしょう。
 
-..    Enable -D (debug) mode
-    Set tls to true with the server certificate and key specified using --tlscert and --tlskey respectively
-    Listen for connections on tcp://192.168.59.3:2376
-
-* ``-D`` （デバッグ）モードの有効化
-* ``tls`` を有効にするため、サーバ証明書と鍵を ``--tlscert`` と ``--tlskey`` で個々に指定
-* ``tcp://192.168.59.3:2376`` への接続をリッスン
-
-.. The command line reference has the complete list of daemon flags with explanations.
-
-コマンドライン・リファレンスの :doc:`デーモンのフラグ一覧 </engine/reference/commandline/dockerd>` に説明があります。
-
-..    Save and close the file.
-
-6. ファイルを保存して閉じます。
-
-.. Flush change
-
-7. 変更を反映（フラッシュ）します。
-
-.. code-block:: bash
-
-   $ sudo systemctl daemon-reload
-
-..    Restart the docker daemon.
-
-8. ``docker`` デーモンを再起動します。
-
-.. code-block:: bash
-
-   $ sudo systemctl restart docker
-
-..     Verify that the docker daemon is running as specified with the ps command.
-
-9. ``docker`` デーモンが指定したオプションで実行しているか、 ``ps`` コマンドで確認します。
-
-.. code-block:: bash
-
-   $ ps aux | grep docker | grep -v grep
-
-.. Logs
-
-ログ
-----------
-
-.. systemd has its own logging system called the journal. The logs for the docker daemon can be viewed using journalctl -u docker
-
-systemd は自身で journal と呼ばれるロギング・システムを持っています。 ``docker`` デーモンのログ表示は ``journalctl -u docker`` を使います。
-
-.. code-block:: bash
-
-   $ sudo journalctl -u docker
-   May 06 00:22:05 localhost.localdomain systemd[1]: Starting Docker Application Container Engine...
-   May 06 00:22:05 localhost.localdomain docker[2495]: time="2015-05-06T00:22:05Z" level="info" msg="+job serveapi(unix:///var/run/docker.sock)"
-   May 06 00:22:05 localhost.localdomain docker[2495]: time="2015-05-06T00:22:05Z" level="info" msg="Listening for HTTP on unix (/var/run/docker.sock)"
-   May 06 00:22:06 localhost.localdomain docker[2495]: time="2015-05-06T00:22:06Z" level="info" msg="+job init_networkdriver()"
-   May 06 00:22:06 localhost.localdomain docker[2495]: time="2015-05-06T00:22:06Z" level="info" msg="-job init_networkdriver() = OK (0)"
-   May 06 00:22:06 localhost.localdomain docker[2495]: time="2015-05-06T00:22:06Z" level="info" msg="Loading containers: start."
-   May 06 00:22:06 localhost.localdomain docker[2495]: time="2015-05-06T00:22:06Z" level="info" msg="Loading containers: done."
-   May 06 00:22:06 localhost.localdomain docker[2495]: time="2015-05-06T00:22:06Z" level="info" msg="Docker daemon commit=1b09a95-unsupported graphdriver=aufs version=1.11.0-dev""
-   May 06 00:22:06 localhost.localdomain docker[2495]: time="2015-05-06T00:22:06Z" level="info" msg="+job acceptconnections()"
-   May 06 00:22:06 localhost.localdomain docker[2495]: time="2015-05-06T00:22:06Z" level="info" msg="-job acceptconnections() = OK (0)"
-
-.. Note: Using and configuring journal is an advanced topic and is beyond the scope of this article.
+..    Note: If you override this option and then do not specify a hosts entry in the daemon.json or a -H flag when starting Docker manually, Docker fails to start.
 
 .. note::
 
-   journal の使い方や設定方法は高度なトピックのため、この記事の範囲では扱いません。
+   Docker を手動で起動するとき、 このオプションを上書きし、 ``daemon.json`` の ``hosts`` エントリや ``-H`` フラグの指定が無ければ、Docker は起動に失敗します。
 
-.. Daemonless Containers
+.. Run sudo systemctl daemon-reload before attempting to start Docker. If Docker starts successfully, it is now listening on the IP address specified in the hosts key of the daemon.json instead of a socket.
 
-.. _daemonless-containers:
+Docker を起動しようとする前に、 ``sudo systemctl daemon-reload`` を実行します。Docker が起動に成功すると、ソケットではなく、 ``daemon.json`` の ``hosts``  キーで指定した IP アドレスでリッスンします。
 
-デーモンのないコンテナ（daemonless container）
-==================================================
+..    Important: Setting hosts in the daemon.json is not supported on Docker Desktop for Windows or Docker Desktop for Mac.
 
-.. Starting with Docker 1.12 containers can run without Docker or containerd running. This allows the Docker daemon to exit, be upgraded, or recover from a crash without affecting running containers on the system. To enable this functionality you need to add the --live-restore flag when launching dockerd. This will ensure that Docker does not kill containers on graceful shutdown or on restart leaving the containers running.
+.. important::
 
-Docker 1.12 から、 Docker や containerd 実行しなくてもコンテナを実行可能になります。これにより、システム上のコンテナに影響を与えずに、Docker デーモンを停止してのアップグレードや障害からの復旧が可能になります。この機能を有効にするためには、 ``dockerd`` の起動時点で ``--live-restore`` フラグの追加が必要です。この場合、Docker はコンテナの停止（kill）や丁寧な停止（graceful shutdown）や、実行中のコンテナに対する再起動ができなくなります。
+   ``daemon.json`` での ``hosts`` 設定は、 Docker Desktop for Windows や Docker Desktop for Mac ではサポートされていません。
 
-.. While the Docker daemon is down logging will still be captured, however, it will be capped at the kernel's pipe buffer size before the buffer fills up, blocking the process. Docker will need to be restarted to flush these buffers. You can modify the kernel's buffer size by changing /proc/sys/fs/pipe-max-size.
+.. Out Of Memory Exceptions (OOME)
 
-Docker デーモンが停止中でも、ログ機能は収集し続けます。しかしながら、カーネルのパイプ・バッファ・サイズにバッファが満たされる上限に到達すると、処理が止まります。これらのバッファをフラッシュするには、Docker で再起動が必要です。カーネルがキャッシュするバッファ・サイズは ``/proc/sys/fs/pipe-max-size`` で変更できます。
+.. out-of-memory-exceptions-oome
+
+Out Of Memory Exception (OOME)
+----------------------------------------
+
+.. If your containers attempt to use more memory than the system has available, you may experience an Out Of Memory Exception (OOME) and a container, or the Docker daemon, might be killed by the kernel OOM killer. To prevent this from happening, ensure that your application runs on hosts with adequate memory and see Understand the risks of running out of memory.
+
+システムで利用可能なメモリよりも、多くのメモリ利用をコンテナが試みようとすると、Out Of Memory Exception (OOME) が発生し、 Docker あるいは Docker デーモンがカーネル OOM killer によって強制停止されるでしょう。この挙動を防ぐためには、ホスト上で実行するアプリケーションに対し、十分なメモリを割り当ててから実行します。詳細は :ref:`Out of Memory を引き起こすリスクの理解 <understand-the-risks-of-running-out-of-memory>` をご覧ください
+
+.. Read the logs
+
+ログを読む
+--------------------
+
+.. The daemon logs may help you diagnose problems. The logs may be saved in one of a few locations, depending on the operating system configuration and the logging subsystem used:
+
+デーモンのログは問題の解析に役立つでしょう。ログは1ヵ所に保存されますが、オペレーティングシステムの設定と、サブシステムが使っているログ記録システムに依存します。
+
+* オペレーティングシステム
+  * 場所
+* RHEL, Oracle Linux
+   * ``/var/log/messages``
+* Debian
+   * ``/var/log/daemon.log``
+* Ubuntu 16.04+, CentOS
+   * コマンド ``journalctl -u docker.service`` を使用
+* Ubuntu 14.10-
+   * ``/var/log/upstart/docker.log``
+* macOS (Docker 18.01+)
+   * ``~/Library/Containers/com.docker.docker/Data/vms/0/console-ring``
+* macOS (Docker <18.01)
+   * ``~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/console-ring``
+* Windows
+   * ``AppData\Local``
+
+.. Enable debugging
+
+デバッギングの有効化
+--------------------
+
+.. There are two ways to enable debugging. The recommended approach is to set the debug key to true in the daemon.json file. This method works for every Docker platform.
+
+デバッグを有効化するには2つの方法があります。推奨する方法は、 ``daemon.json`` ファイル中で ``debug`` キーを ``true`` に設定するものです。この手法は全ての Docker プラットフォームで動作します。
+
+..    Edit the daemon.json file, which is usually located in /etc/docker/. You may need to create this file, if it does not yet exist. On macOS or Windows, do not edit the file directly. Instead, go to Preferences / Daemon / Advanced.
+
+1. ``daemon.json`` ファイルを編集します。通常は ``/etc/docker`` にあります。ファイルが存在していなければ、このファイルを作る必要があります。macOS や Windows であれば、このディレクトリは編集しないで、かわりに **Preferences > Daemon > Advanced** で設定します。
+
+..    If the file is empty, add the following:
+
+2. ファイルが空っぽであれば、次の様に追加します。
+
+::
+
+   {
+     "debug": true
+   }
+
+..    If the file already contains JSON, just add the key "debug": true, being careful to add a comma to the end of the line if it is not the last line before the closing bracket. Also verify that if the log-level key is set, it is set to either info or debug. info is the default, and possible values are debug, info, warn, error, fatal.
+
+既に JSON ファイルが存在していれば、 ``"debug": true`` のキーのみ追加します。このとき、この記述がカッコ（ブランケット）を閉じる直前の行でなければ、行末にカンマ記号を追加する必要がありますので注意してください。また、もしも ``log-level`` キーを設定している場合、そこでは ``info`` か ``debug`` が指定されているか確認します。 ``info`` はデフォルトであり、変更可能な値は ``debug`` 、 ``info``、  ``warn`` 、 ``error`` 、 ``fatal`` です。
+
+..    Send a HUP signal to the daemon to cause it to reload its configuration. On Linux hosts, use the following command.
+
+3. 設定情報を再読込するため、デーモンに対して ``HUB`` シグナルを送信します。 Linux ホスト上では以下のコマンドを使います。
+
+.. code-block:: bash
+
+   $ sudo kill -SIGHUP $(pidof dockerd)
+
+..    On Windows hosts, restart Docker.
+
+Windows ホスト上では Docker を再起動します。
+
+.. Instead of following this procedure, you can also stop the Docker daemon and restart it manually with the debug flag -D. However, this may result in Docker restarting with a different environment than the one the hosts’ startup scripts create, and this may make debugging more difficult.
+
+以上の手順のほかに、Docker デーモンを停止し、手動で Docker デーモンを起動する時にデバッグ用のフラグ ``-D`` を付ける方法もあります。しかしながら、通常ホスト側のスタートアップ・スクリプトによって作成する Dockre 環境とは、異なる環境が起動してしまう場合もあります。そして、そうなればデバッグが困難になるでしょう。
+
+.. Force a stack trace to be logged
+
+.. _force-a-stack-trace-to-be-logged:
+
+スタック・トレースのログ記録を強制
+----------------------------------------
+
+.. If the daemon is unresponsive, you can force a full stack trace to be logged by sending a SIGUSR1 signal to the daemon.
+
+デーモンの反応がなくなった場合、 ``SIGUSR1`` をデーモンに送ると、 完全なスタック・トレースの強制によってログを記録できます。
+
+..    Linux:
+
+* Linux :
+
+   .. code-block:: bash
+   
+      $ sudo kill -SIGUSR1 $(pidof dockerd)
+
+..    Windows Server:
+
+* Windows Server:
+
+   * `docker-signal <https://github.com/moby/docker-signal>`_ のダウンロード
+   * ``Get-Process dockerd`` で dockerd の ID を取得
+   * ``--pid=<デーモンのPID>`` を付けて実行
+
+..    Download docker-signal.
+
+..    Get the process ID of dockerd Get-Process dockerd.
+
+..    Run the executable with the flag --pid=<PID of daemon>.
+
+.. This forces a stack trace to be logged but does not stop the daemon. Daemon logs show the stack trace or the path to a file containing the stack trace if it was logged to a file.
+
+このスタック・トレースの強制は、デーモンを停止せずにログを記録します。デーモンのログは、スタック・トレース上、あるいは、ファイルにスタック・トレースを記録する設定をしている場合は、そのパスにあるファイルに記録します。
+
+.. The daemon continues operating after handling the SIGUSR1 signal and dumping the stack traces to the log. The stack traces can be used to determine the state of all goroutines and threads within the daemon.
+
+``SIGUSR1``  シグナルを受けてもデーモンは操作を実行し、スタック・トレースのログを送り続けます。スタック・トレースによって、全ての goroutine の状態や、デーモンないのスレッド状況が分かるでしょう。
+
+.. View stack traces
+
+スタックトレースの表示
+------------------------------
+
+.. The Docker daemon log can be viewed by using one of the following methods:
+
+Docker デーモンのログ表示は、以下の方法どちらかを使って行えます。
+
+..  By running journalctl -u docker.service on Linux systems using systemctl
+    /var/log/messages, /var/log/daemon.log, or /var/log/docker.log on older Linux systems
+
+* Linux システム上では ``systemctl`` を使い、 ``journalctl -u docker.service`` を実行します。
+* 以前の Linux システム上では ``/var/log/messages`` 、 ``/var/log/daemon.log`` 、 ``/var/log/docker.log`` を読みます。
+
+..    Note: It is not possible to manually generate a stack trace on Docker Desktop for Mac or Docker Desktop for Windows. However, you can click the Docker taskbar icon and choose Diagnose and feedback to send information to Docker if you run into issues.
+
+.. note::
+
+   Docker Desktop for Mac や Docker Desktop for Windows 上では、スタック・トレースを手動で生成することができません。ですが、問題が発生した時は、 Docker タスクバーアイコンをクリックし、 **Diagnose and feedbak**  を選択し、Docker に対して情報を送信できます。
+
+.. Look in the Docker logs for a message like the following:
+
+Docker のログに表示される文字列は、以下のようなものです。
+
+::
+
+   ...goroutine stacks written to /var/run/docker/goroutine-stacks-2017-06-02T193336z.log
+   ...daemon datastructure dump written to /var/run/docker/daemon-data-2017-06-02T193336z.log
+
+.. The locations where Docker saves these stack traces and dumps depends on your operating system and configuration. You can sometimes get useful diagnostic information straight from the stack traces and dumps. Otherwise, you can provide this information to Docker for help diagnosing the problem.
+
+Docker がこれらスタック・トレースおよびダンプ情報をどこに記録するかは、利用しているオペレーティングシステムと設定に依存します。スタック・トレースとダンプから直接解析した情報が、役に立つ場合があるでしょう。あるいは、問題の解析のために、Docker への送信が役立つ場合もあるでしょう。
+
+.. Check whether Docker is running
+
+.. _check-whether-docker-is-running:
+
+どこにある Docker が動作しているか確認
+----------------------------------------
+
+.. The operating-system independent way to check whether Docker is running is to ask Docker, using the docker info command.
+
+Docker がどこで動作しているかはオペレーティングシステムによって別々ですが、確認するには ``docker info``  コマンドを実行します。
+
+.. You can also use operating system utilities, such as sudo systemctl is-active docker or sudo status docker or sudo service docker status, or checking the service status using Windows utilities.
+
+また、オペレーティングシステムのユーティリティも利用できます。 ``udo systemctl is-active docker `` や ``sudo status docker`` や ``sudo service docker status`` や、Windows ユーティリティを使ったサービスを確認できます。
+
+.. Finally, you can check in the process list for the dockerd process, using commands like ps or top.
+
+あとは、 ``dockerd`` プロセスのプロセスリストを確認するには、 ``ps`` や ``top`` のようなコマンドを使います。
 
 .. seealso:: 
 
    Configuring and running Docker on various distributions
-      https://docs.docker.com/engine/admin/configuring/
+      https://docs.docker.com/config/daemon/
