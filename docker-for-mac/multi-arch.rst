@@ -208,7 +208,7 @@ Buildx CLI コマンドに関する詳しい情報は :doc:`Biuldx </buildx/work
 
 .. You can run the images using the SHA tag, and verify the architecture. For example, when you run the following on a macOS:
 
-イメージの実行には SHA タグを使えますし、アーキテクチャの角煮もできます。例えば、以下のコマンドを macOS 上で実行します：
+イメージの実行には SHA タグを使えますし、アーキテクチャの確認もできます。例えば、以下のコマンドを macOS 上で実行します：
 
 .. code-block:: bash
 
