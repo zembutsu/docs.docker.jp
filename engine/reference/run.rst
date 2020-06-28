@@ -1274,7 +1274,7 @@ CPU クォータ制限
 
 .. By default, all containers get the same proportion of block IO bandwidth (blkio). This proportion is 500. To modify this proportion, change the container’s blkio weight relative to the weighting of all other running containers using the --blkio-weight flag.
 
-デフォルトでは、全てのコンテナはブロック IO 帯域（blkio）を同じ割合で取得します。デフォルトの割合は 500 です。割合を変更するには ``--blkio-weight`` フラグを使い、実行中の全てのコンテナに対する装置亜的な blkio ウエイトを指定します。
+デフォルトでは、全てのコンテナはブロック IO 帯域（blkio）を同じ割合で取得します。デフォルトの割合は 500 です。割合を変更するには ``--blkio-weight`` フラグを使い、実行中の全てのコンテナに対する相対的な blkio ウエイトを指定します。
 
 .. The --blkio-weight flag can set the weighting to a value between 10 to 1000. For example, the commands below create two containers with different blkio weight:
 
