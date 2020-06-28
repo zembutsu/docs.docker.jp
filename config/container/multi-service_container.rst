@@ -1,18 +1,17 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/engine/admin/using_supervisord/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/using_supervisord.md
+.. URL: https://docs.docker.com/config/containers/multi-service_container/
+.. SOURCE: https://github.com/docker/docker.github.io/blob/master/config/containers/multi-service_container.md
    doc version: 1.12
-      https://github.com/docker/docker/commits/master/docs/admin/using_supervisord.md
-.. check date: 2016/06/13
-.. Commits on Mar 6, 2016 e38678e6601cc597b621aaf3cf630419a7963ae9
+.. check date: 2016/06/27
+.. Commits on Apr 8, 2020 727941ffdd6430562e09314d3199b56f2de666df
 .. ---------------------------------------------------------------------------
 
-.. Using Supervisor with Docker
+.. Run multiple services in a container
 
-.. _using-supervisor-with-docker:
+.. _run-multiple-services-in-a-container:
 
 =======================================
-Supervisor を Docker で使う
+コンテナ内で複数のサービスを実行
 =======================================
 
 .. sidebar:: 目次
@@ -21,177 +20,123 @@ Supervisor を Docker で使う
        :depth: 3
        :local:
 
-..    Note: - If you don’t like sudo then see Giving non-root access
+.. A container’s main running process is the ENTRYPOINT and/or CMD at the end of the Dockerfile. It is generally recommended that you separate areas of concern by using one service per container. That service may fork into multiple processes (for example, Apache web server starts multiple worker processes). It’s ok to have multiple processes, but to get the most benefit out of Docker, avoid one container being responsible for multiple aspects of your overall application. You can connect multiple containers using user-defined networks and shared volumes.
 
-.. note::
+コンテナでメインとして実行するプロセスは、 ``Dockerfile`` の最後に書かれている ``ENTRYPOINT`` か ``CMD`` か、あるいは両方によって指定します。一般的に推奨するのは、1つのサービスごとにコンテナを使い、懸念事項の領域を分ける方法です。サービスは複数のプロセスにフォークする場合があります（たとえば、Apache ウェブサーバ派、複数のワーカ・プロセスと共に起動します）。複数のプロセスを持つ必要があるならば、1つのコンテナがアプリケーション全体における複数の役割を持ったとしても、Docker の利点から外れることがないようにする必要があります。ユーザ定義ネットワークと、共有ボリュームを使い、複数のコンテナ間を接続できます。
 
-   **sudo を使いたくなければ**、 :ref:`ルート以外でアクセスする方法  <giving-non-root-access>` をご覧ください。
+.. The container’s main process is responsible for managing all processes that it starts. In some cases, the main process isn’t well-designed, and doesn’t handle “reaping” (stopping) child processes gracefully when the container exits. If your process falls into this category, you can use the --init option when you run the container. The --init flag inserts a tiny init-process into the container as the main process, and handles reaping of all processes when the container exits. Handling such processes this way is superior to using a full-fledged init process such as sysvinit, upstart, or systemd to handle process lifecycle within your container.
 
-.. Traditionally a Docker container runs a single process when it is launched, for example an Apache daemon or a SSH server daemon. Often though you want to run more than one process in a container. There are a number of ways you can achieve this ranging from using a simple Bash script as the value of your container’s CMD instruction to installing a process management tool.
+コンテナのメイン・プロセスは、コンテナが開始する全てのプロセスを管理する責任があります。いくつかの場合、メイン・プロセスが適切に設計されていない場合があり、その場合はコンテナが停止しても、子プロセスを丁寧に「reaping」（停止）できない可能性があります。この類のプロセス失敗に対しては、コンテナ実行時に ``--init`` オプションを使って対応できます。 ``--init`` フラグは、メインプロセスとして小さな初期化プロセスをとしてコンテナに挿入することができ、コンテナの終了時に全てのプロセスの終了を扱います。各プロセスを ``sysvinit``  、 ``upstart`` 、 ``systemd`` のようなスーパーバイザを使うのと同じ方法で、コンテナ内のプロセス・ライフライムを扱えるようにもできます。
 
-伝統的に Docker コンテナは起動時に１つのプロセスを実行します。例えば、Apache デーモンや SSH サーバのデーモンです。しかし、コンテナ内で複数のプロセスを起動したいこともあるでしょう。これを実現するにはいくつもの方法があります。プロセス管理ツールをインストールすることで、コンテナの ``CMD`` 命令で単純な Bash スクリプトを使えるようにします。
+.. If you need to run more than one service within a container, you can accomplish this in a few different ways.
 
-.. In this example we’re going to make use of the process management tool, Supervisor, to manage multiple processes in our container. Using Supervisor allows us to better control, manage, and restart the processes we want to run. To demonstrate this we’re going to install and manage both an SSH daemon and an Apache daemon.
+コンテナ内で複数のサービスを実行する必要があれば、いくつかの異なった方法で達成できます。
 
-ここでは例としてプロセス管理ツール `Supervisor <http://supervisord.org/>`_ を使い、コンテナ内で複数のプロセスを管理します。Supervisor を使うことにより、実行したいプロセスを再起動できます。デモンストレーションとして、SSH デーモンと Apache デーモンの両方をインストール・管理します。
+..    Put all of your commands in a wrapper script, complete with testing and debugging information. Run the wrapper script as your CMD. This is a very naive example. First, the wrapper script:
 
-.. Creating a Dockerfile
+* ラッパー・スクリプト（wrapper script）で、テストやデバッグ情報も含む全てのコマンドを記述する方法です。このラッパー・スクリプトを ``CMD`` として指定します。これはとても良く使われる手法です。まず、以下がラッパー・スクリプトです。
 
-.. _creating-a-dockerfile:
-
-Dockerfile の作成
-====================
-
-.. Let’s start by creating a basic Dockerfile for our new image.
-
-基本的な ``Dockerfile`` から新しいイメージを作りましょう。
-
-.. code-block:: dockerfile
-
-   FROM ubuntu:16.04
-   MAINTAINER examples@docker.com
-
-.. Installing Supervisor
-
-Supervisor のインストール
-==============================
-
-.. We can now install our SSH and Apache daemons as well as Supervisor in our container.
-
-SSH や Apache デーモンと同様に、Supervisor をコンテナにインストールできます。
-
-.. code-block:: dockerfile
-
-   RUN apt-get update && apt-get install -y openssh-server apache2 supervisor
-   RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/run/sshd /var/log/supervisor
-
-.. The first RUN instruction installs the openssh-server, apache2 and supervisor (which provides the Supervisor daemon) packages. The next RUN instruction creates four new directories that are needed to run the SSH daemon and Supervisor.
-
-１つめの ``RUN`` 命令は ``openssh-server`` 、 ``apache2`` 、 ``supervisor`` （Supervisor デーモンを提供）の各パッケージをインストールします。次の ``RUN`` 命令は SSH デーモンと Supervisor が必要な４つのディレクトリを作成します。
-
-.. Adding Supervisor’s configuration file
-
-Supervisor の設定ファイルを追加
-================================
-
-.. Now let’s add a configuration file for Supervisor. The default file is called supervisord.conf and is located in /etc/supervisor/conf.d/.
-
-次は Supervisor の設定ファイルを追加しましょう。デフォルトのファイルは ``supervisord.conf`` であり、 ``/etc/supervisor/conf.d/`` に置きます。
-
-.. code-block:: dockerfile
-
-   COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-.. Let’s see what is inside our supervisord.conf file.
-
-``supervisord.conf`` ファイルの内容を見ましょう。
-
-.. code-block:: resource
-
-   [supervisord]
-   nodaemon=true
+   .. code-block:: bash
    
-   [program:sshd]
-   command=/usr/sbin/sshd -D
+      #!/bin/bash
    
-   [program:apache2]
-   command=/bin/bash -c "source /etc/apache2/envvars && exec /usr/sbin/apache2 -DFOREGROUND"
-
-.. The supervisord.conf configuration file contains directives that configure Supervisor and the processes it manages. The first block [supervisord] provides configuration for Supervisor itself. We’re using one directive, nodaemon which tells Supervisor to run interactively rather than daemonize.
-
-``supervisord.conf`` 設定ファイルにはディレクティブ（命令）を記述します。これは Supervisor とプロセスを管理するためです。始めのブロック ``[supervisord]`` は Supervisord 自身の設定を指定します。ここで使ったディレクティブ ``nodaemon`` は、Supervisor をデーモン化するのではなく、インタラクティブに実行します。
-
-.. The next two blocks manage the services we wish to control. Each block controls a separate process. The blocks contain a single directive, command, which specifies what command to run to start each process.
-
-次の２つのブロックは制御したいサービスを管理します。各ブロックは、別々のプロセスです。ブロックには ``command`` というディレクティブが１つあり、各プロセスで何のコマンドを起動するか指定します。
-
-.. Exposing ports and running Supervisor
-
-ポートの公開と Supervisor の実行
-========================================
-
-.. Now let’s finish our Dockerfile by exposing some required ports and specifying the CMD instruction to start Supervisor when our container launches.
-
-``Dockerfile`` を仕上げるには、コンテナの実行時に必要な公開ポートや、 Supervisor 起動のための ``CMD`` 命令を追加します。
-
-.. code-block:: dockerfile
-
-   EXPOSE 22 80
-   CMD ["/usr/bin/supervisord"]
-
-.. These instructions tell Docker that ports 22 and 80 are exposed by the container and that the /usr/bin/supervisord binary should be executed when the container launches.
-
-この命令は Docker に対してコンテナのポート 22 と 80 を公開するように伝え、そしてコンテナ起動時に ``/usr/bin/supervisord`` バイナリを実行します。
-
-.. Building our image
-
-イメージの構築
-====================
-
-.. Your completed Dockerfile now looks like this:
-
-Dockerfile は次のようになっているでしょう：
-
-.. code-block:: dockerfile
-
-   FROM ubuntu:16.04
-   MAINTAINER examples@docker.com
+      # Start the first process
+      ./my_first_process -D
+      status=$?
+      if [ $status -ne 0 ]; then
+        echo "Failed to start my_first_process: $status"
+        exit $status
+      fi
    
-   RUN apt-get update && apt-get install -y openssh-server apache2 supervisor
-   RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/run/sshd /var/log/supervisor
+      # Start the second process
+      ./my_second_process -D
+      status=$?
+      if [ $status -ne 0 ]; then
+        echo "Failed to start my_second_process: $status"
+        exit $status
+      fi
    
-   COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+      # Naive check runs checks once a minute to see if either of the processes exited.
+      # This illustrates part of the heavy lifting you need to do if you want to run
+      # more than one service in a container. The container exits with an error
+      # if it detects that either of the processes has exited.
+      # Otherwise it loops forever, waking up every 60 seconds
    
-   EXPOSE 22 80
-   CMD ["/usr/bin/supervisord"]
+      while sleep 60; do
+        ps aux |grep my_first_process |grep -q -v grep
+        PROCESS_1_STATUS=$?
+        ps aux |grep my_second_process |grep -q -v grep
+        PROCESS_2_STATUS=$?
+        # If the greps above find anything, they exit with 0 status
+        # If they are not both 0, then something is wrong
+        if [ $PROCESS_1_STATUS -ne 0 -o $PROCESS_2_STATUS -ne 0 ]; then
+         echo "One of the processes has already exited."
+         exit 1
+        fi
+      done
 
-.. And your supervisord.conf file looks like this;
+..    Next, the Dockerfile:
 
-そして ``supervisord.conf`` は次の通りでしょう：
+   次は Dockerfile です。
 
-.. code-block:: resource
-
-   [supervisord]
-   nodaemon=true
+   ::
    
-   [program:sshd]
-   command=/usr/sbin/sshd -D
+      FROM ubuntu:latest
+      COPY my_first_process my_first_process
+      COPY my_second_process my_second_process
+      COPY my_wrapper_script.sh my_wrapper_script.sh
+      CMD ./my_wrapper_script.sh
+
+..    If you have one main process that needs to start first and stay running but you temporarily need to run some other processes (perhaps to interact with the main process) then you can use bash’s job control to facilitate that. First, the wrapper script:
+
+* 1つのメイン・プロセスは一番初めに起動して、実行し続ける必要があるものの、一時的に他のプロセス（メインプロセスとやりとしるする場合もあるでしょう）も実行する必要がある場合は、bash のジョブ・コントロールでこれらを調整できます。まずはラッパー・スクリプトです。
+
+   .. code-block:: bash
    
-   [program:apache2]
-   command=/bin/bash -c "source /etc/apache2/envvars && exec /usr/sbin/apache2 -DFOREGROUND
+      #!/bin/bash
+        
+      # turn on bash's job control
+      set -m
+        
+      # Start the primary process and put it in the background
+      ./my_main_process &
+        
+      # Start the helper process
+      ./my_helper_process
+        
+      # the my_helper_process might need to know how to wait on the
+      # primary process to start before it does its work and returns
+        
+        
+      # now we bring the primary process back into the foreground
+      # and leave it there
+      fg %1
+   
+   ::
+   
+      FROM ubuntu:latest
+      COPY my_main_process my_main_process
+      COPY my_helper_process my_helper_process
+      COPY my_wrapper_script.sh my_wrapper_script.sh
+      CMD ./my_wrapper_script.sh
 
-.. You can now build the image using this command:
+..    Use a process manager like supervisord. This is a moderately heavy-weight approach that requires you to package supervisord and its configuration in your image (or base your image on one that includes supervisord), along with the different applications it manages. Then you start supervisord, which manages your processes for you. Here is an example Dockerfile using this approach, that assumes the pre-written supervisord.conf, my_first_process, and my_second_process files all exist in the same directory as your Dockerfile.
 
-これで、次のコマンドを使って新しいイメージを構築できます。
+* ``supervisord``  のようなプロセス・マネージャを使う方法です。これは、どちらかといえば重量級のアプローチです。イメージの中にはアプリケーションを管理するものだけでなく、 ``supervisord`` のパッケージを入れる必要があります。 ``supervisord`` を起動すると、あなたにかわってプロセスを管理します。以下の Dockerfile 例はこのアプローチを使ったもので、あらかじめ ``supervisord.conf`` と ``my_first_processs`` と ``my_second_process`` ファイルを記述し、全てが Dockerifle と同じディレクトリにあるものと想定しています。
 
-.. code-block:: bash
+   ::
+   
+      FROM ubuntu:latest
+      RUN apt-get update && apt-get install -y supervisor
+      RUN mkdir -p /var/log/supervisor
+      COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+      COPY my_first_process my_first_process
+      COPY my_second_process my_second_process
+      CMD ["/usr/bin/supervisord"]
 
-   $ docker build -t <yourname>/supervisord .
 
-.. Running your Supervisor container
-
-Supervisor コンテナを実行
-==============================
-
-.. Once you have built image we can launch a container from it.
-
-イメージを構築したら、これを使ってコンテナを起動します。
-
-.. code-block:: bash
-
-   $ docker run -p 22 -p 80 -t -i <yourname>/supervisord
-   2013-11-25 18:53:22,312 CRIT Supervisor running as root (no user in config file)
-   2013-11-25 18:53:22,312 WARN Included extra file "/etc/supervisor/conf.d/supervisord.conf" during parsing
-   2013-11-25 18:53:22,342 INFO supervisord started with pid 1
-   2013-11-25 18:53:23,346 INFO spawned: 'sshd' with pid 6
-   2013-11-25 18:53:23,349 INFO spawned: 'apache2' with pid 7
-   . . .
-
-.. You launched a new container interactively using the docker run command. That container has run Supervisor and launched the SSH and Apache daemons with it. We've specified the -p flag to expose ports 22 and 80. From here we can now identify the exposed ports and connect to one or both of the SSH and Apache daemons.
-
-``docker run`` コマンドを実行することで、新しいコンテナをインタラクティブに起動しました。このコンテナは Supervisor を実行し、一緒に SSH と Apache デーモンを起動します。 ``-p`` フラグを指定し、ポート 22 と 80 を公開します。ここで、SSH と Apache デーモンの両方に接続できるようにするため、公開ポートを個々に指定しています。
 
 .. seealso:: 
 
-   Using Supervisor with Docker
-      https://docs.docker.com/engine/admin/using_supervisord/
+   Run multiple services in a container
+      https://docs.docker.com/config/containers/multi-service_container/
