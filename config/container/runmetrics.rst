@@ -1,13 +1,14 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/admin/runmetrics/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/runmetrics.md
-   doc version: 1.12
-      https://github.com/docker/docker/commits/master/docs/admin/runmetrics.md
-.. check date: 2016/06/13
-.. Commits on May 27, 2016 ee7696312580f14ce7b8fe70e9e4cbdc9f83919f
+.. SOURCE: https://github.com/docker/docker.github.io/blob/master/config/containers/runmetrics.md
+   doc version: 19.03
+.. check date: 2020/06/28
+.. Commits on May 2, 2020 4169b468f4a742ce6f60daba0613b9dfda267b3d
 .. ---------------------------------------------------------------------------
 
 .. Runtime metrics
+
+.. _runtime-metrics:
 
 =======================================
 ランタイム・メトリクス（監視）
@@ -18,7 +19,6 @@
    .. contents:: 
        :depth: 3
        :local:
-
 .. You can use the docker stats command to live stream a container’s runtime metrics. The command supports CPU, memory usage, memory limit, and network IO metrics.
 
 コンテナのラインタイム・メトリクス（訳注；コンテナ実行時の、様々なリソース指標や数値データ）をライブ（生）で表示するには、 ``docker stats`` コマンドを使います。コマンドがサポートしているのは、CPU 、メモリ使用率、メモリ上限、ネットワーク I/O のメトリクスです。
@@ -51,9 +51,9 @@ Linux はプロセス・グループの追跡だけでなく、CPU・メモリ�
 
 コントロール・グループは疑似ファイルシステム（pseudo-filesystem）を通して公開されています。最近のディストリビューションでは、 ``/sys/fs/cgroup`` 以下で見つかるでしょう。このディレクトリの下に、device・freezer・blkio 等の複数のサブディレクトリがあります。各サブディレクトリは、それぞれ異なった cgroup 階層に相当します。
 
-.. On older systems, the control groups might be mounted on /cgroup, without distinct hierarchies. In that case, instead of seeing the sub-directories, you will see a bunch of files in that directory, and possibly some directories corresponding to existing containers.
+.. On older systems, the control groups might be mounted on /cgroup, without distinct hierarchies. In that case, instead of seeing the sub-directories, you see a bunch of files in that directory, and possibly some directories corresponding to existing containers.
 
-古いシステムでは、コントロール・グループが ``/cgroup`` にマウントされており、その下に明確な階層が無いかもしれません。そのような場合、サブディレクトリが見える代わりに、たくさんのファイルがあるでしょう。あるいは、存在しているコンテナに相当するディレクトリがあるかもしれません。
+古いシステムでは、コントロール・グループが ``/cgroup`` にマウントされており、その下に明確な階層が無いかもしれません。そのような場合、サブディレクトリが見える代わりに、たくさんのファイルがあります。あるいは、存在しているコンテナに相当するディレクトリがあるかもしれません。
 
 .. To figure out where your control groups are mounted, you can run:
 
@@ -74,16 +74,16 @@ Linux はプロセス・グループの追跡だけでなく、CPU・メモリ�
 
 ``/proc/cgroups`` を調べれば、システム上の様々に異なるコントロール・グループのサブシステムが見えます。それぞれに階層がサブシステムに相当しており、多くのグループが見えるでしょう。
 
-.. You can also look at /proc/<pid>/cgroup to see which control groups a process belongs to. The control group will be shown as a path relative to the root of the hierarchy mountpoint; e.g., / means “this process has not been assigned into a particular group”, while /lxc/pumpkin means that the process is likely to be a member of a container named pumpkin.
+.. You can also look at /proc/<pid>/cgroup to see which control groups a process belongs to. The control group is shown as a path relative to the root of the hierarchy mountpoint. / means the process has not been assigned to a group, while /lxc/pumpkin indicates that the process is a member of a container named pumpkin.
 
-コントロール・グループのプロセスに属する情報は、 ``/proc/<pic>/cgroup`` からも確認できます。コントロール・グループは階層のマウントポイントからの相対パス上に表示されます。例えば、 ``/`` が意味するのは「対象のプロセスは特定のグループに割り当てられていない」であり、 ``/lxc/pumpkin`` が意味するのはプロセスが ``pumpkin`` と呼ばれるコンテナのメンバであると考えられます。
+コントロール・グループのプロセスに属する情報は、 ``/proc/<pic>/cgroup`` からも確認できます。コントロール・グループは階層のマウントポイントからの相対パス上として表示されます。例えば、 ``/`` が意味するのは「対象のプロセスは特定のグループに割り当てられていない」であり、 ``/lxc/pumpkin`` が意味するのはプロセスが ``pumpkin`` と呼ばれるコンテナのメンバであると考えられます。
 
 .. Finding the cgroup for a given container
 
 特定のコンテナに割り当てられた cgroup の確認
 ============================================
 
-.. For each container, one cgroup will be created in each hierarchy. On older systems with older versions of the LXC userland tools, the name of the cgroup will be the name of the container. With more recent versions of the LXC tools, the cgroup will be lxc/<container_name>.
+.. For each container, one cgroup is created in each hierarchy. On older systems with older versions of the LXC userland tools, the name of the cgroup is the name of the container. With more recent versions of the LXC tools, the cgroup is lxc/<container_name>.
 
 コンテナごとに、それぞれの階層に cgroup が作成されます。古いシステム上のバージョンが古い LXC userland tools の場合、cgroups の名前はコンテナ名になっています。より最近のバージョンの LXC ツールであれば、cgroup は ``lxc/<コンテナ名>`` になります。
 
@@ -100,7 +100,7 @@ Docker コンテナが利用するメモリのメトリクスは、 ``/sys/fs/cg
 cgroups からのメトリクス：メモリ、CPU、ブロックI/O
 ==================================================
 
-.. For each subsystem (memory, CPU, and block I/O), you will find one or more pseudo-files containing statistics.
+.. For each subsystem (memory, CPU, and block I/O), one or more pseudo-files exist and contain statistics.
 
 各サブシステム（メモリ、CPU、ブロック I/O）ごとに、１つまたは複数の疑似ファイル（pseudo-files）に統計情報が含まれます。
 
@@ -109,9 +109,9 @@ cgroups からのメトリクス：メモリ、CPU、ブロックI/O
 メモリ・メトリクス： ``memory.stat``
 ----------------------------------------
 
-.. Memory metrics are found in the “memory” cgroup. Note that the memory control group adds a little overhead, because it does very fine-grained accounting of the memory usage on your host. Therefore, many distros chose to not enable it by default. Generally, to enable it, all you have to do is to add some kernel command-line parameters: cgroup_enable=memory swapaccount=1.
+.. Memory metrics are found in the “memory” cgroup. The memory control group adds a little overhead, because it does very fine-grained accounting of the memory usage on your host. Therefore, many distros chose to not enable it by default. Generally, to enable it, all you have to do is to add some kernel command-line parameters: cgroup_enable=memory swapaccount=1.
 
-メモリ・メトリクスは「memory」cgroups にあります。メモリのコントロール・グループは少々のオーバーヘッドが増えるのを覚えておいてください。これはホスト上における詳細なメモリ使用情報を計算するためです。そのため、多くのディストリビューションではデフォルトでは無効です。一般的に、有効にするためには、カーネルのコマンドライン・パラメータに ``cgroup_enable=memory swapaccount=1`` を追加します。
+メモリ・メトリクスは「memory」cgroups にあります。メモリのコントロール・グループは少々のオーバーヘッドが増えます。これはホスト上における詳細なメモリ使用情報を計算するためです。そのため、多くのディストリビューションではデフォルトでは無効です。一般的に、有効にするためには、カーネルのコマンドライン・パラメータに ``cgroup_enable=memory swapaccount=1`` を追加します。
 
 .. The metrics are in the pseudo-file memory.stat. Here is what it will look like:
 
@@ -152,9 +152,9 @@ cgroups からのメトリクス：メモリ、CPU、ブロックI/O
 
 前半（ ``total_`` が先頭に無い ）は、cgroup 中にあるプロセス関連の統計情報を表示します。サブグループは除外しています。後半（  先頭に ``total_`` がある  ）は、サブグループも含めたものです。
 
-.. Some metrics are “gauges”, i.e., values that can increase or decrease (e.g., swap, the amount of swap space used by the members of the cgroup). Some others are “counters”, i.e., values that can only go up, because they represent occurrences of a specific event (e.g., pgfault, which indicates the number of page faults which happened since the creation of the cgroup; this number can never decrease).
+.. Some metrics are “gauges”, or values that can increase or decrease. For instance, swap is the amount of swap space used by the members of the cgroup. Some others are “counters”, or values that can only go up, because they represent occurrences of a specific event. For instance, pgfault indicates the number of page faults since the creation of the cgroup.
 
-いくつかのメトリクスは「gauges」（ゲージ；計測した値そのものの意味）であり、例えば、値が増減するものです（例：swap は cgroup のメンバによって使われている swap 領域の容量です）。あるいは「counter」（カウンタ）は、特定のイベント発生後に増えた値のみ表示します（例：pgfault はページ・フォルトの回数を表しますが、cgroup が作成された後の値です。この値は決して減少しません。）。
+いくつかのメトリクスは「gauges」（ゲージ；計測した値そのものの意味）であり、例えば、値が増減するものとしては、swap は cgroup のメンバによって使われている swap 領域の容量です。あるいは「counter」（カウンタ）は、特定のイベント発生後に増えた値のみ表示します。例えば pgfault はページ・フォルトの回数を表しますが、cgroup が作成された後の値です。この値は決して減少しません。。
 
 ..    cache:
 ..    the amount of memory used by the processes of this control group that can be associated precisely with a block on a block device. When you read from and write to files on disk, this amount will increase. This will be the case if you use “conventional” I/O (open, read, write syscalls) as well as mapped files (with mmap). It also accounts for the memory used by tmpfs mounts, though the reasons are unclear.
@@ -201,7 +201,7 @@ cgroups からのメトリクス：メモリ、CPU、ブロックI/O
 
 * **memory と memsw の limits**: これらは実際のメトリクスではありませんが、対象の cgroup に適用される上限の確認に使います。「memory」はこのコントロール・グループのプロセスによって使われる最大の物理メモリを示します。「memsw」 は RAM+swap の最大容量を示します。
 
-.. Accounting for memory in the page cache is very complex. If two processes in different control groups both read the same file (ultimately relying on the same blocks on disk), the corresponding memory charge will be split between the control groups. It’s nice, but it also means that when a cgroup is terminated, it could increase the memory usage of another cgroup, because they are not splitting the cost anymore for those memory pages.
+.. Accounting for memory in the page cache is very complex. If two processes in different control groups both read the same file (ultimately relying on the same blocks on disk), the corresponding memory charge is split between the control groups. It’s nice, but it also means that when a cgroup is terminated, it could increase the memory usage of another cgroup, because they are not splitting the cost anymore for those memory pages.
 
 ページキャッシュ中のメモリ計算は非常に複雑です。もし２つのプロセスが異なったコントロール・グループ上にあるなら、それぞれの同じファイル（結局はディスク上の同じブロックに依存しますが）を読み込む必要があります。割り当てられたメモリは、コントロール・グループごとの容量に依存します。これは良さそうですが、cgroup を削除したら、メモリページとして消費していた領域は使わなくなり、他の cgroup のメモリ容量を増加させることをも意味します。
 
@@ -211,15 +211,20 @@ cgroups からのメトリクス：メモリ、CPU、ブロックI/O
 CPU メトリクス： ``cpuacct.stat``
 ----------------------------------------
 
-.. Now that we’ve covered memory metrics, everything else will look very simple in comparison. CPU metrics will be found in the cpuacct controller.
+.. Now that we’ve covered memory metrics, everything else is simple in comparison. CPU metrics are in the cpuacct controller.
 
 これまではメモリのメトリクスを見てきました。メモリに比べると他のものは非常に簡単に見えるでしょう。CPU メトリクスは ``cpuacct`` コントローラにあります。
 
-.. For each container, you will find a pseudo-file cpuacct.stat, containing the CPU usage accumulated by the processes of the container, broken down between user and system time. If you’re not familiar with the distinction, user is the time during which the processes were in direct control of the CPU (i.e., executing process code), and system is the time during which the CPU was executing system calls on behalf of those processes.
+.. For each container, a pseudo-file cpuacct.stat contains the CPU usage accumulated by the processes of the container, broken down into user and system time. The distinction is:
+    user time is the amount of time a process has direct control of the CPU, executing process code.
+    system time is the time the kernel is executing system calls on behalf of the process.
 
-コンテナごとに疑似ファイル ``cpuacct.stat`` があり、ここにコンテナにあるプロセスの CPU 使用率を、 ``user`` 時間と ``system`` 時間に分割して記録されます。いずれも慣れていなければ、 ``user`` とはプロセスが CPU を直接制御する時間のこと（例：プロセス・コードの実行）であり、 ``system`` とはプロセスに代わり CPU のシステムコールを実行する時間です。
+コンテナごとに疑似ファイル ``cpuacct.stat`` があり、ここにコンテナにあるプロセスの CPU 使用率を、 ``user`` 時間と ``system`` 時間に分割して記録されます。それぞれの違いは：
 
-.. Those times are expressed in ticks of 1/100th of a second. Actually, they are expressed in “user jiffies”. There are USER_HZ “jiffies” per second, and on x86 systems, USER_HZ is 100. This used to map exactly to the number of scheduler “ticks” per second; but with the advent of higher frequency scheduling, as well as tickless kernels, the number of kernel ticks wasn’t relevant anymore. It stuck around anyway, mainly for legacy and compatibility reasons.
+* ``user`` とはプロセスが CPU を直接制御する時間のことであり、CPU によるプロセス・コードの実行
+* ``system`` とはプロセスに代わり CPU のシステムコールを実行する時間
+
+.. Those times are expressed in ticks of 1/100th of a second, also called “user jiffies”. There are USER_HZ “jiffies” per second, and on x86 systems, USER_HZ is 100. Historically, this mapped exactly to the number of scheduler “ticks” per second, but higher frequency scheduling and tickless kernels have made the number of ticks irrelevant.
 
 これらの時間は 100 分の 1 秒の周期（tick）で表示されます。実際にはこれらは「user jiffies」として表示されます。 ``USER_HZ`` 「jillies」が毎秒かつ x86 システムであれば、 ``USER_HZ`` は 100 です。これは１秒の「周期」で、スケジューラが実際に割り当てる時に使いますが、 `tickless kernels <http://lwn.net/Articles/549580/>`_  にあるように、多くのカーネルで ticks は適切ではありません。まだ残っているのは、主に遺産（レガシー）と互換性のためです。
 
@@ -311,7 +316,7 @@ IPtables を使えば（というよりも、インターフェースに対す�
 インターフェース・レベルのカウンタ
 ----------------------------------------
 
-.. Since each container has a virtual Ethernet interface, you might want to check directly the TX and RX counters of this interface. You will notice that each container is associated to a virtual Ethernet interface in your host, with a name like vethKk8Zqi. Figuring out which interface corresponds to which container is, unfortunately, difficult.
+.. Since each container has a virtual Ethernet interface, you might want to check directly the TX and RX counters of this interface. Each container is associated to a virtual Ethernet interface in your host, with a name like vethKk8Zqi. Figuring out which interface corresponds to which container is, unfortunately, difficult.
 
 各コンテナは仮想イーサネット・インターフェースを持つため、そのインターフェースから直接 TX・RX カウンタを取得したくなるでしょう。各コンテナが ``vethKk8Zqi`` のような仮想イーサネット・インターフェースに割り当てられているのに気を付けてください。コンテナに対応している適切なインターフェースを見つけることは、残念ながら大変です。
 
@@ -319,9 +324,9 @@ IPtables を使えば（というよりも、インターフェースに対す�
 
 しかし今は、 *コンテナを通さなくても* 数値を確認できる良い方法があります、ホスト環境上で **ip netns の魔力** を使い、ネットワーク名前空間内のコンテナの情報を確認します。
 
-.. The ip-netns exec command will let you execute any program (present in the host system) within any network namespace visible to the current process. This means that your host will be able to enter the network namespace of your containers, but your containers won’t be able to access the host, nor their sibling containers. Containers will be able to “see” and affect their sub-containers, though.
+.. The ip-netns exec command allows you to execute any program (present in the host system) within any network namespace visible to the current process. This means that your host can enter the network namespace of your containers, but your containers can’t access the host or other peer containers. Containers can interact with their sub-containers, though.
 
-``ip netns exec`` コマンドは、あらゆるネットワーク名前空間内で、あらゆるプログラムを実行し（対象のホスト上の）、現在のプロセス状況を表示します。つまり、ホストがコンテナのネットワーク名前空間に入れますが、コンテナはホスト側にアクセスできないだけでなく、他のコンテナにもアクセスできません。次のサブコマンドを通すことで、コンテナが「見える」用になります。
+``ip netns exec`` コマンドは、あらゆるネットワーク名前空間内で、あらゆるプログラムを実行し（対象のホスト上の）、現在のプロセス状況を表示します。つまり、ホストがコンテナのネットワーク名前空間に入れますが、コンテナはホスト側にアクセスできないだけでなく、他のコンテナにもアクセスできません。次のサブコマンドを通すことで、コンテナが「見える」ようになります。
 
 .. The exact format of the command is:
 
@@ -380,15 +385,15 @@ IPtables を使えば（というよりも、インターフェースに対す�
 高性能なメトリクス収集用の Tip
 ========================================
 
-.. Note that running a new process each time you want to update metrics is (relatively) expensive. If you want to collect metrics at high resolutions, and/or over a large number of containers (think 1000 containers on a single host), you do not want to fork a new process each time.
+.. Running a new process each time you want to update metrics is (relatively) expensive. If you want to collect metrics at high resolutions, and/or over a large number of containers (think 1000 containers on a single host), you do not want to fork a new process each time.
 
-新しいプロセスごとに毎回メトリクスを更新するのは、（比較的）コストがかかるので注意してください。メトリクスを高い解像度で収集したい場合、そして／または、大量のコンテナを扱う場合（１ホスト上に 1,000 コンテナと考えます）、毎回新しいプロセスをフォークしようとは思わないでしょう。
+新しいプロセスごとに毎回メトリクスを更新するのは、（比較的）コストがかかります。メトリクスを高い解像度で収集したい場合、そして／または、大量のコンテナを扱う場合（１ホスト上に 1,000 コンテナと考えます）、毎回新しいプロセスをフォークしようとは思わないでしょう。
 
-.. Here is how to collect metrics from a single process. You will have to write your metric collector in C (or any language that lets you do low-level system calls). You need to use a special system call, setns(), which lets the current process enter any arbitrary namespace. It requires, however, an open file descriptor to the namespace pseudo-file (remember: that’s the pseudo-file in /proc/<pid>/ns/net).
+.. Here is how to collect metrics from a single process. You need to write your metric collector in C (or any language that lets you do low-level system calls). You need to use a special system call, setns(), which lets the current process enter any arbitrary namespace. It requires, however, an open file descriptor to the namespace pseudo-file (remember: that’s the pseudo-file in /proc/<pid>/ns/net).
 
 ここでは１つのプロセスでメトリクスを収集する方法を紹介します。メトリクス・コレクションをC言語で書く必要があります（あるいは、ローレベルなシステムコールが可能な言語を使います）。 ``setns()`` という特別なシステムコールを使えば、任意の名前空間上にある現在のプロセスを返します。必要があれば、他にも名前空間疑似ファイルのファイル・ディスクリプタ（file descriptor）を開けます（思い出してください：疑似ファイルは ``/proc/<pid>/ns/net`` です）。
 
-.. However, there is a catch: you must not keep this file descriptor open. If you do, when the last process of the control group exits, the namespace will not be destroyed, and its network resources (like the virtual interface of the container) will stay around for ever (or until you close that file descriptor).
+.. However, there is a catch: you must not keep this file descriptor open. If you do, when the last process of the control group exits, the namespace is not destroyed, and its network resources (like the virtual interface of the container) stays around forever (or until you close that file descriptor).
 
 しかしながら、これはキャッチするだけです。ファイルをオープンのままにできません。つまり、そのままにしておけば、コントロール・グループが終了しても名前空間を破棄できず、ネットワーク・リソース（コンテナの仮想インターフェース等）が残り続けるでしょう（あるいはファイル・ディスクリプタを閉じるまで）。
 
@@ -405,7 +410,7 @@ IPtables を使えば（というよりも、インターフェースに対す�
 
 時々、リアルタイムなメトリクス収集に気を配っていなくても、コンテナ終了時に、どれだけ CPU やメモリ等を使用したか知りたい時があるでしょう。
 
-.. Docker makes this difficult because it relies on lxc-start, which carefully cleans up after itself, but it is still possible. It is usually easier to collect metrics at regular intervals (e.g., every minute, with the collectd LXC plugin) and rely on that instead.
+.. Docker makes this difficult because it relies on lxc-start, which carefully cleans up after itself. It is usually easier to collect metrics at regular intervals, and this is the way the collectd LXC plugin works.
 
 Docker は ``lxc-start`` に依存しており、終了時は丁寧に自分自身をクリーンアップするため困難です。しかし、他にも方法があります。定期的にメトリクスを集める方法（例：毎分 collectd LXC プラグインを実行）が簡単です。
 
@@ -417,7 +422,7 @@ Docker は ``lxc-start`` に依存しており、終了時は丁寧に自分自�
 
 各コンテナで収集プロセスを開始し、コントロール・グループに移動します。これは対象の cgroup のタスクファイルに PID が書かれている場所を監視します。収集プロセスは定期的にタスクファイルを監視し、コントロール・グループの最新プロセスを確認します（先ほどのセクションで暑かったネットワーク統計情報も取得したい場合は、プロセスを適切なネットワーク名前空間にも移動します）。
 
-.. When the container exits, lxc-start will try to delete the control groups. It will fail, since the control group is still in use; but that’s fine. You process should now detect that it is the only one remaining in the group. Now is the right time to collect all the metrics you need!
+.. When the container exits, lxc-start attempts to delete the control groups. It fails, since the control group is still in use; but that’s fine. Your process should now detect that it is the only one remaining in the group. Now is the right time to collect all the metrics you need!
 
 コンテナが終了すると、 ``lxc-start`` はコントロール・グループを削除しようとします。コントロール・グループが使用中のため、処理は失敗しますが問題ありません。自分で作ったプロセスは、対象のグループ内に自分しかいないことが分かります。それが必要なメトリックスを取得する適切なタイミングです。
 
@@ -428,4 +433,4 @@ Docker は ``lxc-start`` に依存しており、終了時は丁寧に自分自�
 .. seealso:: 
 
    Runtime metrics
-      https://docs.docker.com/engine/admin/runmetrics/
+      https://docs.docker.com/config/containers/runmetrics/
