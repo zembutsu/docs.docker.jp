@@ -1,8 +1,8 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/config/containers/multi-service_container/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/config/containers/multi-service_container.md
-   doc version: 1.12
-.. check date: 2016/06/27
+   doc version: 19.03
+.. check date: 2020/06/27
 .. Commits on Apr 8, 2020 727941ffdd6430562e09314d3199b56f2de666df
 .. ---------------------------------------------------------------------------
 
