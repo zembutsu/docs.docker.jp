@@ -26,9 +26,13 @@ Swarm モード概要
 
 Docker の Swarm モードを利用するには、各種のオペレーティング・システムやプラットフォーム向けの `インストール手順 <../../get-docker.html>`_ に従って Docker をインストールしてください。
 
-.. Docker Engine 1.12 includes swarm mode for natively managing a cluster of Docker Engines called a Swarm. Use the Docker CLI to create a swarm, deploy application services to a swarm, and manage swarm behavior.
+.. Current versions of Docker include *swarm mode* for natively managing a cluster
+   of Docker Engines called a *swarm*. Use the Docker CLI to create a swarm, deploy
+   application services to a swarm, and manage swarm behavior.
 
-Docker Engine 1.12 は swarm モードを取り込んでいます。Swarm は Docker Engine のクラスタをネイティブに（当たり前に）管理します。Docker CLI で swarm（訳者注；「群れ」という意味で、Docker Engine のクラスタを表す）を作成し、swarm にアプリケーション・サービスをデプロイし、swarm の挙動を管理します。
+最新版の Docker には **Swarm モード** が含まれています。
+これは **Swarm** と呼ばれる Docker Engine のクラスターをネイティブに管理するものです。
+Docker CLI を使って、Swarm の生成、アプリケーション・サービスの Swarm へのデプロイ、Swarm の制御管理を行います。
 
 .. If you’re using a Docker version prior to v1.12.0-rc1, see Docker Swarm.
 
