@@ -129,9 +129,15 @@ Docker CLI を使って、Swarm の生成、アプリケーション・サービ
   Swarm 内の各ノードでは TLS 相互認証や暗号化が行われるものになっていて、そのノードそのものを含めた全ノード間でのセキュアな通信が行われます。
   自己署名ルート証明書や、カスタムルート CA に基づいた証明書を利用することもできます。
 
-.. Rolling updates: At rollout time you can apply service updates to nodes incrementally. The swarm manager lets you control the delay between service deployment to different sets of nodes. If anything goes wrong, you can roll-back a task to a previous version of the service.
+.. * **Rolling updates:** At rollout time you can apply service updates to nodes
+   incrementally. The swarm manager lets you control the delay between service
+   deployment to different sets of nodes. If anything goes wrong, you can
+   roll back to a previous version of the service.
 
-* **ローリング・アップデート** : ロールアウト時に、サービス更新をノード単位で徐々に適用できます。異なるノード群の間にサービスをデプロイ時、swarm マネージャはノードごとの遅延を制御します。何か問題があれば、サービスのタスクを以前の状態にロールバックできます。
+* **ローリング・アップデート:** 
+  運用開始時には、ノードに対するサービス・アップデートを追加的に適用していくことができます。
+  さまざまなノード・グループにおいてサービス・デプロイのタイミングに差異があっても、Swarm マネージャが管理してくれます。
+  仮に何か問題が発生したときには、サービス・バージョンを元に戻すことができます。
 
 .. What's next?
 
