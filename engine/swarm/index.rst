@@ -120,9 +120,14 @@ Docker CLI を使って、Swarm の生成、アプリケーション・サービ
   各サービスのポートを外部のロード・バランサへ公開することができます。
   内部的に言えば Swarm は、ノード間においてサービス・コンテナをどのように分散するかを指定できるものです。
 
-..    Secure by default: Each node in the Swarm enforces TLS mutual authentication and encryption to secure communications between itself and all other nodes. You have the option to use self-signed root certificates or certificates from a custom root CA.
+.. * **Secure by default:** Each node in the swarm enforces TLS mutual
+   authentication and encryption to secure communications between itself and all
+   other nodes. You have the option to use self-signed root certificates or
+   certificates from a custom root CA.
 
-* **デフォルトで安全** : Swarm 上の各ノードは安全に通信できるように、 TLS 相互認証（TLS mutual authentication）と暗号化を自分自身と他の全てのノード間で強制します。
+* **デフォルトで安全:**
+  Swarm 内の各ノードでは TLS 相互認証や暗号化が行われるものになっていて、そのノードそのものを含めた全ノード間でのセキュアな通信が行われます。
+  自己署名ルート証明書や、カスタムルート CA に基づいた証明書を利用することもできます。
 
 .. Rolling updates: At rollout time you can apply service updates to nodes incrementally. The swarm manager lets you control the delay between service deployment to different sets of nodes. If anything goes wrong, you can roll-back a task to a previous version of the service.
 
