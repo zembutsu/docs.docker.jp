@@ -42,9 +42,15 @@ Docker CLI を使って、Swarm の生成、アプリケーション・サービ
 特徴的な機能
 ==============================
 
-.. Cluster management integrated with Docker Engine: Use the Docker Engine CLI to create a Swarm of Docker Engines where you can deploy application services. You don't need additional orchestration software to create or manage a Swarm.
+.. * **Cluster management integrated with Docker Engine:** Use the Docker Engine
+   CLI to create a swarm of Docker Engines where you can deploy application
+   services. You don't need additional orchestration software to create or manage
+   a swarm.
 
-* **Docker Engine にクラスタ管理を統合** : Docker Engine CLI を使い Docker Engine の Swarm（群れ）を作成します。ここにアプリケーション・サービスをデプロイできます。Swarm の作成や管理のために、追加のオーケストレーション・ソフトウェアは不要です。
+* **Docker Engine に統合されたクラスタ管理:**
+  Docker Engine CLI を利用して Docker Engine の Swarm を生成します。
+  これに対してアプリケーション・サービスをデプロイすることができます。
+  Swarm の生成や管理にあたって、オーケストレーション・ソフトウェアを別途必要としません。
 
 .. Decentralized design: Instead of handling differentiation between node roles at deployment time, the Docker Engine handles any specialization at runtime. You can deploy both kinds of nodes, managers and workers, using the Docker Engine. This means you can build an entire Swarm from a single disk image.
 
