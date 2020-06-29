@@ -144,6 +144,13 @@ Docker CLI を使って、Swarm の生成、アプリケーション・サービ
 次は何をしますか？
 ====================
 
+.. ### Swarm mode key concepts and tutorial
+
+.. _swarm-mode-key-concepts-and-tutorial:
+
+Swarm モードの重要な考え方とチュートリアル
+-------------------------------------------
+
 ..  Learn Swarm key concepts.
     Get started with the Swarm tutorial.
 
