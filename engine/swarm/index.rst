@@ -80,9 +80,20 @@ Docker CLI を使って、Swarm の生成、アプリケーション・サービ
   各サービスに対しては、起動させたいタスク数を指定することができます。
   スケールアップやスケールダウンの際に Swarm マネージャは、タスクの追加または削除を行ない、定義された状態を維持するために自動的な対応を行います。
 
-..    Desired state reconciliation: Swarm constantly monitors the cluster state and reconciles any differences between the actual state your expressed desired state.
+.. * **Desired state reconciliation:** The swarm manager node constantly monitors
+   the cluster state and reconciles any differences between the actual state and your
+   expressed desired state. For example, if you set up a service to run 10
+   replicas of a container, and a worker machine hosting two of those replicas
+   crashes, the manager creates two new replicas to replace the replicas that
+   crashed. The swarm manager assigns the new replicas to workers that are
+   running and available.
 
-* **期待状態の調整（reconciliation）** : Swarm は絶えずクラスタ状態の監視と調整をします。監視するのは自分が示した望ましい状態であり、少しでも差違があれば調整の処理を行います。
+* **定義状態への調整:**
+  Swarm マネージャ・ノードはクラスタの状態を常時監視しています。
+  そして実際の状態と定義された状態との間に差異があれば調整を行います。
+  たとえばコンテナのレプリカを 10 にしてサービス設定を行っていて、そのレプリカ 2 つを受け持つワーカ・マシンがクラッシュしたとします。
+  マネージャは新たなレプリカ 2 つを生成し直して、クラッシュしたレプリカを置き換えます。
+  Swarm マネージャは、利用可能な起動中のワーカに対して、新たなレプリカを割り当てるものです。
 
 ..    Multi-host networking: You can specify an overlay network for your application. Swarm automatically assigns addresses to the containers on the overlay network when it initializes or updates the application.
 
