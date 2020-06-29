@@ -63,9 +63,14 @@ Docker CLI を使って、Swarm の生成、アプリケーション・サービ
   Docker Engine において、デプロイできるノードの種類はマネージャとワーカです。
   Swarm 全体は、単一のディスク・イメージから構築できることを意味します。
 
-.. Declarative service model: Docker Engine uses a declarative approach to let you define the desired state of the various services in your application stack. For example, you might describe an application comprised of a web front end service with message queueing services and a database backend.
+.. * **Declarative service model:** Docker Engine uses a declarative approach to
+   let you define the desired state of the various services in your application
+   stack. For example, you might describe an application comprised of a web front
+   end service with message queueing services and a database backend.
 
-* **宣言型サービス・モデル** : Docker Engine は宣言型の構文を使います。これを使い、アプリケーション・スタックの様々なサービスの期待状態（desired state）を定義できます。たとえば、ウェブ・フロントエンド・サービスを構成するアプリケーションは、メッセージのキューイング・サービスとデータベース・バックエンドを持つと記述できるでしょう。
+* **宣言型サービスモデル:**
+  Docker Engine は宣言的なアプローチを採用しており、アプリケーション層の各サービスに対して、必要となる状態を定義するということを行います。
+  たとえばアプリケーションの記述として、ウェブ・フロントエンド・サービスがあり、メッセージ・キュー・サービスとデータベース・バックエンドから構成されるという記述を行うことがあります。
 
 .. Scaling: For each service, you can declare the number of tasks you want to run. When you scale up or down, the swarm manager automatically adapts by adding or removing tasks to maintain the desired state.
 
