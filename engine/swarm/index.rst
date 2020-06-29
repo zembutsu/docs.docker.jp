@@ -151,11 +151,14 @@ Docker CLI を使って、Swarm の生成、アプリケーション・サービ
 Swarm モードの重要な考え方とチュートリアル
 -------------------------------------------
 
-..  Learn Swarm key concepts.
-    Get started with the Swarm tutorial.
+.. * Learn swarm mode [key concepts](key-concepts.md).
 
-* Swarm の :doc:`重要な概念 <key-concepts>` を学ぶ
-* :doc:`Swarm チュートリアル <swarm-tutorial/index>` を始める
+* Swarm モードの :doc:`重要な考え方 <key-concepts>` について学ぶ。
+
+.. * Get started with the [Swarm mode tutorial](swarm-tutorial/index.md).
+
+* :doc:`Swarm モード・チュートリアル <swarm-tutorial/index>` をはじめる。
+
 * swarm モード CLI コマンドを調べる
 
   * :doc:`swarm init </engine/reference/commandline/swarm_init>`
