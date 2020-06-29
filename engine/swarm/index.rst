@@ -95,9 +95,13 @@ Docker CLI を使って、Swarm の生成、アプリケーション・サービ
   マネージャは新たなレプリカ 2 つを生成し直して、クラッシュしたレプリカを置き換えます。
   Swarm マネージャは、利用可能な起動中のワーカに対して、新たなレプリカを割り当てるものです。
 
-..    Multi-host networking: You can specify an overlay network for your application. Swarm automatically assigns addresses to the containers on the overlay network when it initializes or updates the application.
+.. * **Multi-host networking:** You can specify an overlay network for your
+   services. The swarm manager automatically assigns addresses to the containers
+   on the overlay network when it initializes or updates the application.
 
-* **マルチホスト・ネットワーク** : アプリケーション用のオーバレイ・ネットワークを指定できます。アプリケーションの初期化もしくは更新時に、Swarm はオーバレイ・ネットワーク上のコンテナに自動的にアドレスを割り当てます。
+* **マルチホスト・ネットワーク:**
+  サービスに対してオーバレイ・ネットワークを設定することができます。
+  Swarm マネージャは、アプリケーションの初期化や更新を行う際に、オーバレイ・ネットワーク上のコンテナに対して、アドレスを自動的に割り当てます。
 
 ..    Service discovery: Swarm assigns each service a unique DNS name and load balances running containers. Each Swarm has an internal DNS server that can query every container in the cluster using DNS.
 
