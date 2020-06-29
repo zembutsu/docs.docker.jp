@@ -52,9 +52,16 @@ Docker CLI を使って、Swarm の生成、アプリケーション・サービ
   これに対してアプリケーション・サービスをデプロイすることができます。
   Swarm の生成や管理にあたって、オーケストレーション・ソフトウェアを別途必要としません。
 
-.. Decentralized design: Instead of handling differentiation between node roles at deployment time, the Docker Engine handles any specialization at runtime. You can deploy both kinds of nodes, managers and workers, using the Docker Engine. This means you can build an entire Swarm from a single disk image.
+.. * **Decentralized design:** Instead of handling differentiation between node
+   roles at deployment time, the Docker Engine handles any specialization at
+   runtime. You can deploy both kinds of nodes, managers and workers, using the
+   Docker Engine. This means you can build an entire swarm from a single disk
+   image.
 
-* **分散化の設計** : デプロイ時点ではノードに役割（role）を与えません。Docker Engine は実行時に役割を明確化します。ノードの種類は、マネージャ（manager）とワーカ（worker）です。この両方を Docker Engine でデプロイできます。つまり１つのディスク・イメージから Swarm（のクラスタ）全体を構築できます。
+* **分散型設計:**
+  Docker Engine は、デプロイの際にはノードの役割別に異なった処理を行わず、実行時に特殊な処理を行います。
+  Docker Engine において、デプロイできるノードの種類はマネージャとワーカです。
+  Swarm 全体は、単一のディスク・イメージから構築できることを意味します。
 
 .. Declarative service model: Docker Engine uses a declarative approach to let you define the desired state of the various services in your application stack. For example, you might describe an application comprised of a web front end service with message queueing services and a database backend.
 
