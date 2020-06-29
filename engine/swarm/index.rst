@@ -34,9 +34,6 @@ Docker の Swarm モードを利用するには、各種のオペレーティン
 これは **Swarm** と呼ばれる Docker Engine のクラスターをネイティブに管理するものです。
 Docker CLI を使って、Swarm の生成、アプリケーション・サービスの Swarm へのデプロイ、Swarm の制御管理を行います。
 
-.. If you’re using a Docker version prior to v1.12.0-rc1, see Docker Swarm.
-
-Docker バージョン ``v1.12.0-rc1`` より低いバージョンをお使いであれば、 :doc:`Docker Swarm </swarm/index>` のドキュメントをご覧ください。
 
 .. Feature highlights
 
