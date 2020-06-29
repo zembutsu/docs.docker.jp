@@ -7,12 +7,6 @@
 .. Commits on Jun 20, 2016 c13c5601961bb5ea30e21c9c8c469dd55a2f17d0
 .. -----------------------------------------------------------------------------
 
-.. Advisory: The Swarm mode feature included in Docker Engine 1.12 is a release candidate feature and might be subject to non backward-compatible changes. Some functionality may change before the feature becomes generally available. 
-
-.. hint::
-
-   Swarm モード機能を導入した Docker Engine 1.12 はリリース候補（release candidate）機能であり、後方互換を考慮していない可能性があります。一般リリース（generally available）になるまで、いくつかの機能が変わる可能性があります。
-
 .. Swarm mode overview
 
 .. _swam-mode-overview:
