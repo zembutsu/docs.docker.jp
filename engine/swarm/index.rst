@@ -112,9 +112,13 @@ Docker CLI を使って、Swarm の生成、アプリケーション・サービ
   そして実行コンテナの負荷分散を行います。
   Swarm 内で稼動するコンテナはすべて、Swarm 内に埋め込まれている DNS サーバを通じて問い合わせることが可能です。
 
-..    Load balancing: Using Swarm, you can expose the ports for services to an external load balancer. Internally, Swarm lets you specify how to distribute service containers between nodes.
+.. * **Load balancing:** You can expose the ports for services to an
+   external load balancer. Internally, the swarm lets you specify how to distribute
+   service containers between nodes.
 
-* **負荷分散（load balancing）** : Swarm を使えば、サービス用のポートを外部のロードバランサへ公開できます。必要なのは、ノード間でどのようにサービス・コンテナを分散するかを Swarm で指定するだけです。
+* **負荷分散:**
+  各サービスのポートを外部のロード・バランサへ公開することができます。
+  内部的に言えば Swarm は、ノード間においてサービス・コンテナをどのように分散するかを指定できるものです。
 
 ..    Secure by default: Each node in the Swarm enforces TLS mutual authentication and encryption to secure communications between itself and all other nodes. You have the option to use self-signed root certificates or certificates from a custom root CA.
 
