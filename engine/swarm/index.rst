@@ -35,11 +35,11 @@ Docker の Swarm モードを利用するには、各種のオペレーティン
 Docker CLI を使って、Swarm の生成、アプリケーション・サービスの Swarm へのデプロイ、Swarm の制御管理を行います。
 
 
-.. Feature highlights
+.. ## Feature highlights
 
-.. _swarm-feature-highlights:
+.. _feature-highlights:
 
-Swarm の主な機能
+特徴的な機能
 ==============================
 
 .. Cluster management integrated with Docker Engine: Use the Docker Engine CLI to create a Swarm of Docker Engines where you can deploy application services. You don't need additional orchestration software to create or manage a Swarm.
