@@ -72,9 +72,13 @@ Docker CLI を使って、Swarm の生成、アプリケーション・サービ
   Docker Engine は宣言的なアプローチを採用しており、アプリケーション層の各サービスに対して、必要となる状態を定義するということを行います。
   たとえばアプリケーションの記述として、ウェブ・フロントエンド・サービスがあり、メッセージ・キュー・サービスとデータベース・バックエンドから構成されるという記述を行うことがあります。
 
-.. Scaling: For each service, you can declare the number of tasks you want to run. When you scale up or down, the swarm manager automatically adapts by adding or removing tasks to maintain the desired state.
+.. * **Scaling:** For each service, you can declare the number of tasks you want to
+   run. When you scale up or down, the swarm manager automatically adapts by
+   adding or removing tasks to maintain the desired state.
 
-* **スケーリング（scaling）** : サービスごとに実行したいタスク数を宣言できます。スケールアップやスケールダウン時は、swarm マネージャは期待状態を維持するため、自動的にタスクの追加や削除を行います。
+* **スケーリング:**
+  各サービスに対しては、起動させたいタスク数を指定することができます。
+  スケールアップやスケールダウンの際に Swarm マネージャは、タスクの追加または削除を行ない、定義された状態を維持するために自動的な対応を行います。
 
 ..    Desired state reconciliation: Swarm constantly monitors the cluster state and reconciles any differences between the actual state your expressed desired state.
 
