@@ -21,9 +21,10 @@ Swarm モード概要
        :depth: 3
        :local:
 
-.. To use Docker Engine in swarm mode, install the Docker Engine v1.12.0-rc1 or later from the Docker releases GitHub repository. Alternatively, install the latest Docker for Mac or Docker for Windows Beta.
+.. To use Docker in swarm mode, install Docker. See
+   [installation instructions](../../get-docker.md) for all operating systems and platforms.
 
-Docker Engine を swarm モードで使うには、 `Docker リリース GitHub リポジトリ <https://github.com/docker/docker/releases>`_ から Docker Engine ``v1.12.0-rc1`` 以降をインストールします。あるいは Docker for Mac か Docker for Windows の最新版をインストールします。
+Docker の Swarm モードを利用するには、各種のオペレーティング・システムやプラットフォーム向けの `インストール手順 <../../get-docker.html>`_ に従って Docker をインストールしてください。
 
 .. Docker Engine 1.12 includes swarm mode for natively managing a cluster of Docker Engines called a Swarm. Use the Docker CLI to create a swarm, deploy application services to a swarm, and manage swarm behavior.
 
