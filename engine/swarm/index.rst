@@ -103,9 +103,14 @@ Docker CLI を使って、Swarm の生成、アプリケーション・サービ
   サービスに対してオーバレイ・ネットワークを設定することができます。
   Swarm マネージャは、アプリケーションの初期化や更新を行う際に、オーバレイ・ネットワーク上のコンテナに対して、アドレスを自動的に割り当てます。
 
-..    Service discovery: Swarm assigns each service a unique DNS name and load balances running containers. Each Swarm has an internal DNS server that can query every container in the cluster using DNS.
+.. * **Service discovery:** Swarm manager nodes assign each service in the swarm a
+   unique DNS name and load balances running containers. You can query every
+   container running in the swarm through a DNS server embedded in the swarm.
 
-* **サービス・ディスカバリ（service discovery）** : Swarm は各サービスにユニークな DNS 名を割り当て、実行中のコンテナに対する負荷分散（load balance）をします。各 Swarm は内部 DNS サーバ（internal DNS server）を持ち、クラスタ内の全てのコンテナを DNS で問い合わせ（クエリ）可能です。
+* **サービス検出:**
+  Swarm マネージャーノードは、Swarm 内の各サービスに対して固有の DNS 名を割り当てます。
+  そして実行コンテナの負荷分散を行います。
+  Swarm 内で稼動するコンテナはすべて、Swarm 内に埋め込まれている DNS サーバを通じて問い合わせることが可能です。
 
 ..    Load balancing: Using Swarm, you can expose the ports for services to an external load balancer. Internally, Swarm lets you specify how to distribute service containers between nodes.
 
