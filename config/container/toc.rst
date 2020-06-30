@@ -19,7 +19,7 @@
    コンテナ内で複数のサービスを実行 <multi-service_container.rst>
    コンテナランタイムメトリクス <runmetrics.rst>
    メモリ、CPU、GPU のランタイムオプション <resource_constraints.rst>
-   ログ記録 <logging/toc>
+   ログ記録 <logging/toc.rst>
    セキュリティ </engine/security/toc.rst>
    アプリケーションのスケール（swarm） </engine/swarm/toc.rst>
    Docker の拡張 </engine/extend/toc.rst>
