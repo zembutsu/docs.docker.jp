@@ -7,7 +7,7 @@
 .. Commits on Apr 9, 2016 f67b7112775fd9957cc156cc4483e11b8c0c981a
 .. -------------------------------------------------------------------
 
-.. Log Tags
+.. title: Customize log driver output
 
 .. sidebar:: 目次
 
@@ -16,20 +16,24 @@
        :local:
 
 =======================================
-ログ用のタグ
+ログ・ドライバー出力のカスタマイズ
 =======================================
 
-.. The tag log option specifies how to format a tag that identifies the container’s log messages. By default, the system uses the first 12 characters of the container id. To override this behavior, specify a tag option:
+.. The `tag` log option specifies how to format a tag that identifies the
+   container's log messages. By default, the system uses the first 12 characters of
+   the container ID. To override this behavior, specify a `tag` option:
 
-``tag`` ログ・オプションは、コンテナのログ・メッセージを識別するため、どのような形式のタグを使うか指定します。デフォルトでは、システムはコンテナ ID の冒頭12文字を使います。この動作を上書きするには、 ``tag`` オプションを使います。
+ログ・オプションの ``tag`` は、コンテナのログ出力を識別するためのタグを、どのような書式で出力するかを指定します。
+デフォルトでは、コンテナ ID の先頭 12 文字を用います。
+この動作を上書きするには ``tag`` オプションを使います。
 
 .. code-block:: bash
 
-   docker run --log-driver=fluentd --log-opt fluentd-address=myhost.local:24224 --log-opt tag="mailer"
+   $ docker run --log-driver=fluentd --log-opt fluentd-address=myhost.local:24224 --log-opt tag="mailer"
 
-.. Docker supports some special template markup you can use when specifying a tag’s value:
+.. Docker supports some special template markup you can use when specifying a tag's value:
 
-Docker はタグの値を指定するために、特別なテンプレート・マークアップをサポートしています。
+タグの値を指定する際には、特別なテンプレート・マークアップの利用がサポートされています。
 
 .. Markup 	Description
 .. {{.ID}} 	The first 12 characters of the container id.
@@ -59,52 +63,24 @@ Docker はタグの値を指定するために、特別なテンプレート・�
    * - ``{{.DaemonName}}``
      - docker プログラムの名前 ( ``docker`` )
 
-.. For example, specifying a --log-opt tag="{{.ImageName}}/{{.Name}}/{{.ID}}" value yields syslog log lines like:
+.. For example, specifying a {% raw %}`--log-opt tag="{{.ImageName}}/{{.Name}}/{{.ID}}"`{% endraw %} value yields `syslog` log lines like:
 
-例えば、 ``--log-opt tag="{{.ImageName}}/{{.Name}}/{{.ID}}"`` を値に指定したら、 ``syslog`` のログ行は次のようになります。
-
-.. code-block:: bash
-
-   Aug  7 18:33:19 HOSTNAME docker/hello-world/foobar/5790672ab6a0[9103]: Hello from Docker.
-
-.. At startup time, the system sets the container_name field and {{.Name}} in the tags. If you use docker rename to rename a container, the new name is not reflected in the log messages. Instead, these messages continue to use the original container name.
-
-起動時に、システムは ``container_name`` フィールドと ``{{.Name}}`` をタグに設定します。 ``docker rename`` でコンテナ名を変更しても、ログメッセージに新しいコンテナ名は反映されません。そのかわり、これらのメッセージは元々のコンテナ名を使って保存され続けます。
-
-.. For advanced usage, the generated tag’s use go templates and the container’s logging context.
-
-高度な使い方は、 `go テンプレート <http://golang.org/pkg/text/template/>`_ のタグ生成や、コンテナの `ログ内容 <https://github.com/docker/docker/blob/master/daemon/logger/context.go>`_ をご覧ください。
-
-.. As an example of what is possible with the syslog logger:
-
-以下は syslog ロガーを使う例です：
+たとえば ``--log-opt tag="{{.ImageName}}/{{.Name}}/{{.ID}}"`` と指定すると、``syslog`` のようなログ出力になります。
 
 .. code-block:: bash
 
-   $ docker run -it --rm \
-       --log-driver syslog \
-       --log-opt tag="{{ (.ExtraAttributes nil).SOME_ENV_VAR }}" \
-       --log-opt env=SOME_ENV_VAR \
-       -e SOME_ENV_VAR=logtester.1234 \
-       flyinprogrammer/logtester
+   Aug  7 18:33:19 HOSTNAME hello-world/foobar/5790672ab6a0[9103]: Hello from Docker.
 
-.. Results in logs like this:
+.. At startup time, the system sets the `container_name` field and {% raw %}`{{.Name}}`{% endraw %} in
+   the tags. If you use `docker rename` to rename a container, the new name is not
+   reflected in the log messages. Instead, these messages continue to use the
+   original container name.
 
-ログの結果は次のようになります。
-
-.. code-block:: bash
-
-   Apr  1 15:22:17 ip-10-27-39-73 docker/logtester.1234[45499]: + exec app
-   Apr  1 15:22:17 ip-10-27-39-73 docker/logtester.1234[45499]: 2016-04-01 15:22:17.075416751 +0000 UTC stderr msg: 1
-
-
-..    Note:The driver specific log options syslog-tag, fluentd-tag and gelf-tag still work for backwards compatibility. However, going forward you should standardize on using the generic tag log option instead.
-
-.. note::
-
-   ドライバがログのオプション ``syslog-tag`` 、 ``fluentd-tag`` 、 ``gelf-tag`` を指定しても後方互換性があります。ですが、これらの代わりに、標準化のため一般的な ``tag`` ログ・オプションを使うべきです。
+システム起動時にタグ内の ``container_name`` と ``{{.Name}}`` が設定されます。
+``docker rename`` によってコンテナ名を変更した場合、ログ出力に新たな名前は反映されません。
+ログでは、元々のコンテナ名を用いた出力が行われます。
 
 .. seealso:: 
 
-   Log tags for logging driver
+   Customize log driver output
       https://docs.docker.com/engine/admin/logging/log_tags/
