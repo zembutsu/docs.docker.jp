@@ -6,7 +6,7 @@
 .. Commits on Feb 2, 2018 1b343beca4aaab8b183eefa89867b6bf64505be5
 .. -------------------------------------------------------------------
 
-.. Log Tags
+.. title: Customize log driver output
 
 .. sidebar:: 目次
 
@@ -19,20 +19,24 @@
 .. _customize-log-driver-output:
 
 =======================================
-ログドライバの出力をカスタマイズ
+ログ・ドライバー出力のカスタマイズ
 =======================================
 
-.. The tag log option specifies how to format a tag that identifies the container’s log messages. By default, the system uses the first 12 characters of the container id. To override this behavior, specify a tag option:
+.. The `tag` log option specifies how to format a tag that identifies the
+   container's log messages. By default, the system uses the first 12 characters of
+   the container ID. To override this behavior, specify a `tag` option:
 
-``tag`` ログ・オプションは、コンテナのログ・メッセージを識別するため、どのような形式のタグを使うか指定します。デフォルトでは、システムはコンテナ ID の冒頭12文字を使います。この動作を上書きするには、 ``tag`` オプションを使います。
+ログ・オプションの ``tag`` は、コンテナのログ出力を識別するためのタグを、どのような書式で出力するかを指定します。
+デフォルトでは、コンテナ ID の先頭 12 文字を用います。
+この動作を上書きするには ``tag`` オプションを使います。
 
 .. code-block:: bash
 
-   docker run --log-driver=fluentd --log-opt fluentd-address=myhost.local:24224 --log-opt tag="mailer"
+   $ docker run --log-driver=fluentd --log-opt fluentd-address=myhost.local:24224 --log-opt tag="mailer"
 
-.. Docker supports some special template markup you can use when specifying a tag’s value:
+.. Docker supports some special template markup you can use when specifying a tag's value:
 
-Docker はタグの値を指定するために、特別なテンプレート・マークアップをサポートしています。
+タグの値を指定する際には、特別なテンプレート・マークアップの利用がサポートされています。
 
 .. Markup 	Description
 .. {{.ID}} 	The first 12 characters of the container id.
@@ -62,17 +66,22 @@ Docker はタグの値を指定するために、特別なテンプレート・�
    * - ``{{.DaemonName}}``
      - docker プログラムの名前 ( ``docker`` )
 
-.. For example, specifying a --log-opt tag="{{.ImageName}}/{{.Name}}/{{.ID}}" value yields syslog log lines like:
+.. For example, specifying a {% raw %}`--log-opt tag="{{.ImageName}}/{{.Name}}/{{.ID}}"`{% endraw %} value yields `syslog` log lines like:
 
-例えば、 ``--log-opt tag="{{.ImageName}}/{{.Name}}/{{.ID}}"`` を値に指定したら、 ``syslog`` のログ行は次のようになります。
+たとえば ``--log-opt tag="{{.ImageName}}/{{.Name}}/{{.ID}}"`` と指定すると、``syslog`` のようなログ出力になります。
 
 .. code-block:: bash
 
-   Aug  7 18:33:19 HOSTNAME docker/hello-world/foobar/5790672ab6a0[9103]: Hello from Docker.
+   Aug  7 18:33:19 HOSTNAME hello-world/foobar/5790672ab6a0[9103]: Hello from Docker.
 
-.. At startup time, the system sets the container_name field and {{.Name}} in the tags. If you use docker rename to rename a container, the new name is not reflected in the log messages. Instead, these messages continue to use the original container name.
+.. At startup time, the system sets the `container_name` field and {% raw %}`{{.Name}}`{% endraw %} in
+   the tags. If you use `docker rename` to rename a container, the new name is not
+   reflected in the log messages. Instead, these messages continue to use the
+   original container name.
 
-起動時に、システムは ``container_name`` フィールドと ``{{.Name}}`` をタグに設定します。 ``docker rename`` でコンテナ名を変更しても、ログメッセージに新しいコンテナ名は反映されません。そのかわり、これらのメッセージは元々のコンテナ名を使って保存され続けます。
+システム起動時にタグ内の ``container_name`` と ``{{.Name}}`` が設定されます。
+``docker rename`` によってコンテナ名を変更した場合、ログ出力に新たな名前は反映されません。
+ログでは、元々のコンテナ名を用いた出力が行われます。
 
 .. seealso:: 
 
