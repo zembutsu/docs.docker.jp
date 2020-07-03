@@ -1,10 +1,9 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/engine/logging/log_tags/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/logging/log_tags.md
-   doc version: 1.11
-      https://github.com/docker/docker/commits/master/docs/admin/logging/log_tags.md
-.. check date: 2016/04/21
-.. Commits on Apr 9, 2016 f67b7112775fd9957cc156cc4483e11b8c0c981a
+.. URL: https://docs.docker.com/config/containers/logging/log_tags/
+.. SOURCE: https://github.com/docker/docker.github.io/blob/master/config/containers/logging/log_tags.md
+   doc version: 19.03
+.. check date: 2020/07/03
+.. Commits on Feb 2, 2018 1b343beca4aaab8b183eefa89867b6bf64505be5
 .. -------------------------------------------------------------------
 
 .. title: Customize log driver output
@@ -14,6 +13,10 @@
    .. contents:: 
        :depth: 3
        :local:
+
+.. Customize log driver output
+
+.. _customize-log-driver-output:
 
 =======================================
 ログ・ドライバー出力のカスタマイズ
@@ -83,4 +86,4 @@
 .. seealso:: 
 
    Customize log driver output
-      https://docs.docker.com/engine/admin/logging/log_tags/
+      https://docs.docker.com/config/containers/logging/log_tags/
