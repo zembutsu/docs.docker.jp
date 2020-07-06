@@ -3,7 +3,7 @@
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/engine/security/antivirus.md
    doc version: 19.03
 .. check date: 2020/07/04
-.. Commits on Jan 16, 1029 e515aa26d2cadd4468db7c75992e0c1f5ae7eee7
+.. Commits on Jan 16, 2019 e515aa26d2cadd4468db7c75992e0c1f5ae7eee7
 .. -------------------------------------------------------------------
 
 .. Antivirus software and Docker
