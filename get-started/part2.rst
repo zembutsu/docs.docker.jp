@@ -34,6 +34,53 @@
 .. Introduction
 
 .. _part2-introduction:
+=========
+はじめに
+==========
+
+.. It’s time to begin building an app the Docker way. We’ll start at the bottom of the hierarchy of such an app, which is a container, which we cover on this page. Above this level is a service, which defines how containers behave in production, covered in Part 3. Finally, at the top level is the stack, defining the interactions of all the services, covered in Part 5.
+
+Docker を使い、アプリケーションを作り始めましょう。コンテナを用いたアプリケーション階層の底部を、このページから始めます。このレベルの上位にあるのがサービスであり、プロダクションにおけるコンテナの挙動を定義します。こちらは :doc:`Part3 <part3>` で扱います。最終的にはスタックの頂上、つまり、 :doc:`Part5 <part5>` で扱うすべてのサービスの挙動を定義します。
+
+..    Stack
+    Services
+    Container (you are here)
+
+* スタック ``Stack``
+* サービス ``Services``
+* コンテナ（今ここにいます）
+
+.. Your new development environment
+
+.. _your-new-development-environment:
+
+新しい開発環境
+====================
+
+.. In the past, if you were to start writing a Python app, your first order of business was to install a Python runtime onto your machine. But, that creates a situation where the environment on your machine has to be just so in order for your app to run as expected; ditto for the server that runs your app.
+
+Python アプリケーションを書き始めるにあたり、自分のマシン上に Python ランタイムをインストールするのが、これまでは一番初めの仕事でした。しかし、サーバ上でもアプリケーションが期待する通りに問題なく動作するには、マシンと同じ環境を作成しなくてはいけません。
+
+.. With Docker, you can just grab a portable Python runtime as an image, no installation necessary. Then, your build can include the base Python image right alongside your app code, ensuring that your app, its dependencies, and the runtime, all travel together.
+
+Docker であれば、移動可能な Python ランタイムをイメージ内に収容しているため、インストールは不要です。そして、ベース Python イメージにはアプリのコードも一緒に構築できますし、アプリを確実に動かすための依存関係やランタイムも全て運べます。
+
+.. These portable images are defined by something called a Dockerfile.
+
+移動可能なイメージは ``Dockerfile`` と呼ばれるモノで定義します。
+
+.. Define a container with a Dockerfile
+
+.. _define-a-container-with-a-dockerfile:
+
+``Dockerfile`` でコンテナの定義
+========================================
+
+.. Dockerfile will define what goes on in the environment inside your container. Access to resources like networking interfaces and disk drives is virtualized inside this environment, which is isolated from the rest of your system, so you have to map ports to the outside world, and be specific about what files you want to “copy in” to that environment. However, after doing that, you can expect that the build of your app defined in this Dockerfile will behave exactly the same wherever it runs.
+
+``Dockerfile`` では、コンテナ内の環境で何をするかを定義します。ネットワーク・インターフェースとディスク・ドライバのようなリソースは、システム上の他の環境からは隔離された環境内に仮想化されています。このようなリソースに接続するには、ポートを外の世界にマッピング（割り当て）する必要がありますし、どのファイルを環境に「複製」（copy in）するか指定する必要もあります。しかしながら、これらの作業を ``Dockerfile`` における構築時の定義で済ませておけば、どこで実行しても同じ挙動となります。
+
+.. Dockerfile
 
 はじめに
 ==============================
@@ -301,6 +348,22 @@ CLI リファレンス
 * :doc:`/engine/reference/commandline/container`
 * :doc:`Dockerfile リファレンス </engine/reference/builder>` 
 
+   docker build -t friendlyname .               # このディレクトリ内にある DockerFile でイメージ作成
+   docker run -p 4000:80 friendlyname  # "friendlyname" の実行にあたり、ポート 4000 を 80 に割り当て
+   docker run -d -p 4000:80 friendlyname                            # 同じですが、デタッチド・モード
+   docker container ls                                                  # 全ての実行中コンテナを表示
+   docker container ls -a                                       # 停止中も含めて全てのコンテナを表示
+   docker container stop <hash>                                       # 指定したコンテナを丁寧に停止
+   docker container kill <hash>                               # 指定したコンテナを強制シャットダウン
+   docker container rm <hash>                                   # マシン上から指定したコンテナを削除
+   docker container rm $(docker container ls -a -q)                           # 全てのコンテナを削除
+   docker image ls -a                                               # マシン上の全てのイメージを表示
+   docker image rm <image id>                                       # マシン上の特定のイメージを削除
+   docker image rm $(docker image ls -a -q)                         # マシン上の全てのイメージを削除
+   docker login                                       # CLI セッションで Docker の認証を行いログイン
+   docker tag <image> username/repository:tag      # レジストリにアップロードする <image> にタグ付け
+   docker push username/repository:tag                                  # タグ付けしたイメージを送信
+   docker run username/repository:tag                               # レジストリにあるイメージを実行
 
 .. seealso::
 

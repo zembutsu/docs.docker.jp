@@ -7,12 +7,6 @@
 .. Commits on Jun 20, 2016 c13c5601961bb5ea30e21c9c8c469dd55a2f17d0
 .. -----------------------------------------------------------------------------
 
-.. Advisory: The Swarm mode feature included in Docker Engine 1.12 is a release candidate feature and might be subject to non backward-compatible changes. Some functionality may change before the feature becomes generally available. 
-
-.. hint::
-
-   Swarm モード機能を導入した Docker Engine 1.12 はリリース候補（release candidate）機能であり、後方互換を考慮していない可能性があります。一般リリース（generally available）になるまで、いくつかの機能が変わる可能性があります。
-
 .. Swarm mode overview
 
 .. _swam-mode-overview:
@@ -27,75 +21,151 @@ Swarm モード概要
        :depth: 3
        :local:
 
-.. To use Docker Engine in swarm mode, install the Docker Engine v1.12.0-rc1 or later from the Docker releases GitHub repository. Alternatively, install the latest Docker for Mac or Docker for Windows Beta.
+.. To use Docker in swarm mode, install Docker. See
+   [installation instructions](../../get-docker.md) for all operating systems and platforms.
 
-Docker Engine を swarm モードで使うには、 `Docker リリース GitHub リポジトリ <https://github.com/docker/docker/releases>`_ から Docker Engine ``v1.12.0-rc1`` 以降をインストールします。あるいは Docker for Mac か Docker for Windows の最新版をインストールします。
+Docker の Swarm モードを利用するには、各種のオペレーティング・システムやプラットフォーム向けの `インストール手順 <../../get-docker.html>`_ に従って Docker をインストールしてください。
 
-.. Docker Engine 1.12 includes swarm mode for natively managing a cluster of Docker Engines called a Swarm. Use the Docker CLI to create a swarm, deploy application services to a swarm, and manage swarm behavior.
+.. Current versions of Docker include *swarm mode* for natively managing a cluster
+   of Docker Engines called a *swarm*. Use the Docker CLI to create a swarm, deploy
+   application services to a swarm, and manage swarm behavior.
 
-Docker Engine 1.12 は swarm モードを取り込んでいます。Swarm は Docker Engine のクラスタをネイティブに（当たり前に）管理します。Docker CLI で swarm（訳者注；「群れ」という意味で、Docker Engine のクラスタを表す）を作成し、swarm にアプリケーション・サービスをデプロイし、swarm の挙動を管理します。
+最新版の Docker には **Swarm モード** が含まれています。
+これは **Swarm** と呼ばれる Docker Engine のクラスターをネイティブに管理するものです。
+Docker CLI を使って、Swarm の生成、アプリケーション・サービスの Swarm へのデプロイ、Swarm の制御管理を行います。
 
-.. If you’re using a Docker version prior to v1.12.0-rc1, see Docker Swarm.
 
-Docker バージョン ``v1.12.0-rc1`` より低いバージョンをお使いであれば、 :doc:`Docker Swarm </swarm/index>` のドキュメントをご覧ください。
+.. ## Feature highlights
 
-.. Feature highlights
+.. _feature-highlights:
 
-.. _swarm-feature-highlights:
-
-Swarm の主な機能
+特徴的な機能
 ==============================
 
-.. Cluster management integrated with Docker Engine: Use the Docker Engine CLI to create a Swarm of Docker Engines where you can deploy application services. You don't need additional orchestration software to create or manage a Swarm.
+.. * **Cluster management integrated with Docker Engine:** Use the Docker Engine
+   CLI to create a swarm of Docker Engines where you can deploy application
+   services. You don't need additional orchestration software to create or manage
+   a swarm.
 
-* **Docker Engine にクラスタ管理を統合** : Docker Engine CLI を使い Docker Engine の Swarm（群れ）を作成します。ここにアプリケーション・サービスをデプロイできます。Swarm の作成や管理のために、追加のオーケストレーション・ソフトウェアは不要です。
+* **Docker Engine に統合されたクラスタ管理:**
+  Docker Engine CLI を利用して Docker Engine の Swarm を生成します。
+  これに対してアプリケーション・サービスをデプロイすることができます。
+  Swarm の生成や管理にあたって、オーケストレーション・ソフトウェアを別途必要としません。
 
-.. Decentralized design: Instead of handling differentiation between node roles at deployment time, the Docker Engine handles any specialization at runtime. You can deploy both kinds of nodes, managers and workers, using the Docker Engine. This means you can build an entire Swarm from a single disk image.
+.. * **Decentralized design:** Instead of handling differentiation between node
+   roles at deployment time, the Docker Engine handles any specialization at
+   runtime. You can deploy both kinds of nodes, managers and workers, using the
+   Docker Engine. This means you can build an entire swarm from a single disk
+   image.
 
-* **分散化の設計** : デプロイ時点ではノードに役割（role）を与えません。Docker Engine は実行時に役割を明確化します。ノードの種類は、マネージャ（manager）とワーカ（worker）です。この両方を Docker Engine でデプロイできます。つまり１つのディスク・イメージから Swarm（のクラスタ）全体を構築できます。
+* **分散型設計:**
+  Docker Engine は、デプロイの際にはノードの役割別に異なった処理を行わず、実行時に特殊な処理を行います。
+  Docker Engine において、デプロイできるノードの種類はマネージャとワーカです。
+  Swarm 全体は、単一のディスク・イメージから構築できることを意味します。
 
-.. Declarative service model: Docker Engine uses a declarative approach to let you define the desired state of the various services in your application stack. For example, you might describe an application comprised of a web front end service with message queueing services and a database backend.
+.. * **Declarative service model:** Docker Engine uses a declarative approach to
+   let you define the desired state of the various services in your application
+   stack. For example, you might describe an application comprised of a web front
+   end service with message queueing services and a database backend.
 
-* **宣言型サービス・モデル** : Docker Engine は宣言型の構文を使います。これを使い、アプリケーション・スタックの様々なサービスの期待状態（desired state）を定義できます。たとえば、ウェブ・フロントエンド・サービスを構成するアプリケーションは、メッセージのキューイング・サービスとデータベース・バックエンドを持つと記述できるでしょう。
+* **宣言型サービスモデル:**
+  Docker Engine は宣言的なアプローチを採用しており、アプリケーション層の各サービスに対して、必要となる状態を定義するということを行います。
+  たとえばアプリケーションの記述として、ウェブ・フロントエンド・サービスがあり、メッセージ・キュー・サービスとデータベース・バックエンドから構成されるという記述を行うことがあります。
 
-.. Scaling: For each service, you can declare the number of tasks you want to run. When you scale up or down, the swarm manager automatically adapts by adding or removing tasks to maintain the desired state.
+.. * **Scaling:** For each service, you can declare the number of tasks you want to
+   run. When you scale up or down, the swarm manager automatically adapts by
+   adding or removing tasks to maintain the desired state.
 
-* **スケーリング（scaling）** : サービスごとに実行したいタスク数を宣言できます。スケールアップやスケールダウン時は、swarm マネージャは期待状態を維持するため、自動的にタスクの追加や削除を行います。
+* **スケーリング:**
+  各サービスに対しては、起動させたいタスク数を指定することができます。
+  スケールアップやスケールダウンの際に Swarm マネージャは、タスクの追加または削除を行ない、定義された状態を維持するために自動的な対応を行います。
 
-..    Desired state reconciliation: Swarm constantly monitors the cluster state and reconciles any differences between the actual state your expressed desired state.
+.. * **Desired state reconciliation:** The swarm manager node constantly monitors
+   the cluster state and reconciles any differences between the actual state and your
+   expressed desired state. For example, if you set up a service to run 10
+   replicas of a container, and a worker machine hosting two of those replicas
+   crashes, the manager creates two new replicas to replace the replicas that
+   crashed. The swarm manager assigns the new replicas to workers that are
+   running and available.
 
-* **期待状態の調整（reconciliation）** : Swarm は絶えずクラスタ状態の監視と調整をします。監視するのは自分が示した望ましい状態であり、少しでも差違があれば調整の処理を行います。
+* **定義状態への調整:**
+  Swarm マネージャ・ノードはクラスタの状態を常時監視しています。
+  そして実際の状態と定義された状態との間に差異があれば調整を行います。
+  たとえばコンテナのレプリカを 10 にしてサービス設定を行っていて、そのレプリカ 2 つを受け持つワーカ・マシンがクラッシュしたとします。
+  マネージャは新たなレプリカ 2 つを生成し直して、クラッシュしたレプリカを置き換えます。
+  Swarm マネージャは、利用可能な起動中のワーカに対して、新たなレプリカを割り当てるものです。
 
-..    Multi-host networking: You can specify an overlay network for your application. Swarm automatically assigns addresses to the containers on the overlay network when it initializes or updates the application.
+.. * **Multi-host networking:** You can specify an overlay network for your
+   services. The swarm manager automatically assigns addresses to the containers
+   on the overlay network when it initializes or updates the application.
 
-* **マルチホスト・ネットワーク** : アプリケーション用のオーバレイ・ネットワークを指定できます。アプリケーションの初期化もしくは更新時に、Swarm はオーバレイ・ネットワーク上のコンテナに自動的にアドレスを割り当てます。
+* **マルチホスト・ネットワーク:**
+  サービスに対してオーバレイ・ネットワークを設定することができます。
+  Swarm マネージャは、アプリケーションの初期化や更新を行う際に、オーバレイ・ネットワーク上のコンテナに対して、アドレスを自動的に割り当てます。
 
-..    Service discovery: Swarm assigns each service a unique DNS name and load balances running containers. Each Swarm has an internal DNS server that can query every container in the cluster using DNS.
+.. * **Service discovery:** Swarm manager nodes assign each service in the swarm a
+   unique DNS name and load balances running containers. You can query every
+   container running in the swarm through a DNS server embedded in the swarm.
 
-* **サービス・ディスカバリ（service discovery）** : Swarm は各サービスにユニークな DNS 名を割り当て、実行中のコンテナに対する負荷分散（load balance）をします。各 Swarm は内部 DNS サーバ（internal DNS server）を持ち、クラスタ内の全てのコンテナを DNS で問い合わせ（クエリ）可能です。
+* **サービス検出:**
+  Swarm マネージャーノードは、Swarm 内の各サービスに対して固有の DNS 名を割り当てます。
+  そして実行コンテナの負荷分散を行います。
+  Swarm 内で稼動するコンテナはすべて、Swarm 内に埋め込まれている DNS サーバを通じて問い合わせることが可能です。
 
-..    Load balancing: Using Swarm, you can expose the ports for services to an external load balancer. Internally, Swarm lets you specify how to distribute service containers between nodes.
+.. * **Load balancing:** You can expose the ports for services to an
+   external load balancer. Internally, the swarm lets you specify how to distribute
+   service containers between nodes.
 
-* **負荷分散（load balancing）** : Swarm を使えば、サービス用のポートを外部のロードバランサへ公開できます。必要なのは、ノード間でどのようにサービス・コンテナを分散するかを Swarm で指定するだけです。
+* **負荷分散:**
+  各サービスのポートを外部のロード・バランサへ公開することができます。
+  内部的に言えば Swarm は、ノード間においてサービス・コンテナをどのように分散するかを指定できるものです。
 
-..    Secure by default: Each node in the Swarm enforces TLS mutual authentication and encryption to secure communications between itself and all other nodes. You have the option to use self-signed root certificates or certificates from a custom root CA.
+.. * **Secure by default:** Each node in the swarm enforces TLS mutual
+   authentication and encryption to secure communications between itself and all
+   other nodes. You have the option to use self-signed root certificates or
+   certificates from a custom root CA.
 
-* **デフォルトで安全** : Swarm 上の各ノードは安全に通信できるように、 TLS 相互認証（TLS mutual authentication）と暗号化を自分自身と他の全てのノード間で強制します。
+* **デフォルトで安全:**
+  Swarm 内の各ノードでは TLS 相互認証や暗号化が行われるものになっていて、そのノードそのものを含めた全ノード間でのセキュアな通信が行われます。
+  自己署名ルート証明書や、カスタムルート CA に基づいた証明書を利用することもできます。
 
-.. Rolling updates: At rollout time you can apply service updates to nodes incrementally. The swarm manager lets you control the delay between service deployment to different sets of nodes. If anything goes wrong, you can roll-back a task to a previous version of the service.
+.. * **Rolling updates:** At rollout time you can apply service updates to nodes
+   incrementally. The swarm manager lets you control the delay between service
+   deployment to different sets of nodes. If anything goes wrong, you can
+   roll back to a previous version of the service.
 
-* **ローリング・アップデート** : ロールアウト時に、サービス更新をノード単位で徐々に適用できます。異なるノード群の間にサービスをデプロイ時、swarm マネージャはノードごとの遅延を制御します。何か問題があれば、サービスのタスクを以前の状態にロールバックできます。
+* **ローリング・アップデート:** 
+  運用開始時には、ノードに対するサービス・アップデートを追加的に適用していくことができます。
+  さまざまなノード・グループにおいてサービス・デプロイのタイミングに差異があっても、Swarm マネージャが管理してくれます。
+  仮に何か問題が発生したときには、サービス・バージョンを元に戻すことができます。
 
 .. What's next?
 
 次は何をしますか？
 ====================
 
-..  Learn Swarm key concepts.
-    Get started with the Swarm tutorial.
+.. ### Swarm mode key concepts and tutorial
 
-* Swarm の :doc:`重要な概念 <key-concepts>` を学ぶ
-* :doc:`Swarm チュートリアル <swarm-tutorial/index>` を始める
+.. _swarm-mode-key-concepts-and-tutorial:
+
+Swarm モードの重要な考え方とチュートリアル
+-------------------------------------------
+
+.. * Learn swarm mode [key concepts](key-concepts.md).
+
+* Swarm モードの :doc:`重要な考え方 <key-concepts>` について学ぶ。
+
+.. * Get started with the [Swarm mode tutorial](swarm-tutorial/index.md).
+
+* :doc:`Swarm モード・チュートリアル <swarm-tutorial/index>` をはじめる。
+
+.. ### Swarm mode CLI commands
+
+.. _swarm-mode-cli-commands:
+
+Swarm モード CLI コマンド
+-------------------------------------------
+
 * swarm モード CLI コマンドを調べる
 
   * :doc:`swarm init </engine/reference/commandline/swarm_init>`
