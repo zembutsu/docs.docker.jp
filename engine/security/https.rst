@@ -1,10 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/security/https/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/security/https.md
-   doc version: 1.12
-      https://github.com/docker/docker/commits/master/docs/security/https.md
-.. check date: 2016/06/14
-.. Commits on Jun 2, 2016 c1be45fa38e82054dcad606d71446a662524f2d5
+.. SOURCE: https://github.com/docker/docker.github.io/blob/master/engine/security/https.md
+   doc version: 19.03
+.. check date: 2020/07/04
+.. Commits on Jun 16, 2020 e3c3484c4754da131ca19622f3ea4a8c2385aa97
 .. -------------------------------------------------------------------
 
 .. Protect the Docker daemon socket
@@ -193,9 +192,19 @@ TLS 接続は DNS 名と同様に、IP アドレスでも通信可能にでき�
    $ docker daemon --tlsverify --tlscacert=ca.pem --tlscert=server-cert.pem --tlskey=server-key.pem \
      -H=0.0.0.0:2376
 
-.. To be able to connect to Docker and validate its certificate, you now need to provide your client keys, certificates and trusted CA:
+.. To connect to Docker and validate its certificate, provide your client keys, certificates and trusted CA:
 
-これは Docker に接続する時、証明書の認証を必要とするものです。認証には先ほどのクライアント鍵、証明書、信頼できる CA を使います。
+Docker に接続する時、証明書の認証を必要とするものです。認証には先ほどのクライアント鍵、証明書、信頼できる CA を使います。
+
+.. 
+    Run it on the client machine
+    This step should be run on your Docker client machine. As such, you need to copy your CA certificate, your server certificate, and your client certificate to that machine.
+
+.. note::
+
+   **クライアント・マシン上での実行** 
+   
+   このステップは Docker クライアント・マシン上で実行する必要があるでしょう。あるいは、自分の CA 証明書、サーバ証明書、クライアント証明書をマシンにコピーする必要があります。
 
 ..     Note: replace all instances of $HOST in the following example with the DNS name of your Docker daemon’s host.
 

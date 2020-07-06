@@ -1,10 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/security/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/security/index.md
-   doc version: 1.12
-      https://github.com/docker/docker/commits/master/docs/security/index.md
-.. check date: 2016/06/14
-.. Commits on Jan 27, 2016 e310d070f498a2ac494c6d3fde0ec5d6e4479e14
+   doc version: 19.03
+.. check date: 2020/07/04
+.. Commits on Oct 24, 2019 40747fcca7962ed58a8f5185d34619d35dd594ff
 .. -------------------------------------------------------------------
 
 .. Secure Engine
@@ -12,7 +11,7 @@
 .. _secure-engine:
 
 ========================================
-安全な Engine
+Engine を安全に
 ========================================
 
 .. sidebar:: 目次
@@ -43,6 +42,14 @@
 ..    An AppArmor profile for Docker is installed with the official .deb packages. For information about this profile and overriding it, see AppArmor security profiles for Docker.
 
 * 公式の .deb パッケージは、Docker 用の AppArmor プロファイルがインストールされます。プロファイルや更新方法は :doc:`apparmor` をご覧ください。
+
+.. You can map the root user in the containers to a non-root user. See Isolate containers with a user namespace.
+
+* ルート・ユーザ（root user）をコンテナ内の非ルート・ユーザ（non-root user）にマップできます。 :doc:`userns-remap` をご覧ください。
+
+.. You can also run the Docker daemon as a non-root user. See Run the Docker daemon as a non-root user (Rootless mode).
+
+* Docker デーモンを非ルート・ユーザとして実行できます。 :doc:`rootless` をご覧ください。
 
 .. seealso:: 
 
