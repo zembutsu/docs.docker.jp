@@ -2,7 +2,7 @@
 .. URL: https://docs.docker.com/engine/security/rootless/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/engine/security/rootless.md
    doc version: 19.03
-.. check date: 2020/07/06
+.. check date: 2020/07/08
 .. Commits on Jun 4, 2020 12b8e799c7b0e57f79d3f5d8e95a8e6e86fcc3f7
 .. -------------------------------------------------------------------
 
@@ -344,7 +344,7 @@ Rootless モードは実験的なため、 ``docker-rootless.sh`` には ``--exp
     docker info shows rootless in SecurityOptions
     docker info shows none as Cgroup Driver
 
-* ``dockerd-rootless.sh`` スクリプトの ``dockerd`` 実行は、自分自身のユーザ、マウント、ネットワークの各名前空間を使います。名前空間を入力する場合は、 ``nsenter -U --preserve-credentials -n -m -t $(cat $XDG_RUNTIME_DI`` を実行します。
+* ``dockerd-rootless.sh`` スクリプトの ``dockerd`` 実行は、自分自身のユーザ、マウント、ネットワークの各名前空間を使います。名前空間に入る場合は、 ``nsenter -U --preserve-credentials -n -m -t $(cat $XDG_RUNTIME_DI`` を実行します。
 * ``docker info`` を実行すると、 ``SecutiryOptions`` が ``rootless`` と表示します。
 * ``docker info`` を実行すると、 ``Cgroup Driver`` が ``none`` と表示します。
 
@@ -656,7 +656,7 @@ systemd ホスト上では、ホストへのログインに ``pam_systemd`` を�
 
 .. This is an expected behavior in Docker 19.03. For more information, see Limiting resources.
 
-この挙動は Docker 19.03 で発生が予想されます。詳しい情報は :ref:`rootless-limiting-resources` をご覧ください。
+この挙動は Docker 19.03 で想定された挙動です。詳しい情報は :ref:`rootless-limiting-resources` をご覧ください。
 
 .. Error response from daemon: cgroups: cgroup mountpoint does not exist: unknown.
 
@@ -720,7 +720,7 @@ systemd ホスト上では、ホストへのログインに ``pam_systemd`` を�
 
 .. This is an expected behavior, as the daemon is namespaced inside RootlessKit’s network namespace. Use docker run -p instead.
 
-これは予想されうる挙動で、デーモンは RootlessKit のネットワーク名前空間内の名前空間内にいるからです。かわりに ``docker run -p``  を使います。
+これは予想されうる挙動で、デーモンは RootlessKit のネットワーク名前空間内にいるからです。かわりに ``docker run -p``  を使います。
 
 .. --net=host doesn’t listen ports on the host network namespace
 
@@ -728,7 +728,7 @@ systemd ホスト上では、ホストへのログインに ``pam_systemd`` を�
 
 .. This is an expected behavior, as the daemon is namespaced inside RootlessKit’s network namespace. Use docker run -p instead.
 
-これは予想されうる挙動で、デーモンは RootlessKit のネットワーク名前空間内の名前空間内にいるからです。かわりに ``docker run -p``  を使います。
+これは予想されうる挙動で、デーモンは RootlessKit のネットワーク名前空間内にいるからです。かわりに ``docker run -p``  を使います。
 
 .. seealso:: 
 
