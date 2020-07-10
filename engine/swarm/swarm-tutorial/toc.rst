@@ -1,7 +1,7 @@
 ﻿.. -*- coding: utf-8 -*-
 .. 
-.. doc version: 1.12
-.. check date: 2016/06/17
+.. doc version: 19.03
+.. check date: 2020/07/07
 .. -----------------------------------------------------------------------------
 
 .. engine swarm-tutorial toc
@@ -24,3 +24,4 @@ Docker Swarm 導入チュートリアル
    サービスの削除 <delete-service.rst>
    ローリング・アップデートの適用 <rolling-update.rst>
    ノード解放 <drain-node.rst>
+   swarm モードのルーティング・メッシュを使用 <../ingress.rst>

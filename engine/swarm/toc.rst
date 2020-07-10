@@ -1,7 +1,7 @@
 ﻿.. -*- coding: utf-8 -*-
 .. 
-.. doc version: 1.12
-.. check date: 2016/06/16
+.. doc version: 19.03
+.. check date: 2020/07/06
 .. -----------------------------------------------------------------------------
 
 .. engine swarm toc
@@ -18,5 +18,14 @@ Swarm
    Swarm モード概要 <index.rst>
    Swarm モードの重要な概念 <key-concepts.rst>
    導入ガイド <swarm-tutorial/toc.rst>
+   Swarm モードの挙動 <how-swarm-mode-works/toc.rst>
+   Docker を Swarm モードで実行 <swarm-mode.rst>
+   Swarm にノードを追加 <join-nodes.rst>
+   Swarm のノード管理 <manage-nodes.rst>
+   サービスを Swarm にデプロイ <services.rst>
+   サービス設定情報の保存 <configs.rst>
+   Docker secrets で機微情報を管理 <secrets.rst>
+   管理ガイド <admin_guide.rst>
+   Sarm モードの Raft 合意 <raft.rst>
 
    menu.rst
