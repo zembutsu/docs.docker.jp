@@ -50,9 +50,21 @@ Linux 名前空間（namespace）は実行中のプロセスに対する隔離�
 
    testuser:231072:65536
 
-.. This means that testuser is assigned a subordinate user ID range of 231072 and the next 65536 integers in sequence. UID 231072 is mapped within the namespace (within the container, in this case) as UID 0 (root). UID 231073 is mapped as UID 1, and so forth. If a process attempts to escalate privilege outside of the namespace, the process is running as an unprivileged high-number UID on the host, which does not even map to a real user. This means the process has no privileges on the host system at all.
+.. This means that `testuser` is assigned a subordinate user ID range of `231072`
+   and the next 65536 integers in sequence. UID `231072` is mapped within the
+   namespace (within the container, in this case) as UID `0` (`root`). UID `231073`
+   is mapped as UID `1`, and so forth. If a process attempts to escalate privilege
+   outside of the namespace, the process is running as an unprivileged high-number
+   UID on the host, which does not even map to a real user. This means the process
+   has no privileges on the host system at all.
 
-この意味は、 ``testuser`` に対して割り当てられるサブオーディネイトユーザ ID（subordinate）範囲とは、 ``231072`` から 65536 まで達するまでの連続した整数値です。UID ``231072`` は名前空間内（この例では、コンテナ内のことです）では UID が ``0`` （ ``root`` ）として割り当てられます。 ``231073`` は UID ``1`` として割り当てられ、以降も同様です。もしもプロセスが名前空間の外に権限を昇格させようとしても、ホスト上におけるこのプロセスは、権限を持たない遙かに大きな UID として実行しています。つまり、ホスト上の実際のユーザとしては動作していないのです。つまり、このプロセスはホスト・システム上で全く権限を持ちません。
+上の意味は ``testuser`` のサブ ID を ``231072`` から 65536 個分の連続した整数範囲で割り当てるものです。
+UID ``231072`` は、名前空間内（ここではコンテナ内）においては UID ``0`` （``root``）に割り当てられています。
+同じく UID ``231073`` は UID ``1`` へ割り当てられています。
+以下同様です。
+名前空間の外部から権限昇格を試みるようなプロセスがあったとします。
+ホスト上では権限を持たない大きな数値の UID によってプロセスが起動しており、その UID は現実のユーザには割り当てられていません。
+つまりそのプロセスは、ホストシステム上での権限をまったく持たないということです。
 
 
 ..    Multiple ranges
