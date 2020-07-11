@@ -187,7 +187,13 @@ Linux ディストリビューションの多くでは、ユーザの追加、�
    この範囲は他と重複してはなりません。
    これを確実に行うことで、名前空間内のプロセスが別の名前空間へアクセスできないようにします。
 
-   ユーザを追加したら、 ``/etc/subuid`` と ``/etc/subgid`` を確認し、それぞれのファイルにユーザのエントリが追加されているかどうかを見ます。もしもなければ、追加する必要がありますが、重複しないように気を付ける必要があります。
+   .. After adding your user, check `/etc/subuid` and `/etc/subgid` to see if your
+      user has an entry in each. If not, you need to add it, being careful to
+      avoid overlap.
+
+   ユーザを追加したら ``/etc/subuid`` と ``/etc/subgid`` のそれぞれにおいて、追加したユーザを表わすエントリが含まれていることを確認してください。
+   もしエントリが存在しなければ、追加してください。
+   ID の重複には十分に注意してください。
 
    ``dockremap`` ユーザを使いたい場合は Docker によって自動的に作成されますので、設定を行い、 Docker の再起動をした **後で** 、各ファイルに ``dockremap`` エントリがあるかどうか確認します。
 
