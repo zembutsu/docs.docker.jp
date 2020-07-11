@@ -153,15 +153,25 @@ Linux ディストリビューションの多くでは、ユーザの追加、�
       
       uid=1001(testuser) gid=1001(testuser) groups=1001(testuser)
 
-..    The way the namespace remapping is handled on the host is using two files, /etc/subuid and /etc/subgid. These files are typically managed automatically when you add or remove users or groups, but on a few distributions such as RHEL and CentOS 7.3, you may need to manage these files manually.
-    Each file contains three fields: the username or ID of the user, followed by a beginning UID or GID (which is treated as UID or GID 0 within the namespace) and a maximum number of UIDs or GIDs available to the user. For instance, given the following entry:
-    This means that user-namespaced processes started by testuser are owned by host UID 231072 (which looks like UID 0 inside the namespace) through 296607 (231072 + 65536 - 1). These ranges should not overlap, to ensure that namespaced processes cannot access each other’s namespaces.
-    After adding your user, check /etc/subuid and /etc/subgid to see if your user has an entry in each. If not, you need to add it, being careful to avoid overlap.
-    If you want to use the dockremap user automatically created by Docker, check for the dockremap entry in these files after configuring and restarting Docker.
+.. 2.  The way the namespace remapping is handled on the host is using two files,
+       `/etc/subuid` and `/etc/subgid`. These files are typically managed
+       automatically when you add or remove users or groups, but on a few
+       distributions such as RHEL and CentOS 7.3, you may need to manage these
+       files manually.
 
-2.  名前空間の再割り当てをするには、ホスト上の ``/etc/subuid`` と ``/subgid`` の2つのファイルを扱います。各ファイルはユーザやグループの作成または追加時、通常は自動的に管理されます。しかし、 RHEL や CentOS 7.3 のようないくつかのディストリビューションでは、各ファイルを手動で管理する必要があります。
+2.  名前空間の再割り当てがホスト上において処理される際には、2 つのファイルが利用されます。
+    ``/etc/subuid`` と ``/etc/subgid`` です。
+    このファイルは通常は、ユーザやグループの追加、削除の際に、自動的に生成管理されます。
+    ただし RHEL や CentOS 7.3 のような一部のディストリビューションでは、このファイルの手動での管理を必要とするものがあります。
 
-   各ファイルには３つのフィールドを含みます：ユーザのユーザ名か ID 、続いて開始する UID か GID （これが名前空間内で UID または GID が 0 として扱われます）、そしてユーザが利用可能な最大の UID または GID です。たとえば、以下のようなエントリを与えたとします。
+   ..  Each file contains three fields: the username or ID of the user, followed by
+       a beginning UID or GID (which is treated as UID or GID 0 within the namespace)
+       and a maximum number of UIDs or GIDs available to the user. For instance,
+       given the following entry:
+
+   この 2 つのファイルでは 3 つの項目が記述されます。
+   ユーザ名あるいはユーザ ID、続いて UID または GID の開始値（名前空間内では UID または GID がゼロとして扱われるもの）、最後にそのユーザにおいて利用可能な UID または GID の最大数です。
+   たとえば以下のようなエントリがあったとします。
 
    ::
    
