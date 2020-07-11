@@ -99,9 +99,13 @@ Docker において ``userns-remap`` 機能を利用する際には、必要に�
 
    RHEL と CentOS 7.3 のような複数のディストリビューションでは、新しいグループを ``/etc/subuid`` と ``/etc/subgid`` ファイルに自動的に追加しません。今回の例では、重複しない範囲を割り当てるよう、あなた自身が責任を持ってファイルを編集する必要があります。この手順は :ref:`userns-remap-prerequisites` で扱います。
 
-.. It is very important that the ranges do not overlap, so that a process cannot gain access in a different namespace. On most Linux distributions, system utilities manage the ranges for you when you add or remove users.
+.. It is very important that the ranges do not overlap, so that a process cannot gain
+   access in a different namespace. On most Linux distributions, system utilities
+   manage the ranges for you when you add or remove users.
 
-非常に重要なのは、範囲は重複してはいけません。これは、プロセスは異なる名前空間内でアクセスを得られないからです。大部分の Linux ディストリビューションでは、システム・ユーティリティがユーザの追加・削除時にこの範囲を管理します。
+範囲指定は重複していないことがとても重要です。
+そうなっていないと、プロセスが別の名前空間内でのアクセスを実現できません。
+Linux ディストリビューションの多くでは、ユーザの追加、削除を行う際の ID 範囲指定を制御するシステム・ユーティリティを提供しています。
 
 .. This re-mapping is transparent to the container, but introduces some configuration complexity in situations where the container needs access to resources on the Docker host, such as bind mounts into areas of the filesystem that the system user cannot write to. From a security standpoint, it is best to avoid these situations.
 
