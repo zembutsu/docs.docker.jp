@@ -35,11 +35,11 @@ Linux 名前空間（namespace）は実行中のプロセスに対する隔離�
 名前空間内では通常 0 から 65536 という範囲の UID が正しく機能しますが、割り当て対象のユーザには、この範囲内で UID を定めます。
 ただしこの UID はホストマシン上では何の権限もないものです。
 
-.. About remapping and subordinate user and group IDs
+.. ## About remapping and subordinate user and group IDs
 
 .. _about-remapping-and-subordinate-user-and-group-ids:
 
-ユーザとグループ ID の再割り当てとサブオーディネイト
+ユーザ ID、グループ ID の再割り当てとサブ ID
 ============================================================
 
 .. The remapping itself is handled by two files: /etc/subuid and /etc/subgid. Each file works the same, but one is concerned with the user ID range, and the other with the group ID range. Consider the following entry in /etc/subuid:
