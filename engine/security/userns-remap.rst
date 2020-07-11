@@ -339,9 +339,15 @@ Linux ディストリビューションの多くでは、ユーザの追加、�
    
       $ docker run hello-world
 
-..    Verify that a namespaced directory exists within /var/lib/docker/ named with the UID and GID of the namespaced user, owned by that UID and GID, and not group-or-world-readable. Some of the subdirectories are still owned by root and have different permissions.
+.. 4.  Verify that a namespaced directory exists within `/var/lib/docker/` named
+       with the UID and GID of the namespaced user, owned by that UID and GID,
+       and not group-or-world-readable. Some of the subdirectories are still
+       owned by `root` and have different permissions.
 
-5. ``/var/lib/docker`` 内に名前空間化ディレクトリ（namespaced directory）があるのを確認します。ここは、名前空間化ユーザとして UID と GID の名前を持ち、その UID と GID によって所有され、かつ、グループやワールド（その他のユーザ）からは読み込めない権限（パーミッション）になっているのがわかります。また、サブディレクトリのいくつかは依然 ``root`` の所有となっており、パーミッションが異なります。
+5.  ``/var/lib/docker/`` 配下に名前空間によるディレクトリがあることを確認します。
+    ディレクトリ名には、名前空間におけるユーザの UID と GID が用いられています。
+    その所有は UID および GID であり、グループやワールドは読み込み権限がありません。
+    サブディレクトリの中には ``root`` が所有しているものがあり、パーミッションも別のものになっています。
 
    .. code-block:: bash
    
