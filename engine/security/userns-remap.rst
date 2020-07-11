@@ -127,10 +127,23 @@ Linux ディストリビューションの多くでは、ユーザの追加、�
 事前準備
 ====================
 
-..    The subordinate UID and GID ranges must be associated with an existing user, even though the association is an implementation detail. The user owns the namespaced storage directories under /var/lib/docker/. If you don’t want to use an existing user, Docker can create one for you and use that. If you want to use an existing username or user ID, it must already exist. Typically, this means that the relevant entries need to be in /etc/passwd and /etc/group, but if you are using a different authentication back-end, this requirement may translate differently.
-..    To verify this, use the id command:
+.. 1.  The subordinate UID and GID ranges must be associated with an existing user,
+       even though the association is an implementation detail. The user owns
+       the namespaced storage directories under `/var/lib/docker/`. If you don't
+       want to use an existing user, Docker can create one for you and use that. If
+       you want to use an existing username or user ID, it must already exist.
+       Typically, this means that the relevant entries need to be in
+       `/etc/passwd` and `/etc/group`, but if you are using a different
+       authentication back-end, this requirement may translate differently.
 
-1. サブオーディネイト UID と GID の範囲は、既存のユーザと関連付ける必要がありますが、これは実装上の詳細に関連しています。ユーザ自身は ``/var/lib/docker/``  以下のディレクトリに、名前空間化したストレージ（namespeced storage）を所有します。もしも既存のユーザを利用する必要がなければ、Docker がこの用途のためにストレージを1つ作成します。既存のユーザ名やユーザ ID を使いたければ、既に存在している必要があります。通常、これは ``/etc/passwd`` と ``/etc/group`` に関連するエントリが必要なのを意味しますが、もしも異なる認証バックエンドを用いている場合は、この準備の手順を変える必要があるかもしれません。
+1.  サブ UID とサブ GID の設定範囲は、既存ユーザに対して関連づいていなければなりません。
+    ただし関連づけは、実装上の都合によるものです。
+    ユーザは ``/var/lib/docker/`` 配下に、名前空間により分けられた保存ディレクトリを所有します。
+    既存ユーザを利用したくない場合は、Docker がかわりにユーザを生成して利用してくれます。
+    逆に既存ユーザの名前または ID を利用したい場合は、あらかじめ存在していなければなりません。
+    通常は ``/etc/passwd`` や ``/etc/group`` 内に、対応するエントリが存在していなければなりませんが、別の認証システムをバックエンドに利用している場合は、そのファイルのエントリは、別の形で取り扱われることになります。
+
+   ..    To verify this, use the id command:
 
    これを確認するには、 ``id`` コマンドを使います。
 
