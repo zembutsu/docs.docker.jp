@@ -23,9 +23,17 @@
 
 Linux 名前空間（namespace）は実行中のプロセスに対する隔離（isolate）を提供し、システムリソースに対するアクセスを制限しますが、実行中のプロセスは制限されていることが分かりません。Linux 名前空間に関する情報は、 `Linux namespaces <https://www.linux.com/news/understanding-and-securing-linux-namespaces>`_ をご覧ください。
 
-.. The best way to prevent privilege-escalation attacks from within a container is to configure your container’s applications to run as unprivileged users. For containers whose processes must run as the root user within the container, you can re-map this user to a less-privileged user on the Docker host. The mapped user is assigned a range of UIDs which function within the namespace as normal UIDs from 0 to 65536, but have no privileges on the host machine itself.
+.. The best way to prevent privilege-escalation attacks from within a container is
+   to configure your container's applications to run as unprivileged users. For
+   containers whose processes must run as the `root` user within the container, you
+   can re-map this user to a less-privileged user on the Docker host. The mapped
+   user is assigned a range of UIDs which function within the namespace as normal
+   UIDs from 0 to 65536, but have no privileges on the host machine itself.
 
-コンテナ内からの権限昇格攻撃（privilege-escalation attack：一般的に、一般ユーザ権限で root に準じる権限を得られるようにする攻撃のこと）を防ぐベストな方法は、特権のないユーザ（unprivileged user）としてコンテナのアプリケーションを実行するよう設定することです。コンテナを所有するプロセスは ``root`` ユーザとして実行する必要がありますが、コンテナ内では、このユーザを Docker ホスト上で特権を持たないユーザに再割り当て（re-map）できます。割り当てるユーザには通常の範囲内で UID が割り当てられ、名前空間内では通常の UID 0 から 65536 の範囲で機能しますが、ホストマシン上自身では何ら特権を持ちません（訳者注：コンテナ内では特定の UID や GID を持っているように見えますが、ホスト上では別の UID や GID がコンテナごとに割り当てられる機能です）。
+コンテナ内部からの権限昇格による攻撃を防ぐ最大の方法は、コンテナのアプリケーションを非特権ユーザで実行することです。
+コンテナ内において、プロセスを ``root`` ユーザで実行しなければならない場合は、この ``root`` ユーザを、Docker ホスト上のより権限の少ないユーザに再割り当て（re-map）します。
+名前空間内では通常 0 から 65536 という範囲の UID が正しく機能しますが、割り当て対象のユーザには、この範囲内で UID を定めます。
+ただしこの UID はホストマシン上では何の権限もないものです。
 
 .. About remapping and subordinate user and group IDs
 
