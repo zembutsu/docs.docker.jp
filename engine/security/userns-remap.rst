@@ -195,7 +195,11 @@ Linux ディストリビューションの多くでは、ユーザの追加、�
    もしエントリが存在しなければ、追加してください。
    ID の重複には十分に注意してください。
 
-   ``dockremap`` ユーザを使いたい場合は Docker によって自動的に作成されますので、設定を行い、 Docker の再起動をした **後で** 、各ファイルに ``dockremap`` エントリがあるかどうか確認します。
+   .. If you want to use the `dockremap` user automatically created by Docker,
+      check for the `dockremap` entry in these files **after**
+      configuring and restarting Docker.
+
+   Docker によって自動的に生成される ``dockremap`` ユーザーを利用したい場合は、``dockremap`` のエントリーがそのファイル内にあるかどうかを確認しますが、それは設定を行って Docker を再起動した **後に** 行ってください。
 
 ..    If there are any locations on the Docker host where the unprivileged user needs to write, adjust the permissions of those locations accordingly. This is also true if you want to use the dockremap user automatically created by Docker, but you can’t modify the permissions until after configuring and restarting Docker.
 
