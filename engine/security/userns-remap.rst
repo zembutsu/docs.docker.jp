@@ -201,9 +201,15 @@ Linux ディストリビューションの多くでは、ユーザの追加、�
 
    Docker によって自動的に生成される ``dockremap`` ユーザーを利用したい場合は、``dockremap`` のエントリーがそのファイル内にあるかどうかを確認しますが、それは設定を行って Docker を再起動した **後に** 行ってください。
 
-..    If there are any locations on the Docker host where the unprivileged user needs to write, adjust the permissions of those locations accordingly. This is also true if you want to use the dockremap user automatically created by Docker, but you can’t modify the permissions until after configuring and restarting Docker.
+.. 3.  If there are any locations on the Docker host where the unprivileged
+       user needs to write, adjust the permissions of those locations
+       accordingly. This is also true if you want to use the `dockremap` user
+       automatically created by Docker, but you can't modify the
+       permissions until after configuring and restarting Docker.
 
-3. Docker ホスト上のどこかに対し、権限のないユーザが書き込む必要がある場合は、適切な場所に対する権限（パーミッション）を調整する必要があります。これは Docker によって自動的に作成される ``dockremap`` を使う場合でも同様ですが、設定を変更し、 Docker の再起動をした後でないと権限を変更できません。
+3.  Docker ホスト上に、非特権ユーザが書き込みを必要とするディレクトリがあるとします。
+    その場合はそのディレクトリのパーミッションを適切に調整してください。
+    これは Docker によって自動生成された ``dockremap`` ユーザを利用する場合も同様ですが、このときにはパーミッション変更後に Docker を再起動しない限り、その設定変更は反映されません。
 
 ..    Enabling userns-remap effectively masks existing image and container layers, as well as other Docker objects within /var/lib/docker/. This is because Docker needs to adjust the ownership of these resources and actually stores them in a subdirectory within /var/lib/docker/. It is best to enable this feature on a new Docker installation rather than an existing one.
     Along the same lines, if you disable userns-remap you can’t access any of the resources created while it was enabled.
