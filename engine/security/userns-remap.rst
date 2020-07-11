@@ -253,9 +253,22 @@ Linux ディストリビューションの多くでは、ユーザの追加、�
 
    $ dockerd --userns-remap="testuser:testuser"
 
-..    Edit /etc/docker/daemon.json. Assuming the file was previously empty, the following entry enables userns-remap using user and group called testuser. You can address the user and group by ID or name. You only need to specify the group name or ID if it is different from the user name or ID. If you provide both the user and group name or ID, separate them by a colon (:) character. The following formats all work for the value, assuming the UID and GID of testuser are 1001:
+.. 1.  Edit `/etc/docker/daemon.json`. Assuming the file was previously empty, the
+       following entry enables `userns-remap` using user and group called
+       `testuser`. You can address the user and group by ID or name. You only need to
+       specify the group name or ID if it is different from the user name or ID. If
+       you provide both the user and group name or ID, separate them by a colon
+       (`:`) character. The following formats all work for the value, assuming
+       the UID and GID of `testuser` are `1001`:
 
-1. ``/etc/docker/daemon.json`` を編集します。以下の手順における想定は、ファイルが空っぽであ、 ``userns-remap`` を有効化するために使うユーザとグループは ``testuser`` とします。ユーザとグループは ID あるいは名前で割り当て可能です。グループ名や ID を指定する必要があるのは、ユーザ名または ID と異なる場合のみです。もしも、ユーザとグループ両方の名前または ID を指定する時は、これらをコロン文字（ ``:`` ）で区切ります。以下は全て値として認識できる形式であり、``testuser`` の UID と GID は ``1001`` と仮定します。
+1.  ``/etc/docker/daemon.json`` を編集します。
+    ファイルはまったくの空であったとします。
+    以下に示す項目は、``testuser`` というユーザおよびグループを使って ``userns-remap`` を有効にするものです。
+    ユーザやグループは、ID と名前のいずれでも指定が可能です。
+    グループ名やグループ ID は、それがユーザ名またはユーザ ID とは異なる場合のみ、指定することが必要です。
+    ユーザとグループの名前あるいは ID をともに指定する場合は、両者をコロン（ ``:`` ）で区切ります。
+    以下の書式は、すべて有効な指定です。
+    ここで ``testuser`` の UID および GID は ``1001`` であるものとします。
 
    * testuser
    * testuser:testuser
