@@ -177,7 +177,15 @@ Linux ディストリビューションの多くでは、ユーザの追加、�
    
       testuser:231072:65536
 
-   この意味は、ユーザ名前空間化したプロセスは、 ``testuser`` によって開始され、これはホスト UID ``231072``  （名前空間内では UID ``0`` として見える）から 296607 まで（231072 + 65536 - 1）によって所有されます。これらの範囲は重複すべきではありません。なぜなら、名前空間化したプロセスは、お互いの名前空間をアクセスできないからです。
+   ..  This means that user-namespaced processes started by `testuser` are
+       owned by host UID `231072` (which looks like UID `0` inside the
+       namespace) through 296607 (231072 + 65536 - 1). These ranges should not overlap,
+       to ensure that namespaced processes cannot access each other's namespaces.
+
+   上が意味することは以下のとおりです。
+   ``testuser`` によって起動されたユーザ名前空間のプロセスは、ホスト上の ``231072`` （名前空間内では UID ``0`` として見えるもの）から ``296607`` (231072 + 65536 - 1) までの間の UID によって所有されます。
+   この範囲は他と重複してはなりません。
+   これを確実に行うことで、名前空間内のプロセスが別の名前空間へアクセスできないようにします。
 
    ユーザを追加したら、 ``/etc/subuid`` と ``/etc/subgid`` を確認し、それぞれのファイルにユーザのエントリが追加されているかどうかを見ます。もしもなければ、追加する必要がありますが、重複しないように気を付ける必要があります。
 
