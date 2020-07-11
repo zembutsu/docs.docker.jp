@@ -2,7 +2,7 @@
 .. URL: https://docs.docker.com/engine/swarm/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/engine/swarm/index.md
    doc version: 19.03
-.. check date: 2016/06/21
+.. check date: 2020/07/11
 .. Commits on May 19, 2020 3864d792fd076362ba2f2b924f5f079d50a34f31
 .. -----------------------------------------------------------------------------
 
@@ -22,7 +22,7 @@ Swarm モード概要
 
 .. To use Docker in swarm mode, install Docker. See installation instructions for all operating systems and platforms.
 
-Docker の Swarm モードを利用するには、各種のオペレーティング・システムやプラットフォーム向けの :doc:`インストール手順 </get-docker.html>`_ に従って Docker をインストールしてください。
+Docker の Swarm モードを利用するには、各種のオペレーティング・システムやプラットフォーム向けの :doc:`インストール手順 </get-docker>` に従って Docker をインストールしてください。
 
 .. Current versions of Docker include swarm mode for natively managing a cluster of Docker Engines called a swarm. Use the Docker CLI to create a swarm, deploy application services to a swarm, and manage swarm behavior.
 
