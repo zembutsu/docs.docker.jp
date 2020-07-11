@@ -8,7 +8,7 @@
 
 .. Configure and troubleshoot the Docker daemon
 
-..-_configure-and-troubleshoot-the-docker-daemon:
+.. _configure-and-troubleshoot-the-docker-daemon:
 
 ============================================================
 Docker デーモンの設定とトラブルシュート
