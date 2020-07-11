@@ -84,9 +84,14 @@ UID ``231072`` は、名前空間内（ここではコンテナ内）におい�
    これを行った場合、Docker は複数の範囲指定の中から、はじめの 5 つ分のみを利用します。
    カーネルが ``/proc/self/uid_map`` や ``/proc/self/gid_map`` において、5 つ分のエントリーしか取り扱わないという制約に従ったものです。
 
-.. When you configure Docker to use the userns-remap feature, you can optionally specify an existing user and/or group, or you can specify default. If you specify default, a user and group dockremap is created and used for this purpose.
+.. When you configure Docker to use the `userns-remap` feature, you can optionally
+   specify an existing user and/or group, or you can specify `default`. If you
+   specify `default`, a user and group `dockremap` is created and used for this
+   purpose.
 
-Docker で ``userne-remap`` 機能を使うように調整する時は、オプションで既存のユーザとグループ、またはいずれかに対して ``default`` を指定できます。 ``default`` を指定すると、 ``dockremap`` ユーザとグループが作成され、この目的のために医療します。
+Docker において ``userns-remap`` 機能を利用する際には、必要に応じて既存のユーザやグループを指定することができます。
+あるいは ``default`` を指定することもできます。
+``default`` を指定した場合、``dockremap`` というユーザおよびグループが生成され、この機能のために利用されます。
 
 ..    Warning: Some distributions, such as RHEL and CentOS 7.3, do not automatically add the new group to the /etc/subuid and /etc/subgid files. You are responsible for editing these files and assigning non-overlapping ranges, in this case. This step is covered in Prerequisites.
 
