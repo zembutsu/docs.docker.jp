@@ -325,9 +325,11 @@ Linux ディストリビューションの多くでは、ユーザの追加、�
    そして UID または GID の開始値として、すでに割り当てられている最大値を割り当て、これに加えてオフセット値（ここでは ``65536`` ）を指定します。
    複数の範囲指定のそれぞれにて ID の重複がないようにします。
   
-..    Verify that previous images are not available using the docker image ls command. The output should be empty.
+.. 3.  Verify that previous images are not available using the `docker image ls`
+       command. The output should be empty.
 
-3. ``docker image ls`` コマンドを使って、以前のイメージが利用できないことを核にします。出力結果は空っぽになります。
+3.  ``docker image ls`` コマンドを実行し、以前利用していたイメージがないことを確認します。
+    出力には何も表示されないはずです。
 
 ..    Start a container from the hello-world image.
 
