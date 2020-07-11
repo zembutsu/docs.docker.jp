@@ -107,9 +107,17 @@ Docker において ``userns-remap`` 機能を利用する際には、必要に�
 そうなっていないと、プロセスが別の名前空間内でのアクセスを実現できません。
 Linux ディストリビューションの多くでは、ユーザの追加、削除を行う際の ID 範囲指定を制御するシステム・ユーティリティを提供しています。
 
-.. This re-mapping is transparent to the container, but introduces some configuration complexity in situations where the container needs access to resources on the Docker host, such as bind mounts into areas of the filesystem that the system user cannot write to. From a security standpoint, it is best to avoid these situations.
+.. This re-mapping is transparent to the container, but introduces some
+   configuration complexity in situations where the container needs access to
+   resources on the Docker host, such as bind mounts into areas of the filesystem
+   that the system user cannot write to. From a security standpoint, it is best to
+   avoid these situations.
 
-この再割り当てはコンテナに対して透過的です。しかし、コンテナが Docker ホスト上のリソースに対してアクセスを必要とするような場合は、状況によっては導入がいささか複雑になります。たとえばホスト上のファイルシステムの領域にバインド・マウントする方法では、システム・ユーザは書き込みができません。セキュリティの観点からは、これらの状況を避けるのがベストでしょう。
+この再割り当ての機能は、コンテナにおいてはわかりやすいものです。
+ただし設定を行う上では複雑な状況がありえます。
+たとえば Docker ホスト上のリソースにコンテナがアクセスする必要がある場合です。
+具体的にバインド・マウントでは、システム・ユーザが書き込み不能なファイルシステムの領域にマウントを行います。
+セキュリティの観点からは、こういった状況は避けることが一番です。
 
 
 .. Prerequisites
