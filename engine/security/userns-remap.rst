@@ -293,9 +293,10 @@ Linux ディストリビューションの多くでは、ユーザの追加、�
 
    ファイルを保存し、 Docker を再起動します。
 
-..    If you are using the dockremap user, verify that Docker created it using the id command.
+.. 2.  If you are using the `dockremap` user, verify that Docker created it using
+       the `id` command.
 
-2. もしも ``dockremap`` ユーザを使っている場合は、 ``id`` コマンドを使い Docker によって作成されたものだと確認します。
+2.  ``dockremap`` ユーザを利用する場合は、``id`` コマンドを実行して Docker がそのユーザを生成していることを確認します。
 
    .. code-block:: bash
 
