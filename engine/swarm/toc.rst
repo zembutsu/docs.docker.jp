@@ -28,4 +28,3 @@ Swarm
    管理ガイド <admin_guide.rst>
    Sarm モードの Raft 合意 <raft.rst>
 
-   menu.rst
