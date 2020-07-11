@@ -67,14 +67,22 @@ UID ``231072`` は、名前空間内（ここではコンテナ内）におい�
 つまりそのプロセスは、ホストシステム上での権限をまったく持たないということです。
 
 
-..    Multiple ranges
-    It is possible to assign multiple subordinate ranges for a given user or group by adding multiple non-overlapping mappings for the same user or group in the /etc/subuid or /etc/subgid file. In this case, Docker uses only the first five mappings, in accordance with the kernel’s limitation of only five entries in /proc/self/uid_map and /proc/self/gid_map.
+.. > Multiple ranges
+   >
+   > It is possible to assign multiple subordinate ranges for a given user or group
+   > by adding multiple non-overlapping mappings for the same user or group in the
+   > `/etc/subuid` or `/etc/subgid` file. In this case, Docker uses only the first
+   > five mappings, in accordance with the kernel's limitation of only five entries
+   > in `/proc/self/uid_map` and `/proc/self/gid_map`.
 
 .. note::
 
-   **複数の範囲** 
+   **複数の範囲指定**
 
-   可能であれば、ユーザまたはグループに対するサブオーディネイト範囲の割当は、同じユーザやグループと重複しない複数範囲を ``/etc/subuid`` や ``/etc/subgid`` ファイルで追加します。今回の例では、 Docker が使うのは初めから5つのマッピングのみですが、これはカーネル側で ``/proc/self/uid_map`` と ``/proc/self/gid_map`` が5つのエントリまでという制限に従っています。
+   1 つのユーザまたはグループに対して、サブ ID の範囲を複数割り当てることができます。
+   これを行うには ``/etc/subuid`` または ``/etc/subgid`` において 1 つのユーザあるいはグループに対して、互いに重複しない範囲指定を複数行います。
+   これを行った場合、Docker は複数の範囲指定の中から、はじめの 5 つ分のみを利用します。
+   カーネルが ``/proc/self/uid_map`` や ``/proc/self/gid_map`` において、5 つ分のエントリーしか取り扱わないという制約に従ったものです。
 
 .. When you configure Docker to use the userns-remap feature, you can optionally specify an existing user and/or group, or you can specify default. If you specify default, a user and group dockremap is created and used for this purpose.
 
