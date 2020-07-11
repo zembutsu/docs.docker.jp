@@ -372,9 +372,15 @@ Linux ディストリビューションの多くでは、ユーザの追加、�
 
    この出力結果は、異なる場合があります。特に、コンテナのストレージ・ドライバに ``aufs`` 以外を使っている場合です。
 
-   ..  The directories which are owned by the remapped user are used instead of the same directories directly beneath /var/lib/docker/ and the unused versions (such as /var/lib/docker/tmp/ in the example here) can be removed. Docker does not use them while userns-remap is enabled.
+   .. The directories which are owned by the remapped user are used instead
+      of the same directories directly beneath `/var/lib/docker/` and the
+      unused versions (such as `/var/lib/docker/tmp/` in the example here)
+      can be removed. Docker does not use them while `userns-remap` is
+      enabled.
 
-   ``/var/lib/docker`` の直下に、再割り当てされたユーザが所有するディレクトリがあります。また、使わないバージョンになったディレクトリは削除可能です（今回の例では、  ``/var/lib/docker/tmp/`` です ）。以前のディレクトリは ``userns-remap`` を有効化しない限り、 Docker からは使われません。
+   再割り当てによるユーザーが所有するディレクトリは、``/var/lib/docker/`` 直下にある同名ディレクトリとは切り離されて利用されます。
+   同名ディレクトリの使用しなくなった方（この例においては ``/var/lib/docker/tmp/`` など）は削除してかまいません。
+   Docker は ``userns-remap`` が有効になっている間は、それを利用しません。
 
 .. Disable namespace remapping for a container
 
