@@ -435,9 +435,17 @@ Linux ディストリビューションの多くでは、ユーザの追加、�
 
 ユーザ名前空間は高度な機能であり、他のケーパビリティとの調整も必要になります。たとえば、ボリュームをホストからマウントする場合、ファイルの所有権はボリュームとして使うコンテナから読み込みまたは書き込み可能なように、あらかじめ調整が必要です。
 
-.. While the root user inside a user-namespaced container process has many of the expected privileges of the superuser within the container, the Linux kernel imposes restrictions based on internal knowledge that this is a user-namespaced process. One notable restriction is the inability to use the mknod command. Permission is denied for device creation within the container when run by the root user.
+.. While the root user inside a user-namespaced container process has many of the
+   expected privileges of the superuser within the container, the Linux kernel
+   imposes restrictions based on internal knowledge that this is a user-namespaced
+   process. One notable restriction is the inability to use the `mknod` command.
+   Permission is denied for device creation within the container when run by
+   the `root` user.
 
-ユーザ名前空間化したコンテナのプロセス内の root ユーザは、コンテナ内では例外的なスーパーユーザとしての特権を持ちますが、Linux カーネルは内部のナレッジに基づいた制限を課します。つまり、これがユーザ名前空間化したプロセスです。有名な制限の１つは、 ``mknod``  コマンドの使用を不可能にします。 ``root`` ユーザとして実行する時は、コンテナ内でデバイスの作成権限は拒否されます。
+ユーザ名前空間を利用したコンテナのプロセス内において root ユーザは、コンテナ内のスーパーユーザとして期待される数多くの権限を持ちます。
+しかし Linux カーネルは、そこがユーザ名前空間内のプロセスであることを知っていて、それに基づいた機能制約を課します。
+明らかな制約の例が、``mknod`` コマンドを使えなくすることです。
+``root`` ユーザによって実行されているコンテナ内においては、デバイスの生成は拒否されます。
 
 .. seealso:: 
 
