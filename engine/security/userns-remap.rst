@@ -211,10 +211,16 @@ Linux ディストリビューションの多くでは、ユーザの追加、�
     その場合はそのディレクトリのパーミッションを適切に調整してください。
     これは Docker によって自動生成された ``dockremap`` ユーザを利用する場合も同様ですが、このときにはパーミッション変更後に Docker を再起動しない限り、その設定変更は反映されません。
 
-..    Enabling userns-remap effectively masks existing image and container layers, as well as other Docker objects within /var/lib/docker/. This is because Docker needs to adjust the ownership of these resources and actually stores them in a subdirectory within /var/lib/docker/. It is best to enable this feature on a new Docker installation rather than an existing one.
-    Along the same lines, if you disable userns-remap you can’t access any of the resources created while it was enabled.
+.. 4.  Enabling `userns-remap` effectively masks existing image and container
+       layers, as well as other Docker objects within `/var/lib/docker/`. This is
+       because Docker needs to adjust the ownership of these resources and actually
+       stores them in a subdirectory within `/var/lib/docker/`. It is best to enable
+       this feature on a new Docker installation rather than an existing one.
 
-4. ``userns-remap`` の有効化は、既存のイメージやコンテナのレイヤを効果的にマスクするだけでなく、 ``/var/lib/docker``  内にある他の Docker オブジェクトも対象です。これは Docker が必要とする各リソースの調整が必要になるためで、Docker オブジェクトが ``/var/lib/docker``  内のサブディレクトリに保管されているからです。この機能を有効化するベストな方法は、既存の Docker を使うよりは、むしろ新しい Docker のインストールでしょう。
+4.  ``userns-remap`` を有効にすることで、既存イメージやコンテナのレイヤは効果的に保護されます。
+    これは ``/var/lib/docker/`` 内にある Docker オブジェクトすべてについて言えることです。
+    そもそも Docker ではそういったリソース類の所有者を調整する必要があり、そうして ``/var/lib/docker/`` 内のサブディレクトリに情報を保存するからです。
+    新たな Docker インストールの際に、この機能を有効にして利用していくことがベストです。
 
    これらの手順に従い、 ``userns-remap`` を無効化したら、有効化後に作成したリソースには一切できなくなります。（訳者注：userne-remap を有効化時、無効化時、 /var/lib/docker/ 以下の異なるディレクトリに Docker オブジェクトを保存します。そのため、有効化する前にあったコンテナやイメージはは有効化によって見えなくなりますし、無効化によっても有効化時のコンテナやイメージが見えなくなります）
 
