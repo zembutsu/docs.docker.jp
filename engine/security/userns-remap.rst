@@ -239,9 +239,15 @@ Linux ディストリビューションの多くでは、ユーザの追加、�
 デーモン上で userns-remap の有効化
 ========================================
 
-.. You can start dockerd with the --userns-remap flag or follow this procedure to configure the daemon using the daemon.json configuration file. The daemon.json method is recommended. If you use the flag, use the following command as a model:
+.. You can start `dockerd` with the `--userns-remap` flag or follow this
+   procedure to configure the daemon using the `daemon.json` configuration file.
+   The `daemon.json` method is recommended. If you use the flag, use the following
+   command as a model:
 
-``dockerd`` の開始時に ``--userns-remap`` フラグを有効化するか、以下の手順にある、デーモンが使う設定ファイル ``daemon.json`` の設定を変更できます。 ``daemon.json``  を使う方法を推奨しています。フラグを使いたい場合は、次のコマンドを使います。
+``dockerd`` の実行時には ``--userns-remap`` フラグを利用することができます。
+または以降の手順に示すように、設定ファイル ``daemon.json`` を使ってデーモンを設定することができます。
+``daemon.json`` ファイルを用いる方法が推奨されます。
+フラグを利用する方法をとる場合、コマンドのひな形は以下のようになります。
 
 .. code-block:: bash
 
