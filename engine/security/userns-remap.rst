@@ -316,9 +316,14 @@ Linux ディストリビューションの多くでは、ユーザの追加、�
       
       dockremap:231072:65536
 
-   ..    If these entries are not present, edit the files as the root user and assign a starting UID and GID that is the highest-assigned one plus the offset (in this case, 65536). Be careful not to allow any overlap in the ranges.
+   .. If these entries are not present, edit the files as the `root` user and
+      assign a starting UID and GID that is the highest-assigned one plus the
+      offset (in this case, `65536`). Be careful not to allow any overlap in the
+      ranges.
 
-   これらのエントリは表示されていなければ、 ``root`` ユーザとしてファイルを編集し、開始 UID と GID を割り当てます。UID と GID は最も高く割り当てられたものより 1 つ加えたオフセット（この例では、 ``65536`` ）にします。この範囲は他と重複しないように、気を付けてください。
+   上のようなエントリが存在しない場合は、``root`` ユーザーになってこのファイルを編集します。
+   そして UID または GID の開始値として、すでに割り当てられている最大値を割り当て、これに加えてオフセット値（ここでは ``65536`` ）を指定します。
+   複数の範囲指定のそれぞれにて ID の重複がないようにします。
   
 ..    Verify that previous images are not available using the docker image ls command. The output should be empty.
 
