@@ -227,9 +227,10 @@ Linux ディストリビューションの多くでは、ユーザの追加、�
 
    同じような話として、``userns-remap`` を無効化すると、有効化していたときに生成したリソースへは、いっさいアクセスできなくなります。
 
-..    Check the limitations on user namespaces to be sure your use case is possible.
+.. 5.  Check the [limitations](#user-namespace-known-limitations) on user
+       namespaces to be sure your use case is possible.
 
-5. ユースケースが可能であれば、ユーザ名前空間上の :ref:`制限 <user-namespace-known-limitations>` も確認ください。
+5.  ユーザ名前空間に関する :ref:`制約 <user-namespace-known-limitations>` を確認し、利用することが可能かどうかを判断してください。
 
 .. Enable userns-remap on the daemon
 
