@@ -389,9 +389,16 @@ Linux ディストリビューションの多くでは、ユーザの追加、�
 コンテナに対する名前空間の再割り当てを無効化
 ==================================================
 
-.. If you enable user namespaces on the daemon, all containers are started with user namespaces enabled by default. In some situations, such as privileged containers, you may need to disable user namespaces for a specific container. See user namespace known limitations for some of these limitations.
+.. If you enable user namespaces on the daemon, all containers are started with
+   user namespaces enabled by default. In some situations, such as privileged
+   containers, you may need to disable user namespaces for a specific container.
+   See
+   [user namespace known limitations](#user-namespace-known-limitations)
+   for some of these limitations.
 
-デーモン上でユーザ名前空間を有効化すると、デフォルトで全てのコンテナがユーザ名前空間を有効化して起動します。同様に、特権コンテナ（privileged container）の実行時は、特定のコンテナに対するユーザ名前空間を無効化する必要があるでしょう。これらの制限に関しては :ref:`user-namespace-known-limitations` をご覧ください。
+デーモンにおいてユーザ名前空間を有効にした場合に、コンテナを起動すると、どのコンテナにおいてもデフォルトでユーザ名前空間が有効になります。
+特定の権限により実行されているコンテナのような場合には、そのコンテナに対してユーザ名前空間を明示的に無効にすることが必要になります。
+そういった制約に関しては :ref:`user-namespace-known-limitations` を参照してください。
 
 .. To disable user namespaces for a specific container, add the --userns=host flag to the docker container create, docker container run, or docker container exec command.
 
