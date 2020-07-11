@@ -222,7 +222,10 @@ Linux ディストリビューションの多くでは、ユーザの追加、�
     そもそも Docker ではそういったリソース類の所有者を調整する必要があり、そうして ``/var/lib/docker/`` 内のサブディレクトリに情報を保存するからです。
     新たな Docker インストールの際に、この機能を有効にして利用していくことがベストです。
 
-   これらの手順に従い、 ``userns-remap`` を無効化したら、有効化後に作成したリソースには一切できなくなります。（訳者注：userne-remap を有効化時、無効化時、 /var/lib/docker/ 以下の異なるディレクトリに Docker オブジェクトを保存します。そのため、有効化する前にあったコンテナやイメージはは有効化によって見えなくなりますし、無効化によっても有効化時のコンテナやイメージが見えなくなります）
+   .. Along the same lines, if you disable `userns-remap` you can't access any
+      of the resources created while it was enabled.
+
+   同じような話として、``userns-remap`` を無効化すると、有効化していたときに生成したリソースへは、いっさいアクセスできなくなります。
 
 ..    Check the limitations on user namespaces to be sure your use case is possible.
 
