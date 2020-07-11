@@ -283,9 +283,13 @@ Linux ディストリビューションの多くでは、ユーザの追加、�
         "userns-remap": "testuser"
       }
 
+   ..  > **Note**: To use the `dockremap` user and have Docker create it for you,
+       > set the value to `default` rather than `testuser`.
+
    .. note::
-   
-   ``dockremap`` ユーザを使うと、 Docker が自動的に作成しますが、その場合 ``testuser`` ではなく ``default`` になります。
+
+      **メモ**: ``dockremap`` ユーザは Docker が生成します。
+      ``dockremap`` ユーザを利用する場合は、設定値に ``testuser`` ではなく ``default`` を指定してください。
 
    ファイルを保存し、 Docker を再起動します。
 
