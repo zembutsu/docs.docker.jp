@@ -217,10 +217,10 @@ cgroups からのメトリクス：メモリ、CPU、ブロックI/O
 
 * **rss**: ディスクに関連 *しない* メモリ使用量です。例えば、stacks、heaps、アノニマスなメモリマップです。
 
-..    mapped_file:
-..    indicates the amount of memory mapped by the processes in the control group. It doesn’t give you information about how much memory is used; it rather tells you how it is used.
+..    **mapped_file**
+      Indicates the amount of memory mapped by the processes in the control group. It doesn't give you information about *how much* memory is used; it rather tells you *how* it is used.
 
-* **mapped_file**: コントロール・グループ上のプロセスに割り当てられるファイル容量です。 メモリを **どのように** 使用しているかの情報は得られません。どれだけ使っているかを表示します。
+* **mapped_file**: このコントロール・グループのプロセスによって割り当てられるメモリの使用量です。メモリを **どれだけ** 利用しているかの情報は得られません。ここからわかるのは **どのように** 利用されているかです。
 
 ..    pgfault and pgmajfault:
 ..    indicate the number of times that a process of the cgroup triggered a “page fault” and a “major fault”, respectively. A page fault happens when a process accesses a part of its virtual memory space which is nonexistent or protected. The former can happen if the process is buggy and tries to access an invalid address (it will then be sent a SIGSEGV signal, typically killing it with the famous Segmentation fault message). The latter can happen when the process reads from a memory zone which has been swapped out, or which corresponds to a mapped file: in that case, the kernel will load the page from disk, and let the CPU complete the memory access. It can also happen when the process writes to a copy-on-write memory zone: likewise, the kernel will preempt the process, duplicate the memory page, and resume the write operation on the process` own copy of the page. “Major” faults happen when the kernel actually has to read the data from disk. When it just has to duplicate an existing page, or allocate an empty page, it’s a regular (or “minor”) fault.
