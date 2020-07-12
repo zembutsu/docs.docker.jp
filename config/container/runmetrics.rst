@@ -207,10 +207,10 @@ cgroups からのメトリクス：メモリ、CPU、ブロックI/O
 これは特定のイベントがどれだけ発生したかを表わします。
 たとえば ``pgfault`` は cgroup の生成以降に、どれだけページ・フォルトが発生したかを表わします。
 
-..    cache:
-..    the amount of memory used by the processes of this control group that can be associated precisely with a block on a block device. When you read from and write to files on disk, this amount will increase. This will be the case if you use “conventional” I/O (open, read, write syscalls) as well as mapped files (with mmap). It also accounts for the memory used by tmpfs mounts, though the reasons are unclear.
+..    **cache**
+      The amount of memory used by the processes of this control group that can be associated precisely with a block on a block device. When you read from and write to files on disk, this amount increases. This is the case if you use "conventional" I/O (`open`, `read`, `write` syscalls) as well as mapped files (with `mmap`). It also accounts for the memory used by `tmpfs` mounts, though the reasons are unclear.
 
-* **cache**: コントロール・グループのプロセスによって使用されるメモリ容量であり、ブロック・デバイス上のブロックと密接に関わりがあります。ディスクからファイルを読み書きしたら、この値が増えます。値が増えるのは「通常」の I/O （ ``open`` 、 ``read`` 、 ``write`` システムコール）だけでなく、ファイルのマップ（ ``mmap`` を使用 ）でも同様です。あるいは ``tmpfs`` マウントでメモリを使う場合も、理由が明確でなくともカウントされます。
+* **cache**: このコントロール・グループのプロセスによるメモリ使用量です。ブロック・デバイス上の各ブロックに細かく関連づけられるものです。ディスク上のファイルと読み書きを行うと、この値が増加します。ふだん利用する I/O（システムコールの ``open`` 、``read`` 、``write`` ）利用時に発生し、（``mmap`` を用いた）マップ・ファイルの場合も同様です。``tmpfs`` によるメモリ使用もここに含まれますが、理由は明らかではありません。
 
 ..     rss:
 ..    the amount of memory that doesn’t correspond to anything on disk: stacks, heaps, and anonymous memory maps.
