@@ -77,9 +77,13 @@ Linux のコンテナは `コントロール・グループ <https://www.kernel.
 このディレクトリの下には devices、freezer、blkio などのサブディレクトリが複数あります。
 これらのサブディレクトリが、独特の cgroup 階層を構成しています。
 
-.. On older systems, the control groups might be mounted on /cgroup, without distinct hierarchies. In that case, instead of seeing the sub-directories, you see a bunch of files in that directory, and possibly some directories corresponding to existing containers.
+.. On older systems, the control groups might be mounted on `/cgroup`, without
+   distinct hierarchies. In that case, instead of seeing the sub-directories,
+   you see a bunch of files in that directory, and possibly some directories
+   corresponding to existing containers.
 
-古いシステムでは、コントロール・グループが ``/cgroup`` にマウントされており、その下に明確な階層が無いかもしれません。そのような場合、サブディレクトリが見える代わりに、たくさんのファイルがあります。あるいは、存在しているコンテナに相当するディレクトリがあるかもしれません。
+かつてのシステムでは、コントロール・グループが ``/cgroup`` にマウントされていて、わかりやすい階層構造にはなっていませんでした。
+その場合、サブディレクトリそのものを確認していくのではなく、サブディレクトリ内にある数多くのファイルを見渡して、そのディレクトリが既存のコンテナーに対応するものであろう、と確認していくしかありません。
 
 .. To figure out where your control groups are mounted, you can run:
 
