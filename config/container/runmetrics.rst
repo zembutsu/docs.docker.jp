@@ -105,9 +105,16 @@ cgroups の確認
 
 ``/proc/cgroups`` を覗いてみるとわかりますが、システムが利用するコントロール・グループのサブシステムには実にさまざまなものがあり、それが階層化されていて、数多くのグループが含まれているのがわかります。
 
-.. You can also look at /proc/<pid>/cgroup to see which control groups a process belongs to. The control group is shown as a path relative to the root of the hierarchy mountpoint. / means the process has not been assigned to a group, while /lxc/pumpkin indicates that the process is a member of a container named pumpkin.
+.. You can also look at `/proc/<pid>/cgroup` to see which control groups a process
+   belongs to. The control group is shown as a path relative to the root of
+   the hierarchy mountpoint. `/` means the process has not been assigned to a
+   group, while `/lxc/pumpkin` indicates that the process is a member of a
+   container named `pumpkin`.
 
-コントロール・グループのプロセスに属する情報は、 ``/proc/<pic>/cgroup`` からも確認できます。コントロール・グループは階層のマウントポイントからの相対パス上として表示されます。例えば、 ``/`` が意味するのは「対象のプロセスは特定のグループに割り当てられていない」であり、 ``/lxc/pumpkin`` が意味するのはプロセスが ``pumpkin`` と呼ばれるコンテナのメンバであると考えられます。
+また ``/proc/<pid>/cgroup`` を確認してみれば、1 つのプロセスがどのコントロール・グループに属しているかがわかります。
+そのときのコントロール・グループは、階層構造のルートとなるマウント・ポイントからの相対パスで表わされます。
+``/`` が表示されていれば、そのプロセスにはグループが割り当てられていません。
+一方 ``/lxc/pumpkin`` といった表示になっていれば、そのプロセスは ``pumpkin`` という名のコンテナのメンバであることがわかります。
 
 .. Finding the cgroup for a given container
 
