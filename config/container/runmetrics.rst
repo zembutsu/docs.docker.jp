@@ -100,9 +100,10 @@ Linux のコンテナは `コントロール・グループ <https://www.kernel.
 cgroups の確認
 ========================================
 
-.. You can look into /proc/cgroups to see the different control group subsystems known to the system, the hierarchy they belong to, and how many groups they contain.
+.. You can look into `/proc/cgroups` to see the different control group subsystems
+   known to the system, the hierarchy they belong to, and how many groups they contain.
 
-``/proc/cgroups`` を調べれば、システム上の様々に異なるコントロール・グループのサブシステムが見えます。それぞれに階層がサブシステムに相当しており、多くのグループが見えるでしょう。
+``/proc/cgroups`` を覗いてみるとわかりますが、システムが利用するコントロール・グループのサブシステムには実にさまざまなものがあり、それが階層化されていて、数多くのグループが含まれているのがわかります。
 
 .. You can also look at /proc/<pid>/cgroup to see which control groups a process belongs to. The control group is shown as a path relative to the root of the hierarchy mountpoint. / means the process has not been assigned to a group, while /lxc/pumpkin indicates that the process is a member of a container named pumpkin.
 
