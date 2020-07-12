@@ -19,9 +19,20 @@
    .. contents:: 
        :depth: 3
        :local:
-.. You can use the docker stats command to live stream a container’s runtime metrics. The command supports CPU, memory usage, memory limit, and network IO metrics.
 
-コンテナのラインタイム・メトリクス（訳注；コンテナ実行時の、様々なリソース指標や数値データ）をライブ（生）で表示するには、 ``docker stats`` コマンドを使います。コマンドがサポートしているのは、CPU 、メモリ使用率、メモリ上限、ネットワーク I/O のメトリクスです。
+.. ## Docker stats
+
+.. _docker-stats:
+
+docker stats
+==============================
+
+.. You can use the `docker stats` command to live stream a container's
+   runtime metrics. The command supports CPU, memory usage, memory limit,
+   and network IO metrics.
+
+``docker stats`` コマンドを使うと、コンテナの実行メトリクスからの出力を順次得ることができます。
+このコマンドは、CPU、メモリ使用量、メモリ上限、ネットワーク I/O に対するメトリクスをサポートしています。
 
 .. The following is a sample output from the docker stats command
 
