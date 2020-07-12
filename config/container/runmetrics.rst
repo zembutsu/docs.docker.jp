@@ -195,9 +195,17 @@ cgroups からのメトリクス：メモリ、CPU、ブロックI/O
 
 前半（ ``total_`` が先頭に無い ）は、cgroup 中にあるプロセス関連の統計情報を表示します。サブグループは除外しています。後半（  先頭に ``total_`` がある  ）は、サブグループも含めたものです。
 
-.. Some metrics are “gauges”, or values that can increase or decrease. For instance, swap is the amount of swap space used by the members of the cgroup. Some others are “counters”, or values that can only go up, because they represent occurrences of a specific event. For instance, pgfault indicates the number of page faults since the creation of the cgroup.
+.. Some metrics are "gauges", or values that can increase or decrease. For instance,
+   `swap` is the amount of swap space used by the members of the cgroup.
+   Some others are "counters", or values that can only go up, because
+   they represent occurrences of a specific event. For instance, `pgfault`
+   indicates the number of page faults since the creation of the cgroup.
 
-いくつかのメトリクスは「gauges」（ゲージ；計測した値そのものの意味）であり、例えば、値が増減するものとしては、swap は cgroup のメンバによって使われている swap 領域の容量です。あるいは「counter」（カウンタ）は、特定のイベント発生後に増えた値のみ表示します。例えば pgfault はページ・フォルトの回数を表しますが、cgroup が作成された後の値です。この値は決して減少しません。。
+メトリクスの中には「メータ」つまり増減を繰り返す表記になるものがあります。
+たとえば ``swap`` は、cgroup のメンバによって利用されるスワップ容量の合計です。
+この他に「カウンタ」となっているもの、つまり数値がカウントアップされていくものがあります。
+これは特定のイベントがどれだけ発生したかを表わします。
+たとえば ``pgfault`` は cgroup の生成以降に、どれだけページ・フォルトが発生したかを表わします。
 
 ..    cache:
 ..    the amount of memory used by the processes of this control group that can be associated precisely with a block on a block device. When you read from and write to files on disk, this amount will increase. This will be the case if you use “conventional” I/O (open, read, write syscalls) as well as mapped files (with mmap). It also accounts for the memory used by tmpfs mounts, though the reasons are unclear.
