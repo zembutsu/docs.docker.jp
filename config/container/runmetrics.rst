@@ -54,9 +54,17 @@ docker stats
 コントロール・グループ
 ==============================
 
-.. Linux Containers rely on control groups which not only track groups of processes, but also expose metrics about CPU, memory, and block I/O usage. You can access those metrics and obtain network usage metrics as well. This is relevant for “pure” LXC containers, as well as for Docker containers.
+.. Linux Containers rely on [control groups](
+   https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt)
+   which not only track groups of processes, but also expose metrics about
+   CPU, memory, and block I/O usage. You can access those metrics and
+   obtain network usage metrics as well. This is relevant for "pure" LXC
+   containers, as well as for Docker containers.
 
-Linux はプロセス・グループの追跡だけでなく、CPU・メモリ・ブロック I/O のメトリクス表示は、 `コントロール・グループ <https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt>`_ に依存しています。これらのメトリクスやネットワーク使用量のメトリクスも同様に取得できます。これらは「純粋な」 LXC コンテナ用であり、Docker コンテナ用でもあります。
+Linux のコンテナは `コントロール・グループ <https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt>`_ に依存しています。
+コントロール・グループは、単に複数のプロセスを追跡するだけでなく、CPU、メモリ、ブロック I/O 使用量に関するメトリクスを提供します。
+そういったメトリクスがアクセス可能であり、同様にネットワーク使用量のメトリクスも得ることができます。
+これは「純粋な」LXC コンテナに関連しており、Docker のコンテナにも関連します。
 
 .. Control groups are exposed through a pseudo-filesystem. In recent distros, you should find this filesystem under /sys/fs/cgroup. Under that directory, you will see multiple sub-directories, called devices, freezer, blkio, etc.; each sub-directory actually corresponds to a different cgroup hierarchy.
 
