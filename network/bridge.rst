@@ -188,7 +188,7 @@ Docker を起動すると、 :ref:`デフォルト・ブリッジ・ネットワ
 
 .. To disconnect a running container from a user-defined bridge, use the docker network disconnect command. The following command disconnects the my-nginx container from the my-net network.
 
-ユーザ定義ブリッジ・ネットワークで実行中のコンテナを切断するには、 ``docker network disconnect`` コマンドを使います。以下のコマンドは ```my-net` ネットワークから ``my-nginx`` コンテナを切断します。
+ユーザ定義ブリッジ・ネットワークで実行中のコンテナを切断するには、 ``docker network disconnect`` コマンドを使います。以下のコマンドは ``my-net`` ネットワークから ``my-nginx`` コンテナを切断します。
 
 .. code-block:: bash
 
