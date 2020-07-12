@@ -121,9 +121,14 @@ cgroups の確認
 特定のコンテナに割り当てられた cgroup の確認
 ============================================
 
-.. For each container, one cgroup is created in each hierarchy. On older systems with older versions of the LXC userland tools, the name of the cgroup is the name of the container. With more recent versions of the LXC tools, the cgroup is lxc/<container_name>.
+.. For each container, one cgroup is created in each hierarchy. On
+   older systems with older versions of the LXC userland tools, the name of
+   the cgroup is the name of the container. With more recent versions
+   of the LXC tools, the cgroup is `lxc/<container_name>.`
 
-コンテナごとに、それぞれの階層に cgroup が作成されます。古いシステム上のバージョンが古い LXC userland tools の場合、cgroups の名前はコンテナ名になっています。より最近のバージョンの LXC ツールであれば、cgroup は ``lxc/<コンテナ名>`` になります。
+各コンテナでは、各階層内に 1 つの cgroup が生成されます。
+かつてのシステムにおいて、ユーザーランド・ツール LXC の古い版を利用している場合、cgroup 名はそのままコンテナ名になっています。
+より新しい LXC ツールでの cgroup 名は ``lxc/<コンテナー名>`` となります。
 
 .. For Docker containers using cgroups, the container name will be the full ID or long ID of the container. If a container shows up as ae836c95b4c3 in docker ps, its long ID might be something like ae836c95b4c3c9e9179e0e91015512da89fdec91612f63cebae57df9a5444c79. You can look it up with docker inspect or docker ps --no-trunc.
 
