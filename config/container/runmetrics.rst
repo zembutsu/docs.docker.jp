@@ -93,11 +93,11 @@ Linux のコンテナは `コントロール・グループ <https://www.kernel.
 
    $ grep cgroup /proc/mounts
 
-.. Enumerating cgroups
+.. ### Enumerate cgroups
 
 .. _enumerating-cgroups:
 
-コントロール・グループの列挙
+cgroups の確認
 ========================================
 
 .. You can look into /proc/cgroups to see the different control group subsystems known to the system, the hierarchy they belong to, and how many groups they contain.
