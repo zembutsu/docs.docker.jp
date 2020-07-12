@@ -66,9 +66,16 @@ Linux のコンテナは `コントロール・グループ <https://www.kernel.
 そういったメトリクスがアクセス可能であり、同様にネットワーク使用量のメトリクスも得ることができます。
 これは「純粋な」LXC コンテナに関連しており、Docker のコンテナにも関連します。
 
-.. Control groups are exposed through a pseudo-filesystem. In recent distros, you should find this filesystem under /sys/fs/cgroup. Under that directory, you will see multiple sub-directories, called devices, freezer, blkio, etc.; each sub-directory actually corresponds to a different cgroup hierarchy.
+.. Control groups are exposed through a pseudo-filesystem. In recent
+   distros, you should find this filesystem under `/sys/fs/cgroup`. Under
+   that directory, you see multiple sub-directories, called devices,
+   freezer, blkio, etc.; each sub-directory actually corresponds to a different
+   cgroup hierarchy.
 
-コントロール・グループは疑似ファイルシステム（pseudo-filesystem）を通して公開されています。最近のディストリビューションでは、 ``/sys/fs/cgroup`` 以下で見つかるでしょう。このディレクトリの下に、device・freezer・blkio 等の複数のサブディレクトリがあります。各サブディレクトリは、それぞれ異なった cgroup 階層に相当します。
+コントロール・グループは擬似ファイルシステムを通じて提供されます。
+最近のディストリビューションでは、このファイルシステムは ``/sys/fs/cgroup`` にあります。
+このディレクトリの下には devices、freezer、blkio などのサブディレクトリが複数あります。
+これらのサブディレクトリが、独特の cgroup 階層を構成しています。
 
 .. On older systems, the control groups might be mounted on /cgroup, without distinct hierarchies. In that case, instead of seeing the sub-directories, you see a bunch of files in that directory, and possibly some directories corresponding to existing containers.
 
