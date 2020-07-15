@@ -248,10 +248,11 @@ cgroups からのメトリクス：メモリ、CPU、ブロックI/O
 * **unevictable**:
   取り出し要求ができないメモリ容量のことです。一般には ``mlock`` によって「ロックされた」メモリとされます。暗号フレームワークにおいて利用されることがあり、秘密鍵や機密情報がディスクにスワップされないようにするものです。
 
-..    memory and memsw limits:
+..    **memory_limit**, **memsw_limit**
 ..    These are not really metrics, but a reminder of the limits applied to this cgroup. The first one indicates the maximum amount of physical memory that can be used by the processes of this control group; the second one indicates the maximum amount of RAM+swap.
 
-* **memory と memsw の limits**: これらは実際のメトリクスではありませんが、対象の cgroup に適用される上限の確認に使います。「memory」はこのコントロール・グループのプロセスによって使われる最大の物理メモリを示します。「memsw」 は RAM+swap の最大容量を示します。
+* **memory_limit**, **memsw_limit**:
+  これは実際のメトリクスではありません。この cgroup に適用される上限を確認するためのものです。**memory_limit** は、このコントロール・グループのプロセスが利用可能な物理メモリの最大容量を示します。**memsw_limit** は RAM＋スワップの最大容量を示します。
 
 .. Accounting for memory in the page cache is very complex. If two processes in different control groups both read the same file (ultimately relying on the same blocks on disk), the corresponding memory charge is split between the control groups. It’s nice, but it also means that when a cgroup is terminated, it could increase the memory usage of another cgroup, because they are not splitting the cost anymore for those memory pages.
 
