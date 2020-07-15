@@ -298,9 +298,16 @@ CPU メトリクス： ``cpuacct.stat``
 Block I/O メトリクス
 --------------------
 
-.. Block I/O is accounted in the blkio controller. Different metrics are scattered across different files. While you can find in-depth details in the blkio-controller file in the kernel documentation, here is a short list of the most relevant ones:
+.. Block I/O is accounted in the `blkio` controller.
+   Different metrics are scattered across different files. While you can
+   find in-depth details in the [blkio-controller](
+   https://www.kernel.org/doc/Documentation/cgroup-v1/blkio-controller.txt)
+   file in the kernel documentation, here is a short list of the most
+   relevant ones:
 
-Block I/O は ``blkio`` コントローラを算出します。異なったメトリックスが別々のファイルに散在しています。より詳細な情報を知りたい場合は、カーネル・ドキュメントの `blkio-controller <https://www.kernel.org/doc/Documentation/cgroup-v1/blkio-controller.txt>`_ をご覧ください。ここでは最も関係が深いものをいくつか扱います。
+ブロック I/O は ``blkio`` コントローラにおいて計算されます。
+さまざまなメトリクスが、さまざまなファイルにわたって保持されています。
+より詳細は、カーネル・ドキュメント内にある `blkio-controller <https://www.kernel.org/doc/Documentation/cgroup-v1/blkio-controller.txt>`_ ファイルに記述されていますが、以下では最も関連のあるものを簡潔に示します。
 
 ..     blkio.sectors:
 ..     contain the number of 512-bytes sectors read and written by the processes member of the cgroup, device by device. Reads and writes are merged in a single counter.
