@@ -242,10 +242,11 @@ cgroups からのメトリクス：メモリ、CPU、ブロックI/O
 
 * **active_file と inactive_file**: キャッシュメモリの *active* と *inactive* は、先ほどの *anonymou* メモリの説明にあるものと似ています。正確な計算式は、キャッシュ = **active_file** + **inactive_file** + **tmpfs** です。この正確なルールが使われるのは、カーネルがメモリページを active から inactive にセットする時です。これは anonymous メモリとして使うのとは違って、一般的な基本原理によるものと同じです。注意点としては、カーネルがメモリを再要求（reclaim）するするとき、直ちに再要求（anonymous ページや汚れた/変更されたページをディスクに書き込む）よりも、プール上のクリーンな（＝変更されていない）ページを再要求するほうが簡単だからです。
 
-..    unevictable:
-..    the amount of memory that cannot be reclaimed; generally, it will account for memory that has been “locked” with mlock. It is often used by crypto frameworks to make sure that secret keys and other sensitive material never gets swapped out to disk.
+..    **unevictable**
+..    The amount of memory that cannot be reclaimed; generally, it accounts for memory that has been "locked" with `mlock`. It is often used by crypto frameworks to make sure that secret keys and other sensitive material never gets swapped out to disk.
 
-* **unevictable**: 再要求されないメモリの容量です。一般的に ``mlock``  で「ロックされた」メモリ容量です。暗号化フレームワークによる秘密鍵の作成や、ディスクにスワップさせたくないような繊細な素材に使われます。
+* **unevictable**:
+  取り出し要求ができないメモリ容量のことです。一般には ``mlock`` によって「ロックされた」メモリとされます。暗号フレームワークにおいて利用されることがあり、秘密鍵や機密情報がディスクにスワップされないようにするものです。
 
 ..    memory and memsw limits:
 ..    These are not really metrics, but a reminder of the limits applied to this cgroup. The first one indicates the maximum amount of physical memory that can be used by the processes of this control group; the second one indicates the maximum amount of RAM+swap.
