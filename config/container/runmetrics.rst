@@ -371,9 +371,12 @@ IPtables を使えば（というよりも、インターフェースに対す�
 
    $ iptables -nxvL OUTPUT
 
-.. Technically, -n is not required, but it will prevent iptables from doing DNS reverse lookups, which are probably useless in this scenario.
+.. Technically, `-n` is not required, but it
+   prevents iptables from doing DNS reverse lookups, which are probably
+   useless in this scenario.
 
-技術的には ``-n`` は不要なのですが、今回の例では、不要な DNS 逆引きの名前解決をしないために付けています。
+技術的なことだけで言えば ``-n`` は必要ありません。
+DNS の逆引きを避けるためのものですが、ここでの作業ではおそらく不要です。
 
 .. Counters include packets and bytes. If you want to setup metrics for container traffic like this, you could execute a for loop to add two iptables rules per container IP address (one in each direction), in the FORWARD chain. This will only meter traffic going through the NAT layer; you will also have to add traffic going through the userland proxy.
 
