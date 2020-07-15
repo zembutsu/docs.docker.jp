@@ -254,9 +254,21 @@ cgroups からのメトリクス：メモリ、CPU、ブロックI/O
 * **memory_limit**, **memsw_limit**:
   これは実際のメトリクスではありません。この cgroup に適用される上限を確認するためのものです。**memory_limit** は、このコントロール・グループのプロセスが利用可能な物理メモリの最大容量を示します。**memsw_limit** は RAM＋スワップの最大容量を示します。
 
-.. Accounting for memory in the page cache is very complex. If two processes in different control groups both read the same file (ultimately relying on the same blocks on disk), the corresponding memory charge is split between the control groups. It’s nice, but it also means that when a cgroup is terminated, it could increase the memory usage of another cgroup, because they are not splitting the cost anymore for those memory pages.
+.. Accounting for memory in the page cache is very complex. If two
+   processes in different control groups both read the same file
+   (ultimately relying on the same blocks on disk), the corresponding
+   memory charge is split between the control groups. It's nice, but
+   it also means that when a cgroup is terminated, it could increase the
+   memory usage of another cgroup, because they are not splitting the cost
+   anymore for those memory pages.
 
-ページキャッシュ中のメモリ計算は非常に複雑です。もし２つのプロセスが異なったコントロール・グループ上にあるなら、それぞれの同じファイル（結局はディスク上の同じブロックに依存しますが）を読み込む必要があります。割り当てられたメモリは、コントロール・グループごとの容量に依存します。これは良さそうですが、cgroup を削除したら、メモリページとして消費していた領域は使わなくなり、他の cgroup のメモリ容量を増加させることをも意味します。
+ページキャッシュ内のメモリの計算は非常に複雑です。
+コントロール・グループが異なるプロセスが 2 つあって、それが同一のファイル（最終的にディスク上の同一ブロックに存在）を読み込むとします。
+その際のメモリの負担は、それぞれのコントロール・グループに分割されます。
+これは一見すると良いことのように思えます。
+しかし一方の cgroup が停止したとします。
+そうすると他方の cgroup におけるメモリ使用量が増大してしまうことになります。
+両者のメモリ・ページに対する使用コストは、もう共有されていないからです。
 
 
 .. CPU metrics: cpuacct.stat
