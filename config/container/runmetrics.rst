@@ -397,9 +397,14 @@ DNS の逆引きを避けるためのものですが、ここでの作業では�
 
 .. But for now, the best way is to check the metrics from within the containers. To accomplish this, you can run an executable from the host environment within the network namespace of a container using ip-netns magic.
 
-しかし今は、 *コンテナを通さなくても* 数値を確認できる良い方法があります、ホスト環境上で **ip netns の魔力** を使い、ネットワーク名前空間内のコンテナの情報を確認します。
+.. But for now, the best way is to check the metrics *from within the
+   containers*. To accomplish this, you can run an executable from the host
+   environment within the network namespace of a container using **ip-netns
+   magic**.
 
-.. The ip-netns exec command allows you to execute any program (present in the host system) within any network namespace visible to the current process. This means that your host can enter the network namespace of your containers, but your containers can’t access the host or other peer containers. Containers can interact with their sub-containers, though.
+今のところ、メトリクスを確認する一番の方法は、**そのコンテナ内部から** 確認することです。
+これを実現する方法は、**ip netns を巧みに** 利用します。
+これを使えば、コンテナのネットワーク名前空間内に、ホスト環境からモジュールを実行させることができます。
 
 ``ip netns exec`` コマンドは、あらゆるネットワーク名前空間内で、あらゆるプログラムを実行し（対象のホスト上の）、現在のプロセス状況を表示します。つまり、ホストがコンテナのネットワーク名前空間に入れますが、コンテナはホスト側にアクセスできないだけでなく、他のコンテナにもアクセスできません。次のサブコマンドを通すことで、コンテナが「見える」ようになります。
 
