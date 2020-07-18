@@ -485,9 +485,14 @@ DNS の逆引きを避けるためのものですが、ここでの作業では�
 詳細なメトリクスを収集するためのヒント
 =========================================
 
-.. Running a new process each time you want to update metrics is (relatively) expensive. If you want to collect metrics at high resolutions, and/or over a large number of containers (think 1000 containers on a single host), you do not want to fork a new process each time.
+.. Running a new process each time you want to update metrics is
+   (relatively) expensive. If you want to collect metrics at high
+   resolutions, and/or over a large number of containers (think 1000
+   containers on a single host), you do not want to fork a new process each
+   time.
 
-新しいプロセスごとに毎回メトリクスを更新するのは、（比較的）コストがかかります。メトリクスを高い解像度で収集したい場合、そして／または、大量のコンテナを扱う場合（１ホスト上に 1,000 コンテナと考えます）、毎回新しいプロセスをフォークしようとは思わないでしょう。
+新しいプロセスを起動するたびに、メトリクスを最新のものにすることは（比較的）面倒なことです。
+高解像度のメトリクスが必要な場合、しかもそれが非常に多くのコンテナ（1 ホスト上に 1000 個くらいのコンテナ）を扱わなければならないとしたら、毎回の新規プロセス起動は行う気になれません。
 
 .. Here is how to collect metrics from a single process. You need to write your metric collector in C (or any language that lets you do low-level system calls). You need to use a special system call, setns(), which lets the current process enter any arbitrary namespace. It requires, however, an open file descriptor to the namespace pseudo-file (remember: that’s the pseudo-file in /proc/<pid>/ns/net).
 
