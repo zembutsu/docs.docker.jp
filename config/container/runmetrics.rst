@@ -478,10 +478,12 @@ DNS の逆引きを避けるためのものですが、ここでの作業では�
    $ ln -sf /proc/$PID/ns/net /var/run/netns/$CID
    $ ip netns exec $CID netstat -i
 
-.. Tips for high-performance metric collection
+.. ## Tips for high-performance metric collection
 
-高性能なメトリクス収集用の Tip
-========================================
+.. _tips-for-high-performance-metric-collection:
+
+詳細なメトリクスを収集するためのヒント
+=========================================
 
 .. Running a new process each time you want to update metrics is (relatively) expensive. If you want to collect metrics at high resolutions, and/or over a large number of containers (think 1000 containers on a single host), you do not want to fork a new process each time.
 
