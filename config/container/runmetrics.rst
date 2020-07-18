@@ -453,9 +453,16 @@ DNS の逆引きを避けるためのものですが、ここでの作業では�
 - ``/var/run/netns/<somename>`` から ``/proc/<pid>/ns/net`` へのシンボリック・リンクを生成します。
 - ``ip netns exec <somename> ....`` を実行します。
 
-.. Please review Enumerating Cgroups to learn how to find the cgroup of a process running in the container of which you want to measure network usage. From there, you can examine the pseudo-file named tasks, which contains the PIDs that are in the control group (i.e., in the container). Pick any one of them.
+.. Review [Enumerate Cgroups](#enumerate-cgroups) for how to find
+   the cgroup of an in-container process whose network usage you want to measure.
+   From there, you can examine the pseudo-file named
+   `tasks`, which contains all the PIDs in the
+   cgroup (and thus, in the container). Pick any one of the PIDs.
 
-ネットワーク使用状況を調査したいコンテナがあり、そこで実行しているプロセスを見つける方法を学ぶには、 :ref:`enumerating-cgroups` を読み直してください。ここからは ``tasks`` と呼ばれる疑似ファイルを例に、コントロール・グループ（つまり、コンテナ）の中にどのような PID があるかを調べましょう。
+ネットワーク使用量の計測を行おうとしているコンテナ内部において、実行されているプロセスがどの cgroup に属しているかを探し出すには :ref:`enumerating-cgroups` を参照してください。
+その方法に従って、``tasks`` という名前の擬似ファイルを調べます。
+その擬似ファイル内には cgroup 内の（つまりコンテナ内の） PID がすべて示されています。
+そのうちの 1 つを取り出して扱います。
 
 .. Putting everything together, if the “short ID” of a container is held in the environment variable $CID, then you can do this:
 
