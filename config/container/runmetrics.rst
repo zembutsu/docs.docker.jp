@@ -440,9 +440,10 @@ DNS の逆引きを避けるためのものですが、ここでの作業では�
 
 ``ip netns exec mycontainer ...`` を実行したら、 ``/var/run/netns/mycontainer`` が疑似ファイルの１つとなるでしょう（シンボリック・リンクが使えます）。
 
-.. In other words, to execute a command within the network namespace of a container, we need to:
+.. In other words, to execute a command within the network namespace of a
+   container, we need to:
 
-言い換えれば、私たちが必要であれば、ネットワーク名前空間の中でコマンドを実行できるのです。
+言い換えると、コンテナのネットワーク名前空間内にてコマンドを実行するためには、以下のことが必要になります。
 
 ..    Find out the PID of any process within the container that we want to investigate;
     Create a symlink from /var/run/netns/<somename> to /proc/<thepid>/ns/net
