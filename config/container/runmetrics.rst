@@ -395,9 +395,14 @@ DNS の逆引きを避けるためのものですが、ここでの作業では�
 
 各コンテナは仮想イーサネット・インターフェースを持つため、そのインターフェースから直接 TX・RX カウンタを取得したくなるでしょう。各コンテナが ``vethKk8Zqi`` のような仮想イーサネット・インターフェースに割り当てられているのに気を付けてください。コンテナに対応している適切なインターフェースを見つけることは、残念ながら大変です。
 
-.. But for now, the best way is to check the metrics from within the containers. To accomplish this, you can run an executable from the host environment within the network namespace of a container using ip-netns magic.
+.. But for now, the best way is to check the metrics *from within the
+   containers*. To accomplish this, you can run an executable from the host
+   environment within the network namespace of a container using **ip-netns
+   magic**.
 
-しかし今は、 *コンテナを通さなくても* 数値を確認できる良い方法があります、ホスト環境上で **ip netns の魔力** を使い、ネットワーク名前空間内のコンテナの情報を確認します。
+今のところ、メトリクスを確認する一番の方法は、**そのコンテナ内部から** 確認することです。
+これを実現する方法は、**ip netns を巧みに** 利用します。
+これを使えば、コンテナのネットワーク名前空間内に、ホスト環境からモジュールを実行させることができます。
 
 .. The ip-netns exec command allows you to execute any program (present in the host system) within any network namespace visible to the current process. This means that your host can enter the network namespace of your containers, but your containers can’t access the host or other peer containers. Containers can interact with their sub-containers, though.
 
