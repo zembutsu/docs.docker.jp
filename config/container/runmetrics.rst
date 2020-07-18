@@ -445,13 +445,13 @@ DNS の逆引きを避けるためのものですが、ここでの作業では�
 
 言い換えると、コンテナのネットワーク名前空間内にてコマンドを実行するためには、以下のことが必要になります。
 
-..    Find out the PID of any process within the container that we want to investigate;
-    Create a symlink from /var/run/netns/<somename> to /proc/<thepid>/ns/net
-    Execute ip netns exec <somename> ....
+.. - Find out the PID of any process within the container that we want to investigate;
+   - Create a symlink from `/var/run/netns/<somename>` to `/proc/<thepid>/ns/net`
+   - Execute `ip netns exec <somename> ....`
 
-* 調査したいコンテナに入っている、あらゆる PID を探し出します
-* ``/var/run/netns/<何らかの名前>`` から ``/proc/<thepid>/ns/net`` へのシンボリック・リンクを作成します。
-* ``ip netns exec <何らかの名前> ....`` を実行します。
+- 調査したい対象のコンテナ内部に動作している、いずれかのプロセスの PID を調べます。
+- ``/var/run/netns/<somename>`` から ``/proc/<pid>/ns/net`` へのシンボリック・リンクを生成します。
+- ``ip netns exec <somename> ....`` を実行します。
 
 .. Please review Enumerating Cgroups to learn how to find the cgroup of a process running in the container of which you want to measure network usage. From there, you can examine the pseudo-file named tasks, which contains the PIDs that are in the control group (i.e., in the container). Pick any one of them.
 
