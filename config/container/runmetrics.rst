@@ -404,9 +404,17 @@ DNS の逆引きを避けるためのものですが、ここでの作業では�
 これを実現する方法は、**ip netns を巧みに** 利用します。
 これを使えば、コンテナのネットワーク名前空間内に、ホスト環境からモジュールを実行させることができます。
 
-.. The ip-netns exec command allows you to execute any program (present in the host system) within any network namespace visible to the current process. This means that your host can enter the network namespace of your containers, but your containers can’t access the host or other peer containers. Containers can interact with their sub-containers, though.
+.. The `ip-netns exec` command allows you to execute any
+   program (present in the host system) within any network namespace
+   visible to the current process. This means that your host can
+    enter the network namespace of your containers, but your containers
+   can't access the host or other peer containers.
+   Containers can interact with their sub-containers, though.
 
-``ip netns exec`` コマンドは、あらゆるネットワーク名前空間内で、あらゆるプログラムを実行し（対象のホスト上の）、現在のプロセス状況を表示します。つまり、ホストがコンテナのネットワーク名前空間に入れますが、コンテナはホスト側にアクセスできないだけでなく、他のコンテナにもアクセスできません。次のサブコマンドを通すことで、コンテナが「見える」ようになります。
+``ip-netns exec`` コマンドはどのようなネットワーク名前空間内においても、（ホスト内に存在する）プログラムなら何でも実行することができ、プロセスからその状況を確認することができます。
+つまりコンテナのネットワーク名前空間内に、ホストから入ることができるということです。
+ただしコンテナからは、ホストや別のコンテナにはアクセスできません。
+サブコンテナであれば、互いに通信することができます。
 
 .. The exact format of the command is:
 
