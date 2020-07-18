@@ -509,9 +509,16 @@ DNS の逆引きを避けるためのものですが、ここでの作業では�
 そこでは、その名前空間に応じた擬似ファイルへのファイル・ディスクリプターをオープンしておくことが必要とされます。
 （擬似ファイルは ``/proc/<pid>/ns/net`` にあることを思い出してください。）
 
-.. However, there is a catch: you must not keep this file descriptor open. If you do, when the last process of the control group exits, the namespace is not destroyed, and its network resources (like the virtual interface of the container) stays around forever (or until you close that file descriptor).
+.. However, there is a catch: you must not keep this file descriptor open.
+   If you do, when the last process of the control group exits, the
+   namespace is not destroyed, and its network resources (like the
+   virtual interface of the container) stays around forever (or until
+   you close that file descriptor).
 
-しかしながら、これはキャッチするだけです。ファイルをオープンのままにできません。つまり、そのままにしておけば、コントロール・グループが終了しても名前空間を破棄できず、ネットワーク・リソース（コンテナの仮想インターフェース等）が残り続けるでしょう（あるいはファイル・ディスクリプタを閉じるまで）。
+ただしこれは本当のことではありません。
+ファイル・ディスクリプターはオープンのままにしないでください。
+オープンにしたままであると、コントロール・グループの最後の 1 つとなるプロセスがある場合に、名前空間は削除されず、そのネットワーク・リソース（コンテナの仮想インターフェースなど）がずっと残り続けてしまいます。
+（あるいはそれは、ファイル・ディスクリプターを閉じるまで続きます。）
 
 .. The right approach would be to keep track of the first PID of each container, and re-open the namespace pseudo-file each time.
 
