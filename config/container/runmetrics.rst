@@ -494,9 +494,20 @@ DNS の逆引きを避けるためのものですが、ここでの作業では�
 新しいプロセスを起動するたびに、メトリクスを最新のものにすることは（比較的）面倒なことです。
 高解像度のメトリクスが必要な場合、しかもそれが非常に多くのコンテナ（1 ホスト上に 1000 個くらいのコンテナ）を扱わなければならないとしたら、毎回の新規プロセス起動は行う気になれません。
 
-.. Here is how to collect metrics from a single process. You need to write your metric collector in C (or any language that lets you do low-level system calls). You need to use a special system call, setns(), which lets the current process enter any arbitrary namespace. It requires, however, an open file descriptor to the namespace pseudo-file (remember: that’s the pseudo-file in /proc/<pid>/ns/net).
+.. Here is how to collect metrics from a single process. You need to
+   write your metric collector in C (or any language that lets you do
+   low-level system calls). You need to use a special system call,
+   `setns()`, which lets the current process enter any
+   arbitrary namespace. It requires, however, an open file descriptor to
+   the namespace pseudo-file (remember: that's the pseudo-file in
+   `/proc/<pid>/ns/net`).
 
-ここでは１つのプロセスでメトリクスを収集する方法を紹介します。メトリクス・コレクションをC言語で書く必要があります（あるいは、ローレベルなシステムコールが可能な言語を使います）。 ``setns()`` という特別なシステムコールを使えば、任意の名前空間上にある現在のプロセスを返します。必要があれば、他にも名前空間疑似ファイルのファイル・ディスクリプタ（file descriptor）を開けます（思い出してください：疑似ファイルは ``/proc/<pid>/ns/net`` です）。
+1 つのプロセスを作り出してメトリクスを収集する方法をここに示します。
+メトリクスを収集するプログラムを C 言語（あるいは低レベルのシステムコールを実行できる言語）で記述する必要があります。
+利用するのは特別なシステムコール ``setns()`` です。
+これはその時点でのプロセスを、任意の名前空間に参加させることができます。
+そこでは、その名前空間に応じた擬似ファイルへのファイル・ディスクリプターをオープンしておくことが必要とされます。
+（擬似ファイルは ``/proc/<pid>/ns/net`` にあることを思い出してください。）
 
 .. However, there is a catch: you must not keep this file descriptor open. If you do, when the last process of the control group exits, the namespace is not destroyed, and its network resources (like the virtual interface of the container) stays around forever (or until you close that file descriptor).
 
