@@ -533,9 +533,14 @@ DNS の逆引きを避けるためのものですが、ここでの作業では�
 
 時々、リアルタイムなメトリクス収集に気を配っていなくても、コンテナ終了時に、どれだけ CPU やメモリ等を使用したか知りたい時があるでしょう。
 
-.. Docker makes this difficult because it relies on lxc-start, which carefully cleans up after itself. It is usually easier to collect metrics at regular intervals, and this is the way the collectd LXC plugin works.
+.. Docker makes this difficult because it relies on `lxc-start`, which carefully
+   cleans up after itself. It is usually easier to collect metrics at regular
+   intervals, and this is the way the `collectd` LXC plugin works.
 
-Docker は ``lxc-start`` に依存しており、終了時は丁寧に自分自身をクリーンアップするため困難です。しかし、他にも方法があります。定期的にメトリクスを集める方法（例：毎分 collectd LXC プラグインを実行）が簡単です。
+Docker は ``lxc-start`` によって処理を行うため、リアルタイムなメトリクス収集は困難です。
+``lxc-start`` が自身の処理の後に、まわりをきれいにしてしまうためです。
+メトリクスの収集は、一定間隔をおいて取得するのが、より簡単な方法と言えます。
+``collectd`` にある LXC プラグインは、この方法により動作しています。
 
 .. But, if you’d still like to gather the stats when a container stops, here is how:
 
