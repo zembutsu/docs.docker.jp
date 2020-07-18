@@ -546,9 +546,18 @@ Docker は ``lxc-start`` によって処理を行うため、リアルタイム�
 
 しかし、停止したコンテナに関する情報を集めたい時もあるでしょう。次のようにします。
 
-.. For each container, start a collection process, and move it to the control groups that you want to monitor by writing its PID to the tasks file of the cgroup. The collection process should periodically re-read the tasks file to check if it’s the last process of the control group. (If you also want to collect network statistics as explained in the previous section, you should also move the process to the appropriate network namespace.)
+.. For each container, start a collection process, and move it to the
+   control groups that you want to monitor by writing its PID to the tasks
+   file of the cgroup. The collection process should periodically re-read
+   the tasks file to check if it's the last process of the control group.
+   (If you also want to collect network statistics as explained in the
+   previous section, you should also move the process to the appropriate
+   network namespace.)
 
-各コンテナで収集プロセスを開始し、コントロール・グループに移動します。これは対象の cgroup のタスクファイルに PID が書かれている場所を監視します。収集プロセスは定期的にタスクファイルを監視し、コントロール・グループの最新プロセスを確認します（先ほどのセクションで暑かったネットワーク統計情報も取得したい場合は、プロセスを適切なネットワーク名前空間にも移動します）。
+各コンテナにおいて情報収集用のプロセスを実行し、コントロール・グループに移動させます。
+このコントロール・グループは監視対象としたいものであり、cgroup のタスクファイル内に PID を記述しておきます。
+情報収集のプロセスは、定期的にそのタスクファイルを読み込み、そのプロセス自体が、コントロールグループ内で残っている最後のプロセスであるかどうかを確認します。
+（前節に示したように、ネットワーク統計情報も収集したい場合は、そのプロセスを適切なネットワーク名前空間に移動することも必要になります。）
 
 .. When the container exits, lxc-start attempts to delete the control groups. It fails, since the control group is still in use; but that’s fine. Your process should now detect that it is the only one remaining in the group. Now is the right time to collect all the metrics you need!
 
