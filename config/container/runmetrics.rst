@@ -464,9 +464,11 @@ DNS の逆引きを避けるためのものですが、ここでの作業では�
 その擬似ファイル内には cgroup 内の（つまりコンテナ内の） PID がすべて示されています。
 そのうちの 1 つを取り出して扱います。
 
-.. Putting everything together, if the “short ID” of a container is held in the environment variable $CID, then you can do this:
+.. Putting everything together, if the "short ID" of a container is held in
+   the environment variable `$CID`, then you can do this:
 
-これらを一度に実行したら、取得したコンテナの「ショートID」は変数 ``$CID`` に入れて処理されます。
+環境変数 ``$CID`` にはコンテナの「短めの ID」が設定されているとします。
+これまで説明してきたことをすべてまとめて、以下のコマンドとして実行します。
 
 .. code-block:: bash
 
