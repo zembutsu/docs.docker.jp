@@ -18,3 +18,4 @@
    bridge
    overlay
    host
+   macvlan
