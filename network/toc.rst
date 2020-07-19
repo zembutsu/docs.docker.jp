@@ -19,3 +19,4 @@
    overlay
    host
    macvlan
+   none
