@@ -192,7 +192,8 @@ Docker Desktop で Linux コンテナとイメージを保管するのは、Mac 
 
 .. When you reduce the maximum size, the current disk image file is deleted, and therefore, all containers and images will be lost.
 
-最大容量を変更すると、使用中のディスクイメージファイルは削除されます。つまり、全てのコンテナとイメージは失われます。
+最大サイズを減らした場合、現在のディスクイメージファイルは削除されます。
+つまりすべてのコンテナーとイメージを失うことになります。
 
 
 .. seealso:: 
