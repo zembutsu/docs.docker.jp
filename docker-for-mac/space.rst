@@ -37,9 +37,11 @@ Docker Desktop で Linux コンテナとイメージを保管するのは、Mac 
 
 .. Disk preferences
 
-.. The Advanced tab displays the location of the disk image. It also displays the maximum size of the disk image and the actual space the disk image is consuming. Note that other tools might display space usage of the file in terms of the maximum file size, and not the actual file size.
+.. The **Advanced** tab displays the location of the disk image. It also displays the maximum size of the disk image and the actual space the disk image is consuming. Note that other tools might display space usage of the file in terms of the maximum file size, and not the actual file size.
 
-**Advanced**  タブでディスクイメージの場所を表示します。また、ディスクイメージの最大サイズと、ディスクイメージが消費している実際のディスクサイズの両方表示します。なお他のツールでは、ファイルサイズが最大化する観点から、実際に使用しているファイルサイズではなく、ファイルが確保するサイズを表示している場合もあります。
+**Advanced** タブに、ディスクイメージの場所が表示されています。
+またディスクイメージの最大サイズや、現在消費しているディスクイメージ容量も表示されています。
+なおファイルの利用容量のことを最大ファイルサイズと表現しているツールがありますが、実際のファイルサイズとして表現していないから誤りです。
 
 
 .. If the file is too big
