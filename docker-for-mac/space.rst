@@ -131,7 +131,7 @@ Docker Desktop で Linux コンテナとイメージを保管するのは、Mac 
 
 .. This command removes all stopped containers, unused networks, dangling images, and build cache.
 
-このコマンドは停止済みコンテナ、使用していないネットワーク、派生イメージ、構築キャッシュをすべて削除します。
+このコマンドを実行すると、停止中のコンテナ、未使用のネットワーク、参照されていないイメージ、ビルド・キャッシュをすべて削除します。
 
 .. It might take a few minutes to reclaim space on the host depending on the format of the disk image file:
 
