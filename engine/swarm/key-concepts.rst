@@ -85,7 +85,7 @@ Docker swarm サービスに関連する概念の詳細に含まれるノード�
 
 .. Worker nodes receive and execute tasks dispatched from manager nodes. By default manager nodes are also worker nodes, but you can configure managers to be manager-only nodes. The agent notifies the manager node of the current state of its assigned tasks so the manager can maintain the desired state.
 
-**warker ノード（worker nodes）** は、 manager ノードから送られてきたタスクの受信と実行をします。デフォルトでは、 manager ノードは worker ノードも兼ねますが、manager 機能のみを持つノード（manager-only node）としても設定できます。各 worker ノード上で動作するエージェントは、ノードに割り当てられたタスクを manager ノードに通知します。 worker ノードは、自身に割り当てられているタスクに対する、現在の状態を manager ノードに対して通知しますので、manager が各 worker に対する期待状態を維持できます。
+**worker ノード（worker nodes）** は、 manager ノードから送られてきたタスクの受信と実行をします。デフォルトでは、 manager ノードは worker ノードも兼ねますが、manager 機能のみを持つノード（manager-only node）としても設定できます。各 worker ノード上で動作するエージェントは、ノードに割り当てられたタスクを manager ノードに通知します。 worker ノードは、自身に割り当てられているタスクに対する、現在の状態を manager ノードに対して通知しますので、manager が各 worker に対する期待状態を維持できます。
 
 .. Services and tasks
 
