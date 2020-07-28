@@ -87,9 +87,16 @@ Docker においては、バグに対する軽減対応がなされています�
   Docker ではコンテナの設定時にユーザ名前空間を利用します。
   しかしデフォルトの seccomp プロファイルを通じて、コンテナ内のプロセスにおいては、ネスト化した名前空間の生成ができなくなっており、そのぜい弱性は悪用できなくなっています。
 
-..     CVE-2014-0181, CVE-2015-3339: These are bugs that require the presence of a setuid binary. Docker disables setuid binaries inside containers via the NO_NEW_PRIVS process flag and other mechanisms.
+.. * [CVE-2014-0181](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0181),
+   [CVE-2015-3339](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3339):
+   These are bugs that require the presence of a setuid binary. Docker disables
+   setuid binaries inside containers via the `NO_NEW_PRIVS` process flag and
+   other mechanisms.
 
-* `CVE-2014-0181 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0181>`_  、 `CVE-2015-3339 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3339>`_ ：これらのバグには、 setuid バイナリの存在が必要です。Docker は ``NO_NEW_PRIVS`` プロセス・フラグと他の仕組みにより、 コンテナ内での setuid バイナリを無効化します。
+* `CVE-2014-0181 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0181>`_、
+  `CVE-2015-3339 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3339>`_：
+  これは setuid バイナリを必要とするバグです。
+  Docker ではコンテナ内において、``NO_NEW_PRIVS`` プロセスフラグとその他の仕組みによって setuid バイナリを無効にします。
 
 ..     CVE-2014-4699: A bug in ptrace() could allow privilege escalation. Docker disables ptrace() inside the container using apparmor, seccomp and by dropping CAP_PTRACE. Three times the layers of protection there!
 
