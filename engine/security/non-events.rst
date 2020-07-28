@@ -146,9 +146,19 @@ Docker においては、バグに対する軽減対応がなされています�
 
 * `CVE-2016-2383 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2383>`_ ： eBPF のバグです。特別なカーネル内の DSL が、seccomp ファイルかのように装うことで、カーネルメモリを任意に読み込み可能にします。コンテナ内で（皮肉にも） seccomp を使ってブロックされます。
 
-..     CVE-2016-3134, 4997, 4998: A bug in setsockopt with IPT_SO_SET_REPLACE, ARPT_SO_SET_REPLACE, and ARPT_SO_SET_REPLACE causing memory corruption / local privilege escalation. These arguments are blocked by CAP_NET_ADMIN, which Docker does not allow by default.
+.. * [CVE-2016-3134](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-3134),
+   [4997](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-4997),
+   [4998](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-4998):
+   A bug in setsockopt with `IPT_SO_SET_REPLACE`, `ARPT_SO_SET_REPLACE`,  and
+   `ARPT_SO_SET_REPLACE` causing memory corruption / local privilege escalation.
+   These arguments are blocked by `CAP_NET_ADMIN`, which Docker does not allow by
+   default.
 
-* `CVE-2016-3134 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-3134>`_ 、 `4997 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-4997>`_ 、 `4998 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-4998>`_  ： setsockopt の ``IPT_SO_SET_REPLACE`` 、 ``ARPT_SO_SET_REPLACE`` 、 ``ARPT_SO_SET_REPLACE`` にあるバグで、メモリ不正やローカル権限の昇格を引き起こす可能性があります。デフォルトの Docker は、これらの引数を ``CAP_NET_ADMIN`` によってブロックします。
+* `CVE-2016-3134 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-3134>`_、
+  `4997 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-4997>`_、
+  `4998 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-4998>`_：
+  setsockopt の ``IPT_SO_SET_REPLACE``、``ARPT_SO_SET_REPLACE``、``ARPT_SO_SET_REPLACE`` を利用することで、メモリ破壊、ローカル権限昇格を可能にしてしまうバグです。
+  これらの引数は ``CAP_NET_ADMIN`` によってブロックでき、Docker ではデフォルトで許可していません。
 
 .. Bugs not mitigated:
 
