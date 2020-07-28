@@ -176,9 +176,20 @@ Docker においては、バグに対する軽減対応がなされています�
   Docker コンテナ内での悪用が可能です。
   現時点においてシステムコール ``modify_ldt()`` が seccomp を使ってもブロックできないためです。
 
-..     CVE-2016-5195: A race condition was found in the way the Linux kernel’s memory subsystem handled the copy-on-write (COW) breakage of private read-only memory mappings, which allowed unprivileged local users to gain write access to read-only memory. Also known as “dirty COW.” Partial mitigations: on some operating systems this vulnerability is mitigated by the combination of seccomp filtering of ptrace and the fact that /proc/self/mem is read-only.
+.. * [CVE-2016-5195](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-5195):
+   A race condition was found in the way the Linux kernel's memory subsystem
+   handled the copy-on-write (COW) breakage of private read-only memory mappings,
+   which allowed unprivileged local users to gain write access to read-only memory.
+   Also known as "dirty COW."
+   *Partial mitigations:* on some operating systems this vulnerability is mitigated
+   by the combination of seccomp filtering of `ptrace` and the fact that `/proc/self/mem` is read-only.
 
-* `CVE-2016-5195 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-5195>`_ ： 非常に稀なケースが発見されました。Linux カーネルのメモリ・サブシステムが扱うコピーオンライト（COW）が、プライベートな読み込み専用のメモリ・マッピングを破損します。これにより、権限のないローカルユーザが、読み込み専用のメモリに対する書き込みの権限を得られるというものです。これはまた「dirty COW」とも知られています。部分的な対処：いくつかのオペレーティングシステムでは、この脆弱性を ``ptrace`` の seccomp フィルタリングと、実際には ``/proc/self/mem`` を読み込み専用にすることを組み合わせ対処しています。
+* `CVE-2016-5195 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-5195>`_：
+  Linux カーネルのメモリ・サブシステムがコピーオンライト（copy-on-write; COW）を扱う際に、競合状態が発生し、プライベートな読み込み専用メモリのマッピングが破損してしまうことがわかりました。
+  この際にローカルの非特権ユーザが、読み込み専用メモリへの書き込み権限を有してしまうことが起こります。
+  これは 「Dirty COW」とも呼ばれます。
+  **部分的なバグ軽減:** オペレーティング・システムの中には、このぜい弱性を軽減できているものがあります。
+  そこでは seccomp の ``ptrace`` に対するフィルタリングと、``/proc/self/mem`` が読み込み専用であることを利用して対処しています。
 
 .. seealso:: 
 
