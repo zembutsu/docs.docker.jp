@@ -108,9 +108,13 @@ Docker においては、バグに対する軽減対応がなされています�
   Docker では、AppArmor、seccomp、そして ``CAP_PTRACE`` の削除により、コンテナ内での ``ptrace()`` を無効にしています。
   ここでは三重の防御が行われているわけです。
 
-..     CVE-2014-9529: A series of crafted keyctl() calls could cause kernel DoS / memory corruption. Docker disables keyctl() inside containers using seccomp.
+.. * [CVE-2014-9529](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-9529):
+   A series of crafted `keyctl()` calls could cause kernel DoS / memory corruption.
+   Docker disables `keyctl()` inside containers using seccomp.
 
-* `CVE-2014-9529 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-9529>`_ ： 連続する ``keyctl()`` コールの作成により、カーネルの DoS やメモリ不正を引き起こす可能性があります。Docker は seccomp を使い、コンテナ内での ``keyctl()`` を無効化します。
+* `CVE-2014-9529 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-9529>`_：
+  巧妙に仕掛けられた ``keyctl()`` 呼び出しを繰り返すことによって、カーネル DoS 攻撃やメモリ破壊を行います。
+  Docker では seccomp を利用して、コンテナ内部での ``keyctl()`` を無効にしています。
 
 ..     CVE-2015-3214, 4036: These are bugs in common virtualization drivers which could allow a guest OS user to execute code on the host OS. Exploiting them requires access to virtualization devices in the guest. Docker hides direct access to these devices when run without --privileged. Interestingly, these seem to be cases where containers are “more secure” than a VM, going against common wisdom that VMs are “more secure” than containers.
 
