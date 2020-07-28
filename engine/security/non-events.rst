@@ -43,7 +43,7 @@ Docker においては、バグに対する軽減対応がなされています�
 
 .. Bugs mitigated:
 
-バグへの対処済み（Bugs mitigated）：
+バグ（軽減対応あり）
 
 ..    CVE-2013-1956, 1957, 1958, 1959, 1979, CVE-2014-4014, 5206, 5207, 7970, 7975, CVE-2015-2925, 8543, CVE-2016-3134, 3135, etc.: The introduction of unprivileged user namespaces lead to a huge increase in the attack surface available to unprivileged users by giving such users legitimate access to previously root-only system calls like mount(). All of these CVEs are examples of security vulnerabilities due to introduction of user namespaces. Docker can use user namespaces to set up containers, but then disallows the process inside the container from creating its own nested namespaces through the default seccomp profile, rendering these vulnerabilities unexploitable.
 
