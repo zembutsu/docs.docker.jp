@@ -160,9 +160,9 @@ Docker においては、バグに対する軽減対応がなされています�
   setsockopt の ``IPT_SO_SET_REPLACE``、``ARPT_SO_SET_REPLACE``、``ARPT_SO_SET_REPLACE`` を利用することで、メモリ破壊、ローカル権限昇格を可能にしてしまうバグです。
   これらの引数は ``CAP_NET_ADMIN`` によってブロックでき、Docker ではデフォルトで許可していません。
 
-.. Bugs not mitigated:
+.. Bugs *not* mitigated:
 
-バグがあるものの、未対処（bugs not mitigated）：
+バグ（対応 **なし**）
 
 ..     CVE-2015-3290, 5157: Bugs in the kernel’s non-maskable interrupt handling allowed privilege escalation. Can be exploited in Docker containers because the modify_ldt() system call is not currently blocked using seccomp.
 
