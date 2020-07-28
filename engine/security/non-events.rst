@@ -45,9 +45,47 @@ Docker においては、バグに対する軽減対応がなされています�
 
 バグ（軽減対応あり）
 
-..    CVE-2013-1956, 1957, 1958, 1959, 1979, CVE-2014-4014, 5206, 5207, 7970, 7975, CVE-2015-2925, 8543, CVE-2016-3134, 3135, etc.: The introduction of unprivileged user namespaces lead to a huge increase in the attack surface available to unprivileged users by giving such users legitimate access to previously root-only system calls like mount(). All of these CVEs are examples of security vulnerabilities due to introduction of user namespaces. Docker can use user namespaces to set up containers, but then disallows the process inside the container from creating its own nested namespaces through the default seccomp profile, rendering these vulnerabilities unexploitable.
+.. * [CVE-2013-1956](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-1956),
+   [1957](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-1957),
+   [1958](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-1958),
+   [1959](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-1959),
+   [1979](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-1979),
+   [CVE-2014-4014](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-4014),
+   [5206](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-5206),
+   [5207](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-5207),
+   [7970](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-7970),
+   [7975](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-7975),
+   [CVE-2015-2925](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-2925),
+   [8543](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-8543),
+   [CVE-2016-3134](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-3134),
+   [3135](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-3135), etc.:
+   The introduction of unprivileged user namespaces lead to a huge increase in the
+   attack surface available to unprivileged users by giving such users legitimate
+   access to previously root-only system calls like `mount()`. All of these CVEs
+   are examples of security vulnerabilities due to introduction of user namespaces.
+   Docker can use user namespaces to set up containers, but then disallows the
+   process inside the container from creating its own nested namespaces through the
+   default seccomp profile, rendering these vulnerabilities unexploitable.
 
-* `CVE-2013-1956 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-1956>`_ 、 `1957 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-1957>`_ 、 `1958 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-1958>`_ 、 `1959 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-1959>`_ 、 `1979 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-1979>`_ 、 `CVE-2014-4014 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-4014>`_ 、 `5206 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-5206>`_ 、 `5207 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-5207>`_ 、 `7970 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-7970>`_ 、 `7975 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-7975>`_ 、 `CVE-2015-2925 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-2925>`_ 、 `8543 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-8543>`_ 、 `CVE-2016-3134  <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-3134>`_ 、 `3135 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-3135>`_ 、  等 ： 特権のないユーザ名前区間（unprivileged user namespaces）の導入は、特権のないユーザからの攻撃機会を大いに増加させました。たとえば、 ``mount()`` のように、以前は root のみのシステムコールに対し、権限のないユーザの利用を正当化するものです。これら全てのセキュリティ脆弱性例は、ユーザ名前空間（user namespaces）の導入に起因しています。Docker はユーザ名前空間を使ってコンテナをセットアップしますが、デフォルトの seccomp プロファイルでは、コンテナ内のプロセスに対しては、自身からネストする名前空間の作成を許可しませんので、これら脆弱性は利用されていないと解釈しています。
+* `CVE-2013-1956 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-1956>`_、
+  `1957 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-1957>`_、
+  `1958 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-1958>`_、
+  `1959 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-1959>`_、
+  `1979 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-1979>`_、
+  `CVE-2014-4014 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-4014>`_、
+  `5206 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-5206>`_、
+  `5207 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-5207>`_、
+  `7970 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-7970>`_、
+  `7975 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-7975>`_、
+  `CVE-2015-2925 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-2925>`_、
+  `8543 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-8543>`_、
+  `CVE-2016-3134 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-3134>`_、
+  `3135 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-3135>`_ など:
+  非特権ユーザによる名前空間が導入されたことにより、非特権ユーザでもアクセス可能な場所への攻撃が大幅に増えることになりました。
+  ``mount()`` のように従来なら root 権限でしかアクセスできなかったシステムコールが、非特権ユーザであっても正当にアクセスできるようになってしまったからです。
+  ここにあげた CVE はすべて、ユーザ名前空間の導入にともなうセキュリティぜい弱性の例です。
+  Docker ではコンテナの設定時にユーザ名前空間を利用します。
+  しかしデフォルトの seccomp プロファイルを通じて、コンテナ内のプロセスにおいては、ネスト化した名前空間の生成ができなくなっており、そのぜい弱性は悪用できなくなっています。
 
 ..     CVE-2014-0181, CVE-2015-3339: These are bugs that require the presence of a setuid binary. Docker disables setuid binaries inside containers via the NO_NEW_PRIVS process flag and other mechanisms.
 
