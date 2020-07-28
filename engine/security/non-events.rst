@@ -116,9 +116,22 @@ Docker においては、バグに対する軽減対応がなされています�
   巧妙に仕掛けられた ``keyctl()`` 呼び出しを繰り返すことによって、カーネル DoS 攻撃やメモリ破壊を行います。
   Docker では seccomp を利用して、コンテナ内部での ``keyctl()`` を無効にしています。
 
-..     CVE-2015-3214, 4036: These are bugs in common virtualization drivers which could allow a guest OS user to execute code on the host OS. Exploiting them requires access to virtualization devices in the guest. Docker hides direct access to these devices when run without --privileged. Interestingly, these seem to be cases where containers are “more secure” than a VM, going against common wisdom that VMs are “more secure” than containers.
+.. * [CVE-2015-3214](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3214),
+   [4036](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4036): These are
+   bugs in common virtualization drivers which could allow a guest OS user to
+   execute code on the host OS. Exploiting them requires access to virtualization
+   devices in the guest. Docker hides direct access to these devices when run
+   without `--privileged`. Interestingly, these seem to be cases where containers
+   are "more secure" than a VM, going against common wisdom that VMs are
+   "more secure" than containers.
 
-* `CVE-2015-3214 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3214>`_  、 `4036 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4036>`_ ： これらのバグは共通の仮想化ドライバによるもので、ゲスト OS のユーザがホスト上のコードを実行できる可能性があります。これら不正な攻撃のためには、ゲスト内の仮想化デバイスにアクセスできる必要があります。Docker は、 ``--privileged`` を使って実行しなければ 、これらデバイスへの直接アクセスを隠すようにします。興味深いことに、場合によってはコンテナが仮想マシンよりも「より安全」になるのですが、これは、共通の優れた認識とは相反します。仮想マシンがコンテナよりも「より安全」です。
+* `CVE-2015-3214 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3214>`_、
+  `4036 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4036>`_：
+  仮想ドライバによく見られるバグであり、ゲスト OS のユーザがホスト OS 上のコードを実行できてしまうものです。
+  これを悪用するには、ゲスト内の仮想デバイスにアクセスする必要があります。
+  Docker では ``--privileged`` の指定がない場合は、そういったデバイスへの直接アクセスを隠蔽します。
+  ここがおもしろいところで、このケースが、VM よりもコンテナの方が「より安全」と言えるかもしれない点です。
+  つまりコンテナよりも VM の方が「より安全」とされる常識に反している例です。
 
 ..     CVE-2016-0728: Use-after-free caused by crafted keyctl() calls could lead to privilege escalation. Docker disables keyctl() inside containers using the default seccomp profile.
 
