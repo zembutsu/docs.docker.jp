@@ -29,9 +29,17 @@ Docker においては、バグに対する軽減対応がなされています�
 もっとも Docker コンテナにおいて起動するプロセスでは、たとえバグ修正されなくても、元からぜい弱性があるとは言えません。
 ここではコンテナの起動にあたって、ケーパビリティは追加せず、あるいは ``--privileged`` としては起動していないことを前提とします。
 
-.. The list below is not even remotely complete. Rather, it is a sample of the few bugs we’ve actually noticed to have attracted security review and publicly disclosed vulnerabilities. In all likelihood, the bugs that haven’t been reported far outnumber those that have. Luckily, since Docker’s approach to secure by default through apparmor, seccomp, and dropping capabilities, it likely mitigates unknown bugs just as well as it does known ones.
+.. The list below is not even remotely complete. Rather, it is a sample of the few
+   bugs we've actually noticed to have attracted security review and publicly
+   disclosed vulnerabilities. In all likelihood, the bugs that haven't been
+   reported far outnumber those that have. Luckily, since Docker's approach to
+   secure by default through apparmor, seccomp, and dropping capabilities, it
+   likely mitigates unknown bugs just as well as it does known ones.
 
-以下のリストは完全なものには至っていません。むしろ、いくつかのバグはサンプルであり、私たちが実際にセキュリティ・レビューに対応し、公開された脆弱性に対し、警告を発したものです。すべての可能性やバグは、この一覧にあるよりも遙かに多くの報告があります。幸いにも、Docker のアプローチはデフォルトでセキュア（安全）であるべきというもので、apparmor、seccomp を通したり、ケーパビリティを落とすのもあります。これにより、既に知られているバグだけでなく、未知のバグに対する問題も緩和するでしょう。
+以下は、バグ一覧とはとても言えないものです。
+むしろこれは、ほんのわずかなバグの例にすぎず、セキュリティ・レビューやぜい弱性の公開を行うに至ったことから、バグとして気づいたものでしかありません。
+おそらく報告されているバグよりも、報告されていないバグの方がはるかに多いはずです。
+ただし Docker が採用するセキュアな手法は、デフォルトにおいて AppArmor や Seccomp の利用、そして限定的なケーパビリティの利用を行っているため、既知のバグはもちろん、未知のバグを軽減できる可能性があります。
 
 .. Bugs mitigated:
 
