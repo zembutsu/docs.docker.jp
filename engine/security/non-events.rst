@@ -164,9 +164,17 @@ Docker においては、バグに対する軽減対応がなされています�
 
 バグ（対応 **なし**）
 
-..     CVE-2015-3290, 5157: Bugs in the kernel’s non-maskable interrupt handling allowed privilege escalation. Can be exploited in Docker containers because the modify_ldt() system call is not currently blocked using seccomp.
+.. * [CVE-2015-3290](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3290),
+   [5157](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-5157): Bugs in
+   the kernel's non-maskable interrupt handling allowed privilege escalation.
+   Can be exploited in Docker containers because the `modify_ldt()` system call is
+   not currently blocked using seccomp.
 
-* `CVE-2015-3290 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3290>`_  、 `5157 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-5157>`_ ：カーネルの non-masking interrupt handling のバグによるもので、権限の昇格を引き起こします。Docker コンテナでは、現在、 seccomp を使って ``modify_ldt()`` システムコールはブロックしますが、不正な攻撃を受ける可能性があります。
+* `CVE-2015-3290 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3290>`_、
+  `5157 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-5157>`_：
+  カーネルのノンマスカブル割り込み処理におけるバグであり、権限昇格を可能にします。
+  Docker コンテナ内での悪用が可能です。
+  現時点においてシステムコール ``modify_ldt()`` が seccomp を使ってもブロックできないためです。
 
 ..     CVE-2016-5195: A race condition was found in the way the Linux kernel’s memory subsystem handled the copy-on-write (COW) breakage of private read-only memory mappings, which allowed unprivileged local users to gain write access to read-only memory. Also known as “dirty COW.” Partial mitigations: on some operating systems this vulnerability is mitigated by the combination of seccomp filtering of ptrace and the fact that /proc/self/mem is read-only.
 
