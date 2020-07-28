@@ -98,9 +98,15 @@ Docker においては、バグに対する軽減対応がなされています�
   これは setuid バイナリを必要とするバグです。
   Docker ではコンテナ内において、``NO_NEW_PRIVS`` プロセスフラグとその他の仕組みによって setuid バイナリを無効にします。
 
-..     CVE-2014-4699: A bug in ptrace() could allow privilege escalation. Docker disables ptrace() inside the container using apparmor, seccomp and by dropping CAP_PTRACE. Three times the layers of protection there!
+.. * [CVE-2014-4699](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-4699):
+   A bug in `ptrace()` could allow privilege escalation. Docker disables `ptrace()`
+   inside the container using apparmor, seccomp and by dropping `CAP_PTRACE`.
+   Three times the layers of protection there!
 
-* `CVE-2014-4699 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-4699>`_ ： ``ptrace()`` によるバグにより、権限のエスカレーションを引き起こす可能性があります。Docker は apparmor、seccomp を使い、 ``CAP_PTRACE`` で権限を落とすので、コンテナ内での ``ptrace()`` を無効化します。
+* `CVE-2014-4699 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-4699>`_：
+  ``ptrace()`` にあるバグであり、権限昇格を許してしまうものです。
+  Docker では、AppArmor、seccomp、そして ``CAP_PTRACE`` の削除により、コンテナ内での ``ptrace()`` を無効にしています。
+  ここでは三重の防御が行われているわけです。
 
 ..     CVE-2014-9529: A series of crafted keyctl() calls could cause kernel DoS / memory corruption. Docker disables keyctl() inside containers using seccomp.
 
