@@ -19,9 +19,15 @@
    .. contents:: 
        :depth: 3
 
-.. This page lists security vulnerabilities which Docker mitigated, such that processes run in Docker containers were never vulnerable to the bug—even before it was fixed. This assumes containers are run without adding extra capabilities or not run as --privileged.
+.. This page lists security vulnerabilities which Docker mitigated, such that
+   processes run in Docker containers were never vulnerable to the bug—even before
+   it was fixed. This assumes containers are run without adding extra capabilities
+   or not run as `--privileged`.
 
-このページは Docker に影響を与えるセキュリティ脆弱性の一覧です。この中には、 Docker コンテナとして実行するプロセスがバグによる影響を受けていなくても、また、たとえそれが修正されたものも含みます。前提として、コンテナの実行にあたっては、外部のケーパビリティ（capability）を追加しておらず、また、 ``--privileged`` としても実行してないものとします。
+このページではセキュリティぜい弱性一覧を示します。
+Docker においては、バグに対する軽減対応がなされています。
+もっとも Docker コンテナにおいて起動するプロセスでは、たとえバグ修正されなくても、元からぜい弱性があるとは言えません。
+ここではコンテナの起動にあたって、ケーパビリティは追加せず、あるいは ``--privileged`` としては起動していないことを前提とします。
 
 .. The list below is not even remotely complete. Rather, it is a sample of the few bugs we’ve actually noticed to have attracted security review and publicly disclosed vulnerabilities. In all likelihood, the bugs that haven’t been reported far outnumber those that have. Luckily, since Docker’s approach to secure by default through apparmor, seccomp, and dropping capabilities, it likely mitigates unknown bugs just as well as it does known ones.
 
