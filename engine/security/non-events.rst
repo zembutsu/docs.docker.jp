@@ -133,9 +133,14 @@ Docker においては、バグに対する軽減対応がなされています�
   ここがおもしろいところで、このケースが、VM よりもコンテナの方が「より安全」と言えるかもしれない点です。
   つまりコンテナよりも VM の方が「より安全」とされる常識に反している例です。
 
-..     CVE-2016-0728: Use-after-free caused by crafted keyctl() calls could lead to privilege escalation. Docker disables keyctl() inside containers using the default seccomp profile.
+.. * [CVE-2016-0728](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-0728):
+   Use-after-free caused by crafted `keyctl()` calls could lead to privilege
+   escalation. Docker disables `keyctl()` inside containers using the default
+   seccomp profile.
 
-* `CVE-2016-0728 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-0728>`_ ： ``keyctl()`` コールによって作成される use-after-free（使ったあとに解放）により、権限の昇格を引き起こす可能性があります。Docker はデフォルトの seccomp プロファイルを使い、コンテナ内での ``keyctl()`` を無効化します。
+* `CVE-2016-0728 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-0728>`_：
+  巧妙な ``keyctl()`` 呼び出しによる開放メモリへの use-after-free 攻撃により、権限昇格を可能とします。
+  Docker ではデフォルトの seccomp プロファイルの利用により、コンテナ内部での ``keyctl()`` を無効にしています。
 
 ..     CVE-2016-2383: A bug in eBPF -- the special in-kernel DSL used to express things like seccomp filters -- allowed arbitrary reads of kernel memory. The bpf() system call is blocked inside Docker containers using (ironically) seccomp.
 
