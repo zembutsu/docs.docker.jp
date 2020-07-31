@@ -6,12 +6,12 @@
 .. Commits on May 2, 2020 4169b468f4a742ce6f60daba0613b9dfda267b3d
 .. ---------------------------------------------------------------------------
 
-.. Runtime metrics
+.. title: Runtime metrics
 
 .. _runtime-metrics:
 
 =======================================
-ランタイム・メトリクス（監視）
+ランタイム・メトリクス
 =======================================
 
 .. sidebar:: 目次
@@ -19,9 +19,20 @@
    .. contents:: 
        :depth: 3
        :local:
-.. You can use the docker stats command to live stream a container’s runtime metrics. The command supports CPU, memory usage, memory limit, and network IO metrics.
 
-コンテナのラインタイム・メトリクス（訳注；コンテナ実行時の、様々なリソース指標や数値データ）をライブ（生）で表示するには、 ``docker stats`` コマンドを使います。コマンドがサポートしているのは、CPU 、メモリ使用率、メモリ上限、ネットワーク I/O のメトリクスです。
+.. ## Docker stats
+
+.. _docker-stats:
+
+docker stats
+==============================
+
+.. You can use the `docker stats` command to live stream a container's
+   runtime metrics. The command supports CPU, memory usage, memory limit,
+   and network IO metrics.
+
+``docker stats`` コマンドを使うと、コンテナの実行メトリクスからの出力を順次得ることができます。
+このコマンドは、CPU、メモリ使用量、メモリ上限、ネットワーク I/O に対するメトリクスをサポートしています。
 
 .. The following is a sample output from the docker stats command
 
@@ -43,17 +54,36 @@
 コントロール・グループ
 ==============================
 
-.. Linux Containers rely on control groups which not only track groups of processes, but also expose metrics about CPU, memory, and block I/O usage. You can access those metrics and obtain network usage metrics as well. This is relevant for “pure” LXC containers, as well as for Docker containers.
+.. Linux Containers rely on [control groups](
+   https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt)
+   which not only track groups of processes, but also expose metrics about
+   CPU, memory, and block I/O usage. You can access those metrics and
+   obtain network usage metrics as well. This is relevant for "pure" LXC
+   containers, as well as for Docker containers.
 
-Linux はプロセス・グループの追跡だけでなく、CPU・メモリ・ブロック I/O のメトリクス表示は、 `コントロール・グループ <https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt>`_ に依存しています。これらのメトリクスやネットワーク使用量のメトリクスも同様に取得できます。これらは「純粋な」 LXC コンテナ用であり、Docker コンテナ用でもあります。
+Linux のコンテナは `コントロール・グループ <https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt>`_ に依存しています。
+コントロール・グループは、単に複数のプロセスを追跡するだけでなく、CPU、メモリ、ブロック I/O 使用量に関するメトリクスを提供します。
+そういったメトリクスがアクセス可能であり、同様にネットワーク使用量のメトリクスも得ることができます。
+これは「純粋な」LXC コンテナに関連しており、Docker のコンテナにも関連します。
 
-.. Control groups are exposed through a pseudo-filesystem. In recent distros, you should find this filesystem under /sys/fs/cgroup. Under that directory, you will see multiple sub-directories, called devices, freezer, blkio, etc.; each sub-directory actually corresponds to a different cgroup hierarchy.
+.. Control groups are exposed through a pseudo-filesystem. In recent
+   distros, you should find this filesystem under `/sys/fs/cgroup`. Under
+   that directory, you see multiple sub-directories, called devices,
+   freezer, blkio, etc.; each sub-directory actually corresponds to a different
+   cgroup hierarchy.
 
-コントロール・グループは疑似ファイルシステム（pseudo-filesystem）を通して公開されています。最近のディストリビューションでは、 ``/sys/fs/cgroup`` 以下で見つかるでしょう。このディレクトリの下に、device・freezer・blkio 等の複数のサブディレクトリがあります。各サブディレクトリは、それぞれ異なった cgroup 階層に相当します。
+コントロール・グループは擬似ファイルシステムを通じて提供されます。
+最近のディストリビューションでは、このファイルシステムは ``/sys/fs/cgroup`` にあります。
+このディレクトリの下には devices、freezer、blkio などのサブディレクトリが複数あります。
+これらのサブディレクトリが、独特の cgroup 階層を構成しています。
 
-.. On older systems, the control groups might be mounted on /cgroup, without distinct hierarchies. In that case, instead of seeing the sub-directories, you see a bunch of files in that directory, and possibly some directories corresponding to existing containers.
+.. On older systems, the control groups might be mounted on `/cgroup`, without
+   distinct hierarchies. In that case, instead of seeing the sub-directories,
+   you see a bunch of files in that directory, and possibly some directories
+   corresponding to existing containers.
 
-古いシステムでは、コントロール・グループが ``/cgroup`` にマウントされており、その下に明確な階層が無いかもしれません。そのような場合、サブディレクトリが見える代わりに、たくさんのファイルがあります。あるいは、存在しているコンテナに相当するディレクトリがあるかもしれません。
+かつてのシステムでは、コントロール・グループが ``/cgroup`` にマウントされていて、わかりやすい階層構造にはなっていませんでした。
+その場合、サブディレクトリそのものを確認していくのではなく、サブディレクトリ内にある数多くのファイルを見渡して、そのディレクトリが既存のコンテナーに対応するものであろう、と確認していくしかありません。
 
 .. To figure out where your control groups are mounted, you can run:
 
@@ -63,29 +93,42 @@ Linux はプロセス・グループの追跡だけでなく、CPU・メモリ�
 
    $ grep cgroup /proc/mounts
 
-.. Enumerating cgroups
+.. ### Enumerate cgroups
 
 .. _enumerating-cgroups:
 
-コントロール・グループの列挙
+cgroups の確認
 ========================================
 
-.. You can look into /proc/cgroups to see the different control group subsystems known to the system, the hierarchy they belong to, and how many groups they contain.
+.. You can look into `/proc/cgroups` to see the different control group subsystems
+   known to the system, the hierarchy they belong to, and how many groups they contain.
 
-``/proc/cgroups`` を調べれば、システム上の様々に異なるコントロール・グループのサブシステムが見えます。それぞれに階層がサブシステムに相当しており、多くのグループが見えるでしょう。
+``/proc/cgroups`` を覗いてみるとわかりますが、システムが利用するコントロール・グループのサブシステムには実にさまざまなものがあり、それが階層化されていて、数多くのグループが含まれているのがわかります。
 
-.. You can also look at /proc/<pid>/cgroup to see which control groups a process belongs to. The control group is shown as a path relative to the root of the hierarchy mountpoint. / means the process has not been assigned to a group, while /lxc/pumpkin indicates that the process is a member of a container named pumpkin.
+.. You can also look at `/proc/<pid>/cgroup` to see which control groups a process
+   belongs to. The control group is shown as a path relative to the root of
+   the hierarchy mountpoint. `/` means the process has not been assigned to a
+   group, while `/lxc/pumpkin` indicates that the process is a member of a
+   container named `pumpkin`.
 
-コントロール・グループのプロセスに属する情報は、 ``/proc/<pic>/cgroup`` からも確認できます。コントロール・グループは階層のマウントポイントからの相対パス上として表示されます。例えば、 ``/`` が意味するのは「対象のプロセスは特定のグループに割り当てられていない」であり、 ``/lxc/pumpkin`` が意味するのはプロセスが ``pumpkin`` と呼ばれるコンテナのメンバであると考えられます。
+また ``/proc/<pid>/cgroup`` を確認してみれば、1 つのプロセスがどのコントロール・グループに属しているかがわかります。
+そのときのコントロール・グループは、階層構造のルートとなるマウント・ポイントからの相対パスで表わされます。
+``/`` が表示されていれば、そのプロセスにはグループが割り当てられていません。
+一方 ``/lxc/pumpkin`` といった表示になっていれば、そのプロセスは ``pumpkin`` という名のコンテナのメンバであることがわかります。
 
 .. Finding the cgroup for a given container
 
 特定のコンテナに割り当てられた cgroup の確認
 ============================================
 
-.. For each container, one cgroup is created in each hierarchy. On older systems with older versions of the LXC userland tools, the name of the cgroup is the name of the container. With more recent versions of the LXC tools, the cgroup is lxc/<container_name>.
+.. For each container, one cgroup is created in each hierarchy. On
+   older systems with older versions of the LXC userland tools, the name of
+   the cgroup is the name of the container. With more recent versions
+   of the LXC tools, the cgroup is `lxc/<container_name>.`
 
-コンテナごとに、それぞれの階層に cgroup が作成されます。古いシステム上のバージョンが古い LXC userland tools の場合、cgroups の名前はコンテナ名になっています。より最近のバージョンの LXC ツールであれば、cgroup は ``lxc/<コンテナ名>`` になります。
+各コンテナでは、各階層内に 1 つの cgroup が生成されます。
+かつてのシステムにおいて、ユーザーランド・ツール LXC の古い版を利用している場合、cgroup 名はそのままコンテナ名になっています。
+より新しい LXC ツールでの cgroup 名は ``lxc/<コンテナー名>`` となります。
 
 .. For Docker containers using cgroups, the container name will be the full ID or long ID of the container. If a container shows up as ae836c95b4c3 in docker ps, its long ID might be something like ae836c95b4c3c9e9179e0e91015512da89fdec91612f63cebae57df9a5444c79. You can look it up with docker inspect or docker ps --no-trunc.
 
@@ -152,29 +195,37 @@ cgroups からのメトリクス：メモリ、CPU、ブロックI/O
 
 前半（ ``total_`` が先頭に無い ）は、cgroup 中にあるプロセス関連の統計情報を表示します。サブグループは除外しています。後半（  先頭に ``total_`` がある  ）は、サブグループも含めたものです。
 
-.. Some metrics are “gauges”, or values that can increase or decrease. For instance, swap is the amount of swap space used by the members of the cgroup. Some others are “counters”, or values that can only go up, because they represent occurrences of a specific event. For instance, pgfault indicates the number of page faults since the creation of the cgroup.
+.. Some metrics are "gauges", or values that can increase or decrease. For instance,
+   `swap` is the amount of swap space used by the members of the cgroup.
+   Some others are "counters", or values that can only go up, because
+   they represent occurrences of a specific event. For instance, `pgfault`
+   indicates the number of page faults since the creation of the cgroup.
 
-いくつかのメトリクスは「gauges」（ゲージ；計測した値そのものの意味）であり、例えば、値が増減するものとしては、swap は cgroup のメンバによって使われている swap 領域の容量です。あるいは「counter」（カウンタ）は、特定のイベント発生後に増えた値のみ表示します。例えば pgfault はページ・フォルトの回数を表しますが、cgroup が作成された後の値です。この値は決して減少しません。。
+メトリクスの中には「メータ」つまり増減を繰り返す表記になるものがあります。
+たとえば ``swap`` は、cgroup のメンバによって利用されるスワップ容量の合計です。
+この他に「カウンタ」となっているもの、つまり数値がカウントアップされていくものがあります。
+これは特定のイベントがどれだけ発生したかを表わします。
+たとえば ``pgfault`` は cgroup の生成以降に、どれだけページ・フォルトが発生したかを表わします。
 
-..    cache:
-..    the amount of memory used by the processes of this control group that can be associated precisely with a block on a block device. When you read from and write to files on disk, this amount will increase. This will be the case if you use “conventional” I/O (open, read, write syscalls) as well as mapped files (with mmap). It also accounts for the memory used by tmpfs mounts, though the reasons are unclear.
+..    **cache**
+      The amount of memory used by the processes of this control group that can be associated precisely with a block on a block device. When you read from and write to files on disk, this amount increases. This is the case if you use "conventional" I/O (`open`, `read`, `write` syscalls) as well as mapped files (with `mmap`). It also accounts for the memory used by `tmpfs` mounts, though the reasons are unclear.
 
-* **cache**: コントロール・グループのプロセスによって使用されるメモリ容量であり、ブロック・デバイス上のブロックと密接に関わりがあります。ディスクからファイルを読み書きしたら、この値が増えます。値が増えるのは「通常」の I/O （ ``open`` 、 ``read`` 、 ``write`` システムコール）だけでなく、ファイルのマップ（ ``mmap`` を使用 ）でも同様です。あるいは ``tmpfs`` マウントでメモリを使う場合も、理由が明確でなくともカウントされます。
+* **cache**: このコントロール・グループのプロセスによるメモリ使用量です。ブロック・デバイス上の各ブロックに細かく関連づけられるものです。ディスク上のファイルと読み書きを行うと、この値が増加します。ふだん利用する I/O（システムコールの ``open`` 、``read`` 、``write`` ）利用時に発生し、（``mmap`` を用いた）マップ・ファイルの場合も同様です。``tmpfs`` によるメモリ使用もここに含まれますが、理由は明らかではありません。
 
 ..     rss:
 ..    the amount of memory that doesn’t correspond to anything on disk: stacks, heaps, and anonymous memory maps.
 
 * **rss**: ディスクに関連 *しない* メモリ使用量です。例えば、stacks、heaps、アノニマスなメモリマップです。
 
-..    mapped_file:
-..    indicates the amount of memory mapped by the processes in the control group. It doesn’t give you information about how much memory is used; it rather tells you how it is used.
+..    **mapped_file**
+      Indicates the amount of memory mapped by the processes in the control group. It doesn't give you information about *how much* memory is used; it rather tells you *how* it is used.
 
-* **mapped_file**: コントロール・グループ上のプロセスに割り当てられるファイル容量です。 メモリを **どのように** 使用しているかの情報は得られません。どれだけ使っているかを表示します。
+* **mapped_file**: このコントロール・グループのプロセスによって割り当てられるメモリの使用量です。メモリを **どれだけ** 利用しているかの情報は得られません。ここからわかるのは **どのように** 利用されているかです。
 
-..    pgfault and pgmajfault:
-..    indicate the number of times that a process of the cgroup triggered a “page fault” and a “major fault”, respectively. A page fault happens when a process accesses a part of its virtual memory space which is nonexistent or protected. The former can happen if the process is buggy and tries to access an invalid address (it will then be sent a SIGSEGV signal, typically killing it with the famous Segmentation fault message). The latter can happen when the process reads from a memory zone which has been swapped out, or which corresponds to a mapped file: in that case, the kernel will load the page from disk, and let the CPU complete the memory access. It can also happen when the process writes to a copy-on-write memory zone: likewise, the kernel will preempt the process, duplicate the memory page, and resume the write operation on the process` own copy of the page. “Major” faults happen when the kernel actually has to read the data from disk. When it just has to duplicate an existing page, or allocate an empty page, it’s a regular (or “minor”) fault.
+..    **pgfault**, **pgmajfault**
+      Indicate the number of times that a process of the cgroup triggered a "page fault" and a "major fault", respectively. A page fault happens when a process accesses a part of its virtual memory space which is nonexistent or protected. The former can happen if the process is buggy and tries to access an invalid address (it is sent a `SIGSEGV` signal, typically killing it with the famous `Segmentation fault` message). The latter can happen when the process reads from a memory zone which has been swapped out, or which corresponds to a mapped file: in that case, the kernel loads the page from disk, and let the CPU complete the memory access. It can also happen when the process writes to a copy-on-write memory zone: likewise, the kernel preempts the process, duplicate the memory page, and resume the write operation on the process's own copy of the page. "Major" faults happen when the kernel actually needs to read the data from disk. When it just  duplicates an existing page, or allocate an empty page, it's a regular (or "minor") fault.
 
-* **pgfault と pgmajfault**: cgroup のプロセスが「page fault」と「major fault」の回数を個々に表示します。page fault とは、存在しないかプロテクトされた仮想メモリスペースにプロセスがアクセスした時に発生します。かつては、プロセスにバグがあり、無効なアドレスにアクセスしようとした時に発生しました（ ``SIGSEGV`` シグナルが送信されます。典型的なのは ``Segmentation fault`` メッセージを表示して kill される場合です  ）。最近であれば、プロセスがスワップ・アウトされたメモリ領域を読み込みに行くか、あるいはマップされたファイルに相当する時に発生します。そのような場合、カーネルはページをディスクから読み込み、CPU がメモリへのアクセスを処理します。これはまた、プロセスがコピー・オン・ライト（copy-on-write）のメモリ領域に書き込んだ時にも発生します。これはカーネルがプロセスの実行を阻止するのと同じであり、メモリページを複製し、プロセスが自身のページをコピーして書き込み作業を再開しようとします。「メジャー」な失敗がおこるのは、カーネルが実際にディスクからデータを読み込む時点です。読み込みによって、既存のページと重複するか、空のページが割り当てられると一般的な（あるいは「マイナー」な）エラーが発生します。
+* **pgfault**, **pgmajfault**: cgroup のプロセスにおいて発生した「ページ・フォルト」、「メジャー・フォルト」の回数を表わします。ページ・フォルトは、プロセスがアクセスした仮想メモリ・スペースの一部が、存在していないかアクセス拒否された場合に発生します。存在しないというのは、そのプロセスにバグがあり、不正なアドレスにアクセスしようとしたことを表わします（``SIGSEGV`` シグナルが送信され、``Segmentation fault`` といういつものメッセージを受けたとたんに、プロセスが停止されます）。アクセス拒否されるのは、スワップしたメモリ領域、あるいはマップ・ファイルに対応するメモリ領域を読み込もうとしたときに発生します。この場合、カーネルがディスクからページを読み込み、CPU のメモリ・アクセスを成功させます。またコピー・オン・ライト・メモリ領域へプロセスが書き込みを行う場合にも発生することがあります。同様にカーネルがプロセスの切り替え（preemption）を行ってからメモリ・ページを複製し、ページ内のプロセス自体のコピーに対して書き込み処理を復元します。「メジャー・フォルト」はカーネルがディスクからデータを読み込む必要がある際に発生します。既存ページを複製する場合や空のページを割り当てる場合は、通常の（つまり「マイナー」の）フォルトになります。
 
 ..    swap:
 ..    the amount of swap currently used by the processes in this cgroup.
@@ -191,19 +242,33 @@ cgroups からのメトリクス：メモリ、CPU、ブロックI/O
 
 * **active_file と inactive_file**: キャッシュメモリの *active* と *inactive* は、先ほどの *anonymou* メモリの説明にあるものと似ています。正確な計算式は、キャッシュ = **active_file** + **inactive_file** + **tmpfs** です。この正確なルールが使われるのは、カーネルがメモリページを active から inactive にセットする時です。これは anonymous メモリとして使うのとは違って、一般的な基本原理によるものと同じです。注意点としては、カーネルがメモリを再要求（reclaim）するするとき、直ちに再要求（anonymous ページや汚れた/変更されたページをディスクに書き込む）よりも、プール上のクリーンな（＝変更されていない）ページを再要求するほうが簡単だからです。
 
-..    unevictable:
-..    the amount of memory that cannot be reclaimed; generally, it will account for memory that has been “locked” with mlock. It is often used by crypto frameworks to make sure that secret keys and other sensitive material never gets swapped out to disk.
+..    **unevictable**
+..    The amount of memory that cannot be reclaimed; generally, it accounts for memory that has been "locked" with `mlock`. It is often used by crypto frameworks to make sure that secret keys and other sensitive material never gets swapped out to disk.
 
-* **unevictable**: 再要求されないメモリの容量です。一般的に ``mlock``  で「ロックされた」メモリ容量です。暗号化フレームワークによる秘密鍵の作成や、ディスクにスワップさせたくないような繊細な素材に使われます。
+* **unevictable**:
+  取り出し要求ができないメモリ容量のことです。一般には ``mlock`` によって「ロックされた」メモリとされます。暗号フレームワークにおいて利用されることがあり、秘密鍵や機密情報がディスクにスワップされないようにするものです。
 
-..    memory and memsw limits:
+..    **memory_limit**, **memsw_limit**
 ..    These are not really metrics, but a reminder of the limits applied to this cgroup. The first one indicates the maximum amount of physical memory that can be used by the processes of this control group; the second one indicates the maximum amount of RAM+swap.
 
-* **memory と memsw の limits**: これらは実際のメトリクスではありませんが、対象の cgroup に適用される上限の確認に使います。「memory」はこのコントロール・グループのプロセスによって使われる最大の物理メモリを示します。「memsw」 は RAM+swap の最大容量を示します。
+* **memory_limit**, **memsw_limit**:
+  これは実際のメトリクスではありません。この cgroup に適用される上限を確認するためのものです。**memory_limit** は、このコントロール・グループのプロセスが利用可能な物理メモリの最大容量を示します。**memsw_limit** は RAM＋スワップの最大容量を示します。
 
-.. Accounting for memory in the page cache is very complex. If two processes in different control groups both read the same file (ultimately relying on the same blocks on disk), the corresponding memory charge is split between the control groups. It’s nice, but it also means that when a cgroup is terminated, it could increase the memory usage of another cgroup, because they are not splitting the cost anymore for those memory pages.
+.. Accounting for memory in the page cache is very complex. If two
+   processes in different control groups both read the same file
+   (ultimately relying on the same blocks on disk), the corresponding
+   memory charge is split between the control groups. It's nice, but
+   it also means that when a cgroup is terminated, it could increase the
+   memory usage of another cgroup, because they are not splitting the cost
+   anymore for those memory pages.
 
-ページキャッシュ中のメモリ計算は非常に複雑です。もし２つのプロセスが異なったコントロール・グループ上にあるなら、それぞれの同じファイル（結局はディスク上の同じブロックに依存しますが）を読み込む必要があります。割り当てられたメモリは、コントロール・グループごとの容量に依存します。これは良さそうですが、cgroup を削除したら、メモリページとして消費していた領域は使わなくなり、他の cgroup のメモリ容量を増加させることをも意味します。
+ページキャッシュ内のメモリの計算は非常に複雑です。
+コントロール・グループが異なるプロセスが 2 つあって、それが同一のファイル（最終的にディスク上の同一ブロックに存在）を読み込むとします。
+その際のメモリの負担は、それぞれのコントロール・グループに分割されます。
+これは一見すると良いことのように思えます。
+しかし一方の cgroup が停止したとします。
+そうすると他方の cgroup におけるメモリ使用量が増大してしまうことになります。
+両者のメモリ・ページに対する使用コストは、もう共有されていないからです。
 
 
 .. CPU metrics: cpuacct.stat
@@ -233,9 +298,16 @@ CPU メトリクス： ``cpuacct.stat``
 Block I/O メトリクス
 --------------------
 
-.. Block I/O is accounted in the blkio controller. Different metrics are scattered across different files. While you can find in-depth details in the blkio-controller file in the kernel documentation, here is a short list of the most relevant ones:
+.. Block I/O is accounted in the `blkio` controller.
+   Different metrics are scattered across different files. While you can
+   find in-depth details in the [blkio-controller](
+   https://www.kernel.org/doc/Documentation/cgroup-v1/blkio-controller.txt)
+   file in the kernel documentation, here is a short list of the most
+   relevant ones:
 
-Block I/O は ``blkio`` コントローラを算出します。異なったメトリックスが別々のファイルに散在しています。より詳細な情報を知りたい場合は、カーネル・ドキュメントの `blkio-controller <https://www.kernel.org/doc/Documentation/cgroup-v1/blkio-controller.txt>`_ をご覧ください。ここでは最も関係が深いものをいくつか扱います。
+ブロック I/O は ``blkio`` コントローラにおいて計算されます。
+さまざまなメトリクスが、さまざまなファイルにわたって保持されています。
+より詳細は、カーネル・ドキュメント内にある `blkio-controller <https://www.kernel.org/doc/Documentation/cgroup-v1/blkio-controller.txt>`_ ファイルに記述されていますが、以下では最も関連のあるものを簡潔に示します。
 
 ..     blkio.sectors:
 ..     contain the number of 512-bytes sectors read and written by the processes member of the cgroup, device by device. Reads and writes are merged in a single counter.
@@ -299,9 +371,12 @@ IPtables を使えば（というよりも、インターフェースに対す�
 
    $ iptables -nxvL OUTPUT
 
-.. Technically, -n is not required, but it will prevent iptables from doing DNS reverse lookups, which are probably useless in this scenario.
+.. Technically, `-n` is not required, but it
+   prevents iptables from doing DNS reverse lookups, which are probably
+   useless in this scenario.
 
-技術的には ``-n`` は不要なのですが、今回の例では、不要な DNS 逆引きの名前解決をしないために付けています。
+技術的なことだけで言えば ``-n`` は必要ありません。
+DNS の逆引きを避けるためのものですが、ここでの作業ではおそらく不要です。
 
 .. Counters include packets and bytes. If you want to setup metrics for container traffic like this, you could execute a for loop to add two iptables rules per container IP address (one in each direction), in the FORWARD chain. This will only meter traffic going through the NAT layer; you will also have to add traffic going through the userland proxy.
 
@@ -320,13 +395,26 @@ IPtables を使えば（というよりも、インターフェースに対す�
 
 各コンテナは仮想イーサネット・インターフェースを持つため、そのインターフェースから直接 TX・RX カウンタを取得したくなるでしょう。各コンテナが ``vethKk8Zqi`` のような仮想イーサネット・インターフェースに割り当てられているのに気を付けてください。コンテナに対応している適切なインターフェースを見つけることは、残念ながら大変です。
 
-.. But for now, the best way is to check the metrics from within the containers. To accomplish this, you can run an executable from the host environment within the network namespace of a container using ip-netns magic.
+.. But for now, the best way is to check the metrics *from within the
+   containers*. To accomplish this, you can run an executable from the host
+   environment within the network namespace of a container using **ip-netns
+   magic**.
 
-しかし今は、 *コンテナを通さなくても* 数値を確認できる良い方法があります、ホスト環境上で **ip netns の魔力** を使い、ネットワーク名前空間内のコンテナの情報を確認します。
+今のところ、メトリクスを確認する一番の方法は、**そのコンテナ内部から** 確認することです。
+これを実現する方法は、**ip netns を巧みに** 利用します。
+これを使えば、コンテナのネットワーク名前空間内に、ホスト環境からモジュールを実行させることができます。
 
-.. The ip-netns exec command allows you to execute any program (present in the host system) within any network namespace visible to the current process. This means that your host can enter the network namespace of your containers, but your containers can’t access the host or other peer containers. Containers can interact with their sub-containers, though.
+.. The `ip-netns exec` command allows you to execute any
+   program (present in the host system) within any network namespace
+   visible to the current process. This means that your host can
+    enter the network namespace of your containers, but your containers
+   can't access the host or other peer containers.
+   Containers can interact with their sub-containers, though.
 
-``ip netns exec`` コマンドは、あらゆるネットワーク名前空間内で、あらゆるプログラムを実行し（対象のホスト上の）、現在のプロセス状況を表示します。つまり、ホストがコンテナのネットワーク名前空間に入れますが、コンテナはホスト側にアクセスできないだけでなく、他のコンテナにもアクセスできません。次のサブコマンドを通すことで、コンテナが「見える」ようになります。
+``ip-netns exec`` コマンドはどのようなネットワーク名前空間内においても、（ホスト内に存在する）プログラムなら何でも実行することができ、プロセスからその状況を確認することができます。
+つまりコンテナのネットワーク名前空間内に、ホストから入ることができるということです。
+ただしコンテナからは、ホストや別のコンテナにはアクセスできません。
+サブコンテナであれば、互いに通信することができます。
 
 .. The exact format of the command is:
 
@@ -352,25 +440,35 @@ IPtables を使えば（というよりも、インターフェースに対す�
 
 ``ip netns exec mycontainer ...`` を実行したら、 ``/var/run/netns/mycontainer`` が疑似ファイルの１つとなるでしょう（シンボリック・リンクが使えます）。
 
-.. In other words, to execute a command within the network namespace of a container, we need to:
+.. In other words, to execute a command within the network namespace of a
+   container, we need to:
 
-言い換えれば、私たちが必要であれば、ネットワーク名前空間の中でコマンドを実行できるのです。
+言い換えると、コンテナのネットワーク名前空間内にてコマンドを実行するためには、以下のことが必要になります。
 
-..    Find out the PID of any process within the container that we want to investigate;
-    Create a symlink from /var/run/netns/<somename> to /proc/<thepid>/ns/net
-    Execute ip netns exec <somename> ....
+.. - Find out the PID of any process within the container that we want to investigate;
+   - Create a symlink from `/var/run/netns/<somename>` to `/proc/<thepid>/ns/net`
+   - Execute `ip netns exec <somename> ....`
 
-* 調査したいコンテナに入っている、あらゆる PID を探し出します
-* ``/var/run/netns/<何らかの名前>`` から ``/proc/<thepid>/ns/net`` へのシンボリック・リンクを作成します。
-* ``ip netns exec <何らかの名前> ....`` を実行します。
+- 調査したい対象のコンテナ内部に動作している、いずれかのプロセスの PID を調べます。
+- ``/var/run/netns/<somename>`` から ``/proc/<pid>/ns/net`` へのシンボリック・リンクを生成します。
+- ``ip netns exec <somename> ....`` を実行します。
 
-.. Please review Enumerating Cgroups to learn how to find the cgroup of a process running in the container of which you want to measure network usage. From there, you can examine the pseudo-file named tasks, which contains the PIDs that are in the control group (i.e., in the container). Pick any one of them.
+.. Review [Enumerate Cgroups](#enumerate-cgroups) for how to find
+   the cgroup of an in-container process whose network usage you want to measure.
+   From there, you can examine the pseudo-file named
+   `tasks`, which contains all the PIDs in the
+   cgroup (and thus, in the container). Pick any one of the PIDs.
 
-ネットワーク使用状況を調査したいコンテナがあり、そこで実行しているプロセスを見つける方法を学ぶには、 :ref:`enumerating-cgroups` を読み直してください。ここからは ``tasks`` と呼ばれる疑似ファイルを例に、コントロール・グループ（つまり、コンテナ）の中にどのような PID があるかを調べましょう。
+ネットワーク使用量の計測を行おうとしているコンテナ内部において、実行されているプロセスがどの cgroup に属しているかを探し出すには :ref:`enumerating-cgroups` を参照してください。
+その方法に従って、``tasks`` という名前の擬似ファイルを調べます。
+その擬似ファイル内には cgroup 内の（つまりコンテナ内の） PID がすべて示されています。
+そのうちの 1 つを取り出して扱います。
 
-.. Putting everything together, if the “short ID” of a container is held in the environment variable $CID, then you can do this:
+.. Putting everything together, if the "short ID" of a container is held in
+   the environment variable `$CID`, then you can do this:
 
-これらを一度に実行したら、取得したコンテナの「ショートID」は変数 ``$CID`` に入れて処理されます。
+環境変数 ``$CID`` にはコンテナの「短めの ID」が設定されているとします。
+これまで説明してきたことをすべてまとめて、以下のコマンドとして実行します。
 
 .. code-block:: bash
 
@@ -380,22 +478,47 @@ IPtables を使えば（というよりも、インターフェースに対す�
    $ ln -sf /proc/$PID/ns/net /var/run/netns/$CID
    $ ip netns exec $CID netstat -i
 
-.. Tips for high-performance metric collection
+.. ## Tips for high-performance metric collection
 
-高性能なメトリクス収集用の Tip
-========================================
+.. _tips-for-high-performance-metric-collection:
 
-.. Running a new process each time you want to update metrics is (relatively) expensive. If you want to collect metrics at high resolutions, and/or over a large number of containers (think 1000 containers on a single host), you do not want to fork a new process each time.
+詳細なメトリクスを収集するためのヒント
+=========================================
 
-新しいプロセスごとに毎回メトリクスを更新するのは、（比較的）コストがかかります。メトリクスを高い解像度で収集したい場合、そして／または、大量のコンテナを扱う場合（１ホスト上に 1,000 コンテナと考えます）、毎回新しいプロセスをフォークしようとは思わないでしょう。
+.. Running a new process each time you want to update metrics is
+   (relatively) expensive. If you want to collect metrics at high
+   resolutions, and/or over a large number of containers (think 1000
+   containers on a single host), you do not want to fork a new process each
+   time.
 
-.. Here is how to collect metrics from a single process. You need to write your metric collector in C (or any language that lets you do low-level system calls). You need to use a special system call, setns(), which lets the current process enter any arbitrary namespace. It requires, however, an open file descriptor to the namespace pseudo-file (remember: that’s the pseudo-file in /proc/<pid>/ns/net).
+新しいプロセスを起動するたびに、メトリクスを最新のものにすることは（比較的）面倒なことです。
+高解像度のメトリクスが必要な場合、しかもそれが非常に多くのコンテナ（1 ホスト上に 1000 個くらいのコンテナ）を扱わなければならないとしたら、毎回の新規プロセス起動は行う気になれません。
 
-ここでは１つのプロセスでメトリクスを収集する方法を紹介します。メトリクス・コレクションをC言語で書く必要があります（あるいは、ローレベルなシステムコールが可能な言語を使います）。 ``setns()`` という特別なシステムコールを使えば、任意の名前空間上にある現在のプロセスを返します。必要があれば、他にも名前空間疑似ファイルのファイル・ディスクリプタ（file descriptor）を開けます（思い出してください：疑似ファイルは ``/proc/<pid>/ns/net`` です）。
+.. Here is how to collect metrics from a single process. You need to
+   write your metric collector in C (or any language that lets you do
+   low-level system calls). You need to use a special system call,
+   `setns()`, which lets the current process enter any
+   arbitrary namespace. It requires, however, an open file descriptor to
+   the namespace pseudo-file (remember: that's the pseudo-file in
+   `/proc/<pid>/ns/net`).
 
-.. However, there is a catch: you must not keep this file descriptor open. If you do, when the last process of the control group exits, the namespace is not destroyed, and its network resources (like the virtual interface of the container) stays around forever (or until you close that file descriptor).
+1 つのプロセスを作り出してメトリクスを収集する方法をここに示します。
+メトリクスを収集するプログラムを C 言語（あるいは低レベルのシステムコールを実行できる言語）で記述する必要があります。
+利用するのは特別なシステムコール ``setns()`` です。
+これはその時点でのプロセスを、任意の名前空間に参加させることができます。
+そこでは、その名前空間に応じた擬似ファイルへのファイル・ディスクリプターをオープンしておくことが必要とされます。
+（擬似ファイルは ``/proc/<pid>/ns/net`` にあることを思い出してください。）
 
-しかしながら、これはキャッチするだけです。ファイルをオープンのままにできません。つまり、そのままにしておけば、コントロール・グループが終了しても名前空間を破棄できず、ネットワーク・リソース（コンテナの仮想インターフェース等）が残り続けるでしょう（あるいはファイル・ディスクリプタを閉じるまで）。
+.. However, there is a catch: you must not keep this file descriptor open.
+   If you do, when the last process of the control group exits, the
+   namespace is not destroyed, and its network resources (like the
+   virtual interface of the container) stays around forever (or until
+   you close that file descriptor).
+
+ただしこれは本当のことではありません。
+ファイル・ディスクリプターはオープンのままにしないでください。
+オープンにしたままであると、コントロール・グループの最後の 1 つとなるプロセスがある場合に、名前空間は削除されず、そのネットワーク・リソース（コンテナの仮想インターフェースなど）がずっと残り続けてしまいます。
+（あるいはそれは、ファイル・ディスクリプターを閉じるまで続きます。）
 
 .. The right approach would be to keep track of the first PID of each container, and re-open the namespace pseudo-file each time.
 
@@ -410,17 +533,31 @@ IPtables を使えば（というよりも、インターフェースに対す�
 
 時々、リアルタイムなメトリクス収集に気を配っていなくても、コンテナ終了時に、どれだけ CPU やメモリ等を使用したか知りたい時があるでしょう。
 
-.. Docker makes this difficult because it relies on lxc-start, which carefully cleans up after itself. It is usually easier to collect metrics at regular intervals, and this is the way the collectd LXC plugin works.
+.. Docker makes this difficult because it relies on `lxc-start`, which carefully
+   cleans up after itself. It is usually easier to collect metrics at regular
+   intervals, and this is the way the `collectd` LXC plugin works.
 
-Docker は ``lxc-start`` に依存しており、終了時は丁寧に自分自身をクリーンアップするため困難です。しかし、他にも方法があります。定期的にメトリクスを集める方法（例：毎分 collectd LXC プラグインを実行）が簡単です。
+Docker は ``lxc-start`` によって処理を行うため、リアルタイムなメトリクス収集は困難です。
+``lxc-start`` が自身の処理の後に、まわりをきれいにしてしまうためです。
+メトリクスの収集は、一定間隔をおいて取得するのが、より簡単な方法と言えます。
+``collectd`` にある LXC プラグインは、この方法により動作しています。
 
 .. But, if you’d still like to gather the stats when a container stops, here is how:
 
 しかし、停止したコンテナに関する情報を集めたい時もあるでしょう。次のようにします。
 
-.. For each container, start a collection process, and move it to the control groups that you want to monitor by writing its PID to the tasks file of the cgroup. The collection process should periodically re-read the tasks file to check if it’s the last process of the control group. (If you also want to collect network statistics as explained in the previous section, you should also move the process to the appropriate network namespace.)
+.. For each container, start a collection process, and move it to the
+   control groups that you want to monitor by writing its PID to the tasks
+   file of the cgroup. The collection process should periodically re-read
+   the tasks file to check if it's the last process of the control group.
+   (If you also want to collect network statistics as explained in the
+   previous section, you should also move the process to the appropriate
+   network namespace.)
 
-各コンテナで収集プロセスを開始し、コントロール・グループに移動します。これは対象の cgroup のタスクファイルに PID が書かれている場所を監視します。収集プロセスは定期的にタスクファイルを監視し、コントロール・グループの最新プロセスを確認します（先ほどのセクションで暑かったネットワーク統計情報も取得したい場合は、プロセスを適切なネットワーク名前空間にも移動します）。
+各コンテナにおいて情報収集用のプロセスを実行し、コントロール・グループに移動させます。
+このコントロール・グループは監視対象としたいものであり、cgroup のタスクファイル内に PID を記述しておきます。
+情報収集のプロセスは、定期的にそのタスクファイルを読み込み、そのプロセス自体が、コントロールグループ内で残っている最後のプロセスであるかどうかを確認します。
+（前節に示したように、ネットワーク統計情報も収集したい場合は、そのプロセスを適切なネットワーク名前空間に移動することも必要になります。）
 
 .. When the container exits, lxc-start attempts to delete the control groups. It fails, since the control group is still in use; but that’s fine. Your process should now detect that it is the only one remaining in the group. Now is the right time to collect all the metrics you need!
 
