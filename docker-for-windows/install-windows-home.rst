@@ -32,7 +32,7 @@ Windows Home マシンで WSL2 バックエンドを使うと、Docker Desktop �
 
 .. Download from Docker Hub
 
-* `Docker Hub からダウンロード <https://hub.docker.com/editions/community/docker-ce-desktop-mac/>`_
+* `Docker Hub からダウンロード <https://hub.docker.com/editions/community/docker-ce-desktop-windows/>`_
 
 .. Docker Desktop on Windows Home offers the following benefits:
 

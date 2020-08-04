@@ -30,7 +30,7 @@ Docker Desktop for Windows は、Mirosoft Windows 用の Docker `コミュニテ
 
 .. Download from Docker Hub
 
-* `Docker Hub からダウンロード <https://hub.docker.com/editions/community/docker-ce-desktop-mac/>`_
+* `Docker Hub からダウンロード <https://hub.docker.com/editions/community/docker-ce-desktop-windows/>`_
 
 .. By downloading Docker Desktop, you agree to the terms of the Docker Software End User License Agreement and the Docker Data Processing Agreement.
 
