@@ -128,7 +128,7 @@ Docker Hub 上の Docker リポジトリとして ``scratch`` が登場したこ
 
 `Docker GitHub の C ソースコード例 <https://github.com/docker-library/hello-world/blob/master/hello.c>`_ に示されている手順に従って、"hello" 実行モジュールの例を構築するとします。
 実行モジュールは ``-static`` フラグをつけてコンパイルします。
-Docker イメージは ``docker build -tag hello .`` コマンドによってビルドすることができます。
+Docker イメージは ``docker build --tag hello .`` コマンドによってビルドすることができます。
 
 .. > **Note**: Because Docker for Mac and Docker for Windows use a Linux VM, you must compile this code using a Linux toolchain to end up
    > with a Linux binary. Not to worry, you can quickly pull down a Linux image and a build environment and build within it:
