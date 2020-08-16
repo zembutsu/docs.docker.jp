@@ -41,7 +41,7 @@ commit
 
 .. By default, the container being committed and its processes will be paused while the image is committed. This reduces the likelihood of encountering data corruption during the process of creating the commit. If this behavior is undesired, set the ‘--pause’ option to false.
 
-デフォルトでは、コミットされるコンテナとそれらのプロセスはイメージがコミットされている間は一時的に停止されます。これにより、コミットの作成中にデータの破損が発生する可能性が低くなります。この動作が望ましくない場合は、 ``--pause`` オプションを false に設定してください。
+コミット対象のコンテナとそこに動作するプロセスは、イメージコミット処理の間は、デフォルトで一時停止します。これにより、コミットの作成中にデータの破損が発生する可能性が低くなります。この動作が望ましくない場合は、 ``--pause`` オプションを false に設定してください。
 
 .. The --change option will apply Dockerfile instructions to the image that is created. Supported Dockerfile instructions: CMD|ENTRYPOINT|ENV|EXPOSE|LABEL|ONBUILD|USER|VOLUME|WORKDIR
 
