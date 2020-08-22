@@ -229,7 +229,7 @@ Docker を見ると、Dockerfile 中の命令ごとに、命令したとおり�
 
 ..    Visit your application in a browser at localhost:8000. You should see your bulletin board application up and running. At this step, you would normally do everything you could to ensure your container works the way you expected; now would be the time to run unit tests, for example.
 
-2. アプリケーションに接続するため、ブラウザで ``localhost:8080`` で開きます。そうすると、掲示板アプリケーションが稼働しているのが見えるでしょう。この段階で、コンテナがすべて期待通りに動作しているのを確認できるでしょう。つまり、これでユニットテスト等を実行できるようになります。
+2. アプリケーションに接続するため、ブラウザで ``localhost:8000`` で開きます。そうすると、掲示板アプリケーションが稼働しているのが見えるでしょう。この段階で、コンテナがすべて期待通りに動作しているのを確認できるでしょう。つまり、これでユニットテスト等を実行できるようになります。
 
 ..    Once you’re satisfied that your bulletin board container works correctly, you can delete it:
 
