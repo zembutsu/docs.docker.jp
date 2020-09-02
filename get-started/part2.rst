@@ -146,7 +146,7 @@ Mac or Linux （Git 無し）
 
 .. If you are using a Mac or a Linux machine and prefer to download the example project without installing Git, run the following commands in a terminal:
 
-Mac あるいは Linux マシンを使用中で、Git をインストールせずにプロジェクト例をダウンロードしたい場合は、PowerShell 上で以下のコマンドを実行します。
+Mac あるいは Linux マシンを使用中で、Git をインストールせずにプロジェクト例をダウンロードしたい場合は、ターミナル上で以下のコマンドを実行します。
 
 .. code-block:: bash
 
