@@ -129,9 +129,16 @@ Docker Machine は主に２つの使い方があります。
    主に利用するシステムが Linux であって ``docker`` コマンドを利用したいのであれば、やるべきことは、単に Docker Engine をダウンロードしてインストールするだけです。
    ただしネットワーク上に複数の Docker ホストを効率よくプロビジョニングしたい場合は、クラウド上とローカル上は問わず Docker Machine が必要になります。
 
-.. Whether your primary system is Mac, Windows, or Linux, you can install Docker Machine on it and use docker-machine commands to provision and manage large numbers of Docker hosts. It automatically creates hosts, installs Docker Engine on them, then configures the docker clients. Each managed host (”machine”) is the combination of a Docker host and a configured client.
+   ..  Whether your primary system is Mac, Windows, or Linux, you can install Docker
+       Machine on it and use `docker-machine` commands to provision and manage large
+       numbers of Docker hosts. It automatically creates hosts, installs Docker
+       Engine on them, then configures the `docker` clients. Each managed host
+       ("**_machine_**") is the combination of a Docker host and a configured client.
 
-Docker Machine をインストールしたら、Mac ・ Windows ・ Linux 環境を問わず ``docker-machine`` コマンドを使って多くの Docker ホストのプロビジョンと管理ができます。Docker Machine は自動的にホストを作成し、そこに Docker Engine をインストールし、 ``docker`` クライアントの設定を行います。管理対象の各ホスト（「 **マシン** 」）が Docker ホストと設定済みのクライアントを結び付けます。
+   ふだん利用するシステムが Mac、Windows、Linux のどれであっても、Docker Machine をインストールして ``docker-machine`` コマンドを使えば、いくらでも Docker ホストのプロビジョニングと管理が可能になります。
+   Docker Machine からはホストが自動生成され、そのホスト内に Docker Engine がインストールされます。
+   そして ``docker`` クライアントが設定されます。
+   こうして管理される各ホスト（「**マシン**」）が、Docker ホストと設定済みクライアントを結びつけます。
 
 .. What’s the difference between Docker Engine and Docker Machine?
 
