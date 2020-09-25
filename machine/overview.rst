@@ -119,9 +119,15 @@ Docker Machine は主に２つの使い方があります。
       :scale: 60%
       :alt: 複数システムをプロビジョニングする Docker Machine
 
-.. Docker Engine runs natively on Linux systems. If you have a Linux box as your primary system, and want to run docker commands, all you need to do is download and install Docker Engine. However, if you want an efficient way to provision multiple Docker hosts on a network, in the cloud or even locally, you need Docker Machine.
+   .. Docker Engine runs natively on Linux systems. If you have a Linux box as your
+      primary system, and want to run `docker` commands, all you need to do is
+      download and install Docker Engine. However, if you want an efficient way to
+      provision multiple Docker hosts on a network, in the cloud or even locally,
+      you need Docker Machine.
 
-Docker Engine は Linux システム上でネイティブに動きます。主な利用環境が Linux であれば、 ``docker`` コマンドを実行したい場合に必要になるのは Docker Engine のダウンロードとインストールです。それだけでなく、ネットワーク上で複数の Docker ホストを効率的にプロビジョン（訳者注：自動的な環境構築）したい場合、それがクラウドでも、ローカル環境でも実現したいのであれば、Docker Machine が必要になるでしょう。
+   Docker Engine は Linux システム上でネイティブに動作します。
+   主に利用するシステムが Linux であって ``docker`` コマンドを利用したいのであれば、やるべきことは、単に Docker Engine をダウンロードしてインストールするだけです。
+   ただしネットワーク上に複数の Docker ホストを効率よくプロビジョニングしたい場合は、クラウド上とローカル上は問わず Docker Machine が必要になります。
 
 .. Whether your primary system is Mac, Windows, or Linux, you can install Docker Machine on it and use docker-machine commands to provision and manage large numbers of Docker hosts. It automatically creates hosts, installs Docker Engine on them, then configures the docker clients. Each managed host (”machine”) is the combination of a Docker host and a configured client.
 
