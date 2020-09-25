@@ -113,11 +113,11 @@ Docker Machine は主に２つの使い方があります。
 
 * **リモート・システム上に Docker ホストをプロビジョンしたい**
 
-.. Docker Machine for provisioning multiple systems
+   ..  ![Docker Machine for provisioning multiple systems](img/provision-use-case.png){: .white-bg}
 
-.. image:: ./img/provision-use-case.png
-   :scale: 60%
-   :alt: プロビジョン例
+   .. image:: ./img/provision-use-case.png
+      :scale: 60%
+      :alt: 複数システムをプロビジョニングする Docker Machine
 
 .. Docker Engine runs natively on Linux systems. If you have a Linux box as your primary system, and want to run docker commands, all you need to do is download and install Docker Engine. However, if you want an efficient way to provision multiple Docker hosts on a network, in the cloud or even locally, you need Docker Machine.
 
