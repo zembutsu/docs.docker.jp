@@ -78,9 +78,15 @@ Docker Desktop for Mac や Docker Desktop for Windows のインストーラに�
 なぜ使うべきですか？
 =====================
 
-.. Machine is currently the only way to run Docker on Mac or Windows, and the best way to provision multiple remote Docker hosts on various flavors of Linux.
+.. Docker Machine enables you to provision multiple remote Docker hosts on various
+   flavors of Linux.
 
-Mac や Windows 上では、Docker Machine を使うのが Docker を実行する唯一の方法です。そして、様々な Linux で動作するリモート Docker ホストを複数プロビジョンするのにも、ベストの方法です。
+Docker Machine を利用すると、さまざまな種類の Linux に対して、リモート Docker ホストを複数プロビジョングできます。
+
+.. Additionally, Machine allows you to run Docker on older Mac or Windows systems,
+   as described in the previous topic.
+
+さらに Docker Machine は上で述べているように、Mac や Windows の古いシステムにおいて Docker を起動させることができます。
 
 .. Docker Machine has these two broad use cases.
 
