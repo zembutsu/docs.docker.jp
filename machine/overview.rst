@@ -96,11 +96,11 @@ Docker Machine は主に２つの使い方があります。
 
 * **Mac や Windows のデスクトップシステムが古いけど Docker を実行したい**
 
-.. Docker Machine on Mac and Windows
+   ..  ![Docker Machine on Mac and Windows](img/machine-mac-win.png){: .white-bg}
 
-.. image:: ./img/machine-mac-win.png
-   :scale: 60%
-   :alt: Docker Machine
+   .. image:: ./img/machine-mac-win.png
+      :scale: 60%
+      :alt: Mac と Windows 上の Docker Machine
 
 .. If you work primarily on a Mac or Windows laptop or desktop, you need Docker Machine in order to “run Docker” (that is, Docker Engine) locally. Installing Docker Machine on a Mac or Windows box provisions a local virtual machine with Docker Engine, gives you the ability to connect it, and run docker commands.
 
