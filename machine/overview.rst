@@ -92,9 +92,9 @@ Docker Machine を利用すると、さまざまな種類の Linux に対して�
 
 Docker Machine は主に２つの使い方があります。
 
-..     I want to run Docker on Mac or Windows
+.. * **I have an older desktop system and want to run Docker on Mac or Windows**
 
-* **Mac や Windows 上で Docker を実行したい**
+* **Mac や Windows のデスクトップシステムが古いけど Docker を実行したい**
 
 .. Docker Machine on Mac and Windows
 
