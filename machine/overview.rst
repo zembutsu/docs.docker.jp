@@ -102,9 +102,11 @@ Docker Machine は主に２つの使い方があります。
       :scale: 60%
       :alt: Mac と Windows 上の Docker Machine
 
-.. If you work primarily on a Mac or Windows laptop or desktop, you need Docker Machine in order to “run Docker” (that is, Docker Engine) locally. Installing Docker Machine on a Mac or Windows box provisions a local virtual machine with Docker Engine, gives you the ability to connect it, and run docker commands.
+   .. If you work primarily on an older Mac or Windows laptop or desktop that doesn't meet the requirements for the new [Docker Desktop for Mac](../docker-for-mac/index.md) and [Docker Desktop for Windows](../docker-for-windows/index.md) apps, then you need Docker Machine to run Docker Engine locally. Installing Docker Machine on a Mac or Windows box with the [Docker Toolbox](../toolbox/overview.md) installer provisions a local virtual machine with Docker Engine, gives you the ability to connect it, and run `docker` commands.
 
-主に Mac や Windows をノート PC 上で動かす場合は、「Dockerを実行」するために（つまり Docker Engine を動かすために） Docker Machine をローカルにインストールする必要があります。Mac や Windows 環境上で Docker Machine を使えば、ローカルに Docker Engine が動く仮想マシンをプロビジョニングします。そして、その環境に接続したら、dockerコマンドを実行可能になります。
+   主に作業をしているマシンが Mac や Windows の古いデスクトップやノート PC であって、:doc:`Docker Desktop for Mac </docker-for-mac/index>` や :doc:`Docker Desktop for Windows </docker-for-windows/index>` という新たなアプリを利用する前提条件を満たしていない場合、Docker Engine をローカルで実行するには Docker Machine が必要になります。
+   :doc:`Docker Toolbox </toolbox/overview>` のインストーラを通じて Mac や Windows に Docker Machine をインストールすると、Docker Engine を利用するローカルの仮想マシンがプロビジョニングされます。
+   これに対して接続を行い ``docker`` コマンドを実行します。
 
 ..     I want to provision Docker hosts on remote systems
 
