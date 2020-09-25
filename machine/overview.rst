@@ -52,6 +52,19 @@ Docker Machine は仮想マシン上に Docker Engine をインストールす�
 
 Machine のコマンドライン上で管理対象のホストを参照するように指定したら、 ``docker`` コマンドが対象ホストを直接管理します。例えば、 ``docker-machine env default`` を実行したら、操作対象のホストは ``default`` という名前のホストにするため、画面上に ``env`` コマンドの指示が表示されます。これを使ってセットアップしたあとは、 ``docker ps`` や ``docker run hello-world`` コマンドなど、指定したホスト上で直接処理できます。
 
+.. Machine _was_ the _only_ way to run Docker on Mac or Windows previous to Docker
+   v1.12. Starting with the beta program and Docker v1.12,
+   [Docker Desktop for Mac](../docker-for-mac/index.md) and
+   [Docker Desktop for Windows](../docker-for-windows/index.md) are available as native apps and the
+   better choice for this use case on newer desktops and laptops. We encourage you
+   to try out these new apps. The installers for Docker Desktop for Mac and Docker Desktop for
+   Windows include Docker Machine, along with Docker Compose.
+
+Docker Machine は、Docker v1.12 以前は Mac および Windows 上において Docker を実行する唯一の方法 **でした**。
+Docker v1.12 のベータ版として始まったプログラムが、:doc:`Docker Desktop for Mac </docker-for-mac/index>` と :doc:`Docker Desktop for Windows </docker-for-windows/index>` というネイティブ・アプリとして利用可能になり、これが最新のデスクトップやノート PC に対しての最適な選択肢となりました。
+現在ではこれらの新しいアプリケーションの利用をお勧めしています。
+Docker Desktop for Mac や Docker Desktop for Windows のインストーラには、Docker Machine や Docker Compose が含まれています。
+
 .. Why should I use it?
 
 .. _why-should-i-use-it:
