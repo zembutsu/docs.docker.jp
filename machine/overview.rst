@@ -147,9 +147,18 @@ Docker Machine は主に２つの使い方があります。
 Docker Engine と Docker Machine の違いは何ですか？
 ==================================================
 
-.. When people say “Docker” they typically mean Docker Engine, the client-server application made up of the Docker daemon, a REST API that specifies interfaces for interacting with the daemon, and a command line interface (CLI) client that talks to the daemon (through the REST API wrapper). Docker Engine accepts docker commands from the CLI, such as docker run <image>, docker ps to list running containers, docker images to list images, and so on.
+.. When people say "Docker" they typically mean **Docker Engine**, the
+   client-server application made up of the Docker daemon, a REST API that
+   specifies interfaces for interacting with the daemon, and a command line
+   interface (CLI) client that talks to the daemon (through the REST API wrapper).
+   Docker Engine accepts `docker` commands from the CLI, such as
+   `docker run <image>`, `docker ps` to list running containers, `docker image ls`
+   to list images, and so on.
 
-一般的に「Docker」と呼ばれるのは **Docker Engine** を意味します。Docker デーモンはクライアント・サーバ型アプリケーションです。デーモンは特定の REST API インターフェースとコマンド・ライン・インターフェース（CLI）で、デーモンと通信します（正確には、REST API ラッパーを経由します）。Docker Engine は CLI からの ``docker`` コマンドを受け付けます。 ``docker run <イメージ名>`` や ``docker ps`` でのコンテナ実行や、 ``docker images`` でイメージの一覧などを処理します。
+「Docker」と言えば、普通は **Docker Engine** のことを意味します。
+これは Docker デーモンによって構成されるクライアント・サーバ・アプリケーションであり、デーモンとのやりとりを行うためのインターフェースを規定する REST API であり、デーモンとの対話を（REST API ラッパーを通じて）行うコマンドライン・インターフェース（CLI）をすべて意味しています。
+Docker Engine は CLI から ``docker`` コマンド、たとえば ``docker run <イメージ名>`` を受けつけます。
+あるいは ``docker ps`` によって実行中コンテナの一覧を表示し、``docker image ls`` によってイメージ一覧を表示するといった具合です。
 
 .. Docker Engine
 
