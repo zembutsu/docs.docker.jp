@@ -65,6 +65,12 @@ Docker v1.12 のベータ版として始まったプログラムが、:doc:`Dock
 現在ではこれらの新しいアプリケーションの利用をお勧めしています。
 Docker Desktop for Mac や Docker Desktop for Windows のインストーラには、Docker Machine や Docker Compose が含まれています。
 
+.. If you aren't sure where to begin, see [Get Started with Docker](../get-started/index.md),
+   which guides you through a brief end-to-end tutorial on Docker.
+
+どこからはじめたらよいのか不明であれば、:doc:`概要説明とセットアップ </get-started/index>` を確認してください。
+このガイドでは Docker の全般的なチュートリアルを示しています。
+
 .. Why should I use it?
 
 .. _why-should-i-use-it:
