@@ -145,7 +145,7 @@ Docker バージョンのテスト
 
 .. After you’ve successfully installed Docker Desktop, open a terminal and run docker --version to check the version of Docker installed on your machine.
 
-Docker Desktop のインストールに精巧したら、ターミナルを開き、 ``docker --version`` を実行し、マシン上にインストールした Docker のバージョンを確認します。
+Docker Desktop のインストールに成功したら、ターミナルを開き、 ``docker --version`` を実行し、マシン上にインストールした Docker のバージョンを確認します。
 
 .. code-block:: bash
 
