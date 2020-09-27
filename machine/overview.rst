@@ -52,6 +52,25 @@ Docker Machine は仮想マシン上に Docker Engine をインストールす�
 
 Machine のコマンドライン上で管理対象のホストを参照するように指定したら、 ``docker`` コマンドが対象ホストを直接管理します。例えば、 ``docker-machine env default`` を実行したら、操作対象のホストは ``default`` という名前のホストにするため、画面上に ``env`` コマンドの指示が表示されます。これを使ってセットアップしたあとは、 ``docker ps`` や ``docker run hello-world`` コマンドなど、指定したホスト上で直接処理できます。
 
+.. Machine _was_ the _only_ way to run Docker on Mac or Windows previous to Docker
+   v1.12. Starting with the beta program and Docker v1.12,
+   [Docker Desktop for Mac](../docker-for-mac/index.md) and
+   [Docker Desktop for Windows](../docker-for-windows/index.md) are available as native apps and the
+   better choice for this use case on newer desktops and laptops. We encourage you
+   to try out these new apps. The installers for Docker Desktop for Mac and Docker Desktop for
+   Windows include Docker Machine, along with Docker Compose.
+
+Docker Machine は、Docker v1.12 以前は Mac および Windows 上において Docker を実行する唯一の方法 **でした**。
+Docker v1.12 のベータ版として始まったプログラムが、:doc:`Docker Desktop for Mac </docker-for-mac/index>` と :doc:`Docker Desktop for Windows </docker-for-windows/index>` というネイティブ・アプリとして利用可能になり、これが最新のデスクトップやノート PC に対しての最適な選択肢となりました。
+現在ではこれらの新しいアプリケーションの利用をお勧めしています。
+Docker Desktop for Mac や Docker Desktop for Windows のインストーラには、Docker Machine や Docker Compose が含まれています。
+
+.. If you aren't sure where to begin, see [Get Started with Docker](../get-started/index.md),
+   which guides you through a brief end-to-end tutorial on Docker.
+
+どこからはじめたらよいのか不明であれば、:doc:`概要説明とセットアップ </get-started/index>` を確認してください。
+このガイドでは Docker の全般的なチュートリアルを示しています。
+
 .. Why should I use it?
 
 .. _why-should-i-use-it:
@@ -59,46 +78,67 @@ Machine のコマンドライン上で管理対象のホストを参照するよ
 なぜ使うべきですか？
 =====================
 
-.. Machine is currently the only way to run Docker on Mac or Windows, and the best way to provision multiple remote Docker hosts on various flavors of Linux.
+.. Docker Machine enables you to provision multiple remote Docker hosts on various
+   flavors of Linux.
 
-Mac や Windows 上では、Docker Machine を使うのが Docker を実行する唯一の方法です。そして、様々な Linux で動作するリモート Docker ホストを複数プロビジョンするのにも、ベストの方法です。
+Docker Machine を利用すると、さまざまな種類の Linux に対して、リモート Docker ホストを複数プロビジョングできます。
+
+.. Additionally, Machine allows you to run Docker on older Mac or Windows systems,
+   as described in the previous topic.
+
+さらに Docker Machine は上で述べているように、Mac や Windows の古いシステムにおいて Docker を起動させることができます。
 
 .. Docker Machine has these two broad use cases.
 
 Docker Machine は主に２つの使い方があります。
 
-..     I want to run Docker on Mac or Windows
+.. * **I have an older desktop system and want to run Docker on Mac or Windows**
 
-* **Mac や Windows 上で Docker を実行したい**
+* **Mac や Windows のデスクトップシステムが古いけど Docker を実行したい**
 
-.. Docker Machine on Mac and Windows
+   ..  ![Docker Machine on Mac and Windows](img/machine-mac-win.png){: .white-bg}
 
-.. image:: ./img/machine-mac-win.png
-   :scale: 60%
-   :alt: Docker Machine
+   .. image:: ./img/machine-mac-win.png
+      :scale: 60%
+      :alt: Mac と Windows 上の Docker Machine
 
-.. If you work primarily on a Mac or Windows laptop or desktop, you need Docker Machine in order to “run Docker” (that is, Docker Engine) locally. Installing Docker Machine on a Mac or Windows box provisions a local virtual machine with Docker Engine, gives you the ability to connect it, and run docker commands.
+   .. If you work primarily on an older Mac or Windows laptop or desktop that doesn't meet the requirements for the new [Docker Desktop for Mac](../docker-for-mac/index.md) and [Docker Desktop for Windows](../docker-for-windows/index.md) apps, then you need Docker Machine to run Docker Engine locally. Installing Docker Machine on a Mac or Windows box with the [Docker Toolbox](../toolbox/overview.md) installer provisions a local virtual machine with Docker Engine, gives you the ability to connect it, and run `docker` commands.
 
-主に Mac や Windows をノート PC 上で動かす場合は、「Dockerを実行」するために（つまり Docker Engine を動かすために） Docker Machine をローカルにインストールする必要があります。Mac や Windows 環境上で Docker Machine を使えば、ローカルに Docker Engine が動く仮想マシンをプロビジョニングします。そして、その環境に接続したら、dockerコマンドを実行可能になります。
+   主に作業をしているマシンが Mac や Windows の古いデスクトップやノート PC であって、:doc:`Docker Desktop for Mac </docker-for-mac/index>` や :doc:`Docker Desktop for Windows </docker-for-windows/index>` という新たなアプリを利用する前提条件を満たしていない場合、Docker Engine をローカルで実行するには Docker Machine が必要になります。
+   :doc:`Docker Toolbox </toolbox/overview>` のインストーラを通じて Mac や Windows に Docker Machine をインストールすると、Docker Engine を利用するローカルの仮想マシンがプロビジョニングされます。
+   これに対して接続を行い ``docker`` コマンドを実行します。
 
 ..     I want to provision Docker hosts on remote systems
 
 
 * **リモート・システム上に Docker ホストをプロビジョンしたい**
 
-.. Docker Machine for provisioning multiple systems
+   ..  ![Docker Machine for provisioning multiple systems](img/provision-use-case.png){: .white-bg}
 
-.. image:: ./img/provision-use-case.png
-   :scale: 60%
-   :alt: プロビジョン例
+   .. image:: ./img/provision-use-case.png
+      :scale: 60%
+      :alt: 複数システムをプロビジョニングする Docker Machine
 
-.. Docker Engine runs natively on Linux systems. If you have a Linux box as your primary system, and want to run docker commands, all you need to do is download and install Docker Engine. However, if you want an efficient way to provision multiple Docker hosts on a network, in the cloud or even locally, you need Docker Machine.
+   .. Docker Engine runs natively on Linux systems. If you have a Linux box as your
+      primary system, and want to run `docker` commands, all you need to do is
+      download and install Docker Engine. However, if you want an efficient way to
+      provision multiple Docker hosts on a network, in the cloud or even locally,
+      you need Docker Machine.
 
-Docker Engine は Linux システム上でネイティブに動きます。主な利用環境が Linux であれば、 ``docker`` コマンドを実行したい場合に必要になるのは Docker Engine のダウンロードとインストールです。それだけでなく、ネットワーク上で複数の Docker ホストを効率的にプロビジョン（訳者注：自動的な環境構築）したい場合、それがクラウドでも、ローカル環境でも実現したいのであれば、Docker Machine が必要になるでしょう。
+   Docker Engine は Linux システム上でネイティブに動作します。
+   主に利用するシステムが Linux であって ``docker`` コマンドを利用したいのであれば、やるべきことは、単に Docker Engine をダウンロードしてインストールするだけです。
+   ただしネットワーク上に複数の Docker ホストを効率よくプロビジョニングしたい場合は、クラウド上とローカル上は問わず Docker Machine が必要になります。
 
-.. Whether your primary system is Mac, Windows, or Linux, you can install Docker Machine on it and use docker-machine commands to provision and manage large numbers of Docker hosts. It automatically creates hosts, installs Docker Engine on them, then configures the docker clients. Each managed host (”machine”) is the combination of a Docker host and a configured client.
+   ..  Whether your primary system is Mac, Windows, or Linux, you can install Docker
+       Machine on it and use `docker-machine` commands to provision and manage large
+       numbers of Docker hosts. It automatically creates hosts, installs Docker
+       Engine on them, then configures the `docker` clients. Each managed host
+       ("**_machine_**") is the combination of a Docker host and a configured client.
 
-Docker Machine をインストールしたら、Mac ・ Windows ・ Linux 環境を問わず ``docker-machine`` コマンドを使って多くの Docker ホストのプロビジョンと管理ができます。Docker Machine は自動的にホストを作成し、そこに Docker Engine をインストールし、 ``docker`` クライアントの設定を行います。管理対象の各ホスト（「 **マシン** 」）が Docker ホストと設定済みのクライアントを結び付けます。
+   ふだん利用するシステムが Mac、Windows、Linux のどれであっても、Docker Machine をインストールして ``docker-machine`` コマンドを使えば、いくらでも Docker ホストのプロビジョニングと管理が可能になります。
+   Docker Machine からはホストが自動生成され、そのホスト内に Docker Engine がインストールされます。
+   そして ``docker`` クライアントが設定されます。
+   こうして管理される各ホスト（「**マシン**」）が、Docker ホストと設定済みクライアントを結びつけます。
 
 .. What’s the difference between Docker Engine and Docker Machine?
 
@@ -107,9 +147,18 @@ Docker Machine をインストールしたら、Mac ・ Windows ・ Linux 環境
 Docker Engine と Docker Machine の違いは何ですか？
 ==================================================
 
-.. When people say “Docker” they typically mean Docker Engine, the client-server application made up of the Docker daemon, a REST API that specifies interfaces for interacting with the daemon, and a command line interface (CLI) client that talks to the daemon (through the REST API wrapper). Docker Engine accepts docker commands from the CLI, such as docker run <image>, docker ps to list running containers, docker images to list images, and so on.
+.. When people say "Docker" they typically mean **Docker Engine**, the
+   client-server application made up of the Docker daemon, a REST API that
+   specifies interfaces for interacting with the daemon, and a command line
+   interface (CLI) client that talks to the daemon (through the REST API wrapper).
+   Docker Engine accepts `docker` commands from the CLI, such as
+   `docker run <image>`, `docker ps` to list running containers, `docker image ls`
+   to list images, and so on.
 
-一般的に「Docker」と呼ばれるのは **Docker Engine** を意味します。Docker デーモンはクライアント・サーバ型アプリケーションです。デーモンは特定の REST API インターフェースとコマンド・ライン・インターフェース（CLI）で、デーモンと通信します（正確には、REST API ラッパーを経由します）。Docker Engine は CLI からの ``docker`` コマンドを受け付けます。 ``docker run <イメージ名>`` や ``docker ps`` でのコンテナ実行や、 ``docker images`` でイメージの一覧などを処理します。
+「Docker」と言えば、普通は **Docker Engine** のことを意味します。
+これは Docker デーモンによって構成されるクライアント・サーバ・アプリケーションであり、デーモンとのやりとりを行うためのインターフェースを規定する REST API であり、デーモンとの対話を（REST API ラッパーを通じて）行うコマンドライン・インターフェース（CLI）をすべて意味しています。
+Docker Engine は CLI から ``docker`` コマンド、たとえば ``docker run <イメージ名>`` を受けつけます。
+あるいは ``docker ps`` によって実行中コンテナの一覧を表示し、``docker image ls`` によってイメージ一覧を表示するといった具合です。
 
 .. Docker Engine
 
@@ -117,9 +166,17 @@ Docker Engine と Docker Machine の違いは何ですか？
    :scale: 60%
    :alt: Docker Engine
 
-.. Docker Machine is a tool for provisioning and managing your Dockerized hosts (hosts with Docker Engine on them). Typically, you install Docker Machine on your local system. Docker Machine has its own command line client docker-machine and the Docker Engine client, docker. You can use Machine to install Docker Engine on one or more virtual systems. These virtual systems can be local (as when you use Machine to install and run Docker Engine in VirtualBox on Mac or Windows) or remote (as when you use Machine to provision Dockerized hosts on cloud providers). The Dockerized hosts themselves can be thought of, and are sometimes referred to as, managed “machines”.
+.. **Docker Machine** is a tool for provisioning and managing your Dockerized hosts
+   (hosts with Docker Engine on them). Typically, you install Docker Machine on
+   your local system. Docker Machine has its own command line client
+   `docker-machine` and the Docker Engine client, `docker`. You can use Machine to
+   install Docker Engine on one or more virtual systems. These virtual systems can
+   be local (as when you use Machine to install and run Docker Engine in VirtualBox
+   on Mac or Windows) or remote (as when you use Machine to provision Dockerized
+   hosts on cloud providers). The Dockerized hosts themselves can be thought of,
+   and are sometimes referred to as, managed "**_machines_**".
 
-**Docker Machine** は Docker ホスト（Docker Engine が動くホスト環境）のプロビジョニングと管理用のツールです。一般的には Docker Machine を自分のローカルシステム上にインストールします。Docker Machine とは ``docker-machine`` というコマンド・ラインのクライアントと ``docker`` という名称の Docker Engine クライアントです。Docker Machine を使えば仮想システム上に Docker Engine をインストールできます。仮想システムとはローカル（Machine を使い、Mac または Windows 上の VirtualBox に Docker Engine をインストール、実行します）でも、リモート（Machine を使い、クラウド・プロバイダ上に Docker をプロビジョン）でも構いません。Docker に対応したホストであれば、何でも常に 「 **マシン** 」として管理できるのです（訳者注：Docker Machine の管理対象のホストは、ローカルでもクラウド上でも「マシン」という概念で抽象化できる、という意味です）。
+**Docker Machine** は Docker ホスト（Docker Engine が動くホスト環境）のプロビジョニングと管理用のツールです。一般的には Docker Machine を自分のローカルシステム上にインストールします。Docker Machine には独自のコマンドライン・クライアント`docker-machine`と Docker Engine クライアント`docker`があります。Docker Machine を使えば仮想システム上に Docker Engine をインストールできます。仮想システムとはローカル（Machine を使い、Mac または Windows 上の VirtualBox に Docker Engine をインストール、実行します）でも、リモート（Machine を使い、クラウド・プロバイダ上に Docker をプロビジョン）でも構いません。Docker に対応したホストであれば、何でも常に 「 **マシン** 」として管理できるのです（訳者注：Docker Machine の管理対象のホストは、ローカルでもクラウド上でも「マシン」という概念で抽象化できる、という意味です）。
 
 .. image:: ./img/machine.png
    :scale: 60%
