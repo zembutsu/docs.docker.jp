@@ -53,7 +53,7 @@ Buildx [実験的機能]
 
 .. Docker introduces a new CLI command called buildx. You can use the buildx command on Docker Desktop for Mac and Windows to build multi-arch images, link them together with a manifest file, and push them all to a registry using a single command. With the included emulation, you can transparently build more than just native images. Buildx accomplishes this by adding new builder instances based on BuildKit, and leveraging Docker Desktop’s technology stack to run non-native binaries.
 
-Dockre には `buildx` という新しい CLI コマンドライン・ツールを導入しました。Docker Desktop for Mac と Windows では、この `buildx`  コマンドを使うことで、複数のアーキテクチャに対応したイメージを構築し、マニフェスト・ファイルでそれらを一緒にし、コマンド１つでこれら全てを送信できます。エミュレーションを入れておけば、単にネイティブなイメージを作るよりも、透過的に構築できます。BUildx はこれらを行うため、 BuildKit をベースとする新しい構築インスタンスを追加しました。そして、Docker Desktop の技術スタックによって、ネイティブではないバイナリも実行します。
+Docker には `buildx` という新しい CLI コマンドライン・ツールを導入しました。Docker Desktop for Mac と Windows では、この `buildx`  コマンドを使うことで、複数のアーキテクチャに対応したイメージを構築し、マニフェスト・ファイルでそれらを一緒にし、コマンド１つでこれら全てを送信できます。エミュレーションを入れておけば、単にネイティブなイメージを作るよりも、透過的に構築できます。BUildx はこれらを行うため、 BuildKit をベースとする新しい構築インスタンスを追加しました。そして、Docker Desktop の技術スタックによって、ネイティブではないバイナリも実行します。
 
 .. For more information about the Buildx CLI command, see Buildx.
 

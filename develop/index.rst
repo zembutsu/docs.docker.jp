@@ -44,7 +44,7 @@ Docker で新しいアプリを開発
 
 .. If you’re just getting started developing a brand new app on Docker, check out these resources to understand some of the most common patterns for getting the most benefits from Docker.
 
-まさにこれから Docker 上で真っ新なアプリケーションの開発を始めようとしているのであれば、Dockre を最も活用するための最共通パターンを理解するため、以下のリソースをご確認ください。
+まさにこれから Docker 上で真っ新なアプリケーションの開発を始めようとしているのであれば、Docker を最も活用するための最共通パターンを理解するため、以下のリソースをご確認ください。
 
 ..  Use multi-stage builds to keep your images lean
     Manage application data using volumes and bind mounts

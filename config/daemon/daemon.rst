@@ -75,7 +75,7 @@ Docker デーモンの設定
 
 .. There are two ways to configure the Docker daemon:
 
-Dockre デーモンの設定を変更するには、２つの方法があります。
+Docker デーモンの設定を変更するには、２つの方法があります。
 
 ..  Use a JSON configuration file. This is the preferred option, since it keeps all configurations in a single place.
     Use flags when starting dockerd.
@@ -337,7 +337,7 @@ Windows ホスト上では Docker を再起動します。
 
 .. Instead of following this procedure, you can also stop the Docker daemon and restart it manually with the debug flag -D. However, this may result in Docker restarting with a different environment than the one the hosts’ startup scripts create, and this may make debugging more difficult.
 
-以上の手順のほかに、Docker デーモンを停止し、手動で Docker デーモンを起動する時にデバッグ用のフラグ ``-D`` を付ける方法もあります。しかしながら、通常ホスト側のスタートアップ・スクリプトによって作成する Dockre 環境とは、異なる環境が起動してしまう場合もあります。そして、そうなればデバッグが困難になるでしょう。
+以上の手順のほかに、Docker デーモンを停止し、手動で Docker デーモンを起動する時にデバッグ用のフラグ ``-D`` を付ける方法もあります。しかしながら、通常ホスト側のスタートアップ・スクリプトによって作成する Docker 環境とは、異なる環境が起動してしまう場合もあります。そして、そうなればデバッグが困難になるでしょう。
 
 .. Force a stack trace to be logged
 
