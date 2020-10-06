@@ -48,7 +48,7 @@ Docker Registry は Docker エコシステムのコンポーネントです。�
 
 .. Docker Hub is an instance of a Docker Registry.
 
-Docker Hub は Dockre Registry 事例の1つです。
+Docker Hub は Docker Registry 事例の1つです。
 
 .. Content Trust
 

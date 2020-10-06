@@ -50,7 +50,7 @@
 * `Live Debugging a Node.js application in Docker <https://github.com/docker/labs/tree/master/developer-tools/nodejs-debugging>`_ （Docker による Node.js アプリケーションのライブデバッグ）
    * Node 開発者は、コンテナ内でコードをライブで実行、テスト、デバッグしながら開発できる環境を Docker でできます。
 
-* `Dockerizing a Node.js application <https://github.com/docker/labs/tree/master/developer-tools/nodejs/porting/>`_ （Node.js アプリケーションの Dockre 化）
+* `Dockerizing a Node.js application <https://github.com/docker/labs/tree/master/developer-tools/nodejs/porting/>`_ （Node.js アプリケーションの Docker 化）
    * シンプルな Node.js アプリケーションでチュートリアルは始まり、Docker 化に必要なステップの詳細と、スケーラビリティを確保します。
 
 * `Docker for ASP.NET and Windows containers <https://github.com/docker/labs/tree/master/windows/readme.md>`_ （ASP.NET と Windows コンテナ用の Docker）

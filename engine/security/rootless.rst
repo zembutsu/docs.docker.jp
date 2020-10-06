@@ -215,7 +215,7 @@ CentOS 7
 
 .. Make sure to run the script as a non-root user. To install Rootless Docker as the root user, see the Manual installation steps.
 
-スクリプトを root 以外のユーザで実行します。root ユーザとして Rootless Dockre をインストールするには、 :ref:`手動インストール <rootless-manual-installation>` の手順をご覧ください。
+スクリプトを root 以外のユーザで実行します。root ユーザとして Rootless Docker をインストールするには、 :ref:`手動インストール <rootless-manual-installation>` の手順をご覧ください。
 
 .. The script shows environment variables that are required:
 
