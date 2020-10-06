@@ -13,9 +13,8 @@ Dockerを使ってbuildできます。
 
 `build/html` 以下に生成されます。
 
-```
-docker build -t docsdockerjp/latex .
-docker run --rm -v `pwd`:/mnt docsdockerjp/latex make clean html
+```sh
+docker run --rm -v `pwd`:/mnt ghcr.io/zembutsu/docs.docker.jp/latex make clean html
 ```
 
 ## pdf
@@ -24,15 +23,14 @@ docker run --rm -v `pwd`:/mnt docsdockerjp/latex make clean html
 
 `Emergency stop.` を避けるために、あらかじめ `\xe2\x80\x93` (EN DASH)を `--` に変換しておきます。
 
-```
+```sh
 grep -Flr '–' . | xargs -n1 sed -i 's/–/--/g'
 ```
 
 そしてビルド
 
-```
-docker build -t docsdockerjp/latex .
-docker run --rm -v `pwd`:/mnt docsdockerjp/latex make clean latexpdfja
+```sh
+docker run --rm -v `pwd`:/mnt ghcr.io/zembutsu/docs.docker.jp/latex make clean latexpdfja
 ```
 
 ## Archives
