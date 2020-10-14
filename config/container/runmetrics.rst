@@ -240,7 +240,7 @@ cgroups からのメトリクス：メモリ、CPU、ブロックI/O
 ..    active_file and inactive_file:
 ..    cache memory, with active and inactive similar to the anon memory above. The exact formula is cache = active_file + inactive_file + tmpfs. The exact rules used by the kernel to move memory pages between active and inactive sets are different from the ones used for anonymous memory, but the general principle is the same. Note that when the kernel needs to reclaim memory, it is cheaper to reclaim a clean (=non modified) page from this pool, since it can be reclaimed immediately (while anonymous pages and dirty/modified pages have to be written to disk first).
 
-* **active_file と inactive_file**: キャッシュメモリの *active* と *inactive* は、先ほどの *anonymou* メモリの説明にあるものと似ています。正確な計算式は、キャッシュ = **active_file** + **inactive_file** + **tmpfs** です。この正確なルールが使われるのは、カーネルがメモリページを active から inactive にセットする時です。これは anonymous メモリとして使うのとは違って、一般的な基本原理によるものと同じです。注意点としては、カーネルがメモリを再要求（reclaim）するするとき、直ちに再要求（anonymous ページや汚れた/変更されたページをディスクに書き込む）よりも、プール上のクリーンな（＝変更されていない）ページを再要求するほうが簡単だからです。
+* **active_file と inactive_file**: キャッシュメモリの *active* と *inactive* は、先ほどの *anonymou* メモリの説明にあるものと似ています。正確な計算式は、キャッシュ = **active_file** + **inactive_file** + **tmpfs** です。この正確なルールが使われるのは、カーネルがメモリページを active から inactive にセットする時です。これは anonymous メモリとして使うのとは違って、一般的な基本原理によるものと同じです。注意点としては、カーネルがメモリを再要求（reclaim）するとき、直ちに再要求（anonymous ページや汚れた/変更されたページをディスクに書き込む）よりも、プール上のクリーンな（＝変更されていない）ページを再要求するほうが簡単だからです。
 
 ..    **unevictable**
 ..    The amount of memory that cannot be reclaimed; generally, it accounts for memory that has been "locked" with `mlock`. It is often used by crypto frameworks to make sure that secret keys and other sensitive material never gets swapped out to disk.
