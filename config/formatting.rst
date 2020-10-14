@@ -68,7 +68,7 @@ json
 Lower
 ==========
 
-..lLower turns a string into its lower case representation.
+.. Lower turns a string into its lower case representation.
 
 ``lower`` は文字列を小文字に変換して表示します。
 
