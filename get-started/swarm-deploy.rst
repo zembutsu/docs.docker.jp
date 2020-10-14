@@ -140,7 +140,7 @@ stack ファイルを使ってアプリケーションを記述
 
 .. Open a browser and visit your bulletin board at localhost:8000; you should see your bulletin board, the same as when we ran it as a stand-alone container in Part 2 of the Quickstart tutorial.
 
-3. ブラウザで ``localhost:30001`` を開き、掲示板を訪ねましょう。そうすると、クイックスタート・チュートリアルの :doc:`Part 2 <part2>` で実行したスタンドアロン・コンテナと同じ掲示板が表示されます。
+3. ブラウザで ``localhost:8000`` を開き、掲示板を訪ねましょう。そうすると、クイックスタート・チュートリアルの :doc:`Part 2 <part2>` で実行したスタンドアロン・コンテナと同じ掲示板が表示されます。
 
 .. Once satisfied, tear down your application:
 
