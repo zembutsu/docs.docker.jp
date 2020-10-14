@@ -73,7 +73,7 @@ Kubernetes 内の全てのコンテナは pod （ポッド）としてスケジ�
 
 ::
 
-    apiVersion: apps/v1
+   apiVersion: apps/v1
    kind: Deployment
    metadata:
      name: bb-demo
