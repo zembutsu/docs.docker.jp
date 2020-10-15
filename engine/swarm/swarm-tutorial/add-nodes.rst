@@ -56,7 +56,7 @@ swarm に他のノードを追加
 
 .. Open a terminal and ssh into the machine where you want to run a second worker node. This tutorial uses the name worker2
 
-3. ターミナルを開き、２つめの workker ノードとして動かしたいマシンに SSH で入ります。このチュートリアルでは ``worker2`` を使います。
+3. ターミナルを開き、２つめの worker ノードとして動かしたいマシンに SSH で入ります。このチュートリアルでは ``worker2`` を使います。
 
 .. Run the command produced by the docker swarm init output from the Create a swarm tutorial step to create a second worker node joined to the existing swarm:
 
