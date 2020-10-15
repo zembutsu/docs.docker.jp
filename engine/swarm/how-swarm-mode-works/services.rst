@@ -136,7 +136,7 @@ Docker swarm モードの根底となる仕組み（ロジック）は、一般�
 
 .. For a replicated service, you specify the number of identical tasks you want to run. For example, you decide to deploy an HTTP service with three replicas, each serving the same content.
 
-複製サービス（replicated sevice）とは、実行したいタスクに対して個々の数を指定します。たとえば、3つのレプリカを持つ HTTP サービスをデプロイすると決めると、各レプリカは同じ内容で稼働します。
+複製サービス（replicated service）とは、実行したいタスクに対して個々の数を指定します。たとえば、3つのレプリカを持つ HTTP サービスをデプロイすると決めると、各レプリカは同じ内容で稼働します。
 
 .. A global service is a service that runs one task on every node. There is no pre-specified number of tasks. Each time you add a node to the swarm, the orchestrator creates a task and the scheduler assigns the task to the new node. Good candidates for global services are monitoring agents, an anti-virus scanners or other types of containers that you want to run on every node in the swarm.
 
