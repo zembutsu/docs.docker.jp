@@ -22,7 +22,7 @@ swarm にノードを参加
 
 .. When you first create a swarm, you place a single Docker Engine into swarm mode. To take full advantage of swarm mode you can add nodes to the swarm:
 
-1つめの sawrm を作成した後は、単一の Docker Engine 上に swarm モードが動いています。swarm に対してノードを追加し、swarm モードの利点を完全に活かします。
+1つめの swarm を作成した後は、単一の Docker Engine 上に swarm モードが動いています。swarm に対してノードを追加し、swarm モードの利点を完全に活かします。
 
 ..  Adding worker nodes increases capacity. When you deploy a service to a swarm, the Engine schedules tasks on available nodes whether they are worker nodes or manager nodes. When you add workers to your swarm, you increase the scale of the swarm to handle tasks without affecting the manager raft consensus.
 
@@ -38,7 +38,7 @@ swarm に対してノードを追加する前に、ホストマシン上には D
 
 .. The Docker Engine joins the swarm depending on the join-token you provide to the docker swarm join command. The node only uses the token at join time. If you subsequently rotate the token, it doesn’t affect existing swarm nodes. Refer to Run Docker Engine in swarm mode.
 
-Docker Engine が swam に参加するには、 ``docker swarm join`` コマンドで得られる **join-token** （参加トークン）に依存します。ノードはこのトークンを参加時のみ使います。トークンが後ほど更新されてしまうと、既存の swarm ノードに参加できなくなります。 :ref:`view-the-join-command-or-update-a-swarm-join-token` をご覧ください。
+Docker Engine が swarm に参加するには、 ``docker swarm join`` コマンドで得られる **join-token** （参加トークン）に依存します。ノードはこのトークンを参加時のみ使います。トークンが後ほど更新されてしまうと、既存の swarm ノードに参加できなくなります。 :ref:`view-the-join-command-or-update-a-swarm-join-token` をご覧ください。
 
 ..    Note: Docker engine allows a non-FIPS node to join a FIPS-enabled swarm cluster.
 
