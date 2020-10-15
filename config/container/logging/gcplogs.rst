@@ -56,7 +56,7 @@ Docker が Google Cloud プロジェクトを検出すると、 `インスタン
 
 .. gcplogs options
 
-gpclogs オプション
+gcplogs オプション
 ====================
 
 .. You can use the --log-opt NAME=VALUE flag to specify these additional Google Cloud Logging driver options:
@@ -75,7 +75,7 @@ Google Cloud ロギング・ドライバのオプションは、``--log-opt 名�
    * - オプション
      - 必須
      - 説明
-   * - ``gcp-poject``
+   * - ``gcp-project``
      - オプション
      - どの GCP プロジェクトにログを記録するか指定。デフォルトは GCE メタデータ・サービスを経由して確認された値。
    * - ``gcp-log-cmd``
