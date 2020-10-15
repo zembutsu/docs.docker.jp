@@ -110,8 +110,8 @@ Docker のイメージ、コンテナ、ボリュームは、別のパーティ�
 .. code-block:: json
 
    {
-       "graph": "/mnt/docker-data",
-       "storage-driver": "overlay"
+       "data-root": "/mnt/docker-data",
+       "storage-driver": "overlay2"
    }
 
 .. HTTP/HTTPS proxy
@@ -152,7 +152,7 @@ Docker デーモンではその起動環境において ``HTTP_PROXY``, ``HTTPS_
 1.  Docker サービスに対応した systemd のドロップイン・ディレクトリを生成します。
 
    ..  ```bash
-       $ mkdir -p /etc/systemd/system/docker.service.d
+       $ sudo mkdir -p /etc/systemd/system/docker.service.d
        ```
    .. code-block:: bash
 
@@ -250,8 +250,7 @@ HTTPS プロキシサーバを利用している場合には、そこに環境�
 
    sudo systemctl show --property=Environment docker
        
-   Environment=HTTP_PROXY=http://proxy.example.com:80 HTTPS_PROXY=https://pr
-
+   Environment=HTTP_PROXY=http://proxy.example.com:80 HTTPS_PROXY=https://proxy.example.com:443 NO_PROXY=localhost,127.0.0.1,docker-registry.example.com,.corp
 
 
 rootless モード
@@ -345,7 +344,7 @@ HTTPS プロキシサーバを利用している場合には、そこに環境�
 .. code-block:: bash
 
    systemctl --user daemon-reload
-   systemctl --user restart docke
+   systemctl --user restart docker
 
 .. Verify that the configuration has been loaded and matches the changes you made, for example:
 
@@ -355,7 +354,7 @@ HTTPS プロキシサーバを利用している場合には、そこに環境�
 
    systemctl --user show --property=Environment docker
        
-   Environment=HTTP_PROXY=http://proxy.example.com:80 HTTPS_PROXY=https://pr
+   Environment=HTTP_PROXY=http://proxy.example.com:80 HTTPS_PROXY=https://proxy.example.com:443 NO_PROXY=localhost,127.0.0.1,docker-registry.example.com,.corp
 
 .. Configure where the Docker daemon listens for connections
 
