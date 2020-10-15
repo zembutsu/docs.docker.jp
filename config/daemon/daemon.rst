@@ -81,7 +81,7 @@ Docker デーモンの設定を変更するには、２つの方法がありま�
     Use flags when starting dockerd.
 
 * JSON 設定ファイルを使う方法。全ての設定情報を１ヵ所にまとめているため、望ましいオプション
-* ``docker`` で起動時にフラグを付ける方法
+* ``dockerd`` で起動時にフラグを付ける方法
 
 .. You can use both of these options together as long as you don’t specify the same option both as a flag and in the JSON file. If that happens, the Docker daemon won’t start and prints an error message.
 
@@ -89,7 +89,7 @@ Docker デーモンの設定を変更するには、２つの方法がありま�
 
 .. To configure the Docker daemon using a JSON file, create a file at /etc/docker/daemon.json on Linux systems, or C:\ProgramData\docker\config\daemon.json on Windows. On MacOS go to the whale in the taskbar > Preferences > Daemon > Advanced.
 
-Docker デーモンを JSON ファイルで設定するには、Linux システム上では ``/etc/docker/daemon.jso`` にファイルを作成するか、Windows 上では ``C:\ProgramData\docker\config\daemon.json`` を作成します。Mac OS ではタスクバーの鯨アイコンから Preferences > Daemon > Advanced を選択します。
+Docker デーモンを JSON ファイルで設定するには、Linux システム上では ``/etc/docker/daemon.json`` にファイルを作成するか、Windows 上では ``C:\ProgramData\docker\config\daemon.json`` を作成します。Mac OS ではタスクバーの鯨アイコンから Preferences > Daemon > Advanced を選択します。
 
 .. Here’s what the configuration file looks like:
 
@@ -196,7 +196,7 @@ Docker デーモンはこのディレクトリ上で状態を保持するため�
 
 .. If you use a daemon.json file and also pass options to the dockerd command manually or using start-up scripts, and these options conflict, Docker fails to start with an error such as:
 
-``daemon.json`` ファイルの利用と、 ``dockerd`` コマンドに対して手動もしくはスタートアップ・スクリプトでオプション指定の利用を同時に利用すると、お互いのオプションが競合するとき、Dockerあ起動できず、次のようなエラーを出力します。
+``daemon.json`` ファイルの利用と、 ``dockerd`` コマンドに対して手動もしくはスタートアップ・スクリプトでオプション指定の利用を同時に利用すると、お互いのオプションが競合するとき、Docker は起動できず、次のようなエラーを出力します。
 
 ::
 
