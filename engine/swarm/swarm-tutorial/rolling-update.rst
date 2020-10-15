@@ -130,7 +130,7 @@
 
    .. The output of service inspect shows if your update paused due to failure:
 
-   ``service inspect`` の出力から、更新の失敗によって一次停止しているのが分かります。
+   ``service inspect`` の出力から、更新の失敗によって一時停止しているのが分かります。
 
    .. code-block:: bash
    
@@ -147,7 +147,7 @@
 
    .. To restart a paused update run docker service update <SERVICE-ID>. For example:
 
-   一次停止した更新を再開するには、 ``docker service update <サービス ID>`` を実行します。実行例：
+   一時停止した更新を再開するには、 ``docker service update <サービス ID>`` を実行します。実行例：
 
    .. code-block:: bash
    
@@ -155,7 +155,7 @@
 
    .. To avoid repeating certain update failures, you may need to reconfigure the service by passing flags to docker service update.
 
-   更新失敗が続く状態を停止するには、 ``docker service updat`` にフラグを追加し、サービスの状態を調整する必要があるでしょう。
+   更新失敗が続く状態を停止するには、 ``docker service update`` にフラグを追加し、サービスの状態を調整する必要があるでしょう。
 
 .. Run docker service ps <SERVICE-ID> to watch the rolling update:
 
