@@ -427,7 +427,7 @@ Docker がどこで動作しているかはオペレーティングシステム�
 
 .. You can also use operating system utilities, such as sudo systemctl is-active docker or sudo status docker or sudo service docker status, or checking the service status using Windows utilities.
 
-また、オペレーティングシステムのユーティリティも利用できます。 ``udo systemctl is-active docker `` や ``sudo status docker`` や ``sudo service docker status`` や、Windows ユーティリティを使ったサービスを確認できます。
+また、オペレーティングシステムのユーティリティも利用できます。 ``sudo systemctl is-active docker`` や ``sudo status docker`` や ``sudo service docker status`` や、Windows ユーティリティを使ったサービスを確認できます。
 
 .. Finally, you can check in the process list for the dockerd process, using commands like ps or top.
 
