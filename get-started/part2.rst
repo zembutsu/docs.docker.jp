@@ -303,7 +303,7 @@ Dockerfile を書くことは、アプリケーションをコンテナ化する
     RUN the command npm install inside your image filesystem (which will read package.json to determine your app’s node dependencies, and install them)
     COPY in the rest of your app’s source code from your host to your image filesystem.
 
-* ``FROM`` では既存の ``node:surrent-slim`` イメージで始めます。これは公式イメージ（ `official image` ）であり、node.js ベンダーとよって構築され、Docker が認定した高品質なイメージであり、Node.js 長期間サポート（LTS）インタプリタと基本的な依存関係を含みます。
+* ``FROM`` では既存の ``node:current-slim`` イメージで始めます。これは公式イメージ（ `official image` ）であり、node.js ベンダーとよって構築され、Docker が認定した高品質なイメージであり、Node.js 長期間サポート（LTS）インタプリタと基本的な依存関係を含みます。
 * ``WORKDIR`` を使い、以降に続く処理すべてを、イメージのファイルシステムで（決してホスト上ではありません）指定したディレクトリ ``/usr/src/app`` 内で行うよう指定します。
 * ``COPY``  は ``package.json`` をホスト上からイメージ内の現在の場所（ ``.``）にコピーします（今回の例では、 ``/usr/src/app/package.json`` にコピーします）。
 * ``RUN`` はイメージ・ファイルシステム内で ``npm install`` コマンドを実行します（これにより、 ``package.json`` を読み込み、アプリケーションの node 依存会計を解決するため、必要なものをインストールします ）。
