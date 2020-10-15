@@ -163,7 +163,7 @@ Dockerfile でコンテナを定義
 
 .. After downloading the project, take a look at the file called Dockerfile in the bulletin board application. Dockerfiles describe how to assemble a private filesystem for a container, and can also contain some metadata describing how to run a container based on this image.
 
-プロジェクトのダウンロード後は、掲示板アプリケーション内にある ``Dockerfile`` （ドッカーファーイル）と呼ぶファイルを見ます。Dockerfile にはコンテナに対するプライベート・ファイルシステムを、どのようにして構成するかの記述があります。また、このイメージをベースとして、コンテナをどのようにして実行するかといった、複数のメタデータも含められます。
+プロジェクトのダウンロード後は、掲示板アプリケーション内にある ``Dockerfile`` （ドッカーファイル）と呼ぶファイルを見ます。Dockerfile にはコンテナに対するプライベート・ファイルシステムを、どのようにして構成するかの記述があります。また、このイメージをベースとして、コンテナをどのようにして実行するかといった、複数のメタデータも含められます。
 
 .. For more information about the Dockerfile used in the bulletin board application, see Sample Dockerfile.
 
@@ -199,7 +199,7 @@ Docker を見ると、Dockerfile 中の命令ごとに、命令したとおり�
 
 .. note::
 
-   Windows 利用者の方へ：この例は Linux コンテナを使います。環境が Linux コンテナとして動作しているのを確認するため、システムトレイ上の Docker ロゴを右クリックし、 **Switch to Linux containers** （Linux コンテナへ切り替え）をクリックします。心配しないでください、このチュートリアルで実行するすべててのコマンドは、Windows コンテナとしても同様に機能します。イメージの実行後、「 SECURITY WARNING’」（セキュリティ警告）のタイトルがついたメッセージを表示し、イメージに対してファイル追加時に、読み書き実行権限の設定を確認する場合があります。今回の例では、センシティブな情報（機微情報）を扱っていませんので、この警告は無視して構いません。
+   Windows 利用者の方へ：この例は Linux コンテナを使います。環境が Linux コンテナとして動作しているのを確認するため、システムトレイ上の Docker ロゴを右クリックし、 **Switch to Linux containers** （Linux コンテナへ切り替え）をクリックします。心配しないでください、このチュートリアルで実行するすべてのコマンドは、Windows コンテナとしても同様に機能します。イメージの実行後、「 SECURITY WARNING’」（セキュリティ警告）のタイトルがついたメッセージを表示し、イメージに対してファイル追加時に、読み書き実行権限の設定を確認する場合があります。今回の例では、センシティブな情報（機微情報）を扱っていませんので、この警告は無視して構いません。
 
 .. Run your image as a container
 
