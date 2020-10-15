@@ -56,7 +56,7 @@ Docker デーモンに対してデフォルトで何らかのロギング・ド�
 
 .. code-block:: json
 
-{
+   {
      "log-driver": "json-file",
      "log-opts": {
        "max-size": "10m",
@@ -135,7 +135,7 @@ Docker デーモンにおける現在のデフォルトのロギング・ドラ�
 
 .. The non-blocking message delivery mode prevents applications from blocking due to logging back pressure. Applications are likely to fail in unexpected ways when STDERR or STDOUT streams block.
 
-``non-blocking`` メッセージ・デリバリ・モードでは、ロギング・バック圧縮（logging back pressure）によって、アプリケーションからのブロッキングを阻止します。アプリケーションは ``STDERR`` や ``STDOUT``` ストリームのブロックにより、予期しない異常のようになるでしょう。
+``non-blocking`` メッセージ・デリバリ・モードでは、ロギング・バック圧縮（logging back pressure）によって、アプリケーションからのブロッキングを阻止します。アプリケーションは ``STDERR`` や ``STDOUT`` ストリームのブロックにより、予期しない異常のようになるでしょう。
 
 ..    WARNING When the buffer is full and a new message is enqueued, the oldest message in memory is dropped. Dropping messages is often preferred to blocking the log-writing process of an application.
 
@@ -145,7 +145,7 @@ Docker デーモンにおける現在のデフォルトのロギング・ドラ�
 
 .. The mode log option controls whether to use the blocking (default) or non-blocking message delivery.
 
-``mode`` ログオプションは、どこで ``blocking``（デフォルトでは）、 または ``non-blocking`` メッセージを送信するか制御します。
+``mode`` ログオプションは、どこで ``blocking`` （デフォルトでは）、 または ``non-blocking`` メッセージを送信するか制御します。
 
 .. The max-buffer-size log option controls the size of the ring buffer used for intermediate message storage when mode is set to non-blocking. max-buffer-size defaults to 1 megabyte.
 
