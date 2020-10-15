@@ -218,7 +218,7 @@ UDP のみ
 
 ..    If you expect to run multiple service tasks on each node (such as when you have 5 nodes but run 10 replicas), you cannot specify a static target port. Either allow Docker to assign a random high-numbered port (by leaving off the published), or ensure that only a single instance of the service runs on a given node, by using a global service rather than a replicated one, or by using placement constraints.
 
-* 各ノード上で複数のサービス・タスクを動かすつもりの場合（5ノードがあり、10 レプリカを実行するような場合）は、対象となるポート固定を指定できません。（ ``publiched`` を省略した場合は ）Docker がランダムな高い番号のポートを割り当てるか、あるいは、対象ノード上で実行しているサービスの1つのインスタンスに対してのみアクセスするか、こののどちらかです。その場合、レプリカに対するアクセスできる場所を制限（pconstraint）するよりは、グローバル・サービスを使う方が良いでしょう。
+* 各ノード上で複数のサービス・タスクを動かすつもりの場合（5ノードがあり、10 レプリカを実行するような場合）は、対象となるポート固定を指定できません。（ ``publiched`` を省略した場合は ）Docker がランダムな高い番号のポートを割り当てるか、あるいは、対象ノード上で実行しているサービスの1つのインスタンスに対してのみアクセスするか、こののどちらかです。その場合、レプリカに対するアクセスできる場所を制限（constraint）するよりは、グローバル・サービスを使う方が良いでしょう。
 
 .. To bypass the routing mesh, you must use the long --publish service and set mode to host. If you omit the mode key or set it to ingress, the routing mesh is used. The following command creates a global service using host mode and bypassing the routing mesh.
 
