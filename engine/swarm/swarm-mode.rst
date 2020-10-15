@@ -249,7 +249,7 @@ manager ノードとして参加するコマンドとトークンを表示する
 
 .. Be careful with the join tokens because they are the secrets necessary to join the swarm. In particular, checking a secret into version control is a bad practice because it would allow anyone with access to the application source code to add new nodes to the swarm. Manager tokens are especially sensitive because they allow a new manager node to join and gain control over the whole swarm.
 
-参加トークンには swarm に参加するために必要なシークレットを含みますので、取り扱いに注意してください。特に、バージョン管理においてシークレットを確認するのは悪いプラクティスです。これは誰もがアプリケーションのソースコードにアクセス可能であれば、誰でも鄔swarm に新しいノードを追加できるからです。manager トークンは極めて注意すべきです。これがあれば、新しいマネージャが参加できるようになり、swarm 全体の制御を得られるからです。
+参加トークンには swarm に参加するために必要なシークレットを含みますので、取り扱いに注意してください。特に、バージョン管理においてシークレットを確認するのは悪いプラクティスです。これは誰もがアプリケーションのソースコードにアクセス可能であれば、誰でも swarm に新しいノードを追加できるからです。manager トークンは極めて注意すべきです。これがあれば、新しいマネージャが参加できるようになり、swarm 全体の制御を得られるからです。
 
 .. We recommend that you rotate the join tokens in the following circumstances:
 
