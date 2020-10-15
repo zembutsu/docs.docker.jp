@@ -44,7 +44,7 @@ Docker で新しいアプリを開発
 
 .. If you’re just getting started developing a brand new app on Docker, check out these resources to understand some of the most common patterns for getting the most benefits from Docker.
 
-まさにこれから Docker 上で真っ新なアプリケーションの開発を始めようとしているのであれば、Docker を最も活用するための最共通パターンを理解するため、以下のリソースをご確認ください。
+まさにこれから Docker 上で真っ新なアプリケーションの開発を始めようとしているのであれば、Docker を最も活用するための共通パターンを理解するため、以下のリソースをご確認ください。
 
 ..  Use multi-stage builds to keep your images lean
     Manage application data using volumes and bind mounts
@@ -85,7 +85,7 @@ Docker で言語特有のアプリケーション開発を学ぶ
 
 .. _advanced-development-with-the-sdk-or-api:
 
-DSK や API で高度な開発
+SDK や API で高度な開発
 ==============================
 
 .. After you can write Dockerfiles or Compose files and use Docker CLI, take it to the next level by using Docker Engine SDK for Go/Python or use the HTTP API directly.
