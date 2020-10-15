@@ -344,7 +344,7 @@ Rootless モードは実験的なため、 ``docker-rootless.sh`` には ``--exp
     docker info shows rootless in SecurityOptions
     docker info shows none as Cgroup Driver
 
-* ``dockerd-rootless.sh`` スクリプトの ``dockerd`` 実行は、自分自身のユーザ、マウント、ネットワークの各名前空間を使います。名前空間に入る場合は、 ``nsenter -U --preserve-credentials -n -m -t $(cat $XDG_RUNTIME_DI`` を実行します。
+* ``dockerd-rootless.sh`` スクリプトの ``dockerd`` 実行は、自分自身のユーザ、マウント、ネットワークの各名前空間を使います。名前空間に入る場合は、 ``nsenter -U --preserve-credentials -n -m -t $(cat $XDG_RUNTIME_DIR/docker.pid)`` を実行します。
 * ``docker info`` を実行すると、 ``SecutiryOptions`` が ``rootless`` と表示します。
 * ``docker info`` を実行すると、 ``Cgroup Driver`` が ``none`` と表示します。
 
@@ -487,7 +487,7 @@ ping パケットのルーティング
 
 .. In Docker 19.03, rootless mode ignores cgroup-related docker run flags such as --cpus, --memory, --pids-limit`.
 
-Docker 19.03 では、rootless モードでは cgroups に関連する ``docker run`` のフラグ、 ``--cpu`` 、 ``--memory`` 、 ``-pids-limit`` を無視します。
+Docker 19.03 では、rootless モードでは cgroups に関連する ``docker run`` のフラグ、 ``--cpus`` 、 ``--memory`` 、 ``-pids-limit`` を無視します。
 
 .. However, you can still use the traditional ulimit and cpulimit, though they work in process-granularity rather than in container-granularity, and can be arbitrarily disabled by the container process.
 
@@ -618,7 +618,7 @@ systemd ホスト上では、ホストへのログインに ``pam_systemd`` を�
     ssh <USERNAME>@localhost
     machinectl shell <USERNAME>@
 
-* グラフィック・コンロールを通してログイン
+* グラフィック・コンソールを通してログイン
 * ``ssh <ユーザ名>@localhost``
 * ``machinectl shell <ユーザ名>@``
 
@@ -652,7 +652,7 @@ systemd ホスト上では、ホストへのログインに ``pam_systemd`` を�
 
 .. --cpus, --memory, and --pids-limit are ignored
 
-**--cpu、 --memory 、 --pids-limit が無視される**
+**--cpus、 --memory 、 --pids-limit が無視される**
 
 .. This is an expected behavior in Docker 19.03. For more information, see Limiting resources.
 
