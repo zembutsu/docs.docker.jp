@@ -42,7 +42,7 @@ Docker でサービスを作成すると、タスクを開始します。サー�
 
 .. Tasks advance through a number of states until they complete or fail. Tasks are initialized in the NEW state. The task progresses forward through a number of states, and its state doesn’t go backward. For example, a task never goes from COMPLETE to RUNNING.
 
-タスクの利点とは、完了や失敗に至るまで数々の状態を持ちます。タスクの進行には数々の状態がありますが、状態は巻き戻りません。たとえば、 ``COMPETE`` のタスクは決して ``RUNNING`` になりません。
+タスクの利点とは、完了や失敗に至るまで数々の状態を持ちます。タスクの進行には数々の状態がありますが、状態は巻き戻りません。たとえば、 ``COMPLETE`` のタスクは決して ``RUNNING`` になりません。
 
 .. Tasks go through the states in the following order:
 
