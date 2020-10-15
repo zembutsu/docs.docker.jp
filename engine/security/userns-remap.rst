@@ -58,7 +58,7 @@ Linux 名前空間（namespace）は実行中のプロセスに対する隔離�
 
 .. When you configure Docker to use the userns-remap feature, you can optionally specify an existing user and/or group, or you can specify default. If you specify default, a user and group dockremap is created and used for this purpose.
 
-Docker で ``userne-remap`` 機能を使うように調整する時は、オプションで既存のユーザとグループ、またはいずれかに対して ``default`` を指定できます。 ``default`` を指定すると、 ``dockremap`` ユーザとグループが作成され、この目的のために医療します。
+Docker で ``userns-remap`` 機能を使うように調整する時は、オプションで既存のユーザとグループ、またはいずれかに対して ``default`` を指定できます。 ``default`` を指定すると、 ``dockremap`` ユーザとグループが作成され、この目的のために使用します。
 
 ..    Warning: Some distributions, such as RHEL and CentOS 7.3, do not automatically add the new group to the /etc/subuid and /etc/subgid files. You are responsible for editing these files and assigning non-overlapping ranges, in this case. This step is covered in Prerequisites.
 
