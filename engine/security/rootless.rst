@@ -251,7 +251,7 @@ CentOS 7
 
 .. If you already have the Docker daemon running as the root, you only need to extract docker-rootless-extras-<version>.tar.gz. The archive can be extracted under an arbitrary directory listed in the $PATH. For example, /usr/local/bin, or $HOME/bin.
 
-既に Docker を root として実行中の場合は、 ``docker-rootless-extras-<version>.tar.gz`` のみを展開します。アーカイブは ``$PATH`` 以下の相対ディレクトリに展開されます。たとえば、 ``/usr/local/bin`` や ``$HOME/bin`` です。
+既に Docker を root として実行中の場合は、 ``docker-rootless-extras-<version>.tar.gz`` のみを展開します。アーカイブは ``$PATH`` に含まれるいずれかのディレクトリに展開します。たとえば、 ``/usr/local/bin`` や ``$HOME/bin`` です。
 
 
 .. Nightly channel
