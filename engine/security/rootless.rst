@@ -525,7 +525,7 @@ Docker 19.03 では、rootless モードでは cgroups に関連する ``docker 
 
 .. Optionally, you can use lxc-user-nic instead for the best performance. To use lxc-user-nic, you need to edit /etc/lxc/lxc-usernet and set $DOCKERD_ROOTLESS_ROOTLESSKIT_NET=lxc-user-nic.
 
-オプションで、ベストなパフォーマンスの代わりに ``lxc-user-nic`` を利用できます。 ``lxc-user-nic`` を使うには、 `/etc/lxc/lxc-usernet <https://github.com/rootless-containers/rootlesskit/tree/v0.9.5#--netlxc-user-nic-experimental>`_ を編集し、 ``$DOCKERD_ROOTLESS_ROOTLESSKIT_NET=lxc-user-nic`` を指定します。
+最適な性能を得るために、代わりに ``lxc-user-nic`` を利用することもできます。 ``lxc-user-nic`` を使うには、 `/etc/lxc/lxc-usernet <https://github.com/rootless-containers/rootlesskit/tree/v0.9.5#--netlxc-user-nic-experimental>`_ を編集し、 ``$DOCKERD_ROOTLESS_ROOTLESSKIT_NET=lxc-user-nic`` を指定します。
 
 .. Troubleshooting
 
