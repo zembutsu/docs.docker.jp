@@ -398,7 +398,7 @@ Rootless Docker in Docker
 
 .. To run Rootless Docker inside “rootful” Docker, use the docker:<version>-dind-rootless image instead of docker:<version>-dind.
 
-Rootless Docker の中で "rootful" （root風に） Docker を実行するには、 ``docker:<version>-dind`` イメージの変わりに ``docker:<version>-dind-rootless`` イメージを使います。
+「完全な root」で動作する Docker 内において Rootless Docker を実行するには、 ``docker:<version>-dind`` イメージの代わりに ``docker:<version>-dind-rootless`` イメージを使います。
 
 .. code-block:: bash
 
