@@ -194,7 +194,7 @@ CentOS 7
    * オーバレイ・ネットワーク
    * SCTP ポートの公開（exposing）
 * ``ping`` コマンドを使うには、 :ref:`rootless-routing-ping-packets` をご覧ください。
-* 特権 TCP/UDP ポート（ポート 1024 以下）を公開するには、 :ref:`exposing-privileged-ports` をご覧ください。
+* 特権 TCP/UDP ポート（ポート 1024 以下）を公開するには、 :ref:`rootless-exposing-privileged-ports` をご覧ください。
 * ``docker inspect`` で表示する ``IPAddress`` とは、RootlessKit のネットワーク名前空間内で名前区間化されたものです。つまり、 ``nsenter`` 化しなければ、そのネットワーク名前空間にはホスト側から到達できない IP アドレスです。
 * また、ホスト・ネットワーク（ ``docker run --net=host`` ）も RootlessKit 内に名前空間化されています。
 
@@ -460,7 +460,7 @@ ping パケットのルーティング
 
 .. Exposing privileged ports
 
-.. _rootless-exposing-privileged-ports
+.. _rootless-exposing-privileged-ports:
 
 特権ポートの公開
 --------------------
