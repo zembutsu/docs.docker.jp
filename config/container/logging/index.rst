@@ -38,7 +38,7 @@
 
 ..    If your image runs a non-interactive process such as a web server or a database, that application may send its output to log files instead of STDOUT and STDERR.
 
-* もしも、ウェバウサーバやデータベースのような、イメージがインタラクディブではないプロセスを実行しようとすると、アプリケーションは ``STDOUT`` や ``STDERR`` のかわりにログファイルへと出力をする場合があります。
+* もしも、ウェブサーバやデータベースのような、イメージがインタラクディヴではないプロセスを実行しようとすると、アプリケーションは ``STDOUT`` や ``STDERR`` のかわりにログファイルへと出力をする場合があります。
 
 .. In the first case, your logs are processed in other ways and you may choose not to use docker logs. In the second case, the official nginx image shows one workaround, and the official Apache httpd image shows another.
 
