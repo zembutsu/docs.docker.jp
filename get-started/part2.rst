@@ -242,7 +242,7 @@ Docker を見ると、Dockerfile 中の命令ごとに、命令したとおり�
 ..    The --force option stops a running container, so it can be removed. If you stop the container running with docker stop bb first, then you do not need to use --force to remove it.
 
 
-``--force`` オプションは、実行中のコンテナを停止します。しかし、コンテナの削除は行いません。最初にコンテナを ``docker stop bb``  で停止したら、次は ``--force`` を使って削除する必要があります。
+``--force`` オプションは、実行中のコンテナを停止させて、コンテナが削除されることを可能にします。最初にコンテナを ``docker stop bb``  で停止したら、 ``--force`` を使って削除する必要はありません。
 
 .. Conclusion
 
