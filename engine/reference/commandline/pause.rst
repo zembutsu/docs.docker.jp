@@ -22,13 +22,18 @@ docker pause
 
 1 つまたは複数のコンテナ内部で実行されているプロセスを一時停止します。
 
+.. usage
+
+.. _docker-pause-usage:
+
+利用方法
+====================
+
+.. docker pause CONTAINER [CONTAINER...]
+
 .. code-block:: bash
 
-   使い方: docker pause [オプション] コンテナ [コンテナ...]
-   
-   コンテナ内の全てのプロセスを一時停止
-   
-     --help          使い方の表示
+   docker pause コンテナ [コンテナ...]
 
 .. The docker pause command uses the cgroups freezer to suspend all processes in a container. Traditionally, when suspending a process the SIGSTOP signal is used, which is observable by the process being suspended. With the cgroups freezer the process is unaware, and unable to capture, that it is being suspended, and subsequently resumed.
 
