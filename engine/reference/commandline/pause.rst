@@ -59,6 +59,25 @@ Windows の場合は Hyper-V コンテナのみが一時停止できます。
 
 更に詳しい詳細については `cgroup freezer ドキュメント <https://www.kernel.org/doc/Documentation/cgroup-v1/freezer-subsystem.txt>`_ をご覧ください。
 
+.. For example uses of this command, refer to the [examples section](#examples) below.
+
+本コマンドの利用例については、以下に示す :ref:`利用例 <docker-pause-examples>` を参照してください。
+
+.. examples
+
+.. _docker-pause-examples:
+
+利用例
+====================
+
+.. ```bash
+   $ docker pause my_container
+   ```
+
+.. code-block:: bash
+
+   $ docker pause my_container
+
 .. seealso:: 
 
    pause
