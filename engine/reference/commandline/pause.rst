@@ -80,5 +80,5 @@ Windows の場合は Hyper-V コンテナのみが一時停止できます。
 
 .. seealso:: 
 
-   pause
+   docker pause
       https://docs.docker.com/engine/reference/commandline/pause/
