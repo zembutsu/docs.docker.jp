@@ -42,9 +42,18 @@ docker pause
 追加説明
 ====================
 
-.. The docker pause command uses the cgroups freezer to suspend all processes in a container. Traditionally, when suspending a process the SIGSTOP signal is used, which is observable by the process being suspended. With the cgroups freezer the process is unaware, and unable to capture, that it is being suspended, and subsequently resumed.
+.. The `docker pause` command suspends all processes in the specified containers.
+   On Linux, this uses the freezer cgroup. Traditionally, when suspending a process
+   the `SIGSTOP` signal is used, which is observable by the process being suspended.
+   With the freezer cgroup the process is unaware, and unable to capture,
+   that it is being suspended, and subsequently resumed. On Windows, only Hyper-V
+   containers can be paused.
 
-``docker pause`` コマンドは cgroup を凍結（freezer）するもので、コンテナ内の全てのプロセスを一時停止（suspend）します。これまで、プロセスの一時停止には ``SIGSTOP`` シグナルが使われてきました。これはプロセスが一時停止状態に見えるようにするためのものです。cgroup の凍結により、プロセスの状態は分からなくなり、操作できなくなります。再開されるまで、一時停止状態のままです。
+``docker pause`` コマンドは、指定されたコンテナ内のプロセスをすべて実行停止します。
+Linux の場合は freezer cgroup が利用されます。
+従来よりプロセスの一時停止には ``SIGSTOP`` シグナルが用いられ、そのプロセスの停止によって確認できます。
+freezer cgroup を用いた場合、一時停止されたこと、およびその後に再開されることに、プロセスは気づくことがなく、またそういう状態を把握することもできません。
+Windows の場合は Hyper-V コンテナのみが一時停止できます。
 
 .. See the cgroups freezer documentation for further details.
 
