@@ -13,6 +13,15 @@
 docker pause
 =======================================
 
+.. description
+
+.. _docker-pause-description:
+
+説明
+====================
+
+1 つまたは複数のコンテナ内部で実行されているプロセスを一時停止します。
+
 .. code-block:: bash
 
    使い方: docker pause [オプション] コンテナ [コンテナ...]
