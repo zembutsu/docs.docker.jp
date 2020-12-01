@@ -86,7 +86,7 @@ run
      --net-alias=[]                コンテナにネットワーク内部用のエイリアスを追加
      --oom-kill-disable            コンテナの OOM Killer を無効化するかどうか指定
      --oom-score-adj=0             コンテナに対してホスト側の OOM 優先度を設定 ( -1000 ～ 1000 を指定)
-     -P, --publish-all             全ての露出ポートをランダムならポートに公開
+     -P, --publish-all             全ての露出ポートをランダムなポートに公開
      -p, --publish=[]              コンテナのポートをホスト側に公開
      --pid=""                      使用する PID 名前空間
      --pids-limit=-1                コンテナの pids 制限を調整 (kernel 4.3 以上は -1 で無制限に設定)
