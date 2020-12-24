@@ -104,7 +104,7 @@ Docker Hub リポジトリを作成し、イメージを送信
 
 ..    Type the repository name as bulletinboard and click Create at the bottom of the page. Do not fill any other details for now.
 
-2. レポジトリ名（repository name）を ``bulletinboard``  と入力し、ページの下にある **Create** （作成）ボタンをクリックします。現時点では他の項目は入力しないでください。
+2. リポジトリ名（repository name）を ``bulletinboard``  と入力し、ページの下にある **Create** （作成）ボタンをクリックします。現時点では他の項目は入力しないでください。
 
 ..    make a repo
 
@@ -155,7 +155,7 @@ Docker Hub リポジトリを作成し、イメージを送信
 
 .. Another thing to keep in mind: at the moment, you’ve only pushed your image to Docker Hub; what about your Dockerfile? A crucial best practice is to keep these in version control, perhaps alongside your source code for your application. You can add a link or note in your Docker Hub repository description indicating where these files can be found, preserving the record not only of how your image was built, but how it’s meant to be run as a full application.
 
-もう１つ覚えておいてください。今のところイメージを Docker Hub に送信したにすぎません。つまり、 Dockerfile はどうしたらよいでしょうか。ベストプラクティスに不可欠なのは、バージョン管理をすることであり、可能であればアプリケーションの依存関係のソースコードと共に行うことです。Docker Hub リポジトリ音説明には、どこでそれら Dockerifle を見つけられるかのリンクやメモを追加できます。記録できるのはイメージのビルドの仕方だけでなく、アプリケーションの依存関係の完全に実行する方法についても可能です。
+もう１つ覚えておいてください。今のところイメージを Docker Hub に送信したにすぎません。つまり、 Dockerfile はどうしたらよいでしょうか。ベストプラクティスに不可欠なのは、バージョン管理をすることであり、可能であればアプリケーションの依存関係のソースコードと共に行うことです。Docker Hub リポジトリ説明には、どこでそれら Dockerifle を見つけられるかのリンクやメモを追加できます。記録できるのはイメージのビルドの仕方だけでなく、アプリケーションの依存関係の完全に実行する方法についても可能です。
 
 .. Where to go next
 
