@@ -124,6 +124,7 @@ Windows に Docker Desktop をインストール
 ..    If you haven’t already downloaded the installer (Docker Desktop Installer.exe), you can get it from Docker Hub. It typically downloads to your Downloads folder, or you can run it from the recent downloads bar at the bottom of your web browser.
 
 もしもまだインストーラ（ :code:`Docker Desktop Installer.exe` ）をダウンロードしていなければ、 `Docker Hub <https://hub.docker.com/editions/community/docker-ce-desktop-windows/>`_ から取得できます。ダウンロードは通常「ダウンロード」フォルダ内か、ウェブブラウザ上のダウンロード・バーに表示される最近ダウンロードした場所です。
+
 ..    When prompted, ensure the Enable Hyper-V Windows Features option is selected on the Configuration page.
 
 2.　確認画面が出たら、 **Enable Hyper-V Windows Features** （Hyper V の Windows 機能を有効にする）のオプションが、設定ページで選択されているかどうかを確認します。
