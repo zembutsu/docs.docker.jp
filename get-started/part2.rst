@@ -93,9 +93,9 @@ Docker であれば、移動可能な Python ランタイムをイメージ内�
 ..    Assemble your containers and supporting infrastructure into a complete application.
 ..    Test, share, and deploy your complete containerized application.
 
-1. アプリケーションの各コンポーネントに対する個々ののコンテナを Docker イメージから作成し、作成およびテストします。
+1. アプリケーションの各コンポーネントに対する個々のコンテナを Docker イメージから作成し、作成およびテストします。
 2. コンテナと支える基盤（インフラ）を組み合わせ、アプリケーションを完成します。
-3. 完全したコンテナ化アプリケーションをテスト、共有、デプロイします。
+3. 完成したコンテナ化アプリケーションをテスト、共有、デプロイします。
 
 .. In this stage of the tutorial, let’s focus on step 1 of this workflow: creating the images that your containers will be based on. Remember, a Docker image captures the private filesystem that your containerized processes will run in; you need to create an image that contains just what your application needs to run.
 
@@ -121,7 +121,7 @@ Git
 
 .. If you are using Git, you can clone the example project from GitHub:
 
-Git を使用しているのであれば、GitHub からプロジェクト例をクローンできます：
+Git を使用しているのであれば、GitHub からプロジェクト例をクローンできます。
 
 .. code-block:: bash
 
@@ -221,10 +221,10 @@ Docker を見ると、Dockerfile 中の命令ごとに、命令したとおり�
         --detach asks Docker to run this container in the background.
         --name specifies a name with which you can refer to your container in subsequent commands, in this case bb.
 
-ここではいくつかのフラグを指定しています：
+ここではいくつかのフラグを指定しています。
 
-*  ``--publish``ホストのポート 8000 に入ってくるトラフィックを、コンテナのポート 8080 に転送するよう Docker に依頼します。コンテナは、自身で一連のプライベートなポート を持っています。そのため、ネットワーク側から到達したい場合は、この方法でトラフィックを転送する必用があります。そうしなければ、ファイアウォールのルールは、デフォルトのセキュリティ方針により、コンテナに到達する全てのネットワーク・トラフィックを拒否します。
-*  ``--detach`` このコンテナをバックグラウンドで実行するよう、Docker に依頼します。
+* ``--publish`` ホストのポート 8000 に入ってくるトラフィックを、コンテナのポート 8080 に転送するよう Docker に依頼します。コンテナは、自身で一連のプライベートなポート を持っています。そのため、ネットワーク側から到達したい場合は、この方法でトラフィックを転送する必要があります。そうしなければ、ファイアウォールのルールは、デフォルトのセキュリティ方針により、コンテナに到達する全てのネットワーク・トラフィックを拒否します。
+* ``--detach`` このコンテナをバックグラウンドで実行するよう、Docker に依頼します。
 * ``--name`` 続くコマンドで、コンテナを参照できる名前を指定します。今回の例では ``bb`` です。
 
 ..    Visit your application in a browser at localhost:8000. You should see your bulletin board application up and running. At this step, you would normally do everything you could to ensure your container works the way you expected; now would be the time to run unit tests, for example.
@@ -295,7 +295,7 @@ Dockerfile を書くことは、アプリケーションをコンテナ化する
 
 .. The dockerfile defined in this example takes the following steps:
 
-サンプルの Dockerfile 定義は、以下の手順を踏みます：
+サンプルの Dockerfile 定義は、以下の手順を踏みます。
 
 ..    Start FROM the pre-existing node:current-slim image. This is an official image, built by the node.js vendors and validated by Docker to be a high-quality image containing the Node.js Long Term Support (LTS) interpreter and basic dependencies.
     Use WORKDIR to specify that all subsequent actions should be taken from the directory /usr/src/app in your image filesystem (never the host’s filesystem).
@@ -303,10 +303,10 @@ Dockerfile を書くことは、アプリケーションをコンテナ化する
     RUN the command npm install inside your image filesystem (which will read package.json to determine your app’s node dependencies, and install them)
     COPY in the rest of your app’s source code from your host to your image filesystem.
 
-* ``FROM`` では既存の ``node:current-slim`` イメージで始めます。これは公式イメージ（ `official image` ）であり、node.js ベンダーとよって構築され、Docker が認定した高品質なイメージであり、Node.js 長期間サポート（LTS）インタプリタと基本的な依存関係を含みます。
+* ``FROM`` では既存の ``node:current-slim`` イメージで始めます。これは公式イメージ（ `official image` ）であり、node.js ベンダーによって構築され、Docker が認定した高品質なイメージであり、Node.js 長期間サポート（LTS）インタプリタと基本的な依存関係を含みます。
 * ``WORKDIR`` を使い、以降に続く処理すべてを、イメージのファイルシステムで（決してホスト上ではありません）指定したディレクトリ ``/usr/src/app`` 内で行うよう指定します。
 * ``COPY``  は ``package.json`` をホスト上からイメージ内の現在の場所（ ``.``）にコピーします（今回の例では、 ``/usr/src/app/package.json`` にコピーします）。
-* ``RUN`` はイメージ・ファイルシステム内で ``npm install`` コマンドを実行します（これにより、 ``package.json`` を読み込み、アプリケーションの node 依存会計を解決するため、必要なものをインストールします ）。
+* ``RUN`` はイメージ・ファイルシステム内で ``npm install`` コマンドを実行します（これにより、 ``package.json`` を読み込み、アプリケーションの node 依存関係を解決するため、必要なものをインストールします ）。
 * ``COPY`` によって、残りのアプリケーション・ソースコードをホストからイメージのファイルシステムへコピーします。
 
 .. You can see that these are much the same steps you might have taken to set up and install your app on your host. However, capturing these as a Dockerfile allows you to do the same thing inside a portable, isolated Docker image.
@@ -319,7 +319,7 @@ Dockerfile を書くことは、アプリケーションをコンテナ化する
 
 .. The CMD directive is the first example of specifying some metadata in your image that describes how to run a container based on this image. In this case, it’s saying that the containerized process that this image is meant to support is npm start.
 
-``CMD`` 命令はイメージにメタデータ（metadata）をを指定する初めての例です。この命令は、このイメージをベースに起動するコンテナが、どのように実行するかを記述します。今回の例では、 このイメージがコンテナ化したプロセスとして、 ``npm start``  をサポートするよう意図しています。
+``CMD`` 命令はイメージにメタデータ（metadata）を指定する初めての例です。この命令は、このイメージをベースに起動するコンテナが、どのように実行するかを記述します。今回の例では、 このイメージがコンテナ化したプロセスとして、 ``npm start``  をサポートするよう意図しています。
 
 .. The EXPOSE 8080 informs Docker that the container is listening on port 8080 at runtime.
 
