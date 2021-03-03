@@ -100,11 +100,11 @@ WSL 2 をサポートしているシステム上に Docker Desktop をインス�
 
 5.  ***Apply & Restart** （適用と再起動）をクリックします。
 
-...    Ensure the distribution runs in WSL 2 mode. WSL can run distributions in both v1 or v2 mode.
+..    Ensure the distribution runs in WSL 2 mode. WSL can run distributions in both v1 or v2 mode.
 
 6. ディストリビューションが WSL2 モードで動作しているかどうかを確認します。WSL はディストリビューションの v1 と v2 モードのどちらでも動作します。
 
-...    To check the WSL mode, run
+..    To check the WSL mode, run
 
 WSL モードの確認は、次のように実行します。
 
