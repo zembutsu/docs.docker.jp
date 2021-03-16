@@ -196,7 +196,7 @@ Docker で ``userns-remap`` 機能を使うように調整する時は、オプ�
   
 ..    Verify that previous images are not available using the docker image ls command. The output should be empty.
 
-3. ``docker image ls`` コマンドを使って、以前のイメージが利用できないことを核にします。出力結果は空っぽになります。
+3. ``docker image ls`` コマンドを使って、以前のイメージが利用できないことを確認します。出力結果は空っぽになります。
 
 ..    Start a container from the hello-world image.
 
