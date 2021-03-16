@@ -87,7 +87,7 @@ consistent、cached、delegated 設定のチューニング
 
 .. Fortunately, in many cases where the performance degradation is most severe, perfect consistency between container and host is unnecessary. In particular, in many cases there is no need for writes performed in a container to be immediately reflected on the host. For example, while interactive development requires that writes to a bind-mounted directory on the host immediately generate file system events within a container, there is no need for writes to build artifacts within the container to be immediately reflected on the host file system. Distinguishing between these two cases makes it possible to significantly improve performance.
 
-**幸いにも、ほパフォーマンス劣化は多くの場合において最も深刻な例であり、また、コンテナとホスト間における一貫性が完全である必要はありません** 。特に多くのケースでは、コンテナ内に書き込んだファイルを、即時ホスト上に反映する必要がありません。たとえば、双方向（インタラクティブ）の開発を行っていると、コンテナ内でのファイルシステムイベントの発生が、ホスト上のバインド・マウントしたディレクトリに書き込む必要がある場合、コンテナ内で構築した成果物（build artifacts）を即座にホスト上のファイルシステムに反映する必要はありません。これら特徴的な２つのケースでは、著しいパフォーマンス改善が可能です。
+**幸いにも、多くの場合においてパフォーマンス劣化が最も深刻な問題であり、また、コンテナとホスト間における一貫性が完全である必要はありません** 。特に多くのケースでは、コンテナ内に書き込んだファイルを、即時ホスト上に反映する必要がありません。たとえば、双方向（インタラクティブ）の開発を行っていると、コンテナ内でのファイルシステムイベントの発生が、ホスト上のバインド・マウントしたディレクトリに書き込む必要がある場合、コンテナ内で構築した成果物（build artifacts）を即座にホスト上のファイルシステムに反映する必要はありません。これら特徴的な２つのケースでは、著しいパフォーマンス改善が可能です。
 
 .. There are three broad scenarios to consider, based on which you can dial in the level of consistency you need. In each case, the container has an internally-consistent view of bind-mounted directories, but in two cases temporary discrepancies are allowed between container and host.
 
