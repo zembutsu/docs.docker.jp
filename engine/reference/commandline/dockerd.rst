@@ -334,9 +334,17 @@ devicemapper のオプション
 
 * ``dm.basesize``
 
-..    Specifies the size to use when creating the base device, which limits the size of images and containers. The default value is 100G. Note, thin devices are inherently “sparse”, so a 100G device which is mostly empty doesn’t use 100 GB of space on the pool. However, the filesystem will use more space for the empty case the larger the device is.
+.. Specifies the size to use when creating the base device, which limits the
+   size of images and containers. The default value is 10G. Note, thin devices
+   are inherently "sparse", so a 10G device which is mostly empty doesn't use
+   10 GB of space on the pool. However, the filesystem will use more space for
+   the empty case the larger the device is.
 
-ベース・デバイス作成時の容量を指定します。これはイメージとコンテナのサイズの上限にあたります。デフォルトの値は 10GB です。シン・デバイスは本質的に「希薄」（sparse）なのを覚えて置いてください。そのため、10GB のデバイスの大半が空白で未使用だったとしても、10GB の領域がプールされます。しかしながら、ファイルシステムがより大きなデバイスであれば、空白としても多くの容量を使う可能性があるでしょう。
+ベース・デバイスの生成に用いるサイズを指定します。
+これはイメージやコンテナのサイズを制限するものです。
+デフォルト値は 10G です。
+なおシン・デバイスは基本的に「スパース」（sparse）であるため、デバイス上の10 G はほとんどが空となり、プール上において 10G を占有するものではありません。
+ただしデバイスが大きくなればなるほど、ファイルシステムが扱う空データはより多くなります。
 
 .. The base device size can be increased at daemon restart which will allow all future images and containers (based on those new images) to be of the new base device size.
 
