@@ -346,9 +346,12 @@ devicemapper のオプション
 なおシン・デバイスは基本的に「スパース」（sparse）であるため、デバイス上の10 G はほとんどが空となり、プール上において 10G を占有するものではありません。
 ただしデバイスが大きくなればなるほど、ファイルシステムが扱う空データはより多くなります。
 
-.. The base device size can be increased at daemon restart which will allow all future images and containers (based on those new images) to be of the new base device size.
+.. The base device size can be increased at daemon restart which will allow
+   all future images and containers (based on those new images) to be of the
+   new base device size.
 
-以後のイメージや（イメージを元にする）コンテナが利用可能となる新しいベース・デバイス容量を増やしたい場合は、デーモンの再起動で変更できます。
+ベース・デバイスの容量は、デーモンの再起動によって増えます。
+これを行えば、今後生成されるイメージやコンテナ（その新たなイメージに基づくもの）は、新たなベース・デバイス容量に基づいて生成されます。
 
 .. Example use:
 
