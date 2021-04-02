@@ -361,9 +361,13 @@ devicemapper のオプション
 
    $ dockerd --storage-opt dm.basesize=50G
 
-.. This will increase the base device size to 50G. The Docker daemon will throw an error if existing base device size is larger than 50G. A user can use this option to expand the base device size however shrinking is not permitted.
+.. This will increase the base device size to 50G. The Docker daemon will throw an
+   error if existing base device size is larger than 50G. A user can use
+   this option to expand the base device size however shrinking is not permitted.
 
-これはベース・デバイス容量を 50GB に増やしています。Docker デーモンはこのベース・イメージの容量が 50GB よりも大きくなるとエラーを投げます。ユーザはこのオプションを使ってベース・デバイス容量を拡張できますが、縮小はできません。
+これはベース・デバイス容量を 50GB に増やしています。
+ベース・デバイス容量が元から 50 G よりも大きかった場合には、Docker デーモンはエラーを出力します。
+ユーザはこのオプションを使ってベース・デバイス容量を拡張できますが、縮小はできません。
 
 ..    This value affects the system-wide “base” empty filesystem that may already be initialized and inherited by pulled images. Typically, a change to this value requires additional steps to take effect:
 
