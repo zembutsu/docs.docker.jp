@@ -544,9 +544,10 @@ devicemapper のオプション
 
 ``devicemapper`` と ``udev`` 間における ``udev`` 同期確認の設定を上書きします。 ``udev`` は Linux カーネル用のデバイスマッパーです。
 
-..    To view the udev sync support of a Docker daemon that is using the devicemapper driver, run:
+.. To view the `udev` sync support of a Docker daemon that is using the
+   `devicemapper` driver, run:
 
-Docker デーモンが ``udev`` 同期をサポートしているかどうかは、 ``devicemapper`` ドライバを使い確認します。
+``devicemapper`` ドライバーを利用する Docker デーモンが ``udev`` 同期をサポートしているかどうかは、以下を実行して確認できます。
 
 .. code-block:: bash
 
