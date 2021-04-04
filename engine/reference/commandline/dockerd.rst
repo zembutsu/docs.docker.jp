@@ -568,9 +568,10 @@ devicemapper のオプション
 
 ``udev`` 同期サポートが ``false`` であれば、 ``devicemapper`` と ``udev`` 間で作成・クリーンアップ時に競合を引き起こします。競合状態の結果、エラーが発生して失敗します（失敗に関する詳しい情報は `docker#4036 <https://github.com/docker/docker/issues/4036>`_ をご覧ください。）
 
-..    To allow the docker daemon to start, regardless of udev sync not being supported, set dm.override_udev_sync_check to true:
+.. To allow the `docker` daemon to start, regardless of `udev` sync not being
+   supported, set `dm.override_udev_sync_check` to true:
 
-``docker`` デーモンの起動時に有効にするには、 ``udev`` 同期をサポートしているかどうかに拘わらず、 ``dm.override_udev_sync_check`` を true にします。
+``udev`` 同期がサポートされているかどうかに関係なく ``docker`` デーモンを起動するならば、``dm.override_udev_sync_check`` を true に設定してください。
 
 .. code-block:: bash
 
