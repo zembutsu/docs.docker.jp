@@ -530,9 +530,12 @@ devicemapper のオプション
 これはループバック・デバイス利用時（のみ）、デフォルトは有効です。
 ループバック・ファイルの場合は、イメージやコンテナの削除時に再度スパースとする必要があるからです。
 
-..    Disabling this on loopback can lead to much faster container removal times, but will make the space used in /var/lib/docker directory not be returned to the system for other use when containers are removed.
+.. Disabling this on loopback can lead to *much* faster container removal
+   times, but will make the space used in `/var/lib/docker` directory not be
+   returned to the system for other use when containers are removed.
 
-このループバックを無効にしたら、コンテナの削除時間がより早くなります。しかし、 ``/var/lib/docker`` ディレクトリで使用している領域量は、コンテナが削除された時点で使っていた領域を返してしまいます。
+ループバックに対してこれを無効にした場合は、コンテナの削除時間が **大きく** 削減できます。
+ただしコンテナが削除されても、``/var/lib/docker`` ディレクトリに割り当てられていた領域は、他プロセスが利用できる状態に戻されることはありません。
 
 ..    Example use:
 
