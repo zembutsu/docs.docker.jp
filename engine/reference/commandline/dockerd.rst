@@ -556,9 +556,10 @@ devicemapper のオプション
    Udev Sync Supported: true
    [...]
 
-..    When udev sync support is true, then devicemapper and udev can coordinate the activation and deactivation of devices for containers.
+.. When `udev` sync support is `true`, then `devicemapper` and udev can
+   coordinate the activation and deactivation of devices for containers.
 
-``udev`` 同期サポートが ``true`` であれば、 ``devicemapper`` と udev を組み合わせ、コンテナ向けのデバイスを有効化（activation）・無効化（deactivation）します。
+``udev`` 同期サポートが ``true`` であれば、``devicemapper`` と udev は連携してコンテナ向けデバイスの有効化、無効化を行います。
 
 ..    When udev sync support is false, a race condition occurs between thedevicemapper and udev during create and cleanup. The race condition results in errors and failures. (For information on these failures, see docker#4036)
 
