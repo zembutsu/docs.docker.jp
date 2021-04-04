@@ -561,9 +561,12 @@ devicemapper のオプション
 
 ``udev`` 同期サポートが ``true`` であれば、``devicemapper`` と udev は連携してコンテナ向けデバイスの有効化、無効化を行います。
 
-..    When udev sync support is false, a race condition occurs between thedevicemapper and udev during create and cleanup. The race condition results in errors and failures. (For information on these failures, see docker#4036)
+.. When `udev` sync support is `false`, a race condition occurs between
+   the`devicemapper` and `udev` during create and cleanup. The race condition
+   results in errors and failures. (For information on these failures, see
+   [docker#4036](https://github.com/docker/docker/issues/4036))
 
-``udev`` 同期サポートが ``false`` であれば、 ``devicemapper`` と ``udev`` 間で作成・クリーンアップ時に競合を引き起こします。競合状態の結果、エラーが発生して失敗します（の失敗に関する詳しい情報は `docker#4036 <https://github.com/docker/docker/issues/4036>`_ をご覧ください。）
+``udev`` 同期サポートが ``false`` であれば、 ``devicemapper`` と ``udev`` 間で作成・クリーンアップ時に競合を引き起こします。競合状態の結果、エラーが発生して失敗します（失敗に関する詳しい情報は `docker#4036 <https://github.com/docker/docker/issues/4036>`_ をご覧ください。）
 
 ..    To allow the docker daemon to start, regardless of udev sync not being supported, set dm.override_udev_sync_check to true:
 
