@@ -581,11 +581,17 @@ devicemapper のオプション
 
 この値が ``true`` の場合、 ``devicemapper`` はエラーが発生しても簡単に警告を表示するだけで、処理を継続します。
 
-..        Note: The ideal is to pursue a docker daemon and environment that does support synchronizing with udev. For further discussion on this topic, see docker#4036. Otherwise, set this flag for migrating existing Docker daemons to a daemon with a supported environment.
+.. > **Note**: The ideal is to pursue a `docker` daemon and environment that does
+   > support synchronizing with `udev`. For further discussion on this
+   > topic, see [docker#4036](https://github.com/docker/docker/issues/4036).
+   > Otherwise, set this flag for migrating existing Docker daemons to
+   > a daemon with a supported environment.
 
 .. note::
 
-   ``docker`` デーモンと環境を追跡するという考えは、 ``udev`` の同期機能をサポートするためのものでした。このトピックに関しては `docker#4036 <https://github.com/docker/docker/issues/4036>`_ をご覧ください。一方で、既存の Docker デーモンを、サポートされている別の環境に移行する時のフラグとしても使います。
+   理想的には ``udev`` との同期をサポートする ``docker`` デーモンおよび環境を目指すべきところです。
+   これに関してのさらなるトピックは `docker#4036 <https://github.com/docker/docker/issues/4036>`_ をご覧ください。
+   これができない限りは、既存の Docker デーモンが動作する環境上において、正常動作するように本フラグを設定してください。
 
 * ``dm.use_deferred_removal``
 
