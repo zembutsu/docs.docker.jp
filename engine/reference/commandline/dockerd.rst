@@ -566,9 +566,10 @@ devicemapper のオプション
 
 ``devicemapper`` と ``udev`` 間における ``udev`` 同期確認の設定を上書きします。 ``udev`` は Linux カーネル用のデバイスマッパーです。
 
-..    To view the udev sync support of a Docker daemon that is using the devicemapper driver, run:
+.. To view the `udev` sync support of a Docker daemon that is using the
+   `devicemapper` driver, run:
 
-Docker デーモンが ``udev`` 同期をサポートしているかどうかは、 ``devicemapper`` ドライバを使い確認します。
+``devicemapper`` ドライバーを利用する Docker デーモンが ``udev`` 同期をサポートしているかどうかは、以下を実行して確認できます。
 
 .. code-block:: bash
 
@@ -577,17 +578,22 @@ Docker デーモンが ``udev`` 同期をサポートしているかどうかは
    Udev Sync Supported: true
    [...]
 
-..    When udev sync support is true, then devicemapper and udev can coordinate the activation and deactivation of devices for containers.
+.. When `udev` sync support is `true`, then `devicemapper` and udev can
+   coordinate the activation and deactivation of devices for containers.
 
-``udev`` 同期サポートが ``true`` であれば、 ``devicemapper`` と udev を組み合わせ、コンテナ向けのデバイスを有効化（activation）・無効化（deactivation）します。
+``udev`` 同期サポートが ``true`` であれば、``devicemapper`` と udev は連携してコンテナ向けデバイスの有効化、無効化を行います。
 
-..    When udev sync support is false, a race condition occurs between thedevicemapper and udev during create and cleanup. The race condition results in errors and failures. (For information on these failures, see docker#4036)
+.. When `udev` sync support is `false`, a race condition occurs between
+   the`devicemapper` and `udev` during create and cleanup. The race condition
+   results in errors and failures. (For information on these failures, see
+   [docker#4036](https://github.com/docker/docker/issues/4036))
 
-``udev`` 同期サポートが ``false`` であれば、 ``devicemapper`` と ``udev`` 間で作成・クリーンアップ時に競合を引き起こします。競合状態の結果、エラーが発生して失敗します（の失敗に関する詳しい情報は `docker#4036 <https://github.com/docker/docker/issues/4036>`_ をご覧ください。）
+``udev`` 同期サポートが ``false`` であれば、 ``devicemapper`` と ``udev`` 間で作成・クリーンアップ時に競合を引き起こします。競合状態の結果、エラーが発生して失敗します（失敗に関する詳しい情報は `docker#4036 <https://github.com/docker/docker/issues/4036>`_ をご覧ください。）
 
-..    To allow the docker daemon to start, regardless of udev sync not being supported, set dm.override_udev_sync_check to true:
+.. To allow the `docker` daemon to start, regardless of `udev` sync not being
+   supported, set `dm.override_udev_sync_check` to true:
 
-``docker`` デーモンの起動時に有効にするには、 ``udev`` 同期をサポートしているかどうかに拘わらず、 ``dm.override_udev_sync_check`` を true にします。
+``udev`` 同期がサポートされているかどうかに関係なく ``docker`` デーモンを起動するならば、``dm.override_udev_sync_check`` を true に設定してください。
 
 .. code-block:: bash
 
@@ -597,11 +603,17 @@ Docker デーモンが ``udev`` 同期をサポートしているかどうかは
 
 この値が ``true`` の場合、 ``devicemapper`` はエラーが発生しても簡単に警告を表示するだけで、処理を継続します。
 
-..        Note: The ideal is to pursue a docker daemon and environment that does support synchronizing with udev. For further discussion on this topic, see docker#4036. Otherwise, set this flag for migrating existing Docker daemons to a daemon with a supported environment.
+.. > **Note**: The ideal is to pursue a `docker` daemon and environment that does
+   > support synchronizing with `udev`. For further discussion on this
+   > topic, see [docker#4036](https://github.com/docker/docker/issues/4036).
+   > Otherwise, set this flag for migrating existing Docker daemons to
+   > a daemon with a supported environment.
 
 .. note::
 
-   ``docker`` デーモンと環境を追跡するという考えは、 ``udev`` の同期機能をサポートするためのものでした。このトピックに関しては `docker#4036 <https://github.com/docker/docker/issues/4036>`_ をご覧ください。一方で、既存の Docker デーモンを、サポートされている別の環境に移行する時のフラグとしても使います。
+   理想的には ``udev`` との同期をサポートする ``docker`` デーモンおよび環境を目指すべきところです。
+   これに関してのさらなるトピックは `docker#4036 <https://github.com/docker/docker/issues/4036>`_ をご覧ください。
+   これができない限りは、既存の Docker デーモンが動作する環境上において、正常動作するように本フラグを設定してください。
 
 * ``dm.use_deferred_removal``
 
