@@ -522,13 +522,20 @@ devicemapper のオプション
 
 * ``dm.blkdiscard``
 
-..    Enables or disables the use of blkdiscard when removing devicemapper devices. This is enabled by default (only) if using loopback devices and is required to resparsify the loopback file on image/container removal.
+.. Enables or disables the use of `blkdiscard` when removing devicemapper
+   devices. This is enabled by default (only) if using loopback devices and is
+   required to resparsify the loopback file on image/container removal.
 
-デバイスマッパー・デバイスの削除時に blkdiscard を使うか使わないかを指定します。デフォルトは有効であり、ループバック・デバイスを使っているのであれば、イメージやコンテナ削除時にループバック・ファイルを再希薄化させるために使います。
+デバイスマッパー・デバイスの削除時に、``blkdiscard`` の利用を許可するかしないかを指定します。
+これはループバック・デバイス利用時（のみ）、デフォルトは有効です。
+ループバック・ファイルの場合は、イメージやコンテナの削除時に再度スパースとする必要があるからです。
 
-..    Disabling this on loopback can lead to much faster container removal times, but will make the space used in /var/lib/docker directory not be returned to the system for other use when containers are removed.
+.. Disabling this on loopback can lead to *much* faster container removal
+   times, but will make the space used in `/var/lib/docker` directory not be
+   returned to the system for other use when containers are removed.
 
-このループバックを無効にしたら、コンテナの削除時間がより早くなります。しかし、 ``/var/lib/docker`` ディレクトリで使用している領域量は、コンテナが削除された時点で使っていた領域を返してしまいます。
+ループバックに対してこれを無効にした場合は、コンテナの削除時間が **大きく** 削減できます。
+ただしコンテナが削除されても、``/var/lib/docker`` ディレクトリに割り当てられていた領域は、他プロセスが利用できる状態に戻されることはありません。
 
 ..    Example use:
 
