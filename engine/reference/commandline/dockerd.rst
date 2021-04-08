@@ -669,17 +669,32 @@ devicemapper のオプション
 
 シン・プールが新しいデバイスを正常に作成するために必要な最小ディスク空き容量を、パーセントで指定します。チェックはデータ領域とメタデータ領域の両方に適用します。有効な値は 0% ~ 99% です。値を 0% に指定すると空き領域のチェック機構を無効にします。ユーザがオプションの値を指定しなければ、Engine はデフォルト値 10% を用います。
 
-..    Whenever a new a thin pool device is created (during docker pull or during container creation), the Engine checks if the minimum free space is available. If sufficient space is unavailable, then device creation fails and any relevant docker operation fails.
+.. Whenever a new a thin pool device is created (during `docker pull` or during
+   container creation), the Engine checks if the minimum free space is
+   available. If sufficient space is unavailable, then device creation fails
+   and any relevant `docker` operation fails.
 
-新しいシン・プール用デバイスを作成すると（ ``docker pull`` 時やコンテナの作成時 ）、すぐに Engine は最小空き容量を確認します。十分な領域がなければデバイスの作成は失敗し、対象の ``docker`` オプションは失敗します。
+新たなシン・プール・デバイスが生成される際（ ``docker pull`` の処理中あるいはコンテナー生成中）には、必ず Engine が最小空き領域を確認します。
+十分な空き領域がなかった場合、デバイス生成処理は失敗し、これに関連した ``docker`` 処理もすべて失敗します。
 
-..    To recover from this error, you must create more free space in the thin pool to recover from the error. You can create free space by deleting some images and containers from the thin pool. You can also add more storage to the thin pool.
+.. To recover from this error, you must create more free space in the thin pool
+   to recover from the error. You can create free space by deleting some images
+   and containers from the thin pool. You can also add more storage to the thin
+   pool.
 
-このエラーから復帰するには、エラーが出なくなるようシン・プール内の空き容量を増やす必要があります。シン・プールかにある同じイメージやコンテナを削除することで、空き容量を増やせます。
+上のエラーを解消するためには、シン・プール内により多くの空き領域を生成しておくことが必要です。
+イメージやコンテナーをいくつかそのシンプールから削除すれば、空き領域は確保されます。
+あるいはシンプールに対して、より多くのストレージを割り当てる方法もあります。
 
-..    To add more space to a LVM (logical volume management) thin pool, just add more storage to the volume group container thin pool; this should automatically resolve any errors. If your configuration uses loop devices, then stop the Engine daemon, grow the size of loop files and restart the daemon to resolve the issue.
+.. To add more space to a LVM (logical volume management) thin pool, just add
+   more storage to the volume group container thin pool; this should automatically
+   resolve any errors. If your configuration uses loop devices, then stop the
+   Engine daemon, grow the size of loop files and restart the daemon to resolve
+   the issue.
 
-LVM (Logical Volume Management；論理ボリューム管理) シン・プールの容量を増やすには、コンテナのシン・プールのボリューム・グループに対する領域を追加します。そうすると、エラーは出なくなります。もしループ・デバイスを使う設定であれば、Engine デーモンは停止します。この問題を解決するにはデーモンを再起動してループ・ファイルの容量を増やします。
+LVM（logical volume management；論理ボリューム管理）上のシン・プールに容量追加を行うなら、シン・プールがあるボリューム・グループに対してストレージ追加を行ないます。
+そうするだけでエラーは自動解消されます。
+ループ・デバイスを利用するように設定している場合は、いったん Engine デーモンを停止させて、ループ・ファイルのサイズを増やした上でデーモンを再起動すれば、エラーは解消します。
 
 ..    Example use:
 
