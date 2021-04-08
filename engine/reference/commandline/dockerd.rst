@@ -686,9 +686,15 @@ devicemapper のオプション
 イメージやコンテナーをいくつかそのシンプールから削除すれば、空き領域は確保されます。
 あるいはシンプールに対して、より多くのストレージを割り当てる方法もあります。
 
-..    To add more space to a LVM (logical volume management) thin pool, just add more storage to the volume group container thin pool; this should automatically resolve any errors. If your configuration uses loop devices, then stop the Engine daemon, grow the size of loop files and restart the daemon to resolve the issue.
+.. To add more space to a LVM (logical volume management) thin pool, just add
+   more storage to the volume group container thin pool; this should automatically
+   resolve any errors. If your configuration uses loop devices, then stop the
+   Engine daemon, grow the size of loop files and restart the daemon to resolve
+   the issue.
 
-LVM (Logical Volume Management；論理ボリューム管理) シン・プールの容量を増やすには、コンテナのシン・プールのボリューム・グループに対する領域を追加します。そうすると、エラーは出なくなります。もしループ・デバイスを使う設定であれば、Engine デーモンは停止します。この問題を解決するにはデーモンを再起動してループ・ファイルの容量を増やします。
+LVM（logical volume management；論理ボリューム管理）上のシン・プールに容量追加を行うなら、シン・プールがあるボリューム・グループに対してストレージ追加を行ないます。
+そうするだけでエラーは自動解消されます。
+ループ・デバイスを利用するように設定している場合は、いったん Engine デーモンを停止させて、ループ・ファイルのサイズを増やした上でデーモンを再起動すれば、エラーは解消します。
 
 ..    Example use:
 
