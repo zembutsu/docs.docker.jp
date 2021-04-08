@@ -669,9 +669,13 @@ devicemapper のオプション
 
 シン・プールが新しいデバイスを正常に作成するために必要な最小ディスク空き容量を、パーセントで指定します。チェックはデータ領域とメタデータ領域の両方に適用します。有効な値は 0% ~ 99% です。値を 0% に指定すると空き領域のチェック機構を無効にします。ユーザがオプションの値を指定しなければ、Engine はデフォルト値 10% を用います。
 
-..    Whenever a new a thin pool device is created (during docker pull or during container creation), the Engine checks if the minimum free space is available. If sufficient space is unavailable, then device creation fails and any relevant docker operation fails.
+.. Whenever a new a thin pool device is created (during `docker pull` or during
+   container creation), the Engine checks if the minimum free space is
+   available. If sufficient space is unavailable, then device creation fails
+   and any relevant `docker` operation fails.
 
-新しいシン・プール用デバイスを作成すると（ ``docker pull`` 時やコンテナの作成時 ）、すぐに Engine は最小空き容量を確認します。十分な領域がなければデバイスの作成は失敗し、対象の ``docker`` オプションは失敗します。
+新たなシン・プール・デバイスが生成される際（ ``docker pull`` の処理中あるいはコンテナー生成中）には、必ず Engine が最小空き領域を確認します。
+十分な空き領域がなかった場合、デバイス生成処理は失敗し、これに関連した ``docker`` 処理もすべて失敗します。
 
 ..    To recover from this error, you must create more free space in the thin pool to recover from the error. You can create free space by deleting some images and containers from the thin pool. You can also add more storage to the thin pool.
 
