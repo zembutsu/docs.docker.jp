@@ -40,7 +40,7 @@
 
 .. It’s time to begin building an app the Docker way. We’ll start at the bottom of the hierarchy of such an app, which is a container, which we cover on this page. Above this level is a service, which defines how containers behave in production, covered in Part 3. Finally, at the top level is the stack, defining the interactions of all the services, covered in Part 5.
 
-Docker を使い、アプリケーションを作り始めましょう。コンテナを用いたアプリケーション階層の底部を、このページから始めます。このレベルの上位にあるのがサービスであり、プロダクションにおけるコンテナの挙動を定義します。こちらは :doc:`Part3 <part3>` で扱います。最終的にはスタックの頂上、つまり、 :doc:`Part5 <part5>` で扱うすべてのサービスの挙動を定義します。
+Docker におけるアプリケーション構築を始めましょう。アプリケーション階層の最下部となるところから始めることにします。これがコンテナであり、このページにて取り扱います。このレベルの上位にあるのがサービスです。サービスは、アプリケーション実行中のコンテナの動きを定義します。このことは :doc:`Part3 <part3>` で扱います。最後に、最上位にあるのがスタックです。サービス間の対話方法を定義します。これは :doc:`Part5 <part5>` で扱います。
 
 ..    Stack
     Services
