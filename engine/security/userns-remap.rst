@@ -253,6 +253,7 @@ Linux ディストリビューションの多くでは、ユーザの追加、�
 
    $ dockerd --userns-remap="testuser:testuser"
 
+
 .. 1.  Edit `/etc/docker/daemon.json`. Assuming the file was previously empty, the
        following entry enables `userns-remap` using user and group called
        `testuser`. You can address the user and group by ID or name. You only need to
@@ -269,6 +270,7 @@ Linux ディストリビューションの多くでは、ユーザの追加、�
     ユーザとグループの名前あるいは ID をともに指定する場合は、両者をコロン（ ``:`` ）で区切ります。
     以下の書式は、すべて有効な指定です。
     ここで ``testuser`` の UID および GID は ``1001`` であるものとします。
+
 
    * testuser
    * testuser:testuser
@@ -327,6 +329,7 @@ Linux ディストリビューションの多くでは、ユーザの追加、�
   
 .. 3.  Verify that previous images are not available using the `docker image ls`
        command. The output should be empty.
+
 
 3.  ``docker image ls`` コマンドを実行し、以前利用していたイメージがないことを確認します。
     出力には何も表示されないはずです。

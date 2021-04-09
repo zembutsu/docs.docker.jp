@@ -334,13 +334,24 @@ devicemapper のオプション
 
 * ``dm.basesize``
 
-..    Specifies the size to use when creating the base device, which limits the size of images and containers. The default value is 100G. Note, thin devices are inherently “sparse”, so a 100G device which is mostly empty doesn’t use 100 GB of space on the pool. However, the filesystem will use more space for the empty case the larger the device is.
+.. Specifies the size to use when creating the base device, which limits the
+   size of images and containers. The default value is 10G. Note, thin devices
+   are inherently "sparse", so a 10G device which is mostly empty doesn't use
+   10 GB of space on the pool. However, the filesystem will use more space for
+   the empty case the larger the device is.
 
-ベース・デバイス作成時の容量を指定します。これはイメージとコンテナのサイズの上限にあたります。デフォルトの値は 10GB です。シン・デバイスは本質的に「希薄」（sparse）なのを覚えて置いてください。そのため、10GB のデバイスの大半が空白で未使用だったとしても、10GB の領域がプールされます。しかしながら、ファイルシステムがより大きなデバイスであれば、空白としても多くの容量を使う可能性があるでしょう。
+ベース・デバイスの生成に用いるサイズを指定します。
+これはイメージやコンテナのサイズを制限するものです。
+デフォルト値は 10G です。
+なおシン・デバイスは基本的に「スパース」（sparse）であるため、デバイス上の10 G はほとんどが空となり、プール上において 10G を占有するものではありません。
+ただしデバイスが大きくなればなるほど、ファイルシステムが扱う空データはより多くなります。
 
-.. The base device size can be increased at daemon restart which will allow all future images and containers (based on those new images) to be of the new base device size.
+.. The base device size can be increased at daemon restart which will allow
+   all future images and containers (based on those new images) to be of the
+   new base device size.
 
-以後のイメージや（イメージを元にする）コンテナが利用可能となる新しいベース・デバイス容量を増やしたい場合は、デーモンの再起動で変更できます。
+ベース・デバイスの容量は、デーモンの再起動によって増えます。
+これを行えば、今後生成されるイメージやコンテナ（その新たなイメージに基づくもの）は、新たなベース・デバイス容量に基づいて生成されます。
 
 .. Example use:
 
@@ -350,9 +361,13 @@ devicemapper のオプション
 
    $ dockerd --storage-opt dm.basesize=50G
 
-.. This will increase the base device size to 50G. The Docker daemon will throw an error if existing base device size is larger than 50G. A user can use this option to expand the base device size however shrinking is not permitted.
+.. This will increase the base device size to 50G. The Docker daemon will throw an
+   error if existing base device size is larger than 50G. A user can use
+   this option to expand the base device size however shrinking is not permitted.
 
-これはベース・デバイス容量を 50GB に増やしています。Docker デーモンはこのベース・イメージの容量が 50GB よりも大きくなるとエラーを投げます。ユーザはこのオプションを使ってベース・デバイス容量を拡張できますが、縮小はできません。
+これはベース・デバイス容量を 50GB に増やしています。
+ベース・デバイス容量が元から 50 G よりも大きかった場合には、Docker デーモンはエラーを出力します。
+ユーザはこのオプションを使ってベース・デバイス容量を拡張できますが、縮小はできません。
 
 ..    This value affects the system-wide “base” empty filesystem that may already be initialized and inherited by pulled images. Typically, a change to this value requires additional steps to take effect:
 
@@ -522,13 +537,20 @@ devicemapper のオプション
 
 * ``dm.blkdiscard``
 
-..    Enables or disables the use of blkdiscard when removing devicemapper devices. This is enabled by default (only) if using loopback devices and is required to resparsify the loopback file on image/container removal.
+.. Enables or disables the use of `blkdiscard` when removing devicemapper
+   devices. This is enabled by default (only) if using loopback devices and is
+   required to resparsify the loopback file on image/container removal.
 
-デバイスマッパー・デバイスの削除時に blkdiscard を使うか使わないかを指定します。デフォルトは有効であり、ループバック・デバイスを使っているのであれば、イメージやコンテナ削除時にループバック・ファイルを再希薄化させるために使います。
+デバイスマッパー・デバイスの削除時に、``blkdiscard`` の利用を許可するかしないかを指定します。
+これはループバック・デバイス利用時（のみ）、デフォルトは有効です。
+ループバック・ファイルの場合は、イメージやコンテナの削除時に再度スパースとする必要があるからです。
 
-..    Disabling this on loopback can lead to much faster container removal times, but will make the space used in /var/lib/docker directory not be returned to the system for other use when containers are removed.
+.. Disabling this on loopback can lead to *much* faster container removal
+   times, but will make the space used in `/var/lib/docker` directory not be
+   returned to the system for other use when containers are removed.
 
-このループバックを無効にしたら、コンテナの削除時間がより早くなります。しかし、 ``/var/lib/docker`` ディレクトリで使用している領域量は、コンテナが削除された時点で使っていた領域を返してしまいます。
+ループバックに対してこれを無効にした場合は、コンテナの削除時間が **大きく** 削減できます。
+ただしコンテナが削除されても、``/var/lib/docker`` ディレクトリに割り当てられていた領域は、他プロセスが利用できる状態に戻されることはありません。
 
 ..    Example use:
 
@@ -544,9 +566,10 @@ devicemapper のオプション
 
 ``devicemapper`` と ``udev`` 間における ``udev`` 同期確認の設定を上書きします。 ``udev`` は Linux カーネル用のデバイスマッパーです。
 
-..    To view the udev sync support of a Docker daemon that is using the devicemapper driver, run:
+.. To view the `udev` sync support of a Docker daemon that is using the
+   `devicemapper` driver, run:
 
-Docker デーモンが ``udev`` 同期をサポートしているかどうかは、 ``devicemapper`` ドライバを使い確認します。
+``devicemapper`` ドライバーを利用する Docker デーモンが ``udev`` 同期をサポートしているかどうかは、以下を実行して確認できます。
 
 .. code-block:: bash
 
@@ -555,17 +578,22 @@ Docker デーモンが ``udev`` 同期をサポートしているかどうかは
    Udev Sync Supported: true
    [...]
 
-..    When udev sync support is true, then devicemapper and udev can coordinate the activation and deactivation of devices for containers.
+.. When `udev` sync support is `true`, then `devicemapper` and udev can
+   coordinate the activation and deactivation of devices for containers.
 
-``udev`` 同期サポートが ``true`` であれば、 ``devicemapper`` と udev を組み合わせ、コンテナ向けのデバイスを有効化（activation）・無効化（deactivation）します。
+``udev`` 同期サポートが ``true`` であれば、``devicemapper`` と udev は連携してコンテナ向けデバイスの有効化、無効化を行います。
 
-..    When udev sync support is false, a race condition occurs between thedevicemapper and udev during create and cleanup. The race condition results in errors and failures. (For information on these failures, see docker#4036)
+.. When `udev` sync support is `false`, a race condition occurs between
+   the`devicemapper` and `udev` during create and cleanup. The race condition
+   results in errors and failures. (For information on these failures, see
+   [docker#4036](https://github.com/docker/docker/issues/4036))
 
-``udev`` 同期サポートが ``false`` であれば、 ``devicemapper`` と ``udev`` 間で作成・クリーンアップ時に競合を引き起こします。競合状態の結果、エラーが発生して失敗します（の失敗に関する詳しい情報は `docker#4036 <https://github.com/docker/docker/issues/4036>`_ をご覧ください。）
+``udev`` 同期サポートが ``false`` であれば、 ``devicemapper`` と ``udev`` 間で作成・クリーンアップ時に競合を引き起こします。競合状態の結果、エラーが発生して失敗します（失敗に関する詳しい情報は `docker#4036 <https://github.com/docker/docker/issues/4036>`_ をご覧ください。）
 
-..    To allow the docker daemon to start, regardless of udev sync not being supported, set dm.override_udev_sync_check to true:
+.. To allow the `docker` daemon to start, regardless of `udev` sync not being
+   supported, set `dm.override_udev_sync_check` to true:
 
-``docker`` デーモンの起動時に有効にするには、 ``udev`` 同期をサポートしているかどうかに拘わらず、 ``dm.override_udev_sync_check`` を true にします。
+``udev`` 同期がサポートされているかどうかに関係なく ``docker`` デーモンを起動するならば、``dm.override_udev_sync_check`` を true に設定してください。
 
 .. code-block:: bash
 
@@ -575,11 +603,17 @@ Docker デーモンが ``udev`` 同期をサポートしているかどうかは
 
 この値が ``true`` の場合、 ``devicemapper`` はエラーが発生しても簡単に警告を表示するだけで、処理を継続します。
 
-..        Note: The ideal is to pursue a docker daemon and environment that does support synchronizing with udev. For further discussion on this topic, see docker#4036. Otherwise, set this flag for migrating existing Docker daemons to a daemon with a supported environment.
+.. > **Note**: The ideal is to pursue a `docker` daemon and environment that does
+   > support synchronizing with `udev`. For further discussion on this
+   > topic, see [docker#4036](https://github.com/docker/docker/issues/4036).
+   > Otherwise, set this flag for migrating existing Docker daemons to
+   > a daemon with a supported environment.
 
 .. note::
 
-   ``docker`` デーモンと環境を追跡するという考えは、 ``udev`` の同期機能をサポートするためのものでした。このトピックに関しては `docker#4036 <https://github.com/docker/docker/issues/4036>`_ をご覧ください。一方で、既存の Docker デーモンを、サポートされている別の環境に移行する時のフラグとしても使います。
+   理想的には ``udev`` との同期をサポートする ``docker`` デーモンおよび環境を目指すべきところです。
+   これに関してのさらなるトピックは `docker#4036 <https://github.com/docker/docker/issues/4036>`_ をご覧ください。
+   これができない限りは、既存の Docker デーモンが動作する環境上において、正常動作するように本フラグを設定してください。
 
 * ``dm.use_deferred_removal``
 
@@ -635,17 +669,32 @@ Docker デーモンが ``udev`` 同期をサポートしているかどうかは
 
 シン・プールが新しいデバイスを正常に作成するために必要な最小ディスク空き容量を、パーセントで指定します。チェックはデータ領域とメタデータ領域の両方に適用します。有効な値は 0% ~ 99% です。値を 0% に指定すると空き領域のチェック機構を無効にします。ユーザがオプションの値を指定しなければ、Engine はデフォルト値 10% を用います。
 
-..    Whenever a new a thin pool device is created (during docker pull or during container creation), the Engine checks if the minimum free space is available. If sufficient space is unavailable, then device creation fails and any relevant docker operation fails.
+.. Whenever a new a thin pool device is created (during `docker pull` or during
+   container creation), the Engine checks if the minimum free space is
+   available. If sufficient space is unavailable, then device creation fails
+   and any relevant `docker` operation fails.
 
-新しいシン・プール用デバイスを作成すると（ ``docker pull`` 時やコンテナの作成時 ）、すぐに Engine は最小空き容量を確認します。十分な領域がなければデバイスの作成は失敗し、対象の ``docker`` オプションは失敗します。
+新たなシン・プール・デバイスが生成される際（ ``docker pull`` の処理中あるいはコンテナー生成中）には、必ず Engine が最小空き領域を確認します。
+十分な空き領域がなかった場合、デバイス生成処理は失敗し、これに関連した ``docker`` 処理もすべて失敗します。
 
-..    To recover from this error, you must create more free space in the thin pool to recover from the error. You can create free space by deleting some images and containers from the thin pool. You can also add more storage to the thin pool.
+.. To recover from this error, you must create more free space in the thin pool
+   to recover from the error. You can create free space by deleting some images
+   and containers from the thin pool. You can also add more storage to the thin
+   pool.
 
-このエラーから復帰するには、エラーが出なくなるようシン・プール内の空き容量を増やす必要があります。シン・プールかにある同じイメージやコンテナを削除することで、空き容量を増やせます。
+上のエラーを解消するためには、シン・プール内により多くの空き領域を生成しておくことが必要です。
+イメージやコンテナーをいくつかそのシンプールから削除すれば、空き領域は確保されます。
+あるいはシンプールに対して、より多くのストレージを割り当てる方法もあります。
 
-..    To add more space to a LVM (logical volume management) thin pool, just add more storage to the volume group container thin pool; this should automatically resolve any errors. If your configuration uses loop devices, then stop the Engine daemon, grow the size of loop files and restart the daemon to resolve the issue.
+.. To add more space to a LVM (logical volume management) thin pool, just add
+   more storage to the volume group container thin pool; this should automatically
+   resolve any errors. If your configuration uses loop devices, then stop the
+   Engine daemon, grow the size of loop files and restart the daemon to resolve
+   the issue.
 
-LVM (Logical Volume Management；論理ボリューム管理) シン・プールの容量を増やすには、コンテナのシン・プールのボリューム・グループに対する領域を追加します。そうすると、エラーは出なくなります。もしループ・デバイスを使う設定であれば、Engine デーモンは停止します。この問題を解決するにはデーモンを再起動してループ・ファイルの容量を増やします。
+LVM（logical volume management；論理ボリューム管理）上のシン・プールに容量追加を行うなら、シン・プールがあるボリューム・グループに対してストレージ追加を行ないます。
+そうするだけでエラーは自動解消されます。
+ループ・デバイスを利用するように設定している場合は、いったん Engine デーモンを停止させて、ループ・ファイルのサイズを増やした上でデーモンを再起動すれば、エラーは解消します。
 
 ..    Example use:
 

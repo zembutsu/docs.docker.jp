@@ -193,8 +193,8 @@ CentOS 7
    * Checkpoint
    * オーバレイ・ネットワーク
    * SCTP ポートの公開（exposing）
-* ``ping`` コマンドを使うには、 :ref:`routing-ping-packets` をご覧ください。
-* 特権 TCP/UDP ポート（ポート 1024 以下）を公開するには、 :ref:`exposing-privileged-ports` をご覧ください。
+* ``ping`` コマンドを使うには、 :ref:`rootless-routing-ping-packets` をご覧ください。
+* 特権 TCP/UDP ポート（ポート 1024 以下）を公開するには、 :ref:`rootless-exposing-privileged-ports` をご覧ください。
 * ``docker inspect`` で表示する ``IPAddress`` とは、RootlessKit のネットワーク名前空間内で名前区間化されたものです。つまり、 ``nsenter`` 化しなければ、そのネットワーク名前空間にはホスト側から到達できない IP アドレスです。
 * また、ホスト・ネットワーク（ ``docker run --net=host`` ）も RootlessKit 内に名前空間化されています。
 
@@ -215,7 +215,7 @@ CentOS 7
 
 .. Make sure to run the script as a non-root user. To install Rootless Docker as the root user, see the Manual installation steps.
 
-スクリプトを root 以外のユーザで実行します。root ユーザとして Rootless Dockre をインストールするには、 :ref:`手動インストール <rootless-manual-installation>` の手順をご覧ください。
+スクリプトを root 以外のユーザで実行します。root ユーザとして Rootless Docker をインストールするには、 :ref:`手動インストール <rootless-manual-installation>` の手順をご覧ください。
 
 .. The script shows environment variables that are required:
 
@@ -251,7 +251,7 @@ CentOS 7
 
 .. If you already have the Docker daemon running as the root, you only need to extract docker-rootless-extras-<version>.tar.gz. The archive can be extracted under an arbitrary directory listed in the $PATH. For example, /usr/local/bin, or $HOME/bin.
 
-既に Docker を root として実行中の場合は、 ``docker-rootless-extras-<version>.tar.gz`` のみを展開します。アーカイブは ``$PATH`` 以下の相対ディレクトリに展開されます。たとえば、 ``/usr/local/bin`` や ``$HOME/bin`` です。
+既に Docker を root として実行中の場合は、 ``docker-rootless-extras-<version>.tar.gz`` のみを展開します。アーカイブは ``$PATH`` に含まれるいずれかのディレクトリに展開します。たとえば、 ``/usr/local/bin`` や ``$HOME/bin`` です。
 
 
 .. Nightly channel
@@ -344,7 +344,7 @@ Rootless モードは実験的なため、 ``docker-rootless.sh`` には ``--exp
     docker info shows rootless in SecurityOptions
     docker info shows none as Cgroup Driver
 
-* ``dockerd-rootless.sh`` スクリプトの ``dockerd`` 実行は、自分自身のユーザ、マウント、ネットワークの各名前空間を使います。名前空間に入る場合は、 ``nsenter -U --preserve-credentials -n -m -t $(cat $XDG_RUNTIME_DI`` を実行します。
+* ``dockerd-rootless.sh`` スクリプトの ``dockerd`` 実行は、自分自身のユーザ、マウント、ネットワークの各名前空間を使います。名前空間に入る場合は、 ``nsenter -U --preserve-credentials -n -m -t $(cat $XDG_RUNTIME_DIR/docker.pid)`` を実行します。
 * ``docker info`` を実行すると、 ``SecutiryOptions`` が ``rootless`` と表示します。
 * ``docker info`` を実行すると、 ``Cgroup Driver`` が ``none`` と表示します。
 
@@ -398,7 +398,7 @@ Rootless Docker in Docker
 
 .. To run Rootless Docker inside “rootful” Docker, use the docker:<version>-dind-rootless image instead of docker:<version>-dind.
 
-Rootless Docker の中で "rootful" （root風に） Docker を実行するには、 ``docker:<version>-dind`` イメージの変わりに ``docker:<version>-dind-rootless`` イメージを使います。
+「完全な root」で動作する Docker 内において Rootless Docker を実行するには、 ``docker:<version>-dind`` イメージの代わりに ``docker:<version>-dind-rootless`` イメージを使います。
 
 .. code-block:: bash
 
@@ -460,7 +460,7 @@ ping パケットのルーティング
 
 .. Exposing privileged ports
 
-.. _rootless-exposing-privileged-ports
+.. _rootless-exposing-privileged-ports:
 
 特権ポートの公開
 --------------------
@@ -487,11 +487,14 @@ ping パケットのルーティング
 
 .. In Docker 19.03, rootless mode ignores cgroup-related docker run flags such as --cpus, --memory, --pids-limit`.
 
-Docker 19.03 では、rootless モードでは cgroups に関連する ``docker run`` のフラグ、 ``--cpu`` 、 ``--memory`` 、 ``-pids-limit`` を無視します。
+Docker 19.03 では、rootless モードでは cgroups に関連する ``docker run`` のフラグ、 ``--cpus`` 、 ``--memory`` 、 ``-pids-limit`` を無視します。
 
-.. However, you can still use the traditional ulimit and cpulimit, though they work in process-granularity rather than in container-granularity, and can be arbitrarily disabled by the container process.
+.. However, you can still use the traditional `ulimit` and [`cpulimit`](https://github.com/opsengine/cpulimit),
+   though they work in process-granularity rather than in container-granularity,
+   and can be arbitrarily disabled by the container process.
 
-しかしながら、伝統的な ``ulimit`` と ``cpulimit`` は利用できます。これはコンテナ粒度というよりはプロセス粒度に対して機能するからです。また、コンテナのプロセスからの任意の割り当て（arbitrarily）は無効化されます。
+ただし従来からの ``ulimit`` や `cpulimit <https://github.com/opsengine/cpulimit>`_ は利用できます。
+これらはコンテナー単位というよりもプロセス単位での処理動作を規定するものですが、コンテナー・プロセスごとに無効化することができます。
 
 .. For example:
 
@@ -522,7 +525,7 @@ Docker 19.03 では、rootless モードでは cgroups に関連する ``docker 
 
 .. Optionally, you can use lxc-user-nic instead for the best performance. To use lxc-user-nic, you need to edit /etc/lxc/lxc-usernet and set $DOCKERD_ROOTLESS_ROOTLESSKIT_NET=lxc-user-nic.
 
-オプションで、ベストなパフォーマンスの代わりに ``lxc-user-nic`` を利用できます。 ``lxc-user-nic`` を使うには、 `/etc/lxc/lxc-usernet <https://github.com/rootless-containers/rootlesskit/tree/v0.9.5#--netlxc-user-nic-experimental>`_ を編集し、 ``$DOCKERD_ROOTLESS_ROOTLESSKIT_NET=lxc-user-nic`` を指定します。
+最適な性能を得るために、代わりに ``lxc-user-nic`` を利用することもできます。 ``lxc-user-nic`` を使うには、 `/etc/lxc/lxc-usernet <https://github.com/rootless-containers/rootlesskit/tree/v0.9.5#--netlxc-user-nic-experimental>`_ を編集し、 ``$DOCKERD_ROOTLESS_ROOTLESSKIT_NET=lxc-user-nic`` を指定します。
 
 .. Troubleshooting
 
@@ -618,7 +621,7 @@ systemd ホスト上では、ホストへのログインに ``pam_systemd`` を�
     ssh <USERNAME>@localhost
     machinectl shell <USERNAME>@
 
-* グラフィック・コンロールを通してログイン
+* グラフィック・コンソールを通してログイン
 * ``ssh <ユーザ名>@localhost``
 * ``machinectl shell <ユーザ名>@``
 
@@ -652,7 +655,7 @@ systemd ホスト上では、ホストへのログインに ``pam_systemd`` を�
 
 .. --cpus, --memory, and --pids-limit are ignored
 
-**--cpu、 --memory 、 --pids-limit が無視される**
+**--cpus、 --memory 、 --pids-limit が無視される**
 
 .. This is an expected behavior in Docker 19.03. For more information, see Limiting resources.
 

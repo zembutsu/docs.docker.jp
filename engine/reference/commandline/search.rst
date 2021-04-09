@@ -130,7 +130,7 @@ search
 
 * stars （整数 - イメージが持つスター数）
 * is-automated（true|false）- イメージが自動構築されたかどうか
-* is-officieal（true|false）- イメージが公式かどうか
+* is-official（true|false）- イメージが公式かどうか
 
 .. stars
 
@@ -172,7 +172,7 @@ is-official
 
 .. code-block:: bash
 
-   $ docker search --filter "is-automated=true" --filter "stars=3" busybox
+   $ docker search --filter is-official=true --filter stars=3 busybox
    NAME                 DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
    progrium/busybox                                                     50                   [OK]
    radial/busyboxplus   Full-chain, Internet enabled, busybox made...   8                    [OK]

@@ -36,7 +36,7 @@ Kubernetes にデプロイ
 * Docker Desktop 上で Kubernetes 機能が有効化されていることを確認
 
    * **Mac** ：メニューバー内の Docker アイコンをクリックし、 **Preferences**  に移動し、「Kubernetes」の横に緑のライトが点等していること
-   * **Mac** ：システムトレイ内の Docker アイコンをクリックし、 **Settings**  に移動し、「Kubernetes」の横に緑のライトが点等していること
+   * **Windows** ：システムトレイ内の Docker アイコンをクリックし、 **Settings**  に移動し、「Kubernetes」の横に緑のライトが点等していること
 
 ..    If Kubernetes isn’t running, follow the instructions in Orchestration of this tutorial to finish setting it up.
 
@@ -73,7 +73,7 @@ Kubernetes 内の全てのコンテナは pod （ポッド）としてスケジ�
 
 ::
 
-    apiVersion: apps/v1
+   apiVersion: apps/v1
    kind: Deployment
    metadata:
      name: bb-demo

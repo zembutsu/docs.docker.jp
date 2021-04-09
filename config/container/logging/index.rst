@@ -22,11 +22,11 @@
 
 .. The docker logs command shows information logged by a running container. The docker service logs command shows information logged by all containers participating in a service. The information that is logged and the format of the log depends almost entirely on the container’s endpoint command.
 
-``docker logs`` コマンドは、実行中のコンテナによって記録された（logged）情報を表示します。 ``docker service log``  コマンドは、サービスに対する全てのコンテナによって記録された情報を表示します。
+``docker logs`` コマンドは、実行中のコンテナによって記録された（logged）情報を表示します。 ``docker service logs``  コマンドは、サービスに対する全てのコンテナによって記録された情報を表示します。
 
 .. By default, docker logs or docker service logs shows the command’s output just as it would appear if you ran the command interactively in a terminal. UNIX and Linux commands typically open three I/O streams when they run, called STDIN, STDOUT, and STDERR. STDIN is the command’s input stream, which may include input from the keyboard or input from another command. STDOUT is usually a command’s normal output, and STDERR is typically used to output error messages. By default, docker logs shows the command’s STDOUT and STDERR. To read more about I/O and Linux, see the Linux Documentation Project article on I/O redirection.
 
-デフォルトでは、 ``service log`` や ``docker service logs`` はコマンドの出力を表示しますが、あたかもターミナルでコマンドをインタラクティブに実行したかのように表示します。UNIX と Linux コマンドは、たいていはコマンドの実行時に I/O ストリームを開きます。この I/O ストリームとは、 ``STDIN`` 、 ``STDOUT`` 、``STDERR`` と呼びます。 ``STDIN`` はコマンドの入力ストリームであり、コーボードからの入力や他のコマンドからの入力を含みます。 ``STDOUT``  はたいていコマンドの通常出力であり、 ``STDERR`` は典型的にエラーメッセージを出力するために表示します。デフォルトでは、 ``docker logs`` はコマンドの ``STDOUT`` と ``SDNERR`` を表示します。 I/O および Linux に関して詳しく知るには、 `Linux Documentation Project にある I/O redirection の記事（英語） <http://www.tldp.org/LDP/abs/html/io-redirection.html>`_ をご覧ください。
+デフォルトでは、 ``service log`` や ``docker service logs`` はコマンドの出力を表示しますが、あたかもターミナルでコマンドをインタラクティブに実行したかのように表示します。UNIX と Linux コマンドは、たいていはコマンドの実行時に I/O ストリームを開きます。この I/O ストリームとは、 ``STDIN`` 、 ``STDOUT`` 、``STDERR`` と呼びます。 ``STDIN`` はコマンドの入力ストリームであり、キーボードからの入力や他のコマンドからの入力を含みます。 ``STDOUT``  はたいていコマンドの通常出力であり、 ``STDERR`` は典型的にエラーメッセージを出力するために表示します。デフォルトでは、 ``docker logs`` はコマンドの ``STDOUT`` と ``SDNERR`` を表示します。 I/O および Linux に関して詳しく知るには、 `Linux Documentation Project にある I/O redirection の記事（英語） <http://www.tldp.org/LDP/abs/html/io-redirection.html>`_ をご覧ください。
 
 .. In some cases, docker logs may not show useful information unless you take additional steps.
 
@@ -38,7 +38,7 @@
 
 ..    If your image runs a non-interactive process such as a web server or a database, that application may send its output to log files instead of STDOUT and STDERR.
 
-* もしも、ウェバウサーバやデータベースのような、イメージがインタラクディブではないプロセスを実行しようとすると、アプリケーションは ``STDOUT`` や ``STDERR`` のかわりにログファイルへと出力をする場合があります。
+* もしも、ウェブサーバやデータベースのような、イメージがインタラクディヴではないプロセスを実行しようとすると、アプリケーションは ``STDOUT`` や ``STDERR`` のかわりにログファイルへと出力をする場合があります。
 
 .. In the first case, your logs are processed in other ways and you may choose not to use docker logs. In the second case, the official nginx image shows one workaround, and the official Apache httpd image shows another.
 

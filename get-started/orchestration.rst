@@ -104,6 +104,8 @@ Mac
 
 次のような表示が見えます：
 
+.. code-block:: bash
+
    NAME      READY     STATUS    RESTARTS   AGE
    demo      1/1       Running   0          4s
 
@@ -187,6 +189,8 @@ Windows
 ..    You should see something like:
 
 次のような表示が見えます：
+
+.. code-block:: bash
 
    NAME      READY     STATUS    RESTARTS   AGE
    demo      1/1       Running   0          4s

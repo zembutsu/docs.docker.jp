@@ -33,7 +33,7 @@ Docker Hub
 
 .. Docker Hub is a public registry managed by Docker, Inc. It centralizes information about organizations, user accounts, and images. It includes a web UI, authentication and authorization using organizations, CLI and API access using commands such as docker login, docker pull, and docker push, comments, stars, search, and more.
 
-:doc:`Docker Hub</docker-hub/toc>` は Docker syが管理している公開（パブリック）レジストリです。これは、組織、ユーザアカウント、イメージをまとめている場所です。さらに、ウェブ UI、認証、組織用の認証、CLI や API で ``docker login`` 、 ``docker pull`` 、 ``docker push`` のようなアクセス、コメント、スター機能などがあります。
+:doc:`Docker Hub</docker-hub/toc>` は Docker 社が管理している公開（パブリック）レジストリです。これは、組織、ユーザアカウント、イメージをまとめている場所です。さらに、ウェブ UI、認証、組織用の認証、CLI や API で ``docker login`` 、 ``docker pull`` 、 ``docker push`` のようなアクセス、コメント、スター機能などがあります。
 
 .. Docker Registry
 
@@ -48,7 +48,7 @@ Docker Registry は Docker エコシステムのコンポーネントです。�
 
 .. Docker Hub is an instance of a Docker Registry.
 
-Docker Hub は Dockre Registry 事例の1つです。
+Docker Hub は Docker Registry 事例の1つです。
 
 .. Content Trust
 

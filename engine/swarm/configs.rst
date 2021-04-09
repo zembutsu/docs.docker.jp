@@ -1,9 +1,10 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/swarm/configs/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/engine/swarm/configs.md
+   doc version: 19.03
 .. -----------------------------------------------------------------------------
 
-.. title: Store configuration data using Docker Configs
+.. Store configuration data using Docker Configs
 
 .. _store-configuration-data-using-docker-configs:
 

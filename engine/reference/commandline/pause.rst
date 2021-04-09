@@ -7,29 +7,78 @@
 .. Commits on May 27, 2016 ee7696312580f14ce7b8fe70e9e4cbdc9f83919f
 .. -------------------------------------------------------------------
 
-.. pause
+.. command: docker pause
 
 =======================================
-pause
+docker pause
 =======================================
+
+.. description
+
+.. _docker-pause-description:
+
+説明
+====================
+
+1 つまたは複数のコンテナ内部で実行されているプロセスを一時停止します。
+
+.. usage
+
+.. _docker-pause-usage:
+
+利用方法
+====================
+
+.. docker pause CONTAINER [CONTAINER...]
 
 .. code-block:: bash
 
-   使い方: docker pause [オプション] コンテナ [コンテナ...]
-   
-   コンテナ内の全てのプロセスを一時停止
-   
-     --help          使い方の表示
+   docker pause コンテナ [コンテナ...]
 
-.. The docker pause command uses the cgroups freezer to suspend all processes in a container. Traditionally, when suspending a process the SIGSTOP signal is used, which is observable by the process being suspended. With the cgroups freezer the process is unaware, and unable to capture, that it is being suspended, and subsequently resumed.
+.. extended-description
 
-``docker pause`` コマンドは cgroup を凍結（freezer）するもので、コンテナ内の全てのプロセスを一時停止（suspend）します。これまで、プロセスの一時停止には ``SIGSTOP`` シグナルが使われてきました。これはプロセスが一時停止状態に見えるようにするためのものです。cgroup の凍結により、プロセスの状態は分からなくなり、操作できなくなります。再開されるまで、一時停止状態のままです。
+.. _docker-pause-extended-description:
+
+追加説明
+====================
+
+.. The `docker pause` command suspends all processes in the specified containers.
+   On Linux, this uses the freezer cgroup. Traditionally, when suspending a process
+   the `SIGSTOP` signal is used, which is observable by the process being suspended.
+   With the freezer cgroup the process is unaware, and unable to capture,
+   that it is being suspended, and subsequently resumed. On Windows, only Hyper-V
+   containers can be paused.
+
+``docker pause`` コマンドは、指定されたコンテナ内のプロセスをすべて実行停止します。
+Linux の場合は freezer cgroup が利用されます。
+従来よりプロセスの一時停止には ``SIGSTOP`` シグナルが用いられ、そのプロセスの停止によって確認できます。
+freezer cgroup を用いた場合、一時停止されたこと、およびその後に再開されることに、プロセスは気づくことがなく、またそういう状態を把握することもできません。
+Windows の場合は Hyper-V コンテナのみが一時停止できます。
 
 .. See the cgroups freezer documentation for further details.
 
 更に詳しい詳細については `cgroup freezer ドキュメント <https://www.kernel.org/doc/Documentation/cgroup-v1/freezer-subsystem.txt>`_ をご覧ください。
 
+.. For example uses of this command, refer to the [examples section](#examples) below.
+
+本コマンドの利用例については、以下に示す :ref:`利用例 <docker-pause-examples>` を参照してください。
+
+.. examples
+
+.. _docker-pause-examples:
+
+利用例
+====================
+
+.. ```bash
+   $ docker pause my_container
+   ```
+
+.. code-block:: bash
+
+   $ docker pause my_container
+
 .. seealso:: 
 
-   pause
+   docker pause
       https://docs.docker.com/engine/reference/commandline/pause/

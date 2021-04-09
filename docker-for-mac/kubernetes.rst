@@ -70,14 +70,14 @@ Docker コマンドを使う
 
 .. Run kubectl get services -n my-app to see only the services deployed in the my-app namespace.
 
-`kubectl get services -n my-app` の実行は、 :code:`my-app` 名前空間にデプロイしているサービスのみ表示します。
+:code:`kubectl get services -n my-app` の実行は、 :code:`my-app` 名前空間にデプロイしているサービスのみ表示します。
 
 
 .. Override the default orchestrator
 
 .. _mac-override-the-default-orchestrator:
 
-デファオルトのオーケストレータを上書き
+デフォルトのオーケストレータを上書き
 ----------------------------------------
 
 .. While testing Kubernetes, you may want to deploy some workloads in swarm mode. Use the DOCKER_STACK_ORCHESTRATOR variable to override the default orchestrator for a given terminal session or a single Docker command. This variable can be unset (the default, in which case Kubernetes is the orchestrator) or set to swarm or kubernetes. The following command overrides the orchestrator for a single deployment, by setting the variable at the start of the command itself.
@@ -114,7 +114,7 @@ kubectl コマンドを使う
 
 .. The mac Kubernetes integration provides the Kubernetes CLI command at /usr/local/bin/kubectl. This location may not be in your shell’s PATH variable, so you may need to type the full path of the command or add it to the PATH. For more information about kubectl, see the official kubectl documentation. You can test the command by listing the available nodes:
 
-Windows Kubernetes 統合機能により、Kubernetes CLI コマンドが :code?`/usr/local/bin/kubectl` に提供されています。この場所はシェルの :code:`PATH` 変数に入っていない場合があるため、コマンドはフルパスで実行するか、 :code:`PATH` に追加する必要があります。 :code:`kubectl` に関する情報は、 `公式 kubectl ドキュメント <https://kubernetes.io/docs/reference/kubectl/overview/>`_ を御覧ください。コマンドのテストは、利用可能なノード一覧の表示で行えます。
+Windows Kubernetes 統合機能により、Kubernetes CLI コマンドが :code:`/usr/local/bin/kubectl` に提供されています。この場所はシェルの :code:`PATH` 変数に入っていない場合があるため、コマンドはフルパスで実行するか、 :code:`PATH` に追加する必要があります。 :code:`kubectl` に関する情報は、 `公式 kubectl ドキュメント <https://kubernetes.io/docs/reference/kubectl/overview/>`_ を御覧ください。コマンドのテストは、利用可能なノード一覧の表示で行えます。
 
 .. code-block:: bash
 

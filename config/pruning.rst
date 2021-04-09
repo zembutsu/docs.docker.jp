@@ -74,7 +74,7 @@ Docker は使用していないオブジェクト、たとえばイメージ、�
 
 .. When you stop a container, it is not automatically removed unless you started it with the --rm flag. To see all containers on the Docker host, including stopped containers, use docker ps -a. You may be surprised how many containers exist, especially on a development system! A stopped container’s writable layers still take up disk space. To clean this up, you can use the docker container prune command.
 
-コンテナを停止しても、 ``--rm`` フラグを付けて起動していなければ、コンテナは自動的に削除おされません。Docker ホスト上で、停止しているコンテナも含めて全てを表示するには、 ``docker ps -a`` を使います。そうすると、こんなにも沢山のコンテナがあるのかと驚くでしょう。特に開発システム上ではなおさらです！ 停止しているコンテナの書き込み可能なレイヤは、ディスク容量を消費し続けます。これらを綺麗に片付けるには、 ``docker system prune`` コマンドを使います。
+コンテナを停止しても、 ``--rm`` フラグを付けて起動していなければ、コンテナは自動的に削除されません。Docker ホスト上で、停止しているコンテナも含めて全てを表示するには、 ``docker ps -a`` を使います。そうすると、こんなにも沢山のコンテナがあるのかと驚くでしょう。特に開発システム上ではなおさらです！ 停止しているコンテナの書き込み可能なレイヤは、ディスク容量を消費し続けます。これらを綺麗に片付けるには、 ``docker container prune`` コマンドを使います。
 
 .. code-block:: bash
 

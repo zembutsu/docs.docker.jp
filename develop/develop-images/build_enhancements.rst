@@ -162,7 +162,7 @@ Docker の新規インストールが最も簡単で、 ``docker build`` コマ�
 
 .. The new syntax features in Dockerfile are available if you override the default frontend. To override the default frontend, set the first line of the Dockerfile as a comment with a specific frontend image:
 
-デフォルトのフロントエンドを上書きすると、 ``Dockerifle`` で新しい構文機能が利用可能です。デフォルトのフロントエンドを上書きするには、 ``Dockerfile`` の１行目に、特定のフロントエンド・イメージをコメントとして指定します。
+デフォルトのフロントエンドを上書きすると、 ``Dockerfile`` で新しい構文機能が利用可能です。デフォルトのフロントエンドを上書きするには、 ``Dockerfile`` の１行目に、特定のフロントエンド・イメージをコメントとして指定します。
 
 ::
 

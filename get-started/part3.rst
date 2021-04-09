@@ -100,11 +100,11 @@ Docker Hub リポジトリを作成し、イメージを送信
 ..    Click on the Docker icon in your menu bar, and navigate to Repositories > Create. You’ll be redirected to the Create Repository page on Docker Hub.
 
 
-1. メニューバーの Docker アイコンをクリックし、 **Repositories > Create**  （リポジトリ・作成）を選びます。そうすると、 Docker Hub 上の **Crate Repository**  （リポジトリ作成）のページに転送されます。
+1. メニューバーの Docker アイコンをクリックし、 **Repositories > Create**  （リポジトリ・作成）を選びます。そうすると、 Docker Hub 上の **Create Repository**  （リポジトリ作成）のページに転送されます。
 
 ..    Type the repository name as bulletinboard and click Create at the bottom of the page. Do not fill any other details for now.
 
-2. レポジトリ名（repository name）を ``bulletinboard``  と入力し、ページの下にある **Create** （作成）ボタンをクリックします。現時点では他の項目は入力しないでください。
+2. リポジトリ名（repository name）を ``bulletinboard``  と入力し、ページの下にある **Create** （作成）ボタンをクリックします。現時点では他の項目は入力しないでください。
 
 ..    make a repo
 
@@ -151,11 +151,11 @@ Docker Hub リポジトリを作成し、イメージを送信
 
 .. Now that your image is available on Docker Hub, you’ll be able to run it anywhere. If you try to use it on a new machine that doesn’t have it yet, Docker will automatically try and download it from Docker Hub. By moving images around in this way, you no longer need to install any dependencies except Docker on the machines you want to run your software on. The dependencies of containerized applications are completely encapsulated and isolated within your images, which you can share using Docker Hub as described above.
 
-これであなたの Docker イメージは Docker Hub で利用可能になり、どこでも実行できるよになりました。もしも新しいマシンで使おうする場合、そこにイメージが無かったとしても、Docker は Docker Hub から自動的にダウンロードを試みます。以上の方法でイメージを移動できますので、ソフトウェアを実行したいマシン上では、Docker 以外全ての依存関係が不要です。コンテナ化アプリケーションの依存関係は、イメージの中に完全にカプセル化され、隔離されています。そして、このイメージは先ほど見た通り Docker Hub を使って共有できます。
+これであなたの Docker イメージは Docker Hub で利用可能になり、どこでも実行できるようになりました。もしも新しいマシンで使おうとする場合、そこにイメージが無かったとしても、Docker は Docker Hub から自動的にダウンロードを試みます。以上の方法でイメージを移動できますので、ソフトウェアを実行したいマシン上では、Docker 以外全ての依存関係が不要です。コンテナ化アプリケーションの依存関係は、イメージの中に完全にカプセル化され、隔離されています。そして、このイメージは先ほど見た通り Docker Hub を使って共有できます。
 
 .. Another thing to keep in mind: at the moment, you’ve only pushed your image to Docker Hub; what about your Dockerfile? A crucial best practice is to keep these in version control, perhaps alongside your source code for your application. You can add a link or note in your Docker Hub repository description indicating where these files can be found, preserving the record not only of how your image was built, but how it’s meant to be run as a full application.
 
-もう１つ覚えておいてください。今のところイメージを Docker Hub に送信したにすぎません。つまり、 Dockerfile はどうしたらよいでしょうか。ベストプラクティスに不可欠なのは、バージョン管理をすることであり、可能であればアプリケーションの依存関係のソースコードと共に行うことです。Docker Hub リポジトリ音説明には、どこでそれら Dockerifle を見つけられるかのリンクやメモを追加できます。記録できるのはイメージのビルドの仕方だけでなく、アプリケーションの依存関係の完全に実行する方法についても可能です。
+もう１つ覚えておいてください。今のところイメージを Docker Hub に送信したにすぎません。つまり、 Dockerfile はどうしたらよいでしょうか。ベストプラクティスに不可欠なのは、バージョン管理をすることであり、可能であればアプリケーションの依存関係のソースコードと共に行うことです。Docker Hub リポジトリ説明には、どこでそれら Dockerifle を見つけられるかのリンクやメモを追加できます。記録できるのはイメージのビルドの仕方だけでなく、アプリケーションの依存関係の完全に実行する方法についても可能です。
 
 .. Where to go next
 

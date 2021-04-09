@@ -88,7 +88,7 @@ scratch を使ってシンプルな親イメージを作成
 
 .. While scratch appears in Docker’s repository on the hub, you can’t pull it, run it, or tag any image with the name scratch. Instead, you can refer to it in your Dockerfile. For example, to create a minimal container using scratch:
 
-Docker Hub の Docker リポジトリに ``scratch`` 命令が出てきても、 ``scratch`` という名前でイメージの取得・送信・実行・タグ付けはできません。そのかわり、 ``Dockerifle`` の中から参照できるものです。たとえば、最も小さなコンテナを ``scratch`` を使って作成するには、次のようになります。
+Docker Hub の Docker リポジトリに ``scratch`` 命令が出てきても、 ``scratch`` という名前でイメージの取得・送信・実行・タグ付けはできません。そのかわり、 ``Dockerfile`` の中から参照できるものです。たとえば、最も小さなコンテナを ``scratch`` を使って作成するには、次のようになります。
 
 ::
 
@@ -141,7 +141,7 @@ https://github.com/docker-library/hello-world/ にある命令を使って、「
 
 .. There are lots of resources available to help you write your Dockerfile.
 
-``Dockerifle`` を書くのに役立つ沢山の情報があります。
+``Dockerfile`` を書くのに役立つ沢山の情報があります。
 
 ..  There’s a complete guide to all the instructions available for use in a Dockerfile in the reference section.
     To help you write a clear, readable, maintainable Dockerfile, we’ve also written a Dockerfile best practices guide.

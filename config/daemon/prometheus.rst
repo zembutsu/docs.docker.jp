@@ -41,7 +41,7 @@ Docker の設定
 
 .. To configure the Docker daemon as a Prometheus target, you need to specify the metrics-address. The best way to do this is via the daemon.json, which is located at one of the following locations by default. If the file does not exist, create it.
 
-Docker デーモンを Prometheus ターゲットとして設定するには、 ``metrics-address`` を指定する必要があります。この指定にベストな方法は ``damon.json`` を経由するもので、デフォルトでそれぞれ以下の場所にあります。もしもファイルが無ければ作成します。
+Docker デーモンを Prometheus ターゲットとして設定するには、 ``metrics-address`` を指定する必要があります。この指定にベストな方法は ``daemon.json`` を経由するもので、デフォルトでそれぞれ以下の場所にあります。もしもファイルが無ければ作成します。
 
 ..  Linux: /etc/docker/daemon.json
     Windows Server: C:\ProgramData\docker\config\daemon.json

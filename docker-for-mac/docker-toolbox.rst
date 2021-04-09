@@ -54,7 +54,7 @@ Docker Desktop on Mac 環境
 
 .. Docker Desktop on Mac is a Mac-native application, that you install in /Applications. At installation time, it creates symlinks in /usr/local/bin for docker and docker-compose and others, to the commands in the application bundle, in /Applications/Docker.app/Contents/Resources/bin.
 
-Docker Desktop on Mac は、 :code:`/Applications` にインストールする Mac ネイティブのアプリケーションです。インストール時に :code:`/Applications/Docker.app/Contents/Resources/bin` から :code: `/usr/local/bin` へ :code:`docker` と :code:`docker-compose`  等のシンボリックリンクを作成し、様々なコマンドを実行できるようにします。
+Docker Desktop on Mac は、 :code:`/Applications` にインストールする Mac ネイティブのアプリケーションです。インストール時に :code:`/Applications/Docker.app/Contents/Resources/bin` から :code:`/usr/local/bin` へ :code:`docker` と :code:`docker-compose`  等のシンボリックリンクを作成し、様々なコマンドを実行できるようにします。
 
 .. Here are some key points to know about Docker Desktop on Mac before you get started:
 

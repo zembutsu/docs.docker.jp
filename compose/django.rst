@@ -146,6 +146,10 @@
        services:
          db:
            image: postgres
+           environment:
+            - POSTGRES_DB=postgres
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
          web:
            build: .
            command: python3 manage.py runserver 0.0.0.0:8000

@@ -22,7 +22,7 @@ Windows に Docker Desktop をインストール
 
 .. Docker Desktop for Windows is the Community version of Docker for Microsoft Windows. You can download Docker Desktop for Windows from Docker Hub.
 
-Docker Desktop for Windows は、Mirosoft Windows 用の Docker `コミュニティ <https://www.docker.com/community-edition>`_ 版です。Docker Desktop for Mac は Docker Hub からダウンロードできます。
+Docker Desktop for Windows は、Mirosoft Windows 用の Docker `コミュニティ <https://www.docker.com/community-edition>`_ 版です。Docker Desktop for Windows は Docker Hub からダウンロードできます。
 
 .. This page contains information on installing Docker Desktop on Windows 10 Pro, Enterprise, and Education. If you are looking for information about installing Docker Desktop on Windows 10 Home, see Install Docker Desktop on Windows Home.
 
@@ -30,7 +30,7 @@ Docker Desktop for Windows は、Mirosoft Windows 用の Docker `コミュニテ
 
 .. Download from Docker Hub
 
-* `Docker Hub からダウンロード <https://hub.docker.com/editions/community/docker-ce-desktop-mac/>`_
+* `Docker Hub からダウンロード <https://hub.docker.com/editions/community/docker-ce-desktop-windows/>`_
 
 .. By downloading Docker Desktop, you agree to the terms of the Docker Software End User License Agreement and the Docker Data Processing Agreement.
 
@@ -123,7 +123,8 @@ Windows に Docker Desktop をインストール
 
 ..    If you haven’t already downloaded the installer (Docker Desktop Installer.exe), you can get it from Docker Hub. It typically downloads to your Downloads folder, or you can run it from the recent downloads bar at the bottom of your web browser.
 
-もしもまだインストーラ（ :code:`Docker Desktop Installer.exe` ）をダウンロードしていなければ、 `Docker Hub <https://hub.docker.com/?overlay=onboarding>`_ から取得できます。ダウンロードは通常「ダウンロード」フォルダ内か、ウェブブラウザ上のダウンロード・バーに表示される最近ダウンロードした場所です。
+もしもまだインストーラ（ :code:`Docker Desktop Installer.exe` ）をダウンロードしていなければ、 `Docker Hub <https://hub.docker.com/editions/community/docker-ce-desktop-windows/>`_ から取得できます。ダウンロードは通常「ダウンロード」フォルダ内か、ウェブブラウザ上のダウンロード・バーに表示される最近ダウンロードした場所です。
+
 ..    When prompted, ensure the Enable Hyper-V Windows Features option is selected on the Configuration page.
 
 2.　確認画面が出たら、 **Enable Hyper-V Windows Features** （Hyper V の Windows 機能を有効にする）のオプションが、設定ページで選択されているかどうかを確認します。

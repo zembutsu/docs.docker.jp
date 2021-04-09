@@ -8,7 +8,7 @@
 
 .. Configure and troubleshoot the Docker daemon
 
-..-_configure-and-troubleshoot-the-docker-daemon:
+.. _configure-and-troubleshoot-the-docker-daemon:
 
 ============================================================
 Docker デーモンの設定とトラブルシュート
@@ -75,13 +75,13 @@ Docker デーモンの設定
 
 .. There are two ways to configure the Docker daemon:
 
-Dockre デーモンの設定を変更するには、２つの方法があります。
+Docker デーモンの設定を変更するには、２つの方法があります。
 
 ..  Use a JSON configuration file. This is the preferred option, since it keeps all configurations in a single place.
     Use flags when starting dockerd.
 
 * JSON 設定ファイルを使う方法。全ての設定情報を１ヵ所にまとめているため、望ましいオプション
-* ``docker`` で起動時にフラグを付ける方法
+* ``dockerd`` で起動時にフラグを付ける方法
 
 .. You can use both of these options together as long as you don’t specify the same option both as a flag and in the JSON file. If that happens, the Docker daemon won’t start and prints an error message.
 
@@ -89,7 +89,7 @@ Dockre デーモンの設定を変更するには、２つの方法がありま�
 
 .. To configure the Docker daemon using a JSON file, create a file at /etc/docker/daemon.json on Linux systems, or C:\ProgramData\docker\config\daemon.json on Windows. On MacOS go to the whale in the taskbar > Preferences > Daemon > Advanced.
 
-Docker デーモンを JSON ファイルで設定するには、Linux システム上では ``/etc/docker/daemon.jso`` にファイルを作成するか、Windows 上では ``C:\ProgramData\docker\config\daemon.json`` を作成します。Mac OS ではタスクバーの鯨アイコンから Preferences > Daemon > Advanced を選択します。
+Docker デーモンを JSON ファイルで設定するには、Linux システム上では ``/etc/docker/daemon.json`` にファイルを作成するか、Windows 上では ``C:\ProgramData\docker\config\daemon.json`` を作成します。Mac OS ではタスクバーの鯨アイコンから Preferences > Daemon > Advanced を選択します。
 
 .. Here’s what the configuration file looks like:
 
@@ -196,7 +196,7 @@ Docker デーモンはこのディレクトリ上で状態を保持するため�
 
 .. If you use a daemon.json file and also pass options to the dockerd command manually or using start-up scripts, and these options conflict, Docker fails to start with an error such as:
 
-``daemon.json`` ファイルの利用と、 ``dockerd`` コマンドに対して手動もしくはスタートアップ・スクリプトでオプション指定の利用を同時に利用すると、お互いのオプションが競合するとき、Dockerあ起動できず、次のようなエラーを出力します。
+``daemon.json`` ファイルの利用と、 ``dockerd`` コマンドに対して手動もしくはスタートアップ・スクリプトでオプション指定の利用を同時に利用すると、お互いのオプションが競合するとき、Docker は起動できず、次のようなエラーを出力します。
 
 ::
 
@@ -337,7 +337,7 @@ Windows ホスト上では Docker を再起動します。
 
 .. Instead of following this procedure, you can also stop the Docker daemon and restart it manually with the debug flag -D. However, this may result in Docker restarting with a different environment than the one the hosts’ startup scripts create, and this may make debugging more difficult.
 
-以上の手順のほかに、Docker デーモンを停止し、手動で Docker デーモンを起動する時にデバッグ用のフラグ ``-D`` を付ける方法もあります。しかしながら、通常ホスト側のスタートアップ・スクリプトによって作成する Dockre 環境とは、異なる環境が起動してしまう場合もあります。そして、そうなればデバッグが困難になるでしょう。
+以上の手順のほかに、Docker デーモンを停止し、手動で Docker デーモンを起動する時にデバッグ用のフラグ ``-D`` を付ける方法もあります。しかしながら、通常ホスト側のスタートアップ・スクリプトによって作成する Docker 環境とは、異なる環境が起動してしまう場合もあります。そして、そうなればデバッグが困難になるでしょう。
 
 .. Force a stack trace to be logged
 
@@ -427,7 +427,7 @@ Docker がどこで動作しているかはオペレーティングシステム�
 
 .. You can also use operating system utilities, such as sudo systemctl is-active docker or sudo status docker or sudo service docker status, or checking the service status using Windows utilities.
 
-また、オペレーティングシステムのユーティリティも利用できます。 ``udo systemctl is-active docker `` や ``sudo status docker`` や ``sudo service docker status`` や、Windows ユーティリティを使ったサービスを確認できます。
+また、オペレーティングシステムのユーティリティも利用できます。 ``sudo systemctl is-active docker`` や ``sudo status docker`` や ``sudo service docker status`` や、Windows ユーティリティを使ったサービスを確認できます。
 
 .. Finally, you can check in the process list for the dockerd process, using commands like ps or top.
 
