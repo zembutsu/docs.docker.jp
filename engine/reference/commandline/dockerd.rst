@@ -1204,9 +1204,12 @@ Docker は Docker データ・ディレクトリ（ ``/var/lib/docker`` ）と `
 デフォルトの親 cgroup
 ==============================
 
-.. The --cgroup-parent option allows you to set the default cgroup parent to use for containers. If this option is not set, it defaults to /docker for fs cgroup driver and system.slice for systemd cgroup driver.
+.. The `--cgroup-parent` option allows you to set the default cgroup parent
+   to use for containers. If this option is not set, it defaults to `/docker` for
+   fs cgroup driver and `system.slice` for systemd cgroup driver.
 
-``--cgroup-parent`` オプションは、コンテナがデフォルトで使う親 cgroup （cgroup parent）を指定できます。オプションを設定しなければ、 ``/docker`` を fs cgroup ドライバとして使います。また ``system.slice`` を systemd cgroup ドライバとして使います。
+``--cgroup-parent`` オプションは、コンテナが利用するデフォルトの親 cgroup を設定します。
+このオプションが指定されていない場合、デフォルトは fs cgroup ドライバに対しては ``/docker`` となり、systemd cgroup ドライバに対しては ``system.slice`` となります。
 
 .. If the cgroup has a leading forward slash (/), the cgroup is created under the root cgroup, otherwise the cgroup is created under the daemon cgroup.
 
