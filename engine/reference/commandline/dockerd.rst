@@ -1226,9 +1226,20 @@ cgroup の先頭がスラッシュ（ ``/`` ）で始まる場合、この cgrou
 ``--cgroup-parent=/foobar`` という指定を行うと、cgroup は ``/sys/fs/cgroup/memory/foobar`` のもとに生成されます。
 一方 ``--cgroup-parent=foobar`` と指定すると、cgroup は ``/sys/fs/cgroup/memory/daemoncgroup/foobar`` のもとに生成されます。
 
-.. The systemd cgroup driver has different rules for --cgroup-parent. Systemd represents hierarchy by slice and the name of the slice encodes the location in the tree. So --cgroup-parent for systemd cgroups should be a slice name. A name can consist of a dash-separated series of names, which describes the path to the slice from the root slice. For example, --cgroup-parent=user-a-b.slice means the memory cgroup for the container is created in /sys/fs/cgroup/memory/user.slice/user-a.slice/user-a-b.slice/docker-<id>.scope.
+.. The systemd cgroup driver has different rules for `--cgroup-parent`. Systemd
+   represents hierarchy by slice and the name of the slice encodes the location in
+   the tree. So `--cgroup-parent` for systemd cgroups should be a slice name. A
+   name can consist of a dash-separated series of names, which describes the path
+   to the slice from the root slice. For example, `--cgroup-parent=user-a-b.slice`
+   means the memory cgroup for the container is created in
+   `/sys/fs/cgroup/memory/user.slice/user-a.slice/user-a-b.slice/docker-<id>.scope`.
 
-systemd cgroup ドライバは ``--cgroup-parent`` と異なるルールです。Systemd のリソース階層は、スライス（訳者注：systemd における CPU やメモリなどのリソースを分割する単位のこと）とツリー上でスライスをエンコードする場所の名前で表します。そのため systemd cgroups 用の ``--cgroup-parent`` はスライス名と同じにすべきです。名前はダッシュ区切りの名前で構成します。つまりルート・スライスからのスライスに対するパスです。例えば ``--cgroup-parent=user-a-b.slice`` を指定する意は、コンテナ用の cgroup を ``/sys/fs/cgroup/memory/user.slice/user-a.slice/user-a-b.slice/docker-<id>.scope`` に割り当てます。
+systemd cgroup ドライバには ``--cgroup-parent`` に対して別ルールがあります。
+systemd はスライス（訳者注：systemd における CPU やメモリなどのリソースを分割する単位のこと）による階層構造により表現され、そのスライス名はツリー内の場所をエンコードしています。
+したがって systemd cgroups に対する ``--cgroup-parent`` の設定値はスライス名とします。
+1 つの名前は、一連の名前をダッシュで区切って構成します。
+これが、そのスライスに対するルートスライスからのパスを表します。
+たとえば ``--cgroup-parent=user-a-b.slice`` というのは、コンテナに対するメモリ cgroup であり、``/sys/fs/cgroup/memory/user.slice/user-a.slice/user-a-b.slice/docker-<id>.scope`` に生成されます。
 
 .. This setting can also be set per container, using the --cgroup-parent option on docker create and docker run, and takes precedence over the --cgroup-parent option on the daemon.
 
