@@ -1217,9 +1217,14 @@ Docker は Docker データ・ディレクトリ（ ``/var/lib/docker`` ）と `
 
 cgroup の先頭がスラッシュ（ ``/`` ）で始まる場合、この cgroup はルート cgroup のもとに生成され、そうでない場合はデーモン cgroup のもとに生成されます。
 
-.. Assuming the daemon is running in cgroup daemoncgroup, --cgroup-parent=/foobar creates a cgroup in /sys/fs/cgroup/memory/foobar, whereas using --cgroup-parent=foobar creates the cgroup in /sys/fs/cgroup/memory/daemoncgroup/foobar
+.. Assuming the daemon is running in cgroup `daemoncgroup`,
+   `--cgroup-parent=/foobar` creates a cgroup in
+   `/sys/fs/cgroup/memory/foobar`, whereas using `--cgroup-parent=foobar`
+   creates the cgroup in `/sys/fs/cgroup/memory/daemoncgroup/foobar`
 
-デーモンが cgroup ``daemoncgroup`` で実行されており、``--cgroup-parent=/foobar`` で ``/sys/fs/cgroup/memory/foobar`` の中に cgroup を作成したと仮定時、 ``--cgroup-parent=foobar`` は ``/sys/fs/cgroup/memory/daemoncgroup/foobar`` に cgroup を作成します。
+デーモンが仮に ``daemoncgroup`` という cgroup 内で実行されているとします。
+``--cgroup-parent=/foobar`` という指定を行うと、cgroup は ``/sys/fs/cgroup/memory/foobar`` のもとに生成されます。
+一方 ``--cgroup-parent=foobar`` と指定すると、cgroup は ``/sys/fs/cgroup/memory/daemoncgroup/foobar`` のもとに生成されます。
 
 .. The systemd cgroup driver has different rules for --cgroup-parent. Systemd represents hierarchy by slice and the name of the slice encodes the location in the tree. So --cgroup-parent for systemd cgroups should be a slice name. A name can consist of a dash-separated series of names, which describes the path to the slice from the root slice. For example, --cgroup-parent=user-a-b.slice means the memory cgroup for the container is created in /sys/fs/cgroup/memory/user.slice/user-a.slice/user-a-b.slice/docker-<id>.scope.
 
