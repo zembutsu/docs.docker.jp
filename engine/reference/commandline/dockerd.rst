@@ -1241,9 +1241,13 @@ systemd はスライス（訳者注：systemd における CPU やメモリな�
 これが、そのスライスに対するルートスライスからのパスを表します。
 たとえば ``--cgroup-parent=user-a-b.slice`` というのは、コンテナに対するメモリ cgroup であり、``/sys/fs/cgroup/memory/user.slice/user-a.slice/user-a-b.slice/docker-<id>.scope`` に生成されます。
 
-.. This setting can also be set per container, using the --cgroup-parent option on docker create and docker run, and takes precedence over the --cgroup-parent option on the daemon.
+.. This setting can also be set per container, using the `--cgroup-parent`
+   option on `docker create` and `docker run`, and takes precedence over
+   the `--cgroup-parent` option on the daemon.
 
-これらの指定はコンテナに対しても可能です。 ``docker create`` と ``docker run`` の実行時に ``--cgroup-parent`` を使うと、デーモンのオプションで指定した ``--cgroup-parent`` よりも優先されます。
+上の指定はコンテナ単位で行うこともできます。
+その場合は ``docker create`` や ``docker run`` の実行時に ``--cgroup-parent`` を指定します。
+この指定は、デーモンに対する ``--cgroup-parent`` オプションよりも優先して適用されます。
 
 .. Daemon configuration file
 
