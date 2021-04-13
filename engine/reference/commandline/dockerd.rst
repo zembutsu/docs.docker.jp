@@ -1211,9 +1211,11 @@ Docker は Docker データ・ディレクトリ（ ``/var/lib/docker`` ）と `
 ``--cgroup-parent`` オプションは、コンテナが利用するデフォルトの親 cgroup を設定します。
 このオプションが指定されていない場合、デフォルトは fs cgroup ドライバに対しては ``/docker`` となり、systemd cgroup ドライバに対しては ``system.slice`` となります。
 
-.. If the cgroup has a leading forward slash (/), the cgroup is created under the root cgroup, otherwise the cgroup is created under the daemon cgroup.
+.. If the cgroup has a leading forward slash (`/`), the cgroup is created
+   under the root cgroup, otherwise the cgroup is created under the daemon
+   cgroup.
 
-cgroup はスラッシュ記号（ ``/`` ）で始まるルート cgroup の下に作成されますが、他の cgroup は daemon cgroup の下に作成されます。
+cgroup の先頭がスラッシュ（ ``/`` ）で始まる場合、この cgroup はルート cgroup のもとに生成され、そうでない場合はデーモン cgroup のもとに生成されます。
 
 .. Assuming the daemon is running in cgroup daemoncgroup, --cgroup-parent=/foobar creates a cgroup in /sys/fs/cgroup/memory/foobar, whereas using --cgroup-parent=foobar creates the cgroup in /sys/fs/cgroup/memory/daemoncgroup/foobar
 
