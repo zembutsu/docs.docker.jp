@@ -399,9 +399,9 @@ Docker Desktop for Mac や Docker Desktop for Windows の場合は、ウェブ�
 これにポート番号をつけて利用します。
 （``<Docker-Host-IP>:3000`` ）
 
-.. ![Rails example](images/rails-welcome.png)
+.. ![Rails example](./images/rails-welcome.png)
 
-.. image:: /images/rails-welcome.png
+.. image:: ./images/rails-welcome.png
       :scale: 60%
       :alt: Rails の例
 
