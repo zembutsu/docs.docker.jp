@@ -133,7 +133,7 @@ Docker コミュニティのエキスパートによって作成されました�
 
 .. * Many of the courses are fee-based
 
-* コースのほとんどは無料ベースです。
+* コースのほとんどは有料です。
 
 .. seealso::
 
