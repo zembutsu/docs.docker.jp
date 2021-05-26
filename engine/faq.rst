@@ -280,7 +280,7 @@ Dockerfile の中で環境変数 ``DEBIAN_FRONTEND`` を変更して使い、こ
 
 .. If you really need to change its setting, make sure to change it back to its default value afterwards.
 
-本当にこの値を変更する必要がある場合は、あとで `デフォルト値 <https://www.debian.org/releases/stable/i386/ch05s03.html.en>`_ に差し戻してください。
+本当にこの値を変更する必要がある場合は、あとで `デフォルト値 <https://www.debian.org/releases/jessie/s390x/ch05s02.html.en>`_ に差し戻してください。
 
 .. Why do I get Connection reset by peer when making a request to a service running in a container?
 
