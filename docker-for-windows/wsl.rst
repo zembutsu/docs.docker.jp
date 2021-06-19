@@ -210,7 +210,7 @@ Docker と WSL 2 で開発する
    * Windows ホストからリモート操作するより、Linux ファイルシステム上でファイルをバインド・マウントするほうが、パフォーマンスがより優れる。つまり :code:`docker run -v /mnt/c/users:/users` を避ける（ :code:`/mnt/c` は Windows からマウントしている場所 ）。
    * そのかわりに、 コマンドラインで :code:`docker run -v ~/my-project:/sources <自分のイメージ>` のようなコマンドをシェルで用いると、 :code:`~` にあたる場所は Linux シェルによって :code:`$HOME` に展開される。
 * docker-desktop-data VHDX の容量についての懸念や、変更の必要があれば、 `Windows に組み込まれた WSL ツール <https://docs.microsoft.com/ja-jp/windows/wsl/compare-versions#understanding-wsl-2-uses-a-vhd-and-what-to-do-if-you-reach-its-max-size>`_ を参照
-* CPU やメモリ使用量に関する懸念があれば、 `WSL 2 ユーティリティ VM <https://docs.microsoft.com/ja-jp/windows/wsl/release-notes#build-18945>`_ に割り当て可能な メモリ、CPU 、スワップサイズにし慧玄を設ける
+* CPU やメモリ使用量に関する懸念があれば、 `WSL 2 ユーティリティ VM <https://docs.microsoft.com/ja-jp/windows/wsl/release-notes#build-18945>`_ に割り当て可能な メモリ、CPU 、スワップサイズにし制限を設ける
 * Docker Desktop 上の WSL 2 を用いることで、競合する可能性を避けるためには、Docker Desktop を通して Linux ディストリビューションを直接インストールする前に、古いバージョンの Docker Engine および CLI のアンインストールが必須
 
 .. Feedback
