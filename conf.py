@@ -33,6 +33,7 @@ import shlex
 # ones.
 extensions = [
     'sphinx.ext.doctest',
+    'sphinxcontrib.textstyle',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -51,7 +52,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Docker-docs-ja'
-copyright = u'2015-2020, Docker Docs Translation Ja-Jp Project'
+copyright = u'2015-2021, Docker Docs Translation Ja-Jp Project'
 author = u'Docker Docs Translation Ja-Jp Project'
 
 # The version info for the project you're documenting, acts as replacement for
