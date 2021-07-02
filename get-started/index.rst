@@ -81,7 +81,7 @@ Docker とは開発者やシステム管理者が、コンテナでアプリケ�
 
 .. Fundamentally, a container is nothing but a running process, with some added encapsulation features applied to it in order to keep it isolated from the host and from other containers. One of the most important aspects of container isolation is that each container interacts with its own private filesystem; this filesystem is provided by a Docker image. An image includes everything needed to run an application - the code or binary, runtimes, dependencies, and any other filesystem objects required.
 
-基本的に、コンテナは何もしませんが、プロセスが走っています。このプロセスは、ホストと他のコンテナから隔離（isolate）し続けるために、複数のカプセル化する機能をプロセスに対して追加しています。コンテナ隔離（isolation）の最も重要な特長とは、各コンテナが自分自身のプライベート・ファイルシステムとやりとりできる点です。すなわち、このファイスシステムは Docker **イメージ**  によって提供されます。イメージに含まれるのは、アプリケーションの実行に必要な全てです。たとえば、コード、バイナリ、ランタイム、依存関係、その他の必要なあらゆるファイルシステム・オブジェクトです。
+基本的に、コンテナは何もしませんが、プロセスが走っています。このプロセスは、ホストと他のコンテナから隔離（isolate）し続けるために、複数のカプセル化する機能をプロセスに対して追加しています。コンテナ隔離（isolation）の最も重要な特長とは、各コンテナが自分自身のプライベート・ファイルシステムとやりとりできる点です。すなわち、このファイルシステムは Docker **イメージ**  によって提供されます。イメージに含まれるのは、アプリケーションの実行に必要な全てです。たとえば、コード、バイナリ、ランタイム、依存関係、その他の必要なあらゆるファイルシステム・オブジェクトです。
 
 .. Containers and virtual machines
 
