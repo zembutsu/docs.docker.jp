@@ -15,6 +15,7 @@
 import sys
 import os
 import shlex
+import sphinx_fontawesome
 
 #import sphinx_rtd_theme
 
@@ -34,6 +35,7 @@ import shlex
 extensions = [
     'sphinx.ext.doctest',
     'sphinxcontrib.textstyle',
+    'sphinx_fontawesome',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
