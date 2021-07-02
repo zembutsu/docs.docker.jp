@@ -1204,25 +1204,50 @@ Docker は Docker データ・ディレクトリ（ ``/var/lib/docker`` ）と `
 デフォルトの親 cgroup
 ==============================
 
-.. The --cgroup-parent option allows you to set the default cgroup parent to use for containers. If this option is not set, it defaults to /docker for fs cgroup driver and system.slice for systemd cgroup driver.
+.. The `--cgroup-parent` option allows you to set the default cgroup parent
+   to use for containers. If this option is not set, it defaults to `/docker` for
+   fs cgroup driver and `system.slice` for systemd cgroup driver.
 
-``--cgroup-parent`` オプションは、コンテナがデフォルトで使う親 cgroup （cgroup parent）を指定できます。オプションを設定しなければ、 ``/docker`` を fs cgroup ドライバとして使います。また ``system.slice`` を systemd cgroup ドライバとして使います。
+``--cgroup-parent`` オプションは、コンテナが利用するデフォルトの親 cgroup を設定します。
+このオプションが指定されていない場合、デフォルトは fs cgroup ドライバに対しては ``/docker`` となり、systemd cgroup ドライバに対しては ``system.slice`` となります。
 
-.. If the cgroup has a leading forward slash (/), the cgroup is created under the root cgroup, otherwise the cgroup is created under the daemon cgroup.
+.. If the cgroup has a leading forward slash (`/`), the cgroup is created
+   under the root cgroup, otherwise the cgroup is created under the daemon
+   cgroup.
 
-cgroup はスラッシュ記号（ ``/`` ）で始まるルート cgroup の下に作成されますが、他の cgroup は daemon cgroup の下に作成されます。
+cgroup の先頭がスラッシュ（ ``/`` ）で始まる場合、この cgroup はルート cgroup のもとに生成され、そうでない場合はデーモン cgroup のもとに生成されます。
 
-.. Assuming the daemon is running in cgroup daemoncgroup, --cgroup-parent=/foobar creates a cgroup in /sys/fs/cgroup/memory/foobar, whereas using --cgroup-parent=foobar creates the cgroup in /sys/fs/cgroup/memory/daemoncgroup/foobar
+.. Assuming the daemon is running in cgroup `daemoncgroup`,
+   `--cgroup-parent=/foobar` creates a cgroup in
+   `/sys/fs/cgroup/memory/foobar`, whereas using `--cgroup-parent=foobar`
+   creates the cgroup in `/sys/fs/cgroup/memory/daemoncgroup/foobar`
 
-デーモンが cgroup ``daemoncgroup`` で実行されており、``--cgroup-parent=/foobar`` で ``/sys/fs/cgroup/memory/foobar`` の中に cgroup を作成したと仮定時、 ``--cgroup-parent=foobar`` は ``/sys/fs/cgroup/memory/daemoncgroup/foobar`` に cgroup を作成します。
+デーモンが仮に ``daemoncgroup`` という cgroup 内で実行されているとします。
+``--cgroup-parent=/foobar`` という指定を行うと、cgroup は ``/sys/fs/cgroup/memory/foobar`` のもとに生成されます。
+一方 ``--cgroup-parent=foobar`` と指定すると、cgroup は ``/sys/fs/cgroup/memory/daemoncgroup/foobar`` のもとに生成されます。
 
-.. The systemd cgroup driver has different rules for --cgroup-parent. Systemd represents hierarchy by slice and the name of the slice encodes the location in the tree. So --cgroup-parent for systemd cgroups should be a slice name. A name can consist of a dash-separated series of names, which describes the path to the slice from the root slice. For example, --cgroup-parent=user-a-b.slice means the memory cgroup for the container is created in /sys/fs/cgroup/memory/user.slice/user-a.slice/user-a-b.slice/docker-<id>.scope.
+.. The systemd cgroup driver has different rules for `--cgroup-parent`. Systemd
+   represents hierarchy by slice and the name of the slice encodes the location in
+   the tree. So `--cgroup-parent` for systemd cgroups should be a slice name. A
+   name can consist of a dash-separated series of names, which describes the path
+   to the slice from the root slice. For example, `--cgroup-parent=user-a-b.slice`
+   means the memory cgroup for the container is created in
+   `/sys/fs/cgroup/memory/user.slice/user-a.slice/user-a-b.slice/docker-<id>.scope`.
 
-systemd cgroup ドライバは ``--cgroup-parent`` と異なるルールです。Systemd のリソース階層は、スライス（訳者注：systemd における CPU やメモリなどのリソースを分割する単位のこと）とツリー上でスライスをエンコードする場所の名前で表します。そのため systemd cgroups 用の ``--cgroup-parent`` はスライス名と同じにすべきです。名前はダッシュ区切りの名前で構成します。つまりルート・スライスからのスライスに対するパスです。例えば ``--cgroup-parent=user-a-b.slice`` を指定する意は、コンテナ用の cgroup を ``/sys/fs/cgroup/memory/user.slice/user-a.slice/user-a-b.slice/docker-<id>.scope`` に割り当てます。
+systemd cgroup ドライバには ``--cgroup-parent`` に対して別ルールがあります。
+systemd はスライス（訳者注：systemd における CPU やメモリなどのリソースを分割する単位のこと）による階層構造により表現され、そのスライス名はツリー内の場所をエンコードしています。
+したがって systemd cgroups に対する ``--cgroup-parent`` の設定値はスライス名とします。
+1 つの名前は、一連の名前をダッシュで区切って構成します。
+これが、そのスライスに対するルートスライスからのパスを表します。
+たとえば ``--cgroup-parent=user-a-b.slice`` というのは、コンテナに対するメモリ cgroup であり、``/sys/fs/cgroup/memory/user.slice/user-a.slice/user-a-b.slice/docker-<id>.scope`` に生成されます。
 
-.. This setting can also be set per container, using the --cgroup-parent option on docker create and docker run, and takes precedence over the --cgroup-parent option on the daemon.
+.. This setting can also be set per container, using the `--cgroup-parent`
+   option on `docker create` and `docker run`, and takes precedence over
+   the `--cgroup-parent` option on the daemon.
 
-これらの指定はコンテナに対しても可能です。 ``docker create`` と ``docker run`` の実行時に ``--cgroup-parent`` を使うと、デーモンのオプションで指定した ``--cgroup-parent`` よりも優先されます。
+上の指定はコンテナ単位で行うこともできます。
+その場合は ``docker create`` や ``docker run`` の実行時に ``--cgroup-parent`` を指定します。
+この指定は、デーモンに対する ``--cgroup-parent`` オプションよりも優先して適用されます。
 
 .. Daemon configuration file
 
