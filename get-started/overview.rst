@@ -1,9 +1,8 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/get-started/overview/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/get-started/overview.md
-   doc version: 19.03
-.. check date: 2020/06/15
-.. Commits on Apr 23, 2029 eb948508c1a6b7b48261711c639d1b3f15a74886
+.. check date: 2021/04/11
+.. Commits on Oct 15, 2020 f9d7f7352ac19120f5ce94ffac23471a91ff8921
 .. -----------------------------------------------------------------------------
 
 .. Docker Overview
@@ -19,10 +18,11 @@ Docker 概要
    .. contents:: 
        :depth: 3
        :local:
-
 .. Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications. By taking advantage of Docker’s methodologies for shipping, testing, and deploying code quickly, you can significantly reduce the delay between writing code and running it in production.
 
-Docker はアプリケーションの開発、導入、実行を行うためのオープンなプラットフォームです。Docker を使えば、アプリケーションをインフラストラクチャーから切り離すことができるため、ソフトウエアをすばやく提供することができます。Docker であれば、アプリケーションを管理する手法をそのまま、インフラストラクチャーの管理にも適用できます。Docker が採用する方法を最大限利用して、アプリケーションの導入、テスト、コードデプロイをすばやく行うことは、つまりコーディングと実稼動の合間を大きく軽減できることを意味します。
+Docker はアプリケーションを開発（developing）、移動（shipping）、実行（running）するめのオープンなプラットフォームです。Docker はインフラストラクチャ [#infractructure]_ とアプリケーションを切り離すため、ソフトウェアを短時間で提供できます。Docker があれば、アプリケーションを管理するのと同じ方法で、あなたのインフラも管理できます。Docker 的な手法を最大限活用しますと、テストやコードのデプロイを素早くできますので、コードを書いてから、プロダクション（実行環境）で動かすまでにかかる時間を著しく軽減できます。
+
+.. [#infractructure] 訳者注：インフラ（infrastructure）とは、サーバやネットワークなど計算資源の基盤となるもの。
 
 .. The Docker platform
 
@@ -31,83 +31,44 @@ Docker はアプリケーションの開発、導入、実行を行うための�
 Docker プラットフォーム
 ==============================
 
-.. Docker provides the ability to package and run an application in a loosely isolated environment called a container. The isolation and security allow you to run many containers simultaneously on a given host. Containers are lightweight because they don’t need the extra load of a hypervisor, but run directly within the host machine’s kernel. This means you can run more containers on a given hardware combination than if you were using virtual machines. You can even run Docker containers within host machines that are actually virtual machines!
+.. Docker provides the ability to package and run an application in a loosely isolated environment called a container. The isolation and security allow you to run many containers simultaneously on a given host. Containers are lightweight and contain everything needed to run the application, so you do not need to rely on what is currently installed on the host. You can easily share containers while you work, and be sure that everyone you share with gets the same container that works in the same way.
 
-Docker はアプリケーションをパッケージ化して実行するために、ほぼ分離された環境 [#f1]_ となるコンテナというものを提供します。隔離してセキュリティを保つことから、実行するホスト上に複数のコンテナを同時に実行することができます。コンテナは非常に軽量なものとなります。なぜならハイパーバイザーを別途ロードする必要などなく、ホストマシンのカーネルを使って動作するからです。このことは手元にあるハードウェアの中から、必要なものを使ってより多くのコンテナが実行できることを意味します。それは仮想マシンを使う以上のことです。さらに Docker コンテナを動作させるホストマシンは、それ自体が仮想マシンであっても構わないのです。
+Docker は、コンテナ（container）という緩やかに分離された環境 [#isolated]_ （isolated environment）で、アプリケーションのパッケージ化と実行をする機能を提供します。この分離と安全性により、実行するホスト上で多くのコンテナを同時に実行できます。コンテナは軽量であり、アプリケーションの実行に必要な全てが入っているため、ホスト上で今何をインストールしていようが関係ありません。作業中でも手軽にコンテナを共有できますので、あなたが共有したコンテナを得た全ての人が、同じコンテナを、同じ方法で、確実に動作できるようにします。
+
+.. [#isolated] 隔離された環境とは "isolated environment" の訳。隔離されて離された環境というよりも、部屋の中を仕切るようなイメージが近いです。
 
 .. Docker provides tooling and a platform to manage the lifecycle of your containers:
 
-Docker が提供するのは、コンテナのライフサイクルを管理するツールとプラットフォームです。
+Docker が提供するのは、コンテナのライフサイクル（全過程）を管理するツールと、プラットフォームなのです。
 
 .. 
     Develop your application and its supporting components using containers.
     The container becomes the unit for distributing and testing your application.
     When you’re ready, deploy your application into your production environment, as a container or an orchestrated service. This works the same whether your production environment is a local data center, a cloud provider, or a hybrid of the two.
 
-* コンテナを利用して、アプリケーションとそれをサポートするコンポーネント [#f2]_ を開発します。
-* コンテナは、アプリケーションの配布とテストを行う１つの単位となります。
-* 準備ができたら本番環境に向けてアプリケーションをデプロイします。デプロイの単位は、１つのコンテナか、あるいはオーケストレーション（orchestrated [#f3]_ ）された１つのサービスです。その本番環境があたかも手元のデータセンタ上であったり、クラウドプロバイダ上であったりするのと同様に動作します。
+* コンテナを利用して、アプリケーションとそれをサポートするコンポーネント [#component]_ を開発。
+* コンテナは、アプリケーションの配布とテストをする単位。
+* 準備ができたら実環境（運用環境）にアプリケーションをデプロイします。デプロイの単位は、１つのコンテナか、あるいはオーケストレーション（orchestrated [#orchestrated]_ ）された１つのサービスです。あなたの実環境は、構内のデータセンタやクラウドプロバイダや、あるいは両者の組み合わせ（ハイブリッド）えも動作します。
 
-.. rubric:: 訳者注
-
-.. [#f1] 隔離された環境とは "isolated environment" の訳。隔離されて離された環境というよりも、部屋の中を仕切るようなイメージが近いです
-.. [#f2] このコンポーネントとは、Docker をとりまく各種ツール群やサービスです
-.. [#f3] 原文は "orchestrated service" 。複数台のサーバ上で、サービスを一斉かつ自動的に制御する動作です
-
-Docker Engine
-==============================
-
-.. Docker Engine is a client-server application with these major components:
-
-Docker Engine は、主に以下の３つのコンポーネントからなるクライアントサーバ型アプリケーションです。
-
-.. 
-    A server which is a type of long-running program called a daemon process (the dockerd command).
-    A REST API which specifies interfaces that programs can use to talk to the daemon and instruct it what to do.
-    A command line interface (CLI) client (the docker command).
-
-* サーバ。長時間稼動する種類のプログラムでありデーモン・プロセスと呼ばれる（ ``dockerd`` コマンド）。
-* REST API。プログラムとデーモンとの間での通信方法を定義し、何をなすべきかを指示する。
-* コマンドライン・インターフェース（command line interface; CLI）クライアント（ ``docker`` コマンド）。
-
-.. Docker Engine Components Flow
-
-.. image:: /engine/article-img/engine-components-flow.png
-   :scale: 60%
-   :alt: Docker Engine コンポーネント図
-
-.. The CLI uses the Docker REST API to control or interact with the Docker daemon through scripting or direct CLI commands. Many other Docker applications use the underlying API and CLI.
-
-CLI は Docker REST API を通じて、スクリプトや直接のコマンド実行により Docker デーモンを制御したり入出力を行ったりします。Docker アプリケーションの多くが、基本的なところで API や CLI を利用しています。
-
-.. The daemon creates and manages Docker objects, such as images, containers, networks, and volumes.
-
-デーモンは Docker オブジェクトを作成、管理します。Docker オブジェクトとは、イメージ、コンテナ、ネットワーク、データ・ボリュームなどです。
-
-.. > **Note**: Docker is licensed under the open source Apache 2.0 license.
-
-.. note::
-
-   Docker は、オープンソース Apache 2.0 ライセンスのもとで提供されています。
-
-.. For more details, see [Docker Architecture](#docker-architecture) below.
-
-Docker の詳細については、 :ref:`docker-architecture` を参照してください。
+.. [#component] このコンポーネントとは、Docker をとりまく各種ツール群やサービスです。
+.. [#orchestrated] 原文は "orchestrated service" 。複数台のサーバ上で、サービスを一斉かつ自動的に制御する動作です。
 
 .. What can I use Docker for?
 
 .. _what-can-i-use-docker-for:
 
-何のために Docker を使うのか？
+ Docker を何に使えますか？
 ========================================
 
 .. Fast, consistent delivery of your applications
 .. _fast-consistent-delivery-of-your-applications:
 
-アプリケーションの配信をすばやく一貫性を保って
+素早く一貫性を保つアプリケーションの配信
 --------------------------------------------------
 
 .. Docker streamlines the development lifecycle by allowing developers to work in standardized environments using local containers which provide your applications and services. Containers are great for continuous integration and continuous delivery (CI/CD) workflows.
+
+アプリケーションや
 
 Docker は開発のライフサイクルを効率化します。開発するアプリケーションやサービスがローカルなコンテナ内に実現でき、開発者は標準化された環境により作業が進められるからです。コンテナを使った開発は、継続的インテグレーション (continuous integration; CI) や継続的開発 (continuous delivery; CD) のワークフローに適しています。
 
