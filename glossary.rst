@@ -1,10 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/glossary/
-   doc version: 19.03
-      https://github.com/docker/docker.github.io/blob/master/glossary.md
+   doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/_data/glossary.yaml
-.. check date: 2020/06/15
-.. Commits on Dec 5, 2019 9338de3edee88277adcf32b6743459e50ce64209
+.. check date: 2021/05/01
+.. Commits on Oct 21, 2020 9338de3edee88277adcf32b6743459e50ce64209
 .. -----------------------------------------------------------------------------
 
 .. Glossary
@@ -27,6 +26,8 @@
 amd64
 ========================================
 
+.. AMD64 is AMD’s 64-bit extension of Intel’s x86 architecture, and is also referred to as x86_64 (or x86-64).
+
 AMD64 とは、インテルの x86 アーキテクチャの AMD による 64 ビット拡張であり、x86_64 （または x86-64） とも呼びます。
 
 
@@ -35,58 +36,65 @@ AMD64 とは、インテルの x86 アーキテクチャの AMD による 64 ビ
 aufs
 ========================================
 
-aufs （advanced multi layered unification filesystem；複数のレイヤを統合した高度なファイルシステム、の意味）は Linux の :ref:`ファイルシステム <glossary-filesystem>` であり、Docker がサポートするストレージ用のバックエンドです。Linux ファイルシステムに対する `ユニオン・マウント（Union mount） <https://en.wikipedia.org/wiki/Union_mount>`_  の実装です。
+.. aufs (advanced multi layered unification filesystem) is a Linux filesystem that Docker supports as a storage backend. It implements the union mount for Linux file systems.
+
+aufs （advanced multi layered unification filesystem；複数のレイヤを統合した、高度なファイルシステム、の意味）は Linux の :ref:`ファイルシステム <glossary-filesystem>` であり、ストレージ用のバックエンドとして Docker がサポートします。Linux ファイルシステムに対する `ユニオンマウント（Union mount） <https://en.wikipedia.org/wiki/Union_mount>`_  の実装です。
 
 .. _base-image:
 
-ベース・イメージ（base image）
+:ruby:`ベースイメージ <base image>`
 ========================================
 
-Dockerfile 内で親イメージを持たないものを **ベース・イメージ** と呼びます。Dockerfile では ``FROM scratch`` 命令を使って作成できます。
+..  A base image has no parent image specified in its Dockerfile. It is created using a Dockerfile with the FROM scratch directive.
 
-.. _boot2docker:
-
-boot2docker
-========================================
-
-`boot2docker <http://boot2docker.io/>`_ （ブート・トゥ・ドッカー）は Docker コンテナの実行に特化した Linux ディストリビューションです。Mac 及び Windows 向けの boot2docker は、Docker Toolbox のインストールに含まれる ``docker-machine`` に置き換えられました。
+**ベースイメージ**  は Dockerfile で親イメージを指定しないものです。ベースイメージを作成するには、Dockerfile で ``FROM scratch`` 命令を使います。
 
 .. _btrfs:
 
 btrfs
 ========================================
 
-btrfs （B-tree file system；ビー・ツリー・ファイルシステム）は、Docker がストレージ用のバックエンドとしてサポートする Linux の :ref:`ファイルシステム <filesystem>` です。これは :ref:`コピー・オン・ライト <copy-on-write>` のファイルシステムです。
+.. btrfs (B-tree file system) is a Linux filesystem that Docker supports as a storage backend. It is a copy-on-write filesystem.
+
+btrfs （B-tree file system；ビーツリーファイルシステム）は、ストレージ用のバックエンドとして Docker がサポートする Linux の :ref:`ファイルシステム <filesystem>` です。これは :ref:`コピーオンライト <copy-on-write>` のファイルシステムです。
 
 .. _build:
 
-build
+:ruby:`ビルド <build>`
 ========================================
 
-ビルド（build）とは、 :ref:`Dockerfile` を使って Docker イメージを構築する方法です。構築時には Dockerfile と「コンテクスト」（内容物の意味）を使います。コンテクストとは、イメージ構築に必要なファイル群が置かれているディレクトリです。
+..  build is the process of building Docker images using a Dockerfile. The build uses a Dockerfile and a “context”. The context is the set of files in the directory in which the image is built.
+
+ビルド（build）とは、 :ref:`Dockerfile` を使って Docker イメージを構築する工程です。構築には、 Dockerfile と「コンテクスト」（内容物の意味）を使います。コンテクストとは、イメージ構築に必要なディレクトリに置いてあるファイル群です
 
 .. _cgroups:
 
 cgroups
 ========================================
 
-cgroups （control groups；コントロール・グループ）は Linux カーネルの機能であり、プロセスの集合が使うリソース（CPU、メモリ、ディスク I/O、ネットワーク等）を制限・計算・隔離（isolate）します。Docker はリソース上限の管理と隔離に cgroups を使います。
+..  cgroups is a Linux kernel feature that limits, accounts for, and isolates the resource usage (CPU, memory, disk I/O, network, etc.) of a collection of processes. Docker relies on cgroups to control and isolate resource limits.
+
+cgroups とは、プロセスの集合が使うリソース（CPU、メモリ、ディスク I/O、ネットワーク等）を制限・計算・隔離（isolate）する Linux カーネルの機能です。リソース上限の管理と隔離をするため、Docker は cgroups に依存します。
 
 *cgroups の別名：control groups*
 
 .. _cluster:
 
-クラスタ（cluster）
+:ruby:`クラスタ <cluster>`
 ========================================
 
-クラスタとは、ワークロードの実行と可用性をもたらすために連携するマシンのグループです。
+.. A cluster is a group of machines that work together to run workloads and provide high availability.
+
+クラスタとはマシンのグループであり、ワークロードの実行と高可用性を備えるために連携します。
 
 .. _Compose:
 
-Compose（コンポーズ）
+:ruby:`Compose <コンポーズ>`
 ========================================
 
-:doc:`Compose </compose/index>` （コンポーズ）は、Docker で複雑なアプリケーションの実行と定義をするツールです。Compose を使えば、１つのファイルに複数のコンテナ・アプリケーションを定義しておき、コマンドを１つ実行するだけで、アプリケーションを使うために必要な全てを実行します。
+.. Compose is a tool for defining and running complex applications with Docker. With Compose, you define a multi-container application in a single file, then spin your application up in a single command which does everything that needs to be done to get it running.
+
+:doc:`Compose </compose/index>` （コンポーズ）は、Docker を使い、複雑なアプリケーションの実行や定義をするツールです。Compose では、１つのファイルに複数のコンテナアプリケーションを定義します。それから、コマンドを１つ実行するだけで、アプリケーションを使うために必要な全てを素早く立ち上げます
 
 .. Also known as : docker-compose, fig
 
@@ -97,40 +105,40 @@ Compose（コンポーズ）
 
 .. _copy-on-write:
 
-コピー・オン・ライト(copy-on-write)
+:ruby:`コピーオンライト <copy-on-write>`
 ========================================
 
 .. Docker uses a copy-on-write technique and a union file system for both images and containers to optimize resources and speed performance. Multiple copies of an entity share the same instance and each one makes only specific changes to its unique layer.
 
-Docker はイメージとコンテナのリソース最適化とスピード性能のために、 :doc:`コピー・オン・ライト </engine/userguide/storagedriver/imagesandcontainers>` 技術と :ref:`union-file-system` を使います。同じインスタンス（Docker コンテナや Docker イメージ）であれば、実体（となるイメージ・レイヤ）の複数のコピーを共有します。また、それぞれのレイヤに対する変更は、対象となるレイヤにのみ反映します。
+Docker はイメージとコンテナのリソース最適化とスピード性能のために、 :ref:`コピーオンライト <the-copy-on-write-strategy>` 技術と :ref:`union-file-system` を使います。Docker コンテナや Docker イメージに、複数のコピーが存在するときは、実体である同じイメージレイヤを共有します。また、それぞれのレイヤに対する変更処理は、個々のレイヤにのみ反映します。
 
 .. Multiple containers can share access to the same image, and make container-specific changes on a writable layer which is deleted when the container is removed. This speeds up container start times and performance.
 
-複数のコンテナは同じイメージに共有してアクセスできます。そして、コンテナの書き込み可能なレイヤに対する固有の変更が可能であり、コンテナ削除時にこのレイヤは削除します。これがコンテナの開始時間とパフォーマンスの速度を向上します。
+複数のコンテナは、同じイメージへのアクセスを共有できます。そして、特定のコンテナに対する変更とは、書き込み可能なレイヤに対して行いますが、そのコンテナを削除すると（コンテナ用の）レイヤも削除されます。これが、コンテナの開始時間とパフォーマンスの速度を向上します。
 
 .. Images are essentially layers of filesystems typically predicated on a base image under a writable layer, and built up with layers of differences from the base image. This minimizes the footprint of the image and enables shared development.
 
-イメージとは実質的にファイルシステムのレイヤであり、一般的には書き込み可能なレイヤの下にはベース・イメージを基礎としています。そして、ベース・イメージとは異なったレイヤを積み上げます。これによりイメージの容量を最小化し、開発環境でイメージを共有できるようになります。
+イメージとは、実質的にファイルシステムのレイヤです。一般的には書き込み可能なレイヤは、その下にベースイメージがあると予測され、ベースイメージとは異なったレイヤを積み上げます。これによりイメージ容量を最小化し、共有しながら開発できるようにします。
 
 .. For more about copy-on-write in the context of Docker, see Understand images, containers, and storage drivers.
 
-Docker の文脈におけるコピー・オン・ライトの詳細は、 :doc:`/engine/userguide/storagedriver/imagesandcontainers` をご覧ください。
+Docker の文脈におけるコピーオンライトの詳細は、 :doc:`イメージ、コンテナ、ストレージドライバの理解 </engine/userguide/storagedriver/imagesandcontainers>` をご覧ください。
 
 
 .. container
 
 .. _container:
 
-コンテナ
-==========
+:ruby:`コンテナ <container>`
+==============================
 
 .. A container is a runtime instance of a docker image.
 
-コンテナ（container）は :ref:`docker イメージ <image>` を実行するときの実体（インスタンス）です。
+:ruby:`コンテナ <container>` は :ref:`docker イメージ <image>` で実行する実体（インスタンス）です。
 
 .. A Docker container consists of
 
-Docker コンテナには、次のものを含みます。
+Docker コンテナを構成するのは、次のものです。
 
 ..    A Docker image
     Execution environment
@@ -142,63 +150,57 @@ Docker コンテナには、次のものを含みます。
 
 .. The concept is borrowed from Shipping Containers, which define a standard to ship goods globally. Docker defines a standard to ship software.
 
-Docker コンテナの概念は、輸送用のコンテナから拝借したものです。コンテナはモノを世界的に輸送するために標準が定義されています。Docker はソフトウェアを送るための標準を定義しています。
+Docker コンテナの概念は、輸送用のコンテナから拝借したものです。コンテナとは、全世界へ物資を輸送するために定義された規格です。Docker はソフトウェアを送るための規格を定義しています。
 
 .. Docker
 
 .. _docker:
 
-Docker
-==========
+:ruby:`Docker <ドッカー>`
+==============================
 
 .. The term Docker can refer to
 
-Docker （ドッカー）には次の意味があります。
+用語としての Docker （ドッカー）は、次のことを指します。
 
 ..    The Docker project as a whole, which is a platform for developers and sysadmins to develop, ship, and run applications
     The docker daemon process running on the host which manages images and containers (also called Docker Engine)
 
-* Docker プロジェクト全体を指す言葉であり、開発者やシステム管理者がアプリケーションを開発・移動・実行するためのプラットフォームです。
-* ホスト上で動く docker デーモンのプロセスであり、イメージとコンテナを管理します。Docker Engine（エンジン）とも呼びます。
-
-.. _docker-enterprise:
-
-Docker Enterprise
-====================
-
-Docker Enterprise は、コンテナ化したアプリケーションをクラウドもしくはオンプレミス上にデプロイ可能な、構築、移動、実行するためのプラットフォームです。この中には Docker のテスト済み及び認定されたバージョンと、アプリケーションを管理するウェブ UI と、サポートを含みます。
+* Docker プロジェクト全体を指す言葉です。開発者やシステム管理者が、アプリケーションを開発・移動・実行するためのプラットフォームです。
+* イメージとコンテナを管理する、ホスト上で動く docker デーモンのプロセスです。 :ruby:`Docker Engine <ドッカーエンジン>` とも呼びます。
 
 
-.. Definition of: Docker for Mac
+.. Docker Desktop for Mac
 
-.. _docker-for-mac:
+.. _docker-desktop-for-mac:
 
-Docker for Mac
-====================
+Docker Desktop for Mac
+==============================
 
-.. Docker for Mac is an easy-to-install, lightweight Docker development environment designed specifically for the Mac. A native Mac application, Docker for Mac uses the macOS Hypervisor framework, networking, and filesystem. It’s the best solution if you want to build, debug, test, package, and ship Dockerized applications on a Mac. Docker for Mac supersedes Docker Toolbox as state-of-the-art Docker on macOS.
+.. Docker Desktop for Mac is an easy-to-install, lightweight Docker development environment designed specifically for the Mac. A native Mac application, Docker Desktop for Mac uses the macOS Hypervisor framework, networking, and filesystem. It’s the best solution if you want to build, debug, test, package, and ship Dockerized applications on a Mac.
 
-:doc:`Docker for Mac </docker-for-mac/index>` は、 Mac 向けに特化したインストールが簡単で、軽量な Docker 開発環境として設計されています。ネイティブな Mac アプリケーション実行のため、Docker for Mac は macOS のハイパーバイザ・フレームワーク、ネットワーク機能、ファイルシステムを使います。 Mac 上で Docker 対応アプリケーションの開発・構築・テスト・パッケージ・移動をしたい場合に、ベストな解決策です。macOS 上で Docker を使うにあたり、Docker for Mac は :ref:`Docker Toolbox <toolbox>` の後継としての位置付けです。
+:doc:`Docker Desktop for Mac </docker-for-mac/index>` はインストールが簡単で、Mac 向けに特化して設計された、軽量な Docker 開発環境です。Docker Desktop for Mac は Mac 固有のアプリケーションを実行するために、macOS ハイパーバイザーフレームワーク、ネットワーク機能、ファイルシステムを使います。Mac 上で Docker 対応アプリケーションの開発・構築・テスト、パッケージ化、移動するために、ベストな解決作です。
 
-.. _docker-for-windows:
 
-Docker for Windows
-====================
+.. _docker-desktop-for-windows:
 
-.. Docker for Windows is an easy-to-install, lightweight Docker development environment designed specifically for Windows 10 systems that support Microsoft Hyper-V (Professional, Enterprise and Education). Docker for Windows uses Hyper-V for virtualization, and runs as a native Windows app. It works with Windows Server 2016, and gives you the ability to set up and run Windows containers as well as the standard Linux containers, with an option to switch between the two. Docker for Windows is the best solution if you want to build, debug, test, package, and ship Dockerized applications from Windows machines. Docker for Windows supersedes Docker Toolbox as state-of-the-art Docker on Windows.
+Docker Desktop for Windows
+==============================
 
-:doc:`Docker for Windows </docker-for-windows/index>` は、Microsoft Hyper-V（Professional、Enterprise、Education）をサポートしているWindows 10 システム向けに特化した、軽量な Docker 開発環境として設計されています。Docker for Windows はネイティブな Windows アプリケーション実行のため、Hyper-V 仮想化を使います。標準的な Linux コンテナと同じように、２つのオプションを切り替えるだけで、Windows コンテナの迅速なセットアップや実行を Windows Server 2016 上でも行えます。Windows マシン上で Docker 対応アプリケーションの開発・構築・テスト・パッケージ・移動をしたい場合に、ベストな解決作です。Windows マシン上で Docker を使うにあたり、Docker for Windows は :ref:`Docker Toolbox <toolbox>` の後継としての位置付け です。
+.. Docker Desktop for Windows is an easy-to-install, lightweight Docker development environment designed specifically for Windows 10 systems that support Microsoft Hyper-V (Professional, Enterprise and Education). Docker Desktop for Windows uses Hyper-V for virtualization, and runs as a native Windows app. It works with Windows Server 2016, and gives you the ability to set up and run Windows containers as well as the standard Linux containers, with an option to switch between the two. Docker for Windows is the best solution if you want to build, debug, test, package, and ship Dockerized applications from Windows machines.
+
+:doc:`Docker Desktop for Windows </docker-for-windows/index>` はインストールが簡単で、Microsoft Hyper-V（Professional、Enterprise、Education）をサポートしているWindows 10 システム向けに特化して設計された、軽量な Docker 開発環境です。Docker Desktop  for Windows は Windows 固有のアプリケーションを実行するために、Hyper-V 仮想化を使い、固有の Windows アプリのように動作します。Windows Server 2016 上でも動作し、２つのオプションを切り替えるだけで、標準的な Linux コンテナと同じように、Windows コンテナの迅速なセットアップや実行ができます。Windows マシン上で Docker 対応アプリケーションの開発・構築・テスト・パッケージ・移動をするために、ベストな解決作です。
 
 .. Docker Hub
 
 .. _docker-hub:
 
-Docker Hub
-==========
+:ruby:`Docker Hub <ドッカーハブ>`
+========================================
 
 .. The Docker Hub is a centralized resource for working with Docker and its components. It provides the following services:
 
-`Docker Hub <https://hub.docker.com/>`_ （ドッカー・ハブ）は Docker とこのコンポーネントで動くリソースを集めた場所です。以下のサービスを提供します。
+`Docker Hub <https://hub.docker.com/>`_ とは、 Docker と自身のコンポーネントで動くリソースを集めた場所です。以下のサービスを提供します。
 
 ..    Docker image hosting
     User authentication
@@ -207,35 +209,34 @@ Docker Hub
 
 * Docker イメージを預かる（ホスティング）
 * ユーザ認証
-* イメージの自動構築と、構築トリガ（build triggers）やウェブ・フック（web hooks）のようなワークフロー・ツール
+* イメージの自動構築と、 :ruby:`構築トリガ <build triggers>` や :ruby:`ウェブフック <web hook>` のようなワークフローツール
 * GitHub 及び Bitbucket との統合
 
 .. Dockerfile
 
 .. _Dockerfile:
 
-Dockerfile
-==========
+:ruby:`Dockerfile <ドッカーファイル>`
+========================================
 
 .. A Dockerfile is a text document that contains all the commands you would normally execute manually in order to build a Docker image. Docker can build images automatically by reading the instructions from a Dockerfile.
 
-Dockerfile（ドッカーファイル）はテキスト形式のドキュメントです。通常は、 Docker イメージを構築するために手動で実行が必要な全ての命令を含みます。Docker は Dockerfile の命令を読み込み、自動的にイメージを構築します。
+Dockerfile はテキスト形式のドキュメントであり、このファイルに含むのは、通常は Docker イメージを構築するために、手作業で実行する全ての命令です。Docker は Dockerfile の命令を読み込み、自動的にイメージを構築できます。
 
 .. Definition of: ENTRYPOINT
 
 .. _ENTRYPOINT:
 
-ENTRYPOINT
-==========
+:ruby:`ENTRYPOINT <エントリーポイント>`
+========================================
 
 .. In a Dockerfile, an ENTRYPOINT is an optional definition for the first part of the command to be run. If you want your Dockerfile to be runnable without specifying additional arguments to the docker run command, you must specify either ENTRYPOINT, CMD, or both.
 
-Dockerfile において、 ``ENTRYPOINT`` は一番初めに実行すべきコマンドのオプション定義です。``docker run`` コマンド実行時、何も引数を追加しなくても実行可能な ``Dockerfile`` を作りたい場合は、 ``ENTRYPOINT`` か ``CMD`` のどちらか、あるいは両方の指定が必要です。
+Dockerfile において、実行したいコマンドを真っ先に定義するオプションが ``ENTRYPOINT`` です。 ``docker run`` コマンドの実行時、何も引数を指定しなくても実行可能な ``Dockerfile`` を作りたい場合は、 ``ENTRYPOINT`` か ``CMD`` のどちらか、あるいは両方の指定が必要です。
 
-..    If ENTRYPOINT is specified, it is set to a single command. Most official Docker images have an ENTRYPOINT of /bin/sh or /bin/bash. Even if you do not specify ENTRYPOINT, you may inherit it from the base image that you specify using the FROM keyword in your Dockerfile. To override the ENTRYPOINT at runtime, you can use --entrypoint. The following example overrides the entrypoint to be /bin/ls and sets the CMD to -l /tmp.
+.. ..    If ENTRYPOINT is specified, it is set to a single command. Most official Docker images have an ENTRYPOINT of /bin/sh or /bin/bash. Even if you do not specify ENTRYPOINT, you may inherit it from the base image that you specify using the FROM keyword in your Dockerfile. To override the ENTRYPOINT at runtime, you can use --entrypoint. The following example overrides the entrypoint to be /bin/ls and sets the CMD to -l /tmp.
 
-
-- ``ENTRYPOINT`` を指定すると、単一のコマンドとしての指定になります。公式 Docker イメージの大部分は ``/bin/sh`` または ``/bin/bash`` を ``ENTRYPOINT``` に指定しています。 ``ENTRYPOINT`` を指定しなければ、Dockerfile の ``FROM`` キーワード指定されているベース・イメージの指定を継承します。実行時に ``ENTRYPOINT`` を上書きしたい場合は、 ``--entrypoint`` を使えます。次の例はエントリーポイントを ``/bin/ls`` に置き換え、 ``CMD`` を ``-l /tmp`` に指定します。
+- ``ENTRYPOINT`` の指定があれば、これを単独のコマンドとして設定します。多くの公式 Docker イメージは、 ``ENTRYPOINT``` に ``/bin/sh`` または ``/bin/bash`` を指定しています。 ``ENTRYPOINT`` を指定しなければ、Dockerfile の ``FROM`` キーワード指定されているベースイメージの設定を継承します。実行時に ``ENTRYPOINT`` を上書きしたい場合は、 ``--entrypoint`` を使えます。次の例はエントリーポイントを ``/bin/ls`` に置き換え、 ``CMD`` を ``-l /tmp`` に指定します。
 
    .. code-block:: bash
 
@@ -243,7 +244,7 @@ Dockerfile において、 ``ENTRYPOINT`` は一番初めに実行すべきコ�
 
 ..    CMD is appended to the ENTRYPOINT. The CMD can be any arbitrary string that is valid in terms of the ENTRYPOINT, which allows you to pass multiple commands or flags at once. To override the CMD at runtime, just add it after the container name or ID. In the following example, the CMD is overridden to be /bin/ls -l /tmp.
 
-- ``CMD`` は ``ENTRYPOINT`` に追加されます。 ``ENTRYPOINT`` で利用可能な文字列であれば、複数のコマンドやフラグ１つなど、どのようなものでも ``CMD`` に書けます。実行時に ``CMD`` を上書きするには、コンテナ名や ID のあとに追加するだけです。次の例は ``CMD`` を ``/bin/ls -l /tmp`` に上書きします。
+- ``CMD`` は ``ENTRYPOINT`` に追加されます。 ``ENTRYPOINT`` で利用可能な文字列であれば、複数のコマンドやフラグ１つなど、どのようなものでも ``CMD`` に書けます。実行時に ``CMD`` を上書きするには、コンテナ名や ID のあとにコマンドを追加するだけです。次の例は ``CMD`` の指定を ``/bin/ls -l /tmp`` で上書きします。
 
    .. code-block:: bash
 
@@ -251,19 +252,19 @@ Dockerfile において、 ``ENTRYPOINT`` は一番初めに実行すべきコ�
 
 .. In practice, ENTRYPOINT is not often overridden. However, specifying the ENTRYPOINT can make your images more fiexible and easier to reuse.
 
-実際には、 ``ENTRYPOINT`` を頻繁に上書きしません。しかしながら、 ``ENTRYPOINT``  の指定によってイメージをより柔軟かつ再利用しやすくします。
+実際には、 ``ENTRYPOINT`` で頻繁に上書きしません。しかしながら、 ``ENTRYPOINT``  の指定によって、イメージをより柔軟かつ再利用しやすくします。
 
 
 .. filesystem
 
 .. _filesystem:
 
-ファイルシステム
-====================
+:ruby:`ファイルシステム <filesystem>`
+========================================
 
 .. A file system is the method an operating system uses to name files and assign them locations for efficient storage and retrieval.
 
-ファイルシステムとは、オペレーティング・システムがファイルに名前を付け、かつ、効率的な保管と修正のためにファイルに場所を割り当てます。
+ファイルシステムとは、オペレーティングシステムがファイルに名前を付け、かつ、ファイルを効率的に保存・修正するため、保存場所を割り当てる手法です。
 
 .. Examples :
 
@@ -277,76 +278,65 @@ Dockerfile において、 ``ENTRYPOINT`` は一番初めに実行すべきコ�
 
 .. _image:
 
-イメージ
-==========
+:ruby:`イメージ <image>`
+==============================
 
 .. Docker images are the basis of containers. An Image is an ordered collection of root filesystem changes and the corresponding execution parameters for use within a container runtime. An image typically contains a union of layered filesystems stacked on top of each other. An image does not have state and it never changes.
 
-Docker イメージは :ref:`コンテナ <container>` の元です。イメージとはルート・ファイルシステムに対する変更を並べ集めたもので、コンテナを実行する間に使われる実行パラメータに相当します。典型的なイメージはユニオン・ファイル・システムの層（スタック）がお互いに積み重なっています。イメージは状態を保持せず、変更もできません。
-
-.. _Kitematic:
-
-Kitematic
-==========
-
-.. A legacy GUI, bundled with Docker Toolbox, for managing Docker containers. We recommend upgrading to Docker for Mac or Docker for Windows, which have superseded Kitematic.
-
-以前からある Docker コンテナ管理用 GUI であり、 :ref:`Docker Toolbox <toolbox>` に同梱されていました。Kitematic に代わる :doc:`Docker for Mac  </docker-for-mac/index>`  や :doc:`Docker for Windows </docker-for-windows/index>` への更新を推奨します。
+Docker イメージは :ref:`コンテナ <container>` の基礎（土台）です。イメージとは、ルートファイルシステムに対する変更と、コンテナ実行時に使う実行パラメータに相当するものを並べ集めたものです。一般的にイメージには、ファイルシステムをレイヤー化した集合が、お互いに積み重なって入っています。イメージは状態を保持せず、変更もできません。
 
 .. _layter:
 
-レイヤ（layer）
-====================
+:ruby:`レイヤ <layer>`
+==============================
 
 .. In an image, a layer is modification to the image, represented by an instruction in the Dockerfile. Layers are applied in sequence to the base image to create the final image. When an image is updated or rebuilt, only layers that change need to be updated, and unchanged layers are cached locally. This is part of why Docker images are so fast and lightweight. The sizes of each layer add up to equal the size of the final image.
 
-イメージ内部において、イメージに対する変更がレイヤです。これらは Dockerfile 内における命令を意味します。ベース・イメージから最終的なイメージを作成するまで、レイヤは順番に重なります。イメージの更新や再構築時は、更新が必要となるレイヤのみを変更し、変更のないレイヤはローカルでキャッシュします。これが Docker イメージはなぜ高速かつ軽量なのかという理由の１つです。各レイヤの容量の合計が、最終的なイメージの容量と同じです。
-
-
+イメージ内部において、イメージに対する変更箇所がレイヤであり、つまり Dockerfile 内における命令を意味します。ベースイメージから最終的なイメージを作成するまで、レイヤは順番に重なります。イメージの更新や再構築をする場合には、更新が必要なレイヤのみを変更し、ローカルでキャッシュ済みのレイヤは変更しません。これが Docker イメージはなぜ高速かつ軽量なのかという理由の１つです。各レイヤの容量の合計が、最終的なイメージの容量と同じです。
 
 .. libcontainer
 
 .. _libcontainer:
 
-libcontainer
-====================
+:ruby:`libcontainer <リブコンテナ>`
+========================================
 
 .. libcontainer provides a native Go implementation for creating containers with namespaces, cgroups, capabilities, and filesystem access controls. It allows you to manage the lifecycle of the container performing additional operations after the container is created.
 
-libcontainer（リブコンテナ）は Go 言語のネイティブな実装であり、名前空間・cgroup・機能・ファイルシステムへのアクセス管理を持つコンテナを作成します。コンテナを作成後、コンテナに対してライフサイクル上の追加操作を可能にします。
+libcontainer は Go 言語のネイティブな実装であり、名前空間・cgroup・機能・ファイルシステムへのアクセス管理を持つコンテナを作成します。コンテナを作成後、コンテナに対してライフサイクル上の追加操作を可能にします。
 
 .. libnetwork
 
 .. _libnetwork:
 
-libnetwork
-==========
+:ruby:`libnetwork <リブネットワーク>`
+========================================
 
 .. libnetwork provides a native Go implementation for creating and managing container network namespaces and other network resources. It manage the networking lifecycle of the container performing additional operations after the container is created.
 
-libnetwork（リブネットワーク）は Go 言語のネイティブな実装であり、コンテナのネットワーク名前空間や他のネットワーク・リソースを作成・管理します。コンテナを作成後、コンテナに対してライフサイクル上の追加操作を可能にします。
+libnetworkは Go 言語のネイティブな実装であり、コンテナのネットワーク名前空間や他のネットワーク・リソースを作成・管理します。コンテナを作成後、コンテナに対してライフサイクル上の追加操作を可能にします。
 
 .. link
 
 .. _link:
 
-リンク機能（link）
-====================
+:ruby:`リンク機能 <link>`
+==============================
 
 .. links provide a legacy interface to connect Docker containers running on the same host to each other without exposing the hosts’ network ports. Use the Docker networks feature instead.
 
-リンク機能は同じホスト上で実行している Docker コンテナ間を接続するための、レガシーな（古い）インターフェースです。リンク機能を使うと、ホスト側のネットワーク・ポートを開く必要がありません。現在は、この機能の替わりに Docker ネットワーク機能を使います。
+リンク機能は同じホスト上で実行している Docker コンテナ間を接続するための、レガシーな（古い）インターフェースです。リンク機能を使うと、ホスト側のネットワークポートを開く必要がありません。現在は、この機能の替わりに Docker ネットワーク機能を使います。
 
 .. Machine
 
 .. _glossary-machine:
 
-Machine
-==========
+:ruby:`Machine <マシン>`
+==============================
 
 .. Machine is a Docker tool which makes it really easy to create Docker hosts on your computer, on cloud providers and inside your own data center. It creates servers, installs Docker on them, then configures the Docker client to talk to them.
 
-:doc:`Machine </machine/index>` （マシン）は Docker ホストを簡単に作成できるようにするツールであり、クラウド・プロバイダ上やデータセンタでも利用できます。Machine はサーバを作成し、そこに Docker をインストールし、Docker クライアントで通信できるように設定します。
+:doc:`Machine </machine/index>` は Docker ホストを簡単に作成できるようにするツールであり、クラウドプロバイダ上やデータセンタでも利用できます。Machine はサーバを作成し、そこに Docker をインストールし、Docker クライアントで通信できるように設定します。
 
 .. Also known as : docker-machine
 
@@ -354,18 +344,19 @@ Machine
 
 .. _namespace:
 
-名前空間（namespace）
+:ruby:`名前空間 <namespace>`
 ==============================
+.. A Linux namespace is a Linux kernel feature that isolates and virtualizes system resources. Processes which are restricted to a namespace can only interact with resources or processes that are part of the same namespace. Namespaces are an important part of Docker’s isolation model. Namespaces exist for each type of resource, including net (networking), mnt (storage), pid (processes), uts (hostname control), and user (UID mapping). For more information about namespaces, see Docker run reference and Isolate containers with a user namespace.
 
 .. A Linux namespace is a Linux kernel feature that isolates and vitualizes system resources. Processes which restricted to a namespace can only interact with resources or processes that are part of the same namespace. Namespaces are an important part of Docker’s isolation model. Namespaces exist for each type of resource, including net (networking), mnt (storage), pid (processes), uts (hostname control), and user (UID mapping). For more information about namespaces, see Docker run reference and Introduction to user namespaces.
 
-`Linux 名前空間（namespace；ネームスペース） <http://man7.org/linux/man-pages/man7/namespaces.7.html>`_ は  Linux カーネルの分離（isolate）と仮想システム・リソース機能です。名前空間によって制限されたプロセスは、同じ名前空間内のリソースやプロセスとしかやりとりできません。名前空間は Docker の分離モデルにおける重要な部分です。名前空間は各リソース・タイプごとに存在しています。リソース・タイプとは ``net`` （ネットワーク機能）、 ``mnt`` （ストレージ）、 ``pid`` （プロセス）、 ``uts`` （ホスト名の制御）、 ``user`` （UID 割り当て）です。名前空間に関する詳しい情報は、 :doc:`Docker run リファレンス </engine/reference/run>` と `ユーザ名前空間入門（英語） <https://success.docker.com/KBase/Introduction_to_User_Namespaces_in_Docker_Engine>`_ をご覧ください。
+`Linux 名前空間（namespace；ネームスペース） <http://man7.org/linux/man-pages/man7/namespaces.7.html>`_ は  Linux カーネルの :ruby:`分離 <isolate>` と仮想システム・リソース機能です。名前空間によって制限されたプロセスは、同じ名前空間内のリソースやプロセスとしかやりとりできません。名前空間は Docker の分離モデルにおける重要な部分です。名前空間は各リソース・タイプごとに存在しています。リソース・タイプとは ``net`` （ネットワーク機能）、 ``mnt`` （ストレージ）、 ``pid`` （プロセス）、 ``uts`` （ホスト名の制御）、 ``user`` （UID 割り当て）です。名前空間に関する詳しい情報は、 :doc:`Docker run リファレンス </engine/reference/run>` と :doc:`ユーザ名前空間でコンテナ隔離 </engine/security/userns-remap>` をご覧ください。
 
 
 .. _node:
 
-ノード
-==========
+:ruby:`ノード <node>`
+==============================
 
 .. A node is a physical or virtual machine running an instance of the Docker Engine in swarm mode.
 
@@ -373,64 +364,64 @@ Machine
 
 .. Manager nodes perform swarm management and orchestration duties. By default manager nodes are also worker nodes.
 
-**マネージャ・ノード（Manager node）** は swarm（クラスタ）管理とオーケストレーションの責務を処理します。デフォルトでは、マネージャ・ノードはワーカ・ノードも兼ねます。
+**Manager ノード（マネージャ node）** は swarm（クラスタ）管理とオーケストレーションの責務を処理します。デフォルトでは、managerノードは worker ノードも兼ねます。
 
 .. Worker nodes execute tasks.
 
-**ワーカ・ノード（Worker node）** はタスクを実行します。
+**Worker ノード（ワーカ node）** はタスクを実行します。
 
 
 .. overlay network driver
 
 .. _overlay-network-driver:
 
-オーバレイ・ネットワーク・ドライバ
-========================================
+overlay :ruby:`ネットワークドライバ <network driver>`
+=====================================================
 
 .. Overlay network driver provides out of the box multi-host network connectivity for docker containers in a cluster.
 
-オーバレイ・ネットワーク・ドライバ（overlay network driver）は、クラスタ上の Docker コンテナに対して、複数ホスト間のネットワーク接続性を簡単に提供します。
+overlay ネットワークドライバは、クラスタ内の Docker コンテナに対して、複数ホスト間で、簡単なネットワーク接続性を提供します。
 
 .. overlay storage driver
 
 .. _overlay-storage-driver:
 
-オーバレイ・ストレージ・ドライバ
-========================================
+overlay :ruby:`ストレージドライバ <storage driver>`
+============================================================
 
 .. OverlayFS is a filesystem service for Linux which implements a union mount for other file systems. It is supported by the Docker daemon as a storage driver.
 
-OverlayFS は、他のファイルシステムに対する `ユニオン・マウント <http://en.wikipedia.org/wiki/Union_mount>`__ を Linux に実装するもので、 :ref:`ファイルシステム <filesystem>` 向けのサービスです。
+OverlayFS は、他のファイルシステムに対する `ユニオンマウント <http://en.wikipedia.org/wiki/Union_mount>`__ を Linux に実装するもので、 :ref:`ファイルシステム <filesystem>` 向けのサービスです。
 
 
 .. _parent-image:
 
-親イメージ（parent image）
-==============================
+:ruby:`親イメージ <parent image>`
+========================================
 
 .. An image’s parent image is the image designated in the FROM directive in the image’s Dockerfile. All subsequent commands are based on this parent image. A Dockerfile with the FROM scratch directive uses no parent image, and creates a base image.
 
-イメージの **親イメージ** とは、イメージの Dockerfile 中にある ``FROM`` 命令で指定したイメージです。以降に続く全てのコマンドは、この親イメージをベースにしています。Dockerfile で ``FROM scratch`` 命令を使うと、親イメージを持たず、 **ベース・イメージ** を作成します。
+イメージの **親イメージ** とは、対象イメージの Dockerfile 中にある ``FROM`` 命令で指定したイメージです。以降に続く全てのコマンドは、この親イメージに基づきます。Dockerfile で ``FROM scratch`` 命令を使うと、親イメージを持たない  **ベースイメージ（base image）** を作成します。
 
 .. _persistent-storage:
 
-持続的ストレージ（persistent storage）
-========================================
+:ruby:`持続的ストレージ <persistent storage>`
+==================================================
 
 .. Persistent storage or volume storage provides a way for a user to add a persistent layer to the running container’s file system. This persistent layer could live on the container host or an external device. The lifecycle of this persistent layer is not connected to the lifecycle of the container, allowing a user to retain state.
 
-持続的ストレージやボリューム・ストレージは、実行中コンテナのファイスシステム上で、持続的なレイヤ（persistent layer）をユーザに対して提供します。持続的なレイヤは、コンテナのホスト上や外部デバイスに残り続けます。この持続的なレイヤのライフサイクルは、コンテナのライフサイクルとは繋がっておらず、ユーザは状態を維持できます。
+持続的ストレージやボリュームストレージは、実行中コンテナのファイスシステム上で、持続的なレイヤ（persistent layer）をユーザに対して提供します。持続的なレイヤは、コンテナのホスト上や外部デバイスに残り続けます。この持続的なレイヤのライフサイクルは、コンテナのライフサイクルとはつながっておらず、ユーザは状態を維持できます。
 
 .. registry
 
 .. _registry:
 
-レジストリ（registry）
+:ruby:`レジストリ <registry>`
 ==============================
 
 .. A Registry is a hosted service containing repositories of images which responds to the Registry API.
 
-レジストリ（registry）とは :ref:`イメージ <image>` を持つ :ref:`リポジトリ <repository>` を預かるサービス（ホステッド・サービス）であり、レジストリ API に応答します。
+レジストリとは :ref:`イメージ <image>` を保管する :ref:`リポジトリ <repository>` を預かるサービス（ホステッドサービス）であり、レジストリ API に応答します。
 
 .. The default registry can be accessed using a browser at Docker Hub or using the docker search command.
 
@@ -440,12 +431,12 @@ OverlayFS は、他のファイルシステムに対する `ユニオン・マ�
 
 .. _repository:
 
-リポジトリ（repository）
-==============================
+:ruby:`リポジトリ <repository>`
+========================================
 
 .. A repository is a set of Docker images. A repository can be shared by pushing it to a registry server. The different images in the repository can be labeled using tags.
 
-リポジトリ（repository）とは Docker イメージの集まりです。リポジトリは :ref:`レジストリ <registry>` サーバに送信すると、共有されるようにできます。リポジトリの中では、イメージの違いを :ref:`タグ <tag>` でラベル付けします。
+リポジトリとは Docker イメージの集まりです。リポジトリは :ref:`レジストリ <registry>` サーバに送信すると、共有されるようにできます。リポジトリの中では、イメージの違いを :ref:`タグ <tag>` でラベル付けします。
 
 .. Here is an example of the shared nginx repository and its tags
 
@@ -462,14 +453,14 @@ SSH（secure shell；安全なシェル）はリモート・マシンやアプ�
 
 .. _service:
 
-サービス
-==========
+:ruby:`サービス <service>`
+==============================
 
 .. A service is the definition of how you want to run your application containers in a swarm. At the most basic level a service defines which container image to run in the swarm and which commands to run in the container. For orchestration purposes, the service defines the “desired state”, meaning how many containers to run as tasks and constraints for deploying the containers.
 
 .. :doc:`サービス </engine/swarm/how-swarm-mode-works/services>` は、 swarm 上でアプリケーション・コンテナをどのように実行するかの定義です。最も基本的なレベルのサービス定義とは、swarm 上でどのコンテナ・イメージを実行するか、そして、どのコマンドをコンテナで実行するかです。オーケストレーションの目的は「望ましい状態（desired state）」としてサービスを定義することです。つまり、いくつのコンテナをタスクとして実行するか、コンテナをデプロイする条件（constraint）を指します。
 
-サービスは、 swarm 上でアプリケーション・コンテナをどのように実行するかの定義です。最も基本的なレベルのサービス定義とは、swarm 上でどのコンテナ・イメージを実行するか、そして、どのコマンドをコンテナで実行するかです。オーケストレーションの目的は「望ましい状態（desired state）」としてサービスを定義することです。つまり、いくつのコンテナをタスクとして実行するか、コンテナをデプロイする条件（constraint）を指します。
+サービスは、 swarm 上でアプリケーション・コンテナをどのように実行するかの定義です。最も基本的なレベルのサービス定義とは、swarm 上でどのコンテナ・イメージを実行するか、そして、どのコマンドをコンテナで実行するかです。オーケストレーションの目的は :ruby:`望ましい状態 <desired state>` 」としてサービスを定義することです。つまり、いくつのコンテナをタスクとして実行するか、コンテナをデプロイする :ruby:`条件 <constraint>` を指します。
 
 
 .. Frequently a service is a microservice within the context of some larger application. Examples of services might include an HTTP server, a database, or any other type of executable program that you wish to run in a distributed environment.
@@ -479,26 +470,23 @@ SSH（secure shell；安全なシェル）はリモート・マシンやアプ�
 
 .. _service-discovery:
 
-サービス・ディスカバリ
-==============================
+:ruby:`サービスディスカバリ <service discovery>`
+==================================================
 
 .. Swarm mode service discovery is a DNS component internal to the swarm that automatically assigns each service on an overlay network in the swarm a VIP and DNS entry. Containers on the network share DNS mappings for the service via gossip so any container on the network can access the service via its service name.
 
-.. Swarm モードの :ref:`サービス・ディスカバリ <use-swarm-mode-service-discovery>` は、swarm クラスタ内部における DNS コンポーネントです。これは、オーバレイ・ネットワーク上の各サービスに対し、VIP と DNS エントリを自動的に割り当てます。ネットワーク上のコンテナはゴシップ（訳者注；分散環境における通信プロトコルの一種です）を経由し、各サービス向けに割り当てられた DNS を共有します。そのため、ネットワーク上における全てのコンテナ上にあるサービスに対し、サービス名でアクセスできます。
-
-Swarm モードのサービス・ディスカバリは、swarm クラスタ内部における DNS コンポーネントです。これは、オーバレイ・ネットワーク上の各サービスに対し、VIP と DNS エントリを自動的に割り当てます。ネットワーク上のコンテナはゴシップ（訳者注；分散環境における通信プロトコルの一種です）を経由し、各サービス向けに割り当てられた DNS を共有します。そのため、ネットワーク上における全てのコンテナ上にあるサービスに対し、サービス名でアクセスできます。
-
+Swarm モードの :ref:`サービス・ディスカバリ <use-swarm-mode-service-discovery>` は、swarm クラスタ内部における DNS コンポーネントです。これは、オーバレイ・ネットワーク上の各サービスに対し、VIP と DNS エントリを自動的に割り当てます。ネットワーク上のコンテナは :ruby:`ゴシップ <gossip>` （訳者注；分散環境における通信プロトコルの一種です）を経由し、各サービス向けに割り当てられた DNS を共有します。そのため、ネットワーク上における全てのコンテナ上にあるサービスに対し、サービス名でアクセスできます。
 
 .. You don’t need to expose service-specific ports to make the service available to other services on the same overlay network. The swarm’s internal load balancer automatically distributes requests to the service VIP among the active tasks.
 
 サービスごとにポートを公開する必要がないため、同じオーバレイ・ネットワーク上で他のサービスが動いているかどうかを確認する必要はありません。アクティブなタスクごとサービス用の VIP を持ち、swarm の内部ロードバランサはリクエストごとにアクセスを分散します。
 
 
-.. Swarm
+.. swarm
 
 .. _glossary-swarm:
 
-Swarm
+swarm
 ==========
 
 .. A swarm is a cluster of one or more Docker Engines running in swarm mode.
@@ -540,8 +528,8 @@ swarm モード
 
 .. _tag:
 
-タグ
-==========
+:ruby:`タグ <tag>`
+==================
 
 .. A tag is a label applied to a Docker image in a repository. tags are how various images in a repository are distinguished from each other.
 
@@ -555,8 +543,8 @@ swarm モード
 
 .. _task:
 
-タスク
-==========
+:ruby:`タスク <task>`
+=====================
 
 .. A task is the atomic unit of scheduling within a swarm. A task carries a Docker container and the commands to run inside the container. Manager nodes assign tasks to worker nodes according to the number of replicas set in the service scale.
 
@@ -571,33 +559,12 @@ swarm モード
 
 .. image:: /engine/images/services-diagram.png
 
-
-.. Toolbox
-
-.. _toolbox:
-
-Toolbox
-==========
-
-.. Docker Toolbox is a legacy installer for Mac and Windows users. It uses Oracle VirtualBox for virtualization.
-
-:doc:`Docker Toolbox </toolbox/overview>` は Mac と Windows に対応した過去のインストーラです。こちらは Oracle VirtualBox 仮想化を使います。
-
-.. For Macs running OS X El Capitan 10.11 and newer macOS releases, Docker for Mac is the better solution.
-
-Mac で OS X EI Capitan 10.11 か、これよりも新しい macOS リリースをお使いであれば、 :doc:`Docker for mac </docker-for-mac/index>` のほうが良いソリューションです。
-
-.. For Windows 10 systems that support Microsoft Hyper-V (Professional, Enterprise and Education), Docker for Windows is the better solution.
-
-Windows 10 で Microsoft Hyper-V のサポートがあれば（Professional、Enterprise、Education）、 :doc:`Docker for Windows </docker-for-windows/index>`  のほうが良いソリューションです。
-
-
 .. Union file system
 
 .. _union-file-system:
 
-ユニオン・ファイル・システム
-==============================
+:ruby:`ユニオンファイルシステム <union file system>`
+============================================================
 
 .. Union file systems implement a union mount and operate by creating layers. Docker uses union file systems in conjunction with copy-on-write techniques to provide the building blocks for containers, making them very lightweight and fast.
 
@@ -605,7 +572,7 @@ Windows 10 で Microsoft Hyper-V のサポートがあれば（Professional、En
 
 .. For more on Docker and union file systems, see Docker and AUFS in practice, Docker and Btrfs in practice, and Docker and OverlayFS in practice.
 
-Docker 及びユニオン・ファイル・システムの詳細は、 :doc:`/engine/userguide/storagedriver/aufs-driver` 、:doc:`/engine/userguide/storagedriver/btrfs-driver` 、 :doc:`/engine/userguide/storagedriver/overlayfs-driver` をご覧ください。
+Docker 及びユニオン・ファイル・システムの詳細は、 :doc:`/storage/storagedriver/aufs-driver` 、:doc:`/storage/storagedriver/btrfs-driver` 、 :doc:`/storage/storagedriver/overlayfs-driver` をご覧ください。
 
 .. Example implementations of union file systems are UnionFS, AUFS, and Btrfs.
 
@@ -615,12 +582,12 @@ Docker 及びユニオン・ファイル・システムの詳細は、 :doc:`/en
 
 .. _virtual-machine:
 
-仮想マシン
-==========
-
+:ruby:`仮想マシン <virtual machine>`
+========================================
+.. 
 .. A Virtual Machine is a program that emulates a complete computer and imitates dedicated hardware. It shares physical hardware resources with other users but isolates the operating system. The end user has the same experience on a Virtual Machine as they would have on dedicated hardware.
 
-仮想マシン（Virtual Machine）とは、コンピュータと疑似専用ハードウェアの全体をエミュレートするプログラムです。他のユーザと物理ハードウェアのリソースを共有しますが、オペレーティング・システムからは隔離されています。エンドユーザは専用ハードウェアと同じように仮想マシンを操作できます。
+仮想マシン（Virtual Machine）とは、コンピュータと疑似専用ハードウェアの全体をエミュレートするプログラムです。他のユーザと物理ハードウェアのリソースを共有しますが、オペレーティングシステムからは隔離されています。エンドユーザは専用ハードウェアと同じように仮想マシンを操作できます。
 
 .. Compared to to containers, a Virtual Machine is heavier to run, provides more isolation, gets its own set of resources and does minimal sharing.
 
@@ -632,24 +599,24 @@ Docker 及びユニオン・ファイル・システムの詳細は、 :doc:`/en
 
 .. _volume:
 
-ボリューム
-==========
+:ruby:`ボリューム <volume>`
+==============================
 
 .. A volume is a specially-designated directory within one or more containers that bypasses the Union File System. Volumes are designed to persist data, independent of the container’s life cycle. Docker therefore never automatically delete volumes when you remove a container, nor will it “garbage collect” volumes that are no longer referenced by a container. Also known as: data volume
 
-ボリュームとは、いくつかのコンテナ内にて用いられる特定のディレクトリのことであり、ユニオン・ファイル・システムを通じて利用されます。ボリュームはデータを永続的に保持する目的で設計されており、コンテナのライフサイクルには影響されません。したがってコンテナを削除したとしても、Docker はボリュームを自動的に削除するようなことはしません。たとえコンテナから参照されなくなったボリュームであっても、「ガベージ・コレクト」により失われることもありません。これは *データ・ボリューム（data volume）* とも呼ばれます。
+ボリュームとは、複数のコンテナ内で用いる特別なディレクトリのことであり、ユニオンファイルシステムを通して利用します。ボリュームはデータを保持する目的で設計されており、コンテナのライフサイクルには影響されません。したがって、コンテナを削除したとしても、Docker はボリュームを自動的に削除しません。たとえコンテナから参照されなくなったボリュームであっても、「ガベージコレクト」により失われることもありません。これは :ruby:`データボリューム <data volume>` とも呼ばれます。
 
 .. There are three types of volumes: host, anonymous, and named:
 
-ボリュームには、ホスト（*host*）、匿名（*anonymous*）、名前付き（*named*）という３種類のタイプがあります。
+ボリュームには、 :ruby:`ホスト <host>` 、 :ruby:`匿名 <anonymous>` 、:ruby:`名前付き <named>` という３種類のタイプがあります。
 
 ..    A host volume lives on the Docker host’s filesystem and can be accessed from within the container.
 ..    A named volume is a volume which Docker manages where on disk the volume is created, but it is given a name.
 ..    An anonymous volume is similar to a named volume, however, it can be difficult, to refer to the same volume over time when it is an anonymous volumes. Docker handle where the files are stored.
 
-   * **ホスト・ボリューム（host volume）** は Docker ホストのファイルシステム上に存在し、コンテナ内部からもアクセスできます。
-   * **名前付きボリューム（named volume）** は、Docker が管理するボリュームであり、ディスク上に生成されます。そこには名前がつけられます。
-   * **匿名ボリューム（anonymous volume）**  は名前付きボリュームと似ています。ただし複雑な仕組みにより、匿名ボリュームである間も一意のボリュームとして参照されます。Docker はファイルを保存する場所として取り扱います。
+   * **host ボリューム（host volume；ホストボリューム）** は Docker ホストのファイルシステム上に存在し、コンテナ内部からもアクセスできます。
+   * **named ボリューム（named volume；名前付きボリューム）** は、Docker が管理するボリュームであり、ディスク上に生成されます。そこには名前がつけられます。
+   * **anonymous ボリューム（anonymous volume；匿名ボリューム）**  は名前付きボリュームと似ています。ただし複雑な仕組みにより、匿名ボリュームである間も一意のボリュームとして参照されます。Docker はファイルを保存する場所として取り扱います。
 
 .. _x86_64:
 
