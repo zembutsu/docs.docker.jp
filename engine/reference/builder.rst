@@ -1,10 +1,9 @@
-.. -*- coding: utf-8 -*-
+.. -*- coding: utf-8 -*-:
 .. URL: https://docs.docker.com/engine/reference/builder/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/builder.md
-   doc version: 1.12
-      https://github.com/docker/docker/commits/master/docs/reference/builder.md
-.. check date: 2016/06/14
-.. Commits on Jun 12, 2016 c9a68ffb2ae7b2ac13a2febab82b3d7a824eb97f
+.. SOURCE: https://github.com/docker/cli/blob/master/docs/reference/builder.md
+   doc version: 20.10
+.. check date: 2021/07/02
+.. Commits on May 5, 2021 782192a6e50bacd73dcd2e9f9128f1708435b555
 .. -------------------------------------------------------------------
 
 .. Dockerfile reference
@@ -19,211 +18,156 @@ Dockerfile リファレンス
        :depth: 3
        :local:
 
-.. Docker can build images automatically by reading the instructions from a
-   `Dockerfile`. A `Dockerfile` is a text document that contains all the commands a
-   user could call on the command line to assemble an image. Using `docker build`
-   users can create an automated build that executes several command-line
-   instructions in succession.
+.. Docker can build images automatically by reading the instructions from a Dockerfile. A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image. Using docker build users can create an automated build that executes several command-line instructions in succession.
 
-Docker は ``Dockerfile`` から命令を読み込んで、自動的にイメージをビルドします。
-``Dockerfile`` はテキストファイルであり、イメージを作り上げるために実行するコマンドラインコマンドを、すべてこのファイルに含めることができます。
-``docker build`` を実行すると、順次コマンドライン命令を自動化した処理が行われて、ビルド結果となるイメージが得られます。
+Docker は ``Dockerfile`` から命令を読み込み、自動的にイメージをビルドできます。 ``Dockerfile`` はテキストファイルであり、イメージを作り上げるために実行するコマンドライン命令を、すべてこのファイルに含められます。 ``docker build`` を実行すると、順次コマンドライン命令を自動化した処理を行い、ビルド結果となるイメージが得られます。
 
-.. This page describes the commands you can use in a `Dockerfile`. When you are
-   done reading this page, refer to the [`Dockerfile` Best
-   Practices](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/) for a tip-oriented guide.
+.. This page describes the commands you can use in a Dockerfile. When you are done reading this page, refer to the Dockerfile Best Practices for a tip-oriented guide.
 
-ここでは ``Dockerfile`` において利用可能なコマンドを説明します。
-このページを読み終えたら、さまざまなガイドとなる ``Dockerfile`` の :doc:`ベスト・プラクティス </engine/userguide/eng-image/dockerfile_best-practices>` を参照してください。
+このページでは、 ``Dockerfile`` で利用可能なコマンドを説明します。このページを読み終えたら、 ``Dockerfile`` の :doc:`ベストプラクティス </develop/develop-images/dockerfile_best-practices/>` を開き、理解を重視するガイドをご覧ください。
 
 .. ## Usage
 
-利用方法
+使用法
 ==========
 
-.. The [`docker build`](commandline/build.md) command builds an image from
-   a `Dockerfile` and a *context*. The build's context is the set of files at a
-   specified location `PATH` or `URL`. The `PATH` is a directory on your local
-   filesystem. The `URL` is a Git repository location.
+.. The docker build command builds an image from a Dockerfile and a context. The build’s context is the set of files at a specified location PATH or URL. The PATH is a directory on your local filesystem. The URL is a Git repository location.
 
-:doc:`docker build </engine/reference/commandline/build>` コマンドは、``Dockerfile`` と **コンテキスト** （context）からイメージをビルドします。
-ビルドにおけるコンテキストとは、指定された ``PATH`` または ``URL`` にある一連のファイルのことです。
-``PATH`` はローカルファイルシステム内のディレクトリを表わします。
-``URL`` は Git のリポジトリ URL のことです。
+:doc:`docker build </engine/reference/commandline/build>` コマンドは、 ``Dockerfile`` と :ruby:`コンテキスト <context>` からイメージを :ruby:`構築 <build>` （ビルド）します。構築におけるコンテキストとは、指定された ``PATH`` （場所）または ``URL`` にあるファイル一式です。 ``PATH`` はローカル・ファイルシステム上のディレクトリです。 ``URL`` は Git リポジトリの場所です。
 
-.. A context is processed recursively. So, a `PATH` includes any subdirectories and
-   the `URL` includes the repository and its submodules. This example shows a
-   build command that uses the current directory as context:
+.. The build context is processed recursively. So, a PATH includes any subdirectories and the URL includes the repository and its submodules. This example shows a build command that uses the current directory (.) as build context:
 
-コンテキストは再帰的に処理されます。
-つまり ``PATH`` の場合はサブディレクトリがすべて含まれ、``URL`` の場合はリポジトリとそのサブモジュールが含まれます。
-以下の例におけるビルドコマンドは、コンテキストとしてカレントディレクトリを用いるものです。
+:ruby:`構築コンテキスト <build context>` は再帰的に処理されます。つまり、 ``PATH`` にはすべてのサブディレクトリが含まれ、 ``URL`` にはリポジトリとサブモジュールが含まれます。以下の例における構築コマンドは、現在のディレクトリ（ ``.`` ）を構築コンテキストとして使用します。
 
 .. code-block:: bash
 
    $ docker build .
+   
    Sending build context to Docker daemon  6.51 MB
    ...
 
-.. The build is run by the Docker daemon, not by the CLI. The first thing a build
-   process does is send the entire context (recursively) to the daemon.  In most
-   cases, it's best to start with an empty directory as context and keep your
-   Dockerfile in that directory. Add only the files needed for building the
-   Dockerfile.
+.. The build is run by the Docker daemon, not by the CLI. The first thing a build process does is send the entire context (recursively) to the daemon. In most cases, it’s best to start with an empty directory as context and keep your Dockerfile in that directory. Add only the files needed for building the Dockerfile.
 
-ビルド処理は Docker デーモンが行うものであって CLI により行われるものではありません。
-ビルド処理の開始時にまず行われるのは、コンテキスト全体を（再帰的に）デーモンに送信することです。
-普通はコンテキストとして空のディレクトリを用意して、そこに Dockerfile を置きます。
-そのディレクトリへは、Dockerfile の構築に必要となるファイルのみを置くようにします。
+構築は Docker デーモンが実行するものであり、 CLI によるものではありません。構築処理でまず行われるのは、コンテキスト全体を（再帰的に）デーモンに送信します。たいていの場合、コンテキストとして空のディレクトリを用意し、そこに Dockerfile を置くのがベストです。そのディレクトリへは、Dockerfile の構築に必要なファイルのみ追加します。
 
-.. >**Warning**: Do not use your root directory, `/`, as the `PATH` as it causes
-   >the build to transfer the entire contents of your hard drive to the Docker
-   >daemon.
+..     Warning
+    Do not use your root directory, /, as the PATH for your build context, as it causes the build to transfer the entire contents of your hard drive to the Docker daemon.
 
 .. warning::
 
-   ``PATH`` に対して root ディレクトリ ``/`` を指定することはやめてください。
-   これを行うとビルド時に Docker デーモンに対して、ハードディスクの内容すべてを送り込むことになってしまいます。
+   ルート・ディレクトリ ``/`` を構築コンテキストの ``PATH`` として指定しないでください。構築時、ハードディスクの内容すべてを Docker デーモンに転送してしまうからです。
 
-.. To use a file in the build context, the `Dockerfile` refers to the file specified
-   in an instruction, for example,  a `COPY` instruction. To increase the build's
-   performance, exclude files and directories by adding a `.dockerignore` file to
-   the context directory.  For information about how to [create a `.dockerignore`
-   file](#dockerignore-file) see the documentation on this page.
+.. To use a file in the build context, the Dockerfile refers to the file specified in an instruction, for example, a COPY instruction. To increase the build’s performance, exclude files and directories by adding a .dockerignore file to the context directory. For information about how to create a .dockerignore file see the documentation on this page.
 
-ビルドコンテキスト内のファイルを利用する場合、``Dockerfile`` では命令を記述する際にファイル参照を指定します。
-たとえば ``COPY`` 命令の対象として参照します。
-ビルド時の処理性能を上げるために、コンテキストディレクトリ内に ``.dockerignore`` ファイルを追加し、不要なファイルやディレクトリは除外するようにします。
-詳しくはこのページ内の :ref:`.dockerignore` ファイルの生成方法 <#dockerignore-file>` を参照してください。
+構築コンテキスト内にあるファイルを使う場合、 ``COPY`` 命令など、 ``Dockerfile`` の命令で指定されたファイルを参照します。構築時の処理性能を上げるには、コンテキスト・ディレクトリに ``.dockerignore`` ファイルを追加し、不要なファイルやディレクトリを除外します。 ``.dockerignore`` ファイルを作成する詳細は、このページ内の :ref:`ドキュメント <dockerignore-file>` を参照ください。
 
-.. Traditionally, the `Dockerfile` is called `Dockerfile` and located in the root
-   of the context. You use the `-f` flag with `docker build` to point to a Dockerfile
-   anywhere in your file system.
+.. Traditionally, the Dockerfile is called Dockerfile and located in the root of the context. You use the -f flag with docker build to point to a Dockerfile anywhere in your file system
 
-慣例として ``Dockerfile`` は ``Dockerfile`` と命名されています。
-またこのファイルはコンテキストディレクトリのトップに置かれます。
-``docker build`` の ``-f`` フラグを用いれば、Dockerfile がファイルシステム内のどこにあっても指定することができます。
+もともと、 ``Dockerfile``  は ``Dockerfile`` と呼ばれ、コンテキストのルート（対象ディレクトリのトップ）に置かれました。 ``docker build`` で ``-f`` フラグを使えば、Dockerfile がファイルシステム上のどこにあっても指定できます。
 
 .. code-block:: bash
 
    $ docker build -f /path/to/a/Dockerfile .
 
-.. You can specify a repository and tag at which to save the new image if
-   the build succeeds:
+.. You can specify a repository and tag at which to save the new image if the build succeeds:
 
-イメージのビルドが成功した後の保存先として、リポジトリとタグを指定することができます。
+構築の成功時、新しいイメージを保存する :ruby:`リポジトリ <repository>` と :ruby:`タグ <tag>` を指定できます。
+
 
 .. code-block:: bash
 
    $ docker build -t shykes/myapp .
 
-.. To tag the image into multiple repositories after the build,
-   add multiple `-t` parameters when you run the `build` command:
+.. To tag the image into multiple repositories after the build, add multiple -t parameters when you run the build command:
 
-ビルドの際に複数のリポジトリに対してイメージをタグづけするには、``build`` コマンドの実行時に ``-t`` パラメータを複数指定します。
+構築後、複数のリポジトリに対してイメージをタグ付けするには、 ``biuld`` コマンドの実行時、複数の ``-t`` パラメータを追加します。
 
-   ..  $ docker build -t shykes/myapp:1.0.2 -t shykes/myapp:latest .
+.. code-block:: bash
 
-::
+   docker build -t shykes/myapp:1.0.2 -t shykes/myapp:latest .
 
-   $ docker build -t shykes/myapp:1.0.2 -t shykes/myapp:latest .
+.. Before the Docker daemon runs the instructions in the Dockerfile, it performs a preliminary validation of the Dockerfile and returns an error if the syntax is incorrect:
 
-.. Before the Docker daemon runs the instructions in the `Dockerfile`, it performs
-   a preliminary validation of the `Dockerfile` and returns an error if the syntax is incorrect:
+Docker デーモンは ``Dockerfile`` 内に書かれた命令を実行する前に、事前に ``Dockerfile`` を検証し、構文が間違っている場合はエラーを返します。
 
-``Dockerfile`` 内に記述されている命令を Docker デーモンが実行する際には、事前に ``Dockerfile`` が検証され、文法の誤りがある場合にはエラーが返されます。
-
-   ..  $ docker build -t test/myapp .
-       Sending build context to Docker daemon 2.048 kB
-       Error response from daemon: Unknown instruction: RUNCMD
-
-::
+.. code-block:: bash
 
    $ docker build -t test/myapp .
-   Sending build context to Docker daemon 2.048 kB
-   Error response from daemon: Unknown instruction: RUNCMD
+   
+   [+] Building 0.3s (2/2) FINISHED
+    => [internal] load build definition from Dockerfile                       0.1s
+    => => transferring dockerfile: 60B                                        0.0s
+    => [internal] load .dockerignore                                          0.1s
+    => => transferring context: 2B                                            0.0s
+   error: failed to solve: rpc error: code = Unknown desc = failed to solve with frontend dockerfile.v0: failed to create LLB definition:
+   dockerfile parse error line 2: unknown instruction: RUNCMD
 
-.. The Docker daemon runs the instructions in the `Dockerfile` one-by-one,
-   committing the result of each instruction
-   to a new image if necessary, before finally outputting the ID of your
-   new image. The Docker daemon will automatically clean up the context you
-   sent.
+.. The Docker daemon runs the instructions in the Dockerfile one-by-one, committing the result of each instruction to a new image if necessary, before finally outputting the ID of your new image. The Docker daemon will automatically clean up the context you sent.
 
-Docker デーモンは ``Dockerfile`` 内の命令を 1 つずつ実行し、必要な場合にはビルドイメージ内にその処理結果を確定します。
-最後にビルドイメージの ID を出力します。
-Docker デーモンは、送信されたコンテキスト内容を自動的にクリアします。
+Docker デーモンは ``Dockerfile`` 内の命令を 1 つずつ実行し、必要な場合にはビルドイメージ内にその処理結果を :ruby:`確定 <commit>` （コミット）し、最後に新しいイメージの ID を出力します。Docker デーモンは、送信されたコンテキスト内容を自動的に :ruby:`除去 <clean up>` します。
 
-.. Note that each instruction is run independently, and causes a new image
-   to be created - so `RUN cd /tmp` will not have any effect on the next
-   instructions.
+.. Note that each instruction is run independently, and causes a new image to be created - so RUN cd /tmp will not have any effect on the next instructions.
 
-各命令は個別に実行されます。
-それによって新たなイメージがビルドされます。
-したがって、たとえば ``RUN cd /tmp`` を実行したとしても、次の命令には何の効果も与えません。
+各命令は個別に実行され、都度、新しいイメージが生成されますのでご注意ください。したがって、たとえば ``RUN cd /tmp`` という命令があっても、その次の命令には何ら影響を与えません。
 
-.. Whenever possible, Docker will re-use the intermediate images (cache),
-   to accelerate the `docker build` process significantly. This is indicated by
-   the `Using cache` message in the console output.
-   (For more information, see the [Build cache section](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/#build-cache) in the
-   `Dockerfile` best practices guide):
+.. Whenever possible, Docker uses a build-cache to accelerate the docker build process significantly. This is indicated by the CACHED message in the console output. (For more information, see the Dockerfile best practices guide:
 
-Docker は可能な限り中間イメージ（キャッシュ）を再利用しようとします。
-これは ``docker build`` 処理を速くするためです。
-その場合は、端末画面に ``Using cache`` というメッセージが出力されます。
-（詳細については ``Dockerfile`` のベストプラクティスガイドにある :ref:`ビルドキャッシュの説明 <build-cache>` を参照してください。）
-
-   ..  $ docker build -t svendowideit/ambassador .
-       Sending build context to Docker daemon 15.36 kB
-       Step 1/4 : FROM alpine:3.2
-        ---> 31f630c65071
-       Step 2/4 : MAINTAINER SvenDowideit@home.org.au
-        ---> Using cache
-        ---> 2a1c91448f5f
-       Step 3/4 : RUN apk update &&      apk add socat &&        rm -r /var/cache/
-        ---> Using cache
-        ---> 21ed6e7fbb73
-       Step 4/4 : CMD env | grep _TCP= | (sed 's/.*_PORT_\([0-9]*\)_TCP=tcp:\/\/\(.*\):\(.*\)/socat -t 100000000 TCP4-LISTEN:\1,fork,reuseaddr TCP4:\2:\3 \&/' && echo wait) | sh
-        ---> Using cache
-        ---> 7ea8aef582cc
-       Successfully built 7ea8aef582cc
+Docker は可能な限り :ruby:`構築キャッシュ <build-cache>` を使用し、 ``docker build`` の処理を著しく高速にします。その場合はコンソール出力に ``CACHED`` というメッセージが出ます。（詳細については、 :doc:`Dockerfile のベストプラクティスガイド </develop/develop-images/dockerfile_best-practices/>` を参照ください。）
 
 .. code-block:: bash
 
    $ docker build -t svendowideit/ambassador .
-   Sending build context to Docker daemon 15.36 kB
-   Step 1/4 : FROM alpine:3.2
-    ---> 31f630c65071
-   Step 2/4 : MAINTAINER SvenDowideit@home.org.au
-    ---> Using cache
-    ---> 2a1c91448f5f
-   Step 3/4 : RUN apk update &&      apk add socat &&        rm -r /var/cache/
-    ---> Using cache
-    ---> 21ed6e7fbb73
-   Step 4/4 : CMD env | grep _TCP= | (sed 's/.*_PORT_\([0-9]*\)_TCP=tcp:\/\/\(.*\):\(.*\)/socat -t 100000000 TCP4-LISTEN:\1,fork,reuseaddr TCP4:\2:\3 \&/' && echo wait) | sh
-    ---> Using cache
-    ---> 7ea8aef582cc
-   Successfully built 7ea8aef582cc
+   
+   [+] Building 0.7s (6/6) FINISHED
+    => [internal] load build definition from Dockerfile                       0.1s
+    => => transferring dockerfile: 286B                                       0.0s
+    => [internal] load .dockerignore                                          0.1s
+    => => transferring context: 2B                                            0.0s
+    => [internal] load metadata for docker.io/library/alpine:3.2              0.4s
+    => CACHED [1/2] FROM docker.io/library/alpine:3.2@sha256:e9a2035f9d0d7ce  0.0s
+    => CACHED [2/2] RUN apk add --no-cache socat                              0.0s
+    => exporting to image                                                     0.0s
+    => => exporting layers                                                    0.0s
+    => => writing image sha256:1affb80ca37018ac12067fa2af38cc5bcc2a8f09963de  0.0s
+    => => naming to docker.io/svendowideit/ambassador                         0.0s
 
-.. Build cache is only used from images that have a local parent chain. This means
-   that these images were created by previous builds or the whole chain of images
-   was loaded with `docker load`. If you wish to use build cache of a specific
-   image you can specify it with `--cache-from` option. Images specified with
-   `--cache-from` do not need to have a parent chain and may be pulled from other
-   registries.
+.. By default, the build cache is based on results from previous builds on the machine on which you are building. The --cache-from option also allows you to use a build-cache that's distributed through an image registry refer to the specifying external cache sources section in the docker build command reference.
 
-ビルドキャッシュは、ローカルにて親イメージへのつながりを持ったイメージからのみ利用されます。
-利用されるイメージとはつまり、前回のビルドによって生成されたイメージか、あるいは ``docker load`` によってロードされたイメージのいずれかです。
-ビルドキャッシュを特定のイメージから利用したい場合は ``--cache-from`` オプションを指定します。
-``--cache-from`` オプションが用いられた場合に、そのイメージは親イメージへのつながりを持っている必要はなく、他のレジストリから取得するイメージであっても構いません。
+構築キャッシュとは、デフォルトでは、構築するマシン上で以前に構築された結果に基づきます。 ``--cache-from`` オプションの指定により、イメージ・レジストリを通して配布された構築キャッシュも使えます。 ``docker build`` コマンドリファレンスの :ref:`外部のキャッシュをソースとして指定 <specifying-external-cache-sources>` セクションをご覧ください。
 
-.. When you're done with your build, you're ready to look into [*Pushing a
-   repository to its registry*](https://docs.docker.com/engine/tutorials/dockerrepos/#/contributing-to-docker-hub).
+.. When you’re done with your build, you’re ready to look into scanning your image with docker scan, and pushing your image to Docker Hub.
 
-ビルドに関する操作を終えたら、次は :doc:`リポジトリをレジストリへ送信 </engine/tutorials/dockerrepos>` を読んでみてください。
+構築が終われば、 ``docker scan`` で  :doc:`イメージを検査 </engine/scan>` したり、 :doc:`Docker Hub にイメージを送信 </docker-hub/repos>` したりできます。
 
-.. ## Format
+.. BuildKit
 
-記述書式
+.. _dockerfile-buildkit:
+
+:ruby:`BuildKit <ビルドキット>`
+========================================
+
+.. Starting with version 18.09, Docker supports a new backend for executing your builds that is provided by the moby/buildkit project. The BuildKit backend provides many benefits compared to the old implementation. For example, BuildKit can:
+
+バージョン 18.09 から、Docker は `moby/buildkit <https://github.com/moby/buildkit>`_ プロジェクトによって提供された新しい構築用バックエンドをサポートしています。
+
+..  Detect and skip executing unused build stages
+    Parallelize building independent build stages
+    Incrementally transfer only the changed files in your build context between builds
+    Detect and skip transferring unused files in your build context
+    Use external Dockerfile implementations with many new features
+    Avoid side-effects with rest of the API (intermediate images and containers)
+    Prioritize your build cache for automatic pruning
+
+To use the BuildKit backend, you need to set an environment variable DOCKER_BUILDKIT=1 on the CLI before invoking docker build.
+
+To learn about the experimental Dockerfile syntax available to BuildKit-based builds refer to the documentation in the BuildKit repository.
+
+
+
+
+.. Format
+
+書式
 ==========
 
 .. Here is the format of the `Dockerfile`:
