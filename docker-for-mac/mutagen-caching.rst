@@ -97,7 +97,7 @@ Docker Desktop を再起動すると、 **File sharing**  ページはこのよ�
 
 .. Once the development webserver has started, open https://localhost:3000/ in your browser and observe the app is running.
 
-開発用のウェブサーバが起動すると、ウェブブラウｚで https://localhost:3000 を開き、アプリケーションが動いているかどうか確認します。
+開発用のウェブサーバが起動すると、ウェブブラウザで https://localhost:3000 を開き、アプリケーションが動いているかどうか確認します。
 
 .. Return to the File sharing page in the UI and observe the status of the cache toggle located next to the directory name. The status will be updated as file changes are detected and then synchronized between the host and the containers.
 
