@@ -64,7 +64,7 @@ Zsh
 
 .. Include the directory in your $fpath, e.g. by adding in ~/.zshrc
 
-``$fpath`` には ``~/.zshrc`` ディレクトリを追加します。
+``~/.zshrc`` に以下を追加することで、 ``$fpath`` にディレクトリを追加します。
 
 .. code-block:: bash
 
