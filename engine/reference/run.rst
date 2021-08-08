@@ -1807,14 +1807,14 @@ Dockerfile の４つのコマンド ``FROM`` 、 ``MAINTAINER`` 、 ``RUN`` 、 
     WORKDIR
 
 
-* :ref:`run-cmd`
-* :ref:`run-entrypoint`
-* :ref:`expose-incoming-ports`
-* :ref:`run-env`
-* :ref:`run-healthcheck`
-* :ref:`run-volume`
-* :ref:`run-user`
-* :ref:`run-workdir`
+* :ref:`CMD (デフォルトのコマンド、またはオプション) <run-cmd>`
+* :ref:`ENTRYPOINT (実行時に処理するデフォルトのコマンド) <run-entrypoint>`
+* :ref:`EXPOSE (受信ポート) <expose-incoming-ports>`
+* :ref:`ENV (環境変数) <run-env>`
+* :ref:`HEALTHCHECK <run-healthcheck>`
+* :ref:`VOLUME  (共有ファイルシステム) <run-volume>`
+* :ref:`USER <run-user>`
+* :ref:`WORKDIR <run-workdir>`
 
 .. CMD (default command or options)
 
