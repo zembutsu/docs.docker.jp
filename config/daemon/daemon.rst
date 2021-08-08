@@ -115,7 +115,7 @@ Docker デーモンを JSON ファイルで設定するには、Linux システ�
 
 .. Here’s an example of how to manually start the Docker daemon, using the same configurations as above:
 
-以下の理恵は、Docker デーモンを手動で起動し、先ほどの設定と同じオプションを指定しています。
+以下の例は、Docker デーモンを手動で起動し、先ほどの設定と同じオプションを指定しています。
 
 .. code-block:: bash
 
