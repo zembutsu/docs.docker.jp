@@ -302,7 +302,7 @@ Dockerfile で命令を実行する前に、コメント行は削除されます
    
    FROM イメージ名
 
-..T reated as a comment due to appearing after a builder instruction:
+.. T reated as a comment due to appearing after a builder instruction:
 
 構築命令の後に（パーサ・ディレクティブが）あっても、コメントとして扱う：
 
@@ -878,8 +878,7 @@ RUN には２つの形式があります。
 
    RUN ["/bin/bash", "-c", "echo hello"]
 
-.. 
-    Note
+..    Note
     The exec form is parsed as a JSON array, which means that you must use double-quotes (“) around words not single-quotes (‘).
 
 .. note::
@@ -951,7 +950,7 @@ CMD
     CMD ["param1","param2"] (as default parameters to ENTRYPOINT)
     CMD command param1 param2 (shell form)
 
-* ``CMD ["実行ファイル","パラメータ1","パラメータ2"]` （ `exec` 形式、こちらが望ましい ）
+* ``CMD ["実行ファイル","パラメータ1","パラメータ2"]`` （ `exec` 形式、こちらが望ましい ）
 * ``CMD ["パラメータ1", "パラメータ2"]`` （ `ENTRYPOINT` 命令に対するデフォルトのパラメータとして扱う）
 * ``CMD コマンド パラメータ1 パラメータ2`` （シェル形式）
 
@@ -967,8 +966,7 @@ CMD
 
 ``ENTRYPOINT`` 命令に対するデフォルトの引数を `CMD`` で指定する場合は、 ``CMD`` 命令と ``ENTRYPOINT`` 命令の両方を JSON 配列形式で指定する必要があります。
 
-...
-    Note
+..    Note
     The exec form is parsed as a JSON array, which means that you must use double-quotes (“) around words not single-quotes (‘).
 
 .. note::
