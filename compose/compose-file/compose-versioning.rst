@@ -8,7 +8,7 @@
 
 .. Compose file versions and upgrading
 
-..-_compose-file-versions-and-upgrading:
+.. _compose-file-versions-and-upgrading:
 
 ==================================================
 Compose ファイルのバージョンとアップグレード
