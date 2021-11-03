@@ -48,7 +48,7 @@ Docker Desktop  WSL 2 バックエンドをインストールする前に、以�
     Download and install the Linux kernel update package.
 
 1. Windows 10, version 2004 以上をインストール。
-2. Windows 上での WSL2 機能の有効化。詳細手順は `マイクロソフトのドキュメント <https://docs.microsoft.com/ja-jp/windows/wsl/wsl2-install>`_ を参照ください。
+2. Windows 上での WSL2 機能の有効化。詳細手順は `マイクロソフトのドキュメント <https://docs.microsoft.com/ja-jp/windows/wsl/install>`_ を参照ください。
 3. `Linux カーネル更新パッケージ <https://docs.microsoft.com/windows/wsl/wsl2-kernel>`_ のダウンロードとインストール
 
 .. Download
