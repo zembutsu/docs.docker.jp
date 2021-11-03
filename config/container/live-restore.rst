@@ -115,7 +115,7 @@ Linux 上では、このカーネルのバッファ・サイズを ``/proc/sys/f
 
 .. The live restore option only pertains to standalone containers, and not to swarm services. Swarm services are managed by swarm managers. If swarm managers are not available, swarm services continue to run on worker nodes but cannot be managed until enough swarm managers are available to maintain a quorum.
 
-ライブ・リストアオプションが有効になるのは、スタンドアロンのコンテナに対してであり、 swarm サービでは利用できません。 Swarm サービスは swarm マネージャによって管理されます。swarm マネージャが利用できなくなれば、 swarm サービスはワーカ・ノード上で実行し続けようとしますが、クォーラムを維持するために利用可能な swarm マネージャが十分でなければ、サービスの実行は維持できません。
+ライブ・リストアオプションが有効になるのは、スタンドアロンのコンテナに対してであり、 swarm サービスでは利用できません。 Swarm サービスは swarm マネージャによって管理されます。swarm マネージャが利用できなくなれば、 swarm サービスはワーカ・ノード上で実行し続けようとしますが、クォーラムを維持するために利用可能な swarm マネージャが十分でなければ、サービスの実行は維持できません。
 
 .. seealso:: 
 
