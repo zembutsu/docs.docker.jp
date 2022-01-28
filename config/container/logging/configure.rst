@@ -96,7 +96,7 @@ Docker デーモンにおける現在のデフォルトのロギング・ドラ�
 
 .. nWhen you start a container, you can configure it to use a different logging driver than the Docker daemon’s default, using the --log-driver flag. If the logging driver has configurable options, you can set them using one or more instances of the --log-opt <NAME>=<VALUE> flag. Even if the container uses the default logging driver, it can use different configurable options.
 
-コンテナの起動時に ``--log-dirver`` を使えば、Docker デーモンのデフォルト設定とは異なるロギング・ドライバを指定できます。ロギング・ドライガに設定可能なオプションがあれば、1つまたは複数の項目を ``--log-opt <名前>=<値>`` フラグで指定できます。もしもコンテナがデフォルトのロギング・ドライバを使用する場合でも、異なる設定可能なオプションを指定できます。
+コンテナの起動時に ``--log-driver`` を使えば、Docker デーモンのデフォルト設定とは異なるロギング・ドライバを指定できます。ロギング・ドライガに設定可能なオプションがあれば、1つまたは複数の項目を ``--log-opt <名前>=<値>`` フラグで指定できます。もしもコンテナがデフォルトのロギング・ドライバを使用する場合でも、異なる設定可能なオプションを指定できます。
 
 .. The following example starts an Alpine container with the none logging driver.
 
