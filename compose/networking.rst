@@ -136,6 +136,8 @@ Compose のネットワーク機能
 
 .. ## Links
 
+.. _compose-links:
+
 links
 ======
 

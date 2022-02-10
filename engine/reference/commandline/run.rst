@@ -721,6 +721,8 @@ IPv6 は ``-4`` フラグの替わりに ``-6`` を指定します。他のネ�
 
 ``--stop-signal`` フラグは、システムコールのシグナルを設定します。これは、コンテナを終了する時に送るものです。このシグナルはカーネルの syscall テーブルにある適切な数値と一致する必要があります。例えば 9 や、SIGNAME のような形式のシグナル名（例：SIGKILL）です。
 
+.. _specify-isolation-technology-for-container-isolation:
+
 .. Specify isolation technology for container (--isolation)
 
 コンテナの分離技術を指定（--isolation）
