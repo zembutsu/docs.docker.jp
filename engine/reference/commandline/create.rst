@@ -105,7 +105,7 @@ create
 
 .. The docker create command creates a writeable container layer over the specified image and prepares it for running the specified command. The container ID is then printed to STDOUT. This is similar to docker run -d except the container is never started. You can then use the docker start <container_id> command to start the container at any point.
 
-``docker create`` コマンドは、特定のイメージ上に書き込み可能なコンテナ・レイヤ（層）を作成し、測定のコマンドを実行する準備をします。それから、コンテナ ID を ``STDOUT`` （標準出力）に表示します。これは開始したことが無いコンテナに対して ``docker run -d`` する時も同様です。それから、 ``docker start <コンテナID>`` コマンドを使って、いつてもコンテナを実行できます。
+``docker create`` コマンドは、特定のイメージ上に書き込み可能なコンテナ・レイヤ（層）を作成し、特定のコマンドを実行する準備をします。それから、コンテナ ID を ``STDOUT`` （標準出力）に表示します。これは開始したことが無いコンテナに対して ``docker run -d`` する時も同様です。それから、 ``docker start <コンテナID>`` コマンドを使って、いつてもコンテナを実行できます。
 
 .. This is useful when you want to set up a container configuration ahead of time so that it is ready to start when you need it. The initial status of the new container is created.
 
