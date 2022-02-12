@@ -641,7 +641,7 @@ container_name
 
 .. Specify a custom container name, rather than a generated default name.
 
-自動作成されるオンテナ名ではなく、任意のコンテナ名を指定します。
+自動作成されるコンテナ名ではなく、任意のコンテナ名を指定します。
 
 .. code-block:: yaml
 
@@ -2147,6 +2147,8 @@ restart
 .. code-block:: yaml
 
    restart: "unless-stopped"
+
+.. _cpu-and-other-resources:
 
 .. cpu_count, cpu_percent, cpu_shares, cpu_period, cpu_quota, cpus, cpuset, domainname, hostname, ipc, mac_address, mem_limit, memswap_limit, mem_swappiness, mem_reservation, oom_kill_disable, oom_score_adj, privileged, read_only, shm_size, stdin_open, tty, user, working_dir
 

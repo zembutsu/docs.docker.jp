@@ -29,10 +29,7 @@ Docker Compose
    extends.rst
    networking.rst
    production.rst
-   compose-file.rst
-   reference/toc.rst
    completion.rst
    link-env-deprecated.rst
    startup-order.rst
-   faq.rst
 

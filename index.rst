@@ -16,11 +16,11 @@ Docker ドキュメント日本語化プロジェクト
 
 * :doc:`about` ... はじめての方へ、このサイトや翻訳について
 * :doc:`guide`
-* :doc:`pdf-download` （バージョンが少し古いです）
+* :doc:`pdf-download` （バージョンが古いです）
 
 .. attention::
 
-  * Docker `v20.10 (current)`  向けにドキュメントの改訂作業中です(2021年7月現在)。一部古い場合がありますので、ご注意ください。
+  * Docker `v20.10 (current)`  向けにドキュメントの改訂作業中です(2022年2月現在)。一部古い場合がありますので、ご注意ください。
   * Docker のドキュメントは常に変わり続けています。最新の情報については `公式ドキュメント <https://docs.docker.com/>`_ をご覧ください。
   * 本プロジェクトは有志による翻訳プロジェクトです。お気づきの点がございましたら、 `issue <https://github.com/zembutsu/docs.docker.jp/issues>`_ や `Pull Request <https://github.com/zembutsu/docs.docker.jp/pulls>`_ でお知らせ願います。
 
@@ -89,7 +89,7 @@ Doc v20.10 目次
    コマンドライン・リファレンス <engine/reference/index.rst>
    API リファレンス <reference/api.rst>
    Dockerfile リファレンス <engine/reference/builder.rst>
-   Compose file リファレンス <reference/compose-file.rst>
+   Compose ファイル リファレンス <reference/compose-file/toc.rst>
    ドライバと仕様 <reference/drivers-and-specifications.rst>
    glossary.rst
 

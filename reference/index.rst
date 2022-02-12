@@ -1,9 +1,8 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/docker-for-windows/install/
-   doc version: 20.10
+.. doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/reference/index.md
-.. check date: 2021/04/20
-.. Commits on Apr 19, 2021 8563a00ad85cdd18c0d1dd046d45875812426613
+.. check date: 2022/02/11
+.. Commits on Apr 29, 2021 8563a00ad85cdd18c0d1dd046d45875812426613
 .. -----------------------------------------------------------------------------
 
 .. Reference documentation
