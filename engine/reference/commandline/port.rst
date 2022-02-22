@@ -1,42 +1,43 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/engine/reference/commandline/node_accept/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/node_accept.md
+.. URL: https://docs.docker.com/engine/reference/commandline/port/
+.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/port.md
    doc version: 1.12
-      https://github.com/docker/docker/commits/master/docs/reference/commandline/node_accept.md
+      https://github.com/docker/docker/commits/master/docs/reference/commandline/port.md
 .. check date: 2016/06/16
 .. Commits on Jun 15, 2016 c21f8613275ca546b1310999d8714ff2609f33e3
 .. -------------------------------------------------------------------
 
-.. node accept
-
+.. port
 =======================================
-node accept
+port
 =======================================
 
 .. code-block:: bash
-
-   使い方:  docker node accept NODE [NODE...]
+   使い方: docker port [オプション] コンテナ [プライベート・ポート[/プロトコル]]
    
-   swarm で受け入れるノード
-
-.. Accept a node into the swarm. This command targets a docker engine that is a manager in the swarm cluster.
-
-swarm にノードを受け入れます。このコマンドは swarm クラスタのマネージャとして動いている docker engine 用です。
+   コンテナに対するマッピング（割り当て）を一覧表示。
+   あるいは NAT されたプライベート・ポートを探して表示。
+   
+     --help          使い方の表示
+.. You can find out all the ports mapped by not specifying a PRIVATE_PORT, or just a specific mapping:
+``プライベート・ポート`` や、特定の割り当て状況を指定しなければ、全てのポートの割り当て状況（マッピング）を確認できます。
 
 .. code-block:: bash
-
-   $ docker node accept <node name>
-
-.. Related information
-
-関連情報
-----------
-
-* :doc:`node_promote`
-* :doc:`node_demote`
+   $ docker ps
+   CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                                            NAMES
+   b650456536c7        busybox:latest      top                 54 minutes ago      Up 54 minutes       0.0.0.0:1234->9876/tcp, 0.0.0.0:4321->7890/tcp   test
+   $ docker port test
+   7890/tcp -> 0.0.0.0:4321
+   9876/tcp -> 0.0.0.0:1234
+   $ docker port test 7890/tcp
+   0.0.0.0:4321
+   $ docker port test 7890/udp
+   2014/06/24 11:53:36 Error: No public port '7890/udp' published for test
+   $ docker port test 7890
+   0.0.0.0:4321
 
 .. seealso:: 
 
-   node accept
-      https://docs.docker.com/engine/reference/commandline/node_accept/
+   port
+      https://docs.docker.com/engine/reference/commandline/port/
 
