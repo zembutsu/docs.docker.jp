@@ -8,21 +8,26 @@
 .. -------------------------------------------------------------------
 
 .. port
+
 =======================================
 port
 =======================================
 
 .. code-block:: bash
+
    使い方: docker port [オプション] コンテナ [プライベート・ポート[/プロトコル]]
    
    コンテナに対するマッピング（割り当て）を一覧表示。
    あるいは NAT されたプライベート・ポートを探して表示。
    
      --help          使い方の表示
+
 .. You can find out all the ports mapped by not specifying a PRIVATE_PORT, or just a specific mapping:
+
 ``プライベート・ポート`` や、特定の割り当て状況を指定しなければ、全てのポートの割り当て状況（マッピング）を確認できます。
 
 .. code-block:: bash
+
    $ docker ps
    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                                            NAMES
    b650456536c7        busybox:latest      top                 54 minutes ago      Up 54 minutes       0.0.0.0:1234->9876/tcp, 0.0.0.0:4321->7890/tcp   test
