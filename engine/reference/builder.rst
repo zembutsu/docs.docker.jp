@@ -1,4 +1,4 @@
-.. -*- coding: utf-8 -*-:
+﻿.. -*- coding: utf-8 -*-:
 .. URL: https://docs.docker.com/engine/reference/builder/
 .. SOURCE: https://github.com/docker/cli/blob/master/docs/reference/builder.md
    doc version: 20.10

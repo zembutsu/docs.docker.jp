@@ -1,4 +1,4 @@
-.. -*- coding: utf-8 -*-
+﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/compose-file/compose-file-v3/
    doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/compose/compose-file/compose-file-v3.md
