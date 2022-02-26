@@ -5,8 +5,8 @@
    contain the root `toctree` directive.
 .. -----------------------------------------------------------------------------
 .. URL: https://docs.docker.com/
-   doc version: 19.03 (current)
-.. check date: 2020/06/03
+   doc version: 20.10 (current)
+.. check date: 2021/07/03
 .. -----------------------------------------------------------------------------
 
 .. Welcome to Docker-docs-ja's documentation!
@@ -16,11 +16,11 @@ Docker ドキュメント日本語化プロジェクト
 
 * :doc:`about` ... はじめての方へ、このサイトや翻訳について
 * :doc:`guide`
-* :doc:`pdf-download` （バージョンが少し古いです）
+* :doc:`pdf-download` （バージョンが古いです）
 
 .. attention::
 
-  * Docker `v19.03 (current)`  向けにドキュメントの改訂作業中です(2020年6月現在)。一部古い場合がありますので、ご注意ください。
+  * Docker `v20.10 (current)`  向けにドキュメントの改訂作業中です(2022年2月現在)。一部古い場合がありますので、ご注意ください。
   * Docker のドキュメントは常に変わり続けています。最新の情報については `公式ドキュメント <https://docs.docker.com/>`_ をご覧ください。
   * 本プロジェクトは有志による翻訳プロジェクトです。お気づきの点がございましたら、 `issue <https://github.com/zembutsu/docs.docker.jp/issues>`_ や `Pull Request <https://github.com/zembutsu/docs.docker.jp/pulls>`_ でお知らせ願います。
 
@@ -51,7 +51,7 @@ Docker ドキュメント
 
 ---
 
-Doc v19.03 目次
+Doc v20.10 目次
 ====================
 
 .. toctree::
@@ -85,9 +85,12 @@ Doc v19.03 目次
    :caption: Reference - 参考資料
    :maxdepth: 1
 
+   reference/index.rst
    コマンドライン・リファレンス <engine/reference/index.rst>
+   API リファレンス <reference/api.rst>
    Dockerfile リファレンス <engine/reference/builder.rst>
-   Compose file リファレンス <compose/reference/toc.rst>
+   Compose ファイル リファレンス <reference/compose-file/toc.rst>
+   ドライバと仕様 <reference/drivers-and-specifications.rst>
    glossary.rst
 
 
@@ -118,6 +121,7 @@ Docs archive
    :maxdepth: 1
    :caption: Docs アーカイブ
 
+   v19.03 <http://docs.docker.jp/v19.03/>
    v17.06 <http://docs.docker.jp/v17.06/>
    v1.12 <http://docs.docker.jp/v1.12/>
    v1.11 <http://docs.docker.jp/v1.11/>

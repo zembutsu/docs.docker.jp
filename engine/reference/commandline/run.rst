@@ -1,4 +1,4 @@
-.. -*- coding: utf-8 -*-
+﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/run/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/run.md
    doc version: 1.12
@@ -720,6 +720,8 @@ IPv6 は ``-4`` フラグの替わりに ``-6`` を指定します。他のネ�
 .. The --stop-signal flag sets the system call signal that will be sent to the container to exit. This signal can be a valid unsigned number that matches a position in the kernel’s syscall table, for instance 9, or a signal name in the format SIGNAME, for instance SIGKILL.
 
 ``--stop-signal`` フラグは、システムコールのシグナルを設定します。これは、コンテナを終了する時に送るものです。このシグナルはカーネルの syscall テーブルにある適切な数値と一致する必要があります。例えば 9 や、SIGNAME のような形式のシグナル名（例：SIGKILL）です。
+
+.. _specify-isolation-technology-for-container-isolation:
 
 .. Specify isolation technology for container (--isolation)
 

@@ -1,10 +1,8 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/cli/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/cli.md
-   doc version: 1.12
-      https://github.com/docker/docker/commits/master/docs/reference/commandline/cli.md
-.. check date: 2016/06/14
-.. Commits on Mar 12, 2016 219e5fdda36a18104f7593da9ed8ca097a60aab3
+.. check date: 2021/07/01
+.. Commits on 1 May 2021 3c8d65963d65a154a504afee6acfd9e39d3298b0
 .. -------------------------------------------------------------------
 
 .. Use the Docker command line
@@ -15,30 +13,60 @@
 Docker コマンドラインを使う
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
+==========
+docker
+==========
+
 .. To list available commands, either run docker with no parameters or execute docker help:
 
-利用可能なコマンドを確認するには、 ``docker`` にパラメータを付けずに実行するか、``docker help`` を実行します。
+利用可能なコマンドを一覧表示するには、パラメータを付けずに ``docker`` を実行するか、``docker help`` を実行します。
 
 .. code-block:: bash
 
    $ docker
-     Usage: docker [OPTIONS] COMMAND [arg...]
-            docker daemon [ --help | ... ]
-            docker [ --help | -v | --version ]
+   Usage: docker [OPTIONS] COMMAND [ARG...]
+          docker [ --help | -v | --version ]
    
-       -H, --host=[]: The socket(s) to talk to the Docker daemon in the format of tcp://host:port/path, unix:///path/to/socket, fd://* or fd://socketfd.
+   A self-sufficient runtime for containers.
    
-     A self-sufficient runtime for Linux containers.
+   Options:
+         --config string      Location of client config files (default "/root/.docker")
+     -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default context set with "docker context use")
+     -D, --debug              Enable debug mode
+         --help               Print usage
+     -H, --host value         Daemon socket(s) to connect to (default [])
+     -l, --log-level string   Set the logging level ("debug"|"info"|"warn"|"error"|"fatal") (default "info")
+         --tls                Use TLS; implied by --tlsverify
+         --tlscacert string   Trust certs signed only by this CA (default "/root/.docker/ca.pem")
+         --tlscert string     Path to TLS certificate file (default "/root/.docker/cert.pem")
+         --tlskey string      Path to TLS key file (default "/root/.docker/key.pem")
+         --tlsverify          Use TLS and verify the remote
+     -v, --version            Print version information and quit
    
-     ...
+   Commands:
+       attach    Attach to a running container
+       # […]
+
+.. Description
+
+.. _cli-description:
+
+説明
+==========
 
 .. Depending on your Docker system configuration, you may be required to preface each docker command with sudo. To avoid having to use sudo with the docker command, your system administrator can create a Unix group called docker and add users to it.
 
-Docker のシステム設定によっては、各 ``docker`` コマンドの前に ``sudo`` を付ける必要があるかもしれません。 ``docker`` コマンドを実行する度に ``sudo`` を実行しないようするには、システム管理者に ``docker`` という Unix グループの作成を、そこへのユーザの追加を依頼ください。
+Docker のシステム構成によっては、それぞれの ``docker`` コマンドの前に ``sudo`` を付ける必要があるかもしれません。 ``docker`` コマンドを実行する度に ``sudo`` を実行しないようするには、システム管理者は ``docker`` という Unix グループを作成し、そこへのユーザを追加できます。
 
 .. For more information about installing Docker or sudo configuration, refer to the installation instructions for your operating system.
 
-Docker のインストールや ``sudo`` 設定については、各オペレーティング・システム向けの :doc:`インストール方法 </engine/installation/index>` をご覧ください。
+Docker のインストールや ``sudo`` 設定については、各オペレーティング・システム向けの :doc:`インストール方法 </get-docker>` をご覧ください。
 
 .. Environment variables
 
@@ -47,20 +75,26 @@ Docker のインストールや ``sudo`` 設定については、各オペレー
 環境変数
 ====================
 
-.. For easy reference, the following list of environment variables are supported by the docker command line:
+.. The following list of environment variables are supported by the docker command line:
 
-簡単に利用できるように、 ``docker`` コマンドラインは以下の環境変数をサポートしています。
+以下は、 docker コマンドラインでサポートされている環境変数の一覧です。
 
-..    DOCKER_CONFIG The location of your client configuration files.
-    DOCKER_CERT_PATH The location of your authentication keys.
-    DOCKER_DRIVER The graph driver to use.
-    DOCKER_HOST Daemon socket to connect to.
-    DOCKER_NOWARN_KERNEL_VERSION Prevent warnings that your Linux kernel is unsuitable for Docker.
-    DOCKER_RAMDISK If set this will disable ‘pivot_root’.
-    DOCKER_TLS_VERIFY When set Docker uses TLS and verifies the remote.
-    DOCKER_CONTENT_TRUST When set Docker uses notary to sign and verify images. Equates to --disable-content-trust=false for build, create, pull, push, run.
-    DOCKER_CONTENT_TRUST_SERVER The URL of the Notary server to use. This defaults to the same URL as the registry.
-    DOCKER_TMPDIR Location for temporary Docker files.
+.. list-table::
+   :header-rows: 1
+
+   * - 変数
+     - 説明
+   * - ``DOCKER_API_VERSION``
+     - デバッグ用に接続時の API バージョンを上書き（例： ``1.19`` ）
+   * - ``DOCKER_CERT_PATH``
+     - :ruby:`認証鍵 <authentication keys>` の場所。
+   * - ``
+     - 説
+   * - ``
+     - 説
+   * - ``
+     - 説
+
 
 * ``DOCKER_CONFIG`` クライアントの設定ファイルの場所。
 * ``DOCKER_CERT_PATH`` 認証鍵ファイルの場所。
