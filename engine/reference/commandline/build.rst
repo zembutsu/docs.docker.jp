@@ -2,6 +2,7 @@
 .. URL: https://docs.docker.com/engine/reference/commandline/build/
 .. SOURCE: 
    doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/engine/reference/commandline/build.md
       https://github.com/docker/cli/blob/master/docs/reference/commandline/build.md
 .. check date: 2022/02/26
 .. Commits on Aug 22, 2016 47ba76afb159273e35326bd0cb548e960c51fbc7

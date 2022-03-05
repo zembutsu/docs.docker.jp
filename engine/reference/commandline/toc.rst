@@ -21,4 +21,8 @@
    docker app <app_toc.rst>
    attach.rst
    build.rst
+   docker builder <builder_toc.rst>
+   docker buildx <buildx_toc.rst>
+   docker checkpoint <checkpoint.rst>
+   
 
