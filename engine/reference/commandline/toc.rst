@@ -24,5 +24,5 @@
    docker builder <builder_toc.rst>
    docker buildx <buildx_toc.rst>
    docker checkpoint <checkpoint.rst>
-   
+   docker compose <compose_toc.rst>
 
