@@ -25,4 +25,5 @@
    docker buildx <buildx_toc.rst>
    docker checkpoint <checkpoint.rst>
    docker compose <compose_toc.rst>
+   docker config <config_toc.rst>
 
