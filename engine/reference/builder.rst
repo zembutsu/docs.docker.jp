@@ -1310,7 +1310,7 @@ ADD には 2 つの形式があります。
 
 .. All new files and directories are created with a UID and GID of 0, unless the optional --chown flag specifies a given username, groupname, or UID/GID combination to request specific ownership of the content added. The format of the --chown flag allows for either username and groupname strings or direct integer UID and GID in any combination. Providing a username without groupname or a UID without GID will use the same numeric UID as the GID. If a username or groupname is provided, the container’s root filesystem /etc/passwd and /etc/group files will be used to perform the translation from name to integer UID or GID respectively. The following examples show valid definitions for the --chown flag:
 
-新しいファイルやディレクトリは、オプションの ``--chown`` フラグでユーザ名、グループ名、UID/GID の組み合わせて追加対象の権限指定リクエストを指定しない限り、 UID と GID が 0 として作成されます。 ``--chwon`` フラグの書式により、ユーザ名とグループ名の文字列の指定や、整数として直接 UID と GID のあらゆる組み合わせの指定ができます。ユーザ名かグループ名を指定すると、コンテナのルート・ファイルシステム上にある ``/etc/passwd`` と ``/etc/group`` ファイルを使い、その名前から適切な整数の UID や GID にそれぞれ変換する処理が行われます。以下は ``--chown`` フラグを使って適切に定義する例です。
+新しいファイルやディレクトリは、オプションの ``--chown`` フラグでユーザ名、グループ名、UID/GID の組み合わせて追加対象の権限指定リクエストを指定しない限り、 UID と GID が 0 として作成されます。 ``--chown`` フラグの書式により、ユーザ名とグループ名の文字列の指定や、整数として直接 UID と GID のあらゆる組み合わせの指定ができます。ユーザ名かグループ名を指定すると、コンテナのルート・ファイルシステム上にある ``/etc/passwd`` と ``/etc/group`` ファイルを使い、その名前から適切な整数の UID や GID にそれぞれ変換する処理が行われます。以下は ``--chown`` フラグを使って適切に定義する例です。
 
 ::
 
@@ -1475,7 +1475,7 @@ ADD には 2 つの形式があります。
 
 .. All new files and directories are created with a UID and GID of 0, unless the optional --chown flag specifies a given username, groupname, or UID/GID combination to request specific ownership of the copied content. The format of the --chown flag allows for either username and groupname strings or direct integer UID and GID in any combination. Providing a username without groupname or a UID without GID will use the same numeric UID as the GID. If a username or groupname is provided, the container’s root filesystem /etc/passwd and /etc/group files will be used to perform the translation from name to integer UID or GID respectively. The following examples show valid definitions for the --chown flag:
 
-新しいファイルやディレクトリは、オプションの ``--chown`` フラグでユーザ名、グループ名、UID/GID の組み合わせて追加対象の権限指定リクエストを指定しない限り、 UID と GID が 0 として作成されます。 ``--chwon`` フラグの書式により、ユーザ名とグループ名の文字列の指定や、整数として直接 UID と GID のあらゆる組み合わせの指定ができます。ユーザ名かグループ名を指定すると、コンテナのルート・ファイルシステム上にある ``/etc/passwd`` と ``/etc/group`` ファイルを使い、その名前から適切な整数の UID や GID にそれぞれ変換する処理が行われます。以下は ``--chown`` フラグを使って適切に定義する例です。
+新しいファイルやディレクトリは、オプションの ``--chown`` フラグでユーザ名、グループ名、UID/GID の組み合わせて追加対象の権限指定リクエストを指定しない限り、 UID と GID が 0 として作成されます。 ``--chown`` フラグの書式により、ユーザ名とグループ名の文字列の指定や、整数として直接 UID と GID のあらゆる組み合わせの指定ができます。ユーザ名かグループ名を指定すると、コンテナのルート・ファイルシステム上にある ``/etc/passwd`` と ``/etc/group`` ファイルを使い、その名前から適切な整数の UID や GID にそれぞれ変換する処理が行われます。以下は ``--chown`` フラグを使って適切に定義する例です。
 
 ::
 
