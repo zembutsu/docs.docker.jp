@@ -26,4 +26,5 @@
    docker checkpoint <checkpoint.rst>
    docker compose <compose_toc.rst>
    docker config <config_toc.rst>
+   docker container <container_toc.rst>
 
