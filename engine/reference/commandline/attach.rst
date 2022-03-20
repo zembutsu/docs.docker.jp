@@ -13,6 +13,12 @@
 docker attach
 =======================================
 
+.. seealso:: 
+
+   docker container attach
+      https://docs.docker.com/engine/reference/commandline/container_attach/
+
+
 .. sidebar:: 目次
 
    .. contents:: 
@@ -202,5 +208,5 @@ tty を有効化したコンテナにアタッチした状態（例： ``-t`` �
 
 .. seealso:: 
 
-   attach
+   docker attach
       https://docs.docker.com/engine/reference/commandline/attach/

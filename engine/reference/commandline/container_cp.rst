@@ -14,6 +14,12 @@
 docker container cp
 =======================================
 
+
+.. seealso:: 
+
+   :doc:`docker cp <cp>`
+
+
 .. sidebar:: 目次
 
    .. contents:: 

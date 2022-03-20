@@ -14,6 +14,11 @@
 docker container diff
 =======================================
 
+.. seealso:: 
+
+   :doc:`docker diff <diff>`
+
+
 .. sidebar:: 目次
 
    .. contents:: 
