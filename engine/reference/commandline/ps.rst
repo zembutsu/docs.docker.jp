@@ -1,42 +1,18 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/ps/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/ps.md
-   doc version: 1.12
-      https://github.com/docker/docker/commits/master/docs/reference/commandline/ps.md
-.. check date: 2016/06/16
-.. Commits on Jun 7, 2016 7c46ba02e694ae540866b29ebf0dab76e556cc13
+.. SOURCE:
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/engine/reference/commandline/ps.md
+      https://github.com/docker/docker.github.io/blob/master/_data/engine-cli/docker_ps.yaml
+.. check date: 2022/03/21
+.. Commits on Aug 22, 2021 304f64ccec26ef1810e90d385d5bae5fab3ce6f4
 .. -------------------------------------------------------------------
 
-.. ps
+.. docker ps
 
 =======================================
-ps
+docker ps
 =======================================
-
-.. code-block:: bash
-
-   使い方: docker ps [オプション]
-   
-   コンテナの一覧
-   
-     -a, --all             全てのコンテナを表示 (デフォルトは実行中コンテナのみ表示)
-     -f, --filter=[]       以下の状況に応じて出力をフィルタ:
-                           - exited=<整数> 終了コードを <整数> で指定
-                           - label=<key> または label=<key>=<value>
-                           - status=(created|restarting|running|paused|exited)
-                           - name=<文字列> コンテナ名
-                           - id=<ID> コンテナ ID
-                           - before=(<コンテナ名>|<コンテナID>)
-                           - since=(<コンテナ名>|<コンテナID>)
-                           - ancestor=(<イメージ名>[:タグ]|<イメージID>|<イメージ@ダイジェスト値>) - 特定のイメージや子孫から作成されたコンテナ
-                           - volume=(<ボリューム名>|<マウント・ポイント>)
-     --format=[]           Go テンプレートを使いコンテナの表示を整形
-     --help                使い方の表示
-     -l, --latest          最後に作成したコンテナを表示 (どのような状態でも)
-     -n=-1                 直近で作成した n コンテナを表示 (どのような状態でも)
-     --no-trunc            トランケート (truncate) を出力しない
-     -q, --quiet           整数値の ID のみ表示
-     -s, --size            合計ファイルサイズを表示
 
 .. sidebar:: 目次
 
@@ -44,6 +20,75 @@ ps
        :depth: 3
        :local:
 
+.. _docker_ps-description:
+
+説明
+==========
+
+.. List containers
+
+コンテナを一覧表示します。
+
+.. _docker_ps-usage:
+
+使い方
+==========
+
+.. code-block:: bash
+
+   $ docker ps [OPTIONS]
+
+.. For example uses of this command, refer to the examples section below.
+
+コマンドの使用例は、以下の :ref:`使用例のセクション <docker_ps-examples>` をご覧ください。
+
+.. _docker_ps-options:
+
+オプション
+==========
+
+.. list-table::
+   :header-rows: 1
+
+   * - 名前, 省略形
+     - デフォルト
+     - 説明
+   * - ``--all`` , ``-a``
+     - 
+     - 全てのコンテナを表示（デフォルトは実行中のコンテナだけ表示）
+   * - ``--filter`` , ``-f``
+     - 
+     - 指定した状態に基づき、出力をフィルタ
+   * - ``--format``
+     - 
+     - Go テンプレートを使ってコンテナの出力を成形
+   * - ``--last`` , ``-n``
+     - ``-1``
+     - 直近に作成したコンテナを n 個表示（全ての状態を含む）
+   * - ``--latest`` , ``-l``
+     - 
+     - 最後に作成したコンテナを表示（全ての状態を含む）
+   * - ``--no-trunc``
+     - 
+     - 表示を :ruby:`省略しない <truncate>`
+   * - ``--quiet`` , ``-q``
+     - 
+     - コンテナ ID のみ表示
+   * - ``--size`` , ``-s``
+     - 
+     - 合計ファイル容量を表示
+
+
+.. Examples
+.. _docker_ps-examples:
+
+使用例
+==========
+
+.. Prevent truncating output
+.. _docker_ps-prevent-truncating-output:
+出力を省略しない
+--------------------
 
 .. Running docker ps --no-trunc showing 2 linked containers.
 
@@ -56,20 +101,53 @@ ps
    4c01db0b339c        ubuntu:12.04                 bash                   17 seconds ago       Up 16 seconds       3300-3310/tcp       webapp
    d7886598dbe2        crosbymichael/redis:latest   /redis-server --dir    33 minutes ago       Up 33 minutes       6379/tcp            redis,webapp/db
 
+.. Show both running and stopped containers
+.. _docker_ps-show-both-running-and-stopped-containers:
+実行中・停止中、両方のコンテナを表示
+----------------------------------------
+
+.. The docker ps command only shows running containers by default. To see all containers, use the -a (or --all) flag:
+
 .. docker ps will show only running containers by default. To see all containers: docker ps -a
 
-デフォルトの ``docker ps`` は実行中のコンテナだけ表示します。全てのコンテナを表示するには ``docker ps -a`` を使います。
+デフォルトの ``docker ps`` は、実行中のコンテナだけ表示します。全てのコンテナを表示するには ``-a`` （または ``--all`` ） フラグを使います。
 
-.. docker ps will group exposed ports into a single range if possible. E.g., a container that exposes TCP ports 100, 101, 102 will display 100-102/tcp in the PORTS column.
+.. code-block:: bash
+
+   $ docker ps -a
+
+.. docker ps groups exposed ports into a single range if possible. E.g., a container that exposes TCP ports 100, 101, 102 displays 100-102/tcp in the PORTS column.
 
 ``docker ps`` は、可能であれば公開ポートのグループを範囲で表示します。例えば、コンテナが ``100、101、102`` を公開している場合、 ``PORT`` 列に ``100-102/tcp`` と表示します。
 
-.. Filtering
+.. Show disk usage by container
+.. _docker_ps-show-disk-usage-by-container:
+コンテナによるディスク使用量を表示
+----------------------------------------
 
-.. _ps-filtering:
+.. The docker ps -s command displays two different on-disk-sizes for each container:
+
+``docker ps -s`` コマンドは、各コンテナに対し、2つの異なるディスク上の容量を表示します。
+
+.. code-block:: bash
+
+   $ docker ps -s
+   CONTAINER ID   IMAGE          COMMAND                  CREATED        STATUS       PORTS   NAMES        SIZE                                                                                      SIZE
+   e90b8831a4b8   nginx          "/bin/bash -c 'mkdir "   11 weeks ago   Up 4 hours           my_nginx     35.58 kB (virtual 109.2 MB)
+   00c6131c5e30   telegraf:1.5   "/entrypoint.sh"         11 weeks ago   Up 11 weeks          my_telegraf  0 B (virtual 209.5 MB)
+
+* 「size」情報は、（ディスク上の）データ容量を表示します。これは、各コンテナの「書き込み可能な」レイヤが使用している容量です。
+* 「virtual size」は、コンテナと書き込み可能なレイヤが使用している、読み込み専用の「イメージ」データの合計ディスク使用量です。
+
+詳しい情報は、 :ref:`ディスク上のコンテナ容量 <container-size-on-disk>` をご覧ください。
+
+.. Filtering
+.. _docker_ps-filtering:
 
 フィルタリング
-====================
+--------------------
+
+
 
 .. The filtering flag (-f or --filter) format is a key=value pair. If there is more than one filter, then pass multiple flags (e.g. --filter "foo=bar" --filter "bif=baz")
 
@@ -79,36 +157,44 @@ ps
 
 現在、以下のフィルタをサポートします。
 
-..    id (container’s id)
-    label (label=<key> or label=<key>=<value>)
-    name (container’s name)
-    exited (int - the code of exited containers. Only useful with --all)
-    status (created|restarting|running|paused|exited|dead)
-    ancestor (<image-name>[:<tag>], <image id> or <image@digest>) - filters containers that were created from the given image or a descendant.
-   before (container's id or name) - filters containers created before given id or name
-   since (container's id or name) - filters containers created since given id or name
-   isolation (default|process|hyperv) (Windows daemon only)
-   volume (volume name or mount point) - filters containers that mount volumes.
-   network (network id name) - filters containers connected to the provided network
+.. list-table::
+   :header-rows: 1
 
-* id（コンテナの ID）
-* label（ ``label=<key>`` か ``label=<key>=<value>`` ）
-* name（コンテナの名前）
-* exited（整数値 - コンテナの終了コード。実用的なのは ``--all``）
-* status（created|restarting|running|paused|exited|dead）
-* ancestor（ ``<イメージ名>[:<タグ>]`` 、 ``<イメージID>`` 、 ``<イメージ@digest>`` ） - 特定のイメージから作られた子コンテナを作成します。
-* before（コンテナ ID か名前） - 指定した ID か名前よりも前に作成したコンテナでフィルタ
-* since（コンテナ ID か名前） - 指定した ID か名前よりも後に作成したコンテナでフィルタ
-* isolation （default|process|hyperv）（Windows デーモンのみ）
-* volume（ボリューム名かマウントポイント） - コンテナがマウントしているボリュームでフィルタ
-* network（ネットワーク ID か名前）- コンテナが接続しているネットワークでフィルタ
+   * - フィルタ
+     - 説明
+   * - ``id``
+     - コンテナの ID
+   * - ``name``
+     - コンテナの名前
+   * - ``label``
+     - キーまたはキーバリューの組み合わせで表す任意の文字。 ``<key>`` または ``<key>=<value>`` で表す
+   * - ``exited``
+     - コンテナの終了コードを表す整数値。実用的なのは ``--all`` のみ
+   * - ``status``
+     - ``created`` 、 ``restarting`` 、 ``running`` 、 ``removing`` 、 ``paused`` 、 ``exited`` 、 ``dead`` のどれか
+   * - ``ansestor``
+     - 指定したイメージを :ruby:`原型 <ancestor>` として共有するコンテナをフィルタ。 ``<image-name>[:<tag>]`` 、 ``<image id>`` 、 ``<image@digest>`` として表す。
+   * - ``before`` か ``since`` 
+     - 指定したコンテナ ID かコンテナ名で、コンテナが作成前か作成後でフィルタ
+   * - ``volume``
+     - 実行中のコンテナがマウントしているボリューム、または、バインドマウントでフィルタ
+   * - ``network``
+     - 実行中のコンテナが接続しているネットワークでフィルタ
+   * - ``publish`` か ``exopse``
+     - コンテナが :ruby:`公開 <publish>` もしくは :ruby:`露出 <expose>` しているポートを指定してフィルタ。 ``<port>[/<proto>]`` か ``<startport-endport>/[<proto>]`` として表す
+   * - ``health``
+     - ヘルスチェック状態に基づきコンテナをフィルタ。 ``starting`` 、 ``healthy`` 、 ``unhealthy`` 、 ``none`` のどれか
+   * - ``isolation``
+     - Windows デーモンのみ。 ``default`` 、 ``process`` 、 ``hyperv`` のどれか
+   * - ``is-task``
+     - サービスに対する "task" かどうかでコンテナをフィルタ。ブール値のオプション（ ``true`` か ``false`` ）
+
 
 .. Label
-
-.. _ps-label:
+.. _docker_ps-label:
 
 label
-----------
+^^^^^^^^^^
 
 .. The label filter matches containers based on the presence of a label alone or a label and a value.
 
@@ -136,11 +222,10 @@ label
    d85756f57265        busybox             "top"               About a minute ago   Up About a minute                       high_albattani
 
 .. Name
-
-.. _ps-name:
+.. _docker_ps-name:
 
 name
-----------
+^^^^^^^^^^
 
 .. The name filter matches on all or part of a container’s name.
 
@@ -169,9 +254,10 @@ name
    673394ef1d4c        busybox             "top"               38 minutes ago      Up 38 minutes                           nostalgic_shockley
 
 .. Exited
+.. _docker_ps-exited:
 
 exited
-----------
+^^^^^^^^^^
 
 .. The exited filter matches containers by exist status code. For example, to filter for containers that have exited successfully:
 
@@ -185,17 +271,45 @@ exited
    106ea823fe4e        fedora:latest     /bin/sh -c 'bash -l'   2 weeks ago         Exited (0) 2 weeks ago                              determined_albattani
    48ee228c9464        fedora:20         bash                   2 weeks ago         Exited (0) 2 weeks ago                              tender_torvalds
 
+.. Filter by exit signal
+.. _docker_ps-filter-by-exit-signal:
+
+終了シグナルでフィルタ
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. You can use a filter to locate containers that exited with status of 137 meaning a SIGKILL(9) killed them.
+
+コンテナの終了ステータスでフィルタできます。例えば、ステータス ``137`` とは、 ``SIGKILL(9)`` による強制停止を意味します。
+
+.. code-block:: bash
+
+   $ docker ps -a --filter 'exited=137'
+   CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS                       PORTS               NAMES
+   b3e1c0ed5bfe        ubuntu:latest       "sleep 1000"           12 seconds ago      Exited (137) 5 seconds ago                       grave_kowalevski
+   a2eb5558d669        redis:latest        "/entrypoint.sh redi   2 hours ago         Exited (137) 2 hours ago                         sharp_lalande
+
+.. Any of these events result in a 137 status:
+
+以下いずれのイベントも、ステータスは ``137`` です。
+
+..    the init process of the container is killed manually
+    docker kill kills the container
+    Docker daemon restarts which kills all running containers
+
+* コンテナの ``init`` プロセスを手動で強制停止
+* ``docker kill`` でコンテナを強制停止
+* Docker デーモンが全ての実行中コンテナを停止し、再起動
+
 
 .. Status
+.. _docker_ps-status
 
 status
-----------
+^^^^^^^^^^
 
-.. The status filter matches containers by status. You can filter using created, restarting, running, paused and exited. For example, to filter for running containers:
+.. The status filter matches containers by status. You can filter using created, restarting, running, removing, paused, exited and dead. For example, to filter for running containers:
 
-.. The status filter matches containers by status. You can filter using created, restarting, running, paused, exited and dead. For example, to filter for running containers:
-
-``status`` はコンテナの状態が一致するものでフィルタします。フィルタとして使えるのは ``created`` 、 ``restarting`` 、 ``running`` 、 ``paused`` 、 ``exited`` 、 ``dead`` です。例えば、 ``running`` （実行中）のコンテナでフィルタするには、次のようにします。
+``status`` はコンテナの状態が一致するものでフィルタします。フィルタとして使えるのは ``created`` 、 ``restarting`` 、 ``running`` 、 ``removing`` 、 ``paused`` 、 ``exited`` 、 ``dead`` です。例えば、 ``running`` （実行中）のコンテナでフィルタするには、次のようにします。
 
 .. code-block:: bash
 
@@ -216,13 +330,14 @@ status
    673394ef1d4c        busybox             "top"               About an hour ago   Up About an hour (Paused)                       nostalgic_shockley
 
 .. Ancestor
+.. _docker_ps-ancestor:
 
 ancestor
-----------
+^^^^^^^^^^
 
 .. The ancestor filter matches containers based on its image or a descendant of it. The filter supports the following image representation:
 
-``ancestor`` （先祖）フィルタはコンテナのベースとなったイメージや、その派生に一致するものです。フィルタは以下の形式で指定できます。
+``ancestor`` （原型）フィルタとは、コンテナのベースとなったイメージや、その派生に一致するものです。フィルタは以下の形式で指定できます。
 
 ..    image
     image:tag
@@ -279,10 +394,16 @@ ancestor
    CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS              PORTS               NAMES
    82a598284012        ubuntu:12.04.5      "top"               3 minutes ago        Up 3 minutes                            sleepy_bose
 
+.. Create time
+.. _docker_ps-create-time:
+
+作成時間
+^^^^^^^^^^
+
 .. Before
 
 before
-----------
+##########
 
 .. The before filter shows only containers created before the container with given id or name. For example, having these containers created:
 
@@ -310,7 +431,7 @@ before
 .. Since
 
 since
-----------
+##########
 
 .. The since filter shows only containers created since the container with given id or name. For example, with the same containers as in before filter:
 
@@ -324,9 +445,10 @@ since
    4aace5031105        busybox     "top"         10 minutes ago      Up 10 minutes                           focused_hamilton
 
 .. Volume
+.. _docker_ps-volume:
 
 volume
-----------
+^^^^^^^^^^
 
 .. The volume filter shows only containers that mount a specific volume or have a volume mounted in a specific path:
 
@@ -343,9 +465,10 @@ volume
    9c3527ed70ce        remote-volume
 
 .. Network
+.. _docker_ps-network:
 
 network
-----------
+^^^^^^^^^^
 
 .. The network filter shows only containers that has endpoints on the provided network name or id
 
@@ -377,12 +500,55 @@ network
    CONTAINER ID        IMAGE       COMMAND       CREATED             STATUS              PORTS               NAMES
    9d4893ed80fe        ubuntu      "top"         10 minutes ago      Up 10 minutes                           test1
 
-.. Formatting
+.. publish and expos
+.. _docker_ps-publish-and-expose:
+publish と expose
+--------------------
 
-.. _ps-formatting:
+.. The publish and expose filters show only containers that have published or exposed port with a given port number, port range, and/or protocol. The default protocol is tcp when not specified.
+
+``publish`` と ``expose`` フィルタは、指定したポート番号、ポート範囲、そしてプロトコルで、 :ruby:`公開 <publish>` もしくは :ruby:`露出 <expose>` しているコンテナのみフィルタして表示します。プロトコルの指定がなければ、デフォルトは ``tcp`` です。
+
+.. The following filter matches all containers that have published port of 80:
+
+以下のフィルタはポート 80 を :ruby:`公開している <publish>` フィルタに一致する、全てのコンテナを表示します。
+
+.. code-block:: bash
+
+   $ docker run -d --publish=80 busybox top
+   $ docker run -d --expose=8080 busybox top
+   $ docker ps -a
+   CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                   NAMES
+   9833437217a5        busybox             "top"               5 seconds ago       Up 4 seconds        8080/tcp                dreamy_mccarthy
+   fc7e477723b7        busybox             "top"               50 seconds ago      Up 50 seconds       0.0.0.0:32768->80/tcp   admiring_roentgen
+   $ docker ps --filter publish=80
+   CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS              PORTS                   NAMES
+   fc7e477723b7        busybox             "top"               About a minute ago   Up About a minute   0.0.0.0:32768->80/tcp   admiring_roentgen
+
+.. The following filter matches all containers that have exposed TCP port in the range of 8000-8080:
+
+TCP ポート ``8000-8080`` の範囲で :ruby:`露出している <expose>` フィルタに一致する、全てのコンテナを表示します。
+
+.. code-block:: bash
+
+   $ docker ps --filter expose=8000-8080/tcp
+   CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+   9833437217a5        busybox             "top"               21 seconds ago      Up 19 seconds       8080/tcp            dreamy_mccarthy
+
+.. The following filter matches all containers that have exposed UDP port 80:
+
+UDP ポート ``80`` を :ruby:`露出している <expose>` フィルタに一致する、全てのコンテナを表示します。
+
+.. code-block:: bash
+
+   $ docker ps --filter publish=80/udp
+   CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+.. Formatting
+.. _docker_ps-formatting:
 
 フォーマット
-====================
+--------------------
 
 .. The formatting option (--format) will pretty-print container output using a Go template.
 
@@ -419,8 +585,10 @@ Go テンプレートで置き換え可能な一覧は、次の通りです：
      - コンテナが起動してからの時間
    * - ``.Ports``
      - 公開しているポート
+   * - ``.State``
+     - コンテナの状態（例： ``created`` 、 ``running`` 、 ``exited``）
    * - ``.Status``
-     - コンテナのステータス
+     - 稼動期間とヘルス・ステータスに関するコンテナのステータス
    * - ``.Size``
      - コンテナのディスク容量
    * - ``.Names``
@@ -429,6 +597,10 @@ Go テンプレートで置き換え可能な一覧は、次の通りです：
      - コンテナに割り当てられている全てのラベル
    * - ``.Label``
      - コンテナに割り当てられた特定のラベル。例： ``{{.Label "com.docker.swarm.cpu"}}``
+   * - ``.Mounts``
+     - コンテナ内にマウントしているボリューム名
+   * - ``.Networks``
+     - コンテナに接続しているネットワーク名
 
 .. When using the --format option, the ps command will either output the data exactly as the template declares or, when using the table directive, will include column headers as well.
 
@@ -459,7 +631,19 @@ Go テンプレートで置き換え可能な一覧は、次の通りです：
    c1d3b0166030        com.docker.swarm.node=debian,com.docker.swarm.cpu=6
    41d50ecd2f57        com.docker.swarm.node=fedora,com.docker.swarm.cpu=3,com.docker.swarm.storage=ssd
 
+親コマンド
+==========
+
+.. list-table::
+   :header-rows: 1
+
+   * - コマンド
+     - 説明
+   * - :doc:`docker <docker>`
+     - Docker CLI の基本コマンド
+
+
 .. seealso:: 
 
-   ps
+   docker ps
       https://docs.docker.com/engine/reference/commandline/ps/

@@ -345,6 +345,20 @@ kernel のサポートに関する警告
 
 :doc:`各リソースの制限 </config/containers/resource_constraints>` をするには、各オペレーティングシステムごとに有効化する必要があります。詳細は :ref:`こちら <your-kernel-does-not-support-cgroup-swap-limit-capabilities>` です。この制限が不要の場合、これらのメッセージは無視できます。
 
+
+親コマンド
+==========
+
+.. list-table::
+   :header-rows: 1
+
+   * - コマンド
+     - 説明
+   * - :doc:`docker <docker>`
+     - Docker CLI の基本コマンド
+
+
+
 .. seealso:: 
 
    docker info
