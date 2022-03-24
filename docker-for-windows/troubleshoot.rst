@@ -63,7 +63,7 @@
 
 .. _win-diagnose-problems-send-feedback-and-create-github-issues:
 
-問題の診断、フィードバック送信、GItHub issues の作成
+問題の診断、フィードバック送信、GitHub issues の作成
 =======================================================
 
 
@@ -528,7 +528,7 @@ Docker Desktop は（まだ） IPv6 をサポートしていません。
 
 .. Some users have reported problems connecting to Docker Hub on the Docker Desktop stable version. (See GitHub issue 22567.)
 
-Docker Desktop 安定版（stable）を使っているユーザ数名から、 Docker Hub への接続問題が報告されています。 `GItHub issue [22567] <https://github.com/moby/moby/issues/22567>`_ を御覧ください）
+Docker Desktop 安定版（stable）を使っているユーザ数名から、 Docker Hub への接続問題が報告されています。 `GitHub issue [22567] <https://github.com/moby/moby/issues/22567>`_ を御覧ください）
 
 .. Here is an example command and error message:
 
