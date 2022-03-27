@@ -1,16 +1,16 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/dockerd/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/dockerd.md
-   doc version: 1.12
-      https://github.com/docker/docker/commits/master/docs/reference/commandline/dockerd.md
-.. check date: 2016/06/14
-.. Commits on Jun 14, 2016 7b2e5216b89b4c454d67473f1fa06c52a4624680
+.. SOURCE:
+   doc version: 20.10
+      https://github.com/docker/cli/blob/master/docs/reference/commandline/dockerd.md
+.. check date: 2022/03/27
+.. Commits on Mar 27, 2022 dd7397342af52b1140a3a8d48a66a4451d2b246f
 .. -------------------------------------------------------------------
 
-.. daemon
+.. dockerd daemon
 
 =======================================
-daemon
+dockerd daemon
 =======================================
 
 .. sidebar:: 目次
@@ -21,83 +21,143 @@ daemon
 
 .. code-block:: bash
 
-   使い方: dockerd [オプション]
+   Usage: dockerd COMMAND
    
-   Linux コンテナの自給自足ランタイム
+   A self-sufficient runtime for containers.
    
-   オプション:
-     --api-cors-header=""                   リモート API の CORS ヘッダをセットする
-     --authorization-plugin=[]              読み込む認証プラグインを指定
-     -b, --bridge=""                        コンテナをネットワーク・ブリッジにアタッチ
-     --bip=""                               ネットワーク・ブリッジ IP の指定
-     --cgroup-parent=                       全てのコンテナの親 cgroup を指定
-     --cluster-store=""                     分散ストレージバックエンドの URL
-     --cluster-advertise=""                 クラスタ上のデーモン・インスタンスのアドレス
-     --cluster-store-opt=map[]              クラスタのオプションを指定
-     --config-file=/etc/docker/daemon.json  デーモン設定ファイル
-     --containerd                           containerd ソケットのパス
-     -D, --debug                            デバッグ・モードの有効化
-     --default-gateway=""                   コンテナのデフォルト・ゲートウェイ IPv4 アドレス
-     --default-gateway-v6=""                コンテナのデフォルト・ゲートウェイ IPv6 アドレス
-     --dns=[]                               DNS サーバの指定
-     --dns-opt=[]                           DNS オプションの指定
-     --dns-search=[]                        DNS の検索に使うドメイン（search domain）
-     --default-ulimit=[]                    コンテナのデフォルト ulimit 設定を指定
-     --exec-opt=[]                          実行時のオプションを指定
-     --exec-root="/var/run/docker"          実行ステート・ファイルのルート・ディレクトリ
-     --fixed-cidr=""                        IP アドレスの IPv4 サブネットを固定
-     --fixed-cidr-v6=""                     IP アドレスの IPv6 サブネットを固定
-     -G, --group="docker"                   unix ソケット用のグループ
-     -g, --graph="/var/lib/docker"          Docker 実行時の Docker ルート
-     -H, --host=[]                          接続するデーモンのソケット
-     --help                                 使い方を表示
-     --icc=true                             コンテナ内部通信（inter-container communication）を有効化
-     --insecure-registry=[]                 安全ではないレジストリとの通信を有効化
-     --ip=0.0.0.0                           コンテナのポートがデフォルトでバインドする IP
-     --ip-forward=true                      net.ipv4.ip_forward の有効化
-     --ip-masq=true                         IP マスカレードの有効化
-     --iptables=true                        iptables のルール追加の有効化
-     --ipv6                                  IPv6 ネットワークの有効化
-     -l, --log-level="info"                 ログ記録レベルの設定
-     --label=[]                             デーモンにキー=バリューのラベルを指定
-     --log-driver="json-file"               デフォルトのコンテナのログ記録ドライバ
-     --log-opt=[]                           ログドライバのオプションを指定
-     --mtu=0                                コンテナ・ネットワークの MTU を指定
-     --max-concurrent-downloads=3           pull ごとの最大同時ダウンロード数を指定
-     --max-concurrent-uploads=5             push ごとの最大同時アップロード数を指定
-     --disable-legacy-registry              レガシーのレジストリには接続しない
-     -p, --pidfile="/var/run/docker.pid"    デーモン PID ファイル用のパス
-     --registry-mirror=[]                   Docker レジストリの優先ミラー
-     --add-runtime=[]                       追加 OCI 互換ランタイムの登録
-     -s, --storage-driver=""                使用するストレージ・ドライバ
-     --selinux-enabled                      SELinux サポートの有効化
-     --storage-opt=[]                       ストレージ・ドライバのオプションを指定
-     --tls                                  TLSを使用、--tlsverify を含む
-     --tlscacert="~/.docker/ca.pem"         この CA で署名された証明書のみ信頼
-     --tlscert="~/.docker/cert.pem"         TLS 証明書ファイルのパス
-     --tlskey="~/.docker/key.pem"           TLS 鍵ファイルのパス
-     --tlsverify                            TLS でリモート認証
-     --userns-remap="default"               ユーザ名前空間の再マッピングを有効化
-     --userland-proxy=true                  ループバック通信用に userland プロキシを使う
+   Options:
+         --add-runtime runtime                   Register an additional OCI compatible runtime (default [])
+         --allow-nondistributable-artifacts list Allow push of nondistributable artifacts to registry
+         --api-cors-header string                Set CORS headers in the Engine API
+         --authorization-plugin list             Authorization plugins to load
+         --bip string                            Specify network bridge IP
+     -b, --bridge string                         Attach containers to a network bridge
+         --cgroup-parent string                  Set parent cgroup for all containers
+         --config-file string                    Daemon configuration file (default "/etc/docker/daemon.json")
+         --containerd string                     containerd grpc address
+         --containerd-namespace string           Containerd namespace to use (default "moby")
+         --containerd-plugins-namespace string   Containerd namespace to use for plugins (default "plugins.moby")
+         --cpu-rt-period int                     Limit the CPU real-time period in microseconds for the
+                                                 parent cgroup for all containers
+         --cpu-rt-runtime int                    Limit the CPU real-time runtime in microseconds for the
+                                                 parent cgroup for all containers
+         --cri-containerd                        start containerd with cri
+         --data-root string                      Root directory of persistent Docker state (default "/var/lib/docker")
+     -D, --debug                                 Enable debug mode
+         --default-address-pool pool-options     Default address pools for node specific local networks
+         --default-cgroupns-mode string          Default mode for containers cgroup namespace ("host" | "private") (default "host")
+         --default-gateway ip                    Container default gateway IPv4 address
+         --default-gateway-v6 ip                 Container default gateway IPv6 address
+         --default-ipc-mode string               Default mode for containers ipc ("shareable" | "private") (default "private")
+         --default-runtime string                Default OCI runtime for containers (default "runc")
+         --default-shm-size bytes                Default shm size for containers (default 64MiB)
+         --default-ulimit ulimit                 Default ulimits for containers (default [])
+         --dns list                              DNS server to use
+         --dns-opt list                          DNS options to use
+         --dns-search list                       DNS search domains to use
+         --exec-opt list                         Runtime execution options
+         --exec-root string                      Root directory for execution state files (default "/var/run/docker")
+         --experimental                          Enable experimental features
+         --fixed-cidr string                     IPv4 subnet for fixed IPs
+         --fixed-cidr-v6 string                  IPv6 subnet for fixed IPs
+     -G, --group string                          Group for the unix socket (default "docker")
+         --help                                  Print usage
+     -H, --host list                             Daemon socket(s) to connect to
+         --host-gateway-ip ip                    IP address that the special 'host-gateway' string in --add-host resolves to.
+                                                 Defaults to the IP address of the default bridge
+         --icc                                   Enable inter-container communication (default true)
+         --init                                  Run an init in the container to forward signals and reap processes
+         --init-path string                      Path to the docker-init binary
+         --insecure-registry list                Enable insecure registry communication
+         --ip ip                                 Default IP when binding container ports (default 0.0.0.0)
+         --ip-forward                            Enable net.ipv4.ip_forward (default true)
+         --ip-masq                               Enable IP masquerading (default true)
+         --iptables                              Enable addition of iptables rules (default true)
+         --ip6tables                             Enable addition of ip6tables rules (default false)
+         --ipv6                                  Enable IPv6 networking
+         --label list                            Set key=value labels to the daemon
+         --live-restore                          Enable live restore of docker when containers are still running
+         --log-driver string                     Default driver for container logs (default "json-file")
+     -l, --log-level string                      Set the logging level ("debug"|"info"|"warn"|"error"|"fatal") (default "info")
+         --log-opt map                           Default log driver options for containers (default map[])
+         --max-concurrent-downloads int          Set the max concurrent downloads for each pull (default 3)
+         --max-concurrent-uploads int            Set the max concurrent uploads for each push (default 5)
+         --max-download-attempts int             Set the max download attempts for each pull (default 5)
+         --metrics-addr string                   Set default address and port to serve the metrics api on
+         --mtu int                               Set the containers network MTU
+         --network-control-plane-mtu int         Network Control plane MTU (default 1500)
+         --no-new-privileges                     Set no-new-privileges by default for new containers
+         --node-generic-resource list            Advertise user-defined resource
+         --oom-score-adjust int                  Set the oom_score_adj for the daemon (default -500)
+     -p, --pidfile string                        Path to use for daemon PID file (default "/var/run/docker.pid")
+         --raw-logs                              Full timestamps without ANSI coloring
+         --registry-mirror list                  Preferred Docker registry mirror
+         --rootless                              Enable rootless mode; typically used with RootlessKit
+         --seccomp-profile string                Path to seccomp profile
+         --selinux-enabled                       Enable selinux support
+         --shutdown-timeout int                  Set the default shutdown timeout (default 15)
+     -s, --storage-driver string                 Storage driver to use
+         --storage-opt list                      Storage driver options
+         --swarm-default-advertise-addr string   Set default address or interface for swarm advertised address
+         --tls                                   Use TLS; implied by --tlsverify
+         --tlscacert string                      Trust certs signed only by this CA (default "~/.docker/ca.pem")
+         --tlscert string                        Path to TLS certificate file (default "~/.docker/cert.pem")
+         --tlskey string                         Path to TLS key file (default "~/.docker/key.pem")
+         --tlsverify                             Use TLS and verify the remote
+         --userland-proxy                        Use userland proxy for loopback traffic (default true)
+         --userland-proxy-path string            Path to the userland proxy binary
+         --userns-remap string                   User/Group setting for user namespaces
+         --validate                              Validate daemon configuration and exit
+     -v, --version                               Print version information and quit
 
 .. Options with [] may be specified multiple times.
 
 [] が付いているオプションは、複数回指定できます。
 
+
+.. Description
+.. _dockerd_description:
+説明
+==========
+
 .. dockerd is the persistent process that manages containers. Docker uses different binary for the daemon and client. To run the daemon you type dockerd.
 
 dockerd はコンテナを管理するために常駐するプロセスです。Docker はデーモンとクライアントで異なるバイナリを使います。デーモンを起動するには ``dockerd`` を入力します。
 
-.. To run the daemon with debug output, use dockerd -D.
+.. To run the daemon with debug output, use dockerd --debug or add "debug": true to the daemon.json file.
 
-デーモンでデバッグ出力を行うには、 ``dockerd -D`` を使います。
+デーモンにデバッグ情報を出力するには、 ``dockerd --debug`` を使って実行するか、 :ruby:`daemon.json ファイル <daemon-configuration-file>` に ``"debug": true`` を追加します。
+
+.. Environment variables
+.. _dockerd_environment-variables:
+環境変数
+----------
+
+.. For easy reference, the following list of environment variables are supported by the dockerd command line:
+
+簡単なリファレンスとして、 ``dockerd`` コマンドラインは以下の環境変数をサポートします。
+
+..    DOCKER_DRIVER The graph driver to use.
+    DOCKER_NOWARN_KERNEL_VERSION Prevent warnings that your Linux kernel is unsuitable for Docker.
+    DOCKER_RAMDISK If set this will disable ‘pivot_root’.
+    DOCKER_TMPDIR Location for temporary Docker files.
+    MOBY_DISABLE_PIGZ Do not use unpigz to decompress layers in parallel when pulling images, even if it is installed.
+
+* ``DOCKER_DRIVER`` 使用するグラフ ドライバ
+* ``DOCKER_NOWARN_KERNEL_VERSION`` Linux カーネルが Docker に不適当でも警告を表示しない
+* ``DOCKER_RAMDISK`` 設定すると、「pivot_root」を無効化
+* ``DOCKER_TMPDIR`` 一時的な Docker ファイルの場所
+* ``MOBY_DISABLE_PIGZ`` イメージの取得時、並列レイヤ圧縮には ``unpigz`` がインストールされていても使用しない
+
+.. Examples
+使用例
+==========
 
 .. Daemon socket option
-
 .. _daemon-socket-option:
 
 デーモン・ソケットのオプション
-==============================
+------------------------------
 
 .. The Docker daemon can listen for Docker Remote API requests via three different types of Socket: unix, tcp, and fd.
 
@@ -115,7 +175,7 @@ Docker デーモンにリモートからの接続を考えているのであれ�
 
 .. note::
 
-   HTTP 暗号化ソケットを使う時は、TLS 1.0 以上でサポートされているプロトコル SSLv3 以上をお使いください。以下のバージョンはセキュリティ上の理由によりサポートされていません。
+   HTTP 暗号化ソケットを使う時は、TLS 1.0 以上をお使いください。プロトコル SSLv3 未満のバージョンは、セキュリティ上の理由によりサポートされていません。
 
 .. On Systemd based systems, you can communicate with the daemon via Systemd socket activation, use dockerd -H fd://. Using fd:// will work perfectly for most setups but you can also specify individual sockets: dockerd -H fd://3. If the specified socket activated files aren’t found, then Docker will exit. You can find examples of using Systemd socket activation with Docker and Systemd in the Docker source tree.
 
@@ -137,10 +197,12 @@ Docker クライアントは ``DOCKER_HOST`` 環境変数か ``-H`` フラグで
 .. code-block:: bash
 
    $ docker -H tcp://0.0.0.0:2375 ps
-   # あるいは
+
+
+.. code-block:: bash
+
    $ export DOCKER_HOST="tcp://0.0.0.0:2375"
    $ docker ps
-   # どちらも同じです
 
 .. Setting the DOCKER_TLS_VERIFY environment variable to any value other than the empty string is equivalent to setting the --tlsverify flag. The following are equivalent:
 
@@ -157,8 +219,21 @@ Docker クライアントは ``DOCKER_HOST`` 環境変数か ``-H`` フラグで
 
 Docker クライアントは ``HTTP_PROXY`` 、 ``HTTPS_PROXY`` 、 ``NO_PROXY`` 環境変数を（あるいは小文字でも）使えます。 ``HTTPS_PROXY`` は ``HTTP_PROXY`` よりも上位です。
 
-.. Bind Docker to another host/port or a Unix socket
+.. The Docker client supports connecting to a remote daemon via SSH:
 
+Docker クライアントは、リモートのデーモンに SSH を経由した接続をサポートしています。
+
+.. code-block:: bash
+
+   $ docker -H ssh://me@example.com:22 ps
+   $ docker -H ssh://me@example.com ps
+   $ docker -H ssh://example.com ps
+
+.. To use SSH connection, you need to set up ssh so that it can reach the remote host with public key authentication. Password authentication is not supported. If your key is protected with passphrase, you need to set up ssh-agent.
+
+SSH 接続を使うには、リモートホストに公開鍵認証による ``ssh`` をセットアップする必要があります。パスワード認証はサポートしています。鍵がパスフレーズで保護されている場合、 ``ssh-agent`` のセットアップが必要です。
+
+.. Bind Docker to another host/port or a Unix socket
 .. _bind-docker-to-another-host-port-or-a-unix-socket:
 
 Docker の別ホスト/ポート、あるいは Unix ソケットをバインド
@@ -204,11 +279,7 @@ Docker デーモンに ``-H`` オプションを指定すると、特定の IP �
 
 .. -H also accepts short form for TCP bindings:
 
-``-H`` は TCP バインドの指定を短縮できます。
-
-.. code-block:: bash
-
-   ``host:` あるいは `host:port` あるいは `:port`
+``-H`` は TCP バインドの指定を短縮できます。   ``host:` あるいは `host:port` あるいは `:port` です。
 
 .. Run Docker in daemon mode:
 
@@ -240,15 +311,14 @@ Docker をデーモン・モードで実行するには：
    $ docker -H tcp://127.0.0.1:2375 pull ubuntu
 
 .. Daemon storage-driver option
-
 .. _daemon-storage-driver-option:
 
 デーモンのストレージ・ドライバ用オプション
 --------------------------------------------------
 
-.. The Docker daemon has support for several different image layer storage drivers: aufs, devicemapper, btrfs, zfs and overlay.
+.. On Linux, the Docker daemon has support for several different image layer storage drivers: aufs, devicemapper, btrfs, zfs, overlay, overlay2, and fuse-overlayfs.
 
-Docker デーモンはイメージ・レイヤ用途に、様々に異なるストレージ・ドライバの利用をサポートします。ドライバは、 ``aufs`` 、 ``devicemapper`` 、 ``btrfs`` 、 ``zfs`` 、 ``overlay`` 、 ``overlay2`` です。
+Linux では、Docker デーモンはイメージ・レイヤ用途に、様々に異なるストレージ・ドライバの利用をサポートします。ドライバは、 ``aufs`` 、 ``devicemapper`` 、 ``btrfs`` 、 ``zfs`` 、 ``overlay`` 、 ``overlay2`` です。
 
 .. The aufs driver is the oldest, but is based on a Linux kernel patch-set that is unlikely to be merged into the main kernel. These are also known to cause some serious kernel crashes. However, aufs is also the only storage driver that allows containers to share executable and shared library memory, so is a useful choice when running thousands of containers with the same program or libraries.
 
@@ -266,32 +336,39 @@ Docker デーモンはイメージ・レイヤ用途に、様々に異なるス�
 
 ``zfs`` ドライバは ``btrfs`` ほど速くありませんが、安定さのためレコードを長く追跡します。 ``Single Copy ARC`` のおかげで、クローン間の共有ブロックを１度キャッシュします。使うには ``dockerd -s zfs`` を指定します。異なる zfs ファイルシステムセットを選択するには、 ``zfs.fsname`` オプションを  :ref:`ストレージ・ドライバのオプション <storage-driver-options>` で指定します。
 
-.. The overlay is a very fast union filesystem. It is now merged in the main Linux kernel as of 3.18.0. Call dockerd -s overlay to use it.
+.. The overlay is a very fast union filesystem. It is now merged in the main Linux kernel as of 3.18.0. overlay also supports page cache sharing, this means multiple containers accessing the same file can share a single page cache entry (or entries), it makes overlay as efficient with memory as aufs driver. Call dockerd -s overlay to use it.
 
-``overlay`` は非常に高速なユニオン・ファイル・システムです。ようやく Linux カーネル `3.18.0 <https://lkml.org/lkml/2014/10/26/137>`_ でメインにマージされました。使うには ``dockerd -s overlay`` を指定します。
+``overlay`` は非常に高速なユニオン・ファイルシステムです。ようやく Linux カーネル `3.18.0 <https://lkml.org/lkml/2014/10/26/137>`_ でメインにマージされました。また、 ``overlay`` は :ruby:`ページキャッシュ共有 <page cache sharing>` も竿ポートしています。つまり、複数のコンテナで1つのページキャッシュのエントリ（あるいは全体）を共有できるため、 ``overlay`` は ``aufs`` ドライバよりもメモリが効率的です。
 
-..    Note: As promising as overlay is, the feature is still quite young and should not be used in production. Most notably, using overlay can cause excessive inode consumption (especially as the number of images grows), as well as being incompatible with the use of RPMs.
+｡.. The overlay2 uses the same fast union filesystem but takes advantage of additional features added in Linux kernel 4.0 to avoid excessive inode consumption. Call dockerd -s overlay2 to use it.
 
+``overlay2`` は同じく速いユニオン・ファイルシステムを使いますが、 Linux カーネル 4.0 で追加された過度の inode 消費を抑制する `追加機能 <https://lkml.org/lkml/2015/2/11/106>`_ を利用できる利点があります。使うには ``dockerd -s overlay2`` を実行します。
 
-.. note::
-
-   前途有望な ``overlay`` ですが、機能がまだ若く、プロダクションで使うべきではありません。特に  ``overlay`` を使うと過度の inode 消費を引き起こします（特にイメージが大きく成長する場合）。また、RPM との互換性がありません。
-
-..    Note: Both `overlay` and `overlay2` are currently unsupported on `btrfs` or any Copy on Write filesystem and should only be used over `ext4` partitions.
-
-.. The overlay2 uses the same fast union filesystem but takes advantage of additional features added in Linux kernel 4.0 to avoid excessive inode consumption. Call dockerd -s overlay2 to use it.
-
-``overlay2`` は同じ高速なユニオン・ファイルシステムを使いますが、Linux カーネル 4.0 で追加された `追加機能 <https://lkml.org/lkml/2015/2/11/106>`_ を使います。これは過度のｉノード消費を防ぐものです。使うには ``dockerd -s overlay2`` を実行します。
+.. The overlay storage driver can cause excessive inode consumption (especially as the number of images grows). We recommend using the overlay2 storage driver instead.
 
 .. note::
 
-  ``overlay`` や ``overlay2`` および、現時点でサポートされていない ``btrfs`` や他のコピー・オン・ライトのファイルシステムは、 ``ext4`` パーティション上のみで使うべきです。
+   ``overlay`` ストレージドライバは、過度の inode を消費する可能性があります（特に、イメージ数が増加すると）。そのかわり、 ``overlay2`` ストレージドライバの利用を推奨します。
 
-.. Storage driver options
+.. Both overlay and overlay2 are currently unsupported on btrfs or any Copy on Write filesystem and should only be used over ext4 partitions.
 
+.. note::
+
+   ``overlay`` と ``overlay2`` は、どちらも ``btrfs`` をサポートしていないため、あらゆるファイルシステムへのコピーや書き込みは、 ``ext4`` パーティション上のみを利用すべきです。
+
+.. The fuse-overlayfs driver is similar to overlay2 but works in userspace. The fuse-overlayfs driver is expected to be used for Rootless mode.
+
+``fuse-overlayfs`` ドライバは ``overlay2`` と似ていますが、 :ruby:`ユーザスペース <userspace>` 内で動作します。 ``fuse-overlayfs`` ドライバは、 :doc:`Rootless モード </engine/security/rootless>` での利用が想定されています。
+
+.. On Windows, the Docker daemon supports a single image layer storage driver depending on the image platform: windowsfilter for Windows images, and lcow for Linux containers on Windows.
+
+Window では、Docker デーモンがサポートしているのは、 単一イメージ・レイヤのストレージ・ドライバに依存します。Windows イメージ用のは``windowsfilter`` であり、 Windows 上の Linux コンテナは ``lcow`` です。
+
+
+.. Options per storage driver
 .. _storage-driver-options:
 
-ストレージ・ドライバのオプション
+ストレージ・ドライバごとのオプション
 ----------------------------------------
 
 .. Particular storage-driver can be configured with options specified with --storage-opt flags. Options for devicemapper are prefixed with dm and options for zfs start with zfs and options for btrfs start with btrfs.
@@ -301,11 +378,26 @@ Docker デーモンはイメージ・レイヤ用途に、様々に異なるス�
 .. _devicemapper-options:
 
 devicemapper のオプション
-------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. This is an example of the configuration file for devicemapper on Linux:
+
+これは Linux 上の deviemapper 用の設定ファイルを使う例です。
+
+.. code-block:: yaml
+
+   {
+     "storage-driver": "devicemapper",
+     "storage-opts": [
+       "dm.thinpooldev=/dev/mapper/thin-pool",
+       "dm.use_deferred_deletion=true",
+       "dm.use_deferred_removal=true"
+     ]
+   }
 
 ..    dm.thinpooldev
-
-* ``dm.thinpooldev``
+``dm.thinpooldev``
+`````````````````````````````
 
 ..    Specifies a custom block storage device to use for the thin pool.
 
@@ -329,31 +421,95 @@ devicemapper のオプション
 
 .. code-block:: bash
 
-   $ dockerd \
-         --storage-opt dm.thinpooldev=/dev/mapper/thin-pool
+   $ sudo dockerd --storage-opt dm.thinpooldev=/dev/mapper/thin-pool
 
-* ``dm.basesize``
+``dm.directlvm_device``
+`````````````````````````````
 
-.. Specifies the size to use when creating the base device, which limits the
-   size of images and containers. The default value is 10G. Note, thin devices
-   are inherently "sparse", so a 10G device which is mostly empty doesn't use
-   10 GB of space on the pool. However, the filesystem will use more space for
-   the empty case the larger the device is.
+.. As an alternative to providing a thin pool as above, Docker can setup a block device for you.
 
-ベース・デバイスの生成に用いるサイズを指定します。
-これはイメージやコンテナのサイズを制限するものです。
-デフォルト値は 10G です。
-なおシン・デバイスは基本的に「スパース」（sparse）であるため、デバイス上の10 G はほとんどが空となり、プール上において 10G を占有するものではありません。
-ただしデバイスが大きくなればなるほど、ファイルシステムが扱う空データはより多くなります。
+先述とは別の thin pool を指定します。Docker で使いたいブロックデバイスを指定できます。
 
-.. The base device size can be increased at daemon restart which will allow
-   all future images and containers (based on those new images) to be of the
-   new base device size.
+.. Example:
 
-ベース・デバイスの容量は、デーモンの再起動によって増えます。
-これを行えば、今後生成されるイメージやコンテナ（その新たなイメージに基づくもの）は、新たなベース・デバイス容量に基づいて生成されます。
+使用例：
 
-.. Example use:
+.. code-block:: bash
+
+   $ sudo dockerd --storage-opt dm.directlvm_device=/dev/xvdf
+
+
+dm.thinp_percent
+`````````````````````````````
+
+.. Sets the percentage of passed in block device to use for storage.
+
+ストレージに使うための、ブロックデバイスのパーセントを指定します。
+
+.. Example:
+
+使用例：
+
+.. code-block:: bash
+
+   $ sudo dockerd --storage-opt dm.thinp_percent=95
+
+dm.thinp_metapercent
+`````````````````````````````
+
+.. Sets the percentage of the passed in block device to use for metadata storage.
+
+メタデータのストレージに使うための、ブロックデバイスのパーセント指定します。
+
+.. Example:
+
+使用例：
+
+.. code-block:: bash
+
+   $ sudo dockerd --storage-opt dm.thinp_metapercent=1
+
+dm.thinp_autoextend_threshold
+`````````````````````````````
+
+.. Sets the value of the percentage of space used before lvm attempts to autoextend the available space [100 = disabled]
+
+``lvm`` が利用可能なスペースに自動展開する前に、使用する値をパーセントで指定します（ 100 = 無効化 ）。
+
+.. Example:
+使用例：
+
+.. code-block:: bash
+
+   $ sudo dockerd --storage-opt dm.thinp_autoextend_threshold=80
+
+dm.thinp_autoextend_percent
+`````````````````````````````
+
+.. Sets the value percentage value to increase the thin pool by when lvm attempts to autoextend the available space [100 = disabled]
+
+``lvm`` が利用可能なスペースに自動展開する場合、 thin pool が増加する値をパーセントで指定します（ 100 = 無効化 ）。
+
+.. Example:
+使用例：
+
+.. code-block:: bash
+
+   $ sudo dockerd --storage-opt dm.thinp_autoextend_percent=20
+
+
+``dm.basesize``
+`````````````````````````````
+
+.. Specifies the size to use when creating the base device, which limits the size of images and containers. The default value is 10G. Note, thin devices are inherently “sparse”, so a 10G device which is mostly empty doesn’t use 10 GB of space on the pool. However, the filesystem will use more space for the empty case the larger the device is.
+
+ベース・デバイスの生成に使う容量を指定します。これはイメージやコンテナのサイズを制限します。デフォルト値は 10G です。なお thin device は基本的に「 :ruby:`まばら <sparse>` 」のため、デバイス上の10 G はほとんどが空となり、プール上で 10G を占有しません。ただしデバイスが大きくなればなるほど、ファイルシステムが扱う空データはより多くなります。
+
+.. The base device size can be increased at daemon restart which will allow all future images and containers (based on those new images) to be of the new base device size.
+
+ベース・デバイスの容量は、デーモンの再起動によって増えます。再起動により、以後生成されるイメージやコンテナ（その新たなイメージに基づくもの）は、新たなベース・デバイスの容量に基づいて生成されます。
+
+.. Examples
 
 使用例：
 
@@ -361,33 +517,24 @@ devicemapper のオプション
 
    $ dockerd --storage-opt dm.basesize=50G
 
-.. This will increase the base device size to 50G. The Docker daemon will throw an
-   error if existing base device size is larger than 50G. A user can use
-   this option to expand the base device size however shrinking is not permitted.
+.. This will increase the base device size to 50G. The Docker daemon will throw an error if existing base device size is larger than 50G. A user can use this option to expand the base device size however shrinking is not permitted.
 
-これはベース・デバイス容量を 50GB に増やしています。
-ベース・デバイス容量が元から 50 G よりも大きかった場合には、Docker デーモンはエラーを出力します。
-ユーザはこのオプションを使ってベース・デバイス容量を拡張できますが、縮小はできません。
+これはベース・デバイス容量を 50GB に増やしています。ベース・デバイス容量が元から 50 G よりも大きかった場合には、Docker デーモンはエラーを出力します。ユーザはこのオプションを使ってベース・デバイス容量を拡張できますが、縮小はできません。
 
-..    This value affects the system-wide “base” empty filesystem that may already be initialized and inherited by pulled images. Typically, a change to this value requires additional steps to take effect:
+.. This value affects the system-wide “base” empty filesystem that may already be initialized and inherited by pulled images. Typically, a change to this value requires additional steps to take effect:
 
 システム全体の「ベース」となる空白のファイルシステムに対して、設定値が影響を与えます。これは、既に初期化されているか、取得しているイメージから継承している場合です。とりわけ、この値の変更時には、反映するにために追加手順が必要です。
 
 .. code-block:: bash
 
    $ sudo service docker stop
+   
    $ sudo rm -rf /var/lib/docker
+   
    $ sudo service docker start
 
-..    Example use:
-
-使用例：
-
-.. code-block:: bash
-
-   $ dockerd --storage-opt dm.basesize=20G
-
-* ``dm.loopdatasize``
+``dm.loopdatasize``
+````````````````````
 
 ..        Note: This option configures devicemapper loopback, which should not be used in production.
 
@@ -399,7 +546,7 @@ devicemapper のオプション
 
 「データ」デバイスがシン・プール用に使うためのループバック・ファイルの作成時、この容量の指定に使います。デフォルトの容量は 100GB です。ファイルは希薄なため、初期段階ではさほど容量を使いません。
 
-..    Example use:
+..    Example
 
 使用例：
 
@@ -407,7 +554,8 @@ devicemapper のオプション
 
    $ dockerd --storage-opt dm.loopdatasize=200G
 
-* ``dm.loopmetadatasize``
+``dm.loopmetadatasize``
+``````````````````````````````
 
 ..        Note: This option configures devicemapper loopback, which should not be used in production.
 
@@ -419,19 +567,20 @@ devicemapper のオプション
 
 「メタデータ」デバイスがシン・プール用に使うためのループバック・ファイルの作成時、この容量の指定に使います。デフォルトの容量は 2GB です。ファイルは希薄なため、初期段階ではさほど容量を使いません。
 
-..    Example use:
+..    Example
 
 使用例：
 
    $ dockerd --storage-opt dm.loopmetadatasize=4G
 
-* ``dm.fs``
+``dm.fs``
+``````````
 
 ..    Specifies the filesystem type to use for the base device. The supported options are “ext4” and “xfs”. The default is “xfs”
 
 ベース・デバイスで使用するファイルシステムの種類を指定します。サポートされているオプションは「ext4」と「xfs」です。デフォルトは「xfs」です。
 
-..    Example use:
+..    Example
 
 使用例：
 
@@ -439,7 +588,8 @@ devicemapper のオプション
 
    $ dockerd --storage-opt dm.fs=ext4
 
-* ``dm.mkfsarg``
+``dm.mkfsarg``
+````````````````````
 
 ..    Specifies extra mkfs arguments to be used when creating the base device.
 
@@ -453,19 +603,21 @@ devicemapper のオプション
 
    $ dockerd --storage-opt "dm.mkfsarg=-O ^has_journal"
 
-* ``dm.mountopt``
+``dm.mountopt``
+````````````````````
 
 ..    Specifies extra mount options used when mounting the thin devices.
 
 シン・デバイスをマウントする時に使う、追加マウントオプションを指定します。
 
-..    Example use:
+..    Example
 
 使用例：
 
    $ dockerd --storage-opt dm.mountopt=nodiscard
 
-* ``dm.datadev``
+``dm.datadev``
+````````````````````
 
 ..    (Deprecated, use dm.thinpooldev)
 
@@ -479,7 +631,7 @@ devicemapper のオプション
 
 デバイスマッパー用のストレージにブロック・デバイスを使う時、datadev と metadatadev の両方がループバック・デバイスを完全に使わないようにするのが理想です。
 
-..    Example use:
+..    Example
 
 使用例：
 
@@ -489,7 +641,8 @@ devicemapper のオプション
          --storage-opt dm.datadev=/dev/sdb1 \
          --storage-opt dm.metadatadev=/dev/sdc1
 
-* ``dm.metadatadev``
+``dm.metadatadev``
+````````````````````
 
 ..    (Deprecated, use dm.thinpooldev)
 
@@ -521,13 +674,14 @@ devicemapper のオプション
          --storage-opt dm.datadev=/dev/sdb1 \
          --storage-opt dm.metadatadev=/dev/sdc1
 
-* ``dm.blocksize``
+``dm.blocksize``
+````````````````````
 
 ..    Specifies a custom blocksize to use for the thin pool. The default blocksize is 64K.
 
 シン・プールで使うカスタム・ブロックサイズを指定します。デフォルトのブロックサイズは 64K です。
 
-..    Example use:
+..    Example
 
 使用例：
 
@@ -535,24 +689,18 @@ devicemapper のオプション
 
    $ dockerd --storage-opt dm.blocksize=512K
 
-* ``dm.blkdiscard``
+``dm.blkdiscard``
+````````````````````
 
-.. Enables or disables the use of `blkdiscard` when removing devicemapper
-   devices. This is enabled by default (only) if using loopback devices and is
-   required to resparsify the loopback file on image/container removal.
+.. Enables or disables the use of blkdiscard when removing devicemapper devices. This is enabled by default (only) if using loopback devices and is required to resparsify the loopback file on image/container removal.
 
-デバイスマッパー・デバイスの削除時に、``blkdiscard`` の利用を許可するかしないかを指定します。
-これはループバック・デバイス利用時（のみ）、デフォルトは有効です。
-ループバック・ファイルの場合は、イメージやコンテナの削除時に再度スパースとする必要があるからです。
+デバイスマッパー・デバイスの削除時に、``blkdiscard`` の利用を許可するかしないかを指定します。これはループバック・デバイス利用時（のみ）、デフォルトは有効です。ループバック・ファイルの場合は、イメージやコンテナの削除時に再度スパースとする必要があるからです。
 
-.. Disabling this on loopback can lead to *much* faster container removal
-   times, but will make the space used in `/var/lib/docker` directory not be
-   returned to the system for other use when containers are removed.
+.. Disabling this on loopback can lead to much faster container removal times, but will make the space used in /var/lib/docker directory not be returned to the system for other use when containers are removed.
 
-ループバックに対してこれを無効にした場合は、コンテナの削除時間が **大きく** 削減できます。
-ただしコンテナが削除されても、``/var/lib/docker`` ディレクトリに割り当てられていた領域は、他プロセスが利用できる状態に戻されることはありません。
+ループバックに対してこれを無効にした場合は、コンテナの削除時間を *大きく* 削減できます。ただしコンテナが削除されても、 ``/var/lib/docker`` ディレクトリに割り当てられていた領域は、他プロセスが利用できる状態に戻されることはありません。
 
-..    Example use:
+..    Example
 
 使用例：
 
@@ -560,38 +708,33 @@ devicemapper のオプション
 
    $ dockerd --storage-opt dm.blkdiscard=false
 
-* ``dm.override_udev_sync_check``
+``dm.override_udev_sync_check``
+````````````````````````````````````````
 
 ..    Overrides the udev synchronization checks between devicemapper and udev. udev is the device manager for the Linux kernel.
 
 ``devicemapper`` と ``udev`` 間における ``udev`` 同期確認の設定を上書きします。 ``udev`` は Linux カーネル用のデバイスマッパーです。
 
-.. To view the `udev` sync support of a Docker daemon that is using the
-   `devicemapper` driver, run:
+.. To view the udev sync support of a Docker daemon that is using the devicemapper driver, run:
 
 ``devicemapper`` ドライバーを利用する Docker デーモンが ``udev`` 同期をサポートしているかどうかは、以下を実行して確認できます。
 
 .. code-block:: bash
 
    $ docker info
-   [...]
+   <...>
    Udev Sync Supported: true
-   [...]
+   <...>
 
-.. When `udev` sync support is `true`, then `devicemapper` and udev can
-   coordinate the activation and deactivation of devices for containers.
+.. When udev sync support is true, then devicemapper and udev can coordinate the activation and deactivation of devices for containers.
 
 ``udev`` 同期サポートが ``true`` であれば、``devicemapper`` と udev は連携してコンテナ向けデバイスの有効化、無効化を行います。
 
-.. When `udev` sync support is `false`, a race condition occurs between
-   the`devicemapper` and `udev` during create and cleanup. The race condition
-   results in errors and failures. (For information on these failures, see
-   [docker#4036](https://github.com/docker/docker/issues/4036))
+.. When udev sync support is false, a race condition occurs between thedevicemapper and udev during create and cleanup. The race condition results in errors and failures. (For information on these failures, see docker#4036)
 
 ``udev`` 同期サポートが ``false`` であれば、 ``devicemapper`` と ``udev`` 間で作成・クリーンアップ時に競合を引き起こします。競合状態の結果、エラーが発生して失敗します（失敗に関する詳しい情報は `docker#4036 <https://github.com/docker/docker/issues/4036>`_ をご覧ください。）
 
-.. To allow the `docker` daemon to start, regardless of `udev` sync not being
-   supported, set `dm.override_udev_sync_check` to true:
+.. To allow the docker daemon to start, regardless of udev sync not being supported, set dm.override_udev_sync_check to true:
 
 ``udev`` 同期がサポートされているかどうかに関係なく ``docker`` デーモンを起動するならば、``dm.override_udev_sync_check`` を true に設定してください。
 
@@ -603,19 +746,16 @@ devicemapper のオプション
 
 この値が ``true`` の場合、 ``devicemapper`` はエラーが発生しても簡単に警告を表示するだけで、処理を継続します。
 
-.. > **Note**: The ideal is to pursue a `docker` daemon and environment that does
-   > support synchronizing with `udev`. For further discussion on this
-   > topic, see [docker#4036](https://github.com/docker/docker/issues/4036).
-   > Otherwise, set this flag for migrating existing Docker daemons to
-   > a daemon with a supported environment.
+..     Note
+
+    The ideal is to pursue a docker daemon and environment that does support synchronizing with udev. For further discussion on this topic, see docker#4036. Otherwise, set this flag for migrating existing Docker daemons to a daemon with a supported environment.
 
 .. note::
 
-   理想的には ``udev`` との同期をサポートする ``docker`` デーモンおよび環境を目指すべきところです。
-   これに関してのさらなるトピックは `docker#4036 <https://github.com/docker/docker/issues/4036>`_ をご覧ください。
-   これができない限りは、既存の Docker デーモンが動作する環境上において、正常動作するように本フラグを設定してください。
+   理想的には ``udev`` との同期をサポートする ``docker`` デーモンおよび環境を目指すべきところです。これに関してのさらなるトピックは `docker#4036 <https://github.com/docker/docker/issues/4036>`_ をご覧ください。これができない限りは、既存の Docker デーモンが動作する環境上において、正常動作するように本フラグを設定してください。
 
-* ``dm.use_deferred_removal``
+``dm.use_deferred_removal``
+``````````````````````````````
 
 ..    Enables use of deferred device removal if libdm and the kernel driver support the mechanism.
 
@@ -629,7 +769,7 @@ devicemapper のオプション
 
 例えば、コンテナを終了したら、関連づけられているシン・デバイスも削除されます。デバイスが他のマウント名前空間も利用しているの場合は、削除できません。コンテナの終了が成功したら、このオプションが有効であれば、システムがデバイスの遅延削除をスケジュールします。使用中のデバイスが削除できるまで、ループを繰り返すことはありません。
 
-..    Example use:
+..    Example
 
 使用例：
 
@@ -637,13 +777,16 @@ devicemapper のオプション
 
     $ dockerd --storage-opt dm.use_deferred_removal=true
 
-* ``dm.use_deferred_deletion``
+``dm.use_deferred_deletion``
+``````````````````````````````
 
 ..    Enables use of deferred device deletion for thin pool devices. By default, thin pool device deletion is synchronous. Before a container is deleted, the Docker daemon removes any associated devices. If the storage driver can not remove a device, the container deletion fails and daemon returns.
 
 シン・プール用デバイスの遅延削除を有効化するのに使います。デフォルトでは、シン・プールの削除は同期します。コンテナを削除する前に、Docker デーモンは関連するデバイスを削除します。ストレージ・ドライバがデバイスを削除できなければ、コンテナの削除は失敗し、デーモンはエラーを表示します。
 
-..    Error deleting container: Error response from daemon: Cannot destroy container
+.. code-block:: bash
+
+   Error deleting container: Error response from daemon: Cannot destroy container
 
 ..    To avoid this failure, enable both deferred device deletion and deferred device removal on the daemon.
 
@@ -651,7 +794,7 @@ devicemapper のオプション
 
 .. code-block:: bash
 
-   $ dockerd \
+   $ sudo dockerd \
          --storage-opt dm.use_deferred_deletion=true \
          --storage-opt dm.use_deferred_removal=true
 
@@ -663,40 +806,26 @@ devicemapper のオプション
 
 通常、安全のためにデフォルトでこのオプションを有効化すべきです。複数のマウント名前空間にまたがり、マウントポイントの意図しないリークが発生した時に役立つでしょう。
 
-* ``dm.min_free_space``
+``dm.min_free_space``
+``````````````````````````````
 
 ..    Specifies the min free space percent in a thin pool require for new device creation to succeed. This check applies to both free data space as well as free metadata space. Valid values are from 0% - 99%. Value 0% disables free space checking logic. If user does not specify a value for this option, the Engine uses a default value of 10%.
 
 シン・プールが新しいデバイスを正常に作成するために必要な最小ディスク空き容量を、パーセントで指定します。チェックはデータ領域とメタデータ領域の両方に適用します。有効な値は 0% ~ 99% です。値を 0% に指定すると空き領域のチェック機構を無効にします。ユーザがオプションの値を指定しなければ、Engine はデフォルト値 10% を用います。
 
-.. Whenever a new a thin pool device is created (during `docker pull` or during
-   container creation), the Engine checks if the minimum free space is
-   available. If sufficient space is unavailable, then device creation fails
-   and any relevant `docker` operation fails.
+.. Whenever a new a thin pool device is created (during docker pull or during container creation), the Engine checks if the minimum free space is available. If sufficient space is unavailable, then device creation fails and any relevant docker operation fails.
 
-新たなシン・プール・デバイスが生成される際（ ``docker pull`` の処理中あるいはコンテナー生成中）には、必ず Engine が最小空き領域を確認します。
-十分な空き領域がなかった場合、デバイス生成処理は失敗し、これに関連した ``docker`` 処理もすべて失敗します。
+新たなシン・プール・デバイスが生成される際（ ``docker pull`` の処理中あるいはコンテナ生成中）には、必ず Engine が最小空き領域を確認します。十分な空き領域がなかった場合、デバイス生成処理は失敗し、これに関連した ``docker`` 処理もすべて失敗します。
 
-.. To recover from this error, you must create more free space in the thin pool
-   to recover from the error. You can create free space by deleting some images
-   and containers from the thin pool. You can also add more storage to the thin
-   pool.
+.. To recover from this error, you must create more free space in the thin pool to recover from the error. You can create free space by deleting some images and containers from the thin pool. You can also add more storage to the thin pool.
 
-上のエラーを解消するためには、シン・プール内により多くの空き領域を生成しておくことが必要です。
-イメージやコンテナーをいくつかそのシンプールから削除すれば、空き領域は確保されます。
-あるいはシンプールに対して、より多くのストレージを割り当てる方法もあります。
+上のエラーを解消するためには、シン・プール内により多くの空き領域を生成しておくことが必要です。イメージやコンテナーをいくつかそのシンプールから削除すれば、空き領域は確保されます。あるいはシンプールに対して、より多くのストレージを割り当てる方法もあります。
 
-.. To add more space to a LVM (logical volume management) thin pool, just add
-   more storage to the volume group container thin pool; this should automatically
-   resolve any errors. If your configuration uses loop devices, then stop the
-   Engine daemon, grow the size of loop files and restart the daemon to resolve
-   the issue.
+.. To add more space to a LVM (logical volume management) thin pool, just add more storage to the volume group container thin pool; this should automatically resolve any errors. If your configuration uses loop devices, then stop the Engine daemon, grow the size of loop files and restart the daemon to resolve the issue.
 
-LVM（logical volume management；論理ボリューム管理）上のシン・プールに容量追加を行うなら、シン・プールがあるボリューム・グループに対してストレージ追加を行ないます。
-そうするだけでエラーは自動解消されます。
-ループ・デバイスを利用するように設定している場合は、いったん Engine デーモンを停止させて、ループ・ファイルのサイズを増やした上でデーモンを再起動すれば、エラーは解消します。
+LVM（logical volume management；論理ボリューム管理）上のシン・プールに容量追加を行うなら、シン・プールがあるボリューム・グループに対してストレージ追加を行ないます。そうするだけでエラーは自動解消されます。ループ・デバイスを利用するように設定している場合は、いったん Engine デーモンを停止させて、ループ・ファイルのサイズを増やした上でデーモンを再起動すれば、エラーは解消します。
 
-..    Example use:
+..    Example
 
 指定例：
 
@@ -704,8 +833,71 @@ LVM（logical volume management；論理ボリューム管理）上のシン・�
 
    $ dockerd --storage-opt dm.min_free_space=10%
 
-.. Currently supported options of zfs:
+``dm.xfs_nospace_max_retries``
+``````````````````````````````
 
+.. Specifies the maximum number of retries XFS should attempt to complete IO when ENOSPC (no space) error is returned by underlying storage device.
+
+ENOSPC（空き容量がない）エラーがストレージドライバで発生した時 、完全な IO を試みるため、 XFS が再試行する上限数を指定します。
+
+.. By default XFS retries infinitely for IO to finish and this can result in unkillable process. To change this behavior one can set xfs_nospace_max_retries to say 0 and XFS will not retry IO after getting ENOSPC and will shutdown filesystem.
+
+デフォルトの XFS は IO が完了するまで無限に繰り返すため、結果として停止不可能なプロセスが発生する可能があります。この挙動を変更するには、xfs_nospace_max_retries を 0 にし、XFS が ENOSPC の後に IO を再試行せず、ファイルシステムをシャットダウンします。
+
+.. Example
+使用例：
+
+.. code-block:: bash
+
+   $ sudo dockerd --storage-opt dm.xfs_nospace_max_retries=0
+
+``dm.libdm_log_level``
+``````````````````````````````
+
+.. Specifies the maxmimum libdm log level that will be forwarded to the dockerd log (as specified by --log-level). This option is primarily intended for debugging problems involving libdm. Using values other than the defaults may cause false-positive warnings to be logged.
+
+ ``dockerd`` ログに渡す（ ``--log-level`` として指定）、最大の ``libdb`` ログレベルを指定します。このオプションが主に想定しているのは、 ``libdm`` によって引き起こされる問題のデバッグ用途です。デフォルトから値を変えることにより、偽陽性のログが記録させる可能性があります。
+
+.. Values specified must fall within the range of valid libdm log levels. At the time of writing, the following is the list of libdm log levels as well as their corresponding levels when output by dockerd.
+
+値の指定は、有効な ``libdm`` ログレベル範囲内に収める必要があります。以下の ``libdm`` ログレベル一覧にあるものから、 ``dockerd`` による適切なレベルに応じて書き込まれます。
+
+
+.. list-table::
+   :header-rows: 1
+
+   * - ``libdm`` レベル
+     - 値
+     - ``--log-level``
+   * - ``_LOG_FATAL``
+     - 2
+     - error
+   * - ``_LOG_ERR``
+     - 3
+     - error
+   * - ``_LOG_WARN``
+     - 4
+     - warn
+   * - ``_LOG_NOTICE``
+     - 5
+     - info
+   * - ``_LOG_INFO``
+     - 6
+     - info
+   * - ``_LOG_DEBUG``
+     - 7
+     - debug
+
+.. Example
+使用例：
+
+.. code-block:: bash
+
+   $ sudo dockerd \
+         --log-level debug \
+         --storage-opt dm.libdm_log_level=7
+
+.. Currently supported options of zfs:
 .. 現時点で ``zfs`` がサポートしているオプション：
 
 .. _zfs-options:
@@ -713,13 +905,14 @@ LVM（logical volume management；論理ボリューム管理）上のシン・�
 ZFS オプション
 --------------------
 
-* ``zfs.fsname``
+``zfs.fsname``
+````````````````````
 
 ..    Set zfs filesystem under which docker will create its own datasets. By default docker will pick up the zfs filesystem where docker graph (/var/lib/docker) is located.
 
 Docker が自身のデータセットとして、どの zfs ファイルシステムを使うか指定します。デフォルトの Docker は docker グラフ（ ``/var/lib/docker`` ）がある場所を zfs ファイルシステムとして用います。
 
-..    Example use:
+..    Example
 
 使用例：
 
@@ -732,36 +925,203 @@ Docker が自身のデータセットとして、どの zfs ファイルシス�
 Btrfs オプション
 --------------------
 
-* ``btrfs.min_space``
+``btrfs.min_space``
+````````````````````
 
 ..    Specifies the mininum size to use when creating the subvolume which is used for containers. If user uses disk quota for btrfs when creating or running a container with --storage-opt size option, docker should ensure the size cannot be smaller than btrfs.min_space.
 
 コンテナ用サブボリュームの作成時に、最小容量を指定します。コンテナに ``--storage-opt 容量`` オプションを指定して作成・実行する時、ユーザが btrfs のディスク・クォータを使っていれば、docker は ``btrfs.min_space`` より小さな ``容量`` を指定できないようにします。
 
-..    Example use: $ docker daemon -s btrfs --storage-opt btrfs.min_space=10G
+..    Example
+
+.. code-block:: bash
+
+   $ docker daemon -s btrfs --storage-opt btrfs.min_space=10G
 
 
-.. Docker runtime execution option
+.. Overlay2 options
+.. _overlay2-options:
+overlay2 のオプション
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _docker-runtime-execution-option:
+``overlay2.override_kernel_check``
+````````````````````````````````````````
 
-Docker ランタイム実行オプション
-========================================
+.. Overrides the Linux kernel version check allowing overlay2. Support for specifying multiple lower directories needed by overlay2 was added to the Linux kernel in 4.0.0. However, some older kernel versions may be patched to add multiple lower directory support for OverlayFS. This option should only be used after verifying this support exists in the kernel. Applying this option on a kernel without this support will cause failures on mount.
 
-.. The Docker daemon relies on a OCI compliant runtime (invoked via the containerd daemon) as its interface to the Linux kernel namespaces, cgroups, and SELinux.
+Linux カーネルのバージョンチェックで overlay2 の許可を上書きします。Linux カーネル 4.0.0 では overlay2 が必要とする複数の低位ディレクトリの指定をサポートしました。しかしながら、いくつかの古いカーネルでは、 OverlayFS が複数の低位ディレクトリをサポートするためにパッチが適用されている可能性があります。このオプションは、カネール上でサポート対象であることを確認している場合のみ使うべきです。このオプションをサポートしていないカーネル上で実行すると、マウントに失敗します。
 
-Docker デーモンは `OCI <https://github.com/opencontainers/specs>`_ 基準のランタイム（containerd デーモンの呼び出し）に基づいています。これに従いながら Linux カーネルの ``名前空間（namespaces）`` 、 ``コントロール・グループ（cgroups）`` 、 ``SELinux`` に対するインターフェースとして動作します。
+``overlay2.size``
+````````````````````
+
+.. Sets the default max size of the container. It is supported only when the backing fs is xfs and mounted with pquota mount option. Under these conditions the user can pass any size less then the backing fs size.
+
+コンテナのデフォルト :ruby:`最大容量 <max size>` を指定します。サポートされているのは、バックエンドのファイルシステムが ``xfs`` かつ ``pquota`` マウントオプションでマウントしている場合のみです。ユーザが指定できる容量は、バックエンドのファイルシステムの容量以下です。
+
+.. Example
+
+使用例
+
+.. code-block:: dockerfile
+
+   $ sudo dockerd -s overlay2 --storage-opt overlay2.size=1G
+
+.. Windowsfilter options
+windowsfilter のオプション
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+``size``
+``````````
+
+.. Specifies the size to use when creating the sandbox which is used for containers. Defaults to 20G.
+
+コンテナが使用するサンドボックスの作成時に使う容量を指定します。デフォルトは 20GB です。
+
+.. Example
+
+使用例
+
+.. code-block:: bash
+
+   C:\> dockerd --storage-opt size=40G
+
+.. LCOW (Linux Containers on Windows) options
+
+LCOW (Windows の Linux コンテナ）オプション
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+``lcow.globalmode``
+````````````````````
+
+.. Specifies whether the daemon instantiates utility VM instances as required (recommended and default if omitted), or uses single global utility VM (better performance, but has security implications and not recommended for production deployments).
+
+デーモンに対して必要とされるユーティリティ VM インスタンスの例示を指定（推奨かつ、省略時はデフォルト）するか、1つのグローバル・ユーティリティ VM （優れたパフォーマンスですが、セキュリティ関連でプロダクションへのデプロイは推奨されません）を使います。
+
+.. Example
+
+使用例
+
+.. code-block:: bash
+
+   C:\> dockerd --storage-opt lcow.globalmode=false
+
+``lcow.kirdpath``
+````````````````````
+.. Specifies the folder path to the location of a pair of kernel and initrd files used for booting a utility VM. Defaults to %ProgramFiles%\Linux Containers.
+
+ユーティリティ VM を起動するために使う、カーネルと initrd ファイルのセットが入っているフォルダを指定します。デフォルトは ``%ProgramFiles%\Linux Containers`` です。
+
+.. Example
+
+使用例
+
+.. code-block:: bash
+
+   C:\> dockerd --storage-opt lcow.kirdpath=c:\path\to\files
+
+``lcow.kernel``
+````````````````````
+
+.. Specifies the filename of a kernel file located in the lcow.kirdpath path. Defaults to bootx64.efi.
+
+カーネルのファイルが置かれている ``cow.kirdpath`` パスにあるファイル名を指定します。デフォルトは ``bootx64.efi`` です。
+
+.. Example
+
+使用例
+
+.. code-block:: bash
+
+   C:\> dockerd --storage-opt lcow.kernel=kernel.efi
+
+``lcow.initrd``
+````````````````````
+
+.. Specifies the filename of an initrd file located in the lcow.kirdpath path. Defaults to initrd.img.
+
+initrd ファイルが置かれている ``cow.kirdpath`` パスにあるファイル名を指定します。デフォルトは ``initrd.img`` です。
+
+.. Example
+使用例
+
+.. code-block:: bash
+
+   C:\> dockerd --storage-opt lcow.initrd=myinitrd.img
+
+``lcow.bootparameters``
+``````````````````````````````
+
+.. Specifies additional boot parameters for booting utility VMs when in kernel/ initrd mode. Ignored if the utility VM is booting from VHD. These settings are kernel specific.
+
+kernel/initrd モードでは、ユーティリティ VM をッ起動するための起動パラメータを追加で指定します。ユーティリティ VM を VHD から起動する場合には、無視されミズ会う。それぞれの設定はカーネルに依存します。
+
+.. Example
+使用例
+
+.. code-block:: bash
+
+   C:\> dockerd --storage-opt "lcow.bootparameters='option=value'"
+
+``lcow.vhdx``
+````````````````````
+
+.. Specifies a custom VHDX to boot a utility VM, as an alternate to kernel and initrd booting. Defaults to uvm.vhdx under lcow.kirdpath.
+
+起動時に、代替カーネルと initrd を使う、ユーティリティ VM として起動するカスタム VHDX を指定します。デフォルトは ``lcow.kirdpath`` 以下の ``uvm.vhdx`` です。
+
+.. Example
+使用例
+
+.. code-block:: dockerfile
+
+   C:\> dockerd --storage-opt lcow.vhdx=custom.vhdx
+
+``lcow.timeout``
+````````````````````
+
+.. Specifies the timeout for utility VM operations in seconds. Defaults to 300.
+
+ユーティリティ VM 操作のタイムアウトを秒で指定します。デフォルトは 300 です。
+
+.. Example
+使用例
+
+.. code-block:: bash
+
+   C:\> dockerd --storage-opt lcow.timeout=240
+
+``lcow.sandboxsize``
+````````````````````
+
+.. Specifies the size in GB to use when creating the sandbox which is used for containers. Defaults to 20. Cannot be less than 20.
+
+コンテナが使うサンドボックスの作成時、使用する容量を GB で指定します。デフォルトは 20 です。 20 以下にはできません。
+
+.. Example
+使用例
+
+.. code-block:: bash
+
+   C:\> dockerd --storage-opt lcow.sandboxsize=40
+
 
 .. Docker runtime execution options
-
 .. _docker-runtime-execution-options:
 
 Docker ランタイム実行オプション
-========================================
+----------------------------------------
 
 .. The Docker daemon relies on a OCI compliant runtime (invoked via the containerd daemon) as its interface to the Linux kernel namespaces, cgroups, and SELinux.
 
 Docker デーモンは `OCI <https://github.com/opencontainers/specs>`_ 規格のランタイムに依存します（ ``containerd`` デーモンを経由して呼び出します）。これが Linux カーネルの ``namespace`` 、 ``cgroups`` 、``SELinux`` のインターフェースとして働きます。
+
+.. By default, the Docker daemon automatically starts containerd. If you want to control containerd startup, manually start containerd and pass the path to the containerd socket using the --containerd flag. For example:
+
+デフォルトでは、 Docker デーモンは自動的に ``containerd`` を起動します。 ``containerd`` の起動を制御したい場合は、手動で ``containerd`` の起動時、 ``--containerd`` フラグを使って ``containerd`` ソケットのパスを指定します。以下は実行例です。
+
+.. code-block:: bash
+
+   $ sudo dockerd --containerd /var/run/dev/docker-containerd.sock
 
 .. Runtimes can be registered with the daemon either via the configuration file or using the --add-runtime command line argument.
 
@@ -801,7 +1161,6 @@ Docker デーモンは `OCI <https://github.com/opencontainers/specs>`_ 規格�
    ランタイム引数はコマンドラインを経由して定義できません（サポートされていません）。
 
 .. Options for the runtime
-
 .. _options-for-the-runtime:
 
 ランタイム用のオプション
@@ -811,9 +1170,9 @@ Docker デーモンは `OCI <https://github.com/opencontainers/specs>`_ 規格�
 
 ランタイムのオプションは ``--exec-opt`` フラグで指定できます。全てのオプションのフラグには、先頭に ``native`` が付きます。（現時点では）唯一 ``native.cgroupdriver`` オプションを利用可能です。
 
-.. The native.cgroupdriver option specifies the management of the container’s cgroups. You can specify only specify cgroupfs or systemd. If you specify systemd and it is not available, the system errors out. If you omit the native.cgroupdriver option,cgroupfs is used.
+.. The native.cgroupdriver option specifies the management of the container’s cgroups. You can only specify cgroupfs or systemd. If you specify systemd and it is not available, the system errors out. If you omit the native.cgroupdriver option, cgroupfs is used on cgroup v1 hosts, systemd is used on cgroup v2 hosts with systemd available.
 
-``native.cgroupdriver`` オプションはコンテナの cgroups 管理を指定します。 ``systemd`` の ``cgroupfs`` で指定可能です。 ``systemd`` で指定時、対象が利用可能でなければ、システムはエラーを返します。 ``native.cgroupdriver`` オプションを指定しなければ ``cgroupfs`` を使います。
+``native.cgroupdriver`` オプションはコンテナの cgroups 管理を指定します。 ``systemd`` の ``cgroupfs`` でのみ指定可能です。 ``systemd`` で指定時、対象が利用可能でなければ、システムはエラーを返します。 ``native.cgroupdriver`` オプションを指定しなければ ``cgroupfs`` を使います。 ``native.cgroupdriver `` オプションを省略すると、 ``cgroupfs`` は cgroup v1 ホストを使い、 systemd が利用可能であれば ``systemd`` は cgroup v2 ホストを使います。
 
 .. This example sets the cgroupdriver to systemd:
 
@@ -835,34 +1194,70 @@ Docker デーモンは `OCI <https://github.com/opencontainers/specs>`_ 規格�
 
    $ dockerd --exec-opt isolation=hyperv
 
-.. Will make hyperv the default isolation technology on Windows, without specifying isolation value on daemon start, Windows isolation technology will default to process.
-
 .. Will make hyperv the default isolation technology on Windows. If no isolation value is specified on daemon start, on Windows client, the default is hyperv, and on Windows server, the default is process.
 
 この指定は Windows 上のデフォルト分離技術 ``hyperv`` を使います。デーモン起動時に分離技術の指定が無ければ、Windows クライアントはデフォルトで ``hyper-v`` を使い、Windows server はデフォルトで ``process`` を使います。
 
-
 .. Daemon DNS options
-
 .. _daemon-dns-options:
 
 デーモンの DNS オプション
-==============================
+------------------------------
 
-.. To set the DNS server for all Docker containers, use dockerd --dns 8.8.8.8.
+.. To set the DNS server for all Docker containers, use:
 
-全ての Docker コンテナ用の DNS サーバを設定するには、 ``dockerd --dns 8.8.8.8`` を使います。
+全ての Docker コンテナが使う DNS サーバを指定するには、次のようにします。
 
-.. To set the DNS search domain for all Docker containers, use dockerd --dns-search example.com.
+.. code-block:: bash
 
-全ての Docker コンテナ用の DNS 検索ドメインを設定するには、 ``dockerd --dns-search example.com`` を使います。
+   $ sudo dockerd --dns 8.8.8.8
+
+.. To set the DNS search domain for all Docker containers, use:
+
+全てのコンテナが使う DNS 検索ドメインを設定するには、次のようにします。
+
+.. code-block:: bash
+
+   $ sudo dockerd --dns-search example.com
+
+.. Allow push of nondistributable artifacts
+
+:ruby:`配布不可能 <nondistributable>` な :ruby:`アーティファクト <artifact>` の送信を許可
+------------------------------------------------------------------------------------------
+
+.. Some images (e.g., Windows base images) contain artifacts whose distribution is restricted by license. When these images are pushed to a registry, restricted artifacts are not included.
+
+イメージによっては（例： Windows ベースのイメージ）、ライセンスによって配布が制限されているアーティファクトを含む場合があります。これらイメージをレジストリに送信しようとしても、制限されたアーティファクトは含まれません。
+
+.. To override this behavior for specific registries, use the --allow-nondistributable-artifacts option in one of the following forms:
+
+特定の制限に対するこの挙動を上書きするには、以下の形式どちらかで ``--allow-nondistributable-artifacts`` オプションを使います。
+
+..    --allow-nondistributable-artifacts myregistry:5000 tells the Docker daemon to push nondistributable artifacts to myregistry:5000.
+    --allow-nondistributable-artifacts 10.1.0.0/16 tells the Docker daemon to push nondistributable artifacts to all registries whose resolved IP address is within the subnet described by the CIDR syntax.
+
+* ``--allow-nondistributable-artifacts myregistry:5000`` は、 Docker デーモンに対して myregistry:500 へ配布不可能なアーティファクトを送信するよう命令します。
+* ``--allow-nondistributable-artifacts 10.1.0.0/16`` は、 Docker デーモンに対し、 CIDR 構文で記述されたサブネット範囲内で、 IP アドレスの名前解決ができる全てのレジストリに対し、配布不可能なアーティファクトを送信するよう命令します。
+
+.. This option can be used multiple times.
+
+このオプションは何回も使えます。
+
+.. This option is useful when pushing images containing nondistributable artifacts to a registry on an air-gapped network so hosts on that network can pull the images without connecting to another server.
+
+配布不可能なアーティファクトを含むイメージを :ruby:`エアギャップ・ネットワーク <air-gapped network>` （訳者注：空気で絶縁されているかのように、到達できないネットワークの意味）上のレジストリに送信を許可する場合は、他のサーバに接続しなくてもイメージを取得できるようになるため、このオプションが役立ちます。
+
+..    Warning: Nondistributable artifacts typically have restrictions on how and where they can be distributed and shared. Only use this feature to push artifacts to private registries and ensure that you are in compliance with any terms that cover redistributing nondistributable artifacts.
+
+.. warning::
+
+  配布不可能アーティファクトは、典型的に、どのように、どこで配布や共有ができるか制限があります。この機能を、アーティファクトをプライベート・レジストリに送信するために使う場合、配布不可能なアーティファクトの再配布に関する利用条件に従ってください。
 
 .. Insecure registries
-
 .. _insecure-registries:
 
-安全ではないレジストリ
-==============================
+:ruby:`安全ではないレジストリ <insecure registry>`
+--------------------------------------------------
 
 .. Docker considers a private registry either secure or insecure. In the rest of this section, registry is used for private registry, and myregistry:5000 is a placeholder example for a private registry.
 
@@ -903,13 +1298,14 @@ IP アドレスが 127.0.0.0/8 の範囲にあるローカルのレジストリ�
 .. _legacy-registries:
 
 過去のレジストリ
-====================
+^^^^^^^^^^^^^^^^^^^^
 
 .. Enabling --disable-legacy-registry forces a docker daemon to only interact with registries which support the V2 protocol. Specifically, the daemon will not attempt push, pull and login to v1 registries. The exception to this is search which can still be performed on v1 registries.
 
 ``--disable-legacy-registry`` を有効にしたら、Docker は v2 プロトコルをサポートしているデーモンとしか通信しないように強制します。この指定によって、デーモンは v1 レジストリへの ``push`` 、 ``pull`` 、 ``login`` を阻止します。例外として、v1 レジストリでも ``search`` のみ実行できます。
 
 .. Running a Docker daemon behind a HTTPS_PROXY
+.. _running-a-docker-daemon-behind-a-https_proxy:
 
 Docker デーモンを HTTPS_PROXY の背後で実行
 ==================================================
@@ -934,11 +1330,10 @@ LAN の内部で ``HTTPS`` プロキシを使う場合、Docker Hub の証明書
 
 これは Docker デーモンのリクエストに対してプロキシと認証の設定を追加しただけです。 ``docker build`` でコンテナを実行する時は、プロキシを使うために更なる追加設定が必要です。
 
-.. Default Ulimits
+.. Default Ulimits settings
+.. _default-ulimits-settings:
 
-.. _default-ulimits:
-
-Ulimits のデフォルト
+デフォルト ``ulimits`` 設定
 ====================
 
 .. --default-ulimit allows you to set the default ulimit options to use for all containers. It takes the same options as --ulimit for docker run. If these defaults are not set, ulimit settings will be inherited, if not set on docker run, from the Docker daemon. Any --ulimit options passed to docker run will overwrite these defaults.
@@ -950,11 +1345,10 @@ Ulimits のデフォルト
 ``noproc`` と ``ulimit`` フラグを使う時は注意してください。 ``noproc`` は Linux がユーザに対して利用可能な最大プロセス数を設定するものであり、コンテナ向けではありません。詳細については、 :doc:`run` リファレンスをご確認ください。
 
 .. Nodes discovery
-
 .. _nodes-discovery:
 
 ノードのディスカバリ（検出）
-==============================
+------------------------------
 
 .. The --cluster-advertise option specifies the ‘host:port’ or interface:port combination that this particular daemon instance should use when advertising itself to the cluster. The daemon is reached by remote hosts through this value. If you specify an interface, make sure it includes the IP address of the actual Docker host. For Engine installation created through docker-machine, the interface is typically eth1.
 
@@ -975,38 +1369,31 @@ Ulimits のデフォルト
 
 .. The currently supported cluster store options are:
 
-現在サポートされているクラスタ・ストアのオプションは：
+現在サポートされているクラスタ・ストアのオプションは、i以下の通りです。
 
-* ``kv.cacertfile``
+.. list-table::
+   :header-rows: 1
 
-..    Specifies the path to a local file with PEM encoded CA certificates to trust
-
-信頼すべき CA 証明書がエンコードされた PEM のローカル・パスを指定します。
-
-* ``kv.certfile``
-
-..    Specifies the path to a local file with a PEM encoded certificate. This certificate is used as the client cert for communication with the Key/Value store.
-
-証明書でエンコードされた PEM のローカル・パスを指定。この証明書はクライアントがキーバリュー・ストアとの通信の証明に使います。
-
-* ``kv.keyfile``
-
-..    Specifies the path to a local file with a PEM encoded private key. This private key is used as the client key for communication with the Key/Value store.
-
-秘密鍵がエンコードされた PEM のローカル・パスを指定します。この秘密鍵はクライアントがキーバリュー・ストアと通信時に鍵として使います。
-
-* ``kv.path``
-
-..   Specifies the path in the Key/Value store. If not configured, the default value is ‘docker/nodes
-
-キーバリュー・ストアのパスを指定します。指定しなければ、デフォルトの ``docker/nodes`` を使います。
+   * - オプション
+     - 説明
+   * - ``discovery.heartbeat``
+     - ハートビート・タイマーを秒で指定します。これはデーモンの ``keepalive`` メカニズムによって、クラスタ上に存在するノードを利用可能にするためのディスカバリ・モジュールが機能するようにします。
+   * - ``discovery.ttl``
+     - TTL（time-to-live）を秒で指定します。これは有効なハートビートを指定した ttl 値以内に受信できなければ、ディスカバリ・モジュールがノードをタイムアウトするために使います。
+   * - ``kv.cacertfile``
+     - 信頼すべき CA 証明書がエンコードされた PEM のローカル・パスを指定します。
+   * - ``kv.certfile``
+     - 証明書でエンコードされた PEM のローカル・パスを指定。この証明書はクライアントがキーバリュー・ストアとの通信の証明に使います。
+   * - ``kv.keyfile``
+     - 秘密鍵がエンコードされた PEM のローカル・パスを指定します。この秘密鍵はクライアントがキーバリュー・ストアと通信時に鍵として使います。
+   * - ``kv.path``
+     - キーバリュー・ストアのパスを指定します。指定しなければ、デフォルトの ``docker/nodes`` を使います。
 
 .. Access authorization
-
 .. _access-authorization:
 
 アクセス認証
-====================
+--------------------
 
 .. Docker’s access authorization can be extended by authorization plugins that your organization can purchase or build themselves. You can install one or more authorization plugins when you start the Docker daemond using the --authorization-plugin=PLUGIN_ID option.
 
@@ -1029,158 +1416,25 @@ Docker のアクセス認証は認証プラグインの拡張であり、組織�
 認証プラグインの作成方法については、この Docker ドキュメントの拡張に関するセクションにある :doc:`認証プラグイン </engine/extend/plugins_authorization>` をご覧ください。
 
 .. Daemon user namespace option
-
 .. _daemon-user-namespace-option:
 
-デーモンのユーザ名前空間オプション
+デーモンの :ruby:`ユーザ名前空間 <user namespace>` オプション
+----------------------------------------------------------------------
 ========================================
 
 .. The Linux kernel user namespace support provides additional security by enabling a process, and therefore a container, to have a unique range of user and group IDs which are outside the traditional user and group range utilized by the host system. Potentially the most important security improvement is that, by default, container processes running as the root user will have expected administrative privilege (with some restrictions) inside the container but will effectively be mapped to an unprivileged uid on the host.
 
 Linux カーネルの `ユーザ名前空間(user namespace)サポート <http://man7.org/linux/man-pages/man7/user_namespaces.7.html>`_  はプロセスに対する追加のセキュリティを提供します。これを使えば、コンテナでユーザ ID とグループ ID を使う場合、それをコンテナの外、つまり Docker ホスト上で使うユーザ ID とグループ ID のユニークな範囲を指定できます。これは重要なセキュリティ改善になる可能性があります。デフォルトでは、コンテナのプロセスは ``root`` ユーザとして動作しますので、コンテナ内で管理特権（と制限）を持っていることが予想されます。しかし、その影響はホスト上の権限の無い ``uid`` に対して割り当てられます。
 
-.. When user namespace support is enabled, Docker creates a single daemon-wide mapping for all containers running on the same engine instance. The mappings will utilize the existing subordinate user and group ID feature available on all modern Linux distributions. The /etc/subuid and /etc/subgid files will be read for the user, and optional group, specified to the --userns-remap parameter. If you do not wish to specify your own user and/or group, you can provide default as the value to this flag, and a user will be created on your behalf and provided subordinate uid and gid ranges. This default user will be named dockremap, and entries will be created for it in /etc/passwd and /etc/group using your distro’s standard user and group creation tools.
+.. For details about how to use this feature, as well as limitations, see Isolate containers with a user namespace.
 
-ユーザ名前空間のサポートを有効化したら、Docker はデーモンが扱うマッピングを作成します。これは、同じ Engine のインスタンス上で実行する全コンテナと対応するものです。マッピングを使い、従属ユーザ（subordinate user）ID と従属グループ ID を活用します。この機能は最近の全ての Linux ディストリビューション上において利用可能です。 ``--userns-remap`` パラメータを指定することで、 ``/etc/subuid`` と ``/etc/subguid``  ファイルがユーザとオプションのグループ用に使われます。このフラグに自分でユーザとグループを指定しなければ、ここでは ``default`` が指定されます。 default のユーザとは ``dockremap`` と言う名前であり、各ディストリビューションの一般的なユーザとグループ作成ツールを使い、 ``/etc/passwd`` と ``/etc/group`` にエントリが追加されます。
-
-..    Note: The single mapping per-daemon restriction is in place for now because Docker shares image layers from its local cache across all containers running on the engine instance. Since file ownership must be the same for all containers sharing the same layer content, the decision was made to map the file ownership on docker pull to the daemon’s user and group mappings so that there is no delay for running containers once the content is downloaded. This design preserves the same performance for docker pull, docker push, and container startup as users expect with user namespaces disabled.
-
-.. note::
-
-   現時点ではデーモンごとに１つしかマッピングしないいう制約があります。これは Engine インスタンス上で実行している全てのコンテナにまたがる共有イメージ・レイヤを Docker が共有しているためです。ファイルの所有者は、レイヤ内容を共有している全てのコンテナで共通の必要があるため、解決策としては ``docker pull`` の処理時、ファイル所有者をデーモンのユーザとグループに割り当てる（マッピングする）ことでした。そのため、イメージ内容をダウンロード後は遅延無くコンテナを起動できました。この設計は同じパフォーマンスを維持するため、 ``docker pull`` と ``docker push`` の実行時には維持されています。
-   
-.. Starting the daemon with user namespaces enabled
-
-.. _starting-the-daemon-with-user-namespaces-enabled:
-
-ユーザ名前空間を有効にしてデーモンを起動
-----------------------------------------
-
-.. To enable user namespace support, start the daemon with the --userns-remap flag, which accepts values in the following format
-
-ユーザ名前空間のサポートを有効化するには、デーモン起動時に ``--userns-remap`` フラグを使います。以下のフォーマット形式が指定できます。
-
-* uid
-* uid:gid
-* ユーザ名
-* ユーザ名:グループ名
-
-.. If numeric IDs are provided, translation back to valid user or group names will occur so that the subordinate uid and gid information can be read, given these resources are name-based, not id-based. If the numeric ID information provided does not exist as entries in /etc/passwd or /etc/group, daemon startup will fail with an error message.
-
-整数値の ID を指定したら、有効なユーザ名かグループ名に交換されます。これにより、従属 uid と gid の情報が読み込まれ、指定されたこれらのリソースは ID ベースではなく名前ベースでとなります。 ``/etc/passwd`` や ``/etc/group`` にエントリが無い数値 ID 情報が指定された場合は、docker は起動せずにエラーを表示します。
-
-.. Note: On Fedora 22, you have to touch the /etc/subuid and /etc/subgid files to have ranges assigned when users are created. This must be done before the --userns-remap option is enabled. Once these files exist, the daemon can be (re)started and range assignment on user creation works properly.
-
-.. note::
-
-   Fedora 22 では、ユーザ作成時に範囲を割り当てるために必要な ``/etc/subuid`` と ``/etc/subgid``  ファイルを ``touch`` コマンドで作成する必要があります。この作業は ``--usernsremap``  オプションを有効にする前に行わなくてはいけません。ファイルが存在していれば、ユーザが作成した処理が範囲で処理が適切に行われるよう、デーモンを（再）起動できます。
-
-.. Example: starting with default Docker user management:
-
-例：default の Docker ユーザ管理
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-   $ dockerd --userns-remap=default
-
-.. When default is provided, Docker will create - or find the existing - user and group named dockremap. If the user is created, and the Linux distribution has appropriate support, the /etc/subuid and /etc/subgid files will be populated with a contiguous 65536 length range of subordinate user and group IDs, starting at an offset based on prior entries in those files. For example, Ubuntu will create the following range, based on an existing user named user1 already owning the first 65536 range:
-
-``default`` を指定したら、 Docker は ``dockermap`` というユーザ名とグループ名が存在しているかどうか確認し、無ければ作成します。ユーザを作成したら、 Linux ディストリビューションは ``/etc/subuid`` と ``/etc/subgid`` ファイルの使用をサポートします。これは従属ユーザ ID と従属グループ ID を 65536 まで数える（カウントする）もので、これらは既存のファイルへのエントリをオフセットに使います。例えば、Ubuntu は次のような範囲を作成します。既存の ``user1`` という名前のユーザは、既に 65536 までの範囲を持っています。
-
-.. code-block:: bash
-
-   $ cat /etc/subuid
-   user1:100000:65536
-   dockremap:165536:65536
-
-
-.. If you have a preferred/self-managed user with subordinate ID mappings already configured, you can provide that username or uid to the --userns-remap flag. If you have a group that doesn’t match the username, you may provide the gid or group name as well; otherwise the username will be used as the group name when querying the system for the subordinate group ID range.
-
-もしも、既に自分で行った従属ユーザの設定を使いたい場合は、 ``--userns-remap`` フラグにユーザ名または UID を指定します。グループがユーザ名と一致しない場合は、同様に ``gid`` やグループ名も指定します。そうしなければ、従属グループ ID の範囲をシステムが応答する時に、ユーザ名がグループ名として使われます。
-
-.. Detailed information on subuid/subgid ranges
-
-.. _detailed-information-on-subuid-subgid-ranges:
-
-``subuid`` / ``subgid`` 範囲についての詳細情報
---------------------------------------------------
-
-.. Given potential advanced use of the subordinate ID ranges by power users, the following paragraphs define how the Docker daemon currently uses the range entries found within the subordinate range files.
-
-パワーユーザであれば、従属 ID の範囲変更という高度な使い方があります。以下で扱うのは、現在どのようにして Docker デーモンが従属範囲のファイルから範囲を決めているかの定義です。
-
-.. The simplest case is that only one contiguous range is defined for the provided user or group. In this case, Docker will use that entire contiguous range for the mapping of host uids and gids to the container process. This means that the first ID in the range will be the remapped root user, and the IDs above that initial ID will map host ID 1 through the end of the range.
-
-最も簡単なケースは、ユーザとグループに対する近接範囲（contiguous range）を１つだけ指定する場合です。この例では、Docker はコンテナのプロセスに対し、ホスト側の uid と gid の全てを近接範囲として割り当て（マッピングし）ます。つまり、範囲において一番始めに割り当てるのが root ユーザです。この ID が初期 ID として、（ホスト側）範囲における最後をホスト ID 1 として（コンテナ側に）割り当てます。
-
-.. From the example /etc/subuid content shown above, the remapped root user would be uid 165536.
-
-先ほど取り上げた ``/etc/subuid`` の例では、root ユーザに再割り当てする uid は 165536 になります。
-
-.. If the system administrator has set up multiple ranges for a single user or group, the Docker daemon will read all the available ranges and use the following algorithm to create the mapping ranges:
-
-システム管理者は単一のユーザまたはグループに対して複数の範囲を設定できます。Docker デーモンは利用可能な範囲から、以下のアルゴリズムに基づき範囲を割り当てます。
-
-..    The range segments found for the particular user will be sorted by start ID ascending.
-
-1. 特定ユーザに対する範囲のセグメント（区分）が見つれば、開始 ID を昇順でソートします。
-
-..    Map segments will be created from each range in increasing value with a length matching the length of each segment. Therefore the range segment with the lowest numeric starting value will be equal to the remapped root, and continue up through host uid/gid equal to the range segment length. As an example, if the lowest segment starts at ID 1000 and has a length of 100, then a map of 1000 -> 0 (the remapped root) up through 1100 -> 100 will be created from this segment. If the next segment starts at ID 10000, then the next map will start with mapping 10000 -> 101 up to the length of this second segment. This will continue until no more segments are found in the subordinate files for this user.
-
-2. セグメントの割り当てには、各セグメントの長さに一致するよう、範囲の値を増やします。そうすると、セグメントの範囲は最も低い数値から始まり、これを root として再割り当てし、あとはホスト側の uid/gid と一致する範囲まで繰り返します。例えば、最小セグメントの ID が 1000 から始まり、長さが 100 としたら、 1000 を 0 にマップし（root として再マップ）ます。これを対象セグメントでは 1100 が 100 にマップするまで続けます。次のセグメントは ID 10000 から始まる場合、次は 10000 が 101 にマップし、その長さの分だけ処理します。この処理を対象ユーザのサボーディネート（従属）ファイルに空きセグメントが無くなるまで繰り返します。
-
-..    If more than five range segments exist for a single user, only the first five will be utilized, matching the kernel’s limitation of only five entries in /proc/self/uid_map and proc/self/gid_map.
-
-3. ユーザ向けのセグメント範囲が無くなった場合は、カーネルで５つまで使えるよう制限されているエントリ ``/proc/self/uid_map`` と ``/proc/self/gid_map`` が使えます。
-
-.. Disable user namespace for a container
-
-.. _disable-user-namespace-for-a-container:
-
-コンテナ用のユーザ名前空間を無効化
-----------------------------------------
-
-.. If you enable user namespaces on the daemon, all containers are started with user namespaces enabled. In some situations you might want to disable this feature for a container, for example, to start a privileged container (see user namespace known restrictions). To enable those advanced features for a specific container use --userns=host in the run/exec/create command. This option will completely disable user namespace mapping for the container’s user.
-
-デーモンでユーザ名前空間を有効にしたら、全てのコンテナはユーザ名前空間が有効な状態で起動します。状況によってはコンテナに対するユーザ名前空間を無効化したい時があるでしょう。例えば、特権コンテナ（privileged container）の起動時です（詳細は  :ref:`user-namespace-known-restrictions` をご覧ください ）。これらの高度な機能を使うには、コンテナの ``run`` ``exec`` ``create`` コマンド実行時に ``--userns=host`` を指定します。このオプションを使えばコンテナの利用者に対するユーザ名前空間の割り当てを完全に無効化します。
-
-
-.. User namespace known restrictions:
-
-.. _user-namespace-known-restrictions:
-
-ユーザ名前空間と既知の制限
-------------------------------
-
-.. The following standard Docker features are currently incompatible when running a Docker daemon with user namespaces enabled:
-
-Docker デーモンのユーザ名前空間を有効にした状態では、以下の Docker 標準機能は互換性がありません。
-
-..    sharing PID or NET namespaces with the host (--pid=host or --net=host)
-    A --readonly container filesystem (this is a Linux kernel restriction against remounting with modified flags of a currently mounted filesystem when inside a user namespace)
-    external (volume or graph) drivers which are unaware/incapable of using daemon user mappings
-    Using --privileged mode flag on docker run (unless also specifying --userns=host)
-
-* ホスト・モードにおける PID 名前空間または NET 名前空間（ ``--pid=host`` あるいは ``--net=host`` ）
-* ``--readonly`` コンテナ・ファイルシステム（ユーザ名前空間内において、現在のマウント・ファイルシステムのフラグを変更してリマウントすることは、Linux カーネルの制約によりできません）
-* デーモンが知らない／機能を持たない外部ドライバ（ボリュームやグラフ）をユーザ名前空間内で実行
-* ``docker run`` で ``--privileged`` モードのフラグを指定（また ``--userns=host`` も指定できません ）
-
-.. In general, user namespaces are an advanced feature and will require coordination with other capabilities. For example, if volumes are mounted from the host, file ownership will have to be pre-arranged if the user or administrator wishes the containers to have expected access to the volume contents.
-
-一般的に、ユーザ名前空間は高度な機能であり、他の機能との調整を必要とします。例えば、ホストにボリュームをマウントするときは、ファイルの所有者はユーザもしくは管理者がボリューム・コンテナにアクセスできるよう、あらかじめ調整しておきます。
-
-.. Finally, while the root user inside a user namespaced container process has many of the expected admin privileges that go along with being the superuser, the Linux kernel has restrictions based on internal knowledge that this is a user namespaced process. The most notable restriction that we are aware of at this time is the inability to use mknod. Permission will be denied for device creation even as container root inside a user namespace.
-
-最後に、ユーザ名前空間に対応したコンテナ・プロセス内の ``root`` ユーザとは、多くの管理特権を持っていると考えるかもしれません。ですが、Linux カーネルは内部情報に基づきユーザ名前空間内のプロセスとして制限を施します。現時点で最も注意が必要な制約は ``mknod`` の使用です。コンテナ内のユーザ名前空間では ``root`` であったとしてもデバイス作成の権限がありません。
+この機能の使い方に関する詳細や制限は、 :doc:`</engine/security/userns-remap>` をご覧ください。
 
 .. Miscellaneous options
-
 .. _miscellaneous-options:
 
 その他のオプション
-====================
+--------------------
 
 .. IP masquerading uses address translation to allow containers without a public IP to talk to other machines on the Internet. This may interfere with some network topologies and can be disabled with --ip-masq=false.
 
@@ -1193,153 +1447,324 @@ Docker は Docker データ・ディレクトリ（ ``/var/lib/docker`` ）と `
 .. code-block:: bash
 
    DOCKER_TMPDIR=/mnt/disk2/tmp /usr/local/bin/docker daemon -D -g /var/lib/docker -H unix:// > /var/lib/docker-machine/docker.log 2>&1
-   # あるいは
+
+あるいは
+
+.. code-block:: bash
+
    export DOCKER_TMPDIR=/mnt/disk2/tmp
    /usr/local/bin/dockerd -D -g /var/lib/docker -H unix:// > /var/lib/docker-machine/docker.log 2>&1
 
 .. Default cgroup parent
-
 .. _default-cgroup-parent:
 
 デフォルトの親 cgroup
-==============================
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. The `--cgroup-parent` option allows you to set the default cgroup parent
-   to use for containers. If this option is not set, it defaults to `/docker` for
-   fs cgroup driver and `system.slice` for systemd cgroup driver.
+.. The --cgroup-parent option allows you to set the default cgroup parent to use for containers. If this option is not set, it defaults to /docker for fs cgroup driver and system.slice for systemd cgroup driver.
 
-``--cgroup-parent`` オプションは、コンテナが利用するデフォルトの親 cgroup を設定します。
-このオプションが指定されていない場合、デフォルトは fs cgroup ドライバに対しては ``/docker`` となり、systemd cgroup ドライバに対しては ``system.slice`` となります。
+``--cgroup-parent`` オプションは、コンテナが利用するデフォルトの親 cgroup を設定します。このオプションが指定されていない場合、デフォルトは fs cgroup ドライバに対しては ``/docker`` となり、systemd cgroup ドライバに対しては ``system.slice`` となります。
 
-.. If the cgroup has a leading forward slash (`/`), the cgroup is created
-   under the root cgroup, otherwise the cgroup is created under the daemon
-   cgroup.
+.. If the cgroup has a leading forward slash (/), the cgroup is created under the root cgroup, otherwise the cgroup is created under the daemon cgroup.
 
 cgroup の先頭がスラッシュ（ ``/`` ）で始まる場合、この cgroup はルート cgroup のもとに生成され、そうでない場合はデーモン cgroup のもとに生成されます。
 
-.. Assuming the daemon is running in cgroup `daemoncgroup`,
-   `--cgroup-parent=/foobar` creates a cgroup in
-   `/sys/fs/cgroup/memory/foobar`, whereas using `--cgroup-parent=foobar`
-   creates the cgroup in `/sys/fs/cgroup/memory/daemoncgroup/foobar`
+.. Assuming the daemon is running in cgroup daemoncgroup, --cgroup-parent=/foobar creates a cgroup in /sys/fs/cgroup/memory/foobar, whereas using --cgroup-parent=foobar creates the cgroup in /sys/fs/cgroup/memory/daemoncgroup/foobar
 
-デーモンが仮に ``daemoncgroup`` という cgroup 内で実行されているとします。
-``--cgroup-parent=/foobar`` という指定を行うと、cgroup は ``/sys/fs/cgroup/memory/foobar`` のもとに生成されます。
-一方 ``--cgroup-parent=foobar`` と指定すると、cgroup は ``/sys/fs/cgroup/memory/daemoncgroup/foobar`` のもとに生成されます。
+デーモンが仮に ``daemoncgroup`` という cgroup 内で実行されているとすると、 ``--cgroup-parent=/foobar`` という指定を行うと、cgroup は ``/sys/fs/cgroup/memory/foobar`` のもとに生成されます。一方 ``--cgroup-parent=foobar`` と指定すると、cgroup は ``/sys/fs/cgroup/memory/daemoncgroup/foobar`` のもとに生成されます。
 
-.. The systemd cgroup driver has different rules for `--cgroup-parent`. Systemd
-   represents hierarchy by slice and the name of the slice encodes the location in
-   the tree. So `--cgroup-parent` for systemd cgroups should be a slice name. A
-   name can consist of a dash-separated series of names, which describes the path
-   to the slice from the root slice. For example, `--cgroup-parent=user-a-b.slice`
-   means the memory cgroup for the container is created in
-   `/sys/fs/cgroup/memory/user.slice/user-a.slice/user-a-b.slice/docker-<id>.scope`.
+.. The systemd cgroup driver has different rules for --cgroup-parent. Systemd represents hierarchy by slice and the name of the slice encodes the location in the tree. So --cgroup-parent for systemd cgroups should be a slice name. A name can consist of a dash-separated series of names, which describes the path to the slice from the root slice. For example, --cgroup-parent=user-a-b.slice means the memory cgroup for the container is created in /sys/fs/cgroup/memory/user.slice/user-a.slice/user-a-b.slice/docker-<id>.scope.
 
-systemd cgroup ドライバには ``--cgroup-parent`` に対して別ルールがあります。
-systemd はスライス（訳者注：systemd における CPU やメモリなどのリソースを分割する単位のこと）による階層構造により表現され、そのスライス名はツリー内の場所をエンコードしています。
-したがって systemd cgroups に対する ``--cgroup-parent`` の設定値はスライス名とします。
-1 つの名前は、一連の名前をダッシュで区切って構成します。
-これが、そのスライスに対するルートスライスからのパスを表します。
-たとえば ``--cgroup-parent=user-a-b.slice`` というのは、コンテナに対するメモリ cgroup であり、``/sys/fs/cgroup/memory/user.slice/user-a.slice/user-a-b.slice/docker-<id>.scope`` に生成されます。
+systemd cgroup ドライバには ``--cgroup-parent`` に対して別ルールがあります。systemd はスライス（訳者注：systemd における CPU やメモリなどのリソースを分割する単位のこと）による階層構造により表現され、そのスライス名はツリー内の場所をエンコードしています。したがって systemd cgroups に対する ``--cgroup-parent`` の設定値はスライス名とします。1 つの名前は、一連の名前をダッシュで区切って構成します。これが、そのスライスに対するルートスライスからのパスを表します。たとえば ``--cgroup-parent=user-a-b.slice`` というのは、コンテナに対するメモリ cgroup であり、``/sys/fs/cgroup/memory/user.slice/user-a.slice/user-a-b.slice/docker-<id>.scope`` に生成されます。
 
-.. This setting can also be set per container, using the `--cgroup-parent`
-   option on `docker create` and `docker run`, and takes precedence over
-   the `--cgroup-parent` option on the daemon.
+.. This setting can also be set per container, using the --cgroup-parent option on docker create and docker run, and takes precedence over the --cgroup-parent option on the daemon.
 
-上の指定はコンテナ単位で行うこともできます。
-その場合は ``docker create`` や ``docker run`` の実行時に ``--cgroup-parent`` を指定します。
-この指定は、デーモンに対する ``--cgroup-parent`` オプションよりも優先して適用されます。
+この指定はコンテナ単位で行うこともできます。その場合は ``docker create`` や ``docker run`` の実行時に ``--cgroup-parent`` を指定します。この指定は、デーモンに対する ``--cgroup-parent`` オプションよりも優先して適用されます。
+
+.. Daemon metrics
+.. _dockerd-daemon-metrics:
+デーモンのメトリクス
+^^^^^^^^^^^^^^^^^^^^
+
+.. The --metrics-addr option takes a tcp address to serve the metrics API. This feature is still experimental, therefore, the daemon must be running in experimental mode for this feature to work.
+
+``--metrics-addr`` オプションは、メトリクス API を提供する TCP アドレスを渡します。この機能はまだ実験的です。そのため、この機能を使うためには、実験的モードでデーモンを実行する必要があります。
+
+.. To serve the metrics API on localhost:9323 you would specify --metrics-addr 127.0.0.1:9323, allowing you to make requests on the API at 127.0.0.1:9323/metrics to receive metrics in the prometheus format.
+
+メトリクス API を ``localhost:9323`` で提供するには、 ``--metrics-addr 127.0.0.1:9323`` を指定します。これにより、 ``127.0.0.1:9323/metrics`` の API にリクエストを送ると、 `prometheus <https://prometheus.io/docs/instrumenting/exposition_formats/>`_ 形式でメトリクスを受信できます。
+
+.. Port 9323 is the default port associated with Docker metrics to avoid collisions with other prometheus exporters and services.
+
+ポート ``9323`` は `Docker メトリクスに関連づけられているデフォルトのポート <https://github.com/prometheus/prometheus/wiki/Default-port-allocations>`_ であり、他の prometheus exporter とサービスと衝突しないようにしています。
+
+.. If you are running a prometheus server you can add this address to your scrape configs to have prometheus collect metrics on Docker. For more information on prometheus refer to the prometheus website.
+
+prometheus サーバを実行中であれば、このアドレスを使って Docker 上のメトリクスを prometheus が収集できるようスクレイプを設定できます。prometheus の詳しい情報は `prometheus のウェブサイト <https://prometheus.io/>`_ をご覧ください。
+
+.. code-block:: yaml
+
+   scrape_configs:
+     - job_name: 'docker'
+       static_configs:
+         - targets: ['127.0.0.1:9323']
+
+.. Please note that this feature is still marked as experimental as metrics and metric names could change while this feature is still in experimental. Please provide feedback on what you would like to see collected in the API.
+
+この機能は実験的な段階であり、メトリクスとメトリクス名は実験的な機能である間に変わる可能性があるのでご注意ください。API での収集に関するフィードバックを提供ください。
+
+.. Node Generic Resources
+.. _dockerd-node-generic-resources:
+:ruby:`ノードに属する <node generic>` リソース
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. The --node-generic-resources option takes a list of key-value pair (key=value) that allows you to advertise user defined resources in a swarm cluster.
+
+``--node-generic-resources`` オプションはキーバリューのペア（ ``key=value`` ）を指定子、swarm クラスタ内にユーザ定義リソースを :ruby:`通知します <advertise>` 。
+
+.. The current expected use case is to advertise NVIDIA GPUs so that services requesting NVIDIA-GPU=[0-16] can land on a node that has enough GPUs for the task to run.
+
+現時点で想定している使用例は、 NVIDIA GPU の通知です。 ``NVIDIA-GPU=[0-16]`` を要求するサービスは、タスクを実行可能なノート上での処理を可能にします。
+
+.. Example of usage:
+
+使用例：
+
+.. code-block:: yalm
+
+   {
+     "node-generic-resources": [
+       "NVIDIA-GPU=UUID1",
+       "NVIDIA-GPU=UUID2"
+     ]
+   }
 
 .. Daemon configuration file
-
 .. _daemon-configuration-file:
 
 デーモン設定ファイル
-====================
+--------------------
 
-.. The --config-file option allows you to set any configuration option for the daemon in a JSON format. This file uses the same flag names as keys, except for flags that allow several entries, where it uses the plural of the flag name, e.g., labels for the label flag. By default, docker tries to load a configuration file from /etc/docker/daemon.json on Linux and %programdata%\docker\config\daemon.json on Windows.
+.. The --config-file option allows you to set any configuration option for the daemon in a JSON format. This file uses the same flag names as keys, except for flags that allow several entries, where it uses the plural of the flag name, e.g., labels for the label flag.
 
-``--config-file`` オプションを使えば、デーモンに対する設定オプションを JSON 形式で指定できます。このファイルでは、フラグと同じ名前をキーとします。ただし、複数の項目を指定可能なフラグの場合は、キーを複数形で指定します（例： ``label`` フラグの指定は ``labels`` になります ）。デフォルトは、 Linux の場合は ``/etc/docker/daemon.json`` にある設定ファイルを Docker が読み込もうとします。Windows の場合は ``%programdata%\docker\config\daemon.json`` です。
+``--config-file`` オプションを使えば、デーモンに対する設定オプションを JSON 形式で指定できます。このファイルでは、フラグと同じ名前をキーとします。ただし、複数の項目を指定可能なフラグの場合は、キーを複数形で指定します（例： ``label`` フラグの指定は ``labels`` になります ）。
 
-.. The options set in the configuration file must not conflict with options set via flags. The docker daemon fails to start if an option is duplicated between the file and the flags, regardless their value. We do this to avoid silently ignore changes introduced in configuration reloads. For example, the daemon fails to start if you set daemon labels in the configuration file and also set daemon labels via the --label flag.
+.. The options set in the configuration file must not conflict with options set via flags. The docker daemon fails to start if an option is duplicated between the file and the flags, regardless their value. We do this to avoid silently ignore changes introduced in configuration reloads. For example, the daemon fails to start if you set daemon labels in the configuration file and also set daemon labels via the --label flag. Options that are not present in the file are ignored when the daemon starts.
 
-設定ファイル上のオプションは、フラグで指定するオプションと競合してはいけません。ファイルとフラグが重複したまま docker デーモンを起動しようとしても、どのような値を指定しても、起動に失敗します。例えば、デーモンの起動時にラベルを設定ファイルで定義し、かつ、 ``--label`` フラグを指定したら、デーモンは起動に失敗します。
+設定ファイル上のオプションは、フラグで指定するオプションと競合してはいけません。ファイルとフラグが重複したまま docker デーモンを起動しようとしても、どのような値を指定しても、起動に失敗します。例えば、デーモンの起動時にラベルを設定ファイルで定義し、かつ、 ``--label`` フラグを指定したら、デーモンは起動に失敗します。デーモン起動時、ファイルに記述しないオプション項目は無視します。
 
-.. Options that are not present in the file are ignored when the daemon starts. This is a full example of the allowed configuration options in the file:
+.. On Linux
 
-デーモン起動時、ファイルに記述しないオプション項目は無視します。次の例は、利用可能な全てのオプションをファイルに記述したものです。
+Linux の場合
+^^^^^^^^^^^^^^^^^^^^
+
+.. The default location of the configuration file on Linux is /etc/docker/daemon.json. The --config-file flag can be used to specify a non-default location.
+
+デフォルトは、 Linux の場合は ``/etc/docker/daemon.json`` にある設定ファイルを Docker が読み込もうとします。デフォルトではない場所の指定に ``--config-file`` オプションが使えます。
+
+.. This is a full example of the allowed configuration options on Linux:
+
+次の例は、Linux で利用可能な全てのオプションをファイルに記述したものです。
 
 .. code-block:: json
 
    {
-   	"authorization-plugins": [],
-   	"dns": [],
-   	"dns-opts": [],
-   	"dns-search": [],
-   	"exec-opts": [],
-   	"exec-root": "",
-   	"storage-driver": "",
-   	"storage-opts": [],
-   	"labels": [],
-   	"log-driver": "",
-   	"log-opts": [],
-   	"mtu": 0,
-   	"pidfile": "",
-   	"graph": "",
-   	"cluster-store": "",
-   	"cluster-store-opts": {},
-   	"cluster-advertise": "",
-   	"max-concurrent-downloads": 3,
-   	"max-concurrent-uploads": 5,
-   	"debug": true,
-   	"hosts": [],
-   	"log-level": "",
-   	"tls": true,
-   	"tlsverify": true,
-   	"tlscacert": "",
-   	"tlscert": "",
-   	"tlskey": "",
-   	"api-cors-header": "",
-   	"selinux-enabled": false,
-   	"userns-remap": "",
-   	"group": "",
-   	"cgroup-parent": "",
-   	"default-ulimits": {},
-          "ipv6": false,
-          "iptables": false,
-          "ip-forward": false,
-          "ip-masq": false,
-          "userland-proxy": false,
-          "ip": "0.0.0.0",
-          "bridge": "",
-          "bip": "",
-          "fixed-cidr": "",
-          "fixed-cidr-v6": "",
-          "default-gateway": "",
-          "default-gateway-v6": "",
-          "icc": false,
-          "raw-logs": false,
-          "registry-mirrors": [],
-          "insecure-registries": [],
-          "disable-legacy-registry": false,
-          "default-runtime": "runc",
-          "runtimes": {
-              "runc": {
-                  "path": "runc"
-              },
-              "custom": {
-                  "path": "/usr/local/bin/my-runc-replacement",
-                  "runtimeArgs": [
-                      "--debug"
-                  ]
-               }
-          }
+     "allow-nondistributable-artifacts": [],
+     "api-cors-header": "",
+     "authorization-plugins": [],
+     "bip": "",
+     "bridge": "",
+     "cgroup-parent": "",
+     "cluster-advertise": "",
+     "cluster-store": "",
+     "cluster-store-opts": {},
+     "containerd": "/run/containerd/containerd.sock",
+     "containerd-namespace": "docker",
+     "containerd-plugin-namespace": "docker-plugins",
+     "data-root": "",
+     "debug": true,
+     "default-address-pools": [
+       {
+         "base": "172.30.0.0/16",
+         "size": 24
+       },
+       {
+         "base": "172.31.0.0/16",
+         "size": 24
+       }
+     ],
+     "default-cgroupns-mode": "private",
+     "default-gateway": "",
+     "default-gateway-v6": "",
+     "default-runtime": "runc",
+     "default-shm-size": "64M",
+     "default-ulimits": {
+       "nofile": {
+         "Hard": 64000,
+         "Name": "nofile",
+         "Soft": 64000
+       }
+     },
+     "dns": [],
+     "dns-opts": [],
+     "dns-search": [],
+     "exec-opts": [],
+     "exec-root": "",
+     "experimental": false,
+     "features": {},
+     "fixed-cidr": "",
+     "fixed-cidr-v6": "",
+     "group": "",
+     "hosts": [],
+     "icc": false,
+     "init": false,
+     "init-path": "/usr/libexec/docker-init",
+     "insecure-registries": [],
+     "ip": "0.0.0.0",
+     "ip-forward": false,
+     "ip-masq": false,
+     "iptables": false,
+     "ip6tables": false,
+     "ipv6": false,
+     "labels": [],
+     "live-restore": true,
+     "log-driver": "json-file",
+     "log-level": "",
+     "log-opts": {
+       "cache-disabled": "false",
+       "cache-max-file": "5",
+       "cache-max-size": "20m",
+       "cache-compress": "true",
+       "env": "os,customer",
+       "labels": "somelabel",
+       "max-file": "5",
+       "max-size": "10m"
+     },
+     "max-concurrent-downloads": 3,
+     "max-concurrent-uploads": 5,
+     "max-download-attempts": 5,
+     "mtu": 0,
+     "no-new-privileges": false,
+     "node-generic-resources": [
+       "NVIDIA-GPU=UUID1",
+       "NVIDIA-GPU=UUID2"
+     ],
+     "oom-score-adjust": -500,
+     "pidfile": "",
+     "raw-logs": false,
+     "registry-mirrors": [],
+     "runtimes": {
+       "cc-runtime": {
+         "path": "/usr/bin/cc-runtime"
+       },
+       "custom": {
+         "path": "/usr/local/bin/my-runc-replacement",
+         "runtimeArgs": [
+           "--debug"
+         ]
+       }
+     },
+     "seccomp-profile": "",
+     "selinux-enabled": false,
+     "shutdown-timeout": 15,
+     "storage-driver": "",
+     "storage-opts": [],
+     "swarm-default-advertise-addr": "",
+     "tls": true,
+     "tlscacert": "",
+     "tlscert": "",
+     "tlskey": "",
+     "tlsverify": true,
+     "userland-proxy": false,
+     "userland-proxy-path": "/usr/libexec/docker-proxy",
+     "userns-remap": ""
    }
 
-.. Configuration reloading
+..    Note:
+    You cannot set options in daemon.json that have already been set on daemon startup as a flag. On systems that use systemd to start the Docker daemon, -H is already set, so you cannot use the hosts key in daemon.json to add listening addresses. See https://docs.docker.com/engine/admin/systemd/#custom-docker-daemon-options for how to accomplish this task with a systemd drop-in file.
 
-.. _configuration-reloading:
+.. note::
 
-設定の再読み込み
+   デーモンの起動時に既にフラグが指定されていると、 ``daemon.json`` オプションを指定できません。 ``systemd`` を使って Docker デーモンを起動するシステム上では、 ``-H`` が既に設定されているため、リッスンしているアドレスに加え、 ``daemon.json`` で ``hosts`` キーを使えません。 :ruby:`任意の docker デーモン・オプション <custom-docker-daemon-options>` にある、 systemd 投入ファイルでの処理方法をご覧ください。
+
+.. On Windows
+Windows の場合
+^^^^^^^^^^^^^^^^^^^^
+
+.. The default location of the configuration file on Windows is %programdata%\docker\config\daemon.json. The --config-file flag can be used to specify a non-default location.
+
+デフォルトは、 Windows の場合は ``%programdata%\docker\config\daemon.json`` にある設定ファイルを Docker が読み込もうとします。デフォルトではない場所の指定に ``--config-file`` オプションが使えます。
+
+.. This is a full example of the allowed configuration options on Windows:
+
+次の例は、Windows で利用可能な全てのオプションをファイルに記述したものです。
+
+.. code-block:: json
+
+   {
+     "allow-nondistributable-artifacts": [],
+     "authorization-plugins": [],
+     "bridge": "",
+     "cluster-advertise": "",
+     "cluster-store": "",
+     "containerd": "\\\\.\\pipe\\containerd-containerd",
+     "containerd-namespace": "docker",
+     "containerd-plugin-namespace": "docker-plugins",
+     "data-root": "",
+     "debug": true,
+     "default-runtime": "",
+     "default-ulimits": {},
+     "dns": [],
+     "dns-opts": [],
+     "dns-search": [],
+     "exec-opts": [],
+     "experimental": false,
+     "features": {},
+     "fixed-cidr": "",
+     "group": "",
+     "hosts": [],
+     "insecure-registries": [],
+     "labels": [],
+     "log-driver": "",
+     "log-level": "",
+     "max-concurrent-downloads": 3,
+     "max-concurrent-uploads": 5,
+     "max-download-attempts": 5,
+     "mtu": 0,
+     "pidfile": "",
+     "raw-logs": false,
+     "registry-mirrors": [],
+     "shutdown-timeout": 15,
+     "storage-driver": "",
+     "storage-opts": [],
+     "swarm-default-advertise-addr": "",
+     "tlscacert": "",
+     "tlscert": "",
+     "tlskey": "",
+     "tlsverify": true
+   }
+
+.. Feature options
+.. _dockerd-feature-options:
+機能のオプション
+^^^^^^^^^^^^^^^^^^^^
+
+.. The optional field features in daemon.json allows users to enable or disable specific daemon features. For example, {"features":{"buildkit": true}} enables buildkit as the default docker image builder.
+
+``daemon.json`` のオプション・フィールド ``features`` により、ユーザは特定のデーモン機能を有効または無効にできます。あとえば、 ``{"features":{"buildkit": true}}`` はデフォルトの docker イメージ・ビルダとして ``buildkit`` を有効にします。
+
+.. The list of currently supported feature options:
+
+現時点でサポートしている機能のオプションは、以下の通りです。
+
+..    buildkit: It enables buildkit as default builder when set to true or disables it by false. Note that if this option is not explicitly set in the daemon config file, then it is up to the cli to determine which builder to invoke.
+
+* ``buildkit`` ： ``true`` を指定すると、デフォルトのビルダとして ``buildkit`` を有効化し、 ``false`` では無効化します。このオプションはデーモンの設定ファイル中で明示できないため、どのビルダ使うかは、処理するコマンドライン・クライアントに依存します。
+
+.. Configuration reload behavior
+.. _configuration-reload-behavior:
+設定を再読込時の挙動
+^^^^^^^^^^^^^^^^^^^^
 --------------------
 
 .. Some options can be reconfigured when the daemon is running without requiring to restart the process. We use the SIGHUP signal in Linux to reload, and a global event in Windows with the key Global\docker-daemon-config-$PID. The options can be modified in the configuration file but still will check for conflicts with the provided flags. The daemon fails to reconfigure itself if there are conflicts, but it won’t stop execution.
@@ -1365,21 +1790,27 @@ systemd はスライス（訳者注：systemd における CPU やメモリな�
 * ``cluster-store-opts`` ：ディスカバリ・ストアを読み込む時の新しいオプションを指定します。
 * ``cluster-advertise`` ：再起動後のアドバタイズド・アドレスを指定します。
 * ``labels`` ：デーモンのラベルを新しく設定したものに変えます。
+* ``live-restore`` ：デーモンの停止期間中もコンテナ実行を維持 :doc:` </config/containers/live-restore>` を有効化します。
 * ``max-concurrent-downloads`` ：pull ごとの最大同時ダウンロード数を更新します。
 * ``max-concurrent-uploads`` ：push ごとの最大同時アップロード数を更新します。
 * ``default-runtime`` ：デフォルトのランタイム（コンテナ作成時にランタイムの指定がない場合）を更新します。「デフォルト」とは Docker 公式パッケージに含まれるランタイムを意味します。
 * ``runtimes`` ：コンテナ実行時に利用可能な OCI ランタイムの一覧です。
+* ``authorization-plugin`` ：使用する認証プラグインを指定します。
+* ``allow-nondistributable-artifacts`` ：レジストリの設定を置き換え、デーモンが配布不可能なアーティファクトを、新しいレジストリのセットに送信できるようにします。
+* ``insecure-registries`` ：デーモンの安全ではないレジストリを、新しいセットの安全ではないレジストリに置き換えます。デーモンの設定を読み込み直した時、かつて設定していた安全ではないレジストリが存在していなければ、デーモンの設定から既存のものが削除されます。
+* ``registry-mirrors`` ：デーモンのレジストリ・ミラーを、新しいセットのレジストリ・ミラーに置き換えます。デーモンの設定を読み込み直した時、かつて設定していたレジストリ・ミラーが存在していなければ、デーモンの設定から既存のものが削除されます。
+* ``shuwdown-timeout`` ：全てのコンテナを停止するための、デーモンの既存のタイムアウト設定を、新しいタイムアウトに置き換えます。
+* ``features`` ：特定の機能を有効化または無効化します。
 
 .. Updating and reloading the cluster configurations such as --cluster-store, --cluster-advertise and --cluster-store-opts will take effect only if these configurations were not previously configured. If --cluster-store has been provided in flags and cluster-advertise not, cluster-advertise can be added in the configuration file without accompanied by --cluster-store Configuration reload will log a warning message if it detects a change in previously configured cluster configurations.
 
 ``--cluster-store`` 、 ``--cluster-advertise`` 、 ``--cluster-store-opts`` のようなクラスタ設定情報の更新や再読み込みが反映できるのは、これまでに指定しない項目に対してのみです。フラグで ``--cluster-store`` を指定しても ``cluster-advertise`` を指定していなければ、 ``cluster-advertise`` は ``--cluster-store`` を一緒に指定しなくても反映します。既に設定済みのクラスタ設定に対して変更を試みたら、設定読み込み時に警告メッセージをログに残します。
 
 .. Running multiple daemons
-
 .. _running-multiple-daemons:
 
 複数のデーモンを実行
-====================
+--------------------
 
 ..     Note: Running multiple daemons on a single host is considered as "experimental". The user should be aware of unsolved problems. This solution may not work properly in some cases. Solutions are currently under development and will be delivered in the near future.
 
@@ -1397,15 +1828,16 @@ systemd はスライス（訳者注：systemd における CPU やメモリな�
 
 .. code-block:: bash
 
-   -b, --bridge=                          コンテナがアタッチするネットワーク・ブリッジ
-   --exec-root=/var/run/docker            Docker 実行ドライバのルート
-   -g, --graph=/var/lib/docker            Docker ランタイムのルート
-   -p, --pidfile=/var/run/docker.pid      デーモンの PID ファイルに使うパス
-   -H, --host=[]                          デーモンが接続するソケット
-   --config-file=/etc/docker/daemon.json  Daemon 設定ファイル
-   --tlscacert="~/.docker/ca.pem"         信頼できる認証局で署名された証明書
-   --tlscert="~/.docker/cert.pem"         TLS 証明書ファイルのパス
-   --tlskey="~/.docker/key.pem"           TLS 鍵ファイルのパス
+   -b, --bridge=                          Attach containers to a network bridge
+   --exec-root=/var/run/docker            Root of the Docker execdriver
+   --data-root=/var/lib/docker            Root of persisted Docker data
+   -p, --pidfile=/var/run/docker.pid      Path to use for daemon PID file
+   -H, --host=[]                          Daemon socket(s) to connect to
+   --iptables=true                        Enable addition of iptables rules
+   --config-file=/etc/docker/daemon.json  Daemon configuration file
+   --tlscacert="~/.docker/ca.pem"         Trust certs signed only by this CA
+   --tlscert="~/.docker/cert.pem"         Path to TLS certificate file
+   --tlskey="~/.docker/key.pem"           Path to TLS key file
 
 .. When your daemons use different values for these flags, you can run them on the same host without any problems. It is very important to properly understand the meaning of those options and to use them correctly.
 
@@ -1421,9 +1853,10 @@ systemd はスライス（訳者注：systemd における CPU やメモリな�
 
 * ``-b, --bridge=`` フラグはデフォルトのブリッジ・ネットワークとして ``docker0`` を指定します。これは Docker インストール時に自動作成されます。デフォルトで使いたくなければ、手動で何らかのブリッジを作成して設定するか、あるいは ``none`` を ``--bridge=none`` で指定します。
 * ``--exec-root``  はコンテナの状態を補完するパスです。デフォルトの値は ``/var/run/docker`` です。ここで docker デーモンを実行するパスを指定します。
-* ``--graph`` はイメージを保存する場所です。デフォルト値は ``/var/lib/docker`` です。デーモンごとに別々のパラメータを指定し、重複しないようにする必要があります。
+* ``--data-root`` はイメージ、ボリューム、クラスタ状態を保存する場所です。デフォルト値は ``/var/lib/docker`` です。デーモンごとに別々のパラメータを指定し、重複しないようにする必要があります。
 * ``-p, --pidfile=/var/run/docker.pid`` はデーモンのプロセス ID を保存する場所です。PID ファイルのパスを指定します。
 * ``--host=[]`` には、 Docker デーモンがクライアントからの接続をリッスンする場所を指定します。指定しなければ、デフォルトは ``/var/run/docker.sock`` です。
+* ``--iptables=false`` は、Docker デーモンが iptables へのルール追加を阻止します。複数のデーモンが iptables ルールを管理すると、既存のルールが他のデーモンによって上書きされてしまう可能性があります。このオプションを無効化すると、コンテナのポートを公開するためには、手動で iptables のルールを追加する必要があります。 Docker が iptables のルール追加を防止すると、 ``--ip-masq`` を ``true`` にしていたとしても、 IP マスカレードのルールを追加できず、Docker コンテナは外部ホストへ接続できなかったり、デフォルトのブリッジ以外を使うインターネットに接続できなくなります。
 * ``--config-file=/etc/docker/daemon.json`` は設定ファイルがあるパスです。デーモンのフラグの代わりに、こちらで指定できます。各デーモンごとにパスの指定が必要です。
 * ``--tls*`` は Docker デーモンが ```--tlsverify`` （TLS認証）モードを有効化します。これはリモート接続時に暗号化と認証を義務づけます。 ``--tls*`` オプションを有効にするには、デーモンごとに証明書を指定する必要があります。
 
@@ -1442,7 +1875,8 @@ systemd はスライス（訳者注：systemd における CPU やメモリな�
            --graph=/var/lib/docker-bootstrap \
            --exec-root=/var/run/docker-bootstrap
 
+
 .. seealso:: 
 
-   daemon
+   docker daemon
       https://docs.docker.com/engine/reference/commandline/daemon/

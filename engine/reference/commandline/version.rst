@@ -67,7 +67,7 @@ Go 言語の `text/template <http://golang.org/pkg/text/template/>`_ パッケ�
    * - 名前, 省略形
      - デフォルト
      - 説明
-   * - ``--format`` , ``-f``
+   * - ``--format`` , ``-f```
      - 
      - 指定した Go テンプレート使って出力を整形
    * - ``--kubeconfig``
