@@ -75,5 +75,5 @@
    docker update <update.rst>
    docker version <version.rst>
    docker volume <volume.rst>
-   docker wait <cp.rst>
+   docker wait <wait.rst>
 
