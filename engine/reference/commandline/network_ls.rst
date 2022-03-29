@@ -1,28 +1,18 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/network_ls/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/network_ls.md
-   doc version: 1.12
-      https://github.com/docker/docker/commits/master/docs/reference/commandline/network_ls.md
-.. check date: 2016/06/16
-.. Commits on Apr 29, 2016 23e418b6c966a43a463a064053ce0c741b8e5159
+.. SOURCE: 
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/engine/reference/commandline/network_ls.md
+      https://github.com/docker/docker.github.io/blob/master/_data/engine-cli/docker_network_ls.yaml
+.. check date: 2022/03/29
+.. Commits on Aug 21, 2021 304f64ccec26ef1810e90d385d5bae5fab3ce6f4
 .. -------------------------------------------------------------------
 
-.. network ls
+.. docker network ls
 
 =======================================
-network ls
+docker network ls
 =======================================
-
-
-.. code-block:: bash
-
-   使い方:  docker network ls [オプション]
-   
-   ユーザが作成した全てのネットワークを一覧
-     -f, --filter=[]       指定した状況に応じて出力をフィルタ
-     --help                使い方の表示
-     --no-trunc            出力を省略 (truncate) しない
-     -q, --quiet           整数値の ID のみ表示
 
 .. sidebar:: 目次
 
@@ -30,19 +20,89 @@ network ls
        :depth: 3
        :local:
 
+.. _network_ls-description:
+
+説明
+==========
+
+.. List networks
+
+ネットワークを一覧表示します。
+
+.. API 1.21+
+   Open the 1.21 API reference (in a new window)
+   The client and daemon API must both be at least 1.21 to use this command. Use the docker version command on the client to check your client and daemon API versions.
+
+【API 1.21+】このコマンドを使うには、クライアントとデーモン API の両方が、少なくとも `1.21 <https://docs.docker.com/engine/api/v1.21/>`_ の必要があります。クライアントとデーモン API のバージョンを調べるには、 ``docker version`` コマンドを使いミズ会う。
+
+.. _network_ls-usage:
+
+使い方
+==========
+
+.. code-block:: bash
+
+   $ docker network ls [OPTIONS]
+
+.. Extended description
+.. _network_ls-extended-description:
+
+補足説明
+==========
 
 .. Lists all the networks the Engine daemon knows about. This includes the networks that span across multiple hosts in a cluster, for example:
 
 Docker エンジンの ``daemon`` が把握している全てのネットワーク一覧を表示します。ネットワークには、複数のホストによるクラスタ上にまたがるネットワークも含まれます。
 
+.. For example uses of this command, refer to the examples section below.
+
+コマンドの使用例は、以下の :ref:`使用例のセクション <network_ls-examples>` をご覧ください。
+
+.. _network_ls-options:
+
+オプション
+==========
+
+.. list-table::
+   :header-rows: 1
+
+   * - 名前, 省略形
+     - デフォルト
+     - 説明
+   * - ``--filter`` , ``-f``
+     - 
+     - フィルタの値を指定（例： ``driver=bridge`` ）
+   * - ``--format``
+     - 
+     - Go テンプレートを使ってコンテナの出力を整形
+   * - ``--no-trunc``
+     - 
+     - 出力を省略しない
+   * - ``--quiet`` , ``-q``
+     - 
+     - ネットワーク ID のみ表示
+
+.. Examples
+.. _network_ls-examples:
+
+使用例
+==========
+
+.. List all networks
+.. _network_ls-list-all-networks:
+全てのネットワークを一覧表示
+------------------------------
+
+
+
 .. code-block:: bash
 
-   $ sudo docker network ls
-   NETWORK ID          NAME                DRIVER
-   7fca4eb8c647        bridge              bridge
-   9f904ee27bf5        none                null
-   cf03ee007fb4        host                host
-   78b03ee04fc4        multi-host          overlay
+   $ docker network ls
+   NETWORK ID          NAME                DRIVER          SCOPE
+   7fca4eb8c647        bridge              bridge          local
+   9f904ee27bf5        none                null            local
+   cf03ee007fb4        host                host            local
+   78b03ee04fc4        multi-host          overlay         swarm
 
 .. Use the --no-trunc option to display the full network id:
 
@@ -50,20 +110,19 @@ Docker エンジンの ``daemon`` が把握している全てのネットワー�
 
 .. code-block:: bash
 
-   docker network ls --no-trunc
-   NETWORK ID                                                         NAME                DRIVER
-   18a2866682b85619a026c81b98a5e375bd33e1b0936a26cc497c283d27bae9b3   none                null                
-   c288470c46f6c8949c5f7e5099b5b7947b07eabe8d9a27d79a9cbf111adcbf47   host                host                
-   7b369448dccbf865d397c8d2be0cda7cf7edc6b0945f77d2529912ae917a0185   bridge              bridge              
-   95e74588f40db048e86320c6526440c504650a1ff3e9f7d60a497c4d2163e5bd   foo                 bridge    
-   63d1ff1f77b07ca51070a8c227e962238358bd310bde1529cf62e6c307ade161   dev                 bridge
+   $ docker network ls --no-trunc
+   NETWORK ID                                                         NAME                DRIVER           SCOPE
+   18a2866682b85619a026c81b98a5e375bd33e1b0936a26cc497c283d27bae9b3   none                null             local
+   c288470c46f6c8949c5f7e5099b5b7947b07eabe8d9a27d79a9cbf111adcbf47   host                host             local
+   7b369448dccbf865d397c8d2be0cda7cf7edc6b0945f77d2529912ae917a0185   bridge              bridge           local
+   95e74588f40db048e86320c6526440c504650a1ff3e9f7d60a497c4d2163e5bd   foo                 bridge           local
+   63d1ff1f77b07ca51070a8c227e962238358bd310bde1529cf62e6c307ade161   dev                 bridge           local
 
 .. Filtering
-
-.. _network-ls-filtering:
+.. _network_ls-filtering:
 
 フィルタリング
-====================
+--------------------
 
 .. The filtering flag (-f or --filter) format is a key=value pair. If there is more than one filter, then pass multiple flags (e.g. --filter "foo=bar" --filter "bif=baz"). Multiple filter flags are combined as an OR filter. For example, -f type=custom -f type=builtin returns both custom and builtin networks.
 
@@ -78,16 +137,16 @@ Docker エンジンの ``daemon`` が把握している全てのネットワー�
     name (network’s name)
     type (custom|builtin)
 
-* ドライバ
-* ID （ネットワークID）
-* ラベル（ ``label=<キー>`` または ``label=<キー>=<値>`` ）
-* 名前（ネットワーク名）
-* タイプ（custom|builtin）
+* driver
+* id （ネットワークID）
+* label （ ``label=<キー>`` または ``label=<キー>=<値>`` ）
+* name（ネットワーク名）
+* scope （ ``swarm`` | ``global`` | ``local`` ）
+* type（ ``custom`` | ``builtin`` ）
 
 .. Driver
-
 driver
-----------
+^^^^^^^^^^
 
 .. The driver filter matches networks based on their driver.
 
@@ -100,14 +159,13 @@ driver
 .. code-block:: bash
 
    $ docker network ls --filter driver=bridge
-   NETWORK ID          NAME                DRIVER
-   db9db329f835        test1               bridge
-   f6e212da9dfd        test2               bridge
+   NETWORK ID          NAME                DRIVER            SCOPE
+   db9db329f835        test1               bridge            local
+   f6e212da9dfd        test2               bridge            local
 
 .. ID
-
 id
-----------
+^^^^^^^^^^
 
 .. The id filter matches on all or part of a network’s ID.
 
@@ -120,8 +178,8 @@ id
 .. code-block:: bash
 
    $ docker network ls --filter id=63d1ff1f77b07ca51070a8c227e962238358bd310bde1529cf62e6c307ade161
-   NETWORK ID          NAME                DRIVER
-   63d1ff1f77b0        dev                 bridge
+   NETWORK ID          NAME                DRIVER           SCOPE
+   63d1ff1f77b0        dev                 bridge           local
 
 .. You can also filter for a substring in an ID as this shows:
 
@@ -130,17 +188,16 @@ id
 .. code-block:: bash
 
    $ docker network ls --filter id=95e74588f40d
-   NETWORK ID          NAME                DRIVER
-   95e74588f40d        foo                 bridge
+   NETWORK ID          NAME                DRIVER          SCOPE
+   95e74588f40d        foo                 bridge          local
    
    $ docker network ls --filter id=95e
-   NETWORK ID          NAME                DRIVER
-   95e74588f40d        foo                 bridge
+   NETWORK ID          NAME                DRIVER          SCOPE
+   95e74588f40d        foo                 bridge          local
 
 .. Label
-
 ラベル
-----------
+^^^^^^^^^^
 
 .. The label filter matches network based on the presence of a label alone or a label and a value.
 
@@ -153,9 +210,9 @@ id
 .. code-block:: bash
 
    $ docker network ls -f "label=usage"
-   NETWORK ID          NAME                DRIVER
-   db9db329f835        test1               bridge              
-   f6e212da9dfd        test2               bridge
+   NETWORK ID          NAME                DRIVER         SCOPE
+   db9db329f835        test1               bridge         local
+   f6e212da9dfd        test2               bridge         local
 
 .. The following filter matches networks with the usage label with the prod value.
 
@@ -164,13 +221,12 @@ id
 .. code-block:: bash
 
    $ docker network ls -f "label=usage=prod"
-   NETWORK ID          NAME                DRIVER
-   f6e212da9dfd        test2               bridge
+   NETWORK ID          NAME                DRIVER        SCOPE
+   f6e212da9dfd        test2               bridge        local
 
 .. Name
-
 名前
-----------
+^^^^^^^^^^
 
 .. The name filter matches on all or part of a network’s name.
 
@@ -183,8 +239,8 @@ id
 .. code-block:: bash
 
    $ docker network ls --filter name=foobar
-   NETWORK ID          NAME                DRIVER
-   06e7eef0a170        foobar              bridge
+   NETWORK ID          NAME                DRIVER       SCOPE
+   06e7eef0a170        foobar              bridge       local
 
 .. You can also filter for a substring in a name as this shows:
 
@@ -192,15 +248,46 @@ id
 
 .. code-block:: bash
 
-   $ docker network ls --filter name=foo
-   NETWORK ID          NAME                DRIVER
-   95e74588f40d        foo                 bridge
-   06e7eef0a170        foobar              bridge
+  $ docker network ls --filter name=foo
+  NETWORK ID          NAME                DRIVER       SCOPE
+  95e74588f40d        foo                 bridge       local
+  06e7eef0a170        foobar              bridge       local
+
+
+.. Scope
+スコープ
+^^^^^^^^^^
+
+.. The scope filter matches networks based on their scope.
+``scope`` フィルタはネットワーク範囲（scope）に基づいてフィルタします。
+
+.. The following example matches networks with the swarm scope:
+
+以下の例は ``swarm`` スコープに一致するネットワーク名でフィルタします。
+
+.. code-block:: bash
+
+   $ docker network ls --filter scope=swarm
+   NETWORK ID          NAME                DRIVER              SCOPE
+   xbtm0v4f1lfh        ingress             overlay             swarm
+   ic6r88twuu92        swarmnet            overlay             swarm
+
+.. The following example matches networks with the local scope:
+
+以下の例は ``local`` スコープに一致するネットワーク名でフィルタします。
+
+.. code-block:: bash
+
+   $ docker network ls --filter scope=local
+   NETWORK ID          NAME                DRIVER              SCOPE
+   e85227439ac7        bridge              bridge              local
+   0ca0e19443ed        host                host                local
+   ca13cc149a36        localnet            bridge              local
+   f9e115d2de35        none                null                local
 
 .. Type
-
 タイプ
-----------
+^^^^^^^^^^
 
 .. The type filter supports two values; builtin displays predefined networks (bridge, none, host), whereas custom displays user defined networks.
 
@@ -213,9 +300,9 @@ id
 .. code-block:: bash
 
    $ docker network ls --filter type=custom
-   NETWORK ID          NAME                DRIVER
-   95e74588f40d        foo                 bridge
-   63d1ff1f77b0        dev                 bridge
+   NETWORK ID          NAME                DRIVER       SCOPE
+   95e74588f40d        foo                 bridge       local
+   63d1ff1f77b0        dev                 bridge       local
 
 .. By having this flag it allows for batch cleanup. For example, use this filter to delete all user defined networks:
 
@@ -229,30 +316,98 @@ id
 
 コンテナがアタッチされているネットワークを削除しようとしたら、警告が表示されます。
 
+.. _network_ls-formatting:
+表示形式
+----------
+
+.. The formatting options (--format) pretty-prints networks output using a Go template.
+
+表示形式のオプション（ ``--format`` ）は、Go テンプレートを使ってネットワーク出力を整形します。
+
+.. Valid placeholders for the Go template are listed below:
+
+Go テンプレートで有効なプレースホルダは以下の通りです。
 
 
-.. Related information
+.. list-table::
+   :header-rows: 1
 
-.. _network-ls-related-information:
+   * - placeholder
+     - 説明
+   * - ``.ID``
+     - ネットワーク ID
+   * - ``.Name``
+     - ネットワーク名
+   * - ``.Driver``
+     - ネットワーク・ドライバ
+   * - ``.Scope``
+     - ネットワーク範囲（ ``local``, ``global`` ）
+   * - ``.IPv6``
+     - ネットワーク上で IPv6 を有効化するかどうか
+   * - ``.Internal``
+     - ネットワークが内部用かどうか
+   * - ``.Labels``
+     - ネットワークに割り当てられたラベル全て
+   * - ``.Label``
+     - ネットワークに指定されたラベルの値。例 ``{{.Label "project.version"}}``
+   * - ``.CreatedAt``
+     - ネットワークが作成された時刻
 
-関連情報
+.. When using the --format option, the network ls command will either output the data exactly as the template declares or, when using the table directive, includes column headers as well.
+
+``--format`` オプションを指定すると、 ``network ls`` コマンドはテンプレートで宣言した通りにデータを出力するか、 ``table`` 命令を使えばカラム列も同様に表示するかのどちらかです。
+
+.. The following example uses a template without headers and outputs the ID and Driver entries separated by a colon (:) for all networks:
+
+以下の例はヘッダ無しのテンプレートを使い、全てのネットワークに対する ``ID`` と ``Driver`` のエントリをコロン（ ``:`` ）で区切って出力します。
+
+.. code-block:: bash
+
+   $ docker network ls --format "{{.ID}}: {{.Driver}}"
+   afaaab448eb2: bridge
+   d1584f8dc718: host
+   391df270dc66: null
+
+親コマンド
 ==========
 
-..    network disconnect
-    network connect
-    network create
-    network inspect
-    network rm
-    Understand Docker container networks
+.. list-table::
+   :header-rows: 1
 
-* :doc:`network disconnect <network_disconnect>`
-* :doc:`network connect <network_connect>`
-* :doc:`network create <network_create>`
-* :doc:`network inspect <network_inspect>`
-* :doc:`network rm <network_rm>`
-* :doc:`Docker コンテナ・ネットワークの理解 </engine/userguide/networking/dockernetworks>`
+   * - コマンド
+     - 説明
+   * - :doc:`docker network <network>`
+     - ネットワークを管理
+
+
+
+.. Related commands
+
+関連コマンド
+====================
+
+.. list-table::
+   :header-rows: 1
+
+   * - コマンド
+     - 説明
+   * - :doc:`docker network connect <network_connect>`
+     - コンテナをネットワークに接続
+   * - :doc:`docker network craete <network_create>`
+     - ネットワーク作成
+   * - :doc:`docker network disconnect <network_disconnect>`
+     - ネットワークからコンテナを切断
+   * - :doc:`docker network inspect <network_inspect>`
+     - 1つまたは複数ネットワークの情報を表示
+   * - :doc:`docker network ls <network_ls>`
+     - ネットワーク一覧表示
+   * - :doc:`docker network prune <network_prune>`
+     - 使用していないネットワークを全て削除
+   * - :doc:`docker network rm <network_rm>`
+     - 1つまたは複数ネットワークの削除
+
 
 .. seealso:: 
 
-   network ls
+   docker network ls
       https://docs.docker.com/engine/reference/commandline/network_ls/

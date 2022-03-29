@@ -97,7 +97,7 @@ docker container prune
    Total reclaimed space: 212 B
 
 .. Filtering
-
+.. _container_prune-filtering:
 フィルタリング
 --------------------
 
@@ -113,7 +113,7 @@ docker container prune
     label (label=<key>, label=<key>=<value>, label!=<key>, or label!=<key>=<value>) - only remove containers with (or without, in case label!=... is used) the specified labels.
 
 * until （ ``<timestamp>`` まで ） - 指定したタイムスタンプより前に作成したコンテナのみ削除します。
-* label （ ``label=<key>`` 、  ``label=<key>=<value>`` 、 ``label!=<key>`` 、 ``label!=<key>=<value>`` ）
+* label （ ``label=<key>`` 、  ``label=<key>=<value>`` 、 ``label!=<key>`` 、 ``label!=<key>=<value>`` ） - 指定したラベルのコンテナのみ削除します（または、 ``label!=...`` が使われる場合は、ラベルがない場合 ）
 
 .. The until filter can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. 10m, 1h30m) computed relative to the daemon machine’s time. Supported formats for date formatted time stamps include RFC3339Nano, RFC3339, 2006-01-02T15:04:05, 2006-01-02T15:04:05.999999999, 2006-01-02Z07:00, and 2006-01-02. The local timezone on the daemon will be used if you do not provide either a Z or a +-00:00 timezone offset at the end of the timestamp. When providing Unix timestamps enter seconds[.nanoseconds], where seconds is the number of seconds that have elapsed since January 1, 1970 (midnight UTC/GMT), not counting leap seconds (aka Unix epoch or Unix time), and the optional .nanoseconds field is a fraction of a second no more than nine digits long.
 
@@ -124,6 +124,9 @@ docker container prune
 ``label`` フィルタは2つの形式に対応します。1つは ``label=...`` （ ``label=<key>`` または ``label=<key>=<value>`` ）であり、指定したラベルを持つコンテナを削除します。もう1つの形式は ``label!=...`` （ ``label!=<key>`` または ``label!=<key>=<value>`` ）であり、指定たラベルがないコンテナを削除します。
 
 .. The following removes containers created more than 5 minutes ago
+
+以下は5分以上前に作成されたコンテナを削除します。
+
 
 .. code-block:: bash
  

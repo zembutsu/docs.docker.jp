@@ -1,37 +1,19 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/network_create/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/network_create.md
-   doc version: 1.12
-      https://github.com/docker/docker/commits/master/docs/reference/commandline/network_create.md
-.. check date: 2016/06/16
-.. Commits on Jun 26, 2016 feabf71dc1cd5757093c5887b463a6cbcdd83cc2
+.. SOURCE: 
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/engine/reference/commandline/network_create.md
+      https://github.com/docker/docker.github.io/blob/master/_data/engine-cli/docker_network_create.yaml
+.. check date: 2022/03/28
+.. Commits on Aug 22, 2021 304f64ccec26ef1810e90d385d5bae5fab3ce6f4
 .. -------------------------------------------------------------------
 
-.. network create
+.. docker network create
 
 =======================================
-network create
+docker network create
 =======================================
 
-.. code-block:: bash
-
-Usage:  docker network create [OPTIONS]
-
-   ネットワークの作成
-   
-   オプション:
-         --aux-address value    追加 ipv4 または ipv6 アドレスが使うネットワーク・ドライバ (デフォルト map[])
-     -d, --driver string        ネットワーク・ブリッジまたはオーバレイを管理するドライバ (デフォルト "bridge")
-         --gateway value        マスタ・サブネット用の ipv4 または ipv6 ゲートウェイ (default [])
-         --help                 使い方の表示
-         --internal             ネットワークから外部へのアクセスを制限
-         --ip-range value       サブ・レンジからコンテナの IP アドレスを割り当て (default [])
-         --ipam-driver string   IP アドレス管理用ドライバ (デフォルト "default")
-         --ipam-opt value        カスタム IPAM ドライバ固有のオプションを指定 (デフォルト map[])
-         --ipv6                 IPv6 ネットワーク機能の有効か
-         --label value          ネットワークにメタデータを指定 (デフォルト [])
-     -o, --opt value            ドライバ用のオプションを指定 (デフォルト map[])
-         --subnet value         ネットワーク・セグメントを表すサブネットを CIDR 形式で指定 (default [])
 
 .. sidebar:: 目次
 
@@ -39,7 +21,37 @@ Usage:  docker network create [OPTIONS]
        :depth: 3
        :local:
 
-.. Creates a new network. The DRIVER accepts bridge or overlay which are the built-in network drivers. If you have installed a third party or your own custom network driver you can specify that DRIVER here also. If you don’t specify the --driver option, the command automatically creates a bridge network for you. When you install Docker Engine it creates a bridge network automatically. This network corresponds to the docker0 bridge that Engine has traditionally relied on. When launch a new container with docker run it automatically connects to this bridge network. You cannot remove this default bridge network but you can create new ones using the network create command.
+.. _network_create-description:
+
+説明
+==========
+
+.. Create a network
+
+ネットワークを作成します。
+
+.. API 1.21+
+   Open the 1.21 API reference (in a new window)
+   The client and daemon API must both be at least 1.21 to use this command. Use the docker version command on the client to check your client and daemon API versions.
+
+【API 1.21+】このコマンドを使うには、クライアントとデーモン API の両方が、少なくとも `1.21 <https://docs.docker.com/engine/api/v1.21/>`_ の必要があります。クライアントとデーモン API のバージョンを調べるには、 ``docker version`` コマンドを使いミズ会う。
+
+.. _network_create-usage:
+
+使い方
+==========
+
+.. code-block:: bash
+
+   $ docker network create [OPTIONS] NETWORK
+
+.. Extended description
+.. _network_create-extended-description:
+
+補足説明
+==========
+
+.. Creates a new network. The DRIVER accepts bridge or overlay which are the built-in network drivers. If you have installed a third party or your own custom network driver you can specify that DRIVER here also. If you don’t specify the --driver option, the command automatically creates a bridge network for you. When you install Docker Engine it creates a bridge network automatically. This network corresponds to the docker0 bridge that Engine has traditionally relied on. When you launch a new container with docker run it automatically connects to this bridge network. You cannot remove this default bridge network, but you can create new ones using the network create command.
 
 新しいネットワークを作成します。 ``DRIVER`` には ``bridge`` か ``overlay`` を指定できます。どちらも内蔵のネットワーク・ドライバです。サードパーティー製のドライバをインストールするか、カスタム・ネットワーク・ドライバを組み込むのであれば、同様に ``DRIVER`` で指定できます。 ``--driver`` オプションを指定しなければ、コマンドは自動的に ``bridge`` ネットワークを作成します。Docker エンジンをインストールしたら、 ``bridge`` ネットワークを自動的に構築します。このネットワークは従来の ``docker0`` ブリッジに相当します。新しいコンテナを ``docker run`` で起動したら、自動的にこのブリッジ・ネットワークに接続します。このデフォルト・ブリッジ・ネットワークは削除できませんが、新しいブリッジを ``network create`` コマンドで作成できます。
 
@@ -75,10 +87,6 @@ Usage:  docker network create [OPTIONS]
 
 各オプションや設定方法の詳細については、 :doc:`マルチホスト・ネットワークを始めましょう </engine/userguide/networking/get-started-overlay>` をご覧ください。
 
-.. It is also a good idea, though not required, that you install Docker Swarm on to manage the cluster that makes up your network. Swarm provides sophisticated discovery and server management that can assist your implementation.
-
-もう１つの良いアイディアとしては、これらの設定を行わなくても、Docker Swarm でネットワークも管理できるクラスタの管理もできます。Swarm は知的なディスカバリとサーバ管理を提供しますので、実装にあたっての手助けとなるでしょう。
-
 .. Once you have prepared the overlay network prerequisites you simply choose a Docker host in the cluster and issue the following to create the network:
 
 ``overlay`` ネットワークに必要な準備が整った後は、クラスタ上にあるホストのどれかで次のようなネットワーク作成コマンドを実行します。
@@ -91,12 +99,88 @@ Usage:  docker network create [OPTIONS]
 
 ネットワーク名はユニークにする必要があります。Docker デーモンは名前の衝突を避けようとしますが、保証されません。ユーザ・リポジトリも名前の衝突を避けようとします。
 
-.. Connect containers
+.. Overlay network limitations
+.. _network_create-overlay-network-limitations:
+オーバレイ・ネットワークの制限
+------------------------------
 
+.. You should create overlay networks with /24 blocks (the default), which limits you to 256 IP addresses, when you create networks using the default VIP-based endpoint-mode. This recommendation addresses limitations with swarm mode. If you need more than 256 IP addresses, do not increase the IP block size. You can either use dnsrr endpoint mode with an external load balancer, or use multiple smaller overlay networks. See Configure service discovery for more information about different endpoint modes.
+
+オーバレイ・ネットワークは ``/24`` ブロック（これがデフォルトです）で作成すべきです。デフォルトの VIP をベースとしたエンドポイント・モードを使用するネットワークの作成時、 IP アドレスは 256 が上限となります。こちらを推奨する理由は `swarm mode での制限（英語） <https://github.com/moby/moby/issues/30820>`_ で説明しています。 256 よりも多い IP アドレスが必要な場合は、 IP ブロックのサイズを増やさないでください。外部のロードバランサを使う ``dnsrr`` エンドポイントか、複数の小さなオーバレイ・ネットワークか、どちらかを利用できます。異なるエンドポイント・モードについての情報は :ref:`サービスディスカバリの設定 <configure-service-discovery>` をご覧ください。
+
+.. For example uses of this command, refer to the examples section below.
+
+コマンドの使用例は、以下の :ref:`使用例のセクション <network_connect-examples>` をご覧ください。
+
+.. _network_create-options:
+
+オプション
+==========
+
+.. list-table::
+   :header-rows: 1
+
+   * - 名前, 省略形
+     - デフォルト
+     - 説明
+   * - ``--attachable``
+     - 
+     - 【API 1.25+】手動でのコンテナのアタッチを有効化
+   * - ``--aux-address``
+     - 
+     - ネットワーク・ドライバが使う :ruby:`補助の <auxiliary>` IPv4 または IPv6 アドレス
+   * - ``--config-from``
+     - 
+     - 【API 1.30+】設定をコピーするネットワーク
+   * - ``--config-only``
+     - 
+     - 【API 1.30+】設定情報のみのネットワークを作成
+   * - ``--driver`` , ``-d``
+     - ``bridge``
+     - 対象ネットワークを管理するドライバ
+   * - ``--gateway``
+     - 
+     - マスタ・サブネットに対する IPv4 または IPv6 ゲートウェイ
+   * - ``--ingress``
+     - 
+     - 【API 1.29+】swarm ルーティング・メッシュ・ネットワークを作成
+   * - ``--internal``
+     - 
+     - 外部からのアクセスを制限するネットワーク
+   * - ``--ipam-driver``
+     - 
+     - IP アドレス管理ドライバ
+   * - ``--ipam-opt``
+     - 
+     - IPAM ドライバ固有のオプションを指定
+   * - ``--ipv6``
+     - 
+     - IPv6 ネットワーク機能を有効化
+   * - ``--label``
+     - 
+     - ネットワークにメタデータを設定
+   * - ``--opt`` , ``-o``
+     - 
+     - ドライバ固有のオプションを指定
+   * - ``--scope``
+     - 
+     - 【API 1.30+】ネットワーク範囲の制御
+   * - ``--subnet``
+     - 
+     - ネットワーク・セグメントを表す CIDR 形式のサブネット
+
+
+.. Examples
+.. _network_create-examples:
+
+使用例
+==========
+
+.. Connect containers
 .. _connect-containers:
 
 コンテナに接続
-====================
+--------------------
 
 .. When you start a container use the --net flag to connect it to a network. This adds the busybox container to the mynet network.
 
@@ -104,7 +188,7 @@ Usage:  docker network create [OPTIONS]
 
 .. code-block:: bash
 
-   $ docker run -itd --net=mynet busybox
+   $ docker run -itd --network=mynet busybox
 
 .. If you want to add a container to a network after the container is already running use the docker network connect subcommand.
 
@@ -119,11 +203,10 @@ Usage:  docker network create [OPTIONS]
 コンテナをネットワークから切断するには、 ``docker network disconnect`` コマンドを使います。
 
 .. Specifying advanced options
-
 .. _specifying-advanced-options:
 
 高度なオプションの設定
-==============================
+------------------------------
 
 .. When you create a network, Engine creates a non-overlapping subnetwork for the network by default. This subnetwork is not a subdivision of an existing network. It is purely for ip-addressing purposes. You can override this default and specify subnetwork values directly using the the --subnet option. On a bridge network you can only create a single subnet:
 
@@ -131,7 +214,7 @@ Usage:  docker network create [OPTIONS]
 
 .. code-block:: bash
 
-   docker network create --driver=bridge --subnet=192.168.0.0/16 br0
+   $ docker network create --driver=bridge --subnet=192.168.0.0/16 br0
 
 .. Additionally, you also specify the --gateway --ip-range and --aux-address options.
 
@@ -146,20 +229,21 @@ Usage:  docker network create [OPTIONS]
      --gateway=172.28.5.254 \
      br0
 
+.. If you omit the --gateway flag the Engine selects one for you from inside a preferred pool. For overlay networks and for network driver plugins that support it you can create multiple subnetworks. This example uses two /25 subnet mask to adhere to the current guidance of not having more than 256 IPs in a single overlay network. Each of the subnetworks has 126 usable addresses.
+
 .. If you omit the --gateway flag the Engine selects one for you from inside a preferred pool. For overlay networks and for network driver plugins that support it you can create multiple subnetworks.
 
-``--gateway`` フラグを省略したら、エンジンは対象ネットワークの範囲内から１つ選びます。 ``overlay`` ネットワークとネットワーク・ドライバ・プラグインの場合は、複数のサブネットワークの作成をサポートしています。
+``--gateway`` フラグを省略したら、エンジンは対象ネットワークの範囲内から１つ選びます。 ``overlay`` ネットワークとネットワーク・ドライバ・プラグインの場合は、複数のサブネットワークの作成をサポートしています。この例では、1つのオーバレイ・ネットワークで 256 の IP アドレスを持たないようにという、現時点のガイダンスを守るため、2つの ``/25`` サブネット・マスクを使用します。各サブネットワークでは 126 の利用可能なアドレスがあります。
 
 .. code-block:: bash
 
    $ docker network create -d overlay \
-     --subnet=192.168.0.0/16 \
-     --subnet=192.170.0.0/16 \
-     --gateway=192.168.0.100 \
-     --gateway=192.170.0.100 \
-     --ip-range=192.168.1.0/24 \
-     --aux-address a=192.168.1.5 --aux-address b=192.168.1.6
-     --aux-address a=192.170.1.5 --aux-address b=192.170.1.6
+     --subnet=192.168.10.0/25 \
+     --subnet=192.168.20.0/25 \
+     --gateway=192.168.10.100 \
+     --gateway=192.168.20.100 \
+     --aux-address="my-router=192.168.10.5" --aux-address="my-switch=192.168.10.6" \
+     --aux-address="my-printer=192.168.20.5" --aux-address="my-nas=192.168.20.6" \
      my-multihost-network
 
 .. Be sure that your subnetworks do not overlap. If they do, the network create fails and Engine returns an error.
@@ -167,11 +251,9 @@ Usage:  docker network create [OPTIONS]
 サブ・ネットワークが重複しないように気を付けてください。重複したらネットワークの作成に失敗し、エンジンはエラーを表示します。
 
 .. Bridge driver options
-
 .. _bridge-driver-options:
-
 ブリッジ・ドライバのオプション
-==============================
+------------------------------
 
 .. When creating a custom network, the default network driver (i.e. bridge) has additional options that can be passed. The following are those options and the equivalent docker daemon flags used for docker0 bridge:
 
@@ -198,10 +280,13 @@ Usage:  docker network create [OPTIONS]
    * - ``com.docker.network.driver.mtu``
      - ``--mtu``
      - コンテナのネットワーク MTU を指定
+   * - ``com.docker.network.container_iface_prefix``
+     - -
+     - コンテナのインターフェースに対し任意のプレフィクスを指定
 
 .. The following arguments can be passed to docker network create for any network driver, again with their approximate equivalents to docker daemon.
 
-以下の引数は ``docker network create`` 実行時、あらゆるネットワーク・ドライバで指定できます。ほとんどが ``dockerd`` で指定する項目と同等です。
+以下の引数は ``docker network create`` 実行時、あらゆるネットワーク・ドライバで指定できます。ほとんどが ``docker daemon`` で指定する項目と同等です。
 
 .. list-table::
    :header-rows: 1
@@ -232,42 +317,81 @@ Usage:  docker network create [OPTIONS]
 
 .. code-block:: bash
 
-   docker network create -o "com.docker.network.bridge.host_binding_ipv4"="172.19.0.1" simple-network
+   $ docker network create \
+       -o "com.docker.network.bridge.host_binding_ipv4"="172.19.0.1" \
+       simple-network
 
 .. Network internal mode
-
 .. _network-internal-mode:
-
-内部ネットワーク(internal)モード
+ネットワーク内部(internal)モード
 ----------------------------------------
 
 .. By default, when you connect a container to an overlay network, Docker also connects a bridge network to it to provide external connectivity. If you want to create an externally isolated overlay network, you can specify the --internal option.
 
 コンテナを ``overlay`` ネットワークに接続する時、デフォルトでは外部への接続性を提供するためブリッジ・ネットワークにも接続します。外部された隔離された ``overlay`` ネットワークを作成したい場合は、 ``--internal`` オプションを使います。
 
+.. Network ingress mode
+.. _network-ingress-mode:
+ネットワーク ingress モード
+------------------------------
 
-.. Related information
+.. You can create the network which will be used to provide the routing-mesh in the swarm cluster. You do so by specifying --ingress when creating the network. Only one ingress network can be created at the time. The network can be removed only if no services depend on it. Any option available when creating an overlay network is also available when creating the ingress network, besides the --attachable option.
 
-.. _network-create-related-information:
+swarm クラスタ内で、ルーティング・メッシュを利用可能にするネットワークを作成可能です。そのためには、ネットワークの作成時に ``--ingress`` を指定します。1度に作成できる ingress ネットワークは 1 つだけです。ネットワーク上にサービスが存在しない場合のみ、このネットワーク削除できます。 ingress ネットワークの作成時に、 overlay ネットワークで利用可能なオプションを指定できるのに加え、さらに ``--atachable`` オプションも利用できます。
 
-関連情報
+.. code-block:: bash
+
+   $ docker network create -d overlay \
+     --subnet=10.11.0.0/16 \
+     --ingress \
+     --opt com.docker.network.driver.mtu=9216 \
+     --opt encrypted=true \
+     my-ingress-network
+
+レイ・ネットワークの両方に接続できます。
+
+.. Parent command
+
+親コマンド
 ==========
 
-..    network inspect
-    network connect
-    network disconnect
-    network ls
-    network rm
-    Understand Docker container networks
+.. list-table::
+   :header-rows: 1
 
-* :doc:`network inspect <network_inspect>`
-* :doc:`network connect <network_connect>`
-* :doc:`network disconnect <network_disconnect>`
-* :doc:`network ls <network_ls>`
-* :doc:`network rm <network_rm>`
-* :doc:`Docker コンテナ・ネットワークの理解 </engine/userguide/networking/dockernetworks>`
+   * - コマンド
+     - 説明
+   * - :doc:`docker network <network>`
+     - ネットワークを管理
+
+
+
+.. Related commands
+
+関連コマンド
+====================
+
+.. list-table::
+   :header-rows: 1
+
+   * - コマンド
+     - 説明
+   * - :doc:`docker network connect <network_connect>`
+     - コンテナをネットワークに接続
+   * - :doc:`docker network craete <network_create>`
+     - ネットワーク作成
+   * - :doc:`docker network disconnect <network_disconnect>`
+     - ネットワークからコンテナを切断
+   * - :doc:`docker network inspect <network_inspect>`
+     - 1つまたは複数ネットワークの情報を表示
+   * - :doc:`docker network ls <network_ls>`
+     - ネットワーク一覧表示
+   * - :doc:`docker network prune <network_prune>`
+     - 使用していないネットワークを全て削除
+   * - :doc:`docker network rm <network_rm>`
+     - 1つまたは複数ネットワークの削除
+
 
 .. seealso:: 
 
-   network create
+   docker network create
       https://docs.docker.com/engine/reference/commandline/network_create/

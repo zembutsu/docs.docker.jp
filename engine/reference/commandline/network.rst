@@ -1,17 +1,17 @@
-.. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/engine/reference/commandline/network_inspect/
+﻿.. -*- coding: utf-8 -*-
+.. URL: https://docs.docker.com/engine/reference/commandline/network/
 .. SOURCE: 
    doc version: 20.10
-      https://github.com/docker/docker.github.io/blob/master/engine/reference/commandline/network_inspect.md
-      https://github.com/docker/docker.github.io/blob/master/_data/engine-cli/docker_network_inspect.yaml
-.. check date: 2022/03/29
+      https://github.com/docker/docker.github.io/blob/master/engine/reference/commandline/network.md
+      https://github.com/docker/docker.github.io/blob/master/_data/engine-cli/docker_network.yaml
+.. check date: 2022/03/28
 .. Commits on Jun 1, 2019 ffe8ffd1e8137160aa342b0552ce8c8d58aaad5b
 .. -------------------------------------------------------------------
 
-.. docker network inspect
+.. docker network
 
 =======================================
-docker network inspect
+docker network
 =======================================
 
 .. sidebar:: 目次
@@ -20,14 +20,14 @@ docker network inspect
        :depth: 3
        :local:
 
-.. _network_inspect-description:
+.. _network-description:
 
 説明
 ==========
 
-.. Display detailed information on one or more networks
+.. Manage networks
 
-1つまたは複数ネットワークの情報を表示します。
+ネットワークを管理します。
 
 .. API 1.21+
    Open the 1.21 API reference (in a new window)
@@ -35,42 +35,24 @@ docker network inspect
 
 【API 1.21+】このコマンドを使うには、クライアントとデーモン API の両方が、少なくとも `1.21 <https://docs.docker.com/engine/api/v1.21/>`_ の必要があります。クライアントとデーモン API のバージョンを調べるには、 ``docker version`` コマンドを使いミズ会う。
 
-.. _network_inspect-usage:
+.. _network-usage:
 
 使い方
 ==========
 
 .. code-block:: bash
 
-   $ docker network inspect [OPTIONS] NETWORK [NETWORK...]
+   $ docker network COMMAND
 
 .. Extended description
-.. _network_inspect-extended-description:
+.. _network-extended-description:
 
 補足説明
 ==========
 
-.. Returns information about one or more networks. By default, this command renders all results in a JSON object.
+.. Manage networks. You can use subcommands to create, inspect, list, remove, prune, connect, and disconnect networks.
 
-１つまたは複数のネットワークの情報を返します。デフォルトでは、このコマンドは結果を JSON オブジェクト形式で返します。
-
-.. _network_inspect-options:
-
-オプション
-==========
-
-.. list-table::
-   :header-rows: 1
-
-   * - 名前, 省略形
-     - デフォルト
-     - 説明
-   * - ``--format`` , ``-f``
-     - 
-     - 指定した Go テンプレートを使って出力を整形
-   * - ``--force`` , ``-f``
-     - 
-     - 調査用の冗長な出力
+ネットワークを管理します。 ネットワークのサブコマンド create、inspect、list、remove、prune、connect、disconnet が利用できます。
 
 
 
@@ -84,15 +66,14 @@ docker network inspect
 
    * - コマンド
      - 説明
-   * - :doc:`docker network <network>`
-     - ネットワークを管理
+   * - :doc:`docker <docker>`
+     - Docker CLI のベースコマンド。
 
 
+.. Child commands
 
-.. Related commands
-
-関連コマンド
-====================
+子コマンド
+==========
 
 .. list-table::
    :header-rows: 1
@@ -117,5 +98,5 @@ docker network inspect
 
 .. seealso:: 
 
-   docker network inspect
-      https://docs.docker.com/engine/reference/commandline/network_inspect/
+   docker network
+      https://docs.docker.com/engine/reference/commandline/network/
