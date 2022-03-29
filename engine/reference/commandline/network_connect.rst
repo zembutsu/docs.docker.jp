@@ -34,7 +34,7 @@ docker network connect
    Open the 1.21 API reference (in a new window)
    The client and daemon API must both be at least 1.21 to use this command. Use the docker version command on the client to check your client and daemon API versions.
 
-【API 1.21+】このコマンドを使うには、クライアントとデーモン API の両方が、少なくとも `1.21 <https://docs.docker.com/engine/api/v1.21/>`_ の必要があります。クライアントとデーモン API のバージョンを調べるには、 ``docker version`` コマンドを使いミズ会う。
+【API 1.21+】このコマンドを使うには、クライアントとデーモン API の両方が、少なくとも `1.21 <https://docs.docker.com/engine/api/v1.21/>`_ の必要があります。クライアントとデーモン API のバージョンを調べるには、 ``docker version`` コマンドを使います。
 
 .. _network_connect-usage:
 
