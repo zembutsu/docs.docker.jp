@@ -1,17 +1,17 @@
 ﻿.. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/engine/reference/commandline/plugin_enable/
+.. URL: https://docs.docker.com/engine/reference/commandline/plugin_create/
 .. SOURCE: 
    doc version: 20.10
-      https://github.com/docker/docker.github.io/blob/master/engine/reference/commandline/plugin_enable.md
-      https://github.com/docker/docker.github.io/blob/master/_data/engine-cli/docker_plugin_enable.yaml
+      https://github.com/docker/docker.github.io/blob/master/engine/reference/commandline/plugin_create.md
+      https://github.com/docker/docker.github.io/blob/master/_data/engine-cli/docker_plugin_create.yaml
 .. check date: 2022/03/29
 .. Commits on Aug 21, 2021 304f64ccec26ef1810e90d385d5bae5fab3ce6f4
 .. -------------------------------------------------------------------
 
-.. docker plugin enable
+.. docker plugin create
 
 =======================================
-docker plugin enable
+docker plugin create
 =======================================
 
 .. sidebar:: 目次
@@ -20,10 +20,14 @@ docker plugin enable
        :depth: 3
        :local:
 
+.. _plugin_create-description:
 
-.. Enable plugin
+説明
+==========
 
-プラグインを有効化します。
+.. Create a plugin from a rootfs and configuration. Plugin data directory must contain config.json and rootfs directory.
+
+rootfs （ルート・ファイルシステム）と設定からプラグインを作成します。プラグインのデータディレクトリには、 config.json と rootfs ディレクトリが必須です。
 
 .. API 1.25+
    Open the 1.25 API reference (in a new window)
@@ -32,31 +36,31 @@ docker plugin enable
 【API 1.25+】このコマンドを使うには、クライアントとデーモン API の両方が、少なくとも `1.25 <https://docs.docker.com/engine/api/v1.25/>`_ の必要があります。クライアントとデーモン API のバージョンを調べるには、 ``docker version`` コマンドを使います。
 
 
-.. _plugin_enable-usage:
+.. _plugin_create-usage:
 
 使い方
 ==========
 
 .. code-block:: bash
 
-   $ docker plugin enable [OPTIONS] PLUGINｌ
+   $ docker plugin create [OPTIONS] PLUGIN PLUGIN-DATA-DIR
 
 .. Extended description
-.. _plugin_enable-extended-description:
+.. _plugin_create-extended-description:
 
 補足説明
 ==========
 
-.. Enables a plugin. The plugin must be installed before it can be enabled, see docker plugin install.
+.. Creates a plugin. Before creating the plugin, prepare the plugin’s root filesystem as well as the config.json
 
-プラグインを有効化します。プラグインは有効化する前にインストールされている必要があります。 :doc:`docker plugin install <plugin_install>` をご覧ください。
+プラグインを作成します。プラグインを作成する前に、プラグインのルート・ファイルシステムだけでなく、 :doc:`config.json </engine/extend/config>` の準備も必要です。
 
 .. For example uses of this command, refer to the examples section below.
 
-コマンドの使用例は、以下の :ref:`使用例のセクション <plugin_enable-examples>` をご覧ください。
+コマンドの使用例は、以下の :ref:`使用例のセクション <plugin_create-examples>` をご覧ください。
 
 .. Options
-.. _plugin_enable-options:
+.. _plugin_create-options:
 
 オプション
 ==========
@@ -67,41 +71,40 @@ docker plugin enable
    * - 名前, 省略形
      - デフォルト
      - 説明
-   * - ``--timeout``
-     - ``30``
-     - HTTP クライアントのタイムアウト（秒）
+   * - ``--compress``
+     - 
+     - コンテクストを gzip で圧縮
 
 .. Examples
-.. _plugin_enable-examples:
+.. _plugin_create-examples:
 
 使用例
 ==========
 
-.. The following example shows that the sample-volume-plugin plugin is installed, but disabled:
+.. The following example shows how to create a sample plugin.
 
-以下の例は ``sample-volume-plugin`` プラグインがインストール済みですが、無効化されています。
-
-.. code-block:: bash
-
-   $ docker plugin ls
-   
-   ID            NAME                                    DESCRIPTION                ENABLED
-   69553ca1d123  tiborvass/sample-volume-plugin:latest   A test plugin for Docker   false
-
-.. To enable the plugin, use the following command:
-
-このプラグインを有効化するには、次のコマンドを実行します。
+以下の例は、サンプル ``plugin`` を作成する方法を示します。
 
 .. code-block:: bash
 
-   $ docker plugin enable tiborvass/sample-volume-plugin
+   $ ls -ls /home/pluginDir
    
-   tiborvass/sample-volume-plugin
+   total 4
+   4 -rw-r--r--  1 root root 431 Nov  7 01:40 config.json
+   0 drwxr-xr-x 19 root root 420 Nov  7 01:40 rootfs
+   
+   $ docker plugin create plugin /home/pluginDir
+   
+   plugin
    
    $ docker plugin ls
    
-   ID            NAME                                    DESCRIPTION                ENABLED
-   69553ca1d123  tiborvass/sample-volume-plugin:latest   A test plugin for Docker   true
+   ID              NAME            DESCRIPTION                  ENABLED
+   672d8144ec02    plugin:latest   A sample plugin for Docker   false
+
+.. The plugin can subsequently be enabled for local use or pushed to the public registry.
+
+以降は、プラグインをローカルで有効化したり、パブリック・レジストリに送信可能になります。
 
 .. Parent command
 
@@ -146,9 +149,7 @@ docker plugin enable
      - 既存のプラグインを更新
 
 
-
 .. seealso:: 
 
-   docker plugin enable
-      https://docs.docker.com/engine/reference/commandline/plugin_enable/
-
+   docker plugin create
+      https://docs.docker.com/engine/reference/commandline/plugin_create/
