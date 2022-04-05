@@ -32,8 +32,10 @@ Docker :ruby:`シークレット <secret>` を管理します。
 .. API 1.25+
    Open the 1.25 API reference (in a new window)
    The client and daemon API must both be at least 1.25 to use this command. Use the docker version command on the client to check your client and daemon API versions.
+   Swarm This command works with the Swarm orchestrator.
 
-【API 1.25+】このコマンドを使うには、クライアントとデーモン API の両方が、少なくとも `1.25 <https://docs.docker.com/engine/api/v1.25/>`_ の必要があります。クライアントとデーモン API のバージョンを調べるには、 ``docker version`` コマンドを使います。
+- 【API 1.25+】このコマンドを使うには、クライアントとデーモン API の両方が、少なくとも `1.25 <https://docs.docker.com/engine/api/v1.25/>`_ の必要があります。クライアントとデーモン API のバージョンを調べるには、 ``docker version`` コマンドを使います。
+- 【Swarm】このコマンドは Swarm オーケストレータと動作します。
 
 
 .. _secret-usage:

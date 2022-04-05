@@ -1,23 +1,18 @@
 ﻿.. -*- coding: utf-8 -*-
 .. 
 .. doc version: 20.10
-.. check date: 2022/03/31
+.. check date: 2022/04/03
 .. -----------------------------------------------------------------------------
 
 ========================================
-docker plugin
+docker system
 ========================================
 
 .. toctree::
    :maxdepth: 3
 
-   plugin.rst
-   plugin_create.rst
-   plugin_disable.rst
-   plugin_enable.rst
-   plugin_inspect.rst
-   plugin_install.rst
-   plugin_ls.rst
-   plugin_rm.rst
-   plugin_set.rst
-   plugin_upgrade.rst
+   system.rst
+   system_df.rst
+   system_events.rst
+   system_info.rst
+   system_prune.rst

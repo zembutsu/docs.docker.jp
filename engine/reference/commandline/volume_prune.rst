@@ -1,18 +1,19 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/engine/reference/commandline/volume_rm/
+.. URL: https://docs.docker.com/engine/reference/commandline/volume_prune/
 .. SOURCE: 
    doc version: 20.10
-      https://github.com/docker/docker.github.io/blob/master/engine/reference/commandline/volume_rm.md
-      https://github.com/docker/docker.github.io/blob/master/_data/engine-cli/docker_volume_rm.yaml
+      https://github.com/docker/docker.github.io/blob/master/engine/reference/commandline/volume_prune.md
+      https://github.com/docker/docker.github.io/blob/master/_data/engine-cli/docker_volume_prune.yaml
 .. check date: 2022/04/05
 .. Commits on Aug 21, 2021 304f64ccec26ef1810e90d385d5bae5fab3ce6f4
 .. -------------------------------------------------------------------
 
-.. docker volume rm
+.. docker volume prune
 
 =======================================
-docker volume rm
+docker volume prune
 =======================================
+
 
 .. sidebar:: 目次
 
@@ -20,14 +21,14 @@ docker volume rm
        :depth: 3
        :local:
 
-.. _volume_rm-description:
+.. _volume_prune-description:
 
 説明
 ==========
 
-.. Remove one or more volumes
+.. Remove all unused local volumes
 
-1つまたは複数のボリュームを削除します。
+使用していないローカルボリュームを削除します。
 
 .. API 1.21+
    Open the 1.21 API reference (in a new window)
@@ -36,30 +37,30 @@ docker volume rm
 【API 1.21+】このコマンドを使うには、クライアントとデーモン API の両方が、少なくとも `1.25 <https://docs.docker.com/engine/api/v1.21/>`_ の必要があります。クライアントとデーモン API のバージョンを調べるには、 ``docker version`` コマンドを使います。
 
 
-.. _volume_rm-usage:
+.. _volume_prune-usage:
 
 使い方
 ==========
 
 .. code-block:: bash
 
-   $ docker volume rm [OPTIONS] VOLUME [VOLUME...]
+   $ docker volume prune [OPTIONS]
 
 .. Extended description
-.. _volume_rm-extended-description:
+.. _volume_prune-extended-description:
 
 補足説明
 ==========
 
-.. Removes one or more volumes. You cannot remove a volume that is in use by a container.
+.. Remove all unused local volumes. Unused local volumes are those which are not referenced by any containers
 
-１つまたは複数のボリュームを削除できます。コンテナが使用中のボリュームは削除できません。
+未使用のローカルボリュームを全て削除します。未使用のボリュームとは、どのコンテナからも参照されていないボリュームです。
 
 .. For example uses of this command, refer to the examples section below.
 
-コマンドの使用例は、以下の :ref:`使用例のセクション <volume_rm-examples>` をご覧ください。
+コマンドの使用例は、以下の :ref:`使用例のセクション <volume_prune-examples>` をご覧ください。
 
-.. _volume_rm-options:
+.. _volume_prune-options:
 
 オプション
 ==========
@@ -70,21 +71,30 @@ docker volume rm
    * - 名前, 省略形
      - デフォルト
      - 説明
+   * - ``--filter``
+     - 
+     - フィルタ値を指定（例 ``label=<label>`` ）
    * - ``--force`` , ``-f``
      - 
-     - 【API 1.25+】確認のプロンプトを表示しない
+     - 確認のプロンプトを表示しない
 
 .. Examples
-.. _volume_rm-examples:
+.. _volume_prune-examples:
 
 使用例
 ==========
 
 .. code-block:: bash
 
-   $ docker volume rm hello
+   $ docker volume prune
    
-   hello
+   WARNING! This will remove all local volumes not used by at least one container.
+   Are you sure you want to continue? [y/N] y
+   Deleted Volumes:
+   07c7bdf3e34ab76d921894c2b834f073721fccfbbcba792aa7648e3a7a664c2e
+   my-named-vol
+   
+   Total reclaimed space: 36 B
 
 
 
@@ -123,8 +133,7 @@ docker volume rm
    * - :doc:`docker volume rm<volume_rm>`
      - 1つまたは複数ボリュームを削除
 
-
 .. seealso:: 
 
-   docker volume rm
-      https://docs.docker.com/engine/reference/commandline/volume_rm/
+   docker volume prune
+      https://docs.docker.com/engine/reference/commandline/volume_prune/

@@ -196,7 +196,7 @@ id
    95e74588f40d        foo                 bridge          local
 
 .. Label
-ラベル
+label
 ^^^^^^^^^^
 
 .. The label filter matches network based on the presence of a label alone or a label and a value.
@@ -225,7 +225,7 @@ id
    f6e212da9dfd        test2               bridge        local
 
 .. Name
-名前
+name
 ^^^^^^^^^^
 
 .. The name filter matches on all or part of a network’s name.

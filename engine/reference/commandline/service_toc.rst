@@ -1,23 +1,23 @@
 ﻿.. -*- coding: utf-8 -*-
 .. 
 .. doc version: 20.10
-.. check date: 2022/03/31
+.. check date: 2022/04/02
 .. -----------------------------------------------------------------------------
 
 ========================================
-docker plugin
+docker service
 ========================================
 
 .. toctree::
    :maxdepth: 3
 
-   plugin.rst
-   plugin_create.rst
-   plugin_disable.rst
-   plugin_enable.rst
-   plugin_inspect.rst
-   plugin_install.rst
-   plugin_ls.rst
-   plugin_rm.rst
-   plugin_set.rst
-   plugin_upgrade.rst
+   service.rst
+   service_create.rst
+   service_inspect.rst
+   service_logs.rst
+   service_ls.rst
+   service_ps.rst
+   service_rollback.rst
+   service_rm.rst
+   service_scale.rst
+   service_update.rst

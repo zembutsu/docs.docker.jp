@@ -129,7 +129,9 @@ Go 言語の `text/template <https://golang.org/pkg/text/template/>`_ パッケ�
 
 .. The output is in JSON format, for example:
 
-.. code-block:: yaml
+出力は、以下のような JSON 形式です。
+
+.. code-block:: json
 
    [
      {
@@ -159,7 +161,7 @@ Go 言語の `text/template <https://golang.org/pkg/text/template/>`_ パッケ�
 
 .. You can use the --format option to obtain specific information about a config. The following example command outputs the creation time of the config.
 
---format オプションを使い、特定の設定情報を取得できます。以下のコマンド例は、作成時間の情報を出力します。
+--format オプションを使い、特定の設定情報を取得できます。以下のコマンド例は、設定を作成した時間の情報を出力します。
 
 .. code-block:: bash
 
