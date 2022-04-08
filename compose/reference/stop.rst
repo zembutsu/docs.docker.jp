@@ -3,21 +3,22 @@
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/reference/stop.md
    doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/reference/stop.md
-.. check date: 2016/04/28
-.. Commits on Jul 28, 2015 7eabc06df5ca4a1c2ad372ee8e87012de5429f05
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/compose/reference/stop.md
+.. check date: 2022/04/09
+.. Commits on Jan 28, 2022 b6b19516d0feacd798b485615ebfee410d9b6f86
 .. -------------------------------------------------------------------
 
-.. stop
-
-.. _compose-stop:
+.. docker-compose stop
+.. _docker-compose-stop:
 
 =======================================
-stop
+docker-compose stop
 =======================================
 
 .. code-block:: bash
 
-   使い方: stop [オプション] [サービス...]
+   使い方: docker-compose stop [オプション] [サービス...]
    
    オプション:
    -t, --timeout TIMEOUT      シャットダウンのタイムアウト秒数を指定 (デフォルト: 10).
@@ -28,5 +29,5 @@ stop
 
 .. seealso:: 
 
-   stop
+   docker-compose stop
       https://docs.docker.com/compose/reference/stop/

@@ -3,21 +3,22 @@
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/reference/unpause.md
    doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/reference/unpause.md
-.. check date: 2016/04/28
-.. Commits on Jan 7, 2016 77d2aae72dbed943e0b7ae58e392a5bca49a4263
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/compose/reference/unpause.md
+.. check date: 2022/04/09
+.. Commits on Jan 28, 2022 b6b19516d0feacd798b485615ebfee410d9b6f86
 .. -------------------------------------------------------------------
 
-.. unpause
-
-.. _compose-unpause:
+.. docker-compose unpause
+.. _docker-compose-unpause:
 
 =======================================
-unpause
+docker-compose unpause
 =======================================
 
 .. code-block:: bash
 
-   使い方: unpause [サービス...]
+   使い方: docker-compose unpause [サービス...]
 
 .. Unpauses paused containers of a service.
 
@@ -25,6 +26,6 @@ unpause
 
 .. seealso:: 
 
-   unpause
+   docker-compose unpause
       https://docs.docker.com/compose/reference/unpause/
 

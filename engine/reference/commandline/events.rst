@@ -53,6 +53,7 @@ docker events
 直近の 1000 イベントのログだけ表示できます。フィルタを使えば、イベントを表示する数を制限できます。
 
 .. Object types
+.. _docker_events-object-types:
 
 オブジェクト型
 --------------------

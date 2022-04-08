@@ -1,71 +1,57 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/reference/push/
+.. SOURCE:
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/compose/reference/push.md
+.. check date: 2022/04/09
+.. Commits on Jan 28, 2022 b6b19516d0feacd798b485615ebfee410d9b6f86
 .. -------------------------------------------------------------------
 
-.. title: docker-compose push
-
+.. docker-compose push
 .. _docker-compose-push:
 
 =======================================
 docker-compose push
 =======================================
 
-.. ```
-   Usage: push [options] [SERVICE...]
+.. code-block:: bash
 
-   Options:
-       --ignore-push-failures  Push what it can and ignores images with push failures.
-   ```
-::
-
-   利用方法: push [オプション] [SERVICE...]
-
+   使い方: docker-compose push [オプション] [サービス...]
+   
    オプション:
-       --ignore-push-failures  可能なものはプッシュし、失敗するものは無視します。
+       --ignore-push-failures  送信可能なイメージは送信し、送信失敗するイメージは無視
 
-.. Pushes images for services to their respective `registry/repository`.
+.. Pushes images for services to their respective registry/repository.
 
-サービスのイメージを、それぞれの ``registry/repository`` に対してプッシュします。
+サービスに対応するイメージを各 ``registry/repositor`` に送信します。
 
 .. The following assumptions are made:
 
-以下のことを前提としています。
+以下の状況が想定されています。
 
-.. - You are pushing an image you have built locally
+..    You are pushing an image you have built locally
+..    You have access to the build key
 
-* ローカルにビルド済のイメージをプッシュするものとします。
+* ローカルで構築したイメージを送信しようとしている
+* :ruby:`構築キー <build key>` にアクセス可能
 
-.. - You have access to the build key
 
-* ビルドキーに対してアクセス権を有しているものとします。
-
-.. ## Example
-
+.. Example
 例
-===
+==========
 
-.. ```yaml
+.. code-block:: yalm
+
    version: '3'
    services:
      service1:
        build: .
        image: localhost:5000/yourimage  # goes to local registry
-
+   
      service2:
        build: .
-       image: youruser/yourimage  # goes to youruser DockerHub registry
-   ```
-.. code-block:: yaml
+       image: your-dockerid/yourimage  # goes to your repository on Docker Hub
 
-   version: '3'
-   services:
-     service1:
-       build: .
-       image: localhost:5000/yourimage  # ローカルレジストリへ
-
-     service2:
-       build: .
-       image: youruser/yourimage  # 自ユーザーの DockerHub レジストリへ
 
 .. seealso:: 
 

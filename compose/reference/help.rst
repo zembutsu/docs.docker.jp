@@ -3,8 +3,10 @@
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/reference/help.md
    doc version: 1.11
       https://github.com/docker/compose/commits/master/docs/reference/help.md
-.. check date: 2016/04/28
-.. Commits on Jul 28, 2015 7eabc06df5ca4a1c2ad372ee8e87012de5429f05
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/compose/reference/help.md
+.. check date: 2022/04/08
+.. Commits on Jan 28, 2022 b6b19516d0feacd798b485615ebfee410d9b6f86
 .. -------------------------------------------------------------------
 
 
@@ -13,12 +15,12 @@
 .. _compose-help:
 
 =======================================
-help
+docker-compose help
 =======================================
 
 .. code-block:: bash
 
-   使い方: help コマンド
+   使い方: docker-compose help [コマンド]
 
 .. Displays help and usage instructions for a command.
 
@@ -26,5 +28,5 @@ help
 
 .. seealso:: 
 
-   help
+   docker-compose help
       https://docs.docker.com/compose/reference/help/

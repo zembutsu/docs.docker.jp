@@ -17,7 +17,7 @@
 
    index.rst
    envvars.rst
-   completion.rst
+   /compose/completion.rst
    build.rst
    config.rst
    create.rst

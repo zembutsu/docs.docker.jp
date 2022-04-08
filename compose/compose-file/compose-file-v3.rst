@@ -946,6 +946,7 @@ max_replicas_per_node
          placement:
            max_replicas_per_node: 1
 
+.. compose-file-v3-replicas:
 replicas
 ^^^^^^^^^^
 
@@ -1026,6 +1027,7 @@ resources
 
 サービスかコンテナが、システムで利用可能なメモリを越えて使おうとすると、Out Of Memory 例外（OOME）が発生し、コンテナか Docker デーモンはカーネル OOM キラーによって強制停止されるでしょう。このような状態が発生しないようにするには、ホスト上で実行するアプリケーションに適切なメモリを割り当て、 :ref:`understand-the-risks-of-running-out-of-memory` をご覧ください。
 
+.. _compose-file-v3-restart_policy:
 restart_policy
 ^^^^^^^^^^^^^^^^^^^^
 
