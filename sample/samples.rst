@@ -1,4 +1,13 @@
-﻿.. Sample applications:
+﻿.. -*- coding: utf-8 -*-
+.. URL: https://docs.docker.com/samples/
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/samples/index.md
+.. check date: 2022/04/09
+.. Commits on Apr 24, 2021 9ddb934f04f67016359a4532459c73d2e0150f8b
+.. -----------------------------------------------------------------------------
+
+
+.. Sample applications:
 
 .. _samples-sample-applications:
 
@@ -8,7 +17,7 @@
 * `apt-cacher-ng <https://docs.docker.com/engine/examples/apt-cacher-ng/>`_
    * Docker 化した apt-cacher-ng インスタンスを実行
 
-* `.Net Core application <https://docs.docker.com/engine/examples/dotnetcore/>`_
+* `ASP.NET Core application <https://docs.docker.com/engine/examples/dotnetcore/>`_
    * Docker 化した ASP.NET Core アプリケーションを実行
 
 * `ASP.NET Core + SQL Server on Linux <https://docs.docker.com/compose/aspnet-mssql-compose/>`_
@@ -29,5 +38,3 @@
 * `Riak <https://docs.docker.com/engine/examples/running_riak_service/>`_
    * Docker 化した Riak インスタンスを実行
 
-* `SSHd <https://docs.docker.com/engine/examples/running_ssh_service/>`_
-   * Docker 化した SSHd インスタンスを実行
