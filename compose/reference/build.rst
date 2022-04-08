@@ -35,7 +35,7 @@ docker-compose build
 
 .. Services are built once and then tagged, by default as project_service. For example, composetest_db. If the Compose file specifies an image name, the image is tagged with that name, substituting any variables beforehand. See variable substitution.
 
-サービスは構築後、タグ付けされます。タグのデフォルトは ``project_service`` です。たとえば、 ``composetest_db`` です。Compose ファイルで :ruby:`イメージ名 <compose-file-v3-image>` を指定している場合、イメージはその名前でタグ付けされ、事前に設定していた変数を置換します。詳しくは :ruby:`変数の置き換え <compose-file-v3-variable-substitution>` をご覧ください。
+サービスは構築後、タグ付けされます。タグのデフォルトは ``project_service`` です。たとえば、 ``composetest_db`` です。Compose ファイルで :ref:`イメージ名 <compose-file-v3-image>` を指定している場合、イメージはその名前でタグ付けされ、事前に設定していた変数を置換します。詳しくは :ref:`変数の置き換え <compose-file-v3-variable-substitution>` をご覧ください。
 
 .. If you change a service's Dockerfile or the contents of its build directory, run docker-compose build to rebuild it.
 
