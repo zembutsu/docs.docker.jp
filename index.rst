@@ -20,7 +20,7 @@ Docker ドキュメント日本語化プロジェクト
 
 .. attention::
 
-  * Docker `v20.10 (current)`  向けにドキュメントの改訂作業中です(2022年2月現在)。一部古い場合がありますので、ご注意ください。
+  * Docker `v20.10 (current)`  向けにドキュメントの改訂作業中です(2022年4月現在)。一部古い場合がありますので、ご注意ください。
   * Docker のドキュメントは常に変わり続けています。最新の情報については `公式ドキュメント <https://docs.docker.com/>`_ をご覧ください。
   * 本プロジェクトは有志による翻訳プロジェクトです。お気づきの点がございましたら、 `issue <https://github.com/zembutsu/docs.docker.jp/issues>`_ や `Pull Request <https://github.com/zembutsu/docs.docker.jp/pulls>`_ でお知らせ願います。
 
@@ -58,6 +58,7 @@ Doc v20.10 目次
    :caption: Guides - ガイド
    :maxdepth: 1
 
+   Docker概要 <get-started/overview.rst>
    get-docker.rst
    get-started/toc.rst
    develop/toc.rst

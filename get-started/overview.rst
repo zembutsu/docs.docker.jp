@@ -1,8 +1,8 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/get-started/overview/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/get-started/overview.md
-.. check date: 2021/04/11
-.. Commits on Oct 15, 2020 f9d7f7352ac19120f5ce94ffac23471a91ff8921
+.. check date: 2022/04/09
+.. Commits on Feb 7, 2022 4fd778a3167596ff720cae99840d17a4ff604c8e
 .. -----------------------------------------------------------------------------
 
 .. Docker Overview
@@ -20,7 +20,7 @@ Docker 概要
        :local:
 .. Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications. By taking advantage of Docker’s methodologies for shipping, testing, and deploying code quickly, you can significantly reduce the delay between writing code and running it in production.
 
-Docker はアプリケーションを開発（developing）、移動（shipping）、実行（running）するめのオープンなプラットフォームです。Docker はインフラストラクチャ [#infractructure]_ とアプリケーションを切り離すため、ソフトウェアを短時間で提供できます。Docker があれば、アプリケーションを管理するのと同じ方法で、あなたのインフラも管理できます。Docker 的な手法を最大限活用しますと、テストやコードのデプロイを素早くできますので、コードを書いてから、プロダクション（実行環境）で動かすまでにかかる時間を著しく軽減できます。
+Docker はアプリケーションを開発（developing）、移動（shipping）、実行（running）するためのオープンなプラットフォームです。Docker はインフラストラクチャ [#infractructure]_ とアプリケーションを切り離すため、ソフトウェアを短時間で提供できます。Docker があれば、アプリケーションを管理するのと同じ方法で、あなたのインフラも管理できます。Docker 的な手法を最大限活用しますと、テストやコードのデプロイを素早くできますので、コードを書いてから、プロダクション（実行環境）で動かすまでにかかる時間を著しく軽減できます。
 
 .. [#infractructure] 訳者注：インフラ（infrastructure）とは、サーバやネットワークなど計算資源の基盤となるもの。
 
@@ -33,13 +33,13 @@ Docker プラットフォーム
 
 .. Docker provides the ability to package and run an application in a loosely isolated environment called a container. The isolation and security allow you to run many containers simultaneously on a given host. Containers are lightweight and contain everything needed to run the application, so you do not need to rely on what is currently installed on the host. You can easily share containers while you work, and be sure that everyone you share with gets the same container that works in the same way.
 
-Docker は、コンテナ（container）という緩やかに分離された環境 [#isolated]_ （isolated environment）で、アプリケーションのパッケージ化と実行をする機能を提供します。この分離と安全性により、実行するホスト上で多くのコンテナを同時に実行できます。コンテナは軽量であり、アプリケーションの実行に必要な全てが入っているため、ホスト上で今何をインストールしていようが関係ありません。作業中でも手軽にコンテナを共有できますので、あなたが共有したコンテナを得た全ての人が、同じコンテナを、同じ方法で、確実に動作できるようにします。
+Docker は、コンテナ（container）という緩やかに隔離された環境 [#isolated]_ （isolated environment）で、アプリケーションのパッケージ化と実行をする機能を提供します。この分離と安全性により、実行するホスト上で多くのコンテナを同時に実行できます。コンテナは軽量であり、アプリケーションの実行に必要な全てが入っているため、ホスト上で今何をインストールしていようが関係ありません。作業中でも手軽にコンテナを共有できますので、あなたが共有したコンテナを得た全ての人が、同じコンテナを、同じ方法で、確実に動作できるようにします。
 
 .. [#isolated] 隔離された環境とは "isolated environment" の訳。隔離されて離された環境というよりも、部屋の中を仕切るようなイメージが近いです。
 
 .. Docker provides tooling and a platform to manage the lifecycle of your containers:
 
-Docker が提供するのは、コンテナのライフサイクル（全過程）を管理するツールと、プラットフォームなのです。
+Docker が提供するのは、コンテナのライフサイクル（全過程）を管理するツールと、プラットフォームです。
 
 .. 
     Develop your application and its supporting components using containers.
@@ -57,24 +57,22 @@ Docker が提供するのは、コンテナのライフサイクル（全過程�
 
 .. _what-can-i-use-docker-for:
 
- Docker を何に使えますか？
+ Docker の用途は何ですか？
 ========================================
 
 .. Fast, consistent delivery of your applications
 .. _fast-consistent-delivery-of-your-applications:
 
-素早く一貫性を保つアプリケーションの配信
+素早く一貫性を保つアプリケーションのデリバリ
 --------------------------------------------------
 
 .. Docker streamlines the development lifecycle by allowing developers to work in standardized environments using local containers which provide your applications and services. Containers are great for continuous integration and continuous delivery (CI/CD) workflows.
-
-アプリケーションや
 
 Docker は開発のライフサイクルを効率化します。開発するアプリケーションやサービスがローカルなコンテナ内に実現でき、開発者は標準化された環境により作業が進められるからです。コンテナを使った開発は、継続的インテグレーション (continuous integration; CI) や継続的開発 (continuous delivery; CD) のワークフローに適しています。
 
 .. Consider the following example scenario:
 
-以下のようなシナリオ例を考えてみてください。
+以下のようなシナリオ例を検討しましょう。
 
 ..  Your developers write code locally and share their work with their colleagues using Docker containers.
     They use Docker to push their applications into a test environment and execute automated and manual tests.
@@ -100,10 +98,10 @@ Docker によるコンテナベースのプラットフォームは、処理負�
 
 Docker の可搬性と軽量な特性は、以下のようなことを容易に実現します。それは処理負荷を動的に管理できること、ビジネスシーンでの要求に応じてアプリケーションのスケールアップや提供終了を簡単に、しかもほぼリアルタイムで行うことができます。
 
-.. **Running more workloads on the same hardware**
+.. Running more workloads on the same hardware
 .. _running-more-workloads-on-the-same-hardware:
 
-同一ハードウェア上にて負荷の高い処理を実行
+同じハードウェア上で負荷の高い処理を実行
 ----------------------------------------
 
 .. Docker is lightweight and fast. It provides a viable, cost-effective alternative to hypervisor-based virtual machines, so you can use more of your compute capacity to achieve your business goals. Docker is perfect for high density environments and for small and medium deployments where you need to do more with fewer resources.
@@ -116,9 +114,9 @@ Docker は軽量かつ高速です。ハイパーバイザ・ベースの仮想�
 Docker のアーキテクチャ
 ==============================
 
-.. Docker uses a client-server architecture. The Docker client talks to the Docker daemon, which does the heavy lifting of building, running, and distributing your Docker containers. The Docker client and daemon can run on the same system, or you can connect a Docker client to a remote Docker daemon. The Docker client and daemon communicate using a REST API, over UNIX sockets or a network interface.
+.. Docker uses a client-server architecture. The Docker client talks to the Docker daemon, which does the heavy lifting of building, running, and distributing your Docker containers. The Docker client and daemon can run on the same system, or you can connect a Docker client to a remote Docker daemon. The Docker client and daemon communicate using a REST API, over UNIX sockets or a network interface. Another Docker client is Docker Compose, that lets you work with applications consisting of a set of containers.
 
-Docker はクライアント・サーバ型のアーキテクチャを採用しています。Docker *クライアント* は Docker デーモンに処理を依頼します。このデーモンは、Docker コンテナの構築、実行、配布という複雑な仕事をこなします。Docker クライアントとデーモンは同一システム上で動かすことも *可能* ですが、別のシステム上であっても、Docker クライアントからリモートにある Docker デーモンへのアクセスが可能です。Docker クライアントとデーモンの間の通信には REST API が利用され、UNIX ソケットまたはネット・ワークインターフェイスを介して行われます。
+Docker はクライアント・サーバ型のアーキテクチャを採用しています。Docker *クライアント* は Docker デーモンに処理を依頼します。このデーモンは、Docker コンテナの構築、実行、配布という複雑な仕事をこなします。Docker クライアントとデーモンは同一システム上で動かすことも *可能* ですが、別のシステム上であっても、Docker クライアントからリモートにある Docker デーモンへのアクセスが可能です。Docker クライアントとデーモンの間の通信には REST API が利用され、UNIX ソケットまたはネット・ワークインターフェイスを介して行われます。他にも Docker クライアントには Docker Compose があり、コンテナ一式で構成されるアプリケーションを操作します。
 
 .. image:: /engine/article-img/architecture.png
    :scale: 60%
@@ -142,19 +140,30 @@ Docker クライアント
 
 Docker クライアント（ ``docker`` ）は Docker とのやりとりを行うために、たいていのユーザが利用するものです。``docker run`` のようなコマンドが実行されると、Docker クライアントは ``dockerd`` にそのコマンドを伝えます。そして ``dockerd`` はその内容を実現します。``docker`` コマンドは Docker API を利用しています。Docker クライアントは複数のデーモンと通信することができます。
 
+.. _overview-docker-desktop:
+Docker デスクトップ
+--------------------
+
+.. Docker Desktop is an easy-to-install application for your Mac or Windows environment that enables you to build and share containerized applications and microservices. Docker Desktop includes the Docker daemon (dockerd), the Docker client (docker), Docker Compose, Docker Content Trust, Kubernetes, and Credential Helper. For more information, see Docker Desktop.
+
+Docker デスクトップは Mac や Windows 環境へ簡単にインストールできるアプリケーションです。これを使えば、 :ruby:`コンテナ化 <containerlized>` したアプリケーションとマイクロサービスを構築・共有できるようになります。Docker デスクトップに含まれるのは Docker デーモン（ ``dockerd`` ）、Docker クライアント（ ``docker`` ）、Docker Compose、Docker Content Trust、Kubernetes、 :ruby:`Credential Helper <認証情報ヘルパー>` です。詳しい情報は :doc:`Docker Desktop </desktop/index>` をご覧ください。
+
+
 .. _docker-registries:
 
 Docker レジストリ
 --------------------
 
-.. A Docker registry stores Docker images. Docker Hub is a public registry that anyone can use, and Docker is configured to look for images on Docker Hub by default. You can even run your own private registry. If you use Docker Datacenter (DDC), it includes Docker Trusted Registry (DTR).
+.. A Docker registry stores Docker images. Docker Hub is a public registry that anyone can use, and Docker is configured to look for images on Docker Hub by default. You can even run your own private registry.
 
-Docker レジストリは Docker イメージを保管します。Docker Hub は公開レジストリであり、誰でも利用可能です。また  Docker はデフォルトで Docker Hub のイメージを探すよう設定されています。独自にプライベート・レジストリを運用することもできます。もし Docker データセンタ（Docker Datacenter; DDC）を利用するのであれば、Docker トラステッド・レジストリ（Docker Trusted Registry; DTR）が含まれています。
+Docker レジストリは Docker イメージを保管します。Docker Hub は公開レジストリであり、誰でも利用可能です。また  Docker はデフォルトで Docker Hub のイメージを探すよう設定されています。独自にプライベート・レジストリを運用することもできます。
 
 .. When you use the docker pull or docker run commands, the required images are pulled from your configured registry. When you use the docker push command, your image is pushed to your configured registry.
 
 ``docker pull`` や ``docker run`` コマンドを使うと、設定されたレジストリから必要なイメージを取得します。 ``docker push`` コマンドを使えば、イメージを指定したレジストリに送信します。
 
+.. Docker objects
+.. _overview-docker-objects:
 Docker オブジェクト
 --------------------
 
@@ -191,8 +200,9 @@ Docker の利用時は、イメージ、コンテナ、ネットワーク、ボ�
 コンテナはイメージによって定義されるものです。またこれを生成、実行するために設定したオプションによっても定義されます。コンテナを削除すると、その時点での状態に対して変更がかかっていたとしても、永続的なストレージに保存されていないものは消失します。
 
 .. Example docker run command
-
-**``docker run`` コマンドの例**
+.. _overview-example-docker-run-command:
+``docker run`` コマンドの例
+++++++++++++++++++++++++++++++
 
 .. The following command runs an ubuntu container, attaches interactively to your local command-line session, and runs /bin/bash.
 
@@ -204,93 +214,47 @@ Docker の利用時は、イメージ、コンテナ、ネットワーク、ボ�
 
 .. When you run this command, the following happens (assuming you are using the default registry configuration):
 
-このコマンドを実行すると、以下が発生します（レジストリから入手した際のデフォルトの設定を使用しているものとします）。
+このコマンドを実行すると、以下のようになります（デフォルトのレジストリ設定を使用している想定です）。
 
-..  If you do not have the ubuntu image locally, Docker pulls it from your configured registry, as though you had run docker pull ubuntu manually.
-    Docker creates a new container, as though you had run a docker container create command manually.
-    Docker allocates a read-write filesystem to the container, as its final layer. This allows a running container to create or modify files and directories in its local filesystem.
-    Docker creates a network interface to connect the container to the default network, since you did not specify any networking options. This includes assigning an IP address to the container. By default, containers can connect to external networks using the host machine’s network connection.
-    Docker starts the container and executes /bin/bash. Because the container is running interactively and attached to your terminal (due to the -i and -t flags), you can provide input using your keyboard while the output is logged to your terminal.
-    When you type exit to terminate the /bin/bash command, the container stops but is not removed. You can start it again or remove it.
+..    If you do not have the ubuntu image locally, Docker pulls it from your configured registry, as though you had run docker pull ubuntu manually.
 
 1. ``ubuntu`` イメージがローカルになければ、Docker は設定されているレジストリからイメージを取得します。この動作は手動で ``docker pull ubuntu`` を実行するのと同じです。
-2. Docker は新しいコンテナを生成します。これは手動で ``docker create`` コマンドを実行することと同じです。
-3. Docker はコンテナに対して読み書きが可能なファイルシステムを割り当てます。これが最終的にレイヤとなります。このことによりコンテナの稼動中に、ローカルなファイルシステム内でのファイルやディレクトリの生成や変更などが実現されます。
-4. Docker はネットワーク・インターフェースを生成し、コンテナをデフォルト・ネットワークに接続します。ここではネットワーク・オプションを指定していないものとしているためです。このときには、コンテナに対しての IP アドレスの割り当ても行われます。デフォルトでコンテナは、ホストマシンのネットワーク接続を利用して、外部ネットワークに接続します。
-5. Docker はコンテナを起動し、 ``/bin/bash`` を実行します。（ ``-i`` と ``-t`` のフラグにより）対話的に、かつターミナル画面に接続するようにして実行しているため、手元のキーボードを使って入力することができ、ターミナル画面に出力が行われるようになります。
-6. ``exit`` を入力すると、 ``/bin/bash`` コマンドは終了します。コンテナは停止状態となりますが、削除はされません。コンテナを再起動したり削除することもできます。
 
-サービス
-^^^^^^^^^^
+..    Docker creates a new container, as though you had run a docker container create command manually.
 
-.. Services allow you to scale containers across multiple Docker daemons, which all work together as a swarm with multiple managers and workers. Each member of a swarm is a Docker daemon, and all the daemons communicate using the Docker API. A service allows you to define the desired state, such as the number of replicas of the service that must be available at any given time. By default, the service is load-balanced across all worker nodes. To the consumer, the Docker service appears to be a single application. Docker Engine supports swarm mode in Docker 1.12 and higher.
+2. Docker は新しいコンテナを作成します。これは手動で ``docker create`` コマンドを実行するのと同じです。
 
-サービスは、複数の Docker デーモンにわたって、コンテナのスケール変更ができるようにします。複数のデーモンはスォームと呼ばれるものとして扱われ、複数のマネージャ、ワーカとともに動作します。そしてすべてのデーモンが Docker API を利用して通信します。サービスは必要となる状態を定義することが可能であり、たとえばサービスのレプリカ数を、指定した時間においてどれだけ作り出すかを定義できます。デフォルトでは、すべてのワーカ・ノードにわたって負荷分散が行われます。利用者からすると、Docker サービスは１つのアプリケーションとして見えます。Docker Engine がスウォームモードをサポートするのは Docker バージョン 1.12 またはそれ以上です。
+..    Docker allocates a read-write filesystem to the container, as its final layer. This allows a running container to create or modify files and directories in its local filesystem.
 
-.. ## The underlying technology
+3. Docker はコンテナに対して読み書き可能なファイルシステムを、最後のレイヤとして割り当てます。このため、実行中のコンテナは、コンテナ内のローカルなファイルシステムで、ファイルやディレクトリの生成や変更ができます。
 
-基盤とする技術
+..    Docker creates a network interface to connect the container to the default network, since you did not specify any networking options. This includes assigning an IP address to the container. By default, containers can connect to external networks using the host machine’s network connection.
+
+
+4. Docker はネットワーク・インターフェースを生成し、コンテナをデフォルト・ネットワークに接続します。これは、ネットワークのオプションを一切指定していないからです。この処理には、コンテナに対する IP アドレスの割り当ても含みます。デフォルトでは、コンテナが外部ネットワークに接続するには、ホストマシンのネットワーク接続を利用します。
+
+..    Docker starts the container and executes /bin/bash. Because the container is running interactively and attached to your terminal (due to the -i and -t flags), you can provide input using your keyboard while the output is logged to your terminal.
+
+5. Docker はコンテナを起動し、 ``/bin/bash`` を実行します。コンテナは（ ``-i`` と ``-t`` のフラグにより）対話的に、かつターミナルに接続して実行しているため、手元のキーボードを使って入力でき、その間の出力はターミナル上に表示されます。
+
+..    When you type exit to terminate the /bin/bash command, the container stops but is not removed. You can start it again or remove it.
+
+6. ``exit`` を入力すると、 ``/bin/bash`` コマンドは終了します。コンテナは停止状態となりますが、削除はされません。コンテナは再起動や削除できます。
+
+
+.. The underlying technology
+
+基礎技術
 ==============
 
-.. Docker is written in Go and takes advantage of several features of the Linux kernel to deliver its functionality.
+.. Docker is written in the Go programming language and takes advantage of several features of the Linux kernel to deliver its functionality. Docker uses a technology called namespaces to provide the isolated workspace called the container. When you run a container, Docker creates a set of namespaces for that container.
 
-Docker は `Go 言語 <https://golang.org/>`_ で書かれており、Linux カーネルの機能をうまく活用して、さまざまな機能性を実現しています。
-
-.. Namespaces
-
-名前空間
-------------------------------
-
-.. Docker uses a technology called namespaces to provide the isolated workspace called the container. When you run a container, Docker creates a set of namespaces for that container.
-
-Docker は名前空間という技術を利用して *コンテナ* と呼ぶ作業空間を分離して提供します。コンテナが実行されたとき、Docker はそのコンテナに対して複数の *名前空間* を生成します。
+Docker は `Go プログラミング言語 <https://golang.org/>`_ で書かれており、Linux カーネルの機能をうまく活用して、さまざまな機能性を実現しています。Docker は ``namespaces`` （名前区間）技術を使い、「 :ruby:`コンテナ <container>` 」と呼ぶ :ruby:`隔離された作業空間 <isolated workspace>` を準備します。
 
 .. These namespaces provide a layer of isolation. Each aspect of a container runs in a separate namespace and its access is limited to that namespace.
 
-名前空間はいくつもの分離状態を作り出します。コンテナ内のさまざまな処理は、分離された名前空間内にて実行され、それぞれへのアクセスはその名前空間内に限定されます。
+名前空間はいくつもの隔離状態を作り出します。コンテナ内のさまざまな処理は、隔離された名前空間内で実行され、それぞれへのアクセスはその名前空間内に限定されます。
 
-.. Docker Engine uses namespaces such as the following on Linux:
-
-Docker Engine が取り扱う名前空間は、Linux 上で言えば以下のようなものです。
-
-..  The pid namespace: Process isolation (PID: Process ID).
-    The net namespace: Managing network interfaces (NET: Networking).
-    The ipc namespace: Managing access to IPC resources (IPC: InterProcess Communication).
-    The mnt namespace: Managing filesystem mount points (MNT: Mount).
-    The uts namespace: Isolating kernel and version identifiers. (UTS: Unix Timesharing System).
-
-* **pid 名前空間** ：プロセスの分離。（PID：プロセス ID）
-* **net 名前空間** ：ネットワーク・インターフェースの管理。（NET：ネットワーキング）
-* **ipc 名前空間** ：IPC リソースに対するアクセス管理。（IPC：InterProcess Communication、内部プロセスの通信）
-* **mnt 名前空間** ：ファイルシステムのマウント・ポイントの管理。（MNT：マウント）
-* **uts 名前空間** ：カーネルとバージョンの分離。（UTS：Unix  Timesharing System、Unix タイムシェアリング・システム）
-
-.. ### Control groups
-
-コントロール・グループ (Control groups)
-----------------------------------------
-
-.. Docker Engine on Linux also relies on another technology called control groups (cgroups). A cgroup limits an application to a specific set of resources. Control groups allow Docker Engine to share available hardware resources to containers and optionally enforce limits and constraints. For example, you can limit the memory available to a specific container.
-
-Linux 上で動作する Docker Engine には、さらに *コントール・グループ* （``cgroups``; control groups）と呼ばれる技術も併用されます。cgroup は、アプリケーションが利用するリソースを特定のものに限定します。つまりコントロール・グループは、Docker Engine が利用可能なハードウェア・リソースをコンテナ間で共有するようにし、必要に応じて利用上限や制約をつけることも行います。たとえば特定のコンテナが利用するメモリの上限を設定することもできます。
-
-.. Union file systems
-
-ユニオン・ファイル・システム
-------------------------------
-
-.. Union file systems, or UnionFS, are file systems that operate by creating layers, making them very lightweight and fast. Docker Engine uses UnionFS to provide the building blocks for containers. Docker Engine can use multiple UnionFS variants, including AUFS, btrfs, vfs, and DeviceMapper.
-
-ユニオン・ファイル・システムは UnionFS というものであり、レイヤが作り出され、軽量かつ高速に処理が行われるファイルシステムのことです。Docker Engine は UnionFS を利用して、コンテナにおけるブロックを構築します。Docker Engine では AUFS、btrfs、vfs、DeviceMapper などの UnionFS 系のファイルシステムも利用できます。
-
-.. Container format
-
-コンテナ・フォーマット
-------------------------------
-
-.. Docker Engine combines the namespaces, control groups, and UnionFS into a wrapper called a container format. The default container format is libcontainer. In the future, Docker may support other container formats by integrating with technologies such as BSD Jails or Solaris Zones.
-
-名前空間、コントロール・グループ、UnionFS は Docker Engine により、コンテナ・フォーマットと呼ばれるラッパーとして構成されます。このコンテナ・フォーマットのデフォルトが ``libcontainer`` です。いずれ BSD Jail や Solaris Zone などを技術統合した新たなコンテナ・フォーマットがサポートされることになるかもしれません。
 
 .. Next steps
 
@@ -301,10 +265,11 @@ Linux 上で動作する Docker Engine には、さらに *コントール・グ
     Read about installing Docker.
     Get hands-on experience with the Getting started with Docker tutorial.
 
-* :doc:`/get-docker` に進む。
-* ハンズオンで :doc:`Docker を使い始める </get-started/index>` ためのチュートリアルを試す。
+* :doc:`/get-docker` を読む
+* ハンズオンで :doc:`Docker を使い始める </get-started/index>` ためのチュートリアルを試す
 
 .. seealso:: 
+
    Docker overview
      https://docs.docker.com/get-started/overview/
 
