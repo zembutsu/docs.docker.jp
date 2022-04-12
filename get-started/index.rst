@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/get-started/
-   doc version: 19.03
+   doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/get-started/index.md
-.. check date: 2020/06/16
-.. Commits on Jun 4, 2020 cf3c9ab3e970e2be6fb09360994200e46d02b603
+.. check date: 2022/04/09
+.. Commits on Jan 18, 2022 fd943a6ab937adc65007fe654fcc9d8e58efd8fe
 .. -----------------------------------------------------------------------------
 
 .. Get Started, Part 1: Orientation and Setup
@@ -12,197 +12,189 @@
 Part 1：概要説明とセットアップ
 ========================================
 
+.. 
+    Update to the Docker Desktop terms
+    Commercial use of Docker Desktop in larger enterprises (more than 250 employees OR more than $10 million USD in annual revenue) now requires a paid subscription. The grace period for those that will require a paid subscription ends on January 31, 2022. Learn more.
+
+.. important:: **Docker Desktop の利用条件変更**
+
+   現在、大企業（従業員が 251 人以上、または、年間収入が 1,000 万米ドル以上 ）における Docker Desktop の商用利用には、有料サブスクリプション契約が必要です。必要な有料サブスクリプションの支払猶予は 2022 年 1 月 31 日に終了しました。 `詳細はこちらです。 <https://www.docker.com/blog/the-grace-period-for-the-docker-subscription-service-agreement-ends-soon-heres-what-you-need-to-know/>`_
+
 .. sidebar:: 目次
 
    .. contents:: 
        :depth: 2
        :local:
 
-.. Welcome! We are excited you want to learn how to use Docker.
+.. Welcome! We are excited that you want to learn Docker.
 
-ようこそ！ 皆さんが Docker の使い方を学ぼうとしており、私たちは嬉しく思います。
+ようこそ！ 皆さんが Docker を学ぼうとしており、私たちは嬉しく思います。
 
-.. This page contains step-by-step instructions on how to get started with Docker. We also recommend the video walkthrough from Dockercon 2020.
+.. This page contains step-by-step instructions on how to get started with Docker. In this tutorial, you’ll learn how to:
 
-このページでは段階的な手順に従って、Docker の始め方を学びます。また、 Dockercon 2020 の映像を見るのも推奨します。
+このページでは段階的な手順に従って、Docker の始め方を学びます。このチュートリアルで、以下の内容を学べます。
+
+..
+    Build and run an image as a container
+    Share images using Docker Hub
+    Deploy Docker applications using multiple containers with a database
+    Running applications using Docker Compose
+
+* コンテナとして、イメージの構築と実行
+* Docker Hub を使ったイメージ共有
+* データベースがある複数のコンテナを使う Docker アプリケーションをデプロイ
+* Docker Compose を使ってアプリケーションを実行
+
+.. In addition, you’ll also learn about the best practices for building images, including instructions on how to scan your images for security vulnerabilities.
+
+さらに、イメージ構築のベストプラクティスも学べます。これには、イメージのセキュリティ脆弱性を調べる（スキャンする）手順も含みます。
+
+.. If you are looking for information on how to containerize an application using your favorite language, see Language-specific getting started guides.
+
+好きな言語を使用しているアプリケーションを、コンテナ化する方法の情報を探している場合は、 :doc:`言語ごとの導入ガイド </language/overview>` をご覧ください。
+
+.. We also recommend the video walkthrough from Dockercon 2020.
+
+また、 Dockercon 2020 の映像を見るのも推奨します。
 
 .. image:: ./images/get-started.png
    :scale: 60%
-   :target: https://docker.events.cube365.net/docker/dockercon/content/Videos/hgMFTyX5kYKmTPWZo
+   :target: https://www.youtube.com/watch?v=iqqDU2crIEQ&t=30s
 
-.. The Docker Quickstart training module teaches you how to:
 
-このクイックスタート・トレーニングでは、次の方法を伝授します：
-このチュートリアルは６つのパートで構成されています。
+.. Download and install Docker
+.. _download-and-install-docker:
+Docker のダウンロードとインストール
+========================================
 
-..  Set up your Docker environment (on this page)
-    Build and run your image
-    Share images on Docker Hub
+.. This tutorial assumes you have a current version of Docker installed on your machine. If you do not have Docker installed, choose your preferred operating system below to download Docker:
 
-1. セットアップと概要説明、このページです。
-2. :doc:`イメージの構築と実行 <part2>` 
-3. :doc:`イメージを Docker Hub で共有 <part3>` 
+このチュートリアルでは、みなさんのマシン上に Docker の現行バージョンをインストールしている状態を想定しています。もしも Docker をインストールしていなければ、以下から適切なオペレーティングシステムを選び、 Docker をダウンロードしてください。
 
-.. Docker concepts
+* `Intel 製チップの Mac <https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-mac-amd64>`_ 
+* `Apple 製チップの Mac <https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-mac-arm64>`_ 
+* `Windows <https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-win-amd64>`_ 
+* :doc:`Linux </engine/install>`
 
-.. _docker-concepts:
+.. For Docker Desktop installation instructions, see Install Docker Desktop on Mac and Install Docker Desktop on Windows.
 
-Docker の概念
+Docker Desktop のインストール手順は、 :doc:`Mac に Docker Desktop をインストール </desktop/mac/install>` と :doc:`Windows に Docker Desktop をインストール </desktop/windows/install>` をご覧ください。
+
+.. Start the tutorial
+.. _start-the-tutorial:
+チュートリアルの開始
 ====================
 
-.. Docker is a platform for developers and sysadmins to build, run, and share applications with containers. The use of containers to deploy applications is called containerization. Containers are not new, but their use for easily deploying applications is.
+.. If you’ve already run the command to get started with the tutorial, congratulations! If not, open a command prompt or bash window, and run the command:
 
-Docker とは開発者やシステム管理者が、コンテナでアプリケーションを **構築（build）、実行（run）、共有（share）**するためのプラットフォームです。アプリケーションをデプロイするために、コンテナを利用する事をコンテナ化（ `containerization` ）と呼びます。コンテナは新しくありませんが、コンテナを使えばアプリケーションのデプロイがより簡単になります。
+もう既にチュートリアルでコマンドを実行していたら、おめでとう！ そうでなければ、コマンドプロンプトか bash ウインドウを開き、コマンドを実行しましょう。
 
-.. Containerization is increasingly popular because containers are:
+.. code-block:: bash
 
-ますますコンテナ化の人気が高まるのは、コンテナには以下の特長があるためです。
+   $ docker run -d -p 80:80 docker/getting-started
 
-..  Flexible: Even the most complex applications can be containerized.
-    Lightweight: Containers leverage and share the host kernel, making them much more efficient in terms of system resources than virtual machines.
-    Portable: You can build locally, deploy to the cloud, and run anywhere.
-    Loosely coupled: Containers are highly self sufficient and encapsulated, allowing you to replace or upgrade one without disrupting others.
-    Scalable: You can increase and automatically distribute container replicas across a datacenter.
-    Secure: Containers apply aggressive constraints and isolations to processes without any configuration required on the part of the user.
+.. You’ll notice a few flags being used. Here’s some more info on them:
 
-* **柔軟（Flexible）** ：最も複雑なアプリケーションですらコンテナ化できます。
-* **軽量（Lightweight）** ：ホスト・カーネルをコンテナは活用・共有するので、システムリソースに関しては仮想マシンよりも効率的に扱えます。
-* **可搬性（Portable）** ：ローカルで構築し、クラウドにデプロイし、どこでも実行できます。
-* **疎結合（Loosely coupled）** ：コンテナは、コンテナ自身のことは自分で完結し、カプセル化しています。そのため、他の何らかの中断をしなくても、置き換えやアップグレードが可能です。
-* **拡張性（Scalable）** ：データセンタ内の至るところで、複製したコンテナの追加と自動分散が可能です。
-* **安全（Secure）** ：利用者による設定がなくても、コンテナは積極的な制限と分離（isolate）をプロセスに適用します。
+いくつかのフラグが使われているのに気づくでしょう。それらの詳しい情報は、こちらです。
 
-.. Images and containers
+.. 
+    -d - run the container in detached mode (in the background)
+    -p 80:80 - map port 80 of the host to port 80 in the container
+    docker/getting-started - the image to use
 
-.. _images-and-containers:
+* ``-d`` - コンテナを :ruby:`デタッチド・モード <detached mode>` （バックグランドの処理）で :ruby:`実行 <run>`
+* ``-p 80:80`` - コンテナ内のポート 80 に対し、ホスト上のポート 80 を割り当てる（ :ruby:`マップ <map>` する）
+* ``docker/getting-started`` - 使用するイメージ
 
-イメージとコンテナ
-------------------------------
+.. Tip
+   You can combine single character flags to shorten the full command. As an example, the command above could be written as:
 
-.. Fundamentally, a container is nothing but a running process, with some added encapsulation features applied to it in order to keep it isolated from the host and from other containers. One of the most important aspects of container isolation is that each container interacts with its own private filesystem; this filesystem is provided by a Docker image. An image includes everything needed to run an application - the code or binary, runtimes, dependencies, and any other filesystem objects required.
+.. tip::
 
-基本的に、コンテナは何もしませんが、プロセスが走っています。このプロセスは、ホストと他のコンテナから隔離（isolate）し続けるために、複数のカプセル化する機能をプロセスに対して追加しています。コンテナ隔離（isolation）の最も重要な特長とは、各コンテナが自分自身のプライベート・ファイルシステムとやりとりできる点です。すなわち、このファイルシステムは Docker **イメージ**  によって提供されます。イメージに含まれるのは、アプリケーションの実行に必要な全てです。たとえば、コード、バイナリ、ランタイム、依存関係、その他の必要なあらゆるファイルシステム・オブジェクトです。
+   コマンド全体を短くするために、1文字のフラグは連結できます。例として、先ほどのコマンドは、このように書き換えられます。
+   
+   .. code-block:: bash
+   
+      $ docker run -dp 80:80 docker/getting-started
 
-.. Containers and virtual machines
-
-.. _containers-and-virtual-machines:
-
-コンテナと仮想マシン
-------------------------------
-
-.. A container runs natively on Linux and shares the kernel of the host machine with other containers. It runs a discrete process, taking no more memory than any other executable, making it lightweight.
-
-コンテナは Linux 上でネイティブに実行し、ホストマシン上のカーネルを他のコンテナと共有します。コンテナは離れたプロセスを実行しますが、実行するもの以外でメモリを必要としないため、軽量になります。
-
-.. figure:: ./images/container.png
-   :scale: 50 %
-   :alt: コンテナスタックの例
-
-
-.. By contrast, a virtual machine (VM) runs a full-blown “guest” operating system with virtual access to host resources through a hypervisor. In general, VMs incur a lot of overhead beyond what is being consumed by your application logic.
-
-一方で、 **仮想マシン**  （VM）はハイパーバイザを通してホスト・リソースに仮想的にアクセスし、完全な "ゲスト" オペレーティングシステム実行します。一般的に、アプリケーションのロジックで何を消費するかによりますが、それよりも多くのオーバヘッドを仮想マシンでは受けます。
-
-.. figure:: ./images/vm.png
-   :scale: 50 %
-   :alt: 仮想マシンスタックの例
-
-
-.. Set up your Docker environment
-
-.. _set-up-your-docker-environment:
-
-Docker 環境をセットアップ
+.. The Docker Dashboard
+.. _the-docker-dashboard:
+Docker ダッシュボード
 ==============================
 
-.. Download and install Docker Desktop
+.. Before going too far, we want to highlight the Docker Dashboard, which gives you a quick view of the containers running on your machine. The Docker Dashboard is available for Mac and Windows. It gives you quick access to container logs, lets you get a shell inside the container, and lets you easily manage container lifecycle (stop, remove, etc.).
 
-.. _download-and-install-docker-desktop:
+遠くへと進む前に、 Docker ダッシュボードに焦点をあて、マシン上でのコンテナ実行について素早く目を通したいと思います。Docker ダッシュボードは Mac と Windows で利用できます。これを使えばコンテナのログに素早くアクセスでき、コンテナ内でシェルが操作でき、コンテナのライフサイクル（停止、削除、等）の管理が簡単になります。
 
-Docker デスクトップのダウンロードとインストール
---------------------------------------------------
+.. To access the dashboard, follow the instructions in the Docker Desktop manual. If you open the dashboard now, you will see this tutorial running! The container name (jolly_bouman below) is a randomly created name. So, you’ll most likely have a different name.
 
-.. Docker Desktop is an easy-to-install application for your Mac or Windows environment that enables you to start coding and containerizing in minutes. Docker Desktop includes everything you need to build, run, and share containerized applications right from your machine.
+ダッシュボードにアクセスするには、 :doc:`Docker デスクトップのマニュアル </desktop/dashboard>` にある手順に従ってください。ダッシュボードを開いたら、このチュートリアルで実行しているように見えるでしょう。コンテナ名（ ``jolly_bouman`` ）はランダムに作成されます。そのため、以下の画像とは名前が異なるでしょう。
 
-Docker Desktop は Mac や Windows 環境に簡単にインストールできるアプリケーションです。これにより、ものの数分でコーディングやコンテナ化を始められます。Docker Desktop にはコンテナ化したアプリケーションを、マシン上で直ちに構築、実行、共有するために必要な全てを含みます。
+.. image:: ./images/tutorial-in-dashboard.png
+   :scale: 60%
 
-.. Follow the instructions appropriate for your operating system to download and install Docker Desktop:
+.. What is a container?
+.. _what-is-a-container:
+コンテナとは何？
+====================
 
-オペレーティングシステムに適切な手順に従い、Docker Desktop のダウンロードとインストールを行います。
+.. Now that you’ve run a container, what is a container? Simply put, a container is a sandboxed process on your machine that is isolated from all other processes on the host machine. That isolation leverages kernel namespaces and cgroups, features that have been in Linux for a long time. Docker has worked to make these capabilities approachable and easy to use. To summarize, a container:
 
-..  Docker Desktop for Mac
-    Docker Desktop for Windows
+それでは、コンテナを実行するのですが、コンテナとは何でしょうか？ 簡単に言えば、コンテナとはマシン上でサンドボックス化したプロセスであり、ホストマシン上にある他すべてのプロセスから :ruby:`隔離 <isolate>` されています。この隔離とは `カーネルの名前空間と cgroup <https://medium.com/@saschagrunert/demystifying-containers-part-i-kernel-space-2c53d6979504>`_ の活用であり、長らく Linux に存在する機能です。Docker はこれらの :ruby:`能力 <capability>` を、分かりやすく簡単に使えるようにします。まとめると、コンテナとは：
 
-* :doc:`Docker Desktop for Mac </docker-for-mac/install>`
-* :doc:`Docker Desktop for Windows </docker-for-windows/install>`
+..    is a runnable instance of an image. You can create, start, stop, move, or delete a container using the DockerAPI or CLI.
+    can be run on local machines, virtual machines or deployed to the cloud.
+    is portable (can be run on any OS)
+    Containers are isolated from each other and run their own software, binaries, and configurations.
 
-.. Test Docker version
+* 実行可能なイメージの :ruby:`実体 <instance>` 。Docker API や CLI を使ってコンテナの作成、開始、停止、移動、削除ができます。
+* ローカルマシン上や、仮想マシン上えも実行でき、クラウドにもデプロイできます。
+* :ruby:`可搬性 <portability>` があります（多くの OS で実行可能です）。
+* コンテナはお互いに隔離され、それぞれが自身のソフトウェア、バイナリ、設定を使って実行します。
 
-.. _test-docker-version:
+.. note:: **ゼロからコンテナを作成するには**
 
-Docker バージョンのテスト
-------------------------------
+   コンテナをゼロから構築する方法を知りたければ、 Aqua Security の Liz Rice による素晴らしいトークがあります。彼女は go でゼロからコンテナを作成します。トークではネットワーク機能や、ファイルシステム用のイメージの使い方、その他の高度なトピックを扱いません。ですが、コンテナの作り方について、非常に素晴らしく深く掘り下げています。
 
-.. After you’ve successfully installed Docker Desktop, open a terminal and run docker --version to check the version of Docker installed on your machine.
+   .. image:: ./images/get-started2.png
+      :scale: 60%
+      :target: https://www.youtube.com/watch?v=8fi7uSYlOdc&t=1s
 
-Docker Desktop のインストールに成功したら、ターミナルを開き、 ``docker --version`` を実行し、マシン上にインストールした Docker のバージョンを確認します。
+.. What is a container image?
+.. _what-is-a-container-image:
+コンテナ・イメージとは何でしょうか？
+========================================
 
-.. code-block:: bash
+.. When running a container, it uses an isolated filesystem. This custom filesystem is provided by a container image. Since the image contains the container’s filesystem, it must contain everything needed to run an application - all dependencies, configuration, scripts, binaries, etc. The image also contains other configuration for the container, such as environment variables, a default command to run, and other metadata.
 
-   $ docker --version
-   Docker version 19.03.5, build 633a0ea
+コンテナの実行時、コンテナは隔離されたファイルシステムを使います。この特別なファイルシステムは **コンテナ・イメージ** によって提供されます。イメージにはコンテナのファイルシステムも含みますので、アプリケーションを実行するために必要な全てを含む必要があります。たとえば、全ての依存関係、設定、スクリプト、バイナリ等です。また、このイメージには環境変数、デフォルトで実行するコマンド、メタデータのような、他の設定も含みます。
 
-.. Test Docker installation
+.. We’ll dive deeper into images later on, covering topics such as layering, best practices, and more.
 
-.. _test_docker-installation:
+イメージに関する深掘りは、後のレイヤ化、ベストプラクティス等のトピックで扱います。
 
-Docker インストールのテスト
-------------------------------
+..    Info
+    If you’re familiar with chroot, think of a container as an extended version of chroot. The filesystem is simply coming from the image. But, a container adds additional isolation not available when simply using chroot.
 
-..    Test that your installation works by running the hello-world Docker image:
+.. info::
 
-1. `hello-world <https://hub.docker.com/_/hello-world/>`_ Docker イメージを実行し、インストールが正常に行われたかどうかを確認します。
+   ``chroot`` を熟知していれば、コンテナとは ``chroot`` の拡張バージョンと考えてみましょう。ファイルシステムとは、単にイメージから由来します。ですが、コンテナの場合は、単純に chroot の使用ではできない付加的な隔離を追加します。
 
-.. code-block:: bash
+.. CLI references
+CLI リファレンス
+====================
 
-   $ docker run hello-world
-   
-   Unable to find image 'hello-world:latest' locally
-   latest: Pulling from library/hello-world
-   ca4f61b1923c: Pull complete
-   Digest: sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7
-   Status: Downloaded newer image for hello-world:latest
-   
-   Hello from Docker!
-   This message shows that your installation appears to be working correctly.
-   ...
+.. Refer to the following topics for further documentation on all CLI commands used in this article:
 
-..    Run docker image ls to list the hello-world image that you downloaded to your machine.
+この節で扱う全ての CLI コマンドに関する詳しいドキュメントは、以下のトピックをご覧ください。
 
-2. ``docker image ls`` を実行し、マシン上にダウンロードした ``hello-world`` イメージが一覧にあるかどうか確認します。
-
-..    List the hello-world container (spawned by the image) which exits after displaying its message. If it is still running, you do not need the --all option:
-
-3. メッセージを表示して終了した ``hello-world`` コンテナ（イメージから生成）が一覧にあるかどうかを確認します。もしまだ実行中であれば、 ``--all`` オプションは不要です。
-
-.. code-block:: bash
-
-   $ docker ps --all
-   
-   CONTAINER ID     IMAGE           COMMAND      CREATED            STATUS
-   54f4984ed6a8     hello-world     "/hello"     20 seconds ago     Exited (0) 19 seconds ago
+* :doc:`docker verion </engine/reference/commandline/version>`
+* :doc:`docker run </engine/reference/commandline/run>`
+* :doc:`docker image </engine/reference/commandline/image>`
+* :doc:`docker container </engine/reference/commandline/container>`
 
 
-.. Conclusion
 
-まとめ
-==========
-
-.. At this point, you’ve installed Docker Desktop on your development machine, and ran a quick test to ensure you are set up to build and run your first containerized application.
-
-この段階では、皆さんの開発マシン上に Docker Desktop をインストールし、初めてのコンテナ化アプリケーションを構築・実行し、セットアップが問題なかったどうかを簡単にテストしました。
-
-* :doc:`パート２に進む <part2>`
 
 .. seealso::
 
