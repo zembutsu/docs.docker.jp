@@ -61,6 +61,7 @@ Doc v20.10 目次
    Docker概要 <get-started/overview.rst>
    get-docker.rst
    get-started/toc.rst
+   language/toc.rst
    develop/toc.rst
    production.rst
    opensoruce/toc.rst
