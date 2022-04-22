@@ -1953,6 +1953,8 @@ ports
 
    ``docker-compose run`` では、 ``--service-ports`` を除いて ``ports`` を無視します。
 
+.. _compose-file-v3-ports-short:
+
 短い構文
 ^^^^^^^^^^
 
@@ -1985,6 +1987,8 @@ ports
     - "127.0.0.1::5000"
     - "6060:6060/udp"
     - "12400-12500:1240"
+
+.. _compose-file-v3-ports-long:
 
 長い構文
 ^^^^^^^^^^
@@ -2419,7 +2423,7 @@ volumes
 :ruby:`長い書式 <long syntax>` は、短い書式では表現できない追加フィールドを設定できるようにします。
 
 * ``type`` ：マウントの :ruby:`種類 <type>` で ``volume`` 、 ``bind`` 、 ``tmpfs`` 、 ``npipe`` のどれか
-* ``source`` ： :ruby:`マウント元 <source>` であり、バインド・マウントするホスト上のパスか、 :ref:`トップレベルの volume キー <volume-configuration-reference>` で定義済みのボリューム名。tmpfs マウントでの利用には、不適切
+* ``source`` ： :ruby:`マウント元 <source>` であり、バインド・マウントするホスト上のパスか、 :ref:`トップレベルの volume キー <compose-file-v3-volume-configuration-reference>` で定義済みのボリューム名。tmpfs マウントでの利用には、不適切
 * ``target`` ：コンテナ内で、ボリュームをマウントするパス
 * ``read_only`` ：ボリュームを読み込み専用に指定するフラグ
 * ``bind`` ：バインドの追加オプションを指定
