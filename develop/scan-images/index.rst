@@ -7,7 +7,7 @@
 .. -----------------------------------------------------------------------------
 
 .. Best practices for scanning images
-..-_best-practices-for-scanning-images:
+.. _best-practices-for-scanning-images:
 
 ========================================
 イメージ検査のベストプラクティス
