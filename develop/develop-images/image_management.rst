@@ -1,17 +1,16 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/develop/develop-images/image_management/
-   doc version: 19.03
-      https://github.com/docker/docker.github.io/blob/master/develop/develop-images/multistage-build.md
-.. check date: 2020/06/21
-.. Commits on Mar 17, 2020 14bbe621e55e9360019f6b3e25be4a25e3f79688
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/develop/develop-images/image_management.md
+.. check date: 2022/04/25
+.. Commits on Apr 8, 2020 9cd60d843e5a3391a483a148033505e5879176fb
 .. -----------------------------------------------------------------------------
 
 .. Manage images
-
 .. _manage-images:
 
 =======================================
-イメージの管理
+イメージ管理
 =======================================
 
 .. sidebar:: 目次
@@ -22,10 +21,9 @@
 
 .. The easiest way to make your images available for use by others inside or outside your organization is to use a Docker registry, such as Docker Hub, or by running your own private registry.
 
-あなたの組織の内外でイメージを簡単に利用できるようにする方法が、 :ref:`Docker Hub <image-managemnet-docker-hub>`  のような Docker レジストリを使うか、自分で :ref:`プライベート・レジストリ <image-management-docker-registry>` を動かします。
+あなたの組織の内外でイメージを簡単に利用できるようにする方法が、 :ref:`Docker Hub <image-managemnet-docker-hub>`  のような Docker レジストリを使うか、自分で :ref:`プライベート レジストリ <image-management-docker-registry>` を動かします。
 
 .. Docker Hub
-
 .. _image-management-docker-hub:
 
 Docker Hub
@@ -36,7 +34,6 @@ Docker Hub
 :doc:`Docker Hub</docker-hub/toc>` は Docker 社が管理している公開（パブリック）レジストリです。これは、組織、ユーザアカウント、イメージをまとめている場所です。さらに、ウェブ UI、認証、組織用の認証、CLI や API で ``docker login`` 、 ``docker pull`` 、 ``docker push`` のようなアクセス、コメント、スター機能などがあります。
 
 .. Docker Registry
-
 .. _image-management-docker-registry:
 
 Docker Registry
@@ -51,17 +48,16 @@ Docker Registry は Docker エコシステムのコンポーネントです。�
 Docker Hub は Docker Registry 事例の1つです。
 
 .. Content Trust
-
 Content Trust
 ====================
 
 .. When transferring data among networked systems, trust is a central concern. In particular, when communicating over an untrusted medium such as the internet, it is critical to ensure the integrity and publisher of all of the data a system operates on. You use Docker to push and pull images (data) to a registry. Content trust gives you the ability to both verify the integrity and the publisher of all the data received from a registry over any channel.
 
-ネットワーク上のシステム間でデータを転送時、信用 `trust` が課題の中心です。特に、インターネット上のように信頼できない媒体上で通信する場合、システム操作に関する全データに対し、安全性の確保と提供者を確実なものとする必要があります。 Docker を使えばイメージ（データ）をレジストリに送信/受信できます。コンテント・トラスト（Content trust）を使えば、あらゆるチャンネルを越えたレジストリから受け取る全データの完全性と提供者の両方を認証します。
+ネットワーク上のシステム間でデータを転送時、信用 `trust` が課題の中心です。特に、インターネット上のように信頼できない媒体上で通信する場合、システム操作に関する全データに対し、安全性の確保と提供者を確実なものとする必要があります。 Docker を使えばイメージ（データ）をレジストリに送信/受信できます。 :ruby:`Content Trust <コンテント トラスト>` を使えば、あらゆるチャンネルを越えたレジストリから受け取る、全データの完全性と提供者の両方を認証します。
 
 .. See Content trust for information about configuring and using this feature on Docker clients.
 
-Docker クライアント上で設定・使用に関する情報は、 :doc:`コンテント・トラスト </engine/security/trust>` をご覧ください。
+これを Docker クライアント上での設定や使用に関する情報は、 :doc:`Content Trust </engine/security/trust>` をご覧ください。
 
 .. seealso:: 
 

@@ -1,13 +1,15 @@
 ﻿.. -*- coding: utf-8 -*-
 .. 
-.. doc version: 19.03
-.. check date: 2020/06/19
+.. doc version: 20.10
+.. check date: 2022/04/25
 .. -----------------------------------------------------------------------------
 
 ..  Build images -toc:
 
+.. Build images
+
 ========================================
-Docker で開発
+イメージ構築
 ========================================
 
 .. toctree::
@@ -16,7 +18,7 @@ Docker で開発
 
    Dockerfile ベストプラクティス <dockerfile_best-practices.rst>
    BuildKit でイメージ構築 <build_enhancements.rst>
-   マルチステージ・ビルドを使う <multistage-build.rst>
+   マルチステージ ビルドを使う <multistage-build.rst>
    イメージ管理 <image_management.rst>
-   自分でベースイメージ作成（上級者向け） <baseimages.rst>
+   自分でベースイメージを作成（上級者向け） <baseimages.rst>
 
