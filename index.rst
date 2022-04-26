@@ -58,11 +58,12 @@ Doc v20.10 目次
    :caption: Guides - ガイド
    :maxdepth: 1
 
-   Docker概要 <get-started/overview.rst>
+   Docker 概要 <get-started/overview.rst>
    get-docker.rst
    get-started/toc.rst
    language/toc.rst
    develop/toc.rst
+   ci-cd/toc.rst
    production.rst
    opensoruce/toc.rst
    docsarchive.rst
