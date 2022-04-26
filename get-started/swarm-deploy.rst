@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/get-started/swarm-deploy/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/get-started/swarm-deploy.md
-   doc version: 19.03
+   doc version: 20.10
 .. check date: 2020/06/21
-.. Commits on Apr 24, 2020 fdc7e5bfd45f9089665bd5f8228ca3852c95194e
+.. Commits on Aug 7, 2021 7b2f0e92bc9c0095c251b28b211d1e20c2b5803f
 .. -----------------------------------------------------------------------------
 
 .. Deploy to Swarm
@@ -32,7 +32,7 @@ Swarm にデプロイ
 
 
 * :doc:`概要説明とセットアップ <index>` に記述された Docker Desktop のダウンロードとインストール
-* :doc:`Part 2 <part2>` でアプリケーションのコンテナ化を一通り行う
+* :doc:`Part 2 <02_our_app>` でアプリケーションのコンテナ化を一通り行う
 * Docker Desktop 上で Swarm 機能が有効化されていることを確認するには、 ``docker system info`` を入力し、 ``Swarm: active`` の文字列を探します（画面を少々スクロールする必要があるでしょう）。
 
 .. If Swarm isn’t running, simply type docker swarm init in a shell prompt to set it up.
@@ -102,7 +102,7 @@ stack ファイルを使ってアプリケーションを記述
 
 .. code-block:: bash
 
-   docker stack deploy -c bb-stack.yaml demo
+   $ docker stack deploy -c bb-stack.yaml demo
 
 .. If all goes well, Swarm will report creating all your stack objects with no complaints:
 
@@ -123,7 +123,7 @@ stack ファイルを使ってアプリケーションを記述
 
 .. code-block:: bash
 
-   docker service ls
+   $ docker service ls
 
 .. If all has gone well, your service will report with 1/1 of its replicas created:
 
@@ -140,7 +140,7 @@ stack ファイルを使ってアプリケーションを記述
 
 .. Open a browser and visit your bulletin board at localhost:8000; you should see your bulletin board, the same as when we ran it as a stand-alone container in Part 2 of the Quickstart tutorial.
 
-3. ブラウザで ``localhost:8000`` を開き、掲示板を訪ねましょう。そうすると、クイックスタート・チュートリアルの :doc:`Part 2 <part2>` で実行したスタンドアロン・コンテナと同じ掲示板が表示されます。
+3. ブラウザで ``localhost:8000`` を開き、掲示板を訪ねましょう。そうすると、クイックスタート・チュートリアルの :doc:`Part 2 <02_our_app>` で実行したスタンドアロン・コンテナと同じ掲示板が表示されます。
 
 .. Once satisfied, tear down your application:
 
@@ -148,7 +148,7 @@ stack ファイルを使ってアプリケーションを記述
 
 .. code-block:: bash
 
-   docker stack rm demo
+   $ docker stack rm demo
 
 
 .. Conclusion
@@ -173,7 +173,8 @@ Swarm と CLI リファレンス
 
 この記事で使われた新しい Swarm オブジェクトと CLI コマンドに関する詳しい情報は、こちらをご覧ください。
 
-* :doc:`Swarm サービス </engine/swarm/how-swarm-mode-works/services>`
+* :doc:`Swarm モード </engine/swarm/index>`
+* :doc:`Swarm モード サービス </engine/swarm/how-swarm-mode-works/services>`
 * :doc:`Swarm スタック </engine/swarm/stack-deploy>`
 * :doc:`docker stack * </engine/reference/commandline/stack>`
 * :doc:`docker service * </engine/reference/commandline/service/>`

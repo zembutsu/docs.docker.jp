@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/get-started/orchestration/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/get-started/orchestration.md
-   doc version: 19.03
-.. check date: 2020/06/21
-.. Commits on Feb 18, 2020 658092ce1fea9f8070cb8f2e0003c6161c0f3956
+   doc version: 20.10
+.. check date: 2022/04/26
+.. Commits on Apr 12, 2022 461c6935c4745e50d2ca9f479b225157897c0f45
 .. -----------------------------------------------------------------------------
 
 .. Orchestration
@@ -20,7 +20,7 @@
        :depth: 3
        :local:
 
-.. The portability and reproducibility of a containerized process mean we have an opportunity to move and scale our containerized applications across clouds and datacenters. Containers effectively guarantee that those applications run the same way anywhere, allowing us to quickly and easily take advantage of all these environments. Furthermore, as we scale our applications up, we’ll want some tooling to help automate the maintenance of those applications, able to replace failed containers automatically, and manage the rollout of updates and reconfigurations of those containers during their lifecycle.
+.. The portability and reproducibility of a containerized process provides an opportunity to move and scale our containerized applications across clouds and datacenters. Containers effectively guarantee that those applications run the same way anywhere, allowing us to quickly and easily take advantage of all these environments. Additionally, as we scale our applications up, we need some tooling to help automate the maintenance of those applications, enable the replacement of failed containers automatically, and manage the rollout of updates and reconfigurations of those containers during their lifecycle.
 
 コンテナ化したプロセスのポータビリティ（移植性）と再利用性が意味するのは、コンテナ化アプリケーションに対し、クラウドやデータセンタを横断して移動およびスケールする機会を提供します。コンテナの効率性を確保するのは、各アプリケーションをどこでも同じ手法によって実行することであり、様々な環境において素早く簡単に利用できるようになります。さらに、アプリケーションのスケールアップをするとき、各アプリケーションの維持を自動的に助けてくれるので、障害の発生したコンテナを自動的に置き換えることも可能です。さらに、更新のロールアウト管理と各コンテナの再設定も、ライフサイクルに含められます。
 
@@ -77,7 +77,7 @@ Mac
    spec:
      containers:
      - name: testpod
-       image: alpine:3.5
+       image: alpine:latest
        command: ["ping", "8.8.8.8"]
 
 ..    This describes a pod with a single container, isolating a simple ping to 8.8.8.8.
@@ -90,7 +90,7 @@ Mac
 
 .. code-block:: bash
 
-   kubectl apply -f pod.yaml
+   $ kubectl apply -f pod.yaml
 
 ..    Check that your pod is up and running:
 
@@ -98,7 +98,7 @@ Mac
 
 .. code-block:: bash
 
-   kubectl get pods
+   $ kubectl get pods
 
 ..    You should see something like:
 
@@ -115,7 +115,7 @@ Mac
 
 .. code-block:: bash
 
-   kubectl logs demo
+   $ kubectl logs demo
 
 ..    You should see the output of a healthy ping process:
 
@@ -135,7 +135,7 @@ Mac
 
 .. code-block:: bash
 
-   kubectl delete -f pod.yaml
+   $ kubectl delete -f pod.yaml
 
 
 
@@ -163,7 +163,7 @@ Windows
    spec:
      containers:
      - name: testpod
-       image: alpine:3.5
+       image: alpine:latest
        command: ["ping", "8.8.8.8"]
 
 ..    This describes a pod with a single container, isolating a simple ping to 8.8.8.8.
@@ -176,7 +176,7 @@ Windows
 
 .. code-block:: bash
 
-   kubectl apply -f pod.yaml
+   $ kubectl apply -f pod.yaml
 
 ..    Check that your pod is up and running:
 
@@ -184,7 +184,7 @@ Windows
 
 .. code-block:: bash
 
-   kubectl get pods
+   $ kubectl get pods
 
 ..    You should see something like:
 
@@ -201,7 +201,7 @@ Windows
 
 .. code-block:: bash
 
-   kubectl logs demo
+   $ kubectl logs demo
 
 ..    You should see the output of a healthy ping process:
 
@@ -221,7 +221,7 @@ Windows
 
 .. code-block:: bash
 
-   kubectl delete -f pod.yaml
+   $ kubectl delete -f pod.yaml
 
 Enable Docker Swarm
 
@@ -244,7 +244,7 @@ Mac
 
 .. code-block:: bash
 
-   docker swarm init
+   $ docker swarm init
 
 ..    If all goes well, you should see a message similar to the following:
 
@@ -266,7 +266,7 @@ Mac
 
 .. code-block:: bash
 
-   docker service create --name demo alpine:3.5 ping 8.8.8.8
+   $ docker service create --name demo alpine:3.5 ping 8.8.8.8
 
 ..    Check that your service created one running container:
 
@@ -274,7 +274,7 @@ Mac
 
 .. code-block:: bash
 
-   docker service ps demo
+   $ docker service ps demo
 
 ..    You should see something like:
 
@@ -283,7 +283,7 @@ Mac
 .. code-block:: bash
 
    ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE           ERROR               PORTS
-   463j2s3y4b5o        demo.1              alpine:3.5          docker-desktop      Running             Running 8 seconds ago
+   463j2s3y4b5o        demo.1              alpine:latest       docker-desktop      Running             Running 8 seconds ago
 
 ..    Check that you get the logs you’d expect for a ping process:
 
@@ -291,7 +291,7 @@ Mac
 
 .. code-block:: bash
 
-   docker service logs demo
+   $ docker service logs demo
 
 ..    You should see the output of a healthy ping process:
 
@@ -309,7 +309,7 @@ Mac
 
 5. 最後にテストサービスを解体します。
 
-    docker service rm demo
+    $ docker service rm demo
 
 
 
@@ -322,7 +322,7 @@ Windows
 
 .. code-block:: bash
 
-   docker swarm init
+   $ docker swarm init
 
 ..    If all goes well, you should see a message similar to the following:
 
@@ -344,7 +344,7 @@ Windows
 
 .. code-block:: bash
 
-   docker service create --name demo alpine:3.5 ping 8.8.8.8
+   $ docker service create --name demo alpine:3.5 ping 8.8.8.8
 
 ..    Check that your service created one running container:
 
@@ -352,7 +352,7 @@ Windows
 
 .. code-block:: bash
 
-   docker service ps demo
+   $ docker service ps demo
 
 ..    You should see something like:
 
@@ -361,7 +361,7 @@ Windows
 .. code-block:: bash
 
    ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE           ERROR               PORTS
-   463j2s3y4b5o        demo.1              alpine:3.5          docker-desktop      Running             Running 8 seconds ago
+   463j2s3y4b5o        demo.1              alpine:latest       docker-desktop      Running             Running 8 seconds ago
 
 ..    Check that you get the logs you’d expect for a ping process:
 
@@ -369,7 +369,7 @@ Windows
 
 .. code-block:: bash
 
-   docker service logs demo
+   $ docker service logs demo
 
 ..    You should see the output of a healthy ping process:
 
@@ -387,7 +387,7 @@ Windows
 
 5. 最後にテストサービスを解体します。
 
-    docker service rm demo
+   $ docker service rm demo
 
 
 .. Conclusion
@@ -417,14 +417,12 @@ CLI リファレンス
 
 この記事で使った CLI コマンドのすべての詳細ドキュメントは、以下にあります。
 
-* :ref:`kubectl apply <kubectl-commands-apply>`
-* :ref:`kubectl get <kubectl-commands-get>`
-* :ref:`kubectl logs <kubectl-commands-logs>`
-* :ref:`kubectl delete <kubectl-commands-delete>`
+* `kubectl apply <https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply>`
+* `kubectl get <https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get>`_
+* `kubectl logs <https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#logs>`_
+* `kubectl delete <https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#delete>`_
 * :doc:`docker swarm init </engine/reference/commandline/swarm_init>`
 * :doc:`docker service * </engine/reference/commandline/service>`
-
-
 
 
 .. seealso:: 

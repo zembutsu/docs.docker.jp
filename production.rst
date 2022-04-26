@@ -20,5 +20,5 @@
    Prometheus メトリクス収集 </config/daemon/prometheus>
    コンテナ設定 </config/container/toc.rst>
    ネットワーク設定 </network/toc.rst>
-   アプリケーション・データの管理 </storage/toc.rst>
+   アプリケーション データの管理 </storage/toc.rst>
 
