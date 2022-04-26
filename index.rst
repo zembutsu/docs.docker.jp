@@ -64,6 +64,7 @@ Doc v20.10 目次
    language/toc.rst
    develop/toc.rst
    ci-cd/toc.rst
+   cloud/toc.rst
    production.rst
    opensoruce/toc.rst
    docsarchive.rst
