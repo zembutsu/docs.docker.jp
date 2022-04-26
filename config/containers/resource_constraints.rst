@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/config/containers/resource_constraints/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/config/containers/resource_constraints.md
-   doc version: 19.03
-.. check date: 2020/06/28
-.. Commits on Apr 8, 2020 b0f90615659ac1319e8d8a57bb914e49d174242e
+   doc version: 20.04
+.. check date: 2022/04/27
+.. Commits on Nov 19, 2021 0b0b7050e51d391013e87783361f9bdc9ce0099e
 .. ---------------------------------------------------------------------------
 
 .. title: "Runtime options with Memory, CPUs, and GPUs"
@@ -168,7 +168,7 @@ Docker では、ハード・リミット（hard limit）により厳しくメモ
    オプション                  内容説明
    =========================== ==========
    ``-m`` または ``--memory=`` | コンテナに割り当てるメモリ最大使用量。このオプションを
-                               | 利用する場合、指定できる最小値は ``4m`` (4 メガバイト) です。
+                               | 利用する場合、指定できる最小値は ``6m`` (6 メガバイト) です。つまり、最小 6 メガバイトの値を指定しなくてはいけません。
    ``--memory-swap`` *         | コンテナにおいてディスクへのスワップを許容するメモリ容量。
                                | :ref:`--memory-swap の詳細 <--memory-swap-details>` を参照してください。
    ``--memory-swappiness``     | デフォルトにおいては、コンテナによって利用されている匿名
@@ -370,7 +370,7 @@ CPU
 各コンテナがホスト・マシンの CPU サイクルにアクセスすることは、デフォルトでは制限がありません。
 ホスト・マシンの CPU サイクルにアクセスするコンテナに制限を加える方法はいろいろとあります。
 よく利用されるのは :ref:`デフォルト CFS スケジューラ <configure-the-default-cfs-scheduler>` です。
-Docker 1.13 またはそれ以降では :ref:`リアルタイム・スケジューラ <configure-the-realtime-scheduler>` を利用することもできます。
+また :ref:`リアルタイム・スケジューラ <configure-the-realtime-scheduler>` も利用できます。
 
 .. ### Configure the default CFS scheduler
 
@@ -391,7 +391,7 @@ CFS は Linux 上の普通のプロセスに対して用いられる Linux カ�
 .. | Option                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
    |:-----------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
    | `--cpus=<value>`       | Specify how much of the available CPU resources a container can use. For instance, if the host machine has two CPUs and you set `--cpus="1.5"`, the container is guaranteed at most one and a half of the CPUs. This is the equivalent of setting `--cpu-period="100000"` and `--cpu-quota="150000"`. Available in Docker 1.13 and higher.                                                                                                                                                                                                                                                           |
-   | `--cpu-period=<value>` | Specify the CPU CFS scheduler period, which is used alongside  `--cpu-quota`. Defaults to 100 micro-seconds. Most users do not change this from the default. If you use Docker 1.13 or higher, use `--cpus` instead.                                                                                                                                                                                                                                                                                                                                                                                 |
+   | `--cpu-period=<value>` | Specify the CPU CFS scheduler period, which is used alongside  `--cpu-quota`. Defaults to 100000  microseconds (100 milliseconds). Most users do not change this from the default. If you use Docker 1.13 or higher, use `--cpus` instead.                                                                                                                                                                                                                                                                                                                                                                                 |
    | `--cpu-quota=<value>`  | Impose a CPU CFS quota on the container. The number of microseconds per `--cpu-period` that the container is limited to before throttled. As such acting as the effective ceiling. If you use Docker 1.13 or higher, use `--cpus` instead.                                                                                                                                                                                                                                                                                                                                                           |
    | `--cpuset-cpus`        | Limit the specific CPUs or cores a container can use. A comma-separated list or hyphen-separated range of CPUs a container can use, if you have more than one CPU. The first CPU is numbered 0. A valid value might be `0-3` (to use the first, second, third, and fourth CPU) or `1,3` (to use the second and fourth CPU).                                                                                                                                                                                                                                                                          |
    | `--cpu-shares`         | Set this flag to a value greater or less than the default of 1024 to increase or reduce the container's weight, and give it access to a greater or lesser proportion of the host machine's CPU cycles. This is only enforced when CPU cycles are constrained. When plenty of CPU cycles are available, all containers use as much CPU as they need. In that way, this is a soft limit. `--cpu-shares` does not prevent containers from being scheduled in swarm mode. It prioritizes container CPU resources for the available CPU cycles. It does not guarantee or reserve any specific CPU access. |
@@ -407,18 +407,17 @@ CFS は Linux 上の普通のプロセスに対して用いられる Linux カ�
                                | に対して CPU 最大 1.5 個分が保証されます。これは
                                | ``--cpu-period="100000"`` と ``--cpu-quota="150000"``
                                | を設定することと同じです。
-                               | Docker 1.13 またはそれ以降において利用可能です。
    ``--cpu-period=<値>``       | CFS スケジューラ間隔を指定します。
                                | これは ``--cpu-quota`` とともに指定されます。
-                               | デフォルトは 100 マイクロ秒です。たいていの場合、
+                               | デフォルトは 100000  マイクロ秒（100 ミリ秒）です。たいていの場合、
                                | このデフォルト値を変更することはしません。
-                               | Docker 1.13 またはそれ以降の場合は、これではなく
+                               | たいていの場合は、これではなく
                                | ``--cpus`` を使ってください。
    ``--cpu-quota=<値>``        | コンテナに対して CFS クォータを設定します。
                                | ``--cpu-period`` ごとのマイクロ秒単位の時間であり、
                                | スロットリングされる前にこの時間に制限されます。
-                               | 有効しきい値として動作します。Docker 1.13 または
-                               | それ以降の場合は、これではなく ``--cpus`` を使って
+                               | 有効しきい値として動作します。
+                               | たいていの場合は、これではなく ``--cpus`` を使って
                                | ください。
    ``--cpuset-cpus``           | コンテナが利用する CPU またはコアを特定します。
                                | CPU が複数あれば、カンマ区切りあるいはハイフン
@@ -448,21 +447,17 @@ CFS は Linux 上の普通のプロセスに対して用いられる Linux カ�
 
 CPU が 1 つである場合に、以下のコマンドはコンテナに対し、毎秒 CPU の最大 50 % を保証します。
 
-.. **Docker 1.13 and higher**:
-
-**Docker 1.13 またはそれ以降の場合**
-
 .. ```bash
    docker run -it --cpus=".5" ubuntu /bin/bash
    ```
 
 .. code-block:: bash
 
-   docker run -it --cpus=".5" ubuntu /bin/bash
+   $ docker run -it --cpus=".5" ubuntu /bin/bash
 
-.. **Docker 1.12 and lower**:
+.. Which is the equivalent to manually specifying `--cpu-period` and `--cpu-quota`;
 
-**Docker 1.12 またはそれ以前**
+これは手動で ``--cpu-period`` と ``--cpu-quota`` を指定するのと同じです。
 
 .. ```bash
    $ docker run -it --cpu-period=100000 --cpu-quota=50000 ubuntu /bin/bash
@@ -485,7 +480,7 @@ CPU が 1 つである場合に、以下のコマンドはコンテナに対し�
    before you can [configure the Docker daemon](#configure-the-docker-daemon) or
    [configure individual containers](#configure-individual-containers).
 
-Docker 1.13 またはそれ以降では、コンテナにおいてリアルタイム・スケジューラを利用するように設定することができます。
+コンテナにおいてリアルタイム・スケジューラを利用するように設定することができます。
 CFS スケジューラが利用できないタスクに対して用います。
 初めに :ref:`ホスト・マシンのカーネルが正しく設定されていること <configure-the-host-machines-kernel>` を確認した上で、:ref:`Docker デーモンの設定 <configure-the-docker-daemon>` を行うか、:ref:`各コンテナの個別設定 <configure-individual-containers>` を行ってください。
 
@@ -757,7 +752,7 @@ GPU の有効化
 
 .. code-block:: bash
 
-   $ docker run -it --rm --gpus device=0,2 nvidia-smi
+   $ docker run -it --rm --gpus '"device=0,2"' ubuntu nvidia-smi
 
 .. Exposes the first and third GPUs.
 

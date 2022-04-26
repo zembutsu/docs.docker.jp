@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/config/containers/multi-service_container/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/config/containers/multi-service_container.md
-   doc version: 19.03
-.. check date: 2020/06/27
-.. Commits on Apr 8, 2020 727941ffdd6430562e09314d3199b56f2de666df
+   doc version: 20.10
+.. check date: 2022/04/27
+.. Commits on Dec 20, 2021 df6a3281b958a4224889342d82c026000c43fc8d
 .. ---------------------------------------------------------------------------
 
 .. Run multiple services in a container
@@ -39,48 +39,26 @@
    .. code-block:: bash
    
       #!/bin/bash
-   
+      
       # Start the first process
-      ./my_first_process -D
-      status=$?
-      if [ $status -ne 0 ]; then
-        echo "Failed to start my_first_process: $status"
-        exit $status
-      fi
-   
+      ./my_first_process &
+      
       # Start the second process
-      ./my_second_process -D
-      status=$?
-      if [ $status -ne 0 ]; then
-        echo "Failed to start my_second_process: $status"
-        exit $status
-      fi
-   
-      # Naive check runs checks once a minute to see if either of the processes exited.
-      # This illustrates part of the heavy lifting you need to do if you want to run
-      # more than one service in a container. The container exits with an error
-      # if it detects that either of the processes has exited.
-      # Otherwise it loops forever, waking up every 60 seconds
-   
-      while sleep 60; do
-        ps aux |grep my_first_process |grep -q -v grep
-        PROCESS_1_STATUS=$?
-        ps aux |grep my_second_process |grep -q -v grep
-        PROCESS_2_STATUS=$?
-        # If the greps above find anything, they exit with 0 status
-        # If they are not both 0, then something is wrong
-        if [ $PROCESS_1_STATUS -ne 0 -o $PROCESS_2_STATUS -ne 0 ]; then
-         echo "One of the processes has already exited."
-         exit 1
-        fi
-      done
+      ./my_second_process &
+      
+      # Wait for any process to exit
+      wait -n
+      
+      # Exit with status of process that exited first
+      exit $?
 
 ..    Next, the Dockerfile:
 
    次は Dockerfile です。
 
    ::
-   
+
+      # syntax=docker/dockerfile:1
       FROM ubuntu:latest
       COPY my_first_process my_first_process
       COPY my_second_process my_second_process
@@ -113,7 +91,8 @@
       fg %1
    
    ::
-   
+
+      # syntax=docker/dockerfile:1
       FROM ubuntu:latest
       COPY my_main_process my_main_process
       COPY my_helper_process my_helper_process
@@ -126,6 +105,7 @@
 
    ::
    
+      # syntax=docker/dockerfile:1
       FROM ubuntu:latest
       RUN apt-get update && apt-get install -y supervisor
       RUN mkdir -p /var/log/supervisor

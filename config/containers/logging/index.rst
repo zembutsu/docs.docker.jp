@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/config/containers/logging/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/config/containers/logging/index.md
-   doc version: 19.03
-.. check date: 2020/07/01
-.. Commits on Apr 23, 2020 b0f90615659ac1319e8d8a57bb914e49d174242e
+   doc version: 20.04
+.. check date: 2022/04/27
+.. Commits on Apr 23, 2021 c16602dbfb59c539235f44ae3c19491482f25d88
 .. ---------------------------------------------------------------------------
 
 .. View logs for a container or service
@@ -26,15 +26,17 @@
 
 .. By default, docker logs or docker service logs shows the command’s output just as it would appear if you ran the command interactively in a terminal. UNIX and Linux commands typically open three I/O streams when they run, called STDIN, STDOUT, and STDERR. STDIN is the command’s input stream, which may include input from the keyboard or input from another command. STDOUT is usually a command’s normal output, and STDERR is typically used to output error messages. By default, docker logs shows the command’s STDOUT and STDERR. To read more about I/O and Linux, see the Linux Documentation Project article on I/O redirection.
 
-デフォルトでは、 ``service log`` や ``docker service logs`` はコマンドの出力を表示しますが、あたかもターミナルでコマンドをインタラクティブに実行したかのように表示します。UNIX と Linux コマンドは、たいていはコマンドの実行時に I/O ストリームを開きます。この I/O ストリームとは、 ``STDIN`` 、 ``STDOUT`` 、``STDERR`` と呼びます。 ``STDIN`` はコマンドの入力ストリームであり、キーボードからの入力や他のコマンドからの入力を含みます。 ``STDOUT``  はたいていコマンドの通常出力であり、 ``STDERR`` は典型的にエラーメッセージを出力するために表示します。デフォルトでは、 ``docker logs`` はコマンドの ``STDOUT`` と ``STDERR`` を表示します。 I/O および Linux に関して詳しく知るには、 `Linux Documentation Project にある I/O redirection の記事（英語） <http://www.tldp.org/LDP/abs/html/io-redirection.html>`_ をご覧ください。
+デフォルトでは、 ``service log`` や ``docker service logs`` はコマンドの出力を表示しますが、あたかもターミナルでコマンドをインタラクティブに実行したかのように表示します。UNIX と Linux コマンドは、たいていはコマンドの実行時に I/O ストリームを開きます。この I/O ストリームとは、 ``STDIN`` 、 ``STDOUT`` 、``STDERR`` と呼びます。 ``STDIN`` はコマンドの入力ストリームであり、キーボードからの入力や他のコマンドからの入力を含みます。 ``STDOUT``  はたいていコマンドの通常出力であり、 ``STDERR`` は典型的にエラーメッセージを出力するために表示します。デフォルトでは、 ``docker logs`` はコマンドの ``STDOUT`` と ``STDERR`` を表示します。 I/O および Linux に関して詳しく知るには、 `Linux Documentation Project にある I/O redirection の記事（英語） <https://www.tldp.org/LDP/abs/html/io-redirection.html>`_ をご覧ください。
 
 .. In some cases, docker logs may not show useful information unless you take additional steps.
 
 いくつかのケースにおいて、 ``docker logs`` では追加の手順を踏まないと、役に立つ情報を表示できないかもしれません。
 
+.. If you use a logging driver which sends logs to a file, an external host, a database, or another logging back-end, and have “dual logging” disabled, docker logs may not show useful information.
+
 ..    If you use a logging driver which sends logs to a file, an external host, a database, or another logging back-end, docker logs may not show useful information.
 
-* :doc:`ロギング・ドライバ </config/containers/logging/configure>` を使うと、ログをファイルに送信したり、外部のホストや、データベース、その他のロギング・バックエンドに送るため、 ``docker logs`` コマンドの結果が見づらい情報になる可能性があります。
+* :doc:`ロギング・ドライバ </config/containers/logging/configure>` を使うと、ログをファイルに送信したり、外部のホストや、データベース、その他のロギング・バックエンドに送り、かつ 「 :ruby:`dual logging <dual-logging>` 」が無効であれば、 ``docker logs`` コマンドの結果が見づらい情報になる可能性があります。
 
 ..    If your image runs a non-interactive process such as a web server or a database, that application may send its output to log files instead of STDOUT and STDERR.
 

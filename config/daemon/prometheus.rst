@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/config/daemon/prometheus/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/config/daemon/prometheus.md
-   doc version: 19.03
-.. check date: 2020/06/23
-.. Commits on May 30, 2020 ba553cfd47bd9c8ef100f242dce270e2c840ab29
+   doc version: 20.10
+.. check date: 2022/04/26
+.. Commits on Aug 7, 2021 fbfa187a83fd8006bd032c149b5a26b684f48032
 .. ---------------------------------------------------------------------------
 
 .. Collect Docker metrics with Prometheus

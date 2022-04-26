@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/admin/runmetrics/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/config/containers/runmetrics.md
-   doc version: 19.03
-.. check date: 2020/06/28
-.. Commits on May 2, 2020 4169b468f4a742ce6f60daba0613b9dfda267b3d
+   doc version: 20.10
+.. check date: 2022/04/27
+.. Commits on Oct 15, 2021 5f74d132eea0ccdc2a9a6568c917edaa3ffd48f7
 .. ---------------------------------------------------------------------------
 
 .. title: Runtime metrics
@@ -100,6 +100,25 @@ Linux のコンテナは `コントロール・グループ <https://www.kernel.
 cgroups の確認
 ========================================
 
+.. The file layout of cgroups is significantly different between v1 and v2.
+
+v1 と v2 では cgroups のファイル レイアウトが著しく異なります。
+
+.. If /sys/fs/cgroup/cgroup.controllers is present on your system, you are using v2, otherwise you are using v1. Refer to the subsection that corresponds to your cgroup version.
+
+システム上に ``/sys/fs/cgroup/cgroup.controllers`` があれば v2 を使っており、そうでなければ v1 を使っています。自分の cgroup のバージョンに対応したサブセクションをご覧ください。
+
+.. cgroup v2 is used by default on the following distributions:
+
+以下のディストリビューションでは、デフォルトで cgroup v2 が使われミズ合う。
+
+* Fedora (31以降)
+* Debian GNU/Linux (11以降)
+* Ubuntu (21.10以降)
+
+cgroup v1
+----------
+
 .. You can look into `/proc/cgroups` to see the different control group subsystems
    known to the system, the hierarchy they belong to, and how many groups they contain.
 
@@ -115,6 +134,65 @@ cgroups の確認
 そのときのコントロール・グループは、階層構造のルートとなるマウント・ポイントからの相対パスで表わされます。
 ``/`` が表示されていれば、そのプロセスにはグループが割り当てられていません。
 一方 ``/lxc/pumpkin`` といった表示になっていれば、そのプロセスは ``pumpkin`` という名のコンテナのメンバであることがわかります。
+
+cgroup v2
+----------
+
+.. On cgroup v2 hosts, the content of /proc/cgroups isn’t meaningful. See /sys/fs/cgroup/cgroup.controllers to the available controllers.
+
+cgroup v2 ホスト上では、 ``/proc/cgroups`` の内容は意味がありません。利用可能なコントローラは ``/sys/fs/cgroup/cgroup.controllers`` をご覧ください。
+
+.. Changing cgroup version
+cgroup バージョンの変更
+==============================
+
+.. Changing cgroup version requires rebooting the entire system.
+
+cgroup バージョンを変更するには、システム全体の再起動が必要です。
+
+.. On systemd-based systems, cgroup v2 can be enabled by adding systemd.unified_cgroup_hierarchy=1 to the kernel cmdline. To revert the cgroup version to v1, you need to set systemd.unified_cgroup_hierarchy=0 instead.
+
+systemd をベースとするシステムでは、cgroup v2 を有効にするには、kernel コマンドラインで ``systemd.unified_cgroup_hierarchy=1`` を追加します。cgroup バージョン v1 へと戻すには、かわりに ``systemd.unified_cgroup_hierarchy=0`` を指定します。
+
+.. If grubby command is available on your system (e.g. on Fedora), the cmdline can be modified as follows:
+
+システム上で ``grubby`` コマンドが利用可能な場合は（例： Fedora 上）、以下のようにコマンドラインで変更できます。
+
+.. code-block:: bash
+
+   $ sudo grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=1"
+
+.. If grubby command is not available, edit the GRUB_CMDLINE_LINUX line in /etc/default/grub and run sudo update-grub.
+
+``grubby`` コマンドが利用できなければ、 ``/etc/default/grub`` の ``GRUB_CMDLINE_LINUX`` を編集し、 ``sudo update-grub`` を実行します。
+
+.. Running Docker on cgroup v2
+cgroup v2 上で Docker を実行
+==============================
+
+.. Docker supports cgroup v2 since Docker 20.10. Running Docker on cgroup v2 also requires the following conditions to be satisfied:
+
+Docker が cgroup v2 をサポートするのは Docker 20.10 からです。group v2 上で Docker を動かすには、以下の条件を満たすのも必要です。
+
+..  containerd: v1.4 or later
+    runc: v1.0.0-rc91 or later
+    Kernel: v4.15 or later (v5.2 or later is recommended)
+
+* containerd: v1.4 以上
+* runc: v1.0.0-rc91 以上
+* Kernel: v4.15 以上（v5.2 以上を推奨）
+
+.. Note that the cgroup v2 mode behaves slightly different from the cgroup v1 mode:
+
+cgroup v2 モードの挙動は cgroup v1 モードと著しく異なりますので注意してください。
+
+..  The default cgroup driver (dockerd --exec-opt native.cgroupdriver) is “systemd” on v2, “cgroupfs” on v1.
+    The default cgroup namespace mode (docker run --cgroupns) is “private” on v2, “host” on v1.
+    The docker run flags --oom-kill-disable and --kernel-memory are discarded on v2.
+
+* デフォルトの cgroup ドライバ（  ``dockerd --exec-opt native.cgroupdriver`` ）は、 v2 上は「systemd」、v1 上は「cgroupfs」
+* デフォルトの cgroup 名前空間モード（ ``docker run --cgroupns`` ）は、  v2 上は「private」、v1 上は「host」
+* ``docker run`` フラグの ``--oom-kill-disable`` と ``--kernel-memory`` は、 v2 では放棄
 
 .. Finding the cgroup for a given container
 
@@ -134,14 +212,32 @@ cgroups の確認
 
 Docker コンテナは cgroups を使うため、コンテナ名はフル ID か、コンテナのロング ID になります。 ``docker ps`` コマンドでコンテナが ae836c95b4c3 のように見えるのであれば、ロング ID は ``ae836c95b4c3c9e9179e0e91015512da89fdec91612f63cebae57df9a5444c79`` のようなものです。この情報を調べるには、 ``docker inspect`` か ``docker ps --no-trunc`` を使います。
 
-.. Putting everything together to look at the memory metrics for a Docker container, take a look at /sys/fs/cgroup/memory/docker/<longid>/.
+.. Putting everything together to look at the memory metrics for a Docker container, take a look at the following paths:
 
-Docker コンテナが利用するメモリのメトリクスは、 ``/sys/fs/cgroup/memory/docker/<ロング ID>/`` から全て参照できます。
+Docker コンテナが利用するメモリの全メトリクスは、 以下のパスから参照できます。
+
+..  /sys/fs/cgroup/memory/docker/<longid>/ on cgroup v1, cgroupfs driver
+    /sys/fs/cgroup/memory/system.slice/docker-<longid>.scope/ on cgroup v1, systemd driver
+    /sys/fs/cgroup/docker/<longid/> on cgroup v2, cgroupfs driver
+    /sys/fs/cgroup/system.slice/docker-<longid>.scope/ on cgroup v2, systemd driver
+
+* ``/sys/fs/cgroup/memory/docker/<longid>/`` cgroup v1 の ``cgroupfs`` ドライバ
+* ``/sys/fs/cgroup/memory/system.slice/docker-<longid>.scope/`` cgroup v1 の ``systemd`` ドライバ
+* ``/sys/fs/cgroup/docker/<longid/>`` cgroup v2 の ``cgroupfs`` ドライバ
+* ``/sys/fs/cgroup/system.slice/docker-<longid>.scope/`` cgroup v1 の ``systemd`` ドライバ
 
 .. Metrics from cgroups: memory, CPU, block I/O
 
 cgroups からのメトリクス：メモリ、CPU、ブロックI/O
 ==================================================
+
+..    Note
+    This section is not yet updated for cgroup v2. For further information about cgroup v2, refer to the kernel documentation.
+
+.. note::
+
+   このセクションは、まだ cgroup v2 用に更新されていません。cgroup v2 に関する詳しい情報は、 `Kernel ドキュメント <https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html>`_ を参照ください。
+
 
 .. For each subsystem (memory, CPU, and block I/O), one or more pseudo-files exist and contain statistics.
 
@@ -291,7 +387,7 @@ CPU メトリクス： ``cpuacct.stat``
 
 .. Those times are expressed in ticks of 1/100th of a second, also called “user jiffies”. There are USER_HZ “jiffies” per second, and on x86 systems, USER_HZ is 100. Historically, this mapped exactly to the number of scheduler “ticks” per second, but higher frequency scheduling and tickless kernels have made the number of ticks irrelevant.
 
-これらの時間は 100 分の 1 秒の周期（tick）で表示されます。実際にはこれらは「user jiffies」として表示されます。 ``USER_HZ`` 「jillies」が毎秒かつ x86 システムであれば、 ``USER_HZ`` は 100 です。これは１秒の「周期」で、スケジューラが実際に割り当てる時に使いますが、 `tickless kernels <http://lwn.net/Articles/549580/>`_  にあるように、多くのカーネルで ticks は適切ではありません。まだ残っているのは、主に遺産（レガシー）と互換性のためです。
+これらの時間は 100 分の 1 秒の周期（tick）で表示されます。実際にはこれらは「user jiffies」として表示されます。 ``USER_HZ`` 「jillies」が毎秒かつ x86 システムであれば、 ``USER_HZ`` は 100 です。これは１秒の「周期」で、スケジューラが実際に割り当てる時に使いますが、 `tickless kernels <https://lwn.net/Articles/549580/>`_  にあるように、多くのカーネルで ticks は適切ではありません。まだ残っているのは、主に遺産（レガシー）と互換性のためです。
 
 .. Block I/O metrics
 

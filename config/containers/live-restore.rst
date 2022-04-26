@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/config/containers/live-restore/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/config/containers/live-restore.md
-   doc version: 19.03
-.. check date: 2020/06/27
-.. Commits on Apr 8, 2020 727941ffdd6430562e09314d3199b56f2de666df
+   doc version: 20.10
+.. check date: 2022/04/27
+.. Commits on Oct 26, 2020 2ce808edc0fc8bed39e5f115dffc221727a77fe7
 .. ---------------------------------------------------------------------------
 
 .. Keep containers alive during daemon downtime
@@ -20,9 +20,9 @@
        :depth: 3
        :local:
 
-.. By default, when the Docker daemon terminates, it shuts down running containers. Starting with Docker Engine 1.12, you can configure the daemon so that containers remain running if the daemon becomes unavailable. This functionality is called live restore. The live restore option helps reduce container downtime due to daemon crashes, planned outages, or upgrades.
+.. By default, when the Docker daemon terminates, it shuts down running containers. You can configure the daemon so that containers remain running if the daemon becomes unavailable. This functionality is called live restore. The live restore option helps reduce container downtime due to daemon crashes, planned outages, or upgrades.
 
-デフォルトでは、 Docker デーモンを終了（terminate）すると、実行中のコンテナを停止（shut down）します。Docker Engine 1.12 からは、デーモンが利用できない場合に、コンテナを実行し続けるかどうか設定するためのオプションを追加しました。この機能はライブ・リストア（ *live restore* ）と呼びます。リストアのオプションがあれば、デーモンのクラッシュ発生や、計画的な停止、アップグレード時にダウンタイムを短縮するのに役立ちます。
+デフォルトでは、 Docker デーモンを終了（terminate）すると、実行中のコンテナを停止（shut down）します。デーモンが利用できない場合に、コンテナを実行し続けるかどうかのオプションを設定できます。この機能をライブ・リストア（ *live restore* ）と呼びます。リストアのオプションがあれば、デーモンのクラッシュ発生や、計画的な停止、アップグレード時にダウンタイムを短縮するのに役立ちます。
 
 ..    Note
     Live restore is not supported on Windows containers, but it does work for Linux containers running on Docker Desktop for Windows.

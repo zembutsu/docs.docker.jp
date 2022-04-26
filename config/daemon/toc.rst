@@ -1,7 +1,7 @@
 ﻿.. -*- coding: utf-8 -*-
 .. 
-.. doc version: 19.03
-.. check date: 2020/06/21
+.. doc version: 20.10
+.. check date: 2022/04/26
 .. -----------------------------------------------------------------------------
 
 ..  Configure the daemon -toc:

@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/config/containers/start-containers-automatically/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/config/containers/start-containers-automatically.md
-   doc version: 19.03
-.. check date: 2020/06/25
-.. Commits on Apr 30, 2020 5de7f57431bebc41eb651e0e396b39d8207b4d0e
+   doc version: 20.10
+.. check date: 2022/04/26
+.. Commits on Nov 27, 2021 42b9fec12a4d3840f32c2a810077a06e8101a6dc
 .. ---------------------------------------------------------------------------
 
 .. Start containers automatically
@@ -42,7 +42,7 @@ Docker は :ref:`再起動ポリシー（restart policy） <restart-policies-res
 
 .. Flag 	Description
    no 	Do not automatically restart the container. (the default)
-   on-failure 	Restart the container if it exits due to an error, which manifests as a non-zero exit code.
+   on-failure 	Restart the container if it exits due to an error, which manifests as a non-zero exit code.  Optionally, limit the number of times the Docker daemon attempts to restart the container using the `:max-retries` option. 
    always 	Always restart the container if it stops. If it is manually stopped, it is restarted only when Docker daemon restarts or the container itself is manually restarted. (See the second bullet listed in restart policy details)
    unless-stopped 	Similar to always, except that when the container is stopped (manually or otherwise), it is not restarted even after Docker daemon restarts.
 
@@ -53,8 +53,8 @@ Docker は :ref:`再起動ポリシー（restart policy） <restart-policies-res
      - 説明
    * - ``no``
      - コンテナを自動的に再起動しません（デフォルトです）。
-   * - ``on-failure``
-     - 終了コードがゼロ以外をエラーとみなし、エラーが発生時にコンテナを再起動します。
+   * - ``on-failure:[max-retries]`` )
+     - 終了コードがゼロ以外をエラーとみなし、エラーが発生時にコンテナを再起動します。コンテナに対するオプションで ``:max-retries`` を指定すると、Docker デーモンを再起動しようとする回数を制限します。
    * - ``always``
      - コンテナが停止すると常に再起動します。もしも手動でコンテナを停止した場合、再起動するのはDocker デーモンの再起動時やコンテナ自身を手動で再起動する時です（ :ref:`再起動ポリシー詳細 <restart-policy-details>` の２つめのリストをご覧ください）。
    * - ``unless-stopped``
@@ -68,6 +68,21 @@ Docker は :ref:`再起動ポリシー（restart policy） <restart-policies-res
 .. code-block:: bash
 
    $ docker run -d --restart unless-stopped redis
+
+.. This command changes the restart policy for an already running container named redis.
+
+このコマンドは、 ``redis`` という名前で既に実行しているコンテナの、再起動ポリシーを変更します。
+
+.. code-block:: bash
+
+   $ docker update --restart unless-stopped redis
+
+.. And this command will ensure all currently running containers will be restarted unless stopped.
+
+そして、このコマンドは全ての実行中のコンテナに対して、明示的に停止しなければ再起動するようにします。
+
+   $ docker update --restart unless-stopped $(docker ps -q)
+
 
 .. Restart policy details
 
@@ -102,7 +117,7 @@ Docker は :ref:`再起動ポリシー（restart policy） <restart-policies-res
 
 .. If restart policies don’t suit your needs, such as when processes outside Docker depend on Docker containers, you can use a process manager such as upstart, systemd, or supervisor instead.
 
-Docker コンテナと Docker 外のプロセスに依存する場合のように、再起動ポリシーの必要性がなければ、これにかわって `upstart <http://upstart.ubuntu.com/>`_  、 `systemd <http://freedesktop.org/wiki/Software/systemd/>`_ 、 `supervisor <http://supervisord.org/>`_ のようなプロセス・マネージャを利用できます。
+Docker コンテナと Docker 外のプロセスに依存する場合のように、再起動ポリシーの必要性がなければ、これにかわって `upstart <http://upstart.ubuntu.com/>`_  、 `systemd <https://freedesktop.org/wiki/Software/systemd/>`_ 、 `supervisor <http://supervisord.org/>`_ のようなプロセス・マネージャを利用できます。
 
 ..    Warning
     Do not try to combine Docker restart policies with host-level process managers, because this creates conflicts.
