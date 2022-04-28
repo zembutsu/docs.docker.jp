@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/swarm/swarm-mode/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/engine/swarm/swarm-mode.md
-   doc version: 19.03
-.. check date: 2017/07/11
-.. Commits on Apr 8, 2020 777c5d23dafd4b640016f24f92fe416f246ec848
+   doc version: 20.10
+.. check date: 2022/04/29
+mo.. Commits on Aug 16, 2021 15836782038638a20f4e214af6e92bdd01624726
 .. -----------------------------------------------------------------------------
 
 .. Run Docker Engine in swarm mode

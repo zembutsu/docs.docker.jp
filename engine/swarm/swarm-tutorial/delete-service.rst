@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/swarm/swarm-tutorial/delete-service/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/swarm/swarm-tutorial/delete-service.md
-   doc version: 19.03
-.. check date: 2020/07/09
-.. Commits on Apr 22, 2017 566af4709cef45e104b552aa14128735b5b4fd73
+.. SOURCE: https://github.com/docker/docker.github.io/blob/master/engine/swarm/swarm-tutorial/delete-service.md
+   doc version: 20.10
+.. check date: 2022/04/29
+.. Commits on Apr 12, 2022 461c6935c4745e50d2ca9f479b225157897c0f45
 .. -----------------------------------------------------------------------------
 
 .. Delete the service running on the swarm
@@ -56,18 +56,17 @@ swarm で実行中のサービスを削除
 
    .. code-block:: bash
    
-       $ docker ps
-   
-           CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
-           db1651f50347        alpine:latest       "ping docker.com"        44 minutes ago      Up 46 seconds                           helloworld.5.9lkmos2beppihw95vdwxy1j3w
-           43bf6e532a92        alpine:latest       "ping docker.com"        44 minutes ago      Up 46 seconds                           helloworld.3.a71i8rp6fua79ad43ycocl4t2
-           5a0fb65d8fa7        alpine:latest       "ping docker.com"        44 minutes ago      Up 45 seconds                           helloworld.2.2jpgensh7d935qdc857pxulfr
-           afb0ba67076f        alpine:latest       "ping docker.com"        44 minutes ago      Up 46 seconds                           helloworld.4.1c47o7tluz7drve4vkm2m5olx
-           688172d3bfaa        alpine:latest       "ping docker.com"        45 minutes ago      Up About a minute                       helloworld.1.74nbhb3fhud8jfrhigd7s29we
-   
-       $ docker ps
-          CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               
-
+      $ docker ps
+      
+      CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS     NAMES
+      db1651f50347        alpine:latest       "ping docker.com"        44 minutes ago      Up 46 seconds                 helloworld.5.9lkmos2beppihw95vdwxy1j3w
+      43bf6e532a92        alpine:latest       "ping docker.com"        44 minutes ago      Up 46 seconds                 helloworld.3.a71i8rp6fua79ad43ycocl4t2
+      5a0fb65d8fa7        alpine:latest       "ping docker.com"        44 minutes ago      Up 45 seconds                 helloworld.2.2jpgensh7d935qdc857pxulfr
+      afb0ba67076f        alpine:latest       "ping docker.com"        44 minutes ago      Up 46 seconds                 helloworld.4.1c47o7tluz7drve4vkm2m5olx
+      688172d3bfaa        alpine:latest       "ping docker.com"        45 minutes ago      Up About a minute             helloworld.1.74nbhb3fhud8jfrhigd7s29we
+      
+      $ docker ps
+      CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS     NAMES
 
 
 

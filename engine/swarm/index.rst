@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/swarm/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/engine/swarm/index.md
-   doc version: 19.03
-.. check date: 2020/07/11
-.. Commits on May 19, 2020 3864d792fd076362ba2f2b924f5f079d50a34f31
+   doc version: 20.10
+.. check date: 2022/04/28
+.. Commits on Mar 27, 2021 c6ef1e671d637edfac4106988e14a7198317d278
 .. -----------------------------------------------------------------------------
 
 .. Swarm mode overview
@@ -27,6 +27,10 @@ Docker の Swarm モードを利用するには、各種のオペレーティン
 .. Current versions of Docker include swarm mode for natively managing a cluster of Docker Engines called a swarm. Use the Docker CLI to create a swarm, deploy application services to a swarm, and manage swarm behavior.
 
 最新版の Docker には **Swarm モード** が含まれています。これは **Swarm** と呼ばれる Docker Engine のクラスターをネイティブに管理するものです。Docker CLI を使って、Swarm の生成、アプリケーション・サービスの Swarm へのデプロイ、Swarm の制御管理を行います。
+
+.. Docker Swarm mode is built into the Docker Engine. Do not confuse Docker Swarm mode with Docker Classic Swarm which is no longer actively developed.
+
+Docker Swarm モードは Docker Engine に組み込まれています。 Docker Swarm モードと、今後アクティブに開発されない `Docker Classic Swarm <https://github.com/docker/classicswarm>`_ と混同しないでください。
 
 .. ## Feature highlights
 
@@ -138,7 +142,7 @@ Swarm モード CLI コマンド
   * :doc:`swarm ls</engine/reference/commandline/swarm_ls>`
   * :doc:`swarm rm</engine/reference/commandline/swarm_rm>`
   * :doc:`swarm scale</engine/reference/commandline/swarm_scale>`
-  * :doc:`swarm tasks</engine/reference/commandline/swarm_tasks>`
+  * :doc:`swarm ps</engine/reference/commandline/swarm_ps>`
   * :doc:`swarm update</engine/reference/commandline/swarm_update>`
 
 

@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/swarm/swarm-tutorial/inspect-service/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/swarm/swarm-tutorial/inspect-service.md
-   doc version: 19.03
-.. check date: 2020/07/09
-.. Commits on May 26, 2020 9c86eaaae23fcaae69202f5c834e514a0fbe968b
+.. SOURCE: https://github.com/docker/docker.github.io/blob/master/engine/swarm/swarm-tutorial/inspect-service.md
+   doc version: 20.10
+.. check date: 2022/04/29
+.. Commits on Aug 7, 2021 3b71231970606bb45fd6f37a8c99522583e7f5a8
 .. -----------------------------------------------------------------------------
 
 .. Inspect a service on the swarm

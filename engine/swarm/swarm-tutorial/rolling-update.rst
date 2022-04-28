@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/swarm/swarm-tutorial/rolling-update/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/swarm/swarm-tutorial/rolling-update.md
-   doc version: 19.03
-.. check date: 2020/07/09
-.. Commits on Mar 1, 2019 dd128117e6018ca87bebdd19a5880b07dbee948d
+.. SOURCE: https://github.com/docker/docker.github.io/blob/master/engine/swarm/swarm-tutorial/rolling-update.md
+   doc version: 20.10
+.. check date: 2022/04/29
+.. Commits on Apr 12, 2022 461c6935c4745e50d2ca9f479b225157897c0f45
 .. -----------------------------------------------------------------------------
 
 .. Apply rolling updates to a service

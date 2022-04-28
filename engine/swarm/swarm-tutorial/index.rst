@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/swarm/swarm-tutorial/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/swarm/swarm-tutorial/index.md
-   doc version: 19.03
-.. check date: 2020/07/07
-.. Commits on Apr 8, 2020 777c5d23dafd4b640016f24f92fe416f246ec848
+.. SOURCE: https://github.com/docker/docker.github.io/blob/master/engine/swarm/swarm-tutorial/index.md
+   doc version: 20.10
+.. check date: 2022/04/29
+.. Commits on Sep 27, 2021 0417b58c875e41824a34617fbb12bf320dfe19aa
 .. -----------------------------------------------------------------------------
 
 .. Getting Started with swarm mode
@@ -58,7 +58,6 @@ Docker を初めて使う場合は、 :doc:`Docker Engine について </engine/
 チュートリアルを進めるためには、以下の条件が必要です：
 
 ..  three Linux hosts which can communicate over a network, with Docker installed
-    Docker Engine 1.12 or later installed
     the IP address of the manager machine
     open ports between the hosts
 
@@ -74,9 +73,9 @@ Docker を初めて使う場合は、 :doc:`Docker Engine について </engine/
 接続した3台のマシン
 ==============================
 
-.. This tutorial requires three Linux hosts which have Docker installed and can communicate over a network. These can be physical machines, virtual machines, Amazon EC2 instances, or hosted in some other way. You can even use Docker Machine from a Linux, Mac, or Windows host. Check out Getting started - Swarms for one possible set-up for the hosts.
+.. This tutorial requires three Linux hosts which have Docker installed and can communicate over a network. These can be physical machines, virtual machines, Amazon EC2 instances, or hosted in some other way. Check out Getting started - Swarms for one possible set-up for the hosts.
 
-このチュートリアルでは、 Docker がインストール済みで、ネットワーク上で通信可能な Linux ホストが3台必要です。これらは物理マシン、仮想マシン、Amazon EC2 インスタンスや、何らかの方法でホストされたものであれば構いません。あるいは Linux 、 Mac 、 Windows 上で Docker Machine も使えます。3台のホストをセットアップする手順は、 :doc:`/get-started/swarm-deploy` をご覧ください。
+このチュートリアルでは、 Docker がインストール済みで、ネットワーク上で通信可能な Linux ホストが3台必要です。これらは物理マシン、仮想マシン、Amazon EC2 インスタンスや、何らかの方法でホストされたものであれば構いません。3台のホストをセットアップする手順は、 :doc:`/get-started/swarm-deploy` をご覧ください。
 
 .. One of these machines is a manager (called manager1) and two of them are workers (worker1 and worker2).
 
@@ -88,22 +87,6 @@ Docker を初めて使う場合は、 :doc:`Docker Engine について </engine/
 
    チュートリアルの多くの手順は、1つのホストしかないような、単位ノードの swarm 上でも同じようにテストできます。マルチノードのコマンドは動作しませんが、swarm の初期化、サービス作成、サービスのスケールは行えます。
 
-.. Docker Engine 1.12 or later
-
-.. _docker-engine-112-or-later:
-
-Docker Engine 1.12 以上
-==============================
-
-.. This tutorial requires Docker Engine 1.12 or newer on each of the host machines. Install Docker Engine and verify that the Docker Engine daemon is running on each of the machines. You can get the latest version of Docker Engine as follows:
-
-このチュートリアルでは、各ホストマシン上に Docker Engine 1.12 以上をインストールする必要があります。Docker Engine をインストールしたら、各マシン上で Docker Engine デーモンが実行中かどうか確認します。Docker の最新版は、以下の方法で入手できます。
-
-..  install Docker Engine on Linux machines
-    use Docker Desktop for Mac or Docker Desktop for Windows
-
-* :ref:`swarm-install-docker-engine-on-linux-machines`
-* :ref:`swarm-use-docker-desktop-for-mac-or-docker-desktop-for-windows`
 
 .. Install Docker Engine on Linux machines
 
@@ -120,20 +103,20 @@ Linux をベースとする物理コンピュータやクラウドが提供す�
 
 .. _swarm-use-docker-desktop-for-mac-or-docker-desktop-for-windows:
 
-Docker desktop for mac か Docker Desktop for Windows を使う
+Docker Desktop for mac か Docker Desktop for Windows を使う
 ------------------------------------------------------------
 
-.. Alternatively, install the latest Docker Desktop for Mac or Docker Desktop for Windows application on one computer. You can test both single-node and multi-node swarm from this computer, but you need to use Docker Machine to test the multi-node scenarios.
+.. You can use Docker Desktop for Mac or Windows to test single-node features of swarm mode, including initializing a swarm with a single node, creating services, and scaling services.
 
-別の方法として、 :doc:`Docker Desktop for Mac </docker-for-mac/index>` や :doc:`Docker Desktop for Windows </docker-for-windows/index>` アプリケーションをコンピュータ上にインストールします。そのコンピュータ上で単一ノードと複数ノード swarmの両方をテストできます。しかし、複数ノードのシナリオをテストするには Docker Machine が必要です。
+別の方法として、 :doc:`Docker Desktop for Mac </desktop/mac/index>` や :doc:`Docker Desktop for Windows </desktop/windows/index>` アプリケーションをコンピュータ上にインストールします。このコンピュータの単一ノードもしくは複数ノードのどちらでもテストできます。
 
-..    You can use Docker Desktop for Mac or Windows to test single-node features of swarm mode, including initializing a swarm with a single node, creating services, and scaling services. Docker “Moby” on Hyperkit (Mac) or Hyper-V (Windows) serve as the single swarm node.
+.. You can use Docker Desktop for Mac or Windows to test single-node features of swarm mode, including initializing a swarm with a single node, creating services, and scaling services.
 
-* Docker Desktop for Mac や Windows では、swarm モードの単一ノード機能のテストを行えます。この中には、単一ノードの swarm 初期化、サービスの作成、サービスのスケールを含みます。 Hyperkit (Mac) や Hyper-V (Windows) 上の Docker "Moby" が提供するのは、単一の swarm ノードです。
+* Docker Desktop for Mac や Windows では、swarm モードの単一ノード機能のテストを行えます。この中には、単一ノードの swarm 初期化、サービスの作成、サービスのスケールを含みます。
 
-..  Currently, you cannot use Docker Desktop for Mac or Docker Desktop for Windows alone to test a multi-node swarm. However, you can use the included version of Docker Machine to create the swarm nodes (see Get started with Docker Machine and a local VM), then follow the tutorial for all multi-node features. For this scenario, you run commands from a Docker Desktop for Mac or Docker Desktop for Windows host, but that Docker host itself is not participating in the swarm. After you create the nodes, you can run all swarm commands as shown from the Mac terminal or Windows PowerShell with Docker Desktop for Mac or Docker Desktop for Windows running.
+.. Currently, you cannot use Docker Desktop for Mac or Docker Desktop for Windows alone to test a multi-node swarm, but many examples are applicable to a single-node Swarm setup.
 
-* 現時点では、 Docker Desktop for Mac や Docker Desktop for Windows 単独では、複数ノード swarm のテストを行えません。しかしながら、 :doc:`Docker Machine </machine/overview>` に含まれるバージョンであれば、swarm ノードを作成し（ :doc:`/machine/get-started` をご覧ください）、以降すべての複数ノード機能のチュートリアルを行えます。この場合、Docker Desktop for Mac や Docker Desktop for Windows ホスト上でコマンドを実行しますが、Docker ホスト自身は swarm に参加しません。ノードを作成したあとは、Docker Desktop for Mac や Docker Desktop for Windows を実行している Mac ターミナルや Windows PowerShell を通し、すべての swarm コマンドを実行可能です。
+* 現時点では、 Docker Desktop for Mac や Docker Desktop for Windows 単独では、複数ノード swarm のテストを行えません。しかしながら、単一ノードの Swarm セットアップでも適用できる例がいくつもあります。
 
 .. The IP address of the manager machine
 
@@ -154,9 +137,6 @@ IP アドレスはホスト・オペレーティングシステム上で利用�
 
 Linux や macOS では ``ifconfig`` を実行し、利用可能なネットワーク・インターフェースの一覧を表示します。
 
-.. If you are using Docker Machine, you can get the manager IP with either docker-machine ls or docker-machine ip <MACHINE-NAME> — for example, docker-machine ip manager1.
-
-Docker Machine を使っている場合は、マネージャの IP アドレスの取得は ``docker-machine ls`` や ``docker-machine ip <MACHINE-NAME>``  、たとえば ``docker-machine ip manager1`` のようにの、どちらかで行えます。
 
 .. The tutorial uses manager1 : 192.168.99.100.
 

@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/swarm/swarm-tutorial/add-nodes/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/swarm/swarm-tutorial/add-nodes.md
-   doc version: 19.03
-.. check date: 2020/07/09
-.. Commits on Feb 24, 2017 d4add4ee209378c810d5871ea5f6092704a73dba
+.. SOURCE: https://github.com/docker/docker.github.io/blob/master/engine/swarm/swarm-tutorial/add-nodes.md
+   doc version: 20.10
+.. check date: 2022/04/29
+.. Commits on Aug 7, 2021 3b71231970606bb45fd6f37a8c99522583e7f5a8
 .. -----------------------------------------------------------------------------
 
 .. Add nodes to the swarm
