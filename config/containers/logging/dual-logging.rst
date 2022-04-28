@@ -7,7 +7,6 @@
 .. ---------------------------------------------------------------------------
 
 .. Use docker logs to read container logs for remote logging drivers
-
 .. _use-docker-logs-to-read-container-logs-for-remote-logging-drivers:
 
 ======================================================================
@@ -20,7 +19,7 @@ docker logs でコンテナのログにリモートのロギング・ドライ�
        :depth: 3
        :local:
 
-（TBD、Docker Enterprise 向け機能解説のため）
+（TBD）
 
 .. seealso:: 
 

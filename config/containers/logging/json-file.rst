@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/config/containers/logging/json-file/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/config/containers/logging/json-file.md
-   doc version: 19.03
-.. check date: 2020/07/03
-.. Commits on Apr 8, 2020 b0f90615659ac1319e8d8a57bb914e49d174242e
+   doc version: 20.10
+.. check date: 2022/04/28
+.. Commits on Aug 7, 2021 859923171ced723ab40203ad1f388aa3771955e0
 .. -------------------------------------------------------------------
 
 .. Log Tags
@@ -30,18 +30,28 @@ JSON ファイル・ロギング・ドライバ
 
    {"log":"Log line is here\n","stream":"stdout","time":"2019-01-01T11:11:11.111111111Z"}
 
+..  Warning
+    The json-file logging driver uses file-based storage. These files are designed to be exclusively accessed by the Docker daemon. Interacting with these files with external tools may interfere with Docker’s logging system and result in unexpected behavior, and should be avoided.
+
+.. warning::
+
+   ``json-file`` ロギング ドライバはファイルをベースとするストレージを使います。これらのファイルは、 Docker デーモンによって排他的にアクセスされるよう設計されています。外部のツールによって、これらのファイルとやりとりしようとすると、Docker のログ記録システムによって妨害される可能性があり、かつ、結果的に予期しない挙動として、無効とされるでしょう。
+
+
 .. Usage
 
 使い方
 ==========
 
+.. To use the json-file driver as the default logging driver, set the log-driver and log-opts keys to appropriate values in the daemon.json file, which is located in /etc/docker/ on Linux hosts or C:\ProgramData\docker\config\ on Windows Server. If the file does not exist, create it first. For more information about configuring Docker using daemon.json, see daemon.json.
+
 .. To use the json-file driver as the default logging driver, set the log-driver and log-opts keys to appropriate values in the daemon.json file, which is located in /etc/docker/ on Linux hosts or C:\ProgramData\docker\config\ on Windows Server. For more information about configuring Docker using daemon.json, see daemon.json.
 
-``json-file`` ドライバをデフォルトのロギング・ドライバとして使うためには、 ``daemon.json`` ファイルで ``log-driver`` と ``log-opt`` キーに適切な値を設定します。ファイルは Linux ホスト上では ``/etc/docker`` にあり、 Windows Server 上では ``C:\ProgramData\docker\config\daemon.json`` にあります。 ``daemon.json`` を使って Docker を設定する方法は、 :ref:`daemon.json <daemon-configuration-file>` をご覧ください。
+``json-file`` ドライバをデフォルトのロギング・ドライバとして使うためには、 ``daemon.json`` ファイルで ``log-driver`` と ``log-opt`` キーに適切な値を設定します。ファイルは Linux ホスト上では ``/etc/docker`` にあり、 Windows Server 上では ``C:\ProgramData\docker\config\daemon.json`` にあります。もしもファイルが存在しなければ、まず第一に作成します。 ``daemon.json`` を使って Docker を設定する方法は、 :ref:`daemon.json <daemon-configuration-file>` をご覧ください。
 
-.. The following example sets the log driver to json-file and sets the max-size and max-file options.
+.. The following example sets the log driver to json-file and sets the max-size and max-file options to enable automatic log-rotation.
 
-以下の例は、ログドライバを ``json-file`` に設定し、 ``max-size`` オプションを指定しています。
+以下の例は、ログドライバを ``json-file`` に設定し、自動的にログローテーションをするために  ``max-size`` オプションを指定しています。
 
 .. code-block:: json
 
@@ -98,12 +108,15 @@ JSON ファイル・ロギング・ドライバ
    * - ``lables``
      - Docker デーモンの開始時に適用します。デーモンが受け付けるログに関連するラベルを、カンマ区切りで指定します。 :doc:`ログとタグのオプション <log_tags>` を使います。
      - ``--log-opt labels=production_status,geo``
+   * - ``lables-regex``
+     - ``labels`` に似ていて互換性があります。ログ記録に関連するラベルに、正規表現で一致します。高度な :doc:`log tag オプション <log_tags>` に使います。
+     - ``--log-opt labels-regex=^(production_status|geo)``
    * - ``env``
      - Docker デーモンの開始時に適用します。デーモンが受け付けるログに関連する環境変数を、カンマ区切りで指定します。 :doc:`ログとタグのオプション <log_tags>` を使います。
      - ``--log-opt env=os,customer``
    * - ``env-regex``
      - Docker デーモンの開始時に適用します。デーモンが受け付けるログに関連する環境変数を、正規表現で指定します。 :doc:`ログとタグのオプション <log_tags>` を使います。
-     - ``--log-opt env-regex=^(os|customer).``
+     - ``--log-opt env-regex=^(os|customer)``
    * - ``compress``
      - ログファイルの回転時に圧縮するかどうか切り替えます。デフォルトは圧縮が無効です。
      - ``--log-opt compress=true``

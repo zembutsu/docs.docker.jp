@@ -18,7 +18,7 @@
    全オブジェクト設定 </config/objects.rst>
    デーモン設定 </config/daemon/toc.rst>
    Prometheus メトリクス収集 </config/daemon/prometheus>
-   コンテナ設定 </config/container/toc.rst>
+   コンテナ設定 </config/containers/toc.rst>
    ネットワーク設定 </network/toc.rst>
    アプリケーション データの管理 </storage/toc.rst>
 

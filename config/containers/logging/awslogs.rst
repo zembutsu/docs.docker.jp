@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/logging/awslogs/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/admin/logging/awslogs.md
-   doc version: 1.12
+   doc version: 20.10
       https://github.com/docker/docker/commits/master/docs/admin/logging/awslogs.md
-.. check date: 2016/06/13
-.. Commits on Jan 27, 2016 e310d070f498a2ac494c6d3fde0ec5d6e4479e14
+.. check date: 2022/04/28
+.. Commits on Oct 13, 2016 29f08cf49bede9bcaf4f06e643988d30be008c0b
 .. ---------------------------------------------------------------------------
 
 .. Amazon CloudWatch Logs logging driver
@@ -36,7 +36,7 @@ Amazon CloudWatch Logs ロギング・ドライバ
 
 .. code-block:: bash
 
-   docker daemon --log-driver=awslogs
+   dockerd --log-driver=awslogs
 
 .. You can set the logging driver for a specific container by using the --log-driver option to docker run:
 

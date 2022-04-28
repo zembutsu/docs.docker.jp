@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/config/containers/logging/logentries/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/config/containers/logging/logentries.md
-   doc version: 19.03
-.. check date: 2020/07/03
-.. Commits on Feb 2, 2018 1b343beca4aaab8b183eefa89867b6bf64505be5
+   doc version: 20.10
+.. check date: 2022/04/28
+.. Commits on Aug 7, 2021 859923171ced723ab40203ad1f388aa3771955e0
 .. -------------------------------------------------------------------
 
 .. Log Tags

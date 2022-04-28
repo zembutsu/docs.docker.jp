@@ -1,8 +1,8 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/config/containers/logging/plugins/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/config/containers/logging/plugins.md
-   doc version: 19.03
-.. check date: 2020/07/03
+   doc version: 20.10
+.. check date: 2022/04/28
 .. Commits on Apr 8, 2020 b0f90615659ac1319e8d8a57bb914e49d174242e
 .. ---------------------------------------------------------------------------
 

@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/config/containers/logging/configure/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/config/containers/logging/configure.md
-   doc version: 19.03
-.. check date: 2020/07/01
-.. Commits on Apr 8, 2020 727941ffdd6430562e09314d3199b56f2de666df
+   doc version: 20.10
+.. check date: 2022/04/28
+.. Commits on Aug 27, 2021 e905b05611ccef80e1fc6c5fcdb968bbf434dfe5
 .. ---------------------------------------------------------------------------
 
 .. Configure logging drivers
@@ -11,7 +11,7 @@
 .. _configure-logging-drivers:
 
 =======================================
-ロギング・ドライバの設定
+ロギング ドライバの設定
 =======================================
 
 .. sidebar:: 目次
@@ -20,39 +20,53 @@
        :depth: 3
        :local:
 
-.. Docker includes multiple logging mechanisms to help you get information from running containers and services. These mechanisms are called logging drivers.
+.. Docker includes multiple logging mechanisms to help you get information from running containers and services. These mechanisms are called logging drivers. Each Docker daemon has a default logging driver, which each container uses unless you configure it to use a different logging driver, or “log-driver” for short.
 
-Docker は複数のログ記録（ロギング）機能を含んでおり、 :doc:`実行中のコンテナとサービスから情報を得るには <index>` が役立ちます。これらの仕組みをロギング・ドライバ（logging driver）と呼びます。
+Docker は複数のログ記録（ロギング）機能を含んでおり、 :doc:`実行中のコンテナとサービスから情報を得るには <index>` が役立ちます。これらの仕組みを :ruby:`ロギング ドライバ <logging driver>` と呼びます。各 Docker デーモンにはデフォルトのロギング ドライバがあり、コンテナに対して何らかの別のロギング ドライバを指定するか、省略して「log-driver」を指定しない限り、デフォルトでコンテナに対して適用します。
 
-.. Each Docker daemon has a default logging driver, which each container uses unless you configure it to use a different logging driver.
+.. As a default, Docker uses the json-file logging driver, which caches container logs as JSON internally. In addition to using the logging drivers included with Docker, you can also implement and use logging driver plugins.
 
-各 Docker デーモンにはデフォルトのロギング・ドライバがあり、コンテナに対して何らかの別のロギング・ドライバを指定しない限り、デフォルトでコンテナに対して適用します。
+デフォルトでは Docker は :doc:`json-file ロギング ドライバ <json-file>` を使います。これはコンテナのログを JSON に含めます。Docker に入っているロギング ドライバに加え、 :doc:`ロギング ドライバ・プラグイン <plugins>` を使った異なる実装も可能です。
 
-.. In addition to using the logging drivers included with Docker, you can also implement and use logging driver plugins.
+..    Tip: use the “local” logging driver to prevent disk-exhaustion
+    By default, no log-rotation is performed. As a result, log-files stored by the default json-file logging driver logging driver can cause a significant amount of disk space to be used for containers that generate much output, which can lead to disk space exhaustion.
+    Docker keeps the json-file logging driver (without log-rotation) as a default to remain backward compatibility with older versions of Docker, and for situations where Docker is used as runtime for Kubernetes.
+    For other situations, the “local” logging driver is recommended as it performs log-rotation by default, and uses a more efficient file format. Refer to the Configure the default logging driver section below to learn how to configure the “local” logging driver as a default, and the local file logging driver page for more details about the “local” logging driver.
 
-Docker に含むロギング・ドライバに加え、 :doc:`ロギング・ドライバ・プラグイン <plugins>` を使った異なる実装も可能です。
+.. tip::
+
+   **ディスクの肥大化を防止する「local」ロギング ドライバを使う** 
+   
+   デフォルトでは、ログのローテーションは処理されません。その結果、デフォルトの :doc:`json-file ロギング ドライバ <json-file>` によって保管されるログファイルにより、ディスク容量が著しく増える場合があります。これは、コンテナがたくさんの出力を生成し、ディスク容量を大量に消費するためです。
+   
+   Docker は json-file ロギング ドライバ（ログのローテート無し）をデフォルトで使用します。これは Docker の古いバージョンとの候補互換性を維持し、かつ、Docker が Kubernetes 用のランタイムとして使う状況のためです。
+   
+   他の状況としては、デフォルトでログローテーションを処理するため、「local」ロギング ドライバが推奨されますし、他にも効率的なファイル形式を利用できます。 :ref:`configure-the-default-logging-driver` セクションを参照し、「local」ロギング ドライバをデフォルトに設定する方法を学び、それから、「local」ロギング ドライバの詳細は :doc:`local file ロギング ドライバ <local>` のページをご覧ください。
 
 
 .. Configure the default logging driver
 
 .. _configure-the-default-logging-driver:
 
-デフォルトのロギング・ドライバを指定
+デフォルトのロギング ドライバを指定
 ========================================
+.. To configure the Docker daemon to default to a specific logging driver, set the value of log-driver to the name of the logging driver in the daemon.json configuration file. Refer to the “daemon configuration file” section in the dockerd reference manual for details.
 
-.. To configure the Docker daemon to default to a specific logging driver, set the value of log-driver to the name of the logging driver in the daemon.json file, which is located in /etc/docker/ on Linux hosts or C:\ProgramData\docker\config\ on Windows server hosts. The default logging driver is json-file. The following example explicitly sets the default logging driver to syslog:
+Docker デーモンに対してデフォルトで何らかのロギング ドライバを指定するには、 ``daemon.json``  ファイル中の ``log-driver`` にロギング ドライバ名を書きます。詳細は :ref:`dockerd リファレンスマニュアル <daemon-configuration-file:>` の「デーモン設定ファイル」セクションをご覧ください。
 
-Docker デーモンに対してデフォルトで何らかのロギング・ドライバを指定するには、 ``daemon.json``  ファイル中の ``log-driver`` にロギング・ドライバ名を書きます。このファイルは Linux ホスト上では ``/etc/docker`` にあり、 Windows サーバ・ホスト上では ``C:\ProgramData\docker\config\`` にあります。デフォルトのロギング・ドライバは ``json-file`` です。以下の例は、デフォルトのロギング・ドライバとして ``syslog`` を明示しています。
+.. The default logging driver is json-file. The following example sets the default logging driver to the local log driver:
+
+デフォルトのロギング ドライバは ``json-file`` です。以下の例はデフォルトのロギング ドライバを :doc:`local ログドライバ <local>` に設定する例です。
 
 .. code-block:: json
 
    {
-     "log-driver": "syslog"
+     "log-driver": "local"
    }
 
-.. If the logging driver has configurable options, you can set them in the daemon.json file as a JSON object with the key log-opts. The following example sets two configurable options on the json-file logging driver:
+.. If the logging driver has configurable options, you can set them in the daemon.json file as a JSON object with the key log-opts. The following example sets four configurable options on the json-file logging driver:
 
-もしもロギング・ドライバに設定可能なオプションがあれば、 ``daemon.json`` ファイルの中で、 ``log-opts`` をキーとする JSON オブジェクトとして記述できます。以下の例は ``json-file`` ロギング・ドライバ上で2つのオプションを設定しています。
+もしもロギング ドライバに設定可能なオプションがあれば、 ``daemon.json`` ファイルの中で、 ``log-opts`` をキーとする JSON オブジェクトとして記述できます。以下の例は ``json-file`` ロギング ドライバ上で4つのオプションを設定しています。
 
 .. code-block:: json
 
@@ -75,11 +89,11 @@ Docker デーモンに対してデフォルトで何らかのロギング・ド�
 
 .. If you do not specify a logging driver, the default is json-file. Thus, the default output for commands such as docker inspect <CONTAINER> is JSON.
 
-ロギング・ドライバを指定しなければ、デフォルトは ``json-file`` です。つまり、 ``docker inspect <コンテナ>`` のコマンド出力は、デフォルトで JSON 形式です。
+ロギング ドライバを指定しなければ、デフォルトは ``json-file`` です。つまり、 ``docker inspect <コンテナ>`` のコマンド出力は、デフォルトで JSON 形式です。
 
 .. To find the current default logging driver for the Docker daemon, run docker info and search for Logging Driver. You can use the following command on Linux, macOS, or PowerShell on Windows:
 
-Docker デーモンにおける現在のデフォルトのロギング・ドライバを調べるには、 ``docker info`` を実行し、 ``Logging Driver`` を探します。Linux や macOS や Windows の PowerShell 上であれば、以下のコマンドも実行できます。
+Docker デーモンにおける現在のデフォルトのロギング ドライバを調べるには、 ``docker info`` を実行し、 ``Logging Driver`` を探します。Linux や macOS や Windows の PowerShell 上であれば、以下のコマンドも実行できます。
 
 .. code-block:: bash
 
@@ -91,16 +105,16 @@ Docker デーモンにおける現在のデフォルトのロギング・ドラ�
 
 .. _configure-the-logging-driver-for-a-container:
 
-コンテナに対してロギング・ドライバを設定
+コンテナに対してロギング ドライバを設定
 ==================================================
 
 .. nWhen you start a container, you can configure it to use a different logging driver than the Docker daemon’s default, using the --log-driver flag. If the logging driver has configurable options, you can set them using one or more instances of the --log-opt <NAME>=<VALUE> flag. Even if the container uses the default logging driver, it can use different configurable options.
 
-コンテナの起動時に ``--log-driver`` を使えば、Docker デーモンのデフォルト設定とは異なるロギング・ドライバを指定できます。ロギング・ドライガに設定可能なオプションがあれば、1つまたは複数の項目を ``--log-opt <名前>=<値>`` フラグで指定できます。もしもコンテナがデフォルトのロギング・ドライバを使用する場合でも、異なる設定可能なオプションを指定できます。
+コンテナの起動時に ``--log-driver`` を使えば、Docker デーモンのデフォルト設定とは異なるロギング ドライバを指定できます。ロギング・ドライガに設定可能なオプションがあれば、1つまたは複数の項目を ``--log-opt <名前>=<値>`` フラグで指定できます。もしもコンテナがデフォルトのロギング ドライバを使用する場合でも、異なる設定可能なオプションを指定できます。
 
 .. The following example starts an Alpine container with the none logging driver.
 
-以下は Alpine コンテナを ``none`` ロギング・ドライバで起動する例です。
+以下は Alpine コンテナを ``none`` ロギング ドライバで起動する例です。
 
 .. code-block:: bash
 
@@ -108,7 +122,7 @@ Docker デーモンにおける現在のデフォルトのロギング・ドラ�
 
 .. To find the current logging driver for a running container, if the daemon is using the json-file logging driver, run the following docker inspect command, substituting the container name or ID for <CONTAINER>:
 
-実行中のコンテナに対して、現在のデフォルトのロギング・ドライバを調べるには、もしもデーモンが ``json-file`` ロギング・ドライバを使う場合、  ``docker inspect`` コマンドを使い、あとには ``<コンテナ>`` の名前または ID を続けます：
+実行中のコンテナに対して、現在のデフォルトのロギング ドライバを調べるには、もしもデーモンが ``json-file`` ロギング ドライバを使う場合、  ``docker inspect`` コマンドを使い、あとには ``<コンテナ>`` の名前または ID を続けます：
 
 .. code-block:: bash
 
@@ -163,13 +177,13 @@ Docker デーモンにおける現在のデフォルトのロギング・ドラ�
 
 .. _use-environment-variables-or-labels-with-logging-drivers:
 
-ロギング・ドライバで環境変数やラベルを使う
+ロギング ドライバで環境変数やラベルを使う
 --------------------------------------------------
 
 .. Some logging drivers add the value of a container’s --env|-e or --label flags to the container’s logs. This example starts a container using the Docker daemon’s default logging driver (let’s assume json-file) but sets the environment variable os=ubuntu.
 
 
-いくつかのロギング・ドライバは、コンテナの ``--env|-e`` や ``--label`` フラグを使い、コンテナのログに値を追加できます。この例は、Docker デーモンのデフォルトのロギング・ドライバ（ ``json-file`` と仮定します）でコンテナを起動しますが、環境変数を ``os=ubuntu`` に設定します。
+いくつかのロギング ドライバは、コンテナの ``--env|-e`` や ``--label`` フラグを使い、コンテナのログに値を追加できます。この例は、Docker デーモンのデフォルトのロギング ドライバ（ ``json-file`` と仮定します）でコンテナを起動しますが、環境変数を ``os=ubuntu`` に設定します。
 
 .. code-block:: bash
 
@@ -177,7 +191,7 @@ Docker デーモンにおける現在のデフォルトのロギング・ドラ�
 
 .. If the logging driver supports it, this adds additional fields to the logging output. The following output is generated by the json-file logging driver:
 
-ロギング・ドライバがサポートしていれば、ログの出力に追加のフィールドを追加出来ます。以下の出力は ``json-file`` ロギング・ドライバによって生成された出力です。
+ロギング ドライバがサポートしていれば、ログの出力に追加のフィールドを追加出来ます。以下の出力は ``json-file`` ロギング ドライバによって生成された出力です。
 
 ::
 
@@ -188,12 +202,12 @@ Docker デーモンにおける現在のデフォルトのロギング・ドラ�
 
 .. _supported-logging-drivers:
 
-サポートしているロギング・ドライバ
+サポートしているロギング ドライバ
 ========================================
 
 .. The following logging drivers are supported. See the link to each driver’s documentation for its configurable options, if applicable. If you are using logging driver plugins, you may see more options.
 
-以下のロギング・ドライバがサポートされています。設定のオプションに関しては、該当する各ドライバのドキュメントへのリンクをご覧ください。 :doc:`ロギング・ドライバ・プラグイン <plugins>` の利用時には、さらにオプションがあるでしょう。
+以下のロギング ドライバがサポートされています。設定のオプションに関しては、該当する各ドライバのドキュメントへのリンクをご覧ください。 :doc:`ロギング ドライバ・プラグイン <plugins>` の利用時には、さらにオプションがあるでしょう。
 
 .. Driver 	Description
    none 	No logs are available for the container and docker logs does not return any output.
@@ -219,7 +233,7 @@ Docker デーモンにおける現在のデフォルトのロギング・ドラ�
    * - `local <https://docs.docker.com/config/containers/logging/local/>`_
      - ログは最小のオーバヘッドになるよう設計された、カスタム形式で記録します。
    * - `json-file <https://docs.docker.com/config/containers/logging/json-file/>`_
-     - JSON 形式でログを記録します。Docker のデフォルトのロギング・ドライバです。
+     - JSON 形式でログを記録します。Docker のデフォルトのロギング ドライバです。
    * - `syslog <https://docs.docker.com/config/containers/logging/syslog/>`_
      - ``syslog`` ファシリティに対してロギング・メッセージを記録します。ホスト・マシン上で ``syslog`` デーモンの起動が必要です。
    * - `journald <https://docs.docker.com/config/containers/logging/journald/>`_
@@ -244,12 +258,12 @@ Docker デーモンにおける現在のデフォルトのロギング・ドラ�
 
 .. _limitations-of-logging-drivers:
 
-ロギング・ドライバの制限
+ロギング ドライバの制限
 ==============================
 
 ..    Users of Docker Enterprise can make use of “dual logging”, which enables you to use the docker logs command for any logging driver. Refer to reading logs when using remote logging drivers for information about using docker logs to read container logs locally for many third party logging solutions, including:
 
-* Docker Enterprise のユーザは "dual logging" を利用できます。これは ``docker logs``  コマンドであらゆるロギング・ドライバを利用可にします。 ``docker logs``  を使ってローカルでコンテナのログを読むための情報は `reading logs when using remote logging drivers  <https://docs.docker.com/config/containers/logging/dual-logging/>`_ をご覧ください。以下のロギング・ソリューションのほか、サードパーティのものも含みます。
+* Docker Enterprise のユーザは "dual logging" を利用できます。これは ``docker logs``  コマンドであらゆるロギング ドライバを利用可にします。 ``docker logs``  を使ってローカルでコンテナのログを読むための情報は `reading logs when using remote logging drivers  <https://docs.docker.com/config/containers/logging/dual-logging/>`_ をご覧ください。以下のロギング・ソリューションのほか、サードパーティのものも含みます。
 
       * ``syslog``
       * ``gelf``
