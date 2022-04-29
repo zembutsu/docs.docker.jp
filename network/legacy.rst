@@ -4,23 +4,13 @@
 .. check date: 2022/04/29
 .. -----------------------------------------------------------------------------
 
-..  Configure networking -toc:
-
 ========================================
-ネットワーク機能の設定
+過去のネットワーク機能について
 ========================================
 
 .. toctree::
    :maxdepth: 3
    :titlesonly:
+   
+   (レガシー)コンテナ links <links.rst>
 
-   ネットワーク機能の概要 <index>
-   bridge
-   overlay
-   host
-   ipvlan
-   macvlan
-   none
-   network-tutorial
-   configure
-   過去のネットワーク機能について <legacy>

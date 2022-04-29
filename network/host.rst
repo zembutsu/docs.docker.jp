@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/network/host/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/network/host.md
-   doc version: 19.03
-.. check date: 2020/07/17
-.. Commits on Apr 23, 2020 dc1f9f7b4d2f656f5de23d3b7ac69571b270ddca
+   doc version: 20.10
+.. check date: 2022/04/29
+.. Commits on Aug 16, 2021 15836782038638a20f4e214af6e92bdd01624726
 .. ---------------------------------------------------------------------------
 
 .. Use host  networking

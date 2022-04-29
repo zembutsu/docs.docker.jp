@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/network/none/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/network/none.md
-   doc version: 19.03
-.. check date: 2020/07/19
-.. Commits on Jun 18, 2020 2693610fc7d40653b3f693aabfbf29fc213d188a
+   doc version: 20.10
+.. check date: 2022/04/29
+.. Commits on Aug 7, 2021 4068208b74003075b5db4e9675262652e72b0e32
 .. ---------------------------------------------------------------------------
 
 .. Disable networking for a container
@@ -11,7 +11,7 @@
 .. _disable-networking-for-a-container:
 
 ========================================
-macvlan ネットワークの使用
+コンテナのネットワーク機能を無効化
 ========================================
 
 .. sidebar:: 目次
