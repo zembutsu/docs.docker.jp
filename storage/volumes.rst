@@ -184,8 +184,8 @@ Docker コンテナによって作成され、かつ、使われるデータを�
 
 .. Start a container with a volume
 .. _start-a-container-with-a-volume:
-ボリュームとコンテナを起動
-==============================
+ボリュームを使ってコンテナを起動
+========================================
 
 .. If you start a container with a volume that does not yet exist, Docker creates the volume for you. The following example mounts the volume myvol2 into /app/ in the container.
 
@@ -391,6 +391,7 @@ compose でボリュームを使うための詳しい情報は、 :ref:`compose 
    $ docker volume rm nginx-vol
 
 .. Use a read-only volume
+. _use-a-read-only-volume:
 読み込み専用のボリュームを使用
 ==============================
 
@@ -400,7 +401,7 @@ compose でボリュームを使うための詳しい情報は、 :ref:`compose 
 
 .. This example modifies the one above but mounts the directory as a read-only volume, by adding ro to the (empty by default) list of options, after the mount point within the container. Where multiple options are present, separate them by commas.
 
-以下は前述の例を変更したもので、コンテナ内へのマウントポイントの後に、 ``ro`` をオプションのリスト（デフォルトは空）に追加し、ディレクトリを :ruby:`読み込み専用 <read only>` としてマウントします。複数のオプションを指定するには、それらをカンマで区切ります。
+以下は前述の例を変更したもので、コンテナ内へのマウントポイントの後に、 ``ro`` をオプションのリスト（デフォルトは空）に追加し、ディレクトリを :ruby:`読み込み専用 <read only>` のボリュームとしてマウントします。複数のオプションを指定するには、それらをカンマで区切ります。
 
 .. The --mount and -v examples have the same result.
 
@@ -408,17 +409,21 @@ compose でボリュームを使うための詳しい情報は、 :ref:`compose 
 
 * ``--mount``
 
-   $ docker run -d \
-     --name=nginxtest \
-     --mount source=nginx-vol,destination=/usr/share/nginx/html,readonly \
-     nginx:latest
+  .. code-block:: bash
+  
+     $ docker run -d \
+       --name=nginxtest \
+       --mount source=nginx-vol,destination=/usr/share/nginx/html,readonly \
+       nginx:latest
 
 * ``--v``
 
-   $ docker run -d \
-     --name=nginxtest \
-     -v nginx-vol:/usr/share/nginx/html:ro \
-     nginx:latest
+  .. code-block:: bash
+  
+     $ docker run -d \
+       --name=nginxtest \
+       -v nginx-vol:/usr/share/nginx/html:ro \
+       nginx:latest
 
 .. Use docker inspect nginxtest to verify that the readonly mount was created correctly. Look for the Mounts section:
 
