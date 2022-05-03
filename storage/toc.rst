@@ -18,5 +18,5 @@
    ボリューム <volumes>
    バインド マウント <bind-mounts>
    tmpfs マウント <tmpfs>
-   ボリューム問題のトラブルシューティング <troubleshooting_volume_errors>
-   コンテナ内のデータ保管 <storagedriver/toc.rst>
+   ボリューム エラーのトラブルシューティング <troubleshooting_volume_errors>
+   コンテナ内にデータを保管 <storagedriver/toc.rst>
