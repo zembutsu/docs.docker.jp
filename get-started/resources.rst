@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/get-started/resources/
-   doc version: 19.03
+   doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/get-started/resources.md
-.. check date: 2020/06/16
-.. Commits on Jan 24, 2020 72eec05dcc72d4fc8a8fd8a2af6628e75b29e7b2
+.. check date: 2022/05/04
+.. Commits on Aug 8, 2021 dfe4874233f81a6f3268b3f1e16674b978eb0123
 .. -----------------------------------------------------------------------------
 
 .. Educational resources
@@ -28,12 +28,14 @@ Docker と幅広いコミュニティの Docker エキスパートが、Docker �
 
 .. _hosted-labs:
 
-ホステッド・ラボ
+ホステッド ラボ
 ==============================
+
+.. These self-paced and hands-on workshops use a free, hosted environment (Play with Kubernetes) that does not require any installation. Follow along and learn more about Kubernetes.
 
 .. These self-paced and hands-on workshops use free, hosted environments (Play with Docker and Play with Kubernetes) that do not require anything to be installed. Follow along and learn more about Docker and Kubernetes.
 
-これらは自分のベースでハンズオン・ワークショップを、自由に使えるホステッド環境です（ `Play with Docker <https://labs.play-with-docker.com/>`_ と `Play with Kubernetes <https://labs.play-with-k8s.com/>`_ ）。これを使うには、何もインストールする必要はありません。以下で Docker と Kubernetes について学びましょう。
+これらは自分のベースでハンズオン ワークショップを、自由に使えるホステッド環境です（  `Play with Kubernetes <https://labs.play-with-k8s.com/>`_ ）。これを使うには、何もインストールする必要はありません。以下で Kubernetes について学びましょう。
 
 ..  Kubernetes Workshop
     Microservice containerization and orchestration
@@ -119,7 +121,6 @@ Docker コミュニティのエキスパートによって作成されました�
     Arun Gupta: Docker for Java Developers
     Ajeet Singh Raina: Docker and Kubernetes Labs
     [French] Luc Juggery: Introduction to Kubernetes, The Docker Platform
-    [Spanish] Manuel Morejón: Integrating Docker to its Infrastructure and Services
 
 
 * `Bret Fisher <https://www.bretfisher.com/courses/>`_ : Docker Mastery, Docker Swarm Mastery, Docker Mastery for Node.js Projects
@@ -128,8 +129,6 @@ Docker コミュニティのエキスパートによって作成されました�
 * `Arun Gupta <https://www.lynda.com/Docker-tutorials/Docker-Java-developers/576584-2.html>`_ : Docker for Java Developers
 * `Ajeet Singh Raina <https://collabnix.com/>`_ : Docker and Kubernetes Labs
 * [フランス語] `Luc Juggery <https://www.udemy.com/user/lucjuggery/>`_ : Introduction to Kubernetes, The Docker Platform
-* [スペイン語] `Manuel Morejón <https://www.udemy.com/course/integrando-docker-a-su-infraestrucutra-y-servicios/learn/lecture/6624848#overview>`_ : Integrating Docker to its Infrastructure and Services
-
 
 .. * Many of the courses are fee-based
 
