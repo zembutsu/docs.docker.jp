@@ -1,10 +1,12 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/storagedriver/overlayfs-driver.md
+.. URL: https://docs.docker.com/storage/storagedriver/overlayfs-driver/
+.. SOURCE: 
    doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/userguide/storagedriver/overlayfs-driver.md
-.. check date: 2016/06/1
-.. Commits on Apr 29, 2016 24ec73f754da16e37726a3f1c6a59de508e255fc
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/storage/storagedriver/overlayfs-driver.md
+.. check date: 2022/05/04
+.. Commits on Aug 7, 2021 4afcaf3b2d8656e3fed75ca9fda445a02efcfc04
 .. ---------------------------------------------------------------------------
 
 .. Docker and OverlayFS in practice
@@ -20,6 +22,16 @@ OverlayFS ストレージの使用
    .. contents:: 
        :depth: 3
        :local:
+
+----
+
+（以下は古い内容を含むため、確認予定）
+正確な内容は、原文を参照ください
+https://docs.docker.com/storage/storagedriver/overlayfs-driver/
+
+----
+
+
 
 .. OverlayFS is a modern union filesystem that is similar to AUFS. In comparison to AUFS, OverlayFS:
 

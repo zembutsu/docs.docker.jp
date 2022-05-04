@@ -1,10 +1,12 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/engine/userguide/storagedriver/zfs-driver/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/storagedriver/zfs-driver.md
+.. URL: https://docs.docker.com/storage/storagedriver/zfs-driver/
+.. SOURCE: 
    doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/userguide/storagedriver/zfs-driver.md
-.. check date: 2016/06/14
-.. Commits on Feb 29, 2016 30c2770a736e6c731f4046431f0f4275dadbd536
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/storage/storagedriver/zfs-driver.md
+.. check date: 2022/05/04
+.. Commits on Sep 13, 2021 173d3c65f8e7df2a8c0323594419c18086fc3a30
 .. ---------------------------------------------------------------------------
 
 .. Docker and ZFS in practice
@@ -20,6 +22,15 @@ ZFS ストレージの使用
    .. contents:: 
        :depth: 3
        :local:
+
+----
+
+（以下は古い内容を含むため、確認予定）
+正確な内容は、原文を参照ください
+https://docs.docker.com/storage/storagedriver/zfs-driver/
+
+----
+
 
 .. ZFS is a next generation filesystem that supports many advanced storage technologies such as volume management, snapshots, checksumming, compression and deduplication, replication and more.
 
