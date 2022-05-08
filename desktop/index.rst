@@ -1,13 +1,12 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/desktop/
-   doc version: 19.03
+   doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/desktop/index.md
-.. check date: 2020/06/03
-.. Commits on May 1, 2020 ba7819fed679f4f2542c3ccfe15bc9bc2d74ee3d
+.. check date: 2022/05/04
+.. Commits on Apr 13, 2022 ec5dc89d85debe81c04d5d84a10d881391c6824c
 .. -----------------------------------------------------------------------------
 
 .. Docker Desktop overview
-
 .. _docker-desktop-overview:
 
 =======================================
@@ -20,9 +19,17 @@ Docker Desktop 概要
        :depth: 3
        :local:
 
-.. Docker Desktop is an easy-to-install application for your Mac or Windows environment that enables you to build and share containerized applications and microservices. Docker Desktop includes Docker Engine, Docker CLI client, Docker Compose, Notary, Kubernetes, and Credential Helper.
+.. 
+    Update to the Docker Desktop terms
+    Commercial use of Docker Desktop in larger enterprises (more than 250 employees OR more than $10 million USD in annual revenue) now requires a paid subscription. The grace period for those that will require a paid subscription ends on January 31, 2022. Learn more.
 
-Docker Desktop（ドッカー・デスクトップ）は、Mac や Windows 環境において、インストールが簡単なアプリケーションであり、コンテナ化したアプリケーションとマイクロサービスの構築と共有が簡単になります。Docker Desktop には :doc:`Docker Engine </engine/index>`、 Docker CLI クライアント、:doc:`Docker Compose </compose/index>`、:doc:`Notary </notary/getting_started>`、`Kubernetes <https://github.com/kubernetes/kubernetes/>`_、`Credential Helper（資格情報の管理を支援するツール） <https://github.com/docker/docker-credential-helpers/>`_ を含みます。
+.. important:: **Docker Desktop の利用条件変更**
+
+   現在、大企業（従業員が 251 人以上、または、年間収入が 1,000 万米ドル以上 ）における Docker Desktop の商用利用には、有料サブスクリプション契約が必要です。必要な有料サブスクリプションの支払猶予は 2022 年 1 月 31 日に終了しました。 `詳細はこちらです。 <https://www.docker.com/blog/the-grace-period-for-the-docker-subscription-service-agreement-ends-soon-heres-what-you-need-to-know/>`_
+
+.. Docker Desktop is an easy-to-install application for your Mac or Windows environment that enables you to build and share containerized applications and microservices. Docker Desktop includes Docker Engine, Docker CLI client, Docker Compose, Docker Content Trust, Kubernetes, and Credential Helper.
+
+:ruby:`Docker Desktop <ドッカー デスクトップ>` は、Mac や Windows 環境において、インストールが簡単なアプリケーションであり、コンテナ化したアプリケーションとマイクロサービスの構築と共有が簡単になります。Docker Desktop には :doc:`Docker Engine </engine/index>`、 Docker CLI クライアント、:doc:`Docker Compose </compose/index>`、:doc:`Docker コンテント トラスト </engine/security/trust>`、`Kubernetes <https://github.com/kubernetes/kubernetes/>`_、`Credential Helper（資格情報の管理を支援するツール） <https://github.com/docker/docker-credential-helpers/>`_ を含みます。
 
 .. Docker Desktop works with your choice of development tools and languages and gives you access to a vast library of certified images and templates in Docker Hub. This enables development teams to extend their environment to rapidly auto-build, continuously integrate and collaborate using a secure repository.
 
@@ -66,47 +73,44 @@ Docker Desktop は Mac と Windows で利用できます。ダウンロード情
 ..    Install Docker Desktop on Mac
     Install Docker Desktop on Windows
 
-* :doc:`Mac に Docker Desktop をインストールする </docker-for-mac/index>`
-* :doc:`Windows に Docker Desktop をインストールする </docker-for-windows/index>`
+* :doc:`Mac に Docker Desktop をインストールする </desktop/mac/install>`
+* :doc:`Windows に Docker Desktop をインストールする </desktop/windows/install>`
 
+.. For information about Docker Desktop licensing, see Docker Desktop License Agreement.
 
-.. Get started
+Docker Desktop のライセンスに関する情報は、 :ref:`Docker Desktop License Agreement（使用許諾契約） <docker-desktop-license-agreement>` をご覧ください。
 
-.. _desktop-get-started:
+.. Sign in to Docker Desktop
+.. _sign-in-to-docker-desktop:
+Docker Desktop にサインイン
+==============================
 
+.. After you’ve successfully installed and started Docker Desktop, we recommend that you authenticate using the Sign in/Create ID option from the Docker menu.
 
-使い始めよう
-===================
+Docker Desktop のインストールと起動に成功したあとは、Docker メニューにある **Sign in/Create ID** （サインイン/ID作成）を使った認証を推奨します。
 
-.. For information on how to get to get started with Docker Desktop and to learn about various UI options and their usage, see:
+.. Authenticated users get a higher pull rate limit compared to anonymous users. For example, if you are authenticated, you get 200 pulls per 6 hour period, compared to 100 pulls per 6 hour period per IP address for anonymous users. For more information, see Download rate limit.
 
-Docker Desktop の始め方と、様々なユーザーインターフェースのオプションや使い方について学ぶには、こちらをご覧ください。
+認証済みの利用者は、匿名利用者に比べて :ruby:`pull 率制限 <pull rate limit>` が高くなります。たとえば、認証済みであれば、６時間あたり 200 回の pull を実行できます。一方の匿名利用者であれば、 IP アドレスごとに６時間あたり 100 回の pull です。詳しい情報は :doc:`ダウンロード率制限 </docker-hub/download-rate-limit>` をご覧ください。
 
-..    Get started with Docker Desktop on Mac
-    Get started with Docker Desktop on Windows
+.. In large enterprises where admin access is restricted, administrators can create a registry.json file and deploy it to the developers’ machines using a device management software as part of the Docker Desktop installation process. Enforcing developers to authenticate through Docker Desktop also allows administrators to set up guardrails using features such as Image Access Management which allows team members to only have access to Trusted Content on Docker Hub, and pull only from the specified categories of images. For more information, see Configure registry.json to enforce sign in.
 
-* :doc:`Mac で Docker Desktop を使い始める </docker-for-mac/index>`
-* :doc:`Windows で Docker Desktop を使い始める </docker-for-windows/index>`
+大きな企業で管理者がアクセスを制限している場合は、管理者が ``registry.json`` ファイルを作成しておき、 Docker Desktop のインストール手順の一部として、デバイス管理ソフトウェア使い、開発者のマシンにそのファイルをデプロイできます。開発者に Docker Desktop を通した認証を強制すると、 :doc:`イメージアクセス管理（Image Access Management） </docker-hub/image-access-management>` のような機能を使い、ガードレールをセットアップできます。これは、チームメンバのみが Docker Hub 上の信頼できるコンテンツにアクセスできるようにし、指定されたカテゴリのイメージのみ取得できるようにします。詳しい情報は、 :doc:`registry.json の設定でサインインを強制 </docker-hub/configure-sign-in>` をご覧ください。
 
+.. Configure Docker Desktop
+.. _configure-docker-desktop:
+Docker Desktop の設定変更
+==============================
 
-.. _desktop-stable-and-edge-versions:
+.. To learn about the various UI options and their usage, see:
 
-.. Stable and Edge versions
+様々な UI オプションや使い方を学ぶには、以下をご覧ください。
 
-Stable と Edge バージョン
-=============================
+..  Docker Desktop for Mac user manual
+    Docker Desktop for Windows user manual
 
-.. Docker Desktop offers Stable and Edge download channels.
-
-Docker Desktop には Stable（安定版）と Edge（エッジ）というダウンロードのチャンネル（選択肢）があります。
-
-.. The Stable release provides a general availability release-ready installer for a fully baked and tested, more reliable app. The Stable version of Docker Desktop includes the latest released version of Docker Engine. The release schedule is synced every three months for major releases, with patch releases to fix minor issues, and to stay up to date with Docker Engine as required. You can choose to opt out of the usage statistics and telemetry data on the Stable channel.
-
-Stable リリースは、一般的に利用可能に達したリリースのインストーラを提供しており、多くのアプリケーションが動作するよう、テスト済みかつ完成したものです。Docker Desktop の Stable バージョンには Docker Engine の最新リリース版を含みます。リリース期間は3ヶ月ごとにメジャーリリースがあり、Docker Engine を最新版に保つために必要な、小さな問題を解決するパッチリリースを含みます。Stable チャンネルでは、利用統計情報や遠隔情報の免除（オプトアウト）を選択できます。
-
-.. Docker Desktop Edge release is our preview version. It offers an installer with the latest features and comes with the experimental features turned on. When using the Edge release, bugs, crashes, and issues can occur as the new features may not be fully tested. However, you get a chance to preview new functionality, experiment, and provide feedback as Docker Desktop evolves. Edge releases are typically more frequent than Stable releases. Telemetry data and usage statistics are sent by default on the Edge version.
-
-Docker Desktop Edge リリースは、私たちのプレビュー版です。ほとんどの場合、インストーラに含むのは、最新機能や将来に向けた実験的な機能を有効化したものです。Edge リリースの利用にあたっては、新機能が完全にはテストされていないため、バグ、クラッシュ、何らかの問題を引き起こす可能性があります。しかしながら、新しい機能や体験をプレビューする機会が得られ、Docker Desktop の改善に向けたフィードバックも提供できます。Edge リリースは一般的に Stable リリースよりも頻繁です。Edge バージョンでは、デフォルトで遠隔情報と利用統計情報が送信されます。
+* :doc:`Docker Desktop for Mac 利用者マニュアル </desktop/mac/index>`
+* :doc:`Docker Desktop for Windows 利用者マニュアル </desktop/windows/index>`
 
 .. Release notes
 
@@ -115,25 +119,15 @@ Docker Desktop Edge リリースは、私たちのプレビュー版です。ほ
 リリースノート
 ===================
 
-.. For information about new features, improvements, and bug fixes in Docker Desktop Stable releases, see:
+.. For information about new features, improvements, and bug fixes in Docker Desktop releases, see:
 
-Docker Desktop Stable リリースの新機能、改善、バグ修正に関する情報は、こちらをご覧ください：
+Docker Desktop リリースの新機能、改善、バグ修正に関する情報は、こちらをご覧ください。
 
 ..    Docker Desktop for Mac Stable Release notes
     Docker Desktop for Windows Stable Release notes
 
-* `Docker Desktop for Mac Stable リリースノート（英語） <https://docs.docker.com/docker-for-mac/release-notes/>`_
-* `Docker Desktop for Windows Stable リリースノート（英語） <https://docs.docker.com/docker-for-windows/release-notes/>`_
-
-.. For information about new features, improvements, and bug fixes in Docker Desktop Edge releases, see:
-
-Docker Desktop Edge リリースの新機能、改善、バグ修正に関する情報は、こちらをご覧ください：
-
-..    Docker Desktop for Mac Edge Release notes
-    Docker Desktop for Windows Edge Release notes
-
-* `Docker Desktop for Mac Edge リリースノート（英語） <https://docs.docker.com/docker-for-mac/edge-release-notes/>`_
-* `Docker Desktop for Windows Edge リリースノート（英語） <https://docs.docker.com/docker-for-windows/edge-release-notes/>`_
+* :doc:`Docker Desktop for Mac リリースノート </desktop/mac/release-notes>`
+* :doc:`Docker Desktop for Windows リリースノート </desktop/windows/release-notes>`
 
 .. seealso::
 

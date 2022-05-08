@@ -1,7 +1,7 @@
 .. -*- coding: utf-8 -*-
 .. 
-.. doc version: 19.03
-.. check date: 2020/06/07
+.. doc version: 20.10
+.. check date: 2022/05/08
 .. -----------------------------------------------------------------------------
 
 .. Docker Desktop for Mac
@@ -15,17 +15,12 @@ Docker Desktop for Mac
 .. toctree::
 
    install.rst
-   index.rst
-   kubernetes.rst
-   docker-toolbox.rst
-   multi-arch.rst
+   利用者マニュアル <index.rst>
    networking.rst
-   osxfs.rst
-   osxfs-caching.rst
    space.rst
    troubleshoot.rst
+   apple-cilicon.rst
    faq.rst
    release-notes.rst
-   edge-release-notes.rst
-   mutagen-caching.rst
+   以前のバージョン <release-notes/previous.rst>
 

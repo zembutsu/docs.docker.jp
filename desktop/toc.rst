@@ -15,8 +15,8 @@ Docker Desktop
 .. toctree::
 
    概要 <index.rst>
-   Mac </docker-for-mac/toc.rst>
-   Windows </docker-for-windows/toc.rst>
+   Mac </desktop/mac/toc.rst>
+   Windows </desktop/windows/toc.rst>
    ダッシュボード </desktop/dashboard.rst>
    オープンソース・ライセンス </desktop/opensource.rst>
 
