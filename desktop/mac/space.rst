@@ -1,17 +1,16 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/docker-for-mac/space/
+.. URL: https://docs.docker.com/desktop/mac/space/
    doc version: 19.03
       https://github.com/docker/docker.github.io/blob/master/docker-for-mac/space.md
-.. check date: 2020/06/10
-.. Commits on Jan 22, 2020 1cd461644b1dca9019df269bb1906bc3d364231d
+.. check date: 2022/05/08
+.. Commits on Aug 16, 2021 15836782038638a20f4e214af6e92bdd01624726
 .. -----------------------------------------------------------------------------
 
 .. Disk utilization in Docker for Mac
-
 .. _disk-utilization-in-docker-for-mac:
 
 ==================================================
-Docker for Mac におけるディスク使用
+Docker for Mac におけるディスク使用量
 ==================================================
 
 .. sidebar:: 目次
@@ -22,10 +21,9 @@ Docker for Mac におけるディスク使用
 
 .. Docker Desktop stores Linux containers and images in a single, large “disk image” file in the Mac filesystem. This is different from Docker on Linux, which usually stores containers and images in the /var/lib/docker directory.
 
-Docker Desktop で Linux コンテナとイメージを保管するのは、Mac ファイルシステム内の単一の大きな「ディスク・イメージ」ファイルです。これは Linux 上の Docker が :code:`/var/lib/docker` ディレクトリにコンテナとイメージを保管するのと異なります。
+Docker Desktop で Linux コンテナとイメージを保管するのは、Mac ファイルシステム内の単一の大きな「 :ruby:`ディスク イメージ <disk image>` 」ファイルです。これは Linux 上の Docker が :code:`/var/lib/docker` ディレクトリにコンテナとイメージを保管するのとは異なります。
 
 .. Where is the disk image file?
-
 .. _mac-where-is-the-disk-image-file:
 
 ディスクイメージファイルはどこに？
@@ -33,21 +31,18 @@ Docker Desktop で Linux コンテナとイメージを保管するのは、Mac 
 
 .. To locate the disk image file, select the Docker icon and then Preferences > Resources > Advanced.
 
-ディスクイメージファイルの場所をさがすには、 Docker アイコンから **Preferences > Resources > Advanced** を選択します。
+ディスクイメージファイルの場所を探すには、 Docker アイコンから **Preferences > Resources > Advanced** を選択します。
 
-.. Disk preferences
+.. image:: ./images/prefs-advanced.png
+   :scale: 60%
+   :alt: ディスク設定
 
-.. The **Advanced** tab displays the location of the disk image. It also displays the maximum size of the disk image and the actual space the disk image is consuming. Note that other tools might display space usage of the file in terms of the maximum file size, and not the actual file size.
+.. The Advanced tab displays the location of the disk image. It also displays the maximum size of the disk image and the actual space the disk image is consuming. Note that other tools might display space usage of the file in terms of the maximum file size, and not the actual file size.
 
-**Advanced** タブに、ディスクイメージの場所が表示されています。
-またディスクイメージの最大サイズや、現在消費しているディスクイメージ容量も表示されています。
-なおファイルの利用容量のことを最大ファイルサイズと表現しているツールがありますが、実際のファイルサイズとして表現していないから誤りです。
-
+**Advanced** タブに、ディスクイメージの場所が表示されています。またディスクイメージの最大容量や、現在消費しているディスクイメージ容量も表示されています。他のツールでは、実際のファイルサイズではなく、最大のファイルサイズでの使用量を表示している場合があります。
 
 .. If the file is too big
-
 .. _mac-if-the-file-is-too-big:
-
 ファイルが大きすぎる場合
 ==================================================
 
@@ -64,7 +59,6 @@ Docker Desktop で Linux コンテナとイメージを保管するのは、Mac 
 * ファイルに割り当て可能な最大サイズを減らす
 
 .. Move the file to a bigger drive
-
 .. _move-the-file-to-a-bigger-drive:
 
 大きなドライブにファイルを移動
@@ -84,14 +78,13 @@ Docker Desktop で Linux コンテナとイメージを保管するのは、Mac 
 
 ..    Click Apply & Restart for the changes to take effect.
 
-3. 設定を反映するには **Apply & Restart**  をクリックします。
+3. 設定を反映するには **Apply & Restart**  をクリック
 
 .. Do not move the file directly in Finder as this can cause Docker Desktop to lose track of the file.
 
 （macOS の）Finder でファイルディレクトリを移動しないでください。移動しても、 Docker Desktop はファイルを追跡できません。
 
 .. Delete unnecessary containers and images
-
 .. _mac-delete-unnecessary-containers-and-images:
 
 不要なコンテナやイメージを削除
@@ -103,7 +96,7 @@ Docker Desktop で Linux コンテナとイメージを保管するのは、Mac 
 
 .. code-block:: bash
 
-   docker system df -v
+   $ docker system df -v
 
 .. Alternatively, to list images, run:
 
@@ -145,7 +138,6 @@ Docker Desktop で Linux コンテナとイメージを保管するのは、Mac 
 
 .. Space is only freed when images are deleted. Space is not freed automatically when files are deleted inside running containers. To trigger a space reclamation at any point, run the command:
 
-
 容量の解放は、イメージを削除した時のみです。実行中のコンテナ内でファイルを削除しても、自動的に空き容量は解放されません。任意のタイミングで容量を確保をしたければ、次のコマンドを実行します。
 
 .. code-block:: bash
@@ -158,8 +150,7 @@ Docker Desktop で Linux コンテナとイメージを保管するのは、Mac 
 
 .. code-block:: bash
 
-   $ cd ~/Library/Containers/com.docker.docker/Data
-   $ cd vms/0/data
+   $ cd ~/Library/Containers/com.docker.docker/Data/vms/0/data
    $ ls -klsh Docker.raw
    2333548 -rw-r--r--@ 1 username  staff    64G Dec 13 17:42 Docker.raw
 
@@ -168,7 +159,6 @@ Docker Desktop で Linux コンテナとイメージを保管するのは、Mac 
 この例では、ディスクの実際のサイズは :code:`2333548` KB ですが、最大のディスクサイズは :code:`64` GB です。
 
 .. Reduce the maximum size of the file
-
 .. _mac-reduce-the-maximum-size-of-the-file:
 
 ファイルに割り当て可能な最大サイズを減らす
@@ -192,8 +182,7 @@ Docker Desktop で Linux コンテナとイメージを保管するのは、Mac 
 
 .. When you reduce the maximum size, the current disk image file is deleted, and therefore, all containers and images will be lost.
 
-最大サイズを減らした場合、現在のディスクイメージファイルは削除されます。
-つまりすべてのコンテナーとイメージを失うことになります。
+最大サイズを減らした場合、現在のディスクイメージファイルは削除されます。つまり、すべてのコンテナとイメージは消滅します。
 
 
 .. seealso:: 
