@@ -48,7 +48,7 @@ DB の保持
 
    .. code-block:: bash
    
-   $ docker run -d ubuntu bash -c "shuf -i 1-10000 -n 1 -o /data.txt && tail -f /dev/null"
+      $ docker run -d ubuntu bash -c "shuf -i 1-10000 -n 1 -o /data.txt && tail -f /dev/null"
 
    .. In case you’re curious about the command, we’re starting a bash shell and invoking two commands (why we have the &&). The first portion picks a single random number and writes it to /data.txt. The second command is simply watching a file to keep the container running.
 
@@ -87,9 +87,9 @@ DB の保持
 
 3. 次に、他の ``ubuntu`` コンテナ（同じイメージ）を起動しても、同じファイルは見えないでしょう。
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   $ docker run -it ubuntu ls /
+      $ docker run -it ubuntu ls /
 
    .. And look! There’s no data.txt file there! That’s because it was written to the scratch space for only the first container.
 
@@ -137,9 +137,9 @@ todo データの保持
 
 1. ``docker volume create`` コマンドを使ってボリュームを作成します。
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   $ docker volume create todo-db
+      $ docker volume create todo-db
 
 .. Stop and remove the todo app container once again in the Dashboard (or with docker rm -f <id>), as it is still running without using the persistent volume.
 
@@ -149,9 +149,9 @@ todo データの保持
 
 3. todo アプリのコンテナを起動しますが、ボリュームのマウントを指定する ``-v`` フラグを追加します。ここでは名前付きボリュームを使い、 ``/etc/todos`` にマウントします。そうすると、このパスに作成された全てのファイルを保存します。
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   $ docker run -dp 3000:3000 -v todo-db:/etc/todos getting-started
+      $ docker run -dp 3000:3000 -v todo-db:/etc/todos getting-started
 
 .. Once the container starts up, open the app and add a few items to your todo list.
 
@@ -197,7 +197,7 @@ todo データの保持
 
 多くの人々が頻繁に「名前付きボリュームを使うと、私のデータを Docker が"実際に"保存するのはどこですか？」と尋ねます。知りたければ ``docker volume inspect`` コマンドが使えます。
 
-... code-block:: bash
+.. code-block:: bash
 
    $ docker volume inspect todo-db
    [

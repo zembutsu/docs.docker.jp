@@ -97,7 +97,7 @@
 
    .. code-block:: bash
 
-   $ docker image history getting-started
+      $ docker image history getting-started
 
    .. You should get output that looks something like this (dates/IDs may be different).
 

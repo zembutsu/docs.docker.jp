@@ -143,9 +143,9 @@ Node をベースとするアプリケーション `nodemon <https://npmjs.com/p
 
 5. ページを単に再読み込みすると（あるいは、ページを開きます）、ほぼ直ちにブラウザに変更が反映しているのが分かるでしょう。Node サーバの再起動には、数秒かかるかもしれず、もしエラーが出てしまった場合には、数秒後に再起動を試してください。
 
-.. image:: ./images/updated-add-button.png
-   :scale: 60%
-   :alt: Add ボタンのラベルを更新したスクリーンショット
+   .. image:: ./images/updated-add-button.png
+      :scale: 60%
+      :alt: Add ボタンのラベルを更新したスクリーンショット
 
 .. Feel free to make any other changes you’d like to make. When you’re done, stop the container and build your new image using:
 
