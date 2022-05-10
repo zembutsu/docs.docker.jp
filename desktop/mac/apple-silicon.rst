@@ -69,6 +69,97 @@ Docker Desktop 4.3.0 から、ハードウェア要件から **Rosetta 2** の�
   * ``docker-credential-ecr-login`` :ruby:`認証情報ヘルパー <credential helper>`
 
 
+.. Not all images are available for ARM64 architecture. You can add --platform linux/amd64 to run an Intel image under emulation. In particular, the mysql image is not available for ARM64. You can work around this issue by using a mariadb image.
+
+* ARM64 アーキテクチャのイメージすべてが利用可能ではありません。 ``--platform linux/amd64`` の追加は、Intel イメージをエミュレーション下で実行できるようにします。ですが、特例として ARM64 用の `mysql <https://hub.docker.com/_/mysql?tab=tags&page=1&ordering=last_updated>`_ イメージは利用できません。この問題に対応するには `mariadb イメージ <https://hub.docker.com/_/mariadb?tab=tags&page=1&ordering=last_updated>`_ を使います。
+
+  .. However, attempts to run Intel-based containers on Apple silicon machines under emulation can crash as qemu sometimes fails to run the container. In addition, filesystem change notification APIs (inotify) do not work under qemu emulation. Even when the containers do run correctly under emulation, they will be slower and use more memory than the native equivalent.
+
+  一方、エミュレーション下の Applie silicon マシン上で、 Intel ベースのコンテナを実行しようとすると、コンテナの実行時に、時々 qemu が落ちてクラッシュを引き起こします。さらに、 qemu エミュレーション下では、ファイルシステム変更通知 API （ ``inotify`` ）が動作しません。エミュレーション下でコンテナを正しく動作させようとしても、本来の状況と比べて遅くなり、より多くのメモリを鵜飼マス。
+
+  .. In summary, running Intel-based containers on Arm-based machines should be regarded as “best effort” only. We recommend running arm64 containers on Apple silicon machines whenever possible, and encouraging container authors to produce arm64, or multi-arch, versions of their containers. We expect this issue to become less common over time, as more and more images are rebuilt supporting multiple architectures.
+
+  まとめると、Arm ベースのマシン上で Intel ベースのコンテナの実行とは、「ベストエフォート」のみと見なすべきです。 Apple silicon マシン上では、可能な限り arm64 コンテナの実行を推奨します。また、コンテナの作者に対しては、arm64 やマルチアーキテクチャに対応したコンテナのバージョンの作成を推奨しています。時間が経てば `マルチアーキテクチャをサポートする <https://www.docker.com/blog/multi-arch-build-and-images-the-simple-way/>`_ イメージの再構築が増えていき、この問題は減っていくと考えています。
+
+.. ping from inside a container to the Internet does not work as expected. To test the network, we recommend using curl or wget. See docker/for-mac#5322.
+
+* コンテナ内からインターネットに対する ``ping`` が期待通りに動作しません。ネットワークの確認には、 ``curl`` や ``wget`` の利用を推奨します。 `docker/for-mac#5322 <https://github.com/docker/for-mac/issues/5322#issuecomment-809392861>`_ をご覧ください。
+
+.. Users may occasionally experience data drop when a TCP stream is half-closed.
+
+* TCP 通信が half-closed の場合、時々データ欠損が発生する場合があります。
+
+.. Fixes since Docker Desktop RC 3
+.. _fixes-since-docker-desktop-rc-3:
+Docker Desktop RC 3 までの修正
+----------------------------------------
+
+..  Docker Desktop now ensures the permissions of /dev/null and other devices are correctly set to 0666 (rw-rw-rw-) inside --privileged containers. Fixes docker/for-mac#5527.
+    Docker Desktop now reduces the idle CPU consumption.
+
+* Docker Desktop は今後 ``/dev/null`` のパーミッションを確保するようになり、 ``--privileged`` コンテナ内では他のデバイスが正しく ``0666``  （ ``rw-rw-rw-`` ） に設定されます。 `docker/for-mac#5527 <https://github.com/docker/for-mac/issues/5527>`_ の修正です。
+* Docker Desktop は今後アイドル CPU 消費を減らします。
+
+.. Fixes since Docker Desktop RC 2
+.. _fixes-since-docker-desktop-rc-2:
+Docker Desktop RC 2 までの修正
+----------------------------------------
+
+..    Update to Linux kernel 5.10.25 to improve reliability.
+
+* 安定性を向上するため `Linux kernel 5.10.25 <https://hub.docker.com/layers/docker/for-desktop-kernel/5.10.25-6594e668feec68f102a58011bb42bd5dc07a7a9b/images/sha256-80e22cd9c9e6a188a785d0e23b4cefae76595abe1e4a535449627c2794b10871?context=repo>`_ にアップデートします。
+
+.. Fixes since Docker Desktop RC 1
+.. _fixes-since-docker-desktop-rc-1:
+Docker Desktop RC 1 までの修正
+----------------------------------------
+
+..    Inter-container HTTP and HTTPS traffic is now routed correctly. Fixes docker/for-mac#5476.
+
+* コンテナ間の HTTP と HTTPS 通信が、今後正しく経路付けされます。 `docker/for-mac#5476 <https://github.com/docker/for-mac/issues/5476>`_ の修正です。
+
+.. Fixes since Docker Desktop preview 3.1.0
+.. _fixes-since-docker-desktop-preview-3-1-0:
+Docker Desktop preview 3.1.0 までの修正
+----------------------------------------
+
+..  The build should update automatically to future versions.
+    HTTP proxy support is working, including support for domain name based no_proxy rules via TLS SNI. Fixes docker/for-mac#2732.
+
+* 以降のバージョンでは、ビルドを自動的に更新できるようにします。
+* HTTP プロキシのサポートが機能します。これには TLS SNI を経由した ``no_proxy`` ルールをベースとするドメイン名のサポートも含みます。 `docker/for-mac#2732 <https://github.com/docker/for-mac/issues/2732>`_ の修正です。
+
+.. Fixes since the Apple Silicon preview 7
+.. _Fixes-since-the-Apple-Silicon-preview-7:
+Apple Silicon preview 7 までの修正
+----------------------------------------
+
+..  Kubernetes now works (although you might need to reset the cluster in our Troubleshoot menu one time to regenerate the certificates).
+    osxfs file sharing works.
+    The host.docker.internal and vm.docker.internal DNS entries now resolve.
+    Removed hard-coded IP addresses: Docker Desktop now dynamically discovers the IP allocated by macOS.
+    The updated version includes a change that should improve disk performance.
+    The Restart option in the Docker menu works.
+
+* Kubernetes が動作します（しかしながら、証明書を再作成するため、一度トラブルシュートのメニューからクラスタのリセットが必要になるでしょう）。
+* osxfs ファイル共有が動作します。
+* ``host.docker.internal`` と ``vm.docker.internal`` DNS エントリが名前解決できます。
+* :ruby:`固定された <hard-coded>` IP アドレスを削除しました。今後 Docker Desktop は macOS によって割り当てられた IP を動的に発見します。
+* 更新版に含まれる変更によって、ディスクのパフォーマンスが改善されるでしょう。
+* Docker メニューの **Restart** オプションが動作します。
+
+.. Feedback
+.. _silicon-feedback:
+フィードバック
+====================
+
+.. Your feedback is important to us. Let us know your feedback by creating an issue in the Docker Desktop for Mac GitHub repository.
+
+私たちにとって、あなたのフィードバックが重要です。 `Docker Desktop for Mac GitHub <https://github.com/docker/for-mac/issues>`_ リポジトリで issue を作成し、フィードバックをお知らせください。
+
+.. We also recommend that you join the Docker Community Slack and ask questions in #docker-desktop-mac channel.
+
+また、 `Docker Community Slack <https://www.docker.com/docker-community>`_ に参加し、 **#docker-desktop-mac** チャンネルに質問を尋ねるのもお勧めします。
 
 .. seealso:: 
 

@@ -19,8 +19,7 @@ Docker Desktop for Mac
    networking.rst
    space.rst
    troubleshoot.rst
-   apple-cilicon.rst
-   faq.rst
-   release-notes.rst
+   apple-silicon.rst
+   リリースノート <release-notes/index.rst>
    以前のバージョン <release-notes/previous.rst>
 
