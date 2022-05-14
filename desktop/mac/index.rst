@@ -78,11 +78,11 @@ General（一般的な設定）
 
 .. Show weekly tips: Displays useful advice and suggestions about using Docker.
 
-* **Show Weekly tips** ：
+* **Show Weekly tips** ：Docker の使い方に役立つアドバイスや提案を表示します。
 
 .. Open Docker Desktop dashboard at startup: Automatically opens the dashboard when starting Docker Desktop.
 
-* **Open Docker Desktop dashboard at startup** ：
+* **Open Docker Desktop dashboard at startup** ：Docker Desktop の起動時に、ダッシュボードを自動的に開きます。
 
 .. Use Docker Compose V2: Select this option to enable the docker-compose command to use Docker Compose V2. For more information, see Docker Compose V2.
 

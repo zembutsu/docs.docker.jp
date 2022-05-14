@@ -210,7 +210,7 @@ Mac に Docker Desktop をインストールして動かす
 
 .. When an update is available, Docker Desktop displays an icon on the Docker menu to indicate the availability of a newer version. Additionally, the Software Updates section in Preferences (Settings on Windows) also notifies you of any updates available to Docker Desktop. You can choose to download the update right away, or click the Release Notes option to learn what’s included in the updated version.
 
-更新が利用可能になると、 Docker Desktop は Docker メニューで新しいバージョンが利用可能になったと知らせてくれます。また、 **Preferences** （ Windows 上では **Settings** ）にある **Software Update** の部分からも、Docker Desktop の更新が利用可能だと分かります。直ちに更新をダウンロードするか、あるいは、 **Release Notes** （リリースノート）オプションで更新版で何が導入されたのか分かります。
+更新が利用可能になると、 Docker Desktop は Docker メニューで新しいバージョンが利用可能になったと知らせてくれます。また、 **Preferences** （ Windows 版では **Settings** ）にある **Software Update** の部分からも、Docker Desktop の更新が利用可能だと分かります。直ちに更新をダウンロードするか、あるいは、 **Release Notes** （リリースノート）オプションで更新版で何が導入されたのか分かります。
 
 .. Starting with Docker Desktop 4.2.0, the option to turn off the automatic check for updates is available for users on all Docker subscriptions, including Docker Personal and Docker Pro. For more information, see Software Updates.
 
