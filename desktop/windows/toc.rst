@@ -1,11 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. 
-.. doc version: 19.03
-.. check date: 2020/06/11
+.. doc version: 20.10
+.. check date: 2022/05/10
 .. -----------------------------------------------------------------------------
 
 .. Docker Desktop for Windows
-
 .. _docker-desktop-for-windows-toc:
 
 ========================================
@@ -13,16 +12,13 @@ Docker Desktop for Windows
 ========================================
 
 .. toctree::
+   :maxdepth: 3
+   :titlesonly:
 
    install.rst
-   install-windows-home.rst
-   index.rst
-   kubernetes.rst
-   networking.rst
-   docker-toolbox.rst
-   troubleshoot.rst
-   faq.rst
-   release-notes.rst
-   edge-release-notes.rst
+   利用者マニュアル <index.rst>
+   ネットワーク設定 <networking.rst>
+   ログとトラブルシューティング <troubleshoot.rst>
    wsl.rst
+   リリースノート <release-notes/index.rst>
 

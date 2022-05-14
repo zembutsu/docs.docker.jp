@@ -1,13 +1,18 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/docker-for-windows/install/
+.. URL: https://docs.docker.com/desktop/windows/install/
    doc version: 19.03
-      https://github.com/docker/docker.github.io/blob/master/docker-for-mac/install.md
-.. check date: 2020/06/11
-.. Commits on Jun 6, 2020 df3bd29a3e28818358478ed68527fbe15607e25c
+      https://github.com/docker/docker.github.io/blob/master/docker-for-win/install.md
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/desktop/windows/install.md
+.. check date: 2022/05/14
+.. Commits on May 9, 2022 7dd23540f783c2a4667a7e4b322931dee30b8de7
 .. -----------------------------------------------------------------------------
 
-.. Install Docker Desktop on Windows
+.. |whale| image:: ./images/whale-x.png
+      :scale: 50%
 
+
+.. Install Docker Desktop on Windows
 .. _-nstall-docker-desktop-on-windows:
 
 =======================================
@@ -20,67 +25,73 @@ Windows に Docker Desktop をインストール
        :depth: 3
        :local:
 
-.. Docker Desktop for Windows is the Community version of Docker for Microsoft Windows. You can download Docker Desktop for Windows from Docker Hub.
+.. 
+    Update to the Docker Desktop terms
+    Commercial use of Docker Desktop in larger enterprises (more than 250 employees OR more than $10 million USD in annual revenue) now requires a paid subscription. The grace period for those that will require a paid subscription ends on January 31, 2022. Learn more.
 
-Docker Desktop for Windows は、Mirosoft Windows 用の Docker `コミュニティ <https://www.docker.com/community-edition>`_ 版です。Docker Desktop for Windows は Docker Hub からダウンロードできます。
+.. important:: **Docker Desktop の利用条件変更**
 
-.. This page contains information on installing Docker Desktop on Windows 10 Pro, Enterprise, and Education. If you are looking for information about installing Docker Desktop on Windows 10 Home, see Install Docker Desktop on Windows Home.
+   現在、大企業（従業員が 251 人以上、または、年間収入が 1,000 万米ドル以上 ）における Docker Desktop の商用利用には、有料サブスクリプション契約が必要です。必要な有料サブスクリプションの支払猶予は 2022 年 1 月 31 日に終了しました。 `詳細はこちらです。 <https://www.docker.com/blog/the-grace-period-for-the-docker-subscription-service-agreement-ends-soon-heres-what-you-need-to-know/>`_
 
-このページは、Docker Desktop を Windows 10 Pro、Enterprise、Education にインストールするための情報です。Docker Desktop を Windows 10 Home にインストールする情報をお探しであれば、 :doc:`install-windows-home` をご覧ください。
+.. Welcome to Docker Desktop for Windows. This page contains information about Docker Desktop for Windows system requirements, download URL, instructions to install and update Docker Desktop for Windows.
 
-.. Download from Docker Hub
+Docker Desktop for Windows へようこそ。このページには、 Docker Desktop for Windows のシステム要件、ダウンロード URL 、Docker Desktop for Windows のインストールと更新の手順の情報を含みます。
 
-* `Docker Hub からダウンロード <https://hub.docker.com/editions/community/docker-ce-desktop-windows/>`_
+.. information
 
-.. By downloading Docker Desktop, you agree to the terms of the Docker Software End User License Agreement and the Docker Data Processing Agreement.
+   **Docker Desktop for Windows のダウンロード**
+   
+   * `Docker Desktop for Windows <https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe>`_
 
-Docker Desktop のダウンロード中に、 `Docker Software End User License Agreement <https://www.docker.com/legal/docker-software-end-user-license-agreement>`_ と `Docker Data Processing Agreement <https://www.docker.com/legal/data-processing-agreement>`_ に同意ください。
-
-.. What to know before you install
-
-.. _win-what-to-know-before-you-install:
-
-インストール前に知っておくこと
-==================================================
 
 .. System Requirements
-
 .. _win-system-requirements:
-
 システム要件
---------------------------------------------------
+====================
 
-..    Windows 10 64-bit: Pro, Enterprise, or Education (Build 15063 or later).
-    Hyper-V and Containers Windows features must be enabled.
-    The following hardware prerequisites are required to successfully run Client Hyper-V on Windows 10:
-        64 bit processor with Second Level Address Translation (SLAT)
+.. _win-system-requirements-wsl2:
+* **WSL2 バックエンド**
+
+  .. 
+    Windows 11 64-bit: Home or Pro version 21H2 or higher, or Enterprise or Education version 21H2 or higher.
+    Windows 10 64-bit: Home or Pro 2004 (build 19041) or higher, or Enterprise or Education 1909 (build 18363) or higher.
+    Enable the WSL 2 feature on Windows. For detailed instructions, refer to the Microsoft documentation.
+    The following hardware prerequisites are required to successfully run WSL 2 on Windows 10 or Windows 11:
+        64-bit processor with Second Level Address Translation (SLAT)
         4GB system RAM
         BIOS-level hardware virtualization support must be enabled in the BIOS settings. For more information, see Virtualization.
+    Download and install the Linux kernel update package.
 
-* Windows 10 64 ビット：Pro、Enterprise、Education（ビルド 15063 以上）
-* Hyper-V と Windows コンテナ機能の有効化が必要
-* 以下は、Windows 10 以上で Hyper-V クライアントを問題なく実行するために必要なハードウェア要件
-   *  64 ビット `SLAT （Second Level Address Translation <http://en.wikipedia.org/wiki/Second_Level_Address_Translation>`_ 対応プロセッサ
-   * 4GB システムメモリ
-   * BIOS レベルでのハードウェア仮想化が、BIOS 設定で有効にする必要。詳細な情報は :ref:`仮想化 <win-virtualization-must-be-enabled>` を参照
+  * Windows 11 64ビット： Home か Pro バージョン 21H2 以上、Enterprise か Education バージョン 21H2 以上
+  * Windows 10 64ビット： Home か Pro 2004（ビルド 19041）以上、Enterprise か Education 1909 （ビルド 18363）以上
+  * Windows 上では WSL 2 機能を有効化。詳しい手順は `マイクロソフトのドキュメント <https://docs.microsoft.com/ja-jp/windows/wsl/install>`_ を参照
+  * Windows 10 と Windows 11 で WSL 2 の実行が成功するには、以下のハードウェア要件が必要：
 
-..    Note: Docker supports Docker Desktop on Windows based on Microsoft’s support lifecycle for Windows 10 operating system. For more information, see the Windows lifecycle fact sheet.
+    *  64 ビットのプロセッサで `SLAT （第 2 レベルのアドレス変換 、Second Level Address Translation <http://en.wikipedia.org/wiki/Second_Level_Address_Translation>`_ 対応プロセッサ
+    * 4GB のシステムメモリ
+    * BIOS レベルのハードウェア仮想化のサポートが、BIOS 設定で有効化さている。詳細は :ref:`仮想化 <win-virtualization-must-be-enabled>` を参照
+
+  * `Linux カーネル更新プログラム パッケージ <https://docs.microsoft.com/ja-jp/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package>`_ のダウンロードとインストール
+
+.. _win-system-requirements-hyper-v:
+* **Hyper-V と Windows コンテナー**
+
+  * Windows 11 64ビット： Home か Pro バージョン 21H2 以上、Enterprise か Education バージョン 21H2 以上
+  * Windows 10 64ビット： Home か Pro 2004（ビルド 19041）以上、Enterprise か Education 1909 （ビルド 18363）以上
+  * Windows 10 と Windows 11 Home は、では :ref:`WSL 2 バックエンド <win-system-requirements-wsl2>` のシステム要件を参照
+  * Hyper-V と Windows コンテナー機能を必ず有効化
+  * Windows 10 でクライアント Hyper-V の実行が成功するには、以下のハードウェア要件が必要：
+
+    *  64 ビットのプロセッサで `SLAT （第 2 レベルのアドレス変換 、Second Level Address Translation <http://en.wikipedia.org/wiki/Second_Level_Address_Translation>`_ 対応プロセッサ
+    * 4GB のシステムメモリ
+    * BIOS レベルのハードウェア仮想化のサポートが、BIOS 設定で有効化さている。詳細は :ref:`仮想化 <win-virtualization-must-be-enabled>` を参照
+
+
+.. Docker only supports Docker Desktop on Windows for those versions of Windows 10 that are still within Microsoft’s servicing timeline.
 
 .. note::
 
-   Docker による Windows 用 Docker Desktop のサポートは、Microsoft の Windows 10 オペレーティングシステムに対するサポート・ライフサイクルに基づきます。詳細な情報は `Windows ライフサイクル・ファクトシート <https://support.microsoft.com/en-us/help/13853/windows-lifecycle-fact-sheet>`_ を御覧ください。
-
-.. What’s included in the installer
-
-.. _win-whats-included-in-the-installer:
-
-インストーラに含まれるもの
---------------------------------------------------
-
-
-.. The Docker Desktop installation includes Docker Engine, Docker CLI client, Docker Compose, Notary, Kubernetes, and Credential Helper.
-
-Docker Desktop のインストールに含まれるのは、 :doc:`Docker Engine </install>`  、 Docker CLI クライアント、  :doc:`Docker Compose </compose/overview>` 、  :doc:`Notary <https://docs.docker.com/notary/getting_started/>` 、  `Kubernetes <https://github.com/kubernetes/kubernetes/>`_  、`Credential Helper <https://github.com/docker/docker-credential-helpers/>`_ です。
+   Docker による Windows 用 Docker Desktop のサポートは、Microsoft の Windows 各オペレーティングシステムに対するサポート期間に基づきます。
 
 .. Containers and images created with Docker Desktop are shared between all user accounts on machines where it is installed. This is because all Windows accounts use the same VM to build and run containers. Note that it is not possible to share containers and images between user accounts when using the Docker Desktop WSL 2 backend.
 
@@ -88,14 +99,17 @@ Docker Desktop で作成したコンテナやイメージは、インストー�
 
 .. Nested virtualization scenarios, such as running Docker Desktop on a VMWare or Parallels instance might work, but there are no guarantees. For more information, see Running Docker Desktop in nested virtualization scenarios.
 
-VMware や Parralles インスタンス上で Docker Desktop を実行するような、ネストした仮想化でも動くでしょうが、無保証です。詳しい情報は :ref:`win-running-docker-desktop-for-windows-in-nested-virtualization-scenarios` をご覧ください。
+VMware や Parralles インスタンス上で Docker Desktop を実行するような、 :ruby:`ネストした仮想化 <nested virtualization>` でも動くでしょうが、無保証です。詳しい情報は :ref:`ネスト化した仮想化で Docker Desktop for Windows の実行 <win-running-docker-desktop-for-windows-in-nested-virtualization-scenarios>` をご覧ください。
 
 .. About Windows containers
-
 .. _win-about-windows-containers:
 
-Windows コンテナについて
+Windows コンテナーについて
 --------------------------------------------------
+
+.. information::
+
+    訳者注：Linux と Windows では、 container （コンテナ）に対する詳細な機能・概念・実装が異なります。そのため、この翻訳内では通常「container」を「コンテナ」と翻訳していますが、「Windows」の機能としての「container」を明示・限定したい場合に「Windows コンテナー」と記載します。
 
 .. Looking for information on using Windows containers?
 
@@ -109,79 +123,199 @@ Windows コンテナの情報をお探しですか？
 * `Getting Started with Windows Containers (Lab) <https://github.com/docker/labs/blob/master/windows/windows-containers/README.md>`_ では、セットアップと Windows コンテナを実行するためのチュートリアルを提供しています。対象は Windows 10、Windows Server 2016、Windows Server 2019 です。そちらでは Windows コンテナで MusicStore アプリケーションを扱う方法を説明します。
 * Windows 用 Docker コンテナ・プラットフォームについては、 Docker ウェブサイト上の `記事やブログ投稿 <https://www.docker.com/microsoft/>`_ を御覧ください。
 
-
 .. Install Docker Desktop on Windows
-
 .. _install-docker-desktop-on-windows:
-
 Windows に Docker Desktop をインストール
 ==================================================
 
+.. Install interactively
+.. _win-install-interactively:
+対話形式でインストール
+------------------------------
+
+
 ..    Double-click Docker Desktop Installer.exe to run the installer.
 
-1.　**Docker Desktop Installer.exe** をダブルクリックし、インストーラを起動します。
+1. **Docker Desktop Installer.exe** をダブルクリックし、インストーラを起動します。
 
-..    If you haven’t already downloaded the installer (Docker Desktop Installer.exe), you can get it from Docker Hub. It typically downloads to your Downloads folder, or you can run it from the recent downloads bar at the bottom of your web browser.
+   ..    If you haven’t already downloaded the installer (Docker Desktop Installer.exe), you can get it from Docker Hub. It typically downloads to your Downloads folder, or you can run it from the recent downloads bar at the bottom of your web browser.
 
-もしもまだインストーラ（ :code:`Docker Desktop Installer.exe` ）をダウンロードしていなければ、 `Docker Hub <https://hub.docker.com/editions/community/docker-ce-desktop-windows/>`_ から取得できます。ダウンロードは通常「ダウンロード」フォルダ内か、ウェブブラウザ上のダウンロード・バーに表示される最近ダウンロードした場所です。
+   もしもまだインストーラ（ :code:`Docker Desktop Installer.exe` ）をダウンロードしていなければ、 `Docker Hub <https://hub.docker.com/editions/community/docker-ce-desktop-windows/>`_ から取得できます。ダウンロードは通常「ダウンロード」フォルダ内か、ウェブブラウザ上のダウンロードバーに表示される最近ダウンロードした場所です。
 
-..    When prompted, ensure the Enable Hyper-V Windows Features option is selected on the Configuration page.
+.. When prompted, ensure the Use WSL 2 instead of Hyper-V option on the Configuration page is selected or not depending on your choice of backend.
 
-2.　確認画面が出たら、 **Enable Hyper-V Windows Features** （Hyper V の Windows 機能を有効にする）のオプションが、設定ページで選択されているかどうかを確認します。
+2. 確認画面が出たら、 **Use WSL 2 instead of Hyper-V** （Hyper-V の代わりに WSL 2 を使う）のオプションが、設定ページで選択されているかどうかを確認します。あるいは、必要に応じてバックエンドを選択します。
+
+   .. If your system only supports one of the two options, you will not be able to select which backend to use.
+  システムが２つのオプションのうち片方しかサポートしていなければ、私用するバックエンドを選択できません。
+
 
 ..    Follow the instructions on the installation wizard to authorize the installer and proceed with the install.
 
-3.　インストール・ウィザードの指示に従い、利用規約（ライセンス）を承諾し、インストーラに権限を与えてインストールを進めます。
+3. インストール ウィザードの指示に従い、利用規約（ライセンス）を承諾し、インストーラに権限を与えてインストールを進めます。
 
 ..    When the installation is successful, click Close to complete the installation process.
 
-4.　インストールに成功したら、 **Close** （閉じる）をクリックしてインストールを終了します。
+4. インストールに成功したら、 **Close** （閉じる）をクリックしてインストールを終了します。
 
 ..    If your admin account is different to your user account, you must add the user to the docker-users group. Run Computer Management as an administrator and navigate to  Local Users and Groups > Groups > docker-users. Right-click to add the user to the group. Log out and log back in for the changes to take effect.
 
-5. 　管理者（admin）アカウントと使用中のアカウントが異なる場合、 **docker-users** グループにユーザを追加する必要があります。（Windows の） **コンピュータの管理** を管理者として起動し、 **ローカル ユーザーとグループ > グループ > docker-users**  を右クリックし、対象ユーザをグループに追加します。ログアウト後に戻ってくると、設定が有効になっています。
+5. 管理者（admin）アカウントと使用中のアカウントが異なる場合、 **docker-users** グループにユーザを追加する必要があります。（Windows の） **コンピュータの管理** を管理者として起動し、 **ローカル ユーザーとグループ > グループ > docker-users**  を右クリックし、対象ユーザをグループに追加します。ログアウト後に戻ってくると、設定が有効になっています。
+
+.. Install from the command line
+.. _win-install-from-the-command-line:
+コマンドラインからインストール
+------------------------------
+
+.. After downloading Docker Desktop Installer.exe, run the following command in a terminal to install Docker Desktop:
+
+``Docker Desktop Installer.exe`` をダウンロード後、 Docker Desktop をインストールするには、ターミナルで以下のコマンドを実行します。
+
+.. code-block:: bash
+
+   "Docker Desktop Installer.exe" install
+
+.. If you’re using PowerShell you should run it as:
+
+PowerShell を使う場合は、次のように実行します。
+
+.. code-block:: bash
+
+   Start-Process '.\win\build\Docker Desktop Installer.exe' -Wait install
+
+.. If using the Windows Command Prompt:
+
+Windows コマンドプロンプトを使う場合は、このようにします。
+
+.. code-block:: bash
+
+   start /w "" "Docker Desktop Installer.exe" install
+
+.. The install command accepts the following flags:
+
+インストールのコマンドは、以下のフラグに対応します。
+
+..  --quiet: suppresses information output when running the installer
+    --accept-license: accepts the Docker Subscription Service Agreement now, rather than requiring it to be accepted when the application is first run
+    --allowed-org=<org name>: requires the user to sign in and be part of the specified Docker Hub organization when running the application
+    --backend=<backend name>: selects the backend to use for Docker Desktop, hyper-v or wsl-2 (default)
+
+* ``--quiet`` ：インストーラの実行時、情報の表示を抑える
+* ``--accept-license`` ：アプリケーションの初回実行時に `Docker Subscription Service Agreement（ Docker サブスクリプション サービス 使用許諾）`_ の承諾を求めるのではなく、直ちに承諾する
+* ``--allowed-org=<org name>`` ：アプリケーションの実行時に、指定した Docker Hub organization に所属するユーザとしてのサインインを必要とする
+* ``--backend=<backend name>`` ：Docker Desktop が使用するバックエンドを選択。 ``hyper-v`` または ``wsl-2`` （デフォルト）
+
+.. If your admin account is different to your user account, you must add the user to the docker-users group:
+
+管理者アカウントとユーザアカウントが異なる場合、ユーザを **docker-users** グループに追加する必要があります。
+
+.. code-block:: bash
+
+   net localgroup docker-users <user> /add
 
 .. Start Docker Desktop
-
 .. _win-start-docker-desktop:
-
 Docker Desktop のスタート
 ==================================================
 
-.. Docker Desktop does not start automatically after installation. To start Docker Desktop, search for Docker, and select Docker Desktop in the search results.
+.. Docker Desktop does not start automatically after installation. To start Docker Desktop:
 
-インストール後の Docker Desktop は、自動的に起動できません。Docker Desktop を開始するには Docker を検索し、検索結果にある **Docker Desktop** を選択します。
+インストール後の Docker Desktop は、自動的に起動できません。Docker Desktop を開始するには、以下の手順を進めます。 
 
-.. search for Docker app
+.. image:: ./images/docker-app-search.png
+   :scale: 60%
+   :alt: Docker アプリを探す
 
-.. When the whale icon in the status bar stays steady, Docker Desktop is up-and-running, and is accessible from any terminal window.
+.. The Docker menu (whale menu) displays the Docker Subscription Service Agreement window. It includes a change to the terms of use for Docker Desktop.
 
-ステータス・バーに鯨のアイコンが表示されれば、 Docker Desktop は起動・実行中であり、あらゆる端末ウインドウからアクセスできます。
+2. Docker メニュー（ |whale| ）は Docker :ruby:`サブスクリプション サービス使用許諾 <Subscription Service Agreement>` ウインドウを表示します。これには Docker Desktop の利用許諾変更の情報が加わっています。
 
-.. whale on taskbar
+   **重要な変更の概要はこちらです：**
+   
+   * `Docker Subscription Service Agreement（ Docker サブスクリプション サービス 使用許諾） <https://www.docker.com/legal/docker-subscription-service-agreement>`_ には、 Docker Desktop の利用許諾の変更を含みます。
+   * :ruby:`中小企業 <small businesses>` （従業員 250 人未満、かつ、年間売上高が 1,000 万米ドル未満）、個人利用、教育、非商用オープンソースプロジェクトは **引き続き無料** です。
+   * :ruby:`大規模事業者 <larger enterprises>` での :ruby:`業務用途 <professional use>` にはサブスクリプションの支払が必要です。
+   * これらの使用許諾の発効日は 2021 年 8 月 31 日です。Docker Desktop の使用にサブスクリプションが必要な場合、 **猶予期間** が 2022 年 1 月 31 日まであります。
+   * これまでの Docker 無償サブスクリプションは **Docker Personal** に名前が変わりました。また Docker Business サブスクリプションを導入しました。
+   * Docker Pro、 Team、Business サブスクリプションには、 Docker Desktop の :ruby:`商業的利用 <commercial use>` を含みます。
 
-.. If the whale icon is hidden in the Notifications area, click the up arrow on the taskbar to show it. To learn more, see Docker Settings.
+.. Click the checkbox to indicate that you accept the updated terms and then click Accept to continue. Docker Desktop starts after you accept the terms.
 
-もしも鯨アイコンが通知エリアから隠れている場合は、タスクバーで「上」を向いた矢印をクリックして表示します。詳しく知るには :ref:`Docker の設定 <win-docker-settings-dialog>` を御覧ください。
+3. 更新した使用許諾を承諾して進むには、表示されているチェックボックスをクリックし、 **Accept** をクリックします。 使用許諾を承諾した後、 Docker Desktop は起動します。
 
-.. When the initialization is complete, Docker Desktop launches the onboarding tutorial. The tutorial includes a simple exercise to build an example Docker image, run it as a container, push and save the image to Docker Hub.
+   .. important::
+   
+      .. If you do not agree to the terms, the Docker Desktop application will close and you can no longer run Docker Desktop on your machine. You can choose to accept the terms at a later date by opening Docker Desktop.
+      
+      使用許諾に同意しなければ、 Docker Desktop アプリケーションは終了し、以後マシン上で Docker Dekstop を起動しないようようにします。後日、 Docker Desktop を開いた時、使用許諾を承諾するかどうか選択できます。
 
-初期化が完了すると、Docker Desktop は開始チュートリアルを起動します。チュートリアルには  Docker イメージを構築、実行し、Docker Hub にイメージを送信するまでの例を含みます。
+   .. For more information, see Docker Desktop License Agreement. We recommend that you also read the Blog and FAQs to learn how companies using Docker Desktop may be affected.
+   詳しい情報は、 `Docker Subscription Service Agreement（ Docker サブスクリプション サービス 使用許諾）`_ をご覧ください。また、会社で Docker Desktop を使う場合、どのような影響があり得るかについては `ブログ <https://www.docker.com/blog/updating-product-subscriptions/>`_ と `FAQ <https://www.docker.com/pricing/faq>`_ を読むのをお勧めします。
+
+.. Quick Start Guide
+.. _win-quick-start-guide:
+クイックスタートガイド
+------------------------------
+
+.. When the initialization is complete, Docker Desktop launches the Quick Start Guide. This tutorial includes a simple exercise to build an example Docker image, run it as a container, push and save the image to Docker Hub.
+
+アプリのインストールが完了したら、Docker Desktop は :ruby:`クイック スタート ガイド <quick start guide>` を開始します。チュートリアルでは簡単な練習として、 Docker イメージを構築、実行し、Docker Hub にイメージを送信します。
+
+.. To run the Quick Start Guide on demand, right-click the Docker icon in the Notifications area (or System tray) to open the Docker Desktop menu and then select Quick Start Guide.
+
+必要な時にクイックスタートガイドを起動するには、通知エリア（またはシステムトレイ）の Docker アイコンを右クリックし、Docker Desktop のメニューを開き、 **Quick Start Guide** を選びます。
+
+.. image:: ./images/docker-tutorial-win.png
+   :scale: 60%
+   :alt: Docker クイック スタート チュートリアル
 
 .. Docker Quick Start tutorial
 
 .. Congratulations! You are now successfully running Docker Desktop on Windows.
 
-おめでとうございます！ Windows 版 Docker Desktop の実行に成功しました。
+おめでとうございます！ Windows で Docker Desktop の起動に成功しました。 
 
-.. If you would like to rerun the tutorial, go to the Docker Desktop menu and select Learn.
 
-チュートリアルに戻りたければ、 Docker Desktop のメニューから **Learn** （学ぶ）をクリックします。
+.. Updates
+.. _win-updates:
+更新（アップデート）
+====================
+
+.. When an update is available, Docker Desktop displays an icon on the Docker menu to indicate the availability of a newer version. Additionally, the Software Updates section in Settings (Preferences on Mac) also notifies you of any updates available to Docker Desktop. You can choose to download the update right away, or click the Release Notes option to learn what’s included in the updated version.
+
+更新が利用可能になると、 Docker Desktop は Docker メニューで新しいバージョンが利用可能になったと知らせてくれます。また、 **Settings** （ Mac 版では **Preferences** ）にある **Software Update** の部分からも、Docker Desktop の更新が利用可能だと分かります。直ちに更新をダウンロードするか、あるいは、 **Release Notes** （リリースノート）オプションで更新版で何が導入されたのか分かります。
+
+.. Starting with Docker Desktop 4.2.0, the option to turn off the automatic check for updates is available for users on all Docker subscriptions, including Docker Personal and Docker Pro. For more information, see Software Updates.
+
+Docker Desktop 4.2.0 以降、Docker Professional と Docker Pro を含むすべての Docker サブスクリプション利用者は、自動更新の有効化と無効化を選べるオプションが導入されています。詳しい情報は、 :ref:`ソフトウェア更新 <mac-software-updates>` をご覧ください。
+
+..    Docker Subscription Service Agreement
+..    Beginning on August 31, 2021, you must agree to the Docker Subscription Service Agreement to continue using Docker Desktop. Read the Blog and the Docker subscription FAQs to learn more about the changes.
+
+.. note::
+
+  **Docker Subscription Service Agreement（ Docker サブスクリプション サービス 使用許諾）**
+  
+  2021 年 8 月 31 日以降、Docker Desktop を使い続けるには `Docker Subscription Service Agreement（ Docker サブスクリプション サービス 使用許諾）`_ への承諾が必要です。変更の詳細は `ブログ`_ と `FAQ`_ をご覧ください。
+
+.. Click Download update When you are ready to download the update. This downloads the update in the background. After downloading the update, click Update and restart from the Docker menu. This installs the latest update and restarts Docker Desktop for the changes to take effect.
+
+ダウンロードと更新の準備が整っていれば、 **Download update** （更新のダウンロード）をクリックします。このダウンロードと更新はバックグラウンドで行います。更新のダウンロードが終われば、 Docker メニューから **Update and Restart** （更新と再起動）をクリックします。これで最新の更新版がインストールされ、Docker の再起動で変更が有効になります。
+
+.. When Docker Desktop starts, it displays the Docker Subscription Service Agreement window. Read the information presented on the screen to understand how the changes impact you. Click the checkbox to indicate that you accept the updated terms and then click Accept to continue.
+
+Docker Desktop を起動したら、Docker Subscription Service Agreement ウインドウが開きます。画面上に表示された情報を読み、どのような影響を受けるか確認します。更新された使用許諾を承諾する場合は、チェックボックスにクリックし、それから続けるには **Accept** をクリックします。
+
+.. important::
+
+   使用許諾に同意しなければ、 Docker Desktop アプリケーションは終了し、以後マシン上で Docker Dekstop を起動しないようようにします。後日、 Docker Desktop を開いた時、使用許諾を承諾するかどうか選択できます。
+
+.. Docker Desktop starts after you accept the terms.
+
+使用許諾を承諾した後、 Docker Desktop が起動します。
 
 .. Uninstall Docker Desktop
-
 .. _win-uninstall-docker-desktop:
-
 Docker Desktop のアンインストール
 ==================================================
 
@@ -197,87 +331,33 @@ Windows マシンから Docker Desktop をアンインストールするには�
 2. **アプリと機能** の一覧から **Docker Desktop**  を選択し、 **アンインストール** をクリックします。
 3. 選択したのを確認の後、 **アンインストール** をクリックします。
 
-..    Note: Uninstalling Docker Desktop will destroy Docker containers and images local to the machine and remove the files generated by the application.
+.. Uninstalling Docker Desktop destroys Docker containers, images, volumes, and other Docker related data local to the machine, and removes the files generated by the application. Refer to the back up and restore data section to learn how to preserve important data before uninstalling.
 
 .. note::
 
-   Docker Desktop のアンインストールは、ローカルのマシンにある Docker コンテナのイメージを破棄し、アプリケーションによって作成された全てのファイルも破棄します。
-
-.. Switch between Stable and Edge versions
-
-.. _win-switch-between-stable-and-edge-version:
-
-Stable と Edge バージョンの切り替え
-==================================================
-
-.. Docker Desktop allows you to switch between Stable and Edge releases. However, you can only have one version of Docker Desktop installed at a time. Switching between Stable and Edge versions can destabilize your development environment, particularly in cases where you switch from a newer (Edge) channel to an older (Stable) channel.
-
-Docker Desktop は、自分で Stable （安定版）リリースと Edge （最新）リリースを切り替え可能です。しかしながら、 **Docker Desktop を一度にインストールできるのは、1つのバージョンのみ** です。Stable と Edge 版のリリース切り替えるは、開発環境の安定性を損なう可能性があります。特に、新しい（Edge）チャンネルを古い（Stable）チャンネルに切り替える場合です。
-
-.. For example, containers created with a newer Edge version of Docker Desktop may not work after you switch back to Stable because they may have been created using Edge features that aren’t in Stable yet. Keep this in mind as you create and work with Edge containers, perhaps in the spirit of a playground space where you are prepared to troubleshoot or start over.
-
-例えば、 Docker Desktop の新しい Edge バージョンでコンテナを作成する場合、Stable に切り戻すと動作しなくなる可能性があります。これは、Edge の機能を使って作成したコンテナには、まだ Stable には反映されていない機能が用いられている場合があるからです。Edge コンテナで作成したり作業したりする場合には、留意し続けてください。
-
-.. To safely switch between Edge and Stable versions, ensure you save images and export the containers you need, then uninstall the current version before installing another. For more information, see the section Save and Restore data below.
-
-Edge と Stable バージョン間を安全に切り替えるには、必要に応じてイメージの保存（save）やコンテナの出力（export）を確実に行い、他のバージョンをインストールする前に、既存のバージョンをアンインストールします。詳しい情報については、以下にあるデータの保存と修復を御覧ください。
-
-.. Save and restore data
-
-.. _win-save-and-restore-data:
-
-データの保存と修復
---------------------------------------------------
-
-.. You can use the following procedure to save and restore images and container data. For example, if you want to switch between Edge and Stable, or to reset your VM disk:
-
-以下の手順を用いて、イメージとコンテナのデータを保存・修復できます。例えば、Edge と Stable を切り替えたいときや、仮想マシンのディスクをリセットしたいときに用います。
-
-..    Use docker save -o images.tar image1 [image2 ...] to save any images you want to keep. See save in the Docker Engine command line reference.
-
-1.  :code:`docker save -o images.tar image1 [image2 ....]` を使い、保持したい全てのイメージを保存します。Docker Engine コマンドライン・リファレンスの :doc:`save </engine/reference/commandline/save>` セクションを御覧ください。
-
-..    Use docker export -o myContainner1.tar container1 to export containers you want to keep. See export in the Docker Engine command line reference.
-
-2.  :code:`docker export -o myContainer1.tar container` を使い、保持したい全てのコンテナをエクスポート（出力）します。Docker Engine コマンドライン・リファレンスの :doc:`export </engine/reference/commandline/export>` セクションを御覧ください。
-
-..    Uninstall the current version of Docker Desktop and install a different version (Stable or Edge), or reset your VM disk.
-
-3. 現在のバージョンの Docker Desktop をアンインストールし、異なるバージョン（Stable 又は Edge）をインストールし、仮想マシン・ディスクをリセットします。
-
-..    Use docker load -i images.tar to reload previously saved images. See load in the Docker Engine.
-
-4. :code:`docker load -i images.tar` を使い、以前に保存したイメージを再読み込みします。Docker Engine の  :doc:`load </engine/reference/commandline/load>` を御覧ください。
-
-..    Use docker import -i myContainer1.tar to create a file system image corresponding to the previously exported containers. See import in the Docker Engine.
-
-5. :code:`docker import -i myContainer1.tar` を使い、以前にエクスポートしたコンテナに対応するファイルシステム・イメージを作成します。Docker Engine の   :doc:`import </engine/reference/commandline/import>` を御覧ください。
-
-.. For information on how to back up and restore data volumes, see Backup, restore, or migrate data volumes.
-
-データ・ボリュームのバックアップと修復の仕方に関する情報は、 :ref:`backup-restore-or-migrate-data-volumes` を御覧ください。
+   Docker Desktop のアンインストールは、ローカルのマシンにある Docker コンテナ、イメージ、ボリューム、 Docker 関連のデータ破棄し、アプリケーションによって作成された全てのファイルも破棄します。アンインストール前に重要なデータを保持する方法については、 :doc:`バックアップと修復 </desktop/backup-and-restore>` を参照ください。
 
 .. Where to go next
-
 .. _win-install-where-to-go-next:
 
 次はどこへ行きますか
 ==================================================
 
-
-..    Getting started introduces Docker Desktop for Windows.
+..  Getting started introduces Docker Desktop for Windows.
     Get started with Docker is a tutorial that teaches you how to deploy a multi-service stack.
     Troubleshooting describes common problems, workarounds, and how to get support.
-    FAQs provides answers to frequently asked questions.
-    Stable Release Notes or Edge Release Notes.
+    FAQs provide answers to frequently asked questions.
+    Release notes lists component updates, new features, and improvements associated with Docker Desktop releases.
+    Back up and restore data provides instructions on backing up and restoring data related to Docker.
 
-* :doc:`/docker-for-windows/index`  は Docker Desktop for Windows の導入です。
-* :doc:`Docker の始め方 </get-started/index>` は一般的な Docker チュートリアルです。
-* :doc:`troubleshoot` は一般的な問題、回避方法、統計情報の送信方法、問題報告の仕方があります。
-* :doc:`faq` は、よく見受けられる質問と回答があります。
-* :doc:`Stable リリースノート <release-notes>` または :doc:`Edge リリースノート <edge-release-note>` 。
+* :doc:`/desktop/windows/index`  は Docker Desktop for Windows の導入ガイドです。
+* :doc:`トラブルシューティング <troubleshoot>` は一般的な問題、回避方法、統計情報の送信方法、問題報告の仕方があります。
+* :doc:`FAQs </desktop/faqs>` は、よく見受けられる質問と回答があります。
+* :doc:`リリースノート <release-notes>` は Docker Desktop  リリースに関連する更新コンポーネント、新機能、改良の一覧があります。
+* :doc:`バックアップと修復 </desktop/backup-and-restore>` は Docker 関連データのバックアップと修復手順です。
+
 
 .. seealso::
 
-   Install Docker Desktop on Windows
-      https://docs.docker.com/docker-for-windows/install/
+   Install Docker Desktop on Windows | Docker Documentation
+      https://docs.docker.com/desktop/windows/install/

@@ -1,17 +1,18 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/docker-for-windows/networking/
+.. URL: https://docs.docker.com/desktop/windows/networking/
    doc version: 19.03
       https://github.com/docker/docker.github.io/blob/master/docker-for-windows/networking.md
-.. check date: 2020/06/12
-.. Commits on Jun 2, 2020 c082784316d8a212f04ac526cb6415ceb0a91dd6
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/desktop/windows/networking.md
+.. check date: 2022/05/14
+.. Commits on Sep 13, 2021 173d3c65f8e7df2a8c0323594419c18086fc3a30
 .. -----------------------------------------------------------------------------
 
 .. Networking features in Docker Desktop for Windows
-
 .. _networking-features-in-docker-desktop-for-windows:
 
 ========================================
-Docker Desktop for Windows のネットワーク構築機能
+Docker Desktop for Windows のネットワーク機能
 ========================================
 
 .. sidebar:: 目次
@@ -25,7 +26,6 @@ Docker Desktop for Windows のネットワーク構築機能
 Docker Desktop は、簡単に利用できるようにする複数のネットワーキング機能を提供します。
 
 .. Features
-
 .. _win-networking-features:
 
 機能
@@ -43,10 +43,9 @@ VPN パススルー
 Docker Desktop のネットワーク構築は、VPN 接続時も動作します。そのためには、あたかも Docker アプリケーションが発信しているかのように、Docker Desktop がコンテナからのトラフィックを取り込み、Windows へ投入します。
 
 .. Port Mapping
-
 .. _win-port-mapping:
 
-ポートマッピング
+ポート :ruby:`割り当て <mapping>`
 --------------------------------------------------
 
 .. When you run a container with the -p argument, for example:
@@ -81,9 +80,7 @@ HTTP/HTTPS プロキシ・セットアップ
 :ref:`win-preferences-proxies` をご覧ください。
 
 .. Known limitations, use cases, and workarounds
-
 .. _win-networking-known-limitations-use-cases-and-workarounds:
-
 既知の制限、利用例、回避方法
 ==================================================
 
@@ -92,10 +89,8 @@ HTTP/HTTPS プロキシ・セットアップ
 以下で扱うのは、 Docker Desktop for Windows 上のネットワーク構築スタックにおける、現時点での制限の要約と、回避策に対する考え方です。
 
 .. There is no docker0 bridge on Windows
-
 .. _there-is-no-docker0-bridge-on-windows:
-
-Windows には docker0 ブリッジがありません
+Windows に docker0 ブリッジがありません
 --------------------------------------------------
 
 .. Because of the way networking is implemented in Docker Desktop for Windows, you cannot see a docker0 interface on the host. This interface is actually within the virtual machine.
@@ -103,7 +98,6 @@ Windows には docker0 ブリッジがありません
 ネットワーク構築機能の実装が、Docker Desktop for Windows 用のため、ホスト側では `docker0` インターフェースは見えません。このインターフェースは、実際には仮想マシン内にあります。
 
 .. I cannot ping my containers
-
 .. _win-i-cannot-ping-my-containers:
 
 コンテナに ping できません
@@ -114,9 +108,7 @@ Windows には docker0 ブリッジがありません
 Docker Desktop for Windows は Linux コンテナに対してトラフィックを経路付け（ルーティング）できません。一方で、Windows コンテナに対しては ping ができます。
 
 .. Per-container IP addressing is not possible
-
 .. _per-container-ip-addressing-is-not-possible:
-
 コンテナごとに IP アドレスを割り当てられません
 --------------------------------------------------
 
@@ -125,7 +117,6 @@ Docker Desktop for Windows は Linux コンテナに対してトラフィック�
 docker (Linux) ブリッジ・ネットワークは Windows ホストから到達できません。一方で、Windows コンテナでは動作します。
 
 .. Use cases and workarounds
-
 .. _win-networking-use-cases-and-workarounds:
 
 利用例と回避方法
@@ -136,7 +127,6 @@ docker (Linux) ブリッジ・ネットワークは Windows ホストから到�
 前述の制限に対応する、2つのシナリオがあります。
 
 .. I want to connect from a container to a service on the host
-
 .. _i-want-to-connect-from-a-container-to-a-service-on-the-host:
 
 コンテナからホスト上のサービスに対して接続したい
@@ -150,8 +140,33 @@ docker (Linux) ブリッジ・ネットワークは Windows ホストから到�
 
 また、ゲートウェイに対しては :code:`gateway.docker.internal` で到達可能です。
 
-.. I want to connect to a container from Windows
+.. If you have installed Python on your machine, use the following instructions as an example to connect from a container to a service on the host:
 
+マシン上に Python をインストールしている場合、コンテナからホスト上のサービスに接続するためには、以下の手順を例に使えます。
+
+..     Run the following command to start a simple HTTP server on port 8000.
+
+1. 以下のコマンドを使い、サーバ上のポート 8080 でシンプルな HTTP サーバを起動します。
+
+      $ python -m http.server 8000
+
+   ..    If you have installed Python 2.x, run python -m SimpleHTTPServer 8000.
+
+   Python 2.x をインストールしている場合、 ``python -m SimpleHTTPServer 8000`` を実行します。
+
+..     Now, run a container, install curl, and try to connect to the host using the following commands:
+
+2. 次は、コンテナを実行し、 ``curl`` をインストールし、以下のコマンドを使ってホストに接続します。
+
+   .. code-block:: bash
+
+      $ docker run --rm -it alpine sh
+      # apk add curl
+      # curl http://host.docker.internal:8000
+      # exit
+
+
+.. I want to connect to a container from Windows
 .. _i-want-to-connect-to-a-container-from-windows:
 
 Windows からコンテナに対して接続したい
@@ -165,9 +180,9 @@ Windows からコンテナに対して接続したい
 
 現時点で推奨するのは、ポートの公開か、他のコンテナからの接続です。これは Linux 上でも同様ですが、ブリッジ・ネットワークではなくオーバレイ・ネットワーク上にコンテナがある場合、到達（経路付け）できません。
 
-.. The command to run the nginx webserver shown in Getting Started is an example of this.
+.. For example, to run an nginx webserver:
 
-:ref:`導入ガイド <win-explore-the-application>` で用いた例にある :code:`nginx` ウェブサーバを表示するには、次のコマンドを使います。
+たとえば、 ``nginx`` ウェブサーバを起動します。
 
 .. code-block:: bash
 
@@ -183,7 +198,17 @@ Windows からコンテナに対して接続したい
    
    $ docker run -p 8000:80 --name webserver nginx
 
-.. To publish all ports, use the -P flag. For example, the following command starts a container (in detached mode) and the -P flag publishes all exposed ports of the container to random ports on the host.
+.. To clarify the syntax, the following two commands both expose port 80 on the container to port 8000 on the host:
+
+構文を明確にしましょう。以下の2つのコマンドは、いずれも同じコンテナのポート :code:`80` をホスト側のポート :code:`8080` に公開するものです。
+
+.. code-block:: bash
+
+   $ docker run --publish 8000:80 --name webserver nginx
+   
+   $ docker run -p 8000:80 --name webserver nginx
+
+.. To expose all ports, use the -P flag. For example, the following command starts a container (in detached mode) and the -P exposes all ports on the container to random ports on the host.
 
 全ポートを公開するには :code:`-P` フラグを使います。例えば、以下のコマンドはコンテナを起動し（デタッチド・モードで）、 :code:`-P` フラグはコンテナが公開する全てのポートを、ホスト側ランダムなポートに対して割り当てます。
 
@@ -193,10 +218,10 @@ Windows からコンテナに対して接続したい
 
 .. See the run command for more details on publish options used with docker run.
 
-`docker run` で公開するオプションに関する詳細は :doc:`/engine/reference/commandline/run/` コマンドを御覧ください。
+:code:`docker run` で公開するオプションに関する詳細は :doc:`/engine/reference/commandline/run` コマンドを御覧ください。
 
 
 .. seealso:: 
 
-   Networking features in Docker Desktop for Windows
-      https://docs.docker.com/docker-for-windows/networking/
+   Networking features in Docker Desktop for Windows | Docker Documentation
+      https://docs.docker.com/desktop/windows/networking/

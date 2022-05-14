@@ -13,10 +13,13 @@ Docker Desktop
 ========================================
 
 .. toctree::
+   :maxdepth: 3
+   :titlesonly:
 
    概要 <index.rst>
    Mac </desktop/mac/toc.rst>
    Windows </desktop/windows/toc.rst>
+   Linux </desktop/linux/toc.rst>
    ダッシュボード </desktop/dashboard.rst>
    オープンソース・ライセンス </desktop/opensource.rst>
 

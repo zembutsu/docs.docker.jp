@@ -1,17 +1,18 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/docker-for-windows/release-notes/
+.. URL: https://docs.docker.com/desktop/windows/release-notes/
    doc version: 19.03
       https://github.com/docker/docker.github.io/blob/master/docker-for-windows/release-notes.md
-.. check date: 2020/06/12
-.. Commits on May 28, 2020 71d6a88c13ad4e523c069be4d19d47a5b9818ab4
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/desktop/windows/release-notes/index.md
+.. check date: 2022/05/14
+.. Commits on May 12, 2022 8d433de09de936368fd8c406c42eb7e46abd75e8
 .. -----------------------------------------------------------------------------
 
-.. Docker for Windows Stable release notes
-
-.. _docker-for-windows-stable-release-notes:
+.. Docker for Windows release notes
+.. _docker-for-windows-release-notes:
 
 =======================================
-Docker for Windows Stable リリースノート
+Docker for Windows リリースノート
 =======================================
 
 .. sidebar:: 目次
@@ -20,16 +21,22 @@ Docker for Windows Stable リリースノート
        :depth: 3
        :local:
 
+.. 
+    Update to the Docker Desktop terms
+    Commercial use of Docker Desktop in larger enterprises (more than 250 employees OR more than $10 million USD in annual revenue) now requires a paid subscription. The grace period for those that will require a paid subscription ends on January 31, 2022. Learn more.
+
+.. important:: **Docker Desktop の利用条件変更**
+
+   現在、大企業（従業員が 251 人以上、または、年間収入が 1,000 万米ドル以上 ）における Docker Desktop の商用利用には、有料サブスクリプション契約が必要です。必要な有料サブスクリプションの支払猶予は 2022 年 1 月 31 日に終了しました。 `詳細はこちらです。 <https://www.docker.com/blog/the-grace-period-for-the-docker-subscription-service-agreement-ends-soon-heres-what-you-need-to-know/>`_
+
+
 .. This page contains information about the new features, improvements, known issues, and bug fixes in Docker Desktop Stable releases.
 
 このページには、 Docker Desktop Stable リリースに対する新機能、改善、既知の問題、バグ修正に関する情報があります。
 
-.. For information about Edge releases, see the Edge release notes. For Docker Desktop system requirements, see What to know before you install.
-
-Edge リリースに関する情報は :doc:`Edge リリースノート <edge-release-notes>` をご覧ください。Docker Desktop のシステム要件については、 :ref:`win-what-to-know-before-you-install` をご覧ください。
 
 
-以下詳細は `公式ドキュメント <https://docs.docker.com/docker-for-windows/release-notes/>`_ をご覧ください。
+以下詳細は `公式ドキュメント <https://docs.docker.com/desktop/windows/release-notes/>`_ をご覧ください。
 
 
 .. seealso::
