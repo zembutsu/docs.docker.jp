@@ -54,7 +54,7 @@ docker exec
 
 .. The command started using docker exec only runs while the container’s primary process (PID 1) is running, and it is not restarted if the container is restarted.
 
-``docker exec`` コマンドが使えるのは、コンテナのプライマリ・プロセス（ ``PID 1`` として実行するプロセス）が実行中の時のみです。また、コンテナが再起動時した場合は、こちらコマンドは再度実行されません。
+``docker exec`` コマンドが使えるのは、コンテナのプライマリ・プロセス（ ``PID 1`` として実行するプロセス）が実行中の時のみです。また、コンテナが再起動した場合は、こちらコマンドは再度実行されません。
 
 .. COMMAND will run in the default directory of the container. If the underlying image has a custom directory specified with the WORKDIR directive in its Dockerfile, this will be used instead.
 
