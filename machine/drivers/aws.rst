@@ -134,7 +134,7 @@ Mac や Linux ディストリビューションでは、 `AWS コマンドライ
 * ``--amazonec2-ssh-user`` : SSH ログイン・ユーザ名です。ここには AMI が使うデフォルトの SSH ユーザと一致する必要があります。
 * ``--amazonec2-request-spot-instance`` : スポット・インスタンスを使用。
 * ``--amazonec2-spot-price`` : スポット・インスタンスの bid 価格（単位：ドル）。 ``--amazonec2-request-spot-instance`` フラグが必要です。
-* ``--amazonec2-use-private-addressce`` : docker-machine の通信にプライベート IP アドレスを使います。ですがパブリックな IP アドレスも作成されます。
+* ``--amazonec2-use-private-address`` : docker-machine の通信にプライベート IP アドレスを使います。ですがパブリックな IP アドレスも作成されます。
 * ``--amazonec2-private-address-only`` : プライベート・アドレスのみ使います。
 * ``--amazonec2-monitoring`` : CloudWatch モニタリングを有効化します。
 * ``--amazonec2-user-ebs-optimized-instance`` :  EBS 最適化インスタンスを作成します。インスタンス・タイプが対応している必要があります。
@@ -205,7 +205,7 @@ Mac や Linux ディストリビューションでは、 `AWS コマンドライ
    * - ``--amazonec2-spot-price``
      - -
      - ``0.50``
-   * - ``--amazonec2-user-private-address``
+   * - ``--amazonec2-use-private-address``
      - -
      - ``false``
    * - ``--amazonec2-private-address-only``

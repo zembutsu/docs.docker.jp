@@ -198,7 +198,7 @@ Linux における Compose のインストール
 
 .. code-block:: bash
 
-   sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+   sudo curl -L https://github.com/docker/compose/releases/download/v2.6.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 
 ..     > Use the latest Compose release number in the download command.
        >
@@ -240,7 +240,7 @@ Linux における Compose のインストール
 .. code-block:: bash
 
    $ docker-compose --version
-   docker-compose version 1.16.1, build 1719ceb
+   Docker Compose version v2.6.0
 
 .. raw:: html
 
