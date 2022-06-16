@@ -501,5 +501,5 @@ Docker CE のアンインストール
 .. seealso:: 
 
    Get Docker CE for CentOS
-      https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#uninstall-docker-ce
+      https://docs.docker.com/engine/install/centos/
 
