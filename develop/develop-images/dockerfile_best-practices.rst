@@ -197,7 +197,7 @@ Docker イメージを構成するのは、 Dockerfile の各命令に相当す�
 
 .. note::
 
-   標準入力の Dockefile で  ``COPY`` や ``ADD`` 構文を使おうとしても、構築できません。以下の例は失敗します。
+   標準入力の Dockerfile で  ``COPY`` や ``ADD`` 構文を使おうとしても、構築できません。以下の例は失敗します。
    
    .. code-block:: bash
 
