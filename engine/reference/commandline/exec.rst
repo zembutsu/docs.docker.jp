@@ -14,9 +14,7 @@
 docker exec
 =======================================
 
-.. seealso:: 
 
-   :doc:`docker container exec <container_exec>`
 
 .. sidebar:: 目次
 
