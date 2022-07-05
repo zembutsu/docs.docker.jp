@@ -110,9 +110,9 @@ swarm に :doc:`サービスをデプロイ <deploy-service>` したら、swarm 
 
 
 
-..    Run docker service tasks <SERVICE-ID> to see which nodes are running the service:
+..    Run docker service ps <SERVICE-ID> to see which nodes are running the service:
 
-3. ``docker service tasks <サービスID>`` を実行すると、サービスがどのノードで動作しているのか分かります。
+3. ``docker service ps <サービスID>`` を実行すると、サービスがどのノードで動作しているのか分かります。
 
    .. code-block:: bash
    
