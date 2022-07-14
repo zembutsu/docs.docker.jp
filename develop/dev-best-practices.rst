@@ -41,10 +41,10 @@ Docker 開発ベストプラクティス
 
 ..    Use multistage builds. For instance, you can use the maven image to build your Java application, then reset to the tomcat image and copy the Java artifacts into the correct location to deploy your app, all in the same Dockerfile. This means that your final image doesn’t include all of the libraries and dependencies pulled in by the build, but only the artifacts and the environment needed to run them.
 
+* :doc:`マルチステージ・ビルドを使います </develop/develop-images/multistage-build>` 。たとえば、 Java アプリケーションを構築するにあたり ``maven`` イメージを使えるとします。その時、アプリをデプロイするためには、 ``tomcat`` イメージをリセットし、Java アーティファクトを適切な場所にコピーします。これらすべてが、同じ Dockerfile 中の命令としてあります。これが意味するのは、最終イメージには構築時に取得した全てのライブラリや依存関係は含みませんが、アーティファクトと実行に必要な環境変数のみが入っています。
+
 ..        If you need to use a version of Docker that does not include multistage builds, try to reduce the number of layers in your image by minimizing the number of separate RUN commands in your Dockerfile. You can do this by consolidating multiple commands into a single RUN line and using your shell’s mechanisms to combine them together. Consider the following two fragments. The first creates two layers in the image, while the second only creates one.
 
-
-* :doc:`マルチステージ・ビルドを使います </develop/develop-images/multistage-build>` 。たとえば、 Java アプリケーションを構築するにあたり ``maven`` イメージを使えるとします。その時、アプリをデプロイするためには、 ``tomcat`` イメージをリセットし、Java アーティファクトを適切な場所にコピーします。これらすべてが、同じ Dockerfile 中の命令としてあります。これが意味するのは、最終イメージには構築時に取得した全てのライブラリや依存関係は含みませんが、アーティファクトと実行に必要な環境変数のみが入っています。
 
    * もしも使用中の Docker がマルチステージ・ビルドに対応していないバージョンであれば、イメージのレイヤ数を減らすため、Dockerfile 中でバラバラの ``RUN`` 命令の数を最小化します。この作業時に、シェルの仕組みを使って複数の ``RUN`` 命令を1つにまとめられます。以下にある1つめのイメージには２つのレイヤがありますが、2つめのイメージは１つのレイヤしかありません。
    
