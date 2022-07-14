@@ -5,8 +5,8 @@
       https://github.com/docker/compose/commits/master/docs/overview.md
    doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/compose/index.md
-.. check date: 2022/06/17
-.. Commits on May 17, 2022 bb2f0178e78659067699c5e8c497efc299df3351
+.. check date: 2022/07/13
+.. Commits on Jun 3, 2022 d49af6a4495f653ffa40292fd24972b2df5ac0bc
 .. -------------------------------------------------------------------
 
 .. Overview of Docker Compose
@@ -26,7 +26,7 @@ Docker Compose 概要
 
 .. seealso::
 
-   **Compose ファイルのリファレンスを探していますか？**  :doc:`最新バージョンはこちらにあります。 </compose/compose-file>` 
+   **Compose ファイルのリファレンスを探していますか？**  :doc:`最新バージョンはこちらです。 </compose/compose-file>` 
 
 .. Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration. To learn more about all the features of Compose, see the list of features.
 
@@ -46,11 +46,11 @@ Compose を使うには、基本的に３つのステップを踏みます。
 
 1. アプリケーションの環境を ``Dockerfile`` に定義すると、アプリケーションはどこでも再構築できるようになります。
 2. アプリケーションを構成するサービスを ``docker-compose.yml`` ファイル内に定義すると、各サービスは :ruby:`独立した <isolated>` 環境で同時に実行できるようになります。
-3. ``docker compose up`` を実行すると、この :ref:`Docker compose コマンド <compose-v2-and-the-new-docker-compose-command>` によって、アプリ全体を起動・実行します。あるいは、 docker-compose バイナリを使えば、 ``docker-compose up`` を実行できます。
+3. ``docker compose up`` を実行すると、この :ref:`Docker compose コマンド <compose-v2-and-the-new-docker-compose-command>` によって、アプリ全体を起動・実行します。あるいは、 docker-compose バイナリを使えば、 ``docker-compose up`` でも実行できます。
 
 .. A docker-compose.yml looks like this:
 
-``docker-compose.yml`` とは、次のように記述します。
+``docker-compose.yml`` には、次のように記述します。
 
 .. code-block:: yaml
 
@@ -74,7 +74,7 @@ Compose を使うには、基本的に３つのステップを踏みます。
 
 .. For more information about the Compose file, see the Compose file reference
 
-Compose ファイルに関するさらに詳しい情報は、 :doc:`Compose ファイル・リファレンス </compose/compose-file>` をご覧ください。
+Compose ファイルに関するさらに詳しい情報は、 :doc:`Compose ファイル リファレンス </compose/compose-file>` をご覧ください。
 
 .. Compose has commands for managing the whole lifecycle of your application:
 
@@ -101,20 +101,28 @@ Compose V2 と新しい ``docker compose`` コマンド
 
 .. important:
 
-   新しい Compose V2 が利用可能です。これは、Docker CLI コマンドの一部として、 ``compose`` コマンドをサポートします。
+   Docker CLI コマンドの一部として ``compose`` コマンドをサポートする、新しい Compose V2 が利用可能です。
 
    Compose V2 は compose 機能を Docker プラットフォームに統合するもので、従来の ``docker-compose`` 機能とフラグの大部分をサポートし続けます。Compose V2 を使うには、 ``docker-compose`` ではなく ``docker compose`` を使います。ハイフン（ ``-`` ）を空白スペースに置き換えるだけです。
 
-If you rely on using Docker Compose as docker-compose (with a hyphen), you can set up Compose V2 to act as a drop-in replacement of the previous docker-compose. Refer to the Installing Compose section for detailed instructions.
-Context of Docker Compose evolution
+.. If you rely on using Docker Compose as docker-compose (with a hyphen), you can set up Compose V2 to act as a drop-in replacement of the previous docker-compose. Refer to the Installing Compose section for detailed instructions.
 
-Introduction of the Compose specification makes a clean distinction between the Compose YAML file model and the docker-compose implementation. Making this change has enabled a number of enhancements, including adding the compose command directly into the Docker CLI, being able to “up” a Compose application on cloud platforms by simply switching the Docker context, and launching of Amazon ECS and Microsoft ACI. As the Compose specification evolves, new features land faster in the Docker CLI.
 
-Compose V2 relies directly on the compose-go bindings which are maintained as part of the specification. This allows us to include community proposals, experimental implementations by the Docker CLI and/or Engine, and deliver features faster to users. Compose V2 also supports some of the newer additions to the specification, such as profiles and GPU devices.
+.. Context of Docker Compose evolution
+.. _context-of-docker-compose-evolution:
+Docker Compose 発展の背景
+------------------------------
 
-Compose V2 has been re-written in Go, which improves integration with other Docker command-line features, and allows it to run natively on macOS on Apple silicon, Windows, and Linux, without dependencies such as Python.
+.. Introduction of the Compose specification makes a clean distinction between the Compose YAML file model and the docker-compose implementation. Making this change has enabled a number of enhancements, including adding the compose command directly into the Docker CLI, being able to “up” a Compose application on cloud platforms by simply switching the Docker context, and launching of Amazon ECS and Microsoft ACI. As the Compose specification evolves, new features land faster in the Docker CLI.
 
-For more information about compatibility with the compose v1 command-line, see the docker-compose compatibility list.
+:doc:`Compose specification (規格) <https://github.com/compose-spec/compose-spec>` の導入により、Compose YAML ファイルの構造と、 ``docker-compose`` の実装を明確に区別するようになりました。この変更により、多くの拡張ができるようになりました。その中には、 Docker CLI の中に ``compose`` コマンドを直接追加できるようにし、 Docker コンテクストをシンプルに切り替えるだけで、クラウドプラットフォーム上に Compose アプリケーションを "up" （起動）できるようにします。さらに、 `Amazon ECS <https://docs.docker.com/cloud/ecs-integration/>`_ や `Microsoft ACI <https://docs.docker.com/cloud/aci-integration/>` 上でも起動できます。Compose 規格の発展により、Docker CLI に新しい機能が早く取り込まれます。
+
+.. Compose V2 relies directly on the compose-go bindings which are maintained as part of the specification. This allows us to include community proposals, experimental implementations by the Docker CLI and/or Engine, and deliver features faster to users. Compose V2 also supports some of the newer additions to the specification, such as profiles and GPU devices.
+
+.. Compose V2 has been re-written in Go, which improves integration with other Docker command-line features, and allows it to run natively on macOS on Apple silicon, Windows, and Linux, without dependencies such as Python.
+
+.. For more information about compatibility with the compose v1 command-line, see the docker-compose compatibility list.
+
 
 .. Features
 .. _compose-features:
