@@ -101,7 +101,7 @@
 
 ..    Use a process manager like supervisord. This is a moderately heavy-weight approach that requires you to package supervisord and its configuration in your image (or base your image on one that includes supervisord), along with the different applications it manages. Then you start supervisord, which manages your processes for you. Here is an example Dockerfile using this approach, that assumes the pre-written supervisord.conf, my_first_process, and my_second_process files all exist in the same directory as your Dockerfile.
 
-* ``supervisord``  のようなプロセス・マネージャを使う方法です。これは、どちらかといえば重量級のアプローチです。イメージの中にはアプリケーションを管理するものだけでなく、 ``supervisord`` のパッケージを入れる必要があります。 ``supervisord`` を起動すると、あなたにかわってプロセスを管理します。以下の Dockerfile 例はこのアプローチを使ったもので、あらかじめ ``supervisord.conf`` と ``my_first_processs`` と ``my_second_process`` ファイルを記述し、全てが Dockerifle と同じディレクトリにあるものと想定しています。
+* ``supervisord``  のようなプロセス・マネージャを使う方法です。これは、どちらかといえば重量級のアプローチです。イメージの中にはアプリケーションを管理するものだけでなく、 ``supervisord`` のパッケージを入れる必要があります。 ``supervisord`` を起動すると、あなたにかわってプロセスを管理します。以下の Dockerfile 例はこのアプローチを使ったもので、あらかじめ ``supervisord.conf`` と ``my_first_processs`` と ``my_second_process`` ファイルを記述し、全てが Dockerfile と同じディレクトリにあるものと想定しています。
 
    ::
    

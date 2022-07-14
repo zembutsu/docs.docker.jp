@@ -273,7 +273,7 @@ stdin から読み込む Dockerfile を使い、リモートのビルド・コ�
 
 .. This syntax can be useful in situations where you want to build an image from a repository that does not contain a Dockerfile, or if you want to build with a custom Dockerfile, without maintaining your own fork of the repository.
 
-この構文が役立つ状況は、 ``Dockerifle`` を含まないリポジトリにあるイメージを構築したい場合や、自分でフォークしたリポジトリを保持することなく、任意の ``Dockerfile`` でビルドしたい場合です。
+この構文が役立つ状況は、 ``Dockerfile`` を含まないリポジトリにあるイメージを構築したい場合や、自分でフォークしたリポジトリを保持することなく、任意の ``Dockerfile`` でビルドしたい場合です。
 
 .. The example below builds an image using a Dockerfile from stdin, and adds the hello.c file from the “hello-world” Git repository on GitHub.
 
