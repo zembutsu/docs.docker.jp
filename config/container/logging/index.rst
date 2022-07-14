@@ -62,7 +62,7 @@
     Write a Dockerfile.
 
 * :doc:`ロギング・ドライバ <config/containers/logging/configure>` の設定
-* :doc:`Dockerifle </engine/reference/builder>` を書く
+* :doc:`Dockerfile </engine/reference/builder>` を書く
 
 
 
