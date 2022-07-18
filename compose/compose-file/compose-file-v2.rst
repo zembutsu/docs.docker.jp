@@ -1438,7 +1438,7 @@ network_mode
 
 .. networks
 
-.. _compose-file-networks:
+.. _	:
 
 networks
 ----------

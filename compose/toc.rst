@@ -1,7 +1,7 @@
 .. -*- coding: utf-8 -*-
 .. 
 .. doc version: 20.10
-.. check date: 2022/05/14
+.. check date: 2022/07/16
 .. -----------------------------------------------------------------------------
 
 .. compose toc
@@ -19,6 +19,7 @@ Docker Compose
    install.rst
    gettingstarted.rst
    environment-variables.rst
+   env-file.rst
    profiles.rst
    gpu-support.rst
    extends.rst

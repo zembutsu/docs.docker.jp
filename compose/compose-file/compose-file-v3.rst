@@ -2020,6 +2020,8 @@ ports
    Compose 形式 :ref:`compose-file-version-32` で追加されました。
 
 .. _compose-file-v3-profiles:
+profiles
+----------
 
 .. code-block:: profiles
 
