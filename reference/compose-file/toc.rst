@@ -11,7 +11,7 @@ Compose ファイル リファレンス
 .. toctree::
    :maxdepth: 3
    
-   Compose 仕様 </compose/compose-file.rst>
+   Compose 仕様 </compose/compose-file/index.rst>
    Version 3 </compose/compose-file/compose-file-v3.rst>
    Version 2 </compose/compose-file/compose-file-v2.rst>
    /compose/compose-file/compose-versioning.rst
