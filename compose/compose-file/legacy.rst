@@ -5,15 +5,13 @@
 .. -----------------------------------------------------------------------------
 
 ========================================
-Compose ファイル リファレンス
+以前のバージョン
 ========================================
 
 .. toctree::
-   :maxdepth: 
+   :maxdepth: 1
    
-   Compose 仕様 <index.rst>
-   Comopse ファイル構築 <build.rst>
-   Compose ファイル展開 <deploy>
-   /compose/faq.rst
-   legacy.rst
+   compose-versioning.rst
+   compose-file-v3.rst
+   compose-file-v2.rst
 

@@ -1,7 +1,7 @@
 .. -*- coding: utf-8 -*-
 .. 
 .. doc version: 20.10
-.. check date: 2022/02/22
+.. check date: 2022/07/23
 .. -----------------------------------------------------------------------------
 
 ========================================
@@ -12,8 +12,9 @@ Compose ファイル リファレンス
    :maxdepth: 3
    
    Compose 仕様 </compose/compose-file/index.rst>
-   Version 3 </compose/compose-file/compose-file-v3.rst>
-   Version 2 </compose/compose-file/compose-file-v2.rst>
-   /compose/compose-file/compose-versioning.rst
+   Comopse ファイル構築 </compose/compose-file/build.rst>
+   Compose ファイル展開 </compose/compose-file/deploy.rst>
    /compose/faq.rst
+   /compose/compose-file/legacy.rst
+
 

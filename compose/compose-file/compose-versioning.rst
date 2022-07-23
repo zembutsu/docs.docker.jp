@@ -2,8 +2,8 @@
 .. URL: https://docs.docker.com/compose/compose-file/compose-versioning/
    doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/compose/compose-file/compose-versioning.md
-.. check date: 2021/08/08
-.. Commits on Mar 15, 2021 ddf8543d282487b2179cdec7692cb3e05530f4e0
+.. check date: 2022/07/23
+.. Commits on Feb 9, 2022 bcc2a90f52b125bf5de0f2974203466d99058175
 .. -------------------------------------------------------------------
 
 .. Compose file versions and upgrading
@@ -33,8 +33,8 @@ Compose ファイルはとは、Docker アプリケーションの :ruby:`サー
    
    * - リファレンス・ファイル
      - 対象バージョンの変更点
-   * - `Compose 仕様 <https://docs.docker.com/compose/compose-file/>`_ （最新かつ推奨）
-     - `バージョン情報 <https://docs.docker.com/compose/compose-file/compose-versioning/#versioning>`_
+   * - :doc:`Compose 仕様 <index>` （最新かつ推奨）
+     - :ref:`バージョン情報 <compose-file-versioning>`
    * - :doc:`バージョン 3  <compose-file-v3>`
      - :ref:`バージョン 3 更新情報 <compose-file-version-3>`
    * - :doc:`バージョン 2  <compose-file-v2>`
@@ -210,7 +210,7 @@ Compose ファイルでバージョンを宣言しなければ「バージョン
    web:
      build: .
      ports:
-      - "5000:5000"
+      - "8000:5000"
      volumes:
       - .:/code
      links:
@@ -269,7 +269,7 @@ Compose ファイルでバージョンを宣言しなければ「バージョン
      web:
        build: .
        ports:
-        - "5000:5000"
+        - "8000:5000"
        volumes:
         - .:/code
      redis:
@@ -286,7 +286,7 @@ Compose ファイルでバージョンを宣言しなければ「バージョン
      web:
        build: .
        ports:
-        - "5000:5000"
+        - "8000:5000"
        volumes:
         - .:/code
        networks:
