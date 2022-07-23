@@ -264,7 +264,7 @@ profiles によって、様々な用途や環境にあわせて Compose アプ�
 
 ..     If profile test is enabled, model contains the services bar and baz which are enabled by the test profile and service foo which is always enabled.
 
-* profiles で ``test`` を有効化する場合、モデルに含まれるサービスは ``test`` profile によって有効化される  ``bar`` と ``baz`` のサービスと、サービス ``foo`` は常に有効です。。
+* profiles で ``test`` を有効化する場合、モデルに含まれるサービスは ``test`` profile によって有効化される  ``bar`` と ``baz`` のサービスと、サービス ``foo`` は常に有効です。
 
 ..     If profile debug is enabled, model contains both foo and zot services, but not bar and baz and as such the model is invalid regarding the depends_on constraint of zot.
 
@@ -297,7 +297,7 @@ version トップレベル要素
 
 .. Top-level version property is defined by the specification for backward compatibility but is only informative.
 
-トップレベルの ``version`` 属性は、下位互換性をのために仕様で定義されていますが、情報を参考にするためだけです。
+トップレベルの ``version`` 属性は、下位互換性のために仕様で定義されていますが、情報を参考にするためだけです。
 
 .. A Compose implementation SHOULD NOT use this version to select an exact schema to validate the Compose file, but prefer the most recent schema at the time it has been designed.
 
@@ -1510,7 +1510,7 @@ image
 
 .. image MAY be omitted from a Compose file as long as a build section is declared. Compose implementations without build support MUST fail when image is missing from the Compose file.
 
-Compose ファイルで ``build`` セクションを宣言する場合、 ``image`` は :ruby:`省略しても構いません <MAY>` 。構築をサポートしない Compose 実装の場合、 Compose ファイルに ``image`` がなえｋれば失敗 :ruby:`しなければいけません <MUST>` 。
+Compose ファイルで ``build`` セクションを宣言する場合、 ``image`` は :ruby:`省略しても構いません <MAY>` 。構築をサポートしない Compose 実装の場合、 Compose ファイルに ``image`` がなければ失敗 :ruby:`しなければいけません <MUST>` 。
 
 .. init
 .. _compose-spec-init:
@@ -2506,7 +2506,7 @@ volumes
 
 .. note::
 
-   相対ホスト パスが Compose 実装によってサポートする :ruby:`必要がある <MUST>` のは、ローカルのコンテナランタイムにプロイする場合のみです。これは、相対パスとみなすのは Compose ファイルの親ディレクトリのためであり、ローカルでの実行時にのみ適用されるからです。 Compose 実装によるローカル以外へのデプロイでは、 Compose が相対ホストパスを扱えないため、エラーを出して拒否する :ruby:`必要があります <MUST>` 。この曖昧さを名前付きボリュームで防止するには、相対パスの指定を常に ``.`` や ``..`` で :ruby:`指定すべき <SHOULD>` です。
+   相対ホスト パスが Compose 実装によってサポートする :ruby:`必要がある <MUST>` のは、ローカルのコンテナランタイムにデプロイする場合のみです。これは、相対パスとみなすのは Compose ファイルの親ディレクトリのためであり、ローカルでの実行時にのみ適用されるからです。 Compose 実装によるローカル以外へのデプロイでは、 Compose が相対ホストパスを扱えないため、エラーを出して拒否する :ruby:`必要があります <MUST>` 。この曖昧さを名前付きボリュームで防止するには、相対パスの指定を常に ``.`` や ``..`` で :ruby:`指定すべき <SHOULD>` です。
 
 .. Long syntax
 .. _compose-spec-volumes-long-syntax:
@@ -2763,7 +2763,7 @@ internal
 
 .. By default, Compose implementations MUST provides external connectivity to networks. internal when set to true allow to create an externally isolated network.
 
-デフォルトでは、 Compose 仕様はネットワークに対する外部への接続性を提供する :ruby:`必要があります <MUST>` 。 ``internal`` を ``true``にを設定する場合は、外部の :ruby:`分離された <isolated>` ネットワークを作成できるようになります。
+デフォルトでは、 Compose 仕様はネットワークに対する外部への接続性を提供する :ruby:`必要があります <MUST>` 。 ``internal`` を ``true``に設定する場合は、外部の :ruby:`分離された <isolated>` ネットワークを作成できるようになります。
 
 .. labels
 .. _compose-spec-networks-labels:
