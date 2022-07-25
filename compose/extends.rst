@@ -34,6 +34,7 @@ Compose 設定をファイルとプロジェクト間で共有
 
 .. Multiple Compose files
 .. _extends-multiple-compose-files:
+
 複数の Compose ファイル
 ==============================
 
@@ -44,6 +45,7 @@ Compose 設定をファイルとプロジェクト間で共有
 
 .. Understanding multiple Compose files
 .. _understanding-multiple-compose-files:
+
 複数の Compose ファイルを理解
 ------------------------------
 
@@ -66,6 +68,7 @@ Compose 設定をファイルとプロジェクト間で共有
 
 .. Example use case
 .. _extends-example-use-case:
+
 使用例
 -----------
 
@@ -75,6 +78,7 @@ Compose 設定をファイルとプロジェクト間で共有
 
 .. Different environments
 .. _extends-different-environements:
+
 異なる環境
 ^^^^^^^^^^
 
@@ -168,6 +172,7 @@ Compose を本番環境で使うための情報は :doc:`本番環境 <productio
 
 .. Administrative tasks
 .. _extends-administrative-tasks:
+
 管理用タスク
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -211,6 +216,7 @@ Compose を本番環境で使うための情報は :doc:`本番環境 <productio
 
 .. Extending services
 .. _extending-services:
+
 サービスの :ruby:`拡張 <extends>`
 ========================================
 
@@ -231,6 +237,7 @@ Docker Compose の ``extends`` キーワードは、共通の設定を異なる�
 
 .. Understand the extends configuration
 .. _understand-the-extends-configuration:
+
 extends 設定の理解
 --------------------
 
@@ -352,6 +359,7 @@ extends 設定の理解
 
 .. Adding and overriding configuration
 .. _adding-and-overriding-configuration:
+
 設定情報の追加と上書き
 ==============================
 

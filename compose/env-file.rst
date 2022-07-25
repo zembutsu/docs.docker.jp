@@ -40,6 +40,7 @@ Compose はプロジェクトのディレクトリ内にある ``.env`` とい�
 
 .. Syntax rules
 .. _compose-env-file-syntax-rules:
+
 構文ルール
 ==========
 
@@ -59,6 +60,7 @@ Compose はプロジェクトのディレクトリ内にある ``.env`` とい�
 
 .. Compose file and CLI variables
 .. _compose-file-and-cli-variables:
+
 Compose ファイルと CLI 変数
 ==============================
 

@@ -30,6 +30,7 @@ Docker ホストに GPU デバイスが入っており、かつ、 Docker デー
 
 .. Use of service runtime property from Compose v2.3 format (legacy)
 .. _use-of-service-runtime-property-from-compose-v23-format:
+
 Compose v2.3 形式から サービス ``runtime`` プロパティを使う（古い方法）
 ================================================================================
 
@@ -47,6 +48,7 @@ Docker Compose v1.27.0 以上では、2.x と 3.x バージョンの全てのプ
 
 .. Enabling GPU access to service containers
 .. _enabling-gpu-access-to-service-containers:
+
 サービス用コンテナで GPU アクセスの有効化
 ==================================================
 

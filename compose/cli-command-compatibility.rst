@@ -9,6 +9,7 @@
 
 .. Compose command compatibility with docker-compose
 .. _compose-command-compatibility-with-docker-compose:
+
 ==================================================
 compose コマンドと docker-compose の互換性
 ==================================================
@@ -29,6 +30,7 @@ Docker CLI の ``compose`` コマンドは、 ``docker-compose`` コマンドと
 
 .. Commands or flags not yet implemented
 .. _commands-or-flags-not-yet-implemented:
+
 未実装のコマンドやフラグ
 ==============================
 
@@ -42,6 +44,7 @@ Docker CLI の ``compose`` コマンドは、 ``docker-compose`` コマンドと
 
 .. Flags that will not be implemented
 .. _Flags that will not be implemented:
+
 実装されないフラグ
 ==============================
 
@@ -69,6 +72,7 @@ Docker CLI の ``compose`` コマンドは、 ``docker-compose`` コマンドと
 
 .. Config command
 .. _compose-config-command:
+
 ``config`` コマンド
 ====================
 
@@ -113,10 +117,13 @@ docker-compose.yml:
 
 .. New commands introduced in Compose v2
 .. _new-commands-introduced-in-compose-v2:
+
 Compose v2 で導入された新しいコマンド
 ==================================================
+
 .. Copy
 .. _compose-v2-copy:
+
 コピー
 ----------
 
@@ -144,6 +151,7 @@ Compose v2 で導入された新しいコマンド
 
 .. List
 .. _compose-v2-list:
+
 一覧
 ----------
 
@@ -157,6 +165,7 @@ Compose v2 で導入された新しいコマンド
 
 .. Use --project-name with Compose commands
 .. _use---project-name-with-compose-commands:
+
 Compose コマンドで ``--project-name`` を使う
 ==================================================
 

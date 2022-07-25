@@ -9,6 +9,7 @@
 
 .. Docker Compose release notes
 .. _docker-compose-release-notes:
+
 =======================================
 Docker Compose リリースノート
 =======================================

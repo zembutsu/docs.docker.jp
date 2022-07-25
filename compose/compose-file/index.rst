@@ -25,6 +25,7 @@ Compose ファイルとは、Docker アプリケーション用のサービス�
 
 .. Status of this document
 .. _compose-status-of-this-document:
+
 この文章の状態
 ====================
 
@@ -39,6 +40,7 @@ Compose ファイルとは、Docker アプリケーション用のサービス�
 
 .. Requirements and optional attributes
 .. _requirements-and-optional-attributes:
+
 動作条件とオプションの属性
 ==============================
 
@@ -68,6 +70,7 @@ Compose の実装では、Compose ファイルで :ruby:`サポート外 <unsupp
 
 .. The Compose application model
 .. _the-compose-application-model:
+
 Compose のアプリケーション モデル
 ========================================
 
@@ -109,6 +112,7 @@ volumes、configs、secret 内を区別すると、サービスレベルでも�
 
 .. Illustrative example
 .. _compose-file-illustrative-example:
+
 説明例
 ==========
 
@@ -199,6 +203,7 @@ volumes、configs、secret 内を区別すると、サービスレベルでも�
 
 .. Compose file
 .. _compose-spec-compose-file:
+
 Compose ファイル
 ====================
 
@@ -216,6 +221,7 @@ Compose ファイルとは `YAML <http://yaml.org/>`_ ファイルであり、 :
 
 .. Profiles
 .. _compose-spec-profiles:
+
 profiles
 ----------
 
@@ -233,6 +239,7 @@ profiles によって、様々な用途や環境にあわせて Compose アプ�
 
 .. Illustrative example
 .. _compose-spec-profiles-example:
+
 説明例
 ^^^^^^^^^^
 
@@ -288,10 +295,11 @@ profiles によって、様々な用途や環境にあわせて Compose アプ�
 
 ..     If Compose implementation is executed with zot as explicit service to run and profile test enabled, profile debug is automatically enabled and service bar is pulled in as a dependency starting both services zot and bar.
 
-* ``zot`` を起動するサービスとして明示し、 profile ``test`` を有効にして Compose 実装を実行する場合、profile ``debug`` が自動的に有効になり、サービス ``zot`` と ``bar`` の両方は依存関係があるため、 ``bar``が実行されます。
+* ``zot`` を起動するサービスとして明示し、 profile ``test`` を有効にして Compose 実装を実行する場合、profile ``debug`` が自動的に有効になり、サービス ``zot`` と ``bar`` の両方は依存関係があるため、 ``bar`` が実行されます。
 
 .. Version top-level element
 .. _version-top-level-element:
+
 version トップレベル要素
 ==============================
 
@@ -309,6 +317,7 @@ Comopse 実装は Compose ファイルを完全に構文解析できるかどう
 
 .. Name top-level element
 .. _name-top-level-element:
+
 name トップレベル要素
 ==============================
 
@@ -330,7 +339,8 @@ name トップレベル要素
        command: echo "I'm running ${COMPOSE_PROJECT_NAME}"
 
 .. Services top-level element
-.. _service-top-level-element:
+.. _services-top-level-element:
+
 services トップレベル要素
 ==============================
 
@@ -360,6 +370,7 @@ deploy のサポートは Compose 仕様において :ruby:`選択できる <OPT
 
 .. build
 .. _compose-spec-build:
+
 build
 ----------
 
@@ -369,6 +380,7 @@ build
 
 .. blkio_config
 .. _compose-spec-blkio_config:
+
 blkio_config
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -401,6 +413,7 @@ blkio_config
 
 .. device_read_bps, device_write_bps
 .. _compose-spec-device_read_bps-device_write_bps:
+
 device_read_bps、 device_write_bps
 ````````````````````````````````````````
 
@@ -416,6 +429,7 @@ device_read_bps、 device_write_bps
 
 .. device_read_iops, device_write_iops
 .. _compose-spec-device_read_iops-device_write_iops:
+
 device_read_iops、 device_write_iops
 ````````````````````````````````````````
 
@@ -431,6 +445,7 @@ device_read_iops、 device_write_iops
 
 .. weight
 .. _compose-spec-weight:
+
 weight
 ``````````
 
@@ -440,6 +455,7 @@ weight
 
 .. weight_device
 .. _compose-spec-weight_device:
+
 weight_device
 ````````````````````
 
@@ -455,6 +471,7 @@ weight_device
 
 .. cpu_count
 .. _compose-spec-cpu_count:
+
 cpu_count
 ----------
 
@@ -464,6 +481,7 @@ cpu_count
 
 .. cpu_percent
 .. _compose-spec-cpu_percent:
+
 cpu_percent
 --------------------
 
@@ -473,6 +491,7 @@ cpu_percent
 
 .. cpu_shares
 .. _compose-spec-cpu_share:
+
 cpu_shares
 ----------
 
@@ -480,8 +499,9 @@ cpu_shares
 
 ``cpu_shares`` はサービス用コンテナに対し、他のコンテナからの相対 CPU ウエイトを（整数値で）定義します。
 
-.. _cpu_period
+.. cpu_period
 .. _compose-spec-cpu_period:
+
 cpu_period
 ----------
 
@@ -491,6 +511,7 @@ cpu_period
 
 .. cpu_quota
 .. _compose-spec-cpu_quota:
+
 cpu_quota
 ----------
 
@@ -500,6 +521,7 @@ cpu_quota
 
 .. cpu_rt_runtime
 .. _compose-spec-cpu_rt-runtime:
+
 cpu_rt_runtime
 --------------------
 
@@ -514,6 +536,7 @@ cpu_rt_runtime
 
 .. cpu_rt_period:
 .. _compose-spec-cpu_rt_period
+
 cpu_rt_period
 --------------------
 
@@ -528,6 +551,7 @@ cpu_rt_period
 
 .. cpus
 .. _compose-spec-cpus:
+
 cpus
 ----------
 
@@ -541,6 +565,7 @@ cpus
 
 .. cpuset
 .. _compose-spec-cpuset:
+
 cpuset
 ----------
 
@@ -550,6 +575,7 @@ cpuset
 
 .. cap_add
 .. _compose-spec-cap_add:
+
 cap_add
 ----------
 
@@ -564,6 +590,7 @@ cap_add
 
 .. cap_drop
 .. _compose-spec-cap_drop:
+
 cap_drop
 ----------
 
@@ -580,6 +607,7 @@ cap_drop
 
 .. cgroup_parent
 .. _compose-spec-cgroup_parent:
+
 cgroup_parent
 --------------------
 
@@ -593,6 +621,7 @@ cgroup_parent
 
 .. command
 .. _compose-spec-command:
+
 command
 ----------
 
@@ -614,6 +643,7 @@ command
 
 .. configs
 .. _compose-spec-cofigs:
+
 configs
 ----------
 
@@ -631,6 +661,7 @@ configs を定義する構文は2つあります。この実装に従い続け�
 
 .. Short syntax
 .. _compose-spec-configs-short-syntax:
+
 短い構文
 ^^^^^^^^^^
 
@@ -657,6 +688,7 @@ configs を定義する構文は2つあります。この実装に従い続け�
 
 .. Long syntax
 .. _compose-spec-configs-short-syntax:
+
 長い構文
 ----------
 
@@ -701,6 +733,7 @@ configs を定義する構文は2つあります。この実装に従い続け�
 
 .. container_name
 .. _compose-spec-container_name:
+
 container_name
 --------------------
 
@@ -762,6 +795,7 @@ Windows コンテナーを使うサービスをサポートする Compose 実装
 
 .. Example gMSA configuration
 .. _compose-spec-example-gmsa-configuration
+
 gMSA 設定情報の例
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -783,6 +817,7 @@ gMSA 設定情報の例
 
 .. depends_on
 .. _compose-spec-depends_on:
+
 depends_on
 ----------
 
@@ -792,6 +827,7 @@ depends_on
 
 .. Short syntax
 .. _compose-spec-dpends_on-short-syntax:
+
 短い構文
 ^^^^^^^^^^
 
@@ -827,6 +863,7 @@ Compose 実装は、依存先のサービスが起動する前に、依存元の
 
 .. Long syntax
 .. _compose-spec-dpends_on-long-syntax:
+
 長い構文
 ^^^^^^^^^^
 
@@ -881,6 +918,7 @@ Compose 実装は、依存元のサービスが起動する前に、依存先の
 
 .. deploy
 .. _compose-spec-deploy:
+
 deploy
 ----------
 
@@ -890,6 +928,7 @@ deploy
 
 .. device_cgroup_rules
 .. _compose-spec-device_cgroup_rules:
+
 device_cgroup_rules
 --------------------
 
@@ -905,6 +944,7 @@ device_cgroup_rules
 
 .. devices
 .. _compose-spec-devices:
+
 devices
 ----------
 
@@ -920,6 +960,7 @@ devices
 
 .. dns
 .. _compose-spec-dns:
+
 dns
 ----------
 
@@ -939,6 +980,7 @@ dns
 
 .. dns_opt
 .. _compose-spec-dns_opt:
+
 dns_opt
 ----------
 
@@ -954,6 +996,7 @@ dns_opt
 
 .. dns_search
 .. _compose-spec-dns_search:
+
 dns_search
 ----------
 
@@ -973,6 +1016,7 @@ dns_search
 
 .. domainname
 .. _compose-spec-domainname:
+
 domainname
 ----------
 
@@ -982,6 +1026,7 @@ domainname
 
 .. entrypoint
 .. _compose-spec-entrypoint:
+
 entrypoint
 ----------
 
@@ -1009,6 +1054,7 @@ entrypoint はリストにもでき、書き方は :ref:`Dockerfile <cmd>` と�
 
 .. env_file
 .. _compose-spec-env_file:
+
 env_file
 ----------
 
@@ -1040,6 +1086,7 @@ env_file
 
 .. Env_file format
 .. _compose-spec-env_file-format:
+
 env_file 形式
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -1064,6 +1111,7 @@ env_file の各行は ``変数[=[値]]`` の形式である :ruby:`必要があ�
 
 .. environment
 .. _compose-spec-environment:
+
 environment
 --------------------
 
@@ -1101,6 +1149,7 @@ environment
 
 .. expose
 .. _compose-spec-expose:
+
 expose
 ----------
 
@@ -1116,6 +1165,7 @@ expose
 
 .. extends
 .. _compose-spec-extends:
+
 extends
 ----------
 
@@ -1141,6 +1191,7 @@ Compose 実装がサポートする場合は、以下の方法で ``extends`` �
 
 .. Restrictions
 .. _compose-spec-extends-restrictions:
+
 制限事項
 ^^^^^^^^^^
 
@@ -1160,6 +1211,7 @@ Compose 実装は、これ以外のケースでエラーを返す :ruby:`必要�
 
 .. Finding referenced service
 .. _compose-sepc-extends-finding-referenced-service:
+
 参照されているサービスを探す
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1190,6 +1242,7 @@ Compose 実装は、これ以外のケースでエラーを返す :ruby:`必要�
 
 .. Merging service definitions
 .. _compose-spec-merging-service-definitions:
+
 サービス定義の統合
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -1208,6 +1261,7 @@ Compose 実装は、これ以外のケースでエラーを返す :ruby:`必要�
 
 .. Mappings
 .. _compose-spec-mappings:
+
 :ruby:`マッピング <mappings>`
 ``````````````````````````````
 
@@ -1312,6 +1366,7 @@ services:
 
 .. Sequences
 .. _compose-spec-sequences:
+
 :ruby:`シーケンス <sequences>`
 ``````````````````````````````
 
@@ -1353,6 +1408,7 @@ services:
 
 .. Scalars
 .. _compose-spec-scalars:
+
 :ruby:`スカラー <scalars>`
 ``````````````````````````````
 
@@ -1362,6 +1418,7 @@ services:
 
 .. external_links
 .. _compose-spec-external_links:
+
 external_links
 --------------------
 
@@ -1378,6 +1435,7 @@ external_links
 
 .. extra_hosts
 .. _compose-spec-extra-hosts:
+
 extra_hosts
 --------------------
 
@@ -1402,6 +1460,7 @@ Compose 実装は、コンテナのネットワーク設定内に IP アドレ�
 
 .. group_add
 .. _compose-spec-group_add:
+
 group_add
 ----------
 
@@ -1427,6 +1486,7 @@ group_add
 
 .. healthcheck
 .. _compose-spec-healthcheck:
+
 healthcheck
 --------------------
 
@@ -1479,6 +1539,7 @@ healthcheck
 
 .. hostname
 .. _compose-spec-hostname:
+
 hostname
 ----------
 
@@ -1488,6 +1549,7 @@ hostname declares a custom host name to use for the service container. MUST be a
 
 .. image
 .. _compose-spec-image:
+
 image
 ---------
 
@@ -1514,6 +1576,7 @@ Compose ファイルで ``build`` セクションを宣言する場合、 ``imag
 
 .. init
 .. _compose-spec-init:
+
 init
 ----------
 
@@ -1534,6 +1597,7 @@ init
 
 .. ipc
 .. _compose-spec-ipc:
+
 ipc
 ----------
 
@@ -1553,6 +1617,7 @@ ipc
 
 .. isolation
 .. _compose-spec-isolation:
+
 isolation
 ----------
 
@@ -1562,6 +1627,7 @@ isolation
 
 .. labels
 .. _compose-spec-labels:
+
 labels
 ----------
 
@@ -1603,6 +1669,7 @@ Compose 実装は、作成するコンテナが、 :ruby:`基準となる <canon
 
 .. links
 .. _compose-spec-links:
+
 links
 ----------
 
@@ -1633,6 +1700,7 @@ links
 
 .. logging
 .. _compose-spec-logging:
+
 logging
 ----------
 
@@ -1653,6 +1721,7 @@ logging
 
 .. network_mode
 .. _compose-spec-network_mode:
+
 network_mode
 --------------------
 
@@ -1676,6 +1745,7 @@ network_mode
 
 .. networks
 .. _compose-spec-networks:
+
 networks
 ----------
 
@@ -1693,6 +1763,7 @@ networks
 
 .. aliases
 .. _compose-spec-aliases:
+
 aliases
 ^^^^^^^^^^
 
@@ -1762,6 +1833,7 @@ aliases
 
 .. ipv4_address, ipv6_address
 .. _compose-spec--ipv4_address-ipv6_address
+
 ipv4_address 、 ipv6_address
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1793,6 +1865,7 @@ ipv4_address 、 ipv6_address
 
 .. link_local_ips
 .. _compose-spec-link_local_ips:
+
 link_local_ips
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -1821,6 +1894,7 @@ link_local_ips
 
 .. priority
 .. _compose-spec-priority:
+
 priority
 ^^^^^^^^^^
 
@@ -1852,6 +1926,7 @@ priority
 
 .. mac_address
 .. _compose-spec-mac_address:
+
 mac_address
 --------------------
 
@@ -1861,6 +1936,7 @@ mac_address
 
 .. mem_limit
 .. _compose-spec-mem_limit
+
 mem_limit
 ----------
 
@@ -1870,6 +1946,7 @@ mem_limit
 
 .. mem_reservation
 .. _compose-spec-mem_reservation
+
 mem_reservation
 --------------------
 
@@ -1878,6 +1955,7 @@ mem_reservation
 
 .. mem_swappiness
 .. _compose-spec-mem_swappiness
+
 mem_swappiness
 --------------------
 
@@ -1897,6 +1975,7 @@ mem_swappiness
 
 .. memswap_limit
 .. _compose-spec-memswap_limit:
+
 memswap_limit
 --------------------
 
@@ -1918,6 +1997,7 @@ memswap_limit
 
 .. oom_kill_disable
 .. _compose-spec-oom_kill_disable:
+
 oom_kill_disable
 --------------------
 
@@ -1927,6 +2007,7 @@ oom_kill_disable
 
 .. oom_score_adj
 .. _compose-spec-oom_score_adj:
+
 oom_score_adj
 --------------------
 
@@ -1936,6 +2017,7 @@ oom_score_adj
 
 .. pid
 .. _compose-spec-pid:
+
 pid
 ----------
 
@@ -1945,6 +2027,7 @@ pid
 
 .. pids_limit
 .. _compose-spec-pids_limit:
+
 pids_limit
 ----------
 
@@ -1961,6 +2044,7 @@ pids_limit
 
 .. platform
 .. _compose-spec-platform:
+
 platform
 ----------
 
@@ -1976,6 +2060,7 @@ platform
 
 .. ports
 .. _compose-spec-ports:
+
 ports
 ----------
 
@@ -1985,6 +2070,7 @@ ports
 
 .. Short syntax
 .. _compose-spec-ports-short-syntax:
+
 短い形式
 ^^^^^^^^^^
 
@@ -2036,6 +2122,7 @@ ports
 
 .. Long syntax
 .. _compose-spec-ports-long-syntax:
+
 長い形式
 ^^^^^^^^^^
 
@@ -2072,6 +2159,7 @@ ports
 
 .. privileged
 .. _compose-spec-privileged:
+
 privileged
 ----------
 
@@ -2081,6 +2169,7 @@ privileged
 
 .. profiles
 .. _compose-spec-profiles:
+
 profiles
 ----------
 
@@ -2094,6 +2183,7 @@ profiles
 
 .. pull_policy
 .. _compose-spec-pull_policy:
+
 pull_policy
 --------------------
 
@@ -2117,6 +2207,7 @@ pull_policy
 
 .. read_only
 .. _compose-spec-read_only:
+
 read_only
 ----------
 
@@ -2125,6 +2216,7 @@ read_only
 
 .. restart
 .. _compose-sepc-restart:
+
 restart
 ----------
 
@@ -2151,6 +2243,7 @@ restart
 
 .. runtime
 .. _compose-spec-runtime:
+
 runtime
 ----------
 
@@ -2171,6 +2264,7 @@ runtime
 
 .. scale
 .. _compose-spec-scale:
+
 scale
 ----------
 
@@ -2183,6 +2277,7 @@ scale
 
 .. secrets
 .. _compose-spec-secrets:
+
 secrets
 ----------
 
@@ -2196,6 +2291,7 @@ secrets
 
 .. Short syntax
 .. _compose-spec-secrets-short-syntax:
+
 短い形式
 ^^^^^^^^^^
 
@@ -2220,6 +2316,7 @@ secrets
 
 .. Long syntax
 .. _compose-spec-secret-long-syntax:
+
 長い形式
 ^^^^^^^^^^
 
@@ -2262,6 +2359,7 @@ secrets
 
 .. security_opt
 .. _compose-spec-security_opt:
+
 security_opt
 --------------------
 
@@ -2277,6 +2375,7 @@ security_opt
 
 .. shm_size
 .. _compose-spec-shm_size
+
 shm_size
 ----------
 
@@ -2286,6 +2385,7 @@ shm_size
 
 .. stdin_open
 .. _comopse-spec-stdin_open:
+
 stdin_open
 ----------
 
@@ -2295,6 +2395,7 @@ stdin_open
 
 .. stop_grace_period
 .. _compose-spec-stop_grace_period:
+
 stop_grace_period
 --------------------
 
@@ -2313,6 +2414,7 @@ stop_grace_period
 
 .. stop_signal
 .. _compose-spec-stop_signal:
+
 stop_signal
 --------------------
 
@@ -2326,6 +2428,7 @@ stop_signal
 
 .. storage_opt
 .. _compose-spec-storage_opt:
+
 storage_opt
 --------------------
 
@@ -2340,6 +2443,7 @@ storage_opt
 
 .. sysctls
 .. _compose-spec-sysctls:
+
 sysctls
 ----------
 
@@ -2366,6 +2470,7 @@ sysctls が使えるのは kernel 内の :ruby:`名前空間 <namespace>` のみ
 
 .. tmpfs
 .. _compose-spec-tmpfs:
+
 tmpfs
 ----------
 
@@ -2385,6 +2490,7 @@ tmpfs
 
 .. tty
 .. _compose-spec-tty:
+
 tty
 ----------
 
@@ -2394,6 +2500,7 @@ tty
 
 .. ulimits
 .. _compose-spec-ulimits:
+
 ulimits
 ----------
 
@@ -2411,6 +2518,7 @@ ulimits
 
 .. user
 .. _compose-spec-user:
+
 user
 ----------
 
@@ -2420,6 +2528,7 @@ user
 
 .. userns_mode
 .. _compose-spec-userns_mode:
+
 userns_mode
 --------------------
 
@@ -2433,6 +2542,7 @@ userns_mode
 
 .. volumes
 .. _compose-spec-volumes:
+
 volumes
 ----------
 
@@ -2472,6 +2582,7 @@ volumes
 
 .. Short syntax
 .. _compose-spec-volumes-shorts-syntax:
+
 短い形式
 ^^^^^^^^^^
 
@@ -2510,6 +2621,7 @@ volumes
 
 .. Long syntax
 .. _compose-spec-volumes-long-syntax:
+
 長い形式
 ^^^^^^^^^^
 
@@ -2553,6 +2665,7 @@ volumes
 
 .. volumes_from
 .. _compose-sepc-volumes-from:
+
 volumes_from
 --------------------
 
@@ -2574,6 +2687,7 @@ volumes_from
 
 .. working_dir
 .. _compose-spec-working-dir:
+
 working_dir
 --------------------
 
@@ -2583,6 +2697,7 @@ working_dir
 
 .. Networks top-level element
 .. _networks-top-level-element:
+
 ``networks`` トップレベル :ruby:`要素 <element>`
 ============================================================
 
@@ -2613,6 +2728,7 @@ networks （ネットワーク）はサービスが相互に通信できるよ�
 
 .. driver
 .. _compose-spec-networks-driver:
+
 driver
 ----------
 
@@ -2636,6 +2752,7 @@ driver
 
 .. host or none
 .. _compose-spec-networks-host-none:
+
 ``host`` や ``none``
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -2670,6 +2787,7 @@ driver
 
 .. driver_opts
 .. _compose-sepc-networks-driver_opts
+
 driver_opts
 --------------------
 
@@ -2685,6 +2803,7 @@ driver_opts
 
 .. attachable
 .. _compose-spec-networks-attachable:
+
 attachable
 ----------
 
@@ -2701,6 +2820,7 @@ attachable
 
 .. enable_ipv6
 .. _compose-spec-networks-enable_ipv6:
+
 enable_ipv6
 --------------------
 
@@ -2710,6 +2830,7 @@ enable_ipv6
 
 .. ipam
 .. _compose-spec-networks-ipam:
+
 ipam
 ----------
 
@@ -2758,6 +2879,7 @@ ipam
 
 .. internal
 .. _compose-spec-netowrks-internal:
+
 internal
 ----------
 
@@ -2767,6 +2889,7 @@ internal
 
 .. labels
 .. _compose-spec-networks-labels:
+
 labels
 ----------
 
@@ -2798,6 +2921,7 @@ Compose 実装はラベル ``com.docker.compose.project`` と ``com.docker.compo
 
 .. external
 .. _compose-spec-networks-external:
+
 external
 ----------
 
@@ -2828,6 +2952,7 @@ external
 
 .. name
 .. _compose-spec-networks-name:
+
 name
 ----------
 
@@ -2854,6 +2979,7 @@ name
 
 .. Volumes top-level element
 .. _volumes-top-level-element:
+
 ``volumes`` トップレベル :ruby:`要素 <element>`
 ==================================================
 
@@ -2887,6 +3013,7 @@ name
 
 .. driver
 .. _compose-spec-volumes-driver:
+
 driver
 ----------
 
@@ -2900,6 +3027,7 @@ driver
 
 .. driver_opts
 .. _compose-spec-volumes-driver_opts
+
 driver_opts
 --------------------
 
@@ -2918,6 +3046,7 @@ driver_opts
 
 .. external
 .. _compose-spec-volumes-external
+
 external
 ----------
 
@@ -2943,6 +3072,7 @@ external
 
 .. labels
 .. _compose-spec-volumes-labels:
+
 labels
 ----------
 
@@ -2974,6 +3104,7 @@ Compose 実装はラベル ``com.docker.compose.project`` と ``com.docker.compo
 
 .. name
 .. _compose-spec-volumes-name:
+
 name
 ----------
 
@@ -3010,7 +3141,8 @@ name
          name: ${DATABASE_VOLUME}
 
 .. Configs top-level element
-.. _configs-top-level-element
+.. _configs-top-level-element:
+
 ``configs`` ドップレベル :ruby:`要素 <element>` 
 ==================================================
 
@@ -3083,6 +3215,7 @@ Compose ファイルでは、アプリケーション内の関連するサービ
 
 .. Secrets top-level element
 .. _secrets-top-level-element:
+
 ``secrets`` トップレベル :ruby:`要素 <element>`
 ==================================================
 
@@ -3139,6 +3272,7 @@ Compose ファイルでは、アプリケーション内の関連するサービ
 
 .. Fragments
 .. _compose-spec-fragments:
+
 :ruby:`フラグメント <fragment>`
 ========================================
 
@@ -3179,6 +3313,7 @@ Compose ファイルでは、アプリケーション内の関連するサービ
 
 .. Extension
 .. _compose-spec-extension:
+
 :ruby:`拡張 <extension>`
 ==============================
 
@@ -3218,6 +3353,7 @@ Compose ファイルでは、アプリケーション内の関連するサービ
 
 .. Informative Historical Notes
 .. _compose-spec-informative-historical-notes:
+
 参考となる履歴情報
 --------------------
 
@@ -3240,6 +3376,7 @@ Compose ファイルでは、アプリケーション内の関連するサービ
 
 .. Using extensions as fragments
 .. _compose-spec-using-extensions-as-fragments:
+
 フラグメントとして拡張を使う
 ------------------------------
 
@@ -3265,6 +3402,7 @@ Compose ファイルでは、アプリケーション内の関連するサービ
 
 .. specifying byte values
 .. _compose-spec-specifying-byte-values:
+
 バイト値を指定
 --------------------
 
@@ -3282,6 +3420,7 @@ Compose ファイルでは、アプリケーション内の関連するサービ
 
 .. specifying durations
 .. _compose-spec-specifying-durations:
+
 期間を指定
 --------------------
 
@@ -3298,6 +3437,7 @@ Compose ファイルでは、アプリケーション内の関連するサービ
 
 .. Interpolation
 .. _compose-spec-interpolation:
+
 変数展開（補完）
 ====================
 

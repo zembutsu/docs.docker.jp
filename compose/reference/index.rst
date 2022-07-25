@@ -21,6 +21,7 @@ docker-compose CLI 概要
 
 .. Command options overview and help:
 .. _docker-compose-command options overview and help:
+
 コマンドオプションの概要とヘルプ
 ========================================
 
@@ -98,6 +99,7 @@ Docker コンテナで複数のサービスを構築・管理するには、 Doc
 
 .. Use -f to specify name and path of one or more Compose files
 .. _use--f-to-specify-name-and-path-of-one-or-more-compose-files:
+
 ``-f`` を使い、Compose ファイルの名前とパスを指定
 ==================================================
 
@@ -107,6 +109,7 @@ Compose 設定ファイルの場所を指定するには、 ``-f`` フラグを�
 
 .. Specifying multiple Compose files
 .. _specifying-multiple-compose-files:
+
 複数の Compose ファイル指定
 ------------------------------
 .. You can supply multiple -f configuration files. When you supply multiple files, Compose combines them into a single configuration. Compose builds the configuration in the order you supply the files. Subsequent files override and add to their predecessors.
@@ -163,6 +166,7 @@ Compose 設定ファイルの場所を指定するには、 ``-f`` フラグを�
 
 .. Specifying a path to a single Compose file
 .. _specifying-a-path-to-a-single-compose-file:
+
 1つの Compose ファイルのパスを指定
 ----------------------------------------
 
@@ -209,6 +213,7 @@ Compose 設定ファイルの場所を指定するには、 ``-f`` フラグを�
 
 .. Use --profile to specify one or more active profiles
 .. _use---profile-to-specify-one-or-more-active-profiles:
+
 ``--profile`` を使い1つまたは複数のアクティブなプロファイルを指定
 ======================================================================
 
@@ -222,6 +227,7 @@ Compose 設定ファイルの場所を指定するには、 ``-f`` フラグを�
 
 ..  Set up environment variables
 .. _compose_set-up-environment-variables:
+
 環境変数のセットアップ
 ==============================
 

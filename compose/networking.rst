@@ -11,6 +11,7 @@
 
 .. Networking in Compose
 .. _networking-in-compose:
+
 ==================================================
 Compose の :ruby:`ネットワーク機能 <networking>`
 ==================================================
@@ -94,6 +95,7 @@ Compose の :ruby:`ネットワーク機能 <networking>`
 
 .. Update containers
 .. _compose-upate-containers:
+
 コンテナの更新
 ====================
 
@@ -107,6 +109,7 @@ Compose の :ruby:`ネットワーク機能 <networking>`
 
 .. Links
 .. _compose-links:
+
 links
 ==========
 
@@ -132,6 +135,7 @@ links
 
 .. Multi-host networking
 .. _compose-multi-host-networking:
+
 :ruby:`複数ホスト間 <multi-host>` でのネットワーク機能
 ============================================================
 
@@ -145,6 +149,7 @@ links
 
 .. Specify custom networks
 .. _compose-speficy-custom-netowrks:
+
 任意のネットワークを指定
 ==============================
 
@@ -220,6 +225,7 @@ networks では、接続するネットワークごとに :ref:`ipv4_address か
 
 .. Configure the default network
 .. _compose-configure-the-default-network:
+
 デフォルト ネットワークの設定
 ==============================
 
@@ -245,6 +251,7 @@ networks では、接続するネットワークごとに :ref:`ipv4_address か
 
 .. Use a pre-existing network
 .. _comopse-use-a-pre-existing-network:
+
 既存のネットワークを使う
 ==============================
 

@@ -25,6 +25,7 @@ Compose 仕様とは、複数のコンテナアプリケーションを定義す
 
 .. Definitions
 .. _compose-spec-build-definitions:
+
 定義
 ==========
 
@@ -46,6 +47,7 @@ Compose Specification （仕様）は、サービス上で ``build`` （構築�
 
 .. Consistency with Image
 .. _compose-spec-build-consistency-with-image:
+
 イメージの一貫性
 ====================
 
@@ -55,6 +57,7 @@ Compose Specification （仕様）は、サービス上で ``build`` （構築�
 
 .. Publishing built images
 .. _compose-spec-build-publishing-build-images:
+
 構築イメージの公開
 ====================
 
@@ -68,6 +71,7 @@ YAML ファイル内でサービスに対する ``image`` 属性が明示的に�
 
 .. Illustrative sample
 .. _compose-spec-build-illustrative-sample:
+
 説明例
 ==========
 
@@ -109,6 +113,7 @@ YAML ファイル内でサービスに対する ``image`` 属性が明示的に�
 
 .. Build definition
 .. _compose-spec-build-build-definition:
+
 build 定義
 ==========
 
@@ -132,6 +137,7 @@ build 定義
 
 .. context (REQUIRED)
 .. _compose-spec-build-context:
+
 context（必須）
 --------------------
 
@@ -150,6 +156,7 @@ context（必須）
 
 .. dockerfile
 .. _compose-spec-build-dockerfile:
+
 dockerfile
 ----------
 
@@ -165,6 +172,7 @@ dockerfile
 
 .. args
 .. _compose-spec-build-args:
+
 args
 ----------
 
@@ -210,6 +218,7 @@ build の引数（args）の指定時に、値を省略できます。その場�
 
 .. ssh
 .. _compose-spec-build-ssh:
+
 ssh
 ----------
 
@@ -267,6 +276,7 @@ ssh
 
 .. cache_from
 .. _compose-spec-build-cache_from:
+
 cache_from
 ----------
 
@@ -301,6 +311,7 @@ Compose ビルダの実装は任意のタイプをサポートしても :ruby:`�
 
 .. cache_to
 .. _compose-spec-build-cache_to:
+
 cache_to
 ----------
 
@@ -326,6 +337,7 @@ cache_to
 
 .. extra_hosts
 .. _compose-spec-build-extra_hosts:
+
 extra_hosts
 --------------------
 
@@ -350,6 +362,7 @@ Compose 実装は、コンテナのネットワーク設定内に、 IP アド�
 
 .. isolation
 .. _compose-spec-build-isolation:
+
 isolation
 ----------
 
@@ -359,6 +372,7 @@ isolation
 
 .. labels
 .. _compose-spec-build-labels:
+
 labels
 ----------
 
@@ -390,6 +404,7 @@ labels
 
 .. shm_size
 .. _compose-spec-build-shm_size:
+
 shm_size
 ----------
 
@@ -411,6 +426,7 @@ shm_size
 
 .. target
 .. _compose-spec-build-target:
+
 target
 ----------
 
@@ -426,6 +442,7 @@ target
 
 .. Implementations
 .. _compose-spec-build-implementations:
+
 実装
 ==========
 

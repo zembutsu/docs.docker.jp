@@ -28,6 +28,7 @@ Compose 内の環境変数
 
 .. Substitute environment variables in Compose files
 .. _substitute-environment-variables-in-compose-files:
+
 Compose ファイルで環境変数を展開
 ========================================
 
@@ -119,6 +120,7 @@ Compose ファイルで環境変数を展開
 
 .. The “.env” file
 .. _compose-the-env-file:
+
 ``.env`` ファイル
 --------------------
 
@@ -182,6 +184,7 @@ Compose ファイルで環境変数を展開
 
 .. Using the “--env-file” option
 .. _using-the-env-file-option:
+
 ``--env-file`` オプションを使う
 ----------------------------------------
 
@@ -249,6 +252,7 @@ Compose ファイルで環境変数を展開
 
 .. Set environment variables in containers
 .. _set-environment-variables-in-containers:
+
 コンテナ内での環境変数を指定
 ==============================
 
@@ -264,6 +268,7 @@ Compose ファイルで環境変数を展開
 
 .. Pass environment variables to containers
 .. _pass-environment-variables-to-containers:
+
 環境変数をコンテナ内に通す
 ==============================
 
@@ -296,6 +301,7 @@ Compose ファイルで環境変数を展開
 
 .. Set environment variables with ‘docker compose run’
 .. _Set-environment-variables-with-docker-compose-run:
+
 ``docker compose run`` の環境変数を設定
 ========================================
 
@@ -381,6 +387,7 @@ Compose ファイルで環境変数を展開
 
 .. Configure Compose using environment variables
 .. _configure-compose-using-environment-variables:
+
 Compose が使う環境変数の設定
 ==============================
 

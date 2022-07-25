@@ -9,6 +9,7 @@
 
 .. Sample apps with Compose
 .. _sample-apps-with-compose:
+
 =======================================
 Compose のサンプル アプリ
 =======================================
@@ -24,6 +25,7 @@ Compose のサンプル アプリ
 
 .. Key concepts these samples cover
 .. _compose-key-concepts-these-samples-cover:
+
 各サンプルが扱う主要な概念
 ==============================
 
@@ -43,6 +45,7 @@ Compose のサンプル アプリ
 
 .. Samples tailored to demo Compose
 .. _samples-tailored-to-demo-compose:
+
 Compose を試すための整った例
 ========================================
 
@@ -61,6 +64,7 @@ Compose を試すための整った例
 
 .. Awesome Compose samples
 .. _awesome-compose-samples:
+
 Awesome Compose 例
 ==============================
 

@@ -92,6 +92,7 @@ Compose には、アプリケーションのライフサイクルを管理する
 
 .. Compose V2 and the new docker compose command
 .. _compose-v2-and-the-new-docker-compose-command:
+
 Compose V2 と新しい ``docker compose`` コマンド
 ==================================================
 
@@ -110,6 +111,7 @@ Compose V2 と新しい ``docker compose`` コマンド
 
 .. Context of Docker Compose evolution
 .. _context-of-docker-compose-evolution:
+
 Docker Compose 発展の背景
 ------------------------------
 

@@ -29,6 +29,7 @@ Compose 仕様のデプロイに従うと、ユーザはサービス上に追加
 
 .. Definitions
 .. _compose-spec-deploy-definitions:
+
 定義
 ==========
 
@@ -38,6 +39,7 @@ Compose Specification （仕様）は、サービス上で ``deploy`` （展開/
 
 .. endpoint_mode
 .. _compose-spec-endoint_mode:
+
 endpoint_mode
 --------------------
 
@@ -66,6 +68,7 @@ endpoint_mode
 
 .. labels
 .. _compose-spec-deploy-lables:
+
 labels
 ----------
 
@@ -84,6 +87,7 @@ labels
 
 .. mode
 .. _compose-spec-deploy-mode:
+
 mode
 ----------
 
@@ -101,6 +105,7 @@ mode
 
 .. placement
 .. _compose-spec-deploy-placement:
+
 placement
 ----------
 
@@ -110,6 +115,7 @@ placement
 
 .. constraints
 .. _compose-sepc-deploy-constraints:
+
 constraints
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -134,6 +140,7 @@ constraints
 
 .. preference
 .. _compose-spec-deploy-preferences:
+
 preferences
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -157,6 +164,7 @@ preferences
 
 .. replicas
 .. _compose-spec-deploy-replicas:
+
 replicas
 ----------
 
@@ -175,6 +183,7 @@ replicas
 
 .. resources
 .. _compose-spec-deploy-resources:
+
 resources
 ----------
 
@@ -206,6 +215,7 @@ resources
 
 .. cpus
 .. _compose-spec-deploy-:
+
 cpus
 ^^^^^^^^^^
 
@@ -215,6 +225,7 @@ cpus
 
 .. memory
 .. _compose-spec-deploy-memory:
+
 memory
 ^^^^^^^^^^
 
@@ -224,6 +235,7 @@ memory
 
 .. pids
 .. _compose-spec-deploy-pids:
+
 pids
 ^^^^^^^^^^
 
@@ -233,6 +245,7 @@ pids
 
 .. devices
 .. _compose-spec-deploy-devices:
+
 devices
 ^^^^^^^^^^
 
@@ -246,6 +259,7 @@ devices
 
 .. capabilities
 .. _compose-spec-deploy-capabilities:
+
 capabilities
 ````````````````````
 
@@ -273,6 +287,7 @@ capabilities
 
 .. driver
 .. _compose-spec-deploy-driver:
+
 driver
 ``````````
 
@@ -291,6 +306,7 @@ driver
 
 .. count
 .. _compose-spec-deploy-count:
+
 count
 ``````````
 
@@ -313,6 +329,7 @@ count
 
 .. device_ids
 .. _compose-spec-deploy-device_ids:
+
 device_ids
 ``````````
 
@@ -336,6 +353,7 @@ device_ids
 
 .. options
 .. _compose-spec-deploy-options:
+
 options
 ``````````
 
@@ -356,6 +374,7 @@ options
 
 .. restart_policy
 .. _compose-spec-deploy-restart_policy:
+
 restart_policy
 --------------------
 
@@ -384,6 +403,7 @@ restart_policy
 
 .. rollback_config
 .. _compose-spec-rollback_config:
+
 rollback_config
 --------------------
 
@@ -407,6 +427,7 @@ rollback_config
 
 .. update_config
 .. _compose-spec-update_config:
+
 update_config
 --------------------
 

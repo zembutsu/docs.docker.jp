@@ -78,6 +78,7 @@ Compose で :ruby:`プロフィール <profile>` を使う
 
 .. Enabling profiles
 .. _enabling-profiles:
+
 プロフィールの有効化
 ====================
 
@@ -105,6 +106,7 @@ Compose で :ruby:`プロフィール <profile>` を使う
 
 .. Auto-enabling profiles and dependency resolution
 .. _auto-enabling-profiles-and-dependency-resolution:
+
 プロフィールの自動有効化と依存関係の解決
 ========================================
 

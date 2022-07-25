@@ -54,6 +54,7 @@ Docker Desktop のアンインストールをご覧ください：
 
 .. Uninstalling the Docker Compose CLI plugin
 .. _uninstalling-the-docker-compose-cli-plugin:
+
 Docker Compose CLI プラグインのアンインストール
 ==================================================
 
@@ -70,6 +71,7 @@ Compose CLI プラグインを削除得するには、次のようにします�
 
 .. Manually installed
 .. _compose-uninstall-manually-installed:
+
 手動インストールの場合
 ------------------------------
 

@@ -30,6 +30,7 @@ Compose を始めましょう
 
 .. Prerequisites
 .. _compose-gettingstarted-prerequisites:
+
 必要条件
 ==========
 
@@ -41,6 +42,7 @@ Compose を始めましょう
 
 .. Step 1: Setup
 .. _compose-gettingstarted-step1:
+
 ステップ１：セットアップ
 ==============================
 
@@ -111,6 +113,7 @@ Compose を始めましょう
 
 .. Step 2: Create a Dockerfile
 .. _compose-gettingstarted-step2:
+
 ステップ２：Dockerfile の作成
 =============================
 
@@ -162,6 +165,7 @@ Dockerfile の書き方についての詳細は、 :doc:`Docker ユーザガイ�
 
 .. Step 3: Define services in a Compose file
 .. _compose-gettingstarted-step3:
+
 ステップ３：Compose ファイル内でサービスを定義
 ==============================================
 
@@ -202,6 +206,7 @@ redis サービス
 
 .. Step 4: Build and run your app with Compose
 .. _compose-gettingstarted-step4:
+
 ステップ４：Compose によるアプリケーションの構築と実行
 ======================================================
 
@@ -298,6 +303,7 @@ redis サービス
 
 .. Step 5: Edit the Compose file to add a bind mount
 .. _compose-gettingstarted-step5:
+
 ステップ５：Compose ファイルに :ruby:`バインド マウント <bind mount>` を追加
 ================================================================================
 
@@ -326,6 +332,7 @@ redis サービス
 
 .. Step 6: Re-build and run the app with Compose
 .. _compose-gettingstarted-step6:
+
 ステップ６：Compose でアプリの再構築と実行
 ==============================================
 
@@ -362,6 +369,7 @@ redis サービス
 
 .. Step 7: Update the application
 .. _compose-gettingstarted-step7:
+
 ステップ７：アプリケーションの更新
 ==================================
 
@@ -388,6 +396,7 @@ redis サービス
 
 .. Step 8: Experiment with some other commands
 .. _compose-gettingstarted-step8:
+
 ステップ８：その他のコマンドを試す
 ==================================
 

@@ -32,6 +32,7 @@ Docker Compose CLI プラグインのインストール
 
 .. Installation methods
 .. _compose-installation-methods:
+
 インストール方法
 ====================
 
@@ -53,6 +54,7 @@ Docker Compose CLI プラグインのインストール
 
 .. Install using the repository
 .. _compose-install-using-the-repository:
+
 リポジトリを使ってインストール
 ==============================
 
@@ -128,6 +130,7 @@ Docker Compose CLI プラグインのインストール
 
 .. Install the plugin manually
 .. _compose-install-the-plugin-manually:
+
 プラグインを手動でインストール
 ------------------------------
 
@@ -229,6 +232,7 @@ Docker Compose CLI プラグインのインストール
 
 .. Install Compose on Windows Server
 .. _compose-install-compose-on-windows-server:
+
 Windows Server 上に Compose をインストール
 ==================================================
 

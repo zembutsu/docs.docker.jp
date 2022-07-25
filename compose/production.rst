@@ -11,6 +11,7 @@
 
 .. Using Compose in Production
 .. _using-compose-in-production:
+
 ==================================================
 Compose を :ruby:`本番環境 <production>` で使う
 ==================================================
@@ -74,6 +75,7 @@ Compose ファイルを本番環境向けに書き換え
 
 .. Deploying changes
 .. _compose-deploying-changes:
+
 変更のデプロイ
 --------------------
 
@@ -92,6 +94,7 @@ Compose ファイルを本番環境向けに書き換え
 
 .. Running Compose on a single server
 .. _compose-running-compose-on-a-single-server
+
 単一サーバ上でのコンテナ実行
 ------------------------------
 
