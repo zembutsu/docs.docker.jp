@@ -195,7 +195,7 @@ Advanced 設定とは、
 
 .. CPUs: By default, Docker Desktop is set to use half the number of processors available on the host machine. To increase processing power, set this to a higher number; to decrease, lower the number.
 
-- **CPUs** （CPU）: デフォルトでは、 ホスト・マシン上で利用可能なプロセッサ数の半分を、Docker Desktop が使います。総理能力を向上するには、この値を高くします。減らすには、数値を低くします。
+- **CPUs** （CPU）: デフォルトでは、 ホスト・マシン上で利用可能なプロセッサ数の半分を、Docker Desktop が使います。処理能力を向上するには、この値を高くします。減らすには、数値を低くします。
 
 .. Memory: By default, Docker Desktop is set to use 2 GB runtime memory, allocated from the total available memory on your Mac. To increase the RAM, set this to a higher number. To decrease it, lower the number.
 
