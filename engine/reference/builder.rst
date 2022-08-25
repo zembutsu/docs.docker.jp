@@ -1397,7 +1397,7 @@ COPY
 
 .. COPY has two forms:
 
-ADD には 2 つの形式があります。
+COPY には 2 つの形式があります。
 
 ::
 
