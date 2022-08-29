@@ -130,7 +130,7 @@
 
    .. code-block:: bash
 
-    $docker image history --no-trunc getting-started
+    $ docker image history --no-trunc getting-started
 
 .. Layer caching
 .. _layer-caching:

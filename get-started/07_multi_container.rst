@@ -334,7 +334,7 @@ todo アプリでは、 MySQL へ接続する設定を指定するため、い�
 
 .. Connect to the mysql database and prove that the items are being written to the database. Remember, the password is secret.
 
-5. mysql データベースに接続し、アイテムがデータベースに書き込まれているのを確認島須。思い出してください、パスワードは **secret** です。
+5. mysql データベースに接続し、アイテムがデータベースに書き込まれているのを確認します。思い出してください、パスワードは **secret** です。
 
    .. code-block:: bash
       $ docker exec -it <mysql-container-id> mysql -p todos
