@@ -64,7 +64,7 @@ Docker デーモンを Prometheus ターゲットとして設定するには、 
 
 .. If the file is not empty, add those two keys, making sure that the resulting file is valid JSON. Be careful that every line ends with a comma (,) except for the last line.
 
-ファイルが空でなければ、これら2つのキーを追加し、結果的に有効な JSON ファイルになることを確認島須。最後の行を除き、各行の最後はカンマ（ ``,`` ）で区切りますので、注意してください。
+ファイルが空でなければ、これら2つのキーを追加し、結果的に有効な JSON ファイルになることを確認します。最後の行を除き、各行の最後はカンマ（ ``,`` ）で区切りますので、注意してください。
 
 .. Save the file, or in the case of Docker Desktop for Mac or Docker Desktop for Windows, save the configuration. Restart Docker.
 
