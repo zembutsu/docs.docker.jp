@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/network/macvlan/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/network/macvlan.md
-   doc version: 19.03
-.. check date: 2020/07/17
-.. Commits on Apr 23, 2020 dc1f9f7b4d2f656f5de23d3b7ac69571b270ddca
+   doc version: 20.10
+.. check date: 2022/04/29
+.. Commits on Aug 7, 2021 4068208b74003075b5db4e9675262652e72b0e32
 .. ---------------------------------------------------------------------------
 
 .. Use macvlan  networks
@@ -116,7 +116,7 @@ macvlan の代わりに ipvlan を使う
        --subnet=192.168.212.0/24 \
        --gateway=192.168.210.254 \
        --gateway=192.168.212.254 \
-        -o ipvlan_mode=l2 ipvlan210
+        -o ipvlan_mode=l2 -o parent=eth0  ipvlan210
 
 .. Use IPv6
 

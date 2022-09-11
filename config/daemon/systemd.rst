@@ -1,15 +1,17 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/config/daemon/systemd/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/config/daemon/systemd.md
-   doc version: 19.03
-.. check date: 2020/06/23
-.. Commits on Jun 10, 2020 7ce086bfcacd638b25e5fe5a130f6a10893044fa
+   doc version: 20.10
+.. check date: 2022/04/27
+.. Commits on Dec 20, 2021 df6a3281b958a4224889342d82c026000c43fc8d
 .. ---------------------------------------------------------------------------
 
-.. title: Control and configure Docker with systemd
+..  Control Docker with systemd
+.. _Control Docker with systemd:
+
 
 =======================================
-systemd における Docker の設定と管理
+systemd で Docker の制御
 =======================================
 
 .. sidebar:: 目次
@@ -36,29 +38,13 @@ Docker デーモンの起動
 手動で起動する場合
 ------------------------------
 
-.. Once Docker is installed, you need to start the Docker daemon. Most Linux distributions use systemctl to start services. If you do not have systemctl, use the service 
+.. Once Docker is installed, you need to start the Docker daemon. Most Linux distributions use systemctl to start services.
 
-Docker をインストールしたら Docker デーモンの起動が必要になる場合もあるでしょう。たいていの Linux ディストリビューションでは ``systemctl`` を使ってサービスを起動します。``systemctl`` がない場合は ``service`` コマンドを使ってください。
+Docker をインストールしたら Docker デーモンの起動が必要になる場合もあるでしょう。たいていの Linux ディストリビューションでは ``systemctl`` を使ってサービスを起動します。
 
-.. - **`systemctl`**:
-- ``systemctl`` の場合
+.. code-block:: bash
 
-  .. ```bash
-     $ sudo systemctl start docker
-     ```
-  .. code-block:: bash
-
-     $ sudo systemctl start docker
-
-.. - **`service`**:
-- ``service`` の場合
-
-  .. ```bash
-     $ sudo service docker start
-     ```
-  .. code-block:: bash
-
-     $ sudo service docker start
+   $ sudo systemctl start docker
 
 .. Start automatically at system boot
 
@@ -239,8 +225,8 @@ HTTPS プロキシサーバを利用している場合には、そこに環境�
 
 .. code-block:: bash
 
-   sudo systemctl daemon-reload
-   sudo systemctl restart docker
+   $ sudo systemctl daemon-reload
+   $ sudo systemctl restart docker
 
 .. Verify that the configuration has been loaded and matches the changes you made, for example:
 
@@ -248,7 +234,7 @@ HTTPS プロキシサーバを利用している場合には、そこに環境�
 
 .. code-block:: bash
 
-   sudo systemctl show --property=Environment docker
+   $ sudo systemctl show --property=Environment docker
        
    Environment=HTTP_PROXY=http://proxy.example.com:80 HTTPS_PROXY=https://proxy.example.com:443 NO_PROXY=localhost,127.0.0.1,docker-registry.example.com,.corp
 
@@ -261,7 +247,7 @@ rootless モード
 
    .. code-block:: bash
 
-       mkdir -p ~/.config/systemd/user/docker.service.d
+      $ mkdir -p ~/.config/systemd/user/docker.service.d
 
 .. Create a file named ~/.config/systemd/user/docker.service.d/http-proxy.conf that adds the HTTP_PROXY environment variable:
 
@@ -343,8 +329,8 @@ HTTPS プロキシサーバを利用している場合には、そこに環境�
 
 .. code-block:: bash
 
-   systemctl --user daemon-reload
-   systemctl --user restart docker
+   $ systemctl --user daemon-reload
+   $ systemctl --user restart docker
 
 .. Verify that the configuration has been loaded and matches the changes you made, for example:
 
@@ -352,7 +338,7 @@ HTTPS プロキシサーバを利用している場合には、そこに環境�
 
 .. code-block:: bash
 
-   systemctl --user show --property=Environment docker
+   $ systemctl --user show --property=Environment docker
        
    Environment=HTTP_PROXY=http://proxy.example.com:80 HTTPS_PROXY=https://proxy.example.com:443 NO_PROXY=localhost,127.0.0.1,docker-registry.example.com,.corp
 

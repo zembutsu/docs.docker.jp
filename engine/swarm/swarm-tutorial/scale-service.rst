@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/swarm/swarm-tutorial/scale-service/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/swarm/swarm-tutorial/scale-service.md
-   doc version: 19.03
-.. check date: 2020/07/09
-.. Commits on Apr 26, 2017 dbf16812acb9bd5551e423f5411659347a0debf0
+.. SOURCE: https://github.com/docker/docker.github.io/blob/master/engine/swarm/swarm-tutorial/scale-service.md
+   doc version: 20.10
+.. check date: 2022/04/29
+.. Commits on Aug 7, 2021 3b71231970606bb45fd6f37a8c99522583e7f5a8
 .. -----------------------------------------------------------------------------
 
 .. Scale the service in the swarm

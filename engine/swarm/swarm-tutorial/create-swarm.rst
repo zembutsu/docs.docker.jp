@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/swarm/swarm-tutorial/create-swarm.md
-   doc version: 19.03
-.. check date: 2020/07/07
-.. Commits on Apr 8, 2020 777c5d23dafd4b640016f24f92fe416f246ec848
+.. SOURCE: https://github.com/docker/docker.github.io/blob/master/engine/swarm/swarm-tutorial/create-swarm.md
+   doc version: 20.10
+.. check date: 2022/04/29
+.. Commits on Aug 7, 2021 3b71231970606bb45fd6f37a8c99522583e7f5a8
 .. -----------------------------------------------------------------------------
 
 .. Create a swarm

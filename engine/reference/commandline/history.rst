@@ -1,32 +1,81 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/history/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/history.md
-   doc version: 1.12
-      https://github.com/docker/docker/commits/master/docs/reference/commandline/history.md
-.. check date: 2016/06/16
-.. Commits on Dec 24, 2015 e6115a6c1c02768898b0a47e550e6c67b433c436
+.. SOURCE: 
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/engine/reference/commandline/history.md
+      https://github.com/docker/docker.github.io/blob/master/_data/engine-cli/docker_history.yaml
+.. check date: 2022/03/20
+.. Commits on Aug 22, 2021 304f64ccec26ef1810e90d385d5bae5fab3ce6f4
 .. -------------------------------------------------------------------
 
-.. history
+.. docker history
 
 =======================================
-history
+docker history
 =======================================
+
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
+.. _docker_history-description:
+
+説明
+==========
+
+.. Show the history of an image
+
+イメージの :ruby:`履歴 <history>` を表示します。
+
+.. _docker_history-usage:
+
+使い方
+==========
 
 .. code-block:: bash
 
-   使い方: docker history [オプション] イメージ
-   
-   イメージの履歴を表示
-   
-     -H, --human=true     サイズと日付を人が読みやすい形式で表示
-     --help               使い方の表示
-     --no-trunc=false     トランケート（truncate）を出力しない
-     -q, --quiet=false    整数値の ID のみ表示
+   $ docker history [OPTIONS] IMAGE
+
+.. For example uses of this command, refer to the examples section below.
+
+コマンドの使用例は、以下の :ref:`使用例のセクション <docker_history-examples>` をご覧ください。
+
+.. _docker_history-options:
+
+オプション
+==========
+
+.. list-table::
+   :header-rows: 1
+
+   * - 名前, 省略形
+     - デフォルト
+     - 説明
+   * - ``--format``
+     - 
+     - Go テンプレートを使い、イメージを整えて表示
+   * - ``--human`` , ``-H``
+     - ``true``
+     - 人間が読みやすい形式で容量と日付を表示
+   * - ``--no-trunc``
+     - 
+     - :ruby:`出力を省略 <truncate>` しない
+   * - ``--quiet`` , ``-q``
+     - 
+     - イメージ ID のみ表示
+
+
+.. Examples
+.. _docker_history-examples:
+
+使用例
+==========
 
 .. To see how the docker:latest image was built:
 
-``docker:latest`` イメージをどのように構築したかを確認します。
+``docker:latest`` イメージが、どのように構築されたか表示します。
 
 .. code-block:: bash
 
@@ -41,7 +90,7 @@ history
 
 .. To see how the docker:apache image was added to a container’s base image:
 
-``docker:scm`` イメージが何のコンテナ・ベース・イメージから作られたかを確認します。
+``docker:apache`` イメージが、コンテナのベース・イメージにどのように追加されたかを表示します。
 
 .. code-block:: bash
 
@@ -52,9 +101,59 @@ history
    c69cab00d6ef        5 months ago        /bin/sh -c #(nop) MAINTAINER Lokesh Mandvekar   0 B
    511136ea3c5a        19 months ago                                                       0 B                 Imported from -
 
+.. Format the output
+.. _docker_history-format-the-output:
+表示形式
+----------
+
+.. list-table::
+   :header-rows: 1
+
+   * - Placeholder, 説明
+     - 説明
+   * - ``.ID``
+     - イメージ ID
+   * - ``.CreatedSince``
+     - ``--human=true`` の場合、イメージ作成後の経過時間。そうでなければ、イメージが作成された時点のタイムスタンプ
+   * - ``.CreatedAt``
+     - イメージが作成されたタイムスタンプ
+   * - ``.CreatedBy``
+     - イメージ作成に使われたコマンド
+   * - ``.Size``
+     - イメージのディスク容量
+   * - ``.Comment``
+     - イメージに対するコメント
+
+.. When using the --format option, the history command will either output the data exactly as the template declares or, when using the table directive, will include column headers as well.
+
+ ``history`` コマンドに ``--format`` オプションを使用する場合、テンプレートで指定した通りにデータを出力するか、 ``table`` 命令を使うと同様に列ヘッダを含めて表示するかのどちらかです。
+
+.. The following example uses a template without headers and outputs the ID and CreatedSince entries separated by a colon (:) for the busybox image:
+
+以下の例はテンプレートを使いますが、ヘッダを表示せず、 ``ID`` と ``CreatedSince`` エントリをコロン（ ``:`` ）で区切り、 ``busybox`` イメージを表示します。
+
+.. code-block:: bash
+
+   $ docker history --format "{{.ID}}: {{.CreatedSince}}" busybox
+   f6e427c148a7: 4 weeks ago
+   <missing>: 4 weeks ago
+
+
+親コマンド
+==========
+
+.. list-table::
+   :header-rows: 1
+
+   * - コマンド
+     - 説明
+   * - :doc:`docker <docker>`
+     - Docker CLI の基本コマンド
+
+
 .. seealso:: 
 
-   history
+   docker history
       https://docs.docker.com/engine/reference/commandline/history/
 
 

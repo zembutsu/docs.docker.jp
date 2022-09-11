@@ -798,7 +798,7 @@ input[type="radio"][disabled],input[type="checkbox"][disabled]{cursor:not-allowe
 .wy-table-horizontal tbody>tr:last-child td{border-bottom-width:0}
 .wy-table-horizontal td,.wy-table-horizontal th{border-width:0 0 1px 0;border-bottom:1px solid #e1e4e5}
 .wy-table-horizontal tbody>tr:last-child td{border-bottom-width:0}
-.wy-table-responsive{margin-bottom:24px;max-width:100%;overflow:auto}
+.wy-table-responsive{margin-bottom:24px;max-width:100%;overflow:auto} 
 .wy-table-responsive table{margin-bottom:0 !important}
 .wy-table-responsive table td,.wy-table-responsive table th{white-space:nowrap}
 a{color:#2980B9;text-decoration:none;cursor:pointer}
@@ -1136,3 +1136,12 @@ span[id*='MathJax-Span']{color:#404040}
 .localcontent{background-color:#F4F8FB;padding:10px;width:200pt;float:right;margin-left:1em;margin-bottom:2em; }
 
 /*# sourceMappingURL=theme.css.map */
+
+.rst-content a.reference.external:after {
+  content: "\f08e";
+  font-family: "FontAwesome";
+  font-size: 80%;
+  padding-left: 3px;
+  vertical-align: super;
+}
+

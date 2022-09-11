@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/get-started/kube-deploy/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/get-started/kube-deploy.md
-   doc version: 19.03
-.. check date: 2020/06/21
-.. Commits on Apr 23, 2020 https://github.com/docker/docker.github.io/blob/master/get-started/kube-deploy.md
+   doc version: 20.10
+.. check date: 2022/04/26
+.. Commits on Nov 22, 2021 45b14d6bacd70de0a89876b380035ce8a70a2bd8
 .. -----------------------------------------------------------------------------
 
 .. Deploy to Kubernetes
@@ -32,7 +32,7 @@ Kubernetes にデプロイ
         Windows: Click the Docker icon in the system tray and navigate to Settings and make sure there’s a green light beside ‘Kubernetes’.
 
 * :doc:`概要説明とセットアップ <index>` に記述された Docker Desktop のダウンロードとインストール
-* :doc:`Part 2 <part2>` でアプリケーションのコンテナ化を一通り行う
+* :doc:`Part 2 <02_our_app>` でアプリケーションのコンテナ化を一通り行う
 * Docker Desktop 上で Kubernetes 機能が有効化されていることを確認
 
    * **Mac** ：メニューバー内の Docker アイコンをクリックし、 **Preferences**  に移動し、「Kubernetes」の横に緑のライトが点等していること
@@ -90,7 +90,7 @@ Kubernetes 内の全てのコンテナは pod （ポッド）としてスケジ�
        spec:
          containers:
          - name: bb-site
-           image: bulletinboard:1.0
+           image: getting-started
    ---
    apiVersion: v1
    kind: Service
@@ -102,18 +102,18 @@ Kubernetes 内の全てのコンテナは pod （ポッド）としてスケジ�
      selector:
        bb: web
      ports:
-     - port: 8080
-       targetPort: 8080
+     - port: 3000
+       targetPort: 3000
        nodePort: 30001
 
 ..  In this Kubernetes YAML file, we have two objects, separated by the ---:
         A Deployment, describing a scalable group of identical pods. In this case, you’ll get just one replica, or copy of your pod, and that pod (which is described under the template: key) has just one container in it, based off of your bulletinboard:1.0 image from the previous step in this tutorial.
-        A NodePort service, which will route traffic from port 30001 on your host to port 8080 inside the pods it routes to, allowing you to reach your bulletin board from the network.
+        A NodePort service, which will route traffic from port 30001 on your host to port 3000 inside the pods it routes to, allowing you to reach your bulletin board from the network.
 
 この Kubernetes YAML ファイルには、 ``---`` によって区切られる2つのオブジェクトがあります。
 
 * ``Deployment`` で、完全に等しい pod のスケーラブルなグループを記述します。この例では、1つの ``replica`` （レプリカ）を入手するか、 pod のコピーを入手できるようにし、その pod （ ``template`` 以下に記述 ）内で1つのコンテナを持ちます。このコンテナは、このチュートリアル以前のステップで用いた ``bulletinboard:1.0`` イメージをベースとするものです。
-* ``NodePort`` サービスは、ホスト上のポート 30001 からのトラフィックを、 pod 内の 8080 に転送します。これにより、ネットワークから掲示板に到達可能になります。
+* ``NodePort`` サービスは、ホスト上のポート 30001 からのトラフィックを、 pod 内の 3000 に転送します。これにより、ネットワークから掲示板に到達可能になります。
 
 ..    Also, notice that while Kubernetes YAML can appear long and complicated at first, it almost always follows the same pattern:
         The apiVersion, which indicates the Kubernetes API that parses this object
@@ -141,7 +141,7 @@ Kubernetes 内の全てのコンテナは pod （ポッド）としてスケジ�
 
 .. code-block:: bash
 
-   kubectl apply -f bb.yaml
+   $ kubectl apply -f bb.yaml
 
 ..    you should see output that looks like the following, indicating your Kubernetes objects were created successfully:
 
@@ -158,7 +158,7 @@ Kubernetes 内の全てのコンテナは pod （ポッド）としてスケジ�
 
 .. code-block:: bash
 
-   kubectl get deployments
+   $ kubectl get deployments
 
 ..    if all is well, your deployment should be listed as follows:
 
@@ -166,8 +166,8 @@ Kubernetes 内の全てのコンテナは pod （ポッド）としてスケジ�
 
 ::
 
-   NAME      DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
-   bb-demo   1         1         1            1           48s
+   NAME      READY   UP-TO-DATE   AVAILABLE   AGE
+   bb-demo   1/1     1            1           40s
 
 ..    This indicates all one of the pods you asked for in your YAML are up and running. Do the same check for your services:
 
@@ -175,10 +175,10 @@ Kubernetes 内の全てのコンテナは pod （ポッド）としてスケジ�
 
 .. code-block:: bash
 
-   kubectl get services
+   $ kubectl get services
    
    NAME            TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
-   bb-entrypoint   NodePort    10.106.145.116   <none>        8080:30001/TCP   53s
+   bb-entrypoint   NodePort    10.106.145.116   <none>        3000:30001/TCP   53s
    kubernetes      ClusterIP   10.96.0.1        <none>        443/TCP          138d
 
 ..    In addition to the default kubernetes service, we see our bb-entrypoint service, accepting traffic on port 30001/TCP.
@@ -187,7 +187,7 @@ Kubernetes 内の全てのコンテナは pod （ポッド）としてスケジ�
 
 ..    Open a browser and visit your bulletin board at localhost:30001; you should see your bulletin board, the same as when we ran it as a stand-alone container in Part 2 of the Quickstart tutorial.
 
-3. ブラウザで ``localhost:30001`` を開き、掲示板を訪ねましょう。そうすると、クイックスタート・チュートリアルの :doc:`Part 2 <part2>` で実行したスタンドアロン・コンテナと同じ掲示板が表示されます。
+3. ブラウザで ``localhost:30001`` を開き、掲示板を訪ねましょう。そうすると、クイックスタート・チュートリアルの :doc:`Part 2 <02_our_app>` で実行したスタンドアロン・コンテナと同じ掲示板が表示されます。
 
 ..    Once satisfied, tear down your application:
 
@@ -195,7 +195,7 @@ Kubernetes 内の全てのコンテナは pod （ポッド）としてスケジ�
 
 .. code-block:: bash
 
-   kubectl delete -f bb.yaml
+   $ kubectl delete -f bb.yaml
 
 .. Conclusion
 

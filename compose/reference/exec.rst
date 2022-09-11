@@ -1,54 +1,38 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/reference/exec/
+.. SOURCE: 
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/compose/reference/exec.md
+.. check date: 2022/04/08
+.. Commits on Jan 28, 2022 b6b19516d0feacd798b485615ebfee410d9b6f86
 .. -------------------------------------------------------------------
 
-.. title: docker-compose exec
-
+.. docker-compose exec
 .. _docker-compose-exec:
 
 =======================================
 docker-compose exec
 =======================================
 
-.. ```
-   Usage: exec [options] [-e KEY=VAL...] SERVICE COMMAND [ARGS...]
 
-   Options:
-       -d, --detach      Detached mode: Run command in the background.
-       --privileged      Give extended privileges to the process.
-       -u, --user USER   Run the command as this user.
-       -T                Disable pseudo-tty allocation. By default `docker-compose exec`
-                         allocates a TTY.
-       --index=index     index of the container if there are multiple
-                         instances of a service [default: 1]
-       -e, --env KEY=VAL Set environment variables (can be used multiple times,
-                         not supported in API < 1.25)
-       -w, --workdir DIR Path to workdir directory for this command.
-   ```
-::
+.. code-block:: bash
 
-   利用方法: exec [オプション] [-e KEY=VAL...] SERVICE COMMAND [ARGS...]
+   使い方: exec [オプション] [-e KEY=VAL...] サービス コマンド [引数...]
    
    オプション:
-       -d, --detach      デタッチモード。コマンドをバックグラウンドで実行します。
-       --privileged      プロセスに対して拡張された権限を与えます。
-       -u, --user USER   指定されたユーザによりコマンドを実行します。
-       -T                擬似 TTY への割り当てを無効にします。 デフォルトにおいて
-                         `docker-compose exec` には TTY が割り当てられます。
+       -d, --detach      デタッチモード。コマンドをバックグラウンドで実行
+       --privileged      プロセスに対して拡張された権限を与える
+       -u, --user USER   指定されたユーザによりコマンドを実行
+       -T                擬似 TTY への割り当てを無効化。 デフォルトでは `docker-compose exec` には TTY が割り当て
        --index=index     サービスのインスタンスが複数ある場合に、そのコンテナの
-                         インデックスを指定します。[デフォルト: 1]
-       -e, --env KEY=VAL 環境変数を設定します。
-                         (複数の設定が可能。API 1.25 未満ではサポートされていません。)
-       -w, --workdir DIR このコマンドのワークディレクトリのパスを指定します。
+                         インデックスを指定 [デフォルト: 1]
+       -e, --env KEY=VAL 環境変数を設定
+                         (複数の設定が可能。API 1.25 未満ではサポートされていない)
+       -w, --workdir DIR このコマンドの作業ディレクトリのパスを指定します。
 
-.. This is the equivalent of `docker exec`. With this subcommand you can run arbitrary
-   commands in your services. Commands are by default allocating a TTY, so you can
-   use a command such as `docker-compose exec web sh` to get an interactive prompt.
+.. This is the equivalent of docker exec. With this subcommand you can run arbitrary commands in your services. Commands are by default allocating a TTY, so you can use a command such as docker-compose exec web sh to get an interactive prompt.
 
-このコマンドは ``docker exec`` と同じです。
-このサブコマンドを使って、サービスに対する任意のコマンドを実行することができます。
-コマンドはデフォルトでは TTY が割り当てられます。
-したがって ``docker-compose exec web sh`` のようなコマンドを実行すると、対話可能なプロンプトを用いることができます。
+このコマンドは ``docker exec`` と同じです。このサブコマンドを使い、サービスに対して任意のコマンドを実行できます。コマンドにはデフォルトでは TTY が割り当てられるため、 ``docker-compose exec web sh`` のようなコマンドを実行すると、双方向のプロンプトが利用できます。
 
 
 .. seealso:: 

@@ -1,28 +1,23 @@
-.. -*- coding: utf-8 -*-
+﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/attach/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/attach.md
-   doc version: 1.12
-      https://github.com/docker/docker/commits/master/docs/reference/commandline/attach.md
-.. check date: 2016/06/14
-.. Commits on Jun 7, 2016 2e506039ff9f6502670d42570f835c0d51fcda20
+.. SOURCE: 
+   doc version: 20.10
+      https://github.com/docker/cli/blob/master/docs/reference/commandline/attach.md
+.. check date: 2022/2/13
+.. Commits on Aug 21, 2021 47ba76afb159273e35326bd0cb548e960c51fbc7
 .. -------------------------------------------------------------------
 
-.. attach
+.. docker attach
 
 =======================================
-attach
+docker attach
 =======================================
 
-.. code-block:: bash
+.. seealso:: 
 
-   使い方: docker attach [オプション] コンテナ
-   
-   実行中のコンテナにアタッチする
-   
-     --detach-keys="<sequence>"       エスケープ・キー・シーケンスを設定
-     --help                           使い方の表示
-     --no-stdin                       STDIN（標準入力）にアタッチしない
-     --sig-proxy=true                 受信したシグナルをプロセスに全てプロキシする
+   docker container attach
+      https://docs.docker.com/engine/reference/commandline/container_attach/
+
 
 .. sidebar:: 目次
 
@@ -30,24 +25,40 @@ attach
        :depth: 3
        :local:
 
-.. The docker attach command allows you to attach to a running container using the container’s ID or name, either to view its ongoing output or to control it interactively. You can attach to the same contained process multiple times simultaneously, screen sharing style, or quickly view the progress of your detached process.
+説明
+==========
 
-``docker attach`` コマンドは、コンテナ ID や名前を使って実行中のコンテナにアタッチ（attach；装着/取り付けの意味）します。処理中の出力を表示するだけでなく、インタラクティブ（双方向）の管理もできます。同じコンテナ化されたプロセスに対して、画面を共有する形式として擬似的に複数回のアタッチが可能ですし、デタッチ（detach；分離の意味）したプロセスも迅速に表示できます。
+.. Attach local standard input, output, and error streams to a running container
 
-.. You can detach from the container and leave it running with CTRL-p CTRL-q (for a quiet exit) or with CTRL-c if --sig-proxy is false.
-.. コンテナを実行したままデタッチして離れるには、 ``CTRL-p CTRL-q`` （静かに終了）するか、 ``--sig-proxy`` が false であれば ``CTRL-c`` を使います。
-.. If --sig-proxy is true (the default),CTRL-c sends a SIGINT to the container.
-.. ``--sig-proxy`` が true であれば（デフォルト設定です）、 ``CTRL-c`` の送信とは、コンテナに対して ``SIGINT`` を送信します。
+ローカルの（訳者注：操作中のターミナルのこと）標準入力、標準出力、標準エラー出力を、実行中のコンテナに対して :ruby:`取り付け <attach>` ます。
 
-.. To stop a container, use CTRL-c. This key sequence sends SIGKILL to the container. If --sig-proxy is true (the default),CTRL-c sends a SIGINT to the container. You can detach from a container and leave it running using the CTRL-p CTRL-q key sequence.
+使い方
+==========
 
-コンテナを停止するには、 ``CTRL-c`` を使います。このキー・シーケンスはコンテナに対して ``SIGKILL`` を送信します。もしも ``--sig-proxy`` が true であれば（デフォルト）、 ``CTRL-c`` はコンテナに対して ``SIGINT`` を送信します。 ``CTRL-p CTRL-q`` キー・シーケンスを使えば、実行中のコンテナからデタッチして離れられます。
+.. code-block:: bash
 
-..    Note: A process running as PID 1 inside a container is treated specially by Linux: it ignores any signal with the default action. So, the process will not terminate on SIGINT or SIGTERM unless it is coded to do so.
+   使い方: docker attach [オプション] コンテナ
+
+詳細説明
+==========
+
+.. Use docker attach to attach your terminal’s standard input, output, and error (or any combination of the three) to a running container using the container’s ID or name. This allows you to view its ongoing output or to control it interactively, as though the commands were running directly in your terminal.
+
+``docker attach`` を使い、自分のターミナルの標準入力、標準出力、標準エラー（あるいは、これら3つの組みあわせ）にアタッチするには、コンテナの ID か名前で実行中のコンテナを指定します。これにより、あたかもコマンドを自分のターミナル上で直接実行しているかのように、それらの継続的な出力を見られるようになったり、インタラクティブ（双方向）に制御できます。
+
+.. Note: The attach command will display the output of the ENTRYPOINT/CMD process. This can appear as if the attach command is hung when in fact the process may simply not be interacting with the terminal at that time.
 
 .. note::
 
-   コンテナ内で PID 1 として実行しているプロセスは、Linux では特別な扱いがされます。通常の操作では、あらゆるシグナルを無視します。そのため、特別にコード化しない限り、プロセスを ``SIGINT`` や ``SIGTERM`` では停止できません。
+   ``attach`` コマンドは ``ENTRYPOINT/CMD`` プロセスの出力も表示します。そのため、attach コマンドの使用時、対象のプロセスが単にターミナルで応答がない場合は、あたかも固まっているかのように見えてしまいます。
+
+.. You can attach to the same contained process multiple times simultaneously, from different sessions on the Docker host.
+
+Docker ホスト上の異なるセッションから、同じプロセスに対し、同時に複数のアタッチができます。
+
+.. To stop a container, use CTRL-c. This key sequence sends SIGKILL to the container. If --sig-proxy is true (the default),CTRL-c sends a SIGINT to the container. If the container was run with -i and -t, you can detach from a container and leave it running using the CTRL-p CTRL-q key sequence.
+
+コンテナを停止するには、 ``CTRL-c`` を使います。このキー・シーケンスはコンテナに対して ``SIGKILL`` を送信します。 ``--sig-proxy`` が true の場合は（デフォルト）、 ``CTRL-c`` はコンテナに対して ``SIGINT`` を送信します。 コンテナを ``-i`` と ``-t`` で実行した場合は、 ``CTRL-p CTRL-q`` キー・シーケンスを使えば、実行中のコンテナからデタッチして離れられます。
 
 .. It is forbidden to redirect the standard input of a docker attach command while attaching to a tty-enabled container (i.e.: launched with -t).
 
@@ -62,7 +73,7 @@ tty を有効化したコンテナにアタッチした状態（例： ``-t`` �
 .. _override-the-detach-sequence:
 
 デタッチ・シーケンスの上書き
-==============================
+------------------------------
 
 .. If you want, you can configure an override the Docker key sequence for detach. This is is useful if the Docker default sequence conflicts with key sequence you use for other applications. There are two ways to define your own detach key sequence, as a per-container override or as a configuration property on your entire configuration.
 
@@ -90,10 +101,37 @@ tty を有効化したコンテナにアタッチした状態（例： ``-t`` �
 
 例えば、 ``a`` 、 ``ctrl-a`` 、 ``x`` 、 ``ctrl-\\``  は、いずれも有効なキー・シーケンスです。全てのコンテナに対する異なったキー・シーケンスを設定するには、 :ref:`設定ファイル <configuration-files>` のセクションをご覧ください。
 
+.. _docker-attach-options:
+
+オプション
+==========
+
+.. list-table::
+   :header-rows: 1
+
+   * - 名前、省略形
+     - デフォルト
+     - 説明
+   * - ``--detach-keys``
+     - 
+     - コンテナをデタッチするキー・シーケンスを上書き
+   * - ``--no-stdin``
+     - 
+     - 標準入力にアタッチしない
+   * - ``--sig-proxy``
+     - ``true``
+     - プロセスに対して、受信した全てのシグナルをプロキシ（中継）する
+
+
 .. Examples
 
 例
-----------
+==========
+
+.. Attach to and detach from a running container🔗
+
+実行中のコンテナにアタッチとデタッチ
+----------------------------------------
 
 .. code-block:: bash
 
@@ -132,9 +170,15 @@ tty を有効化したコンテナにアタッチした状態（例： ``-t`` �
    $ docker ps -a | grep topdemo
    7998ac8581f9        ubuntu:14.04        "/usr/bin/top -b"   38 seconds ago      Exited (0) 21 seconds ago                          topdemo
 
+
+.. Get the exit code of the container’s command
+
+コンテナで実行していたコマンドの、終了コードを得る
+------------------------------------------------------------
+
 .. And in this second example, you can see the exit code returned by the bash process is returned by the docker attach command to its caller too:
 
-次の２つめの例は、 ``docker attach`` コマンドで処理された終了コードが、 ``bash`` プロセスに戻ってきても使えることが分かります。
+次の２つめの例は、 ``docker attach`` コマンドで処理された終了コードが、 ``bash`` プロセスに戻ってきても使えるのが分かります。
 
 .. code-block:: bash
 
@@ -149,7 +193,20 @@ tty を有効化したコンテナにアタッチした状態（例： ``-t`` �
    275c44472aeb        debian:7            "/bin/bash"         26 seconds ago      Exited (13) 17 seconds ago                         test
 
 
+親コマンド
+==========
+
+.. list-table::
+   :header-rows: 1
+
+   * - コマンド
+     - 説明
+   * - :doc:`docker <docker>`
+     - Docker CLI の基本コマンド
+
+
+
 .. seealso:: 
 
-   attach
+   docker attach
       https://docs.docker.com/engine/reference/commandline/attach/

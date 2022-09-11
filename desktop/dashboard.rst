@@ -1,13 +1,14 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/desktop/opensource/
+.. URL: https://docs.docker.com/desktop/dashboard/
    doc version: 19.03
       https://github.com/docker/docker.github.io/commits/master/desktop/dashboard.md
-.. check date: 2020/06/12
-.. Commits on May 1, 2020 ba7819fed679f4f2542c3ccfe15bc9bc2d74ee3d
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/desktop/dashboard.md
+.. check date: 2022/05/14
+.. Commits on Apr 13, 2022 ec5dc89d85debe81c04d5d84a10d881391c6824c
 .. -----------------------------------------------------------------------------
 
 .. Docker Desktop Dashboard
-
 .. _docker-desktop-dashboard:
 
 =======================================

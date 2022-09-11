@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/swarm/join-nodes/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/engine/swarm/join-nodes.md
-   doc version: 19.03
-.. check date: 2017/07/11
-.. Commits on Feb 9, 2019 03d5b3396d3afd2881ba7b1c14e63cfda75a0b95
+   doc version: 20.10
+.. check date: 2022/04/29
+.. Commits on Aug 7, 2021 3b71231970606bb45fd6f37a8c99522583e7f5a8
 .. -----------------------------------------------------------------------------
 
 .. Join nodes to a swarm
@@ -32,23 +32,9 @@ swarm にノードを参加
 
 * manager ノードは耐障害性を向上します。manager ノードが処理するのは、 swarm に対するオーケストレーションとクラスタ管理機能です。manager ノード間では、単一のリーダーノード（leader node）がオーケストレーション・タスクを調整します。もしもリーダーノードがダウンすると、残った manager ノードが新しいリーダーを選出（elect）し、オーケストレーションと swarm 状態の維持を再開します。デフォルトでは、 manager ノードでもタスクを実行します。
 
-.. Before you add nodes to a swarm you must install Docker Engine 1.12 or later on the host machine.
-
-swarm に対してノードを追加する前に、ホストマシン上には Docker Engine 1.12 以上のインストールが必須です。
-
 .. The Docker Engine joins the swarm depending on the join-token you provide to the docker swarm join command. The node only uses the token at join time. If you subsequently rotate the token, it doesn’t affect existing swarm nodes. Refer to Run Docker Engine in swarm mode.
 
 Docker Engine が swarm に参加するには、 ``docker swarm join`` コマンドで得られる **join-token** （参加トークン）に依存します。ノードはこのトークンを参加時のみ使います。トークンが後ほど更新されてしまうと、既存の swarm ノードに参加できなくなります。 :ref:`view-the-join-command-or-update-a-swarm-join-token` をご覧ください。
-
-..    Note: Docker engine allows a non-FIPS node to join a FIPS-enabled swarm cluster.
-
-.. note::
-
-   Docker Engine は非 FIPS ノードでも、 FIPS 有効化した swarm クラスタに参加できます。
-
-.. While a mixed FIPS environment makes upgrading or changing status easier, Docker recommends not running a mixed FIPS environment in production.
-
-FIPS 環境と混在している環境では、アップグレードやステータスの変更が簡単ですが、 Docker はプロダクションで FIPS 混在は推奨しません。
 
 .. Join as a worker node
 

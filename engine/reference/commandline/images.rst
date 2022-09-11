@@ -1,35 +1,18 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/images/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/images.md
-   doc version: 1.12
-      https://github.com/docker/docker/commits/master/docs/reference/commandline/images.md
-.. check date: 2016/06/16
-.. Commits on May 25, 2016 750e16f57c0121aa8cdad1763f0bb6e54b8c6d75
+.. SOURCE: 
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/engine/reference/commandline/images.md
+      https://github.com/docker/docker.github.io/blob/master/_data/engine-cli/docker_images.yaml
+.. check date: 2022/03/20
+.. Commits on Aug 22, 2021 304f64ccec26ef1810e90d385d5bae5fab3ce6f4
 .. -------------------------------------------------------------------
 
-.. images
+.. docker images
 
 =======================================
-images
+docker images
 =======================================
-
-
-.. code-block:: bash
-
-   使い方: docker images [オプション] [リポジトリ[:タグ]]
-   
-   イメージを一覧表示します。
-   
-     -a, --all=false      全てのイメージを表示（デフォルトは中間コンテナを非表示）
-     --digests=false      digest 値を表示
-     -f, --filter=[]      指定した状況に応じて出力を整形：
-                          - dangling=(true|false)
-                          - label=<キー> or label=<キー>=<値>
-                          - before=(<イメージ名>[:タグ]|<image-id>|<image@digest>)
-                          - since=(<イメージ名>[:タグ]|<image-id>|<image@digest>)
-     --help               使い方の表示
-     --no-trunc=false     トランケート（truncate）を出力しない
-     -q, --quiet=false    整数値の ID のみ表示
 
 
 .. sidebar:: 目次
@@ -38,25 +21,90 @@ images
        :depth: 3
        :local:
 
+.. _docker_images-description:
+
+説明
+==========
+
+.. List images
+
+イメージを一覧表示します。
+
+.. _docker_images-usage:
+
+使い方
+==========
+
+.. code-block:: bash
+
+   $ docker images [OPTIONS] [REPOSITORY[:TAG]]
+
+.. Extended description
+.. _docker_images-extended-description:
+
+補足説明
+==========
+
 .. The default docker images will show all top level images, their repository and tags, and their size.
 
-標準の ``docker image`` は全てのトップ・レベルのイメージと、リポジトリ・タグ・容量を表示します。
+標準の ``docker image`` は全てのトップ・レベルのイメージと、それらのリポジトリ、タグ、容量を表示します。
 
 .. Docker images have intermediate layers that increase reusability, decrease disk usage, and speed up docker build by allowing each step to be cached. These intermediate layers are not shown by default.
 
-Docker イメージは中間レイヤ（intermediate layer）を持っています。これは再利用性を高め、ディスク容量を減らし、 ``docker build`` は各ステップをキャッシュするので速度を向上します。デフォルトでは、これらの中間レイヤは表示されません。
+Docker イメージは :ruby:`中間レイヤ <intermediate layer>` を持っています。これは再利用性を高め、ディスク容量を減らし、 ``docker build`` は各ステップをキャッシュするので、構築速度を向上します。デフォルトでは、これらの中間レイヤを表示しません。
 
 .. The SIZE is the cumulative space taken up by the image and all its parent images. This is also the disk space used by the contents of the Tar file created when you docker save an image.
 
-``SIZE`` （容量）は、イメージと全ての親イメージの累積した領域です。また、 ``docker save`` でイメージを作成していた場合、 Tar ファイルの内容に含まれるディスク容量です。
+``SIZE`` （容量）とは、対象のイメージと、その親イメージを累積した容量です。また、 ``docker save`` でイメージを作成していた場合、 Tar ファイル内容のディスク容量です。
 
 .. An image will be listed more than once if it has multiple repository names or tags. This single image (identifiable by its matching IMAGE ID) uses up the SIZE listed only once.
 
-イメージ一覧では、複数のリポジトリ名やタグが表示されます。イメージ（ ``IMAGE ID`` が一致するもの ）ごとの ``SIZE`` が複数表示されますが、実際に対象としている容量は１つだけです。
+イメージ一覧では、複数のリポジトリ名やタグが表示されます。この中で、1つのイメージ（ ``IMAGE ID`` が一致し、同一と分かるもの）が使用している ``SIZE`` （容量）が複数表示されたとしても、使っているのは1つだけです（訳者注：イメージの容量は、イメージ ID ごとに共通。つまり、一覧で複数のイメージが 100MB 使っているように見えたとしても、全てのイメージ ID が共通している場合、実際に使用している容量は 100MB だけ）。
+
+.. For example uses of this command, refer to the examples section below.
+
+コマンドの使用例は、以下の :ref:`使用例のセクション <docker_images-examples>` をご覧ください。
+
+.. _docker_images-options:
+
+オプション
+==========
+
+.. list-table::
+   :header-rows: 1
+
+   * - 名前, 省略形
+     - デフォルト
+     - 説明
+   * - ``--all`` , ``-a``
+     - 
+     - 全てのイメージを表示（デフォルトは、中間イメージを非表示）
+   * - ``--digests``
+     - 
+     - digest 値を表示
+   * - ``--filter`` , ``-f``
+     - 
+     - 指定した状況に基づき、出力をフィルタ
+   * - ``--format``
+     - 
+     - Go テンプレートを使い、イメージを整えて表示
+   * - ``--no-trunc``
+     - 
+     - 出力を :ruby:`省略しない <truncate>`
+   * - ``--quiet`` , ``-q``
+     - 
+     - イメージ ID のみ表示
+
+.. Examples
+.. _docker_images-examples:
+
+使用例
+==========
+
 
 .. Listing the most recently created images
 
-.. _listing-the-most-recently-created-images:
+.. _docker_images-listing-the-most-recently-created-images:
 
 直近で作成したイメージから一覧表示
 --------------------------------------------------
@@ -78,14 +126,14 @@ Docker イメージは中間レイヤ（intermediate layer）を持っていま�
 
 .. Listing images by name and tag
 
-.. _listing-images-by-name-and-tag:
+.. _docker_images-listing-images-by-name-and-tag:
 
 イメージ名とタグで一覧表示
 ------------------------------
 
 .. The docker images command takes an optional [REPOSITORY[:TAG]] argument that restricts the list to images that match the argument. If you specify REPOSITORYbut no TAG, the docker images command lists all images in the given repository.
 
-``docker images`` コマンドは、オプションで ``[リポジトリ[:タグ]]`` を指定できます。これはイメージ一覧から条件が一致するものだけ表示します。 ``リポジトリ`` は ``タグ`` を指定しなくても使えますので、 ``docker images`` で対象となるリポジトリの全イメージのみ表示します。
+``docker images`` コマンドは、オプションで ``[リポジトリ[:タグ]]`` を指定できます。これはイメージ一覧から条件が一致するものだけ表示します。 ``リポジトリ`` は ``タグ`` を指定しなくても使えますので、 ``docker images`` コマンドで、対象となるリポジトリのイメージを全て表示します。
 
 .. For example, to list all images in the “java” repository, run this command :
 
@@ -124,10 +172,10 @@ Docker イメージは中間レイヤ（intermediate layer）を持っていま�
 
 .. Listing the full length image IDs
 
-.. _listing-the-full-length-image-ids:
+.. _docker_images-listing-the-full-length-image-ids:
 
 長いイメージ ID で全てを表示
-==============================
+------------------------------
 
 .. code-block:: bash
 
@@ -145,10 +193,10 @@ Docker イメージは中間レイヤ（intermediate layer）を持っていま�
 
 .. Listing image digests
 
-.. _listing-image-digest:
+.. _docker_images:listing-image-digests:
 
 イメージの digest 値を表示
-==============================
+------------------------------
 
 .. Images that use the v2 or later format have a content-addressable identifier called a digest. As long as the input used to generate the image is unchanged, the digest value is predictable. To list image digest values, use the --digests flag:
 
@@ -166,10 +214,10 @@ v2 以降の形式を使うイメージには、 ``digest`` と呼ばれる識�
 
 .. Filtering
 
-.. _images-filtering:
+.. _docker_images-filtering:
 
 フィルタリング
-====================
+--------------------
 
 .. The filtering flag (-f or --filter) format is of “key=value”. If there is more than one filter, then pass multiple flags (e.g., --filter "foo=bar" --filter "bif=baz")
 
@@ -183,16 +231,18 @@ v2 以降の形式を使うイメージには、 ``digest`` と呼ばれる識�
     label (label=<key> or label=<key>=<value>)
     before (<image-name>[:<tag>], <image id> or <image@digest>) - filters images created before given id or references
     since (<image-name>[:<tag>], <image id> or <image@digest>) - filters images created since given id or references
+    reference (pattern of an image reference) - filter images whose reference matches the specified pattern
 
 * dangling（ダングリング；宙ぶらりんな状態）なイメージ （ブール値： true か false ）
 * label（ ``label=<key>`` か ``label=<key>=<value>`` ）
 * before ( ``<イメージ名>[:<タグ>], <イメージ ID> または <image@digest>`` - 指定した ID もしくはリファレンスよりも前に作成したイメージでフィルタ
 * since ( ``<イメージ名>[:<タグ>], <イメージ ID> または <image@digest>`` - 指定した ID もしくはリファレンスよりも後に作成したイメージでフィルタ
+* reference ( イメージ・リファレンスのパターン ) - 指定したパターンに一致するリファレンスで、イメージをフィルタ
 
 .. Untagged images (dangling)
 
 タグ付けされていないイメージ（dangling）
---------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
@@ -206,13 +256,15 @@ v2 以降の形式を使うイメージには、 ``digest`` と呼ばれる識�
    <none>              <none>              dea752e4e117        12 weeks ago        101.4 MB
    <none>              <none>              511136ea3c5a        8 months ago        0 B
 
+.. This will display untagged images that are the leaves of the images tree (not intermediary layers). These images occur when a new build of an image takes the repo:tag away from the image ID, leaving it as <none>:<none> or untagged. A warning will be issued if trying to remove an image when a container is presently using it. By having this flag it allows for batch cleanup.
+
 .. This will display untagged images, that are the leaves of the images tree (not intermediary layers). These images occur when a new build of an image takes the repo:tag away from the image ID, leaving it untagged. A warning will be issued if trying to remove an image when a container is presently using it. By having this flag it allows for batch cleanup.
 
-これはタグ付けされておらず、イメージ・ツリーから離れた（中間レイヤではない）イメージを表示します。これらのタグがないイメージは、イメージを使って新しく構築しようとしても ``リポジトリ:タグ`` の形式が利用できないため、その場合はイメージ ID を使います。コンテナが利用中であれば、イメージを削除しようとしても警告が表示されます。バッチ処理でクリーンアップする時に、このフラグが使えます。
+これはタグ付けされておらず、イメージ・ツリーから離れた（中間レイヤではない）イメージを表示してます。これらのイメージが発生するのは、新しいイメージの構築にあたり、元イメージ ID の ``リポジトリ:tag`` を削除し、 ``<none>:<none>`` もしくはタグ無しのままにしたためです。イメージを削除しようとしても、コンテナが利用中であれば警告が表示されます。バッチ処理でクリーンアップする時に、次のようにフラグが使えます。
 
-.. Ready for use by docker rmi ..., like:
+.. You can use this in conjunction with docker rmi ...:
 
-``docker rmi`` に対応するには：
+``docker rmi ...`` とは、このように組み合わせられます。
 
 .. code-block:: bash
 
@@ -225,18 +277,15 @@ v2 以降の形式を使うイメージには、 ``digest`` と呼ばれる識�
    dea752e4e117
    511136ea3c5a
 
-.. NOTE: Docker will warn you if any containers exist that are using these untagged images.
+.. Docker warns you if any containers exist that are using these untagged images.
 
-.. note::
+タグ付けされていないイメージでも、何らかのコンテナが使用中であれば、 Docker は警告を表示します。
 
-   タグ付けされていないイメージでも、何らかのコンテナが使用中であれば Docker は警告を表示します。
+.. Show images with a given label
 
-.. Labeled images
-
-.. _labeled-images:
-
-ラベル付けされたイメージ
-------------------------------
+.. _docker_images-show-images-with-a-given-label:
+ラベルを指定してイメージを表示
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. The label filter matches images based on the presence of a label alone or a label and a value.
 
@@ -273,10 +322,11 @@ v2 以降の形式を使うイメージには、 ``digest`` と呼ばれる識�
    $ docker images --filter "label=com.example.version=0.1"
    REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
 
-.. Before
+.. Filter images by time
+.. docker_images-filter-images-by-time:
 
-before
-----------
+時間でイメージをフィルタ
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. The before filter shows only images created before the image with given id or reference. For example, having these images:
 
@@ -301,40 +351,53 @@ before
    image2              latest              dea752e4e117        9 minutes ago        188.3 MB
    image3              latest              511136ea3c5a        25 minutes ago       188.3 MB
 
-.. Since
 
-since
-----------
+.. Filter images by reference
+.. _docker_images-filter-images-by-reference:
 
-.. The since filter shows only images created after the image with given id or reference. For example, having these images:
+リファレンスでイメージをフィルタ
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-``since`` フィルタは指定した ID またはリファレンスよりも後に作成したイメージのみ表示します。例えば、３つのイメージがあるとします。
+.. The reference filter shows only images whose reference matches the specified pattern.
+
+``reference`` フィルタは、指定したリファレンスに一致するパターンのイメージのみ表示します。
 
 .. code-block:: bash
 
    $ docker images
-   REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
-   image1              latest              eeae25ada2aa        4 minutes ago        188.3 MB
-   image2              latest              dea752e4e117        9 minutes ago        188.3 MB
-   image3              latest              511136ea3c5a        25 minutes ago       188.3 MB
+   REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+   busybox             latest              e02e811dd08f        5 weeks ago         1.09 MB
+   busybox             uclibc              e02e811dd08f        5 weeks ago         1.09 MB
+   busybox             musl                733eb3059dce        5 weeks ago         1.21 MB
+   busybox             glibc               21c16b6787c6        5 weeks ago         4.19 MB
 
-.. Filtering with since would give:
+.. Filtering with reference would give:
 
-``since`` を使うフィルタは、次のように指定します。
+``reference`` を使うフィルタは、次のように指定します。
 
 .. code-block:: bash
 
-   $ docker images --filter "since=image3"
-   REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
-   image1              latest              eeae25ada2aa        4 minutes ago        188.3 MB
-   image2              latest              dea752e4e117        9 minutes ago        188.3 MB
+   $ docker images --filter=reference='busy*:*libc'
+   REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+   busybox             uclibc              e02e811dd08f        5 weeks ago         1.09 MB
+   busybox             glibc               21c16b6787c6        5 weeks ago         4.19 MB
 
-.. Formatting
+.. Filtering with multiple reference would give, either match A or B:
 
-.. _images-formatting:
+複数の ``reference`` を指定すると、 A または B のどちらかに一致します。
 
-フォーマット
-====================
+   $ docker images --filter=reference='busy*:uclibc' --filter=reference='busy*:glibc'
+   REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+   busybox             uclibc              e02e811dd08f        5 weeks ago         1.09 MB
+   busybox             glibc               21c16b6787c6        5 weeks ago         4.19 MB
+
+
+.. Format the output
+
+.. _docker_images-format-the-output:
+
+出力形式
+----------
 
 .. The formatting option (--format) will pretty print container output using a Go template.
 
@@ -365,7 +428,7 @@ Go テンプレートで有効なプレースホルダは以下の通りです�
    * - ``.Tag``
      - イメージのタグ
    * - ``.Digest``
-     - イメージのダイジェスト版
+     - イメージの digest 値
    * - ``.CreatedSince``
      - イメージを作成してからの経過時間
    * - ``.CreatedAt``
@@ -377,9 +440,9 @@ Go テンプレートで有効なプレースホルダは以下の通りです�
 
 ``--format`` オプションの使用時、 ``image`` コマンドはテンプレートで宣言した通りにデータを出力します。あるいは、 ``table`` ディレクティブがあれば列のヘッダも表示するかのどちらかです。
 
-.. The following example uses a template without headers and outputs the ID and Repository entries separated by a colon for all images:
+.. The following example uses a template without headers and outputs the ID and Repository entries separated by a colon (:) for all images:
 
-以下の例は ``ID`` と ``Repository`` のエントリをテンプレートで指定します。そして、コロン区切りで全てのイメージを表示します。
+以下の例は ``ID`` と ``Repository`` のエントリをテンプレートで指定します。そして、コロン（ ``:`` ）区切りで全てのイメージを表示します。
 
 .. code-block:: bash
 
@@ -412,9 +475,22 @@ Go テンプレートで有効なプレースホルダは以下の通りです�
    746b819f315e        postgres                  9.3.5
    746b819f315e        postgres                  latest
 
+
+親コマンド
+==========
+
+.. list-table::
+   :header-rows: 1
+
+   * - コマンド
+     - 説明
+   * - :doc:`docker <docker>`
+     - Docker CLI の基本コマンド
+
+
 .. seealso:: 
 
-   images
+   docker images
       https://docs.docker.com/engine/reference/commandline/images/
 
 

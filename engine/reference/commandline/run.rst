@@ -1,121 +1,18 @@
-.. -*- coding: utf-8 -*-
+﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/run/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/run.md
-   doc version: 1.12
-      https://github.com/docker/docker/commits/master/docs/reference/commandline/run.md
-.. check date: 2016/06/16
-.. Commits on Jun 15, 2016 c97fdbe3c5954b2685a8b140f595f06b09191956
+.. SOURCE:
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/engine/reference/commandline/run.md
+      https://github.com/docker/docker.github.io/blob/master/_data/engine-cli/docker_run.yaml
+.. check date: 2022/03/21
+.. Commits on Aug 22, 2021 304f64ccec26ef1810e90d385d5bae5fab3ce6f4
 .. -------------------------------------------------------------------
 
-.. run
+.. docker run
 
 =======================================
-run
+docker run
 =======================================
-
-
-.. code-block:: bash
-
-   使い方: docker run [オプション] イメージ [コマンド] [引数...]
-   
-   新しいコンテナを実行する命令
-   
-     -a, --attach=[]               STDIN、STDOUT、STDERR にアタッチする
-     --add-host=[]                 ホストから IP アドレスのマッピングをカスタマイズして追加 (host:ip)
-     --blkio-weight=0              ブロック IO ウエイト (相対ウエイト)
-     --blkio-weight-device=[]      ブロック IO ウエイト (相対デバイス・ウエイト。書式： `デバイス名:ウエイト`)
-     --cpu-shares=0                CPU 共有 (相対ウエイト)
-     --cap-add=[]                  Linux ケーパビリティの追加
-     --cap-drop=[]                 Linux ケーパビリティの削除
-     --cgroup-parent=""            コンテナ用のオプション親 cgroup を指定
-     --cidfile=""                  コンテナ ID をファイルに書き出し
-     --cpu-percent=0               コンテナが実行可能な CPU 使用率のパーセントを制限。Windowsのみ
-     --cpu-period=0                CPU CFS (Completely Fair Scheduler) ペイロードの制限
-     --cpu-quota=0                 CPU CFS (Completely Fair Scheduler) クォータの制限
-     --cpuset-cpus=""              実行を許可する CPU (0-3, 0,1)
-     --cpuset-mems=""              実行を許可するメモリ必要量 (0-3, 0,1)
-     -d, --detach                  コンテナをバックグラウンドで実行し、コンテナ ID を表示
-     --detach-keys                 コンテナのデタッチに使うエスケープ・キー・シーケンスを設定
-     --device=[]                   ホスト・デバイスをコンテナに追加
-     --device-read-bps=[]          デバイスからの読み込みレート (バイト/秒) を制限 (例: --device-read-bps=/dev/sda:1mb)
-     --device-read-iops=[]         デバイスからの読み込みレート (IO/秒) を制限 (例: --device-read-iops=/dev/sda:1000)
-     --device-write-bps=[]         デバイスへの書き込みレート (バイト/秒) を制限  (例: --device-write-bps=/dev/sda:1mb)
-     --device-write-iops=[]        デバイスへの書き込みレート (IO/秒) を制限 (例: --device-write-bps=/dev/sda:1000)
-     --disable-content-trust=true  イメージの認証をスキップ
-     --dns=[]                      カスタム DNS サーバの指定
-     --dns-opt=[]                  カスタム DNS オプションの指定
-     --dns-search=[]               カスタム DNS 検索ドメインの指定
-     -e, --env=[]                  環境変数を指定
-     --entrypoint=""               イメージのデフォルト ENTRYPOINT を上書き
-     --env-file=[]                 ファイルから環境変数を読み込み
-     --expose=[]                   ポートまたはポート範囲を露出
-     --group-add=[]                参加するグループを追加
-     -h, --hostname=""             コンテナのホスト名
-     --help                        使い方の表示
-     -i, --interactive             コンテナの STDIN にアタッチ
-     --ip=""                       コンテナの IPv4 アドレス (例: 172.30.100.104)
-     --ip6=""                      コンテナの IPv6 アドレス (例: 2001:db8::33)
-     --ipc=""                      使用する IPC 名前空間
-     --isolation=""                コンテナの分離（独立）技術
-     --kernel-memory=""            Kernel メモリ上限
-     -l, --label=[]                コンテナにメタデータを指定 (例: --label=com.example.key=value)
-     --label-file=[]               行ごとにラベルを記述したファイルを読み込み
-     --link=[]                     他のコンテナへのリンクを追加
-     --link-local-ip=[]            コンテナとリンクするローカルの IPv4/IPv6 アドレス (例: 169.254.0.77, fe80::77)
-     --log-driver=""               コンテナ用のログ記録ドライバを追加
-     --log-opt=[]                  ログドライバのオプションを指定
-     -m, --memory=""               メモリ上限
-     --mac-address=""              コンテナの MAC アドレス (例： 92:d0:c6:0a:29:33)
-     --io-maxbandwidth=""          システム・デバイスの IO 帯域に対する上限を指定（Windowsのみ）。
-                                   書式は `<数値><単位>`。単位はオプションで `b` (バイト/秒)、
-                                   `k` (キロバイト/秒)、 `m` (メガバイト/秒)、 `g` (ギガバイト/秒)。
-                                   単位を指定しなければ、システムはバイト/秒とみなす。
-                                   --io-maxbandwidth と --io-maxiops は相互排他オプション
-     --io-maxiops=0                システム・ドライブの最大 IO/秒に対する上限を指定 *Windowsのみ)
-                                   --io-maxbandwidth と --io-maxiops は相互排他オプション
-     --memory-reservation=""       メモリのソフト上限
-     --memory-swap=""              整数値の指定はメモリにスワップ値を追加。-1は無制限スワップを有効化
-     --memory-swappiness=""        コンテナ用メモリのスワップ程度を調整。整数値の 0 から 100 で指定
-     --name=""                     コンテナに名前を割り当て
-     --net="bridge"   : コンテナをネットワークに接続
-                                   'bridge': docker ブリッジ上でコンテナ用に新しいネットワーク・スタックを作成
-                                   'none': コンテナにネットワーク機能を付けない
-                                   'container:<name|id>': 他のコンテナ用ネットワーク・スタックを再利用
-                                   'host': コンテナ内でホスト側ネットワーク・スタックを使用
-                                   'NETWORK': 「docker network create」コマンドでユーザ作成したネットワークを使用
-     --net-alias=[]                コンテナにネットワーク内部用のエイリアスを追加
-     --oom-kill-disable            コンテナの OOM Killer を無効化するかどうか指定
-     --oom-score-adj=0             コンテナに対してホスト側の OOM 優先度を設定 ( -1000 ～ 1000 を指定)
-     -P, --publish-all             全ての露出ポートをランダムなポートに公開
-     -p, --publish=[]              コンテナのポートをホスト側に公開
-     --pid=""                      使用する PID 名前空間
-     --pids-limit=-1                コンテナの pids 制限を調整 (kernel 4.3 以上は -1 で無制限に設定)
-     --privileged                  このコンテナに対して拡張権限を与える
-     --read-only                   コンテナのルート・ファイルシステムを読み込み専用としてマウント
-     --restart="no"                再起動ポリシー (no, on-failure[:max-retry], always, unless-stopped)
-     --rm                          コンテナ終了時、自動的に削除
-     --runtime=""                  コンテナで使うランタイム名を指定
-     --shm-size=[]                 `/dev/shm` のサイズ。書式は `<数値><単位>`. `数値` は必ず `0` より大きい。単位はオプションで `b` (bytes)、 `k` (kilobytes)、 `m` (megabytes)、 `g` (gigabytes) を指定可能。単位を指定しなければ、システムは bytes を使う。数値を指定しなければ、システムは `64m` を使う
-     --security-opt=[]             セキュリティ・オプション
-     --sig-proxy=true              受信したシグナルをプロセスにプロキシ
-     --stop-signal="SIGTERM"       コンテナの停止シグナル
-     --storage-opt=[]              コンテナごとにストレージ・ドライバのオプションを指定
-     --sysctl[=*[]*]]              実行時に名前空間カーネル・パラメータを調整
-     -t, --tty                     疑似ターミナル (pseudo-TTY) を割り当て
-     -u, --user=""                 ユーザ名または UID
-     --userns=""                   コンテナのユーザ名前空間
-                                   'host': Docker ホストで使うユーザ名前空間
-                                   '': Docker デーモンのユーザ名前空間を指定するには `--userns-remap` オプションを使う
-     --ulimit=[]                   Ulimit オプション
-     --uts=""                      使用する UTS 名前空間
-     -v, --volume=[ホスト側ソース:]コンテナ側送信先[:<オプション>]
-                                   ボリュームを拘束マウント。カンマ区切りで指定
-                                   `オプション` は [rw|ro], [z|Z], [[r]shared|[r]slave|[r]private], [nocopy]
-                                   'ホスト側ソース' は絶対パスまたは名前の値
-     --volume-driver=""            コンテナのボリューム・ドライバ
-     --volumes-from=[]             指定したコンテナからボリュームをマウント
-     -w, --workdir=""              コンテナ内の作業用ディレクトリを指定
-
 
 .. sidebar:: 目次
 
@@ -123,6 +20,29 @@ run
        :depth: 3
        :local:
 
+.. _docker_run-description:
+
+説明
+==========
+
+.. Run a command in a new container
+
+新しいコンテナでコマンドを :ruby:`実行 <run>` します。
+
+.. _docker_run-usage:
+
+使い方
+==========
+
+.. code-block:: bash
+
+   $ docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+.. Extended description
+.. _docker_run-extended-description:
+
+補足説明
+==========
 
 .. The docker run command first creates a writeable container layer over the specified image, and then starts it using the specified command. That is, docker run is equivalent to the API /containers/create then /containers/(id)/start. A stopped container can be restarted with all its previous changes intact using docker start. See docker ps -a to view a list of all containers.
 
@@ -136,17 +56,342 @@ run
 
 コンテナをネットワークで接続する詳細については、 :doc:`Docker ネットワーク概要 </engine/userguide/networking/index>` をご覧ください。
 
-.. Examples
+.. For example uses of this command, refer to the examples section below.
 
-例
+コマンドの使用例は、以下の :ref:`使用例のセクション <docker_run-examples>` をご覧ください。
+
+.. _docker_run-options:
+
+オプション
+==========
+
+.. list-table::
+   :header-rows: 1
+
+   * - 名前, 省略形
+ - デフォルト
+     - 説明
+   * - ``--add-host``
+     - 
+     - 任意のホスト名と IP アドレスの割り当てを追加（host:ip）
+   * - ``--attach`` , ``-a``
+     - 
+     - 標準入力、標準出力、標準エラー出力にアタッチ
+   * - ``--blkio-weight``
+     - 
+     - ブロック I/O ウエイト（相対値）を 10 ～ 1000 までの値でウエイトを設定（デフォルト 0）
+   * - ``--blkio-weight-device``
+     - 
+     - ブロック I/O ウエイト（相対デバイス値）
+   * - ``--cap-add``
+     - 
+     - Linux ケーパビリティを追加
+   * - ``--cap-drop``
+     - 
+     - Linux ケーパビリティを削除
+   * - ``--cgroup-parent``
+     - 
+     - コンテナに対し、オプションの親 cgroup を追加
+   * - ``--cgroups``
+     - 
+     - `【API 1.41+】 <https://docs.docker.com/engine/api/v1.41/>`_ 使用する cgorup 名前空間を指定します（ host | private ）。 ``host`` は、Docker ホストの cgroup 名前空間内でコンテナを実行します。 ``private`` は自身の cgroup 名前空間でコンテナを実行します。使用する cgorup 名前空間は、デーモンのオプション default-cgroupns-mode によって設定されたものです（デフォルト）
+   * - ``--cidfile``
+     - 
+     - コンテナ ID をファイルに書き出す
+   * - ``--cpu-count``
+     - 
+     - CPU カウント（Windowsのみ）
+   * - ``--cpu-percent``
+     - 
+     - CPU パーセント（Windowsにみ）
+   * - ``--cpu-period``
+     - 
+     - CPU CFS (Completely Fair Scheduler) の間隔を設定
+   * - ``--cpu-quota``
+     - 
+     - CPU CFS (Completely Fair Scheduler) のクォータを設定
+   * - ``--cpu-rt-period``
+     - 
+     - 【API 1.25+】 CPU real-time period 制限をマイクロ秒で指定
+   * - ``--cpu-rt-runtime``
+     - 
+     - 【API 1.25+】 CPU real-time runtime 制限をマイクロ秒で指定
+   * - ``--cpu-shares`` , ``-c``
+     - 
+     - CPU 共有（相対値）
+   * - ``--cpus``
+     - 
+     - 【API 1.25+】 CPU 数
+   * - ``--cpuset-cpus``
+     - 
+     - 実行する CPU の割り当て（0-3, 0,1）
+   * - ``--cpuset-mems``
+     - 
+     - 実行するメモリ・ノード（MEM）の割り当て（0-3, 0,1）
+   * - ``--detach`` , ``-d``
+     - 
+     - デタッチド・モード：バックグラウンドでコマンドを実行
+   * - ``--detach-keys``
+     - 
+   * - ``--device``
+     - 
+     - ホスト・デバイスをコンテナに追加
+   * - ``--device-cgroup-rule``
+     - 
+     - cgroup を許可するデバイス一覧にルールを追加
+   * - ``--device-read-bps``
+     - 
+     - デバイスからの読み込みレートを制限
+   * - ``--device-read-iops``
+     - 
+     - デバイスからの読み込みレート（１秒あたりの IO）を制限
+   * - ``--device-write-bps``
+     - 
+     - デバイスからの書き込みレートを制限
+   * - ``--device-write-iops``
+     - 
+     - デバイスからの書き込みレート（１秒あたりの IO）を制限
+   * - ``--disable-content-trust``
+     - ``true``
+     - イメージの認証を省略
+   * - ``--dns``
+     - 
+     - 任意の DNS サービスを指定
+   * - ``--dns-opt``
+     - 
+     - DNS オプションを指定
+   * - ``--dns-option``
+     - 
+     - DNS オプションを指定
+   * - ``--dns-search``
+     - 
+     - 任意の DNS 検索ドメインを指定
+   * - ``--domainname``
+     - 
+     - コンテナ NIS ドメイン名
+   * - ``--entrypoint``
+     - 
+     - イメージのデフォルト ENTRYPOINT を上書き
+   * - ``--env`` , ``-e``
+     - 
+     - 環境変数を指定
+   * - ``--env-file``
+     - 
+     - 環境変数のファイルを読み込む
+   * - ``--expose``
+     - 
+     - 公開するポートまたはポート範囲
+   * - ``--gpus``
+     - 
+     - 【API 1.40+】 コンテナに対して GPU デバイスを追加（ ``all`` は全ての GPU を割り当て）
+   * - ``--group-add``
+     - 
+     - 参加する追加グループを指定
+   * - ``--health-cmd``
+     - 
+     - 正常性を確認するために実行するコマンド
+   * - ``--health-interval``
+     - 
+     - 確認を実行する間隔（ ms|s|m|h）（デフォルト 0s）
+   * - ``--health-retries``
+     - 
+     - 障害と報告するために必要な、失敗を繰り返す回数
+   * - ``--health-start-period``
+     - 
+     - 【API 1.29+】 正常性確認をカウントダウン開始するまで、コンテナ初期化まで待つ期間を指定（ms|s|m|h）（デフォルト 0s）
+   * - ``--health-timeout``
+     - 
+     - 実行の確認を許容する最長時間（ms|s|m|h）（デフォルト 0s）
+   * - ``--help``
+     - 
+     - 使い方を表示
+   * - ``--hostname`` , ``-h``
+     - 
+     - コンテナのホスト名
+   * - ``--init``
+     - 
+     - 【API 1.25+】コンテナ内で :ruby:`初回のプロセス <init>` として実行し、シグナルを転送し、プロセスに渡す
+   * - ``--interactive`` , ``-i``
+     - 
+     - アタッチしていなくても、標準入力を開き続ける
+   * - ``--io-maxbandwidth``
+     - 
+     - システム・デバイスの IO 帯域に対する上限を指定（Windowsのみ）
+   * - ``--io-maxiops``
+     - 
+     - システム・ドライブの最大 IO/秒に対する上限を指定（Windowsのみ）
+   * - ``--ip``
+     - 
+     - IPv4 アドレス（例：172.30.100.104）
+   * - ``--ipv6``
+     - 
+     - IPv6 アドレス（例：2001:db8::33）
+   * - ``--ipc``
+     - 
+     - 使用する IPC 名前空間
+   * - ``--isolation``
+     - 
+     - コンテナ分離（隔離）技術
+   * - ``--kernel-memory``
+     - 
+     - カーネル・メモリ上限
+   * - ``--label`` , ``-l``
+     - 
+     - コンテナにメタデータを指定
+   * - ``--label-file``
+     - 
+     - 行ごとにラベルを記述したファイルを読み込み
+   * - ``--link``
+     - 
+     - 他のコンテナへのリンクを追加
+   * - ``--link-local-ip``
+     - 
+     - コンテナとリンクするローカルの IPv4/IPv6 アドレス
+   * - ``--log-driver``
+     - 
+     - コンテナ用のログ記録ドライバを追加
+   * - ``--log-opt``
+     - 
+     - ログドライバのオプションを指定
+   * - ``--mac-address``
+     - 
+     - コンテナの MAC アドレス (例： 92:d0:c6:0a:29:33)
+   * - ``--memory`` , ``-m``
+     - 
+     - メモリ上限
+   * - ``--memory-reservation``
+     - 
+     - メモリのソフト上限
+   * - ``--memory-swap``
+     - 
+     - 整数値の指定はメモリにスワップ値を追加。 ``-1`` は無制限スワップを有効化
+   * - ``--memory-swappiness``
+     - ``-1``
+     - コンテナ用メモリの :ruby:`スワップ程度 <swappiness>` を調整。整数値の 0 から 100 で指定
+   * - ``--mount``
+     - 
+     - ファイルシステムをアタッチし、コンテナにマウント
+   * - ``--name``
+     - 
+     - コンテナに名前を割り当て
+   * - ``--net``
+     - 
+     - コンテナをネットワークに接続
+   * - ``--net-alias``
+     - 
+     - コンテナにネットワーク内部用のエイリアスを追加
+   * - ``--network``
+     - 
+     - コンテナをネットワークに接続
+   * - ``--network-alias``
+     - 
+     - コンテナにネットワーク内部用のエイリアスを追加
+   * - ``--no-healthcheck``
+     - 
+     - あらゆるコンテナ独自の HEALTHCHECK を無効化
+   * - ``--oom-kill-disable``
+     - 
+     - コンテナの OOM Killer を無効化するかどうか指定
+   * - ``--oom-score-adj``
+     - 
+     - コンテナに対してホスト側の OOM 優先度を設定 ( -1000 ～ 1000 を指定)
+   * - ``--pid``
+     - 
+     - 使用する PID 名前空間
+   * - ``--pids-limit``
+     - 
+     - コンテナの pids 制限を調整（ -1 は無制限）
+   * - ``--platform``
+     - 
+     - 【API 1.32+】 サーバがマルチプラットフォーム対応であれば、プラットフォームを指定
+   * - ``--privileged``
+     - 
+     - このコンテナに対して :ruby:`拡張権限 <extended privileged>` を与える
+   * - ``--publish`` , ``-p``
+     - 
+     - コンテナのポートをホストに公開
+   * - ``--publish-all`` , ``-P``
+     - 
+     - 全ての出力用ポートをランダムなポートで公開
+   * - ``--pull``
+     - ``missing``
+     - 作成する前にイメージを取得（ "always" | "missing" | "never" ）
+   * - ``--read-only``
+     - ``no``
+     - コンテナのルートファイルシステムを :ruby:`読み込み専用 <read-only>` としてマウント
+   * - ``--restart``
+     - ``no``
+     - コンテナ終了時に適用する再起動ポリシー
+   * - ``--rm``
+     - 
+     - コンテナ終了時に、自動的に削除
+   * - ``--runtime``
+     - 
+     - コンテナで使うランタイム名を指定
+   * - ``--security-opt``
+     - 
+     - セキュリティ・オプション
+   * - ``--shm-size``
+     - 
+     - /dev/shm の容量
+   * - ``--sig-proxy``
+     - ``true``
+     - 受信したシグナルをプロセスに :ruby:`中継 <proxy>`
+   * - ``--stop-signal``
+     - ``SIGTERM``
+     - コンテナを停止するシグナル
+   * - ``--stop-timeout``
+     - 
+     - 【API 1.25+】コンテナ停止までのタイムアウト（秒）を指定
+   * - ``--storage-opt``
+     - 
+     - コンテナに対するストレージ上ージ・ドライバのオプション
+   * - ``--sysctl``
+     - 
+     - sysctl オプション
+   * - ``--tmpfs``
+     - 
+     - tmpfs ディレクトリをムント
+   * - ``--tty`` , ``-t``
+     - 
+     - :ruby:`疑似 <pseudo>` TTY を割り当て
+   * - ``--ulimit``
+     - 
+     - ulimit オプション
+   * - ``--user`` , ``-u``
+     - 
+     - ユーザ名または UID （format: <name|uid>[:<group|gid>]）
+   * - ``--userns``
+     - 
+     - 使用する :ruby:`ユーザ名前空間 <user namespace>`
+   * - ``--uts``
+     - 
+     - 使用する UTS 名前空間
+   * - ``--volume`` , ``-v``
+     - 
+     - バインドマウントするボリューム
+   * - ``--volume-driver``
+     - 
+     - コンテナに対するオプションのボリュームドライバを指定
+   * - ``--volumes-from``
+     - 
+     - 指定したコンテナからボリュームをマウント
+   * - ``--workdir`` , ``-w``
+     - 
+     - コンテナ内の作業ディレクトリ
+
+
+.. Examples
+.. _docker_run-examples:
+
+使用例
 ==========
 
 .. Assign name and allocate pseudo-TTY (--name, -it)
+.. _docker_run-assign-name-and-allocalte-pseudo-tty:
 
-.. _assign-name-and-allocalte-pseudo-tty:
-
-名前と疑似 TTY の割り当て（--name、-it）
-----------------------------------------
+名前と: ruby:疑似 ターミナル <pseudo-TTY>` の割り当て（--name、-it）
+----------------------------------------------------------------------
 
 .. code-block:: bash
 
@@ -162,6 +407,7 @@ run
 この例は ``debian:latest`` イメージを使い、 ``test`` という名称のコンテナを実行します。 ``-it`` は疑似 TTY（pseudo-TTY）をコンテナの標準入力に接続するよう、 Docker に対して命令します。つまり、コンテナ内でインタラクティブな ``bash`` シェルを作成します。例の中で、 ``bash`` シェルを終了コード ``13`` で終了しています。この終了コードは ``docker run`` を呼び出したもの（docker）にも送られ、 ``test`` コンテナのメタデータに記録されます。
 
 .. Capture container ID (--cidfile)
+.. _docker_run-capture-container-id---cidfile:
 
 コンテナ ID の取得（--cidfile）
 ----------------------------------------
@@ -175,8 +421,7 @@ run
 これはコンテナを作成し、コンソール上に ``test`` を表示します。 ``cidfile`` フラグは Docker に新しいファイルを作成させ、そこにコンテナ ID を書かせるものです。もしファイルが既に存在している場合、Docker はエラーを返します。 ``docker run`` を終了したら、Docker はこのファイルを閉じます。
 
 .. Full container capabilities (--privileged)
-
-.. _full-container-capabilities:
+.. _docker_run-full-container-capabilities:
 
 コンテナのケーパビリティ（--privileged）
 ----------------------------------------
@@ -204,11 +449,10 @@ run
 ``--privileged`` フラグはコンテナに対して *全ての* 能力を与えます。また、そのために ``device`` cgroup コントローラの制限を昇格します。言い換えますと、コンテナはホスト上であらゆる処理が可能となります。このフラグが存在する時、 Docker の中で Docker を動かすといった特別な使い方ができます。
 
 .. Set working directory (-w)
+.. _docker_run-set-working-directory:
 
-.. _set-working-directory:
-
-作業ディレクトリを指定（-w）
-----------------------------------------
+:ruby:`作業ディレクトリ <working directory>` を指定（-w）
+-----------------------------------------------------------
 
 .. code-block:: bash
 
@@ -219,8 +463,7 @@ run
 ``-w`` は、指定したディレクトリの中でコマンドを実行します。この例では ``/path/to/dir`` で実行します。コンテナ内にパスが存在しなければ、作成されます。
 
 .. Set storage driver options per container
-
-.. _set-storage-driver-options-per-container:
+.. _docker_run-set-storage-driver-options-per-container:
 
 コンテナごとにストレージ・オプションを指定
 --------------------------------------------------
@@ -229,13 +472,12 @@ run
 
    $ docker create -it --storage-opt size=120G fedora /bin/bash
 
-.. This (size) will allow to set the container rootfs size to 120G at creation time.  User cannot pass a size less than the Default BaseFS Size.
+.. This (size) will allow to set the container rootfs size to 120G at creation time. This option is only available for the devicemapper, btrfs, overlay2, windowsfilter and zfs graph drivers. For the devicemapper, btrfs, windowsfilter and zfs graph drivers, user cannot pass a size less than the Default BaseFS Size. For the overlay2 storage driver, the size option is only available if the backing fs is xfs and mounted with the pquota mount option. Under these conditions, user can pass any size less than the backing fs size.
 
-これ（容量）はコンテナの作成時にルート・ファイルシステムの容量を 120GB に指定しています。ただし、デフォルトの BaseFS 容量よりも小さく指定できません。
+この size（容量）とは、コンテナのルート・ファイルシステムの容量を作成時に 120GB と指定しています。このオプションを指定できるのは ``devicemapper`` 、 ``brtfs`` 、 ``overlay2`` 、 ``windowsfilter`` 、 ``zfs`` の各 :ruby:`グラフ・ドライバ <graph driver>` を使う時のみです。 ``devicemapper`` 、 ``brtfs`` 、 ``overlay2`` 、 ``windowsfilter`` 、 ``zfs`` の各 :ruby:`グラフ・ドライバ <graph driver>` では、ユーザはデフォルトの BaseFS 容量をよりも小さな値を指定できません。 ``overlay2`` ストレージ上ージ・ドライバでは、バックエンドで使用するファイルシステムが ``xfs`` で、かつ、 ``pquota`` マウントオプションでマウント指定している場合のみ、size オプションを指定できます。
 
 .. Mount tmpfs (--tmpfs)
-
-.. _mount-tmpfs:
+.. _docker_run-mount-tmpfs:
 
 tmpfs のマウント（--tmpfs）
 ------------------------------
@@ -249,8 +491,7 @@ tmpfs のマウント（--tmpfs）
 ``--tmpfs`` フラグはコンテナに対して空の tmfps をマウントします。この時、オプション ``rw`` 、 ``noexec`` 、``nosuid`` 、 ``size=65536k`` オプションを指定しています。
 
 .. Mount volume (-v, --read-only)
-
-.. _mount-volume:
+.. _docker_run-mount-volume:
 
 ボリュームのマウント（-v, --read-only）
 ----------------------------------------
@@ -287,7 +528,64 @@ tmpfs のマウント（--tmpfs）
 
 Docker Unix ソケットと docker バイナリ（ https://get.docker.com から入手）に対するマウントにより、コンテナはホスト側の Docker デーモンに対して作成や各種操作といった完全アクセスをもたらします。
 
+.. On Windows, the paths must be specified using Windows-style semantics.
+
+Windows では、Windows 方式の記法を使ってパスを指定する必要があります。
+
+.. code-block:: bash
+
+   PS C:\> docker run -v c:\foo:c:\dest microsoft/nanoserver cmd /s /c type c:\dest\somefile.txt
+   Contents of file
+   
+   PS C:\> docker run -v c:\foo:d: microsoft/nanoserver cmd /s /c type d:\somefile.txt
+   Contents of file
+
+.. The following examples will fail when using Windows-based containers, as the destination of a volume or bind mount inside the container must be one of: a non-existing or empty directory; or a drive other than C:. Further, the source of a bind mount must be a local directory, not a file.
+
+以下の例は、 Windows ベースのコンテナを使おうとしますが、失敗します。コンテナ内へのボリュームのマウント先やバインド・マウントは、存在していないか、空っぽのディレクトリの必要があります。また、C: ドライブの必要があります。さらに、バインド・マウントの元になるのはディレクトリの必要があり、ファイルではありません。
+
+.. code-block:: bash
+
+   net use z: \\remotemachine\share
+   docker run -v z:\foo:c:\dest ...
+   docker run -v \\uncpath\to\directory:c:\dest ...
+   docker run -v c:\foo\somefile.txt:c:\dest ...
+   docker run -v c:\foo:c: ...
+   docker run -v c:\foo:c:\existing-directory-with-contents ...
+
+.. For in-depth information about volumes, refer to manage data in containers
+
+ボリュームに関する詳しい情報は、 :doc:`コンテナのデータ管理 </storage/volume>` をご覧ください。
+
+.. Add bind mounts or volumes using the --mount flag
+.. _docker_run-add-bind-mounts-or-volumes-using-the---mount-flag:
+
+``--mount`` フラグによって、ボリューム、ホスト上のディレクトリや ``tmpfs`` をコンテナ内にマウントできます。
+
+.. The --mount flag allows you to mount volumes, host-directories and tmpfs mounts in a container.
+
+.. The --mount flag supports most options that are supported by the -v or the --volume flag, but uses a different syntax. For in-depth information on the --mount flag, and a comparison between --volume and --mount, refer to the service create command reference.
+
+``--mount`` フラグは ``-v`` または ``--volume`` フラグの大部分をサポートしますが、構文が異なります。 ``--mount`` フラグについてや、 ``--volume`` と ``--mount`` 間の比較は :ref:`service create コマンドリファレンス <service_create-add-bind-mounts-volumes-or-memory-filesystems>` をご覧ください。
+
+.. Even though there is no plan to deprecate --volume, usage of --mount is recommended.
+
+``--volume`` を非推奨にする計画はありませんが、 ``--mount`` の利用を推奨します。
+
+.. Examples:
+
+使用例：
+
+.. code-block:: bash
+
+   $ docker run --read-only --mount type=volume,target=/icanwrite busybox touch /icanwrite/here
+
+.. code-block:: bash
+
+   $ docker run -t -i --mount type=bind,src=/data,dst=/data busybox sh
+
 .. Publish or expose port (-p, --expose)
+.. _docker_run-publish-or-expose-port:
 
 ポートの公開と露出（-p、--expose）
 ----------------------------------------
@@ -300,17 +598,20 @@ Docker Unix ソケットと docker バイナリ（ https://get.docker.com から
 
 コンテナのポート ``8080`` を ``127.0.0.1`` 上のポート ``80`` にバインド（割り当て）します。 :doc:`Docker ユーザ・ガイド </engine/userguide/networking/default_network/dockerlinks>` で Docker がどのようにポートを操作するか詳細を説明しています。
 
+.. Note that ports which are not bound to the host (i.e., -p 80:80 instead of -p 127.0.0.1:80:80) will be accessible from the outside. This also applies if you configured UFW to block this specific port, as Docker manages his own iptables rules. Read more
+
+ホストにバインドしていないポート（例： ``-p 127.0.0.1:80:80`` ではなく ``-p 80:80`` の場合）は、外からアクセスできるので、注意してください。また、 UFW を設定し、Docker が自身で管理する iptables ルールはそのままに、特定のポートをブロックできます。 :doc:`こちらをご覧ください </network/iptables>` 。
+
 .. code-block:: bash
 
    $ docker run --expose 80 ubuntu bash
 
 .. This exposes port 80 of the container without publishing the port to the host system’s interfaces.
 
-コンテナのポート ``80`` を露出（expose）しますが、ホストシステム側のインターフェースには公開しません。
+これは、コンテナのポート ``80`` を露出（expose）しますが、ホストシステム側のインターフェースにはポートを公開しません。
 
 .. Set environment variables (-e, --env, --env-file)
-
-.. _set-environment-variable:
+.. _docker_run-set-environment-variable:
 
 環境変数の設定（-e、--env、--env-file）
 ----------------------------------------
@@ -319,75 +620,56 @@ Docker Unix ソケットと docker バイナリ（ https://get.docker.com から
 
    $ docker run -e MYVAR1 --env MYVAR2=foo --env-file ./env.list ubuntu bash
 
+.. Use the -e, --env, and --env-file flags to set simple (non-array) environment variables in the container you’re running, or overwrite variables that are defined in the Dockerfile of the image you’re running.
 
-.. This sets simple (non-array) environmental variables in the container. For illustration all three flags are shown here. Where -e, --env take an environment variable and value, or if no = is provided, then that variable's current value, set via export, is passed through (i.e. $MYVAR1 from the host is set to $MYVAR1 in the container). When no = is provided and that variable is not defined in the client's environment then that variable will be removed from the container's list of environment variables. All three flags, -e, --env and --env-file can be repeated.
+``-e`` 、 ``--env`` 、 ``--env-file`` フラグを使い、シンプルに（配列ではない）環境変数を実行中のコンテナ内で指定できます。あるいは、実行中のイメージの Dockerfile 内で定義済みの環境変数を上書きします。
 
-これはコンテナ内におけるシンプルな（配列ではない）環境変数を設定します。この３つのフラグについて説明します。 ``-e`` と ``--env`` は環境変数と値を指定する場所です。あるいは、もし ``=`` を ``export`` で指定しなければ、現在の環境変数がそのまま送られます（例： ホスト上の ``$MYVAR1`` がコンテナ内の ``$MYVAR1`` にセットされます ）。 ``=`` が指定されず、クライアント側の環境変数が無い場合は、コンテナ内の環境変数からは削除されます。この３つのフラグ ``-e`` 、 ``--env`` 、``--env-file`` は何度でも指定できます。
+.. You can define the variable and its value when running the container:
 
-.. Regardless of the order of these three flags, the --env-file are processed first, and then -e, --env flags. This way, the -e or --env will override variables as needed.
-
-これらの３つのフラグに関係なく、 ``--env-file`` が始めに処理され、その後 ``-e`` と ``--env`` フラグが処理されます。この方法は、必要な時に ``-e`` と ``--env`` で変数を上書きするために使えます。
-
-.. code-block:: bash
-
-   $ cat ./env.list
-   TEST_FOO=BAR
-   $ docker run --env TEST_FOO="This is a test" --env-file ./env.list busybox env | grep TEST_FOO
-   TEST_FOO=This is a test
-
-.. The --env-file flag takes a filename as an argument and expects each line to be in the VAR=VAL format, mimicking the argument passed to --env. Comment lines need only be prefixed with #
-
-``--env-file`` フラグは、ファイル名を引数として使います。ファイルの内容は、それぞれの行が ``VAR=VAL`` の形式であり、 ``--env`` のようなものです。コメント行は、行頭に ``#`` を付けます。
-
-.. An example of a file passed with --env-file
+コンテナの実行時に、変数と値を定義できます。
 
 .. code-block:: bash
 
-   $ cat ./env.list
-   TEST_FOO=BAR
+   $ docker run --env VAR1=value1 --env VAR2=value2 ubuntu env | grep VAR
+   VAR1=value1
+   VAR2=value2
+
+.. You can also use variables that you’ve exported to your local environment:
+
+また、ローカル環境で export した変数も使えます。
+
+.. code-block:: bash
+
+   export VAR1=value1
+   export VAR2=value2
    
-   # ここはコメント
-   TEST_APP_DEST_HOST=10.10.0.127
-   TEST_APP_DEST_PORT=8888
-   _TEST_BAR=FOO
-   TEST_APP_42=magic
-   helloWorld=true
-   123qwe=bar
-   org.spring.config=something
+   $ docker run --env VAR1 --env VAR2 ubuntu env | grep VAR
+   VAR1=value1
+   VAR2=value2
+
+.. When running the command, the Docker CLI client checks the value the variable has in your local environment and passes it to the container. If no = is provided and that variable is not exported in your local environment, the variable won’t be set in the container.
+
+コマンドの実行時、 Docker CLI クライアントはローカル環境上の環境変数を確認し、それをコンテナに渡します。 ``=`` の指定が無い変数は、ローカル環境からエクスポートされず、コンテナ内には設定されません。
+
+.. You can also load the environment variables from a file. This file should use the syntax <variable>=value (which sets the variable to the given value) or <variable> (which takes the value from the local environment), and # for comments.
+
+また、ファイルからも環境変数を読み込めます。このファイルで使える構文は ``<変数>=値`` （変数に対して値を指定）か、 ``<変数>`` （ローカル環境変数から値を取得）か、コメント用の ``#`` です。
+
+.. code-block:: bash
+
+   $ cat env.list
+   # This is a comment
+   VAR1=value1
+   VAR2=value2
+   USER
    
-   # 実行者は環境変数を渡す
-   TEST_PASSTHROUGH
-   $ TEST_PASSTHROUGH=howdy docker run --env-file ./env.list busybox env
-   PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-   HOSTNAME=5198e0745561
-   TEST_FOO=BAR
-   TEST_APP_DEST_HOST=10.10.0.127
-   TEST_APP_DEST_PORT=8888
-   _TEST_BAR=FOO
-   TEST_APP_42=magic
-   helloWorld=true
-   TEST_PASSTHROUGH=howdy
-   HOME=/root
-   123qwe=bar
-   org.spring.config=something
-   
-   $ docker run --env-file ./env.list busybox env
-   PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-   HOSTNAME=5198e0745561
-   TEST_FOO=BAR
-   TEST_APP_DEST_HOST=10.10.0.127
-   TEST_APP_DEST_PORT=8888
-   _TEST_BAR=FOO
-   TEST_APP_42=magic
-   helloWorld=true
-   TEST_PASSTHROUGH=
-   HOME=/root
-   123qwe=bar
-   org.spring.config=something
+   $ docker run --env-file env.list ubuntu env | grep VAR
+   VAR1=value1
+   VAR2=value2
+   USER=denis
 
 .. Set metadata on container (-l, --label, --label-file)
-
-.. _set-metadata-on-container:
+.. _docker_run-set-metadata-on-container:
 
 メタデータをコンテナに設定（-l、--label、--label-file）
 ------------------------------------------------------------
@@ -436,12 +718,11 @@ label-file の書式は、環境変数の読み込み書式と似ています（
 
 ラベルの動作に関する詳しい情報は、Docker ユーザ・ガイドの :doc:`Label - Docker でカスタム・メタデータを使う </engine/userguide/labels-custom-metadata>` をご覧ください。
 
-.. Connect a container to a network (--net)
+.. Connect a container to a network (--network)
+.. _docker_run-connect-a-container-to-a-network:
 
-.. _connect-a-container-to-a-network:
-
-コンテナをネットワークに接続（--net）
-----------------------------------------
+コンテナをネットワークに接続（--network）
+--------------------------------------------------
 
 .. When you start a container use the --net flag to connect it to a network. This adds the busybox container to the my-net network.
 
@@ -449,7 +730,7 @@ label-file の書式は、環境変数の読み込み書式と似ています（
 
 .. code-block:: bash
 
-   $ docker run -itd --net=my-net busybox
+   $ docker run -itd --network=my-net busybox
 
 .. You can also choose the IP addresses for the container with --ip and --ip6 flags when you start the container on a user-defined network.
 
@@ -457,7 +738,7 @@ label-file の書式は、環境変数の読み込み書式と似ています（
 
 .. code-block:: bash
 
-   $ docker run -itd --net=my-net --ip=10.10.9.75 busybox
+   $ docker run -itd --network=my-net --ip=10.10.9.75 busybox
 
 .. If you want to add a running container to a network use the docker network connect subcommand.
 
@@ -478,8 +759,7 @@ label-file の書式は、環境変数の読み込み書式と似ています（
 ネットワークからコンテナを切断するには、 ``docker network disconnect`` コマンドを使います。
 
 .. Mount volumes from container (--volumes-from)
-
-.. _mount-volumes-from-container:
+.. _docker_run-mount-volumes-from-container:
 
 コンテナからボリュームをマウント（--volumes-from）
 --------------------------------------------------
@@ -501,8 +781,7 @@ SELinux のようなラベリング・システムは、コンテナ内にボリ
 コンテナ内にあるラベルを変更するには、ボリュームのマウントに ``:z`` か ``:Z`` の２つを末尾に追加できます。これらのサフィックスは、Docker に対して共有ボリューム上のファイル・オブジェクトに対して再度ラベル付けするように伝えます。その結果、Docker は共有コンテントのラベルを使ってラベル付けします。共有ボリュームのラベルは、全てのコンテナを読み書き可能なコンテントにします。 ``Z`` オプションは Docker に対してプライベートな共有されないラベルであると伝えます。現在のコンテナのみ、プライベート・ボリュームが使えます。
 
 .. Attach to STDIN/STDOUT/STDERR (-a)
-
-.. _attach-to-stdin-stdout-stderr:
+.. _docker_run-attach-to-stdin-stdout-stderr:
 
 STDIN・STDOUT・STDERRのアタッチ（-a）
 ----------------------------------------
@@ -544,8 +823,11 @@ STDIN・STDOUT・STDERRのアタッチ（-a）
 
 .. code-block:: bash
 
-   $ docker run --device=/dev/sdc:/dev/xvdc --device=/dev/sdd --device=/dev/zero:/dev/nulo -i -t ubuntu ls -l /dev/{xvdc,sdd,nulo}
-   brw-rw---- 1 root disk 8, 2 Feb  9 16:05 /dev/xvdc
+   $ docker run --device=/dev/sdc:/dev/xvdc \
+                --device=/dev/sdd --device=/dev/zero:/dev/nulo \
+                -i -t \
+                ubuntu ls -l /dev/{xvdc,sdd,nulo}   brw-rw---- 1 root disk 8, 2 Feb  9 16:05 /dev/xvdc
+   
    brw-rw---- 1 root disk 8, 3 Feb  9 16:05 /dev/sdd
    crw-rw-rw- 1 root root 1, 5 Feb  9 16:05 /dev/nulo
 
@@ -555,7 +837,7 @@ STDIN・STDOUT・STDERRのアタッチ（-a）
 
 .. By default, the container will be able to read, write and mknod these devices. This can be overridden using a third :rwm set of options to each --device flag:
 
-デフォルトでは、コンテナは ``read`` 、``write`` 、 ``mknod`` を各デバイスに指定できます。各 ``--device`` フラグのオプション設定で、３つの ``:rwm`` を利用できます。
+デフォルトでは、コンテナは ``read`` 、``write`` 、 ``mknod`` を各デバイスに指定できます。各 ``--device`` フラグのオプション設定で、３つの ``:rwm`` を利用できます。コンテナが :ruby:`特権モード <privileged mode>` で動作している場合、パーミッションの指定は無視されます。
 
 .. code-block:: bash
 
@@ -578,11 +860,63 @@ STDIN・STDOUT・STDERRのアタッチ（-a）
 
 .. note::
 
-   ``--device`` はエフェメラルな（短命な）デバイスでは使うべきではありません。信頼できないコンテナが ``--device`` を追加しようとしても、ブロック・デバイスは除外されるでしょう。
+   ``--device`` は一時的に利用するデバイスでは使うべきではありません。削除できるブロックデバイスは、信頼できないコンテナに ``--device`` で追加すべきではありません。
+
+.. For Windows, the format of the string passed to the --device option is in the form of --device=<IdType>/<Id>. Beginning with Windows Server 2019 and Windows 10 October 2018 Update, Windows only supports an IdType of class and the Id as a device interface class GUID. Refer to the table defined in the Windows container docs for a list of container-supported device interface class GUIDs.
+
+Windows では、 ``--device`` オプションで文字を渡す形式は ``--device=<IdType>/<Id>`` です。Windows Server 2019 と Windows 10 Octover 2018 アップデート以降、Windows でサポートしている IdType は ``class `` のみで、 Id とは `デバイス インターフェーイス クラス GUID <https://docs.microsoft.com/ja-jp/windows-hardware/drivers/install/overview-of-device-interface-classes>`_ です。コンテナがサポートしているデバイスインターフェースクラス GUID の一覧は、 `Windows コンテナのドキュメント <https://docs.microsoft.com/ja-jp/virtualization/windowscontainers/deploy-containers/hardware-devices-in-containers>`_ で定義された表をご覧ください。
+
+.. If this option is specified for a process-isolated Windows container, all devices that implement the requested device interface class GUID are made available in the container. For example, the command below makes all COM ports on the host visible in the container.
+
+プロセスを隔離した Windows コンテナのオプションを指定する場合は、要求したデバイスインターフェースクラス GUID の全デバイスがコンテナ内で利用可能になります。たとえば、以下のコマンドは、ホスト上にある全ての COM ポートをコンテナ内で見えるようにします。
+
+.. code-block:: bash
+
+   PS C:\> docker run --device=class/86E0D1E0-8089-11D0-9CE4-08003E301F73 mcr.microsoft.com/windows/servercore:ltsc2019
+
+..    Note
+    The --device option is only supported on process-isolated Windows containers. This option fails if the container isolation is hyperv or when running Linux Containers on Windows (LCOW).
+
+.. note::
+
+   ``--device`` オプションはプロセス隔離 Windows コンテナでのみサポートしています。コンテナ隔離が ``hyperv`` や Windows 上の LInux コンテナ（LCOW）の実行時には失敗します。
+
+.. Access an NVIDIA GPU
+.. _docker_run-access-an-nvidia-gpu:
+NVIDIA GPU にアクセス
+------------------------------
+
+.. The --gpus­ flag allows you to access NVIDIA GPU resources. First you need to install nvidia-container-runtime. Visit Specify a container’s resources for more information.
+
+``--gpus`` フラグによって、NVIDIA GPU リソースにアクセス可能になります。はじめに、 `nvidia-container-runtime <https://nvidia.github.io/nvidia-container-runtime/>`_ のインストールが必要です。詳しい情報は :doc:`コンテナのリソースを指定 </config/containers/resource_constraints>` をご覧ください。
+
+.. To use --gpus, specify which GPUs (or all) to use. If no value is provied, all available GPUs are used. The example below exposes all available GPUs.
+
+``--gpus`` には、どの GPU （あるいは全て）を使うか指定します。値の指定がなければ、利用可能な GPU 全てを使います。以下の例は利用可能なすべての GPU を見えるようにします。
+
+.. code-block:: bash
+
+   $ docker run -it --rm --gpus all ubuntu nvidia-smi
+
+.. Use the device option to specify GPUs. The example below exposes a specific GPU.
+
+``device`` オプションを使い、 GPUS を指定します。以下の例は、特定の GPU を見えるようにします。
+
+.. code-block:: bash
+
+   $ docker run -it --rm --gpus device=GPU-3a23c669-1f69-c64e-cf85-44e9b07e7a2a ubuntu nvidia-smi
+
+.. The example below exposes the first and third GPUs.
+
+以下の例は、1番目と3番目の GPU を見えるようにします。
+
+.. code-block:: bash
+
+   $ docker run -it --rm --gpus device=0,2 nvidia-smi
+
 
 .. Restart policies (--restart)
-
-.. _restart-policies:
+.. _docker_run-restart-policies:
 
 再起動ポリシー
 ------------------------------
@@ -606,10 +940,11 @@ Docker の ``--restart`` はコンテナの *再起動ポリシー* を指定し
      - 終了してもコンテナを自動的に再起動しません。これがデフォルトです。
    * - **on-failure** [:最大リトライ数]
      - コンテナが 0 以外のステータスで終了すると、再起動します。オプションで Docker デーモンが何度再起動するかを指定できます。
-   * - **always**
-     - 終了コードの状態に関わらず、常に再起動します。always を指定すると、 Docker デーモンは無制限に再起動を試みます。また、現在の状況に関わらず、デーモンの起動時にもコンテナの起動を試みます。
    * - **unless-stopped**
      - 終了コードの状態に関わらず、常に再起動します。しかし、以前に停止した状態であれば、Docker デーモンの起動時にコンテナを開始しません。
+   * - **always**
+     - 終了コードの状態に関わらず、常に再起動します。always を指定すると、 Docker デーモンは無制限に再起動を試みます。また、現在の状況に関わらず、デーモンの起動時にもコンテナの起動を試みます。
+
 
 .. code-block:: bash
 
@@ -624,8 +959,7 @@ Docker の ``--restart`` はコンテナの *再起動ポリシー* を指定し
 再起動ポリシーに関するより詳しい情報は、 :doc:`Docker run リファレンス・ページ </engine/reference/run>` の :ref:`再起動ポリシー（--restart） <restart-policies-restart>` をご覧ください。
 
 .. Add entries to container hosts file (--add-host)
-
-.. _add-entries-to-container-hosts-file:
+.. _docker_run-add-entries-to-container-hosts-file:
 
 コンテナの hosts ファイルにエントリ追加（--add-host）
 ------------------------------------------------------------
@@ -636,14 +970,16 @@ Docker の ``--restart`` はコンテナの *再起動ポリシー* を指定し
 
 .. code-block:: bash
 
-   $ docker run --add-host=docker:10.180.0.1 --rm -it debian
-   $$ ping docker
-   PING docker (10.180.0.1): 48 data bytes
-   56 bytes from 10.180.0.1: icmp_seq=0 ttl=254 time=7.600 ms
-   56 bytes from 10.180.0.1: icmp_seq=1 ttl=254 time=30.705 ms
-   ^C--- docker ping statistics ---
-   2 packets transmitted, 2 packets received, 0% packet loss
-   round-trip min/avg/max/stddev = 7.600/19.152/30.705/11.553 ms
+   $ docker run --add-host=docker:93.184.216.34 --rm -it alpine
+   / # ping docker
+   PING docker (93.184.216.34): 56 data bytes
+   64 bytes from 93.184.216.34: seq=0 ttl=37 time=93.052 ms
+   64 bytes from 93.184.216.34: seq=1 ttl=37 time=92.467 ms
+   64 bytes from 93.184.216.34: seq=2 ttl=37 time=92.252 ms
+   ^C
+   --- docker ping statistics ---
+   4 packets transmitted, 4 packets received, 0% packet loss
+   round-trip min/avg/max = 92.209/92.495/93.052 ms
 
 .. Sometimes you need to connect to the Docker host from within your container. To enable this, pass the Docker host’s IP address to the container using the --add-host flag. To find the host’s address, use the ip addr show command.
 
@@ -663,8 +999,7 @@ Docker の ``--restart`` はコンテナの *再起動ポリシー* を指定し
 IPv6 は ``-4`` フラグの替わりに ``-6`` を指定します。他のネットワーク・デバイスの場合は ``eth0`` を適切なデバイス名に置き換えます（例えば ``docker0`` ブリッジ・デバイス ）。
 
 .. Set ulimits in container (--ulimit)
-
-.. _set-ulimits-in-container-ulimit:
+.. _docker_run-set-ulimits-in-container-ulimit:
 
 コンテナ内の ulimits を指定（--ulimit）
 --------------------------------------------
@@ -689,8 +1024,7 @@ IPv6 は ``-4`` フラグの替わりに ``-6`` を指定します。他のネ�
 設定したら適切な ``syscall`` が送信されます。Docker は転送に何ら介在しません。値が設定された時のみ処理されます。
 
 .. For nproc usage
-
-.. _for-nproc-usage:
+.. _docker_run-for-nproc-usage:
 
 ``nproc`` を使うには
 ------------------------------
@@ -702,8 +1036,11 @@ IPv6 は ``-4`` フラグの替わりに ``-6`` を指定します。他のネ�
 .. code-block:: bash
 
    docker run -d -u daemon --ulimit nproc=3 busybox top
+   
    docker run -d -u daemon --ulimit nproc=3 busybox top
+   
    docker run -d -u daemon --ulimit nproc=3 busybox top
+   
    docker run -d -u daemon --ulimit nproc=3 busybox top
 
 .. The 4th container fails and reports “[8] System error: resource temporarily unavailable” error. This fails because the caller set nproc=3 resulting in the first three containers using up the three processes quota set for the daemon user.
@@ -711,8 +1048,7 @@ IPv6 は ``-4`` フラグの替わりに ``-6`` を指定します。他のネ�
 ４番めのコンテナは失敗し、“[8] System error: resource temporarily unavailable” エラーを表示します。これが失敗するのは、実行時に ``nproc=3`` を指定したからです。３つのコンテナが起動したら、 ``daemon`` ユーザに指定されたプロセスの上限（quota）に達してしまうからです。
 
 .. Stop container with signal (--stop-signal)
-
-.. _stop-container-with-signal:
+.. _docker_run-stop-container-with-signal:
 
 コンテナをシグナルで停止
 ------------------------------
@@ -721,7 +1057,34 @@ IPv6 は ``-4`` フラグの替わりに ``-6`` を指定します。他のネ�
 
 ``--stop-signal`` フラグは、システムコールのシグナルを設定します。これは、コンテナを終了する時に送るものです。このシグナルはカーネルの syscall テーブルにある適切な数値と一致する必要があります。例えば 9 や、SIGNAME のような形式のシグナル名（例：SIGKILL）です。
 
+.. Optional security options (--security-opt)
+.. _docker_run-optional-security-options:
+セキュリティ・オプションの追加（--security-opt）
+-------------------------------------------------
+
+.. On Windows, this flag can be used to specify the credentialspec option. The credentialspec must be in the format file://spec.txt or registry://keyname.
+
+Windows では、このフラグが ``credentialspec`` オプションを指定するのに使えます。 ``credentialspec`` は ``file://spec.txt`` もしくは ``registry://keyname`` の形式にする必要があります。
+
+.. Stop container with timeout (--stop-timeout)
+.. _docker_run-stop-container-with-timeout:
+コンテナ停止のタイムアウト（--stop-timeout）
+--------------------------------------------------
+
+.. The --stop-timeout flag sets the number of seconds to wait for the container to stop after sending the pre-defined (see --stop-signal) system call signal. If the container does not exit after the timeout elapses, it is forcibly killed with a SIGKILL signal.
+
+``--stop-timeout`` フラグは、コンテナを停止するために定義済みの（ ``--stop-signal`` を参照 ）システムコール・シグナルを送った後、何秒待機するかを指定します。タイムアウトを経過してもコンテナが停止しない場合は、 ``KILLSIG`` シグナルで強制停止します。
+
+.. If --stop-timeout is set to -1, no timeout is applied, and the daemon will wait indefinitely for the container to exit.
+
+``--stop-timeout`` に ``-1`` を指定すると、タイムアウトは適用されず、デーモンはコンテナが終了するまで無期限に待機します。
+
+.. The default is determined by the daemon, and is 10 seconds for Linux containers, and 30 seconds for Windows containers.
+
+デーモンでのデフォルトは、 Linux コンテナでは 10 秒、 Windows コンテナでは 30 秒です。
+
 .. Specify isolation technology for container (--isolation)
+.. _docker_run-specify-isolation-technology-for-container-isolation:
 
 コンテナの分離技術を指定（--isolation）
 ----------------------------------------
@@ -753,26 +1116,74 @@ IPv6 は ``-4`` フラグの替わりに ``-6`` を指定します。他のネ�
    * - ``hyperv``
      - Hyper-V ハイパーバイザをベースとする分離です。
 
-.. On Windows, the default isolation for client is hyperv, and for server is process. Therefore when running on Windows server without a daemon option set, these two commands are equivalent:
+.. The default isolation on Windows server operating systems is process. The default isolation on Windows client operating systems is hyperv. An attempt to start a container on a client operating system older than Windows 10 1809 with --isolation process will fail.
 
-Windows 上では、クライアントはデフォルトの分離に ``nyperv`` を使い、server は ``process`` を使います。そのため、Windows サーバ上でデーモンのオプションの設定をしなければ、次の２つのコマンドは同等です。
+Windows server オペレーティングシステム上のデフォルト分離は ``process`` です。Windows クライアントのオペレーティングシステム上のデフォルト分離は ``hyperv`` です。Windows 10 1809 よりも古いクライアントのオペレーティングシステム上で、 ``--isolation process`` でコンテナの起動を試みても、失敗します。
 
-.. code-block:: bash
+.. On Windows server, assuming the default configuration, these commands are equivalent and result in process isolation:
 
-   $ docker run -d --isolation default busybox top
-   $ docker run -d --isolation process busybox top
-
-.. If you have set the --exec-opt isolation=hyperv option on the Docker daemon, if running on Windows server, any of these commands also result in hyperv isolation:
-
-Docker ``daemon`` 上で ``--exec-opt isolation=hyperv`` オプションを指定すると、WIndows server 上であれば、各コマンドの実行に ``hyperv`` 分離を使った結果を表示します。
+Windows server 上では、デフォルトの設定であれば、以下のコマンドは同等で、結果 ``process`` 分離となります。
 
 .. code-block:: bash
 
-   $ docker run -d --isolation default busybox top
-   $ docker run -d --isolation hyperv busybox top
+   PS C:\> docker run -d microsoft/nanoserver powershell echo process
+   PS C:\> docker run -d --isolation default microsoft/nanoserver powershell echo process
+   PS C:\> docker run -d --isolation process microsoft/nanoserver powershell echo process
+
+.. If you have set the --exec-opt isolation=hyperv option on the Docker daemon, or are running against a Windows client-based daemon, these commands are equivalent and result in hyperv isolation:
+
+Docker ``daemon`` 上で ``--exec-opt isolation=hyperv`` オプションを指定するか、WIndows クライアント・ベース上で動作するデーモンの場合は、以下のコマンドは同等で、結果 ``hyperv`` 分離となります。
+
+.. code-block:: bash
+
+   PS C:\> docker run -d microsoft/nanoserver powershell echo hyperv
+   PS C:\> docker run -d --isolation default microsoft/nanoserver powershell echo hyperv
+   PS C:\> docker run -d --isolation hyperv microsoft/nanoserver powershell echo hyperv
+
+.. Specify hard limits on memory available to containers (-m, --memory)
+.. _docker_run-specify-hard-limits-on-memory-available-to-containers:
+コンテナで利用可能なメモリのハードリミットを指定（-m, --memory）
+----------------------------------------------------------------------
+
+.. These parameters always set an upper limit on the memory available to the container. On Linux, this is set on the cgroup and applications in a container can query it at /sys/fs/cgroup/memory/memory.limit_in_bytes.
+
+これらのパラメータは、コンテナが常時利用可能なメモリの上限を指定します。Linux 上では、 cgorup に設定され、コンテナ内のアプリケーションは ``/sys/fs/cgroup/memory/memory.limit_in_bytes`` で確認できます。
+
+.. On Windows, this will affect containers differently depending on what type of isolation is used.
+
+Windows 上では、コンテナに対する影響は、何を隔離技術で使うかに依存します。
+
+..    With process isolation, Windows will report the full memory of the host system, not the limit to applications running inside the container
+
+* ``process`` 分離では、Windows はホストシステム上の全メモリを報告し、コンテナ内で実行しているアプリケーションに制限できません。
+   
+   .. code-block:: bash
+   
+      PS C:\> docker run -it -m 2GB --isolation=process microsoft/nanoserver powershell Get-ComputerInfo *memory*
+      CsTotalPhysicalMemory      : 17064509440
+      CsPhyicallyInstalledMemory : 16777216
+      OsTotalVisibleMemorySize   : 16664560
+      OsFreePhysicalMemory       : 14646720
+      OsTotalVirtualMemorySize   : 19154928
+      OsFreeVirtualMemory        : 17197440
+      OsInUseVirtualMemory       : 1957488
+      OsMaxProcessMemorySize     : 137438953344
+
+* `hyperv` 分離では、 Windows はメモリ上限を十分維持できるユーティリティ VM を作成し、コンテナを保持するために必要な最小の OS を加えます。
+   
+   .. code-block:: bash
+   
+      PS C:\> docker run -it -m 2GB --isolation=hyperv microsoft/nanoserver powershell Get-ComputerInfo *memory*
+      CsTotalPhysicalMemory      : 2683355136
+      CsPhyicallyInstalledMemory :
+      OsTotalVisibleMemorySize   : 2620464
+      OsFreePhysicalMemory       : 2306552
+      OsTotalVirtualMemorySize   : 2620464
+      OsFreeVirtualMemory        : 2356692
+      OsInUseVirtualMemory       : 263772
+      OsMaxProcessMemorySize     : 137438953344
 
 .. Configure namespaced kernel parameters (sysctls) at runtime
-
 .. _configure-namespaced-kernel-parameters-at-runtime:
 
 実行時に名前空間のカーネル・パラメータ（sysctl）を設定
@@ -805,22 +1216,32 @@ Docker ``daemon`` 上で ``--exec-opt isolation=hyperv`` オプションを指�
 
 .. kernel.msgmax, kernel.msgmnb, kernel.msgmni, kernel.sem, kernel.shmall, kernel.shmmax, kernel.shmmni, kernel.shm_rmid_forced Sysctls beginning with fs.mqueue.*
 
-kernel.msgmax、 kernel.msgmnb、 kernel.msgmni、 kernel.sem、 kernel.shmall、 kernel.shmmax、 kernel.shmmni、 kernel.shm_rmid_forced、 fs.mqueue.* で始まる sysctl 。
-
-.. If you use the --ipc=host option these sysctls will not be allowed.
-
-``--ipc=host`` オプションを使う場合は、これら sysctl のオプション指定が許可されません。
+*  ``kernel.msgmax`` 、 ``kernel.msgmnb`` 、 ``kernel.msgmni`` 、 ``kernel.sem`` 、 ``kernel.shmall`` 、 ``kernel.shmmax`` 、 ``kernel.shmmni`` 、 ``kernel.shm_rmid_forced``
+* ``fs.mqueue.*`` で始まる sysctl 。
+* ``--ipc=host`` オプションを使う場合は、これら sysctl のオプション指定が許可されません。
 
 .. Network Namespace: Sysctls beginning with net.*
-
-``ネットワーク名前空間`` ： net.* で始まる sysctl
-
 .. If you use the --net=host option using these sysctls will not be allowed.
 
-``--ipc=host`` オプションを使う場合は、これら sysctl のオプション指定が許可されません。
+``ネットワーク名前空間`` ：
+
+*  ``net.*`` で始まる sysctl
+* ``--ipc=host`` オプションを使う場合は、これら sysctl のオプション指定が許可されません。
+
+
+親コマンド
+==========
+
+.. list-table::
+   :header-rows: 1
+
+   * - コマンド
+     - 説明
+   * - :doc:`docker <docker>`
+     - Docker CLI の基本コマンド
 
 
 .. seealso:: 
 
-   run
+   docker run
       https://docs.docker.com/engine/reference/commandline/run/

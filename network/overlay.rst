@@ -1,8 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/network/overlay/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/network/overlay.md
-   doc version: 19.03
-.. check date: 2020/07/14
+   doc version: 20.10
+.. check date: 2022/04/29
+.. Commits on Sep 13, 2021 173d3c65f8e7df2a8c0323594419c18086fc3a30
 .. Commits on Apr 8, 2020 dc1f9f7b4d2f656f5de23d3b7ac69571b270ddca
 .. ---------------------------------------------------------------------------
 
@@ -28,7 +29,7 @@
 
 swarm の初期化するか、Docker ホストを既存の swarm へ追加すると、その Docker ホスト上に2つの新しいネットワークが作成されます。
 
-..  an overlay network called ingress, which handles control and data traffic related to swarm services. When you create a swarm service and do not connect it to a user-defined overlay network, it connects to the ingress network by default.
+..  an overlay network called ingress, which handles the control and data traffic related to swarm services. When you create a swarm service and do not connect it to a user-defined overlay network, it connects to the ingress network by default.
     a bridge network called docker_gwbridge, which connects the individual Docker daemon to the other daemons participating in the swarm.
 
 * ``ingress`` と呼ぶオーバレイ・ネットワークは、swarm サービスに関連する制御とデータ転送を扱います。swarm サービスを作成する時、ユーザ定義オーバレイ・ネットワークへ接続しなければ、サービスはデフォルトで ``ingress`` ネットワークに接続します。
@@ -151,9 +152,9 @@ swarm モードオーバレイ・ネットワークとスタンドアロン・�
 デフォルト ingress ネットワークのカスタマイズ
 --------------------------------------------------
 
-.. Most users never need to configure the ingress network, but Docker 17.05 and higher allow you to do so. This can be useful if the automatically-chosen subnet conflicts with one that already exists on your network, or you need to customize other low-level network settings such as the MTU.
+.. Most users never need to configure the ingress network, but Docker allow you to do so. This can be useful if the automatically-chosen subnet conflicts with one that already exists on your network, or you need to customize other low-level network settings such as the MTU.
 
-ほとんどのユーザは ``ingress`` ネットワークの設定変更が不要ですが、 Docker 17.05 以上では変更が可能です。そのため、自動的に選ばれるサブネットが既存のネットワークと衝突する場合や、MTA のような低水準のカスタマイズが必要な場合に役立ちます。
+ほとんどのユーザは ``ingress`` ネットワークの設定変更が不要ですが、 Docker では変更が可能です。そのため、自動的に選ばれるサブネットが既存のネットワークと衝突する場合や、MTA のような低水準のカスタマイズが必要な場合に役立ちます。
 
 .. Customizing the ingress network involves removing and recreating it. This is usually done before you create any services in the swarm. If you have existing services which publish ports, those services need to be removed before you can remove the ingress network.
 

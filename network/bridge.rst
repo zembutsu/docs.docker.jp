@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/network/bridge/
-.. SOURCE: https://github.com/docker/docker.github.io/blob/master/network/index.md
-   doc version: 19.03
-.. check date: 2020/07/12
-.. Commits on Apr 8, 2020 dc1f9f7b4d2f656f5de23d3b7ac69571b270ddca
+.. SOURCE: https://github.com/docker/docker.github.io/blob/master/network/bridge.md
+   doc version: 20.10
+.. check date: 2022/04/29
+.. Commits on Dec 28, 2021 5b5a4424d0a182204f9ec5fc9508d50755d25e9c
 .. ---------------------------------------------------------------------------
 
 .. Use bridge networks
@@ -278,11 +278,11 @@ Docker コンテナから外の世界への転送を有効化
 .. code-block:: bash
 
    {
-     "bip": "192.168.1.5/24",
-     "fixed-cidr": "192.168.1.5/25",
+     "bip": "192.168.1.1/24",
+     "fixed-cidr": "192.168.1.1/25",
      "fixed-cidr-v6": "2001:db8::/64",
      "mtu": 1500,
-     "default-gateway": "10.20.1.1",
+     "default-gateway": "192.168.1.254",
      "default-gateway-v6": "2001:db8:abcd::89",
      "dns": ["10.20.1.2","10.20.1.3"]
    }

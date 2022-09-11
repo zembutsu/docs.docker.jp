@@ -1,18 +1,19 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/engine/userguide/storagedriver/aufs-driver/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/storagedriver/aufs-driver.md
+.. URL: https://docs.docker.com/storage/storagedriver/select-storage-driver/
+.. SOURCE: 
    doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/userguide/storagedriver/aufs-driver.md
-.. check date: 2016/06/14
-.. Commits on Apr 29, 2016 24ec73f754da16e37726a3f1c6a59de508e255fc
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/storage/storagedriver/aufs-driver.md
+.. check date: 2022/05/04
+.. Commits on Aug 7, 2021 4afcaf3b2d8656e3fed75ca9fda445a02efcfc04
 .. ---------------------------------------------------------------------------
 
-.. Docker and AUFS in practice
-
-.. _docker-and-aufs-in-practice:
+.. Use the AUFS storage driver
+.. _use-the-aufs-storage-driver:
 
 ========================================
-AUFS ストレージ・ドライバの使用
+AUFS ストレージ ドライバの使用
 ========================================
 
 .. sidebar:: 目次
@@ -21,9 +22,30 @@ AUFS ストレージ・ドライバの使用
        :depth: 3
        :local:
 
+.. AUFS is a union filesystem. The aufs storage driver was previously the default storage driver used for managing images and layers on Docker for Ubuntu, and for Debian versions prior to Stretch. If your Linux kernel is version 4.0 or higher, and you use Docker Engine - Community, consider using the newer overlay2, which has potential performance advantages over the aufs storage driver.
+
+AUFS は「 :ruby:`ユニオン ファイルシステム <union filesystem>` 」です。 ``aufs`` ストレージ ドライバとは、 Ubuntu 、Debian Stretch 未満の Docker で、イメージとレイヤーを管理するために使う、デフォルトのストレージ ドライバでした。Linux kernel がバージョン 4.0 以上で、Docker Engine コミュニティ版を使っているのであれば、より新しい :doc:`overlay2 <overlayfs-driver>` の利用をご検討ください。そちらのほうが、 ``aufs`` ストレージ ドライバよりも性能面で有利な可能性があります。
+
+..    Note
+    AUFS is not supported on some distributions and Docker editions. See Prerequisites for more information about supported platforms.
+
+.. note::
+
+   ディストリビューションと Docker エディションによっては AUFS はサポートされていません。サポートされているプラットフォームの詳細は、 :ref:`動作環境 <aufs-driver-prerequisites>` をご覧ください。
+
+
 .. AUFS was the first storage driver in use with Docker. As a result, it has a long and close history with Docker, is very stable, has a lot of real-world deployments, and has strong community support. AUFS has several features that make it a good choice for Docker. These features enable:
 
-AUFS は Docker に使われた初めてのストレージ・ドライバです。そのため、Docker の歴史で長く使われており、非常に安定し、多くの実際の開発に使われ、強力なコミュニティのサポートがあります。AUFS には複数の機能があります。これらは Docker の良い選択肢となるでしょう。次の機能を有効にします。
+AUFS は Docker に使われた初めてのストレージ ドライバです。そのため、Docker の歴史で長く使われており、非常に安定し、多くの実際の開発に使われ、強力なコミュニティのサポートがあります。AUFS には複数の機能があります。これらは Docker の良い選択肢となるでしょう。次の機能を有効にします。
+
+----
+
+（以下は古い内容を含むため、確認予定）
+正確な内容は、原文を参照ください
+https://docs.docker.com/storage/storagedriver/aufs-driver/
+
+----
+
 
 ..    Fast container startup times.
     Efficient use of storage.
@@ -58,7 +80,7 @@ AUFS は複数のディレクトリの積み重ねであり、１つのマウン
 
 .. Within Docker, AUFS union mounts enable image layering. The AUFS storage driver implements Docker image layers using this union mount system. AUFS branches correspond to Docker image layers. The diagram below shows a Docker container based on the ubuntu:latest image.
 
-Docker 内部では、 AUFS ユニオン・マウントがイメージのレイヤ化を行います。AUFS ストレージ・ドライバは、ユニオン・マウント・システムを使って Docker イメージを扱います。AUFS ブランチが Docker イメージ・レイヤに相当します。以下の図は ``ubuntu:latest`` イメージをベースとする Docker コンテナです。
+Docker 内部では、 AUFS ユニオン・マウントがイメージのレイヤ化を行います。AUFS ストレージ ドライバは、ユニオン・マウント・システムを使って Docker イメージを扱います。AUFS ブランチが Docker イメージ・レイヤに相当します。以下の図は ``ubuntu:latest`` イメージをベースとする Docker コンテナです。
 
 .. image:: ./images/aufs-layers.png
    :scale: 60%
@@ -83,7 +105,7 @@ Docker は AUFSのコピー・オン・ライト技術をテコに、イメー�
 
 .. Consider, for example, an application running in a container needs to add a single new value to a large key-value store (file). If this is the first time the file is modified it does not yet exist in the container’s top writable layer. So, the CoW must copy up the file from the underlying image. The AUFS storage driver searches each image layer for the file. The search order is from top to bottom. When it is found, the entire file is copied up to the container’s top writable layer. From there, it can be opened and modified.
 
-考えてみましょう。例えばコンテナで実行しているアプリケーションが、大きなキーバリュー・ストア（ファイル）に新しい値を追加したとします。これが初回であれば、コンテナの一番上の書き込み可能なレイヤに、まだ変更を加えるべきファイルが存在していません。そのため、 CoW 処理は、下部のイメージからファイルを *上にコピー* する必要があります。AUFS ストレージ・ドライバは、各イメージ・レイヤ上でファイルを探します。検索順番は、上から下にかけてです。ファイルが見つかれば、対象のファイルをコンテナの上にある書き込み可能なレイヤに *コピー* （copy up）します。そして、やっとファイルを開き、編集できるようになります。
+考えてみましょう。例えばコンテナで実行しているアプリケーションが、大きなキーバリュー・ストア（ファイル）に新しい値を追加したとします。これが初回であれば、コンテナの一番上の書き込み可能なレイヤに、まだ変更を加えるべきファイルが存在していません。そのため、 CoW 処理は、下部のイメージからファイルを *上にコピー* する必要があります。AUFS ストレージ ドライバは、各イメージ・レイヤ上でファイルを探します。検索順番は、上から下にかけてです。ファイルが見つかれば、対象のファイルをコンテナの上にある書き込み可能なレイヤに *コピー* （copy up）します。そして、やっとファイルを開き、編集できるようになります。
 
 .. Larger files obviously take longer to copy up than smaller files, and files that exist in lower image layers take longer to locate than those in higher layers. However, a copy up operation only occurs once per file on any given container. Subsequent reads and writes happen against the file’s copy already copied-up to the container’s top layer.
 
@@ -93,14 +115,14 @@ Docker は AUFSのコピー・オン・ライト技術をテコに、イメー�
 
 .. _deleting-files-with-the-aufs-storage-driver:
 
-AUFS ストレージ・ドライバでのファイル削除
+AUFS ストレージ ドライバでのファイル削除
 ==================================================
 
 .. The AUFS storage driver deletes a file from a container by placing a whiteout file in the container’s top layer. The whiteout file effectively obscures the existence of the file in image’s lower, read-only layers. The simplified diagram below shows a container based on an image with three image layers.
 
 .. The AUFS storage driver deletes a file from a container by placing a whiteout file in the container’s top layer. The whiteout file effectively obscures the existence of the file in the read-only image layers below. The simplified diagram below shows a container based on an image with three image layers.
 
-AUFS ストレージ・ドライバでコンテナからファイルを削除したら、コンテナの一番上のレイヤに *ホワイトアウト・ファイル（whiteout file）* が置かれます。読み込み専用のイメージ・レイヤの下にあるファイルを、ホワイトアウト・ファイルが効果的に隠します。以下の単純化した図は、３つのイメージ・レイヤのイメージに基づくコンテナを表しています。
+AUFS ストレージ ドライバでコンテナからファイルを削除したら、コンテナの一番上のレイヤに *ホワイトアウト・ファイル（whiteout file）* が置かれます。読み込み専用のイメージ・レイヤの下にあるファイルを、ホワイトアウト・ファイルが効果的に隠します。以下の単純化した図は、３つのイメージ・レイヤのイメージに基づくコンテナを表しています。
 
 .. image:: ./images/aufs-delete.png
    :scale: 60%
@@ -108,7 +130,7 @@ AUFS ストレージ・ドライバでコンテナからファイルを削除し
 
 .. The file3 was deleted from the container. So, the AUFS storage driver placed a whiteout file in the container’s top layer. This whiteout file effectively “deletes” file3 from the container by obscuring any of the original file’s existence in the image’s read-only layers. This works the same no matter which of the image’s read-only layers the file exists in.
 
-``ファイル3`` はコンテナ上で削除されました。すると、AUFS ストレージ・ドライバは、コンテナの最上位レイヤにホワイトアウト・ファイルを置きます。このホワイトアウト・ファイルは、イメージの読み込み専用レイヤに存在するオリジナルのファイルを隠すことにより、コンテナ上から事実上 ``ファイル3`` が削除されたものとします。この処理はイメージの読み込み専用レイヤに対し何ら影響を与えません。
+``ファイル3`` はコンテナ上で削除されました。すると、AUFS ストレージ ドライバは、コンテナの最上位レイヤにホワイトアウト・ファイルを置きます。このホワイトアウト・ファイルは、イメージの読み込み専用レイヤに存在するオリジナルのファイルを隠すことにより、コンテナ上から事実上 ``ファイル3`` が削除されたものとします。この処理はイメージの読み込み専用レイヤに対し何ら影響を与えません。
 
 .. Configure Docker with AUFS
 
@@ -119,7 +141,7 @@ Docker で AUFS を使う設定
 
 .. You can only use the AUFS storage driver on Linux systems with AUFS installed. Use the following command to determine if your system supports AUFS.
 
-AUFS ストレージ・ドライバを使えるのは、AUFS がインストールされた Linux システム上でのみです。以下のコマンドを使い、システムが AUFS をサポートしているかどうか確認します。
+AUFS ストレージ ドライバを使えるのは、AUFS がインストールされた Linux システム上でのみです。以下のコマンドを使い、システムが AUFS をサポートしているかどうか確認します。
 
 .. code-block:: bash
 
@@ -145,7 +167,7 @@ AUFS ストレージ・ドライバを使えるのは、AUFS がインストー�
 
 .. Once your daemon is running, verify the storage driver with the docker info command.
 
-デーモンを起動したら、 ``docker info`` コマンドでストレージ・ドライバを確認します。
+デーモンを起動したら、 ``docker info`` コマンドでストレージ ドライバを確認します。
 
 .. code-block:: bash
 
@@ -162,7 +184,7 @@ AUFS ストレージ・ドライバを使えるのは、AUFS がインストー�
 
 .. The output above shows that the Docker daemon is running the AUFS storage driver on top of an existing ext4 backing filesystem.
 
-このような出力から、起動中の Docker デーモンが既存の ext4 ファイルシステム上で AUFS ストレージ・ドライバを使っていることが分かります。
+このような出力から、起動中の Docker デーモンが既存の ext4 ファイルシステム上で AUFS ストレージ ドライバを使っていることが分かります。
 
 .. Local storage and AUFS
 
@@ -244,7 +266,7 @@ AUFS と Docker の性能
 
 ..     The AUFS storage driver is a good choice for PaaS and other similar use-cases where container density is important. This is because AUFS efficiently shares images between multiple running containers, enabling fast container start times and minimal use of disk space.
 
-* AUFS ストレージ・ドライバは PaaS とコンテナの密度が重要な類似事例にとって、良い選択肢です。これは複数の実行中のコンテナ間で、 AUFS が効率的にイメージを共有するためです。それにより、コンテナの起動時間を早くし、ディスク使用量を最小化します。
+* AUFS ストレージ ドライバは PaaS とコンテナの密度が重要な類似事例にとって、良い選択肢です。これは複数の実行中のコンテナ間で、 AUFS が効率的にイメージを共有するためです。それにより、コンテナの起動時間を早くし、ディスク使用量を最小化します。
 
 ..    The underlying mechanics of how AUFS shares files between image layers and containers uses the systems page cache very efficiently.
 
@@ -252,11 +274,11 @@ AUFS と Docker の性能
 
 ..    The AUFS storage driver can introduce significant latencies into container write performance. This is because the first time a container writes to any file, the file has be located and copied into the containers top writable layer. These latencies increase and are compounded when these files exist below many image layers and the files themselves are large.
 
-* AUFS ストレージ・ドライバはコンテナに対する書き込み性能に対し、著しい待ち時間をもたらし得ます。これはコンテナに何らかのファイルを書き込もうとすると、ファイルをコンテナ最上位の書き込み可能レイヤに対してコピーする必要があるためです。ファイルが多くのイメージ・レイヤに存在する場合や、ファイル自身が大きい場合には、待ち時間が増え、悪化するでしょう。
+* AUFS ストレージ ドライバはコンテナに対する書き込み性能に対し、著しい待ち時間をもたらし得ます。これはコンテナに何らかのファイルを書き込もうとすると、ファイルをコンテナ最上位の書き込み可能レイヤに対してコピーする必要があるためです。ファイルが多くのイメージ・レイヤに存在する場合や、ファイル自身が大きい場合には、待ち時間が増え、悪化するでしょう。
 
 .. One final point. Data volumes provide the best and most predictable performance. This is because they bypass the storage driver and do not incur any of the potential overheads introduced by thin provisioning and copy-on-write. For this reason, you may want to place heavy write workloads on data volumes.
 
-最後に１つだけ。データ・ボリュームは最高かつ最も予想可能な性能をもたらします。これはデータ・ボリュームがストレージ・ドライバを迂回するためであり、シン・プロビジョニングやコピー・オン・ライトによるオーバヘッドの影響を受けないためです。この理由のため、重い書き込み処理を行いたい場合には、データ・ボリュームの使用が適している場合もあるでしょう。
+最後に１つだけ。データ・ボリュームは最高かつ最も予想可能な性能をもたらします。これはデータ・ボリュームがストレージ ドライバを迂回するためであり、シン・プロビジョニングやコピー・オン・ライトによるオーバヘッドの影響を受けないためです。この理由のため、重い書き込み処理を行いたい場合には、データ・ボリュームの使用が適している場合もあるでしょう。
 
 
 .. Related information

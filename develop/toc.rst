@@ -1,6 +1,6 @@
 ﻿.. -*- coding: utf-8 -*-
 .. 
-.. doc version: 19.03
+.. doc version: 
 .. check date: 2020/06/18
 .. -----------------------------------------------------------------------------
 
@@ -16,5 +16,6 @@ Docker で開発
 
    概要 <index.rst>
    ベストプラクティス <dev-best-practices.rst>
-   develop-images/toc.rst
+   イメージ構築 <develop-images/toc.rst>
+   イメージ検査 <scan-images/index.rst>
 

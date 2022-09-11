@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/config/labels-custom-metadata/
-   doc version: 19.03
+   doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/config/labels-custom-metadata.md
-.. check date: 2020/06/21
-.. Commits on Apr 23, 2020 b0f90615659ac1319e8d8a57bb914e49d174242e
+.. check date: 2022/04/26
+.. Commits on Sep 13, 2021 173d3c65f8e7df2a8c0323594419c18086fc3a30
 .. ---------------------------------------------------------------------------
 
 .. Docker object labels

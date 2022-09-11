@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/swarm/how-swarm-mode-works/swarm-task-states/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/engine/swarm/how-swarm-mode-works/swarm-task-states.md
-   doc version: 19.03
-.. check date: 2020/07/11
-.. Commits on Jul 3, 2020 2b4833a355c8fbb4997ba5df8404bf09971bf77e
+   doc version: 20.10
+.. check date: 2022/04/29
+.. Commits on Aug 7, 2021 3b71231970606bb45fd6f37a8c99522583e7f5a8
 .. -----------------------------------------------------------------------------
 
 .. Swarm task states

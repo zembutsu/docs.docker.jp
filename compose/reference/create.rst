@@ -1,10 +1,12 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/reference/create/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/reference/create.md
-   doc version: 1.11
+   doc version: 1.13
       https://github.com/docker/compose/commits/master/docs/reference/create.md
-.. check date: 2016/04/28
-.. Commits on Mar 3, 2016 e1b87d7be0aa11f5f87762635a9e24d4e8849e77
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/compose/reference/create.md
+.. check date: 2022/04/08
+.. Commits on Jan 28, 2022 b6b19516d0feacd798b485615ebfee410d9b6f86
 .. -------------------------------------------------------------------
 
 .. create
@@ -12,8 +14,13 @@
 .. _compose-create:
 
 =======================================
-create
+docker-compose create
 =======================================
+ 
+.. warning::
+
+   **このコマンドは非推奨です。** かわりに、:doc:`up <up>` コマンドで ``--no-start`` を付けてください。
+
 
 .. code-block:: bash
 
@@ -28,9 +35,9 @@ create
 
 .. Creates containers for a service.
 
-サービス用のコンテナを作成します。
+.. サービス用のコンテナを作成します。
 
 .. seealso:: 
 
-   create
+   docker-compose create
       https://docs.docker.com/compose/reference/create/

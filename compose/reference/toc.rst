@@ -1,12 +1,12 @@
 .. -*- coding: utf-8 -*-
 .. 
-.. doc version: 1.10
-.. check date: 2016/02/06
+.. doc version: 20.10
+.. check date: 2022/04/06
 .. -----------------------------------------------------------------------------
 
-.. swarm command line reference toc
+.. docker compose command line reference toc
 
-.. swarm-cli-reference-toc:
+.. compose-reference-toc:
 
 ========================================
 コマンドライン・リファレンス
@@ -16,20 +16,23 @@
    :maxdepth: 3
 
    index.rst
-   overview.rst
    envvars.rst
+   /compose/completion.rst
    build.rst
    config.rst
    create.rst
    down.rst
    events.rst
+   exec.rst
    help.rst
+   images.rst
    kill.rst
    logs.rst
    pause.rst
    port.rst
    ps.rst
    pull.rst
+   push.rst
    restart.rst
    rm.rst
    run.rst

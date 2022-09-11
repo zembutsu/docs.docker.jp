@@ -1,8 +1,10 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/swarm/ingress/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/engine/swarm/ingress.md
-   doc version: 19.03
-.. check date: 2017/07/11
+   doc version: 20.10
+.. check date: 2022/04/29
+.. Commits on Aug 7, 2021 3b71231970606bb45fd6f37a8c99522583e7f5a8
+
 .. Commits on Apr 30, 2018 aaca9b83b579b6de1761e41d7c580d118eec203c
 .. -----------------------------------------------------------------------------
 
@@ -120,9 +122,9 @@ swarm 内で ingress ネットワークを使うには、swarm ノードを有�
 TCP のみか UDP のみのポート公開
 ----------------------------------------
 
-.. By default, when you publish a port, it is a TCP port. You can specifically publish a UDP port instead of or in addition to a TCP port. When you publish both TCP and UDP ports, If you omit the protocol specifier, the port is published as a TCP port. If you use the longer syntax (recommended for Docker 1.13 and higher), set the protocol key to either tcp or udp.
+.. By default, when you publish a port, it is a TCP port. You can specifically publish a UDP port instead of or in addition to a TCP port. When you publish both TCP and UDP ports, If you omit the protocol specifier, the port is published as a TCP port. If you use the longer syntax (recommended), set the protocol key to either tcp or udp.
 
-デフォルトでは、ポートを公開すると、それは TCP ポートです。TCP ポートの代わりに、あるいは TCP ポートに加えて UDP ポートを公開を指定できます。TCP と UDP ポートの両方を公開するつもりでも、プロトコルの指定を省略すると、ポートは TCP として公開されてしまいます。長い構文（ Docker 1.13 以降で推奨）を使う場合、 ``protocol`` キーで ``tcp`` か ``udp`` を指定します。
+デフォルトでは、ポートを公開すると、それは TCP ポートです。TCP ポートの代わりに、あるいは TCP ポートに加えて UDP ポートを公開を指定できます。TCP と UDP ポートの両方を公開するつもりでも、プロトコルの指定を省略すると、ポートは TCP として公開されてしまいます。長い構文（ 推奨）を使う場合、 ``protocol`` キーで ``tcp`` か ``udp`` を指定します。
 
 .. TCP only
 
@@ -249,7 +251,7 @@ swarm サービスに対し、外部のロードバランサを設定できま�
 
 .. You can configure an external load balancer to route requests to a swarm service. For example, you could configure HAProxy to balance requests to an nginx service published to port 8080.
 
-外部のロードバランサから、swarm サービスに対してリクエストを転送する設定が可能です。たとえば、 `HAProxy <http://www.haproxy.org/>`_ を使い、リクエストを nginx サービスが公開しているポート 8080 に振り分けるよう調整できます。
+外部のロードバランサから、swarm サービスに対してリクエストを転送する設定が可能です。たとえば、 `HAProxy <https://www.haproxy.org/>`_ を使い、リクエストを nginx サービスが公開しているポート 8080 に振り分けるよう調整できます。
 
 .. ingress with external load balancer image
 .. image:: images/ingress-lb.png

@@ -1,8 +1,8 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/swarm/how-swarm-mode-works/services/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/engine/swarm/how-swarm-mode-works/services.md
-   doc version: 19.03
-.. check date: 2020/07/11
+   doc version: 20.10
+.. check date: 2022/04/29
 .. Commits on Jan 26, 2018 a4f5e3024919b0bbfe294e0a4e65b7b6e09c487e
 .. -----------------------------------------------------------------------------
 

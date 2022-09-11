@@ -1,18 +1,19 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/reference/port/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/reference/port.md
-   doc version: 1.11
+   doc version: 1.13
       https://github.com/docker/compose/commits/master/docs/reference/port.md
-.. check date: 2016/04/28
-.. Commits on Aug 25, 2015 59d4f304ee3bf4bb20ba0f5e0ad6c4a3ff1568f3
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/compose/reference/port.md
+.. check date: 2022/04/08
+.. Commits on Jan 28, 2022 b6b19516d0feacd798b485615ebfee410d9b6f86
 .. -------------------------------------------------------------------
 
-.. port
-
-.. _compose-port:
+.. docker-compose port
+.. _docker-compose-port:
 
 =======================================
-port
+docker-compose port
 =======================================
 
 .. code-block:: bash
@@ -29,5 +30,5 @@ port
 
 .. seealso:: 
 
-   port
+   docker-compose port
       https://docs.docker.com/compose/reference/port/

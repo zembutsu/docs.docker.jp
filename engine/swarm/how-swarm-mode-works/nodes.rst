@@ -1,8 +1,8 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/swarm/how-swarm-mode-works/nodes/
 .. SOURCE: https://github.com/docker/docker.github.io/commits/master/engine/swarm/how-swarm-mode-works/nodes.md
-   doc version: 19.03
-.. check date: 2020/07/11
+   doc version: 20.10
+.. check date: 2022/04/29
 .. Commits on Apr 23, 2020 777c5d23dafd4b640016f24f92fe416f246ec848
 .. -----------------------------------------------------------------------------
 

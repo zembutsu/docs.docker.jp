@@ -1,17 +1,16 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/develop/develop-images/baseimages/
-   doc version: 19.03
-      https://github.com/docker/docker.github.io/blob/master/develop/develop-images/multistage-build.md
-.. check date: 2020/06/21
-.. Commits on Mar 17, 2020 14bbe621e55e9360019f6b3e25be4a25e3f79688
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/develop/develop-images/baseimages.md
+.. check date: 2022/04/25
+.. Commits on Dec 20, 2021 df6a3281b958a4224889342d82c026000c43fc8d
 .. -----------------------------------------------------------------------------
 
 .. Create a base image
-
 .. _create-a-base-image:
 
 =======================================
-ベース・イメージの作成
+ベース イメージの作成
 =======================================
 
 .. sidebar:: 目次
@@ -22,20 +21,19 @@
 
 .. Most Dockerfiles start from a parent image. If you need to completely control the contents of your image, you might need to create a base image instead. Here’s the difference:
 
-ほとんどの Dockerfile は親イメージ（parent image）から始まります。イメージの内容を完全にコントロールする必要があれば、ベース・イメージの代わりになるものを作成する必要があります。これがその違いです：
+ほとんどの Dockerfile は :ruby:`親イメージ <parent image>` を元にしています。イメージの内容を完全に管理する必要があれば、:ruby:`ベース イメージ <base image>` の代わりになるものを作成する必要があります。これがその違いです：
 
 ..    A parent image is the image that your image is based on. It refers to the contents of the FROM directive in the Dockerfile. Each subsequent declaration in the Dockerfile modifies this parent image. Most Dockerfiles start from a parent image, rather than a base image. However, the terms are sometimes used interchangeably.
     A base image has FROM scratch in its Dockerfile.
 
-* :ref:`親イメージ <parent-image>` はイメージの土台（ベース）となるイメージです。 Dockerfile の ``FROM`` 命令で内容を指定します。 Dockerfile で以降に続く命令では、この親イメージに対して変更を加えます。ほとんどの Dockerfile はベース・イメージではなく、何らかの親イメージからスタートします。しかしながら、ほとんどが用途はとして置き換え可能です。
-* :ref:`ベース・イメージ <base-image>` は Dockerfile の中で ``FROM scratch`` の指定があります。
+* :ref:`親イメージ <parent-image>` はイメージの土台（ベース）となるイメージです。 Dockerfile の ``FROM`` 命令で内容を指定します。 Dockerfile で以降に続く命令では、この親イメージに対して変更を加えます。ほとんどの Dockerfile はベース イメージではなく、何らかの親イメージからスタートします。しかしながら、ほとんどが用途はとして置き換え可能です。
+* :ref:`ベース イメージ <base-image>` は Dockerfile の中で ``FROM scratch`` の指定があります。
 
 .. This topic shows you several ways to create a base image. The specific process will depend heavily on the Linux distribution you want to package. We have some examples below, and you are encouraged to submit pull requests to contribute new ones.
 
-このトピックではベース・イメージの作成方法をいくつか紹介します。特定の手順では、パッケージが必要となるため特定の Linux ディストリビューションに強く依存します。以下でいくつかの例を示しますが、新しい例を pull request を通して貢献いただくことも歓迎します。
+このトピックではベース イメージの作成方法をいくつか紹介します。特定の手順では、パッケージが必要となるため特定の Linux ディストリビューションに強く依存します。以下でいくつかの例を示しますが、新しい例を pull request を通して貢献いただくことも歓迎します。
 
 .. Create a full image using tar
-
 .. _create-a-full-image-using-tar:
 
 tar を使ってイメージ全体を作成
@@ -51,32 +49,23 @@ tar を使ってイメージ全体を作成
 
 .. code-block:: bash
 
-   $ sudo debootstrap xenial xenial > /dev/null
-   $ sudo tar -C xenial -c . | docker import - xenial
+   $ sudo debootstrap focal focal > /dev/null
+   $ sudo tar -C focal -c . | docker import - focal
    
-   a29c15f1bf7a
+   sha256:81ec9a55a92a5618161f68ae691d092bf14d700129093158297b3d01593f4ee3
    
-   $ docker run xenial cat /etc/lsb-release
+   $ docker run focal cat /etc/lsb-release
    
    DISTRIB_ID=Ubuntu
-   DISTRIB_RELEASE=16.04
-   DISTRIB_CODENAME=xenial
-   DISTRIB_DESCRIPTION="Ubuntu 16.04 LTS"
+   DISTRIB_RELEASE=20.04
+   DISTRIB_CODENAME=focal
+   DISTRIB_DESCRIPTION="Ubuntu 20.04 LTS"
 
 .. There are more example scripts for creating parent images in the Docker GitHub Repo:
 
-Docker Github リポジトリには、親イメージを作成するためのサンプルスクリプトがあります。
-
-..  BusyBox
-    CentOS / Scientific Linux CERN (SLC) on Debian/Ubuntu or on CentOS/RHEL/SLC/etc.
-    Debian / Ubuntu
-
-* `BusyBox <https://github.com/moby/moby/blob/master/contrib/mkimage/busybox-static>`_ 
-*  `Debian / Ubuntu 上の <https://github.com/moby/moby/blob/master/contrib/mkimage/rinse>`_ あるいは `CentOS / RHEL / SLC 等での上の <https://github.com/moby/moby/blob/master/contrib/mkimage-yum.sh>`_ CentOS / Scientific Linux CERN (SLC)
-*  `Debian / Ubuntu  <https://github.com/moby/moby/blob/master/contrib/mkimage/debootstrap>`_
+`Docker Github リポジトリ <https://github.com/docker/docker/blob/master/contrib>`_ には、親イメージを作成するためのサンプルスクリプトがあります。
 
 .. Create a simple parent image using scratch
-
 .. _Create a simple parent image using scratch:
 
 scratch を使ってシンプルな親イメージを作成
@@ -84,7 +73,7 @@ scratch を使ってシンプルな親イメージを作成
 
 .. You can use Docker’s reserved, minimal image, scratch, as a starting point for building containers. Using the scratch “image” signals to the build process that you want the next command in the Dockerfile to be the first filesystem layer in your image.
 
-コンテナ構築用のスタート地点ととして、Docker で確保している最小イメージ、 ``scratch`` を利用できます。 ``scratch`` 「イメージ」を使うと、構築プロセスは ``Dockerfile`` の次の命令から始まることとなり、これがイメージの１番目のファイルシステム・レイヤになります。
+コンテナ構築用のスタート地点ととして、Docker で確保している最小イメージ、 ``scratch`` を利用できます。 ``scratch`` 「イメージ」を使うと、構築プロセスは ``Dockerfile`` の次の命令から始まることとなり、これがイメージの１番目のファイルシステム・レイヤーになります。
 
 .. While scratch appears in Docker’s repository on the hub, you can’t pull it, run it, or tag any image with the name scratch. Instead, you can refer to it in your Dockerfile. For example, to create a minimal container using scratch:
 
@@ -92,6 +81,7 @@ Docker Hub の Docker リポジトリに ``scratch`` 命令が出てきても、
 
 ::
 
+   # syntax=docker/dockerfile:1
    FROM scratch
    ADD hello /
    CMD ["/hello"]
@@ -106,7 +96,7 @@ https://github.com/docker-library/hello-world/ にある命令を使って、「
 
 .. Don’t forget the . character at the end, which sets the build context to the current directory.
 
-最後に ``.`` 記号を付けるのを忘れないでください。これは、現在のディレクトリをビルド・コンテクストとして指定します。
+最後に ``.`` 記号を付けるのを忘れないでください。これは、現在のディレクトリを :ruby:`構築コンテクスト <build context>` として指定します。
 
 ..    Note: Because Docker Desktop for Mac and Docker Desktop for Windows use a Linux VM, you need a Linux binary, rather than a Mac or Windows binary. You can use a Docker container to build it:
 
@@ -116,7 +106,7 @@ https://github.com/docker-library/hello-world/ にある命令を使って、「
 
    .. code-block:: bash
    
-      $ docker run --rm -it -v $PWD:/build ubuntu:16.04
+      $ docker run --rm -it -v $PWD:/build ubuntu:20.04
       
       container# apt-get update && apt-get install build-essential
       container# cd /build

@@ -1,53 +1,91 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/search/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/search.md
-   doc version: 1.12
-      https://github.com/docker/docker/commits/master/docs/reference/commandline/search.md
-.. check date: 2016/06/16
-.. Commits on Jun 14, 2016 8eca8089fa35f652060e86906166dabc42e556f8
+.. SOURCE:
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/engine/reference/commandline/search.md
+      https://github.com/docker/docker.github.io/blob/master/_data/engine-cli/docker_search.yaml
+.. check date: 2022/03/26
+.. Commits on Oct 13, 2021 373ec2cf37bd5ef812b65a8f5c43e81001a61c8c
 .. -------------------------------------------------------------------
 
-.. search
+.. docker search
 
 =======================================
-search
+docker search
 =======================================
+
+
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
+.. _docker_search-description:
+
+説明
+==========
+
+.. Search the Docker Hub for images
+
+Docker Hub のイメージを検索します。
+
+.. _docker_search-usage:
+
+使い方
+==========
 
 .. code-block:: bash
 
-   使い方: docker search [オプション] 単語
-   
-   Docker Hub のイメージを検索
-   
-     --filter=[]          次の条件をもとに出力をフィルタ：
-                          - is-automated=(true|false)
-                          - is-official=(true|false)
-                          - stars=<数値> - イメージが持っている最新のスター「数」
-     --help               使い方の表示
-     --limit=25           出力結果の最大数
-     --no-trunc           トランケート (truncate) を出力しない
+   $ docker search [OPTIONS] TERM
+
+.. Extended description
+.. _docker_search-extended-description:
+
+補足説明
+==========
 
 .. Search Docker Hub for images
 
-`Docker Hub <https://hub.docker.com/>`_ のイメージを検索します。
+``Docker Hub`` のイメージを検索します。
 
-.. See Find Public Images on Docker Hub for more details on finding shared images from the command line.
+.. For example uses of this command, refer to the examples section below.
 
-共有イメージをコマンドラインで調べる詳細は、 :ref:`Docker Hub で公開イメージを探す <searching-for-images>` をご覧ください。
+コマンドの使用例は、以下の :ref:`使用例のセクション <docker_search-examples>` をご覧ください。
 
-..     Note: Search queries will only return up to 25 results
+.. _docker_save-options:
 
-.. note::
+オプション
+==========
 
-   検索結果は 25 件までしか表示しません。
+.. list-table::
+   :header-rows: 1
+
+   * - 名前, 省略形
+     - デフォルト
+     - 説明
+   * - ``--filter`` , ``-f``
+     - 
+     - 指定した状況に基づいてフィルタ
+   * - ``--format``
+     - 
+     - Go テンプレートを使って検索結果を整形
+   * - ``--limit``
+     - ``25``
+     - 検索結果の最大数
+   * - ``--no-trunc``
+     - 
+     - 出力を省略しない
+
 
 .. Examples
+.. _docker_search-examples:
 
-例
+使用例
 ==========
 
 .. Search images by name
-
+.. _docker_search-search-images-by-name:
 イメージ名で検索
 --------------------
 
@@ -86,9 +124,9 @@ search
    marclop/busybox-solr
 
 .. Display non-truncated description (--no-trunc)
-
+.. _docker_search-display-non-truncated-description:
 説明を省略せずに表示（ ``--no-trunc`` ）
-----------------------------------------k
+------------------------------------------
 
 .. This example displays images with a name containing 'busybox', at least 3 stars and the description isn't truncated in the output:
 
@@ -103,9 +141,10 @@ search
    radial/busyboxplus   Full-chain, Internet enabled, busybox made from scratch. Comes in git and cURL flavors.   8                    [OK]
 
 .. Limit search results (--limit)
+.. _docker_search-limit-search-results:
 
 検索結果の上限（ ``--limit`` ）
-================================
+----------------------------------------
 
 .. The flag --limit is the maximium number of results returned by a search. This value could be in the range between 1 and 100. The default value of --limit is 25.
 
@@ -114,7 +153,7 @@ search
 .. Filtering
 
 フィルタリング
-====================
+^^^^^^^^^^^^^^^^^^^^
 
 .. The filtering flag (-f or --filter) format is a key=value pair. If there is more than one filter, then pass multiple flags (e.g. --filter "foo=bar" --filter "bif=baz")
 
@@ -135,7 +174,8 @@ search
 .. stars
 
 stars
-----------
+^^^^^^^^^^
+
 
 .. This example displays images with a name containing 'busybox' and at least 3 stars:
 
@@ -150,7 +190,7 @@ stars
    radial/busyboxplus   Full-chain, Internet enabled, busybox made...   8                    [OK]
 
 is-automated
---------------------
+^^^^^^^^^^^^^^^^^^^^
 
 .. This example displays images with a name containing 'busybox' and are automated builds:
 
@@ -164,7 +204,7 @@ is-automated
    radial/busyboxplus   Full-chain, Internet enabled, busybox made...   8                    [OK]
 
 is-official
---------------------
+^^^^^^^^^^^^^^^^^^^^
 
 .. This example displays images with a name containing 'busybox', at least 3 stars and are official builds:
 
@@ -177,7 +217,84 @@ is-official
    progrium/busybox                                                     50                   [OK]
    radial/busyboxplus   Full-chain, Internet enabled, busybox made...   8                    [OK]
 
+.. Format the output
+出力形式
+----------
+
+.. The formatting option (--format) pretty-prints search output using a Go template.
+
+表示形式のオプション（ ``--format`` ）は Go テンプレートを使って検索結果を整形します。
+
+.. Valid placeholders for the Go template are:
+
+Go テンプレートで有効な placeholder は、こちらです。
+
+.. list-table::
+   :header-rows: 1
+   
+   * - プレースホルダ
+     - 説明
+   * - ``.Name``
+     - イメージ名
+   * - ``.Description``
+     - イメージの説明
+   * - ``.StarCount``
+     - イメージの star 数
+   * - ``.IsOfficial``
+     - "OK" イメージが :ruby:`公式 <official>`
+   * - ``.IsAutomated``
+     - "OK" 自動構築されたイメージ
+
+.. When you use the --format option, the search command will output the data exactly as the template declares. If you use the table directive, column headers are included as well.
+
+``--format`` オプションを使うと、 ``search`` コマンドはテンプレートで宣言した通りに、データを確実に出力します。 ``table`` 命令を使う場合、列ヘッダも同様に表示します。
+
+.. The following example uses a template without headers and outputs the Name and StarCount entries separated by a colon (:) for all images:
+
+以下の例は、ヘッダの無いテンプレートを使い、 ``Name`` と ``StarCount`` エントリを、コロン（ ``:`` ）で区切って、全てのイメージを表示します。
+
+.. code-block:: bash
+
+   $ docker search --format "{{.Name}}: {{.StarCount}}" nginx
+   nginx: 5441
+   jwilder/nginx-proxy: 953
+   richarvey/nginx-php-fpm: 353
+   million12/nginx-php: 75
+   webdevops/php-nginx: 70
+   h3nrik/nginx-ldap: 35
+   bitnami/nginx: 23
+   evild/alpine-nginx: 14
+   million12/nginx: 9
+   maxexcloo/nginx: 7
+
+.. This example outputs a table format:
+
+この例は、表形式の出力です。
+
+.. code-block:: bash
+
+   $ docker search --format "table {{.Name}}\t{{.IsAutomated}}\t{{.IsOfficial}}" nginx
+   NAME                                     AUTOMATED           OFFICIAL
+   nginx                                                        [OK]
+   jwilder/nginx-proxy                      [OK]
+   richarvey/nginx-php-fpm                  [OK]
+   jrcs/letsencrypt-nginx-proxy-companion   [OK]
+   million12/nginx-php                      [OK]
+   webdevops/php-nginx                      [OK]
+
+
+親コマンド
+==========
+
+.. list-table::
+   :header-rows: 1
+
+   * - コマンド
+     - 説明
+   * - :doc:`docker <docker>`
+     - Docker CLI の基本コマンド
+
 .. seealso:: 
 
-   search
+   docker search
       https://docs.docker.com/engine/reference/commandline/search/

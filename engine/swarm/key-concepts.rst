@@ -1,8 +1,8 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/swarm/key-concepts/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/swarm/key-concepts.md
-   doc version: 1.12
-.. check date: 2029/07/06
+.. SOURCE: https://github.com/docker/docker.github.io/blob/master/engine/swarm/key-concepts.md
+   doc version: 20.10
+.. check date: 2022/04/28
 .. Commits on Apr 8, 2020 777c5d23dafd4b640016f24f92fe416f246ec848
 .. -----------------------------------------------------------------------------
 

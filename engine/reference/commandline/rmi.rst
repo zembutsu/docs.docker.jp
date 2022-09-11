@@ -1,31 +1,87 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/rmi/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/rmi.md
-   doc version: 1.12
-      https://github.com/docker/docker/commits/master/docs/reference/commandline/rmi.md
-.. check date: 2016/06/16
-.. Commits on Feb 2, 2016 1ab7d76f30f3cf693c986eb827ad49a6554d806d
+.. SOURCE:
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/engine/reference/commandline/rmi.md
+      https://github.com/docker/docker.github.io/blob/master/_data/engine-cli/docker_rmi.yaml
+.. check date: 2022/03/23
+.. Commits on Aug 22, 2021 304f64ccec26ef1810e90d385d5bae5fab3ce6f4
 .. -------------------------------------------------------------------
 
-.. rmi
+.. docker rmi
 
 =======================================
-rmi
+docker rmi
 =======================================
+
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
+.. _docker_rmi-description:
+
+説明
+==========
+
+.. Remove one or more images
+
+1つまたは複数の :ruby:`イメージ <image>` を :ruby:`削除 <remove>` します。
+
+.. _docker_rmi-usage:
+
+使い方
+==========
 
 .. code-block:: bash
 
-   使い方: docker rmi [オプション] イメージ [イメージ...]
-   
-   １つまたは複数のイメージを削除
-   
-     -f, --force          イメージの強制削除
-     --help               使い方の表示
-     --no-prune           タグが無い親イメージを削除しない
-   
-.. You can remove an image using its short or long ID, its tag, or its digest. If an image has one or more tag or digest reference, you must remove all of them before the image is removed.
+   $ docker rmi [OPTIONS] IMAGE [IMAGE...]
 
-.. You can remove an image using its short or long ID, its tag, or its digest. If an image has one or more tag referencing it, you must remove all of them before the image is removed. Digest references are removed automatically when an image is removed by tag.
+.. Extended description
+.. _docker_rmi-extended-description:
+
+補足説明
+==========
+
+.. Removes (and un-tags) one or more images from the host node. If an image has multiple tags, using this command with the tag as a parameter only removes the tag. If the tag is the only one for the image, both the image and the tag are removed.
+
+ホスト・ノード上の1つまたは複数のイメージを :ruby:`削除 <remove>` （かつ、 :ruby:`タグ削除 <un-tag>` ）します。イメージに複数のタグがある場合は、このコマンドのパラメータとしてタグを使うと、そのタグのみ削除します。タグが1つのイメージに対してしかない場合は、イメージとタグの両方を削除します。
+
+.. This does not remove images from a registry. You cannot remove an image of a running container unless you use the -f option. To see all images on a host use the docker image ls command.
+
+これは、レジストリからはイメージを削除しません。また、 ``-f`` オプションを使わない限り、実行中のコンテナからイメージを削除できません。ホスト上にある全てのイメージを表示するには、 ``docker image ls`` コマンドを使います。
+
+.. For example uses of this command, refer to the examples section below.
+
+コマンドの使用例は、以下の :ref:`使用例のセクション <docker_rmi-examples>` をご覧ください。
+
+.. _docker_rmi-options:
+
+オプション
+==========
+
+.. list-table::
+   :header-rows: 1
+
+   * - 名前, 省略形
+     - デフォルト
+     - 説明
+   * - ``--force`` , ``-f``
+     - 
+     - イメージの強制削除
+   * - ``--no-prune``
+     - 
+     - タグの付いていない親イメージを削除しない
+
+
+.. Examples
+.. _docker_rmi-examples:
+
+使用例
+==========
+
+.. You can remove an image using its short or long ID, its tag, or its digest. If an image has one or more tags referencing it, you must remove all of them before the image is removed. Digest references are removed automatically when an image is removed by tag.
 
 ショート ID かロング ID、タグ、digest を使ってイメージを削除できます。イメージがタグによって参照されている場合、イメージを削除する前にそれらの削除が必要です。Digest の参照値はイメージのタグを削除する時、自動的に削除されます。
 
@@ -93,8 +149,20 @@ digest を使ってイメージを削除するには、次のようにします�
    Deleted: ea13149945cb6b1e746bf28032f02e9b5a793523481a0a18645fc77ad53c4ea2
    Deleted: df7546f9f060a2268024c8a230d8639878585defcc1bc6f79d2728a13957871b
 
+
+親コマンド
+==========
+
+.. list-table::
+   :header-rows: 1
+
+   * - コマンド
+     - 説明
+   * - :doc:`docker <docker>`
+     - Docker CLI の基本コマンド
+
 .. seealso:: 
 
-   rmi
+   docker rmi
       https://docs.docker.com/engine/reference/commandline/rmi/
 

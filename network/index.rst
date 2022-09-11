@@ -1,25 +1,24 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/network/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/network/index.md
-   doc version: 19.03
-.. check date: 2020/07/11
-.. Commits on May 26, 2020 c270517181ae105c0863bb66312d49d986becc3d
+   doc version: 20.10
+.. check date: 2022/04/29
+.. Commits on Nov 8, 2021 d2673f7458aa07a3b897a8eed141211cb9ebf866
 .. ---------------------------------------------------------------------------
 
 .. Networking overview
 
 .. _networking-overview:
 
-========================================
-ネットワーク機能の概要
-========================================
+==================================================
+:ruby:`ネットワーク機能 <networking>` の概要
+==================================================
 
 .. sidebar:: 目次
 
    .. contents:: 
        :depth: 3
        :local:
-
 
 .. One of the reasons Docker containers and services are so powerful is that you can connect them together, or connect them to non-Docker workloads. Docker containers and services do not even need to be aware that they are deployed on Docker, or whether their peers are also Docker workloads or not. Whether your Docker hosts run Linux, Windows, or a mix of the two, you can use Docker to manage them in a platform-agnostic way.
 
@@ -29,9 +28,6 @@ Docker コンテナとサービスが非常に強力な理由の1つは、コン
 
 このトピックでは、いくつかの基本的な Docker のネットワーク機能についての概要を定義し、これらの機能を最大限に活用するアプリケーション設計およびデプロイの準備をします。
 
-.. Most of this content applies to all Docker installations. However, a few advanced features are only available to Docker EE customers.
-.. （訳者注： EE 向けのドキュメントは本家リポジトリで削除が進んでいるため、この行は翻訳しません）
-
 .. Scope of this topic
 
 .. _network-scope-of-this-topic:
@@ -39,9 +35,9 @@ Docker コンテナとサービスが非常に強力な理由の1つは、コン
 このトピックで扱う範囲
 ==============================
 
-.. This topic does not go into OS-specific details about how Docker networks work, so you will not find information about how Docker manipulates iptables rules on Linux or how it manipulates routing rules on Windows servers, and you will not find detailed information about how Docker forms and encapsulates packets or handles encryption. See Docker and iptables and Docker Reference Architecture: Designing Scalable, Portable Docker Container Networks for a much greater depth of technical detail.
+.. This topic does not go into OS-specific details about how Docker networks work, so you will not find information about how Docker manipulates iptables rules on Linux or how it manipulates routing rules on Windows servers, and you will not find detailed information about how Docker forms and encapsulates packets or handles encryption. See Docker and iptables.
 
-このトピックでは Docker ネットワークの挙動について、 OS 固有の詳細は **扱いません** 。そのため、Linux 上で ``iptables`` のルールを Docker がどのように作業しているかや、Windows サーバ上でのルーティング・ルールの扱いや、Docker がどのようにパケットをカプセル化して暗号化を処理するかについて、扱っていません。より深い技術的詳細については、 :doc:`Docker と iptables <iptables>`  、`Docker リファレンス・アーキテクチャ：スケーラブルでポータブルな Docker コンテナ・ネットワークの設計 （英語） <http://success.docker.com/article/networking>`_ にあります。
+このトピックでは Docker ネットワークの挙動について、 OS 固有の詳細は **扱いません** 。そのため、Linux 上で ``iptables`` のルールを Docker がどのように作業しているかや、Windows サーバ上でのルーティング・ルールの扱いや、Docker がどのようにパケットをカプセル化して暗号化を処理するかについて、扱っていません。より深い技術的詳細については、 :doc:`Docker と iptables <iptables>`  をご覧ください。
 
 .. In addition, this topic does not provide any tutorials for how to create, manage, and use Docker networks. Each section includes links to relevant tutorials and command references.
 
@@ -60,13 +56,17 @@ Docker のネットワーク機能（networking）サブシステムとは、ド
 
 * ``bridge`` ： デフォルトのネットワーク・ドライバです。ネットワーク作成時にドライバを指定しなければ、このネットワークになります。 **通常、ブリッジ・ネットワークは、アプリケーションがスタンドアロン・コンテナ内で動作する時、このコンテナが通信するために使います** 。詳しくは :doc:`ブリッジ・ネットワーク <bridge>` をご覧ください。
 
-..    host: For standalone containers, remove network isolation between the container and the Docker host, and use the host’s networking directly. host is only available for swarm services on Docker 17.06 and higher. See use the host network.
+.. host: For standalone containers, remove network isolation between the container and the Docker host, and use the host’s networking directly. See use the host network.
 
-* ``host`` ：スタンドアロン・コンテナ用で、コンテナと Docker ホスト間のネットワーク隔離を解除し、ホスト側のネットワーク機能を直接使います。swarm サービスでは、 ``host`` は Docker 17.06 以上でのみ利用できます。 :doc:`host ネットワークを使う <host>` をご覧ください。
+* ``host`` ：スタンドアロン・コンテナ用で、コンテナと Docker ホスト間のネットワーク隔離を解除し、ホスト側のネットワーク機能を直接使います。 :doc:`host ネットワークを使う <host>` をご覧ください。
 
 ..    overlay: Overlay networks connect multiple Docker daemons together and enable swarm services to communicate with each other. You can also use overlay networks to facilitate communication between a swarm service and a standalone container, or between two standalone containers on different Docker daemons. This strategy removes the need to do OS-level routing between these containers. See overlay networks.
 
 * ``overlay`` ：オーバレイ・ネットワークは複数の Docker デーモンと同時に接続し、swarm サービスが相互に通信可能にします。また、オーバレイ・ネットワークを使い、swarm サービスとスタンドアロン・コンテナ間での通信を簡単にします。あるいは、異なる Docker デーモン上で動作する2つのスタンドアロン・コンテナ間で通信できるようにします。この方法を使えば、コンテナ間で OS レベルのルーティング設定を不要にします。 :doc:`オーバレイ・ネットワーク <overlay>` をご覧ください。
+
+.. ipvlan: IPvlan networks give users total control over both IPv4 and IPv6 addressing. The VLAN driver builds on top of that in giving operators complete control of layer 2 VLAN tagging and even IPvlan L3 routing for users interested in underlay network integration. See IPvlan networks.
+
+* ``ipvlan`` ： IPvlan ネットワークは、IPv4 と IPv6 の両 :ruby:`IP アドレス割り当て <addressing>` を、ユーザがまとめてコントロール可能にします。ネットワーク統合に興味があるユーザに対し、レイヤー2 VLAN タギングや、 IPvlan L3 ルーティングも完全に操作可能になるよう VLAN ドライバは構築されています。 :doc:`IPvlan ネットワーク <ipvlan>` をご覧ください。
 
 ..    macvlan: Macvlan networks allow you to assign a MAC address to a container, making it appear as a physical device on your network. The Docker daemon routes traffic to containers by their MAC addresses. Using the macvlan driver is sometimes the best choice when dealing with legacy applications that expect to be directly connected to the physical network, rather than routed through the Docker host’s network stack. See Macvlan networks.
 

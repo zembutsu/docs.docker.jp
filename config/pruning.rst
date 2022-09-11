@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/config/pruning/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/config/pruning.md
-   doc version: 19.03
-.. check date: 2020/06/21
-.. Commits on Apr 13, 2020 7f66d7783f886cf4aa50c81b9f85869b7ebf6874
+   doc version: 20.10
+.. check date: 2022/04/26
+.. Commits on Aug 7, 2021 fbfa187a83fd8006bd032c149b5a26b684f48032
 .. ---------------------------------------------------------------------------
 
 .. Prune unused Docker objects
@@ -170,9 +170,9 @@ Docker ネットワークはディスクスペースを消費しませんが、 
 全てを prune
 ====================
 
-.. The docker system prune command is a shortcut that prunes images, containers, and networks. In Docker 17.06.0 and earlier, volumes are also pruned. In Docker 17.06.1 and higher, you must specify the --volumes flag for docker system prune to prune volumes.
+.. The docker system prune command is a shortcut that prunes images, containers, and networks. Volumes are not pruned by default, and you must specify the --volumes flag for docker system prune to prune volumes.
 
-``docker system prune`` コマンドは、イメージ、コンテナ、ネットワークを削除（prune）するショートカットです。 Docker 17.06.0 以下のバージョンでは、ボリュームも prune されました。Docker 17.06.1 以降では、 ``docker system prune`` でボリュームも削除するには ``--volumes`` フラグが必要になりました。
+``docker system prune`` コマンドは、イメージ、コンテナ、ネットワークを削除（prune）するショートカットです。ボリュームはデフォルトでは削除されないため、ボリュームを削除するには ``docker system prune`` で ``--volumes`` フラグを使う必要があります。
 
 .. code-block:: bash
 
@@ -185,9 +185,9 @@ Docker ネットワークはディスクスペースを消費しませんが、 
            - all build cache
    Are you sure you want to continue? [y/N] y
 
-.. If you are on Docker 17.06.1 or higher and want to also prune volumes, add the --volumes flag:
+.. To also prune volumes, add the --volumes flag:
 
-Docker 17.06.1 以上でボリュームも削除したい場合は、 ``--volumes`` フラグを使います。
+ボリュームも削除したい場合は、 ``--volumes`` フラグを使います。
 
 .. code-block:: bash
 

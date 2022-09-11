@@ -1,10 +1,12 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/
+.. URL: https://docs.docker.com/storage/storagedriver/device-mapper-driver/
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/storagedriver/device-mapper-driver.md
    doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/userguide/storagedriver/device-mapper-driver.md
-.. check date: 2016/06/14
-.. Commits on Jun 4, 2016 0cddc783cff152a383a109f70a9f7bc943dbb5ba
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/storage/storagedriver/device-mapper-driver.md
+.. check date: 2022/05/04
+.. Commits on Sep 31, 2021 173d3c65f8e7df2a8c0323594419c18086fc3a30
 .. ---------------------------------------------------------------------------
 
 .. Docker and the Device Mapper storage driver
@@ -20,6 +22,15 @@ Device Mapper ストレージ・ドライバの使用
    .. contents:: 
        :depth: 3
        :local:
+
+----
+
+（以下は古い内容を含むため、確認予定）
+正確な内容は、原文を参照ください
+https://docs.docker.com/storage/storagedriver/device-mapper-driver/
+
+----
+
 
 .. Device Mapper is a kernel-based framework that underpins many advanced volume management technologies on Linux. Docker’s devicemapper storage driver leverages the thin provisioning and snapshotting capabilities of this framework for image and container management. This article refers to the Device Mapper storage driver as devicemapper, and the kernel framework as Device Mapper.
 

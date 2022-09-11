@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/config/daemon/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/config/daemon/index.md
-   doc version: 19.03
-.. check date: 2020/06/22
-.. Commits on Apr 23, 2020 b0f90615659ac1319e8d8a57bb914e49d174242e
+   doc version: 20.10
+.. check date: 2022/04/26
+.. Commits on Dec 20, 2021 df6a3281b958a4224889342d82c026000c43fc8d
 .. ---------------------------------------------------------------------------
 
 .. Configure and troubleshoot the Docker daemon
@@ -279,22 +279,42 @@ Out Of Memory Exception (OOME)
 
 デーモンのログは問題の解析に役立つでしょう。ログは1ヵ所に保存されますが、オペレーティングシステムの設定と、サブシステムが使っているログ記録システムに依存します。
 
-* オペレーティングシステム
-  * 場所
-* RHEL, Oracle Linux
-   * ``/var/log/messages``
-* Debian
-   * ``/var/log/daemon.log``
-* Ubuntu 16.04+, CentOS
-   * コマンド ``journalctl -u docker.service`` を使用
-* Ubuntu 14.10-
-   * ``/var/log/upstart/docker.log``
-* macOS (Docker 18.01+)
-   * ``~/Library/Containers/com.docker.docker/Data/vms/0/console-ring``
-* macOS (Docker <18.01)
-   * ``~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/console-ring``
-* Windows
-   * ``AppData\Local``
+
+.. list-table::
+   :header-rows: 1
+
+   * - オペレーティングシステム
+     - 場所
+   * - Linux
+     - コマンド ``journalctl -xu docker.service`` を使用（または ``/var/log/syslog`` や ``/var/log/messages`` を読み込む、Linux ディストリビューションに依存 )
+   * - macOS ( ``dockerd`` ログ )
+     - ``~/Library/Containers/com.docker.docker/Data/log/vm/dockerd.log``
+   * - macOS ( ``containerd`` ログ )
+     - `` ~/Library/Containers/com.docker.docker/Data/log/vm/containerd.log``
+   * - Windows (WLS2) ( ``dockerd`` ログ )
+     - ``AppData\Roaming\Docker\log\vm\dockerd.log``
+   * - Windows (WLS2) ( ``containerd`` ログ )
+     - ``AppData\Roaming\Docker\log\vm\containerd.log``
+   * - Windows ( Windows コンテナ )
+     - Windows のイベントログ内にログが記録
+
+.. To view the dockerd logs on macOS, open a terminal Window, and use the tail command with the -f flag to “follow” the logs. Logs will be printed until you terminate the command using CTRL+c:
+
+macOS 上で ``dockerd`` のログを表示するには、ウインドウ端末を開き、 ``tail `` コマンドに ``-f`` フラグでログを :ruby:`フォロー <follow>` します。ログは ``CTRL+c`` で中断するまで表示されつづけます。
+
+.. code-block:: bash
+
+   $ tail -f ~/Library/Containers/com.docker.docker/Data/log/vm/dockerd.log
+   2021-07-28T10:21:21Z dockerd time="2021-07-28T10:21:21.497642089Z" level=debug msg="attach: stdout: begin"
+   2021-07-28T10:21:21Z dockerd time="2021-07-28T10:21:21.497714291Z" level=debug msg="attach: stderr: begin"
+   2021-07-28T10:21:21Z dockerd time="2021-07-28T10:21:21.499798390Z" level=debug msg="Calling POST /v1.41/containers/35fc5ec0ffe1ad492d0a4fbf51fd6286a087b89d4dd66367fa3b7aec70b46a40/wait?condition=removed"
+   2021-07-28T10:21:21Z dockerd time="2021-07-28T10:21:21.518403686Z" level=debug msg="Calling GET /v1.41/containers/35fc5ec0ffe1ad492d0a4fbf51fd6286a087b89d4dd66367fa3b7aec70b46a40/json"
+   2021-07-28T10:21:21Z dockerd time="2021-07-28T10:21:21.527074928Z" level=debug msg="Calling POST /v1.41/containers/35fc5ec0ffe1ad492d0a4fbf51fd6286a087b89d4dd66367fa3b7aec70b46a40/start"
+   2021-07-28T10:21:21Z dockerd time="2021-07-28T10:21:21.528203579Z" level=debug msg="container mounted via layerStore: &{/var/lib/docker/overlay2/6e76ffecede030507fcaa576404e141e5f87fc4d7e1760e9ce5b52acb24
+   ...
+   ^C
+
+
 
 .. Enable debugging
 
@@ -395,11 +415,12 @@ Docker デーモンのログ表示は、以下の方法どちらかを使って�
 * Linux システム上では ``systemctl`` を使い、 ``journalctl -u docker.service`` を実行します。
 * 以前の Linux システム上では ``/var/log/messages`` 、 ``/var/log/daemon.log`` 、 ``/var/log/docker.log`` を読みます。
 
-..    Note: It is not possible to manually generate a stack trace on Docker Desktop for Mac or Docker Desktop for Windows. However, you can click the Docker taskbar icon and choose Diagnose and feedback to send information to Docker if you run into issues.
+.. It is not possible to manually generate a stack trace on Docker Desktop for Mac or Docker Desktop for Windows. 
+However, you can click the Docker taskbar icon and choose Troubleshoot to send information to Docker if you run into issues.
 
 .. note::
 
-   Docker Desktop for Mac や Docker Desktop for Windows 上では、スタック・トレースを手動で生成することができません。ですが、問題が発生した時は、 Docker タスクバーアイコンをクリックし、 **Diagnose and feedbak**  を選択し、Docker に対して情報を送信できます。
+   Docker Desktop for Mac や Docker Desktop for Windows 上では、スタック・トレースを手動で生成することができません。ですが、問題が発生した時は、 Docker タスクバーアイコンをクリックし、 **Troubleshoot**  を選択し、Docker に対して情報を送信できます。
 
 .. Look in the Docker logs for a message like the following:
 

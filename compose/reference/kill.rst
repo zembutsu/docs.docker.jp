@@ -1,23 +1,24 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/reference/kill/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/reference/kill.md
-   doc version: 1.11
+   doc version: 1.13
       https://github.com/docker/compose/commits/master/docs/reference/kill.md
-.. check date: 2016/04/28
-.. Commits on Aug 25, 2015 59d4f304ee3bf4bb20ba0f5e0ad6c4a3ff1568f3
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/compose/reference/kill.md
+.. check date: 2022/04/08
+.. Commits on Jan 28, 2022 b6b19516d0feacd798b485615ebfee410d9b6f86
 .. -------------------------------------------------------------------
 
-.. kill
-
-.. _compose-kill:
+.. docker-compose kill
+.. _docker-compose-kill:
 
 =======================================
-kill
+docker-compose kill
 =======================================
 
 .. code-block:: bash
 
-   使い方: kill [オプション] [サービス...]
+   使い方: docker-compose kill [オプション] [サービス...]
    
    オプション:
    -s SIGNAL         コンテナに送信するシグナル。デフォルトのシグナルは SIGKILL
@@ -32,5 +33,5 @@ kill
 
 .. seealso:: 
 
-   kill
+   docker-compose kill
       https://docs.docker.com/compose/reference/kill/

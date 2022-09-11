@@ -1,10 +1,12 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/reference/down/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/reference/down.md
-   doc version: 1.11
+   doc version: 1.13
       https://github.com/docker/compose/commits/master/docs/reference/down.md
-.. check date: 2016/04/28
-.. Commits on Apr 12, 2016 3722bb38c66b3c3500e86295a43aafe14a050b50
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/compose/reference/down.md
+.. check date: 2022/04/08
+.. Commits on Jan 28, 2022 b6b19516d0feacd798b485615ebfee410d9b6f86
 .. -------------------------------------------------------------------
 
 .. down
@@ -12,13 +14,8 @@
 .. _compose-down:
 
 =======================================
-down
+docker-compose down
 =======================================
-
-.. Stop containers and remove containers, networks, volumes, and images
-.. created by `up`. Only containers and networks are removed by default.
-
-コンテナを停止し、 ``up`` で作成したコンテナ・ネットワーク・ボリューム・イメージを削除します。デフォルトではコンテナとネットワークのみ削除します。
 
 
 .. code-block:: bash
@@ -30,8 +27,9 @@ down
                            'all': あらゆるサービスで使う全イメージを削除
                            'local': image フィールドにカスタム・タグのないイメージだけ削除
        -v, --volumes       Compose ファイルの `volumes` セクションの名前付きボリュームを削除
-                           また、コンテナがアタッチしたアノニマス・ボリュームも削除
+                           また、コンテナがアタッチした匿名ボリュームも削除
        --remove-orphans    Compose ファイルで定義していないサービス用のコンテナも削除
+       -t, --timeout TIMEOUT   シャットダウンのタイムアウト秒を指定（デフォルト: 10）
 
 .. Stops containers and removes containers, networks, volumes, and images created by up.
 
@@ -39,7 +37,7 @@ down
 
 .. By default, the only things removed are:
 
-デフォルトでは以下のものだけ削除します。
+デフォルトでは、以下のものだけ削除します。
 
 ..    Containers for services defined in the Compose file
     Networks defined in the networks section of the Compose file
@@ -53,8 +51,13 @@ down
 
 ``external`` として定義したネットワークとボリュームは決して削除しません。
 
+.. Anonymous volumes are not removed by default. However, as they don’t have a stable name, they will not be automatically mounted by a subsequent up. For data that needs to persist between updates, use host or named volumes.
+
+:ruby:`匿名ボリューム <anonymous volume>` はデフォルトでは削除されません。ですが、これらは決まった名前では無いため、その後に ``up`` しても（削除されなかった匿名ボリュームは）自動的にマウントされません。アップデートをしている間でも保持が必要なデータには、ホストボリュームや名前付きボリュームを使います。
+
+
 .. seealso:: 
 
-   down
+   docker-compose down
       https://docs.docker.com/compose/reference/down/
 

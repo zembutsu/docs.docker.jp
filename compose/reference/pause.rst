@@ -1,18 +1,19 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/reference/pause/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/reference/pause.md
-   doc version: 1.11
+   doc version: 1.13
       https://github.com/docker/compose/commits/master/docs/reference/pause.md
-.. check date: 2016/04/28
-.. Commits on Aug 21, 2015 227584b8640be269f60975d7c7f361e856c9e9f6
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/compose/reference/pause.md
+.. check date: 2022/04/08
+.. Commits on Jan 28, 2022 b6b19516d0feacd798b485615ebfee410d9b6f86
 .. -------------------------------------------------------------------
 
-.. pause
-
-.. _compose-pause:
+.. docker-compose pause
+.. _docker-compose-pause:
 
 =======================================
-pause
+docker-compose pause
 =======================================
 
 .. code-block:: bash
@@ -25,5 +26,5 @@ pause
 
 .. seealso:: 
 
-   pause
+   docker-compose pause
       https://docs.docker.com/compose/reference/pause/

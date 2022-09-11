@@ -1,10 +1,9 @@
-.. -*- coding: utf-8 -*-
+﻿.. -*- coding: utf-8 -*-:
 .. URL: https://docs.docker.com/engine/reference/builder/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/builder.md
-   doc version: 1.12
-      https://github.com/docker/docker/commits/master/docs/reference/builder.md
-.. check date: 2016/06/14
-.. Commits on Jun 12, 2016 c9a68ffb2ae7b2ac13a2febab82b3d7a824eb97f
+.. SOURCE: https://github.com/docker/cli/blob/master/docs/reference/builder.md
+   doc version: 20.10
+.. check date: 2021/07/09
+.. Commits on May 5, 2021 782192a6e50bacd73dcd2e9f9128f1708435b555
 .. -------------------------------------------------------------------
 
 .. Dockerfile reference
@@ -19,374 +18,323 @@ Dockerfile リファレンス
        :depth: 3
        :local:
 
-.. Docker can build images automatically by reading the instructions from a
-   `Dockerfile`. A `Dockerfile` is a text document that contains all the commands a
-   user could call on the command line to assemble an image. Using `docker build`
-   users can create an automated build that executes several command-line
-   instructions in succession.
+.. Docker can build images automatically by reading the instructions from a Dockerfile. A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image. Using docker build users can create an automated build that executes several command-line instructions in succession.
 
-Docker は ``Dockerfile`` から命令を読み込んで、自動的にイメージをビルドします。
-``Dockerfile`` はテキストファイルであり、イメージを作り上げるために実行するコマンドラインコマンドを、すべてこのファイルに含めることができます。
-``docker build`` を実行すると、順次コマンドライン命令を自動化した処理が行われて、ビルド結果となるイメージが得られます。
+Docker は ``Dockerfile`` から命令を読み込み、自動的にイメージをビルドできます。 ``Dockerfile`` はテキストファイルであり、イメージを作り上げるために実行するコマンドライン命令を、すべてこのファイルに含められます。 ``docker build`` を実行すると、順次コマンドライン命令を自動化した処理を行い、ビルド結果となるイメージが得られます。
 
-.. This page describes the commands you can use in a `Dockerfile`. When you are
-   done reading this page, refer to the [`Dockerfile` Best
-   Practices](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/) for a tip-oriented guide.
+.. This page describes the commands you can use in a Dockerfile. When you are done reading this page, refer to the Dockerfile Best Practices for a tip-oriented guide.
 
-ここでは ``Dockerfile`` において利用可能なコマンドを説明します。
-このページを読み終えたら、さまざまなガイドとなる ``Dockerfile`` の :doc:`ベスト・プラクティス </engine/userguide/eng-image/dockerfile_best-practices>` を参照してください。
+このページでは、 ``Dockerfile`` で利用可能なコマンドを説明します。このページを読み終えたら、 ``Dockerfile`` の :doc:`ベストプラクティス </develop/develop-images/dockerfile_best-practices/>` を開き、理解を重視するガイドをご覧ください。
 
 .. ## Usage
 
-利用方法
+使用法
 ==========
 
-.. The [`docker build`](commandline/build.md) command builds an image from
-   a `Dockerfile` and a *context*. The build's context is the set of files at a
-   specified location `PATH` or `URL`. The `PATH` is a directory on your local
-   filesystem. The `URL` is a Git repository location.
+.. The docker build command builds an image from a Dockerfile and a context. The build’s context is the set of files at a specified location PATH or URL. The PATH is a directory on your local filesystem. The URL is a Git repository location.
 
-:doc:`docker build </engine/reference/commandline/build>` コマンドは、``Dockerfile`` と **コンテキスト** （context）からイメージをビルドします。
-ビルドにおけるコンテキストとは、指定された ``PATH`` または ``URL`` にある一連のファイルのことです。
-``PATH`` はローカルファイルシステム内のディレクトリを表わします。
-``URL`` は Git のリポジトリ URL のことです。
+:doc:`docker build </engine/reference/commandline/build>` コマンドは、 ``Dockerfile`` と :ruby:`コンテキスト <context>` からイメージを :ruby:`構築 <build>` （ビルド）します。構築におけるコンテキストとは、指定された ``PATH`` （場所）または ``URL`` にあるファイル一式です。 ``PATH`` はローカル・ファイルシステム上のディレクトリです。 ``URL`` は Git リポジトリの場所です。
 
-.. A context is processed recursively. So, a `PATH` includes any subdirectories and
-   the `URL` includes the repository and its submodules. This example shows a
-   build command that uses the current directory as context:
+.. The build context is processed recursively. So, a PATH includes any subdirectories and the URL includes the repository and its submodules. This example shows a build command that uses the current directory (.) as build context:
 
-コンテキストは再帰的に処理されます。
-つまり ``PATH`` の場合はサブディレクトリがすべて含まれ、``URL`` の場合はリポジトリとそのサブモジュールが含まれます。
-以下の例におけるビルドコマンドは、コンテキストとしてカレントディレクトリを用いるものです。
+:ruby:`構築コンテキスト <build context>` は再帰的に処理されます。つまり、 ``PATH`` にはすべてのサブディレクトリが含まれ、 ``URL`` にはリポジトリとサブモジュールが含まれます。以下の例における構築コマンドは、現在のディレクトリ（ ``.`` ）を構築コンテキストとして使用します。
 
 .. code-block:: bash
 
    $ docker build .
+   
    Sending build context to Docker daemon  6.51 MB
    ...
 
-.. The build is run by the Docker daemon, not by the CLI. The first thing a build
-   process does is send the entire context (recursively) to the daemon.  In most
-   cases, it's best to start with an empty directory as context and keep your
-   Dockerfile in that directory. Add only the files needed for building the
-   Dockerfile.
+.. The build is run by the Docker daemon, not by the CLI. The first thing a build process does is send the entire context (recursively) to the daemon. In most cases, it’s best to start with an empty directory as context and keep your Dockerfile in that directory. Add only the files needed for building the Dockerfile.
 
-ビルド処理は Docker デーモンが行うものであって CLI により行われるものではありません。
-ビルド処理の開始時にまず行われるのは、コンテキスト全体を（再帰的に）デーモンに送信することです。
-普通はコンテキストとして空のディレクトリを用意して、そこに Dockerfile を置きます。
-そのディレクトリへは、Dockerfile の構築に必要となるファイルのみを置くようにします。
+構築は Docker デーモンが実行するものであり、 CLI によるものではありません。構築処理でまず行われるのは、コンテキスト全体を（再帰的に）デーモンに送信します。たいていの場合、コンテキストとして空のディレクトリを用意し、そこに Dockerfile を置くのがベストです。そのディレクトリへは、Dockerfile の構築に必要なファイルのみ追加します。
 
-.. >**Warning**: Do not use your root directory, `/`, as the `PATH` as it causes
-   >the build to transfer the entire contents of your hard drive to the Docker
-   >daemon.
+..     Warning
+    Do not use your root directory, /, as the PATH for your build context, as it causes the build to transfer the entire contents of your hard drive to the Docker daemon.
 
 .. warning::
 
-   ``PATH`` に対して root ディレクトリ ``/`` を指定することはやめてください。
-   これを行うとビルド時に Docker デーモンに対して、ハードディスクの内容すべてを送り込むことになってしまいます。
+   ルート・ディレクトリ ``/`` を構築コンテキストの ``PATH`` として指定しないでください。構築時、ハードディスクの内容すべてを Docker デーモンに転送してしまうからです。
 
-.. To use a file in the build context, the `Dockerfile` refers to the file specified
-   in an instruction, for example,  a `COPY` instruction. To increase the build's
-   performance, exclude files and directories by adding a `.dockerignore` file to
-   the context directory.  For information about how to [create a `.dockerignore`
-   file](#dockerignore-file) see the documentation on this page.
+.. To use a file in the build context, the Dockerfile refers to the file specified in an instruction, for example, a COPY instruction. To increase the build’s performance, exclude files and directories by adding a .dockerignore file to the context directory. For information about how to create a .dockerignore file see the documentation on this page.
 
-ビルドコンテキスト内のファイルを利用する場合、``Dockerfile`` では命令を記述する際にファイル参照を指定します。
-たとえば ``COPY`` 命令の対象として参照します。
-ビルド時の処理性能を上げるために、コンテキストディレクトリ内に ``.dockerignore`` ファイルを追加し、不要なファイルやディレクトリは除外するようにします。
-詳しくはこのページ内の :ref:`.dockerignore` ファイルの生成方法 <#dockerignore-file>` を参照してください。
+構築コンテキスト内にあるファイルを使う場合、 ``COPY`` 命令など、 ``Dockerfile`` の命令で指定されたファイルを参照します。構築時の処理性能を上げるには、コンテキスト・ディレクトリに ``.dockerignore`` ファイルを追加し、不要なファイルやディレクトリを除外します。 ``.dockerignore`` ファイルを作成する詳細は、このページ内の :ref:`ドキュメント <dockerignore-file>` を参照ください。
 
-.. Traditionally, the `Dockerfile` is called `Dockerfile` and located in the root
-   of the context. You use the `-f` flag with `docker build` to point to a Dockerfile
-   anywhere in your file system.
+.. Traditionally, the Dockerfile is called Dockerfile and located in the root of the context. You use the -f flag with docker build to point to a Dockerfile anywhere in your file system
 
-慣例として ``Dockerfile`` は ``Dockerfile`` と命名されています。
-またこのファイルはコンテキストディレクトリのトップに置かれます。
-``docker build`` の ``-f`` フラグを用いれば、Dockerfile がファイルシステム内のどこにあっても指定することができます。
+もともと、 ``Dockerfile``  は ``Dockerfile`` と呼ばれ、コンテキストのルート（対象ディレクトリのトップ）に置かれました。 ``docker build`` で ``-f`` フラグを使えば、Dockerfile がファイルシステム上のどこにあっても指定できます。
 
 .. code-block:: bash
 
    $ docker build -f /path/to/a/Dockerfile .
 
-.. You can specify a repository and tag at which to save the new image if
-   the build succeeds:
+.. You can specify a repository and tag at which to save the new image if the build succeeds:
 
-イメージのビルドが成功した後の保存先として、リポジトリとタグを指定することができます。
+構築の成功時、新しいイメージを保存する :ruby:`リポジトリ <repository>` と :ruby:`タグ <tag>` を指定できます。
+
 
 .. code-block:: bash
 
    $ docker build -t shykes/myapp .
 
-.. To tag the image into multiple repositories after the build,
-   add multiple `-t` parameters when you run the `build` command:
+.. To tag the image into multiple repositories after the build, add multiple -t parameters when you run the build command:
 
-ビルドの際に複数のリポジトリに対してイメージをタグづけするには、``build`` コマンドの実行時に ``-t`` パラメータを複数指定します。
+構築後、複数のリポジトリに対してイメージをタグ付けするには、 ``biuld`` コマンドの実行時、複数の ``-t`` パラメータを追加します。
 
-   ..  $ docker build -t shykes/myapp:1.0.2 -t shykes/myapp:latest .
+.. code-block:: bash
 
-::
+   docker build -t shykes/myapp:1.0.2 -t shykes/myapp:latest .
 
-   $ docker build -t shykes/myapp:1.0.2 -t shykes/myapp:latest .
+.. Before the Docker daemon runs the instructions in the Dockerfile, it performs a preliminary validation of the Dockerfile and returns an error if the syntax is incorrect:
 
-.. Before the Docker daemon runs the instructions in the `Dockerfile`, it performs
-   a preliminary validation of the `Dockerfile` and returns an error if the syntax is incorrect:
+Docker デーモンは ``Dockerfile`` 内に書かれた命令を実行する前に、事前に ``Dockerfile`` を検証し、構文が間違っている場合はエラーを返します。
 
-``Dockerfile`` 内に記述されている命令を Docker デーモンが実行する際には、事前に ``Dockerfile`` が検証され、文法の誤りがある場合にはエラーが返されます。
-
-   ..  $ docker build -t test/myapp .
-       Sending build context to Docker daemon 2.048 kB
-       Error response from daemon: Unknown instruction: RUNCMD
-
-::
+.. code-block:: bash
 
    $ docker build -t test/myapp .
-   Sending build context to Docker daemon 2.048 kB
-   Error response from daemon: Unknown instruction: RUNCMD
+   
+   [+] Building 0.3s (2/2) FINISHED
+    => [internal] load build definition from Dockerfile                       0.1s
+    => => transferring dockerfile: 60B                                        0.0s
+    => [internal] load .dockerignore                                          0.1s
+    => => transferring context: 2B                                            0.0s
+   error: failed to solve: rpc error: code = Unknown desc = failed to solve with frontend dockerfile.v0: failed to create LLB definition:
+   dockerfile parse error line 2: unknown instruction: RUNCMD
 
-.. The Docker daemon runs the instructions in the `Dockerfile` one-by-one,
-   committing the result of each instruction
-   to a new image if necessary, before finally outputting the ID of your
-   new image. The Docker daemon will automatically clean up the context you
-   sent.
+.. The Docker daemon runs the instructions in the Dockerfile one-by-one, committing the result of each instruction to a new image if necessary, before finally outputting the ID of your new image. The Docker daemon will automatically clean up the context you sent.
 
-Docker デーモンは ``Dockerfile`` 内の命令を 1 つずつ実行し、必要な場合にはビルドイメージ内にその処理結果を確定します。
-最後にビルドイメージの ID を出力します。
-Docker デーモンは、送信されたコンテキスト内容を自動的にクリアします。
+Docker デーモンは ``Dockerfile`` 内の命令を 1 つずつ実行し、必要な場合にはビルドイメージ内にその処理結果を :ruby:`確定 <commit>` （コミット）し、最後に新しいイメージの ID を出力します。Docker デーモンは、送信されたコンテキスト内容を自動的に :ruby:`除去 <clean up>` します。
 
-.. Note that each instruction is run independently, and causes a new image
-   to be created - so `RUN cd /tmp` will not have any effect on the next
-   instructions.
+.. Note that each instruction is run independently, and causes a new image to be created - so RUN cd /tmp will not have any effect on the next instructions.
 
-各命令は個別に実行されます。
-それによって新たなイメージがビルドされます。
-したがって、たとえば ``RUN cd /tmp`` を実行したとしても、次の命令には何の効果も与えません。
+各命令は個別に実行され、都度、新しいイメージが生成されますのでご注意ください。したがって、たとえば ``RUN cd /tmp`` という命令があっても、その次の命令には何ら影響を与えません。
 
-.. Whenever possible, Docker will re-use the intermediate images (cache),
-   to accelerate the `docker build` process significantly. This is indicated by
-   the `Using cache` message in the console output.
-   (For more information, see the [Build cache section](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/#build-cache) in the
-   `Dockerfile` best practices guide):
+.. Whenever possible, Docker uses a build-cache to accelerate the docker build process significantly. This is indicated by the CACHED message in the console output. (For more information, see the Dockerfile best practices guide:
 
-Docker は可能な限り中間イメージ（キャッシュ）を再利用しようとします。
-これは ``docker build`` 処理を速くするためです。
-その場合は、端末画面に ``Using cache`` というメッセージが出力されます。
-（詳細については ``Dockerfile`` のベストプラクティスガイドにある :ref:`ビルドキャッシュの説明 <build-cache>` を参照してください。）
-
-   ..  $ docker build -t svendowideit/ambassador .
-       Sending build context to Docker daemon 15.36 kB
-       Step 1/4 : FROM alpine:3.2
-        ---> 31f630c65071
-       Step 2/4 : MAINTAINER SvenDowideit@home.org.au
-        ---> Using cache
-        ---> 2a1c91448f5f
-       Step 3/4 : RUN apk update &&      apk add socat &&        rm -r /var/cache/
-        ---> Using cache
-        ---> 21ed6e7fbb73
-       Step 4/4 : CMD env | grep _TCP= | (sed 's/.*_PORT_\([0-9]*\)_TCP=tcp:\/\/\(.*\):\(.*\)/socat -t 100000000 TCP4-LISTEN:\1,fork,reuseaddr TCP4:\2:\3 \&/' && echo wait) | sh
-        ---> Using cache
-        ---> 7ea8aef582cc
-       Successfully built 7ea8aef582cc
+Docker は可能な限り :ruby:`構築キャッシュ <build-cache>` を使用し、 ``docker build`` の処理を著しく高速にします。その場合はコンソール出力に ``CACHED`` というメッセージが出ます。（詳細については、 :doc:`Dockerfile のベストプラクティスガイド </develop/develop-images/dockerfile_best-practices/>` を参照ください。）
 
 .. code-block:: bash
 
    $ docker build -t svendowideit/ambassador .
-   Sending build context to Docker daemon 15.36 kB
-   Step 1/4 : FROM alpine:3.2
-    ---> 31f630c65071
-   Step 2/4 : MAINTAINER SvenDowideit@home.org.au
-    ---> Using cache
-    ---> 2a1c91448f5f
-   Step 3/4 : RUN apk update &&      apk add socat &&        rm -r /var/cache/
-    ---> Using cache
-    ---> 21ed6e7fbb73
-   Step 4/4 : CMD env | grep _TCP= | (sed 's/.*_PORT_\([0-9]*\)_TCP=tcp:\/\/\(.*\):\(.*\)/socat -t 100000000 TCP4-LISTEN:\1,fork,reuseaddr TCP4:\2:\3 \&/' && echo wait) | sh
-    ---> Using cache
-    ---> 7ea8aef582cc
-   Successfully built 7ea8aef582cc
+   
+   [+] Building 0.7s (6/6) FINISHED
+    => [internal] load build definition from Dockerfile                       0.1s
+    => => transferring dockerfile: 286B                                       0.0s
+    => [internal] load .dockerignore                                          0.1s
+    => => transferring context: 2B                                            0.0s
+    => [internal] load metadata for docker.io/library/alpine:3.2              0.4s
+    => CACHED [1/2] FROM docker.io/library/alpine:3.2@sha256:e9a2035f9d0d7ce  0.0s
+    => CACHED [2/2] RUN apk add --no-cache socat                              0.0s
+    => exporting to image                                                     0.0s
+    => => exporting layers                                                    0.0s
+    => => writing image sha256:1affb80ca37018ac12067fa2af38cc5bcc2a8f09963de  0.0s
+    => => naming to docker.io/svendowideit/ambassador                         0.0s
 
-.. Build cache is only used from images that have a local parent chain. This means
-   that these images were created by previous builds or the whole chain of images
-   was loaded with `docker load`. If you wish to use build cache of a specific
-   image you can specify it with `--cache-from` option. Images specified with
-   `--cache-from` do not need to have a parent chain and may be pulled from other
-   registries.
+.. By default, the build cache is based on results from previous builds on the machine on which you are building. The --cache-from option also allows you to use a build-cache that's distributed through an image registry refer to the specifying external cache sources section in the docker build command reference.
 
-ビルドキャッシュは、ローカルにて親イメージへのつながりを持ったイメージからのみ利用されます。
-利用されるイメージとはつまり、前回のビルドによって生成されたイメージか、あるいは ``docker load`` によってロードされたイメージのいずれかです。
-ビルドキャッシュを特定のイメージから利用したい場合は ``--cache-from`` オプションを指定します。
-``--cache-from`` オプションが用いられた場合に、そのイメージは親イメージへのつながりを持っている必要はなく、他のレジストリから取得するイメージであっても構いません。
+構築キャッシュとは、デフォルトでは、構築するマシン上で以前に構築された結果に基づきます。 ``--cache-from`` オプションの指定により、イメージ・レジストリを通して配布された構築キャッシュも使えます。 ``docker build`` コマンドリファレンスの :ref:`外部のキャッシュをソースとして指定 <specifying-external-cache-sources>` セクションをご覧ください。
 
-.. When you're done with your build, you're ready to look into [*Pushing a
-   repository to its registry*](https://docs.docker.com/engine/tutorials/dockerrepos/#/contributing-to-docker-hub).
+.. When you’re done with your build, you’re ready to look into scanning your image with docker scan, and pushing your image to Docker Hub.
 
-ビルドに関する操作を終えたら、次は :doc:`リポジトリをレジストリへ送信 </engine/tutorials/dockerrepos>` を読んでみてください。
+構築が終われば、 ``docker scan`` で  :doc:`イメージを検査 </engine/scan>` したり、 :doc:`Docker Hub にイメージを送信 </docker-hub/repos>` したりできます。
 
-.. ## Format
+.. BuildKit
 
-記述書式
+.. _builder-buildkit:
+
+:ruby:`BuildKit <ビルドキット>`
+========================================
+
+.. Starting with version 18.09, Docker supports a new backend for executing your builds that is provided by the moby/buildkit project. The BuildKit backend provides many benefits compared to the old implementation. For example, BuildKit can:
+
+バージョン 18.09 から、Docker は `moby/buildkit <https://github.com/moby/buildkit>`_ プロジェクトによって提供された、新しい構築用バックエンドをサポートしています。古い実装に比べ、BuildKit バックエンドは多くの利点があります。たとえば、 BuildKit は次のことができます。
+
+..  Detect and skip executing unused build stages
+    Parallelize building independent build stages
+    Incrementally transfer only the changed files in your build context between builds
+    Detect and skip transferring unused files in your build context
+    Use external Dockerfile implementations with many new features
+    Avoid side-effects with rest of the API (intermediate images and containers)
+    Prioritize your build cache for automatic pruning
+
+* 使用していない :doc:`構築ステージ <build stage>` の検出とスキップ
+* 独立している構築ステージを :ruby:`並列構築 <parallelize building>`
+* 構築コンテキストと構築の間では、変更のあったファイルのみ転送
+* 構築コンテキスト内で、未使用ファイルの検出と、転送のスキップ
+* 多くの新機能がある :ruby:`拡張 Dockerfile 実装 <external Dockerfile implementations>` を使用
+* 他の API （中間イメージとコンテナ）による副作用を回避
+* :ruby:`自動整理 <automatic pruning>` のために、構築キャッシュを優先度付け
+
+.. To use the BuildKit backend, you need to set an environment variable DOCKER_BUILDKIT=1 on the CLI before invoking docker build.
+
+BuildKit バックエンドを使うには、 ``docker build`` を実行する前に、CLI 上で環境変数 ``DOCKER_BUILDKIT=1`` を設定する必要があります。
+
+.. To learn about the experimental Dockerfile syntax available to BuildKit-based builds refer to the documentation in the BuildKit repository.
+
+BuildKit を使った構築時に有効となる、拡張 Dockerfile 実装についての詳細を知るには、 `BuildKit リポジトリにあるドキュメントを参照ください <https://github.com/moby/buildkit/blob/master/frontend/dockerfile/docs/experimental.md>`_ 。
+
+.. Format
+
+.. _builder-format:
+
+書式
 ==========
 
 .. Here is the format of the `Dockerfile`:
 
-ここに ``Dockerfile`` の記述書式を示します。
-
-.. ```Dockerfile
-   # Comment
-   INSTRUCTION arguments
+``Dockerfile`` の書式は次の通りです。
 
 .. code-block:: dockerfile
 
-   # Comment
-   INSTRUCTION arguments
+   # コメント
+   命令 引数
 
+.. The instruction is not case-sensitive. However, convention is for them to be UPPERCASE to distinguish them from arguments more easily.
 
 .. The instruction is not case-sensitive. However, convention is for them to
    be UPPERCASE to distinguish them from arguments more easily.
 
-命令（instruction）は大文字小文字を区別しません。
-ただし慣習として大文字とします。
-そうすることで引数（arguments）との区別をつけやすくします。
+:ruby:`命令 <instruction>` は大文字と小文字を区別しません。ただし、引数と区別をつけやすくするため、慣例として引数は大文字です。
 
-.. Docker runs instructions in a `Dockerfile` in order. A `Dockerfile` **must
-   start with a \`FROM\` instruction**. The `FROM` instruction specifies the [*Base
-   Image*](glossary.md#base-image) from which you are building. `FROM` may only be
-   preceded by one or more `ARG` instructions, which declare arguments that are used
-   in `FROM` lines in the `Dockerfile`.
+.. Docker runs instructions in a Dockerfile in order. A Dockerfile must begin with a FROM instruction. This may be after parser directives, comments, and globally scoped ARGs. The FROM instruction specifies the Parent Image from which you are building. FROM may only be preceded by one or more ARG instructions, which declare arguments that are used in FROM lines in the Dockerfile.
 
-Docker は ``Dockerfile`` 内の命令を記述順に実行します。
-``Dockerfile`` は必ず ``FROM`` **命令で** 始めなければなりません。
-``FROM`` 命令は、ビルドするイメージに対しての :ref:`ベースイメージ <base-image>` を指定するものです。
-``FROM`` よりも先に記述できる命令として ``ARG`` があります。
-これは ``FROM`` において用いられる引数を宣言するものです。
+Docker は ``Dockerfile`` 内の命令を記述順に実行します。  ``Dockerfile`` **は必ず** ``FROM`` **命令で始めなければなりません。** ただし、 :ref:`パーサ・ディレクティブ <parser-directives>` 、 :ref:`コメント <format>` 、全体に適用される :ref:`ARG <arg>` の後になる場合があります。 ``FROM`` 命令で指定するのは、構築時に元となる :ref:`親イメージ <parent-image>` です。 ``Dockerfile`` の中で、 ``FROM`` 行の :ruby:`引数 <arguments>` として利用できる ``ARG`` 命令は、 ``FROM`` よりも前に記述できる唯一の命令です。
+
+.. Docker treats lines that begin with # as a comment, unless the line is a valid parser directive. A # marker anywhere else in a line is treated as an argument. This allows statements like:
+
+.. Docker treats lines that begin with # as a comment, unless the line is a valid parser directive. A # marker anywhere else in a line is treated as an argument. This allows statements like:
+
+Docker は ``#`` で始まる行をコメントとして扱います。ただし、 :ref:`パーサ・ディレクティブ <parser-directives>` は例外です。また、行の途中にある ``#`` は単なる引数として扱います。次のような記述ができます。
 
 
-.. Docker treats lines that *begin* with `#` as a comment, unless the line is
-   a valid [parser directive](#parser-directives). A `#` marker anywhere
-   else in a line is treated as an argument. This allows statements like:
+.. code-block:: Dockerfile
 
-行頭が ``#`` で始まる行はコメントとして扱われます。
-ただし例外として :ref:`パーサ・ディレクティブ <parser-directives>` があります。
-行途中の ``#`` は単なる引数として扱われます。
-以下のような行記述が可能です。
-
-.. ```Dockerfile
-   # Comment
+   # コメント
    RUN echo 'we are running some # of cool things'
-   ```
 
-.. code-block:: dockerfile
 
-   # Comment
-   RUN echo 'we are running some # of cool things'
+.. Comment lines are removed before the Dockerfile instructions are executed, which means that the comment in the following example is not handled by the shell executing the echo command, and both examples below are equivalent:
+
+Dockerfile で命令を実行する前に、コメント行は削除されます。つまり、以下の例にあるコメントは ``echo``  コマンドのシェル実行では扱われず、以下両方の例は同じものです。
+
+.. code-block:: bash
+
+   RUN echo hello \
+   # コメント
+   world
+
+.. code-block:: bash
+
+   RUN echo hello \
+   world
 
 .. Line continuation characters are not supported in comments.
 
-コメントにおいて行継続を指示する文字はサポートされていません。
+なお、コメント中では :ruby:`バックスラッシュ <line continuation characters>` はサポートされていません。
 
-.. ## Parser directives
+.. note:: **空白についての注意**
+
+   .. For backward compatibility, leading whitespace before comments (#) and instructions (such as RUN) are ignored, but discouraged. Leading whitespace is not preserved in these cases, and the following examples are therefore equivalent:
+   
+   後方互換性のため、コメント（ ``#`` ）と（ ``RUN`` のような）命令よりも前の空白を無視しますが、お勧めしません。以下のような例では、先頭の空白は保持されないため、どちらも同じものです。
+   
+   ::
+   
+              # これはコメント行です
+         RUN echo hello
+      RUN echo world
+   
+   ::
+   
+      # this is a comment-line
+      RUN echo hello
+      RUN echo world
+   
+   ただし注意が必要なのは、以下の ``RUN`` 命令のように、命令に対する引数の空白は保持されます。そのため、以下の例では、先頭に空白が指定した通りある「 hello world」を表示します。
+   
+   ::
+   
+      RUN echo "\
+        hello\
+        world"
+
+.. Parser directives
 
 .. _parser-directives:
 
-パーサ・ディレクティブ
+:ruby:`パーサ・ディレクティブ <parser directives>`
 ==================================================
 
-.. Parser directives are optional, and affect the way in which subsequent lines
-   in a `Dockerfile` are handled. Parser directives do not add layers to the build,
-   and will not be shown as a build step. Parser directives are written as a
-   special type of comment in the form `# directive=value`. A single directive
-   may only be used once.
+.. Parser directives are optional, and affect the way in which subsequent lines in a Dockerfile are handled. Parser directives do not add layers to the build, and will not be shown as a build step. Parser directives are written as a special type of comment in the form # directive=value. A single directive may only be used once.
 
-パーサ・ディレクティブ（parser directive）を利用することは任意です。
-これは ``Dockerfile`` 内のその後に続く記述行を取り扱う方法を指示するものです。
-パーサ・ディレクティブはビルドされるイメージにレイヤを追加しません。
-したがってビルドステップとして表示されることはありません。
-パーサ・ディレクティブは、特別なコメントの記述方法をとるもので、`# ディレクティブ＝値` という書式です。
-同一のディレクティブは一度しか記述できません。
+:ruby:`パーサ・ディレクティブ <parser directives>` （構文命令）はオプションです。 ``Dockerfile`` で指定すると、以降の行での挙動に影響を与えます。パーサ・ディレクティブは構築時にレイヤを追加しないため、構築ステップで表示されません。パーサ・ディレクティブは ``# ディレクティブ（命令の名前）=値`` という形式の、特別なタイプのコメントとして書きます。1つのディレクティブ（命令）は一度しか使えません。
 
-.. Once a comment, empty line or builder instruction has been processed, Docker
-   no longer looks for parser directives. Instead it treats anything formatted
-   as a parser directive as a comment and does not attempt to validate if it might
-   be a parser directive. Therefore, all parser directives must be at the very
-   top of a `Dockerfile`.
+.. Once a comment, empty line or builder instruction has been processed, Docker no longer looks for parser directives. Instead it treats anything formatted as a parser directive as a comment and does not attempt to validate if it might be a parser directive. Therefore, all parser directives must be at the very top of a Dockerfile.
 
-コメント、空行、ビルド命令が一つでも読み込まれたら、それ以降 Docker はパーサ・ディレクティブの処理を行いません。
-その場合、パーサ・ディレクティブの書式で記述されていても、それはコメントとして扱われます。
-そしてパーサ・ディレクティブとして適切な書式であるかどうかも確認しません。
-したがってパーサ・ディレクティブは ``Dockerfile`` の冒頭に記述しなければなりません。
+コメントや空行、構築命令を処理すると、Docker はパーサ・ディレクティブを探さなくなります。そのかわり、パーサ・ディレクティブの記述はコメントとして扱われ、パーサ・ディレクティブかどうかは確認しません。そのため、すべてのパーサ・ディレクティブは ``Dockerfile`` の一番上に書く必要があります。
 
-.. Parser directives are not case-sensitive. However, convention is for them to
-   be lowercase. Convention is also to include a blank line following any
-   parser directives. Line continuation characters are not supported in parser
-   directives.
+.. Parser directives are not case-sensitive. However, convention is for them to be lowercase. Convention is also to include a blank line following any parser directives. Line continuation characters are not supported in parser directives.
 
-パーサ・ディレクティブは大文字小文字を区別しません。
-ただし慣習として小文字とします。
-同じく慣習として、パーサ・ディレクティブの次には空行を 1 行挿入します。
-パーサ・ディレクティブにおいて、行継続を指示する文字はサポートされていません。
+パーサ・ディレクティブは大文字と小文字を区別しません。しかし、小文字を使うのが慣例です。他にも慣例として、パーサ・ディレクティブの次行は空白にします。パーサ・ディレクティブ内では、 :ruby:`バックスラッシュ <line continuation characters>` はサポートされません。
 
 .. Due to these rules, the following examples are all invalid:
 
-これらのルールがあるため、以下の例は全て無効です。
+これらの規則があるため、次の例はどれも無効です。
 
 .. Invalid due to line continuation:
 
-行の継続は無効：
+（バックスラッシュを使った）行の継続はできません：
 
 .. code-block:: dockerfile
 
-   # direc \
-   tive=value
+   # ディレク \
+   ティブ=値
 
 .. Invalid due to appearing twice:
 
-二度出現するため無効：
+（ディレクティブが）二度出現するため無効：
 
 .. code-block:: dockerfile
 
-   # directive=value1
-   # directive=value2
+   # ディレクティブ=値1
+   # ディレクティブ=値2
    
-   FROM ImageName
+   FROM イメージ名
 
-.. Treated as a comment due to appearing after a builder instruction:
+.. T reated as a comment due to appearing after a builder instruction:
 
-構築命令の後にあれば、コメントとして扱う：
+構築命令の後に（パーサ・ディレクティブが）あっても、コメントとして扱う：
 
 .. code-block:: dockerfile
 
    FROM ImageName
-   # directive=value
+   # ディレクティブ=値
 
 .. Treated as a comment due to appearing after a comment which is not a parser directive:
 
-パーサ・ディレクティブでないコメントがあれば、以降のものはコメントとして扱う：
+コメントの後にパーサ・ディレクティブあれば、（単なる）コメントとして扱う：
 
 .. code-block:: dockerfile
 
-   # About my dockerfile
+   # dockerfile についての説明
+   # ディレクティブ=値
    FROM ImageName
-   # directive=value
 
 .. The unknown directive is treated as a comment due to not being recognized. In addition, the known directive is treated as a comment due to appearing after a comment which is not a parser directive.
 
-不明なディレクティブは認識できないため、コメントとして扱う。さらに、パーサ・ディレクティブではないコメントの後にディレクティブがあったとしても、コメントとして扱う：
+不明なディレクティブは認識できないため、コメントとして扱う。さらに、パーサ・ディレクティブではないコメントの後にディレクティブがあっても、（命令としてではなく）コメントとして扱う：
 
-# unknowndirective=value
-# knowndirective=value
+.. code-block:: dockerfile
 
-.. Non line-breaking whitespace is permitted in a parser directive. Hence, the
-   following lines are all treated identically:
+   # 不明な命令=値
+   # 正しい命令=値
 
-改行ではないホワイトスペースは、パーサ・ディレクティブにおいて記述することができます。
+
+.. Non line-breaking whitespace is permitted in a parser directive. Hence, the following lines are all treated identically:
+
+パーサ・ディレクティブでは、改行ではない空白（スペース）を書けます。そのため、以下の各行はすべて同じように扱われます。
 そこで、以下の各行はすべて同一のものとして扱われます。
-
-.. ```Dockerfile
-   #directive=value
-   # directive =value
-   #	directive= value
-   # directive = value
-   #	  dIrEcTiVe=value
-   ```
 
 .. code-block:: dockerfile
 
@@ -398,16 +346,122 @@ Docker は ``Dockerfile`` 内の命令を記述順に実行します。
 
 .. The following parser directive is supported:
 
-以下のパーサ・ディレクティブをサポートします：
+以下のパーサ・ディレクティブをサポートしています。
 
+* ``syntax``
 * ``escape``
+
+.. syntax
+
+.. _builder-syntax:
+
+syntax
+==========
+
+::
+
+   # syntax=[リモート・イメージ・リファレンス]
+
+例：
+
+::
+
+   # syntax=docker/dockerfile:1
+   # syntax=docker.io/docker/dockerfile:1
+   # syntax=example.com/user/repo:tag@sha256:abcdef...
+
+.. This feature is only available when using the BuildKit backend, and is ignored when using the classic builder backend.
+
+この機能は、 :ref:`BuildKit <builder-buildkit>` バックエンドを利用時のみ使えます。そのため、古い構築バックエンドの利用時には、無視されます。
+
+.. The syntax directive defines the location of the Dockerfile syntax that is used to build the Dockerfile. The BuildKit backend allows to seamlessly use external implementations that are distributed as Docker images and execute inside a container sandbox environment.
+
+syntax ディレクティブ（命令）では、対象の Dockerfile が構築時に使う、 Dockerfile :ruby:`構文 <syntax>` の場所を定義します。BuildKit バックエンドは Docker イメージとして配布され、コンテナのサンドボックス環境内で実行される :ruby:`外部実装 <external implementation>` をシームレスに利用できます。
+
+.. Custom Dockerfile implementations allows you to:
+
+カスタム Dockerfile 実装により、次のことが可能になります。
+
+..     Automatically get bugfixes without updating the Docker daemon
+    Make sure all users are using the same implementation to build your Dockerfile
+    Use the latest features without updating the Docker daemon
+    Try out new features or third-party features before they are integrated in the Docker daemon
+    Use alternative build definitions, or create your own
+
+* Docker デーモンを更新しなくても、自動的にバグ修正をする
+* すべての利用者が確実に同じ実装を使い、Dockerfile で構築する
+* Docker デーモンを更新しなくても、最新機能を使う
+* Docker デーモンに統合前の、新機能やサードパーティ機能を試す
+* `他の build 定義や、自分自身で作成した定義 <https://github.com/moby/buildkit#exploring-llb>`_ を使う
+
+
+.. Official releases
+
+.. _builder-official-releases:
+
+公式リリース
+--------------------
+
+.. Docker distributes official versions of the images that can be used for building Dockerfiles under docker/dockerfile repository on Docker Hub. There are two channels where new images are released: stable and labs.
+
+ Docker Hub の ``docker/dockerfile`` `リポジトリ <https://hub.docker.com/r/docker/dockerfile>`_以下で、 Dockerfile 構築に使用できるイメージの公式バージョンを、 Docker が配布しています。新しいイメージがリリースされるのは、 ``stable`` と ``labs`` という2つのチャンネルがあります。
+
+.. Stable channel follows semantic versioning. For example:
+
+stable チャンネルは `セマンティック・バージョニング <https://semver.org/lang/ja/>`_ に従います。たとえば、
+
+.. 
+    docker/dockerfile:1 - kept updated with the latest 1.x.x minor and patch release
+    docker/dockerfile:1.2 - kept updated with the latest 1.2.x patch release, and stops receiving updates once version 1.3.0 is released.
+    docker/dockerfile:1.2.1 - immutable: never updated
+
+* ``docker/dockerfile:1`` - 最新の ``1.x.x``  マイナー *および* パッチ・リリースが更新され続ける
+* ``docker/dockerfile:1.2`` - 最新の ``1.2.x`` パッチ・リリースが更新され続けますが、 ``1.3.0`` バージョンがリリースされると更新停止
+* ``docker/dockerfile:1.2.1`` -  :ruby:`変わりません <immutable>` ：決して更新しない
+
+.. We recommend using docker/dockerfile:1, which always points to the latest stable release of the version 1 syntax, and receives both “minor” and “patch” updates for the version 1 release cycle. BuildKit automatically checks for updates of the syntax when performing a build, making sure you are using the most current version.
+
+私たちは ``docker/dockerfile:1`` の使用を推奨します。これは、常にバージョン 1 :ruby:`構文 <syntax>` の最新 :ruby:`安定版 <stable>` リリースを示し、かつ、バージョン 1 のリリース・サイクルにおける「マイナー」と「パッチ」更新の両方も受け取れるからです。 BuildKit は構築の処理時、自動的に構文の更新を確認し、常に最新安定版を使うようにします。
+
+.. If a specific version is used, such as 1.2 or 1.2.1, the Dockerfile needs to be updated manually to continue receiving bugfixes and new features. Old versions of the Dockerfile remain compatible with the new versions of the builder.
+
+``1.2`` や ``1.2.1`` のようなバージョンを指定すると、バグ修正や新機能を利用するには、 Dockerfile を手動で更新する必要があります。Dockerfile の古いバージョンは、 :ruby:`ビルダー <builder>` の新しいバージョンと互換性を維持します。
+
+.. _builder-labs-channel
+
+labs チャンネル
+^^^^^^^^^^^^^^^^^^^^^
+
+.. The “labs” channel provides early access to Dockerfile features that are not yet available in the stable channel. Labs channel images are released in conjunction with the stable releases, and follow the same versioning with the -labs suffix, for example:
+
+「labs」チャンネルが提供するのは、まだ stable チャンネルでは利用できない、 Dockerfile機能に対する早期アクセスです。Labs チャンネル・イメージは stable リリースと連携しています。同じバージョンに ``-labs`` 文字が付きます。たとえば、
+
+.. 
+    docker/dockerfile:labs - latest release on labs channel
+    docker/dockerfile:1-labs - same as dockerfile:1 in the stable channel, with labs features enabled
+    docker/dockerfile:1.2-labs - same as dockerfile:1.2 in the stable channel, with labs features enabled
+    docker/dockerfile:1.2.1-labs - immutable: never updated. Same as dockerfile:1.2.1 in the stable channel, with labs features enabled
+
+* ``docker/dockerfile:labs`` - labs チャンネルの最新リリース
+* ``docker/dockerfile:1-labs`` - stable チャンネルの ``dockerfile:1`` と同じで、labs 機能が有効化
+* ``docker/dockerfile:1.2-labs`` - stable チャンネルの ``dockerfile:1.2`` と同じで、labs 機能が有効化
+* ``docker/dockerfile:1.2.1-labs`` -  :ruby:`変わりません <immutable>` ：決して更新しない。 stable チャンネルの ``dockerfile:1.2.1`` と同じで、labs 機能が有効化
+
+.. Choose a channel that best fits your needs; if you want to benefit from new features, use the labs channel. Images in the labs channel provide a superset of the features in the stable channel; note that stable features in the labs channel images follow semantic versioning, but “labs” features do not, and newer releases may not be backwards compatible, so it is recommended to use an immutable full version variant.
+
+必要に応じて最適なチャンネルを選びます。新機能を活用したい場合は labs チャンネルを使います。labs チャンネルが提供するイメージは、stable チャンネルの :ruby:`上位互換 <superset>` です。注意として、labs チャンネルのイメージでは、 ``stable`` 機能は `セマンティック・バージョニング <https://semver.org/lang/ja/>`_ に従います。しかし「labs」機能は従いません。また、新しいリリースは下位互換性がない可能性もあるため、バージョンが固定されたフルバージョンでの指定をお勧めします。
+
+.. For documentation on “labs” features, master builds, and nightly feature releases, refer to the description in the BuildKit source repository on GitHub. For a full list of available images, visit the image repository on Docker Hub, and the docker/dockerfile-upstream image repository for development builds.
+
+「labs」機能、 :ruby:`マスター・ビルド <master builds>` 、 :ruby:`毎晩の機能リリース <nightly feature releases>` に関するドキュメントは、 `GitHub 上の BuildKit ソースリポジトリ <https://github.com/moby/buildkit/blob/master/README.md>`_ にある説明をご覧ください。利用可能なイメージの一覧は、 `Docker Hub のイメージ・リポジトリ <https://hub.docker.com/r/docker/dockerfile>`_ や、開発ビルド用の `docker/dockerfile-upstream image repositry <https://hub.docker.com/r/docker/dockerfile-upstream>`_ をご覧ください。
+
 
 .. escape
 
-.. _parser-directive-escape:
+.. _builder-escape:
 
 escape
---------------------
+==========
 
 .. code-block:: dockerfile
 
@@ -421,51 +475,21 @@ escape
 
    # escape=` (バッククォート)
 
-.. The `escape` directive sets the character used to escape characters in a
-   `Dockerfile`. If not specified, the default escape character is `\`.
+.. The escape directive sets the character used to escape characters in a Dockerfile. If not specified, the default escape character is \.
 
-ディレクティブ ``escape`` は、``Dockerfile`` 内でエスケープ文字として用いる文字を設定します。
-設定していない場合は、デフォルトとして `\` が用いられます。
+``Dockerfile`` 内で文字を :ruby:`エスケープ <escape>` するために使う文字を、 ``escape`` 命令で指定します。指定がなければ、デフォルトのエスケープ文字は ``\`` です。
 
+.. The escape character is used both to escape characters in a line, and to escape a newline. This allows a Dockerfile instruction to span multiple lines. Note that regardless of whether the escape parser directive is included in a Dockerfile, escaping is not performed in a RUN command, except at the end of a line.
 
-.. The escape character is used both to escape characters in a line, and to
-   escape a newline. This allows a `Dockerfile` instruction to
-   span multiple lines. Note that regardless of whether the `escape` parser
-   directive is included in a `Dockerfile`, *escaping is not performed in
-   a `RUN` command, except at the end of a line.*
+エスケープ文字は、行の中で文字をエスケープするのに使う場合と、改行をエスケープする（改行文字として使う）場合があります。これにより、 ``Dockerfile`` の命令は、複数の行に書けます。注意点としては、 ``Dockerfile``  で ``escape`` パーサ・ディレクティブの有無にかかわらず、 ``RUN`` 命令ではエスケープされませんが、行末のみ（改行文字として）使用できます。
 
-エスケープ文字は行途中での文字をエスケープするものと、行継続をエスケープするものがあります。
-行継続のエスケープを使うと ``Dockerfile`` 内の命令を複数行に分けることができます。
-``Dockerfile`` に ``escape`` パーサ・ディレクティブを記述していたとしても、``RUN`` コマンドの途中でのエスケープは無効であり、行末の行継続エスケープのみ利用することができます。
+.. Setting the escape character to ` is especially useful on Windows, where \ is the directory path separator. ` is consistent with Windows PowerShell.
 
-.. Setting the escape character to `` ` `` is especially useful on
-   `Windows`, where `\` is the directory path separator. `` ` `` is consistent
-   with [Windows PowerShell](https://technet.microsoft.com/en-us/library/hh847755.aspx).
+``Windows`` 上では「 ``\`` 」がディレクトリ・パスの区切り文字のため、エスケープ文字として「`」 を指定すると、とても使いやすいでしょう。 `Windows PowerShell <https://docs.microsoft.com/ja-jp/powershell/module/microsoft.powershell.core/about/about_special_characters?view=powershell-7.1>`_ 上でも、「`」はエスケープ文字列として扱います。
 
-``Windows`` においてはエスケープ文字を「`」とします。
-``\`` はディレクトリ・セパレータとなっているためです。
-「`」は `Windows PowerShell <https://technet.microsoft.com/en-us/library/hh847755.aspx>`_ 上でも利用できます。
+.. Consider the following example which would fail in a non-obvious way on Windows. The second \ at the end of the second line would be interpreted as an escape for the newline, instead of a target of the escape from the first \. Similarly, the \ at the end of the third line would, assuming it was actually handled as an instruction, cause it be treated as a line continuation. The result of this dockerfile is that second and third lines are considered a single instruction:
 
-.. Consider the following example which would fail in a non-obvious way on
-   `Windows`. The second `\` at the end of the second line would be interpreted as an
-   escape for the newline, instead of a target of the escape from the first `\`.
-   Similarly, the `\` at the end of the third line would, assuming it was actually
-   handled as an instruction, cause it be treated as a line continuation. The result
-   of this dockerfile is that second and third lines are considered a single
-   instruction:
-
-以下のような ``Windows`` 上の例を見てみます。
-これはよく分からずに失敗してしまう例です。
-2 行めの行末にある 2 つめの ``\`` は、次の行への継続を表わすエスケープと解釈されます。
-つまり 1 つめの ``\`` をエスケープするものとはなりません。
-同様に 3 行めの行末にある ``\`` も、この行が正しく命令として解釈されるものであっても、行継続として扱われることになります。
-結果としてこの Dockerfile の 2 行めと 3 行めは、一続きの記述行とみなされます。
-
-.. ```Dockerfile
-   FROM microsoft/nanoserver
-   COPY testfile.txt c:\\
-   RUN dir c:\
-   ```
+以下にあるような、一見すると分かりづらい ``Windows`` 上での失敗例を考えます。2行目の行末にある、2つめの ``\`` は、1つめの ``\`` のエスケープ対象ではなく、改行（を表すエスケープ文字）として解釈されます。同じように、3行目の行末にある ``\`` も、実際には命令として処理され、改行として扱われます。結果として、この Dockerfile では2行目と3行目は1つの命令と見なされます。
 
 .. code-block:: dockerfile
 
@@ -475,87 +499,41 @@ escape
 
 .. Results in:
 
-この Dockerfile を用いると以下の結果になります。
+結果：
 
-   ..  PS C:\John> docker build -t cmd .
-       Sending build context to Docker daemon 3.072 kB
-       Step 1/2 : FROM microsoft/nanoserver
-        ---> 22738ff49c6d
-       Step 2/2 : COPY testfile.txt c:\RUN dir c:
-       GetFileAttributesEx c:RUN: The system cannot find the file specified.
-       PS C:\John>
+.. code-block:: bash
 
-.. code-block:: powershell
-
-   PS C:\John> docker build -t cmd .
+   PS E:\myproject> docker build -t cmd .
+   
    Sending build context to Docker daemon 3.072 kB
    Step 1/2 : FROM microsoft/nanoserver
     ---> 22738ff49c6d
    Step 2/2 : COPY testfile.txt c:\RUN dir c:
    GetFileAttributesEx c:RUN: The system cannot find the file specified.
-   PS C:\John>
+   PS E:\myproject>
 
-.. One solution to the above would be to use `/` as the target of both the `COPY`
-   instruction, and `dir`. However, this syntax is, at best, confusing as it is not
-   natural for paths on `Windows`, and at worst, error prone as not all commands on
-   `Windows` support `/` as the path separator.
+.. One solution to the above would be to use / as the target of both the COPY instruction, and dir. However, this syntax is, at best, confusing as it is not natural for paths on Windows, and at worst, error prone as not all commands on Windows support / as the path separator.
 
-上を解決するには ``COPY`` 命令と ``dir`` の対象において ``/`` を用います。
-ただし ``Windows`` 上における普通のパス記述とは違う文法であるため混乱しやすく、さらに ``Windows`` のあらゆるコマンドがパス・セパレータとして  ``/`` をサポートしているわけではないので、エラーになることもあります。
+これを解決する方法の1つは、``COPY`` 命令と ``dir`` の両方で、対象に対して ``/`` 文字を使うものです。これはベストですが、 ``Windows``  上のパスとしては自然ではないため、混乱します。また、困ったことに、 ``Windows`` 上でコマンドすべてが ``/`` をパスの区切り文字としてサポートしておらず、エラーが発生しがちです。
 
-.. By adding the `escape` parser directive, the following `Dockerfile` succeeds as
-   expected with the use of natural platform semantics for file paths on `Windows`:
+.. By adding the escape parser directive, the following Dockerfile succeeds as expected with the use of natural platform semantics for file paths on Windows:
 
-パーサ・ディレクティブ ``escape`` を利用すれば、``Windows`` 上のファイル・パスの文法をそのままに、期待どおりに ``Dockerfile`` が動作してくれます。
+次の ``Dockerfile`` は　``escape`` パーサ・ディレクティブの追加により、 ``Windows`` 上のファイルやパスを通常通りの構文として扱えるようになります（捕捉説明：デフォルトでは「 ``\`` 」が改行文字として扱われています。あえてエスケープ文字を「`」と明示すると、特に「\」がエスケープ文字かどうか考慮する必要がなくなり、パスの指定として「 ``C:\`` 」の記述がそのまま扱えるようになります）。
 
-   ..  # escape=`
-
-       FROM microsoft/nanoserver
-       COPY testfile.txt c:\
-       RUN dir c:\
-
-.. code-block:: dockerfile
+::
 
    # escape=`
-
+   
    FROM microsoft/nanoserver
    COPY testfile.txt c:\
    RUN dir c:\
 
-.. Results in:
+結果：
 
-上を処理に用いると以下のようになります。
+.. code-block:: bash
 
-   ..  PS C:\John> docker build -t succeeds --no-cache=true .
-       Sending build context to Docker daemon 3.072 kB
-       Step 1/3 : FROM microsoft/nanoserver
-        ---> 22738ff49c6d
-       Step 2/3 : COPY testfile.txt c:\
-        ---> 96655de338de
-       Removing intermediate container 4db9acbb1682
-       Step 3/3 : RUN dir c:\
-        ---> Running in a2c157f842f5
-        Volume in drive C has no label.
-        Volume Serial Number is 7E6D-E0F7
-
-        Directory of c:\
-
-       10/05/2016  05:04 PM             1,894 License.txt
-       10/05/2016  02:22 PM    <DIR>          Program Files
-       10/05/2016  02:14 PM    <DIR>          Program Files (x86)
-       10/28/2016  11:18 AM                62 testfile.txt
-       10/28/2016  11:20 AM    <DIR>          Users
-       10/28/2016  11:20 AM    <DIR>          Windows
-                  2 File(s)          1,956 bytes
-                  4 Dir(s)  21,259,096,064 bytes free
-        ---> 01c7f3bef04f
-       Removing intermediate container a2c157f842f5
-       Successfully built 01c7f3bef04f
-       PS C:\John>
-
-.. code-block:: powershell
-
-   PS C:\John> docker build -t succeeds --no-cache=true .
+   PS E:\myproject> docker build -t succeeds --no-cache=true .
+   
    Sending build context to Docker daemon 3.072 kB
    Step 1/3 : FROM microsoft/nanoserver
     ---> 22738ff49c6d
@@ -566,9 +544,9 @@ escape
     ---> Running in a2c157f842f5
     Volume in drive C has no label.
     Volume Serial Number is 7E6D-E0F7
-
+   
     Directory of c:\
-
+   
    10/05/2016  05:04 PM             1,894 License.txt
    10/05/2016  02:22 PM    <DIR>          Program Files
    10/05/2016  02:14 PM    <DIR>          Program Files (x86)
@@ -580,107 +558,74 @@ escape
     ---> 01c7f3bef04f
    Removing intermediate container a2c157f842f5
    Successfully built 01c7f3bef04f
-   PS C:\John>
+   PS E:\myproject>
 
-.. ## Environment replacement
+
+.. Environment replacement
 
 .. _environment-replacement:
 
-環境変数の置換
+環境変数の置き換え
 ====================
 
-.. Environment variables (declared with [the `ENV` statement](#env)) can also be
-   used in certain instructions as variables to be interpreted by the
-   `Dockerfile`. Escapes are also handled for including variable-like syntax
-   into a statement literally.
+.. Environment variables (declared with the ENV statement) can also be used in certain instructions as variables to be interpreted by the Dockerfile. Escapes are also handled for including variable-like syntax into a statement literally.
 
-``Dockerfile`` の :ref:`ENV 構文 <#env>` により宣言される環境変数は、特定の命令において変数として解釈されます。
-エスケープについても構文内にリテラルを含めることから、変数と同様の扱いと考えられます。
+（ :ref:`ENV 命令 <builder-env>` で宣言する ） :ruby:`環境変数 <environment variables>` は、 ``Dockerfile`` で特定の命令に対する変数としての使用もできます。また、エスケープを使えば、変数のような構文も、命令文の文字列に入れられます。
 
-.. Environment variables are notated in the `Dockerfile` either with
-   `$variable_name` or `${variable_name}`. They are treated equivalently and the
-   brace syntax is typically used to address issues with variable names with no
-   whitespace, like `${foo}_bar`.
+.. Environment variables are notated in the Dockerfile either with $variable_name or ${variable_name}. They are treated equivalently and the brace syntax is typically used to address issues with variable names with no whitespace, like ${foo}_bar.
 
-``Dockerfile`` における環境変数の記述書式は、``$variable_name`` あるいは ``${variable_name}`` のいずれかが可能です。
-両者は同等のものですが、ブレースを用いた記述は ``${foo}_bar`` といった記述のように、変数名にホワイトスペースを含めないようにするために利用されます。
+``Dockerfile`` 内での環境変数は、 ``$variable_name`` または ``${variable_name}`` として書きます。どちらも同等に扱われます。中括弧（ ``{ }`` ）を使う書き方は、 ``${foo}_bar`` のように空白を使わず、変数名に割り当てる（ための変数）として通常は使います。
 
-.. The `${variable_name}` syntax also supports a few of the standard `bash`
-   modifiers as specified below:
+.. The ${variable_name} syntax also supports a few of the standard bash modifiers as specified below:
 
-``${variable_name}`` という書式は、標準的な ``bash`` の修飾書式をいくつかサポートしています。
-たとえば以下のものです。
+``${variable_name}`` の書き方は、次のような（変数展開するための）標準的 ``bash`` :ruby:`修飾子 <modifiers>` もサポートしています。
 
-.. * `${variable:-word}` indicates that if `variable` is set then the result
-     will be that value. If `variable` is not set then `word` will be the result.
-   * `${variable:+word}` indicates that if `variable` is set then `word` will be
-     the result, otherwise the result is the empty string.
+..
+    ${variable:-word} indicates that if variable is set then the result will be that value. If variable is not set then word will be the result.
+    ${variable:+word} indicates that if variable is set then word will be the result, otherwise the result is the empty string.
 
-* ``${variable:-word}`` は、``variable`` が設定されているとき、この結果はその値となります。
-  ``variable`` が設定されていないとき、``word`` が結果となります。
-* ``${variable:+word}`` は、``variable`` が設定されているとき、この結果は ``word`` となります。
-  ``variable`` が設定されていないとき、結果は空文字となります。
+* ``${variable:-word}`` … ``variable`` （「変数」として何らかの値）が設定されていれば、結果はその（変数が）値になる。 ``variable`` （変数）が指定されていなければ、 ``word`` が値として設定される。
+* ``${variable:+word}`` … ``variable`` （「変数」として何らかの値）が設定されていれば、結果は ``word`` が（変数の）値になり、それ以外の場合（変数の設定がない場合）は空の文字列になる。
 
-.. In all cases, `word` can be any string, including additional environment
-   variables.
+.. In all cases, word can be any string, including additional environment variables.
 
-どの例においても、``word`` は文字列であれば何でもよく、さらに別の環境変数を含んでいても構いません。
+どちらの例でも、（変数の中にある） ``word`` には任意の文字列を指定できますし、環境変数を追加した文字列も指定できます。
 
-.. Escaping is possible by adding a `\` before the variable: `\$foo` or `\${foo}`,
-   for example, will translate to `$foo` and `${foo}` literals respectively.
+.. Escaping is possible by adding a \ before the variable: \$foo or \${foo}, for example, will translate to $foo and ${foo} literals respectively.
 
-変数名をエスケープすることも可能で、変数名の前に ``\$foo`` や ``\${foo}`` のように ``\`` をつけます。
-こうすると、この例はそれぞれ ``$foo``、``${foo}`` という文字列そのものとして解釈されます。
+変数の前に ``\`` を追加してエスケープできます。たとえば、 ``\$foo`` や ``\${foo}`` は、 ``$foo`` と ``${foo}`` という文字列に変換されます。
 
-.. Example (parsed representation is displayed after the `#`):
+.. Example (parsed representation is displayed after the #)
 
-記述例 （`#` の後に変数解釈した結果を表示）
+例（ ``#`` の横が、変数展開した結果 ）：
 
-.. code-block:: dockerfile
+::
 
    FROM busybox
-   ENV foo /bar
-   WORKDIR ${foo}   # WORKDIR /bar
-   ADD . $foo       # ADD . /bar
-   COPY \$foo /quux # COPY $foo /quux
+   ENV FOO=/bar
+   WORKDIR ${FOO}   # WORKDIR /bar
+   ADD . $FOO       # ADD . /bar
+   COPY \$FOO /quux # COPY $FOO /quux
 
-.. Environment variables are supported by the following list of instructions in
-   the `Dockerfile`:
+.. Environment variables are supported by the following list of instructions in the Dockerfile:
 
-環境変数は、以下に示す ``Dockerfile`` 内の命令においてサポートされます。
+環境変数は、 ``Dockerfile`` 内の以下の命令でサポートされています。
 
 * ``ADD``
 * ``COPY``
 * ``ENV``
 * ``EXPOSE``
+* ``FROM``
 * ``LABEL``
-* ``USER``
-* ``WORKDIR``
-* ``VOLUME``
 * ``STOPSIGNAL``
+* ``USER``
+* ``VOLUME``
+* ``WORKDIR``
+* ``ONBUILD`` （以上の命令との組み合わせでサポートされます）
 
-.. as well as:
+.. Environment variable substitution will use the same value for each variable throughout the entire instruction. In other words, in this example:
 
-同様に、
-
-.. * `ONBUILD` (when combined with one of the supported instructions above)
-
-* ``ONBUILD`` （上記のサポート対象の命令と組み合わせて用いる場合）
-
-.. > **Note**:
-   > prior to 1.4, `ONBUILD` instructions did **NOT** support environment
-   > variable, even when combined with any of the instructions listed above.
-
-.. note::
-
-   Docker バージョン 1.4 より以前では ``ONBUILD`` 命令は環境変数をサポートしていません。
-   一覧にあげた命令との組み合わせで用いる場合も同様です。
-
-.. Environment variable substitution will use the same value for each variable
-   throughout the entire instruction. In other words, in this example:
-
-環境変数の置換は、命令全体の中で個々の変数ごとに同一の値が用いられます。
-これを説明するために以下の例を見ます。
+環境変数を置き換えでは、各命令（の行）全体を処理する間は、各変数は同じ値です。すなわち、この例では
 
 .. code-block:: dockerfile
 
@@ -688,49 +633,26 @@ escape
    ENV abc=bye def=$abc
    ENV ghi=$abc
 
-.. will result in `def` having a value of `hello`, not `bye`. However,
-   `ghi` will have a value of `bye` because it is not part of the same instruction 
-   that set `abc` to `bye`.
+.. will result in def having a value of hello, not bye. However, ghi will have a value of bye because it is not part of the same instruction that set abc to bye.
 
-この結果、``def`` は ``hello`` になります。
-``bye`` ではありません。
-しかし ``ghi`` は ``bye`` になります。
-``ghi`` を設定している行は、 ``abc`` に ``bye`` を設定している命令と同一箇所ではないからです。
+結果、 ``def``  の値は ``hello`` であり、 ``bye`` ではありません。しかし、 ``ghi`` の値は ``bye`` です。なぜなら、（変数） ``abc`` に ``bye`` を指定する命令の行と、この ``ghi`` の命令の行が違うからです。（捕捉説明： ``ENV abc=bye def=$abc`` の命令文の処理が終わるまでは ``$abc`` は ``hello`` のまま。この命令の処理が終わると、 ``$abc`` は ``bye`` になる。そのため、次の命令分 ``ghi=$abc`` で、 ``$abc`` の値 ``bye`` が変数 ``ghi`` に入る ）
 
 .. _dockerignore-file:
 
 .dockerignore ファイル
 ==============================
 
-.. Before the docker CLI sends the context to the docker daemon, it looks
-   for a file named `.dockerignore` in the root directory of the context.
-   If this file exists, the CLI modifies the context to exclude files and
-   directories that match patterns in it.  This helps to avoid
-   unnecessarily sending large or sensitive files and directories to the
-   daemon and potentially adding them to images using `ADD` or `COPY`.
+.. Before the docker CLI sends the context to the docker daemon, it looks for a file named .dockerignore in the root directory of the context. If this file exists, the CLI modifies the context to exclude files and directories that match patterns in it. This helps to avoid unnecessarily sending large or sensitive files and directories to the daemon and potentially adding them to images using ADD or COPY.
 
-Docker の CLI によってコンテキストが Docker デーモンに送信される前には、コンテキストのルートディレクトリの ``.dockerignore`` というファイルが参照されます。
-このファイルが存在したら、CLI はそこに記述されたパターンにマッチするようなファイルやディレクトリを除外した上で、コンテキストを扱います。
-必要もないのに、巨大なファイルや取り扱い注意のファイルを不用意に送信してしまうことが避けられ、``ADD`` や ``COPY`` を使ってイメージに間違って送信してしまうことを防ぐことができます。
+Docker CLI が :ruby:`コンテクスト <context>` （ `Dockerfile` や Docker イメージの中に送りたいファイルなど、Docker イメージ構築時に必要な素材・内容物のこと）を docker デーモンに送信する前に、コンテクストのルート・ディレクトリで ``.dockerignore`` という名前のファイルを探します。このファイルが存在する場合、CLI はファイル内で書かれたパターンに一致するファイルやディレクトリを、コンテクストから除外します。これにより、容量が大きいか機微情報を含むファイルやディレクトリを、不用意にデーモンに送信するのを回避したり、 ``ADD`` や ``COPY`` を使ってイメージに加えてしまうのも回避したりするのに役立ちます。
 
-.. The CLI interprets the `.dockerignore` file as a newline-separated
-   list of patterns similar to the file globs of Unix shells.  For the
-   purposes of matching, the root of the context is considered to be both
-   the working and the root directory.  For example, the patterns
-   `/foo/bar` and `foo/bar` both exclude a file or directory named `bar`
-   in the `foo` subdirectory of `PATH` or in the root of the git
-   repository located at `URL`.  Neither excludes anything else.
+.. The CLI interprets the .dockerignore file as a newline-separated list of patterns similar to the file globs of Unix shells. For the purposes of matching, the root of the context is considered to be both the working and the root directory. For example, the patterns /foo/bar and foo/bar both exclude a file or directory named bar in the foo subdirectory of PATH or in the root of the git repository located at URL. Neither excludes anything else.
 
-CLI は ``.dockerignore`` ファイルを各行ごとに区切られた設定一覧として捉えます。
-ちょうど Unix シェルにおけるファイルグロブ（glob）と同様です。
-マッチング処理の都合上、コンテキストのルートは、ワーキングディレクトリとルートディレクトリの双方であるものとしてみなされます。
-たとえばパターンとして ``/foo/bar`` と ``foo/bar`` があったとすると、``PATH`` 上であればサブディレクトリ ``foo`` 内、``URL`` であればその git レポジトリ内の、いずれも ``bar`` というファイルまたはディレクトリを除外します。
-その他のものについては除外対象としません。
+CLI は ``.dockerignore`` ファイルを、改行で区切られたパターンの一覧として解釈します。パターンとは、Unix シェルの :ruby:`ファイル・グロブ <file glob>` と似たものです。パターン一致にあたり、コンテクストのルートを :ruby:`作業ディレクトリ <working directory>` 、かつ、 :ruby:`ルート・ディレクトリ <root dhirectory>` とみなします。たとえば、 ``/foo/bar`` と ``foo/bar`` のパターンでは、どちらも ``PATH`` 、もしくは git リポジトリの場所を示す ``URL``  のルート以下で、 ``foo`` サブディレクトリ内の ``bar`` という名前のファイルかディレクトリを除外します。それ以外は除外しません。
 
-.. If a line in `.dockerignore` file starts with `#` in column 1, then this line is
-   considered as a comment and is ignored before interpreted by the CLI.
+.. If a line in .dockerignore file starts with # in column 1, then this line is considered as a comment and is ignored before interpreted by the CLI.
 
-``.dockerignore`` ファイルの各行頭の第 1 カラムめに ``#`` があれば、その行はコメントとみなされて、CLI による解釈が行われず無視されます。
+``.dockerignore`` ファイルでは、 ``#`` 記号で始まる行はコメントとみなされ、 CLI によって解釈される前に無視されます。
 
 .. Here is an example .dockerignore file:
 
@@ -745,213 +667,139 @@ CLI は ``.dockerignore`` ファイルを各行ごとに区切られた設定一
 
 .. This file causes the following build behavior:
 
-このファイルは構築時に以下の動作をします。
+このファイルは構築時に以下の挙動をします。
 
-.. | Rule           | Behavior                                                                                                                                                                     |
-   |----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-   | `# comment`    | Ignored.                 |
-   | `*/temp*`      | Exclude files and directories whose names start with `temp` in any immediate subdirectory of the root.  For example, the plain file `/somedir/temporary.txt` is excluded, as is the directory `/somedir/temp`.                 |
-   | `*/*/temp*`    | Exclude files and directories starting with `temp` from any subdirectory that is two levels below the root. For example, `/somedir/subdir/temporary.txt` is excluded. |
-   | `temp?`        | Exclude files and directories in the root directory whose names are a one-character extension of `temp`.  For example, `/tempa` and `/tempb` are excluded.
+.. list-table::
+   :header-rows: 1
 
-.. 表にする(todo)
+   * - ルール
+     - 挙動
+   * - ``# コメント``
+     - 無視する。
+   * - ``*/temp*``
+     - root 以下のあらゆるサブディレクトリ内で、 ``temp`` で始まる名前のファイルやディレクトリを除外。たとえば、テキストファイル ``/somedir/temporary.txt`` を除外し、同様にディレクトリ ``/somedir/temp`` も除外する。
+   * - ``*/*/temp*``
+     - root から2階層以下のサブディレクトリ内で、 ``temp`` で始まる名前のファイルやディレクトリを除外。たとえば、 ``/somedir/subdir/temporary.txt`` を除外。
+   * - ``temp?``
+     - ルートディレクトリ内で、 ``temp`` と1文字が一致する名前のファイルやディレクトリを除外。たとえば、 ``/tempa`` と ``/tempb`` を除外。
 
-* ``# comment`` … 無視されます。
-* ``*/temp*`` … ルートディレクトリの直下にあるサブディレクトリ内にて、``temp`` で始まる名称のファイルまたはディレクトリすべてを除外します。たとえば通常のファイル ``/somedir/temporary.txt`` は除外されます。ディレクトリ ``/somedir/temp`` も同様です。
-* ``*/*/temp*`` … ルートから 2 階層下までのサブディレクトリ内にて、``temp`` で始まる名称のファイルまたはディレクトリすべてを除外します。たとえば ``/somedir/subdir/temporary.txt`` は除外されます。
-* ``temp?`` … ルートディレクトリにあるファイルやディレクトリであって、``temp`` にもう 1 文字ついた名前のものを除外します。たとえば ``/tempa`` や ``/tempb`` が除外されます。
 
-.. Matching is done using Go's
-   [filepath.Match](http://golang.org/pkg/path/filepath#Match) rules.  A
-   preprocessing step removes leading and trailing whitespace and
-   eliminates `.` and `..` elements using Go's
-   [filepath.Clean](http://golang.org/pkg/path/filepath/#Clean).  Lines
-   that are blank after preprocessing are ignored.
+.. Matching is done using Go’s filepath.Match rules. A preprocessing step removes leading and trailing whitespace and eliminates . and .. elements using Go’s filepath.Clean. Lines that are blank after preprocessing are ignored.
 
-パターンマッチングには Go 言語の `filepath.Match <http://golang.org/pkg/path/filepath#Match>`_ ルールが用いられています。
-マッチングの前処理として、文字列前後のホワイトスペースは取り除かれ、Go 言語の `filepath.Clean <http://golang.org/pkg/path/filepath/#Clean>`_ によって ``.`` と ``..`` が除外されます。
-前処理を行った後の空行は無視されます。
+一致には Go 言語の `filepath.Match <http://golang.org/pkg/path/filepath#Match>`_ を使います。前処理として、前後の空白を削除し、``.`` と ``..`` 要素を削除するのに Go 言語の `filepath.Clean <http://golang.org/pkg/path/filepath/#Clean>`_ を使います。前処理により、空白になった行は無視されます。
 
-.. Beyond Go's filepath.Match rules, Docker also supports a special
-   wildcard string `**` that matches any number of directories (including
-   zero). For example, `**/*.go` will exclude all files that end with `.go`
-   that are found in all directories, including the root of the build context.
+.. Beyond Go’s filepath.Match rules, Docker also supports a special wildcard string ** that matches any number of directories (including zero). For example, **/*.go will exclude all files that end with .go that are found in all directories, including the root of the build context.
 
-Docker では Go 言語の filepath.Match ルールを拡張して、特別なワイルドカード文字列 ``**`` をサポートしています。
-これは複数のディレクトリ（ゼロ個を含む）にマッチします。
-たとえば ``**/*.go`` は、ファイル名が ``.go`` で終わるものであって、どのサブディレクトリにあるものであってもマッチします。
-ビルドコンテキストのルートも含まれます。
+Go 言語の filepath.Match ルールを拡張し、 Docker は特別なワイルドカード文字列 ``**`` もサポートします。これは、（0も含む）複数のディレクトリに一致します。たとえば、 ``**/*.go`` は ``.go`` で終わるすべてのファイルを除外します。つまり、構築コンテクストのルートも含む、全てのディレクトリが対象です。
 
-.. Lines starting with `!` (exclamation mark) can be used to make exceptions
-   to exclusions.  The following is an example `.dockerignore` file that
-   uses this mechanism:
+.. Lines starting with ! (exclamation mark) can be used to make exceptions to exclusions. The following is an example .dockerignore file that uses this mechanism:
 
-行頭を感嘆符 ``!`` で書き始めると、それは除外に対しての例外を指定するものとなります。
-以下の ``.dockerignore`` はこれを用いる例です。
+``!`` （エクスクラメーション・マーク）で始まる行は、除外対象の例外を指定します。次の ``.dockerignore`` ファイル例では、この仕組みを使っています：
 
-.. code-block:: bash
+::
 
-   *.md
-   !README.md
+    *.md
+    !README.md
 
-.. All markdown files *except* `README.md` are excluded from the context.
+.. All markdown files except README.md are excluded from the context.
 
-マークダウンファイルがすべてコンテキストから除外されますが、``README.md`` だけは **除外されません** 。
+コンテクストから ``README.md`` を **例外として除き** 、その他すべてのマークダウンファイルを除外します。
 
-.. The placement of `!` exception rules influences the behavior: the last
-   line of the `.dockerignore` that matches a particular file determines
-   whether it is included or excluded.  Consider the following example:
+.. The placement of ! exception rules influences the behavior: the last line of the .dockerignore that matches a particular file determines whether it is included or excluded. Consider the following example:
 
-``!`` による例外ルールは、それを記述した位置によって処理に影響します。
-特定のファイルが含まれるのか除外されるのかは、そのファイルがマッチする ``.dockerignore`` 内の最終の行によって決まります。
-以下の例を考えてみます。
+``!`` による除外に対する例外ルールは、他の挙動にも影響します。 ``.dockerignore`` ファイルに書かれた最終行によって、特定のファイルが除外されるかどうかが決まるります。次の例を考えます：
 
-.. code-block:: bash
+::
 
    *.md
    !README*.md
    README-secret.md
 
-.. No markdown files are included in the context except README files other than
-   `README-secret.md`.
+.. No markdown files are included in the context except README files other than README-secret.md.
 
-コンテキストにあるマークダウンファイルはすべて除外されます。
-例外として README ファイルは含まれることになりますが、ただし ``README-secret.md`` は除外されます。
+``README-secret.md`` 以外の README ファイル（ ``README*.md`` ）は例外として除外されませんが、その他のマークダウンファイル（ ``*.md`` ）はコンテキストに含まれません。
 
 .. Now consider this example:
 
-その次の例を考えましょう。
+次は、こちらの例を考えます：
 
-.. code-block:: bash
+::
 
    *.md
    README-secret.md
    !README*.md
 
-.. All of the README files are included.  The middle line has no effect because
-   `!README*.md` matches `README-secret.md` and comes last.
+.. All of the README files are included. The middle line has no effect because !README*.md matches README-secret.md and comes last.
 
-README ファイルはすべて含まれます。
-2 行めは意味をなしていません。
-なぜなら ``!README*.md`` には ``README-secret.md`` がマッチすることになり、しかも ``!README*.md`` が最後に記述されているからです。
+すべての README ファイルが含まれます（除外されません）。 ``!README*.md`` は ``README-secret.md`` と一致し、かつ最後の行にあるので、真ん中の行は無意味です。
 
-.. You can even use the `.dockerignore` file to exclude the `Dockerfile`
-   and `.dockerignore` files.  These files are still sent to the daemon
-   because it needs them to do its job.  But the `ADD` and `COPY` instructions
-   do not copy them to the image.
+.. You can even use the .dockerignore file to exclude the Dockerfile and .dockerignore files. These files are still sent to the daemon because it needs them to do its job. But the ADD and COPY instructions do not copy them to the image.
 
-``.dockerignore`` ファイルを使って ``Dockerfile`` や ``.dockerignore`` ファイルを除外することもできます。
-除外したとしてもこの 2 つのファイルはデーモンに送信されます。
-この 2 つのファイルはデーモンの処理に必要なものであるからです。
-ただし ``ADD`` 命令や ``COPY`` 命令では、この 2 つのファイルはイメージにコピーされません。
+``.dockerignore`` ファイルを使い、 ``Dockerfile`` と ``.dockerignore`` ファイルすら除外できます。除外設定をしても、これらのファイルは構築処理で必要なため、デーモンに送信されます。ですが、 ``ADD`` と ``COPY`` 命令で、これらのファイルをイメージにコピーしません。
 
-.. Finally, you may want to specify which files to include in the
-   context, rather than which to exclude. To achieve this, specify `*` as
-   the first pattern, followed by one or more `!` exception patterns.
+.. Finally, you may want to specify which files to include in the context, rather than which to exclude. To achieve this, specify * as the first pattern, followed by one or more ! exception patterns.
 
-除外したいファイルを指定するのではなく、含めたいファイルを指定したい場合があります。
-これを実現するには、冒頭のマッチングパターンとして ``*`` を指定します。
-そしてこれに続けて、例外となるパターンを ``!`` を使って指定します。
+ほかには、コンテクスト内に特定のファイルを除外するのではなく、入れたいファイルを指定したい場合もあるでしょう。そのためには、1つめのパターンとして ``*`` を指定し（一度、全てを除外する）、以降の行では ``!`` で例外とするパターンを指定します。
 
-.. **Note**: For historical reasons, the pattern `.` is ignored.
+.. 
+    Note
+    For historical reasons, the pattern . is ignored.
 
 .. note::
 
-   これまでの開発経緯によりパターン ``.`` は無視されます。
+   これまでの経緯により、パターン ``.`` は無視されます。
 
 .. _from:
 
 FROM
 ==========
 
-   ..  FROM <image> [AS <name>]
 
 .. code-block:: dockerfile
 
-   FROM <image> [AS <name>]
+   FROM [--platform=<プラットフォーム>] <イメージ名> [AS <名前>]
 
 または
 
-   ..  FROM <image>[:<tag>] [AS <name>]
-
 .. code-block:: dockerfile
 
-   FROM <image>[:<tag>] [AS <name>]
+   FROM [--platform=<プラットフォーム>] <イメージ名>[:<タグ>] [AS <名前>]
 
 または
 
-   ..  FROM <image>[@<digest>] [AS <name>]
-
 .. code-block:: dockerfile
 
-   FROM <image>[@<digest>] [AS <name>]
+   FROM [--platform=<プラットフォーム>] <イメージ名>[@<ダイジェスト>] [AS <名前>]
 
-.. The `FROM` instruction initializes a new build stage and sets the 
-   [*Base Image*](glossary.md#base-image) for subsequent instructions. As such, a 
-   valid `Dockerfile` must start with a `FROM` instruction. The image can be
-   any valid image – it is especially easy to start by **pulling an image** from 
-   the [*Public Repositories*](https://docs.docker.com/engine/tutorials/dockerrepos/).
+.. The FROM instruction initializes a new build stage and sets the Base Image for subsequent instructions. As such, a valid Dockerfile must start with a FROM instruction. The image can be any valid image – it is especially easy to start by pulling an image from the Public Repositories.
 
-``FROM`` 命令は、イメージビルドのための処理ステージを初期化し、:ref:`ベース・イメージ <base-image>` を設定します。後続の命令がこれに続きます。
-このため、正しい ``Dockerfile`` は ``FROM`` 命令から始めなければなりません。
-ベース・イメージは正しいものであれば何でも構いません。
-簡単に取り掛かりたいときは、`公開リポジトリ <https://docs.docker.com/engine/tutorials/dockerrepos/>`_ から **イメージを取得** します。
+``FROM`` 命令は、新しい :ruby:`構築ステージ <build stage>` を初期化し、以降の命令で使う :ref:`ベース・イメージ <base-image>` を指定します。そのため、正しい ``Dockerfile`` とは ``FROM`` 命令で始める必要があります。イメージとは、適切なイメージであれば何でも構いません。 `公開リポジトリ <https://docs.docker.com/docker-hub/repos/>`_ から **イメージを取得して始める** のが、特に簡単です。
 
-.. - `ARG` is the only instruction that may precede `FROM` in the `Dockerfile`.
-     See [Understand how ARG and FROM interact](#understand-how-arg-and-from-interact).
+.. 
+    ARG is the only instruction that may precede FROM in the Dockerfile. See Understand how ARG and FROM interact.
+    FROM can appear multiple times within a single Dockerfile to create multiple images or use one build stage as a dependency for another. Simply make a note of the last image ID output by the commit before each new FROM instruction. Each FROM instruction clears any state created by previous instructions.
+    Optionally a name can be given to a new build stage by adding AS name to the FROM instruction. The name can be used in subsequent FROM and COPY --from=<name> instructions to refer to the image built in this stage.
+    The tag or digest values are optional. If you omit either of them, the builder assumes a latest tag by default. The builder returns an error if it cannot find the tag value.
 
-* ``Dockerfile`` 内にて ``ARG`` は、``FROM`` よりも前に記述できる唯一の命令です。
-  :ref:`ARG と FROM の関連について <understand-how-arg-and-from-interact>` を参照してください。
+* ``Dockerfile`` では、 ``FROM`` よりも前に書ける命令は ``ARG`` だけです。 :ref:`understand-how-arg-and-from-interact` をご覧ください。
+* 複数のイメージを作成する場合や、ある構築ステージを他からの依存関係として用いる場合のため、1つの ``Dockerfile `` に複数の ``FROM`` を書けます。新しい各 ``FROM`` 命令が処理される前には、その直前でコミットされた、最も新しいイメージ ID を単に表示するだけです。 ``FROM`` 命令があるたびに、それ以前の命令で作成されたあらゆる状態がクリアになります。
+* オプションとして、 ``FROM`` 命令に ``AS 名前`` を追加し、新しい構築ステージに名前を付けられます。この名前は、以降の ``FROM`` と ``COPY --from=<名前>`` 命令で使用し、このステージで構築したイメージを参照できます。
+* ``タグ`` や ``ダイジェスト`` 値はオプションです。どちらも省略すると、ビルダーは ``latest`` タグだとデフォルトで扱われます。 ``タグ`` 値（に相当するイメージ名）が見つからなければ、ビルダーはエラーを返します。
 
-.. - `FROM` can appear multiple times within a single `Dockerfile` to 
-     create multiple images or use one build stage as a dependency for another.
-     Simply make a note of the last image ID output by the commit before each new 
-     `FROM` instruction. Each `FROM` instruction clears any state created by previous
-     instructions.
+.. The optional --platform flag can be used to specify the platform of the image in case FROM references a multi-platform image. For example, linux/amd64, linux/arm64, or windows/amd64. By default, the target platform of the build request is used. Global build arguments can be used in the value of this flag, for example automatic platform ARGs allow you to force a stage to native build platform (--platform=$BUILDPLATFORM), and use it to cross-compile to the target platform inside the stage.
 
-* 1 つの ``Dockerfile`` 内に ``FROM`` を複数記述することが可能です。
-  これは複数のイメージを生成するため、あるいは 1 つのビルドステージを使って依存イメージをビルドするために行います。
-  各 ``FROM`` 命令までのコミットによって出力される最終のイメージ ID は書き留めておいてください。
-  個々の ``FROM`` 命令は、それ以前の命令により作り出された状態を何も変更しません。
+``FROM`` でマルチプラットフォーム対応のイメージを参照する場合には、オプションの ``--platform`` フラグを使うと、特定のプラットフォーム向けイメージを指定できます。たとえば、 ``linux/amd64`` や、 ``linux/arm64`` や、 ``windows/amd64`` です。デフォルトでは、今まさに利用しているプラットフォームを対象として構築します。 :ruby:`グローバル構築引数 <global build arguments>` が、このフラグの値をとして利用できます。たとえば :ref:`自動的なプラットフォーム ARG <automatic-platform-args-in-the-global-scope>` は、構築段階でネイティブな構築プラットフォームを上書きでき（ ``--platform=$BUILDPLATFORM`` ）、これを、そのステージ内で対象プラットフォーム向けのクロス・コンパイルとして利用できます。
 
-.. - Optionally a name can be given to a new build stage by adding `AS name` to the 
-     `FROM` instruction. The name can be used in subsequent `FROM` and
-     `COPY --from=<name|index>` instructions to refer to the image built in this stage.
-
-* オプションとして、新たなビルドステージに対しては名前をつけることができます。
-  これは ``FROM`` 命令の ``AS name`` により行います。
-  この名前は後続の ``FROM`` や ``COPY --from=<name|index>`` 命令において利用することができ、このビルドステージにおいてビルドされたイメージを参照します。
-
-.. - The `tag` or `digest` values are optional. If you omit either of them, the 
-     builder assumes a `latest` tag by default. The builder returns an error if it
-     cannot find the `tag` value.
-
-* ``tag`` と ``digest`` の設定はオプションです。
-  これを省略した場合、デフォルトである ``latest`` タグが指定されたものとして扱われます。
-  ``tag`` の値に合致するものがなければ、エラーが返されます。
-
-.. ### Understand how ARG and FROM interact
+.. Understand how ARG and FROM interact🔗
 
 .. _understand-how-arg-and-from-interact:
 
-ARG と FROM の関連について
---------------------------
+ARG と FROM の相互作用を理解
+------------------------------
 
-.. `FROM` instructions support variables that are declared by any `ARG` 
-   instructions that occur before the first `FROM`.
+.. FROM instructions support variables that are declared by any ARG instructions that occur before the first FROM.
 
-``FROM`` 命令では、``ARG`` 命令によって宣言された変数すべてを参照できます。
-この ``ARG`` 命令は、初出の ``FROM`` 命令よりも前に記述します。
-
-
-.. ```Dockerfile
-   ARG  CODE_VERSION=latest
-   FROM base:${CODE_VERSION}
-   CMD  /code/run-app
-   
-   FROM extras:${CODE_VERSION}
-   CMD  /code/run-extras
-   ```
+1つめの ``FROM`` 命令の前に ``ARG`` 命令があり、そこで変数が宣言されていれば ``FROM`` 命令で参照できます。
 
 .. code-block:: dockerfile
 
@@ -962,21 +810,9 @@ ARG と FROM の関連について
    FROM extras:${CODE_VERSION}
    CMD  /code/run-extras
 
-.. An `ARG` declared before a `FROM` is outside of a build stage, so it
-   can't be used in any instruction after a `FROM`. To use the default value of
-   an `ARG` declared before the first `FROM` use an `ARG` instruction without
-   a value inside of a build stage:
+.. An ARG declared before a FROM is outside of a build stage, so it can’t be used in any instruction after a FROM. To use the default value of an ARG declared before the first FROM use an ARG instruction without a value inside of a build stage:
 
-``FROM`` よりも前に宣言されている ``ARG`` は、ビルドステージ内に含まれるものではありません。
-したがって ``FROM`` 以降の命令において利用することはできません。
-初出の ``FROM`` よりも前に宣言された ``ARG`` の値を利用するには、ビルドステージ内において ``ARG`` 命令を、値を設定することなく利用します。
-
-.. ```Dockerfile
-   ARG VERSION=latest
-   FROM busybox:$VERSION
-   ARG VERSION
-   RUN echo $VERSION > image_version
-   ```
+``FROM`` 命令より前に宣言された ``ARG`` は構築ステージ外のため、 ``FROM`` 命令以降で使えません。1つめの ``FROM`` よりも前に宣言された ``ARG`` のデフォルト値を使うには、構築ステージ内で値を持たない ``ARG`` 命令を使います。
 
 .. code-block:: dockerfile
 
@@ -994,155 +830,111 @@ RUN
 
 RUN には２つの形式があります。
 
-.. - `RUN <command>` (*shell* form, the command is run in a shell, which by
-   default is `/bin/sh -c` on Linux or `cmd /S /C` on Windows)
-   - `RUN ["executable", "param1", "param2"]` (*exec* form)
+.. 
+    RUN <command> (shell form, the command is run in a shell, which by default is /bin/sh -c on Linux or cmd /S /C on Windows)
+    RUN ["executable", "param1", "param2"] (exec form)
 
-* ``RUN <command>`` （シェル形式、コマンドはシェル内で実行される、シェルとはデフォルトで Linux なら ``/bin/sh -c``、Windows なら ``cmd /S /C``）
-* ``RUN ["executable", "param1", "param2"]`` （exec 形式）
+* ``RUN <コマンド>`` （ :ruby:`シェル形式 <shell form>` 。コマンドはシェル内で実行される。デフォルトは Linux が ``/bin/sh -c`` で、 Windows は ``cmd /S /C`` ）
+* ``RUN ["実行ファイル", "パラメータ1", "パラメータ2"]`` （ :ruby:`実行形式 <exec form>` ）
 
-.. The `RUN` instruction will execute any commands in a new layer on top of the
-   current image and commit the results. The resulting committed image will be
-   used for the next step in the `Dockerfile`.
+.. The RUN instruction will execute any commands in a new layer on top of the current image and commit the results. The resulting committed image will be used for the next step in the Dockerfile.
 
-``RUN`` 命令は、現在のイメージの最上位の最新レイヤーにおいて、あらゆるコマンドを実行します。
-そして処理結果を確定します。
-結果が確定したイメージは、``Dockerfile`` の次のステップにおいて利用されていきます。
+``RUN`` 命令は、現在のイメージよりも上にある新しいレイヤでコマンドを実行し、その結果を :ruby:`コミット（確定） <commit>` します。結果が確定されたイメージは、 ``Dockerfile`` の次のステップで使われます。
 
-.. Layering `RUN` instructions and generating commits conforms to the core
-   concepts of Docker where commits are cheap and containers can be created from
-   any point in an image's history, much like source control.
+.. Layering RUN instructions and generating commits conforms to the core concepts of Docker where commits are cheap and containers can be created from any point in an image’s history, much like source control.
 
-``RUN`` 命令をレイヤー上にて扱い処理確定を行うこの方法は、Docker の根本的な考え方に基づいています。
-この際の処理確定は容易なものであって、イメージの処理履歴上のどの時点からでもコンテナーを復元できます。
-この様子はソース管理システムに似ています。
+``RUN`` 命令の実行と、コミット処理によって生成される（イメージ・レイヤの）階層化とは、Docker の中心となる考え方に基づいています。これは、ソースコードを管理するかのように、手軽にコミットができ、イメージ履歴のどの場所からもコンテナを作成できます。
 
-.. The *exec* form makes it possible to avoid shell string munging, and to `RUN`
-   commands using a base image that does not contain the specified shell executable.
+.. The exec form makes it possible to avoid shell string munging, and to RUN commands using a base image that does not contain the specified shell executable
 
-exec 形式は、シェル文字列が置換されないようにします。
-そして ``RUN`` の実行にあたっては、特定のシェル変数を含まないベースイメージを用います。
+*exec* 形式は、シェル上の処理で文字列が改変されないようにします。加えて、シェルを実行するバイナリを含まないベース・イメージでも、 ``RUN`` 命令を実行できるようにします。
 
-.. The default shell for the *shell* form can be changed using the `SHELL`
-   command.
+.. The default shell for the shell form can be changed using the SHELL command.
 
-シェル形式にて用いるデフォルトのシェルを変更するには ``SHELL`` コマンドを使います。
+シェル形式で使うデフォルトのシェルは、 ``SHELL`` コマンドで変更できます。
 
-.. In the *shell* form you can use a `\` (backslash) to continue a single
-   RUN instruction onto the next line. For example, consider these two lines:
+.. In the shell form you can use a \ (backslash) to continue a single RUN instruction onto the next line. For example, consider these two lines:
 
-シェル形式においては ``\``（バックスラッシュ）を用いて、1 つの RUN 命令を次行にわたって記述することができます。
-たとえば以下のような 2 行があるとします。
+シェル形式で ``\`` （バックスラッシュ）を使うと、 RUN 命令を次の行に続けられます。たとえば、次の２行を考えます。
 
-.. code-block:: dockerfile
+::
 
    RUN /bin/bash -c 'source $HOME/.bashrc ;\
    echo $HOME'
 
 .. Together they are equivalent to this single line:
 
-上は 2 行を合わせて、以下の 1 行としたものと同じです。
+これは、次の１行に合わせたのと同じです。
 
 .. code-block:: dockerfile
 
    RUN /bin/bash -c 'source $HOME/.bashrc ; echo $HOME'
 
-.. > **Note**:
-   > To use a different shell, other than '/bin/sh', use the *exec* form
-   > passing in the desired shell. For example,
-   > `RUN ["/bin/bash", "-c", "echo hello"]`
+.. To use a different shell, other than ‘/bin/sh’, use the exec form passing in the desired shell. For example:
+
+``/bin/sh`` 以外のシェルを使うには、 `exec` 形式で使いたいシェルを指定します。
+
+::
+
+   RUN ["/bin/bash", "-c", "echo hello"]
+
+..    Note
+    The exec form is parsed as a JSON array, which means that you must use double-quotes (“) around words not single-quotes (‘).
 
 .. note::
 
-   '/bin/sh' 以外の別のシェルを利用する場合は、exec 形式を用いて、目的とするシェルを引数に与えます。
-   たとえば ``RUN ["/bin/bash", "-c", "echo hello"]`` とします。
+   `exec` 形式は JSON :ruby:`配列 <array>` として構文解析されます。そのため、文字を囲むにはシングル・クォート（`）ではなく、ダブル・クォート（ "）を使う必要があります。
 
-.. > **Note**:
-   > The *exec* form is parsed as a JSON array, which means that
-   > you must use double-quotes (") around words not single-quotes (').
+.. Unlike the shell form, the exec form does not invoke a command shell. This means that normal shell processing does not happen. For example, RUN [ "echo", "$HOME" ] will not do variable substitution on $HOME. If you want shell processing then either use the shell form or execute a shell directly, for example: RUN [ "sh", "-c", "echo $HOME" ]. When using the exec form and executing a shell directly, as in the case for the shell form, it is the shell that is doing the environment variable expansion, not docker
 
-.. note::
+シェル形式と異なり、 `exec` 形式はコマンドとしてのシェルを実行しません。つまり、通常のシェルとしての処理を行いません。たとえば、 ``RUN [  "echo", "$HOME" ]`` では、 ``$HOME`` を変数展開しません。もしも、シェルとしての総理を行いたければ、シェル形式を使うか、 ``RUN [ "sh", "-c", "echo $HOME" ]`` のように、直接シェルを実行します。 exec 形式もしくは直接シェルを実行する場合は、シェル形式と同じように処理をしているように見えますが、シェルが環境変数を処理しているのであり、 Docker が行っているのではありません。
 
-   exec 形式は JSON 配列として解釈されます。
-   したがって文字列をくくるのはダブル・クォート（"）であり、シングル・クォート（'）は用いてはなりません。
-
-.. > **Note**:
-   > Unlike the *shell* form, the *exec* form does not invoke a command shell.
-   > This means that normal shell processing does not happen. For example,
-   > `RUN [ "echo", "$HOME" ]` will not do variable substitution on `$HOME`.
-   > If you want shell processing then either use the *shell* form or execute
-   > a shell directly, for example: `RUN [ "sh", "-c", "echo $HOME" ]`.
-   > When using the exec form and executing a shell directly, as in the case for
-   > the shell form, it is the shell that is doing the environment variable
-   > expansion, not docker.
+.. Note
+   In the JSON form, it is necessary to escape backslashes. This is particularly relevant on Windows where the backslash is the path separator. The following line would otherwise be treated as shell form due to not being valid JSON, and fail in an unexpected way:
 
 .. note::
 
-   シェル形式とは違って exec 形式はコマンドシェルを起動しません。
-   これはつまり、ごく普通のシェル処理とはならないということです。
-   たとえば ``RUN [ "echo", "$HOME" ]`` を実行したとすると、``$HOME`` の変数置換は行われません。
-   シェル処理が行われるようにしたければ、シェル形式を利用するか、あるいはシェルを直接実行するようにします。
-   たとえば ``RUN [ "sh", "-c", "echo $HOME" ]`` とします。
-   exec 形式によってシェルを直接起動した場合、シェル形式の場合でも同じですが、変数置換を行うのはシェルであって、docker ではありません。
+   （exec 形式の記述方法は JSON です）`JSON` 形式では、バックスラッシュをエスケープする必要があります。これが特に関係するのは、 :ruby:`パス区切り文字 <path separator>` にバックラッシュを使う Windows です。次の行は正しい JSON 形式ではないため、シェル形式として扱われます。しかし、想定していない動作を試みようとするため、処理は失敗します。
+   
+   ::
+   
+      RUN ["c:\windows\system32\tasklist.exe"]
+   
+   この例の正しい構文は、こちらです。
+   
+   ::
+   
+      RUN ["c:\\windows\\system32\\tasklist.exe"]
 
-.. > **Note**:
-   > In the *JSON* form, it is necessary to escape backslashes. This is
-   > particularly relevant on Windows where the backslash is the path separator.
-   > The following line would otherwise be treated as *shell* form due to not
-   > being valid JSON, and fail in an unexpected way:
-   > `RUN ["c:\windows\system32\tasklist.exe"]`
-   > The correct syntax for this example is:
-   > `RUN ["c:\\windows\\system32\\tasklist.exe"]`
-
-.. note::
-
-   JSON 記述においてバックスラッシュはエスケープする必要があります。
-   特に関係してくるのは Windows であり、Windows ではパス・セパレータにバックスラッシュを用います。
-   ``RUN ["c:\windows\system32\tasklist.exe"]`` という記述例は、適正な JSON 記述ではないことになるため、シェル形式として扱われ、思いどおりの動作はせずエラーとなります。
-   正しくは ``RUN ["c:\\windows\\system32\\tasklist.exe"]`` と記述します。
-
-.. The cache for `RUN` instructions isn't invalidated automatically during
-   the next build. The cache for an instruction like
-   `RUN apt-get dist-upgrade -y` will be reused during the next build. The
-   cache for `RUN` instructions can be invalidated by using the `--no-cache`
-   flag, for example `docker build --no-cache`.
-
-``RUN`` 命令に対するキャッシュは、次のビルドの際、その無効化は自動的に行われません。
-``RUN apt-get dist-upgrade -y`` のような命令に対するキャッシュは、次のビルドの際にも再利用されます。
-``RUN`` 命令に対するキャッシュを無効にするためには ``--no-cache`` フラグを利用します。
-たとえば ``docker build --no-cache`` とします。
+``RUN`` 命令（で処理された内容）のキャッシュは、次回以降の構築時にも、自動的に有効です。 ``RUN apt-get dist-upgrade -y`` のような命令に対するキャッシュは、次の構築時に再利用されます。 ``RUN`` 命令に対するキャッシュを無効にするには、 ``docker build --no-cache`` のように ``--no-cache`` フラグを使います。
 
 .. See the Dockerfile Best Practices guide for more information.
 
-より詳しい情報は ``Dockerfile`` :ref:`ベスト・プラクティス・ガイド <build-cache>` をご覧ください。
+詳細は、:doc:`/develop/develop-images/dockerfile_best-practices` をご覧ください。
 
-.. The cache for RUN instructions can be invalidated by ADD instructions. See below for details.
+.. The cache for RUN instructions can be invalidated by ADD and COPY instructions.
 
-``RUN`` 命令のキャッシュは、　``ADD`` 命令によって無効化されます。詳細は :ref:`以下 <add>` をご覧ください。
+Dockerfile 中に ``ADD`` 命令と ``COPY`` 命令が出てくると、以降の ``RUN`` 命令の内容はキャッシュされません。
 
 .. Known issues (RUN)
 
-既知の問題(RUN)
---------------------
+.. _known-issues-run
 
-.. - [Issue 783](https://github.com/docker/docker/issues/783) is about file
-     permissions problems that can occur when using the AUFS file system. You
-     might notice it during an attempt to `rm` a file, for example.
+判明している問題 (RUN)
+------------------------------
 
-* `Issue 783 <https://github.com/docker/docker/issues/783>`_ はファイル・パーミッションに関する問題を取り上げていて、ファイルシステムに AUFS を用いている場合に発生します。
-  たとえば ``rm`` によってファイルを削除しようとしたときに、これが発生する場合があります。
+.. 
+    Issue 783 is about file permissions problems that can occur when using the AUFS file system. You might notice it during an attempt to rm a file, for example.
 
-  .. For systems that have recent aufs version (i.e., `dirperm1` mount option can
-     be set), docker will attempt to fix the issue automatically by mounting
-     the layers with `dirperm1` option. More details on `dirperm1` option can be
-     found at [`aufs` man page](https://github.com/sfjro/aufs3-linux/tree/aufs3.18/Documentation/filesystems/aufs)
+* `Issue 783 <https://github.com/docker/docker/issues/783>`_ は、 AUFS ファイルシステム使用時に発生する、ファイルの権限（パーミッション）についての問題です。たとえば、ファイルを ``rm`` で削除するときに気づくかもしれません。
 
-  aufs の最新バージョンを利用するシステム（つまりマウントオプション ``dirperm1`` を設定可能なシステム）の場合、docker はレイヤーに対して ``dirperm1`` オプションをつけてマウントすることで、この問題を自動的に解消するように試みます。
-  ``dirperm1`` オプションに関する詳細は ``aufs`` の `man ページ <https://github.com/sfjro/aufs3-linux/tree/aufs3.18/Documentation/filesystems/aufs>`_ を参照してください。
+..    For systems that have recent aufs version (i.e., dirperm1 mount option can be set), docker will attempt to fix the issue automatically by mounting the layers with dirperm1 option. More details on dirperm1 option can be found at aufs man page
 
-  .. If your system doesn't have support for `dirperm1`, the issue describes a workaround.
+  最近の aufs バージョンのシステムであれば（ ``dirperm1`` マウントのオプションが指定可能 ）、docker は ``dirperm1`` オプションでレイヤをマウントするため、自動的にこの問題の解決を試みます。 ``dirperm1`` オプションによってできる詳細は、 `aufs man ページ <https://github.com/sfjro/aufs3-linux/tree/aufs3.18/Documentation/filesystems/aufs>`_ にあります。
 
-  ``dirperm1`` をサポートしていないシステムの場合は、issue に示される回避方法を参照してください。
+..     If your system doesn’t have support for dirperm1, the issue describes a workaround.
+
+  システムが ``dirperm1`` をサポートしていなければ、issue ページに記載の回避方法をご覧ください。
 
 .. _cmd:
 
@@ -1151,120 +943,77 @@ CMD
 
 .. The CMD instruction has three forms:
 
-``CMD`` には３つの形式があります。
+``CMD`` 命令には３つの形式があります。
 
-.. - `CMD ["executable","param1","param2"]` (*exec* form, this is the preferred form)
-   - `CMD ["param1","param2"]` (as *default parameters to ENTRYPOINT*)
-   - `CMD command param1 param2` (*shell* form)
+.. 
+    CMD ["executable","param1","param2"] (exec form, this is the preferred form)
+    CMD ["param1","param2"] (as default parameters to ENTRYPOINT)
+    CMD command param1 param2 (shell form)
 
-* ``CMD ["executable","param1","param2"]`` (exec 形式、この形式が推奨される)
-* ``CMD ["param1","param2"]`` ( ``ENTRYPOINT`` のデフォルト・パラメータとして)
-* ``CMD command param1 param2`` (シェル形式)
+* ``CMD ["実行ファイル","パラメータ1","パラメータ2"]`` （ `exec` 形式、こちらが望ましい ）
+* ``CMD ["パラメータ1", "パラメータ2"]`` （ `ENTRYPOINT` 命令に対するデフォルトのパラメータとして扱う）
+* ``CMD コマンド パラメータ1 パラメータ2`` （シェル形式）
 
-.. There can only be one `CMD` instruction in a `Dockerfile`. If you list more than one `CMD`
-   then only the last `CMD` will take effect.
+.. There can only be one CMD instruction in a Dockerfile. If you list more than one CMD then only the last CMD will take effect.
 
-``Dockerfile`` では ``CMD`` 命令を 1 つしか記述できません。
-仮に複数の ``CMD`` を記述しても、最後の ``CMD`` 命令しか処理されません。
+``CMD`` 命令は ``Dockerfile`` 中で１度しか使えません。複数の ``CMD`` 命令があれば、最後の ``CMD`` のみ有効です。
 
-.. **The main purpose of a `CMD` is to provide defaults for an executing
-   container.** These defaults can include an executable, or they can omit
-   the executable, in which case you must specify an `ENTRYPOINT`
-   instruction as well.
+.. The main purpose of a CMD is to provide defaults for an executing container. These defaults can include an executable, or they can omit the executable, in which case you must specify an ENTRYPOINT instruction as well.
 
-``CMD`` 命令の主目的は、**コンテナの実行時のデフォルト処理を設定することです。**
-この処理設定においては、実行モジュールを含める場合と、実行モジュールを省略する場合があります。
-省略する場合は ``ENTRYPOINT`` 命令を合わせて指定する必要があります。
+**CMD の主な目的は、コンテナ実行時のデフォルト（初期設定）を指定するためです** 。デフォルトには、実行ファイルを含める場合も、そうでない場合もあります。実行ファイルを含まない場合は、 ``ENTRYPOINT`` 命令の指定が必要です。
 
-.. > **Note**:
-   > If `CMD` is used to provide default arguments for the `ENTRYPOINT`
-   > instruction, both the `CMD` and `ENTRYPOINT` instructions should be specified
-   > with the JSON array format.
+.. If CMD is used to provide default arguments for the ENTRYPOINT instruction, both the CMD and ENTRYPOINT instructions should be specified with the JSON array format.
+
+``ENTRYPOINT`` 命令に対するデフォルトの引数を `CMD`` で指定する場合は、 ``CMD`` 命令と ``ENTRYPOINT`` 命令の両方を JSON 配列形式で指定する必要があります。
+
+..    Note
+    The exec form is parsed as a JSON array, which means that you must use double-quotes (“) around words not single-quotes (‘).
 
 .. note::
 
-   ``ENTRYPOINT`` 命令に対するデフォルト引数を設定する目的で ``CMD`` 命令を用いる場合、``CMD`` と ``ENTRYPOINT`` の両命令とも、JSON 配列形式で指定しなければなりません。
+   `exec` 形式は JSON :ruby:`配列 <array>` として構文解析されます。そのため、文字を囲むにはシングル・クォート（`）ではなく、ダブル・クォート（ "）を使う必要があります。
 
-.. > **Note**:
-   > The *exec* form is parsed as a JSON array, which means that
-   > you must use double-quotes (") around words not single-quotes (').
+.. Unlike the shell form, the exec form does not invoke a command shell. This means that normal shell processing does not happen. For example, CMD [ "echo", "$HOME" ] will not do variable substitution on $HOME. If you want shell processing then either use the shell form or execute a shell directly, for example: CMD [ "sh", "-c", "echo $HOME" ]. When using the exec form and executing a shell directly, as in the case for the shell form, it is the shell that is doing the environment variable expansion, not docker.
 
-.. note::
+シェル形式と異なり、 `exec` 形式はコマンドとしてのシェルを実行しません。つまり、通常のシェルとしての処理を行いません。たとえば、 ``CMD [  "echo", "$HOME" ]`` では、 ``$HOME`` を変数展開しません。もしも、シェルとしての総理を行いたければ、シェル形式を使うか、 ``CMD [ "sh", "-c", "echo $HOME" ]`` のように、直接シェルを実行します。 exec 形式もしくは直接シェルを実行する場合は、シェル形式と同じように処理をしているように見えますが、シェルが環境変数を処理しているのであり、 Docker が行っているのではありません。
 
-   exec 形式は JSON 配列として解釈されます。
-   したがって文字列をくくるのはダブル・クォート（"）であり、シングル・クォート（'）は用いてはなりません。
+.. When used in the shell or exec formats, the CMD instruction sets the command to be executed when running the image.
 
-.. > **Note**:
-   > Unlike the *shell* form, the *exec* form does not invoke a command shell.
-   > This means that normal shell processing does not happen. For example,
-   > `CMD [ "echo", "$HOME" ]` will not do variable substitution on `$HOME`.
-   > If you want shell processing then either use the *shell* form or execute
-   > a shell directly, for example: `CMD [ "sh", "-c", "echo $HOME" ]`.
-   > When using the exec form and executing a shell directly, as in the case for
-   > the shell form, it is the shell that is doing the environment variable
-   > expansion, not docker.
+シェル形式か exec 形式の ``CMD`` 命令とは、対象イメージの起動時に処理するコマンドを指定します。
 
-.. note::
+.. If you use the shell form of the CMD, then the <command> will execute in /bin/sh -c:
 
-   シェル形式とは違って exec 形式はコマンドシェルを起動しません。
-   これはつまり、ごく普通のシェル処理とはならないということです。
-   たとえば ``RUN [ "echo", "$HOME" ]`` を実行したとすると、``$HOME`` の変数置換は行われません。
-   シェル処理が行われるようにしたければ、シェル形式を利用するか、あるいはシェルを直接実行するようにします。
-   たとえば ``RUN [ "sh", "-c", "echo $HOME" ]`` とします。
-   exec 形式によってシェルを直接起動した場合、シェル形式の場合でも同じですが、変数置換を行うのはシェルであって、docker ではありません。
+``CMD`` をシェル形式にする場合、 ``/bin/sh -c`` の中で ``<コマンド>`` が実行されます。
 
-.. When used in the shell or exec formats, the `CMD` instruction sets the command
-   to be executed when running the image.
-
-シェル形式または exec 形式を用いる場合、``CMD`` 命令は、イメージが起動されたときに実行するコマンドを指定します。
-
-.. If you use the *shell* form of the `CMD`, then the `<command>` will execute in
-   `/bin/sh -c`:
-
-シェル形式を用いる場合、``<command>`` は ``/bin/sh -c`` の中で実行されます。
-
-.. code-block:: dockerfile
+::
 
    FROM ubuntu
    CMD echo "This is a test." | wc -
 
-.. If you want to **run your** `<command>` **without a shell** then you must
-   express the command as a JSON array and give the full path to the executable.
-   **This array form is the preferred format of `CMD`.** Any additional parameters
-   must be individually expressed as strings in the array:
+.. If you want to run your <command> without a shell then you must express the command as a JSON array and give the full path to the executable. This array form is the preferred format of CMD. Any additional parameters must be individually expressed as strings in the array:
 
-``<command>`` **をシェル実行することなく実行** したい場合は、そのコマンドを JSON 配列として表現し、またそのコマンドの実行モジュールへのフルパスを指定しなければなりません。
-**この配列書式は** ``CMD`` **において推奨される記述です。**
-パラメータを追加する必要がある場合は、配列内にて文字列として記述します。
+**シェルを使わずに <コマンド> を実行** したければ、JSON 配列としてコマンドを記述する必要があり、その実行ファイルはフルパスで指定します。 **この、JSON 配列形式が、CMD での望ましいフォーマットです** 。パラメータを追加するには、その配列内で１つ１つの文字列として記述します。
 
-.. code-block:: dockerfile
+::
 
    FROM ubuntu
    CMD ["/usr/bin/wc","--help"]
 
-.. If you would like your container to run the same executable every time, then
-   you should consider using `ENTRYPOINT` in combination with `CMD`. See
-   [*ENTRYPOINT*](#entrypoint).
+.. If you would like your container to run the same executable every time, then you should consider using ENTRYPOINT in combination with CMD. See ENTRYPOINT.
 
-コンテナにおいて毎回同じ実行モジュールを起動させたい場合は、``CMD`` 命令と ``ENTRYPOINT`` 命令を合わせて利用することを考えてみてください。
-:ref:`ENTRYPOINT <entrypoint>` を参照のこと。
+コンテナを起動するたびに、同じコマンドを毎回実行するのであれば、 ``ENTRYPOINT`` 命令と ``CMD`` 命令の組み合わせを検討ください。詳しくは :ref:`entrypoint` をご覧ください。
 
-.. If the user specifies arguments to `docker run` then they will override the
-   default specified in `CMD`.
+.. If the user specifies arguments to docker run then they will override the default specified in CMD.
 
-``docker run`` において引数を指定することで、``CMD`` 命令に指定されたデフォルトを上書きすることができます。
+``docker run`` で引数を指定すると、 ``CMD`` で指定されているデフォルトの挙動を上書きできます。
 
-.. > **Note**:
-   > Don't confuse `RUN` with `CMD`. `RUN` actually runs a command and commits
-   > the result; `CMD` does not execute anything at build time, but specifies
-   > the intended command for the image.
+.. 
+    Note
+    Do not confuse RUN with CMD. RUN actually runs a command and commits the result; CMD does not execute anything at build time, but specifies the intended command for the image.
 
 .. note::
 
-   ``RUN`` と ``CMD`` を混同しないようにしてください。
-   ``RUN`` は実際にコマンドが実行されて、結果を確定させます。
-   一方 ``CMD`` はイメージビルド時には何も実行しません。
-   イメージに対して実行する予定のコマンドを指示するものです。
+   ``RUN`` と ``CMD`` を混同しないでください。 ``RUN`` は実際にコマンドを実行し、その結果をコミットします。対して、 ``CMD`` は構築時には何も実行しませんが、イメージを使って実行したいコマンドを指定するものです。
 
 .. _builder-label:
 
@@ -1273,17 +1022,11 @@ LABEL
 
 .. code-block:: dockerfile
 
-   LABEL <key>=<value> <key>=<value> <key>=<value> ...
+   LABEL <キー>=<値> <キー>=<値> <キー>=<値> ...
 
-.. The `LABEL` instruction adds metadata to an image. A `LABEL` is a
-   key-value pair. To include spaces within a `LABEL` value, use quotes and
-   backslashes as you would in command-line parsing. A few usage examples:
+.. The LABEL instruction adds metadata to an image. A LABEL is a key-value pair. To include spaces within a LABEL value, use quotes and backslashes as you would in command-line parsing. A few usage examples:
 
-``LABEL`` 命令はイメージに対してメタデータを追加します。
-``LABEL`` ではキーバリューペアによる記述を行います。
-値に空白などを含める場合は、クォートとバックスラッシュを用います。
-これはコマンドライン処理において行うことと同じです。
-以下に簡単な例を示します。
+``LABEL`` 命令は、イメージに :ruby:`メタデータ <metadata>` を追加します。 ``LABEL`` は :ruby:`キー・バリュー <key-value>` の組み合わせです。 ``LABEl`` の値に空白がある場合は、コマンドラインでの構文解析と同じように、引用符とバックラッシュを使います。いくつかの使用例がこちらです。
 
 .. code-block:: dockerfile
 
@@ -1293,24 +1036,13 @@ LABEL
    LABEL description="This text illustrates \
    that label-values can span multiple lines."
 
-.. An image can have more than one label. To specify multiple labels,
-   Docker recommends combining labels into a single `LABEL` instruction where
-   possible. Each `LABEL` instruction produces a new layer which can result in an
-   inefficient image if you use many labels. This example results in a single image
-   layer.
+.. An image can have more than one label. You can specify multiple labels on a single line. Prior to Docker 1.10, this decreased the size of the final image, but this is no longer the case. You may still choose to specify multiple labels in a single instruction, in one of the following two ways:
 
-イメージには複数のラベルを含めることができます。
-複数のラベルを指定する場合、可能であれば ``LABEL`` 命令の記述を 1 行とすることをお勧めします。
-``LABEL`` 命令 1 つからは新しいレイヤが生成されますが、多数のラベルを利用すると、非効率なイメージがビルドされてしまいます。
-以下の例は、ただ 1 つのイメージ・レイヤを作るものです。
+イメージは複数のラベルを持てます。１行で複数のラベルを指定できます。 Docker 1.10 未満では、この手法で最終イメージの容量を減らせましたが、今は違います。それでも１行で書く方法を選択するのであれば、２つの方法があります。
 
 .. code-block:: dockerfile
 
    LABEL multi.label1="value1" multi.label2="value2" other="value3"
-
-.. The above can also be written as:
-
-上記の例は、以下のように書くこともできます。
 
 .. code-block:: dockerfile
 
@@ -1318,16 +1050,17 @@ LABEL
          multi.label2="value2" \
          other="value3"
 
-.. Labels are additive including `LABEL`s in `FROM` images. If Docker
-   encounters a label/key that already exists, the new value overrides any previous
-   labels with identical keys.
+.. Labels included in base or parent images (images in the FROM line) are inherited by your image. If a label already exists but with a different value, the most-recently-applied value overrides any previously-set value.
 
-ラベルには ``FROM`` に指定されたイメージ内の ``LABEL`` 命令も含まれます。
-ラベルのキーが既に存在していた場合、そのキーに対応する古い値は、新しい値によって上書きされます。
+ベース・イメージか親イメージ（ ``FROM`` 行にあるイメージ）を含むラベルは、イメージで継承されます。ラベルが既に存在していても、その値が違う場合は、直近で追加された値で、以前の値を上書きします。
 
-.. To view an image's labels, use the `docker inspect` command.
+.. To view an image’s labels, use the docker image inspect command. You can use the --format option to show just the labels;
 
-イメージのラベルを参照するには ``docker inspect`` コマンドを用います。
+イメージのラベルを表示するには、 ``docker image inspect`` コマンドを使います。 ``--format`` オプションを使えば、ラベルのみ表示できます。
+
+.. code-block:: bash
+
+   $ docker image inspect --format='' myimage
 
 .. code-block:: bash
 
@@ -1341,39 +1074,28 @@ LABEL
        "other": "value3"
    },
 
-.. ## MAINTAINER (deprecated)
+.. MAINTAINER (deprecated)
 
 .. _maintainer:
 
-MAINTAINER（廃止予定）
+MAINTAINER（非推奨）
 =======================
-
-   ..  MAINTAINER <name>
 
 .. code-block:: dockerfile
 
-    MAINTAINER <name>
+    MAINTAINER <名前>
 
-.. The `MAINTAINER` instruction sets the *Author* field of the generated images.
-   The `LABEL` instruction is a much more flexible version of this and you should use
-   it instead, as it enables setting any metadata you require, and can be viewed
-   easily, for example with `docker inspect`. To set a label corresponding to the
-   `MAINTAINER` field you could use:
+.. The MAINTAINER instruction sets the Author field of the generated images. The LABEL instruction is a much more flexible version of this and you should use it instead, as it enables setting any metadata you require, and can be viewed easily, for example with docker inspect. To set a label corresponding to the MAINTAINER field you could use:
 
-``MAINTAINER`` 命令は、ビルドされるイメージの *Author* フィールドを設定します。
-``LABEL`` 命令を使った方がこれよりも柔軟に対応できるため、``LABEL`` を使うようにします。
-そうすれば必要なメタデータとしてどのようにでも設定ができて、``docker inspect`` を用いて簡単に参照することができます。
-``MAINTAINER`` フィールドに相当するラベルを作るには、以下のようにします。
-
-   ..  LABEL maintainer="SvenDowideit@home.org.au"
+``MAINTAINER`` 命令は、イメージを作成した `Author` （作成者）のフィールドを設定します。この命令よりも ``LABEL`` 命令のほうが、より柔軟であり、こちらを使うべきです。それにより、必要なメタデータの設定が簡単になり、 ``docker inspect`` などで簡単に表示できます。 ``MAINTAINER`` フィールドに相当するラベルは、次のように指定します。
 
 .. code-block:: dockerfile
 
    LABEL maintainer="SvenDowideit@home.org.au"
 
-.. This will then be visible from `docker inspect` with the other labels.
+.. This will then be visible from docker inspect with the other labels.
 
-こうすれば ``docker inspect`` によってラベルをすべて確認することができます。
+こうしておけば、 ``docker inspect`` で他のラベルと一緒に表示できます。
 
 .. _expose:
 
@@ -1382,473 +1104,437 @@ EXPOSE
 
 .. code-block:: dockerfile
 
-   EXPOSE <port> [<port>...]
+   EXPOSE <ポート> [<ポート>/<プロトコル>...]
 
-.. The `EXPOSE` instruction informs Docker that the container listens on the
-   specified network ports at runtime. `EXPOSE` does not make the ports of the
-   container accessible to the host. To do that, you must use either the `-p` flag
-   to publish a range of ports or the `-P` flag to publish all of the exposed
-   ports. You can expose one port number and publish it externally under another
-   number.
+.. The EXPOSE instruction informs Docker that the container listens on the specified network ports at runtime. You can specify whether the port listens on TCP or UDP, and the default is TCP if the protocol is not specified.
 
-``EXPOSE`` 命令はコンテナの実行時に、所定ネットワーク上のどのポートをリッスンするかを指定します。
-``EXPOSE`` はコンテナーのポートをホストが利用できるようにするものではありません。
-利用できるようにするためには ``-p`` フラグを使ってポートの公開範囲を指定するか、 ``-P`` フラグによって expose したポートをすべて公開する必要があります。
-1 つのポート番号を expose して、これを外部に向けては別の番号により公開することも可能です。
+コンテナの実行時、指定した :ruby:`ネットワーク・ポート <network port>` をコンテナがリッスンするように、Docker へ通知するのが ``EXPOSE`` 命令です。対象ポートが TCP か UDP か、どちらをリッスンするか指定できます。プロトコルの指定がなければ、 TCP がデフォルトです。
 
-.. To set up port redirection on the host system, see [using the -P
-   flag](run.md#expose-incoming-ports). The Docker network feature supports
-   creating networks without the need to expose ports within the network, for
-   detailed information see the  [overview of this
-   feature](https://docs.docker.com/engine/userguide/networking/)).
+.. The EXPOSE instruction does not actually publish the port. It functions as a type of documentation between the person who builds the image and the person who runs the container, about which ports are intended to be published. To actually publish the port when running the container, use the -p flag on docker run to publish and map one or more ports, or the -P flag to publish all exposed ports and map them to high-order ports.
 
-ホストシステム上にてポート転送を行う場合は、:ref:`-P フラグの利用 <expose-incoming-ports>` を参照してください。
-Docker のネットワークにおいては、ネットワーク内でポートを expose しなくてもネットワークを生成できる機能がサポートされています。
-詳しくは :doc:`ネットワーク機能の概要 </engine/userguide/networking/index>` を参照してください。
+``EXPOSE`` 命令だけは、実際にはポートを :ruby:`公開 <publish>` しません。これは、どのポートを公開する意図なのかという、イメージの作者とコンテナ実行者の両者に対し、ある種のドキュメントとして機能します。コンテナの実行時に実際にポートを公開するには、 ``docker run`` で ``-p`` フラグを使い、公開用のポートと割り当てる（ :ruby:`マップ <map>` する）ポートを指定します。
 
-.. _env:
+.. By default, EXPOSE assumes TCP. You can also specify UDP:
+
+``EXPOSE`` はデフォルトで TCP を前提としますが、 UDP も指定できます。
+
+::
+
+   EXPOSE 80/udp
+
+.. To expose on both TCP and UDP, include two lines:
+
+TCP と UDP の両方を公開するには、2行で書きます。
+
+::
+
+   EXPOSE 80/tcp
+   EXPOSE 80/udp
+
+.. In this case, if you use -P with docker run, the port will be exposed once for TCP and once for UDP. Remember that -P uses an ephemeral high-ordered host port on the host, so the port will not be the same for TCP and UDP.
+
+この例で、 ``docker run`` で ``-P`` オプションを付けると、TCP と UDP のそれぞれにポートを公開します。注意点としては、 `-P` を使うと、ホスト上で :ruby:`一時的なハイポート <ephemeral high-ordered host port>` を順番に使いますので、 TCP と UDP のポート番号が同じにならない場合もあります。
+
+.. Regardless of the EXPOSE settings, you can override them at runtime by using the -p flag. For example
+
+``EXPOSE`` の設定に関係なく、実行時に ``-p`` フラグを使い、その設定を上書き出来ます。たとえば、次のようにします。
+
+.. code-block:: bash
+
+   docker run -p 80:80/tcp -p 80:80/udp ...
+
+.. To set up port redirection on the host system, see using the -P flag. The docker network command supports creating networks for communication among containers without the need to expose or publish specific ports, because the containers connected to the network can communicate with each other over any port. For detailed information, see the overview of this feature.
+
+ホストシステム上でポート転送を設定するには、 :ref:`-P フラグの使い方 <expose-incoming-ports>` をご覧ください。 ``docker network`` コマンドはコンテナ間で通信するネットワークの作成をサポートしますが、特定のポートを露出したり公開したりを指定する必要はありません。これは、ネットワークに接続している複数のコンテナは、あらゆるポートを通して相互に通信できるからです。詳細な情報は、 :doc:`この機能の上書き </network/index>` をご覧ください。
+
+.. _builder-env:
 
 ENV
 ==========
 
 .. code-block:: dockerfile
 
-   ENV <key> <value>
-   ENV <key>=<value> ...
+   ENV <キー>=<値> ...
 
-.. The `ENV` instruction sets the environment variable `<key>` to the value
-   `<value>`. This value will be in the environment of all "descendant"
-   `Dockerfile` commands and can be [replaced inline](#environment-replacement) in
-   many as well.
+.. The ENV instruction sets the environment variable <key> to the value <value>. This value will be in the environment for all subsequent instructions in the build stage and can be replaced inline in many as well. The value will be interpreted for other environment variables, so quote characters will be removed if they are not escaped. Like command line parsing, quotes and backslashes can be used to include spaces within values.
 
-``ENV`` 命令は、環境変数 ``<key>`` に ``<value>`` という値を設定します。
-``Dockerfile`` 内の後続命令の環境において、環境変数の値は維持されます。
-また、いろいろと :ref:`インラインにて変更 <environment-replacement>` することもできます。
-
-.. The `ENV` instruction has two forms. The first form, `ENV <key> <value>`,
-   will set a single variable to a value. The entire string after the first
-   space will be treated as the `<value>` - including characters such as
-   spaces and quotes.
-
-``ENV`` 命令には 2 つの書式があります。
-1 つめの書式は ``ENV <key> <value>`` です。
-1 つの変数に対して 1 つの値を設定します。
-全体の文字列のうち、最初の空白文字以降がすべて ``<value>`` として扱われます。
-そこには空白やクォートを含んでいて構いません。
-
-.. The second form, `ENV <key>=<value> ...`, allows for multiple variables to
-   be set at one time. Notice that the second form uses the equals sign (=)
-   in the syntax, while the first form does not. Like command line parsing,
-   quotes and backslashes can be used to include spaces within values.
-
-2 つめの書式は ``ENV <key>=<value> ...`` です。
-これは一度に複数の値を設定できる形です。
-この書式では等号（=）を用いており、1 つめの書式とは異なります。
-コマンドライン上の解析で行われることと同じように、クォートやバックスラッシュを使えば、値の中に空白などを含めることができます。
-
-.. For example:
+``ENV`` 命令は、環境変数 ``<キー>`` に対し、値を ``<値>`` として設定します。この値は、以降に続く構築ステージ中で、環境変数として保持されます。その上、多くの場合、 :ref:`その途中で置き換え <environment-replacement>` 可能です。値は、他の環境変数を示すものとしても解釈できます。そのため、引用符はエスケープしなければ削除されます。コマンドラインでの構文解釈と同様に、引用符とバックラッシュによって、値のなかで空白を使えるようになります。
 
 例：
 
-.. code-block:: dockerfile
+::
 
-   ENV myName="John Doe" myDog=Rex\ The\ Dog \
-       myCat=fluffy
+   ENV MY_NAME="John Doe"
+   ENV MY_DOG=Rex\ The\ Dog
+   ENV MY_CAT=fluffy
 
-.. and
+.. The ENV instruction allows for multiple <key>=<value> ... variables to be set at one time, and the example below will yield the same net results in the final image:
 
-そして
+``ENV`` 命令では、一度に複数の ``<キー>=<値> ...`` 変数を指定できます。次の例は、先ほどの例の結果と（環境変数の値が）完全に同じになります。
 
-.. code-block:: dockerfile
+::
 
-   ENV myName John Doe
-   ENV myDog Rex The Dog
-   ENV myCat fluffy
+   ENV MY_NAME="John Doe" MY_DOG=Rex\ The\ Dog \
+       MY_CAT=fluffy
 
-.. will yield the same net results in the final image, but the first form
-   is preferred because it produces a single cache layer.
+.. The environment variables set using ENV will persist when a container is run from the resulting image. You can view the values using docker inspect, and change them using docker run --env <key>=<value>.
 
-上の 2 つは最終的に同じ結果をイメージに書き入れます。
-ただし 1 つめの書式が望ましいものです。
-1 つめは単一のキャッシュ・レイヤしか生成しないからです。
+``ENV`` 命令を使い設定した環境変数は、結果として作成されたイメージから実行したコンテナでも維持されます。 ``docker inspect`` を使い、この値を確認できます。そして、それらを変更するには ``docker run --env <キー>=<値>`` を使います。
 
-.. The environment variables set using `ENV` will persist when a container is run
-   from the resulting image. You can view the values using `docker inspect`, and
-   change them using `docker run --env <key>=<value>`.
+.. Environment variable persistence can cause unexpected side effects. For example, setting ENV DEBIAN_FRONTEND=noninteractive changes the behavior of apt-get, and may confuse users of your image.
 
-``ENV`` を用いて設定された環境変数は、そのイメージから実行されたコンテナであれば維持されます。
-環境変数の参照は ``docker inspect`` を用い、値の変更は ``docker run --env <key>=<value>`` により行うことができます。
+環境変数の維持は、予期しない悪影響を引き起こす可能性があります。たとえば、 ``ENV DEBIAN_FRONTEND=noninteractive` を設定すると、 ``apt-get`` の挙動を変えます。そのため、イメージの利用者を混乱させるかもしれません。
 
-.. > **Note**:
-   > Environment persistence can cause unexpected side effects. For example,
-   > setting `ENV DEBIAN_FRONTEND noninteractive` may confuse apt-get
-   > users on a Debian-based image. To set a value for a single command, use
-   > `RUN <key>=<value> <command>`.
+.. If an environment variable is only needed during build, and not in the final image, consider setting a value for a single command instead:
 
-.. note::
+環境変数が構築中のみ必要で、最終イメージで不要な場合は、代わりにコマンドで値の指定を検討ください。
 
-   環境変数が維持されると、思わぬ副作用を引き起こすことがあります。
-   たとえば ``ENV DEBIAN_FRONTEND noninteractive`` という設定を行なっていると、Debian ベースのイメージにおいて apt-get を使う際には混乱を起こすかもしれません。
-   1 つのコマンドには 1 つの値のみを設定するには ``RUN <key>=<value> <command>`` を実行します。
+::
 
-.. _add:
+   RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y ...
+
+.. Or using ARG, which is not persisted in the final image:
+
+あるいは、 ``ARG`` を使えば、最終イメージでは保持されません。
+
+::
+
+   ARG DEBIAN_FRONTEND=noninteractive
+   RUN apt-get update && apt-get install -y ...
+
+..    Alternative syntax
+
+.. note:: **別の書き方**
+
+   .. The ENV instruction also allows an alternative syntax ENV <key> <value>, omitting the =. For example:
+   
+   ``ENV`` 命令では、 ``ENV <キー> <値>`` のように、 ``=`` を省略する別の構文があります。例：
+
+   ::
+   
+      ENV MY_VAR my-value
+
+   .. This syntax does not allow for multiple environment-variables to be set in a single ENV instruction, and can be confusing. For example, the following sets a single environment variable (ONE) with value "TWO= THREE=world":
+
+   この構文では、1つの ``ENV`` 命令で、複数の環境変数を設定できません。そのため、混乱を引き起こす可能性があります。たとえば、以下の指定では、1つの環境変数（ ``ONE`` ）に対し、値 ``"TWO= THREE=world"`` を設定します。
+
+   ::
+   
+      ENV ONE TWO= THREE=world
+
+   .. The alternative syntax is supported for backward compatibility, but discouraged for the reasons outlined above, and may be removed in a future release.
+
+   後方互換のため、この別の書き方がサポートされています。しかし、先述で説明した理由のため、使わないほうが良いでしょう。加えて、将来のリリースでは削除される可能性があります。
+
+
+.. _builder-add:
 
 ADD
 ==========
 
 .. ADD has two forms:
 
-ADD には 2 つの書式があります。
+ADD には 2 つの形式があります。
 
-.. - `ADD <src>... <dest>`
-   - `ADD ["<src>",... "<dest>"]` (this form is required for paths containing
-   whitespace)
+::
 
-* ``ADD <src>... <dest>``
-* ``ADD ["<src>",... "<dest>"]`` （この書式はホワイトスペースを含むパスを用いる場合に必要）
+   ADD [--chown=<ユーザ>:<グループ>] <追加元>... <追加先>
+   ADD [--chown=<ユーザ>:<グループ>] ["<追加元>",... "<追加先>"]
 
-.. The `ADD` instruction copies new files, directories or remote file URLs from `<src>`
-   and adds them to the filesystem of the image at the path `<dest>`.
+.. The latter form is required for paths containing whitespace.
 
-``ADD`` 命令は ``<src>`` に示されるファイル、ディレクトリ、リモートファイル URL をコピーして、イメージ内のファイルシステム上のパス ``<dest>`` にこれらを加えます。
+パスに空白を含む場合には、後者の形式が必要です。
 
-.. Multiple `<src>` resource may be specified but if they are files or
-   directories then they must be relative to the source directory that is
-   being built (the context of the build).
-
-``<src>`` には複数のソースを指定することが可能です。
-ソースとしてファイルあるいはディレクトリが指定されている場合、そのパスは生成されたソース・ディレクトリ（ビルド・コンテキスト）からの相対パスでなければなりません。
-
-.. Each `<src>` may contain wildcards and matching will be done using Go's
-   [filepath.Match](http://golang.org/pkg/path/filepath#Match) rules. For example:
-
-``<src>`` にはワイルドカードを含めることができます。
-その場合、マッチング処理は Go 言語の `filepath.Match <http://golang.org/pkg/path/filepath#Match>`_ ルールに従って行われます。
-記述例は以下のとおりです。
-
-.. code-block:: dockerfile
-
-   ADD hom* /mydir/        # "hom" で始まる全てのファイルを追加
-   ADD hom?.txt /mydir/    # ? は１文字だけ一致します。例： "home.txt"
-
-.. The `<dest>` is an absolute path, or a path relative to `WORKDIR`, into which
-   the source will be copied inside the destination container.
-
-``<dest>`` は絶対パスか、あるいは ``WORKDIR`` からの相対パスにより指定します。
-対象としているコンテナ内において、そのパスに対してソースがコピーされます。
-
-.. code-block:: dockerfile
-
-   ADD test relativeDir/          # "test" を `WORKDIR`/relativeDir/ （相対ディレクトリ）に追加
-   ADD test /absoluteDir/          # "test" を /absoluteDir/ （絶対ディレクトリ）に追加
-
-.. When adding files or directories that contain special characters (such as `[`
-   and `]`), you need to escape those paths following the Golang rules to prevent
-   them from being treated as a matching pattern. For example, to add a file
-   named `arr[0].txt`, use the following;
-
-ファイルやディレクトリを追加する際に、その名前の中に（ ``[`` や ``]`` のような）特殊な文字が含まれている場合は、Go 言語のルールに従ってパス名をエスケープする必要があります。
-これはパターン・マッチングとして扱われないようにするものです。
-たとえば ``arr[0].txt`` というファイルを追加する場合は、以下のようにします。
-
-   ..  ADD arr[[]0].txt /mydir/    # copy a file named "arr[0].txt" to /mydir/
-
-.. code-block:: dockerfile
-
-   ADD arr[[]0].txt /mydir/    # "arr[0].txt" というファイルを /mydir/ へコピー
-
-.. All new files and directories are created with a UID and GID of 0.
-
-ADD されるファイルやディレクトリの UID と GID は、すべて 0 として生成されます。
-
-.. In the case where `<src>` is a remote file URL, the destination will
-   have permissions of 600. If the remote file being retrieved has an HTTP
-   `Last-Modified` header, the timestamp from that header will be used
-   to set the `mtime` on the destination file. However, like any other file
-   processed during an `ADD`, `mtime` will not be included in the determination
-   of whether or not the file has changed and the cache should be updated.
-
-``<src>`` にリモートファイル URL が指定された場合、コピー先のパーミッションは 600 となります。
-リモートファイルの取得時に HTTP の ``Last-Modified`` ヘッダが含まれている場合は、ヘッダに書かれたタイムスタンプを利用して、コピー先ファイルの ``mtime`` を設定します。
-ただし ``ADD`` によって処理されるファイルが何であっても、ファイルが変更されたかどうか、そしてキャッシュを更新するべきかどうかは ``mtime`` によって判断されるわけではありません。
-
-.. > **Note**:
-   > If you build by passing a `Dockerfile` through STDIN (`docker
-   > build - < somefile`), there is no build context, so the `Dockerfile`
-   > can only contain a URL based `ADD` instruction. You can also pass a
-   > compressed archive through STDIN: (`docker build - < archive.tar.gz`),
-   > the `Dockerfile` at the root of the archive and the rest of the
-   > archive will be used as the context of the build.
+..    Note
+    The --chown feature is only supported on Dockerfiles used to build Linux containers, and will not work on Windows containers. Since user and group ownership concepts do not translate between Linux and Windows, the use of /etc/passwd and /etc/group for translating user and group names to IDs restricts this feature to only be viable for Linux OS-based containers.
 
 .. note::
 
-   ``Dockerfile`` を標準入力から生成する場合（ ``docker build - < somefile`` ）は、ビルド・コンテキストが存在していないことになるので、``ADD`` 命令には URL の指定しか利用できません。
-   また標準入力から圧縮アーカイブを入力する場合（ ``docker build - < archive.tar.gz`` ）は、そのアーカイブのルートにある ``Dockerfile`` と、アーカイブ内のファイルすべてが、ビルド時のコンテキストとなります。
+   ``--chown`` 機能がサポートされているのは、 Linux コンテナを構築するために使う Dockerfile 上のみです。そのため、 Windows コンテナ上では機能しません。Linux と Windows 間では、ユーザとグループの所有者に関する概念を変換できません。ユーザ名とグループ名を ID に変換するには、 ``/etc/passwd`` と ``/etc/group`` を使いますが、これができるのは Linux OS をベースとしたコンテナのみです。
 
-.. > **Note**:
-   > If your URL files are protected using authentication, you
-   > will need to use `RUN wget`, `RUN curl` or use another tool from
-   > within the container as the `ADD` instruction does not support
-   > authentication.
+.. The ADD instruction copies new files, directories or remote file URLs from <src> and adds them to the filesystem of the image at the path <dest>.
+
+``ADD`` 命令では、追加したいファイル、ディレクトリ、リモートファイルの URL を ``<追加元>`` で指定すると、これらをイメージのファイルシステム上のパス ``<追加先>`` に追加します。
+
+.. Multiple <src> resources may be specified but if they are files or directories, their paths are interpreted as relative to the source of the context of the build.
+
+複数の ``追加元`` リソースを指定できます。ファイルやディレクトリの場合、それぞれのパスは、構築コンテキストの追加先に対する相対パスとして解釈されます。
+
+.. Each <src> may contain wildcards and matching will be done using Go’s filepath.Match rules. For example:
+
+それぞれの ``追加元`` には、Go 言語の `filepath.Match <http://golang.org/pkg/path/filepath#Match>`_ ルールを使い、ワイルドカードや一致が処理されます。
+
+.. To add all files starting with “hom”:
+
+"hom" で始まるファイルすべてを追加するには、次のようにします。
+
+::
+
+   ADD hom* /mydir/
+
+.. In the example below, ? is replaced with any single character, e.g., “home.txt”.
+
+次の例では、 ``?`` は "home.txt" のような1文字に置き換えられます。
+
+::
+
+   ADD hom?.txt /mydir/
+
+.. The <dest> is an absolute path, or a path relative to WORKDIR, into which the source will be copied inside the destination container.
+
+``<追加先>`` は絶対パスか ``WORKDIR`` （作業ディレクトリ）からの相対パスであり、これらの（追加元の）ソースを送信先コンテナ内にコピーします。
+
+.. The example below uses a relative path, and adds “test.txt” to <WORKDIR>/relativeDir/:
+
+以下は相対パスを使う例で、 "test.txt" を ``<WORKDIR>/relativeDir/`` （相対ディレクトリ）に追加します。
+
+::
+
+   ADD test.txt relativeDir/
+
+.. Whereas this example uses an absolute path, and adds “test.txt” to /absoluteDir/
+
+次は絶対パスを使う例です。 ``/absoluteDir/`` （相対ディレクトリ）に "test.txt" を追加します。
+
+::
+
+   ADD test.txt /absoluteDir/
+
+.. When adding files or directories that contain special characters (such as [ and ]), you need to escape those paths following the Golang rules to prevent them from being treated as a matching pattern. For example, to add a file named arr[0].txt, use the following;
+
+特殊文字（ ``[`` や ``]`` など）を含むファイルやディレクトリを追加する場合は、Go 言語のルールに従い、各パスをエスケープする必要があります。たとえば、ファイル名 ``arr[0].txt,`` を追加するには、次のようにします。
+
+::
+
+   ADD arr[[]0].txt /mydir/
+
+.. All new files and directories are created with a UID and GID of 0, unless the optional --chown flag specifies a given username, groupname, or UID/GID combination to request specific ownership of the content added. The format of the --chown flag allows for either username and groupname strings or direct integer UID and GID in any combination. Providing a username without groupname or a UID without GID will use the same numeric UID as the GID. If a username or groupname is provided, the container’s root filesystem /etc/passwd and /etc/group files will be used to perform the translation from name to integer UID or GID respectively. The following examples show valid definitions for the --chown flag:
+
+新しいファイルやディレクトリは、オプションの ``--chown`` フラグでユーザ名、グループ名、UID/GID の組み合わせて追加対象の権限指定リクエストを指定しない限り、 UID と GID が 0 として作成されます。 ``--chown`` フラグの書式により、ユーザ名とグループ名の文字列の指定や、整数として直接 UID と GID のあらゆる組み合わせの指定ができます。ユーザ名かグループ名を指定すると、コンテナのルート・ファイルシステム上にある ``/etc/passwd`` と ``/etc/group`` ファイルを使い、その名前から適切な整数の UID や GID にそれぞれ変換する処理が行われます。以下は ``--chown`` フラグを使って適切に定義する例です。
+
+::
+
+   ADD --chown=55:mygroup files* /somedir/
+   ADD --chown=bin files* /somedir/
+   ADD --chown=1 files* /somedir/
+   ADD --chown=10:11 files* /somedir/
+
+.. If the container root filesystem does not contain either /etc/passwd or /etc/group files and either user or group names are used in the --chown flag, the build will fail on the ADD operation. Using numeric IDs requires no lookup and will not depend on container root filesystem content.
+
+もしも、コンテナのルート・ファイルシステムに ``/etc/passwd`` や ``/etc/group`` ファイルが無く、さらに ``--chown`` フラグで使われたユーザ名やグループ名が存在しない場合は、 ``ADD`` の処理段階で構築が失敗します。整数で ID を指定すると、（ユーザ名が存在しているかどうか）検索する必要がなく、コンテナのルート・ファイルシステムの内容に依存しません。
+
+.. In the case where <src> is a remote file URL, the destination will have permissions of 600. If the remote file being retrieved has an HTTP Last-Modified header, the timestamp from that header will be used to set the mtime on the destination file. However, like any other file processed during an ADD, mtime will not be included in the determination of whether or not the file has changed and the cache should be updated.
+
+``<追加元>`` がリモートにあるファイル URL の場合には、追加先のパーミッションは 600 になります。もしも、リモートファイルの取得時に HTTP ヘッダ ``Last-Modified`` があれば、追加先の ``mtime`` を設定するために使います。しかしながら、 ``ADD`` の途中で処理される他のファイルと同じように、ファイルが変更されたかどうかや、キャッシュを更新するかどうかを判断するために ``mtime`` は使われません。
+
+..    Note
+    If you build by passing a Dockerfile through STDIN (docker build - < somefile), there is no build context, so the Dockerfile can only contain a URL based ADD instruction. You can also pass a compressed archive through STDIN: (docker build - < archive.tar.gz), the Dockerfile at the root of the archive and the rest of the archive will be used as the context of the build.
 
 .. note::
 
-   URL ファイルが認証によって保護されている場合は、``RUN wget`` や ``RUN curl`` あるいは同様のツールをコンテナ内から利用する必要があります。``ADD`` 命令は認証処理をサポートしていません。
+   :ruby:`標準入力 <STDIN>` を通し（ ``docker build - < ファイル名`` ） ``Dockerfile`` を渡して構築する場合は、 :ruby:`構築コンテクスト <build context>` が存在しませんので、 ``Dockerfile`` で URL をベースとした ``ADD`` のみ追加可能です。また、標準入力で圧縮したアーカイブも渡せます（ ``docker build - < archive.tar.gz`` ）ので、アーカイブのルートにある ``Dockerfile`` と、以降に続くアーカイブ内容が、構築用のコンテクストとして利用されます。
 
-.. > **Note**:
-   > The first encountered `ADD` instruction will invalidate the cache for all
-   > following instructions from the Dockerfile if the contents of `<src>` have
-   > changed. This includes invalidating the cache for `RUN` instructions.
-   > See the [`Dockerfile` Best Practices
-   guide](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/#/build-cache) for more information.
+.. If your URL files are protected using authentication, you need to use RUN wget, RUN curl or use another tool from within the container as the ADD instruction does not support authentication.
+
+もしも URL ファイルが認証によって保護されている場合、``ADD`` 命令は認証をサポートしていないため、コンテナ内で  ``RUN wget`` や ``RUN curl`` など他のツールを使う必要があります。
+
+..    Note
+    The first encountered ADD instruction will invalidate the cache for all following instructions from the Dockerfile if the contents of <src> have changed. This includes invalidating the cache for RUN instructions. See the Dockerfile Best Practices guide – Leverage build cache for more information.
 
 .. note::
 
-   ``ADD`` 命令の ``<src>`` の内容が変更されていた場合、その ``ADD`` 命令以降に続く命令のキャッシュはすべて無効化されます。
-   そこには ``RUN`` 命令に対するキャッシュの無効化も含まれます。
-   詳しくは ``Dockerfile`` の :ref:`ベスト・プラクティス・ガイド <build-cache>` を参照してください。
+   ``ADD`` 命令を処理するにあたり、 ``<追加元>`` の内容が変更されている場合は、その Dockerfile の対象行以降でキャッシュを無効にします。``RUN`` 命令のためのキャッシュも、無効になる対象です。詳しい情報は :ref:`ベストプラクティス・ガイド - 構築キャッシュの活用 <leverage-build-cache>` をご覧ください。
+
 
 .. ADD obeys the following rules:
 
 ``ADD`` は以下のルールに従います。
 
-.. - The `<src>` path must be inside the *context* of the build;
-     you cannot `ADD ../something /something`, because the first step of a
-     `docker build` is to send the context directory (and subdirectories) to the
-     docker daemon.
+..    The <src> path must be inside the context of the build; you cannot ADD ../something /something, because the first step of a docker build is to send the context directory (and subdirectories) to the docker daemon.
+    If <src> is a URL and <dest> does not end with a trailing slash, then a file is downloaded from the URL and copied to <dest>.
+    If <src> is a URL and <dest> does end with a trailing slash, then the filename is inferred from the URL and the file is downloaded to <dest>/<filename>. For instance, ADD http://example.com/foobar / would create the file /foobar. The URL must have a nontrivial path so that an appropriate filename can be discovered in this case (http://example.com will not work).
+    If <src> is a directory, the entire contents of the directory are copied, including filesystem metadata.
 
-* ``<src>`` のパス指定は、ビルド **コンテキスト** 内でなければならないため、たとえば ``ADD ../something /something`` といったことはできません。
-  ``docker build`` の最初の処理ステップでは、コンテキスト・ディレクトリ（およびそのサブディレクトリ）を Docker デーモンに送信するところから始まるためです。
+- ``<追加元>`` のパスは、構築コンテクスト内にある必要があります。つまり、 ``ADD .../どこか /どこか`` のように指定できません。これは、 ``docker build`` の第一段階が、コンテクスト対象のディレクトリ（とサブディレクトリ）を docker デーモンに対して送信するからです。
+- もしも ``<追加元>`` が URL で ``追加先`` の最後が :ruby:`スラッシュ記号 <trailing slash>` で終わっていなければ、URL からファイルをダウンロードした後、 ``<追加先>`` にコピーします。
+- もしも ``<追加元>`` が URL で ``追加先`` の最後が :ruby:`スラッシュ記号 <trailing slash>` で終わっていれば、URL からファイル名を推測し、それから ``<追加先>/<ファイル名>`` にファイルをダウンロードします。たとえば、 ``ADD http://example.com/foobar /`` は、ファイル ``/foobar`` を作成します。その際、適切なファイル名を検出できるようするため、URL には何らかのパスを含める必要があります（ ``http://example.com`` は動作しません ）。
+- ``<追加元>`` がディレクトリであれば、ファイルシステムのメタデータも含む、ディレクトリの内容すべてがコピーされます。
 
-.. - If `<src>` is a URL and `<dest>` does not end with a trailing slash, then a
-     file is downloaded from the URL and copied to `<dest>`.
+..    Note
+    The directory itself is not copied, just its contents.
 
-* ``<src>`` が URL 指定であって ``<dest>`` の最後にスラッシュが指定されていない場合、そのファイルを URL よりダウンロードして ``<dest>`` にコピーします。
+.. note::
 
-.. - If `<src>` is a URL and `<dest>` does end with a trailing slash, then the
-     filename is inferred from the URL and the file is downloaded to
-     `<dest>/<filename>`. For instance, `ADD http://example.com/foobar /` would
-     create the file `/foobar`. The URL must have a nontrivial path so that an
-     appropriate filename can be discovered in this case (`http://example.com`
-     will not work).
+   対象ディレクトリそのものはコピーしません。ディレクトリの内容のみコピー対象です。
 
-* ``<src>`` が URL 指定であって ``<dest>`` の最後にスラッシュが指定された場合、ファイルが指定されたものとして扱われ、URL からダウンロードして ``<dest>/<filename>`` にコピーします。
-  たとえば ``ADD http://example.com/foobar /`` という記述は ``/foobar`` というファイルを作ることになります。
-  URL には正確なパス指定が必要です。
-  上の記述であれば、適切なファイルが見つけ出されます。
-  （ ``http://example.com`` では正しく動作しません。）
+..    If <src> is a local tar archive in a recognized compression format (identity, gzip, bzip2 or xz) then it is unpacked as a directory. Resources from remote URLs are not decompressed. When a directory is copied or unpacked, it has the same behavior as tar -x, the result is the union of:
+        Whatever existed at the destination path and
+        The contents of the source tree, with conflicts resolved in favor of “2.” on a file-by-file basis.
 
-.. - If `<src>` is a directory, the entire contents of the directory are copied,
-     including filesystem metadata.
+- ``<追加元>`` がローカルにあり、認識できる圧縮形式（ :ruby:`無圧縮 <identity>` 、 gzip 、 gzip2、xz ）の tar アーカイブの場合は、ディレクトリとして :ruby:`展開 <unpacked>` します。リモート URL からのリソースは展開 **しません** 。ディレクトリのコピーまたは展開は、 ``tar -x`` の挙動と同じ、次の処理の組み合わせです。
 
-* ``<src>`` がディレクトリである場合、そのディレクトリ内の内容がすべてコピーされます。
-  ファイルシステムのメタデータも含まれます。
+   1. 送信先に何らかのパスが存在していたら、
+   2. 1つ1つのファイルごとに、ソースツリーに含まれる方を優先して処理（コピー）する
+   
+   .. note::
+   
+      ファイルが認識できる圧縮形式かどうかにかかわらず、ファイル名ではなく、対象ファイルの内容に基づいて処理が行われます。たとえば、空ファイルの名前が ``.tar.gz`` だとしておｍ、これは圧縮ファイルとは認識されず、ファイル展開に関するエラーメッセージは一切表示 **されず** 、それどころか、ファイルは単に追加先にコピーされます。
 
-  .. > **Note**:
-     > The directory itself is not copied, just its contents.
+..    If <src> is any other kind of file, it is copied individually along with its metadata. In this case, if <dest> ends with a trailing slash /, it will be considered a directory and the contents of <src> will be written at <dest>/base(<src>).
+    If multiple <src> resources are specified, either directly or due to the use of a wildcard, then <dest> must be a directory, and it must end with a slash /.
+    If <dest> does not end with a trailing slash, it will be considered a regular file and the contents of <src> will be written at <dest>.
+    If <dest> doesn’t exist, it is created along with all missing directories in its path.
 
-  .. note::
+- ``追加元`` が何らかのファイルの場合は、そのメタデータと一緒に個別にコピーされます。 ``<追加先>`` が :ruby:`スラッシュ記号 <trailing slash>` で終わっている場合は、これがディレクトリとみなされ、 ``<追加元>`` は ``<追加先>/base(<送信元>)`` に書き込まれます。
+- 複数の ``<追加元>`` が :ruby:`スラッシュ記号 <trailing slash>` で終わっていなければ、対象は通常のファイルとみなされ、 ``<追加元>`` の内容が、 ``<追加先>`` に書き込まれます。
+- ``<追加先>`` が存在しない場合は、対象パス内に存在していないディレクトリ全てと共に作成されます。
 
-      ディレクトリそのものはコピーされません。
-      コピーされるのはその中身です。
 
-.. - If `<src>` is a *local* tar archive in a recognized compression format
-     (identity, gzip, bzip2 or xz) then it is unpacked as a directory. Resources
-     from *remote* URLs are **not** decompressed. When a directory is copied or
-     unpacked, it has the same behavior as `tar -x`, the result is the union of:
-
-* ``<src>`` が **ローカル** にある tar アーカイブであって、認識できるフォーマット（gzip、bzip2、xz）である場合、1 つのディレクトリ配下に展開されます。
-  **リモート** URL の場合は展開 **されません** 。
-  ディレクトリのコピーあるいは展開の仕方は ``tar -x`` と同等です。
-  つまりその結果は以下の 2 つのいずれかに従います。
-
-  ..  1. Whatever existed at the destination path and
-      2. The contents of the source tree, with conflicts resolved in favor
-         of "2." on a file-by-file basis.
-
-  1. コピー先に指定されていれば、それが存在しているかどうかに関わらず。あるいは、
-  2. ソース・ツリーの内容に従って各ファイルごとに行う。衝突が発生した場合は 2. を優先する。
-
-  .. > **Note**:
-     > Whether a file is identified as a recognized compression format or not
-     > is done solely based on the contents of the file, not the name of the file.
-     > For example, if an empty file happens to end with `.tar.gz` this will not
-     > be recognized as a compressed file and **will not** generate any kind of
-     > decompression error message, rather the file will simply be copied to the
-     > destination.
-
-  .. note::
-
-     圧縮されたファイルが認識可能なフォーマットであるかどうかは、そのファイル内容に基づいて確認されます。
-     名前によって判断されるわけではありません。
-     たとえば、空のファイルの名前の末尾がたまたま ``.tar.gz`` となっていた場合、圧縮ファイルとして認識されないため、解凍に失敗したといったエラーメッセージは一切 **出ることはなく** 、このファイルはコピー先に向けて単純にコピーされるだけです。
-
-.. - If `<src>` is any other kind of file, it is copied individually along with
-     its metadata. In this case, if `<dest>` ends with a trailing slash `/`, it
-     will be considered a directory and the contents of `<src>` will be written
-     at `<dest>/base(<src>)`.
-
-* ``<src>`` が上に示す以外のファイルであった場合、メタデータも含めて個々にコピーされます。
-  このとき ``<dest>`` が ``/`` で終わっていたらディレクトリとみなされるので、``<src>`` の内容は ``<dest>/base(<src>)`` に書き込まれることになります。
-
-.. - If multiple `<src>` resources are specified, either directly or due to the
-     use of a wildcard, then `<dest>` must be a directory, and it must end with
-     a slash `/`.
-
-* 複数の ``<src>`` が直接指定された場合、あるいはワイルドカードを用いて指定された場合、``<dest>`` はディレクトリとする必要があり、末尾には ``/`` をつけなければなりません。
-
-.. - If `<dest>` does not end with a trailing slash, it will be considered a
-     regular file and the contents of `<src>` will be written at `<dest>`.
-
-* ``<dest>`` の末尾にスラッシュがなかった場合、通常のファイルとみなされるため、``<src>`` の内容は ``<dest>`` に書き込まれることになります。
-
-.. - If `<dest>` doesn't exist, it is created along with all missing directories
-     in its path.
-
-* ``<dest>`` のパス内のディレクトリが存在しなかった場合、すべて生成されます。
-
-.. _copy:
+.. _builder-copy:
 
 COPY
 ==========
 
 .. COPY has two forms:
 
-COPY は２つの形式があります。
+COPY には 2 つの形式があります。
 
-.. - `COPY <src>... <dest>`
-   - `COPY ["<src>",... "<dest>"]` (this form is required for paths containing
-   whitespace)
+::
 
-* ``COPY <src>... <dest>``
-* ``COPY ["<src>",... "<dest>"]`` （パスにホワイトスペースを含む場合にこの書式が必要）
+   COPY [--chown=<ユーザ>:<グループ>] <コピー元>... <コピー先>
+   COPY [--chown=<ユーザ>:<グループ>] ["<コピー元>",... "<コピー先>"]
 
-.. The `COPY` instruction copies new files or directories from `<src>`
-   and adds them to the filesystem of the container at the path `<dest>`.
 
-``COPY`` 命令は ``<src>`` からファイルやディレクトリを新たにコピーして、コンテナ内のファイルシステムのパス ``<dest>`` に追加します。
+.. This latter form is required for paths containing whitespace
 
-.. Multiple `<src>` resource may be specified but they must be relative
-   to the source directory that is being built (the context of the build).
+パスに空白を含む場合には、後者の形式が必要です。
 
-``<src>`` には複数のソースを指定することが可能です。
-ソースとしてファイルあるいはディレクトリが指定されている場合、そのパスは生成されたソース・ディレクトリ（ビルド・コンテキスト）からの相対パスでなければなりません。
-
-.. Each `<src>` may contain wildcards and matching will be done using Go's
-   [filepath.Match](http://golang.org/pkg/path/filepath#Match) rules. For example:
-
-``<src>`` にはワイルドカードを含めることができます。
-その場合、マッチング処理は Go 言語の `filepath.Match <http://golang.org/pkg/path/filepath#Match>`_ ルールに従って行われます。
-記述例は以下のとおりです。
-
-.. code-block:: dockerfile
-
-   COPY hom* /mydir/        # "hom" で始まる全てのファイルを追加
-   COPY hom?.txt /mydir/    # ? は１文字だけ一致します。例： "home.txt"
-
-.. The `<dest>` is an absolute path, or a path relative to `WORKDIR`, into which
-   the source will be copied inside the destination container.
-
-``<dest>`` は絶対パスか、あるいは ``WORKDIR`` からの相対パスにより指定します。
-対象としているコンテナ内において、そのパスに対してソースがコピーされます。
-
-.. code-block:: dockerfile
-
-   COPY test relativeDir/   # "test" を `WORKDIR`/relativeDir/ （相対ディレクトリ）に追加
-   COPY test /absoluteDir/   # "test" を /absoluteDir/ （絶対ディレクトリ）に追加
-
-.. When copying files or directories that contain special characters (such as `[`
-   and `]`), you need to escape those paths following the Golang rules to prevent
-   them from being treated as a matching pattern. For example, to copy a file
-   named `arr[0].txt`, use the following;
-
-ファイルやディレクトリを追加する際に、その名前の中に（ ``[`` や ``]`` のような）特殊な文字が含まれている場合は、Go 言語のルールに従ってパス名をエスケープする必要があります。
-これはパターン・マッチングとして扱われないようにするものです。
-たとえば ``arr[0].txt`` というファイルを追加する場合は、以下のようにします。
-
-   .. COPY arr[[]0].txt /mydir/    # copy a file named "arr[0].txt" to /mydir/
-
-.. code-block:: dockerfile
-
-   COPY arr[[]0].txt /mydir/    # "arr[0].txt" というファイルを /mydir/ へコピー
-
-.. All new files and directories are created with a UID and GID of 0.
-
-コピーされるファイルやディレクトリの UID と GID は、すべて 0 として生成されます。
-
-.. > **Note**:
-   > If you build using STDIN (`docker build - < somefile`), there is no
-   > build context, so `COPY` can't be used.
+..    Note
+    The --chown feature is only supported on Dockerfiles used to build Linux containers, and will not work on Windows containers. Since user and group ownership concepts do not translate between Linux and Windows, the use of /etc/passwd and /etc/group for translating user and group names to IDs restricts this feature to only be viable for Linux OS-based containers.
 
 .. note::
 
-  ``Dockerfile`` を標準入力から生成する場合（ ``docker build - < somefile`` ）は、ビルド・コンテキストが存在していないことになるので、``COPY`` 命令は利用することができません。
+   ``--chown`` 機能がサポートされているのは、 Linux コンテナを構築するために使う Dockerfile 上のみです。そのため、 Windows コンテナ上では機能しません。Linux と Windows 間では、ユーザとグループの所有者に関する概念を変換できません。ユーザ名とグループ名を ID に変換するには、 ``/etc/passwd`` と ``/etc/group`` を使いますが、これができるのは Linux OS をベースとしたコンテナのみです。
 
-.. Optionally `COPY` accepts a flag `--from=<name|index>` that can be used to set
-   the source location to a previous build stage (created with `FROM .. AS <name>`)
-   that will be used instead of a build context sent by the user. The flag also 
-   accepts a numeric index assigned for all previous build stages started with 
-   `FROM` instruction. In case a build stage with a specified name can't be found an 
-   image with the same name is attempted to be used instead.
+.. The COPY instruction copies new files or directories from <src> and adds them to the filesystem of the container at the path <dest>.
 
-オプションとして ``COPY`` にはフラグ ``--from=<name|index>`` があります。
-これは実行済のビルド・ステージ（ ``FROM .. AS <name>`` により生成）におけるソース・ディレクトリを設定するものです。
-これがあると、ユーザーが指定したビルド・コンテキストのかわりに、設定されたディレクトリが用いられます。
-このフラグは数値インデックスを指定することも可能です。
-この数値インデックスは、``FROM`` 命令から始まる実行済のビルド・ステージすべてに割り当てられている値です。
-指定されたビルド・ステージがその名前では見つけられなかった場合、指定された数値によって見つけ出します。
+``COPY`` 命令では、追加したいファイル、ディレクトリを ``<コピー元>`` で指定すると、これらをイメージのファイルシステム上のパス ``<コピー先>`` に追加します。
+
+.. Multiple <src> resources may be specified but the paths of files and directories will be interpreted as relative to the source of the context of the build.
+
+複数の ``コピー元`` リソースを指定できます。ファイルやディレクトリの場合、それぞれのパスは、構築コンテキストのコピー先に対する相対パスとして解釈されます。
+
+.. Each <src> may contain wildcards and matching will be done using Go’s filepath.Match rules. For example:
+
+それぞれの ``コピー元`` には、Go 言語の `filepath.Match <http://golang.org/pkg/path/filepath#Match>`_ ルールを使い、ワイルドカードや一致が処理されます。
+
+.. To add all files starting with “hom”:
+
+"hom" で始まるファイルすべてを追加するには、次のようにします。
+
+::
+
+   COPY hom* /mydir/
+
+.. In the example below, ? is replaced with any single character, e.g., “home.txt”.
+
+次の例では、 ``?`` は "home.txt" のような1文字に置き換えられます。
+
+
+::
+
+   COPY hom?.txt /mydir/
+
+.. The <dest> is an absolute path, or a path relative to WORKDIR, into which the source will be copied inside the destination container.
+
+``<コピー先>`` は絶対パスか ``WORKDIR`` （作業ディレクトリ）からの相対パスであり、これらの（コピー元の）ソースを送信先コンテナ内にコピーします。
+
+.. The example below uses a relative path, and adds “test.txt” to <WORKDIR>/relativeDir/:
+
+以下は相対パスを使う例で、 "test.txt" を ``<WORKDIR>/relativeDir/`` （相対ディレクトリ）に追加します。
+
+::
+
+   COPY test.txt relativeDir/
+
+.. Whereas this example uses an absolute path, and adds “test.txt” to /absoluteDir/
+
+次は絶対パスを使う例です。 ``/absoluteDir/`` （相対ディレクトリ）に "test.txt" を追加します。
+
+::
+
+   COPY test.txt /absoluteDir/
+
+.. When copying files or directories that contain special characters (such as [ and ]), you need to escape those paths following the Golang rules to prevent them from being treated as a matching pattern. For example, to copy a file named arr[0].txt, use the following;
+
+特殊文字（ ``[`` や ``]`` など）を含むファイルやディレクトリを追加する場合は、Go 言語のルールに従い、各パスをエスケープする必要があります。たとえば、ファイル名 ``arr[0].txt,`` を追加するには、次のようにします。
+
+::
+
+   COPY arr[[]0].txt /mydir/
+
+.. All new files and directories are created with a UID and GID of 0, unless the optional --chown flag specifies a given username, groupname, or UID/GID combination to request specific ownership of the copied content. The format of the --chown flag allows for either username and groupname strings or direct integer UID and GID in any combination. Providing a username without groupname or a UID without GID will use the same numeric UID as the GID. If a username or groupname is provided, the container’s root filesystem /etc/passwd and /etc/group files will be used to perform the translation from name to integer UID or GID respectively. The following examples show valid definitions for the --chown flag:
+
+新しいファイルやディレクトリは、オプションの ``--chown`` フラグでユーザ名、グループ名、UID/GID の組み合わせて追加対象の権限指定リクエストを指定しない限り、 UID と GID が 0 として作成されます。 ``--chown`` フラグの書式により、ユーザ名とグループ名の文字列の指定や、整数として直接 UID と GID のあらゆる組み合わせの指定ができます。ユーザ名かグループ名を指定すると、コンテナのルート・ファイルシステム上にある ``/etc/passwd`` と ``/etc/group`` ファイルを使い、その名前から適切な整数の UID や GID にそれぞれ変換する処理が行われます。以下は ``--chown`` フラグを使って適切に定義する例です。
+
+::
+
+   COPY --chown=55:mygroup files* /somedir/
+   COPY --chown=bin files* /somedir/
+   COPY --chown=1 files* /somedir/
+   COPY --chown=10:11 files* /somedir/
+
+.. If the container root filesystem does not contain either /etc/passwd or /etc/group files and either user or group names are used in the --chown flag, the build will fail on the COPY operation. Using numeric IDs requires no lookup and does not depend on container root filesystem content.
+
+もしも、コンテナのルート・ファイルシステムに ``/etc/passwd`` や ``/etc/group`` ファイルが無く、さらに ``--chown`` フラグで使われたユーザ名やグループ名が存在しない場合は、 ``COPY`` の処理段階で構築が失敗します。整数で ID を指定すると、（ユーザ名が存在しているかどうか）検索する必要がなく、コンテナのルート・ファイルシステムの内容に依存しません。
+
+..    Note
+    If you build using STDIN (docker build - < somefile), there is no build context, so COPY can’t be used.
+
+.. note::
+
+   :ruby:`標準入力 <STDIN>` を通し（ ``docker build - < ファイル名`` ） ``Dockerfile`` を渡して構築しようとしても、 :ruby:`構築コンテクスト <build context>` が存在しませんので、 ``COPY`` は使えません。
+
+.. Optionally COPY accepts a flag --from=<name> that can be used to set the source location to a previous build stage (created with FROM .. AS <name>) that will be used instead of a build context sent by the user. In case a build stage with a specified name can’t be found an image with the same name is attempted to be used instead.
+
+オプションで、これまでの（ ``FROM .. AS <名前>`` として作成した）構築ステージをコピー元（ソース）の場所として指定するために、 ``COPY`` で ``--from=<名前>`` フラグを利用できます。これは、ユーザ自身が構築コンテキストを送る作業の替わりとなります。
 
 .. COPY obeys the following rules:
 
 ``COPY`` は以下のルールに従います。
 
-.. - The `<src>` path must be inside the *context* of the build;
-     you cannot `COPY ../something /something`, because the first step of a
-     `docker build` is to send the context directory (and subdirectories) to the
-     docker daemon.
+..    The <src> path must be inside the context of the build; you cannot COPY ../something /something, because the first step of a docker build is to send the context directory (and subdirectories) to the docker daemon.
+    If <src> is a directory, the entire contents of the directory are copied, including filesystem metadata.
 
-* ``<src>`` のパス指定は、ビルド **コンテキスト** 内でなければならないため、たとえば ``COPY ../something /something`` といったことはできません。
-  ``docker build`` の最初の処理ステップでは、コンテキスト・ディレクトリ（およびそのサブディレクトリ）を Docker デーモンに送信するところから始まるためです。
+- ``<コピー元>`` のパスは、構築コンテクスト内にある必要があります。つまり、 ``COPY .../どこか /どこか`` のように指定できません。これは、 ``docker build`` の第一段階が、コンテクスト対象のディレクトリ（とサブディレクトリ）を docker デーモンに対して送信するからです。
+- ``<コピー元>`` がディレクトリであれば、ファイルシステムのメタデータも含む、ディレクトリの内容すべてがコピーされます。
 
-.. - If `<src>` is a directory, the entire contents of the directory are copied,
-     including filesystem metadata.
+..    Note
+    The directory itself is not copied, just its contents.
 
-* ``<src>`` がディレクトリである場合、そのディレクトリ内の内容がすべてコピーされます。
-  ファイルシステムのメタデータも含まれます。
+.. note::
 
-  .. > **Note**:
-     > The directory itself is not copied, just its contents.
+   対象ディレクトリそのものはコピーしません。ディレクトリの内容のみコピー対象です。
 
-  .. note::
+..    If <src> is any other kind of file, it is copied individually along with its metadata. In this case, if <dest> ends with a trailing slash /, it will be considered a directory and the contents of <src> will be written at <dest>/base(<src>).
+    If multiple <src> resources are specified, either directly or due to the use of a wildcard, then <dest> must be a directory, and it must end with a slash /.
+    If <dest> does not end with a trailing slash, it will be considered a regular file and the contents of <src> will be written at <dest>.
+    If <dest> doesn’t exist, it is created along with all missing directories in its path.
 
-     ディレクトリそのものはコピーされません。
-     コピーされるのはその中身です。
+- ``コピー元`` が何らかのファイルの場合は、そのメタデータと一緒に個別にコピーされます。 ``<コピー先>`` が :ruby:`スラッシュ記号 <trailing slash>` で終わっている場合は、これがディレクトリとみなされ、 ``<コピー元>`` は ``<コピー先>/base(<コピー元>)`` に書き込まれます。
+- 複数の ``<コピー元>`` が :ruby:`スラッシュ記号 <trailing slash>` で終わっていなければ、対象は通常のファイルとみなされ、 ``<コピー元>`` の内容が、 ``<コピー先>`` に書き込まれます。
+- ``<コピー先>`` が存在しない場合は、対象パス内に存在していないディレクトリ全てと共に作成されます。
 
-.. - If `<src>` is any other kind of file, it is copied individually along with
-     its metadata. In this case, if `<dest>` ends with a trailing slash `/`, it
-     will be considered a directory and the contents of `<src>` will be written
-     at `<dest>/base(<src>)`.
 
-* ``<src>`` が上に示す以外のファイルであった場合、メタデータも含めて個々にコピーされます。
-  このとき ``<dest>`` が ``/`` で終わっていたらディレクトリとみなされるので、``<src>`` の内容は ``<dest>/base(<src>)`` に書き込まれることになります。
+..    Note
+    The first encountered COPY instruction will invalidate the cache for all following instructions from the Dockerfile if the contents of <src> have changed. This includes invalidating the cache for RUN instructions. See the Dockerfile Best Practices guide – Leverage build cache for more information.
 
-.. - If multiple `<src>` resources are specified, either directly or due to the
-     use of a wildcard, then `<dest>` must be a directory, and it must end with
-     a slash `/`.
+.. note::
 
-* 複数の ``<src>`` が直接指定された場合、あるいはワイルドカードを用いて指定された場合、``<dest>`` はディレクトリとする必要があり、末尾には ``/`` をつけなければなりません。
+   ``COPY`` 命令を処理するにあたり、 ``<コピー元>`` の内容が変更されている場合は、その Dockerfile の対象行以降でキャッシュを無効にします。``RUN`` 命令のためのキャッシュも、無効になる対象です。詳しい情報は :ref:`ベストプラクティス・ガイド - 構築キャッシュの活用 <leverage-build-cache>` をご覧ください。
 
-.. - If `<dest>` does not end with a trailing slash, it will be considered a
-     regular file and the contents of `<src>` will be written at `<dest>`.
 
-* ``<dest>`` の末尾にスラッシュがなかった場合、通常のファイルとみなされるため、``<src>`` の内容が ``<dest>`` に書き込まれます。
-
-.. - If `<dest>` doesn't exist, it is created along with all missing directories
-     in its path.
-
-* ``<dest>`` のパス内のディレクトリが存在しなかった場合、すべて生成されます。
-
-.. _entrypoint:
+.. _builder-entrypoint:
 
 ENTRYPOINT
 ==========
@@ -1857,83 +1543,71 @@ ENTRYPOINT
 
 ENTRYPOINT には２つの形式があります。
 
-.. - `ENTRYPOINT ["executable", "param1", "param2"]`
-     (*exec* form, preferred)
-   - `ENTRYPOINT command param1 param2`
-     (*shell* form)
+.. The exec form, which is the preferred form:
 
-* ``ENTRYPOINT ["executable", "param1", "param2"]`` （exec 形式、推奨）
-* ``ENTRYPOINT command param1 param2`` （シェル形式）
+*exec* 形式は、推奨されている形式です：
 
-.. An `ENTRYPOINT` allows you to configure a container that will run as an executable.
+::
 
-``ENTRYPOINT`` は、コンテナを実行モジュールのようにして実行する設定を行ないます。
+   ENTRYPOINT ["実行ファイル", "パラメータ1", "パラメータ2"]
 
-.. For example, the following will start nginx with its default content, listening
-   on port 80:
+.. The shell form:
 
-たとえば以下の例では、nginx をデフォルト設定で起動します。
-ポートは 80 番を利用します。
+*shell* 形式：
+
+::
+
+    ENTRYPOINT コマンド パラメータ1 パラメータ2
+
+.. An ENTRYPOINT allows you to configure a container that will run as an executable.
+
+``ENTRYPOINT`` は、コンテナを :ruby:`実行ファイル <executable>` として処理するように設定できます。
+
+.. For example, the following starts nginx with its default content, listening on port 80:
+
+たとえば、以下はデフォルト設定の nginx が、ポート 80 をリッスンして起動します。
 
 .. code-block:: bash
 
-    docker run -i -t --rm -p 80:80 nginx
+   docker run -i -t --rm -p 80:80 nginx
 
-.. Command line arguments to `docker run <image>` will be appended after all
-   elements in an *exec* form `ENTRYPOINT`, and will override all elements specified
-   using `CMD`.
-   This allows arguments to be passed to the entry point, i.e., `docker run <image> -d`
-   will pass the `-d` argument to the entry point.
-   You can override the `ENTRYPOINT` instruction using the `docker run --entrypoint`
-   flag.
+.. Command line arguments to docker run <image> will be appended after all elements in an exec form ENTRYPOINT, and will override all elements specified using CMD. This allows arguments to be passed to the entry point, i.e., docker run <image> -d will pass the -d argument to the entry point. You can override the ENTRYPOINT instruction using the docker run --entrypoint flag.
 
-``docker run <image>`` に対するコマンドライン引数は、exec 形式の ``ENTRYPOINT`` の指定要素の後に付け加えられます。
-そして ``CMD`` において指定された引数は上書きされます。
-これはつまり、引数をエントリーポイントに受け渡すことができるということです。
-たとえば ``docker run <image> -d`` としたときの ``-d`` は、引数としてエントリーポイントに渡されます。
-``docker run --entrypoint`` を利用すれば ``ENTRYPOINT`` の内容を上書きすることができます。
+コマンドラインでの ``docker run <イメージ名>`` に対する引数は、 *exec* 形式の ``ENTRYPOINT`` の全要素の後に追加されます。そして、 ``CMD`` を使って指定した全ての要素は上書きされます。これにより、 :ruby:`エントリーポイント <entry point>` に対する引数として渡せます。たとえば、 ``docker run <イメージ> -d`` では、エントリーポイントに対して引数 ``-d`` を渡せます。また、 ``ENTRYPOINT`` 命令の上書きは、 ``docker run --entrypoint`` フラグを使います。
 
-.. The *shell* form prevents any `CMD` or `run` command line arguments from being
-   used, but has the disadvantage that your `ENTRYPOINT` will be started as a
-   subcommand of `/bin/sh -c`, which does not pass signals.
-   This means that the executable will not be the container's `PID 1` - and
-   will _not_ receive Unix signals - so your executable will not receive a
-   `SIGTERM` from `docker stop <container>`.
+.. The shell form prevents any CMD or run command line arguments from being used, but has the disadvantage that your ENTRYPOINT will be started as a subcommand of /bin/sh -c, which does not pass signals. This means that the executable will not be the container’s PID 1 - and will not receive Unix signals - so your executable will not receive a SIGTERM from docker stop <container>.
 
-シェル形式では ``CMD`` や ``run`` のコマンドライン引数は受け付けずに処理を行います。
-ただし ``ENTRYPOINT`` は ``/bin/sh -c`` のサブコマンドとして起動されるので、シグナルを送信しません。
-これはつまり、実行モジュールがコンテナの ``PID 1`` にはならず、Unix のシグナルを受信しないということです。
-したがって ``docker stop <container>`` が実行されても、その実行モジュールは ``SIGTERM`` を受信しないことになります。
+*shell* 形式では、 ``CMD`` や ``run`` コマンドラインの引数を使えません。 ``ENTRYPOINT`` は ``/bin/sh -c`` のサブコマンドとして起動されるため、シグナルを渡せません。そのため、実行ファイルはコンテナの ``PID 1`` ではなく、Unix シグナルを受信できません。つまり、 ``docker stop <コンテナ名>`` を実行しても、実行ファイルは ``SIGTERM`` シグナルを受信しません。
 
-.. Only the last `ENTRYPOINT` instruction in the `Dockerfile` will have an effect.
+.. Only the last ENTRYPOINT instruction in the Dockerfile will have an effect.
 
-``ENTRYPOINT`` 命令は複数記述されていても、最後の命令しか処理されません。
+``ENTRYPOINT`` を複数書いても、``Dockerfile`` 中で一番最後の 命令しか処理されません。
 
 .. Exec form ENTRYPOINT example
+
+.. _exec-form-entrypoint-example:
 
 exec 形式の ENTRYPOINT 例
 ------------------------------
 
-.. You can use the *exec* form of `ENTRYPOINT` to set fairly stable default commands
-   and arguments and then use either form of `CMD` to set additional defaults that
-   are more likely to be changed.
+.. You can use the exec form of ENTRYPOINT to set fairly stable default commands and arguments and then use either form of CMD to set additional defaults that are more likely to be changed.
 
-``ENTRYPOINT`` の exec 形式は、デフォルト実行するコマンドおよび引数として、ほぼ変わることがないものを設定します。
-そして ``CMD`` 命令の 2 つある書式のいずれでもよいので、変更が必要になりそうな内容を追加で設定します。
+``ENTRYPOINT`` の *exec* 形式は、確実に実行するデフォルトのコマンドと引数を設定するために使います。そして、 ``CMD`` のどちらかの形式を使い、変わる可能性があるデフォルト（のパラメータや引数）を指定します。
 
-.. code-block:: dockerfile
+::
 
    FROM ubuntu
    ENTRYPOINT ["top", "-b"]
    CMD ["-c"]
 
-.. When you run the container, you can see that `top` is the only process:
+.. When you run the container, you can see that top is the only process:
 
-コンテナを実行すると、ただ 1 つのプロセスとして ``top`` があるのがわかります。
+このコンテナを実行すると、唯一のプロセスとして ``top`` が見えます。
 
 .. code-block:: bash
 
    $ docker run -it --rm --name test  top -H
+   
    top - 08:25:00 up  7:27,  0 users,  load average: 0.00, 0.01, 0.05
    Threads:   1 total,   1 running,   0 sleeping,   0 stopped,   0 zombie
    %Cpu(s):  0.1 us,  0.1 sy,  0.0 ni, 99.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
@@ -1943,27 +1617,27 @@ exec 形式の ENTRYPOINT 例
      PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND
        1 root      20   0   19744   2336   2080 R  0.0  0.1   0:00.04 top
 
-.. To examine the result further, you can use `docker exec`:
+.. To examine the result further, you can use docker exec:
 
-さらに詳しく見るには ``docker exec`` を実行します。
+さらに詳しく調べるには、 ``docker exec`` が使えます。
 
 .. code-block:: bash
 
    $ docker exec -it test ps aux
+   
    USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
    root         1  2.6  0.1  19752  2352 ?        Ss+  08:24   0:00 top -b -H
    root         7  0.0  0.1  15572  2164 ?        R+   08:25   0:00 ps aux
 
-.. And you can gracefully request `top` to shut down using `docker stop test`.
+.. And you can gracefully request top to shut down using docker stop test.
 
-``top`` を適切に終了させるには ``docker stop test`` を実行します。
+``top`` を適切に終了するには、``docker stop test`` を実行します。
 
-.. The following `Dockerfile` shows using the `ENTRYPOINT` to run Apache in the
-   foreground (i.e., as `PID 1`):
+.. The following Dockerfile shows using the ENTRYPOINT to run Apache in the foreground (i.e., as PID 1):
 
-次の ``Dockerfile`` は、Apache をフォアグラウンドで（つまり ``PID 1`` として）実行するような ``ENTRYPOINT`` の例を示しています。
+以下の ``Dockerfile`` は、Apache をフォアグラウンドで実行するために（つまり、 ``PID 1`` として） ``ENTRYPOINT`` を使います。
 
-.. code-block:: dockerfile
+::
 
    FROM debian:stable
    RUN apt-get update && apt-get install -y --force-yes apache2
@@ -1971,15 +1645,13 @@ exec 形式の ENTRYPOINT 例
    VOLUME ["/var/www", "/var/log/apache2", "/etc/apache2"]
    ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 
-.. If you need to write a starter script for a single executable, you can ensure that
-   the final executable receives the Unix signals by using `exec` and `gosu`
-   commands:
+.. If you need to write a starter script for a single executable, you can ensure that the final executable receives the Unix signals by using exec and gosu commands:
 
-1 つの実行モジュールを起動するスクリプトを書く場合、最終実行される実行モジュールが Unix シグナルを受信できるようにするには ``exec`` あるいは ``gosu`` を用います。
+実行ファイルの :ruby:`起動スクリプト <starter script>` を書く必要がある場合は、最後に起動する実行ファイルが Unix シグナルを確実に受信するようにするには、 ``exec`` と ``gosu`` コマンドを使えます。
 
 .. code-block:: bash
 
-   #!/bin/bash
+   #!/usr/bin/env bash
    set -e
    
    if [ "$1" = 'postgres' ]; then
@@ -1994,170 +1666,141 @@ exec 形式の ENTRYPOINT 例
    
    exec "$@"
 
-.. Lastly, if you need to do some extra cleanup (or communicate with other containers)
-   on shutdown, or are co-ordinating more than one executable, you may need to ensure
-   that the `ENTRYPOINT` script receives the Unix signals, passes them on, and then
-   does some more work:
+.. Lastly, if you need to do some extra cleanup (or communicate with other containers) on shutdown, or are co-ordinating more than one executable, you may need to ensure that the ENTRYPOINT script receives the Unix signals, passes them on, and then does some more work:
 
-シャットダウンの際に追加でクリーンアップするようなコマンドを実行したい（他のコンテナとの通信を行ないたい）場合、あるいは複数の実行モジュールを連動して動かしている場合は、``ENTRYPOINT`` のスクリプトが確実に Unix シグナルを受信し、これを受けて動作するようにすることが必要になるかもしれません。
+最後に、 :ruby:`停止時 <shutdown>` に追加のクリーンアップ（あるいは他のコンテナとの通信）をする場合や、複数の実行ファイルを組み合わせている場合は、 ``ENTRYPOINT`` スクリプトが Unix シグナルを受信し、続いて、他の処理を行うようにする必要があります。
 
 .. code-block:: bash
 
    #!/bin/sh
-   # メモ: ここで sh を用いました。したがって busybox コンテナーでも動作します。
-   
-   # ここで trap を用います。サービスが停止した後に手動でクリーンアップする
-   # コマンドを実行するにはこれも必要となります。
-   # こうしておかないと、1 つのコンテナーで複数サービスを起動しなければなりません。
+   # メモ：sh でスクリプトを書いたため、buxybox コンテナも動作する
+      
+   # サービスの停止後に、必要があれば手動でクリーンアップできるようにする場合や、
+   # 1つのコンテナ内で複数のサービスを起動できるようにする場合には、トラップを使う
    trap "echo TRAPed signal" HUP INT QUIT TERM
    
-   # ここからバックグラウンドでサービスを開始します
+   # ここでは、バックグラウンドでサービスを起動
    /usr/sbin/apachectl start
    
    echo "[hit enter key to exit] or run 'docker stop <container>'"
    read
    
-   # ここでサービスを停止しクリーンアップします。
+   # ここでは、サービスの停止とクリーンアップ
    echo "stopping apache"
    /usr/sbin/apachectl stop
    
    echo "exited $0"
 
-.. If you run this image with `docker run -it --rm -p 80:80 --name test apache`,
-   you can then examine the container's processes with `docker exec`, or `docker top`,
-   and then ask the script to stop Apache:
+.. If you run this image with docker run -it --rm -p 80:80 --name test apache, you can then examine the container’s processes with docker exec, or docker top, and then ask the script to stop Apache:
 
-このイメージを ``docker run -it --rm -p 80:80 --name test apache`` により実行したら、このコンテナのプロセスは ``docker exec`` や ``docker top`` を使って確認することができます。
-そしてこのスクリプトから Apache を停止させます。
+このイメージを ``docker run -it --rm -p 80:80 --name test apache`` で実行すると、以後、 ``docker exec`` や ``docker top`` でコンテナのプロセスを確認できます。その後、Apache を :ruby:`停止 <stop>` するようにスクリプトへ求めします。
 
 .. code-block:: bash
 
    $ docker exec -it test ps aux
+   
    USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
    root         1  0.1  0.0   4448   692 ?        Ss+  00:42   0:00 /bin/sh /run.sh 123 cmd cmd2
    root        19  0.0  0.2  71304  4440 ?        Ss   00:42   0:00 /usr/sbin/apache2 -k start
    www-data    20  0.2  0.2 360468  6004 ?        Sl   00:42   0:00 /usr/sbin/apache2 -k start
    www-data    21  0.2  0.2 360468  6000 ?        Sl   00:42   0:00 /usr/sbin/apache2 -k start
    root        81  0.0  0.1  15572  2140 ?        R+   00:44   0:00 ps aux
+   
    $ docker top test
+   
    PID                 USER                COMMAND
    10035               root                {run.sh} /bin/sh /run.sh 123 cmd cmd2
    10054               root                /usr/sbin/apache2 -k start
    10055               33                  /usr/sbin/apache2 -k start
    10056               33                  /usr/sbin/apache2 -k start
+   
    $ /usr/bin/time docker stop test
+   
    test
    real	0m 0.27s
    user	0m 0.03s
    sys	0m 0.03s
 
-.. > **Note:** you can override the `ENTRYPOINT` setting using `--entrypoint`,
-   > but this can only set the binary to *exec* (no `sh -c` will be used).
+..    Note
+    You can override the ENTRYPOINT setting using --entrypoint, but this can only set the binary to exec (no sh -c will be used).
 
 .. note::
 
-   ``--entrypoint`` を使うと ``ENTRYPOINT`` の設定を上書きすることができます。
-   ただしこの場合は、実行モジュールを exec 形式にできるだけです。
-   （``sh -c`` は利用されません。）
+   ``ENTRYPOINT`` 設定は ``--entrypoint`` を使って上書きできます。しかし、ここでの設定は、実行ファイルとしての :ruby:`処理 <exec>` だけです（ ``sh -c`` は使いません）。
 
-.. > **Note**:
-   > The *exec* form is parsed as a JSON array, which means that
-   > you must use double-quotes (") around words not single-quotes (').
+..    Note
+    The exec form is parsed as a JSON array, which means that you must use double-quotes (“) around words not single-quotes (‘).
 
 .. note::
 
-   exec 形式は JSON 配列として解釈されます。
-   したがって文字列をくくるのはダブルクォート（"）であり、シングルクォート（'）は用いてはなりません。
+   *exec* 形式は JSON 配列として解釈されますので、単語を囲むにはシングルクオート（'）ではなくダブルクオート（"）を使う必要があります。
 
-.. > **Note**:
-   > Unlike the *shell* form, the *exec* form does not invoke a command shell.
-   > This means that normal shell processing does not happen. For example,
-   > `ENTRYPOINT [ "echo", "$HOME" ]` will not do variable substitution on `$HOME`.
-   > If you want shell processing then either use the *shell* form or execute
-   > a shell directly, for example: `ENTRYPOINT [ "sh", "-c", "echo $HOME" ]`.
-   > When using the exec form and executing a shell directly, as in the case for
-   > the shell form, it is the shell that is doing the environment variable
-   > expansion, not docker.
+.. Unlike the shell form, the exec form does not invoke a command shell. This means that normal shell processing does not happen. For example, ENTRYPOINT [ "echo", "$HOME" ] will not do variable substitution on $HOME. If you want shell processing then either use the shell form or execute a shell directly, for example: ENTRYPOINT [ "sh", "-c", "echo $HOME" ]. When using the exec form and executing a shell directly, as in the case for the shell form, it is the shell that is doing the environment variable expansion, not docker.
 
-.. note::
-
-   シェル形式とは違って exec 形式はコマンドシェルを起動しません。
-   これはつまり、ごく普通のシェル処理とはならないということです。
-   たとえば ``ENTRYPOINT [ "echo", "$HOME" ]`` を実行したとすると、`$HOME` の変数置換は行われません。
-   シェル処理が行われるようにしたければ、シェル形式を利用するか、あるいはシェルを直接実行するようにします。
-   たとえば ``ENTRYPOINT [ "sh", "-c", "echo $HOME" ]`` とします。
-   exec 形式によってシェルを直接起動した場合、シェル形式の場合でも同じですが、変数置換を行うのはシェルであって、docker ではありません。
+*シェル* 形式とは異なり、 *exec* 形式はコマンドシェルを呼び出しません。つまり、通常のシェルとしての処理が怒らないのを意味します。たとえば、 ``ENTRYPOINT [ "echo", "$HOME" ]`` では、 ``$HOME`` を変数展開しません。シェルとしての処理を行いたい場合には、 *シェル* 形式を使うか、 ``ENTRYPOINT [ "sh", "-c", "echo $HOME" ]`` のようにシェルを直接実行します。exec 形式を使って直接シェルを実行する場合は、シェル形式の場合と同様に、環境変数の展開をするのはシェルであり、 Docker ではありません。
 
 .. Shell form ENTRYPOINT example
+
+.. _shell-form-entrypoint-example:
 
 シェル形式の ENTRYPOINT 例
 ------------------------------
 
-.. You can specify a plain string for the `ENTRYPOINT` and it will execute in `/bin/sh -c`.
-   This form will use shell processing to substitute shell environment variables,
-   and will ignore any `CMD` or `docker run` command line arguments.
-   To ensure that `docker stop` will signal any long running `ENTRYPOINT` executable
-   correctly, you need to remember to start it with `exec`:
+.. You can specify a plain string for the ENTRYPOINT and it will execute in /bin/sh -c. This form will use shell processing to substitute shell environment variables, and will ignore any CMD or docker run command line arguments. To ensure that docker stop will signal any long running ENTRYPOINT executable correctly, you need to remember to start it with exec:
 
-``ENTRYPOINT`` に指定した文字列は、そのまま ``/bin/sh -c`` の中で実行されます。
-この形式は、シェル環境変数を置換しながらシェル処理を実行します。
-そして ``CMD`` や ``docker run`` におけるコマンドライン引数は無視します。
-``ENTRYPOINT`` による実行モジュールがどれだけ実行し続けていても、確実に ``docker stop`` によりシグナル送信ができるようにするためには、忘れずに ``exec`` をつけて実行する必要があります。
+単に文字列を ``ENTRYPOINT``` で指定するだけで、 ``/bin/sh -c`` の中で実行できます。この形式では、環境変数を展開するためにシェルの処理を使います。そして、 ``CMD`` や ``docker run`` コマンドラインでの引数は無視されます。長期に実行している ``ENTRYPOINT`` の実行バイナリに対し、 ``docker stop`` で適切にシグナルを送るには、 ``exec`` で起動する必要があるのを念頭に置いてください。
 
-.. code-block:: dockerfile
+::
 
    FROM ubuntu
    ENTRYPOINT exec top -b
 
-.. When you run this image, you'll see the single `PID 1` process:
+.. When you run this image, you’ll see the single PID 1 process:
 
-上のイメージを実行すると、``PID 1`` のプロセスがただ 1 つだけあるのがわかります。
+このイメージで実行すると、 ``PID 1`` のプロセスが1つ見えます。
 
 .. code-block:: bash
 
    $ docker run -it --rm --name test top
+   
    Mem: 1704520K used, 352148K free, 0K shrd, 0K buff, 140368121167873K cached
    CPU:   5% usr   0% sys   0% nic  94% idle   0% io   0% irq   0% sirq
    Load average: 0.08 0.03 0.05 2/98 6
      PID  PPID USER     STAT   VSZ %VSZ %CPU COMMAND
        1     0 root     R     3164   0%   0% top -b
 
-.. Which will exit cleanly on `docker stop`:
+.. Which exits cleanly on docker stop:
 
-きれいに終了させるには ``docker stop`` を実行します。
-
-   ..  $ /usr/bin/time docker stop test
-       test
-       real	0m 0.20s
-       user	0m 0.02s
-       sys	0m 0.04s
+``docker stop`` でクリーンに終了します。
 
 .. code-block:: bash
 
    $ /usr/bin/time docker stop test
+   
    test
    real	0m 0.20s
    user	0m 0.02s
    sys	0m 0.04s
 
-.. If you forget to add `exec` to the beginning of your `ENTRYPOINT`:
+.. If you forget to add exec to the beginning of your ENTRYPOINT:
 
-仮に ``ENTRYPOINT`` の先頭に ``exec`` を記述し忘れたとします。
+仮に、 ``ENTRYPOINT`` のはじめに ``exec`` を追加し忘れたとします。
 
-.. code-block:: dockerfile
+::
 
    FROM ubuntu
    ENTRYPOINT top -b
    CMD --ignored-param1
 
+
 .. You can then run it (giving it a name for the next step):
 
-そして以下のように実行したとします。
-（名前をつけておいて次のステップで使います。）
+そして、これを使って起動します（指定した名前は次のステップで使います）。
 
 .. code-block:: bash
 
    $ docker run -it --name test top --ignored-param2
+   
    Mem: 1704184K used, 352484K free, 0K shrd, 0K buff, 140621524238337K cached
    CPU:   9% usr   2% sys   0% nic  88% idle   0% io   0% irq   0% sirq
    Load average: 0.01 0.02 0.05 2/101 7
@@ -2165,73 +1808,54 @@ exec 形式の ENTRYPOINT 例
        1     0 root     S     3168   0%   0% /bin/sh -c top -b cmd cmd2
        7     1 root     R     3164   0%   0% top -b
 
-.. You can see from the output of `top` that the specified `ENTRYPOINT` is not `PID 1`.
+.. You can see from the output of top that the specified ENTRYPOINT is not PID 1.
 
-``ENTRYPOINT`` によって指定された ``top`` の出力は ``PID 1`` ではないことがわかります。
+``top`` の出力から、 ``ENTRYPOINT`` の指定したものが ``PID 1`` ではないのが分かります。
 
-.. If you then run `docker stop test`, the container will not exit cleanly - the
-   `stop` command will be forced to send a `SIGKILL` after the timeout:
+.. If you then run docker stop test, the container will not exit cleanly - the stop command will be forced to send a SIGKILL after the timeout:
 
-この後に ``docker stop test`` を実行しても、コンテナはきれいに終了しません。
-``stop`` コマンドは、タイムアウトの後に強制的に ``SIGKILL`` を送信することになるからです。
-
-   ..  $ docker exec -it test ps aux
-       PID   USER     COMMAND
-           1 root     /bin/sh -c top -b cmd cmd2
-           7 root     top -b
-           8 root     ps aux
-       $ /usr/bin/time docker stop test
-       test
-       real	0m 10.19s
-       user	0m 0.04s
-       sys	0m 0.03s
+``docker stop test`` を実行しても、コンテナはきれいに終了しません。 ``stop``  コマンドはタイムアウト後に ``SIGKILL``  を強制送信するからです。
 
 .. code-block:: bash
 
    $ docker exec -it test ps aux
+   
    PID   USER     COMMAND
        1 root     /bin/sh -c top -b cmd cmd2
        7 root     top -b
        8 root     ps aux
+   
    $ /usr/bin/time docker stop test
+   
    test
    real	0m 10.19s
    user	0m 0.04s
    sys	0m 0.03s
 
-.. ### Understand how CMD and ENTRYPOINT interact
+.. Understand how CMD and ENTRYPOINT interact
 
 .. _understand-how-cmd-and-entrypoint-interact:
 
-CMD と ENTRYPOINT の関連について
-==================================================
+CMD と ENTRYPOINT の連携を理解
+----------------------------------------
 
-.. Both `CMD` and `ENTRYPOINT` instructions define what command gets executed when running a container.
-   There are few rules that describe their co-operation.
+.. Both CMD and ENTRYPOINT instructions define what command gets executed when running a container. There are few rules that describe their co-operation.
 
-``CMD`` 命令も ``ENTRYPOINT`` 命令も、ともにコンテナ起動時に実行するコマンドを定義するものです。
-両方が動作する際に必要となるルールがいくらかあります。
+``CMD`` と ``ENTRYPOINT`` 命令は、どちらもコンテナ起動時に何のコマンドを実行するか定義します。命令を書くにあたり、両方が連携するには、いくつかのルールがあります。
 
-.. 1. Dockerfile should specify at least one of `CMD` or `ENTRYPOINT` commands.
+..    Dockerfile should specify at least one of CMD or ENTRYPOINT commands.
+    ENTRYPOINT should be defined when using the container as an executable.
+    CMD should be used as a way of defining default arguments for an ENTRYPOINT command or for executing an ad-hoc command in a container.
+    CMD will be overridden when running the container with alternative arguments.
 
-1. Dockerfile には、``CMD`` または ``ENTRYPOINT`` のいずれかが、少なくとも 1 つ必要です。
+1. Dockerfile は、少なくとも1つの ``CMD`` か ``ENTRYPOINT`` 命令を書くべきです。
+2. ``ENTRYPOINT`` は、コンテナを :ruby:`実行バイナリ <exeutable>` のように扱いたい場合に定義すべきです。
+3. ``CMD`` は、 ``ENTRYPOINT`` コマンドに対するデフォルトの引数を定義するためか、、コンテナ内でその場その場でコマンドを実行するために使うべきです。
+4. ``CMD`` は、コンテナの実行時に、ほかの引数で上書きされる場合があります。
 
-.. 2. `ENTRYPOINT` should be defined when using the container as an executable.
+.. The table below shows what command is executed for different ENTRYPOINT / CMD combinations:
 
-2. ``ENTRYPOINT`` は、コンテナを実行モジュールとして実行する際に利用します。
-
-.. 3. `CMD` should be used as a way of defining default arguments for an `ENTRYPOINT` command
-   or for executing an ad-hoc command in a container.
-
-3. ``CMD`` は、``ENTRYPOINT`` のデフォルト引数を定義するため、あるいはその時点でのみコマンド実行を行うために利用します。
-
-.. 4. `CMD` will be overridden when running the container with alternative arguments.
-
-4. ``CMD`` はコンテナ実行時に、別の引数によって上書きされることがあります。
-
-.. The table below shows what command is executed for different `ENTRYPOINT` / `CMD` combinations:
-
-以下の表は、``ENTRYPOINT`` と ``CMD`` の組み合わせに従って実行されるコマンドを示しています。
+以下の表は、 ``ENTRYPOINT`` と ``CMD`` の組み合わせで、どのような処理が行われるかを示します。
 
 .. list-table::
    :header-rows: 1
@@ -2257,283 +1881,228 @@ CMD と ENTRYPOINT の関連について
      - /bin/sh -c exec_entry p1_entry /bin/sh -c exec_cmd p1_cmd
      - exec_entry p1_entry /bin/sh -c exec_cmd p1_cmd
 
-.. _volume:
+..     Note
+    If CMD is defined from the base image, setting ENTRYPOINT will reset CMD to an empty value. In this scenario, CMD must be defined in the current image to have a value.
+
+.. note::
+
+   ベース・イメージで ``CMD`` が定義されている場合でも、 ``ENTRYPOINT`` の設定によって ``CMD`` は空の値にリセットされます。このような場合は、現在のイメージで何らかの値を持つように、 ``CMD`` を定義する必要があります。
+
+
+.. _builder-volume:
 
 VOLUME
 ==========
 
-.. code-block:: dockerfile
+::
 
    VOLUME ["/data"]
 
-.. The `VOLUME` instruction creates a mount point with the specified name
-   and marks it as holding externally mounted volumes from native host or other
-   containers. The value can be a JSON array, `VOLUME ["/var/log/"]`, or a plain
-   string with multiple arguments, such as `VOLUME /var/log` or `VOLUME /var/log
-   /var/db`. For more information/examples and mounting instructions via the
-   Docker client, refer to
-   [*Share Directories via Volumes*](https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-host-directory-as-a-data-volume)
-   documentation.
+.. The VOLUME instruction creates a mount point with the specified name and marks it as holding externally mounted volumes from native host or other containers. The value can be a JSON array, VOLUME ["/var/log/"], or a plain string with multiple arguments, such as VOLUME /var/log or VOLUME /var/log /var/db. For more information/examples and mounting instructions via the Docker client, refer to Share Directories via Volumes documentation.
 
-``VOLUME`` 命令は指定された名前を使ってマウントポイントを生成します。
-そして自ホストまたは他のコンテナからマウントされたボリュームとして、そのマウントポイントを扱います。
-指定する値は JSON 配列として ``VOLUME ["/var/log/"]`` のようにするか、あるいは単純な文字列を複数与えます。
-たとえば ``VOLUME /var/log`` や ``VOLUME /var/log /var/db`` などです。
-Docker クライアントを通じたマウントに関する情報、利用例などに関しては :ref:`ボリュームを通じたディレクトリの共有 <mount-a-host-directory-as-a-data-volume>` を参照してください。
+``VOLUME`` 命令は、指定した名前で :ruby:`マウントポイント <mount point>` を作成します。そして、（Docker が動いている）自ホスト上や他のコンテナといった、外部からマウントされたボリュームを収容する場所として、そのマウントポイントが示します。ここでの値は ``VOLUME ["/var/log/"]`` のような JSON 配列か、 ``VOLUME /var/log`` や ``VOLUME /var/log /var/db`` のような複数の引数を持つ単なる文字列です。　詳しい情報やサンプル、Docker クライアントを経由してマウントする方法は :ref:`ボリュームを通したディレクトリ共有 <mount-a-host-directory-as-a-data-volume>` を参照ください。
 
-.. The `docker run` command initializes the newly created volume with any data
-   that exists at the specified location within the base image. For example,
-   consider the following Dockerfile snippet:
+.. The docker run command initializes the newly created volume with any data that exists at the specified location within the base image. For example, consider the following Dockerfile snippet:
 
-``docker run`` コマンドは、新たに生成するボリュームを初期化します。
-ベースイメージ内の指定したディレクトリに、データが存在していても構いません。
-たとえば以下のような Dockerfile の記述部分があったとします。
+``docker run`` 命令は、ベース・イメージ内で指定した場所に何かデータがあっても、そこを新規に作成するボリュームとして初期化します。例えば、次のような Dockerfile の抜粋で考えます。
 
-.. code-block:: dockerfile
+::
 
    FROM ubuntu
    RUN mkdir /myvol
    RUN echo "hello world" > /myvol/greeting
    VOLUME /myvol
 
-.. This Dockerfile results in an image that causes `docker run`, to
-   create a new mount point at `/myvol` and copy the  `greeting` file
-   into the newly created volume.
+.. This Dockerfile results in an image that causes docker run to create a new mount point at /myvol and copy the greeting file into the newly created volume.
 
-この Dockerfile はイメージに対する処理として、``docker run`` により ``/myvol`` というマウントポイントを新たに生成し、そのボリュームの中に ``greeting`` ファイルをコピーします。
+この Dockerfile で ``docker run`` によって作成されるイメージとは、新しいマウントポイントを ``/myvol`` へ作成し、（その場所にあった） ``greeting`` ファイルを新規作成するボリュームへコピーします。
 
-.. ### Notes about specifying volumes
+.. Notes about specifying volumes
 
 .. _notes-about-specifying-volumes:
 
-ボリュームの指定に関して
--------------------------
+ボリューム指定についての注意
+------------------------------
 
-.. Keep the following things in mind about volumes in the `Dockerfile`.
+.. Keep the following things in mind about volumes in the Dockerfile.
 
-``Dockerfile`` におけるボリューム設定に関しては、以下のことを覚えておいてください。
+``Dockerfile`` 内でのボリュームの扱いについては、以下の点に注意してください。
 
-.. - **Volumes on Windows-based containers**: When using Windows-based containers,
-     the destination of a volume inside the container must be one of:
+..     Volumes on Windows-based containers: When using Windows-based containers, the destination of a volume inside the container must be one of:
+        a non-existing or empty directory
+        a drive other than C:
+    Changing the volume from within the Dockerfile: If any build steps change the data within the volume after it has been declared, those changes will be discarded.
+    JSON formatting: The list is parsed as a JSON array. You must enclose words with double quotes (") rather than single quotes (').
+    The host directory is declared at container run-time: The host directory (the mountpoint) is, by its nature, host-dependent. This is to preserve image portability, since a given host directory can’t be guaranteed to be available on all hosts. For this reason, you can’t mount a host directory from within the Dockerfile. The VOLUME instruction does not support specifying a host-dir parameter. You must specify the mountpoint when you create or run the container.
 
-* **Windows ベースのコンテナでのボリューム**: Windows ベースのコンテナを利用しているときは、コンテナ内部のボリューム先は、以下のいずれかでなければなりません。
+* **Windows ベースのコンテナ上のボリューム** ： Windows ベースのコンテナを利用する場合、コンテナ内でのボリューム指定先は、次のどちらかの必要があります。
 
-  .. - a non-existing or empty directory
-     - a drive other than `C:`
+   * 存在していないディレクトリ、または、空のディレクトリ
+   * C ドライブ以外
 
-  * 存在していないディレクトリ、または空のディレクトリ
-  * ``C:`` 以下のドライブ
+* **Dockerfile 内からのボリューム変更** ：ボリュームを宣言後、構築ステップでボリューム内のデータに対する変更があったとしても、それらの変更は破棄されます（反映されません）。
+* **JSON 形式** ：引数リストは JSON 配列として扱われます。文字を囲むにはシングル・クォート（ ``'`` ）ではなくダブル・クォート（ ``"`` ）を使う必要があります。 
+* **コンテナ実行時に宣言されるホスト側ディレクトリ** ： :ruby:`ホスト側ディレクトリ <host directory>` （マウントポイント）は、その性質上、ホストに依存します。これはイメージの移植性を維持するためであり、指定対象のホスト側ディレクトリが、全てのホスト上で利用可能である保証がないためです。この理由により、Dockerfile 内からホスト側ディレクトリをマウントできません。 ``VOLUME`` 命令は、一切の ```ホスト側ディレクトリ`` に対するパラメータ指定をサポートしません。（ホスト側を指定する必要がある場合は）コンテナの実行時や作成時に、マウントポイントを指定しなくてはいけません。
 
-.. - **Changing the volume from within the Dockerfile**: If any build steps change the
-     data within the volume after it has been declared, those changes will be discarded.
+.. USER
 
-* **Dockerfile 内からのボリューム変更**: ボリュームを宣言した後に、そのボリューム内のデータを変更する処理があったとしても、そのような変更は無視され処理されません。
-
-.. - **JSON formatting**: The list is parsed as a JSON array.
-     You must enclose words with double quotes (`"`)rather than single quotes (`'`).
-
-* **JSON 形式**: 引数リストは JSON 配列として扱われます。
-  したがって文字列をくくるのはダブルクォート（``"``）であり、シングルクォート（``'``）は用いてはなりません。
-
-.. - **The host directory is declared at container run-time**: The host directory
-     (the mountpoint) is, by its nature, host-dependent. This is to preserve image
-     portability. since a given host directory can't be guaranteed to be available
-     on all hosts.For this reason, you can't mount a host directory from
-     within the Dockerfile. The `VOLUME` instruction does not support specifying a `host-dir`
-     parameter.  You must specify the mountpoint when you create or run the container.
-
-* **コンテナ実行時に宣言されるホストディレクトリ**: ホストディレクトリ（マウントポイント）は、その性質からして、ホストに依存するものです。
-  これはイメージの可搬性を確保するためなので、設定されたホストディレクトリが、あらゆるホスト上にて利用可能になるかどうかの保証はありません。
-  このため、Dockerfile の内部からホストディレクトリをマウントすることはできません。
-  つまり ``VOLUME`` 命令は ``host-dir`` （ホストのディレクトリを指定する）パラメータをサポートしていません。
-  マウントポイントの指定は、コンテナを生成、実行するときに行う必要があります。
-
-.. _user:
+.. _builder-user:
 
 USER
 ==========
 
-..     USER <user>[:<group>]
-   or
-       USER <UID>[:<GID>]
+::
 
-.. code-block:: dockerfile
+   USER <ユーザ>[:<グループ>]
 
-   USER <user>[:<group>]
+.. or
 
 または
 
-.. code-block:: dockerfile
+::
 
    USER <UID>[:<GID>]
 
-.. The `USER` instruction sets the user name (or UID) and optionally the user
-   group (or GID) to use when running the image and for any `RUN`, `CMD` and
-   `ENTRYPOINT` instructions that follow it in the `Dockerfile`.
+.. The USER instruction sets the user name (or UID) and optionally the user group (or GID) to use when running the image and for any RUN, CMD and ENTRYPOINT instructions that follow it in the Dockerfile.
 
-``USER`` 命令は、ユーザ名（または UID）と、オプションとしてユーザグループ（または GID）を指定します。
-そしてイメージが実行されるとき、``Dockerfile`` 内の後続の ``RUN``、``CMD``、``ENTRYPOINT`` の各命令においてこの情報を利用します。
+ ``USER`` 命令は、イメージの実行時のユーザ名（あるいは UID）を指定し、オプションでユーザ・グループ（あるいは GID）も指定します。さらに、 ``Dockerfile`` 内で ``RUN`` 、 ``CMD`` 、 ``ENTRYPOINT`` の各命令を処理する時のユーザ名とグループの指定にもなります。
 
-.. > **Warning**:
-   > When the user does doesn't have a primary group then the image (or the next
-   > instructions) will be run with the `root` group.
+.. Note that when specifying a group for the user, the user will have only the specified group membership. Any other configured group memberships will be ignored.
+
+.. note::
+
+   ユーザに対してグループを指定する場合、そのユーザは指定したグループに「のみ」所属しますので注意してください。他のグループ所属の設定は無視されます。
+
+.. When the user doesn’t have a primary group then the image (or the next instructions) will be run with the root group.
+   On Windows, the user must be created first if it’s not a built-in account. This can be done with the net user command called as part of a Dockerfile.
 
 .. warning::
 
-   ユーザにプライマリグループがない場合、イメージ（あるいは次の命令）は ``root`` グループとして実行されます。
+   ユーザに対して所属グループの指定が無ければ、イメージ（または以降の命令）の実行時に ``root`` グループとして実行されます。
+   Windows では、まず、初期に作成済みではないユーザを作成が必要です。これをするには、 Dockerfile で ``net user`` コマンドを使う必要があります。
+   
+   ::
+   
+      FROM microsoft/windowsservercore
+      # コンテナ内で Windows ユーザを作成
+      RUN net user /add patrick
+      # 次のコマンドを指定
+      USER patrick
 
-.. _workdir:
+.. _builder-workdir:
 
 WORKDIR
 ==========
 
-.. code-block:: dockerfile
+::
 
    WORKDIR /path/to/workdir
 
-.. The `WORKDIR` instruction sets the working directory for any `RUN`, `CMD`,
-   `ENTRYPOINT`, `COPY` and `ADD` instructions that follow it in the `Dockerfile`.
-   If the `WORKDIR` doesn't exist, it will be created even if it's not used in any
-   subsequent `Dockerfile` instruction.
+.. The WORKDIR instruction sets the working directory for any RUN, CMD, ENTRYPOINT, COPY and ADD instructions that follow it in the Dockerfile. If the WORKDIR doesn’t exist, it will be created even if it’s not used in any subsequent Dockerfile instruction.
 
-``WORKDIR`` 命令はワークディレクトリを設定します。
-``Dockerfile`` 内にてその後に続く ``RUN``、``CMD``、``ENTRYPOINT``、``COPY``、``ADD`` の各命令において利用することができます。
-``WORKDIR`` が存在しないときは生成されます。
-これはたとえ、この後にワークディレクトリが利用されていなくても生成されます。
+``WORKDIR`` 命令は、``Dockerfile`` 内で以降に続く ``RUN`` 、 ``CMD`` 、 ``ENTRYPOINT`` 、 ``COPY`` 、 ``ADD`` 命令の処理時に（コマンドを実行する場所として）使う :ruby:`作業ディレクトリ <working directory>` を指定します。 ``WORKDIR`` が存在していなければ作成されます。これは、以降の ``Dockerfile`` で使われなくてもです。
 
-.. The `WORKDIR` instruction can be used multiple times in a `Dockerfile`. If a
-   relative path is provided, it will be relative to the path of the previous
-   `WORKDIR` instruction. For example:
+.. The WORKDIR instruction can be used multiple times in a Dockerfile. If a relative path is provided, it will be relative to the path of the previous WORKDIR instruction. For example:
 
-``WORKDIR`` 命令は ``Dockerfile`` 内にて複数利用することができます。
-ディレクトリ指定に相対パスが用いられた場合、そのパスは、直前の ``WORKDIR`` 命令からの相対パスとなります。
-たとえば以下のとおりです。
+``WORKDIR`` 命令は ``Dockerifle`` 内で何度も利用できます。相対パスを指定すると、その前の ``WORKDIR`` 命令で指定された場所に対する相対パスになります。
 
-.. code-block:: dockerfile
+::
 
    WORKDIR /a
    WORKDIR b
    WORKDIR c
    RUN pwd
 
-.. The output of the final `pwd` command in this `Dockerfile` would be
-   `/a/b/c`.
+.. The output of the final pwd command in this Dockerfile would be /a/b/c.
 
-上の ``Dockerfile`` の最後の ``pwd`` コマンドは ``/a/b/c`` という出力結果を返します。
+この ``Dockerfile`` で、最後の ``pwd`` コマンドの出力は ``/a/b/c`` になります。
 
-.. The `WORKDIR` instruction can resolve environment variables previously set using
-   `ENV`. You can only use environment variables explicitly set in the `Dockerfile`.
-   For example:
+.. The WORKDIR instruction can resolve environment variables previously set using ENV. You can only use environment variables explicitly set in the Dockerfile. For example:
 
-``WORKDIR`` 命令では、その前に ``ENV`` によって設定された環境変数を解釈します。
-環境変数は ``Dockerfile`` の中で明示的に設定したものだけが利用可能です。
-たとえば以下のようになります。
+``WORKDIR`` 命令は、 ``ENV`` 命令で設定済みの環境変数を展開できます。利用できる環境変数は、 ``Dockerfile`` で明示したものだけです。例：
 
-.. code-block:: dockerfile
+::
 
    ENV DIRPATH /path
    WORKDIR $DIRPATH/$DIRNAME
    RUN pwd
 
-.. The output of the final `pwd` command in this `Dockerfile` would be
-   `/path/$DIRNAME`
+.. The output of the final pwd command in this Dockerfile would be /path/$DIRNAME
 
-上の ``Dockerfile`` の最後の ``pwd`` コマンドは  ``/path/$DIRNAME`` という出力結果を返します。
+この ``Dockerfile`` では、最後の ``pwd`` コマンドの出力は ``/path/$DIRNAME`` になります。
 
-.. _arg:
+.. _builder-arg:
 
 ARG
 ==========
 
-   ..  ARG <name>[=<default value>]
+::
 
-.. code-block:: dockerfile
+   ARG <名前>[=<デフォルト値>]
 
-   ARG <name>[=<default value>]
+.. The ARG instruction defines a variable that users can pass at build-time to the builder with the docker build command using the --build-arg <varname>=<value> flag. If a user specifies a build argument that was not defined in the Dockerfile, the build outputs a warning.
 
-.. The `ARG` instruction defines a variable that users can pass at build-time to
-   the builder with the `docker build` command using the `--build-arg <varname>=<value>`
-   flag. If a user specifies a build argument that was not
-   defined in the Dockerfile, the build outputs a warning.
-
-``ARG`` 命令は変数を定義して、ビルド時にその値を受け渡します。
-これは ``docker build`` コマンドにおいて ``--build-arg <varname>=<value>`` フラグを利用して行います。
-指定したビルド引数（build argument）が Dockerfile 内において定義されていない場合は、ビルド処理時に警告メッセージが出力されます。
+``ARG`` 命令は :ruby:`構築時 <build-time>` にユーザが渡せる変数を定義します。変数を渡すには、構築時に ``docker biuld`` コマンドで ``--build-arg <変数名>=<値>`` を指定します。もしも、ユーザが構築時に引数を指定しても、 Dockerfile 中で指定が無ければ、構築時に警告が出ます。
 
 .. code-block:: bash
 
-   One or more build-args were not consumed, failing build.
+   [Warning] One or more build-args [foo] were not consumed.
 
-.. A Dockerfile may include one or more `ARG` instructions. For example,
-   the following is a valid Dockerfile:
+（[警告] build-arg [foo] は使われませんでした）
 
-Dockerfile には複数の ``ARG`` 命令を含めることもできます。
-たとえば以下の Dockerfile は有効な例です。
+.. A Dockerfile may include one or more ARG instructions. For example, the following is a valid Dockerfile:
 
-.. code-block:: dockerfile
+Dockerfile に1つまたは複数の ``ARG`` 命令を入れられます。たとえば、以下は正しい Dockerfile です。
+
+::
 
    FROM busybox
    ARG user1
    ARG buildno
-   ...
+   # ...
 
-.. > **Warning:** It is not recommended to use build-time variables for
-   >  passing secrets like github keys, user credentials etc. Build-time variable
-   >  values are visible to any user of the image with the `docker history` command.
+..     Warning:
+    It is not recommended to use build-time variables for passing secrets like github keys, user credentials etc. Build-time variable values are visible to any user of the image with the docker history command.
+    Refer to the “build images with BuildKit” section to learn about secure ways to use secrets when building images.
 
 .. warning::
 
-   ビルド時の変数として、github キーや認証情報などの秘密の情報を設定することは、お勧めできません。
-   ビルド変数の値は、イメージを利用する他人が ``docker history`` コマンドを実行すれば容易に見ることができてしまうからです。
+   GitHub キーやユーザの認証情報のような :ruby:`機微情報（シークレット） <secret>` を、構築時に変数として使うのは推奨しません。これは、どのようなイメージも ``docker history`` コマンドを使えば、構築時の変数を表示できるからです。
+   
+   イメージ構築時に機微情報（シークレット）を安全に使う方法を学ぶには、 :ref:`BuildKit でイメージを構築 <new-docker-build-secret-information>` をご覧ください。
 
-.. ### Default values
+.. Default values
 
-.. _default_values:
+.. _builder-default-value:
 
-デフォルト値
--------------
+デフォルトの値
+--------------------
 
-.. An `ARG` instruction can optionally include a default value:
+.. An ARG instruction can optionally include a default value:
 
-``ARG`` 命令にはオプションとしてデフォルト値を設定することができます。
+オプションで、``ARG`` 命令にデフォルト値を指定できます。
 
-.. code-block:: dockerfile
+::
 
    FROM busybox
    ARG user1=someuser
    ARG buildno=1
    ...
 
-.. If an `ARG` instruction has a default value and if there is no value passed
-   at build-time, the builder uses the default.
+.. If an ARG instruction has a default value and if there is no value passed at build-time, the builder uses the default.
 
-``ARG`` 命令にデフォルト値が設定されていて、ビルド時に値設定が行われなければ、デフォルト値が用いられます。
+もし ``ARG`` 命令にデフォルト値があり、構築時に値の指定が無ければ、ビルダーはデフォルト値を使います。
 
-.. ### Scope
+.. Scope
 
-.. _scope:
+.. _builder-scope:
 
-変数スコープ
--------------
+変数の範囲
+--------------------
 
-.. An `ARG` variable definition comes into effect from the line on which it is
-   defined in the `Dockerfile` not from the argument's use on the command-line or
-   elsewhere.  For example, consider this Dockerfile:
+.. An ARG variable definition comes into effect from the line on which it is defined in the Dockerfile not from the argument’s use on the command-line or elsewhere. For example, consider this Dockerfile:
 
-``ARG`` による値定義が有効になるのは、``Dockerfile`` 内の記述行以降です。
-コマンドラインなどにおいて用いられるときではありません。
-たとえば以下のような Dockerfile を見てみます。
-
-.. ```
-   1 FROM busybox
-   2 USER ${user:-some_user}
-   3 ARG user
-   4 USER $user
-   ...
-   ```
-
-.. code-block:: dockerfile
-   :linenos:
+``ARG`` 変数の定義が有効になるのは、 ``Dockerfile`` で定義された後の行であり、コマンドライン上などでの引数ではありません。たとえば、このような Dockerfile を例に考えましょう。
 
    FROM busybox
    USER ${user:-some_user}
@@ -2543,41 +2112,25 @@ Dockerfile には複数の ``ARG`` 命令を含めることもできます。
 
 .. A user builds this file by calling:
 
-このファイルをビルドするには以下を実行します。
+このファイルを使って構築するには、次のコマンドを実行するとします。
 
 .. code-block:: bash
 
-   $ docker build --build-arg user=what_user Dockerfile
+   $ docker build --build-arg user=what_user .
 
-.. The `USER` at line 2 evaluates to `some_user` as the `user` variable is defined on the
-   subsequent line 3. The `USER` at line 4 evaluates to `what_user` as `user` is
-   defined and the `what_user` value was passed on the command line. Prior to its definition by an
-   `ARG` instruction, any use of a variable results in an empty string.
+.. The USER at line 2 evaluates to some_user as the user variable is defined on the subsequent line 3. The USER at line 4 evaluates to what_user as user is defined and the what_user value was passed on the command line. Prior to its definition by an ARG instruction, any use of a variable results in an empty string.
 
-2 行めの ``USER`` が ``some-user`` として評価されます。
-これは ``user`` 変数が、直後の 3 行めにおいて定義されているからです。
-そして 4 行めの ``USER`` は ``what_user`` として評価されます。
-``user`` が定義済であって、コマンドラインから ``what_user`` という値が受け渡されたからです。
-``ARG`` 命令による定義を行うまで、その変数を利用しても空の文字列として扱われます。
+.. 2行目の ``USER`` 命令は、この時点では（ARG 命令がなく、かつ、変数 user の値が定義されていないため、変数 user の値は） ``some_user`` として処理されます。つまり、続く3行目（にある ARG 命令）では、 ``user`` 変数を定義しています。さらに、4行目の ``USER`` 命令では、変数 ``user`` は ``what_user`` として処理されるるのですが、これは ``what_user`` の値が定義済みであり、かつ、コマンドラインで ``what_user`` の値が指定されたからです。 ``ARG`` 命令で定義するまでは、変数を使っても値は空白の文字列として処理されます。
 
-.. An `ARG` instruction goes out of scope at the end of the build
-   stage where it was defined. To use an arg in multiple stages, each stage must
-   include the `ARG` instruction.
+.. ※直訳しても日本語として理解しづらいので、書き換え
 
-``ARG`` 命令の変数スコープは、それが定義されたビルドステージが終了するときまでです。
-複数のビルドステージにおいて ``ARG`` を利用する場合は、個々に ``ARG`` 命令を指定する必要があります。
+構築時、コマンドラインの引数で変数の値を指定していても、 ``ARG`` 命令で変数を定義するまでは、その変数の値は空白の文字列として扱われます。2行目の ``USER`` 命令は、この時点では変数 ``$user``  に対する値が定義されていないため、変数 ``$user`` の値は ``some_user`` として処理されます（シェルなどの変数展開と同じで、 ``${user:-some_user}`` は、変数 ``$user`` の値が未定義であれば、 ``some_user`` を値に入れる処理です ）。続く3行目の ``ARG`` 命令により、コマンドラインで指定した引数 ``what_user`` が、変数 ``$user`` に対する値として設定されます。そして、4行目の ``USER`` 命令で使われている ``$user`` は ``what_user`` になります。
 
-.. ```
-   FROM busybox
-   ARG SETTINGS
-   RUN ./run/setup $SETTINGS
-   
-   FROM busybox
-   ARG SETTINGS
-   RUN ./run/other $SETTINGS
-   ```
+.. An ARG instruction goes out of scope at the end of the build stage where it was defined. To use an arg in multiple stages, each stage must include the ARG instruction.
 
-.. code-block:: dockerfile
+``ARG`` 命令が有効な範囲は、構築ステージの定義が終わるまでです。複数のステージで :ruby:`引数 <arg>` を使うには、ステージごとに ``ARG`` 命令が必要です。
+
+::
 
    FROM busybox
    ARG SETTINGS
@@ -2587,111 +2140,72 @@ Dockerfile には複数の ``ARG`` 命令を含めることもできます。
    ARG SETTINGS
    RUN ./run/other $SETTINGS
 
-.. ### Using ARG variables
+.. Using ARG variables
 
 .. _using-arg-variables:
 
-ARG 変数の利用
----------------
+ARG で変数を使うには
+--------------------
 
-.. You can use an `ARG` or an `ENV` instruction to specify variables that are
-   available to the `RUN` instruction. Environment variables defined using the
-   `ENV` instruction always override an `ARG` instruction of the same name. Consider
-   this Dockerfile with an `ENV` and `ARG` instruction.
+.. You can use an ARG or an ENV instruction to specify variables that are available to the RUN instruction. Environment variables defined using the ENV instruction always override an ARG instruction of the same name. Consider this Dockerfile with an ENV and ARG instruction.
 
-``ARG`` 命令や ``ENV`` 命令において変数を指定し、それを ``RUN`` 命令にて用いることができます。
-``ENV`` 命令を使って定義された環境変数は、``ARG`` 命令において同名の変数が指定されていたとしても優先されます。
-以下のように ``ENV`` 命令と ``ARG`` 命令を含む Dockerfile があるとします。
+ ``ARG`` 命令や ``ENV`` 命令で、 ``RUN`` 命令で利用可能な変数を指定できます。 ``ENV`` 命令を使って定義した環境変数は、常に同じ名前の ``ARG`` 命令を上書きします。次の ``ENV`` と ``ARG`` 命令のある Dockerfile を考えます。
 
-.. 1 FROM ubuntu
-   2 ARG CONT_IMG_VER
-   3 ENV CONT_IMG_VER v1.0.0
-   4 RUN echo $CONT_IMG_VER
-
-.. code-block:: dockerfile
-   :linenos:
+::
 
    FROM ubuntu
    ARG CONT_IMG_VER
    ENV CONT_IMG_VER v1.0.0
    RUN echo $CONT_IMG_VER
 
-.. Then, assume this image is built with this command:
 
-そしてこのイメージを以下のコマンドによりビルドしたとします。
+.. Then, assume this image is built with this comman
+
+そして、次のコマンドでイメージを作ったとしましょう。
 
 .. code-block:: bash
 
    $ docker build --build-arg CONT_IMG_VER=v2.0.1 Dockerfile
 
-.. In this case, the `RUN` instruction uses `v1.0.0` instead of the `ARG` setting
-   passed by the user:`v2.0.1` This behavior is similar to a shell
-   script where a locally scoped variable overrides the variables passed as
-   arguments or inherited from environment, from its point of definition.
+.. In this case, the RUN instruction uses v1.0.0 instead of the ARG setting passed by the user:v2.0.1 This behavior is similar to a shell script where a locally scoped variable overrides the variables passed as arguments or inherited from environment, from its point of definition.
 
-この例において ``RUN`` 命令は ``v1.0.0`` という値を採用します。
-コマンドラインから ``v2.0.1`` が受け渡され ``ARG`` の値に設定されますが、それが用いられるわけではありません。
-これはちょうどシェルスクリプトにおいて行われる動きに似ています。
-ローカルなスコープを持つ変数は、指定された引数や環境から受け継いだ変数よりも優先されます。
+この場合、 ``RUN`` 命令で使われる値は、ユーザが（コマンドラインで）指定した ``ARG`` 命令の値 ``v2.0.1`` ではなく ``v1.0.0`` です。これは、シェルスクリプトの挙動に似ています。定義した時点から、 :ruby:`ローカルな範囲の変数（ローカルスコープ変数） <locally scoped variable>` は、引数として指定した変数や、環境変数として継承された変数をで上書きします。
 
-.. Using the example above but a different `ENV` specification you can create more
-   useful interactions between `ARG` and `ENV` instructions:
+.. Using the example above but a different ENV specification you can create more useful interactions between ARG and ENV instructions:
 
-上の例を利用しつつ ``ENV`` のもう 1 つ別の仕様を用いると、さらに ``ARG`` と ``ENV`` の組み合わせによる以下のような利用もできます。
+先ほどの例と違う ``ENV`` 仕様を使えば、 ``ARG`` 命令と ``ENV`` 命令の間で、より役立つ相互関係を作れます。
 
-.. 1 FROM ubuntu
-   2 ARG CONT_IMG_VER
-   3 ENV CONT_IMG_VER ${CONT_IMG_VER:-v1.0.0}
-   4 RUN echo $CONT_IMG_VER
-
-.. code-block:: dockerfile
-   :linenos:
+::
 
    FROM ubuntu
    ARG CONT_IMG_VER
    ENV CONT_IMG_VER ${CONT_IMG_VER:-v1.0.0}
    RUN echo $CONT_IMG_VER
 
-.. Unlike an `ARG` instruction, `ENV` values are always persisted in the built
-   image. Consider a docker build without the `--build-arg` flag:
-
-``ARG`` 命令とは違って ``ENV`` による値はビルドイメージ内に常に保持されます。
-以下のような ``--build-arg`` フラグのない ``docker build`` を見てみます。
-
-.. ```
-   $ docker build .
-   ```
+``ARG`` 命令とは違い、 ``ENV`` の値は常に構築イメージ内に保持されます。 ``--build-arg`` フラグがない docker build を考えます。
 
 .. code-block:: bash
 
    $ docker build .
 
-.. Using this Dockerfile example, `CONT_IMG_VER` is still persisted in the image but
-   its value would be `v1.0.0` as it is the default set in line 3 by the `ENV` instruction.
+.. Using this Dockerfile example, CONT_IMG_VER is still persisted in the image but its value would be v1.0.0 as it is the default set in line 3 by the ENV instruction.
 
-上の Dockerfile の例を用いると、``CONT_IMG_VER`` の値はイメージ内に保持されますが、その値は ``v1.0.0`` になります。
-これは 3 行めの ``ENV`` 命令で設定されているデフォルト値です。
+この Dockerfile 例を使うと、  （docker build 時に引数の指定がなかったため）3行目の ``ENV`` 命令によってデフォルトの ``v1.0.0`` が変数 ``CONT_IMG_VER`` の値となり、この値がイメージ内でずっと保持されます。
 
-.. The variable expansion technique in this example allows you to pass arguments
-   from the command line and persist them in the final image by leveraging the
-   `ENV` instruction. Variable expansion is only supported for [a limited set of
-   Dockerfile instructions.](#environment-replacement)
+.. The variable expansion technique in this example allows you to pass arguments from the command line and persist them in the final image by leveraging the ENV instruction. Variable expansion is only supported for a limited set of Dockerfile instructions.
 
-この例で見たように変数展開の手法では、コマンドラインから引数を受け渡すことが可能であり、``ENV`` 命令を用いればその値を最終イメージに残すことができます。
-変数展開は、:ref:`特定の Dockerfile 命令 <environment-replacement>` においてのみサポートされます。
+今回の例にある変数展開の手法によって、コマンドラインから引数を渡し、 ``ENV`` 命令を利用して最終的なイメージまで保持できます。なお、変数展開をサポートしているのは、 :ref:`Dockerfile 命令の一部 <environment-replacement>` のみです。
 
-.. ### Predefined ARGs
+.. Predefined ARGs
 
 .. _predefined-args:
 
-定義済 ARG 変数
-----------------
+定義済みの ARG 変数
+--------------------
 
-.. Docker has a set of predefined `ARG` variables that you can use without a
-   corresponding `ARG` instruction in the Dockerfile.
+.. Docker has a set of predefined ARG variables that you can use without a corresponding ARG instruction in the Dockerfile.
 
-Docker にはあらかじめ定義された ``ARG`` 変数があります。
-これは Dockerfile において ``ARG`` 命令を指定しなくても利用することができます。
+Docker には、Dockerfile 内で対応する ``ARG`` 命令を使わなくても利用できる :ruby:`定義済み <predefined>` の ``ARG`` 変数があります。
 
 * ``HTTP_PROXY``
 * ``http_proxy``
@@ -2702,425 +2216,333 @@ Docker にはあらかじめ定義された ``ARG`` 変数があります。
 * ``NO_PROXY``
 * ``no_proxy``
 
-.. To use these, simply pass them on the command line using the flag:
+.. To use these, pass them on the command line using the --build-arg flag, for example:
 
-これを利用する場合は、コマンドラインから以下のフラグを与えるだけです。
-
-.. ```
-   --build-arg <varname>=<value>
-   ```
+これらの変数を使うには、コマンドライン上の ``--build-arg`` フラグで渡します。
 
 .. code-block:: bash
 
-   --build-arg <varname>=<value>
+   $ docker build --build-arg CONT_IMG_VER=v2.0.1 .
 
-.. By default, these pre-defined variables are excluded from the output of
-   `docker history`. Excluding them reduces the risk of accidentally leaking
-   sensitive authentication information in an `HTTP_PROXY` variable.
+.. By default, these pre-defined variables are excluded from the output of docker history. Excluding them reduces the risk of accidentally leaking sensitive authentication information in an HTTP_PROXY variable.
 
-デフォルトにおいて、これらの定義済変数は ``docker history`` による出力からは除外されます。
-除外する理由は、``HTTP_PROXY`` などの各変数内にある重要な認証情報が漏洩するリスクを軽減するためです。
+デフォルトでは、これらの定義済み変数は ``docker history`` の出力から除外されます。それらを除外することで、 ``HTTP_PROXY`` 変数のような機微情報が漏洩する危険性を減らします。
 
-.. For example, consider building the following Dockerfile using
-   `--build-arg HTTP_PROXY=http://user:pass@proxy.lon.example.com`
+.. For example, consider building the following Dockerfile using --build-arg HTTP_PROXY=http://user:pass@proxy.lon.example.com
 
-たとえば ``--build-arg HTTP_PROXY=http://user:pass@proxy.lon.example.com`` という引数を用いて、以下の Dockerfile をビルドするとします。
+たとえば、次の Dockerifle を使い 、 `` --build-arg HTTP_PROXY=http://user:pass@proxy.lon.example.com`` で構築する例を考えます。
 
-.. ``` Dockerfile
-   FROM ubuntu
-   RUN echo "Hello World"
-   ```
-
-.. code-block:: dockerfile
+::
 
    FROM ubuntu
    RUN echo "Hello World"
 
-.. In this case, the value of the `HTTP_PROXY` variable is not available in the
-   `docker history` and is not cached. If you were to change location, and your
-   proxy server changed to `http://user:pass@proxy.sfo.example.com`, a subsequent
-   build does not result in a cache miss.
+.. In this case, the value of the HTTP_PROXY variable is not available in the docker history and is not cached. If you were to change location, and your proxy server changed to http://user:pass@proxy.sfo.example.com, a subsequent build does not result in a cache miss.
 
-この場合、``HTTP_PROXY`` 変数の値は ``docker history`` から取得することはできず、キャッシュにも含まれていません。
-したがって URL が変更され、プロキシサーバーも ``http://user:pass@proxy.sfo.example.com`` に変更したとしても、この後に続くビルド処理において、キャッシュ・ミスは発生しません。
+こうすると、 ``HTTP_PROXY`` 変数の値は ``docker history`` で見えなくなり、キャッシュもされません。もしも、プロキシサーバの場所が ``http://user:pass@proxy.sfo.example.com`` に変わったとしても、以後の構築で（誤った情報を）キャッシュすることによる構築失敗もありません。
 
-.. If you need to override this behaviour then you may do so by adding an `ARG`
-   statement in the Dockerfile as follows:
+.. If you need to override this behaviour then you may do so by adding an ARG statement in the Dockerfile as follows:
 
-この動作を取り消す必要がある場合は、以下のように Dockerfile 内に ``ARG`` 命令を加えれば実現できます。
+このような挙動を上書きしたい場合は、次の Dockerfile のような ``ARG`` 命令を追加します。
 
-.. ``` Dockerfile
-   FROM ubuntu
-   ARG HTTP_PROXY
-   RUN echo "Hello World"
-   ```
-
-.. code-block:: dockerfile
+::
 
    FROM ubuntu
    ARG HTTP_PROXY
    RUN echo "Hello World"
 
-.. When building this Dockerfile, the `HTTP_PROXY` is preserved in the
-   `docker history`, and changing its value invalidates the build cache.
+.. When building this Dockerfile, the HTTP_PROXY is preserved in the docker history, and changing its value invalidates the build cache.
 
-この Dockerfile がビルドされるとき、``HTTP_PROXY`` は ``docker history`` に保存されます。
-そしてその値を変更すると、ビルドキャッシュは無効化されます。
+この Dockerfile で構築すると、 ``HTTP_PROXY`` は ``docker history`` （で見えるように）保存され、この値を変更すると構築キャッシュは無効化されます。
 
-.. ### Impact on build caching
+.. Automatic platform ARGs in the global scope
+
+.. _automatic-platform-args-in-the-global-scope:
+
+グローバル範囲での自動的なプラットフォーム ARG 変数
+------------------------------------------------------------
+
+.. This feature is only available when using the BuildKit backend.
+
+この機能が利用できるのは、 :ref:`BuildKit <builder-buildkit>` バックエンドを利用する時のみです。
+
+.. Docker predefines a set of ARG variables with information on the platform of the node performing the build (build platform) and on the platform of the resulting image (target platform). The target platform can be specified with the --platform flag on docker build.
+
+構築を処理するノード（ :ruby:`構築プラットフォーム <build platform>`  ）と、結果として作成されるイメージ（ :ruby:`ターゲット・プラットフォーム <target platform>` ）の、各プラットフォームに関する情報を Docker では ``ARG`` 変数として定義済みです。ターゲット・プラットフォームは ``docker build`` の ``--platform`` フラグで指定できます。
+
+.. The following ARG variables are set automatically:
+
+以下の ``ARG`` 変数は自動的に設定されます。
+
+..    TARGETPLATFORM - platform of the build result. Eg linux/amd64, linux/arm/v7, windows/amd64.
+    TARGETOS - OS component of TARGETPLATFORM
+    TARGETARCH - architecture component of TARGETPLATFORM
+    TARGETVARIANT - variant component of TARGETPLATFORM
+    BUILDPLATFORM - platform of the node performing the build.
+    BUILDOS - OS component of BUILDPLATFORM
+    BUILDARCH - architecture component of BUILDPLATFORM
+    BUILDVARIANT - variant component of BUILDPLATFORM
+
+
+
+* ``TARGETPLATFORM`` … :ruby:`構築対象 <build result>` のプラットフォーム。例： ``linux/amd64`` 、 ``linux/arm/v7`` 、 ``windows/amd64`` 
+* ``TARGETOS`` … TARGETPLATFORM の OS コンポーネント
+* ``TARGETARCH`` … TARGETPLATFORM のアーキテクチャ・コンポーネント
+* ``TARGETVARIANT`` … TARGETPLATFORM の派生コンポーネント
+* ``BUILDPLATFORM … 構築を処理するノードのプラットフォーム
+* ``BUILDOS`` … BUILDPLATFORM の OS コンポーネント
+* ``BUILDARCH`` … BUILDPLATFORM のアーキテクチャ・コンポーネント
+* ``BUILDVARIANT`` … BUILDPLATFORM の派生コンポーネント
+
+.. These arguments are defined in the global scope so are not automatically available inside build stages or for your RUN commands. To expose one of these arguments inside the build stage redefine it without value.
+
+これらの引数はグローバル :ruby:`スコープ（範囲） <scope>` として定義されているため、構築ステージ内や、そのステージ内の ``RUN`` コマンドから自動的に利用できません。これらの引数を構築ステージの中で利用するには、値なしで定義します。
+
+.. For example:
+
+例：
+
+::
+
+   FROM alpine
+   ARG TARGETPLATFORM
+   RUN echo "I'm building for $TARGETPLATFORM"
+
+.. Impact on build caching
 
 .. _impact-on-build-caching:
 
-ビルドキャッシュへの影響
--------------------------
+構築キャッシュへの影響
+------------------------------
 
-.. `ARG` variables are not persisted into the built image as `ENV` variables are.
-   However, `ARG` variables do impact the build cache in similar ways. If a
-   Dockerfile defines an `ARG` variable whose value is different from a previous
-   build, then a "cache miss" occurs upon its first usage, not its definition. In
-   particular, all `RUN` instructions following an `ARG` instruction use the `ARG`
-   variable implicitly (as an environment variable), thus can cause a cache miss.
-   All predefined `ARG` variables are exempt from caching unless there is a
-   matching `ARG` statement in the `Dockerfile`.
+.. ARG variables are not persisted into the built image as ENV variables are. However, ARG variables do impact the build cache in similar ways. If a Dockerfile defines an ARG variable whose value is different from a previous build, then a “cache miss” occurs upon its first usage, not its definition. In particular, all RUN instructions following an ARG instruction use the ARG variable implicitly (as an environment variable), thus can cause a cache miss. All predefined ARG variables are exempt from caching unless there is a matching ARG statement in the Dockerfile.
 
-``ARG`` 変数は ``ENV`` 変数とは違って、ビルドイメージの中に保持されません。
-しかし ``ARG`` 変数はビルドキャッシュへ同じような影響を及ぼします。
-Dockerfile に ``ARG`` 変数が定義されていて、その値が前回のビルドとは異なった値が設定されたとします。
-このとき「キャッシュ・ミス」（cache miss）が発生しますが、それは初めて利用されたときであり、定義された段階ではありません。
-特に ``ARG`` 命令に続く ``RUN`` 命令は、``ARG`` 変数の値を（環境変数として）暗に利用しますが、そこでキャッシュ・ミスが起こります。
-定義済の ``ARG`` 変数は、``Dockerfile`` 内に ``ARG`` 行がない限りは、キャッシュは行われません。
+``ARG`` 変数は ``ENV`` 変数と異なり、構築イメージ内に保持されません。しかしながら、 ``ARG`` 変数も（ ENV と）同じように構築キャッシュに影響を与えます。たとえば、 Dockerfile で以前に構築されたものと異なる ``ARG`` 変数が定義された場合は、定義がどうであろうと、真っ先に「 :ruby:`キャッシュ失敗 <cache miss>` 」が発生します。特に、全ての ``RUN`` 命令は ``ARG`` 命令で指定された ``ARG`` 変数を自動的に（環境変数として）扱います。つまり、これによって失敗が発生する可能性があります。全ての定義済み ``ARG`` 変数は、 ``Dockerfile`` 内で一致する ``ARG`` 命令がなければ、キャッシュから除外されます。
 
 .. For example, consider these two Dockerfile:
 
-たとえば、２つの Dockerfile を考えます。
+たとえば、これら2つの Dockerfile で考えましょう。
 
-.. code-block:: dockerfile
-   :linenos:
+::
 
    FROM ubuntu
    ARG CONT_IMG_VER
    RUN echo $CONT_IMG_VER
 
-.. code-block:: dockerfile
-   :linenos:
+::
 
    FROM ubuntu
    ARG CONT_IMG_VER
    RUN echo hello
 
-.. If you specify `--build-arg CONT_IMG_VER=<value>` on the command line, in both
-   cases, the specification on line 2 does not cause a cache miss; line 3 does
-   cause a cache miss.`ARG CONT_IMG_VER` causes the RUN line to be identified
-   as the same as running `CONT_IMG_VER=<value>` echo hello, so if the `<value>`
-   changes, we get a cache miss.
+.. If you specify --build-arg CONT_IMG_VER=<value> on the command line, in both cases, the specification on line 2 does not cause a cache miss; line 3 does cause a cache miss.ARG CONT_IMG_VER causes the RUN line to be identified as the same as running CONT_IMG_VER=<value> echo hello, so if the <value> changes, we get a cache miss.
 
-コマンドラインから ``--build-arg CONT_IMG_VER=<value>`` を指定すると 2 つの例ともに、2 行めの記述ではキャッシュ・ミスが起きず、3 行めで発生します。
-``ARG CONT_IMG_VER`` は、``RUN`` 行において ``CONT_IMG_VER=<value>`` echo hello と同等のことが実行されるので、``<value>`` が変更されると、キャッシュ・ミスが起こるということです。
+コマンドラインで ``--build-arg CONT_IMG_VER=<値>`` を指定すると、どちらの場合も2行目まではキャッシュ失敗は発生せず、3行目で失敗が発生します。 ``ARG CONT_IMG_VER`` によって、 RUN 行を ``CONT_IMG_VER=<value> echo hello`` として実行するように定義するのと同じです。つまり、 ``<値>`` が変わったため、キャッシュに失敗します。
 
 .. Consider another example under the same command line:
 
-もう 1 つの例を、同じコマンドライン実行を行って利用するとします。
+同じコマンドラインで、別の例を考えます。
 
-.. code-block:: dockerfile
-   :linenos:
-
-   FROM ubuntu
-   ARG CONT_IMG_VER
-   ENV CONT_IMG_VER $CONT_IMG_VER
-   RUN echo $CONT_IMG_VER
-
-.. In this example, the cache miss occurs on line 3. The miss happens because
-   the variable's value in the `ENV` references the `ARG` variable and that
-   variable is changed through the command line. In this example, the `ENV`
-   command causes the image to include the value.
-
-この例においてキャッシュ・ミスは 3 行めで発生します。
-これは ``ENV`` における変数値が ``ARG`` 変数を参照しており、その変数値がコマンドラインから変更されるために起きます。
-この例では ``ENV`` コマンドがイメージに対して変数値を書き込むものとなります。
-
-.. If an `ENV` instruction overrides an `ARG` instruction of the same name, like
-   this Dockerfile:
-
-``ENV`` 命令が ``ARG`` 命令の同一変数名を上書きする例を見てみます。
-
-.. code-block:: dockerfile
-   :linenos:
+::
 
    FROM ubuntu
    ARG CONT_IMG_VER
-   ENV CONT_IMG_VER hello
+   ENV CONT_IMG_VER=$CONT_IMG_VER
    RUN echo $CONT_IMG_VER
 
-.. Line 3 does not cause a cache miss because the value of `CONT_IMG_VER` is a
-   constant (`hello`). As a result, the environment variables and values used on
-   the `RUN` (line 4) doesn't change between builds.
+.. In this example, the cache miss occurs on line 3. The miss happens because the variable’s value in the ENV references the ARG variable and that variable is changed through the command line. In this example, the ENV command causes the image to include the value.
 
-3 行めにおいてキャッシュ・ミスは発生しません。
-これは ``CONT_IMG_VER`` が定数（``hello``）であるからです。
-その結果、4 行めの ``RUN`` 命令において用いられる環境変数およびその値は、ビルドの際に変更されません。
+この例では、3行目でキャッシュに失敗します。失敗するのは、 ``ENV`` にある変数の値が ``ARG`` 変数を参照し、かつ、その変数がコマンドラインを通して変更されるからです。この例では、 ``ENV`` 命令によってイメージの中に値が含まれます。
 
+.. If an ENV instruction overrides an ARG instruction of the same name, like this Dockerfile:
 
-.. _onbuild:
+``ENV`` 命令を、同じ名前の ``ARG`` で上書きする場合は、次のような Dockerifle になります。
+
+::
+
+   FROM ubuntu
+   ARG CONT_IMG_VER
+   ENV CONT_IMG_VER=hello
+   RUN echo $CONT_IMG_VER
+
+.. Line 3 does not cause a cache miss because the value of CONT_IMG_VER is a constant (hello). As a result, the environment variables and values used on the RUN (line 4) doesn’t change between builds.
+
+3行目の ``CONT_IMG_VER`` 値は定数（ ``hello`` ）のため、キャッシュ失敗は発生しません。結果として、 ``RUN`` （4行目）で使われる環境変数と値は、構築の間は変わりません。
+
+.. _builder-onbuild:
 
 ONBUILD
 ==========
 
-   ..  ONBUILD [INSTRUCTION]
+::
 
-.. code-block:: dockerfile
+   ONBUILD [命令]
 
-   ONBUILD [INSTRUCTION]
+.. The ONBUILD instruction adds to the image a trigger instruction to be executed at a later time, when the image is used as the base for another build. The trigger will be executed in the context of the downstream build, as if it had been inserted immediately after the FROM instruction in the downstream Dockerfile.
 
-.. The `ONBUILD` instruction adds to the image a *trigger* instruction to
-   be executed at a later time, when the image is used as the base for
-   another build. The trigger will be executed in the context of the
-   downstream build, as if it had been inserted immediately after the
-   `FROM` instruction in the downstream `Dockerfile`.
-
-``ONBUILD`` 命令は、イメージに対して **トリガ** 命令（trigger instruction）を追加します。
-トリガ命令は後々実行されるものであり、そのイメージが他のビルドにおけるベースイメージとして用いられたときに実行されます。
-このトリガ命令は、後続のビルドコンテキスト内で実行されます。
-後続の ``Dockerfile`` 内での ``FROM`` 命令の直後に、その命令が挿入されたかのようにして動作します。
+``ONBUILD`` 命令は、後から他のイメージ構築の基礎（ベース）として使われる時に、「 :ruby:`トリガ <trigger>` 」として実行する命令をイメージに追加します。トリガは後に続く（ダウンストリームの）コンテクストを構築時、ダウンストリームの ``Dockerfile`` にある ``FROM`` 命令の直後に、直ちに実行されます。
 
 .. Any build instruction can be registered as a trigger.
 
-どのようなビルド命令でも、トリガ命令として登録することができます。
+あらゆる構築命令をトリガとして登録できます。
 
-.. This is useful if you are building an image which will be used as a base
-   to build other images, for example an application build environment or a
-   daemon which may be customized with user-specific configuration.
+.. This is useful if you are building an image which will be used as a base to build other images, for example an application build environment or a daemon which may be customized with user-specific configuration.
 
-この命令は、他のイメージのビルドに用いることを意図したイメージをビルドする際に利用できます。
-たとえばアプリケーションやデーモンの開発環境であって、ユーザ特有の設定を行うような場合です。
+他のイメージを構築する時に、その基礎となるイメージを構築するのに役立ちます。たとえば、アプリケーションの構築環境や、ユーザ固有の設定でカスタマイズ可能なデーモンです。
 
-.. For example, if your image is a reusable Python application builder, it
-   will require application source code to be added in a particular
-   directory, and it might require a build script to be called *after*
-   that. You can't just call `ADD` and `RUN` now, because you don't yet
-   have access to the application source code, and it will be different for
-   each application build. You could simply provide application developers
-   with a boilerplate `Dockerfile` to copy-paste into their application, but
-   that is inefficient, error-prone and difficult to update because it
-   mixes with application-specific code.
+.. For example, if your image is a reusable Python application builder, it will require application source code to be added in a particular directory, and it might require a build script to be called after that. You can’t just call ADD and RUN now, because you don’t yet have access to the application source code, and it will be different for each application build. You could simply provide application developers with a boilerplate Dockerfile to copy-paste into their application, but that is inefficient, error-prone and difficult to update because it mixes with application-specific code.
 
-たとえば、繰り返し利用できる Python アプリケーション環境イメージがあるとします。
-そしてこのイメージにおいては、アプリケーションソースコードを所定のディレクトリに配置することが必要であって、さらにソースを配置した後にソースビルドを行うスクリプトを加えたいとします。
-このままでは ``ADD`` と ``RUN`` を単に呼び出すだけでは実現できません。
-それはアプリケーションソースコードがまだわかっていないからであり、ソースコードはアプリケーション環境ごとに異なるからです。
-アプリケーション開発者に向けて、ひながたとなる ``Dockerfile`` を提供して、コピーペーストした上でアプリケーションに組み入れるようにすることも考えられます。
-しかしこれでは不十分であり、エラーも起こしやすくなります。
-そしてアプリケーションに特有のコードが含まれることになるので、更新作業も大変になります。
+たとえば、イメージが再利用可能な Python アプリケーションを構築するもの（ビルダ）であれば、特定のディレクトリに対してアプリケーションのソースコードを追加する必要があり、さらに、後から構築用スクリプトを呼び出す必要がある場合もあるでしょう。この時点では ``ADD`` と ``RUN`` 命令を呼び出せません。なぜなら、まだアプリケーションのソースコードにアクセスできず、さらに、アプリケーションごとにソースコードが異なるからです。これをシンプルに実現するには、アプリケーション開発者がテンプレートとなる ``Dockerfile`` をアプリケーションごとにコピー＆ペーストする方法があります。しかしこれは、アプリケーション固有のコードが混在すると、効率が悪く、エラーも発生しがちであり、更新も困難です。
 
-.. The solution is to use `ONBUILD` to register advance instructions to
-   run later, during the next build stage.
+.. The solution is to use ONBUILD to register advance instructions to run later, during the next build stage.
 
-これを解決するには ``ONBUILD`` を利用します。
-後々実行する追加の命令を登録しておき、次のビルドステージにおいて実行させるものです。
+この解決策は ``ONBLUD`` 命令を使い、次の構築ステージ中に、後で実行する高度な命令を登録します。
 
 .. Here’s how it works:
 
-これは次のように動作します。
+これは、次のように動作します：
 
-.. 1. When it encounters an `ONBUILD` instruction, the builder adds a
-      trigger to the metadata of the image being built. The instruction
-      does not otherwise affect the current build.
-.. 2. At the end of the build, a list of all triggers is stored in the
-      image manifest, under the key `OnBuild`. They can be inspected with
-      the `docker inspect` command.
-.. 3. Later the image may be used as a base for a new build, using the
-      `FROM` instruction. As part of processing the `FROM` instruction,
-      the downstream builder looks for `ONBUILD` triggers, and executes
-      them in the same order they were registered. If any of the triggers
-      fail, the `FROM` instruction is aborted which in turn causes the
-      build to fail. If all triggers succeed, the `FROM` instruction
-      completes and the build continues as usual.
-.. 4. Triggers are cleared from the final image after being executed. In
-      other words they are not inherited by "grand-children" builds.
+..    When it encounters an ONBUILD instruction, the builder adds a trigger to the metadata of the image being built. The instruction does not otherwise affect the current build.
+    At the end of the build, a list of all triggers is stored in the image manifest, under the key OnBuild. They can be inspected with the docker inspect command.
+    Later the image may be used as a base for a new build, using the FROM instruction. As part of processing the FROM instruction, the downstream builder looks for ONBUILD triggers, and executes them in the same order they were registered. If any of the triggers fail, the FROM instruction is aborted which in turn causes the build to fail. If all triggers succeed, the FROM instruction completes and the build continues as usual.
+    Triggers are cleared from the final image after being executed. In other words they are not inherited by “grand-children” builds.
 
-1. ``ONBUILD`` 命令があると、現在ビルドしているイメージのメタデータに対してトリガが追加されます。
-   この命令は現在のビルドには影響を与えません。
-2. ビルドの最後に、トリガの一覧がイメージマニフェスト内の ``OnBuild`` というキーのもとに保存されます。
-   この情報は ``docker inspect`` コマンドを使って確認することができます。
-3. 次のビルドにおけるベースイメージとして、このイメージを利用します。
-   その指定には ``FROM`` 命令を用います。
-   ``FROM`` 命令の処理の中で、後続ビルド処理が ``ONBUILD`` トリガを見つけると、それが登録された順に実行していきます。
-   トリガが 1 つでも失敗したら、``FROM`` 命令は中断され、ビルドが失敗することになります。
-   すべてのトリガが成功したら ``FROM`` 命令の処理が終わり、ビルド処理がその後に続きます。
-4. トリガは、イメージが実行された後は、イメージ内から削除されます。
-   別の言い方をすれば、「孫」のビルドにまでは受け継がれないということです。
+1. ``ONBUILD`` 命令が発生すると、ビルダーは構築中のイメージ内に、トリガをメタデータとして追加します。現時点での構築では、この命令は何ら影響を与えません。
+2. 構築後、すべてのトリガ一覧は、イメージのマニフェスト ``OnBuild`` キー以下に保管されます。これらは ``docker inspect`` コマンドで調べられます。
+3. 後ほど、このイメージを新しい構築のベースとして用いるため、``FROM`` 命令で呼び出されるでしょう。 ``FROM`` 命令の処理の一部として、ダウンストリームのビルダーは ``ONBUILD`` トリガを探します。そして、トリガが登録されたのと同じ順番で、トリガを実行します。もしもトリガの1つでも失敗すると、 ``FROM`` 命令は処理が中止となり、構築は失敗します。全てのトリガ処理が成功すると、 ``FROM`` 命令は完了し、以降は通常通り構築が進行します。
+4. 最後の処理がおわった後、最終イメージからトリガは削除されます。言い換えると、「 :ruby:`孫 <grand-children>` 」ビルドには継承されません。
 
 .. For example you might add something like this:
 
-例として以下のようなことを追加する場合が考えられます。
+たとえば、次のような追加となるでしょう。
 
-.. code-block:: dockerfile
+::
 
-   [...]
    ONBUILD ADD . /app/src
    ONBUILD RUN /usr/local/bin/python-build --dir /app/src
-   [...]
 
-.. > **Warning**: Chaining `ONBUILD` instructions using `ONBUILD ONBUILD` isn't allowed.
-
-.. warning::
-
-   ``ONBUILD`` 命令をつなぎ合わせた命令、``ONBUILD ONBUILD`` は実現することはできません。
-
-.. > **Warning**: The `ONBUILD` instruction may not trigger `FROM` or `MAINTAINER` instructions.
+..    Warning
+    Chaining ONBUILD instructions using ONBUILD ONBUILD isn’t allowed.
 
 .. warning::
 
-   ``ONBUILD`` 命令は ``FROM`` 命令や ``MAINTAINER`` 命令をトリガーとすることはできません。
+   ``ONBUILD`` 命令をつなげ、 ``ONBUILD ONBUILD`` としては使えません。
 
-.. _stopsignal:
+..    Warning
+    The ONBUILD instruction may not trigger FROM or MAINTAINER instructions.
+
+.. warning::
+
+   ``ONBLUID`` 命令は ``FROM``  や ``MAINTAINER`` 命令をトリガにできません。
+
+.. STOPSIGNAL
+
+.. _builder-stopsignal:
 
 STOPSIGNAL
 ==========
 
-   ..  STOPSIGNAL signal
+::
 
-.. code-block:: dockerfile
+   STOPSIGNAL 信号
 
-   STOPSIGNAL signal
+.. The STOPSIGNAL instruction sets the system call signal that will be sent to the container to exit. This signal can be a valid unsigned number that matches a position in the kernel’s syscall table, for instance 9, or a signal name in the format SIGNAME, for instance SIGKILL.
 
-.. The `STOPSIGNAL` instruction sets the system call signal that will be sent to the container to exit.
-   This signal can be a valid unsigned number that matches a position in the kernel's syscall table, for instance 9,
-   or a signal name in the format SIGNAME, for instance SIGKILL.
-
-``STOPSIGNAL`` 命令はシステムコールシグナルを設定するものであり、コンテナが終了するときに送信されます。
-シグナルは負ではない整数値であり、カーネルのシステムコールテーブル内に合致するものを指定します。
-たとえば 9 などです。
-あるいは SIGNAME という形式のシグナル名を指定します。
-たとえば SIGKILL などです。
+``STOPSIGNAL`` 命令は、 :ruby:`システムコール信号 <system call signal>` を設定し、コンテナを :ruby:`終了 <exit>` するために送信されます。この信号（シグナル）は符号無し整数であり、カーネルの syscall 表の位置と一致します。たとえば、「9」であったり、 ``SIGKILL`` のような信号名の書式の :ruby:`信号 <signal>` です。
 
 .. HEALTHCHECK
 
-.. _build-healthcheck:
+.. _builder-healthcheck:
 
 HEALTHCHECK
 ====================
 
 .. The HEALTHCHECK instruction has two forms:
 
-``HEALTHCHECK`` 命令は２つの形式があります：
+``HEALTHCHECK`` 命令は２つの形式があります。
 
 .. * `HEALTHCHECK [OPTIONS] CMD command` (check container health by running a command inside the container)
    * `HEALTHCHECK NONE` (disable any healthcheck inherited from the base image)
 
-* ``HEALTHCHECK [OPTIONS] CMD command`` (コンテナ内部でコマンドを実行し、コンテナをヘルスチェック)
-* ``HEALTHCHECK NONE`` (ベースイメージが行うヘルスチェックを無効化)
+* ``HEALTHCHECK [オプション] CMD コマンド`` (コンテナ内部でコマンドを実行し、コンテナの正常性を確認)
+* ``HEALTHCHECK NONE`` (ベースイメージから、ヘルスチェック設定の継承を無効化)
 
-.. The `HEALTHCHECK` instruction tells Docker how to test a container to check that
-   it is still working. This can detect cases such as a web server that is stuck in
-   an infinite loop and unable to handle new connections, even though the server
-   process is still running.
+.. The HEALTHCHECK instruction tells Docker how to test a container to check that it is still working. This can detect cases such as a web server that is stuck in an infinite loop and unable to handle new connections, even though the server process is still running.
 
-``HEALTHCHECK`` 命令は、コンテナが動作していることをチェックする方法を指定するものです。
-この機能はたとえば、ウェブサーバのプロセスが稼動はしているものの、無限ループに陥っていて新たな接続を受け入れられない状態を検知する場合などに利用できます。
+``HEALTHCHECK`` 命令は、Docker に対してコンテナのテスト方法を伝え、コンテナが動作し続けているかどうか確認します。これにより、ウェブサーバなどでサーバのプロセスが実行中にかかわらず、無限ループして詰まっていたり、新しい接続を処理できなかったりするような問題を検出します。
 
-.. When a container has a healthcheck specified, it has a _health status_ in
-   addition to its normal status. This status is initially `starting`. Whenever a
-   health check passes, it becomes `healthy` (whatever state it was previously in).
-   After a certain number of consecutive failures, it becomes `unhealthy`.
+.. When a container has a healthcheck specified, it has a health status in addition to its normal status. This status is initially starting. Whenever a health check passes, it becomes healthy (whatever state it was previously in). After a certain number of consecutive failures, it becomes unhealthy.
 
-コンテナーヘルスチェックが設定されていると、通常のステータスに加えて **ヘルスステータス** を持つことになります。
-このステータスの初期値は ``starting`` です。
-ヘルスチェックが行われると、このステータスは（それまでにどんなステータスであっても） ``healthy`` となります。
-ある一定数、連続してチェックに失敗すると、そのステータスは ``unhealty`` となります。
+コンテナで :ruby:`ヘルスチェック <healthcheck>` が指定されている場合は、通常のステータスに加え *health status* （ヘルスステータス）が追加されます。初期のステータスは ``starting`` （起動中）です。ヘルスチェックが正常であれば、（以前の状況にかかわらず）ステータスは ``healthy`` （正常）になります。何度か連続した :ruby:`失敗 <failure>` があれば、ステータスは ``unhealthy`` （障害発生）になります。
 
 .. The options that can appear before CMD are:
 
-``CMD`` より前に記述するオプションは、以下の通りです。
+``CMD`` よりも前に書いて、オプションを指定できます。
 
-.. * `--interval=DURATION` (default: `30s`)
-   * `--timeout=DURATION` (default: `30s`)
-   * `--start-period=DURATION` (default: `0s`)
-   * `--retries=N` (default: `3`)
+...    --interval=DURATION (default: 30s)
+    --timeout=DURATION (default: 30s)
+    --start-period=DURATION (default: 0s)
+    --retries=N (default: 3)
 
-* ``--interval=DURATION`` (デフォルト: `30s`)
-* ``--timeout=DURATION`` (デフォルト: `30s`)
-* ``--start-period=DURATION`` (デフォルト: `0s`)
-* ``--retries=N`` (default: `3`)
+* ``--interval=期間`` (デフォルト: `30s`) ※ヘルスチェックの間隔
+* ``--timeout=期間`` (デフォルト: `30s`) ※タイムアウトの長さ
+* ``--start-period=期間`` (デフォルト: `0s`) ※ 開始時の間隔
+* ``--retries=`` (デフォルト: `3`) ※リトライ回数
 
-.. The health check will first run **interval** seconds after the container is
-   started, and then again **interval** seconds after each previous check completes.
+.. The health check will first run interval seconds after the container is started, and then again interval seconds after each previous check completes.
 
-ヘルスチェックは、コンテナが起動した **interval** 秒後に最初に起動されます。
-そして直前のヘルスチェックが完了した **interval** 秒後に、再び実行されます。
+コンテナが起動し、（間隔で指定した） **interval** 秒後に、1回目のヘルスチェックを実行します。それから、再びヘルスチェックを前回のチェック完了後から、 **interval**  秒を経過するごとに行います。
 
-.. If a single run of the check takes longer than **timeout** seconds then the check
-   is considered to have failed.
+.. If a single run of the check takes longer than timeout seconds then the check is considered to have failed.
 
-1 回のヘルスチェックが **timeout** 秒以上かかったとき、そのチェックは失敗したものとして扱われます。
+信号を送信しても、 **タイムアウト** 秒まで処理に時間がかかっていれば、チェックに失敗したとみなされます。
 
-.. It takes **retries** consecutive failures of the health check for the container
-   to be considered `unhealthy`.
+.. It takes retries consecutive failures of the health check for the container to be considered unhealthy.
 
-コンテナに対するヘルスチェックが **retries** 回分、連続して失敗した場合は ``unhealthy`` とみなされます。
+コンテナに対するヘルスチェックの失敗が、 **retries** で指定したリトライ回数に達すると、コンテナは ``unhealthy`` とみなされます。
 
-.. **start period** provides initialization time for containers that need time to bootstrap.
-   Probe failure during that period will not be counted towards the maximum number of retries.
-   However, if a health check succeeds during the start period, the container is considered
-   started and all consecutive failures will be counted towards the maximum number of retries.
+.. start period provides initialization time for containers that need time to bootstrap. Probe failure during that period will not be counted towards the maximum number of retries. However, if a health check succeeds during the start period, the container is considered started and all consecutive failures will be counted towards the maximum number of retries.
 
-**開始時間** （start period）は、コンテナが起動するまでに必要となる初期化時間を設定します。
-この時間内にヘルスチェックの失敗が発生したとしても、 **retries** 数の最大を越えたかどうかの判断は行われません。
-ただしこの開始時間内にヘルスチェックが 1 つでも成功したら、コンテナは起動済であるとみなされます。
-そこで、それ以降にヘルスチェックが失敗したら、**retries** 数の最大を越えたかどうかがカウントされます。
+コンテナが起動に必要な時間を、初期化する時間として **start period** で指定します。この期間中に :ruby:`プローブ障害 <probe failure>` が発生したとしても、最大リトライ回数としてはカウントされません。ですが、 start period の期間中にヘルスチェックが成功するとコンテナは起動したとみなされ、以降に連続した失敗があれば、最大リトライ回数までカウントされます。
 
-.. There can only be one `HEALTHCHECK` instruction in a Dockerfile. If you list
-   more than one then only the last `HEALTHCHECK` will take effect.
+.. There can only be one HEALTHCHECK instruction in a Dockerfile. If you list more than one then only the last HEALTHCHECK will take effect.
 
-1 つの Dockerfile に記述できる ``HEALTHCHECK`` 命令はただ 1 つです。
-複数の ``HEALTHCHECK`` を記述しても、最後の命令しか効果はありません。
+これらを指定できるのは、Dockerfile の ``HEALTHCHECK`` 命令のみです。複数の ``HEALTHCHECK`` 命令があれば、最後の1つのみ有効です。
 
-.. The command after the `CMD` keyword can be either a shell command (e.g. `HEALTHCHECK
-   CMD /bin/check-running`) or an _exec_ array (as with other Dockerfile commands;
-   see e.g. `ENTRYPOINT` for details).
+.. The command after the CMD keyword can be either a shell command (e.g. HEALTHCHECK CMD /bin/check-running) or an exec array (as with other Dockerfile commands; see e.g. ENTRYPOINT for details).
 
-``CMD`` キーワードの後ろにあるコマンドは、シェルコマンド（たとえば ``HEALTHCHECK CMD /bin/check-running``）か、あるいは exec 形式の配列（他の Dockerfile コマンド、たとえば ``ENTRYPOINT`` にあるもの）のいずれかを指定します。
+``CMD`` キーワードの後に書くコマンドは、シェルコマンド（例： ``HEALTHCHECK CMD /bin/check-running`` ）か exec 配列（他の Dockerfile コマンドと同様です。詳細は ``ENTRYPOINT`` をご覧ください）のどちらか一方を使えます。
 
-.. The command's exit status indicates the health status of the container.
-   The possible values are:
+.. The command’s exit status indicates the health status of the container. The possible values are:
 
-そのコマンドの終了ステータスが、コンテナのヘルスステータスを表わします。
-返される値は以下となります。
+そのコマンドの終了ステータスが、対象となるコンテナのヘルスステータスになります。可能性のある値は、次の通りです。
 
-.. - 0: success - the container is healthy and ready for use
-   - 1: unhealthy - the container is not working correctly
-   - 2: reserved - do not use this exit code
+..    0: success - the container is healthy and ready for use
+    1: unhealthy - the container is not working correctly
+    2: reserved - do not use this exit code
 
-* 0: 成功（success） - コンテナは健康であり、利用が可能です。
-* 1: 不健康（unhealthy） - コンテナは正常に動作していません。
-* 2: 予約（reserved） - このコードを戻り値として利用してはなりません。
+* 0: :ruby:`成功 <success>` コンテナは正常
+* 1: ruby:`障害 <unhealthy>` 
+* 2: ruby:`予約済み <reserved>` - この終了コードは使いません
 
-.. For example, to check every five minutes or so that a web-server is able to
-   serve the site's main page within three seconds:
+.. For example, to check every five minutes or so that a web-server is able to serve the site’s main page within three seconds:
 
-たとえば 5 分間に 1 回のチェックとして、ウェブサーバが 3 秒以内にサイトのメインページを提供できているかを確認するには、以下のようにします。
+たとえば、ウェブサーバがサイトのメインページを3秒以内に提供できるかどうかを、5分ごとにチェックするには、次の様にします。
 
-.. code-block:: dockerfile
+::
 
    HEALTHCHECK --interval=5m --timeout=3s \
      CMD curl -f http://localhost/ || exit 1
 
-.. To help debug failing probes, any output text (UTF-8 encoded) that the command writes
-   on stdout or stderr will be stored in the health status and can be queried with
-   `docker inspect`. Such output should be kept short (only the first 4096 bytes
-   are stored currently).
+.. To help debug failing probes, any output text (UTF-8 encoded) that the command writes on stdout or stderr will be stored in the health status and can be queried with docker inspect. Such output should be kept short (only the first 4096 bytes are stored currently).
 
-ヘルスチェックにが失敗しても、それをデバッグしやすくするために、そのコマンドが標準出力あるいは標準エラー出力へ書き込んだ文字列（UTF-8 エンコーディング）は、すべてヘルスステータス内に保存されます。
-``docker inspect`` を使えば、すべて確認することができます。
-ただしその出力は切り詰められます（現時点においては最初の 4096 バイト分のみを出力します）。
+ヘルスチェックの失敗時に調査（デバッグ）をしやすくするために、
 
-.. When the health status of a container changes, a `health_status` event is
-   generated with the new status.
+コマンドが書き込んだ標準出力や標準エラー出力といった、あらゆる出力文字（UTF-8 エンコード方式）がヘルスステータスに保存され、これらは ``docker inspect`` で調べられます。この出力は短く保たれます（初めから 4096 バイトのみ保存します）。
 
-コンテナのヘルスステータスが変更されると、``health_status`` イベントが生成されて、新たなヘルスステータスになります。
+.. When the health status of a container changes, a health_status event is generated with the new status.
 
-.. The HEALTHCHECK feature was added in Docker 1.12.
-
-``HEALTHCHECK``  機能は Docker 1.12 で追加されました。
+コンテナのヘルスステータスが変われば、新しいステータスで ``health_status`` イベントが作成されます。
 
 .. SHELL
 
@@ -3129,137 +2551,82 @@ HEALTHCHECK
 SHELL
 ==========
 
-   ..  SHELL ["executable", "parameters"]
+..   SHELL ["executable", "parameters"]
 
-.. code-block:: dockerfile
+::
 
-   SHELL ["executable", "parameters"]
+   SHELL ["実行ファイル", "パラメータ"]
 
-.. The `SHELL` instruction allows the default shell used for the *shell* form of
-   commands to be overridden. The default shell on Linux is `["/bin/sh", "-c"]`, and on
-   Windows is `["cmd", "/S", "/C"]`. The `SHELL` instruction *must* be written in JSON
-   form in a Dockerfile.
+.. The SHELL instruction allows the default shell used for the shell form of commands to be overridden. The default shell on Linux is ["/bin/sh", "-c"], and on Windows is ["cmd", "/S", "/C"]. The SHELL instruction must be written in JSON form in a Dockerfile.
 
-``SHELL`` 命令は、各種コマンドのシェル形式において用いられるデフォルトのシェルを、上書き設定するために利用します。
-デフォルトのシェルは Linux 上では ``["/bin/sh", "-c"]``、Windows 上では ``["cmd", "/S", "/C"]`` です。
-``SHELL`` 命令は Dockerfile 内において JSON 形式で記述しなければなりません。
+``SHELL`` 命令は、 *シェル* 形式で使われるデフォルトのコマンドを上書きできます。 Linux 上でのデフォルトのシェルは ``["/bin/sh", "-c"]`` で、Windows は ``["cmd", "/S", "/C"]`` です。Dockerfile では、 ``SHELL`` 命令を JSON 形式で書く必要があります。
 
-.. The `SHELL` instruction is particularly useful on Windows where there are
-   two commonly used and quite different native shells: `cmd` and `powershell`, as
-   well as alternate shells available including `sh`.
+.. The SHELL instruction is particularly useful on Windows where there are two commonly used and quite different native shells: cmd and powershell, as well as alternate shells available including sh.
 
-``SHELL`` 命令は特に Windows 上において利用されます。
-Windows には主に 2 つのネイティブなシェル、つまり ``cmd`` と ``powershell`` があり、両者はかなり異なります。
-しかも ``sh`` のような、さらに別のシェルも利用することができます。
+Windows 上では特に ``SHELL`` 命令が役立ちます。これは、一般的に使われるシェルが ``cmd`` と ``powershell`` の2種類ありますし、 ``sh`` を含む他のシェルも利用できるからです。
 
-.. The `SHELL` instruction can appear multiple times. Each `SHELL` instruction overrides
-   all previous `SHELL` instructions, and affects all subsequent instructions. For example:
+.. The SHELL instruction can appear multiple times. Each SHELL instruction overrides all previous SHELL instructions, and affects all subsequent instructions. For example:
 
-``SHELL`` 命令は、何度でも記述できます。
-個々の ``SHELL`` 命令は、それより前の ``SHELL`` 命令の値を上書きし、それ以降の命令に効果を及ぼします。
-たとえば以下のとおりです。
+``SHELL`` 命令は何度も指定できます。それぞれの ``SHELL`` 命令は、以前すべての ``SHELL`` 命令を上書きし、以降の命令で（新しく指定したシェルが）有効になります。以下は例です。
 
-   ..  FROM microsoft/windowsservercore
-
-       # Executed as cmd /S /C echo default
-       RUN echo default
-
-       # Executed as cmd /S /C powershell -command Write-Host default
-       RUN powershell -command Write-Host default
-
-       # Executed as powershell -command Write-Host hello
-       SHELL ["powershell", "-command"]
-       RUN Write-Host hello
-
-       # Executed as cmd /S /C echo hello
-       SHELL ["cmd", "/S"", "/C"]
-       RUN echo hello
-
-.. code-block:: dockerfile
+::
 
    FROM microsoft/windowsservercore
 
-   # 以下のように実行： cmd /S /C echo default
+   # 「cmd /S /C echo default」として実行
    RUN echo default
 
-   # 以下のように実行： cmd /S /C powershell -command Write-Host default
+   # 「cmd /S /C powershell -command Write-Host default」として実行
    RUN powershell -command Write-Host default
 
-   # 以下のように実行： powershell -command Write-Host hello
+   # 「powershell -command Write-Host hello」として実行
    SHELL ["powershell", "-command"]
    RUN Write-Host hello
 
-   # 以下のように実行： cmd /S /C echo hello
+   # 「cmd /S /C echo hello」として実行
    SHELL ["cmd", "/S", "/C"]
    RUN echo hello
 
-.. The following instructions can be affected by the `SHELL` instruction when the
-   *shell* form of them is used in a Dockerfile: `RUN`, `CMD` and `ENTRYPOINT`.
+.. The following instructions can be affected by the SHELL instruction when the shell form of them is used in a Dockerfile: RUN, CMD and ENTRYPOINT.
 
-Dockerfile において ``RUN``、``CMD``、``ENTRYPOINT`` の各コマンドをシェル形式で記述した際には、``SHELL`` 命令の設定による影響が及びます。
+``SHELL`` 命令によって効果があるのは、 Dockerfile でシェル形式として ``RUN`` 、 ``CMD`` 、 ``ENTRYPOINT`` を使う時です。
 
-.. The following example is a common pattern found on Windows which can be
-   streamlined by using the `SHELL` instruction:
+.. The following example is a common pattern found on Windows which can be streamlined by using the SHELL instruction:
 
-以下に示す例は、Windows 上において見られる普通の実行パターンですが、``SHELL`` 命令を使って簡単に実現することができます。
+以下の例は、Windows 上でよく見かける共通パターンであり、 ``SHELL`` 命令を使って効率化できます。
 
-.. code-block:: dockerfile
+::
 
-   ...
    RUN powershell -command Execute-MyCmdlet -param1 "c:\foo.txt"
-   ...
 
 .. The command invoked by docker will be:
 
-Docker によって実行されるコマンドは以下となります。
+Docker が呼び出すコマンドは、このようになります。
 
-.. code-block:: shell
+.. code-block:: bash
 
    cmd /S /C powershell -command Execute-MyCmdlet -param1 "c:\foo.txt"
 
-.. This is inefficient for two reasons. First, there is an un-necessary cmd.exe command
-   processor (aka shell) being invoked. Second, each `RUN` instruction in the *shell*
-   form requires an extra `powershell -command` prefixing the command.
+.. This is inefficient for two reasons. First, there is an un-necessary cmd.exe command processor (aka shell) being invoked. Second, each RUN instruction in the shell form requires an extra powershell -command prefixing the command.
 
-これは効率的ではなく、そこには 2 つの理由があります。
-1 つめは、コマンドプロセッサー cmd.exe（つまりはシェル）が不要に呼び出されているからです。
-2 つめは、シェル形式の ``RUN`` 命令において、常に ``powershell -command`` を各コマンドの頭につけて実行しなければならないからです。
+これには、効率的ではない2つの理由があります。まず1つは、不要な cmd.exe コマンドのプロセッサ（シェル）が呼び出されるからです。2つめは、各 ``RUN`` 命令はシェル形式のため、コマンドの前に追加で ``powershell -command`` の実行が必要になるからです。
 
-.. To make this more efficient, one of two mechanisms can be employed. One is to
-   use the JSON form of the RUN command such as:
+.. To make this more efficient, one of two mechanisms can be employed. One is to use the JSON form of the RUN command such as:
 
-これを効率化するには、2 つあるメカニズムの 1 つを取り入れることです。
-1 つは、RUN コマンドの JSON 形式を使って、以下のようにします。
+これを効率的にするには、2つの仕組みのどちらか1つを使います。1つは、次のように RUN 命令のコマンドを JSON 形式で書きます。
 
-.. code-block:: dockerfile
+::
 
-   ...
    RUN ["powershell", "-command", "Execute-MyCmdlet", "-param1 \"c:\\foo.txt\""]
-   ...
 
-.. While the JSON form is unambiguous and does not use the un-necessary cmd.exe,
-   it does require more verbosity through double-quoting and escaping. The alternate
-   mechanism is to use the `SHELL` instruction and the *shell* form,
-   making a more natural syntax for Windows users, especially when combined with
-   the `escape` parser directive:
+.. While the JSON form is unambiguous and does not use the un-necessary cmd.exe, it does require more verbosity through double-quoting and escaping. The alternate mechanism is to use the SHELL instruction and the shell form, making a more natural syntax for Windows users, especially when combined with the escape parser directive:
 
-JSON 形式を使えば、あいまいさはなくなり、不要な cmd.exe を使うこともなくなります。
-しかしダブルクォートやエスケープを行うことも必要となり、より多くを記述することにもなります。
-もう 1 つの方法は ``SHELL`` 命令とシェル形式を使って、Windows ユーザーにとって、より自然な文法で実現するやり方です。
-特にパーサーディレクティブ ``escape`` を組み合わせて実現します。
+JSON 形式（で使うコマンドの指定）は明確であり、不要な cmd.exe を使いません。しかし、二重引用符（ダブルクォータ）やエスケープ処理が必要といった、冗長さがあります。もう1つの仕組みは、 ``SHELL`` 命令を使ってシェル形式にしますが、 ``escape`` パーサ・ディレクティブの指定があれば、 Windows ユーザにとって、より普通の書式で書けます（訳者捕捉： Dockerfile では、デフォルトのエスケープ文字は「\」ですが、Windows の場合「\」はパスの文字です。そのため、次の例のようにエスケープ文字を「`」などに変えると、Windows のパスがシェル形式でそのまま利用できるため、便利です）。
 
-   ..  # escape=`
-
-       FROM microsoft/nanoserver
-       SHELL ["powershell","-command"]
-       RUN New-Item -ItemType Directory C:\Example
-       ADD Execute-MyCmdlet.ps1 c:\example\
-       RUN c:\example\Execute-MyCmdlet -sample 'hello world'
-
-.. code-block:: dockerfile
+::
 
    # escape=`
-
+   
    FROM microsoft/nanoserver
    SHELL ["powershell","-command"]
    RUN New-Item -ItemType Directory C:\Example
@@ -3268,11 +2635,12 @@ JSON 形式を使えば、あいまいさはなくなり、不要な cmd.exe を
 
 .. Resulting in:
 
-これは以下のようになります。
+結果は次のようになります。
 
-.. code-block:: shell
+.. code-block:: bash
 
-   PS E:\docker\build\shell> docker build -t shell .
+   PS E:\myproject> docker build -t shell .
+   
    Sending build context to Docker daemon 4.096 kB
    Step 1/5 : FROM microsoft/nanoserver
     ---> 22738ff49c6d
@@ -3287,9 +2655,9 @@ JSON 形式を使えば、あいまいさはなくなり、不要な cmd.exe を
        Directory: C:\
    
    
-   Mode                LastWriteTime         Length Name
-   ----                -------------         ------ ----
-   d-----       10/28/2016  11:26 AM                Example
+   Mode         LastWriteTime              Length Name
+   ----         -------------              ------ ----
+   d-----       10/28/2016  11:26 AM              Example
    
    
     ---> 3f2fbf1395d9
@@ -3303,84 +2671,28 @@ JSON 形式を使えば、あいまいさはなくなり、不要な cmd.exe を
     ---> 8e559e9bf424
    Removing intermediate container be6d8e63fe75
    Successfully built 8e559e9bf424
-   PS E:\docker\build\shell>
+   PS E:\myproject>
 
-.. The `SHELL` instruction could also be used to modify the way in which
-   a shell operates. For example, using `SHELL cmd /S /C /V:ON|OFF` on Windows, delayed
-   environment variable expansion semantics could be modified.
+.. The SHELL instruction could also be used to modify the way in which a shell operates. For example, using SHELL cmd /S /C /V:ON|OFF on Windows, delayed environment variable expansion semantics could be modified.
 
-``SHELL`` 命令はまた、シェルの動作を変更する際にも利用することができます。
-たとえば Windows 上において ``SHELL cmd /S /C /V:ON|OFF`` を実行すると、遅延環境変数の展開方法を変更することができます。
+また、シェルの動作を変更するためにも ``SHELL`` 命令が使えます。たとえば、 Windows 上で ``SHELL cmd /S /C /V:ON|OFF`` を使えば、 :ruby:`遅延環境変数 <delayed environment variable>` の展開方法を切り替えられます。
 
-.. The `SHELL` instruction can also be used on Linux should an alternate shell be
-   required such as `zsh`, `csh`, `tcsh` and others.
+.. The SHELL instruction can also be used on Linux should an alternate shell be required such as zsh, csh, tcsh and others.
 
-``SHELL`` 命令は Linux において、``zsh``、``csh``、``tcsh`` などのシェルが必要となる場合にも利用することができます。
+さらに、``SHELL`` 命令によって、Linux であれば ``zsh`` 、 ``csh`` 、 ``tcsh`` といった、他のシェルに切り替えられます。
 
-.. The SHELL feature was added in Docker 1.12.
+.. Dockerfile examples
 
-``SHELL`` 機能は Docker 1.12 で追加されました。
+.. _dockerfile-examples:
 
-.. ## Dockerfile examples
-
-Dockerfile の記述例
+Dockerifle の例
 ====================
 
-.. Below you can see some examples of Dockerfile syntax. If you're interested in
-   something more realistic, take a look at the list of [Dockerization examples](https://docs.docker.com/engine/examples/).
+Dockerfile の例は、以下をご覧ください。
 
-以下では Dockerfile の文法例をいくつか示します。
-より実践的なところに興味がある場合は :doc:`Docker 化のサンプル </engine/examples/index>` を参照してください。
-
-.. code-block:: dockerfile
-
-   # Nginx
-   #
-   # VERSION               0.0.1
-   
-   FROM      ubuntu
-   MAINTAINER Victor Vieux <victor@docker.com>
-   
-   LABEL Description="This image is used to start the foobar executable" Vendor="ACME Products" Version="1.0"
-   RUN apt-get update && apt-get install -y inotify-tools nginx apache2 openssh-server
-
-.. code-block:: dockerfile
-
-   # Firefox over VNC
-   #
-   # VERSION               0.3
-   
-   FROM ubuntu
-   
-   # 「フェイク」（偽）のディスプレイ用の vnc, xvfb と firefox をインストール
-   RUN apt-get update && apt-get install -y x11vnc xvfb firefox
-   RUN mkdir ~/.vnc
-   # パスワードをセットアップ
-   RUN x11vnc -storepasswd 1234 ~/.vnc/passwd
-   # firefox の自動起動（ベストな方法ではありませんが、動きます）
-   RUN bash -c 'echo "firefox" >> /.bashrc'
-   
-   EXPOSE 5900
-   CMD    ["x11vnc", "-forever", "-usepw", "-create"]
-
-.. code-block:: dockerfile
-
-   # 複数のイメージ例
-   #
-   # VERSION               0.1
-   
-   FROM ubuntu
-   RUN echo foo > bar
-   # 「===> 907ad6c2736f」 のような出力があります
-   
-   FROM ubuntu
-   RUN echo moo > oink
-   # 「===> 695d7793cbe4」 のような出力があります
-   
-   # You᾿ll now have two images, 907ad6c2736f with /bar, and 695d7793cbe4 with
-   # /oink.
-   # これで２つのイメージができました。
-   # /bar がある 907ad6c2736f と、/oink がある 695d7793cbe4 です
+- :doc:`「イメージ構築」のセクション </develop/develop-images/dockerfile_best-practices>` 
+- :doc:`Get started - 始めましょう </get-started/index>`
+- :doc:`言語別ガイド </language/index>`
 
 .. seealso:: 
 

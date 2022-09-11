@@ -1,10 +1,12 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/compose/reference/events/
 .. SOURCE: https://github.com/docker/compose/blob/master/docs/reference/events.md
-   doc version: 1.11
+   doc version: 1.13
       https://github.com/docker/compose/commits/master/docs/reference/events.md
-.. check date: 2016/04/28
-.. Commits on Jan 9, 2016 d1d3969661f549311bccde53703a2939402cf769
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/compose/reference/events.md
+.. check date: 2022/04/08
+.. Commits on Jan 28, 2022 b6b19516d0feacd798b485615ebfee410d9b6f86
 .. -------------------------------------------------------------------
 
 .. events
@@ -12,12 +14,12 @@
 .. _compose-events:
 
 =======================================
-events
+docker-compose events
 =======================================
 
 .. code-block:: bash
 
-   使い方: events [オプション] [サービス...]
+   使い方: docker-compose events [オプション] [サービス...]
    
    オプション:
        --json      json オブジェクトでイベントの出力をストリーム
@@ -33,14 +35,23 @@ events
 .. code-block:: json
 
    {
-       "service": "web",
-       "event": "create",
-       "container": "213cf75fc39a",
-       "image": "alpine:edge",
        "time": "2015-11-20T18:01:03.615550",
+       "type": "container",
+       "action": "create",
+       "id": "213cf7...5fc39a",
+       "service": "web",
+       "attributes": {
+           "name": "application_web_1",
+           "image": "alpine:edge"
+       }
    }
+
+
+.. The events that can be received using this can be seen here.
+
+このコマンドを使って表示できるイベントは、 :ref:`こちら <docker_events-object-types>` で確認できます。
 
 .. seealso:: 
 
-   events
+   docker-compose events
       https://docs.docker.com/compose/reference/events/

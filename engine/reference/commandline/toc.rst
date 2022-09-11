@@ -1,7 +1,7 @@
-.. -*- coding: utf-8 -*-
+﻿.. -*- coding: utf-8 -*-
 .. 
-.. doc version: 1.10
-.. check date: 2016/02/06
+.. doc version: 20.10
+.. check date: 2022/02/13
 .. -----------------------------------------------------------------------------
 
 .. engine reference cli toc
@@ -9,88 +9,71 @@
 .. _engine-reference-cli-toc:
 
 ========================================
-コマンドライン・リファレンス
+Docker CLI (docker)
 ========================================
 
 .. toctree::
    :maxdepth: 3
 
-   index.rst
-   cli.rst
-   dockerd.rst
+   Docker run リファレンス</engine/reference/run.rst>
+   Docker コマンドラインを使う <cli.rst>
+   docker (ベースコマンド) <docker.rst>
+   docker app <app_toc.rst>
    attach.rst
    build.rst
-   commit.rst
-   cp.rst
-   create.rst
-   diff.rst
-   events.rst
-   exec.rst
-   export.rst
-   history.rst
-   images.rst
-   import.rst
-   info.rst
-   inspect.rst
-   kill.rst
-   load.rst
-   login.rst
-   logout.rst
-   logs.rst
-   network_connect.rst
-   network_create.rst
-   network_disconnect.rst
-   network_inspect.rst
-   network_ls.rst
-   network_rm.rst
-   pause.rst
-   port.rst
-   ps.rst
-   pull.rst
-   push.rst
-   plugin_disable.rst
-   plugin_enable.rst
-   plugin_inspect.rst
-   plugin_install.rst
-   plugin_ls.rst
-   plugin_rm.rst
-   rename.rst
-   restart.rst
-   rm.rst
-   rmi.rst
-   run.rst
-   save.rst
-   search.rst
-   service_create.rst
-   service_inspect.rst
-   service_ls.rst
-   service_rm.rst
-   service_scale.rst
-   service_tasks.rst
-   service_update.rst
-   start.rst
-   stats.rst
-   stop.rst
-   swarm_init.rst
-   swarm_join.rst
-   swarm_leave.rst
-   swarm_update.rst
-   tag.rst
-   top.rst
-   unpause.rst
-   update.rst
-   version.rst
-   volume_create.rst
-   volume_inspect.rst
-   volume_ls.rst
-   volume_rm.rst
-   wait.rst
-   node_accept.rst
-   node_promote.rst
-   node_demote.rst
-   node_inspect.rst
-   node_update.rst
-   node_tasks.rst
-   node_ls.rst
-   node_rm.rst
+   docker builder <builder_toc.rst>
+   docker buildx <buildx_toc.rst>
+   docker checkpoint <checkpoint.rst>
+   docker compose <compose_toc.rst>
+   docker config <config_toc.rst>
+   docker container <container_toc.rst>
+   docker context <context_toc.rst>
+   docker cp <cp.rst>
+   docker create <create.rst>
+   docker diff <diff.rst>
+   docker events <events.rst>
+   docker exec <exec.rst>
+   docker export <export.rst>
+   docker history <history.rst>
+   docker image <image_toc.rst>
+   docker images <images.rst>
+   docker import <import.rst>
+   docker info <info.rst>
+   docker inspect <inspect.rst>
+   docker kill <kill.rst>
+   docker load <load.rst>
+   docker login <login.rst>
+   docker logout <logout.rst>
+   docker logs <logs.rst>
+   docker manifest <manifest_toc.rst>
+   docker network <network_toc.rst>
+   docker node <node_toc.rst>
+   docker pause <pause.rst>
+   docker plugin <plugin_toc.rst>
+   docker port <port.rst>
+   docker ps <ps.rst>
+   docker pull <pull.rst>
+   docker push <push.rst>
+   docker rename <rename.rst>
+   docker restart <restart.rst>
+   docker rm <rm.rst>
+   docker rmi <rmi.rst>
+   docker save <save.rst>
+   docker search <search.rst>
+   docker secret <secret_toc.rst>
+   docker service <service_toc.rst>
+   docker stack <stack_toc.rst>
+   docker start <start.rst>
+   docker stats <stats.rst>
+   docker stop <stop.rst>
+   docker swarm <swarm_toc.rst>
+   docker system <system_toc.rst>
+   docker tag <tag.rst>
+   docker top <top.rst>
+   docker trust <trust_toc.rst>
+   docker unpause <unpause.rst>
+   docker update <update.rst>
+   docker version <version.rst>
+   docker volume <volume_toc.rst>
+   docker wait <wait.rst>
 

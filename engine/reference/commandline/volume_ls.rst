@@ -1,62 +1,117 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/reference/commandline/volume_ls/
-.. SOURCE: https://github.com/docker/docker/blob/master/docs/reference/commandline/volume_ls.md
-   doc version: 1.12
-      https://github.com/docker/docker/commits/master/docs/reference/commandline/volume_ls.md
-.. check date: 2016/06/16
-.. Commits on Mar 25, 2016 8e9305ef946843ce2f8ef47909d6a866eab5dfa8
+.. SOURCE: 
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/engine/reference/commandline/volume_ls.md
+      https://github.com/docker/docker.github.io/blob/master/_data/engine-cli/docker_volume_ls.yaml
+.. check date: 2022/04/05
+.. Commits on Apr 2, 2022 098129a0c12e3a79398b307b38a67198bd3b66fc
 .. -------------------------------------------------------------------
 
-.. volume ls
+.. docker volume ls
 
 =======================================
-volume ls
+docker volume ls
 =======================================
+
+
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
+.. _volume_ls-description:
+
+説明
+==========
+
+.. List volumes
+
+ボリュームを一覧表示します。
+
+.. API 1.21+
+   Open the 1.21 API reference (in a new window)
+   The client and daemon API must both be at least 1.25 to use this command. Use the docker version command on the client to check your client and daemon API versions.
+
+【API 1.21+】このコマンドを使うには、クライアントとデーモン API の両方が、少なくとも `1.25 <https://docs.docker.com/engine/api/v1.21/>`_ の必要があります。クライアントとデーモン API のバージョンを調べるには、 ``docker version`` コマンドを使います。
+
+
+.. _volume_ls-usage:
+
+使い方
+==========
 
 .. code-block:: bash
 
-   使い方: docker volume ls [オプション]
-   
-   ボリュームの一覧
-   
-     -f, --filter=[]      次の状況に応じて出力フィルタ:
-                          - dangling=<boolean> ボリュームが参照されているかどうか
-                          - driver=<string> ボリュームのドライバ名
-                          - name=<string> ボリューム名
-     --help               使い方の表示
-     -q, --quiet          ボリューム名のみ表示
+   $ docker volume ls [OPTIONS]
 
-.. Lists all the volumes Docker knows about. You can filter using the -f or --filter flag. The filtering format is a key=value pair. To specify more than one filter, pass multiple flags (for example, --filter "foo=bar" --filter "bif=baz")
+.. Extended description
+.. _volume_ls-extended-description:
 
-.. Docker が把握している全てのボリュームを表示します。 ``-f`` か ``--filter`` フラグを使ってフィルタできます。フィルタリングの形式は ``key=value`` のペアです。１つまたは複数のフィルタを指定するには、複数のフラグを通します（例： ``--filter "foo=bar" --filter "bif=baz"`` ）。
+補足説明
+==========
 
-.. There is a single supported filter dangling=value which takes a boolean of true or false.
-
-.. ``dangling=value`` フィルタのみ ``true`` か ``false`` を指定します。
+.. List all the volumes known to Docker. You can filter using the -f or --filter flag. Refer to the filtering section for more information about available filter options.
 
 
-.. Lists all the volumes Docker knows about. You can filter using the -f or --filter flag. Refer to the filtering section for more information about available filter options.
+Docker が把握している全てのボリュームを表示します。 ``-f`` か ``--filter`` フラグを使ってフィルタできます。利用可能なフィルタ・オプションに関する情報は :ref:`volume_ls-filtering` のセクションをご覧ください。
 
-Docker が把握している全てのボリュームを表示します。 ``-f`` か ``--filter`` フラグを使ってフィルタできます。利用可能なフィルタ・オプションに関する情報は :ref:`volume-filtering` のセクションをご覧ください。
+.. For example uses of this command, refer to the examples section below.
 
-.. Example output:
+コマンドの使用例は、以下の :ref:`使用例のセクション <volume_ls-examples>` をご覧ください。
 
-出力例：
+.. _volume_ls-options:
+
+オプション
+==========
+
+.. list-table::
+   :header-rows: 1
+
+   * - 名前, 省略形
+     - デフォルト
+     - 説明
+   * - ``--filter`` , ``-f``
+     - 
+     - フィルタ値を指定（例 ``dangling=true`` ）
+   * - ``--format``
+     - 
+     - Go テンプレートを使ってボリュームを整形して表示
+   * - ``--quiet`` , ``-q``
+     - 
+     - ボリューム名のみ表示
+
+.. Examples
+.. _volume_ls-examples:
+
+使用例
+==========
+
+.. Create a volume
+.. _volume_ls-create-a-volume:
+ボリューム作成
+--------------------
 
 .. code-block:: bash
 
-   $ docker volume create --name rose
-   rose
-   $docker volume create --name tyler
+   $ docker volume create rosemary
+   
+   rosemary
+   
+   $ docker volume create tyler
+   
    tyler
+   
    $ docker volume ls
+   
    DRIVER              VOLUME NAME
-   local               rose
+   local               rosemary
    local               tyler
 
-.. Filtering
 
-.. _volume-filtering:
+.. Filtering
+.. _volume_ls-filtering:
 
 フィルタリング
 ====================
@@ -73,14 +128,15 @@ Docker が把握している全てのボリュームを表示します。 ``-f``
     driver (a volume driver's name)
     name (a volume's name)
 
-* ダングリング（ブール値 - true か false か 0 か 1 ）
-* ドライバ（ボリュームのドライバ名）
+* dangling（ブール値 - true か false か 0 か 1 ）
+* driver（ボリュームのドライバ名）
+* label （ ``label=<key>`` か ``label=<key>=<value>`` ）
 * 名前（ボリューム名）
 
 .. dangling
-
-ダングリング
---------------------
+.. _dokcer_ls-dangling:
+dangling
+^^^^^^^^^^
 
 .. The dangling filter matches on all volumes not referenced by any containers
 
@@ -89,15 +145,16 @@ Docker が把握している全てのボリュームを表示します。 ``-f``
 .. code-block:: bash
 
    $ docker run -d  -v tyler:/tmpwork  busybox
+   
    f86a7dd02898067079c99ceacd810149060a70528eff3754d0b0f1a93bd0af18
    $ docker volume ls -f dangling=true
    DRIVER              VOLUME NAME
    local               rosemary
 
 .. driver
-
-ドライバ
-----------
+.. _docker_ls-driver:
+driver
+^^^^^^^^^^
 
 .. The driver filter matches on all or part of a volume's driver name.
 
@@ -110,14 +167,76 @@ Docker が把握している全てのボリュームを表示します。 ``-f``
 .. code-block:: bash
 
    $ docker volume ls -f driver=local
+   
    DRIVER              VOLUME NAME
    local               rosemary
    local               tyler
 
-.. name
 
-名前
-----------
+.. label
+.. _volume_ls-label:
+label
+^^^^^^^^^
+
+.. The label filter matches volumes based on the presence of a label alone or a label and a value.
+
+``label`` フィルタは、 ``label`` 単体か ``label`` と値の存在に基づくボリュームに一致します。
+
+.. First, let’s create some volumes to illustrate this;
+
+これを説明するためには、まず、いくつかのボリュームを作成しましょう。
+
+.. code-block:: bash
+
+   $ docker volume create the-doctor --label is-timelord=yes
+   
+   the-doctor
+   $ docker volume create daleks --label is-timelord=no
+   
+   daleks
+
+.. The following example filter matches volumes with the is-timelord label regardless of its value.
+
+以下のフィルタ例は、値が何であろうとも ``is-timelord`` ラベルを持つボリュームに一致します。
+
+.. code-block:: bash
+
+   $ docker volume ls --filter label=is-timelord
+   
+   DRIVER              VOLUME NAME
+   local               daleks
+   local               the-doctor
+
+.. As the above example demonstrates, both volumes with is-timelord=yes, and is-timelord=no are returned.
+
+先ほどのデモでは、 ``is-timelord=yes`` と ``is-timelord=no`` の両方のボリュームが結果に出ました。
+
+.. Filtering on both key and value of the label, produces the expected result:
+
+ラベルの ``key`` と ``value`` 両方でフィルタすると、期待通りに表示します。
+
+.. code-block:: bash
+
+   $ docker volume ls --filter label=is-timelord=yes
+   
+   DRIVER              VOLUME NAME
+   local               the-doctor
+
+.. Specifying multiple label filter produces an “and” search; all conditions should be met;
+
+複数のラベルフィルタを指定すると、「and」で検索します。つまり、全ての条件に一致するものです。
+
+.. code-block:: bash
+
+   $ docker volume ls --filter label=is-timelord=yes --filter label=is-timelord=no
+   
+   DRIVER              VOLUME NAME
+
+
+.. name
+.. _volume_ls-name:
+name
+^^^^^^^^^^
 
 .. The name filter matches on all or part of a volume's name.
 
@@ -133,15 +252,92 @@ Docker が把握している全てのボリュームを表示します。 ``-f``
    DRIVER              VOLUME NAME
    local               rosemary
 
-関連情報
+.. Formatting
+.. _volume_ls-formatting:
+表示形式
+----------
+
+.. The formatting option (--format) pretty prints configs output using a Go template.
+
+出力形式のオプション（ ``--format`` ）は Go テンプレートを用いて出力を調整し、表示を整えます。
+
+.. Valid placeholders for the Go template are listed below:
+
+有効な Go テンプレートの placeholder は以下の通りです。
+
+.. list-table::
+   :header-rows: 1
+
+   * - placeholder
+     - 説明
+   * - ``.Name``
+     - ボリューム名
+   * - ``.Driver``
+     - ボリュームドライバ
+   * - ``.Scope``
+     - ボリュームの範囲（local, global）
+   * - ``.Mountpoint``
+     - ホスト上のボリュームのマウントポイント
+   * - ``.Labels``
+     - ボリュームに割り当てられた全てのラベル
+   * - ``.Label``
+     - 対象ボリュームに対するラベルの値を指定。例 ``{{.Label "project.version"}}``
+
+
+.. When using the --format option, the config ls command will either output the data exactly as the template declares or, when using the table directive, will include column headers as well.
+
+``--format`` オプションを使うと、 ``config ls`` コマンドはテンプレート宣言通りに正確にデータを出力するか、 ``table`` ディレクティブによってヘッダ列も同様に表示するかのいずれかです。
+
+.. The following example uses a template without headers and outputs the ID and Name entries separated by a colon (:) for all images:
+
+以下の例では、ヘッダのないテンプレートを使いますが、全てのイメージに対して ``ID`` と ``Driver`` の項目をコロン ``:`` で分けて表示します。
+
+.. code-block:: bash
+
+   $ docker volume ls --format "{{.Name}}: {{.Driver}}"
+   
+   vol1: local
+   vol2: local
+   vol3: local
+
+
+
+.. Parent command
+
+親コマンド
 ==========
 
-* :doc:`volume_create`
-* :doc:`volume_inspect`
-* :doc:`volume_rm`
-* :doc:`/engine/userguide/containers/dockervolumes`
+.. list-table::
+   :header-rows: 1
+
+   * - コマンド
+     - 説明
+   * - :doc:`docker <volume>`
+     - ボリュームを管理
+
+
+.. Related commands
+
+関連コマンド
+====================
+
+.. list-table::
+   :header-rows: 1
+
+   * - コマンド
+     - 説明
+   * - :doc:`docker volume create<volume_create>`
+     - ボリュームの作成
+   * - :doc:`docker volume inspect<volume_inspect>`
+     - 1つまたは複数ボリュームの詳細情報を表示
+   * - :doc:`docker volume ls<volume_ls>`
+     - ボリューム一覧表示
+   * - :doc:`docker volume prune<volume_prune>`
+     - 使用していないローカルボリュームを削除
+   * - :doc:`docker volume rm<volume_rm>`
+     - 1つまたは複数ボリュームを削除
 
 .. seealso:: 
 
-   volume ls
+   docker volume ls
       https://docs.docker.com/engine/reference/commandline/volume_ls/

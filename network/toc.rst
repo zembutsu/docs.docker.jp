@@ -1,13 +1,13 @@
 ﻿.. -*- coding: utf-8 -*-
 .. 
-.. doc version: 19.03
-.. check date: 2020/07/11
+.. doc version: 20.10
+.. check date: 2022/04/29
 .. -----------------------------------------------------------------------------
 
 ..  Configure networking -toc:
 
 ========================================
-ネットワーク設定
+ネットワーク機能の設定
 ========================================
 
 .. toctree::
@@ -18,5 +18,9 @@
    bridge
    overlay
    host
+   ipvlan
    macvlan
    none
+   network-tutorial
+   configure
+   過去のネットワーク機能について <legacy>

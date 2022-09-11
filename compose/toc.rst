@@ -1,11 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. 
-.. doc version: 1.10
-.. check date: 2016/02/06
+.. doc version: 20.10
+.. check date: 2022/07/16
 .. -----------------------------------------------------------------------------
 
 .. compose toc
-
 .. compose-toc:
 
 ========================================
@@ -17,22 +16,18 @@ Docker Compose
    :caption: Docker Compose 目次
    
    index.rst
-   overview.rst
    install.rst
    gettingstarted.rst
-   swarm.rst
-   django.rst
-   rails.rst
-   wordpress.rst
-   env-file.rst
    environment-variables.rst
+   env-file.rst
+   profiles.rst
+   gpu-support.rst
    extends.rst
    networking.rst
    production.rst
-   compose-file.rst
-   reference/toc.rst
-   completion.rst
-   link-env-deprecated.rst
    startup-order.rst
-   faq.rst
+   samples-for-compose.rst
+   release-notes.rst
+   cli-command-compatibility.rst
+
 

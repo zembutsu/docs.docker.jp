@@ -3,8 +3,10 @@
 .. SOURCE: https://github.com/docker/docker/blob/master/docs/userguide/networking/default_network/dockerlinks.md
    doc version: 1.12
       https://github.com/docker/docker/commits/master/docs/userguide/networking/default_network/dockerlinks.md
-.. check date: 2016/06/14
-.. Commits on Feb 2, 2016 6f863cfa18f30d1df2f1f81b2b4f456dee2a73b8
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/network/links.md
+.. check date: 2022/04/29
+.. Commits on Mar 21, 2021 9bc2f59d53bb01c16409b180b3a57d31f6acf02a
 .. ---------------------------------------------------------------------------
 
 .. Legacy container links
@@ -20,6 +22,16 @@
    .. contents:: 
        :depth: 3
        :local:
+
+..    Warning
+    The --link flag is a legacy feature of Docker. It may eventually be removed. Unless you absolutely need to continue using it, we recommend that you use user-defined networks to facilitate communication between two containers instead of using --link. One feature that user-defined networks do not support that you can do with --link is sharing environment variables between containers. However, you can use other mechanisms such as volumes to share environment variables between containers in a more controlled way.
+    See Differences between user-defined bridges and the default bridge for some alternatives to using --link.
+
+.. warning::
+
+   ``--link`` フラグは Docker のレガシー機能です。最終的に削除される可能性があります。絶対に使い続ける必要がない限り、2つのコンテナ間の通信に ``--link`` を使うのではなく、ユーザ定義ネットワークの使用を推奨します。ユーザ定義ネットワークでは ``--links`` の指定によるコンテナ間の環境変数をサポートしません。しかしながら、ボリュームのような、コンテナ間で制御しやすい仕組みが利用できるようになります。
+   ``--link`` の使用に代わる方法は :ref:`ユーザ定義ブリッジとデフォルト・ブリッジとの違い <differences-between-user-defined-bridges-and-the-default-bridge>` をご覧ください。
+
 
 .. The information in this section explains legacy container links within the Docker default bridge. This is a bridge network named bridge created automatically when you install Docker.
 
@@ -108,9 +120,10 @@
 
    $ docker run -d -p 127.0.0.1::5000 training/webapp python app.py
 
-.. You can also bind UDP ports by adding a trailing /udp. For example:
+.. You can also bind UDP and SCTP (typically used by telecom protocols such as SIGTRAN, Diameter, and S1AP/X2AP) ports by adding a trailing `/udp` or `/sctp`. For example:
 
-また、UDP ポートを割り当てたい場合は、最後に ``/udp`` を追加します。例えば、次のように実行します。
+また、UDP ポートと SCTP （典型的に SIGTRAN、Diameter、S1AP/X2AP といった通信プロトコルで使用する）ポートを割り当てたい場合は、最後に ``/udp`` や ``/sctp`` を追加します。例えば、次のように実行します。
+
 
 .. code-block:: bash
 

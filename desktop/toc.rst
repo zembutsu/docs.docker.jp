@@ -1,6 +1,6 @@
 .. -*- coding: utf-8 -*-
 .. 
-.. doc version: 19.03
+.. doc version: 20.10
 .. check date: 2020/06/06
 .. -----------------------------------------------------------------------------
 
@@ -13,10 +13,14 @@ Docker Desktop
 ========================================
 
 .. toctree::
+   :maxdepth: 3
+   :titlesonly:
 
    概要 <index.rst>
-   Mac </docker-for-mac/toc.rst>
-   Windows </docker-for-windows/toc.rst>
+   Docker Desktop のインストール <install.rst>
+   Mac </desktop/mac/toc.rst>
+   Windows </desktop/windows/toc.rst>
+   Linux </desktop/linux/toc.rst>
    ダッシュボード </desktop/dashboard.rst>
    オープンソース・ライセンス </desktop/opensource.rst>
 
