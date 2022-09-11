@@ -2,14 +2,14 @@
 .. URL: https://docs.docker.com/desktop/mac/apple-silicon/
    doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/desktop/mac/apple-silicon.md
-.. check date: 2022/05/10
-.. Commits on Apr 13, 2022 ec5dc89d85debe81c04d5d84a10d881391c6824c
+.. check date: 2022/09/10
+.. Commits on Aug 23, 2022 db5bbf624039bbd369765600fc07f0e071c0a282
 .. -----------------------------------------------------------------------------
 
 .. Docker Desktop for Apple silicon
 .. _docker-desktop-for-apple-silicon:
 ==================================================
-Apple silicon 向け Docker Desktop
+Apple silicon 対応 Docker Desktop
 ==================================================
 
 .. sidebar:: 目次
@@ -71,7 +71,12 @@ Docker Desktop 4.3.0 から、ハードウェア要件から **Rosetta 2** の�
 
 .. Not all images are available for ARM64 architecture. You can add --platform linux/amd64 to run an Intel image under emulation. In particular, the mysql image is not available for ARM64. You can work around this issue by using a mariadb image.
 
-* ARM64 アーキテクチャのイメージすべてが利用可能ではありません。 ``--platform linux/amd64`` の追加は、Intel イメージをエミュレーション下で実行できるようにします。ですが、特例として ARM64 用の `mysql <https://hub.docker.com/_/mysql?tab=tags&page=1&ordering=last_updated>`_ イメージは利用できません。この問題に対応するには `mariadb イメージ <https://hub.docker.com/_/mariadb?tab=tags&page=1&ordering=last_updated>`_ を使います。
+.. * ARM64 アーキテクチャのイメージすべてが利用可能ではありません。 ``--platform linux/amd64`` の追加は、Intel イメージをエミュレーション下で実行できるようにします。ですが、特例として ARM64 用の `mysql <https://hub.docker.com/_/mysql?tab=tags&page=1&ordering=last_updated>`_ イメージは利用できません。この問題に対応するには `mariadb イメージ <https://hub.docker.com/_/mariadb?tab=tags&page=1&ordering=last_updated>`_ を使います。
+
+.. Some images do not support the ARM64 architecture. You can add `--platform linux/amd64` to run (or build) an Intel image using emulation.
+
+* イメージのいくつかは ARM64 アーキテクチャをサポートしていません。 Intel イメージでエミュレーションを使うには、実行時（または構築時）に ``--platform linux/amd64`` を追加できます。
+
 
   .. However, attempts to run Intel-based containers on Apple silicon machines under emulation can crash as qemu sometimes fails to run the container. In addition, filesystem change notification APIs (inotify) do not work under qemu emulation. Even when the containers do run correctly under emulation, they will be slower and use more memory than the native equivalent.
 
@@ -148,18 +153,6 @@ Apple Silicon preview 7 までの修正
 * 更新版に含まれる変更によって、ディスクのパフォーマンスが改善されるでしょう。
 * Docker メニューの **Restart** オプションが動作します。
 
-.. Feedback
-.. _silicon-feedback:
-フィードバック
-====================
-
-.. Your feedback is important to us. Let us know your feedback by creating an issue in the Docker Desktop for Mac GitHub repository.
-
-私たちにとって、あなたのフィードバックが重要です。 `Docker Desktop for Mac GitHub <https://github.com/docker/for-mac/issues>`_ リポジトリで issue を作成し、フィードバックをお知らせください。
-
-.. We also recommend that you join the Docker Community Slack and ask questions in #docker-desktop-mac channel.
-
-また、 `Docker Community Slack <https://www.docker.com/docker-community>`_ に参加し、 **#docker-desktop-mac** チャンネルに質問を尋ねるのもお勧めします。
 
 .. seealso:: 
 

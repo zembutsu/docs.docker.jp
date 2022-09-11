@@ -1,6 +1,6 @@
 .. -*- coding: utf-8 -*-
 .. 
-.. doc version: 19.03
+.. doc version: 20.10
 .. check date: 2020/06/06
 .. -----------------------------------------------------------------------------
 
@@ -17,6 +17,7 @@ Docker Desktop
    :titlesonly:
 
    概要 <index.rst>
+   Docker Desktop のインストール <install.rst>
    Mac </desktop/mac/toc.rst>
    Windows </desktop/windows/toc.rst>
    Linux </desktop/linux/toc.rst>

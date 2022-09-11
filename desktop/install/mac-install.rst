@@ -1,11 +1,11 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/desktop/mac/install/
+.. URL: https://docs.docker.com/desktop/install/mac-install/
    doc version: 19.03
       https://github.com/docker/docker.github.io/blob/master/docker-for-mac/install.md
    doc version: 20.10
-      https://github.com/docker/docker.github.io/blob/master/desktop/mac/install.md
-.. check date: 2022/05/07
-.. Commits on Apr 13, 2022 3eec56de26442628f6a0122137e7132d6ef228be
+      https://github.com/docker/docker.github.io/blob/master/desktop/install/mac-install.md
+.. check date: 2022/09/09
+.. Commits on Sep 7, 2022 cbbb9f1fac9289c0d2851584010559f8f03846f0
 .. -----------------------------------------------------------------------------
 
 .. |whale| image:: ./images/whale-x.png
@@ -24,24 +24,28 @@ Mac に Docker Desktop をインストール
        :depth: 3
        :local:
 
-.. 
-    Update to the Docker Desktop terms
-    Commercial use of Docker Desktop in larger enterprises (more than 250 employees OR more than $10 million USD in annual revenue) now requires a paid subscription. The grace period for those that will require a paid subscription ends on January 31, 2022. Learn more.
+..
+    Docker Desktop terms
+    Commercial use of Docker Desktop in larger enterprises (more than 250 employees OR more than $10 million USD in annual revenue) requires a paid subscription.
 
-.. important:: **Docker Desktop の利用条件変更**
+.. note:: **Docker Desktop 利用条件**
 
-   現在、大企業（従業員が 251 人以上、または、年間収入が 1,000 万米ドル以上 ）における Docker Desktop の商用利用には、有料サブスクリプション契約が必要です。必要な有料サブスクリプションの支払猶予は 2022 年 1 月 31 日に終了しました。 `詳細はこちらです。 <https://www.docker.com/blog/the-grace-period-for-the-docker-subscription-service-agreement-ends-soon-heres-what-you-need-to-know/>`_
+   大企業（従業員が 251 人以上、または、年間収入が 1,000 万米ドル以上 ）における Docker Desktop の商用利用には、有料サブスクリプション契約が必要です。
 
 .. Welcome to Docker Desktop for Mac. This page contains information about Docker Desktop for Mac system requirements, download URLs, instructions to install and update Docker Desktop for Mac.
 
 Docker Desktop for Mac へようこそ。このページには、 Docker Desktop for Mac のシステム要件、ダウンロード URL 、Docker Desktop for Mac のインストールと更新の手順の情報を含みます。
 
-.. information
+.. note::
 
    **Docker Desktop for Mac のダウンロード**
    
    * `Intel チップの Mac <https://desktop.docker.com/mac/main/amd64/Docker.dmg>`_
    * `Apple チップの Mac <https://desktop.docker.com/mac/main/arm64/Docker.dmg>`_
+
+.. For checksums, see Release notes
+
+チェックサムについては、 :doc:`リリースノート <release-notes>` をご覧ください。
 
 .. System requirements
 .. _mac-system-requirements:
@@ -109,11 +113,11 @@ Mac に Docker Desktop をインストールして動かす
 
 ..    Double-click Docker.dmg to open the installer, then drag the Docker icon to the Applications folder.
 
-1. ``Docker.dmg`` をダブルクリックし、インストーラを起動したら、アプリケーション・フォルダに Docker アイコンをドラッグします。
+1. ``Docker.dmg`` をダブルクリックし、インストーラを起動したら、アプリケーション フォルダに Docker アイコンをドラッグします。
 
    ..    Install Docker app
 
-   .. image:: ./images/docker-app-drag.png
+   .. image:: ./images/docker-app-drag-mac.png
       :scale: 60%
       :alt: Docker app のインストール
 
@@ -123,7 +127,7 @@ Mac に Docker Desktop をインストールして動かす
 
    ..    Docker app in Hockeyapp
 
-   .. image:: ./images/docker-app-in-apps.png
+   .. image:: ./images/docker-app-in-apps-mac.png
       :scale: 60%
       :alt: アプリ一覧での Docker
 
@@ -132,6 +136,12 @@ Mac に Docker Desktop をインストールして動かす
 3. Docker メニュー（ |whale| ）は Docker :ruby:`サブスクリプション サービス使用許諾 <Subscription Service Agreement>` ウインドウを表示します。これには Docker Desktop の利用許諾変更の情報が加わっています。
 
    .. Here’s a summary of the key changes:
+    Docker Desktop is free for small businesses (fewer than 250 employees AND less than $10 million in annual revenue), personal use, education, and non-commercial open source projects.
+    Otherwise, it requires a paid subscription for professional use.
+    Paid subscriptions are also required for government entities.
+    The Docker Pro, Team, and Business subscriptions include commercial use of Docker Desktop.
+
+
     Our Docker Subscription Service Agreement includes a change to the terms of use for Docker Desktop
     It remains free for small businesses (fewer than 250 employees AND less than $10 million in annual revenue), personal use, education, and non-commercial open source projects.
     It requires a paid subscription for professional use in larger enterprises.
@@ -139,18 +149,16 @@ Mac に Docker Desktop をインストールして動かす
     The existing Docker Free subscription has been renamed Docker Personal and we have introduced a Docker Business subscription .
     The Docker Pro, Team, and Business subscriptions include commercial use of Docker Desktop.
 
-   **重要な変更の概要はこちらです：**
+   要点の概要はこちらです：
    
-   * `Docker Subscription Service Agreement（ Docker サブスクリプション サービス 使用許諾） <https://www.docker.com/legal/docker-subscription-service-agreement>`_ には、 Docker Desktop の利用許諾の変更を含みます。
-   * :ruby:`中小企業 <small businesses>` （従業員 250 人未満、かつ、年間売上高が 1,000 万米ドル未満）、個人利用、教育、非商用オープンソースプロジェクトは **引き続き無料** です。
-   * :ruby:`大規模事業者 <larger enterprises>` での :ruby:`業務用途 <professional use>` にはサブスクリプションの支払が必要です。
-   * これらの使用許諾の発効日は 2021 年 8 月 31 日です。Docker Desktop の使用にサブスクリプションが必要な場合、 **猶予期間** が 2022 年 1 月 31 日まであります。
-   * これまでの Docker 無償サブスクリプションは **Docker Personal** に名前が変わりました。また Docker Business サブスクリプションを導入しました。
+   * Docker Desktop は、 :ruby:`中小企業 <small businesses>` （従業員 250 人未満、かつ、年間売上高が 1,000 万米ドル未満）、個人利用、教育、非商用オープンソースプロジェクトは無料です。
+   * それ以外の場合は、サブスクリプションの支払が必要です。
+   * 行政機関もサブスクリプションの支払が必要です。
    * Docker Pro、 Team、Business サブスクリプションには、 Docker Desktop の :ruby:`商業的利用 <commercial use>` を含みます。
 
-.. Click the checkbox to indicate that you accept the updated terms and then click Accept to continue. Docker Desktop starts after you accept the terms.
+.. Select Accept to continue. Docker Desktop starts after you accept the terms.
 
-4. 更新した使用許諾を承諾して進むには、表示されているチェックボックスをクリックし、 **Accept** をクリックします。 使用許諾を承諾した後、 Docker Desktop は起動します。
+4. **Accept** をクリックすると続きます。使用許諾を承諾した後、 Docker Desktop は起動します。
 
    .. important::
    
@@ -158,8 +166,10 @@ Mac に Docker Desktop をインストールして動かす
       
       使用許諾に同意しなければ、 Docker Desktop アプリケーションは終了し、以後マシン上で Docker Dekstop を起動しないようようにします。後日、 Docker Desktop を開いた時、使用許諾を承諾するかどうか選択できます。
 
+   .. For more information, see Docker Desktop Subscription Service Agreement. We recommend that you also read the FAQs.
+
    .. For more information, see Docker Desktop License Agreement. We recommend that you also read the Blog and FAQs to learn how companies using Docker Desktop may be affected.
-   詳しい情報は、 `Docker Subscription Service Agreement（ Docker サブスクリプション サービス 使用許諾）`_ をご覧ください。また、会社で Docker Desktop を使う場合、どのような影響があり得るかについては `ブログ <https://www.docker.com/blog/updating-product-subscriptions/>`_ と `FAQ <https://www.docker.com/pricing/faq>`_ を読むのをお勧めします。
+   詳しい情報は、 `Docker Desktop Subscription Service Agreement（ Docker Desktop サブスクリプション サービス 使用許諾）`_ をご覧ください。また、 `FAQ <https://www.docker.com/pricing/faq>`_ を読むのもお勧めします。
 
 .. Install from the command line
 .. _mac-install-from-the-command-line:
@@ -176,32 +186,22 @@ Mac に Docker Desktop をインストールして動かす
    $ sudo /Volumes/Docker/Docker.app/Contents/MacOS/install
    $ sudo hdiutil detach /Volumes/Docker
 
+.. As macOS typically performs security checks the first time an application is used, the install command can take several minutes to run.
+
+macOS では新しいアプリケーションを始めて使う時、たいていセキュリティ確認の処理があるため、 ``install`` コマンドを実行するには数分かかる場合があります。
+
 .. The install command accepts the following flags:
 
 ``install`` コマンドは、以下のフラグに対応します。
 
 ..  --accept-license: accepts the Docker Subscription Service Agreement now, rather than requiring it to be accepted when the application is first run
     --allowed-org=<org name>: requires the user to sign in and be part of the specified Docker Hub organization when running the application
+    --user=<username>: Runs the privileged helper service once during installation, then disables it at runtime. This removes the need for the user to grant root privileges on first run. For more information, see Privileged helper permission requirements. To find the username, enter ls /Users in the CLI.
 
 * ``--accept-license`` ：アプリケーションの初回実行時に `Docker Subscription Service Agreement（ Docker サブスクリプション サービス 使用許諾）`_ の承諾を求めるのではなく、直ちに承諾する
 * ``--allowed-org=<org name>`` ：アプリケーションの実行時に、指定した Docker Hub organization に所属するユーザとしてのサインインを必要とする
+* ``--user=<username>`` ：インストール時には管理者としてログインしますが、以降の実行時に確認しません。これにより、ユーザが初回実行時だとしても、管理者権限を与える必要がありません。詳しい情報は :doc:`アクセス権の要求 </desktop/mac/permission-requirements>` をご覧ください。ユーザ名をさがすｒには、 CLI 上で ``ls /Users`` を入力します。
 
-.. Quick start guide
-.. _mac-quick-start-guide:
-クイック スタート ガイド
-------------------------------
-
-.. If you’ve just installed the app, Docker Desktop launches the Quick Start Guide. The tutorial includes a simple exercise to build an example Docker image, run it as a container, push and save the image to Docker Hub.
-
-アプリのインストールが完了したら、Docker Desktop は :ruby:`クイック スタート ガイド <quick start guide>` を開始します。チュートリアルでは簡単な練習として、 Docker イメージを構築、実行し、Docker Hub にイメージを送信します。
-
-.. image:: ./images/docker-tutorial-mac.png
-   :scale: 60%
-   :alt: Docker クイック スタート チュートリアル
-
-.. Congratulations! You are now successfully running Docker Desktop. Click the Docker menu (whale menu) to see Preferences and other options. To run the Quick Start Guide on demand, select the Docker menu and then choose Quick Start Guide.
-
-おめでとうございます！ Docker Desktop の起動に成功しました。 Docker メニュー ( |whale| )をクリックし、 **Preferences** （設定）や他のオプションをご覧ください。必要な時にクイック スタート ガイドを実行するには、Docker メニューから **Quick Start Guide** を選びます。
 
 .. Updates
 .. _mac-updates:
@@ -215,15 +215,6 @@ Mac に Docker Desktop をインストールして動かす
 .. Starting with Docker Desktop 4.2.0, the option to turn off the automatic check for updates is available for users on all Docker subscriptions, including Docker Personal and Docker Pro. For more information, see Software Updates.
 
 Docker Desktop 4.2.0 以降、Docker Professional と Docker Pro を含むすべての Docker サブスクリプション利用者は、自動更新の有効化と無効化を選べるオプションが導入されています。詳しい情報は、 :ref:`ソフトウェア更新 <mac-software-updates>` をご覧ください。
-
-..  Docker Subscription Service Agreement
-    Beginning on August 31, 2021, you must agree to the Docker Subscription Service Agreement to continue using Docker Desktop. Read the Blog and the Docker subscription FAQs to learn more about the changes.
-
-.. note::
-
-  **Docker Subscription Service Agreement（ Docker サブスクリプション サービス 使用許諾）**
-  
-  2021 年 8 月 31 日以降、Docker Desktop を使い続けるには `Docker Subscription Service Agreement（ Docker サブスクリプション サービス 使用許諾）`_ への承諾が必要です。変更の詳細は `ブログ`_ と `FAQ`_ をご覧ください。
 
 .. Click Download update When you are ready to download the update. This downloads the update in the background. After downloading the update, click Update and restart from the Docker menu. This installs the latest update and restarts Docker Desktop for the changes to take effect.
 
@@ -260,6 +251,25 @@ Mac マシンから Docker Desktop をアンインストールするには、
 1. Docker メニューから **Troubleshoot** （トラブルシュート）を選択し、 **Uninstall** （アンインストール）を選択します。
 2. 確認画面で、**Uninstall**  をクリックします。
 
+
+.. Uninstall Docker Desktop from the command line
+
+.. note::
+
+   **コマンドラインから Docker Desktop をアンインストール** 
+
+   .. To uninstall Docker Desktop from a terminal, run: <DockerforMacPath> --uninstall. If your instance is installed in the default location, this command provides a clean uninstall:
+   ターミナルから Docker Desktop をアンインストールするには、 ``<DockerforMacのPath> --uninstall`` を実行します。実体がデフォルトの場所にインストールされていれば、次のコマンドでクリーンインストールできます。
+   
+   .. code-block:: bash
+   
+      $ /Applications/Docker.app/Contents/MacOS/Docker --uninstall
+      Docker is running, exiting...
+      Docker uninstalled successfully. You can move the Docker application to the trash.
+
+   .. You might want to use the command-line uninstall if, for example, you find that the app is non-functional, and you cannot uninstall it from the menu.
+   アプリケーションが機能しなくなり、メニューからアンインストールできなくなった場合に、コマンドラインでのアンインストールが必要になるでしょう。
+
 .. Uninstalling Docker Desktop destroys Docker containers, images, volumes, and other Docker related data local to the machine, and removes the files generated by the application. Refer to the back up and restore data section to learn how to preserve important data before uninstalling.
 
 .. note::
@@ -272,17 +282,17 @@ Mac マシンから Docker Desktop をアンインストールするには、
 次はどこへ行きますか
 ==============================
 
-..    Getting started provides an overview of Docker Desktop on Mac, basic Docker command examples, how to get help or give feedback, and links to other topics about Docker Desktop on Mac.
+..    Docker Desktop for Apple silicon for detailed information about Docker Desktop for Apple silicon.
     Troubleshooting describes common problems, workarounds, how to run and submit diagnostics, and submit issues.
     FAQs provide answers to frequently asked questions.
-    Release notes lists component updates, new features, and improvements associated with Stable releases. For information about Edge releases, see Edge release notes.
+    Release notes lists component updates, new features, and improvements associated with Docker Desktop releases.
     Get started with Docker provides a general Docker tutorial.
+    Back up and restore data provides instructions on backing up and restoring data related to Docker.
 
-* :doc:`/desktop/mac/index`  は Docker Desktop on Mac の概要と、基本的な Docker コマンドの例、ヘルプを得る方法やフィードバックの仕方、その他の Docker Desktop on Mac に関する記事があります。
-* :doc:`Docker Desktop for Apple silicon <apple-silicon>` は、Apple silicon 用 Docker Desktop に関する詳細情報です。
-* :doc:`トラブルシューティング <troubleshoot>` は一般的な問題、回避方法、統計情報の送信方法、問題報告の仕方があります。
-* :doc:`FAQs </desktop/faqs>` は、よく見受けられる質問と回答があります。
-* :doc:`リリースノート <release-notes>` は Docker Desktop  リリースに関連する更新コンポーネント、新機能、改良の一覧があります。
+* :doc:`Docker Desktop for Apple silicon </desktop/mac/apple-silicon>` は、Apple silicon 用 Docker Desktop に関する詳細情報です。
+* :doc:`トラブルシューティング </desktop/troubleshoot/overview>` は一般的な問題、回避方法、統計情報の送信方法、問題報告の仕方があります。
+* :doc:`FAQs </desktop/faqs/general>` は、よく見受けられる質問と回答があります。
+* :doc:`リリースノート </desktop/release-notes>` は Docker Desktop  リリースに関連する更新コンポーネント、新機能、改良の一覧があります。
 * :doc:`Docker の始め方 </get-started/index>` は一般的な Docker チュートリアルです。
 * :doc:`バックアップと修復 </desktop/backup-and-restore>` は Docker 関連データのバックアップと修復手順です。
 

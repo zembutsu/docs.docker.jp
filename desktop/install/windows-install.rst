@@ -1,11 +1,11 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/desktop/windows/install/
+.. URL: https://docs.docker.com/desktop/install/windows-install/
    doc version: 19.03
       https://github.com/docker/docker.github.io/blob/master/docker-for-win/install.md
    doc version: 20.10
-      https://github.com/docker/docker.github.io/blob/master/desktop/windows/install.md
-.. check date: 2022/05/14
-.. Commits on May 9, 2022 7dd23540f783c2a4667a7e4b322931dee30b8de7
+      https://github.com/docker/docker.github.io/blob/master/desktop/install/windows-install.md
+.. check date: 2022/09/10
+.. Commits on Sep 7, 2022 cbbb9f1fac9289c0d2851584010559f8f03846f0
 .. -----------------------------------------------------------------------------
 
 .. |whale| image:: ./images/whale-x.png
@@ -25,13 +25,13 @@ Windows に Docker Desktop をインストール
        :depth: 3
        :local:
 
-.. 
-    Update to the Docker Desktop terms
-    Commercial use of Docker Desktop in larger enterprises (more than 250 employees OR more than $10 million USD in annual revenue) now requires a paid subscription. The grace period for those that will require a paid subscription ends on January 31, 2022. Learn more.
+..
+    Docker Desktop terms
+    Commercial use of Docker Desktop in larger enterprises (more than 250 employees OR more than $10 million USD in annual revenue) requires a paid subscription.
 
-.. important:: **Docker Desktop の利用条件変更**
+.. note:: **Docker Desktop 利用条件**
 
-   現在、大企業（従業員が 251 人以上、または、年間収入が 1,000 万米ドル以上 ）における Docker Desktop の商用利用には、有料サブスクリプション契約が必要です。必要な有料サブスクリプションの支払猶予は 2022 年 1 月 31 日に終了しました。 `詳細はこちらです。 <https://www.docker.com/blog/the-grace-period-for-the-docker-subscription-service-agreement-ends-soon-heres-what-you-need-to-know/>`_
+   大企業（従業員が 251 人以上、または、年間収入が 1,000 万米ドル以上 ）における Docker Desktop の商用利用には、有料サブスクリプション契約が必要です。
 
 .. Welcome to Docker Desktop for Windows. This page contains information about Docker Desktop for Windows system requirements, download URL, instructions to install and update Docker Desktop for Windows.
 
@@ -43,18 +43,26 @@ Docker Desktop for Windows へようこそ。このページには、 Docker Des
    
    * `Docker Desktop for Windows <https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe>`_
 
+.. For checksums, see Release notes
+
+チェックサムについては、 :doc:`リリースノート <release-notes>` をご覧ください。
+
 
 .. System Requirements
 .. _win-system-requirements:
 システム要件
 ====================
 
+.. Your Windows machine must meet the following requirements to successfully install Docker Desktop.
+
+Docker Desktop を正しくインストールするには、Windows マシンが以下の要件を満たす必要があります。
+
 .. _win-system-requirements-wsl2:
 * **WSL2 バックエンド**
 
-  .. 
+..
     Windows 11 64-bit: Home or Pro version 21H2 or higher, or Enterprise or Education version 21H2 or higher.
-    Windows 10 64-bit: Home or Pro 2004 (build 19041) or higher, or Enterprise or Education 1909 (build 18363) or higher.
+    Windows 10 64-bit: Home or Pro 21H1 (build 19043) or higher, or Enterprise or Education 20H2 (build 19042) or higher.
     Enable the WSL 2 feature on Windows. For detailed instructions, refer to the Microsoft documentation.
     The following hardware prerequisites are required to successfully run WSL 2 on Windows 10 or Windows 11:
         64-bit processor with Second Level Address Translation (SLAT)
@@ -63,7 +71,7 @@ Docker Desktop for Windows へようこそ。このページには、 Docker Des
     Download and install the Linux kernel update package.
 
   * Windows 11 64ビット： Home か Pro バージョン 21H2 以上、Enterprise か Education バージョン 21H2 以上
-  * Windows 10 64ビット： Home か Pro 2004（ビルド 19041）以上、Enterprise か Education 1909 （ビルド 18363）以上
+  * Windows 10 64ビット： Home か Pro 21H1（ビルド 19043）以上、Enterprise か Education 20H2 （ビルド 19042）以上
   * Windows 上では WSL 2 機能を有効化。詳しい手順は `マイクロソフトのドキュメント <https://docs.microsoft.com/ja-jp/windows/wsl/install>`_ を参照
   * Windows 10 と Windows 11 で WSL 2 の実行が成功するには、以下のハードウェア要件が必要：
 
@@ -77,7 +85,7 @@ Docker Desktop for Windows へようこそ。このページには、 Docker Des
 * **Hyper-V と Windows コンテナー**
 
   * Windows 11 64ビット： Home か Pro バージョン 21H2 以上、Enterprise か Education バージョン 21H2 以上
-  * Windows 10 64ビット： Home か Pro 2004（ビルド 19041）以上、Enterprise か Education 1909 （ビルド 18363）以上
+  * Windows 10 64ビット： Home か Pro 21H1（ビルド 19043）以上、Enterprise か Education 20H2 （ビルド 19042）以上
   * Windows 10 と Windows 11 Home は、では :ref:`WSL 2 バックエンド <win-system-requirements-wsl2>` のシステム要件を参照
   * Hyper-V と Windows コンテナー機能を必ず有効化
   * Windows 10 でクライアント Hyper-V の実行が成功するには、以下のハードウェア要件が必要：
@@ -97,9 +105,9 @@ Docker Desktop for Windows へようこそ。このページには、 Docker Des
 
 Docker Desktop で作成したコンテナやイメージは、インストールしたマシン上の全ユーザ間で共有です。これは、すべての Windows アカウントが同じ仮想マシンでコンテナを構築・実行するからです。ただし、Docker Desktop WSL2 バックエンドを使用する場合は、ユーザ間でコンテナやイメージの共有ができないのでご注意ください。
 
-.. Nested virtualization scenarios, such as running Docker Desktop on a VMWare or Parallels instance might work, but there are no guarantees. For more information, see Running Docker Desktop in nested virtualization scenarios.
+.. Running Docker Desktop inside a VMware ESXi or Azure VM is supported for Docker Business customers. It requires enabling nested virtualization on the hypervisor first. For more information, see Running Docker Desktop in a VM or VDI environment.
 
-VMware や Parralles インスタンス上で Docker Desktop を実行するような、 :ruby:`ネストした仮想化 <nested virtualization>` でも動くでしょうが、無保証です。詳しい情報は :ref:`ネスト化した仮想化で Docker Desktop for Windows の実行 <win-running-docker-desktop-for-windows-in-nested-virtualization-scenarios>` をご覧ください。
+Docker ビジネス利用者のために、 VMware ESXi や Azure VM 内での Docker Desktop 実行がサポートされています。そのためには、まず :ruby:`ネスト化した仮想化 <nested virtualization>` の有効化が必要です。詳しい情報は :doc:`VM または VDI 環境内で Docker Desktop を実行 </desktop/vm-vdi>` をご覧ください。
 
 .. About Windows containers
 .. _win-about-windows-containers:
@@ -107,21 +115,29 @@ VMware や Parralles インスタンス上で Docker Desktop を実行するよ�
 Windows コンテナーについて
 --------------------------------------------------
 
-.. information::
+.. attention::
 
     訳者注：Linux と Windows では、 container （コンテナ）に対する詳細な機能・概念・実装が異なります。そのため、この翻訳内では通常「container」を「コンテナ」と翻訳していますが、「Windows」の機能としての「container」を明示・限定したい場合に「Windows コンテナー」と記載します。
 
 .. Looking for information on using Windows containers?
 
-Windows コンテナの情報をお探しですか？
+Windows コンテナーの情報をお探しですか？
 
 ..    Switch between Windows and Linux containers describes how you can toggle between Linux and Windows containers in Docker Desktop and points you to the tutorial mentioned above.
     Getting Started with Windows Containers (Lab) provides a tutorial on how to set up and run Windows containers on Windows 10, Windows Server 2016 and Windows Server 2019. It shows you how to use a MusicStore application with Windows containers.
     Docker Container Platform for Windows articles and blog posts on the Docker website.
 
-*  :ref:`switch-between-windows-and-linux-containers` では、Docker Desktop での Linux と Windows コンテナ間の切り替え方を説明し、上の方でチュートリアルに言及しています。
+*  :ref:`switch-between-windows-and-linux-containers` では、Docker Desktop での Linux と Windows コンテナー間の切り替え方を説明し、上の方でチュートリアルに言及しています。
 * `Getting Started with Windows Containers (Lab) <https://github.com/docker/labs/blob/master/windows/windows-containers/README.md>`_ では、セットアップと Windows コンテナを実行するためのチュートリアルを提供しています。対象は Windows 10、Windows Server 2016、Windows Server 2019 です。そちらでは Windows コンテナで MusicStore アプリケーションを扱う方法を説明します。
-* Windows 用 Docker コンテナ・プラットフォームについては、 Docker ウェブサイト上の `記事やブログ投稿 <https://www.docker.com/microsoft/>`_ を御覧ください。
+* Windows 用 Docker コンテナ・プラットフォームについては、 Docker ウェブサイト上の `記事やブログ投稿 <https://www.docker.com/microsoft/>`_ をご覧ください。
+
+..    Note
+    To run Windows containers, you need Windows 10 or Windows 11 Professional or Enterprise edition. Windows Home or Education editions will only allow you to run Linux containers.
+
+.. note::
+
+   Windows コンテナーを実行するには、Windows 10 か、 Windows 11 Professional または Enterprise Edition が必要です。Windows Home や Education Edition では Linux コンテナしか実行できません。
+
 
 .. Install Docker Desktop on Windows
 .. _install-docker-desktop-on-windows:
@@ -197,11 +213,13 @@ Windows コマンドプロンプトを使う場合は、このようにします
 
 ..  --quiet: suppresses information output when running the installer
     --accept-license: accepts the Docker Subscription Service Agreement now, rather than requiring it to be accepted when the application is first run
+    --no-windows-containers: disables Windows containers integration
     --allowed-org=<org name>: requires the user to sign in and be part of the specified Docker Hub organization when running the application
     --backend=<backend name>: selects the backend to use for Docker Desktop, hyper-v or wsl-2 (default)
 
 * ``--quiet`` ：インストーラの実行時、情報の表示を抑える
 * ``--accept-license`` ：アプリケーションの初回実行時に `Docker Subscription Service Agreement（ Docker サブスクリプション サービス 使用許諾）`_ の承諾を求めるのではなく、直ちに承諾する
+* ``-no-windows-containers`` ：Windows コンテナー統合を無効化する
 * ``--allowed-org=<org name>`` ：アプリケーションの実行時に、指定した Docker Hub organization に所属するユーザとしてのサインインを必要とする
 * ``--backend=<backend name>`` ：Docker Desktop が使用するバックエンドを選択。 ``hyper-v`` または ``wsl-2`` （デフォルト）
 
@@ -230,13 +248,11 @@ Docker Desktop のスタート
 
 2. Docker メニュー（ |whale| ）は Docker :ruby:`サブスクリプション サービス使用許諾 <Subscription Service Agreement>` ウインドウを表示します。これには Docker Desktop の利用許諾変更の情報が加わっています。
 
-   **重要な変更の概要はこちらです：**
-   
-   * `Docker Subscription Service Agreement（ Docker サブスクリプション サービス 使用許諾） <https://www.docker.com/legal/docker-subscription-service-agreement>`_ には、 Docker Desktop の利用許諾の変更を含みます。
-   * :ruby:`中小企業 <small businesses>` （従業員 250 人未満、かつ、年間売上高が 1,000 万米ドル未満）、個人利用、教育、非商用オープンソースプロジェクトは **引き続き無料** です。
-   * :ruby:`大規模事業者 <larger enterprises>` での :ruby:`業務用途 <professional use>` にはサブスクリプションの支払が必要です。
-   * これらの使用許諾の発効日は 2021 年 8 月 31 日です。Docker Desktop の使用にサブスクリプションが必要な場合、 **猶予期間** が 2022 年 1 月 31 日まであります。
-   * これまでの Docker 無償サブスクリプションは **Docker Personal** に名前が変わりました。また Docker Business サブスクリプションを導入しました。
+   要点の概要はこちらです：
+
+   * Docker Desktop は、 :ruby:`中小企業 <small businesses>` （従業員 250 人未満、かつ、年間売上高が 1,000 万米ドル未満）、個人利用、教育、非商用オープンソースプロジェクトは無料です。
+   * それ以外の場合は、サブスクリプションの支払が必要です。
+   * 行政機関もサブスクリプションの支払が必要です。
    * Docker Pro、 Team、Business サブスクリプションには、 Docker Desktop の :ruby:`商業的利用 <commercial use>` を含みます。
 
 .. Click the checkbox to indicate that you accept the updated terms and then click Accept to continue. Docker Desktop starts after you accept the terms.
@@ -250,31 +266,7 @@ Docker Desktop のスタート
       使用許諾に同意しなければ、 Docker Desktop アプリケーションは終了し、以後マシン上で Docker Dekstop を起動しないようようにします。後日、 Docker Desktop を開いた時、使用許諾を承諾するかどうか選択できます。
 
    .. For more information, see Docker Desktop License Agreement. We recommend that you also read the Blog and FAQs to learn how companies using Docker Desktop may be affected.
-   詳しい情報は、 `Docker Subscription Service Agreement（ Docker サブスクリプション サービス 使用許諾）`_ をご覧ください。また、会社で Docker Desktop を使う場合、どのような影響があり得るかについては `ブログ <https://www.docker.com/blog/updating-product-subscriptions/>`_ と `FAQ <https://www.docker.com/pricing/faq>`_ を読むのをお勧めします。
-
-.. Quick Start Guide
-.. _win-quick-start-guide:
-クイックスタートガイド
-------------------------------
-
-.. When the initialization is complete, Docker Desktop launches the Quick Start Guide. This tutorial includes a simple exercise to build an example Docker image, run it as a container, push and save the image to Docker Hub.
-
-アプリのインストールが完了したら、Docker Desktop は :ruby:`クイック スタート ガイド <quick start guide>` を開始します。チュートリアルでは簡単な練習として、 Docker イメージを構築、実行し、Docker Hub にイメージを送信します。
-
-.. To run the Quick Start Guide on demand, right-click the Docker icon in the Notifications area (or System tray) to open the Docker Desktop menu and then select Quick Start Guide.
-
-必要な時にクイックスタートガイドを起動するには、通知エリア（またはシステムトレイ）の Docker アイコンを右クリックし、Docker Desktop のメニューを開き、 **Quick Start Guide** を選びます。
-
-.. image:: ./images/docker-tutorial-win.png
-   :scale: 60%
-   :alt: Docker クイック スタート チュートリアル
-
-.. Docker Quick Start tutorial
-
-.. Congratulations! You are now successfully running Docker Desktop on Windows.
-
-おめでとうございます！ Windows で Docker Desktop の起動に成功しました。 
-
+   詳しい情報は、 `Docker Subscription Service Agreement（ Docker サブスクリプション サービス 使用許諾）`_ をご覧ください。また、 `ブログ <https://www.docker.com/blog/updating-product-subscriptions/>`_ と `FAQ <https://www.docker.com/pricing/faq>`_ を読むのもお勧めします。
 
 .. Updates
 .. _win-updates:
@@ -288,15 +280,6 @@ Docker Desktop のスタート
 .. Starting with Docker Desktop 4.2.0, the option to turn off the automatic check for updates is available for users on all Docker subscriptions, including Docker Personal and Docker Pro. For more information, see Software Updates.
 
 Docker Desktop 4.2.0 以降、Docker Professional と Docker Pro を含むすべての Docker サブスクリプション利用者は、自動更新の有効化と無効化を選べるオプションが導入されています。詳しい情報は、 :ref:`ソフトウェア更新 <mac-software-updates>` をご覧ください。
-
-..    Docker Subscription Service Agreement
-..    Beginning on August 31, 2021, you must agree to the Docker Subscription Service Agreement to continue using Docker Desktop. Read the Blog and the Docker subscription FAQs to learn more about the changes.
-
-.. note::
-
-  **Docker Subscription Service Agreement（ Docker サブスクリプション サービス 使用許諾）**
-  
-  2021 年 8 月 31 日以降、Docker Desktop を使い続けるには `Docker Subscription Service Agreement（ Docker サブスクリプション サービス 使用許諾）`_ への承諾が必要です。変更の詳細は `ブログ`_ と `FAQ`_ をご覧ください。
 
 .. Click Download update When you are ready to download the update. This downloads the update in the background. After downloading the update, click Update and restart from the Docker menu. This installs the latest update and restarts Docker Desktop for the changes to take effect.
 
@@ -333,7 +316,7 @@ Windows マシンから Docker Desktop をアンインストールするには�
 
 .. Uninstalling Docker Desktop destroys Docker containers, images, volumes, and other Docker related data local to the machine, and removes the files generated by the application. Refer to the back up and restore data section to learn how to preserve important data before uninstalling.
 
-.. note::
+.. important::
 
    Docker Desktop のアンインストールは、ローカルのマシンにある Docker コンテナ、イメージ、ボリューム、 Docker 関連のデータ破棄し、アプリケーションによって作成された全てのファイルも破棄します。アンインストール前に重要なデータを保持する方法については、 :doc:`バックアップと修復 </desktop/backup-and-restore>` を参照ください。
 
@@ -343,21 +326,21 @@ Windows マシンから Docker Desktop をアンインストールするには�
 次はどこへ行きますか
 ==================================================
 
-..  Getting started introduces Docker Desktop for Windows.
-    Get started with Docker is a tutorial that teaches you how to deploy a multi-service stack.
-    Troubleshooting describes common problems, workarounds, and how to get support.
+..    Docker Desktop for Apple silicon for detailed information about Docker Desktop for Apple silicon.
+    Troubleshooting describes common problems, workarounds, how to run and submit diagnostics, and submit issues.
     FAQs provide answers to frequently asked questions.
     Release notes lists component updates, new features, and improvements associated with Docker Desktop releases.
+    Get started with Docker provides a general Docker tutorial.
     Back up and restore data provides instructions on backing up and restoring data related to Docker.
 
-* :doc:`/desktop/windows/index`  は Docker Desktop for Windows の導入ガイドです。
-* :doc:`トラブルシューティング <troubleshoot>` は一般的な問題、回避方法、統計情報の送信方法、問題報告の仕方があります。
-* :doc:`FAQs </desktop/faqs>` は、よく見受けられる質問と回答があります。
-* :doc:`リリースノート <release-notes>` は Docker Desktop  リリースに関連する更新コンポーネント、新機能、改良の一覧があります。
+* :doc:`Docker Desktop for Apple silicon </desktop/mac/apple-silicon>` は、Apple silicon 用 Docker Desktop に関する詳細情報です。
+* :doc:`トラブルシューティング </desktop/troubleshoot/overview>` は一般的な問題、回避方法、統計情報の送信方法、問題報告の仕方があります。
+* :doc:`FAQs </desktop/faqs/general>` は、よく見受けられる質問と回答があります。
+* :doc:`リリースノート </desktop/release-notes>` は Docker Desktop  リリースに関連する更新コンポーネント、新機能、改良の一覧があります。
+* :doc:`Docker の始め方 </get-started/index>` は一般的な Docker チュートリアルです。
 * :doc:`バックアップと修復 </desktop/backup-and-restore>` は Docker 関連データのバックアップと修復手順です。
-
 
 .. seealso::
 
-   Install Docker Desktop on Windows | Docker Documentation
-      https://docs.docker.com/desktop/windows/install/
+   Install Docker Desktop on Windows
+      https://docs.docker.com/desktop/install/windows-install/
