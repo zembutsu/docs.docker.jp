@@ -19,6 +19,7 @@ Docker Desktop
    概要 <index.rst>
    Docker Desktop のインストール <install.rst>
    クイックスタートガイドとサインイン <get-started.rst>
+   Docker Desktop を見渡す <use-desktop/toc.rst>
    Mac </desktop/mac/toc.rst>
    Windows </desktop/windows/toc.rst>
    Linux </desktop/linux/toc.rst>
