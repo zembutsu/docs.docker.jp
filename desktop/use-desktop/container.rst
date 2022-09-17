@@ -126,8 +126,5 @@
 
 .. seealso::
 
-   Overview
-   https://docs.docker.com/desktop/use-desktop/
-
    Explore Containers
       https://docs.docker.com/desktop/use-desktop/container/
