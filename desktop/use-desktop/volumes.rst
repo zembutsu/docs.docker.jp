@@ -16,6 +16,12 @@
 :ruby:`Volumes <ボリューム>` を見渡す
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. The Volumes view in Docker Dashboard enables you to easily create and delete volumes and see which ones are being used. You can also see which container is using a specific volume and explore the files and folders in your volumes.
 
 Docker ダッシュボードの **Volumes** 表示からは、ボリュームの作成や削除が簡単にでき、どのボリュームが使われているかを確認できます。また、特定のボリュームがどのコンテナで使われているかも分かりますし、ボリューム内のファイルとフォルダも調査できます。

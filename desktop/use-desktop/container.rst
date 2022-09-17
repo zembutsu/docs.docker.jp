@@ -16,6 +16,12 @@
 :ruby:`Containers <コンテナ>` を見渡す
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. The Containers view lists all your running containers and applications. You must have running or stopped containers and applications to see them listed.
 
 **Containers** は全ての実行中のコンテナとアプリケーションの一覧を表示します。一覧に表示するには、コンテナ化アプリケーションが実行中もしくは停止中の必要があります。

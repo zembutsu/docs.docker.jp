@@ -16,6 +16,12 @@
 Docker Desktop の :ruby:`一次停止 <pause>`
 ==================================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. You can pause your Docker Desktop session when you are not actively using it and save CPU resources on your machine. When you pause Docker Desktop, the Linux VM running Docker Engine is paused, the current state of all your containers are saved in memory, and all processes are frozen. This reduces the CPU usage and helps you retain a longer battery life on your laptop. You can resume Docker Desktop when you want by clicking the Resume option.
 
 Docker Desktop をアクティブに使っていない場合や、マシン上の CPU リソースを節約したい場合、 Docker Desktop を :ruby:`一次停止 <pause>` できます。Docker Desktop を一次停止すると、 Docker Engine を動かしている Linux VM が一次停止され、全てのコンテナの現在の状態がメモリに保存され、全てのプロセスが :ruby:`凍結 <frozen>` されます。これにより CPU 使用量を経たし、ノート PC 上ではバッテリの寿命を長くするのに役立ちます。Docker Desktop を再開したい場合は、 **Resume** オプションをクリックします。

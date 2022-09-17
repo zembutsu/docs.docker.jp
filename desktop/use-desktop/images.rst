@@ -16,6 +16,12 @@
 :ruby:`Images <イメージ>` を見渡す
 =======================================
 
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
+
 .. The Images view is a simple interface that lets you manage Docker images without having to use the CLI. By default, it displays a list of all Docker images on your local disk.
 
  CLI を使わなくても Docker イメージが管理できるように、 **Images** の表示はシンプルなインタフェースです。デフォルトでは、ローカルディスク上の Docker イメージすべてを一覧表示します。
