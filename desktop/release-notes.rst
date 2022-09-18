@@ -19,10 +19,31 @@ Docker Desktop リリースノート
        :depth: 3
        :local:
 
-ToDo:
+.. This page contains information about the new features, improvements, known issues, and bug fixes in Docker Desktop releases.
 
-https://docs.docker.com/desktop/release-notes/
+このページに含む情報は、 Docker Desktop リリースにおける新機能、改良、既知の問題、バグ修正です。
 
+..    Note
+    The information below is applicable to all platforms, unless stated otherwise.
+
+.. note::
+
+   以下の情報は、特に記述がなければ全てのプラットフォームが対象です。
+
+.. Take a look at the Docker Public Roadmap to see what’s coming next.
+
+次に何が来るかは、 `Docker 公開ロードマップ <https://github.com/docker/roadmap/projects/1>`_ をご覧ください。
+
+.. For frequently asked questions about Docker Desktop releases, see FAQs
+
+Docker Desktop のリリースに関するよくある質問と回答は、 :ref:`FAQ <desktop-faq-releases>` をご覧ください。
+
+
+----
+
+最新のリリースノートは公式サイトのドキュメントをご確認ください：
+
+*  https://docs.docker.com/desktop/release-notes/
 
 
 .. seealso::
