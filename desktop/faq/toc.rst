@@ -13,7 +13,7 @@
    :titlesonly:
 
    一般的な FAQ <general.rst>
-   Mac FAQ <macfaqs.rst>
-   Windows FAQ <windowsfaqs.rst>
-   Linuxな FAQ <linuxfaqs.rst>
+   Mac 版 FAQ <macfaqs.rst>
+   Windows 版 FAQ <windowsfaqs.rst>
+   Linux 版 FAQ <linuxfaqs.rst>
 

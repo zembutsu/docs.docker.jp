@@ -1,17 +1,18 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/docker-for-windows/faqs/
+.. URL: https://docs.docker.com/desktop/faqs/windowsfaqs/
    doc version: 19.03
       https://github.com/docker/docker.github.io/blob/master/docker-for-windows/faqs.md
-.. check date: 2020/06/12
-.. Commits on May 18, 2020 fa91630d8271b72fe901104752aa30984a071820
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/desktop/faqs/windowsfaqs.md
+.. check date: 2022/08/24
+.. Commits on AUg 24, 2022 9888da23c38fd374ded908e0d50bf1aa45eeef4d
 .. -----------------------------------------------------------------------------
 
-.. Frequently asked questions (FAQ)
-
-.. win-frequently-asked-questions-faq
+.. Frequently asked questions for Windows
+.. _desktop-frequently-asked-questions-for-windows:
 
 ==================================================
-よくある質問と回答 [FAQ]
+よくある質問と回答 Wndows 版
 ==================================================
 
 .. sidebar:: 目次
@@ -20,229 +21,8 @@
        :depth: 3
        :local:
 
-
-.. Stable and Edge releases 
-
-.. _win-stable-and-edge-releases:
-
-Stable と Edge リリース
-==================================================
-
-.. How do I get the Stable or the Edge version of Docker Desktop?
-
-.. _win-how-do-i-get-the-stable-or-the-edge-version-of-docker-desktop:
-
-Docker Desktop の Stable か Edge 版を入手するには、どうしたら良いでしょうか？
---------------------------------------------------------------------------------
-
-.. You can download the Stable or the Edge version of Docker Desktop from Docker Hub.
-
-Docker Desktop の Stable や Edge 版は `Docker Hub <https://hub.docker.com/editions/community/docker-ce-desktop-windows/>`_ からダウンロードできます。
-
-.. For installation instructions, see Install Docker Desktop on Windows.
-
-インストール手順は :doc:`install` を御覧ください。
-
-.. What is the difference between the Stable and Edge versions of Docker Desktop?
-
-.. _win-what-is-the-difference-between-the-stable-and-edge-versions-of-docker-desktop:
-
-Docker Desktop の Stable 版と Edge 版の違いは何ですか？
-------------------------------------------------------------
-
-.. Two different download channels are available in the Community version of Docker Desktop:
-
-Docker Desktop のコミュニティ版では、2つのダウンロード・チャンネルがあります。
-
-.. The Stable channel provides a general availability release-ready installer for a fully baked and tested, more reliable app. The Stable version of Docker Desktop comes with the latest released version of Docker Engine. The release schedule is synched with Docker Engine releases and patch releases. On the Stable channel, you can select whether to send usage statistics and other data.
-
-**Stable チャンネル** は、完全に固められ、テスト済みであり、信頼できるアプリケーションとして、一般的に利用可能な準備が調っているリリースのインストーラを提供します。リリース時期は Docker エンジンのリリースとパッチ（修正版）リリースに同期しています。Stable チャンネルでは、利用状況統計や他のデータを送信するかどうか選択できます。
-
-.. The Edge channel provides an installer with new features we are working on, but is not necessarily fully tested. It comes with the experimental version of Docker Engine. Bugs, crashes, and issues are more likely to occur with the Edge version, but you get a chance to preview new functionality, experiment, and provide feedback as the apps evolve. Releases are typically more frequent than for Stable, often one or more per month. Usage statistics and crash reports are sent by default. You do not have the option to disable this on the Edge channel.
-
-**Edge チャンネル** は、開発中の新機能を含むインストーラを提供しますが、必要なテストを十分に行っていません。Docker エンジンの実験的なバージョンを含みます。そのため、Edge バージョンの利用時には、バグ、クラッシュなど問題が発生する可能性があります。しかし、新機能のお試しや経験を得られるチャンスとなり、Docker Desktop の進化に対するフィードバックを提供します。一般的に、Edge リリースは Stable に比べ頻繁にリリースがあります。おおよそ、一ヶ月か一ヶ月おきのリリースです。デフォルトで利用統計情報やクラッシュ報告が送信されます。Edge チャンネルでは、これを無効化するオプションはありません。
-
-.. Can I switch between Stable and Edge versions of Docker Desktop?
-
-.. _win-can-i-switch-between-stable-and-edge-versions-of-docker-desktop
-
-Docker Desktop の Stable と Edge 版を切り替えできますか？
-------------------------------------------------------------
-
-.. Yes, you can switch between Stable and Edge versions. You can try out the Edge releases to see what’s new, then go back to Stable for other work. However, you can only have one version of Docker Desktop installed at a time. For more information, see Switch between Stable and Edge versions.
-
-はい、Stable と Edge 版を切り替え可能です。Edge リリースで何が新しくなったか試してみた後、Stable に戻って他のことができます。しかしながら、 **一度に Docker Desktop をインストールできるバージョンは、１つのみ** です。詳しい情報は :ref:`win-switch-between-stable-and-edge-version` を御覧ください。
-
-.. What is an experimental feature?
-
-.. _win-what-is-an-experimental-feature:
-
-実験的機能（experimental features）とは何ですか？
-==================================================
-
-.. Experimental features provide early access to future product functionality. These features are intended for testing and feedback only as they may change between releases without warning or can be removed entirely from a future release. Experimental features must not be used in production environments. Docker does not offer support for experimental features.
-
-実験的機能とは、今後のプロダクト機能を早期に利用できます。各機能のテストやフィードバックのみを目的としており、今後のリリースでは予告のない変更や、将来的なリリースでは機能全体が削除される場合があります。実験的機能はプロダクション環境で利用すべきではありません。実験的機能に対し、Docker はサポートを提供しません。
-
-
-..    To enable experimental features in the Docker CLI, edit the config.json file and set experimental to enabled.
-
-..    To enable experimental features from the Docker Desktop menu, click Settings (Preferences on macOS) > Command Line and then turn on the Enable experimental features toggle. Click Apply & Restart.
-
-.. attention::
-
-   Docker CLI で実験的機能を有効にするには、 :code:`config.json` ファイルを編集し、 :code:`experimental` を enabled（有効）にしてください。
-   Docker Desktop のメニューから実験的機能を有効にするには、  **Settings** （macOS は **Preferences** ）> **Command Line**  をクリックし、それから **Enable experimental features** トグルを有効に切り替えます。 **Apply & Restart** （適用と再起動）をクリックします。
-
-.. For a list of current experimental features in the Docker CLI, see Docker CLI Experimental features.
-
-Docker CLI の現時点における実験的機能の一覧は、 `Docker CLI Experimental features <https://github.com/docker/cli/blob/master/experimental/README.md>`_  をご覧ください。
-
-.. How do I?
-
-.. _win-how-do-i:
-
-どうしたらいいでしょうか？
-==================================================
-
-
-.. How do I connect to the remote Docker Engine API?
-
-.. _win-how-do-i-connect-to-the-remote-docker-engine-api:
-
-リモートの Docker Engine API に接続するには？
---------------------------------------------------
-
-.. You might need to provide the location of the Engine API for Docker clients and development tools.
-
-Docker クライアントと開発ツール用のために、 Engine API の場所を指定する必要があるでしょう。
-
-.. On Docker Desktop, clients can connect to the Docker Engine through a named pipe: npipe:////./pipe/docker_engine, or TCP socket at this URL: tcp://localhost:2375.
-
-Docker Desktop では、Docker Engine は、 名前付きパイプ :code:`npipe:////./pipe/docker_engine` または :code:`tcp://localhost:2375.` にある **TCP ソケット** を通して接続できます。
-
-.. See also Docker Engine API and Docker Desktop for Mac forums topic Using pycharm Docker plugin...
-
-.. How do I connect from a container to a service on the host?
-
-.. _win-how-do-i-connect-from-a-container-to-a-service-on-the-host:
-
-ホスト上のサービスにコンテナから接続するには？
---------------------------------------------------
-
-.. Windows has a changing IP address (or none if you have no network access). We recommend that you connect to the special DNS name host.docker.internal, which resolves to the internal IP address used by the host. This is for development purposes and will not work in a production environment outside of Docker Desktop for Windows.
-
-Windows は変動 IP アドレスを持ちます（あるいは、ネットワーク接続がなければ存在しません）。私たちが推奨するのは  :code:`host.docker.internal` という特別な DNS 名での接続です。これはホストによって使われる内部の IP アドレスを名前解決します。これは開発用途であり、Docker Desktop for Windows 以外のプロダクション環境では動作しません。
-
-.. The gateway is also reachable as gateway.docker.internal.
-
-また、ゲートウェイには :code:`gateway.docker.internal` で到達できます。
-
-.. For more information about the networking features in Docker Desktop for Windows, see Networking.
-
-Docker Desktop for Windows のネットワーク機能についての情報は :doc:`ネットワーク機能 <networking>` の :ref:`win-i-want-to-connect-from-a-container-to-a-service-on-the-host` を御覧ください。
-
-.. How do I connect to a container from Windows?
-
-.. _win-how-do-i-connect-to-a-container-from-windows
-
-Windows からコンテナに接続するには？
---------------------------------------------------
-
-.. We recommend that you publish a port, or connect from another container. You can use the same method on Linux if the container is on an overlay network and not a bridge network, as these are not routed.
-
-私たちが推奨するのはポートの公開か、他のコンテナからの接続です。コンテナがオーバレイ・ネットワークを使う場合は、Linux と同じような手法が使えますが、ブリッジ・ネットワークの場合は経路付け（ルーティング）されず使えません。
-
-.. For more information and examples, see I want to connect to a container from the Mac in the Networking topic.
-
-詳細な情報と例は :doc:`ネットワーク機能 <networking>` の :ref:`i-want-to-connect-to-a-container-from-windows` を御覧ください。
-
-.. Volumes
-
-.. _win-faq-volumes:
-
-ボリューム
-====================
-
-.. Can I change permissions on shared volumes for container-specific deployment requirements?
-
-.. _can-i-change-permissions-on-shared-volumes-for-container-specific-deployment-requirements:
-
-コンテナ固有のデプロイに必要となる、共有ボリューム上の権限を変更できますか？
---------------------------------------------------------------------------------
-
-.. No, at this point, Docker Desktop does not enable you to control (chmod) the Unix-style permissions on shared volumes for deployed containers, but rather sets permissions to a default value of 0777 (read, write, execute permissions for user and for group) which is not configurable.
-
-いいえ、現時点では、Docker Desktop はデプロイしたコンテナで :ref:`共有ボリューム <win-preferences-file-sharing>` 上で Unix 風の権限を制御（ :code:`chmod` ）できません。それどころか、権限をデフォルトで :code:`0777` の値（ :code:`user` と :code:`group` に対する「読み込み」「書き込み」「実行」の権限 ）に設定し、変更不可能です。
-
-.. For workarounds and to learn more, see Permissions errors on data directories for shared volumes.
-
-回避策を学ぶには :ref:`permissions-errors-on-data-directories-for-shared-volumes` をご覧ください。
-
-.. How do symlinks work on Windows?
-
-.. _how-do-symlinks-work-on-windows:
-
-シンボリックリンク（symlink）をサポートしますか？
---------------------------------------------------
-
-.. Docker Desktop supports 2 kinds of symlink:
-
-Docker Desktop は2種類のシンボリックリンクをサポートします。
-
-..    Windows native symlinks: these are visible inside containers as symlinks.
-    Symlinks created inside a container: these are represented as mfsymlinks i.e. regular Windows files with special metadata. These appear as symlinks inside containers but not as symlinks on the host.
-
-1. Windows ネイティブのシンボリックリンク：これらはコンテナ内でシンボリックリンクとして見えます。
-2. コンテナ内で作成されたシンボリックリンク：これらは `mfsymlinks <https://wiki.samba.org/index.php/UNIX_Extensions#Minshall.2BFrench_symlinks>`_ として表示されます。たとえば、通常の Windows ファイルには特別なメタデータがあります。これらはコンテナ内ではシンボリックリンクとして表示されますが、ホスト上からはシンボリックリンクではありません。
-
-
-.. Certificates
-
-.. _win-faq-certificates:
-
-証明書
-==========
-
-.. How do I add custom CA certificates?
-
-.. _win-how-do-i-add-custom-ca-certificates:
-どのようにしてカスタム CA 証明書を追加しますか？
---------------------------------------------------
-
-.. Docker Desktop supports all trusted Certificate Authorities (CAs) (root or intermediate). Docker recognizes certs stored under Trust Root Certification Authorities or Intermediate Certification Authorities.
-
-Docker Desktop は全ての信頼できる（ルート及び中間の）認証局（CA）をサポートしています。Docker は信頼できるルート認証局や中間認証局以下に保管されている証明書を認識します。
-
-.. For more information on adding server and client side certs, see Adding TLS certificates in the Getting Started topic.
-
-サーバとクライアント側証明書の追加に関する情報は、導入ガイドの記事にある :ref:`win-add-tls-certificates` を御覧ください。
-
-
-.. How do I add client certificates?
-
-.. _win-how do i add client certificates:
-どのようにしてクライアント証明書を追加しますか？
---------------------------------------------------
-
-.. For information on adding client certificates, see Add client certificates in the Getting Started topic.
-
-サーバとクライアント側証明書の追加に関する情報は、導入ガイドの記事にある :ref:`win-add-tls-certificates` を御覧ください。
-
-.. Can I run Docker Desktop in nested virtualization scenarios?
-
-.. _win-can-i-run-docker-desktop-in-nested-virtualization-scenarios:
-
-ネスト化した仮想化シナリオで Docker Desktop を動かせられますか？
-----------------------------------------------------------------------
-
-.. Docker Desktop can run inside a Windows 10 VM running on apps like Parallels or VMware Fusion on a Mac provided that the VM is properly configured. However, problems and intermittent failures may still occur due to the way these apps virtualize the hardware. For these reasons, Docker Desktop is not supported in nested virtualization scenarios. It might work in some cases, and not in others. For more information, see Running Docker Desktop in nested virtualization scenarios.
-
-Paralles や VMware Fusion on a Mac が提供する Windows 10 仮想マシン内で、仮想マシンを適切に設定していれば Docker Desktop は実行可能です。しかしながら、ハードウェアを仮想化したアプリケーションを使うため、問題や断続的な停止が発生する可能性があります。これらの理由により、 **ネスト化した仮想化シナリオで Docker Desktop はサポート対象外です** 。詳しい情報は、 :ref:`running-docker-desktop-in-nested-virtualization-scenarios-win` をご覧ください。
-
 .. Can I use VirtualBox alongside Docker Desktop?
-
-.. _can-i-use-virtualbox-alongside-docker-desktop:
+.. _desktop-win-can-i-use-virtualbox-alongside-docker-desktop:
 
 VirtualBox と Docker Desktop を併用できますか？
 --------------------------------------------------
@@ -251,16 +31,29 @@ VirtualBox と Docker Desktop を併用できますか？
 
 はい、マシン上で `Windows ハイパーバイザープラットフォーム <https://docs.microsoft.com/ja-jp/virtualization/api/>`_ 機能が有効であれば、 Docker Desktop と VirtualBox を同時に利用できます。
 
-.. Windows requirements
+.. Why is Windows 10 or Windows 11 required?
+.. _desktop-win-why-is-windows-10-or-windows-11-required:
 
-.. _faq-windows-requirements:
+なぜ Windows 10 か Windows 11 が必要なのですか？
+--------------------------------------------------
 
-Windows 動作条件
-====================
+.. Docker Desktop uses the Windows Hyper-V features. While older Windows versions have Hyper-V, their Hyper-V implementations lack features critical for Docker Desktop to work.
+
+Docker Desktop は Windows Hyper-V 機能を使います。Windows の古いバージョンでも Hyper-V はありますが、それらの Hyper-V には Docker Desktop を動作するために必要な機能が欠如しています。
+
+
+.. Can I install Docker Desktop on Windows 10 Home?
+.. _desktop-win-can-i-install-docker-desktop-on-windows-10-home:
+
+Windows 10 Home に Docker Desktop をインストールできますか？
+--------------------------------------------------------------------------------
+
+.. If you are running Windows 10 Home (starting with version 1903), you can install Docker Desktop for Windows with the WSL 2 backend.
+
+Windows Home （バージョン 1903 以上）を実行している場合、 :doc:`WSL 2 バックエンド </desktop/windows/wsl>` で `Docker Desktop for Windows <https://hub.docker.com/editions/community/docker-ce-desktop-windows/>`_ をインストールできます。
 
 .. Can I run Docker Desktop on Windows Server?
-
-.. _can-i-run-docker-desktop-on-windows-server:
+.. _desktop-win-can-i-run-docker-desktop-on-windows-server:
 
 Windows Server 上で Docker Desktop を実行できますか？
 --------------------------------------------------------------------------------
@@ -270,119 +63,186 @@ Windows Server 上で Docker Desktop を実行できますか？
 いいえ、Windows Server 上で Docker Desktop の動作はサポートされていません。
 
 .. How do I run Windows containers on Windows Server?
+.. _desktop-win-how-do-i-run-windows-containers-on-windows-server:
 
-.. _how-do-i-run-windows-containers-on-windows-server:
-
-Windows Server 上で Windows コンテナを実行できますか？
+Windows Server 上で Windows コンテナーを実行できますか？
 --------------------------------------------------------------------------------
 
 .. You can install a native Windows binary which allows you to develop and run Windows containers without Docker Desktop. For more information, see the tutorial about running Windows containers on Windows Server in Getting Started with Windows Containers.
 
-Docker Desktop がなくても、Windows コンテナの実行や開発ができるネイティブな Windows バイナリをインストールできます。Windows Server 上で Windows コンテナの実行に関する詳しい情報は、 `Getting Started with Windows Containers <https://github.com/docker/labs/blob/master/windows/windows-containers/README.md>`_ をご覧ください。
+Docker Desktop がなくても、Windows コンテナーの実行や開発ができるネイティブな Windows バイナリをインストールできます。Windows Server 上で Windows コンテナーの実行に関する詳しい情報は、 `Getting Started with Windows Containers <https://github.com/docker/labs/blob/master/windows/windows-containers/README.md>`_ をご覧ください。
 
-.. Can I install Docker Desktop on Windows 10 Home?
+.. Why do I see the Docker Desktop Access Denied error message when I try to start Docker Desktop?
+.. _desktop-win-why-do-i-see-the-docker-desktop-access-denied-error-message-when-i-try-to-start-docker-desktop:
 
-.. _can-i-install-docker-desktop-on-windows-10-home:
+Docker Desktop の起動時に Docker Desktop Access Denied エラーが出るのはなぜですか？
+------------------------------------------------------------------------------------------
 
-Windows 10 Home に Docker Desktop をインストールできますか？
---------------------------------------------------------------------------------
+.. Docker Desktop displays the Docker Desktop - Access Denied error if a Windows user is not part of the docker-users group.
 
-.. Windows 10 Home, version 2004 users can now install Docker Desktop Stable 2.3.0.2 or a later release with the WSL 2 backend.
+Windows ユーザーが **docker-users** グループのに所属していなければ、 Docker Desktop は **Docker Desktop - Access Denied** （アクセス拒否）エラーが出ます。
 
-Windows 10 Home のバージョン 2004 のユーザであれば、 `Docker Desktop Stable 2.3.0.2 <https://hub.docker.com/editions/community/docker-ce-desktop-windows/>`_ 以降のリリースで :doc:`WSL 2 backend` を使えば利用できます。
+.. If your admin account is different to your user account, add the docker-users group. Run Computer Management as an administrator and navigate to Local Users* and Groups > Groups > docker-users.
 
-.. Docker Desktop Stable releases require the Hyper-V feature which is not available in the Windows 10 Home edition.
+自分のユーザーアカウントと管理者アカウントが異なる場合、 **docker-users** グループに追加します。管理者として **コンピューターの管理** を開き、 **ローカル ユーザーとグループ** > **グループ** > **docker-users** を辿ります。
 
-Docker Desktop Stable リリースは、 Hyper-V 機能を必要とするため、Windows 10 Home エディションではサポートされていません。
+.. Right-click to add the user to the group. Log out and log back in for the changes to take effect.
 
-.. Why is Windows 10 required?
+グループにユーザを追加するには、右クリックします。変更を反映するには、ログアウトしてからログインし直します。
 
-.. _why-is-windows-10-required:
-
-なぜ Windows 10 が必要なのですか？
-----------------------------------------
-
-.. Docker Desktop uses the Windows Hyper-V features. While older Windows versions have Hyper-V, their Hyper-V implementations lack features critical for Docker Desktop to work.
-
-Docker Desktop は Windows Hyper-V 機能を使います。Windows の古いバージョンでも Hyper-V はありますが、それらの Hyper-V には Docker Desktop を動作するために必要な機能が欠如しています。
 
 .. Why does Docker Desktop fail to start when anti-virus software is installed?
-
-.. _why-does-docker-desktop-fail-to-start-when-anti-virus-software-is-installed:
+.. _desktop-win-why-does-docker-desktop-fail-to-start-when-anti-virus-software-is-installed:
 
 アンチウィルス・ソフトウェアをインストールしていると、Docker Desktop の起動に失敗するのはなぜでしょうか？
 --------------------------------------------------------------------------------------------------------------
 
 .. Some anti-virus software may be incompatible with Hyper-V and Windows 10 builds which impact Docker Desktop. For more information, see Docker Desktop fails to start when anti-virus software is installed in Troubleshooting.
 
-いくつかのアンチウィルス・ソフトウェアは、Hyper-V と Windows 10 ビルドと互換性がなく、Docker Desktop に影響があります。詳しい情報は :doc:`troubleshoot` の :ref:`win-docker-desktop-fails-to-start-when-anti-virus-software-is-installed` を御覧ください。
+いくつかのアンチウィルス ソフトウェアは、Hyper-V と Windows 10 ビルドと互換性がなく、Docker Desktop に影響があります。詳しい情報は :ref:`desktop-docker-desktop-fails-to-start-when-anti-virus-software-is-installed` を御覧ください。
 
 
-.. Feedback
+.. Can I change permissions on shared volumes for container-specific deployment requirements?
+.. _desktop-win-can-i-change-permissions-on-shared-volumes-for-container-specific-deployment-requirements:
 
-.. _win-faq-feedback:
+コンテナ固有のデプロイに必要となる、共有ボリューム上の権限を変更できますか？
+--------------------------------------------------------------------------------
 
-フィードバック
-==================================================
+.. Docker Desktop does not enable you to control (chmod) the Unix-style permissions on shared volumes for deployed containers, but rather sets permissions to a default value of 0777 (read, write, execute permissions for user and for group) which is not configurable.
 
-.. What kind of feedback are we looking for?
+Docker Desktop はデプロイしたコンテナで :ref:`共有ボリューム <win-preferences-file-sharing>` 上で Unix 風の権限を制御（ :code:`chmod` ）できません。それどころか、権限をデフォルトで :code:`0777` の値（ :code:`user` と :code:`group` に対する「読み込み」「書き込み」「実行」の権限 ）に設定し、変更不可能です。
 
-.. _win-what kind of feedback are we looking for:
+.. For workarounds and to learn more, see Permissions errors on data directories for shared volumes.
 
-どのような種類のフィードバックが求められていますか？
+回避策を学ぶには :ref:`desktop-topics-windows-permissions-errors-on-data-directories-for-shared-volumes` をご覧ください。
+
+.. How do symlinks work on Windows?
+.. _desktop-win-how-do-symlinks-work-on-windows:
+
+Windows でシンボリックリンク（symlink）は機能しますか？
 ------------------------------------------------------------
 
-.. Everything is fair game. We’d like your impressions on the download-install process, startup, functionality available, the GUI, usefulness of the app, command line integration, and so on. Tell us about problems, what you like, or functionality you’d like to see added.
+.. Docker Desktop supports two types of symlinks: Windows native symlinks and symlinks created inside a container.
 
-全てが対象です。私たちはダウンロード、インストール手順、起動、利用可能な機能、GUI、アプリケーションの使いやすさ、コマンドライン統合、などなど、皆さんの所感を求めています。問題があれば、何をしたいのか、どのような機能が欲しいのかを教えてください。
+Docker Desktop は2種類のシンボリックリンクをサポートします。Windows ネイティブのシンボリックリンクと、コンテナ内で作成されるシンボリックリンクです。
 
-.. What if I have problems or questions?
+.. The Windows native symlinks are visible within the containers as symlinks, whereas symlinks created inside a container are represented as mfsymlinks. These are regular Windows files with a special metadata. Therefore the symlinks created inside a container appear as symlinks inside the container, but not on the host.
 
-.. _win-what if i have problems or questions:
+Windows ネイティブのシンボリックリンクは、コンテナ内でシンボリックリンクとして見えます。 コンテナ内で作成されたシンボリックリンクは `mfsymlinks <https://wiki.samba.org/index.php/UNIX_Extensions#Minshall.2BFrench_symlinks>`_ として表示されます。たとえば、通常の Windows ファイルには特別なメタデータがあります。これらはコンテナ内ではシンボリックリンクとして表示されますが、ホスト上からはシンボリックリンクではありません。
 
-問題や質問がある場合は、どうしたら良いでしょうか？
+.. File sharing with Kubernetes and WSL 2
+.. _desktop-win-file-sharing-with-kubernetes-and-wsl-2:
+
+Kubernetes と WSL 2 でファイルを共有する
 --------------------------------------------------
 
-.. You can find information about diagnosing and troubleshooting common issues in the Logs and Troubleshooting topic.
+.. Docker Desktop mounts the Windows host filesystem under /run/desktop inside the container running Kubernetes. See the Stack Overflow post for an example of how to configure a Kubernetes Persistent Volume to represent directories on the host.
 
-診断やトラブルシューティングに関する共通課題の情報は、 :doc:`troubleshoot` の記事にあります。
+Docker Desktop は Kubernetes を実行するコンテナ内において、 ``/run/desktop`` 以下で Windows ホストファイルシステムをマウントします。 Kubernetes Persistent Volume が示すホスト上のディレクトリの調整方法は、 `Stack Overflow の投稿 <https://stackoverflow.com/questions/67746843/clear-persistent-volume-from-a-kubernetes-cluster-running-on-docker-desktop/69273405#69273>`_ 例をご覧ください。
 
-.. If you do not find a solution in Troubleshooting, browse issues on Docker Desktop for Windows issues on GitHub or create a new one. You can also create new issues based on diagnostics. To learn more, see Diagnose problems, send feedback, and create GitHub issues.
+.. How do I add custom CA certificates
+.. _desktop-win-how-do-i-add-custom-ca-certificates:
 
-トラブルシューティングで解決策が見つからなければ、 `GitHub の Docker Desktop for Windows の issue <https://github.com/docker/for-win/issues>`_ を見るか、新しい issue を作成してください。また、診断結果に基づいて新しい issue の作成もできます。詳細を学ぶには :ref:`win-diagnose-problems-send-feedback-and-create-github-issues` を御覧ください。
+任意の CA 証明書を追加できますか？
+----------------------------------------
 
-.. The Docker Desktop for Windows forum provides discussion threads as well, and you can create discussion topics there, but we recommend using the GitHub issues over the forums for better tracking and response.
+.. You can add trusted Certificate Authorities (CAs) to your Docker daemon to verify registry server certificates, and client certificates, to authenticate to registries.
 
-`Docker Desktop for Windows フォーラム <https://forums.docker.com/c/docker-for-windows>`_ には議論のスレッドがあります。そちらでも議論のトピックを作成できますが、私たちが推奨するのはフォーラムではなく GitHub issue を使う方が、追跡可能かつ反応も良いです。
+Docker デーモンに対し、レジストリ・サーバ証明書とクライアント証明書の検証用に、信頼できる認証局(CA; Certificate Authorities)を追加してレジストリを認証できます。
 
-.. How can I opt out of sending my usage data?
+.. Docker Desktop supports all trusted Certificate Authorities (CAs) (root or intermediate). Docker recognizes certs stored under Trust Root Certification Authorities or Intermediate Certification Authorities.
 
-.. _win-how can i opt out of sending my usage data:
+Docker Desktop は全ての信頼できうる（ルート及び中間）証明局（CA）をサポートしています。証明書が信頼できるルート認証局や中間認証局の配下にあるかどうか、Docker は識別します。
 
-私の利用統計データの送信を停止できますか？
+.. Docker Desktop creates a certificate bundle of all user-trusted CAs based on the Windows certificate store, and appends it to Moby trusted certificates. Therefore, if an enterprise SSL certificate is trusted by the user on the host, it is trusted by Docker Desktop.
+
+Docker Desktop は Windows 証明局ストアに基づき、全てのユーザが信頼する CAの証明書バンドルを作成します。また、Moby の信頼できる証明書にも適用します。そのため、エンタープライズ SSL 証明書がホスト上のユーザによって信頼されている場合は、Docker Desktop からも信頼されます。
+
+.. To learn more about how to install a CA root certificate for the registry, see Verify repository client with certificates in the Docker Engine topics.
+
+レジストリに対する CA ルート証明書のインストール方法について学ぶには、Docker エンジン記事の :doc:`証明書でリポジトリ・クライアントを認証する </engine/security/certificates>` をご覧ください。
+
+.. How do I add client certificates?
+.. _desktop-win-how-do-i-add-client-certificates:
+どのようにしてクライアント証明書を追加しますか？
 --------------------------------------------------
 
-.. If you do not want to send of usage data, use the Stable channel. For more information, see What is the difference between the Stable and Edge versions of Docker Desktop.
+.. You can put your client certificates in ~/.docker/certs.d/<MyRegistry>:<Port>/client.cert and ~/.docker/certs.d/<MyRegistry>:<Port>/client.key.
 
-利用統計データの送信を行いたくなければ、 Stable チャンネルを御利用ください。詳しい情報については、 :ref:`mac-what-is-the-difference-between-the-stable-and-edge-versions-of-docker-desktop` を御覧ください。
+自分のクライアント証明書を :code:`~/.docker/certs.d/<MyRegistry>:<Port>/client.cert` と :code:`~/.docker/certs.d/<MyRegistry>:<Port>/client.key` に追加できます。
 
-.. How is personal data handled in Docker Desktop?
+.. When the Docker Desktop application starts, it copies the ~/.docker/certs.d folder on your Windows system to the /etc/docker/certs.d directory on Moby (the Docker Desktop virtual machine running on Hyper-V).
 
-.. _win-how is personal data handled in docker desktop:
+Docker Desktop ・アプリケーションの開始時に、 Windows システム上の :code:`~/.docker/certs.d` フォルダを Moby 上（Docker Desktop が稼働する Hyper-V 上の仮想マシン）の `/etc/docker/certs.d` ディレクトリにコピーします。
 
-Docker Desktop での個人データの取り扱いはどのようになっていますか？
-----------------------------------------------------------------------
+.. You need to restart Docker Desktop after making any changes to the keychain or to the ~/.docker/certs.d directory in order for the changes to take effect.
 
-.. When uploading diagnostics to help Docker with investigating issues, the uploaded diagnostics bundle may contain personal data such as usernames and IP addresses. The diagnostics bundles are only accessible to Docker, Inc. employees who are directly involved in diagnosing Docker Desktop issues.
+キーチェーンに対する何らかの変更をするか、 :code:`~/.docker/certs.d` ディレクトリ内の変更を有効にするには、 Docker Desktop の再起動が必要です。
 
-アップロードされた診断情報は、Docker の問題調査に役立ちますが、ユーザ名や IP アドレスなど個人情報がアップロードされる診断データに含まれる場合があります。診断データにアクセス可能なのは、Docker Desktop の問題を直接解析する Docker, Inc. の従業員のみです。
+.. The registry cannot be listed as an insecure registry (see Docker Daemon). Docker Desktop ignores certificates listed under insecure registries, and does not send client certificates. Commands like docker run that attempt to pull from the registry produce error messages on the command line, as well as on the registry.
 
-.. By default Docker, Inc. will delete uploaded diagnostics bundles after 30 days unless they are referenced in an open issue on the docker/for-mac or docker/for-win issue trackers. If an issue is closed, Docker, Inc. will remove the referenced diagnostics bundles within 30 days. You may also request the removal of a diagnostics bundle by either specifying the diagnostics ID or via your GitHub ID (if the diagnostics ID is mentioned in a GitHub issue). Docker, Inc. will only use the data in the diagnostics bundle to investigate specific user issues, but may derive high-level (non personal) metrics such as the rate of issues from it.
+レジストリは *insecure* （安全ではない）レジストリとして表示されません（ :ref:`win-docker-engine` をご覧ください ）。Docker Desktop は安全ではないレジストリにある証明書を無視します。そして、クライアント証明書も送信しません。 :code:`docker run` のようなレジストリから取得するコマンドは、コマンドライン上でもレジストリでもエラーになるメッセージが出ます。
 
-`docker/for-mac <https://github.com/docker/for-mac/issues>`_ や  `docker/for-win <https://github.com/docker/for-win/issues>`_ の issue トラッカーで、オープンになっていても参照の必要がなければ、Docker, Inc. はアップロードされた診断情報を通常 30 日で削除します。もし issue がクローズされれば、Docker, Inc. は参照された診断情報を 30 日以内に削除します。また、診断 ID かGitHub ID（診断 ID が GitHub issue で使われている場合は）のどちらかで、診断情報の削除要求が可能です。 Docker, Inc. は診断情報のデータを、特定のユーザに対する調査にのみ用いますが、そこから発生する頻度などハイレベル（個人に依存しない）なメトリクスを得る場合もあります。
+.. To learn more about how to set the client TLS certificate for verification, see Verify repository client with certificates in the Docker Engine topics.
+
+認証用にクライアント TLS 証明書を設定する方法を学ぶには、Docker エンジンの記事 :doc:`証明書でリポジトリ・クライアントを確認する </engine/security/certificates>` をご覧ください。
+
+
+.. Switch between Windows and Linux containers
+.. _desktop-win-switch-between-windows-and-linux-containers:
+
+Windows と Linux コンテナとの切り替え
+----------------------------------------
+
+.. From the Docker Desktop menu, you can toggle which daemon (Linux or Windows) the Docker CLI talks to. Select Switch to Windows containers to use Windows containers, or select Switch to Linux containers to use Linux containers (the default).
+
+Docker Desktop のメニューから、Docker CLI が通信するデーモン（Linux か Windows）を切り替えできます。 **Switch to Windows containers** （Windows コンテナーへ切り替え）を選ぶと Windows コンテナーを使います。又は、 **Switch to Linux containers** （Linux コンテナへ切り替え）を選ぶと Linux コンテナを使います（こちらがデフォルト）。
+
+.. For more information on Windows containers, refer to the following documentation:
+
+Windows コンテナに関する詳しい情報は、以下のドキュメントを参照ください。
+
+..    Microsoft documentation on Windows containers.
+
+* `Windows とコンテナー <https://docs.microsoft.com/ja-jp/virtualization/windowscontainers/about/>`_ にあるマイクロソフトのドキュメント
+
+..    Build and Run Your First Windows Server Container (Blog Post) gives a quick tour of how to build and run native Docker Windows containers on Windows 10 and Windows Server 2016 evaluation releases.
+
+* `Build and Run Your First Windows Server Container (ブログ投稿） <https://blog.docker.com/2016/09/build-your-first-docker-windows-server-container/>`_ では、Windows 10 と Windows Server 2016 evaluation リリースで、ネイティブな Docker Windows コンテナーを構築・実行するクイック ツアーを提供しています。
+
+..    Getting Started with Windows Containers (Lab) shows you how to use the MusicStore application with Windows containers. The MusicStore is a standard .NET application and, forked here to use containers, is a good example of a multi-container application.
+
+* `Getting Start with Windows Containers(Lab)（英語） <https://github.com/docker/labs/blob/master/windows/windows-containers/README.md>`_ では、 `MusicStore <https://github.com/aspnet/MusicStore/blob/dev/README.md>`_ の Windows コンテナー アプリケーションの使い方を紹介します。MusicStore は標準的な .NET アプリケーションであり、  `コンテナ－を使うものをコチラからフォーク <https://github.com/friism/MusicStore>`_ できます。これは複数コンテナー アプリケーションの良い例です。
+
+..    To understand how to connect to Windows containers from the local host, see Limitations of Windows containers for localhost and published ports
+
+* ローカルホストから Windows コンテナーに対して接続する方法を理解するには、 :ref:`Windows からコンテナーに接続したい <i-want-to-connect-to-a-container-from-windows>` をご覧ください。
+
+..    Settings dialog changes with Windows containers
+..    When you switch to Windows containers, the Settings dialog only shows those tabs that are active and apply to your Windows containers:
+
+..    General
+    Proxies
+    Daemon
+    Reset
+
+.. tips::
+
+   **Windows コンテナ－での設定ダイアログ変更について** 
+   
+   Windows コンテナ－に切り替えると、設定ダイアログは WIndows コンテナ－に対して適用できる、以下のタブのみ表示します。
+   
+   * General
+   * Proxies
+   * Daemon
+   * Reset
+
+.. If you set proxies or daemon configuration in Windows containers mode, these apply only on Windows containers. If you switch back to Linux containers, proxies and daemon configurations return to what you had set for Linux containers. Your Windows container settings are retained and become available again when you switch back.
+
+Windows コンテナ－ モードでプロキシやデーモンの設定を行っても、それらが適用されるのは Windows コンテナ－に対してのみです。Linux コンテナに設定を切り戻すと、プロキシとデーモンの設定は Linux コンテナ用に設定していたものに戻ります。Windows コンテナ－の設定は保持されていますので、再び切り替えると Windows コンテナー向けの設定で利用できます。
 
 
 .. seealso:: 
 
-   Frequently asked questions (FAQ)
-      https://docs.docker.com/docker-for-windows/faqs/
+   Frequently asked questions for Windows
+      https://docs.docker.com/desktop/faqs/windowsfaqs/

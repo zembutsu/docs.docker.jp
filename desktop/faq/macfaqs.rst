@@ -1,17 +1,18 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/docker-for-mac/faqs/
+.. URL: https://docs.docker.com/desktop/faqs/macfaqs/
    doc version: 19.03
       https://github.com/docker/docker.github.io/blob/master/docker-for-mac/faqs.md
-.. check date: 2020/06/10
-.. Commits on Apr 23, 2020 087e391397a825aa21d9f81755d4b201ff5c4c06
+   doc version: 20.10
+      https://github.com/docker/docker.github.io/blob/master/desktop/faqs/macfaqs.md
+.. check date: 2022/09/18
+.. Commits on Jul 2, 2022 22c2d4f57d202aaf8d799ca46ca6d92632e9f2fd
 .. -----------------------------------------------------------------------------
 
-.. Frequently asked questions (FAQ)
-
-.. _mac-frequently-asked-questions-faq
+.. Frequently asked questions for Mac
+.. _desktop-frequently-asked-questions-for-mac:
 
 ==================================================
-よくある質問と回答 [FAQ]
+よくある質問と回答 Mac 版
 ==================================================
 
 .. sidebar:: 目次
@@ -20,234 +21,19 @@
        :depth: 3
        :local:
 
-
-.. Stable and Edge releases 
-
-.. _mac-stable-and-edge-releases:
-
-Stable と Edge リリース
-==================================================
-
-.. How do I get the Stable or the Edge version of Docker Desktop?
-
-.. _mac-how-do-i-get-the-stable-or-the-edge-version-of-docker-desktop:
-
-Docker Desktop の Stable か Edge 版を入手するには、どうしたら良いでしょうか？
---------------------------------------------------------------------------------
-
-.. You can download the Stable or the Edge version of Docker Desktop from Docker Hub.
-
-Docker Desktop の Stable や Edge 版は `Docker Hub <https://hub.docker.com/editions/community/docker-ce-desktop-windows/>`_ からダウンロードできます。
-
-.. For installation instructions, see Install Docker Desktop on Mac.
-
-インストール手順は :doc:`Mac に Docker Desktop をインストール <install>` を御覧ください。
-
-.. What is the difference between the Stable and Edge versions of Docker Desktop?
-
-.. _mac-what-is-the-difference-between-the-stable-and-edge-versions-of-docker-desktop:
-
-Docker Desktop の Stable 版と Edge 版の違いは何ですか？
-------------------------------------------------------------
-
-.. Two different download channels are available in the Community version of Docker Desktop:
-
-Docker Desktop のコミュニティ版では、2つのダウンロード・チャンネルがあります。
-
-.. The Stable channel provides a general availability release-ready installer for a fully baked and tested, more reliable app. The Stable version of Docker Desktop comes with the latest released version of Docker Engine. The release schedule is synched with Docker Engine releases and patch releases. On the Stable channel, you can select whether to send usage statistics and other data.
-
-**Stable チャンネル** は、完全に固められ、テスト済みであり、信頼できるアプリケーションとして、一般的に利用可能な準備が調っているリリースのインストーラを提供します。リリース時期は Docker エンジンのリリースとパッチ（修正版）リリースに同期しています。Stable チャンネルでは、利用状況統計や他のデータを送信するかどうか選択できます。
-
-.. The Edge channel provides an installer with new features we are working on, but is not necessarily fully tested. It comes with the experimental version of Docker Engine. Bugs, crashes, and issues are more likely to occur with the Edge version, but you get a chance to preview new functionality, experiment, and provide feedback as the apps evolve. Releases are typically more frequent than for Stable, often one or more per month. Usage statistics and crash reports are sent by default. You do not have the option to disable this on the Edge channel.
-
-**Edge チャンネル** は、開発中の新機能を含むインストーラを提供しますが、必要なテストを十分に行っていません。Docker エンジンの実験的なバージョンを含みます。そのため、Edge バージョンの利用時には、バグ、クラッシュなど問題が発生する可能性があります。しかし、新機能のお試しや経験を得られるチャンスとなり、Docker Desktop の進化に対するフィードバックを提供します。一般的に、Edge リリースは Stable に比べ頻繁にリリースがあります。おおよそ、一ヶ月か一ヶ月おきのリリースです。デフォルトで利用統計情報やクラッシュ報告が送信されます。Edge チャンネルでは、これを無効化するオプションはありません。
-
-.. Can I switch between Stable and Edge versions of Docker Desktop?
-
-.. _mac-can-i-switch-between-stable-and-edge-versions-of-docker-desktop
-
-Docker Desktop の Stable と Edge 版を切り替えできますか？
-------------------------------------------------------------
-
-.. Yes, you can switch between Stable and Edge versions. You can try out the Edge releases to see what’s new, then go back to Stable for other work. However, you can only have one version of Docker Desktop installed at a time. For more information, see Switch between Stable and Edge versions.
-
-はい、Stable と Edge 版を切り替え可能です。Edge リリースで何が新しくなったか試してみた後、Stable に戻って他のことができます。しかしながら、 **一度に Docker Desktop をインストールできるバージョンは、１つのみ** です。詳しい情報は :ref:`mac-switch-between-stable-and-edge-versions` を御覧ください。
-
 .. What is Docker.app?
-
-.. _what-is-docker-app:
+.. _deksop-mac-what-is-docker-app:
 
 Docker.app とは何ですか？
 --------------------------------------------------
 
-.. Docker.app is Docker Desktop on Mac. It bundles the Docker client and Docker Engine. Docker.app uses the macOS Hypervisor.framework to run containers, which means that a separate VirtualBox is not required to run Docker Desktop.
+.. Docker.app is Docker Desktop on Mac. It bundles the Docker client and Docker Engine. Docker.app uses the macOS Hypervisor.framework to run containers.
 
-`Docker.app` は Mac 上の Docker Desktop です。Docker クライアントと Docker Engine が同梱されています。 `Docker.app` は macOS Hypervisor.framework でコンテナを実行します。つまり Docker Desktop の実行に、別途 VirtualBox をセットアップする必要がありません。
+``Docker.app`` は Mac 上の Docker Desktop です。Docker クライアントと Docker Engine が同梱されています。 ``Docker.app`` は macOS Hypervisor.framework でコンテナを実行します。
 
-
-.. What are the system requirements for Docker Desktop?
-
-.. _mac-what-are-the-system-requirements-for-docker-desktop:
-
-Docker Desktop のシステム動作条件は何ですか？
---------------------------------------------------
-
-.. You need a Mac that supports hardware virtualization. For more information, see Docker Desktop Mac system requirements.
-
-システム動作条件に関する情報は、 :ref:`Docker Desktop Mac システム動作条件 <mac-system-requirements>` を御覧ください。
-
-.. What is an experimental feature?
-
-.. _mac-what-is-an-experimental-feature:
-
-実験的機能（experimental features）とは何ですか？
-==================================================
-
-.. Experimental features provide early access to future product functionality. These features are intended for testing and feedback only as they may change between releases without warning or can be removed entirely from a future release. Experimental features must not be used in production environments. Docker does not offer support for experimental features.
-
-実験的機能とは、今後のプロダクト機能を早期に利用できます。各機能のテストやフィードバックのみを目的としており、今後のリリースでは予告のない変更や、将来的なリリースでは機能全体が削除される場合があります。実験的機能はプロダクション環境で利用すべきではありません。実験的機能に対し、Docker はサポートを提供しません。
-
-
-..    To enable experimental features in the Docker CLI, edit the config.json file and set experimental to enabled.
-
-..    To enable experimental features from the Docker Desktop menu, click Settings (Preferences on macOS) > Command Line and then turn on the Enable experimental features toggle. Click Apply & Restart.
-
-.. attention::
-
-   Docker CLI で実験的機能を有効にするには、 :code:`config.json` ファイルを編集し、 :code:`experimental` を enabled（有効）にしてください。
-   Docker Desktop のメニューから実験的機能を有効にするには、  **Settings** （macOS は **Preferences** ）> **Command Line**  をクリックし、それから **Enable experimental features** トグルを有効に切り替えます。 **Apply & Restart** （適用と再起動）をクリックします。
-
-.. For a list of current experimental features in the Docker CLI, see Docker CLI Experimental features.
-
-Docker CLI の現時点における実験的機能の一覧は、 `Docker CLI Experimental features <https://github.com/docker/cli/blob/master/experimental/README.md>`_  をご覧ください。
-
-.. How do I?
-
-.. _mac-how-do-i:
-
-どうしたらいいでしょうか？
-==================================================
-
-
-.. How do I connect to the remote Docker Engine API?
-
-.. _mac-how-do-i-connect-to-the-remote-docker-engine-api:
-
-リモートの Docker Engine API に接続するには？
---------------------------------------------------
-
-.. You might need to provide the location of the Engine API for Docker clients and development tools.
-
-Docker クライアントと開発ツール用のために、 Engine API の場所を指定する必要があるでしょう。
-
-.. On Docker Desktop, clients can connect to the Docker Engine through a Unix socket: unix:///var/run/docker.sock.
-
-Docker Desktop では、Docker Engine は、 Unix ソケット :code:`unix:///var/run/docker.sock` では接続できません。
-
-.. See also Docker Engine API and Docker Desktop for Mac forums topic Using pycharm Docker plugin...
-
-`Docker Engine API <https://docs.docker.com/engine/api/>`_ と、 Docker Desktop for Mac フォーラムの `Using pycharm Docker plugin... <https://forums.docker.com/t/using-pycharm-docker-plugin-with-docker-beta/8617>`_ トピックをご覧ください。
-
-.. If you are working with applications like Apache Maven that expect settings for DOCKER_HOST and DOCKER_CERT_PATH environment variables, specify these to connect to Docker instances through Unix sockets. For example:
-
-もしも `Apache Maven <https://maven.apache.org/>`_ のようなアプリケーションを動作中であれば、 :code:`DOCKER_HOST` と :code:`DOCKER_CERT_PATH` 環境変数の設定が必要でしょう。特にこれらで Docker にアクセスするためには Unix ソケットの指定が必要です。例：
-
-.. code-block:: bash
-
-   export DOCKER_HOST=unix:///var/run/docker.sock
-
-.. How do I connect from a container to a service on the host?
-
-.. _mac-how-do-i-connect-from-a-container-to-a-service-on-the-host:
-
-ホスト上のサービスにコンテナから接続するには？
---------------------------------------------------
-
-.. Mac has a changing IP address (or none if you have no network access). We recommend that you attach an unused IP to the lo0 interface on the Mac so that containers can connect to this address.
-
-Mac は変動 IP アドレスを持ちます（あるいは、ネットワーク接続がなければ存在しません）。私たちが推奨するのは IP を使わず、Mac 上の :code:`lo0` インターフェースを使い、コンテナはこのアドレスで接続します。
-
-.. For more information and examples, see I want to connect from a container to a service on the host in the Networking topic.
-
-Docker Desktop for Mac のネットワーク機能についての情報は :doc:`ネットワーク機能 <networking>` の :ref:`mac-i-want-to-connect-from-a-container-to-a-service-on-the-host` を御覧ください。
-
-.. How do I connect to a container from Mac?
-
-.. _mac-how-do-i-connect-to-a-container-from-mac
-
-Mac からコンテナに接続するには？
---------------------------------------------------
-
-.. We recommend that you publish a port, or connect from another container. You can use the same method on Linux if the container is on an overlay network and not a bridge network, as these are not routed.
-
-私たちが推奨するのはポートの公開か、他のコンテナからの接続です。コンテナがオーバレイ・ネットワークを使う場合は、Linux と同じような手法が使えますが、ブリッジ・ネットワークの場合は経路付け（ルーティング）されず使えません。
-
-.. For more information and examples, see I want to connect to a container from the Mac in the Networking topic.
-
-詳細な情報と例は :doc:`ネットワーク機能 <networking>` の :ref:`i-want-to-connect-to-a-container-from-the-mac` を御覧ください。
-
-.. Can I use an SSH agent inside a container?
-
-.. _mac-can-i-use-an-ssh-agent-inside-a-container:
-コンテナ内で SSH エージェントを使えますか？
---------------------------------------------------
-
-.. Yes, you can use the host’s SSH agent inside a container. For more information, see SSH agent forwarding.
-
-はい、ホスト側の SSH エージェントをコンテナ内でも利用できます。詳しい情報は、 :ref:`osxfs-ssh-agent-forwarding` をご覧ください。
-
-.. How do I add custom CA certificates?
-
-.. _mac-how-do-i-add-custom-ca-certificates:
-どのようにしてカスタム CA 証明書を追加しますか？
---------------------------------------------------
-
-.. Docker Desktop supports all trusted certificate authorities (CAs) (root or intermediate). For more information on adding server and client side certs, see Add TLS certificates in the Getting Started topic.
-
-Docker Desktop は全ての信頼された認証局（root または中間）をサポートしています。サーバとクライアント側それぞれの証明書を追加するための情報は、導入ガイドの :ref:`mac-add-tls-certificates` トピックをご覧ください。
-
-.. How do I add client certificates?
-
-.. _mac-how do i add client certificates:
-どのようにしてクライアント証明書を追加しますか？
---------------------------------------------------
-
-.. For information on adding client certificates, see Add client certificates in the Getting Started topic.
-
-クライアント証明書を追加するための情報は、導入ガイドの :ref:`mac-add-client-certificates` トピックをご覧ください。
-
-.. Can I pass through a USB device to a container?
-
-.. _mac-can-i-pass-through-a-usb-device-to-a-container:
-
-USB デバイスをコンテナにパススルーできますか？
---------------------------------------------------
-
-.. Unfortunately, it is not possible to pass through a USB device (or a serial port) to a container as it requires support at the hypervisor level.
-
-残念ながら、USB デバイス（あるいはシリアルポート）はコンテナへのパススルーができません。これはハイパーバイザ・レベルのサポートを必要とするからです。
-
-.. Can I run Docker Desktop in nested virtualization scenarios?
-
-.. _mac-can-i-run-docker-desktop-in-nested-virtualization-scenarios:
-
-ネスト化した仮想化シナリオで Docker Desktop を動かせられますか？
-----------------------------------------------------------------------
-
-.. Docker Desktop can run inside a Windows 10 VM running on apps like Parallels or VMware Fusion on a Mac provided that the VM is properly configured. However, problems and intermittent failures may still occur due to the way these apps virtualize the hardware. For these reasons, Docker Desktop is not supported in nested virtualization scenarios. It might work in some cases, and not in others. For more information, see Running Docker Desktop in nested virtualization scenarios.
-
-Paralles や VMware Fusion on a Mac が提供する Windows 10 仮想マシン内で、仮想マシンを適切に設定していれば Docker Desktop は実行可能です。しかしながら、ハードウェアを仮想化したアプリケーションを使うため、問題や断続的な停止が発生する可能性があります。これらの理由により、 **ネスト化した仮想化シナリオで Docker Desktop はサポート対象外です** 。詳しい情報は、 :ref:`running-docker-desktop-in-nested-virtualization-scenarios` をご覧ください。
-
-.. Components of Docker Desktop
-
-.. _mac-components-of-docker-desktop:
-
-Docker Desktop のコンポーネント
-==================================================
 
 .. What is HyperKit?
-
-.. _what-is-hyperkit:
+.. _desktop-mac-what-is-hyperkit:
 
 HyperKit とは何ですか？
 --------------------------------------------------
@@ -261,8 +47,7 @@ HyperKit はmacOS の Hypervisor.framerowk 上に構築されたハイパーバ�
 私たちが HyperKit を採用するのは、 Oracle VirtualBox や VMWare Fusion のような他の仮想マシンプロダクトの必要性を無くすためです。
 
 .. What is the benefit of HyperKit?
-
-.. _mac-what-is-the-benefit-of-hyperkit:
+.. _desktop-mac-what-is-the-benefit-of-hyperkit:
 
 HyperKit の利点は何ですか？
 --------------------------------------------------
@@ -272,82 +57,368 @@ HyperKit の利点は何ですか？
 HyperKit は VirtualBox や VMware fusion よりも薄く、Mac 上で Docker ワークロード向けにカスタマイズしたバージョンだからです。
 
 .. Why is com.docker.vmnetd running after I quit the app?
+.. _desktop-mac--why-is-com.docker.vmnetd-running-after-i-quit-the-app:
 
-.. _mac--why-is-com.docker.vmnetd-running-after-i-quit-the-app:
-
-アプリ終了後、どうして com.docker.vmnetd が動くのですか？
-------------------------------------------------------------
+アプリを終了後も、どうして com.docker.vmnetd が動いているのですか？
+----------------------------------------------------------------------
 
 .. The privileged helper process com.docker.vmnetd is started by launchd and runs in the background. The process does not consume any resources unless Docker.app connects to it, so it’s safe to ignore.
 
 特権ヘルパー・プロセス :code:`com.docker.vmnetd`  は :code:`launched` によって開始され、バックグラウンドで動作します。このプロセスは Docker.app が接続していなければリソースを消費しないため、無視しても構いません。
 
+.. Where does Docker Desktop store Linux containers and images?
+.. _desktop-mac-where-does-docker-desktop-store-linux-containers-and-images:
 
-.. Feedback
-
-.. _mac-faq-feedback:
-
-フィードバック
-==================================================
-
-.. What kind of feedback are we looking for?
-
-.. _mac-what kind of feedback are we looking for:
-
-どのような種類のフィードバックが求められていますか？
-------------------------------------------------------------
-
-.. Everything is fair game. We’d like your impressions on the download-install process, startup, functionality available, the GUI, usefulness of the app, command line integration, and so on. Tell us about problems, what you like, or functionality you’d like to see added.
-
-全てが対象です。私たちはダウンロード、インストール手順、起動、利用可能な機能、GUI、アプリケーションの使いやすさ、コマンドライン統合、などなど、皆さんの所感を求めています。問題があれば、何をしたいのか、どのような機能が欲しいのかを教えてください。
-
-.. What if I have problems or questions?
-
-.. _mac-what if i have problems or questions:
-
-問題や質問がある場合は、どうしたら良いでしょうか？
---------------------------------------------------
-
-.. You can find information about diagnosing and troubleshooting common issues in the Logs and Troubleshooting topic.
-
-診断やトラブルシューティングに関する共通課題の情報は、 :doc:`troubleshoot` の記事にあります。
-
-.. If you do not find a solution in Troubleshooting, browse issues on Docker Desktop for Mac issues on GitHub or create a new one. You can also create new issues based on diagnostics. To learn more, see Diagnose problems, send feedback, and create GitHub issues.
-
-トラブルシューティングで解決策が見つからなければ、 `GitHub の Docker Desktop for Mac の issue <https://github.com/docker/for-mac/issues>`_ を見るか、新しい issue を作成してください。また、診断結果に基づいて新しい issue の作成もできます。詳細を学ぶには :ref:`mac-diagnose-problems-send-feedback-and-create-github-issues` を御覧ください。
-
-.. The Docker Desktop for Mac forum provides discussion threads as well, and you can create discussion topics there, but we recommend using the GitHub issues over the forums for better tracking and response.
-
-`Docker Desktop for Mac フォーラム <https://forums.docker.com/c/docker-for-windows>`_ には議論のスレッドがあります。そちらでも議論のトピックを作成できますが、私たちが推奨するのはフォーラムではなく GitHub issue を使う方が、追跡可能かつ反応も良いです。
-
-.. How can I opt out of sending my usage data?
-
-.. _mac-how can i opt out of sending my usage data:
-
-私の利用統計データの送信を停止できますか？
---------------------------------------------------
-
-.. If you do not want to send of usage data, use the Stable channel. For more information, see What is the difference between the Stable and Edge versions of Docker Desktop.
-
-利用統計データの送信を行いたくなければ、 Stable チャンネルを御利用ください。詳しい情報については、 :ref:`mac-what-is-the-difference-between-the-stable-and-edge-versions-of-docker-desktop` を御覧ください。
-
-.. How is personal data handled in Docker Desktop?
-
-.. _mac-how is personal data handled in docker desktop:
-
-Docker Desktop での個人データの取り扱いはどのようになっていますか？
+Docker Desktop は Linux コンテナとイメージをどこに保存しますか？
 ----------------------------------------------------------------------
 
-.. When uploading diagnostics to help Docker with investigating issues, the uploaded diagnostics bundle may contain personal data such as usernames and IP addresses. The diagnostics bundles are only accessible to Docker, Inc. employees who are directly involved in diagnosing Docker Desktop issues.
+.. Docker Desktop stores Linux containers and images in a single, large “disk image” file in the Mac filesystem. This is different from Docker on Linux, which usually stores containers and images in the /var/lib/docker directory.
 
-アップロードされた診断情報は、Docker の問題調査に役立ちますが、ユーザ名や IP アドレスなど個人情報がアップロードされる診断データに含まれる場合があります。診断データにアクセス可能なのは、Docker Desktop の問題を直接解析する Docker, Inc. の従業員のみです。
+Docker Desktop は Linux コンテナとイメージを、 Mac ファイルシステム内で、1つの大きな「ディスクイメージ」ファイルに保存します。これは、通常 ``/var/lib/docker`` ディレクトリにコンテナとイメージを保存する Linux 上の Docker とは異なります。
 
-.. By default Docker, Inc. will delete uploaded diagnostics bundles after 30 days unless they are referenced in an open issue on the docker/for-mac or docker/for-win issue trackers. If an issue is closed, Docker, Inc. will remove the referenced diagnostics bundles within 30 days. You may also request the removal of a diagnostics bundle by either specifying the diagnostics ID or via your GitHub ID (if the diagnostics ID is mentioned in a GitHub issue). Docker, Inc. will only use the data in the diagnostics bundle to investigate specific user issues, but may derive high-level (non personal) metrics such as the rate of issues from it.
+.. Where is the disk image file?
+.. _desktop-mac-where-is-the-disk-image-file:
 
-`docker/for-mac <https://github.com/docker/for-mac/issues>`_ や  `docker/for-win <https://github.com/docker/for-win/issues>`_ の issue トラッカーで、オープンになっていても参照の必要がなければ、Docker, Inc. はアップロードされた診断情報を通常 30 日で削除します。もし issue がクローズされれば、Docker, Inc. は参照された診断情報を 30 日以内に削除します。また、診断 ID かGitHub ID（診断 ID が GitHub issue で使われている場合は）のどちらかで、診断情報の削除要求が可能です。 Docker, Inc. は診断情報のデータを、特定のユーザに対する調査にのみ用いますが、そこから発生する頻度などハイレベル（個人に依存しない）なメトリクスを得る場合もあります。
+ディスクイメージのファイルはどこですか？
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. To locate the disk image file, select Preferences from the Docker Dashboard then Advanced from the Resources tab.
+
+ディスクイメージファイルを探すには、 Docker ダッシュボードから **Preferences** を選び、 **Resources** タブから **Advanced** を探します。
+
+.. The Advanced tab displays the location of the disk image. It also displays the maximum size of the disk image and the actual space the disk image is consuming. Note that other tools might display space usage of the file in terms of the maximum file size, and not the actual file size.
+
+**Advanced** タブにはディスクイメージの場所を表示します。また、ディスクイメージの最大容量と、ディスクイメージが使用している実際の容量を表示します。他のツールでは、実際のファイル容量ではなく、最大ファイル容量としてディスク使用量が表示される場合があるので、ご注意ください。
+
+.. What if the file is too big?
+.. _desktop-mac-what-if-the-file-is-too-big:
+
+ファイルが大きすぎる場合は、どうしたらいいでしょうか？
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. If the disk image file is too big, you can:
+
+ディスクイメージが大きすぎる場合、次のことができます：
+
+..  Move it to a bigger drive
+    Delete unnecessary containers and images
+    Reduce the maximum allowable size of the file
+
+* より大きなドライブにディスクイメージを移動する
+* 不要なコンテナとイメージを削除する
+* ファイルに割り当て可能な最大容量を減らす
+
+.. How do I move the file to a bigger drive?
+.. _desktop-mac-how-do-i-move-the-file-to-a-bigger-drive:
+
+大きなドライブにファイルを移動する方法は？
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. To move the disk image file to a different location:
+
+ディスクイメージファイルを別の場所に移動するには、次のように実行します：
+
+..  Select Preferences then Advanced from the Resources tab.
+    In the Disk image location section, click Browse and choose a new location for the disk image.
+    Click Apply & Restart for the changes to take effect.
+
+1. **Preferences** を選び、 **Resources** タブから **Advanced** を選ぶ
+2. **Disk image location** セクション内で、 **Browse** をクリックし、ディスクイメージの新しい場所を選ぶ
+3. 変更を反映するには、 **Apply & Restart** をクリック
+
+.. Do not move the file directly in Finder as this can cause Docker Desktop to lose track of the file.
+
+Finder を使ってファイルを直接移動しないでください。移動してしまうと、 Docker Desktop がファイルを追跡できなくなります。
+
+.. How do I delete unnecessary containers and images?
+.. _docker-desktop-how-do-i-delete-unnecessary-containers-and-images:
+
+不要なコンテナとイメージをどうやって削除しますか？
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. Check whether you have any unnecessary containers and images. If your client and daemon API are running version 1.25 or later (use the docker version command on the client to check your client and daemon API versions), you can see the detailed space usage information by running:
+
+不要なコンテナとイメージを持っているかどうかを調べます。クライアントとデーモン API がバージョン 1.25 以上で実行している場合（ ``docker version`` コマンドを使い、クライアントとデーモン API のバージョンを確認できます）、次のように実行して詳細な容量の使用情報を表示できます：
+
+.. code-block:: bash
+
+   $ docker system df -v
+
+.. Alternatively, to list images, run:
+
+または、イメージ一覧を表示するには、次のように実行します：
+
+.. code-block:: bash
+
+   $ docker image ls
+
+.. and then, to list containers, run:
+
+それから、コンテナ一覧を表示するため、次のように実行します：
+
+.. code-block:: bash
+
+   $ docker container ls -a
+
+.. If there are lots of redundant objects, run the command:
+
+不要なオブジェクトがたくさんある場合、次のコマンドを実行します：
+
+.. code-block:: bash
+
+   $ docker system prune
+
+.. This command removes all stopped containers, unused networks, dangling images, and build cache.
+
+このコマンドは、停止中のコンテナ、使われていないネットワーク、宙吊りイメージと構築キャッシュを全て削除します。
+
+.. It might take a few minutes to reclaim space on the host depending on the format of the disk image file:
+
+ホストが依存しているディスクイメージのファイル形式によっては、容量の確保に数分ほど必要な場合があります。
+
+..  If the file is named Docker.raw: space on the host should be reclaimed within a few seconds.
+    If the file is named Docker.qcow2: space will be freed by a background process after a few minutes.
+
+* ファイル名が ``Docker.raw`` の場合：ホスト上の空きは数秒以内に確保できる
+* ファイル名が ``Docker.qcow2`` の場合：バックグラウンドのプロセスとして容量を確保するため、数分かかる
+
+.. Space is only freed when images are deleted. Space is not freed automatically when files are deleted inside running containers. To trigger a space reclamation at any point, run the command:
+
+イメージが削除された時にのみ、容量が解放されます。実行しているコンテナ内でファイルを削除しても、自動的に空き容量として解放されません。容量確保をいつでも行いたい場合は、次のコマンドを実行します。
+
+.. code-block:: bash
+
+   $ docker run --privileged --pid=host docker/desktop-reclaim-space
+
+.. Note that many tools report the maximum file size, not the actual file size. To query the actual size of the file on the host from a terminal, run:
+
+ツールでは、実際のファイル容量ではなく、最大ファイル容量としてディスク使用量が表示される場合があるので、ご注意ください。ホスト上での実際の容量を確認するには、ターミナルから次のように実行します。
+
+.. code-block:: bash
+
+   $ cd ~/Library/Containers/com.docker.docker/Data/vms/0/data
+   $ ls -klsh Docker.raw
+   2333548 -rw-r--r--@ 1 username  staff    64G Dec 13 17:42 Docker.raw
+
+.. In this example, the actual size of the disk is 2333548 KB, whereas the maximum size of the disk is 64 GB.
+
+この例では、ディスクの最大容量は ``64`` GB ですが、ディスクの実際の容量は ``2333548``  KB です。
+
+.. How do I reduce the maximum size of the file?
+.. _desktop-mac-how-do-i-reduce-the-maximum-size-of-the-file:
+
+ファイルの最大容量を減らすには、どうしたらいいでしょうか？
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. To reduce the maximum size of the disk image file:
+
+ディスクイメージファイルの最大容量を減らすには、次のようにします。
+
+..  Select Preferences then Advanced from the Resources tab.
+    The Disk image size section contains a slider that allows you to change the maximum size of the disk image. Adjust the slider to set a lower limit.
+    Click Apply & Restart.
+
+1. **Preferences** を選び、 **Resources** タブから **Advanced** を選ぶ
+2. **Disk image location** セクション内で、 ディスクイメージの最大容量を変更できます。スライダーを下限に調整します。
+3. 変更を反映するには、 **Apply & Restart** をクリック
+
+.. When you reduce the maximum size, the current disk image file is deleted, and therefore, all containers and images will be lost.
+
+最大容量を減らす場合は、現在のディスクイメージは削除されます。つまり、全てのコンテナとディレクトリは失われます。
+
+.. How do I add TLS certificates?
+.. _desktop-mac-how-do-i-add-tls-certificates:
+
+TLS 証明書をどのようにして追加しますか？
+--------------------------------------------------
+
+.. You can add trusted Certificate Authorities (CAs) (used to verify registry server certificates) and client certificates (used to authenticate to registries) to your Docker daemon.
+
+Docker デーモンが、レジストリ・サーバ証明書と **クライアント証明書** の検証用に、信頼できる **認証局(CA; Certificate Authorities)** を追加してレジストリを認証できます。
+
+.. Add custom CA certificates (server side)
+.. _desktop-mac-add-custom-ca-certificates-server-side:
+
+カスタム CA 証明書の追加（サーバ側）
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. All trusted CAs (root or intermediate) are supported. Docker Desktop creates a certificate bundle of all user-trusted CAs based on the Mac Keychain, and appends it to Moby trusted certificates. So if an enterprise SSL certificate is trusted by the user on the host, it is trusted by Docker Desktop.
+
+全ての信頼できうる（ルート及び中間）証明局（CA）をサポートしています。Docker Desktop は Mac キーチェーン上にある全ての信頼できうる証明局の情報に基づき、全てのユーザが信頼する CAの証明書バンドルを作成します。また、Moby の信頼できる証明書にも適用します。そのため、エンタープライズ SSL 証明書がホスト上のユーザによって信頼されている場合は、Docker Desktop からも信頼されます。
+
+.. To manually add a custom, self-signed certificate, start by adding the certificate to the macOS keychain, which is picked up by Docker Desktop. Here is an example:
+
+任意の、自己証明した証明書を主導で追加するには、macOS キーチェン上に証明書を追加し、Docker Desktop が扱えるようにします。以下は例です：
+
+.. code-block:: bash
+
+   $ sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ca.crt
+
+.. Or, if you prefer to add the certificate to your own local keychain only (rather than for all users), run this command instead:
+
+あるいは、（全てのユーザに対してではなく）自身のローカルキーチェーンのみ追加したい場合は、代わりにこちらのコマンドを実行します。
+
+.. code-block:: bash
+
+   $ security add-trusted-cert -d -r trustRoot -k ~/Library/Keychains/login.keychain ca.crt
+
+.. See also, Directory structures for certificates.
+
+また、 :ref:`認証情報のディレクトリ構造 <desktop-mac-directory-structures-for-certificates>` もご覧ください。
+
+..   Note: You need to restart Docker Desktop after making any changes to the keychain or to the ~/.docker/certs.d directory in order for the changes to take effect. For a complete explanation of how to do this, see the blog post Adding Self-signed Registry Certs to Docker & Docker Desktop for Mac.
+
+.. note::
+
+   キーチェーンに対する何らかの変更をするか、 :code:`~/.docker/certs.d` ディレクトリ内の変更を有効にするには、 Docker Desktop の再起動が必要です。この設定方法に関する完全な説明は `Adding Self-signed Registry Certs to Docker & Docker Desktop for Mac <http://container-solutions.com/adding-self-signed-registry-certs-docker-mac/>`_ のブログ投稿をご覧ください。
+
+
+.. Add client certificates
+.. _desktop-mac-add-client-certificates:
+
+クライアント証明書の追加
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. You can put your client certificates in ~/.docker/certs.d/<MyRegistry>:<Port>/client.cert and ~/.docker/certs.d/<MyRegistry>:<Port>/client.key.
+
+自分のクライアント証明書を :code:`~/.docker/certs.d/<MyRegistry>:<Port>/client.cert` と :code:`~/.docker/certs.d/<MyRegistry>:<Port>/client.key` に追加できます。
+
+.. When the Docker Desktop application starts, it copies the ~/.docker/certs.d folder on your Mac to the /etc/docker/certs.d directory on Moby (the Docker Desktop xhyve virtual machine).
+
+Docker Desktop ・アプリケーションの開始時に、 Mac システム上の :code:`~/.docker/certs.d` フォルダを Moby 上（Docker Desktop が稼働する :code:`xhyve` 上の仮想マシン）の `/etc/docker/certs.d` ディレクトリにコピーします。
+
+..        You need to restart Docker Desktop after making any changes to the keychain or to the ~/.docker/certs.d directory in order for the changes to take effect.
+..        The registry cannot be listed as an insecure registry (see Docker Engine. Docker Desktop ignores certificates listed under insecure registries, and does not send client certificates. Commands like docker run that attempt to pull from the registry produce error messages on the command line, as well as on the registry.
+
+.. hint::
+
+   * キーチェーンに対する何らかの変更をするか、 :code:`~/.docker/certs.d` ディレクトリ内の変更を有効にするには、 Docker Desktop の再起動が必要です。
+   * レジストリは *insecure* （安全ではない）レジストリとして表示されません（ :ref:`mac-docker-engine` をご覧ください ）。Docker Desktop は安全ではないレジストリにある証明書を無視します。そして、クライアント証明書も送信しません。 :code:`docker run` のようなレジストリから取得するコマンドは、コマンドライン上でもレジストリでもエラーになるメッセージが出ます。
+
+.. Directory structures for certificates
+.. _desktop-mac-directory-structures-for-certificates:
+
+認証情報のディレクトリ構造
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. If you have this directory structure, you do not need to manually add the CA certificate to your Mac OS system login:
+
+次のディレクトリ構造の場合、Mac OS システムログインのため、CA 証明書を手動で追加する必要はありません。
+
+.. code-block:: bash
+
+   /Users/<user>/.docker/certs.d/
+   └── <MyRegistry>:<Port>
+      ├── ca.crt
+      ├── client.cert
+      └── client.key
+
+.. The following further illustrates and explains a configuration with custom certificates:
+
+以下は、カスタム証明書を設定例と説明を追加したものです：
+
+.. code-block:: bash
+
+   /etc/docker/certs.d/        <-- Certificate directory
+   └── localhost:5000          <-- Hostname:port
+      ├── client.cert          <-- Client certificate
+      ├── client.key           <-- Client key
+      └── ca.crt               <-- Certificate authority that signed
+                                   the registry certificate
+
+.. You can also have this directory structure, as long as the CA certificate is also in your keychain.
+
+あるいは、CA 証明書が自分のキーチェンにあれば、次のようなディレクトリ構造にもできます。
+
+.. code-block:: bash
+
+   /Users/<user>/.docker/certs.d/
+   └── <MyRegistry>:<Port>
+       ├── client.cert
+       └── client.key
+
+.. To learn more about how to install a CA root certificate for the registry and how to set the client TLS certificate for verification, see Verify repository client with certificates in the Docker Engine topics.
+
+認証用にクライアント TLS 証明書を設定する方法を学ぶには、Docker エンジンの記事 :doc:`証明書でリポジトリ・クライアントを確認する </engine/security/certificates>`_ を御覧ください。
+
+.. How do I install shell completion?
+.. _desktop-mac-how-do-i-install-shell-completion:
+
+どうやってシェル補完をインストールしますか？
+--------------------------------------------------
+
+.. Bash has built-in support for completion To activate completion for Docker commands, these files need to be copied or symlinked to your bash_completion.d/ directory. For example, if you installed bash via Homebrew:
+
+
+Bash
+^^^^^^^^^^
+
+Bash は `補完を内部でサポートしています <https://www.debian-administration.org/article/316/An_introduction_to_bash_completion_part_1>`_ 。Docker コマンドで補完できるようにするには、各ファイルを自分の ``bash_completion.d/`` ディレクトリにコピーするかシンボリックリンクを作成します。たとえば、 `Homebrew <https://brew.sh/>`_ を経由して bash をインストールした場合は：
+
+.. code-block:: bash
+
+   etc=/Applications/Docker.app/Contents/Resources/etc
+   ln -s $etc/docker.bash-completion $(brew --prefix)/etc/bash_completion.d/docker
+   ln -s $etc/docker-compose.bash-completion $(brew --prefix)/etc/bash_completion.d/docker-compose
+
+.. Add the following to your ~/.bash_profile:
+
+以下を自分の :code:`~/.bash_profile` に追加します：
+
+.. code-block:: bash
+
+   [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+
+.. OR
+
+あるいは
+
+.. code-block:: bash
+
+   if [ -f $(brew --prefix)/etc/bash_completion ]; then
+   . $(brew --prefix)/etc/bash_completion
+   fi
+
+
+Zsh
+^^^^^^^^^^
+
+.. In Zsh, the completion system takes care of things. To activate completion for Docker commands, these files need to be copied or symlinked to your Zsh site-functions/ directory. For example, if you installed Zsh via Homebrew:
+
+Zsh では、 `補完システム <http://zsh.sourceforge.net/Doc/Release/Completion-System.html>`_ の管理が必要です。Docker コマンドに対する補完を有効化するには、自分の Zsh :code:`site-functions/` ディレクトリに各ファイルをコピーするか symlink する必要があります。以下は `Homebrew <http://brew.sh/>`_  を経由して Zsh をインストールします：
+
+.. code-block:: bash
+
+   etc=/Applications/Docker.app/Contents/Resources/etc
+   ln -s $etc/docker.zsh-completion /usr/local/share/zsh/site-functions/_docker
+   ln -s $etc/docker-compose.zsh-completion /usr/local/share/zsh/site-functions/_docker-compose
+
+
+Fish-Shell
+^^^^^^^^^^
+
+.. Fish-shell also supports tab completion completion system. To activate completion for Docker commands, these files need to be copied or symlinked to your Fish-shell completions/ directory.
+
+Fish-shell もまた、タブ補完による `補完システム <https://fishshell.com/docs/current/#tab-completion>`_ をサポートしています。Docker コマンドに対する補完を有効化するには、各ファイルを自分の Fish-shell の :code:`completions` ディレクトリにコピーするか symlink する必要があります。
+
+.. Create the completions directory:
+
+:code:`completions`  ディレクトリを作成します：
+
+.. code-block:: bash
+
+   mkdir -p ~/.config/fish/completions
+
+.. Now add fish completions from docker.
+
+次に docker から fish completions を追加します。
+
+.. code-block:: bash
+
+   ln -shi /Applications/Docker.app/Contents/Resources/etc/docker.fish-completion ~/.config/fish/completions/docker.fish
+   ln -shi /Applications/Docker.app/Contents/Resources/etc/docker-compose.fish-completion ~/.config/fish/completions/docker-compose.fish
 
 .. seealso:: 
 
-   Frequently asked questions (FAQ)
-      https://docs.docker.com/docker-for-mac/faqs/
+   Frequently asked questions for Mac
+      https://docs.docker.com/desktop/faqs/macfaqs/
