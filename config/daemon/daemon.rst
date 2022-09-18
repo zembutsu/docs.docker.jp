@@ -271,6 +271,7 @@ Out Of Memory Exception (OOME)
 システムで利用可能なメモリよりも、多くのメモリ利用をコンテナが試みようとすると、Out Of Memory Exception (OOME) が発生し、 Docker あるいは Docker デーモンがカーネル OOM killer によって強制停止されるでしょう。この挙動を防ぐためには、ホスト上で実行するアプリケーションに対し、十分なメモリを割り当ててから実行します。詳細は :ref:`Out of Memory を引き起こすリスクの理解 <understand-the-risks-of-running-out-of-memory>` をご覧ください
 
 .. Read the logs
+.. _config-daemon-read-the-logs:
 
 ログを読む
 --------------------

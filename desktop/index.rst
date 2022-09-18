@@ -69,11 +69,11 @@ Docker Desktop は任意の開発ツールや言語と連携しながら、 `Doc
    * :doc:`Windows <install/windows-install>`
    * :doc:`Linux <install/linux-install>`
 
-* :doc:`Docker Desktop を探る <use-desktop>`
+* :doc:`Docker Desktop を探る <use-desktop/index>`
 
    * Docker Desktop を操作し、主要な機能について学びます。
 
-* :doc:`リリースノートの表示` 
+* :doc:`リリースノートの表示 <release-notes>` 
 
    * 新機能、改良点、バグ修正を調べます。
 

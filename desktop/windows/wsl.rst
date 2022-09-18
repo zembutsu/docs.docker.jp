@@ -4,8 +4,8 @@
       https://github.com/docker/docker.github.io/blob/master/docker-for-windows/wsl.md
    doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/desktop/windows/wsl.md
-.. check date: 2022/05/14
-.. Commits on May 12, 2022 9afb3bc05b928d40d73441d2aa4b800222c17b78
+.. check date: 2022/09.17
+.. Commits on Sep 2, 2022 bde9629d685bb0137a052101044bd795616908dc
 .. -----------------------------------------------------------------------------
 
 .. Docker Desktop WSL 2 backend
@@ -15,23 +15,15 @@
 Docker Desktop WSL 2 バックエンド
 =======================================
 
-.. 
-    Update to the Docker Desktop terms
-    Commercial use of Docker Desktop in larger enterprises (more than 250 employees OR more than $10 million USD in annual revenue) now requires a paid subscription. The grace period for those that will require a paid subscription ends on January 31, 2022. Learn more.
-
-.. important:: **Docker Desktop の利用条件変更**
-
-   現在、大企業（従業員が 251 人以上、または、年間収入が 1,000 万米ドル以上 ）における Docker Desktop の商用利用には、有料サブスクリプション契約が必要です。必要な有料サブスクリプションの支払猶予は 2022 年 1 月 31 日に終了しました。 `詳細はこちらです。 <https://www.docker.com/blog/the-grace-period-for-the-docker-subscription-service-agreement-ends-soon-heres-what-you-need-to-know/>`_
-
 .. sidebar:: 目次
 
    .. contents::
        :depth: 3
        :local:
 
-.. Windows Subsystem for Linux (WSL) 2 introduces a significant architectural change as it is a full Linux kernel built by Microsoft, allowing Linux containers to run natively without emulation. With Docker Desktop running on WSL 2, users can leverage Linux workspaces and avoid having to maintain both Linux and Windows build scripts. In addition, WSL 2 provides improvements to file system sharing, boot time, and allows access to some cool new features for Docker Desktop users.
+.. Windows Subsystem for Linux (WSL) 2 introduces a significant architectural change as it is a full Linux kernel built by Microsoft, allowing Linux distributions to run without having to manage Virtual Machines. With Docker Desktop running on WSL 2, users can leverage Linux workspaces and avoid having to maintain both Linux and Windows build scripts. In addition, WSL 2 provides improvements to file system sharing, boot time, and allows access to some cool new features for Docker Desktop users.
 
-新しい Docker Desktop  WSL 2 バックエンドは、Docker Desktop  WSL 2 Tech Preview の後を継ぐものです。WSL2 バックエンド・アーキテクチャは Kubernetes 向けのサポートを導入し、更新版 Docker デーモンの提供、VPN と親和性のあるネットワーク機能や追加機能を提供します。WSL 2 は構造上の著しい変更をもたらします。Microsoft によってビルドされた完全な Linux カーネルによって、エミュレーションではなく、ネイティブに Linux コンテナを実行可能になります。WSL 2 上で Docker Desktop を実行しますと、利用者は Linux ワークスペースを活用できるようになり、また、ビルド用スクリプトは Windows 用と Linux 用との両方を準備する必要がなくなります。
+Windows Subsystem for Linux (WSL) 2 は、 Microsoft によって構築された完全な Linux カーネルであり、アーキテクチャが著しく変更されたため、仮想マシンを管理しなくても Linux ディストリビューションを実行できるようになりました。WSL 2 上で Docker Desktop を実行すると、ユーザは Linux ワークスペースを活用できるため、Linux と Windows の両方の構築スクリプトを維持する必要がなくなります。加えて、 WSL 2 はファイルシステム共有や起動時間短縮をもたらすため、 Docker Desktop ユーザはクールな新機能にアクセスできるようになります。
 
 .. Docker Desktop uses the dynamic memory allocation feature in WSL 2 to greatly improve the resource consumption. This means, Docker Desktop only uses the required amount of CPU and memory resources it needs, while enabling CPU and memory-intensive tasks such as building a container to run much faster.
 
@@ -56,31 +48,8 @@ Docker Desktop  WSL 2 バックエンドをインストールする前に、以�
     Download and install the Linux kernel update package.
 
 1. Windows 10, version 1903 以上、または Windows 11 をインストール。
-2. Windows 上での WSL2 機能の有効化。詳細手順は `マイクロソフトのドキュメント <https://docs.microsoft.com/ja-jp/windows/wsl/install>`_ を参照ください。
+2. Windows 上での WSL2 機能の有効化。詳細手順は `マイクロソフトのドキュメント <https://learn.microsoft.com/ja-jp/windows/wsl/install>`_ を参照ください。
 3. `Linux カーネル更新パッケージ <https://docs.microsoft.com/ja-jp/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package>`_ のダウンロードとインストール
-
-.. Best practices
-.. _wsl-best-practices:
-ベストプラクティス
-====================
-
-..  To get the best out of the file system performance when bind-mounting files, we recommend storing source code and other data that is bind-mounted into Linux containers (i.e., with docker run -v <host-path>:<container-path>) in the Linux file system, rather than the Windows file system. You can also refer to the recommendation from Microsoft.
-        Linux containers only receive file change events (“inotify events”) if the original files are stored in the Linux filesystem. For example, some web development workflows rely on inotify events for automatic reloading when files have changed.
-        Performance is much higher when files are bind-mounted from the Linux filesystem, rather than remoted from the Windows host. Therefore avoid docker run -v /mnt/c/users:/users (where /mnt/c is mounted from Windows).
-        Instead, from a Linux shell use a command like docker run -v ~/my-project:/sources <my-image> where ~ is expanded by the Linux shell to $HOME.
-    If you have concerns about the size of the docker-desktop-data VHDX, or need to change it, take a look at the WSL tooling built into Windows.
-    If you have concerns about CPU or memory usage, you can configure limits on the memory, CPU, Swap size allocated to the WSL 2 utility VM.
-    To avoid any potential conflicts with using WSL 2 on Docker Desktop, you must uninstall any previous versions of Docker Engine and CLI installed directly through Linux distributions before installing Docker Desktop.
-
-* ファイルのバインド マウント時、ファイルシステムの性能を最大限に活用するには、ソースコードや他のデータの保管を、Windows ファイルシステム上ではなく、Linux コンテナ内（例： ``docker run -v <host-path>:<container-path>`` を指定）のファイルシステム内にバインド マウントするのを推奨します。また、 Microsoft による `推奨 <https://docs.microsoft.com/ja-jp/windows/wsl/compare-versions>`_ もご覧ください。
-
-  * Linux コンテナが受け取るファイル変更のイベント（ "inotify event" ）とは、Linux ファイルシステム内に保管されているオリジナルのファイルに関係するものです。たとえば、いくつかのウェブ開発ワークフローでは、ファイル変更時の自動再読み込みが、 inotify イベントに依存しています。
-  * リモートの Windows ホスト上よりも、Linux ファイルシステムにファイルをバインド マウントする方が、性能がより高くなります。従って、 ``docker run -v /mnt/c/users:/users`` を避けるべきです（ ``/mnt/c`` は Windows によってマウントされる場所です）。
-
-* docker-desktop-data VHDX の容量に関する懸念や、これを変更したい場合は、 `WSL 2 仮想ハードディスクのサイズを拡張する <https://docs.microsoft.com/ja-jp/windows/wsl/vhd-size>`_ をご覧ください。
-* CPU やメモリ使用量に懸念がある場合は、メモリ、CPU 、スワップ容量に制限を設けられます。割り当ては `WSL 2 ユーティリティ仮想マシン <https://docs.microsoft.com/ja-jp/windows/wsl/wsl-config#global-configuration-options-with-wslconfig>`_ で行えます。
-* Docker Desktop 上で WSL 2 の使用による潜在的な競合を避けるには、Docker Desktop をインストールする前に、Linux ディストリビューションによってインストールされた :doc:`あらゆる古いバージョンの Docker Engine のアンインストール <ubuntu-uninstall-docker-engine>` と CLI のアンインストールが必要です。
-
 
 .. Download
 .. _wsl-download:
@@ -88,9 +57,9 @@ Docker Desktop  WSL 2 バックエンドをインストールする前に、以�
 ダウンロード
 ==============================
 
-.. Download Docker Desktop Stable 2.3.0.2 or a later release.
+.. Download Docker Desktop for Windows.
 
-`Docker Desktop stable 2.3.0.2 <https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe>`_ 以上のリリースをダウンロードします。
+`Docker Desktop for Windows <https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe>`_ をダウンロードします。
 
 
 .. Install
@@ -99,9 +68,9 @@ Docker Desktop  WSL 2 バックエンドをインストールする前に、以�
 インストール
 ==============================
 
-.. Ensure you have completed the steps described in the Prerequisites section before installing the Docker Desktop Stable 2.3.0.2 release.
+.. Ensure you have completed the steps described in the Prerequisites section before installing the Docker Desktop release.
 
-Docker Desktop Stable 2.3.0.2 リリースをインストールする **前に** 、動作条件のセクションで説明した、 :ref:`事前の手順 <wsl-rerequisites>` を必ず終えてください。
+Docker Desktop をインストールする **前に** 、動作条件のセクションで説明した、 :ref:`事前の手順 <wsl-rerequisites>` を必ず終えてください。
 
 ..    Follow the usual installation instructions to install Docker Desktop. If you are running a supported system, Docker Desktop prompts you to enable WSL 2 during installation. Read the information displayed on the screen and enable WSL 2 to continue.
 
@@ -133,9 +102,28 @@ WSL 2 をサポートしているシステム上に Docker Desktop をインス�
 
 5.  **Apply & Restart** （適用と再起動）をクリックします。
 
+
+.. That’s it! Now docker commands will work from Windows using the new WSL 2 engine.
+
+以上で終わりです！ これで、新しい WSL 2 エンジンを使って ``docker`` コマンドが動作します。
+
+.. Enabling Docker support in WSL 2 distros
+.. _enabling-docker-support-in-wsl-2-distros:
+
+WSL 2 ディストリビューションで Docker サポートの有効化
+============================================================
+
+.. WSL 2 adds support for “Linux distros” to Windows, where each distro behaves like a VM except they all run on top of a single shared Linux kernel.
+
+WSL 2 は Widnows に「Linux ディストリビューション」のサポートを追加しています。各ディストリビューションは単一の共有 Linux カーネル上で動作するのを除き、仮想マシンのような挙動です。
+
+.. Docker Desktop does not require any particular Linux distros to be installed. The docker CLI and UI all work fine from Windows without any additional Linux distros. However for the best developer experience, we recommend installing at least one additional distro and enabling Docker support by:
+
+Docker Desktop では何らかの Linux ディストリビューションをインストールする必要はありません。 ``docker`` CLI と UI は追加の Linux ディストリビューションがなくても動作します。しかしながら、最高の開発体験を得るためには、少なくとも１つのディストリビューションを追加し、次のようにして Docker サポートを有効化するのを推奨します。
+
 ..    Ensure the distribution runs in WSL 2 mode. WSL can run distributions in both v1 or v2 mode.
 
-6. ディストリビューションが WSL2 モードで動作しているかどうかを確認します。WSL はディストリビューションの v1 と v2 モードのどちらでも動作します。
+1. ディストリビューションが WSL 2 モードで実行中かどうかを調べます。WSL は v1 と v2 モードどちらのディストリビューションも実行できます。
 
    ..    To check the WSL mode, run
 
@@ -163,7 +151,7 @@ WSL 2 をサポートしているシステム上に Docker Desktop をインス�
 
 ..    When Docker Desktop restarts, go to Settings > Resources > WSL Integration.
 
-7.　Docker Desktop を再起動したら、 **Settings > Resources > WSL Integration** に移動し、Docker でアクセスしたい WSL 2 ディストリビューションを選択します。
+2.　Docker Desktop を再起動したら、 **Settings > Resources > WSL Integration** に移動し、Docker でアクセスしたい WSL 2 ディストリビューションを選択します。
 
    ..    WSL Integration will be enabled on your default WSL distribution. To change your default WSL distro, run wsl --set-default <distro name>.
 
@@ -191,7 +179,31 @@ WSL 2 をサポートしているシステム上に Docker Desktop をインス�
 
 ..    Click Apply & Restart.
 
-8.　変更を有効にするには **Apply & Restart** をクリックします。
+3.　変更を有効にするには **Apply & Restart** をクリックします。
+
+
+
+.. Best practices
+.. _wsl-best-practices:
+ベストプラクティス
+====================
+
+..  To get the best out of the file system performance when bind-mounting files, we recommend storing source code and other data that is bind-mounted into Linux containers (i.e., with docker run -v <host-path>:<container-path>) in the Linux file system, rather than the Windows file system. You can also refer to the recommendation from Microsoft.
+        Linux containers only receive file change events (“inotify events”) if the original files are stored in the Linux filesystem. For example, some web development workflows rely on inotify events for automatic reloading when files have changed.
+        Performance is much higher when files are bind-mounted from the Linux filesystem, rather than remoted from the Windows host. Therefore avoid docker run -v /mnt/c/users:/users (where /mnt/c is mounted from Windows).
+        Instead, from a Linux shell use a command like docker run -v ~/my-project:/sources <my-image> where ~ is expanded by the Linux shell to $HOME.
+    If you have concerns about the size of the docker-desktop-data VHDX, or need to change it, take a look at the WSL tooling built into Windows.
+    If you have concerns about CPU or memory usage, you can configure limits on the memory, CPU, Swap size allocated to the WSL 2 utility VM.
+    To avoid any potential conflicts with using WSL 2 on Docker Desktop, you must uninstall any previous versions of Docker Engine and CLI installed directly through Linux distributions before installing Docker Desktop.
+
+* ファイルのバインド マウント時、ファイルシステムの性能を最大限に活用するには、ソースコードや他のデータの保管を、Windows ファイルシステム上ではなく、Linux コンテナ内（例： ``docker run -v <host-path>:<container-path>`` を指定）のファイルシステム内にバインド マウントするのを推奨します。また、 Microsoft による `推奨 <https://docs.microsoft.com/ja-jp/windows/wsl/compare-versions>`_ もご覧ください。
+
+  * Linux コンテナが受け取るファイル変更のイベント（ "inotify event" ）とは、Linux ファイルシステム内に保管されているオリジナルのファイルに関係するものです。たとえば、いくつかのウェブ開発ワークフローでは、ファイル変更時の自動再読み込みが、 inotify イベントに依存しています。
+  * リモートの Windows ホスト上よりも、Linux ファイルシステムにファイルをバインド マウントする方が、性能がより高くなります。従って、 ``docker run -v /mnt/c/users:/users`` を避けるべきです（ ``/mnt/c`` は Windows によってマウントされる場所です）。
+
+* docker-desktop-data VHDX の容量に関する懸念や、これを変更したい場合は、 `WSL 2 仮想ハードディスクのサイズを拡張する <https://docs.microsoft.com/ja-jp/windows/wsl/vhd-size>`_ をご覧ください。
+* CPU やメモリ使用量に懸念がある場合は、メモリ、CPU 、スワップ容量に制限を設けられます。割り当ては `WSL 2 ユーティリティ仮想マシン <https://docs.microsoft.com/ja-jp/windows/wsl/wsl-config#global-configuration-options-with-wslconfig>`_ で行えます。
+* Docker Desktop 上で WSL 2 の使用による潜在的な競合を避けるには、Docker Desktop をインストールする前に、Linux ディストリビューションによってインストールされた :doc:`あらゆる古いバージョンの Docker Engine のアンインストール <ubuntu-uninstall-docker-engine>` と CLI のアンインストールが必要です。
 
 
 .. Develop with Docker and WSL 2
@@ -232,6 +244,7 @@ Docker と WSL 2 で開発する
 
 .. GPU support
 .. _win-gpu-support:
+
 GPU サポート
 ====================
 
