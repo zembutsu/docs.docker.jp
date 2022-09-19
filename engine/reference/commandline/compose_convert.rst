@@ -49,7 +49,7 @@ compose ファイルをプラットフォーム固有形式に変換します。
 
 .. To allow smooth migration from docker-compose, this subcommand declares alias docker compose config
 
-docker-compose からスムーズに移行できるようにするには、このサブマンドで ``dokcer compose config`` のエイリアスを宣言します。
+docker-compose からスムーズに移行できるようにするには、このサブマンドで ``docker compose config`` のエイリアスを宣言します。
 
 .. _compose_convert-options:
 

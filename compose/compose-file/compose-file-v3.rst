@@ -723,7 +723,7 @@ depends_on
     docker-compose stop stops services in dependency order. In the following example, web is stopped before db and redis.
 
 * ``docker-compose up`` は、依存関係の順番でサービスを開始します。以下の例では、 ``web`` の前に ``db`` と ``redis`` を開始します。
-* ``dokcer-compose up サービス`` は、 ``サービス`` の依存関係を自動的に読み込みます。以下の例では、 ``docker-compose up web`` でも ``db`` と ``redis`` を作成と起動します。
+* ``docker-compose up サービス`` は、 ``サービス`` の依存関係を自動的に読み込みます。以下の例では、 ``docker-compose up web`` でも ``db`` と ``redis`` を作成と起動します。
 * ``docker-compose stop`` は、依存関係の順番でサービスを停止します。以下の例では、 ``db`` と ``redis`` の前に ``web`` を停止します。
 
 .. Simple example:

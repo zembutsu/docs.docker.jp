@@ -117,7 +117,7 @@ Git の URL には、セクションをコロン（ ``:`` ）で分ける記述�
    BuildKit をビルダとして使う場合（ ``DOCKER_BUILDKIT=1`` ）、構築コンテキストのディレクトリを指定できません（先の例では ``myfolder`` ）。この機能のサポートについては `buildkit#1684 <https://github.com/moby/buildkit/issues/1684>`_ に経緯があります。
 
 
-.. _dokcer-build-tarball-contexts:
+.. _docker-build-tarball-contexts:
 
 tar ボールのコンテクスト
 ------------------------------
