@@ -61,7 +61,7 @@
 
 .. Typically, we would advise against bind-mounting /var/lib/docker in this way. However, cAdvisor requires this bind-mount for core functionality.
 
-通常は、このように ``/var/lib/doker`` に対するバインド マウントに反対したいです。しかしながら、 ``cAdviser`` は中心となる機能で、このバインドマウントが必要です。
+通常は、このように ``/var/lib/docker`` に対するバインド マウントに反対したいです。しかしながら、 ``cAdviser`` は中心となる機能で、このバインドマウントが必要です。
 
 .. If you are unsure which process is causing the path mentioned in the error to be busy and preventing it from being removed, you can use the lsof command to find its process. For instance, for the error above:
 
