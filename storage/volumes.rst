@@ -270,7 +270,7 @@ docker-compose でボリュームを使う
 
 .. On the first invocation of docker-compose up the volume will be created. The same volume will be reused on following invocations.
 
-``docker-compose up`` を始めて実行すると、ボリュームが作成されます。続く実行でも、同じボリュームが再利用されます。
+``docker-compose up`` を初めて実行すると、ボリュームが作成されます。続く実行でも、同じボリュームが再利用されます。
 
 .. A volume may be created directly outside of compose with docker volume create and then referenced inside docker-compose.yml as follows:
 

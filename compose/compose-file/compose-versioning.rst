@@ -100,7 +100,7 @@ Compose ファイル形式には、1 、 2 、 2.x 、 3.x のように複数の
 
 .. In addition to Compose file format versions shown in the table, the Compose itself is on a release schedule, as shown in Compose releases, but file format versions do not necessarily increment with each release. For example, Compose file format 3.0 was first introduced in Compose release 1.10.0, and versioned gradually in subsequent releases.
 
-先ほどの表中にある Compose ファイル形式のバージョンに加え、Compose 自身も `Compose リリースのページ <https://github.com/docker/compose/releases/>`_ にリリース情報の一覧があります。しかし、ファイル形式のバージョンは、各リリースごとに増えていません。たとえば、Compose ファイル形式 3.0 が始めて導入されたのは、 `Compose リリース 1.10.0 <https://github.com/docker/compose/releases/tag/1.10.0>`_ からであり、以降はリリースに従って順々とバージョンが割り当てられています。
+先ほどの表中にある Compose ファイル形式のバージョンに加え、Compose 自身も `Compose リリースのページ <https://github.com/docker/compose/releases/>`_ にリリース情報の一覧があります。しかし、ファイル形式のバージョンは、各リリースごとに増えていません。たとえば、Compose ファイル形式 3.0 が初めて導入されたのは、 `Compose リリース 1.10.0 <https://github.com/docker/compose/releases/tag/1.10.0>`_ からであり、以降はリリースに従って順々とバージョンが割り当てられています。
 
 .. The latest Compose file format is defined by the Compose Specification and is implemented by Docker Compose 1.27.0+.
 

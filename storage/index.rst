@@ -87,7 +87,7 @@ Docker でのデータ管理
 
   .. When you mount a volume, it may be named or anonymous. Anonymous volumes are not given an explicit name when they are first mounted into a container, so Docker gives them a random name that is guaranteed to be unique within a given Docker host. Besides the name, named and anonymous volumes behave in the same ways.
 
-  ボリュームのマウントは **名前付き（named）** か **無名（anonymous）** です。 :ruby:`無名ボリューム <anonymous volume>` とは、コンテナに始めてマウントする時、特定の名前が与えられません。そのため、 Docker は ランダムな名前を割り当てます。この名前は、 Docker ホスト内で確実に使われていないユニークなものです。名前付きボリュームと無名ボリュームの呼び方こそ違いますが、挙動はどちらも同じです。
+  ボリュームのマウントは **名前付き（named）** か **無名（anonymous）** です。 :ruby:`無名ボリューム <anonymous volume>` とは、コンテナに初めてマウントする時、特定の名前が与えられません。そのため、 Docker は ランダムな名前を割り当てます。この名前は、 Docker ホスト内で確実に使われていないユニークなものです。名前付きボリュームと無名ボリュームの呼び方こそ違いますが、挙動はどちらも同じです。
 
   .. Volumes also support the use of volume drivers, which allow you to store your data on remote hosts or cloud providers, among other possibilities.
 

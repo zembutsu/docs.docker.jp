@@ -188,7 +188,7 @@ Mac に Docker Desktop をインストールして動かす
 
 .. As macOS typically performs security checks the first time an application is used, the install command can take several minutes to run.
 
-macOS では新しいアプリケーションを始めて使う時、たいていセキュリティ確認の処理があるため、 ``install`` コマンドを実行するには数分かかる場合があります。
+macOS では新しいアプリケーションを初めて使う時、たいていセキュリティ確認の処理があるため、 ``install`` コマンドを実行するには数分かかる場合があります。
 
 .. The install command accepts the following flags:
 

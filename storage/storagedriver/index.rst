@@ -158,7 +158,7 @@ Docker はストレージ・ドライバを利用して、イメージ・レイ�
 
 .. Copy-on-write is a strategy of sharing and copying files for maximum efficiency. If a file or directory exists in a lower layer within the image, and another layer (including the writable layer) needs read access to it, it just uses the existing file. The first time another layer needs to modify the file (when building the image or running the container), the file is copied into that layer and modified. This minimizes I/O and the size of each of the subsequent layers. These advantages are explained in more depth below.
 
-:ruby:`コピー オン ライト <copy-on-write>` とは、ファイルの共有とコピーの効率を最大化するための方式です。ファイルやディレクトリがイメージ内の :ruby:`低位のレイヤー <lower layer>` に存在し、それを他のレイヤー（書き込み可能なレイヤーを含みます）が読み込む必要がある場合は、その既存のファイルを使います。他のレイヤーから、そのファイルを始めて変更する時（イメージの構築時や、コンテナの実行中の場合）は、そのレイヤーの中にファイルがコピーされます。これが I/O を最小化し、以降に続く各レイヤーの容量も最小化します。これらの利点については、以降で詳しく説明します。
+:ruby:`コピー オン ライト <copy-on-write>` とは、ファイルの共有とコピーの効率を最大化するための方式です。ファイルやディレクトリがイメージ内の :ruby:`低位のレイヤー <lower layer>` に存在し、それを他のレイヤー（書き込み可能なレイヤーを含みます）が読み込む必要がある場合は、その既存のファイルを使います。他のレイヤーから、そのファイルを初めて変更する時（イメージの構築時や、コンテナの実行中の場合）は、そのレイヤーの中にファイルがコピーされます。これが I/O を最小化し、以降に続く各レイヤーの容量も最小化します。これらの利点については、以降で詳しく説明します。
 
 .. Sharing promotes smaller images
 .. _Sharing promotes smaller images:
