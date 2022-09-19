@@ -134,7 +134,7 @@ docker node update
 
 .. The labels you set for nodes using docker node update apply only to the node entity within the swarm. Do not confuse them with the docker daemon labels for dockerd.
 
-``docker node update`` を使ってノードにラベルを指定できるのは、ノードが swarm 内に所属している場合のみです。 :doc:`dokcerd <dockerd>` 用の docker デーモンのラベルと混同しないでください。
+``docker node update`` を使ってノードにラベルを指定できるのは、ノードが swarm 内に所属している場合のみです。 :doc:`dockerd <dockerd>` 用の docker デーモンのラベルと混同しないでください。
 
 .. For more information about labels, refer to apply custom metadata.
 
@@ -181,6 +181,6 @@ docker node update
 
 .. seealso:: 
 
-   dokcer node update
+   docker node update
       https://docs.docker.com/engine/reference/commandline/node_update/
 

@@ -9,7 +9,7 @@
 .. Commits on Jan 28, 2022 b6b19516d0feacd798b485615ebfee410d9b6f86
 .. -------------------------------------------------------------------
 
-.. dokcer-compose run
+.. docker-compose run
 .. _docker-compose-run:
 
 =======================================

@@ -158,7 +158,7 @@ Docker は設定用ディレクトリ内にある大部分のファイルを管�
 
 .. This flag only applies to whatever command is being ran. For persistent configuration, you can set the DOCKER_CONFIG environment variable in your shell (e.g. ~/.profile or ~/.bashrc). The example below sets the new directory to be HOME/newdir/.docker.
 
-このフラグが適用できるのは、対象コマンドの実行時のみです。設定を維持し続けたい場合は、シェル上（例 ``~/.profile`` や ``~/.bashrc`` ）で環境変数 ``DOCKER_CONFIG`` を指定してください。以下の例は ``HOME/newdir/.dokcer`` を新しいディレクトリとして指定します。
+このフラグが適用できるのは、対象コマンドの実行時のみです。設定を維持し続けたい場合は、シェル上（例 ``~/.profile`` や ``~/.bashrc`` ）で環境変数 ``DOCKER_CONFIG`` を指定してください。以下の例は ``HOME/newdir/.docker`` を新しいディレクトリとして指定します。
 
 .. code-block:: bash
 

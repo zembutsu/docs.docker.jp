@@ -11,7 +11,7 @@
 .. docker node inspect
 
 =======================================
-dokcer node inspect
+docker node inspect
 =======================================
 
 .. sidebar:: 目次
@@ -270,6 +270,6 @@ dokcer node inspect
 
 .. seealso:: 
 
-   dokcer node inspect
+   docker node inspect
       https://docs.docker.com/engine/reference/commandline/node_inspect/
 

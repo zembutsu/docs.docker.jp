@@ -134,7 +134,7 @@ Docker が把握している全てのボリュームを表示します。 ``-f``
 * 名前（ボリューム名）
 
 .. dangling
-.. _dokcer_ls-dangling:
+.. _docker_ls-dangling:
 dangling
 ^^^^^^^^^^
 

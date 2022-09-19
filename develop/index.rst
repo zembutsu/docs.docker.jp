@@ -35,7 +35,7 @@ Docker で開発
 コンテナ化したアプリケーションのイメージ構築と実行を理解するには、 :doc:`導入ガイド </get-started/index>` にある学習コースを学んでください。
 
 .. Develop new apps on Docker
-.. _develop-new-app-on-dokcer:
+.. _develop-new-app-on-docker:
 
 Docker で新しいアプリを開発
 ==============================
