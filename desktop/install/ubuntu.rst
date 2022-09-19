@@ -2,8 +2,8 @@
 .. URL: https://docs.docker.com/desktop/install/ubuntu/
    doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/desktop/install/ubuntu.md
-.. check date: 2022/09/10
-.. Commits on Jul 29, 2022 d5b612281c2ea01766ab8d201ec96a16c54cfb0c
+.. check date: 2022/09/19
+.. Commits on Sep 18, 2022 ee7765c75238c8b9b5b2116374d55d29819afb20
 .. -----------------------------------------------------------------------------
 
 .. |whale| image:: ./images/whale-x.png
@@ -93,7 +93,7 @@ Debian に Docker Desktop をインストールするため、推奨する手順
     Install the package with apt as follows:
 
 1. :ref:`Docker のパッケージ リポジトリをセットアップ <ubuntu-set-up-the-repository>`
-2. 最新の `DEB パッケージ <https://desktop.docker.com/linux/main/amd64/docker-desktop-4.11.0-amd64.deb>`_ をダウンロード
+2. 最新の `DEB パッケージ <https://desktop.docker.com/linux/main/amd64/docker-desktop-4.12.0-amd64.deb>`_ をダウンロード
 3. 以下のように apt でパッケージをインストール：
 
 .. code-block:: bash

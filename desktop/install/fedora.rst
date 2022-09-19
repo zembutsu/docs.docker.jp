@@ -2,8 +2,8 @@
 .. URL: https://docs.docker.com/desktop/install/fedora/
    doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/desktop/install/fedora.md
-.. check date: 2022/09/10
-.. Commits on Jul 29, 2022 d5b612281c2ea01766ab8d201ec96a16c54cfb0c
+.. check date: 2022/09/19
+.. Commits on Sep 18, 2022 ee7765c75238c8b9b5b2116374d55d29819afb20
 .. -----------------------------------------------------------------------------
 
 .. |whale| image:: ./images/whale-x.png
@@ -69,7 +69,7 @@ Debian に Docker Desktop をインストールするため、推奨する手順
     Install the package with dnf as follows:
 
 1. :ref:`Docker のパッケージ リポジトリをセットアップ <fedora-set-up-the-repository>`
-2. 最新の `RPM パッケージ <https://desktop.docker.com/linux/main/amd64/docker-desktop-4.11.0-x86_64.rpm>`_ をダウンロード
+2. 最新の `RPM パッケージ <https://desktop.docker.com/linux/main/amd64/docker-desktop-4.12.0-x86_64.rpm>`_ をダウンロード
 3. 以下のように dnf でパッケージをインストール：
 
 .. code-block:: bash
