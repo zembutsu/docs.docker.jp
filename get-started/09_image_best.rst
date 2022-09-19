@@ -80,7 +80,7 @@
 
 .. image:: ./images/hvs.png
    :scale: 60%
-   :alt: Dockre Hub 脆弱性検査
+   :alt: Docker Hub 脆弱性検査
 
 .. Image layering
 .. _image-layering:
