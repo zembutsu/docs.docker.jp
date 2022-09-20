@@ -1,7 +1,7 @@
 ﻿.. -*- coding: utf-8 -*-
 .. 
 .. doc version: 20.10
-.. check date: 2022/04/16
+.. check date: 2022/09/20
 .. -----------------------------------------------------------------------------
 
 ..  Get Started-toc:
@@ -11,8 +11,7 @@ Get started - 始めましょう
 ========================================
 
 .. toctree::
-   :maxdepth: 3
-   :titlesonly:
+   :maxdepth: 2
 
    Part 1:始めましょう <index.rst>
    Part 2:サンプル アプリケーション <02_our_app.rst>

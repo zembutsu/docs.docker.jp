@@ -2,8 +2,8 @@
 .. URL: https://docs.docker.com/get-started/07_multi_container/
    doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/get-started/07_multi_container.md
-.. check date: 2022/04/21
-.. Commits on Apr 4, 2022 a4de787aed5344b54eb067bb8ad7b36d6e78b242
+.. check date: 2022/09/20
+.. Commits on May 12, 2022 9a1cb6561c89559d7b85f6714d0ddc4d4cc27e15
 .. -----------------------------------------------------------------------------
 
 .. Multi container apps
@@ -44,6 +44,7 @@
 
 .. Container networking
 .. _container-networking:
+
 コンテナのネットワーク機能
 ==============================
 
@@ -62,6 +63,7 @@
 
 .. Start MySQL
 .. _start-mysql:
+
 MySQL の起動
 ====================
 
@@ -104,9 +106,9 @@ MySQL の起動
           -e MYSQL_DATABASE=todos \
           mysql:5.7
 
-   .. If you are using PowerShell then use this command.
+   .. If you are using Windows then use this command in PowerShell.
    
-   PowerShell を使う場合は、こちらのコマンドを使います。
+   Windows を使う場合は、 PowerShell でこちらのコマンドを使います。
 
    .. code-block:: bash
    
@@ -119,7 +121,7 @@ MySQL の起動
 
    .. You’ll also see we specified the --network-alias flag. We’ll come back to that in just a moment.
 
-   また、 ``--network-alias`` フラグも指定したのが見えるでしょう。こちらついては、後で触れます。
+   また、 ``--network-alias`` フラグも指定したのが見えるでしょう。こちらについては、後で触れます。
 
    ..    Tip
     You’ll notice we’re using a volume named todo-mysql-data here and mounting it at /var/lib/mysql, which is where MySQL stores its data. However, we never ran a docker volume create command. Docker recognizes we want to use a named volume and creates one automatically for us.
@@ -175,6 +177,7 @@ MySQL の起動
 
 .. Connect to MySQL
 .. _connet-to-mysql:
+
 MySQL に接続
 ====================
 
@@ -184,7 +187,7 @@ MySQL に接続
 
 .. To figure it out, we’re going to make use of the nicolaka/netshoot container, which ships with a lot of tools that are useful for troubleshooting or debugging networking issues.
 
-答えを探すために、 `nicolaka/netshoot <https://github.com/nicolaka/netshoot>`_ コンテナを使います。これには、ネットワーク機能の問題に対するトラブルシューティング（問題解決）やデバッグ（修正）に便利なツールがたくさん入っています。。
+答えを探すために、 `nicolaka/netshoot <https://github.com/nicolaka/netshoot>`_ コンテナを使います。これには、ネットワーク機能の問題に対するトラブルシューティング（問題解決）やデバッグ（修正）に便利なツールがたくさん入っています。
 
 ..    Start a new container using the nicolaka/netshoot image. Make sure to connect it to the same network.
 
@@ -235,6 +238,7 @@ MySQL に接続
 
 .. Run your app with MySQL
 .. run-your-app-with-mysql:
+
 MySQL とアプリを動かす
 ==============================
 
@@ -298,9 +302,9 @@ todo アプリでは、 MySQL へ接続する設定を指定するため、い�
         node:12-alpine \
         sh -c "yarn install && yarn run dev"
 
-   .. If you are using PowerShell then use this command.
+   .. If you are using Windows then use this command in PowerShell.
 
-   PowerShell を使っている場合は、こちらのコマンドを使います。
+   Windows を使っている場合は、PowerShell でこちらのコマンドを使います。
 
    .. code-block:: bash
 
@@ -365,6 +369,7 @@ Docker ダッシュボードをさっと見ると、２つのアプリ用コン�
 
 .. Recap
 .. _part7-recap:
+
 まとめ
 ==========
 

@@ -2,8 +2,8 @@
 .. URL: https://docs.docker.com/get-started/08_using_compose/
    doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/get-started/08_using_compose.md
-.. check date: 2022/04/21
-.. Commits on Oct 4, 2021 a0e59a68b080a5edde0bcf3e2e4c8ffd8ec9b752
+.. check date: 2022/09/20
+.. Commits on Jun 28, 2022 fd9fe19061121287e75faebf973a3e1546f71190
 .. -----------------------------------------------------------------------------
 
 .. Use Docker Compose
@@ -33,12 +33,13 @@ Compose を使う「大きな」利点は、アプリケーション スタッ�
 
 .. Install Docker Compose
 .. _install-docker-compose:
+
 Docker Compose のインストール
 ==============================
 
 .. If you installed Docker Desktop/Toolbox for either Windows or Mac, you already have Docker Compose! Play-with-Docker instances already have Docker Compose installed as well. If you are on a Linux machine, you will need to install Docker Compose.
 
-Window や Mac で、 Docker Desktop または Toolbox をインストール済みであれば、Docker Compose が入っています！ Play-wih-Docker インスタンスも、同様に Docker Compose がインストール済みです。Linux マシンを使う場合は、 :doc:`Docker Compose のインストール </compose/install>` が必要です。
+Window や Mac で、 Docker Desktop または Toolbox をインストール済みであれば、Docker Compose が入っています！ Play-wih-Docker インスタンスも、同様に Docker Compose がインストール済みです。Linux マシンを使う場合は、 :doc:`Docker Compose のインストール </compose/install/index>` が必要です。
 
 .. After installation, you should be able to run the following and see version information.
 
@@ -50,6 +51,7 @@ Window や Mac で、 Docker Desktop または Toolbox をインストール済�
 
 .. Create the Compose file
 .. _create-the-compose-file:
+
 Compose ファイルの作成
 ==============================
 
@@ -81,6 +83,7 @@ Compose ファイルの作成
 
 .. Define the app service
 .. _define-the-app-service:
+
 アプリのサービス定義
 ====================
 
@@ -201,6 +204,7 @@ PowerShell の場合は、こちらのコマンドを使っていました。
 
 .. Define the MySQL service
 .. _define-the-mysql-service:
+
 MySQL サービスの定義
 ====================
 
@@ -322,6 +326,7 @@ PowerShell の場合は、以下のコマンドを使います。
 
 .. Run the application stack
 .. _run-the-application-stack:
+
 アプリケーション スタックの実行
 ========================================
 
@@ -390,6 +395,7 @@ PowerShell の場合は、以下のコマンドを使います。
 
 .. See the app stack in Docker Dashboard
 .. _see-the-app-stack-in-docker-dashboard:
+
 Docker ダッシュボードでアプリのスタックを表示
 ==================================================
 
@@ -401,9 +407,9 @@ Docker ダッシュボードを見ると、 **app** という名前のグルー�
    :scale: 60%
    :alt: Docker ダッシュボードでのアプリのプロジェクト
 
-.. If you twirl down the app, you will see the two containers we defined in the compose file. The names are also a little more descriptive, as they follow the pattern of <project-name>_<service-name>_<replica-number>. So, it’s very easy to quickly see what container is our app and which container is the mysql database.
+.. If you twirl down the app, you will see the two containers we defined in the compose file. The names are also a little more descriptive, as they follow the pattern of <service-name>-<replica-number>. So, it’s very easy to quickly see what container is our app and which container is the mysql database.
 
-app の▶マークをクリックして展開すると、compose ファイルで定義した２つのコンテナが見えます。コンテナ名も説明的になり、 ``<プロジェクト名>_<サービス名>_<レプリカ数>`` のパターンに従います。そのため、どのコンテナがアプリで、どのコンテナが mysql データベースなのかを、素早く見つけるのが簡単になります。
+app の▶マークをクリックして展開すると、compose ファイルで定義した２つのコンテナが見えます。コンテナ名も説明的になり、 ``<サービス名>-<レプリカ数>`` のパターンに従います。そのため、どのコンテナがアプリで、どのコンテナが mysql データベースなのかを、素早く見つけるのが簡単になります。
 
 .. image:: ./images/dashboard-app-project-expanded.png
    :scale: 60%
@@ -412,7 +418,8 @@ app の▶マークをクリックして展開すると、compose ファイル�
 
 .. Tear it all down
 .. _tear-it-all-down:
-全てを解体
+
+全てを削除
 ==========
 
 .. When you’re ready to tear it all down, simply run docker-compose down or hit the trash can on the Docker Dashboard for the entire app. The containers will stop and the network will be removed.
@@ -438,6 +445,7 @@ app の▶マークをクリックして展開すると、compose ファイル�
 
 .. Recap
 .. _part8-recap:
+
 まとめ
 ==========
 
