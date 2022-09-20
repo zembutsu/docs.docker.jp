@@ -2,8 +2,8 @@
 .. URL: https://docs.docker.com/get-started/04_sharing_app/
    doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/get-started/04_sharing_app.md
-.. check date: 2022/04/16
-.. Commits on Feb 3, 2022 e6cdfcc7ad9d9b70953ffb89222fe0e086e77141
+.. check date: 2022/09/20
+.. Commits on Sep 14, 2022 5e3c72815400353eac77781934e198074ddfc284
 .. -----------------------------------------------------------------------------
 
 .. Share the application
@@ -21,7 +21,7 @@
 
 .. Now that we’ve built an image, let’s share it! To share Docker images, you have to use a Docker registry. The default registry is Docker Hub and is where all of the images we’ve used have come from.
 
-イメージを構築たので、共有しましょう！ Docker イメージを共有するには、 Docker :ruby:`レジストリ <registry>` を使う必要があります。デフォルトのレジストリは Docker Hub で、そこにこれまでに使った全てのイメージがあります。
+イメージを構築したので、共有しましょう！ Docker イメージを共有するには、 Docker :ruby:`レジストリ <registry>` を使う必要があります。デフォルトのレジストリは Docker Hub で、そこにこれまでに使った全てのイメージがあります。
 
 ..    Docker ID
     A Docker ID allows you to access Docker Hub which is the world’s largest library and community for container images. Create a Docker ID for free if you don’t have one.
@@ -32,6 +32,7 @@
 
 .. Create a repo
 .. _create-a-repo:
+
 リポジトリ作成
 ====================
 
@@ -71,6 +72,7 @@
 
 .. Push the image
 .. _push-the-image:
+
 イメージを :ruby:`送信 <push>`
 ========================================
 
@@ -110,7 +112,7 @@
 
 .. Now try your push command again. If you’re copying the value from Docker Hub, you can drop the tagname portion, as we didn’t add a tag to the image name. If you don’t specify a tag, Docker will use a tag called latest.
 
-4. これでもう一度 push コマンドを試します。Docker  Hub から値をコピーしている場合でも、先ほどイメージにタグを付けていたように、 ``tagname`` の文字を書略できます。タグを指定しなければ、 Docker は ``latest`` （最新）と呼ばれるタグを使います。
+4. これでもう一度 push コマンドを試します。Docker  Hub から値をコピーしている場合でも、先ほどイメージにタグを付けていたように、 ``tagname`` の文字を省略できます。タグを指定しなければ、 Docker は ``latest`` （最新）と呼ばれるタグを使います。
 
 .. code-block:: bash
 
@@ -118,6 +120,7 @@
 
 .. Run the image on a new instance
 .. _run-the-image-on-a-new-instance:
+
 新しいインスタンスでイメージを実行
 ========================================
 
@@ -163,6 +166,7 @@
 
 .. Recap
 .. _part_4-recap:
+
 まとめ
 ==========
 

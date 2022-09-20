@@ -2,8 +2,8 @@
 .. URL: https://docs.docker.com/get-started/09_image_best/
    doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/get-started/09_image_best.md
-.. check date: 2022/04/22
-.. Commits on Nov 28, 2021 10e8f008a554ae7ef7b2d5fa80538f1234fc741d
+.. check date: 2022/09/20
+.. Commits on Aug 17, 2022 f9ea6f2175eb7d693f2fbc8d32dcce4c82354958
 .. -----------------------------------------------------------------------------
 
 .. Image-building best practices
@@ -21,6 +21,7 @@
 
 .. Security scanning
 .. _security-scanning:
+
 :ruby:`安全性の検査 <security scanning>`
 ========================================
 
@@ -84,6 +85,7 @@
 
 .. Image layering
 .. _image-layering:
+
 イメージの :ruby:`階層化 <layering>`
 ========================================
 
@@ -134,6 +136,7 @@
 
 .. Layer caching
 .. _layer-caching:
+
 レイヤーのキャッシュ
 ====================
 
@@ -156,6 +159,7 @@
 
    # syntax=docker/dockerfile:1
    FROM node:12-alpine
+   RUN apk add --no-cache python2 g++ make
    WORKDIR /app
    COPY . .
    RUN yarn install --production
@@ -177,6 +181,7 @@
 
       # syntax=docker/dockerfile:1
       FROM node:12-alpine
+      RUN apk add --no-cache python2 g++ make
       WORKDIR /app
       COPY package.json yarn.lock ./
       RUN yarn install --production
@@ -279,6 +284,7 @@
 
 .. Multi-stage builds
 .. _get-started-multi-stage-build:
+
 :ruby:`マルチステージ ビルド <multi-stage build>`
 ==================================================
 
@@ -294,6 +300,7 @@
 
 .. Maven/Tomcat example
 .. _get-started-maven-tomcat-example:
+
 Maven/Tomcat 例
 --------------------
 
@@ -317,6 +324,8 @@ Java をベースとしたアプリケーションの構築時、ソースコー
 この例では、１つめのステージ（ ``build`` と呼びます）で、実際に Java の構築を Maven を使って処理します。２つめのステージ（ ``FROM tomcat`` で始まります）に、 ``build`` ステージからファイルをコピーします。最終イメージには、最後のステージに作成されたものだけです（ ``--target`` フラグを使い、上書きできます）。
 
 .. React example
+.. _get-started-react-example:
+
 React 例
 ----------
 
@@ -344,6 +353,7 @@ React アプリケーションの構築時、 JS コード（通常は JSC）、
 
 .. Recap
 .. _part9-recap:
+
 まとめ
 ==========
 

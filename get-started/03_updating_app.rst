@@ -2,7 +2,7 @@
 .. URL: https://docs.docker.com/get-started/03_updating_app/
    doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/get-started/03_updating_app.md
-.. check date: 2022/04/16
+.. check date: 2022/09/20
 .. Commits on Jan 11, 2022 5eb68faf22a12ff8144d5ee5c062024c4f543b1a
 .. -----------------------------------------------------------------------------
 
@@ -36,6 +36,7 @@
 
 .. Update the source code
 .. _update-the-source-code:
+
 ソースコードの変更
 ====================
 
@@ -79,6 +80,7 @@
 
 .. Replace the old container
 .. _replace-the-old-container:
+
 古いコンテナを置き換える
 ==============================
 
@@ -87,6 +89,8 @@
 コンテナを削除するには、まずコンテナの停止が必要です。停止した後に削除できます。古いコンテナの削除には２つの方法があります。どちらでも、やりやすい方法を自由に選んでください。
 
 .. Remove a container using the CLI
+.. _remove-a-container-using-the-cli:
+
 CLI でコンテナを削除
 --------------------
 
@@ -124,6 +128,7 @@ CLI でコンテナを削除
 
 .. Remove a container using the Docker Dashboard
 .. _remove-a-container-using-the-docker-dashboard:
+
 Docker ダッシュボードでコンテナを削除
 ----------------------------------------
 
@@ -149,6 +154,7 @@ Docker ダッシュボードを開けば、２クリックでコンテナを削�
 
 .. Start the updated app container
 .. _start-the-updated-app-container:
+
 更新したアプリ用コンテナを起動
 ------------------------------
 
@@ -172,6 +178,7 @@ Docker ダッシュボードを開けば、２クリックでコンテナを削�
 
 .. Recap
 .. _part3-recap:
+
 まとめ
 ==========
 

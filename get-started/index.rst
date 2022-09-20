@@ -2,23 +2,23 @@
 .. URL: https://docs.docker.com/get-started/
    doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/get-started/index.md
-.. check date: 2022/04/09
-.. Commits on Jan 18, 2022 fd943a6ab937adc65007fe654fcc9d8e58efd8fe
+.. check date: 2022/09/20
+.. Commits on Sep 4, 2022 079a03abf6bfc0fe162bc25191fef11c15371c65
 .. -----------------------------------------------------------------------------
 
-.. Get Started, Part 1: Orientation and Setup
+.. Orientation and setup
 
 ========================================
-Part 1：概要説明とセットアップ
+概要説明とセットアップ
 ========================================
 
 .. 
     Update to the Docker Desktop terms
-    Commercial use of Docker Desktop in larger enterprises (more than 250 employees OR more than $10 million USD in annual revenue) now requires a paid subscription. The grace period for those that will require a paid subscription ends on January 31, 2022. Learn more.
+    Commercial use of Docker Desktop in larger enterprises (more than 250 employees OR more than $10 million USD in annual revenue) now requires a paid subscription.
 
 .. important:: **Docker Desktop の利用条件変更**
 
-   現在、大企業（従業員が 251 人以上、または、年間収入が 1,000 万米ドル以上 ）における Docker Desktop の商用利用には、有料サブスクリプション契約が必要です。必要な有料サブスクリプションの支払猶予は 2022 年 1 月 31 日に終了しました。 `詳細はこちらです。 <https://www.docker.com/blog/the-grace-period-for-the-docker-subscription-service-agreement-ends-soon-heres-what-you-need-to-know/>`_
+   現在、大企業（従業員が 251 人以上、または、年間収入が 1,000 万米ドル以上 ）における Docker Desktop の商用利用には、有料サブスクリプション契約が必要です。
 
 .. sidebar:: 目次
 
@@ -38,7 +38,7 @@ Part 1：概要説明とセットアップ
     Build and run an image as a container
     Share images using Docker Hub
     Deploy Docker applications using multiple containers with a database
-    Running applications using Docker Compose
+    Run applications using Docker Compose
 
 * コンテナとして、イメージの構築と実行
 * Docker Hub を使ったイメージ共有
@@ -53,17 +53,35 @@ Part 1：概要説明とセットアップ
 
 好きな言語を使用しているアプリケーションを、コンテナ化する方法の情報を探している場合は、 :doc:`言語ごとの導入ガイド </language/overview>` をご覧ください。
 
-.. We also recommend the video walkthrough from Dockercon 2020.
+.. We also recommend the video workshop from DockerCon 2022. Watch the video below or use the links to open the video at a particular section.
 
-また、 Dockercon 2020 の映像を見るのも推奨します。
+.. We also recommend the video walkthrough from Dockercon 2020. 
 
-.. image:: ./images/get-started.png
-   :scale: 60%
-   :target: https://www.youtube.com/watch?v=iqqDU2crIEQ&t=30s
+また、 Dockercon 2022 の映像を見るのも推奨します。以下の動画を再生するか、適切な動画セクションへのリンクを開きます。
+
+..  Docker overview and installation
+    Pull, run, and explore containers
+    Build a container image
+    Containerize an app
+    Connect a DB and set up a bind mount
+    Deploy a container to the cloud
+
+* `Docker 概要とインストール <https://youtu.be/gAGEar5HQoU>`_ 
+* `pull、run、コンテナを見渡す <https://youtu.be/gAGEar5HQoU?t=1400>`_ 
+* `コンテナイメージ構築 <https://youtu.be/gAGEar5HQoU?t=3185>`_ 
+* `アプリのコンテナ化 <https://youtu.be/gAGEar5HQoU?t=4683>`_ 
+* `DB に接続し、バインド マウントの準備 <https://youtu.be/gAGEar5HQoU?t=6305>`_ 
+* `コンテナをクラウドへデプロイ <https://youtu.be/gAGEar5HQoU?t=8280>`_ 
+
+
+.. raw:: html
+
+   <iframe src="https://www.youtube-nocookie.com/embed/gAGEar5HQoU" style="max-width: 100%; aspect-ratio: 16 / 9;" width="560" height="auto" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 .. Download and install Docker
 .. _download-and-install-docker:
+
 Docker のダウンロードとインストール
 ========================================
 
@@ -74,14 +92,24 @@ Docker のダウンロードとインストール
 * `Intel 製チップの Mac <https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-mac-amd64>`_ 
 * `Apple 製チップの Mac <https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-mac-arm64>`_ 
 * `Windows <https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-win-amd64>`_ 
-* :doc:`Linux </engine/install>`
+* :doc:`Linux </desktop/install/linux-install>`
 
-.. For Docker Desktop installation instructions, see Install Docker Desktop on Mac and Install Docker Desktop on Windows.
+.. For Docker Desktop installation instructions, see:
 
-Docker Desktop のインストール手順は、 :doc:`Mac に Docker Desktop をインストール </desktop/mac/install>` と :doc:`Windows に Docker Desktop をインストール </desktop/windows/install>` をご覧ください。
+Docker Desktop のインストール手順は、以下をご覧ください。
+
+..  Install Docker Desktop on Mac
+    Install Docker Desktop on Windows
+    Install Docker Desktop on Linux
+
+* :doc:`Mac に Docker Desktop をインストール </desktop/install/mac-install>` 
+* :doc:`Windows に Docker Desktop をインストール </desktop/install/windows-install>` 
+* :doc:`Linux に Docker Desktop をインストール </desktop/install/linux-install>` 
+
 
 .. Start the tutorial
 .. _start-the-tutorial:
+
 チュートリアルの開始
 ====================
 
@@ -98,13 +126,13 @@ Docker Desktop のインストール手順は、 :doc:`Mac に Docker Desktop �
 いくつかのフラグが使われているのに気づくでしょう。それらの詳しい情報は、こちらです。
 
 .. 
-    -d - run the container in detached mode (in the background)
-    -p 80:80 - map port 80 of the host to port 80 in the container
-    docker/getting-started - the image to use
+    -d - Run the container in detached mode (in the background)
+    -p 80:80 - Map port 80 of the host to port 80 in the container. To access the tutorial, open a web browser and navigate to http://localhost:80. If you already have a service listening on port 80 on your host machine, you can specify another port. For example, specify -p 3000:80 and then access the tutorial via a web browser at http://localhost:3000.
+    docker/getting-started - Specify the image to use
 
 * ``-d`` - コンテナを :ruby:`デタッチド・モード <detached mode>` （バックグランドの処理）で :ruby:`実行 <run>`
-* ``-p 80:80`` - コンテナ内のポート 80 に対し、ホスト上のポート 80 を割り当てる（ :ruby:`マップ <map>` する）
-* ``docker/getting-started`` - 使用するイメージ
+* ``-p 80:80`` - コンテナ内のポート 80 に対し、ホスト上のポート 80 を割り当てる（ :ruby:`マップ <map>` する）。チュートリアルにアクセスするにはウェブブラウザを開き、 ``http://localhost:80`` に移動する。ホストマシン上で既にサービスがポート 80 をリッスンしている場合、他のポートの指定が必要です。たとえば、 ``-p 3000:80`` を指定すると、チュートリアルにアクセスするにはブラウザで ``http://localhost:3000`` を通します。
+* ``docker/getting-started`` - 使用するイメージの指定
 
 .. Tip
    You can combine single character flags to shorten the full command. As an example, the command above could be written as:
@@ -119,22 +147,24 @@ Docker Desktop のインストール手順は、 :doc:`Mac に Docker Desktop �
 
 .. The Docker Dashboard
 .. _the-docker-dashboard:
+
 Docker ダッシュボード
 ==============================
 
-.. Before going too far, we want to highlight the Docker Dashboard, which gives you a quick view of the containers running on your machine. The Docker Dashboard is available for Mac and Windows. It gives you quick access to container logs, lets you get a shell inside the container, and lets you easily manage container lifecycle (stop, remove, etc.).
+.. Before going too far, we want to highlight the Docker Dashboard, which gives you a quick view of the containers running on your machine. The Docker Dashboard is available for Mac, Windows, and Linux. It gives you quick access to container logs, lets you get a shell inside the container, and lets you easily manage container lifecycles (stop, remove, etc.).
 
-遠くへと進む前に、 Docker ダッシュボードに焦点をあて、マシン上でのコンテナ実行について素早く目を通したいと思います。Docker ダッシュボードは Mac と Windows で利用できます。これを使えばコンテナのログに素早くアクセスでき、コンテナ内でシェルが操作でき、コンテナのライフサイクル（停止、削除、等）の管理が簡単になります。
+遠くへと進む前に、 Docker ダッシュボードに焦点をあて、マシン上でのコンテナ実行について素早く目を通したいと思います。Docker ダッシュボードは Mac 、 Windows 、 Linux で利用できます。これを使えばコンテナのログに素早くアクセスでき、コンテナ内でシェルが操作でき、コンテナのライフサイクル（停止、削除、等）の管理が簡単になります。
 
 .. To access the dashboard, follow the instructions in the Docker Desktop manual. If you open the dashboard now, you will see this tutorial running! The container name (jolly_bouman below) is a randomly created name. So, you’ll most likely have a different name.
 
-ダッシュボードにアクセスするには、 :doc:`Docker デスクトップのマニュアル </desktop/dashboard>` にある手順に従ってください。ダッシュボードを開いたら、このチュートリアルで実行しているように見えるでしょう。コンテナ名（ ``jolly_bouman`` ）はランダムに作成されます。そのため、以下の画像とは名前が異なるでしょう。
+ダッシュボードにアクセスするには、 :doc:`Docker デスクトップのマニュアル </desktop/index>` にある手順に従ってください。ダッシュボードを開いたら、このチュートリアルで実行しているように見えるでしょう。コンテナ名（ ``jolly_bouman`` ）はランダムに作成されます。そのため、以下の画像とは名前が異なるでしょう。
 
 .. image:: ./images/tutorial-in-dashboard.png
    :scale: 60%
 
 .. What is a container?
 .. _what-is-a-container:
+
 コンテナとは何？
 ====================
 
@@ -145,7 +175,7 @@ Docker ダッシュボード
 ..    is a runnable instance of an image. You can create, start, stop, move, or delete a container using the DockerAPI or CLI.
     can be run on local machines, virtual machines or deployed to the cloud.
     is portable (can be run on any OS)
-    Containers are isolated from each other and run their own software, binaries, and configurations.
+    is isolated from other containers and runs its own software, binaries, and configurations.
 
 * 実行可能なイメージの :ruby:`実体 <instance>` 。Docker API や CLI を使ってコンテナの作成、開始、停止、移動、削除ができます。
 * ローカルマシン上や、仮想マシン上えも実行でき、クラウドにもデプロイできます。
@@ -162,10 +192,11 @@ Docker ダッシュボード
 
 .. What is a container image?
 .. _what-is-a-container-image:
+
 コンテナ・イメージとは何でしょうか？
 ========================================
 
-.. When running a container, it uses an isolated filesystem. This custom filesystem is provided by a container image. Since the image contains the container’s filesystem, it must contain everything needed to run an application - all dependencies, configuration, scripts, binaries, etc. The image also contains other configuration for the container, such as environment variables, a default command to run, and other metadata.
+.. When running a container, it uses an isolated filesystem. This custom filesystem is provided by a container image. Since the image contains the container’s filesystem, it must contain everything needed to run an application - all dependencies, configurations, scripts, binaries, etc. The image also contains other configuration for the container, such as environment variables, a default command to run, and other metadata.
 
 コンテナの実行時、コンテナは隔離されたファイルシステムを使います。この特別なファイルシステムは **コンテナ・イメージ** によって提供されます。イメージにはコンテナのファイルシステムも含みますので、アプリケーションを実行するために必要な全てを含む必要があります。たとえば、全ての依存関係、設定、スクリプト、バイナリ等です。また、このイメージには環境変数、デフォルトで実行するコマンド、メタデータのような、他の設定も含みます。
 
@@ -181,6 +212,7 @@ Docker ダッシュボード
    ``chroot`` を熟知していれば、コンテナとは ``chroot`` の拡張バージョンと考えてみましょう。ファイルシステムとは、単にイメージから由来します。ですが、コンテナの場合は、単純に chroot の使用ではできない付加的な隔離を追加します。
 
 .. CLI references
+
 CLI リファレンス
 ====================
 

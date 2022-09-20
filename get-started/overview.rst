@@ -1,7 +1,8 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/get-started/overview/
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/get-started/overview.md
-.. check date: 2022/04/09
+.. check date: 2022/09/20
+.. Commits on Aug 12, 2022 3393f95fa8ce5efb999f06aa6d1392e0f4557a9c
 .. Commits on Feb 7, 2022 4fd778a3167596ff720cae99840d17a4ff604c8e
 .. -----------------------------------------------------------------------------
 
@@ -25,13 +26,12 @@ Docker はアプリケーションを開発（developing）、移動（shipping�
 .. [#infractructure] 訳者注：インフラ（infrastructure）とは、サーバやネットワークなど計算資源の基盤となるもの。
 
 .. The Docker platform
-
 .. _the-docker-platform:
 
 Docker プラットフォーム
 ==============================
 
-.. Docker provides the ability to package and run an application in a loosely isolated environment called a container. The isolation and security allow you to run many containers simultaneously on a given host. Containers are lightweight and contain everything needed to run the application, so you do not need to rely on what is currently installed on the host. You can easily share containers while you work, and be sure that everyone you share with gets the same container that works in the same way.
+.. Docker provides the ability to package and run an application in a loosely isolated environment called a container. The isolation and security allows you to run many containers simultaneously on a given host. Containers are lightweight and contain everything needed to run the application, so you do not need to rely on what is currently installed on the host. You can easily share containers while you work, and be sure that everyone you share with gets the same container that works in the same way.
 
 Docker は、コンテナ（container）という緩やかに隔離された環境 [#isolated]_ （isolated environment）で、アプリケーションのパッケージ化と実行をする機能を提供します。この分離と安全性により、実行するホスト上で多くのコンテナを同時に実行できます。コンテナは軽量であり、アプリケーションの実行に必要な全てが入っているため、ホスト上で今何をインストールしていようが関係ありません。作業中でも手軽にコンテナを共有できますので、あなたが共有したコンテナを得た全ての人が、同じコンテナを、同じ方法で、確実に動作できるようにします。
 
@@ -54,7 +54,6 @@ Docker が提供するのは、コンテナのライフサイクル（全過程�
 .. [#orchestrated] 原文は "orchestrated service" 。複数台のサーバ上で、サービスを一斉かつ自動的に制御する動作です。
 
 .. What can I use Docker for?
-
 .. _what-can-i-use-docker-for:
 
  Docker の用途は何ですか？
@@ -141,12 +140,13 @@ Docker クライアント
 Docker クライアント（ ``docker`` ）は Docker とのやりとりを行うために、たいていのユーザが利用するものです。``docker run`` のようなコマンドが実行されると、Docker クライアントは ``dockerd`` にそのコマンドを伝えます。そして ``dockerd`` はその内容を実現します。``docker`` コマンドは Docker API を利用しています。Docker クライアントは複数のデーモンと通信することができます。
 
 .. _overview-docker-desktop:
+
 Docker デスクトップ
 --------------------
 
-.. Docker Desktop is an easy-to-install application for your Mac or Windows environment that enables you to build and share containerized applications and microservices. Docker Desktop includes the Docker daemon (dockerd), the Docker client (docker), Docker Compose, Docker Content Trust, Kubernetes, and Credential Helper. For more information, see Docker Desktop.
+.. Docker Desktop is an easy-to-install application for your Mac, Windows or Linux environment that enables you to build and share containerized applications and microservices. Docker Desktop includes the Docker daemon (dockerd), the Docker client (docker), Docker Compose, Docker Content Trust, Kubernetes, and Credential Helper. For more information, see Docker Desktop.
 
-Docker デスクトップは Mac や Windows 環境へ簡単にインストールできるアプリケーションです。これを使えば、 :ruby:`コンテナ化 <containerlized>` したアプリケーションとマイクロサービスを構築・共有できるようになります。Docker デスクトップに含まれるのは Docker デーモン（ ``dockerd`` ）、Docker クライアント（ ``docker`` ）、Docker Compose、Docker Content Trust、Kubernetes、 :ruby:`Credential Helper <認証情報ヘルパー>` です。詳しい情報は :doc:`Docker Desktop </desktop/index>` をご覧ください。
+Docker デスクトップは Mac や Windows や Linux 環境へ簡単にインストールできるアプリケーションです。これを使えば、 :ruby:`コンテナ化 <containerlized>` したアプリケーションとマイクロサービスを構築・共有できるようになります。Docker デスクトップに含まれるのは Docker デーモン（ ``dockerd`` ）、Docker クライアント（ ``docker`` ）、Docker Compose、Docker Content Trust、Kubernetes、 :ruby:`Credential Helper <認証情報ヘルパー>` です。詳しい情報は :doc:`Docker Desktop </desktop/index>` をご覧ください。
 
 
 .. _docker-registries:
@@ -164,6 +164,7 @@ Docker レジストリは Docker イメージを保管します。Docker Hub は
 
 .. Docker objects
 .. _overview-docker-objects:
+
 Docker オブジェクト
 --------------------
 
@@ -201,6 +202,7 @@ Docker の利用時は、イメージ、コンテナ、ネットワーク、ボ�
 
 .. Example docker run command
 .. _overview-example-docker-run-command:
+
 ``docker run`` コマンドの例
 ++++++++++++++++++++++++++++++
 

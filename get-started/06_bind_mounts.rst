@@ -2,8 +2,8 @@
 .. URL: https://docs.docker.com/get-started/06_bind_mounts/
    doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/get-started/06_bind_mounts.md
-.. check date: 2022/04/19
-.. Commits on Apr 1, 2022 9e4122df296ba7cf850d03e6295d3808b5e9dac4
+.. check date: 2022/09/20
+.. Commits on Jun 28, 2022 b0dc95cd626d1cd7f7582307d693fd72a27280ce
 .. -----------------------------------------------------------------------------
 
 .. Use bind mounts
@@ -33,6 +33,7 @@ Node をベースとするアプリケーション `nodemon <https://npmjs.com/p
 
 .. Quick volume type comparisons
 .. _quick-violume-type-comparisons:
+
 ボリューム型の素早い比較
 ==============================
 
@@ -61,6 +62,7 @@ Node をベースとするアプリケーション `nodemon <https://npmjs.com/p
 
 .. Start a dev-mode container
 .. _start-a-dev-mode-container:
+
 開発モードのコンテナを起動
 ==============================
 
@@ -97,8 +99,9 @@ Node をベースとするアプリケーション `nodemon <https://npmjs.com/p
           sh -c "yarn install && yarn run dev"
 
    .. If you are using PowerShell then use this command:
+   .. If you are using Windows then use this command in PowerShell:
    
-   PowerShell を使っている場合は、以下のコマンドを実行します。
+   Windows を使っている場合は、 PowerShell で以下のコマンドを実行します。
 
    .. code-block:: bash
    
@@ -106,6 +109,18 @@ Node をベースとするアプリケーション `nodemon <https://npmjs.com/p
           -w /app -v "$(pwd):/app" `
           node:12-alpine `
           sh -c "yarn install && yarn run dev"
+
+   .. If you are using an Apple silicon Mac or another ARM64 device, then use the following command.
+
+   Apple silicon Mac や他の ARM64 デバイスを使っている場合は、以下のコマンドを実行します。
+
+   .. code-block:: bash
+   
+      $ docker run -dp 3000:3000 \
+           -w /app -v "$(pwd):/app" \
+           node:12-alpine \
+           sh -c "apk add --no-cache python2 g++ make && yarn install && yarn run dev"
+
 
    * ``-dp 3000:3000`` … 以前と同じです。 :ruby:`デタッチド <detached>` （バックグラウンド）モードで実行し、 :ruby:`ポート割り当て <port mapping>` を作成
    * ``-w /app`` … コマンドを実行する場所として、「 :ruby:`作業ディレクトリ <working directory>` 」またはカレント ディレクトリを指定
@@ -161,6 +176,7 @@ Node をベースとするアプリケーション `nodemon <https://npmjs.com/p
 
 .. Recap
 .. _part6-recap:
+
 まとめ
 ==========
 

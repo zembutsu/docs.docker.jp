@@ -2,7 +2,7 @@
 .. URL: https://docs.docker.com/get-started/11_what_next/
    doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/get-started/11_what_next.md
-.. check date: 2022/04/22
+.. check date: 2022/09/20
 .. Commits on Feb 2, 2021 dc7352020eb1e19aa7319c895c01970dd011d0e0
 .. -----------------------------------------------------------------------------
 
@@ -24,6 +24,8 @@
 ワークショップが全て完了しましたが、コンテナについてはまだまだ学ぶことが多くあります！ ここでは深掘りをしませんでしたが、ここに次に見るべき場所があります。
 
 .. Container orchestration
+.. _get-started-container-orchestration:
+
 コンテナ オーケストレーション
 ==============================
 
@@ -36,6 +38,8 @@
 共通する考え方は **期待する状態（expected state）** を受け取る「 :ruby:`マネージャー <manager>` 」があります。この状態とは「ウェブアプリを２つ実行し、ポート80を公開したい」のようなものです。マネージャーはクラスタ上のすべてのマシンを調べ、「 :ruby:`ワーカー <worker>` 」ノードに権限を :ruby:`委譲します <delegate>` 。マネージャーは変更（コンテナの終了のような状態）も監視し、 **実際の状態（actual state）** に期待する状態を反映します。
 
 .. Cloud Native Computing Foundation projects
+.. _cloud-native-computing-foundation-projects:
+
 Cloud Native Computing Foundation のプロジェクト
 ======================================================================
 

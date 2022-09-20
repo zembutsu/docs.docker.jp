@@ -2,8 +2,8 @@
 .. URL: https://docs.docker.com/get-started/02_our_app/
    doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/get-started/02_our_app.md
-.. check date: 2022/04/15
-.. Commits on Feb 14, 2022 1b9c94b16658436cced8a52da667104356775730
+.. check date: 2022/09/20
+.. Commits on Jul 28, 2022 820366d4bfe722cc6f47847066214a48b56d66c5
 .. -----------------------------------------------------------------------------
 
 .. Sample application
@@ -33,6 +33,7 @@
 
 .. Get the app
 .. _get-the-app:
+
 アプリの入手
 ====================
 
@@ -40,10 +41,12 @@
 
 アプリケーションを実行する前に、マシン上にアプリケーションのソースコードを入手する必要があります。実際のプロジェクトでは、リポジトリのクローンが一般的でしょう。ですが、このチュートリアルでは、アプリケーションを含む ZIP ファイルを作成しました。
 
+..    Download the App contents from the getting-started repository. You can either pull the entire project or download it as a zip and extract the app folder out to get started with.
+
 ..    Download the App contents. You can either pull the entire project or download it as a zip and extract the app folder out to get started with.
     Once extracted, use your favorite code editor to open the project. If you’re in need of an editor, you can use Visual Studio Code. You should see the package.json and two subdirectories (src and spec).
 
-1. `アプリの中身をダウンロードします <https://github.com/docker/getting-started/tree/master/app>`_ プロジェクト全体を pull するか、あるいは、zip ファイルをダウンロードしてアプリ用フォルダに展開してから始めましょう。
+1. アプリの中身を `getting-started リポジトリ <https://github.com/docker/getting-started/tree/master>`_ からダウンロードします。 プロジェクト全体を pull するか、あるいは、 `リポジトリの zip ファイルをダウンロード <https://github.com/docker/getting-started/archive/refs/heads/master.zip>`_ してアプリ用フォルダに展開してから始めましょう。
 2. 展開後は、好きなコードエディタでプロジェクトを開きます。エディタが必要であれば、 `Visual Studio Code <https://code.visualstudio.com/>`_ が使えます。開くと、 ``package.json`` と2つのサブディレクトリ（ ``src`` と ``spec`` ）が見えるでしょう。
 
 .. image:: ./images/ide-screenshot.png
@@ -51,6 +54,8 @@
    :alt: Virusl Studio Code で 読み込んだアプリのスクリーンショット
 
 .. Build the app’s container image
+.. _build-the-apps-container-image:
+
 アプリのコンテナ イメージを :ruby:`構築 <build>`
 ==================================================
 
@@ -97,12 +102,13 @@
 
 最後に ``-t`` フラグでイメージに :ruby:`タグ <tag>` を付けます。タグとは、最後のイメージに対し、人間が読める名前を単に付けるためと考えてください。このイメージには `getting-started`` と名前を単に付けましたので、コンテナの実行時に、このイメージ名を示せます。
 
-..    The . at the end of the docker build command tells that Docker should look for the Dockerfile in the current directory.
+..    The . at the end of the docker build command tells Docker that it should look for the Dockerfile in the current directory.
 
 ``docker build`` コマンドの最後にある ``.`` は、Docker に対して、現在のディレクトリ内にある ``Dockerfile`` を探すべきと命令します。
 
 .. Start an app container
 .. _start-an-app-container:
+
 アプリ コンテナの起動
 ==============================
 
@@ -149,6 +155,7 @@
 
 .. Recap
 .. _part2-recap:
+
 まとめ
 ==========
 
