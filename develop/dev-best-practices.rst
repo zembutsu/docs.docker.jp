@@ -1,13 +1,12 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/develop/dev-best-practices/
    doc version: 19.03
-      https://github.com/docker/docker.github.io/blob/master/develop/index.md
-.. check date: 2020/06/18
-.. Commits on Aug 23, 2020 9cd60d843e5a3391a483a148033505e5879176fb
+      https://github.com/docker/docker.github.io/blob/master/develop/dev-best-practices.md
+.. check date: 2022/09/20
+.. Commits on Nov 7, 2020 5b6824c105c37510a635f820c6c50fef16a0aedb
 .. -----------------------------------------------------------------------------
 
 .. Docker development best practices
-
 .. _docker-development-best-practices:
 
 ========================================
@@ -25,7 +24,6 @@ Docker 開発ベストプラクティス
 以下の開発パターンは、Docker でアプリケーションを構築する皆さんに役立つように実績があるものです。皆さんも何かを発見されたら、私たちが追加しますので `お知らせください <https://github.com/docker/docker.github.io/issues/new>`_ 。
 
 .. How to keep your images small
-
 .. _how-to-keep-your-images-small:
 
 イメージを小さく保ち続ける方法
@@ -71,7 +69,6 @@ Docker 開発ベストプラクティス
 
 
 .. Where and how to persist application data
-
 .. _where-and-how-to-persist-application-data:
 
 アプリケーション・データの保持はどこで、どのように
@@ -84,7 +81,6 @@ Docker 開発ベストプラクティス
 
 
 .. Use CI/CD for testing and deployment
-
 .. _use ci/cd for testing and deployment:
 
 テストとデプロイのために CI/CD を使う
@@ -94,13 +90,12 @@ Docker 開発ベストプラクティス
 
 * ソースコントロールに対する変更処理、あるいはプルリクエスト作成を処理する時、 `Docker Hub <https://docs.docker.com/docker-hub/builds/>`_ や他の CI/CD パイプラインを使い、Docker イメージの自動構築やタグ付け、テストを行えます。
 
-..    Take this even further with by requiring your development, testing, and security teams to sign images before they are deployed into production. This way, before an image is deployed into production, it has been tested and signed off by, for instance, development, quality, and security teams.
+..    Take this even further by requiring your development, testing, and security teams to sign images before they are deployed into production. This way, before an image is deployed into production, it has been tested and signed off by, for instance, development, quality, and security teams.
 
 * プロダクションにデプロイする前に、開発、テスト、セキュリティチームが  :doc:`イメージへの署名 </engine/reference/commandline/trust>` が必要となるでしょう。その場合は、イメージをプロダクションにデプロイする前に、たとえば開発、品質およびセキュリティチームによって、イメージのテストを署名をします。
 
 
 .. Differences in development and production environments
-
 .. _differences-in-development-and-production-environments:
 
 開発環境とプロダクション環境の違い

@@ -2,12 +2,11 @@
 .. URL: https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
    doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/develop/develop-images/dockerfile_best-practices.md
-.. check date: 2022/03/30
-.. Commits on Apr 23, 2020 9cd60d843e5a3391a483a148033505e5879176fb
+.. check date: 2022/09/20
+.. Commits on Jun 24, 2022 67e9850c776071d486d811c52f1095dd87c00f29
 .. -----------------------------------------------------------------------------
 
 .. Best practices for writing Dockerfile
-
 .. _best-practices-for-writing-dockerfile:
 
 =======================================
@@ -998,9 +997,13 @@ USER
 
 :ref:`Dockerfile リファレンスの USER コマンド <user>`
 
-.. If a service can run without privileges, use USER to change to a non-root user. Start by creating the user and group in the Dockerfile with something like RUN groupadd -r postgres && useradd --no-log-init -r -g postgres postgres.
+.. If a service can run without privileges, use USER to change to a non-root user. Start by creating the user and group in the Dockerfile with something like
 
-サービスが特権ユーザでなくても実行できる場合は、 ``USER`` を用いて非 root ユーザに変更します。ユーザとグループを生成するところから始めてください。``Dockerfile`` 内で、たとえば  ``RUN groupadd -r postgres && useradd -r -g postgres postgres`` のようなコマンドを実行します。
+サービスが特権ユーザでなくても実行できる場合は、 ``USER`` を用いて非 root ユーザに変更します。ユーザとグループを生成するところから始めてください。``Dockerfile`` 内で、たとえば次のように入力します。
+
+.. code-block:: bash
+
+   RUN groupadd -r postgres && useradd -r -g postgres postgres
 
 ..  Consider an explicit UID/GID
    Users and groups in an image are assigned a non-deterministic UID/GID in that the “next” UID/GID is assigned regardless of image rebuilds. So, if it’s critical, you should assign an explicit UID/GID.
@@ -1062,12 +1065,11 @@ Docker によるビルドにおいては ``ONBUILD`` の実行が済んでから
 
 ``ONBUILD`` において ``ADD`` や ``COPY`` を用いるときは注意してください。"onbuild" イメージが新たに構築すれる際に、追加しようとしているリソースが見つからなかったとしたら、このイメージは復旧できない状態になります。上に示したように個別にタグをつけておけば、 ``Dockerfile`` の開発者にとっても判断ができるようになるので、不測の事態は軽減されます。
 
-.. Examples of Official Repositories
+.. Examples of Docker Official Images
+.. _examples-of-docker-official-images:
 
-.. _examples-for-official-images:
-
-公式リポジトリの例
-====================
+Docker 公式リポジトリの例
+==============================
 
 .. These Official Repositories have exemplary `Dockerfile`s:
 
@@ -1091,7 +1093,7 @@ Docker によるビルドにおいては ``ONBUILD`` の実行が済んでから
 ..    Dockerfile Reference
     More about Base Images
     More about Automated Builds
-    Guidelines for Creating Official Repositories
+    Guidelines for Creating Docker Official Repositories
 
 * :doc:`Dockerfile リファレンス </engine/reference/builder>`
 * :doc:`ベース・イメージの詳細 <baseimages>`

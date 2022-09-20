@@ -2,7 +2,7 @@
 .. URL: https://docs.docker.com/develop/develop-images/build_enhancements/
    doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/develop/develop-images/build_enhancements.md
-.. check date: 2022/04/25
+.. check date: 2022/09/20
 .. Commits on Feb 18, 2022 0508c664d23d9d28d8f07f8d8b0d2422242400e4
 .. -----------------------------------------------------------------------------
 
@@ -153,8 +153,8 @@ Docker の新規インストールが最も簡単で、 ``docker build`` コマ�
    #2 transferring dockerfile: 9.26kB done
 
 .. Overriding default frontends
-
 .. _overriding-default-frontends:
+
 デフォルトのフロントエンドを上書き
 ========================================
 
