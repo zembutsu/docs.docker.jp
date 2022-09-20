@@ -2,7 +2,7 @@
 .. URL: https://docs.docker.com/develop/develop-images/image_management/
    doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/develop/develop-images/image_management.md
-.. check date: 2022/04/25
+.. check date: 2022/09/20
 .. Commits on Apr 8, 2020 9cd60d843e5a3391a483a148033505e5879176fb
 .. -----------------------------------------------------------------------------
 
@@ -48,6 +48,8 @@ Docker Registry は Docker エコシステムのコンポーネントです。�
 Docker Hub は Docker Registry 事例の1つです。
 
 .. Content Trust
+.. _image-management-content-trust:
+
 Content Trust
 ====================
 
