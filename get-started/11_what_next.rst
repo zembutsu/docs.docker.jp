@@ -49,7 +49,7 @@ CNCF とは、様々なオープンソース プロジェクトのためのベ�
 
 .. So, if you’re new to the container landscape and cloud-native application development, welcome! Please connect with the community, ask questions, and keep learning! We’re excited to have you!
 
-ですから、コンテナの :ruby:`全体図 <landscape>` やクラウドネイティブ アプリケーション開発が始めてでも、歓迎します！ コミュニティとつながって、質問をして、学び続けましょう！ あなたがいるとワクワクします！
+ですから、コンテナの :ruby:`全体図 <landscape>` やクラウドネイティブ アプリケーション開発が初めてでも、歓迎します！ コミュニティとつながって、質問をして、学び続けましょう！ あなたがいるとワクワクします！
 
 .. seealso::
 
