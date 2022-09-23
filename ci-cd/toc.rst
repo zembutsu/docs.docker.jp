@@ -12,8 +12,7 @@ CI/CD のセットアップ
 ========================================
 
 .. toctree::
-   :maxdepth: 3
-   :titlesonly:
+   :maxdepth: 2
 
    CI/CD ベストプラクティス <best-practices.rst>
    GitHub Actions 設定 <github-actions.rst>
