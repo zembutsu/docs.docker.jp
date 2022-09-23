@@ -2,7 +2,7 @@
 .. URL: https://docs.docker.com/ci-cd/best-practices/
    doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/ci-cd/best-practices.md
-.. check date: 2022/04/26
+.. check date: 2022/09/20
 .. Commits on Feb 23, 2022 77f5bef236f7707cf9523b7414d1c693bebec70f
 .. -----------------------------------------------------------------------------
 
@@ -29,6 +29,7 @@ CI/CD のために Docker Hub を使うベストプラクティス
 
 .. Inner and outer loops
 .. _inner-and-outer-loops:
+
 内部と外部のループ
 ====================
 
@@ -42,7 +43,7 @@ CI/CD のために Docker Hub を使うベストプラクティス
 
 .. Before you think about optimizing your CI/CD, it is important to think about your inner loop and how it relates to the outer loop (the CI). We know that most users don’t prefer ‘debugging through the CI’. Therefore, it is better if your inner loop and outer loop are as similar as possible. We recommend that you run unit tests as part of your docker build command by adding a target for them in your Dockerfile. This way, as you are making changes and rebuilding locally, you can run the same unit tests you would run in the CI on your local machine using a simple command.
 
-CI/CD の最適化を考える前に、自分の内部ループと、それが外部ループとの関係（CI そのもの）について考えるのは重要です。大部分のユーザは「CI を通したデバッグ」を好まないと私たちは知っています。つまり、内部ループと外部ループを可能な限り似せるのが、より良いです。私たちは、ユニットテストを ``docker build`` コマンドの一部として行うよう、それらの対象を Dockerfile 内にいれるのを推奨します。この方法によって、ローカルでの変更や再構築ができるのと同様に、シンプルなコマンドを使って、ローカルマシン上の CI 内で同じユニットテストを実行できるでしょう。
+CI/CD の最適化を考える前に、自分の内部ループと、それが外部ループとの関係（CI そのもの）について考えるのは重要です。大部分のユーザは「CI を通したデバッグ」を好まないと私たちは知っています。つまり、内部ループと外部ループを可能な限り似せるのが、より良いです。私たちは、ユニットテストを ``docker build`` コマンドの一部として行うよう、それらの対象を Dockerfile 内にいれるのを推奨します。この方法によって、ローカルで変更や再構築ができるのと同様に、シンプルなコマンドを使って、ローカルマシン上の CI 内で同じユニットテストを実行できるでしょう。
 
 .. The blog post Go development with Docker is a great example of how you can use tests in your Docker project and re-use them in the CI. This also creates a shorter feedback loop on issues and reduces the amount of pulls and builds your CI needs to do.
 
@@ -50,12 +51,13 @@ CI/CD の最適化を考える前に、自分の内部ループと、それが�
 
 .. Optimizing CI/CD deployments
 .. _optimizing-ci-cd-deployments:
+
 CI/CD デプロイの最適化
 ==============================
 
 .. Once you get into your actual outer loop and Docker Hub, there are a few things you can do to get the most of your CI and deliver the fastest Docker experience.
 
-いったん、実際の外部ループと Docker Hub に入れば、CI を最大限活用しと、より速い Docker 体験をもたらすためにできることがいくつかあります。
+いったん、実際の外部ループと Docker Hub に入れば、CI を最大限活用して、より速い Docker 体験をもたらすためにできることがいくつかあります。
 
 .. First and foremost, stay secure. When you are setting up your CI, ensure you are using a Docker Hub access token, rather than your password.
 
@@ -74,13 +76,14 @@ CI/CD デプロイの最適化
 
 .. The first thing you can do to reduce the build time and reduce your number of calls is make use of the build cache to reuse layers you have already pulled. You can do this on many platforms by using buildX (buildkits) caching functionality and whatever cache your platform provides. For example, see Optimizing the GitHub Actions workflow using build cache.
 
-第一にできるのは、構築回数をを減らし、呼び出す回数の現象であり、そのために **構築キャッシュ（build cache）** を使って既に取得済みのレイヤーを再利用します。buildX（buildkits）のキャッシュ機能を使えば、多くのプラットフォームでこれが行えるようになり、どこでもプラットフォームが提供するものをキャッシュできます。例として、 :ref:`構築キャッシュを使った GitHub Actions ワークフローの最適化 <github-actions-optimizing-the-workflow>` をご覧ください。
+第一にできるのは、構築回数を減らし、呼び出す回数の現象であり、そのために **構築キャッシュ（build cache）** を使って既に取得済みのレイヤーを再利用します。buildX（buildkits）のキャッシュ機能を使えば、多くのプラットフォームでこれが行えるようになり、どこでもプラットフォームが提供するものをキャッシュできます。例として、 :ref:`構築キャッシュを使った GitHub Actions ワークフローの最適化 <github-actions-optimizing-the-workflow>` をご覧ください。
 
 .. The other change you may want to make is only have your release images go to Docker Hub. This would mean setting up functions to push your PR images to a more local image store to be quickly pulled and tested, rather than promoting them all the way up to production.
 
 他の変更としては、 Docker Hub に持っていくのはリリースイメージのみにします。つまり、 PullRequest で push したイメージをローカルに保存し、より速く pull してテストする機能をセットアップするのを意味するものであり、すべてを本番環境に持っていくわけではありません。
 
 .. Next steps
+
 次のステップ
 ====================
 
