@@ -93,7 +93,7 @@ docker-compose run
 
 .. If you want to remove the container after running while overriding the container’s restart policy, use the --rm flag:
 
-コンテナの再起動ポリシーを上書きし、コンテナの実行後に削除したい場合は ``--fm`` フラグを使います。
+コンテナの再起動ポリシーを上書きし、コンテナの実行後に削除したい場合は ``--rm`` フラグを使います。
 
 .. code-block:: bash
 
