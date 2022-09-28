@@ -4,18 +4,18 @@
 .. check date: 2022/09/23
 .. -----------------------------------------------------------------------------
 
-..  Language-specific guides
-
 ========================================
-言語別ガイド
+Node.js
 ========================================
 
 .. toctree::
    :maxdepth: 2
 
    概要 <index.rst>
-   Node.js <./nodejs/toc.rst>
-   Python <./python/toc.rst>
-   Java <./java/toc.rst>
-   Go <./golang/toc.rst>
+   イメージ構築 <build-images.rst>
+   コンテナ実行 <run-container.rst>
+   アプリの開発 <develop.rst>
+   テストの実行 <run-test.rst>
+   CI/CD 設定 <configure-ci-cd.rst>
+   アプリのデプロイ <deploy.rst>
 
