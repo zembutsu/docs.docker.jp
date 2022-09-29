@@ -94,7 +94,7 @@ Compose ファイルで環境変数を展開
 
 
 * ``${変数:?err}`` は、 ``変数`` が設定されていないか、環境変数の値が空の場合、 ``err`` を含むエラーメッセージと共に終了する
-* ``${変数?err} は、環境変数内で ``変数`` が去って居されていない場合に、 ``err`` を含むエラーメッセージと共に終了する
+* ``${変数?err}`` は、環境変数内で ``変数`` が設定されていない場合に、 ``err`` を含むエラーメッセージと共に終了する
 
 .. Other extended shell-style features, such as ${VARIABLE/foo/bar}, are not supported.
 
@@ -393,7 +393,7 @@ Compose が使う環境変数の設定
 
 .. Several environment variables are available for you to configure the Docker Compose command-line behavior. They begin with COMPOSE_ or DOCKER_, and are documented in CLI Environment Variables.
 
-Docker Compose のコマドラインでの挙動を設定するため、いくつかの環境変数があります。それらは ``COMPOSE_`` や ``DOCKER_`` で始まるもので、 :doc:`CLI 環境変数 <envvars>` で文書化しています。
+Docker Compose のコマンドラインでの挙動を設定するため、いくつかの環境変数があります。それらは ``COMPOSE_`` や ``DOCKER_`` で始まるもので、 :doc:`CLI 環境変数 <envvars>` で文書化しています。
 
 .. seealso:: 
 
