@@ -77,7 +77,7 @@ Compose ファイルと CLI 変数
 * ``COMPOSE_TLS_VERSION``
 * ``DOCKER_CERT_PATH``
 * ``DOCKER_HOST``
-* ``DOCKER_TLS_VERIFY
+* ``DOCKER_TLS_VERIFY``
 
 ..  Notes
         Values present in the environment at runtime always override those defined inside the .env file. Similarly, values passed via command-line arguments take precedence as well.
