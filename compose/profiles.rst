@@ -97,7 +97,7 @@ Compose で :ruby:`プロフィール <profile>` を使う
 
 .. Multiple profiles can be specified by passing multiple --profile flags or a comma-separated list for the COMPOSE_PROFILES environment variable:
 
-複数のプロフィールを指定するには、複数の ``--profiles`` フラグを使うか、 ``COMPOSE_PROFILE`` 環境変数でカンマ区切りのリストを渡します。
+複数のプロフィールを指定するには、複数の ``--profile`` フラグを使うか、 ``COMPOSE_PROFILE`` 環境変数でカンマ区切りのリストを渡します。
 
 .. code-block:: bash
 
@@ -143,7 +143,7 @@ Compose で :ruby:`プロフィール <profile>` を使う
 
 .. But keep in mind that docker-compose will only automatically enable the profiles of the services on the command line and not of any dependencies. This means that all services the targeted service depends_on must have a common profile with it, be always enabled (by omitting profiles) or have a matching profile enabled explicitly:
 
-ただし ``docker-compose`` は、コマンドライン上でサービスのプロフィールを自動的に有効化しますが、依存関係のプロフィールは有効化しないのを覚えておいてください。つまり、対象とするサービスにある ``depends_on``で指定された（依存関係のある）サービスは、共通のプロフィールを持つ必要があり、常に有効化される（ ``profiles`` は無視されます）か、明示的に一致するプロフィールを有効化する必要があります。
+ただし ``docker-compose`` は、コマンドライン上でサービスのプロフィールを自動的に有効化しますが、依存関係のプロフィールは有効化しないのを覚えておいてください。つまり、対象とするサービスにある ``depends_on`` で指定された（依存関係のある）サービスは、共通のプロフィールを持つ必要があり、常に有効化される（ ``profiles`` は無視されます）か、明示的に一致するプロフィールを有効化する必要があります。
 
 
 .. code-block:: yaml
