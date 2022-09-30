@@ -39,7 +39,7 @@ Dockerfile からイメージを :ruby:`構築 <build>` します。
    $ docker image build [OPTIONS] PATH | URL | -
 
 
-.. _image_biuld-options:
+.. _image_build-options:
 
 オプション
 ==========

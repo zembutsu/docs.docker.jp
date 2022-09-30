@@ -201,7 +201,7 @@ docker を経由して実行する BuildKit コンテナを使います。この
 
 .. Unlike docker driver, built images will not automatically appear in docker images and build --load needs to be used to achieve that.
 
-``docker`` ドライバとは異なり、構築イメージは自動的に ``docker images`` に反映されません。また、そこにイメージを反映するには ``biuld --load`` の指定が必要です。
+``docker`` ドライバとは異なり、構築イメージは自動的に ``docker images`` に反映されません。また、そこにイメージを反映するには ``build --load`` の指定が必要です。
 
 ``kubernetes`` ドライバ
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -212,7 +212,7 @@ kubernets ポッドを使います。このドライバでは、イメージ構�
 
 .. Unlike docker driver, built images will not automatically appear in docker images and build --load needs to be used to achieve that.
 
-``docker`` ドライバとは異なり、構築イメージは自動的に ``docker images`` に反映されません。また、そこにイメージを反映するには ``biuld --load`` の指定が必要です。
+``docker`` ドライバとは異なり、構築イメージは自動的に ``docker images`` に反映されません。また、そこにイメージを反映するには ``build --load`` の指定が必要です。
 
 .. _buildx_craete-driver-opt:
 

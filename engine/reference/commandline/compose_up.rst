@@ -165,7 +165,7 @@ Compose で強制的に停止と再起動をしたい場合は、 ``--force-recr
 
    * - コマンド
      - 説明
-   * - :doc:`docker compose biuld<compose_build>`
+   * - :doc:`docker compose build<compose_build>`
      - サービスの構築もしくは再構築
    * - :doc:`docker compose convert<compose_convert>`
      - compose ファイルをプラットフォーム固有の形式に変換

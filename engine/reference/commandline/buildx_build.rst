@@ -39,7 +39,7 @@ docker buildx build
 
 .. The buildx build command starts a build using BuildKit. This command is similar to the UI of docker build command and takes the same flags and arguments.
 
-``buildx build`` コマンドは BuidKit を使って構築を開始します。このコマンドは ``docker biuld`` コマンドの見た目と似ており、いくつかのフラグや引数が同じです。
+``buildx build`` コマンドは BuidKit を使って構築を開始します。このコマンドは ``docker build`` コマンドの見た目と似ており、いくつかのフラグや引数が同じです。
 
 .. For documentation on most of these flags, refer to the docker build documentation. In here we’ll document a subset of the new flags.
 
@@ -523,7 +523,7 @@ tar
 
 キャッシュ・エクスポータと利用可能な属性については、 `https://github.com/moby/buildkit#export-cache <https://github.com/moby/buildkit#export-cache>`_ をご覧ください。
 
-.. _buildx_biuld-allow:
+.. _buildx_build-allow:
 
 :ruby:`拡張特権資格 <extra privileged entitlement>` を許可（--allow）
 ----------------------------------------------------------------------

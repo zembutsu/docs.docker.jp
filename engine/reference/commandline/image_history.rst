@@ -39,7 +39,7 @@ docker image history
    $ docker image history [OPTIONS] IMAGE
 
 
-.. _image_biuld-options:
+.. _image_build-options:
 
 オプション
 ==========
