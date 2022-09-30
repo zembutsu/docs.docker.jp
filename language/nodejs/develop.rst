@@ -2,8 +2,8 @@
 .. URL: https://docs.docker.com/language/nodejs/develop/
    doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/language/nodejs/develop.md
-.. check date: 2022/09/26
-.. Commits on Jul 15, 2022 2482f8ce04317b2c56301ea9885bb9a947b232d3
+.. check date: 2022/09/30
+.. Commits on Sep 29, 2022 561118ec5b1f1497efad536545c0b39aa8026575
 .. -----------------------------------------------------------------------------
 
 .. Use containers for development
@@ -261,7 +261,7 @@ Compose ファイルを使う上で、もう1つの素晴らしい機能は、�
 
 .. code-block:: json
 
-.. {"code":"success","meta":{"total":0,"count":0},"payload":[]}
+   {"code":"success","meta":{"total":0,"count":0},"payload":[]}
 
 .. Connect a debugger
 .. _nodejs-develop-connect-a-debugger:
@@ -343,7 +343,7 @@ Chrome DevTools に移動し直し、 ``return res.json({ "foo": "bar" })`` 背�
 
 .. Help us improve this topic by providing your feedback. Let us know what you think by creating an issue in the Docker Docs GitHub repository. Alternatively, create a PR to suggest updates.
 
-フィードバックを通し、このトピックの改善を支援ください。考えがあれば、 `Docker Docs <https://github.com/docker/docker.github.io/issues/new?title=[Node.js%20docs%20feedback]>`_ GitHub リポジトリに issue を作成して教えてください。あるいは、更新の提案のために `RP を作成 <https://github.com/docker/docker.github.io/pulls>`_ してください。
+フィードバックを通し、このトピックの改善を支援ください。考えがあれば、 `Docker Docs <https://github.com/docker/docs/issues/new?title=[Node.js%20docs%20feedback]>`_ GitHub リポジトリに issue を作成して教えてください。あるいは、更新の提案のために `RP を作成 <https://github.com/docker/docs/pulls>`_ してください。
 
 .. seealso::
 

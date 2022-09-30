@@ -1,85 +1,82 @@
 ﻿.. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/language/nodejs/run-containers/
+.. URL: https://docs.docker.com/language/python/run-containers/
    doc version: 20.10
-      https://github.com/docker/docker.github.io/blob/master/language/nodejs/run-containers.md
+      https://github.com/docker/docker.github.io/blob/master/language/python/run-containers.md
 .. check date: 2022/09/30
 .. Commits on Sep 29, 2022 561118ec5b1f1497efad536545c0b39aa8026575
 .. -----------------------------------------------------------------------------
 
 .. Run your image as a container
-.. _nodejs-run-your-image-as-a-container:
+.. _python-run-your-image-as-a-container:
 
 ========================================
 コンテナとしてイメージを実行
 ========================================
 
 .. Prerequisites
-.. _nodejs-run-prerequisites:
+.. _python-run-prerequisites:
 
 事前準備
 ==========
 
-.. Work through the steps to build a Node JS image in Build your Node image.
+.. Work through the steps to build a Python image in Build your Python image.
 
-:doc:`build-images` で、 Node JS イメージ構築手順を実行します。
+:doc:`build-images` で、 Python イメージ構築手順を実行します。
 
 .. Overview
-.. _nodejs-run-overview:
+.. _python-run-overview:
 
 概要
 ==========
 
-.. In the previous module we created our sample application and then we created a Dockerfile that we used to create an image. We created our image using the command docker build. Now that we have an image, we can run that image and see if our application is running correctly.
+.. In the previous module, we created our sample application and then we created a Dockerfile that we used to produce an image. We created our image using the docker command docker build. Now that we have an image, we can run that image and see if our application is running correctly.
 
 前章ではサンプルアプリケーションを作成し、イメージ作成に使うための Dockerfile を作成しました。そして ``docker build`` コマンドを使い、イメージを作成しました。次は、イメージを準備できましたので、アプリケーションを正しく実行できるかどうか確認するため、このイメージを実行します。
 
-.. A container is a normal operating system process except that this process is isolated and has its own file system, its own networking, and its own isolated process tree separate from the host.
+.. A container is a normal operating system process except that this process is isolated in that it has its own file system, its own networking, and its own isolated process tree separate from the host.
 
 コンテナでは、通常のオペレーティングシステムの手順を除外しています。このコンテナのプロセスは隔離されており、独自のファイルシステムを持ち、独自のネットワーク機能を持ち、ホストから分離されている独自のプロセスツリーも持ちます。
 
-.. To run an image inside of a container, we use the docker run command. The docker run command requires one parameter and that is the image name. Let’s start our image and make sure it is running correctly. Execute the following command in your terminal.
+.. To run an image inside of a container, we use the docker run command. The docker run command requires one parameter which is the name of the image. Let’s start our image and make sure it is running correctly. Run the following command in your terminal.
 
 コンテナ内でイメージを実行するには、 ``docker run`` コマンドを使います。 ``docker run`` コマンドには1つのパラメータが必要であり、それはイメージ名です。これまで作成したイメージ使い、正しく起動できるかどうかを確認しましょう。ターミナル内で以下のコマンドを実行します。
 
 .. code-block:: bash
 
-   $ docker run node-docker
+   $ docker run python-docker
 
-.. When you run this command, you’ll notice that you were not returned to the command prompt. This is because our application is a REST server and will run in a loop waiting for incoming requests without returning control back to the OS until we stop the container.
+.. After running this command, you’ll notice that you were not returned to the command prompt. This is because our application is a REST server and runs in a loop waiting for incoming requests without returning control back to the OS until we stop the container.
 
-このコマンドを実行すると、コマンドプロンプトには何も応答がないのが分かるでしょう。これは、アプリケーションが REST サーバであり、リクエスト要求を受け付けるためのループを実行中のため、 OS がコンテナを停止するまで制御は戻りません。
+このコマンドを実行後、コマンドプロンプトには何も応答がないのが分かるでしょう。これは、アプリケーションが REST サーバであり、リクエスト要求を受け付けるためのループを実行中のため、 OS がコンテナを停止するまで制御は戻りません。
 
 .. Let’s open a new terminal then make a GET request to the server using the curl command.
 
-新しいターミナルを開き、 curl コマンドを使って GET リクエストを作成しましょう。
+新しいターミナルを開き、 ``curl`` コマンドを使って ``GET`` リクエストを作成しましょう。
 
 .. code-block:: bash
 
-   $ curl --request POST \
-     --url http://localhost:8000/test \
-     --header 'content-type: application/json' \
-     --data '{"msg": "testing"}'
-   curl: (7) Failed to connect to localhost port 8000: Connection refused
+   $ curl localhost:5000
+   curl: (7) Failed to connect to localhost port 5000: Connection refused
 
-.. Our curl command failed because the connection to our server was refused. It means that we were not able to connect to localhost on port 8000. This is expected because our container is running in isolation which includes networking. Let’s stop the container and restart with port 8000 published on our local network.
+.. As you can see, our curl command failed because the connection to our server was refused. This means, we were not able to connect to the localhost on port 5000. This is expected because our container is running in isolation which includes networking. Let’s stop the container and restart with port 5000 published on our local network.
 
-curl コマンドが失敗したのは、サーバへの接続が拒否されたからです。つまり、ローカルホストのポート 8000 へ接続できません。これは、ネットワークを隔離した状態でコンテナを実行しているからです。コンテナを停止し、ローカルネットワーク上でポート 8000 を公開して再起動しましょう。
+見ての通り curl コマンドが失敗したのは、サーバへの接続が拒否されたからです。つまり、ローカルホストのポート 5000 へ接続できません。これは、ネットワークも隔離した状態でコンテナを実行しているからです。コンテナを停止し、ローカルネットワーク上でポート 5000 を公開して再起動しましょう。
 
 .. To stop the container, press ctrl-c. This will return you to the terminal prompt.
 
 コンテナを停止するには、 ctrl-c を押します。これでターミナルにプロンプトが戻ります。
 
-.. To publish a port for our container, we’ll use the --publish flag (-p for short) on the docker run command. The format of the --publish command is [host port]:[container port]. So if we wanted to expose port 8000 inside the container to port 3000 outside the container, we would pass 3000:8000 to the --publish flag.
+.. To publish a port for our container, we’ll use the --publish flag (-p for short) on the docker run command. The format of the --publish command is [host port]:[container port]. So, if we wanted to expose port 5000 inside the container to port 3000 outside the container, we would pass 3000:5000 to the --publish flag.
 
-コンテナのポートを公開するには、docker run コマンドで ``--publish`` フラグ（短縮形は ``-p`` ） を使います。 ``--publish`` 命令は ``[host port]:[container port]`` 形式です。そのため、コンテナ外のポート 3000 に コンテナ内のポート 8000 を公開するには、 --publish フラグに 3000:8000 を渡します。
+コンテナのポートを公開するには、docker run コマンドで ``--publish`` フラグ（短縮形は ``-p`` ） を使います。 ``--publish`` 命令は ``[host port]:[container port]`` 形式です。そのため、コンテナ外のポート 3000 に コンテナ内のポート 5000 を公開するには、 ``--publish`` フラグに ``3000:5000`` を渡します。
 
-.. Start the container and expose port 8000 to port 8000 on the host.
+.. We did not specify a port when running the flask application in the container and the default is 5000. If we want our previous request going to port 5000 to work we can map the host’s port 8000 to the container’s port 5000:
 
-コンテナを起動し、ホスト上のポート 8000 にポート 8000 を公開します。
+コンテナ内で flask アプリケーションの実行にあたり、ポートを指定しませんでしたので、デフォルトの 5000 になります。ポート 5000 に対して先ほどのリクエストを行うには、ホスト側のポート 8000 をコンテナ側のポート 5000 にマップして行えるようになります。
 
 .. code-block:: bash
 
-   $ docker run --publish 8000:8000 node-docker
+   $ docker run --publish 8000:5000 python-docker
 
 .. Now let’s rerun the curl command from above. Remember to open a new terminal.
 
@@ -87,35 +84,34 @@ curl コマンドが失敗したのは、サーバへの接続が拒否された
 
 .. code-block:: bash
 
-   $ curl --request POST \
-     --url http://localhost:8000/test \
-     --header 'content-type: application/json' \
-     --data '{"msg": "testing"}'
-   {"code":"success","payload":[{"msg":"testing","id":"dc0e2c2b-793d-433c-8645-b3a553ea26de","createDate":"2020-09-01T17:36:09.897Z"}]}
+   $ curl localhost:8000
+   Hello, Docker!
 
 .. Success! We were able to connect to the application running inside of our container on port 8000. Switch back to the terminal where your container is running and you should see the POST request logged to the console.
 
-成功です！ コンテナ内で実行しているアプリケーションにポート 8000 で接続できました。コンテナを実行しているターミナルに切り替えると、コンソールに POST リクエストのログが表示されるでしょう。
+成功です！ コンテナ内で実行しているアプリケーションにポート 8000 で接続できました。コンテナを実行しているターミナルに切り替えると、コンソールに GET リクエストのログが表示されるでしょう。
 
-``2020-09-01T17:36:09:8770 INFO: POST /test``
+.. code-block:: bash
+
+   [31/Jan/2021 23:39:31] "GET / HTTP/1.1" 200 -
 
 .. Press ctrl-c to stop the container.
 
 ctrl-c を押してコンテナを停止します。
 
 .. Run in detached mode
-.. _nodejs-run-in-detached-mode:
+.. _python-run-in-detached-mode:
 
 デタッチドモードで実行
 ==============================
 
-.. This is great so far, but our sample application is a web server and we should not have to have our terminal connected to the container. Docker can run your container in detached mode or in the background. To do this, we can use the --detach or -d for short. Docker will start your container the same as before but this time will “detach” from the container and return you to the terminal prompt.
+.. This is great so far, but our sample application is a web server and we don’t have to be connected to the container. Docker can run your container in detached mode or in the background. To do this, we can use the --detach or -d for short. Docker starts your container the same as before but this time will “detach” from the container and return you to the terminal prompt.
 
 サンプルアプリケーションは今のところ順調ですが、これはウェブサーバであり、ターミナルをコンテナに接続しておく必要はありません。Docker はアプリケーションを :ruby:`デタッチド モード <detouched mode>` やバックグラウンドとして実行できます。そのためには、 ``--detach`` か短縮形の ``-d`` を使います。 Docker はこれまでと同じように実行しますが、今回はコンテナから「 :ruby:`離れ <detachb>`」、ターミナルに戻るようにします。
 
 .. code-block:: bash
 
-   $ docker run -d -p 8000:8000 node-docker
+   $ docker run -d -p 8000:5000 python-docker
    ce02b3179f0f10085db9edfccd731101868f58631bdf918ca490ff6fd223a93b
 
 .. Docker started our container in the background and printed the Container ID on the terminal.
@@ -128,15 +124,12 @@ Docker はバックグラウンドでコンテナを起動し、ターミナル�
 
 .. code-block:: bash
 
-   $ curl --request POST \
-     --url http://localhost:8000/test \
-     --header 'content-type: application/json' \
-     --data '{"msg": "testing"}'
-   {"code":"success","payload":[{"msg":"testing","id":"dc0e2c2b-793d-433c-8645-b3a553ea26de","createDate":"2020-09-01T17:36:09.897Z"}]}
+   $ curl localhost:8000
+   Hello, Docker!
 
 
 .. List containers
-.. _nodejs-run-list-containers:
+.. _python-run-list-containers:
 
 コンテナ一覧
 ====================
@@ -149,7 +142,7 @@ Docker はバックグラウンドでコンテナを起動し、ターミナル�
 
    $ docker ps
    CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
-   ce02b3179f0f        node-docker         "docker-entrypoint.s…"   6 minutes ago       Up 6 minutes        0.0.0.0:8000->8000/tcp   wonderful_kalam
+   ce02b3179f0f        python-docker         "python3 -m flask ru…"   6 minutes ago       Up 6 minutes        0.0.0.0:8000->5000/tcp   wonderful_kalam
 
 .. The ps command tells a bunch of stuff about our running containers. We can see the Container ID, the image running inside the container, the command that was used to start the container, when it was created, the status, ports that exposed and the name of the container.
 
@@ -174,7 +167,7 @@ Docker はバックグラウンドでコンテナを起動し、ターミナル�
    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 
 .. Stop, start, and name containers
-.. _nodejs-stop-start-and-name-containers:
+.. _python-stop-start-and-name-containers:
 
 コンテナの停止、起動、名前
 ==============================
@@ -187,9 +180,9 @@ Docker コンテナは起動、停止、再起動できます。コンテナを�
 
    $ docker ps -a
    CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS               NAMES
-   ce02b3179f0f        node-docker         "docker-entrypoint.s…"   16 minutes ago      Exited (0) 5 minutes ago                        wonderful_kalam
-   ec45285c456d        node-docker         "docker-entrypoint.s…"   28 minutes ago      Exited (0) 20 minutes ago                       agitated_moser
-   fb7a41809e5d        node-docker         "docker-entrypoint.s…"   37 minutes ago      Exited (0) 36 minutes ago                       goofy_khayyam
+   ce02b3179f0f        python-docker         "python3 -m flask ru…"   16 minutes ago      Exited (0) 5 minutes ago                        wonderful_kalam
+   ec45285c456d        python-docker         "python3 -m flask ru…"   28 minutes ago      Exited (0) 20 minutes ago                       agitated_moser
+   fb7a41809e5d        python-docker         "python3 -m flask ru…"   37 minutes ago      Exited (0) 36 minutes ago                       goofy_khayyam
 
 .. If you’ve been following along, you should see several containers listed. These are containers that we started and stopped but have not been removed.
 
@@ -211,17 +204,17 @@ Docker コンテナは起動、停止、再起動できます。コンテナを�
 
    $ docker ps --all
    CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS                    NAMES
-   ce02b3179f0f        node-docker         "docker-entrypoint.s…"   19 minutes ago      Up 8 seconds                0.0.0.0:8000->8000/tcp   wonderful_kalam
-   ec45285c456d        node-docker         "docker-entrypoint.s…"   31 minutes ago      Exited (0) 23 minutes ago                            agitated_moser
-   fb7a41809e5d        node-docker         "docker-entrypoint.s…"   40 minutes ago      Exited (0) 39 minutes ago                            goofy_khayyam
+   ce02b3179f0f        python-docker         "python3 -m flask ru…"   19 minutes ago      Up 8 seconds                0.0.0.0:8000->5000/tcp   wonderful_kalam
+   ec45285c456d        python-docker         "python3 -m flask ru…"   31 minutes ago      Exited (0) 23 minutes ago                            agitated_moser
+   fb7a41809e5d        python-docker         "python3 -m flask ru…"   40 minutes ago      Exited (0) 39 minutes ago                            goofy_khayyam
 
 .. Notice that the container we just restarted has been started in detached mode and has port 8000 exposed. Also, observe the status of the container is “Up X seconds”. When you restart a container, it will be started with the same flags or commands that it was originally started with.
 
 再起動したコンテナの状態はデタッチドモードで起動済みとなり、ポート 8000 を公開しています。また、コンテナの状態を見てみると「Up X seconds」（起動 X 秒）となっています。コンテナを再起動する場合、元元のコンテナを起動したときと同じフラグやコマンドで起動します。
 
-.. Let’s stop and remove all of our containers and take a look at fixing the random naming issue.
+.. Now, let’s stop and remove all of our containers and take a look at fixing the random naming issue. 
 
-コンテナをすべて停止して削除するには、ランダムな名前を調べる必要があります。
+次に、コンテナをすべて停止して削除するには、ランダムな名前を調べる必要があります。
 
 .. Stop the container we just started. Find the name of your running container and replace the name in the command below with the name of the container on your system.
 
@@ -240,9 +233,9 @@ Docker コンテナは起動、停止、再起動できます。コンテナを�
 
    $ docker ps --all
    CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS                    NAMES
-   ce02b3179f0f        node-docker         "docker-entrypoint.s…"   19 minutes ago      Up 8 seconds                0.0.0.0:8000->8000/tcp   wonderful_kalam
-   ec45285c456d        node-docker         "docker-entrypoint.s…"   31 minutes ago      Exited (0) 23 minutes ago                            agitated_moser
-   fb7a41809e5d        node-docker         "docker-entrypoint.s…"   40 minutes ago      Exited (0) 39 minutes ago                            goofy_khayyam
+   ce02b3179f0f        python-docker         "python3 -m flask ru…"   19 minutes ago      Up 8 seconds                0.0.0.0:8000->5000/tcp   wonderful_kalam
+   ec45285c456d        python-docker         "python3 -m flask ru…"   31 minutes ago      Exited (0) 23 minutes ago                            agitated_moser
+   fb7a41809e5d        python-docker         "python3 -m flask ru…"   40 minutes ago      Exited (0) 39 minutes ago                            goofy_khayyam
 
 .. To remove a container, simply run the docker rm command passing the container name. You can pass multiple container names to the command in one command.
 
@@ -273,20 +266,18 @@ Docker コンテナは起動、停止、再起動できます。コンテナを�
 
 .. code-block:: bash
 
-   $ docker run -d -p 8000:8000 --name rest-server node-docker
+   $ docker run -d -p 8000:5000 --name rest-server python-docker
    1aa5d46418a68705c81782a58456a4ccdb56a309cb5e6bd399478d01eaa5cdda
    $ docker ps
    CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
-   1aa5d46418a6        node-docker         "docker-entrypoint.s…"   3 seconds ago       Up 3 seconds        0.0.0.0:8000->8000/tcp   rest-server
+   1aa5d46418a6        python-docker         "python3 -m flask ru…"   3 seconds ago       Up 3 seconds        0.0.0.0:8000->5000/tcp   rest-server
 
-.. Now, we can easily identify our container based on the name.
+.. That’s better! We can now easily identify our container based on the name.
 
-これで名前に基づいてコンテナを簡単に区別できます。
-
-
+良いですね！ これで名前に基づいてコンテナを簡単に区別できます。
 
 .. Next steps
-.. _nodejs-run-next-steps:
+.. _python-run-next-steps:
 
 次のステップ
 ====================
@@ -300,18 +291,19 @@ Docker コンテナは起動、停止、再起動できます。コンテナを�
 * :doc:`アプリケーション開発の仕方 <develop>`
 
 .. Feedback
-.. _nodejs-feedback:
+.. _python-run-feedback:
 
 フィードバック
 ====================
 
 .. Help us improve this topic by providing your feedback. Let us know what you think by creating an issue in the Docker Docs GitHub repository. Alternatively, create a PR to suggest updates.
 
-フィードバックを通し、このトピックの改善を支援ください。考えがあれば、 `Docker Docs <https://github.com/docker/docs/issues/new?title=[Node.js%20docs%20feedback]>`_ GitHub リポジトリに issue を作成して教えてください。あるいは、更新の提案のために `RP を作成 <https://github.com/docker/docs/pulls>`_ してください。
+フィードバックを通し、このトピックの改善を支援ください。考えがあれば、 `Docker Docs <https://github.com/docker/docs/issues/new?title=[Python%20docs%20feedback]>`_ GitHub リポジトリに issue を作成して教えてください。あるいは、更新の提案のために `RP を作成 <https://github.com/docker/docs/pulls>`_ してください。
+
 
 .. seealso::
 
    Run your image as a container
-      https://docs.docker.com/language/nodejs/run-containers/
+      https://docs.docker.com/language/python/run-containers/
 
 
