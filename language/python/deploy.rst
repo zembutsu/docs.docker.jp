@@ -1,13 +1,13 @@
 ﻿.. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/language/nodejs/deploy/
+.. URL: https://docs.docker.com/language/python/deploy/
    doc version: 20.10
-      https://github.com/docker/docker.github.io/blob/master/language/nodejs/deploy.md
+      https://github.com/docker/docker.github.io/blob/master/language/python/deploy.md
 .. check date: 2022/09/30
 .. Commits on Sep 29, 2022 561118ec5b1f1497efad536545c0b39aa8026575
 .. -----------------------------------------------------------------------------
 
 .. Deploy your app
-.. _nodejs-deploy-your-app
+.. _python-deploy-your-app
 
 ========================================
 アプリのデプロイ
@@ -18,7 +18,7 @@
 これで CI/CD パイプラインを設定できましたので、アプリケーションのデプロイ方法をみていきましょう。Docker は Azure ACI と AWS ECS にコンテナのデプロイをサポートしています。また、 Docker Desktop で Kubernetes を有効化している場合は、アプリケーションを Kubernetes にもデプロイできます。
 
 .. Docker and Azure ACI
-.. _nodejs-docker-and-azure-aci:
+.. _python-docker-and-azure-aci:
 
 Docker と Azure ACI
 ====================
@@ -37,7 +37,7 @@ Docker Azure Integration はクラウドネイティブなアプリケーショ�
       https://docs.docker.com/cloud/aci-integration/
 
 .. Docker and AWS ECS
-.. _nodejs-docker-and-aws-ecs:
+.. _python-docker-and-aws-ecs:
 
 Docker と AWS ECS
 ====================
@@ -60,7 +60,7 @@ Docker と Amazon ECS 間の統合によって、開発者は Docker Compose CLI
       https://docs.docker.com/cloud/ecs-integration/
 
 .. Kubernetes
-.. _nodejs-kubernetes:
+.. _python-kubernetes:
 
 Kubernetes
 --------------------
@@ -91,16 +91,16 @@ Kubernetes を有効化するには：
 
 
 .. Feedback
-.. _nodejs-deploy-feedback:
+.. _python-deploy-feedback:
 
 フィードバック
 ====================
 
 .. Help us improve this topic by providing your feedback. Let us know what you think by creating an issue in the Docker Docs GitHub repository. Alternatively, create a PR to suggest updates.
 
-フィードバックを通し、このトピックの改善を支援ください。考えがあれば、 `Docker Docs <https://github.com/docker/docs/issues/new?title=[Node.js%20docs%20feedback]>`_ GitHub リポジトリに issue を作成して教えてください。あるいは、更新の提案のために `RP を作成 <https://github.com/docker/docs/pulls>`_ してください。
+フィードバックを通し、このトピックの改善を支援ください。考えがあれば、 `Docker Docs <https://github.com/docker/docs/issues/new?title=[Python%20docs%20feedback]>`_ GitHub リポジトリに issue を作成して教えてください。あるいは、更新の提案のために `RP を作成 <https://github.com/docker/docs/pulls>`_ してください。
 
 .. seealso::
 
    Deploy your app
-      https://docs.docker.com/language/nodejs/deploy/
+      https://docs.docker.com/language/python/deploy/

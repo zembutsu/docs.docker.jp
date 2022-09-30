@@ -1,13 +1,13 @@
 ﻿.. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/language/nodejs/configure-ci-cd/
+.. URL: https://docs.docker.com/language/python/configure-ci-cd/
    doc version: 20.10
-      https://github.com/docker/docker.github.io/blob/master/language/nodejs/configure-ci-cd.md
+      https://github.com/docker/docker.github.io/blob/master/language/python/configure-ci-cd.md
 .. check date: 2022/09/30
 .. Commits on Sep 29, 2022 561118ec5b1f1497efad536545c0b39aa8026575
 .. -----------------------------------------------------------------------------
 
 .. Configure CI/CD for your application
-.. _nodejs-configure-ci-cd-for-your-application:
+.. _python-configure-ci-cd-for-your-application:
 
 ========================================
 アプリケーションに CI/CD を設定
@@ -32,7 +32,7 @@
 4. 特定のバージョンのみ Docker Hub に送信する
 
 .. Set up a Docker project
-.. _nodejs-ci-ci-set-up-a-docker-project:
+.. _python-ci-ci-set-up-a-docker-project:
 
 Docker プロジェクトのセットアップ
 ========================================
@@ -76,7 +76,7 @@ Docker プロジェクトのセットアップ
       :alt: New access token
 
 .. Set up the GitHub Actions workflow
-.. _nodejs-set-up-the-github-actions-workflow:
+.. _python-set-up-the-github-actions-workflow:
 
 GitHub Actions ワークフローのセットアップ
 ==================================================
@@ -185,7 +185,7 @@ GitHub Actions ワークフローのセットアップ
    :alt: Docker Hub への CI
 
 .. Optimizing the workflow
-.. _nodejs-optimizing-the-workflow:
+.. _python-optimizing-the-workflow:
 
 ワークフローの最適化
 ====================
@@ -245,7 +245,7 @@ GitHub Actions ワークフローのセットアップ
 これで、再びワークフローを実行し、構築キャッシュがワークフローで使われるのを確認します。
 
 .. Push tagged versions to Docker Hub
-.. _nodejs-push-tagged-versions-to-docker-hub:
+.. _python-push-tagged-versions-to-docker-hub:
 
 Docker Hub にタグ付けされたバージョンを送信
 ==================================================
@@ -348,7 +348,7 @@ Docker Hub にタグ付けされたバージョンを送信
 これで、2つの異なるフローができました：1つは変更を master に送り、もう1つは pull request のためです。次に、Docker Hub ではなく GitHub に Pull Request を送信するよう、以前のものを買い換える必要があります。
 
 .. Next steps
-.. _nodejs-ci-cd-next-steps:
+.. _python-ci-cd-next-steps:
 
 次のステップ
 ====================
@@ -366,16 +366,16 @@ Docker Hub にタグ付けされたバージョンを送信
 :doc:`アプリのデプロイ <deploy>`
 
 .. Feedback
-.. _nodejs-ci-cd-feedback:
+.. _python-ci-cd-feedback:
 
 フィードバック
 ====================
 
 .. Help us improve this topic by providing your feedback. Let us know what you think by creating an issue in the Docker Docs GitHub repository. Alternatively, create a PR to suggest updates.
 
-フィードバックを通し、このトピックの改善を支援ください。考えがあれば、 `Docker Docs <https://github.com/docker/docs/issues/new?title=[Node.js%20docs%20feedback]>`_ GitHub リポジトリに issue を作成して教えてください。あるいは、更新の提案のために `RP を作成 <https://github.com/docker/docs/pulls>`_ してください。
+フィードバックを通し、このトピックの改善を支援ください。考えがあれば、 `Docker Docs <https://github.com/docker/docs/issues/new?title=[Python%20docs%20feedback]>`_ GitHub リポジトリに issue を作成して教えてください。あるいは、更新の提案のために `RP を作成 <https://github.com/docker/docs/pulls>`_ してください。
 
 .. seealso::
 
    Configure CI/CD for your application
-      https://docs.docker.com/language/nodejs/configure-ci-cd/
+      https://docs.docker.com/language/python/configure-ci-cd/
