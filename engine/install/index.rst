@@ -1,13 +1,16 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/engine/installation/
+.. URL: https://docs.docker.com/engine/install/
    doc version: 17.06
       https://github.com/docker/docker.github.io/blob/master/engine/installation/index.md
       https://github.com/docker/docker.github.io/commits/master/engine/installation/index.md
-.. check date: 2017/09/01
-.. Commits on Aug 22, 2017 6c15aa45eda03f5a22bb8f83fb8af026571dcdfb
+   doc version: 20.10
+     https://github.com/docker/docs/blob/master/engine/install/index.md
+.. check date: 2022/09/30
+.. Commits on Sep 5, 2022 cc0fc46783533fcd8e15e1d139ce2ae5e41f61b2
 .. -----------------------------------------------------------------------------
 
-.. Install Docker
+.. Install Docker Engine
+.. _install-docker-engine:
 
 ==============================
 Docker のインストール
@@ -19,62 +22,50 @@ Docker のインストール
        :depth: 2
        :local:
 
-.. Docker is available in two editions: Community Edition (CE) and Enterprise Edition (EE).
+..  Docker Desktop for Linux
+    Docker Desktop helps you build, share, and run containers easily on Mac and Windows as you do on Linux. We are excited to share that Docker Desktop for Linux is now GA. For more information, see Docker Desktop for Linux.
 
-Docker は **コミュニティ版（CE; Community Edition）** と **エンタープライズ版（EE; Enterprise Edition）** の２つのエディションを使えます。
+.. important::
 
-.. Docker Community Edition (CE) is ideal for developers and small teams looking to get started with Docker and experimenting with container-based apps. Docker CE has two update channels, stable and edge:
+   **Docker Desktop for Linux**
+   
+   Docker Desktop は Mac や Windows と同じように、 Linux 上でも簡単にコンテナを構築、共有、実行するのに役立ちます。今や Docker Desktop for Linux は一般提供しており、共有できるのが嬉しいです。詳しい情報は :doc:`Docker Desktop for Linux` をご覧ください。
 
-Docker コミュニティ版（CE）は開発者や小さなチームが Docker を使い始め、コンテナをベースとしたアプリケーションを実験するのに最適です。Docker CE は **stable** と **edge**  の２つの更新用チャンネルがあります。
+.. Supported platforms
+.. _engine-supported-platform:
 
-..    Stable gives you reliable updates every quarter
-    Edge gives you new features every month
+サポートしているプラットフォーム
+========================================
 
-* **stable（安定版）** は3ヶ月ごとに安定した更新を行います
-* **edge（エッジ）** は毎月新機能を追加します
+.. Docker Engine is available on a variety of Linux platforms, macOS and Windows 10 through Docker Desktop, and as a static binary installation. Find your preferred operating system below.
 
-.. For more information about Docker CE, see Docker Community Edition.
+Docker Engine は様々な Docker Deksop を通して :doc:`Linux プラットフォーム </desktop/install/linux-install>` 、 :doc:`macOS </desktop/install/mac-install>` 、 :doc:`Windows 10 </desktop/install/windows-install>` で利用できますし、 :doc:`静的なバイナリとしてのインストール <binaries>` もできます。
 
-Docker CE に関する詳しい情報は、 `Docker Community Edition（英語） <https://www.docker.com/community-edition/>`_  のページをご覧ください。
+.. Desktop
+.. _engine-install-desktop:
 
-.. Docker Enterprise Edition (EE) is designed for enterprise development and IT teams who build, ship, and run business critical applications in production at scale. For more information about Docker EE, including purchasing options, see Docker Enterprise Edition.
+デスクトップ
+====================
 
-Docker エンタープライズ版（EE）は、エンタープライズ開発向けや IT チーム向けに設計されています。最重要のビジネスアプリケーションが、稼働中にその規模を拡大していっても、アプリケーションの構築、導入、実行を容易に実現できます。Docker EE や購入オプションに関する詳細は `Docker Enterprise Edition（英語） <https://www.docker.com/enterprise-edition/>`_ を参照してください。
 
 .. list-table::
    :widths: 100 20 20 20 20
    :header-rows: 1
 
-   * - 
-     - Community Edition
-     - Enterprise Edition Basic
-     - Enterprise Edition Standard
-     - Enterprise Edition Advanced
-   * - コンテナ・エンジンとオーケストレーション、ネットワーク機能、セキュリティを内蔵
+   * - プラットフォーム
+     - x86_64 / amd64
+     -arm64 (Apple Silicon)
+   * - :doc:`Docker Desktop for Linux </desktop/install/linux-install>`
      - .. image:: /engine/images/green-check.png
-     - .. image:: /engine/images/green-check.png
-     - .. image:: /engine/images/green-check.png
-     - .. image:: /engine/images/green-check.png
-   * - 認証済みインフラ、プラグイン、ISV コンテナ
      - 
+   * - :doc:`Docker Desktop for Linux </desktop/install/linux-install>`
      - .. image:: /engine/images/green-check.png
-     - .. image:: /engine/images/green-check.png
-     - .. image:: /engine/images/green-check.png
-   * - イメージ管理
      - 
-     - 
+   * - :doc:`Docker Desktop for Linux </desktop/install/linux-install>`
      - .. image:: /engine/images/green-check.png
-     - .. image:: /engine/images/green-check.png
-   * - コンテナ・アプリ管理
      - 
-     - 
-     - .. image:: /engine/images/green-check.png
-     - .. image:: /engine/images/green-check.png
-   * - イメージのセキュリティ・スキャン
-     - 
-     - 
-     - 
-     - .. image:: /engine/images/green-check.png
+
+
 
 
 .. Supported platforms
