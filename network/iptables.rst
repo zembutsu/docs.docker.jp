@@ -25,7 +25,7 @@ Linux 上では、 Docker は :ruby:`ネットワークの分離 <network isolat
 
 .. If you’re running Docker on a host that is exposed to the Internet, you will probably want to have iptables policies in place that prevent unauthorized access to containers or other services running on your host. This page describes how to achieve that, and what caveats you need to be aware of.
 
-Docker を実行しているホストをインターネット上に公開している場合、コンテナやホスト上で実行しているサービスに対する教科のない接続を防ぐように、おそらく何らかの iptables ポリシーを追加しようとするでしょう。これをどのようにして行うか、そして、気を付けるべき警告について、このページで扱います。
+Docker を実行しているホストをインターネット上に公開している場合、コンテナやホスト上で実行しているサービスに対する許可のない接続を防ぐように、おそらく何らかの iptables ポリシーを追加しようとするでしょう。これをどのようにして行うか、そして、気を付けるべき警告について、このページで扱います。
 
 .. Add iptables policies before Docker’s rules
 .. _add-iptables-policies-before-dockers-rules:
@@ -38,7 +38,7 @@ Docker は2つのカスタム iptables :ruby:`チェイン <chain>` を追加し
 
 .. All of Docker’s iptables rules are added to the DOCKER chain. Do not manipulate this chain manually. If you need to add rules which load before Docker’s rules, add them to the DOCKER-USER chain. These rules are applied before any rules Docker creates automatically.
 
-Docker の ``iptables`` 全ルールは ``DOCKER`` チェインに追加されます。このチェインは手動で操作しないでください。Docker のルールを読み込む前にルールの追加が必要な場合は、 ``DOCKER-USER`` チェインにルールを追加しミズ合う。これらのルールは Docker が自動的に作成するルールより前に適用されます。
+Docker の ``iptables`` 全ルールは ``DOCKER`` チェインに追加されます。このチェインは手動で操作しないでください。Docker のルールを読み込む前にルールの追加が必要な場合は、 ``DOCKER-USER`` チェインにルールを追加します。これらのルールは Docker が自動的に作成するルールより前に適用されます。
 
 .. Rules added to the FORWARD chain -- either manually, or by another iptables-based firewall -- are evaluated after these chains. This means that if you expose a port through Docker, this port gets exposed no matter what rules your firewall has configured. If you want those rules to apply even when a port gets exposed through Docker, you must add these rules to the DOCKER-USER chain.
 
