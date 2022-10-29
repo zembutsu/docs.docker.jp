@@ -1,17 +1,16 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/engine/
-   doc version: 17.03
+   doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/engine/index.md
-.. check date: 2017/06/20
-.. Commits on Apr 21, 2017 a3a7ae1e0b691151bb039337bd7c7745ff70534a
+.. check date: 2022/09/30
+.. Commits on Sep 26, 2020 6bc02b4c398cae9ee6a9392f313be37d5af1c0e1
 .. -----------------------------------------------------------------------------
 
-.. About Docker Engine
-
-.. _about-docker-engine:
+.. Docker Engine overview
+.. _docker-engine-overview:
 
 =======================================
-Docker Engine について
+Docker Engine 概要
 =======================================
 
 .. sidebar:: 目次
@@ -19,187 +18,87 @@ Docker Engine について
    .. contents::
        :depth: 3
        :local:
-       
 
-.. **Develop, Ship and Run Any Application, Anywhere**
+.. Docker Engine is an open source containerization technology for building and containerizing your applications. Docker Engine acts as a client-server application with:
 
-**あらゆるアプリケーションがどこでも開発、導入、実行できる**
+:ruby:`Docker Engine <ドッカーエンジン>` は、アプリケーションを構築して :ruby:`コンテナ化 <containerizing>` するためのオープンソースの :ruby:`コンテナ化技術 <containerization technology>` です。
 
-.. [**Docker**](https://www.docker.com) is a platform for developers and sysadmins
-   to develop, ship, and run applications.  Docker lets you quickly assemble
-   applications from components and eliminates the friction that can come when
-   shipping code. Docker lets you get your code tested and deployed into production
-   as fast as possible.
+..  A server with a long-running daemon process dockerd.
+    APIs which specify interfaces that programs can use to talk to and instruct the Docker daemon.
+    A command line interface (CLI) client docker.
 
-`Docker <https://www.docker.com/>`_ とは、開発者やシステム管理者がアプリケーションを開発、導入、実行するためのプラットフォームです。
-Docker を使えば、アプリケーションをコンポーネントからすばやく組み立てることができ、コード導入時に発生するコード間の相違を軽減できます。
-Docker はテストや本番投入も迅速に実現します。
+* サーバと共に長期間稼動する ``dockerd`` デーモンプロセス
+* API は、プログラムがDocker デーモンと対話や命令するために使えるインタフェースを指定する
+* コマンドラインインターフェース（CLI）クライアント ``docker`` 
 
-.. Docker consists of:
+.. The CLI uses Docker APIs to control or interact with the Docker daemon through scripting or direct CLI commands. Many other Docker applications use the underlying API and CLI. The daemon creates and manage Docker objects, such as images, containers, networks, and volumes.
 
-Docker は以下によって構成されます。
+CLI は :doc:`Docker API <api/index>` を使い、スクリプトや直接 CLI コマンドを通して Docker デーモンの制御や対話をします。他の Docker アプリケーションをの多くが、基礎となる API と CLI を使います。デーモンはイメージ、コンテナ、ネットワーク、ボリュームといった Docker オブジェクトの作成と管理をします。
 
-.. * The Docker Engine - our lightweight and powerful open source containerization
-     technology combined with a work flow for building and containerizing your
-     applications.
-   * [Docker Hub](https://hub.docker.com) - our SaaS service for
-     sharing and managing your application stacks.
+.. For more details, see Docker Architecture.
 
-* Docker Engine … 軽量かつ強力なオープンソースによりコンテナ化（containerization）を行う技術。アプリケーションの構築とコンテナ化を行うワークフローを実現します。
-* `Docker Hub <https://hub.docker.com/>`_ … アプリケーション層を共有し管理するための Saas サービス。
-
-.. ## Why Docker?
-
-なぜ Docker なのか？
-====================
-
-.. *Faster delivery of your applications*
-
-**迅速なアプリケーション配信**
-
-.. * We want your environment to work better. Docker containers,
-      and the work flow that comes with them, help your developers,
-      sysadmins, QA folks, and release engineers work together to get your code
-      into production and make it useful. We've created a standard
-      container format that lets developers care about their applications
-      inside containers while sysadmins and operators can work on running the
-      container in your deployment. This separation of duties streamlines and
-      simplifies the management and deployment of code.
-   * We make it easy to build new containers, enable rapid iteration of
-         your applications, and increase the visibility of changes. This
-         helps everyone in your organization understand how an application works
-         and how it is built.
-   *  Docker containers are lightweight and fast! Containers have sub-second launch times, reducing the cycle time of development, testing, and deployment.
-
-* 私たちはみなさんの環境を良くしたいのです。Docker コンテナおよびこれを利用したワークフローは、開発に関わるすべての人、つまり開発者、システム管理者、品質管理担当者、リリース・エンジニアを含め、コードを本番環境へ適用し実運用させる作業すべてを手助けします。標準的なコンテナ・フォーマットというものが作り出されているので、開発者にとってはコンテナ内にあるアプリケーションの開発に集中するだけでよく、システム管理者やオペレータはデプロイされたコンテナの運用に取り組むだけでよくなります。このように作業を分担することは、コード管理とデプロイを効率化し簡素化することを意味します。
-* 新たなコンテナの構築は容易にできます。さらにアプリケーションを迅速に繰り返して投入することや、変更がわかりやすくなるようにしてます。つまり開発する誰にとっても、アプリケーションがいかに作動し、どのようにして構築されるかを、簡単に理解できるようにもなっているわけです。
-* Docker コンテナは軽量かつ高速です！コンテナの起動時間は数秒であり、開発・テスト・デプロイのサイクルにかかる時間を減らします。
-
-.. *Deploy and scale more easily*
-
-**デプロイやスケールをもっと簡単に**
-
-.. * Docker containers run (almost) everywhere. You can deploy
-         containers on desktops, physical servers, virtual machines, into
-         data centers, and up to public and private clouds.
-   * Since Docker runs on so many platforms, it's easy to move your
-         applications around. You can easily move an application from a
-         testing environment into the cloud and back whenever you need.
-   * Docker's lightweight containers also make scaling up and
-         down fast and easy. You can quickly launch more containers when
-         needed and then shut them down easily when they're no longer needed.
-
-* Docker コンテナは（ほとんど）どこでも動きます。コンテナのデプロイは、デスクトップ、物理サーバ、仮想マシンに対して行うことができます。さらにデータセンタやパブリック・クラウド、プライベート・クラウドにもデプロイできます。
-* Docker は多くのプラットフォーム上で動作するので、開発したアプリケーションをあちこちに動かすことが簡単にできます。アプリケーションは、テスト環境からクラウド上に簡単に移動でき、必要に応じてすぐに戻すこともできます。
-* Docker の軽量なコンテナは、スケールアップやスケールダウンもすばやく簡単に実現します。必要なときに必要なだけコンテナをすばやく起動でき、不要になったときには簡単に停止することができます。
-
-.. *Get higher density and run more workloads*
-
-**処理を集中させ負荷を高く**
-
-.. * Docker containers don't need a hypervisor, so you can pack more of
-         them onto your hosts. This means you get more value out of every
-         server and can potentially reduce what you spend on equipment and
-         licenses.
-
-* Docker コンテナはハイパーバイザを必要としないため、ホスト上により多くを詰め込むことができます。つまり各サーバの価値を十分に引き出し、機器やライセンスにかかる潜在的なコストを軽減する可能性を秘めています。
-
-.. *Faster deployment makes for easier management*
-
-**管理の容易さを目指してデプロイを迅速化**
-
-.. * As Docker speeds up your work flow, it gets easier to make lots
-         of small changes instead of huge, big bang updates. Smaller
-         changes mean reduced risk and more uptime.
-
-* Docker によってワークフローがスピードアップするため、とてつもなく大きな更新を行うのではなく、小さな更新を数多くこなすことが可能になります。小さな更新であればあるほど、リスクは減り更新タイミングを増やすことができます。
-
-.. About this guide
-
-このガイドについて
-====================
-
-.. The [Understanding Docker section](understanding-docker.md) will help you:
-
-:doc:`Docker のアーキテクチャ </engine/understanding-docker>` にて以下が示されています。
-
-..  - See how Docker works at a high level
-    - Understand the architecture of Docker
-    - Discover Docker's features;
-    - See how Docker compares to virtual machines
-    - See some common use cases.
-
-* Docker がいかにして動作するかを詳細に
-* Docker のアーキテクチャを理解する
-* Docker の機能を確認する
-* Docker と仮想マシンの違いを見る
-* 一般的な利用例を見る
-
-.. Installation guides
-
-インストールガイド
---------------------
-
-.. The [installation section](installation/index.md) will show you how to install Docker
-   on a variety of platforms.
-
-:doc:`インストールのセクション </engine/installation/index>` では、さまざまなプラットフォームにおける Docker のインストール方法を示します。
+詳細は :ref:`Docker アーキテクチャ <docker-architecture>` をご覧ください。
 
 .. Docker user guide
+.. _docker-user-guide:
 
 Docker ユーザガイド
---------------------
+====================
 
-.. To learn about Docker in more detail and to answer questions about usage and
-   implementation, check out the [Docker User Guide](userguide/index.md).
+.. To learn about Docker in more detail and to answer questions about usage and implementation, check out the overview page in “get started”.
 
-Docker についての詳細、あるいは使い方や実装についての疑問を解消するには :doc:`Docker Engine ユーザガイド </engine/userguide/index>` を確認してください。
+Docker の詳細を学ぶには、また、使い方や実装についての疑問を解消するには、 :doc:`導入ガイドの概要ページ </get-started/overview>` をご覧ください。
+
+.. Installation guides
+.. _engine-installation-guides:
+
+インストールガイド
+====================
+
+.. The installation section shows you how to install Docker on a variety of platforms.
+
+
+:doc:`インストールのセクション </engine/install/index>` では、さまざまなプラットフォームに Docker をインストール方法を説明します。
 
 .. Release note
+.. _engine-release-note:
 
 リリースノート
 ====================
 
 .. A summary of the changes in each release in the current series can now be found on the separate Release Notes page
 
-各リリースにおける変更点の概要については、 `リリース・ノートの各ページ <https://docs.docker.com/release-notes>`_ をご確認ください。
+各リリースにおける変更点の概要については、 :doc:`リリース ノートの各ページ <release-notes>` をご確認ください。
 
 .. Feature deprecation policy
+.. _engine-feature-deprecation-policy:
 
 機能廃止に関する方針
 ====================
 
-.. As changes are made to Docker there may be times when existing features
-   will need to be removed or replaced with newer features. Before an existing
-   feature is removed it will be labeled as "deprecated" within the documentation
-   and will remain in Docker for at least 3 stable releases (roughly 9 months).
-   After that time it may be removed.
+.. As changes are made to Docker there may be times when existing features need to be removed or replaced with newer features. Before an existing feature is removed it is labeled as “deprecated” within the documentation and remains in Docker for at least 3 stable releases unless specified explicitly otherwise. After that time it may be removed.
 
-Docker の機能変更に際しては、既存機能を削除したり新たな機能に置き換えたりする必要があった場合には、時間をおくことが必要になります。既存機能を削除するにあたっては、ドキュメント内に "deprecated"（廃止予定）とラベル付けするようにします。そして Docker モジュール内には、最低でも３つの安定版がリリースされる間（およそ９ヶ月）は残すようにします。この期間を過ぎたものは削除されることがあります。
+Docker の機能変更に際しては、既存機能を削除したり新たな機能に置き換えたりする必要があった場合には、時間をおくことが必要になります。既存機能を削除するにあたっては、ドキュメント内に 「deprecated」（廃止予定）とラベル付けするようにします。そして Docker モジュール内には、最低でも３つの安定版がリリースされる間は残すようにします。この期間を過ぎたものは削除されることがあります。
 
-.. Users are expected to take note of the list of deprecated features each
-   release and plan their migration away from those features, and (if applicable)
-   towards the replacement features as soon as possible.
+.. Users are expected to take note of the list of deprecated features each release and plan their migration away from those features, and (if applicable) towards the replacement features as soon as possible.
 
 ユーザは最新リリースごとに、廃止予定の機能一覧を注意して見ていく必要があります。最新版への移行にあたっては、廃止予定の機能は使わないようにして、（適用可能であれば）できるだけ早くに代替機能を用いるようにしてください。
 
-.. The complete list of deprecated features can be found on the
-   [Deprecated Features page](deprecated.md).
+.. The complete list of deprecated features can be found on the Deprecated Features page.
 
 廃止予定の機能一覧については、:doc:`廃止予定機能のページ </engine/deprecated>` を確認してください。
 
-.. ## Licensing
+.. Licensing
+.. _engine-licensing:
 
 ライセンス
 ====================
 
-.. Docker is licensed under the Apache License, Version 2.0. See
-   [LICENSE](https://github.com/moby/moby/blob/master/LICENSE) for the full
-   license text.
+.. Docker is licensed under the Apache License, Version 2.0. See LICENSE for the full license text.
 
-Docker のライセンスは Apache License, Version 2.0 です。ライセンス条項の詳細は  `LICENSE <https://github.com/docker/docker/blob/master/LICENSE>`_ を確認してください。
+Docker のライセンスは Apache License, Version 2.0 です。ライセンス条項の詳細は  `LICENSE <https://github.com/moby/moby/blob/master/LICENSE>`_ を確認してください。
 
 .. seealso::
 
-   About Docker Engine
+   Docker Engine overview
       https://docs.docker.com/engine/
