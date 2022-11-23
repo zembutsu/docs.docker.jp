@@ -80,7 +80,7 @@ Docker は ``Dockerfile`` から命令を読み込み、自動的にイメージ
 
 .. To tag the image into multiple repositories after the build, add multiple -t parameters when you run the build command:
 
-構築後、複数のリポジトリに対してイメージをタグ付けするには、 ``biuld`` コマンドの実行時、複数の ``-t`` パラメータを追加します。
+構築後、複数のリポジトリに対してイメージをタグ付けするには、 ``build`` コマンドの実行時、複数の ``-t`` パラメータを追加します。
 
 .. code-block:: bash
 
@@ -2042,7 +2042,7 @@ ARG
 
 .. The ARG instruction defines a variable that users can pass at build-time to the builder with the docker build command using the --build-arg <varname>=<value> flag. If a user specifies a build argument that was not defined in the Dockerfile, the build outputs a warning.
 
-``ARG`` 命令は :ruby:`構築時 <build-time>` にユーザが渡せる変数を定義します。変数を渡すには、構築時に ``docker biuld`` コマンドで ``--build-arg <変数名>=<値>`` を指定します。もしも、ユーザが構築時に引数を指定しても、 Dockerfile 中で指定が無ければ、構築時に警告が出ます。
+``ARG`` 命令は :ruby:`構築時 <build-time>` にユーザが渡せる変数を定義します。変数を渡すには、構築時に ``docker build`` コマンドで ``--build-arg <変数名>=<値>`` を指定します。もしも、ユーザが構築時に引数を指定しても、 Dockerfile 中で指定が無ければ、構築時に警告が出ます。
 
 .. code-block:: bash
 
