@@ -27,7 +27,7 @@ docker push
 
 .. Push an image or a repository to a registry
 
-レジストリにイメージやリポジトリを :ruby:`送信 <pushl>` します。
+レジストリにイメージやリポジトリを :ruby:`送信 <push>` します。
 
 .. _docker_push-usage:
 
