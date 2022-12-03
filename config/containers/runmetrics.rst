@@ -110,7 +110,7 @@ v1 と v2 では cgroups のファイル レイアウトが著しく異なりま
 
 .. cgroup v2 is used by default on the following distributions:
 
-以下のディストリビューションでは、デフォルトで cgroup v2 が使われミズ合う。
+以下のディストリビューションでは、デフォルトで cgroup v2 が使われます。
 
 * Fedora (31以降)
 * Debian GNU/Linux (11以降)
