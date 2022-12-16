@@ -782,7 +782,7 @@ net: "container:abc12345"   ->  network_mode: "container:abc12345"
 
 .. docker-compose 1.20.0 introduces a new --compatibility flag designed to help developers transition to version 3 more easily. When enabled, docker-compose reads the deploy section of each service’s definition and attempts to translate it into the equivalent version 2 parameter. Currently, the following deploy keys are translated:
 
-開発者がバージョン 3 に簡単に以降するための手助けとなるのを意図し、 ``docker-compose 1.20.0`` では新しい ``--compatibility`` （互換性）フラグが追加されミズ空いた。これを有効にすると、 ``docker-compose``  は ``deploy`` セクションの各サービス定義を読み込み、バージョン 2 のパラメータと同等に解釈しようとします。現時点では、以下の deploy キーが変換されます。
+開発者がバージョン 3 に簡単に移行するための手助けとなるのを意図し、 ``docker-compose 1.20.0`` では新しい ``--compatibility`` （互換性）フラグが追加されました。これを有効にすると、 ``docker-compose``  は ``deploy`` セクションの各サービス定義を読み込み、バージョン 2 のパラメータと同等に解釈しようとします。現時点では、以下の deploy キーが変換されます。
 
 ..  resources limits and memory reservations
     replicas
