@@ -91,7 +91,7 @@ Docker Hub を使って検査
 
 .. You can trigger scans, view, and inspect vulnerabilities through Docker Hub. For detailed information, see Hub Vulnerability Scanning.
 
-Docker Hub を通した脆弱性検査、表示、調査のトリガを設定できｍさう。詳しい情報は、 :doc:`Hub 脆弱性検査 </docker-hub/vulnerability-scanning>` をご覧ください。
+Docker Hub を通した脆弱性検査、表示、調査のトリガを設定できます。詳しい情報は、 :doc:`Hub 脆弱性検査 </docker-hub/vulnerability-scanning>` をご覧ください。
 
 ..    Note
     Docker Hub Vulnerability Scanning is available for developers subscribed to a Docker Pro, Team, or a Business tier. For more information about the pricing plans, see Docker Pricing.
