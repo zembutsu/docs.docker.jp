@@ -327,7 +327,7 @@ Docker Hub にタグ付けされたバージョンを送信
 
 .. You may need to manage write and read access of GitHub Actions for repositories in the container settings.
 
-レポジトリ内のコンテナ設定に `GitHub Actions の読み書き権限の管理 <https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-ghcrio>`_ が必要な場合があります。
+リポジトリ内のコンテナ設定に `GitHub Actions の読み書き権限の管理 <https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-ghcrio>`_ が必要な場合があります。
 
 .. You can also use a personal access token (PAT) with the appropriate scopes. Remember to change how the image is tagged. The following example keeps ‘latest’ as the only tag. However, you can add any logic to this if you prefer:
 

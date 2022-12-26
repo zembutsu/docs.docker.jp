@@ -38,7 +38,7 @@
 
 .. To push an image, we first need to create a repository on Docker Hub.
 
-イメージを :ruby:`送信 <push>` するには、まず Docker Hub にレポジトリを作成する必要があります。
+イメージを :ruby:`送信 <push>` するには、まず Docker Hub にリポジトリを作成する必要があります。
 
 ..    Sign up or Sign in to Docker Hub.
 

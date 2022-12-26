@@ -91,7 +91,7 @@ docker push 中に表示する :ruby:`プログレス・バー <progress bar>` �
      - 説明
    * - ``--all-tags`` , ``-a``
      - 
-     - レポジトリにあるタグ付きイメージを全て送信
+     - リポジトリにあるタグ付きイメージを全て送信
    * - ``--disable-content-trust``
      - ``true``
      - イメージ検証を省略

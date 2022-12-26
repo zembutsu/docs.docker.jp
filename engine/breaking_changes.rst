@@ -84,7 +84,7 @@ Docker Content Trust は、ダイジェスト値によるイメージの取得�
    have enabled key delegation. Key delegation is a feature which requires a
    manual action to enable.
 
-現在の Docker Engine 1.10 よりも古いバージョンでは、認証鍵の委任機能を持っているレポジトリからのイメージ取得ができません。
+現在の Docker Engine 1.10 よりも古いバージョンでは、認証鍵の委任機能を持っているリポジトリからのイメージ取得ができません。
 認証鍵の委任を有効にするためには、手動での操作を必要とします。
 
 .. seealso:: 

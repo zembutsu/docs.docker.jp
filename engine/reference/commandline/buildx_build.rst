@@ -444,7 +444,7 @@ tar
 
 - ``registry`` … `registry ソース <https://github.com/moby/buildkit#registry-push-image-and-cache-separately>`_ は、キャッシュ・マニフェストやレジストリ上の（特別な）設定からキャシュを取り込めます。
 - ``local`` … `local ソース <https://github.com/moby/buildkit#local-directory-1>`_ は、以前に ``--cache-to`` で出力済みのロールファイルから、キャッシュを取り込めます。
-- ``gha`` … `gha ソース <https://github.com/moby/buildkit#github-actions-cache-experimental>`_ は、以前に ``--cache-to`` で GitHub レポジトリに出力済みのキャッシュから、キャッシュを取り込めます。
+- ``gha`` … `gha ソース <https://github.com/moby/buildkit#github-actions-cache-experimental>`_ は、以前に ``--cache-to`` で GitHub リポジトリに出力済みのキャッシュから、キャッシュを取り込めます。
 
 .. If no type is specified, registry exporter is used with a specified reference.
 
