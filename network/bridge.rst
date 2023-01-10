@@ -34,7 +34,7 @@ Docker におけるブリッジ・ネットワークとは、ソフトウェア�
 
 .. When you start Docker, a default bridge network (also called bridge) is created automatically, and newly-started containers connect to it unless otherwise specified. You can also create user-defined custom bridge networks. User-defined bridge networks are superior to the default bridge network.
 
-Docker を起動すると、 :ref:`デフォルト・ブリッジ・ネットワーク <use-the-default-bridge-network>` （ ``bridge`` とも呼びます）が自動的に作成されます。また、新しく起動するコンテナでネットワークの指定が無い蹴れば、このデフォルト・ブリッジ・ネットワークに接続します。 **このデフォルト ``bridge`` ネットワークよりも、ユーザ定義ブリッジ・ネットワークの方が優先です** 。
+Docker を起動すると、 :ref:`デフォルト・ブリッジ・ネットワーク <use-the-default-bridge-network>` （ ``bridge`` とも呼びます）が自動的に作成されます。また、新しく起動するコンテナでネットワークの指定が無ければ、このデフォルト・ブリッジ・ネットワークに接続します。 **このデフォルト ``bridge`` ネットワークよりも、ユーザ定義ブリッジ・ネットワークの方が優先です** 。
 
 
 .. Differences between user-defined bridges and the default bridge
@@ -98,7 +98,7 @@ Docker を起動すると、 :ref:`デフォルト・ブリッジ・ネットワ
 
    ..    Originally, the only way to share environment variables between two containers was to link them using the --link flag. This type of variable sharing is not possible with user-defined networks. However, there are superior ways to share environment variables. A few ideas:
 
-   当初、2つのコンテナ間で環境変数鄔共有するには :doc:`--link フラグ <links>` を使い、コンテナ間をリンクする方法しかありませんでした。ユーザ定義ネットワークであれば、このような変数共有は不可能です。しかしながら、環境変数を共有するよりも優れた方法がいくつかあります。
+   当初、2つのコンテナ間で環境変数を共有するには :doc:`--link フラグ <links>` を使い、コンテナ間をリンクする方法しかありませんでした。ユーザ定義ネットワークであれば、このような変数共有は不可能です。しかしながら、環境変数を共有するよりも優れた方法がいくつかあります。
 
    ..        Multiple containers can mount a file or directory containing the shared information, using a Docker volume.
 
@@ -137,7 +137,7 @@ Docker を起動すると、 :ref:`デフォルト・ブリッジ・ネットワ
 
 .. Use the docker network rm command to remove a user-defined bridge network. If containers are currently connected to the network, disconnect them first.
 
-ユーザ定義ブリッジ・ネットワークから削除得するには、 ``docker network rm`` コマンドを使います。コンテナがその時点でネットワークに接続中であれば、まず :ref:`ネットワークからの切断 <disconnect-a-container-from-a-user-defined-bridge>` をします。
+ユーザ定義ブリッジ・ネットワークを削除するには、 ``docker network rm`` コマンドを使います。コンテナがその時点でネットワークに接続中であれば、まず :ref:`ネットワークからの切断 <disconnect-a-container-from-a-user-defined-bridge>` をします。
 
 .. code-block:: bash
 
