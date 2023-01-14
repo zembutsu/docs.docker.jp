@@ -100,7 +100,7 @@ Compose ファイルの作成
      -e MYSQL_USER=root \
      -e MYSQL_PASSWORD=secret \
      -e MYSQL_DB=todos \
-     node:12-alpine \
+     node:18-alpine \
      sh -c "yarn install && yarn run dev"
 
 PowerShell の場合は、こちらのコマンドを使っていました。
@@ -114,7 +114,7 @@ PowerShell の場合は、こちらのコマンドを使っていました。
      -e MYSQL_USER=root `
      -e MYSQL_PASSWORD=secret `
      -e MYSQL_DB=todos `
-     node:12-alpine `
+     node:18-alpine `
      sh -c "yarn install && yarn run dev"
 
 .. First, let’s define the service entry and the image for the container. We can pick any name for the service. The name will automatically become a network alias, which will be useful when defining our MySQL service.
@@ -127,7 +127,7 @@ PowerShell の場合は、こちらのコマンドを使っていました。
       
       services:
         app:
-          image: node:12-alpine
+          image: node:18-alpine
 
 .. Typically, you will see the command close to the image definition, although there is no requirement on ordering. So, let’s go ahead and move that into our file.
 
@@ -139,7 +139,7 @@ PowerShell の場合は、こちらのコマンドを使っていました。
       
       services:
         app:
-          image: node:12-alpine
+          image: node:18-alpine
           command: sh -c "yarn install && yarn run dev"
 
 .. Let’s migrate the -p 3000:3000 part of the command by defining the ports for the service. We will use the short syntax here, but there is also a more verbose long syntax available as well.
@@ -152,7 +152,7 @@ PowerShell の場合は、こちらのコマンドを使っていました。
       
       services:
         app:
-          image: node:12-alpine
+          image: node:18-alpine
           command: sh -c "yarn install && yarn run dev"
           ports:
             - 3000:3000
@@ -171,7 +171,7 @@ PowerShell の場合は、こちらのコマンドを使っていました。
       
       services:
         app:
-          image: node:12-alpine
+          image: node:18-alpine
           command: sh -c "yarn install && yarn run dev"
           ports:
             - 3000:3000
@@ -189,7 +189,7 @@ PowerShell の場合は、こちらのコマンドを使っていました。
       
       services:
         app:
-          image: node:12-alpine
+          image: node:18-alpine
           command: sh -c "yarn install && yarn run dev"
           ports:
             - 3000:3000
@@ -299,7 +299,7 @@ PowerShell の場合は、以下のコマンドを使います。
    
    services:
      app:
-       image: node:12-alpine
+       image: node:18-alpine
        command: sh -c "yarn install && yarn run dev"
        ports:
          - 3000:3000
