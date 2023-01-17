@@ -94,7 +94,7 @@ Compose ファイルで環境変数を展開
 
 
 * ``${変数:?err}`` は、 ``変数`` が設定されていないか、環境変数の値が空の場合、 ``err`` を含むエラーメッセージと共に終了する
-* ``${変数?err} は、環境変数内で ``変数`` が去って居されていない場合に、 ``err`` を含むエラーメッセージと共に終了する
+* ``${変数?err}`` は、環境変数内で ``変数`` が設定されていない場合に、 ``err`` を含むエラーメッセージと共に終了する
 
 .. Other extended shell-style features, such as ${VARIABLE/foo/bar}, are not supported.
 
@@ -274,7 +274,7 @@ Compose ファイルで環境変数を展開
 
 .. You can pass environment variables from your shell straight through to a service’s containers with the ‘environment’ key by not giving them a value, just like with docker run -e VARIABLE ...:
 
-シェル上の環境変数をサービス用のコンテナに対して直接通すには、 :ref:`'environment' キー <compose-file-v3-environment>` で値を指定せずに使います。これは ``docker run -e VARIABLE ... `` のようなものです。
+シェル上の環境変数をサービス用のコンテナに対して直接通すには、 :ref:`'environment' キー <compose-file-v3-environment>` で値を指定せずに使います。これは ``docker run -e VARIABLE ...`` のようなものです。
 
 .. code-block:: yaml
 
@@ -291,7 +291,7 @@ Compose ファイルで環境変数を展開
 
 .. You can pass multiple environment variables from an external file through to a service’s containers with the ‘env_file’ option, just like with docker run --env-file=FILE ...:
 
-サービス用のコンテナに対して :ref:`'env_file' オプション <compose-file-v3-env_file>` を使えば、外部ファイルを通して複数の環境変数を渡せます。これは、 ``docker run --env-file=FILE ... `` のようなものです。
+サービス用のコンテナに対して :ref:`'env_file' オプション <compose-file-v3-env_file>` を使えば、外部ファイルを通して複数の環境変数を渡せます。これは、 ``docker run --env-file=FILE ...`` のようなものです。
 
 .. code-block:: yaml
 
