@@ -143,7 +143,7 @@ context（必須）
 
 .. context defines either a path to a directory containing a Dockerfile, or a url to a git repository.
 
-``content`` は Dockerifle を含むディレクトリのパスか、 git リポジトリの url を定義します。
+``context`` は Dockerifle を含むディレクトリのパスか、 git リポジトリの url を定義します。
 
 .. When the value supplied is a relative path, it MUST be interpreted as relative to the location of the Compose file. Compose implementations MUST warn user about absolute path used to define build context as those prevent Compose file from being portable.
 
