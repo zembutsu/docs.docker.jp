@@ -25,7 +25,7 @@ Docker Compose を使う
 
 .. The big advantage of using Compose is you can define your application stack in a file, keep it at the root of your project repo (it’s now version controlled), and easily enable someone else to contribute to your project. Someone would only need to clone your repo and start the compose app. In fact, you might see quite a few projects on GitHub/GitLab doing exactly this now.
 
-Compose を使う「大きな」利点は、アプリケーション スタックをファイルに定義し、プロジェクト用リポジトリの一番上に置けるため（これでバージョン管理できます）、プロジェクトに貢献しようとしている誰もが簡単に利用できます。誰もが必要なのは、リポジトリをクローンし、それから :ruby:構成された <compose>` アプリを起動するだけです。実際、 GitHub や GitLab 上のプロジェクトで既に見かけているもしれません。
+Compose を使う「大きな」利点は、アプリケーション スタックをファイルに定義し、プロジェクト用リポジトリの一番上に置けるため（これでバージョン管理できます）、プロジェクトに貢献しようとしている誰もが簡単に利用できます。誰もが必要なのは、リポジトリをクローンし、それから :ruby:`構成された <compose>` アプリを起動するだけです。実際、 GitHub や GitLab 上のプロジェクトで既に見かけているもしれません。
 
 .. So, how do we get started?
 
