@@ -147,7 +147,7 @@ Docker コンテナの起動時、最初に決める必要があるのは、コ�
 
 .. This succeeds in starting the nginx service inside the container. However, it fails the detached container paradigm in that, the root process (service nginx start) returns and the detached container stops as designed. As a result, the nginx service is started but could not be used. Instead, to start a process such as the nginx web server do the following:
 
-コンテナ内で ``nginx`` サービスの起動は成功します。ですが、デタッチドコンテナの枠組み内では処理に失敗します。これはルートプロセス（ ``service nginx start`` ）が終了するため、デタッチドコンテナは設計上た通りに停止されます。その結果、 ``nginx`` サービスは実行しますが、使えません。かわりに、  ``nginx``  ウェブサーバのプロセスを実行するには、次のようにします。
+コンテナ内で ``nginx`` サービスを起動することには成功します。ですが、デタッチドコンテナの枠組み内では処理に失敗します。これはルートプロセス（ ``service nginx start`` ）が終了し、設計上、デタッチドコンテナは停止されます。その結果、 ``nginx`` サービスは起動されますが、使えません。かわりに、  ``nginx``  ウェブサーバのプロセスを実行するには、次のようにします。
 
 .. code-block:: bash
 
