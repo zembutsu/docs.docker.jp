@@ -147,7 +147,9 @@ Docker コンテナの起動時、最初に決める必要があるのは、コ�
 
 .. This succeeds in starting the nginx service inside the container. However, it fails the detached container paradigm in that, the root process (service nginx start) returns and the detached container stops as designed. As a result, the nginx service is started but could not be used. Instead, to start a process such as the nginx web server do the following:
 
-コンテナ内で ``nginx`` サービスを起動することには成功します。ですが、デタッチドコンテナの枠組み内では処理に失敗します。これはルートプロセス（ ``service nginx start`` ）が終了し、デタッチドコンテナは設計通りに停止されるためです。その結果、 ``nginx`` サービスは起動されますが、使えません。かわりに、  ``nginx``  ウェブサーバのプロセスを実行するには、次のようにします。
+
+コンテナ内で ``nginx`` サービスを起動することには成功します。ですが、デタッチドコンテナの枠組み内では処理に失敗します。これはルートプロセス（ ``service nginx start`` ）が終了し、設計上、デタッチドコンテナは停止されます。その結果、 ``nginx`` サービスは起動されますが、使えません。かわりに、  ``nginx``  ウェブサーバのプロセスを実行するには、次のようにします。
+
 
 .. code-block:: bash
 
@@ -270,7 +272,7 @@ PID 相当の機能
 
 .. While not strictly a means of identifying a container, you can specify a version of an image you’d like to run the container with by adding image[:tag] to the command. For example, docker run ubuntu:14.04.
 
-正確にはコンテナ名を識別するものではありませんが、コンテナ実行時のコマンドに ``イメージ[:タグ]`` を追加すると、イメージのバージョンを指定できます。例えば ``docker run ubuntu:14.04`` と実行します。
+正確には、コンテナ名を識別する手段ではありませんが、コンテナ実行時のコマンドに ``イメージ[:タグ]`` を追加すると、イメージのバージョンを指定してコンテナを起動できます。例えば ``docker run ubuntu:14.04`` と実行します。
 
 
 .. Image[@digest]
