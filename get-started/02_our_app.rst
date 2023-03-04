@@ -87,7 +87,7 @@
 
 ..    This command used the Dockerfile to build a new container image. You might have noticed that a lot of “layers” were downloaded. This is because we instructed the builder that we wanted to start from the node:12-alpine image. But, since we didn’t have that on our machine, that image needed to be downloaded.
 
-このコマンドは、先ほどの Dockerfile を使い、新しいコンテナ イメージを :ruby:`構築 <build>` します。実行すると、多くの「 :ruby:`レイヤー <layer>` 」がダウンロードされるのが分かるでしょう。これは ``nonde:12-alpine`` イメージから起動したいと  :ruby:`構築用プログラム <builder>` に対して命令したからです。ですが、マシン上にはイメージがないため、ダウンロードする必要があります。
+このコマンドは、先ほどの Dockerfile を使い、新しいコンテナ イメージを :ruby:`構築 <build>` します。実行すると、多くの「 :ruby:`レイヤー <layer>` 」がダウンロードされるのが分かるでしょう。これは ``node:18-alpine`` イメージから起動したいと  :ruby:`構築用プログラム <builder>` に対して命令したからです。ですが、マシン上にはイメージがないため、ダウンロードする必要があります。
 
 ..    After the image was downloaded, we copied in our application and used yarn to install our application’s dependencies. The CMD directive specifies the default command to run when starting a container from this image.
 
