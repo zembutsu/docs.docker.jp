@@ -69,7 +69,7 @@ BuildKit での構築を有効化するには
 
 .. Easiest way from a fresh install of docker is to set the DOCKER_BUILDKIT=1 environment variable when invoking the docker build command, such as:
 
-Docker の新規インストールが最も簡単で、 ``docker build`` コマンドの実行時に ``DOCKER_BUILDKIT``` 環境変数を次のように指定します。
+Docker の新規インストールが最も簡単で、 ``docker build`` コマンドの実行時に ``DOCKER_BUILDKIT`` 環境変数を次のように指定します。
 
 .. code-block:: bash
 
