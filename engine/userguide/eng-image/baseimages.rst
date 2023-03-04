@@ -88,7 +88,7 @@ Ubuntu の親イメージを作るのは、以下のように簡単にできま�
 .. There are more example scripts for creating parent images in the Docker
    GitHub Repo:
 
-Docker GitHub レポジトリには、親イメージを生成するスクリプトの例がいろいろとあります。
+Docker GitHub リポジトリには、親イメージを生成するスクリプトの例がいろいろとあります。
 
 ..  - [BusyBox](https://github.com/moby/moby/blob/master/contrib/mkimage/busybox-static)
     - CentOS / Scientific Linux CERN (SLC) [on Debian/Ubuntu](
