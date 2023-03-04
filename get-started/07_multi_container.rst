@@ -299,7 +299,7 @@ todo アプリでは、 MySQL へ接続する設定を指定するため、い�
         -e MYSQL_USER=root \
         -e MYSQL_PASSWORD=secret \
         -e MYSQL_DB=todos \
-        node:12-alpine \
+        node:18-alpine \
         sh -c "yarn install && yarn run dev"
 
    .. If you are using Windows then use this command in PowerShell.
@@ -315,7 +315,7 @@ todo アプリでは、 MySQL へ接続する設定を指定するため、い�
         -e MYSQL_USER=root `
         -e MYSQL_PASSWORD=secret `
         -e MYSQL_DB=todos `
-        node:12-alpine `
+        node:18-alpine `
         sh -c "yarn install && yarn run dev"
 
 .. If we look at the logs for the container (docker logs <container-id>), we should see a message indicating it’s using the mysql database.

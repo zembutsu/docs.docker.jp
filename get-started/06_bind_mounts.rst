@@ -95,7 +95,7 @@ Node をベースとするアプリケーション `nodemon <https://npmjs.com/p
    
       $ docker run -dp 3000:3000 \
           -w /app -v "$(pwd):/app" \
-          node:12-alpine \
+          node:18-alpine \
           sh -c "yarn install && yarn run dev"
 
    .. If you are using PowerShell then use this command:
@@ -107,7 +107,7 @@ Node をベースとするアプリケーション `nodemon <https://npmjs.com/p
    
       PS> docker run -dp 3000:3000 `
           -w /app -v "$(pwd):/app" `
-          node:12-alpine `
+          node:18-alpine `
           sh -c "yarn install && yarn run dev"
 
    .. If you are using an Apple silicon Mac or another ARM64 device, then use the following command.
@@ -118,14 +118,14 @@ Node をベースとするアプリケーション `nodemon <https://npmjs.com/p
    
       $ docker run -dp 3000:3000 \
            -w /app -v "$(pwd):/app" \
-           node:12-alpine \
+           node:18-alpine \
            sh -c "apk add --no-cache python2 g++ make && yarn install && yarn run dev"
 
 
    * ``-dp 3000:3000`` … 以前と同じです。 :ruby:`デタッチド <detached>` （バックグラウンド）モードで実行し、 :ruby:`ポート割り当て <port mapping>` を作成
    * ``-w /app`` … コマンドを実行する場所として、「 :ruby:`作業ディレクトリ <working directory>` 」またはカレント ディレクトリを指定
    * ``-v "$(pwd):/app"`` … ホスト上にある現在のディレクトリを、コンテナ内の ``/app`` ディレクトリにバインド マウント
-   * ``node:12-alpine`` … 使用するイメージ。これが Dockerfile から作成するアプリ用のベースイメージになるのを意味する
+   * ``node:18-alpine`` … 使用するイメージ。これが Dockerfile から作成するアプリ用のベースイメージになるのを意味する
    * ``sh -c "yarn install && yarn run dev"`` … （コンテナで）実行するコマンド。 ``sh`` を使って開始し（alpine には ``bash`` がないため）、全ての依存関係をインストールするため ``yarn install`` を実行し、それから ``yarn run dev`` を実行。 ``package.json`` があれば確認し、それから ``dev`` スクリプトが ``nodemon`` を開始する
 
 .. You can watch the logs using docker logs. You’ll know you’re ready to go when you see this:
@@ -136,7 +136,7 @@ Node をベースとするアプリケーション `nodemon <https://npmjs.com/p
    
       $ docker logs -f <container-id>
       nodemon src/index.js
-      [nodemon] 1.19.2
+      [nodemon] 2.0.20
       [nodemon] to restart at any time, enter `rs`
       [nodemon] watching dir(s): *.*
       [nodemon] starting `node src/index.js`
