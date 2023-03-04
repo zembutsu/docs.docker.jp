@@ -198,7 +198,7 @@
 
    .. .dockerignore files are an easy way to selectively copy only image relevant files. You can read more about this here. In this case, the node_modules folder should be omitted in the second COPY step because otherwise, it would possibly overwrite files which were created by the command in the RUN step. For further details on why this is recommended for Node.js applications and other best practices, have a look at their guide on Dockerizing a Node.js web app.
 
-   イメージに関係あるファイルだけ選んでコピーするには、 ``.dockerignore`` ファイルの利用が簡単です。 :ref:`こちら <dockerignore-file>` で詳しく読めます。今回の場合、２つめの ``COPY`` ステップで ``node_modulers`` フォルダは無視されます。これは、そうしなければ、 ``RUN`` ステップ中の命令で作成されるファイルにより、上書きされる可能性があるためです。どうして Node.js アプリケーションにこのような推奨をするのかや、他のペストプラクティスといった詳細は、Node.js のガイド `Dockerizing a Node.js web app <https://nodejs.org/en/docs/guides/nodejs-docker-webapp/>`_ をご覧ください。
+   イメージに関係あるファイルだけ選んでコピーするには、 ``.dockerignore`` ファイルの利用が簡単です。 :ref:`こちら <dockerignore-file>` で詳しく読めます。今回の場合、２つめの ``COPY`` ステップで ``node_modulers`` フォルダは無視されます。これは、そうしなければ、 ``RUN`` ステップ中の命令で作成されるファイルにより、上書きされる可能性があるためです。どうして Node.js アプリケーションにこのような推奨をするのかや、他のベストプラクティスといった詳細は、Node.js のガイド `Dockerizing a Node.js web app <https://nodejs.org/en/docs/guides/nodejs-docker-webapp/>`_ をご覧ください。
 
 .. Build a new image using docker build.
 

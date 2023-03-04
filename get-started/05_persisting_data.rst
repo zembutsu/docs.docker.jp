@@ -75,7 +75,7 @@ DB の保持
 
    .. If you prefer the command line you can use the docker exec command to do the same. You need to get the container’s ID (use docker ps to get it) and get the content with the following command.
 
-   ``docker eec`` コマンドを使う方が好きでしたら、同じようにできます。そのためにはコンテナ ID の確認が必要です。それから、以下のコマンドでファイル内容を表示します。
+   ``docker exec`` コマンドを使う方が好きでしたら、同じようにできます。そのためにはコンテナ ID の確認が必要です。それから、以下のコマンドでファイル内容を表示します。
 
    .. code-block:: bash
    
