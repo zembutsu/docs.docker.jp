@@ -120,7 +120,7 @@ Docker Compose CLI プラグインのインストール
 
 .. Verify that Docker Compose is installed correctly by checking the version.
 
-3. バージョンを確認し、Docker Compose が田悪しくインストールされたかを確認します。
+3. バージョンを確認し、Docker Compose が正しくインストールされたかを確認します。
 
 .. code-block:: bash
 
