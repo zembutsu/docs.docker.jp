@@ -105,7 +105,7 @@ Docker Compose CLI プラグインのインストール
         docker-compose-plugin | 2.3.3~ubuntu-focal | https://download.docker.com/linux/ubuntu focal/stable arm64 Packages
 
    .. b. From the list obtained use the version string you can in the second column to specify the version you wish to install.
-   b. 得られた結果の2行目以降の列から、インストールしたいバージョンを指定する文字列を確認します。。
+   b. 得られた結果の2行目以降の列から、インストールしたいバージョンを指定する文字列を確認します。
 
    .. c. Install the selected version:
    c. 指定したバージョンをインストールします。
@@ -120,7 +120,7 @@ Docker Compose CLI プラグインのインストール
 
 .. Verify that Docker Compose is installed correctly by checking the version.
 
-3. バージョンを確認し、Docker Compose が田悪しくインストールされたかを確認します。
+3. バージョンを確認し、Docker Compose が正しくインストールされたかを確認します。
 
 .. code-block:: bash
 
