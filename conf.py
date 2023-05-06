@@ -55,7 +55,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Docker-docs-ja'
-copyright = u'2015-2022, Docker Docs Translation Ja-Jp Project'
+copyright = u'2015-2023, Docker Docs Translation Ja-Jp Project'
 author = u'Docker Docs Translation Ja-Jp Project'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -122,15 +122,35 @@ html_theme = 'sphinx_rtd_theme'
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-#html_theme_options = {}
+html_theme_options = {
+    'logo_only': False,
+    'display_version': True,
+    'prev_next_buttons_location': 'bottom',
+    'style_external_links': True,
+    'collapse_navigation': True,
+    'sticky_navigation': True,
+    'navigation_depth': 5,
+    'includehidden': True,
+    'titles_only': False,
+}
+
+# 「Edit on GitHub」の表示
+# https://docs.readthedocs.io/en/stable/guides/edit-source-links-sphinx.html
+html_context = {
+    "display_github": True,
+    "github_user": "zembutsu",
+    "github_repo": "docs.docker.jp",
+    "github_version": "v23.0",
+    "conf_py_path": "/",
+}
 
 # Add any paths that contain custom themes here, relative to this directory.
 #html_theme_path = []
 #html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-html_theme_path = ['./_themes/']
+#html_theme_path = ['./_themes/']
 
-#def setup(app):
-#	    app.add_stylesheet('custom_style.css')
+def setup(app):
+	    app.add_css_file('custom_style.css')
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
