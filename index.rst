@@ -5,8 +5,8 @@
    contain the root `toctree` directive.
 .. -----------------------------------------------------------------------------
 .. URL: https://docs.docker.com/
-   doc version: 20.10 (current)
-.. check date: 2021/07/03
+   doc version: 23.0 (current)
+.. check date: 2023/05/06
 .. -----------------------------------------------------------------------------
 
 .. Welcome to Docker-docs-ja's documentation!
@@ -20,7 +20,7 @@ Docker ドキュメント日本語化プロジェクト
 
 .. attention::
 
-  * Docker `v20.10 (current)`  向けにドキュメントの改訂作業中です(2022年7月現在)。一部古い場合がありますので、ご注意ください。
+  * Docker `v23.0.x (current)`  向けにドキュメントの改訂作業中です(2023年5月現在)。一部古い場合がありますので、ご注意ください。
   * Docker のドキュメントは常に変わり続けています。最新の情報については `公式ドキュメント <https://docs.docker.com/>`_ をご覧ください。
   * 本プロジェクトは有志による翻訳プロジェクトです。お気づきの点がございましたら、 `issue <https://github.com/zembutsu/docs.docker.jp/issues>`_ や `Pull Request <https://github.com/zembutsu/docs.docker.jp/pulls>`_ 、 `Docker 道場（日本語の Docker オンラインフォーラム） <https://dojo.docker.jp/>`_ でお知らせ願います。
 
@@ -51,7 +51,7 @@ Docker ドキュメント
 
 ---
 
-Doc v20.10 目次
+Doc v23.0 目次
 ====================
 
 .. toctree::
@@ -126,6 +126,7 @@ Docs archive
    :maxdepth: 1
    :caption: Docs アーカイブ
 
+   v20.10 <http://docs.docker.jp/v20.10/>
    v19.03 <http://docs.docker.jp/v19.03/>
    v17.06 <http://docs.docker.jp/v17.06/>
    v1.12 <http://docs.docker.jp/v1.12/>
