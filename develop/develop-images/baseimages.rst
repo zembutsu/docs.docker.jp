@@ -26,7 +26,7 @@
 ..    A parent image is the image that your image is based on. It refers to the contents of the FROM directive in the Dockerfile. Each subsequent declaration in the Dockerfile modifies this parent image. Most Dockerfiles start from a parent image, rather than a base image. However, the terms are sometimes used interchangeably.
     A base image has FROM scratch in its Dockerfile.
 
-* :ref:`親イメージ <parent-image>` はイメージの土台（ベース）となるイメージです。 Dockerfile の ``FROM`` 命令で内容を指定します。 Dockerfile で以降に続く命令では、この親イメージに対して変更を加えます。ほとんどの Dockerfile はベース イメージではなく、何らかの親イメージからスタートします。しかしながら、ほとんどが用途はとして置き換え可能です。
+* :ref:`親イメージ <parent-image>` はイメージの土台（ベース）となるイメージです。 Dockerfile の ``FROM`` 命令で内容を指定します。 Dockerfile で以降に続く命令では、この親イメージに対して変更を加えます。ほとんどの Dockerfile はベース イメージではなく、何らかの親イメージからスタートします。しかし、これらの用語は同じ意味で使用されることもあります。
 * :ref:`ベース イメージ <base-image>` は Dockerfile の中で ``FROM scratch`` の指定があります。
 
 .. This topic shows you several ways to create a base image. The specific process will depend heavily on the Linux distribution you want to package. We have some examples below, and you are encouraged to submit pull requests to contribute new ones.
@@ -41,7 +41,7 @@ tar を使ってイメージ全体を作成
 
 .. In general, start with a working machine that is running the distribution you’d like to package as a parent image, though that is not required for some tools like Debian’s Debootstrap, which you can also use to build Ubuntu images.
 
-一般的に、マシンを作り始めるときは、実行したいパッケージを含むディストリビューションが親イメージの中に入っています。そのため、 Debian の `Debootstrap <https://wiki.debian.org/Debootstrap>`_ のようなツールは不要であり、Ubuntu イメージの構築にあたっても同様です。
+一般的に、親イメージとしてパッケージしたいディストリビューションが動作しているマシンから始めます。しかし、この作業は Debian の `Debootstrap <https://wiki.debian.org/Debootstrap>`_ のようなツールを用いる場合は不要であり、Ubuntu イメージの構築にあたっても同様です。
 
 .. It can be as simple as this to create an Ubuntu parent image:
 
