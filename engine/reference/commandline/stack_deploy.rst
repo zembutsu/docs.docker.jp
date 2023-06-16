@@ -11,7 +11,7 @@
 .. docker stack deploy
 
 =======================================
-docker stack depoy
+docker stack deploy
 =======================================
 
 .. sidebar:: 目次
