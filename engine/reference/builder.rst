@@ -887,7 +887,7 @@ RUN には２つの形式があります。
 
 .. Unlike the shell form, the exec form does not invoke a command shell. This means that normal shell processing does not happen. For example, RUN [ "echo", "$HOME" ] will not do variable substitution on $HOME. If you want shell processing then either use the shell form or execute a shell directly, for example: RUN [ "sh", "-c", "echo $HOME" ]. When using the exec form and executing a shell directly, as in the case for the shell form, it is the shell that is doing the environment variable expansion, not docker
 
-シェル形式と異なり、 `exec` 形式はコマンドとしてのシェルを実行しません。つまり、通常のシェルとしての処理を行いません。たとえば、 ``RUN [  "echo", "$HOME" ]`` では、 ``$HOME`` を変数展開しません。もしも、シェルとしての総理を行いたければ、シェル形式を使うか、 ``RUN [ "sh", "-c", "echo $HOME" ]`` のように、直接シェルを実行します。 exec 形式もしくは直接シェルを実行する場合は、シェル形式と同じように処理をしているように見えますが、シェルが環境変数を処理しているのであり、 Docker が行っているのではありません。
+シェル形式と異なり、 `exec` 形式はコマンドとしてのシェルを実行しません。つまり、通常のシェルとしての処理を行いません。たとえば、 ``RUN [  "echo", "$HOME" ]`` では、 ``$HOME`` を変数展開しません。もしも、シェルとしての処理を行いたければ、シェル形式を使うか、 ``RUN [ "sh", "-c", "echo $HOME" ]`` のように、直接シェルを実行します。 exec 形式もしくは直接シェルを実行する場合は、シェル形式と同じように処理をしているように見えますが、シェルが環境変数を処理しているのであり、 Docker が行っているのではありません。
 
 .. Note
    In the JSON form, it is necessary to escape backslashes. This is particularly relevant on Windows where the backslash is the path separator. The following line would otherwise be treated as shell form due to not being valid JSON, and fail in an unexpected way:
@@ -975,7 +975,7 @@ CMD
 
 .. Unlike the shell form, the exec form does not invoke a command shell. This means that normal shell processing does not happen. For example, CMD [ "echo", "$HOME" ] will not do variable substitution on $HOME. If you want shell processing then either use the shell form or execute a shell directly, for example: CMD [ "sh", "-c", "echo $HOME" ]. When using the exec form and executing a shell directly, as in the case for the shell form, it is the shell that is doing the environment variable expansion, not docker.
 
-シェル形式と異なり、 `exec` 形式はコマンドとしてのシェルを実行しません。つまり、通常のシェルとしての処理を行いません。たとえば、 ``CMD [  "echo", "$HOME" ]`` では、 ``$HOME`` を変数展開しません。もしも、シェルとしての総理を行いたければ、シェル形式を使うか、 ``CMD [ "sh", "-c", "echo $HOME" ]`` のように、直接シェルを実行します。 exec 形式もしくは直接シェルを実行する場合は、シェル形式と同じように処理をしているように見えますが、シェルが環境変数を処理しているのであり、 Docker が行っているのではありません。
+シェル形式と異なり、 `exec` 形式はコマンドとしてのシェルを実行しません。つまり、通常のシェルとしての処理を行いません。たとえば、 ``CMD [  "echo", "$HOME" ]`` では、 ``$HOME`` を変数展開しません。もしも、シェルとしての処理を行いたければ、シェル形式を使うか、 ``CMD [ "sh", "-c", "echo $HOME" ]`` のように、直接シェルを実行します。 exec 形式もしくは直接シェルを実行する場合は、シェル形式と同じように処理をしているように見えますが、シェルが環境変数を処理しているのであり、 Docker が行っているのではありません。
 
 .. When used in the shell or exec formats, the CMD instruction sets the command to be executed when running the image.
 
