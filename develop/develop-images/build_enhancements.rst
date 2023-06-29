@@ -25,7 +25,7 @@ Docker Build は Docker Engine で最も使われる機能の１つです。利�
 
 .. Docker Build enhancements for 18.09 release introduces a much-needed overhaul of the build architecture. By integrating BuildKit, users should see an improvement on performance, storage management, feature functionality, and security.
 
-リリース 18.09 では、強く求められていた構築方式が見直され、 Docker Build の拡張が導入されました。利用者は :ruby:`BuildKit <ビルドキット>`_ との統合により、性能、ストレージ管理、際立つ機能性、セキュリティの改善を目の当たりにするでしょう。
+リリース 18.09 では、強く求められていた構築方式が見直され、 Docker Build の拡張が導入されました。利用者は :ruby:`BuildKit <ビルドキット>` との統合により、性能、ストレージ管理、際立つ機能性、セキュリティの改善を目の当たりにするでしょう。
 
 ..  Docker images created with BuildKit can be pushed to Docker Hub just like Docker images created with legacy build
     the Dockerfile format that works on legacy build will also work with BuildKit builds
