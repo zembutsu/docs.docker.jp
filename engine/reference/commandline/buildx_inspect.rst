@@ -71,7 +71,7 @@ docker buildx inspect
 
 .. Use the --bootstrap option to ensure that the builder is running before inspecting it. If the driver is docker-container, then --bootstrap starts the buildkit container and waits until it is operational. Bootstrapping is automatically done during build, and therefore not necessary. The same BuildKit container is used during the lifetime of the associated builder node (as displayed in buildx ls).
 
-``--bootstrap`` オプションを使い、ビルダ対象を調査する前に、実行チュかどうかを確認します。もしもドライバが ``docker-container`` の場合は、 ``--bootstrap`` は buidkit コンテナを起動し、処理を始めるまで待機します。構築にあたり、起動処理は自動的に行われますので、必須ではありません。関連するビルダ・ノードが動作している間（ ``buildx ls`` で表示）、同じ BuildKit コンテナが使われます。
+``--bootstrap`` オプションを使い、ビルダ対象を調査する前に、実行チュかどうかを確認します。もしもドライバが ``docker-container`` の場合は、 ``--bootstrap`` は buildkit コンテナを起動し、処理を始めるまで待機します。構築にあたり、起動処理は自動的に行われますので、必須ではありません。関連するビルダ・ノードが動作している間（ ``buildx ls`` で表示）、同じ BuildKit コンテナが使われます。
 
 .. Override the configured builder instance (--builder)
 

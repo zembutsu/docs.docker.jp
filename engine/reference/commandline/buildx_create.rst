@@ -208,7 +208,7 @@ docker を経由して実行する BuildKit コンテナを使います。この
 
 .. Uses a kubernetes pods. With this driver, you can spin up pods with defined BuildKit container image to build your images.
 
-kubernets ポッドを使います。このドライバでは、イメージ構築構築用に、 BuidKit コンテナイメージを指定したポッドを起動できます。
+kubernets ポッドを使います。このドライバでは、イメージ構築構築用に、 BuildKit コンテナイメージを指定したポッドを起動できます。
 
 .. Unlike docker driver, built images will not automatically appear in docker images and build --load needs to be used to achieve that.
 
@@ -235,12 +235,12 @@ kubernets ポッドを使います。このドライバでは、イメージ構�
 * ``docker-container`` 
 
    * ``image=IMAGE`` … buildkit 実行用のコンテナ・イメージを指定します。
-   * ``network=NETMODE`` … buidkit コンテナ実行時のネットワーク・モードを指定します。
+   * ``network=NETMODE`` … buildkit コンテナ実行時のネットワーク・モードを指定します。
    * ``cgroup-parent=CGROUP`` … docker が「cgroupfs」ドライバを使用している場合は、buildkit コンテナの親 cgroup を指定します。デフォルトは ``/docker/buildx`` です。
 
 * ``kubernetes``
 
-   * ``image=IMAGE`` … buidkit 実行用のコンテナ・イメージを指定します。
+   * ``image=IMAGE`` … buildkit 実行用のコンテナ・イメージを指定します。
    * ``namespace=NS`` … Kubernetes 名前空間を指定します。デフォルトは現在の名前空間です。
    * ``replicas=N`` … ``Pod`` レプリカ数を指定します。デフォルトは 1 です。
    * ``requests.cpu`` … 要求する CPU の値を、Kubernetes CPU 単位で指定します。例  ``requests.cpu=100m`` 、 ``requests.cpu=2``

@@ -77,7 +77,7 @@ Compose ファイル仕様の `image <https://github.com/compose-spec/compose-sp
      - 中間コンテナを常に削除。非推奨
    * - ``--memory`` , ``-m``
      - 
-     - 構築コンテナのメモリ上限を指定。buidkit では未サポート
+     - 構築コンテナのメモリ上限を指定。buildkit では未サポート
    * - ``--no-cache``
      - 
      - イメージの構築時にキャッシュを使わない
