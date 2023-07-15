@@ -132,6 +132,7 @@ html_theme_options = {
     'navigation_depth': 5,
     'includehidden': True,
     'titles_only': False,
+    'vcs_pageview_mode': 'edit',
 }
 
 # 「Edit on GitHub」の表示

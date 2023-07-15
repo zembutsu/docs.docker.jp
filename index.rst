@@ -15,12 +15,15 @@ Docker ドキュメント日本語化プロジェクト
 ==========================================
 
 * :doc:`about` ... はじめての方へ、このサイトや翻訳について
-* :doc:`guide`
-* :doc:`pdf-download` （バージョンが古いです）
 
 .. attention::
 
-  * Docker `v23.0.x (current)`  向けにドキュメントの改訂作業中です(2023年5月現在)。一部古い場合がありますので、ご注意ください。
+   このサイトは Docker 公式ドキュメントを有志で日本語に翻訳しています。各ページの情報が古い可能性があるため、最新のドキュメントは https://docs.docker.com/ をご覧ください。
+   DISCLAIMER: This site is translating the official Docker documentation into Japanese by volunteers. As the information on each page may be outdated, please refer to the latest documentation at https://docs.docker.com/ . 
+
+.. attention::
+
+  * Docker `v23.0.x (current)`  向けにドキュメントの改訂作業中です(2023年7月現在)。一部古い場合がありますので、ご注意ください。
   * Docker のドキュメントは常に変わり続けています。最新の情報については `公式ドキュメント <https://docs.docker.com/>`_ をご覧ください。
   * 本プロジェクトは有志による翻訳プロジェクトです。お気づきの点がございましたら、 `issue <https://github.com/zembutsu/docs.docker.jp/issues>`_ や `Pull Request <https://github.com/zembutsu/docs.docker.jp/pulls>`_ 、 `Docker 道場（日本語の Docker オンラインフォーラム） <https://dojo.docker.jp/>`_ でお知らせ願います。
 
@@ -81,10 +84,7 @@ Doc v23.0 目次
    Docker Engine <engine/toc.rst>
    Docker Compose <compose/toc.rst>
    Docker Hub <docker-hub/index.rst>
-   Docker Machine <machine/index.rst>
-   Docker Toolbox <toolbox/index.rst>
    registry/toc.rst
-   swarm/toc.rst
 
 .. toctree::
    :caption: Reference - 参考資料
