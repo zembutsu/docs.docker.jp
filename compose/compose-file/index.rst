@@ -137,7 +137,6 @@ volumes、configs、secret 内を区別すると、サービスレベルでも�
 どちらのサービスも隔離された後方ネットワーク上で互いに通信します。一方、フロントエンドも前方ネットワークに接続し、外部から使うためにポート 443 を公開します。
 
    .. image:: ./images/compose-sample.png
-      :scale: 60%
       :alt: Compose 例
 
 .. The example application is composed of the following parts:
