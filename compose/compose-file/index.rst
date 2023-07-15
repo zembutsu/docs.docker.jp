@@ -1312,7 +1312,7 @@ Compose 実装は、これ以外のケースでエラーを返す :ruby:`必要�
 
 .. code-block:: yaml
 
-services:
+   services:
      common:
        image: busybox
        volumes:
@@ -1343,17 +1343,17 @@ services:
 
 .. code-block:: yaml
 
-services:
-  base:
-    image: busybox
-    user: root
-  common:
-    image: busybox
-    extends:
-      service: base
-  cli:
-    extends:
-      service: common
+   services:
+      base:
+         image: busybox
+         user: root
+      common:
+         image: busybox
+         extends:
+            service: base
+      cli:
+         extends:
+            service: common
 
 .. Produces the following configuration for the cli service. Here, cli services gets user key from common service, which in turn gets this key from base service.
 
