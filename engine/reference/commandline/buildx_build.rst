@@ -39,7 +39,7 @@ docker buildx build
 
 .. The buildx build command starts a build using BuildKit. This command is similar to the UI of docker build command and takes the same flags and arguments.
 
-``buildx build`` コマンドは BuidKit を使って構築を開始します。このコマンドは ``docker build`` コマンドの見た目と似ており、いくつかのフラグや引数が同じです。
+``buildx build`` コマンドは BuildKit を使って構築を開始します。このコマンドは ``docker build`` コマンドの見た目と似ており、いくつかのフラグや引数が同じです。
 
 .. For documentation on most of these flags, refer to the docker build documentation. In here we’ll document a subset of the new flags.
 
@@ -203,7 +203,7 @@ builder 対象の設定を上書き (--builder)
 
 .. Set the target platform for the build. All FROM commands inside the Dockerfile without their own --platform flag will pull base images for this platform and this value will also be the platform of the resulting image. The default value will be the current platform of the buildkit daemon.
 
-構築対象のプラットフォームを指定します。Dockerfile 内にある全ての ``FROM`` 命令は、 ``--platform`` フラグがなければ、自身のプラットフォーム用のイメージを取得します。そして、最終的なイメージのプラットフォームも自身のものとなります。デフォルトの値は、buidkit デーモンが動作しているプラットフォームです。
+構築対象のプラットフォームを指定します。Dockerfile 内にある全ての ``FROM`` 命令は、 ``--platform`` フラグがなければ、自身のプラットフォーム用のイメージを取得します。そして、最終的なイメージのプラットフォームも自身のものとなります。デフォルトの値は、buildkit デーモンが動作しているプラットフォームです。
 
 .. When using docker-container driver with buildx, this flag can accept multiple values as an input separated by a comma. With multiple values the result will be built for all of the specified platforms and joined together into a single manifest list.
 
