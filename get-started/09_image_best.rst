@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/get-started/09_image_best/
-   doc version: 20.10
+   doc version: 24.0
       https://github.com/docker/docker.github.io/blob/master/get-started/09_image_best.md
-.. check date: 2022/09/20
-.. Commits on Aug 17, 2022 f9ea6f2175eb7d693f2fbc8d32dcce4c82354958
+.. check date: 2023/07/17
+.. Commits on Feb 24, 2023 c0402932ca01a11eb663080191ba5f4b7e9194dd
 .. -----------------------------------------------------------------------------
 
 .. Image-building best practices
@@ -18,70 +18,6 @@
    .. contents:: 
        :depth: 2
        :local:
-
-.. Security scanning
-.. _security-scanning:
-
-:ruby:`安全性の検査 <security scanning>`
-========================================
-
-.. When you have built an image, it is a good practice to scan it for security vulnerabilities using the docker scan command. Docker has partnered with Snyk to provide the vulnerability scanning service.
-
-イメージの構築時、イメージのセキュリティ脆弱性を :ruby:`検査 <scan>` するために ``docker scan`` コマンドを使うベストプラクティスがあります。Docker は脆弱性検査サービスを提供する `Snyk <https://snyk.io/>`_ と提携しています。
-
-..    Note
-    You must be logged in to Docker Hub to scan your images. Run the command docker scan --login, and then scan your images using docker scan <image-name>.
-
-.. note::
-
-   イメージの検査には Docker Hubへのログインが必要です。 ``docker scan --login`` コマンドを実行してから、 ``docker scan <イメージ名>`` を使ってイメージを検査します。
-
-.. For example, to scan the getting-started image you created earlier in the tutorial, you can just type
-
-たとえば、これまでのチュートリアルの始めに作成した ``getting-started`` イメージを検査するには、次のコマンドを実行するだけです。
-
-.. code-block:: dockerfile
-
-   $ docker scan getting-started
-
-.. The scan uses a constantly updated database of vulnerabilities, so the output you see will vary as new vulnerabilities are discovered, but it might look something like this:
-
-検査には定期的に更新される脆弱性データベースを使いますので、様々な新しい脆弱性が発見されたと表示されるでしょう。表示されるのは、以下のようなものです。
-
-.. code-block:: bash
-
-   ✗ Low severity vulnerability found in freetype/freetype
-     Description: CVE-2020-15999
-     Info: https://snyk.io/vuln/SNYK-ALPINE310-FREETYPE-1019641
-     Introduced through: freetype/freetype@2.10.0-r0, gd/libgd@2.2.5-r2
-     From: freetype/freetype@2.10.0-r0
-     From: gd/libgd@2.2.5-r2 > freetype/freetype@2.10.0-r0
-     Fixed in: 2.10.0-r1
-   
-   ✗ Medium severity vulnerability found in libxml2/libxml2
-     Description: Out-of-bounds Read
-     Info: https://snyk.io/vuln/SNYK-ALPINE310-LIBXML2-674791
-     Introduced through: libxml2/libxml2@2.9.9-r3, libxslt/libxslt@1.1.33-r3, nginx-module-xslt/nginx-module-xslt@1.17.9-r1
-     From: libxml2/libxml2@2.9.9-r3
-     From: libxslt/libxslt@1.1.33-r3 > libxml2/libxml2@2.9.9-r3
-     From: nginx-module-xslt/nginx-module-xslt@1.17.9-r1 > libxml2/libxml2@2.9.9-r3
-     Fixed in: 2.9.9-r4
-
-.. The output lists the type of vulnerability, a URL to learn more, and importantly which version of the relevant library fixes the vulnerability.
-
-出力の一覧には、脆弱性のタイプ、URL には詳細、そして重要な、脆弱性を修正するのに妥当なライブラリのバージョンがあります。
-
-.. There are several other options, which you can read about in the docker scan documentation.
-
-他にもいくつかのオプションがあり、 :doc:`docker scan のドキュメント </engine/scan>` から確認できます。
-
-.. As well as scanning your newly built image on the command line, you can also configure Docker Hub to scan all newly pushed images automatically, and you can then see the results in both Docker Hub and Docker Desktop.
-
-コマンドライン上で新しく構築するイメージを検査するのと同じように、 :doc:`Docker Hub の設定 </docker-hub/vulnerability-scanning>` でも、直近に送信したイメージすべてを自動的に検索できます。そして、その結果は Docker Hub と Docker Desktop の両方で確認できます。
-
-.. image:: ./images/hvs.png
-   :scale: 60%
-   :alt: Dockre Hub 脆弱性検査
 
 .. Image layering
 .. _image-layering:
@@ -158,8 +94,7 @@
 .. code-block:: dockerfile
 
    # syntax=docker/dockerfile:1
-   FROM node:12-alpine
-   RUN apk add --no-cache python2 g++ make
+   FROM node:18-alpine
    WORKDIR /app
    COPY . .
    RUN yarn install --production
@@ -180,8 +115,7 @@
    .. code-block:: dockerfile
 
       # syntax=docker/dockerfile:1
-      FROM node:12-alpine
-      RUN apk add --no-cache python2 g++ make
+      FROM node:18-alpine
       WORKDIR /app
       COPY package.json yarn.lock ./
       RUN yarn install --production
@@ -198,7 +132,7 @@
 
    .. .dockerignore files are an easy way to selectively copy only image relevant files. You can read more about this here. In this case, the node_modules folder should be omitted in the second COPY step because otherwise, it would possibly overwrite files which were created by the command in the RUN step. For further details on why this is recommended for Node.js applications and other best practices, have a look at their guide on Dockerizing a Node.js web app.
 
-   イメージに関係あるファイルだけ選んでコピーするには、 ``.dockerignore`` ファイルの利用が簡単です。 :ref:`こちら <dockerignore-file>` で詳しく読めます。今回の場合、２つめの ``COPY`` ステップで ``node_modulers`` フォルダは無視されます。これは、そうしなければ、 ``RUN`` ステップ中の命令で作成されるファイルにより、上書きされる可能性があるためです。どうして Node.js アプリケーションにこのような推奨をするのかや、他のベストプラクティスといった詳細は、Node.js のガイド `Dockerizing a Node.js web app <https://nodejs.org/en/docs/guides/nodejs-docker-webapp/>`_ をご覧ください。
+   イメージに関係あるファイルだけ選んでコピーするには、 ``.dockerignore`` ファイルの利用が簡単です。 :ref:`こちら <dockerignore-file>` で詳しく読めます。今回の場合、２つめの ``COPY`` ステップで ``node_modulers`` フォルダは無視されます。これは、そうしなければ、 ``RUN`` ステップ中の命令で作成されるファイルにより、上書きされる可能性があるためです。どうして Node.js アプリケーションにこのような推奨をするかや、他のベストプラクティスといった詳細は、Node.js のガイド `Dockerizing a Node.js web app <https://nodejs.org/en/docs/guides/nodejs-docker-webapp/>`_ をご覧ください。
 
 .. Build a new image using docker build.
 
@@ -214,34 +148,23 @@
 
    .. code-block:: bash
 
-      Sending build context to Docker daemon  219.1kB
-      Step 1/6 : FROM node:12-alpine
-      ---> b0dc3a5e5e9e
-      Step 2/6 : WORKDIR /app
-      ---> Using cache
-      ---> 9577ae713121
-      Step 3/6 : COPY package.json yarn.lock ./
-      ---> bd5306f49fc8
-      Step 4/6 : RUN yarn install --production
-      ---> Running in d53a06c9e4c2
-      yarn install v1.17.3
-      [1/4] Resolving packages...
-      [2/4] Fetching packages...
-      info fsevents@1.2.9: The platform "linux" is incompatible with this module.
-      info "fsevents@1.2.9" is an optional dependency and failed compatibility check. Excluding it from installation.
-      [3/4] Linking dependencies...
-      [4/4] Building fresh packages...
-      Done in 10.89s.
-      Removing intermediate container d53a06c9e4c2
-      ---> 4e68fbc2d704
-      Step 5/6 : COPY . .
-      ---> a239a11f68d8
-      Step 6/6 : CMD ["node", "src/index.js"]
-      ---> Running in 49999f68df8f
-      Removing intermediate container 49999f68df8f
-      ---> e709c03bc597
-      Successfully built e709c03bc597
-      Successfully tagged getting-started:latest
+      [+] Building 16.1s (10/10) FINISHED
+      => [internal] load build definition from Dockerfile
+      => => transferring dockerfile: 175B
+      => [internal] load .dockerignore
+      => => transferring context: 2B
+      => [internal] load metadata for docker.io/library/node:18-alpine
+      => [internal] load build context
+      => => transferring context: 53.37MB
+      => [1/5] FROM docker.io/library/node:18-alpine
+      => CACHED [2/5] WORKDIR /app
+      => [3/5] COPY package.json yarn.lock ./
+      => [4/5] RUN yarn install --production
+      => [5/5] COPY . .
+      => exporting to image
+      => => exporting layers
+      => => writing image     sha256:d6f819013566c54c50124ed94d5e66c452325327217f4f04399b45f94e37d25
+      => => naming to docker.io/library/getting-started
 
    .. You’ll see that all layers were rebuilt. Perfectly fine since we changed the Dockerfile quite a bit.
 
@@ -257,30 +180,27 @@
 
    .. code-block:: bash
 
-      Sending build context to Docker daemon  219.1kB
-      Step 1/6 : FROM node:12-alpine
-      ---> b0dc3a5e5e9e
-      Step 2/6 : WORKDIR /app
-      ---> Using cache
-      ---> 9577ae713121
-      Step 3/6 : COPY package.json yarn.lock ./
-      ---> Using cache
-      ---> bd5306f49fc8
-      Step 4/6 : RUN yarn install --production
-      ---> Using cache
-      ---> 4e68fbc2d704
-      Step 5/6 : COPY . .
-      ---> cccde25a3d9a
-      Step 6/6 : CMD ["node", "src/index.js"]
-      ---> Running in 2be75662c150
-      Removing intermediate container 2be75662c150
-      ---> 458e5c6f080c
-      Successfully built 458e5c6f080c
-      Successfully tagged getting-started:latest
+      [+] Building 1.2s (10/10) FINISHED
+      => [internal] load build definition from Dockerfile
+      => => transferring dockerfile: 37B
+      => [internal] load .dockerignore
+      => => transferring context: 2B
+      => [internal] load metadata for docker.io/library/node:18-alpine
+      => [internal] load build context
+      => => transferring context: 450.43kB
+      => [1/5] FROM docker.io/library/node:18-alpine
+      => CACHED [2/5] WORKDIR /app
+      => CACHED [3/5] COPY package.json yarn.lock ./
+      => CACHED [4/5] RUN yarn install --production
+      => [5/5] COPY . .
+      => exporting to image
+      => => exporting layers
+      => => writing image     sha256:91790c87bcb096a83c2bd4eb512bc8b134c757cda0bdee4038187f98148e2eda
+      => => naming to docker.io/library/getting-started
 
-   ..   First off, you should notice that the build was MUCH faster! And, you’ll see that steps 1-4 all have Using cache. So, hooray! We’re using the build cache. Pushing and pulling this image and updates to it will be much faster as well. Hooray!
+   .. First off, you should notice that the build was MUCH faster! And, you’ll see that several steps are using previously cached layers. So, hooray! We’re using the build cache. Pushing and pulling this image and updates to it will be much faster as well. Hooray!
 
-   まず、かなり構築が早くなったのが分かるでしょう！ そして、ステップ１～４がすべて ``Using cache`` （キャッシュを使用中）になっています。やりました！ 構築キャッシュを使ったのです。このイメージを更新するための送信や取得が、より早くなりました！ やったね！
+   まず、かなり構築が早くなったのが分かるでしょう！ そして、複数のステップがすべて ``Using cache`` （キャッシュを使用中）になっています。やりました！ 構築キャッシュを使ったのです。このイメージを更新するための送信や取得が、より早くなりました！ やったね！
 
 .. Multi-stage builds
 .. _get-started-multi-stage-build:
@@ -336,7 +256,7 @@ React アプリケーションの構築時、 JS コード（通常は JSC）、
 .. code-block:: dockerfile
 
    # syntax=docker/dockerfile:1
-   FROM node:12 AS build
+   FROM node:18 AS build
    WORKDIR /app
    COPY package* yarn.lock ./
    RUN yarn install
@@ -347,20 +267,25 @@ React アプリケーションの構築時、 JS コード（通常は JSC）、
    FROM nginx:alpine
    COPY --from=build /app/build /usr/share/nginx/html
 
-.. Here, we are using a node:12 image to perform the build (maximizing layer caching) and then copying the output into an nginx container. Cool, huh?
+.. Here, we are using a node:18 image to perform the build (maximizing layer caching) and then copying the output into an nginx container. Cool, huh?
 
-ここでは、 ``node:12`` イメージを使って構築（レイヤーのキャッシュを最大限活用）を処理し、それから出力を nginx コンテナにコピーします。すごいでしょ？
+ここでは、 ``node:18`` イメージを使って構築（レイヤーのキャッシュを最大限活用）を処理し、それから出力を nginx コンテナにコピーします。すごいでしょ？
 
-.. Recap
-.. _part9-recap:
+.. Next steps
+.. _part9-next-steps:
 
-まとめ
-==========
+次のステップ
+====================
 
 .. By understanding a little bit about how images are structured, we can build images faster and ship fewer changes. Scanning images gives us confidence that the containers we are running and distributing are secure. Multi-stage builds also help us reduce overall image size and increase final container security by separating build-time dependencies from runtime dependencies.
 
 イメージがどのようにして構築されているかを少々学びましたので、ちょっとした変更でも、イメージを早く構築し、送り出せるようになります。イメージの検査によって、コンテナの実行や配布が安全だという信頼性をもたらします。また、マルチステージ ビルドによって、構築時の依存関係と実行時の依存関係を分けられるため、イメージ全体の容量を減らしたり、最終コンテナの安全を高められます。
 
+.. In the next section, you’ll learn about additional resources you can use to continue learning about containers
+
+次のセクションでは、コンテナを学び続けるのに役立つ追加リソースについて知りましょう。
+
+* :doc:`次にすること <11_what_next>`
 
 .. seealso::
 

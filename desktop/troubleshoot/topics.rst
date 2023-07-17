@@ -224,7 +224,7 @@ Docker Desktop でも適切な形式で Unix 風のパスを指定できます�
    $ docker run --rm -ti -v /c/Users/user/work:/work alpine ls /work
 
 .. Working with Git Bash
-.. _.. _desktop-topics-windows-working-with-git-bash:
+.. _desktop-topics-windows-working-with-git-bash:
 
 Git Bash で動かす
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

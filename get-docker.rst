@@ -1,10 +1,10 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/get-docker/
-   doc version: 20.10
+   doc version: 24.0
       https://github.com/docker/docker.github.io/blob/master/get-docker.md
-.. check date: 2022/09/20
+.. check date: 2023/07/15
+.. Commits on Feb 8, 2023 8e16fb93738964dfd03b0f579f433ec0456cc1bd
 .. Commits on Sep 5, 2022 cc0fc46783533fcd8e15e1d139ce2ae5e41f61b2
-.. Commits on Jan 18, 2022 fd943a6ab937adc65007fe654fcc9d8e58efd8fe
 .. -----------------------------------------------------------------------------
 
 .. Get Docker
@@ -13,14 +13,6 @@
 =======================================
 Docker の入手
 =======================================
-
-.. 
-    Docker Desktop terms
-    Commercial use of Docker Desktop in larger enterprises (more than 250 employees OR more than $10 million USD in annual revenue) and in government entities requires a paid subscription.
-
-.. important:: **Docker Desktop の利用条件**
-
-   現在、大企業（従業員が 251 人以上、または、年間収入が 1,000 万米ドル以上 ）、政府機関における Docker Desktop の商用利用には、有料サブスクリプション契約が必要です。
 
 .. Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications. By taking advantage of Docker’s methodologies for shipping, testing, and deploying code quickly, you can significantly reduce the delay between writing code and running it in production.
 
@@ -38,6 +30,16 @@ Docker はアプリケーションを開発、移動、実行するためのプ�
 
 * :doc:`Docker Desktop for Linux </desktop/install/linux-install>`
    * ネイティブな Windows アプリケーションで、Windows コンピュータ用に全ての Docker ツールを提供
+
+
+
+..  Note
+    If you’re looking for information on how to install Docker Engine, see Docker Engine installation overview.
+
+
+.. note::
+
+   Docker Engine のインストール方法を探している場合は、 :doc:`Docker Engine インストール概要 </engine/install/index>` をご覧ください。
 
 
 .. seealso:: 

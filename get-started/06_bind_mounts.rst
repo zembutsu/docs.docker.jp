@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/get-started/06_bind_mounts/
-   doc version: 20.10
+   doc version: 24.0
       https://github.com/docker/docker.github.io/blob/master/get-started/06_bind_mounts.md
-.. check date: 2022/09/20
-.. Commits on Jun 28, 2022 b0dc95cd626d1cd7f7582307d693fd72a27280ce
+.. check date: 2023/07/17
+.. Commits on Jul 13, 2023 68450b02a56c95b2c8ef50f24d40dd57356343b7
 .. -----------------------------------------------------------------------------
 
 .. Use bind mounts
@@ -19,40 +19,42 @@
        :depth: 2
        :local:
 
-.. In the previous chapter, we talked about and used a named volume to persist the data in our database. Named volumes are great if we simply want to store data, as we don’t have to worry about where the data is stored.
+.. In part 5, you used a volume mount to persist the data in your database. A volume mount is a great choice when you need somewhere persistent to store your application data.
 
-前章では、データベース内のデータを保持するため、 **名前付きボリューム（named volume）** を使う方法を説明しました。シンプルにデータを保存したい場合には、名前付きボリュームは優れていますが、「どこ」にデータが保管されているか心配したくありません。
+:doc:`Part 5 <05_persisting_data>` ではデータベース内のデータを保持するため、ボリュームのマントを使いました。アプリケーションのデータをどこかに保持する必要がある場合、ボリュームマウントは良い選択肢です。
 
-.. With bind mounts, we control the exact mountpoint on the host. We can use this to persist data, but it’s often used to provide additional data into containers. When working on an application, we can use a bind mount to mount our source code into the container to let it see code changes, respond, and let us see the changes right away.
+.. A bind mount is another type of mount, which lets you share a directory from the host’s filesystem into the container. When working on an application, you can use a bind mount to mount source code into the container. The container sees the changes you make to the code immediately, as soon as you save a file. This means that you can run processes in the container that watch for filesystem changes and respond to them.
 
-**バインド マウント（bind mount）** であれば、ホスト上の正確なマウントポイントを管理できます。バインド マウントはデータ保持に使えますが、使用時はコンテナに対する追加データの指定が度々必要です。アプリケーションの動作中でも、バインド マウントを使ってソースコードをコンテナ内にマウントすると、コードの変更が見えたり反映したりできるようになります。つまり、アプリケーションに対する変更は、直ちに見えるでしょう。
+:ruby:`バインド マウント <bind mount>` は他のタイプのマウントであり、ホスト上のファイルシステムをコンテナ内と直接共有します。アプリケーションの動作中でも、バインド マウントを使ってソースコードをコンテナ内にマウントすると、コードの変更が見えたり反映できるようになります。つまり、アプリケーションに対する変更が、直ちに見えるでしょう。
 
-.. For Node-based applications, nodemon is a great tool to watch for file changes and then restart the application. There are equivalent tools in most other languages and frameworks.
+.. In this chapter, you’ll see how you can use bind mounts and a tool called nodemon to watch for file changes, and then restart the application automatically. There are equivalent tools in most other languages and frameworks.
 
-Node をベースとするアプリケーション `nodemon <https://npmjs.com/package/nodemon>`_ は素晴らしいツールです。ファイルの変更を監視し、アプリケーションを再起動します。他の言語やフレームワークでも、同様なツールがあります。
+本章で分かるのは、バインドマウントの使い方と、ファイル変更を監視してアプリケーションを自動的に再起動する  `nodemon <https://npmjs.com/package/nodemon>`_ と呼ばれるツールについてです。
+
 
 .. Quick volume type comparisons
-.. _quick-violume-type-comparisons:
+.. _quick-volume-type-comparisons:
 
 ボリューム型の素早い比較
 ==============================
 
-.. Bind mounts and named volumes are the two main types of volumes that come with the Docker engine. However, additional volume drivers are available to support other uses cases (SFTP, Ceph, NetApp, S3, and more).
+.. The following table outlines the main differences between volume mounts and bind mounts.
 
-バインド マウントと名前付きボリュームは、Docker Engine に組み込まれている２つの主なボリューム型です。しかしながら、他の利用例（ `SFTP <https://github.com/vieux/docker-volume-sshfs>`_ 、 `Ceph <https://ceph.com/geen-categorie/getting-started-with-the-docker-rbd-volume-plugin/>`_ 、 `NetApp <https://netappdvp.readthedocs.io/en/stable/>`_ 、 `S3 <https://github.com/elementar/docker-s3-volume>`_ 、 等）をサポートする追加ボリュームドライバが利用可能です。
+以下の表が示すのは、ボリュームマウントとバインドマウントの主な違いです。
+
 
 .. list-table::
    :header-rows: 1
 
    * -  
-     - 名前付きボリューム
-     - バインド マウント
+     - :ruby:`名前付きボリューム <named volume>`
+     - :ruby:`バインド マウント <bind mount>`
    * - ホスト上の場所
      - Docker が選択
-     - 自分で管理
-   * - マウント例（ ``-v`` を使用）
-     - my-volume:/usr/local/data
-     - /path/to/data:/usr/local/data
+     - 自分で決める
+   * - マウント例（ ``--mount`` を使用）
+     - ``type=volume,src=my-volume,target=/usr/local/data``
+     - ``type=bind,src=/path/to/data,target=/usr/local/data``
    * - コンテナの内容に新しいボリュームを加える
      - はい
      - いいえ
@@ -60,137 +62,301 @@ Node をベースとするアプリケーション `nodemon <https://npmjs.com/p
      - はい
      - いいえ
 
-.. Start a dev-mode container
-.. _start-a-dev-mode-container:
+.. Trying out bind mounts
+.. _trying-out-bind-mounts:
 
-開発モードのコンテナを起動
+バインド マウントを試す
 ==============================
 
-.. To run our container to support a development workflow, we will do the following:
+.. Before looking at how you can use bind mounts for developing your application, you can run a quick experiment to get a practical understanding of how bind mounts work.
 
-開発ワークフローをサポートするコンテナを実行するには、以下の作業をします。
+アプリケーション開発でバインドマウントを使う方法を学ぶ前に、どのようにしてバインドマウントが動作するのか実用的な理解をするために、簡単な実験を行えます。
+
+..    Open a terminal and change directory to the app directory of the getting started repository.
+
+1. ターミナルを開き、ディレクトリを getting-started リポジトリの ``app`` に変更します。
+
+..    Run the following command to start bash in an ubuntu container with a bind mount.
+
+2. 以下のコマンドは、バインドマウントした ``ubuntu`` コンテナで ``bash`` を実行します。
+
+   **Mac / Linux**
+   
+      .. code-block:: bash
+   
+         $ docker run -it --mount type=bind,src="$(pwd)",target=/src ubuntu bash
+   
+   **Windows**
+
+      PowerShell でコマンドを実行します。
+   
+      .. code-block:: bash
+   
+         $docker run -it --mount "type=bind,src=$pwd,target=/src" ubuntu bash
+   
+   .. The --mount option tells Docker to create a bind mount, where src is the current working directory on your host machine (getting-started/app), and target is where that directory should appear inside the container (/src).
+   
+   ``--mount`` オプションは Docker に対してバインドマウントの作成を命令します。 ``src`` で示す場所は、ホストマシン上の現在の作業ディレクトリ（ ``getting-started/app`` ）です。 ``target`` で示す場所は、はコンテナ内に現れるディレクトリ（ ``/src`` ）です。
+
+.. After running the command, Docker starts an interactive bash session in the root directory of the container’s filesystem
+
+3. コマンドの実行後、コンテナが持つファイルシステムのルートディレクトリ内で、Docker は対話式の ``bash`` セッションを開始します。
+
+   .. code-block:: bash
+
+      root@ac1237fad8db:/# pwd
+      /
+      root@ac1237fad8db:/# ls
+      bin   dev  home  media  opt   root  sbin  srv  tmp  var
+      boot  etc  lib   mnt    proc  run   src   sys  usr
+
+.. Change directory to the src directory.
+
+4. ``src`` ディレクトリにディレクトリを変更します。
+
+   .. This is the directory that you mounted when starting the container. Listing the contents of this directory displays the same files as in the getting-started/app directory on your host machine.
+
+   ここはコンテナ起動時にマウントしたディレクトリです。このディレクトリ内容の一覧を表示したら、ホストマシン上の ``getting-started/app`` ディレクトリと同じようにファイルを表示します。
+   
+   .. code-block:: bash
+
+      root@ac1237fad8db:/# cd src
+      root@ac1237fad8db:/src# ls
+      Dockerfile  node_modules  package.json  spec  src  yarn.lock
+
+.. Create a new file named myfile.txt.
+
+5. ``myfile.txt`` という名前の新しいファイルを作成します。
+
+   .. code-block:: bash
+
+      root@ac1237fad8db:/src# touch myfile.txt
+      root@ac1237fad8db:/src# ls
+      Dockerfile  myfile.txt  node_modules  package.json  spec  src  yarn.lock
+
+.. Open the app directory on the host and observe that the myfile.txt file is in the directory.
+
+6. ホスト上の ``app`` ディレクトリを開き、ディレクトリ内に ``myfile.txt`` があるかどうか調べます。
+
+   .. code-block:: bash
+
+      ├── app/
+      │ ├── Dockerfile
+      │ ├── myfile.txt
+      │ ├── node_modules/
+      │ ├── pacakge.json
+      │ ├── spec/
+      │ ├── src/
+      │ └── yarn.lock
+
+.. From the host, delete the myfile.txt file.
+
+7. ホストから ``myfile.txt`` ファイルを削除します。
+
+.. In the container, list the contents of the app directory once more. Observe that the file is now gone.
+
+8. コンテナ内で、再び ``app`` ディレクトリ内の内容を一覧表示します。今度はファイルが消えてしまったと分かります。
+
+   .. code-block:: bash
+   
+      root@ac1237fad8db:/src# ls
+      Dockerfile  node_modules  package.json  spec  src  yarn.lock
+
+.. Stop the interactive container session with Ctrl + D.
+
+9. 対話型のコンテナセッションを ``Ctrl`` + ``D`` で停止します。
+
+.. That’s all for a brief introduction to bind mounts. This procedure demonstrated how files are shared between the host and the container, and how changes are immediately reflected on both sides. Now you can use bind mounts to develop software.
+
+
+以上がバインドマウントの簡単な紹介のすべてです。この手順では、ホストとコンテナ間でどのようにファイルを共有しているのかと、どちらにも変更が直ちに反映されるのを示しました。これでソフトウェア開発にバインドマウントを利用できます。
+
+.. Deployment containers
+コンテナのデプロイ
+====================
+
+.. Using bind mounts is common for local development setups. The advantage is that the development machine doesn’t need to have all of the build tools and environments installed. With a single docker run command, Docker pulls dependencies and tools.
+
+ローカル開発環境のセットアップで、バインドマウントの利用は一般的です。利点は、開発マシン上に全ての構築ツールや環境をインストールする必要がありません。docker run コマンドを1回実行するだけで、Docker は依存関係とツールを取得します。
+
+.. Run your app in a development container
+.. _run-your-app-in-a-development-container:
+
+開発用のコンテナでアプリを実行
+------------------------------
+
+.. The following steps describe how to run a development container with a bind mount that does the following:
+
+以下の手順で示すのは、バインドマウントがある開発用のコンテナを実行する手順です：
 
 .. 
     Mount our source code into the container
-    Install all dependencies, including the “dev” dependencies
+    Install all dependencies
     Start nodemon to watch for filesystem changes
 
-* ソースコードをコンテナ内にマウント
-* 「dev」（開発段階の）依存関係を含む、全ての依存関係をインストール
-* ファイルシステムの変更を監視する nodemon を監視
+   * ソースコードをコンテナ内にマウント
+   * 全ての依存関係をインストール
+   * ファイルシステムの変更を監視する ``nodemon`` を開始
 
-.. So, let’s do it!
+.. You can use the CLI or Docker Desktop to run your container with a bind mount.
 
-それでは、やってみましょう！
+バインドマウントしてコンテナを実行するには、 CLI か Docker Desktop を使えます。
 
-..    Make sure you don’t have any previous getting-started containers running.
+**CLI**
 
-1. これまでの ``getting-started`` コンテナを実行していないのを確認します。
+   ..    Make sure you don’t have any previous getting-started containers running.
 
-..    Run the following command from the app directory. We’ll explain what’s going on afterwards:
+   1. これまでの ``getting-started`` コンテナが動作していないのを確認します。
 
-2. app ディレクトリで以下のコマンドを実行します。何をしようとしているかは、後ほど説明します。
-
-   .. code-block:: bash
+   .. Run the following command from the getting-started/app directory.
    
-      $ docker run -dp 3000:3000 \
-          -w /app -v "$(pwd):/app" \
-          node:18-alpine \
-          sh -c "yarn install && yarn run dev"
-
-   .. If you are using PowerShell then use this command:
-   .. If you are using Windows then use this command in PowerShell:
+   2. ``getting-started/app`` ディレクトリから以下のコマンドを実行します。
    
-   Windows を使っている場合は、 PowerShell で以下のコマンドを実行します。
-
-   .. code-block:: bash
+      **Mac / Linux**
+      
+         .. code-block:: bash
+         
+            $ docker run -dp 127.0.0.1:3000:3000 \
+                -w /app --mount type=bind,src="$(pwd)",target=/app \
+                node:18-alpine \
+                sh -c "yarn install && yarn run dev"
    
-      PS> docker run -dp 3000:3000 `
-          -w /app -v "$(pwd):/app" `
-          node:18-alpine `
-          sh -c "yarn install && yarn run dev"
-
-   .. If you are using an Apple silicon Mac or another ARM64 device, then use the following command.
-
-   Apple silicon Mac や他の ARM64 デバイスを使っている場合は、以下のコマンドを実行します。
-
-   .. code-block:: bash
+      **Windows**
+      
+         このコマンドを PowerShell で実行します。
    
-      $ docker run -dp 3000:3000 \
-           -w /app -v "$(pwd):/app" \
-           node:18-alpine \
-           sh -c "apk add --no-cache python2 g++ make && yarn install && yarn run dev"
+            $ docker run -dp 127.0.0.1:3000:3000 `
+                -w /app --mount "type=bind,src=$pwd,target=/app" `
+                node:18-alpine `
+                sh -c "yarn install && yarn run dev"
 
-
-   * ``-dp 3000:3000`` … 以前と同じです。 :ruby:`デタッチド <detached>` （バックグラウンド）モードで実行し、 :ruby:`ポート割り当て <port mapping>` を作成
-   * ``-w /app`` … コマンドを実行する場所として、「 :ruby:`作業ディレクトリ <working directory>` 」またはカレント ディレクトリを指定
-   * ``-v "$(pwd):/app"`` … ホスト上にある現在のディレクトリを、コンテナ内の ``/app`` ディレクトリにバインド マウント
-   * ``node:18-alpine`` … 使用するイメージ。これが Dockerfile から作成するアプリ用のベースイメージになるのを意味する
-   * ``sh -c "yarn install && yarn run dev"`` … （コンテナで）実行するコマンド。 ``sh`` を使って開始し（alpine には ``bash`` がないため）、全ての依存関係をインストールするため ``yarn install`` を実行し、それから ``yarn run dev`` を実行。 ``package.json`` があれば確認し、それから ``dev`` スクリプトが ``nodemon`` を開始する
-
-.. You can watch the logs using docker logs. You’ll know you’re ready to go when you see this:
-
-3. ``docker logs`` を使ってログを表示できます。以下のような表示になれば、準備が調ったと分かります。
-
-   .. code-block:: bash
+   .. The following is a breakdown of the command:
    
-      $ docker logs -f <container-id>
-      nodemon src/index.js
-      [nodemon] 2.0.20
-      [nodemon] to restart at any time, enter `rs`
-      [nodemon] watching dir(s): *.*
-      [nodemon] starting `node src/index.js`
-      Using sqlite database at /etc/todos/todo.db
-      Listening on port 3000
+   以下はコマンドの詳細です：
+   
+      * ``-dp 127.0.0.1:3000:3000`` … 以前と同じです。デタッチド（バックグラウンド）モードで実行し、ポート割り当てを作成します。
+      * ``-w /app`` … 「 :ruby:`作業ディレクトリ <working directory>` 」 またはカレントディレクトリを指定します。
+      * ``--mount "type=bind,src=$pwd,target=/app"`` … ホスト上のカレントディレクトリを、コンテナ内の ``/app`` ディレクトリにバインドマウントします。
+      * ``node:18-alpine`` … 使用するイメージです。なお、これが Dockerfile からアプリを作成するベースイメージです。
+      * ``sh -c "yarn install && yarn run dev"`` … シェルを開始するのに ``sh`` を使い（ alpine には ``bash`` はありません）、パッケージをインストールするため ``yarn install`` を実行し、開発用サーバを開始するために ``yarn run dev`` を実行します。 ``packagejson`` の中を見ると、 ``dev`` スクリプトが ``nodemon`` を起動しているのが分かります。
 
-   ログの表示を終了するには、 ``Ctrl`` + ``C`` を実行します。
+   .. You can watch the logs using docker logs <container-id>. You’ll know you’re ready to go when you see this:
+   
+   3. ``docker logs <container-id>`` を使いログを観察できます。準備が調えば、次のような表示になるでしょう：
+   
+      .. code-block:: bash
+      
+         $ docker logs -f <container-id>
+         nodemon src/index.js
+         [nodemon] 2.0.20
+         [nodemon] to restart at any time, enter `rs`
+         [nodemon] watching dir(s): *.*
+         [nodemon] starting `node src/index.js`
+         Using sqlite database at /etc/todos/todo.db
+         Listening on port 3000
+      
+      .. When you’re done watching the logs, exit out by hitting Ctrl+C.
+      
+      ログの観察が終わったら、 ``Ctrl`` + ``C`` を入力して終了します。
 
-.. Now, let’s make a change to the app. In the src/static/js/app.js file, let’s change the “Add Item” button to simply say “Add”. This change will be on line 109:
+**Docker Desktop**
 
-4. 次は、アプリを変更しましょう。 ``src/static/js/app.js`` ファイル内で、「Add Item」ボタンを、シンプルに「Add」と表示するように変えます。変更には 109 行目を変えるだけです。
+   ..    Make sure you don’t have any previous getting-started containers running.
+
+   1. これまでの ``getting-started`` コンテナが動作していないのを確認します。
+
+   .. Run the image with a bind mount.
+   
+   2. バインドマウントしてイメージを起動します。
+   
+      a. Docker Desktop の一番上にある検索ボックスを選びます。
+      b. 検索ウインドウで **Images** タブを選びます。
+      c. 検索ボックスでコンテナ名を ``getting-started`` と指定します。
+      
+         .. tip::
+         
+            検索でフィルタを使えば **local images** （ローカルイメージ）のみ表示できます。
+
+      d. 自分が作ったイメージを選び、 **Run** （実行）を選びます。
+      e. **Optional settings** を選びます。
+      f. **Host path** （ホスト側パス）で、ホストマシン上の ``app`` ディレクトリのパスを指定します
+      g. **Container path** （コンテナ側パス）で ``/app`` を指定します。
+      h. **Run** （実行）を選びます。
+
+   3. Docker Desktop を使ってコンテナのログを観察できます。
+   
+      a. Docker Desktop の **Containers** を選びます。
+      b. コンテナ名を選びます。
+   
+      準備が調えば、次の様な表示になるでしょう：
+      
+      .. code-block:: bash
+      
+         $ docker logs -f <container-id>
+         nodemon src/index.js
+         [nodemon] 2.0.20
+         [nodemon] to restart at any time, enter `rs`
+         [nodemon] watching dir(s): *.*
+         [nodemon] starting `node src/index.js`
+         Using sqlite database at /etc/todos/todo.db
+         Listening on port 3000
+
+
+.. Develop your app with the development container
+.. _develop your app with the development container:
+開発用コンテナにアプリをデプロイ
+----------------------------------------
+
+.. Update your app on your host machine and see the changes reflected in the container.
+
+ホストマシン上のアプリを更新し、コンテナ内に変更が反映されるのを確認します。
+
+.. In the src/static/js/app.js file, on line 109, change the “Add Item” button to simply say “Add”:
+
+1. ``src/static/js/app.js`` ファイル内の 109 行目の、「Add Item」ボタンをシンプルに「Add」と表示するように変えます。
 
    .. code-block:: diff
    
       -                         {submitting ? 'Adding...' : 'Add Item'}
       +                         {submitting ? 'Adding...' : 'Add'}
 
-.. Simply refresh the page (or open it) and you should see the change reflected in the browser almost immediately. It might take a few seconds for the Node server to restart, so if you get an error, just try refreshing after a few seconds.
+   ファイルを保存します。
 
-5. ページを単に再読み込みすると（あるいは、ページを開きます）、ほぼ直ちにブラウザに変更が反映しているのが分かるでしょう。Node サーバの再起動には、数秒かかるかもしれず、もしエラーが出てしまった場合には、数秒後に再起動を試してください。
+.. Refresh the page in your web browser, and you should see the change reflected almost immediately. It might take a few seconds for the Node server to restart. If you get an error, try refreshing after a few seconds.
+
+2. ウェブブラウザでページを再読み込みしたら、ほぼ直ちに変更が反映しているのが分かるでしょう。Node サーバの再起動には、数秒かかるかもしれず、もしエラーが出てしまった場合には、数秒後に再読み込みを試してください。
 
    .. image:: ./images/updated-add-button.png
       :scale: 60%
       :alt: Add ボタンのラベルを更新したスクリーンショット
 
-.. Feel free to make any other changes you’d like to make. When you’re done, stop the container and build your new image using:
+.. Feel free to make any other changes you’d like to make. Each time you make a change and save a file, the nodemon process restarts the app inside the container automatically. When you’re done, stop the container and build your new image using:
 
-6. あとは作りたいように他にも自由に変更します。終わったら、コンテナを停止し、以下のコマンドを使って新しいイメージを構築します。
+3. あとは、他も自由気ままに変更します。変更後は毎回ファイルを保存しますと、 ``nodemon`` プロセスがコンテナ内のアプリを再起動します。終わったら、コンテナを停止し、以下のコマンドを使って新しいイメージを構築します。
 
    .. code-block:: bash
    
       $ docker build -t getting-started .
 
-.. Using bind mounts is very common for local development setups. The advantage is that the dev machine doesn’t need to have all of the build tools and environments installed. With a single docker run command, the dev environment is pulled and ready to go. We’ll talk about Docker Compose in a future step, as this will help simplify our commands (we’re already getting a lot of flags).
+.. Next steps
+.. _part6-next-steps:
 
-バインド マウントの使用は、ローカル開発のセットアップで「非常に」一般的です。この利点は、開発マシンに全ての構築ツールや環境を入れる必要がないからです。 ``docker run`` コマンド１つだけで、開発環境を持ってきて、すぐに始められます。後のステップで、（たくさんのフラグ指定が必要な）コマンド実行を簡単にするのに役立つ Docker Compose を説明します。
+次のステップ
+====================
 
-.. Recap
-.. _part6-recap:
+.. At this point, you can persist your database and see changes in your app as you develop without rebuilding the image.
 
-まとめ
-==========
+現段階で、データベースを保持できるようになり、イメージを再構築しなくても、開発しているアプリを変更できるのが分かりました。
 
-.. At this point, we can persist our database and respond rapidly to the needs and demands of our investors and founders. Hooray! But, guess what? We received great news!
+.. In addition to volume mounts and bind mounts, Docker also supports other mount types and storage drivers for handling more complex and specialized use cases. To learn more about the advanced storage concepts, see Manage data in Docker.
 
-これで、データベースを保持し、必要に応じて素早く対応でき、投資家や創設者の要望に応えられるようになりました。やった！ 良いニュースが届きました！
+ボリュームマウントとバインドマウントに加え、より複雑かつ専門的なユースケースに対応するため、Docker は他のマウントタイプやストレージドライバをサポートします。
 
-.. Your project has been selected for future development!
+.. In order to prepare your app for production, you need to migrate your database from working in SQLite to something that can scale a little better. For simplicity, you’ll keep using a relational database and switch your application to use MySQL. But, how should you run MySQL? How do you allow the containers to talk to each other? You’ll learn about that in the next section.
 
-**あなたのプロジェクトが今後の開発対象として選ばれました！**
+アプリの本番環境を準備するには、データベースを SQLite からスケール可能な何かに移行する必要があります。扱いやすさのため、関係データベースの採用にあたり、アプリケーションが MySQL を使うように切り替えます。ですが、どうやって MySQL を動かせばよいのでしょうか？ どのようにしてコンテナ間でお互いが通信できるのでしょうか？ これは次のセクションで学びます。
 
-.. In order to prepare for production, we need to migrate our database from working in SQLite to something that can scale a little better. For simplicity, we’ll keep with a relational database and switch our application to use MySQL. But, how should we run MySQL? How do we allow the containers to talk to each other? We’ll talk about that next!
-
-本番環境を準備するには、データベースを SQLite からスケール可能な何かへ以降する必要があります。扱いやすさのため、関係データベースを使い続け、アプリケーションが MySQL を使うように切り替えます。ですが、どうやって MySQL を動かせばよいのでしょうか？ どのようにしてコンテナ間がお互いに通信できるのでしょうか？ 次で解説します。
+* :doc:`複数コンテナのアプリ <07_multi_container>`
 
 
 .. seealso::
