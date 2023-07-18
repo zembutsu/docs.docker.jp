@@ -2,7 +2,7 @@
 .. URL: https://docs.docker.com/get-started/
    doc version: 24.0
       https://github.com/docker/docker.github.io/blob/master/get-started/index.md
-.. check date: 2023/07/15
+.. check date: 2023/07/18
 .. Commits on Mar 1, 2023 5f613c757a31ffbe1585e63491d19093afbde7a2
 .. -----------------------------------------------------------------------------
 
@@ -21,7 +21,7 @@
 
 .. Welcome! We are excited that you want to learn Docker.
 
-ようこそ！ あなたが Docker を学ぼうとしていますので、私たちはうれしいです。
+ようこそ！ あなたが Docker を学ぼうとしているので、私たちはとてもうれしいです。
 
 .. This guide contains step-by-step instructions on how to get started with Docker. Some of the things you’ll learn and do in this guide are:
 
