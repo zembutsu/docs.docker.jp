@@ -64,6 +64,7 @@ Doc v24.0 目次
    Docker 概要 <get-started/overview.rst>
    get-docker.rst
    get-started/toc.rst
+   get-started/hands-on-overview.rst
    language/toc.rst
    develop/toc.rst
    ci-cd/toc.rst
