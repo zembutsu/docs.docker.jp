@@ -395,7 +395,13 @@ app の▶マークをクリックして展開しますと、compose ファイ�
 
 これで、チュートリアルの仕上げに入りましょう。その前に、イメージの構築に関するいくつかのベストプラクティスについて扱います。これまで使っていた Dockerfile には大きな問題があるためです。
 
-* :doc:`イメージ構築のベストプラクティス <09_image_best>`
+
+.. raw:: html
+
+   <div style="overflow: hidden; margin-bottom:20px;">
+      <a href="09_image_best.html" class="btn btn-neutral float-left">イメージ構築のベストプラクティス <span class="fa fa-arrow-circle-right"></span></a>
+   </div>
+
 
 .. seealso::
 

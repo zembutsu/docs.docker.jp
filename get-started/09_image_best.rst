@@ -285,7 +285,13 @@ React アプリケーションの構築時、 JS コード（通常は JSC）、
 
 次のセクションでは、コンテナを学び続けるのに役立つ追加リソースについて知りましょう。
 
-* :doc:`次にすること <11_what_next>`
+
+.. raw:: html
+
+   <div style="overflow: hidden; margin-bottom:20px;">
+      <a href="11_what_next.html" class="btn btn-neutral float-left">次にすること <span class="fa fa-arrow-circle-right"></span></a>
+   </div>
+
 
 .. seealso::
 

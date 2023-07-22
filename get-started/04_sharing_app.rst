@@ -214,6 +214,14 @@
 
 ここまで理解したところで、先ほどのセクションの最後で述べた部分に立ち戻りましょう。振り返れば、アプリの再起動時、todo リストのアイテムが全て消えました。これは明らかに良くないユーザ体験ですので、次は再起動してもデータが :ruby:`保持 <persist>` できる方法を学びましょう。
 
+.. raw:: html
+
+   <div style="overflow: hidden; margin-bottom:20px;">
+      <a href="05_persisting_data.html" class="btn btn-neutral float-left">データベースの保持 <span class="fa fa-arrow-circle-right"></span></a>
+   </div>
+
+
+
 
 .. seealso::
 

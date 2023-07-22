@@ -357,7 +357,13 @@ MySQL への接続する設定を指定するため、todo アプリは環境変
 
 次のセクションでは、 Docker Compose について説明します。 Docker Compose があれば、より簡単な方法でアプリケーション スタックを共有でき、他の人もコマンドを１つ、かつシンプルに実行するだけで、アプリを速攻で立ち上げられます。
 
-* :doc:`Docker Compose を使う <08_using_compose>`
+
+.. raw:: html
+
+   <div style="overflow: hidden; margin-bottom:20px;">
+      <a href="08_using_compose.html" class="btn btn-neutral float-left">Docker Compose を使う <span class="fa fa-arrow-circle-right"></span></a>
+   </div>
+
 
 
 .. seealso::

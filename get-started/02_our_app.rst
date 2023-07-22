@@ -256,7 +256,12 @@
 
 次はアプリに変更を加え、実行中のアプリケーションを新しいイメージに更新する方法を学びます。その途中で、幾つかの便利なコマンドも学びます。
 
-* :doc:`アプリケーションの更新 <03_updating_app>`
+.. raw:: html
+
+   <div style="overflow: hidden; margin-bottom:20px;">
+      <a href="03_updating_app.html" class="btn btn-neutral float-left">アプリケーションの更新 <span class="fa fa-arrow-circle-right"></span></a>
+   </div>
+
 
 .. seealso::
 

@@ -188,6 +188,12 @@ Docker ダッシュボードでコンテナを削除
 
 :ruby:`永続性 <persistence>` （データの保持）を説明する前に、他人とイメージを共有する方法を見ます。
 
+.. raw:: html
+
+   <div style="overflow: hidden; margin-bottom:20px;">
+      <a href="04_sharing_app.html" class="btn btn-neutral float-left">アプリケーションの共有 <span class="fa fa-arrow-circle-right"></span></a>
+   </div>
+
 
 .. seealso::
 

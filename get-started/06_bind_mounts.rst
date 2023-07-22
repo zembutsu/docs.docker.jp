@@ -356,7 +356,13 @@
 
 アプリの本番環境を準備するには、データベースを SQLite からスケール可能な何かに移行する必要があります。扱いやすさのため、関係データベースの採用にあたり、アプリケーションが MySQL を使うように切り替えます。ですが、どうやって MySQL を動かせばよいのでしょうか？ どのようにしてコンテナ間でお互いが通信できるのでしょうか？ これは次のセクションで学びます。
 
-* :doc:`複数コンテナのアプリ <07_multi_container>`
+
+.. raw:: html
+
+   <div style="overflow: hidden; margin-bottom:20px;">
+      <a href="07_multi_container.html" class="btn btn-neutral float-left">複数コンテナのアプリ <span class="fa fa-arrow-circle-right"></span></a>
+   </div>
+
 
 
 .. seealso::

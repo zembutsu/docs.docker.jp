@@ -96,7 +96,13 @@
 
 次のセクションでは、アプリケーションをコンテナ化しましょう。
 
-- :doc:`アプリケーションのコンテナ化 <02_our_app>` 
+.. raw:: html
+
+   <div style="overflow: hidden; margin-bottom:20px;">
+      <a href="02_our_app.html" class="btn btn-neutral float-left">アプリケーションのコンテナ化 <span class="fa fa-arrow-circle-right"></span></a>
+   </div>
+
+
 
 
 .. seealso::

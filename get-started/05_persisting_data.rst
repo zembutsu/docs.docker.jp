@@ -281,8 +281,8 @@ CLI か Docker Desktop のグラフィカルインタフェースを使い、ボ
 .. Next steps
 .. _part5-next-steps:
 
-まとめ
-==========
+次のステップ
+====================
 
 .. At this point, you have a functioning application that can survive restarts.
 
@@ -292,7 +292,12 @@ CLI か Docker Desktop のグラフィカルインタフェースを使い、ボ
 
 ところで一方、初期の頃から変更を加えるたびに、何度も何度も毎回イメージの再構築をしています。これを改善したいと思いますよね？ バインド マウントの使用こそが良い方法です。
 
-* :doc:`バインド マウントを使う <06_bind_mounts>`
+
+.. raw:: html
+
+   <div style="overflow: hidden; margin-bottom:20px;">
+      <a href="06_bind_mounts.html" class="btn btn-neutral float-left">バインドマウントを使う <span class="fa fa-arrow-circle-right"></span></a>
+   </div>
 
 
 .. seealso::
