@@ -15,7 +15,7 @@ Docker で開発
    :titlesonly:
 
    概要 <index.rst>
-   デプロイ・ベストプラクティス <dev-best-practices.rst>
+   開発ベストプラクティス <dev-best-practices.rst>
    Dockerfile ベストプラクティス <develop-images/dockerfile_best-practices.rst>
    セキュリティ・ベストプラクティス <security-best-practices.rst>
    リモートデプロイ <develop-images/remote-deployment.rst>

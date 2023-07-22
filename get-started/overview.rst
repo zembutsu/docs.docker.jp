@@ -267,7 +267,7 @@ Docker は `Go プログラミング言語 <https://golang.org/>`_ で書かれ�
     Get hands-on experience with the Getting started with Docker tutorial.
 
 * :doc:`/get-docker` を読む
-* ハンズオンで :doc:`Docker を使い始める </get-started/index>` ためのチュートリアルを試す
+* ハンズオンで :doc:`Docker を使い始める </get-started/01_overview>` ためのチュートリアルを試す
 
 .. seealso:: 
 
