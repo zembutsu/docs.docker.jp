@@ -10,7 +10,7 @@
 .. _best-practices-for-writing-dockerfile:
 
 =======================================
-Dockerfile のベストプラクティス
+Dockerfile を書くベストプラクティス
 =======================================
 
 .. sidebar:: 目次
@@ -55,11 +55,11 @@ Docker イメージを構成するのは、 Dockerfile の各命令に相当す�
 
 .. When you run an image and generate a container, you add a new writable layer, also called the container layer, on top of the underlying layers. All changes made to the running container, such as writing new files, modifying existing files, and deleting files, are written to this writable container layer.
 
-イメージを実行してコンテナを生成すると、元から存在するレイヤ上に新しい :ruby:`書き込み可能なレイヤ <writable layer>` を追加します。これは :ruby:`コンテナ・レイヤ <container layer>` とも呼ばれます。実行中のコンテナに対する全ての変更、たとえば新しいファイル書き込み、既存ファイルの編集、ファイルの削除などは、この書き込み可能なコンテナ・レイヤ内に記述されます。
+イメージを実行してコンテナを生成するとき、元から存在するレイヤ上に新しい :ruby:`書き込み可能なレイヤ <writable layer>` を追加します。これは :ruby:`コンテナ・レイヤ <container layer>` とも呼ばれます。実行中のコンテナに対する全ての変更、例えば新しいファイル書き込み、既存ファイルの編集、ファイルの削除などは、この書き込み可能なコンテナ・レイヤ内に記述されます。
 
 .. For more on image layers and how Docker builds and stores images, see About storage drivers.
 
-イメージ・レイヤに関する詳しい情報や、 Docker のイメージ構築と保存の仕方については、 :doc:`ストレージ・ドライバについて </storage/storagedriver/index>` をご覧ください。
+イメージ・レイヤに関する詳しい情報や、 Docker のイメージ構築と保存の仕方は、 :doc:`ストレージ・ドライバについて </storage/storagedriver/index>` を御覧ください。
 
 .. General guidelines and recommendations
 
@@ -104,7 +104,7 @@ Dockerfile で定義したイメージによって生成するコンテナは、
 
 .. Docker has the ability to build images by piping a Dockerfile through stdin with a local or remote build context. Piping a Dockerfile through stdin can be useful to perform one-off builds without writing a Dockerfile to disk, or in situations where the Dockerfile is generated, and should not persist afterwards.
 
-ローカルもしくはリモートのビルド・コンテクストを使い、標準入力（stdin）を通した Dockerfile のパイプにより、イメージを構築する機能が Docker にはあります。標準入力を通して Dockerfile をパイプすると、Dockerfile をディスクに書き込まないため、一回限りの構築を行いたい時に役立ちます。あるいは、 Dockerfile が生成された場所が、後で残らない状況でも役立つでしょう。
+ローカル若しくはリモートのビルド・コンテクストを使い、標準入力（stdin）を通した Dockerfile のパイプにより、イメージを構築する機能が Docker にはあります。標準入力を通して Dockerfile をパイプすると、Dockerfile をディスクに書き込まないため、一回限りの構築を行いたい時に役立ちます。あるいは、 Dockerfile が生成された場所が、後で残らない状況でも役立つでしょう。
 
 .. The examples in this section use here documents for convenience, but any method to provide the Dockerfile on stdin can be used.
 .. For example, the following commands are equivalent:
@@ -115,7 +115,7 @@ Dockerfile で定義したイメージによって生成するコンテナは、
 
    **このセクションで扱う例は、便宜上** `ヒア・ドキュメント <https://tldp.org/LDP/abs/html/here-docs.html>`_ **を扱いますが、**  ``Dockerfile`` **には** ``stdin`` **を使う様々な手法が利用できます** 。
 
-   たとえば、以下のコマンドは、どちらも同じ処理をします。
+   例えば、以下のコマンドは、どちらも同じ処理をします。
 
    .. code-block:: bash
    
@@ -139,7 +139,7 @@ Dockerfile で定義したイメージによって生成するコンテナは、
 
 .. Use this syntax to build an image using a Dockerfile from stdin, without sending additional files as build context. The hyphen (-) takes the position of the PATH, and instructs Docker to read the build context, which only contains a Dockerfile, from stdin instead of a directory:
 
-以下の構文を使うと、標準入力から Dockerfile を使ってイメージを構築するため、ビルド・コンテクストとして送信するファイルの追加が不要です。ハイフン（ ``-`` ）が意味するのは ``PATH`` に替わるもので、ディレクトリの代わりに標準入力から Dockerfile だけを含むビルド・コンテクストを読み込むよう、 Docker に命令します。
+以下の構文を使えば、標準入力から Dockerfile を使ってイメージを構築するため、ビルド・コンテクストとして送信するファイルの追加が不要です。ハイフン（ ``-`` ）が意味するのは ``PATH`` に替わるもので、ディレクトリの代わりに標準入力から Dockerfile だけを含むビルド・コンテクストを読み込むよう、 Docker に命令します。
 
 .. code-block:: bash
 
@@ -275,7 +275,7 @@ Dockerfile で定義したイメージによって生成するコンテナは、
 
 .. To exclude files not relevant to the build, without restructuring your source repository, use a .dockerignore file. This file supports exclusion patterns similar to .gitignore files. For information on creating one, see .dockerignore file.
 
-ソース・リポジトリを再構築をすることなく、イメージの構築と無関係のファイルを除外するには、 ``.dockerignore`` ファイルを使います。このファイルは ``.gitignore`` と似たような除外パターンをサポートします。ファイルの作成に関する情報は :ref:`.dockerignore ファイル <dockerignore-file>` を参照してください。
+ソース・リポジトリを再構築しないで、イメージの構築と無関係のファイルを除外するには、 ``.dockerignore`` ファイルを使います。このファイルは ``.gitignore`` と似たような除外パターンをサポートします。ファイルの作成に関する情報は :ref:`.dockerignore ファイル <dockerignore-file>` を参照してください。
 
 
 .. Use multi-stage builds
@@ -295,14 +295,14 @@ Dockerfile で定義したイメージによって生成するコンテナは、
 
 .. For example, if your build contains several layers and you want to ensure the build cache is reusable, you can order them from the less frequently changed to the more frequently changed. The following list is an example of the order of instructions:
 
-例えば、複数のレイヤを含む構築を行おうとしていて、ビルド・キャッシュを確実に再利用可能にしたい場合は、あまり頻繁に変更しないものから、より頻繁に変更するものへと順番を並べます。以下のリストは命令の順番例です。
+例えば、複数のレイヤを含む構築を行おうとしていて、ビルド・キャッシュを確実に再利用可能にしたい場合は、余り頻繁に変更しないものから、より頻繁に変更するものへと順番を並べます。以下のリストは命令の順番例です。
 
 ..  Install tools you need to build your application
     Install or update library dependencies
     Generate your application
 
 1. アプリケーションの構築に必要なツールをインストール
-2. ライブラリの依存関係をインストールまたは更新
+2. ライブラリの依存関係をインストール又は更新
 3. アプリケーションを生成
 
 
@@ -347,11 +347,11 @@ Go アプリケーションに対する Dockerfile は、以下のようにな�
 
 .. Avoid installing extra or unnecessary packages just because they might be nice to have. For example, you don’t need to include a text editor in a database image.
 
-余分な、または、あったほうが良いだろうという程度の必須はないパッケージのインストールを避けてください。たとえば、データベースのイメージであれば、テキストエディタは不要です。
+余分な、又は、あったほうが良いだろうという程度の必須はないパッケージのインストールを避けてください。例えば、データベースのイメージであれば、テキストエディタは不要です。
 
 .. When you avoid installing extra or unnecessary packages, you images will have reduced complexity, reduced dependencies, reduced file sizes, and reduced build times.
 
-余分なまたは不要なパッケージのインストールを避ければ、イメージの複雑さ、依存関係、ファイルサイズ、構築時間をそれぞれ減らせます。
+余分な又は不要なパッケージのインストールを避ければ、イメージの複雑さ、依存関係、ファイルサイズ、構築時間をそれぞれ減らせます。
 
 .. Decouple applications
 
@@ -362,15 +362,15 @@ Go アプリケーションに対する Dockerfile は、以下のようにな�
 
 .. Each container should have only one concern. Decoupling applications into multiple containers makes it easier to scale horizontally and reuse containers. For instance, a web application stack might consist of three separate containers, each with its own unique image, to manage the web application, database, and an in-memory cache in a decoupled manner.
 
-各コンテナはただ１つだけの用途を持つべきです。アプリケーションを複数のコンテナに切り離すことで、水平スケールやコンテナの再利用がより簡単になります。たとえば、ウェブアプリケーションのスタックであれば、３つのコンテナに分割できるでしょう。切り離す方法にすると、ウェブアプリケーションの管理、データベース、メモリ内のキャッシュ、それぞれが独自のイメージを持ちます。
+各コンテナはただ１つだけの用途を持つべきです。アプリケーションを複数のコンテナに切り離すことで、水平スケールやコンテナの再利用がより簡単になります。例えば、ウェブアプリケーションのスタックであれば、３つのコンテナに分割できるでしょう。切り離す方法にしますと、ウェブアプリケーションの管理、データベース、メモリ内のキャッシュ、それぞれが独自のイメージを持ちます。
 
 .. Limiting each container to one process is a good rule of thumb, but it's not a hard and fast rule. For example, not only can containers be spawned with an init process, some programs might spawn additional processes of their own accord. For instance, Celery can spawn multiple worker processes, and Apache can create one process per request.
 
-各コンテナに１つのプロセスに制限するのは、経験的には良い方針です。しかしながら、これは大変かつ厳しいルールです。たとえば、コンテナで :ref:`init プロセスを生成 <specify-an-init-process>` する時、プログラムによっては、そのプロセスが許容する追加プロセスも生成するでしょう。他にもたとえば、 `Celery <https://www.celeryproject.org/>`_ は複数のワーカ・プロセスを生成しますし、 `Apache <https://httpd.apache.org/>`_ はリクエストごとに１つのプロセスを作成します。
+各コンテナに１つのプロセスに制限するのは、経験的には良い方針です。しかし、これは大変かつ厳しいルールです。例えば、コンテナで :ref:`init プロセスを生成 <specify-an-init-process>` する時、プログラムによっては、そのプロセスが許容する追加プロセスも生成するでしょう。他にも例えば、 `Celery <https://www.celeryproject.org/>`_ は複数のワーカ・プロセスを生成しますし、 `Apache <https://httpd.apache.org/>`_ はリクエストごとに１つのプロセスを作成します。
 
 .. Use your best judgment to keep containers as clean and modular as possible. If containers depend on each other, you can use Docker container networks to ensure that these containers can communicate.
 
-ベストな判断のためには、コンテナを綺麗（クリーン）に保ち、可能であればモジュール化します。コンテナがお互いに依存する場合は、 :doc:`Docker コンテナ・ネットワーク </network/index>` を使い、それぞれのコンテナが通信できるようにします。
+ベストな判断のためには、コンテナを綺麗（クリーン）に保ち、可能であればモジュール化します。コンテナがお互いに依存する場合は、 :doc:`Docker コンテナ・ネットワーク </network/index>` を使い、それぞれのコンテナを通信可能にします。
 
 レイヤの数を最小に
 --------------------
@@ -398,7 +398,7 @@ Docker の古いバージョンでは、性能を確保するために、イメ�
 
 .. Whenever possible, ease later changes by sorting multi-line arguments alphanumerically. This helps to avoid duplication of packages and make the list much easier to update. This also makes PRs a lot easier to read and review. Adding a space before a backslash (\) helps as well.
 
-可能であれば常に、後々の変更を簡単にするため、複数行にわたる引数はアルファベット順にします。これにより、パッケージの重複指定を防ぎ、パッケージ一覧の変更も簡単になります。プルリクエストを読んだりレビューしたりが、さらに楽になります。バックスラッシュ（ ``\`` ） の前に空白を含めるのも同様です。
+可能であれば常に、後々の変更を簡単にするため、複数行にわたる引数はアルファベット順にします。これにより、パッケージの重複指定を防ぎ、パッケージ一覧の変更も簡単になります。プルリクエストを読んだりレビューしたりが、更に楽になります。バックスラッシュ（ ``\`` ） の前に空白を含めるのも同様です。
 
 .. Here’s an example from the buildpack-deps image:
 
@@ -431,7 +431,7 @@ Docker の古いバージョンでは、性能を確保するために、イメ�
 
 .. Starting with a parent image that's already in the cache, the next instruction is compared against all child images derived from that base image to see if one of them was built using the exact same instruction. If not, the cache is invalidated.
 
-* キャッシュ内にすでに存在している親イメージから処理を始めます。そのベースとなるイメージから派生した子イメージに対して、次の命令が合致するかどうかを比較し、子イメージのいずれかが同一の命令によって構築されているかを確認します。そのようなものが存在しなければ、キャッシュは無効になります。
+* キャッシュ内に既に存在している親イメージから処理を始めます。そのベースとなるイメージから派生した子イメージに対して、次の命令が合致するかどうかを比較し、子イメージのいずれかが同一の命令によって構築されているかを確認します。そのようなものが存在しなければ、キャッシュは無効になります。
 
 .. In most cases, simply comparing the instruction in the Dockerfile with one of the child images is sufficient. However, certain instructions require more examination and explanation.
 
@@ -439,15 +439,15 @@ Docker の古いバージョンでは、性能を確保するために、イメ�
 
 .. For the ADD and COPY instructions, the contents of each file in the image are examined and a checksum is calculated for each file. The last-modified and last-accessed times of each file aren’t considered in these checksums. During the cache lookup, the checksum is compared against the checksum in the existing images. If anything has changed in any file, such as the contents and metadata, then the cache is invalidated.
 
-* ``ADD`` 命令や ``COPY`` 命令では、イメージに含まれるファイルの内容が検査され、個々のファイルについてチェックサムが計算されます。この計算において、ファイルの最終更新時刻、最終アクセス時刻は考慮されません。キャッシュを探す際に、このチェックサムと既存イメージのチェックサムが比較されます。ファイル内の何かが変更になったとき、たとえばファイル内容やメタデータが変わっていれば、キャッシュは無効になります。
+* ``ADD`` 命令や ``COPY`` 命令では、イメージに含まれるファイルの内容が検査され、個々のファイルについてチェックサムが計算されます。この計算において、ファイルの最終更新時刻、最終アクセス時刻は考慮されません。キャッシュを探す際に、このチェックサムと既存イメージのチェックサムが比較されます。ファイル内の何かが変更になったとき、例えばファイル内容やメタデータが変わっていれば、キャッシュは無効になります。
 
 .. Aside from the ADD and COPY commands, cache checking doesn’t look at the files in the container to determine a cache match. For example, when processing a RUN apt-get -y update command the files updated in the container aren’t examined to determine if a cache hit exists. In that case just the command string itself is used to find a match.
 
-* ``ADD`` と ``COPY`` 以外の命令の場合、キャッシュのチェックは、コンテナ内のファイル内容を見ることはなく、それによってキャッシュと一致しているかどうかが決定されません。たとえば ``RUN apt-get -y update`` コマンドの処理が行われる際には、コンテナ内にて更新されたファイルは、キャッシュが一致するかどうかの判断のために用いられません。この場合にはコマンド文字列そのものが、キャッシュの一致判断に用いられます。
+* ``ADD`` と ``COPY`` 以外の命令の場合、キャッシュのチェックは、コンテナ内のファイル内容を見ることはなく、それによってキャッシュと一致しているかどうかが決定されません。例えば ``RUN apt-get -y update`` コマンドの処理が行われる際には、コンテナ内にて更新されたファイルは、キャッシュが一致するかどうかの判断のために用いられません。この場合にはコマンド文字列そのものが、キャッシュの一致判断に用いられます。
 
 .. Once the cache is invalidated, all subsequent Dockerfile commands generate new images and the cache is not used.
 
-キャッシュが無効になると、次に続く ``Dockerfile`` コマンドは新たなイメージを生成し、キャッシュを使いません。
+キャッシュが無効になれば、次に続く ``Dockerfile`` コマンドは新たなイメージを生成し、キャッシュを使いません。
 
 .. Dockerfile instructions
 
@@ -482,11 +482,11 @@ LABEL
 
 .. You can add labels to your image to help organize images by project, record licensing information, to aid in automation, or for other reasons. For each label, add a line beginning with LABEL and with one or more key-value pairs. The following examples show the different acceptable formats. Explanatory comments are included inline.
 
-イメージにラベルを追加するのは、プロジェクト内でのイメージ管理をしやすくしたり、ライセンス情報の記録や自動化の助けとするなど、さまざまな目的があります。ラベルを指定するには、 ``LABEL`` で始まる行を追加して、そこにキーと値のペア（key-value pair）をいくつか設定します。以下に示す例は、いずれも正しい構文です。説明をコメントとしてつけています。
+イメージにラベルを追加するのは、プロジェクト内でのイメージ管理をしやすくする、あるいは、ライセンス情報の記録や自動化の助けとするなど、様々な目的があります。ラベルを指定するには、 ``LABEL`` で始まる行を追加して、そこにキーと値のペア（key-value pair）を幾つか設定します。以下に示す例は、いずれも正しい構文です。説明をコメントとしてつけています。
 
 .. Strings with spaces must be quoted or the spaces must be escaped. Inner quote characters ("), must also be escaped. For example:
 
-文字列に空白が含まれる場合は、引用符でくくるか **あるいは** エスケープする必要があります。文字列内に引用符（ ``"`` ）がある場合も、同様にエスケープが必要です。
+文字列に空白が含まれる場合は、引用符で囲むか **あるいは** エスケープする必要があります。文字列内に引用符（ ``"`` ）がある場合も、同様にエスケープが必要です。
 
 .. code-block:: dockerfile
 
@@ -519,7 +519,7 @@ LABEL
 
 .. See Understanding object labels for guidelines about acceptable label keys and values. For information about querying labels, refer to the items related to filtering in Managing labels on objects. See also LABEL in the Dockerfile reference.
 
-ラベルにおける利用可能なキーと値のガイドラインとしては :doc:`オブジェクトラベルを理解する </engine/userguide/labels-custom-metadata>` を参照してください。またラベルの検索に関する情報は  :ref:`オブジェクト上のラベルの管理 <managing-labels-on-objects>` のフィルタリングに関する項目を参照してください。また、 Dockerfile リファレンスの :ref:`LABEL <builder-label>` も御覧ください。
+ラベルにおける利用可能なキーと値のガイドラインとしては :doc:`オブジェクトラベルを理解する </engine/userguide/labels-custom-metadata>` を参照してください。またラベルの検索に関する情報は  :ref:`オブジェクト上のラベル管理 <managing-labels-on-objects>` のフィルタリングに関する項目を参照してください。また、 Dockerfile リファレンスの :ref:`LABEL <builder-label>` も御覧ください。
 
 .. RUN
 
@@ -542,11 +542,11 @@ apt-get
 
 .. Probably the most common use-case for RUN is an application of apt-get. Because it installs packages, the RUN apt-get command has several counter-intuitive behaviors to look out for.
 
-おそらく ``RUN`` において一番利用する使い方が ``apt-get`` アプリケーションの実行です。これはパッケージをインストールするものですが、 ``RUN apt-get`` は直感的に分かるものではないため、注意点がいくつかあります。
+恐らく ``RUN`` において一番利用する使い方が ``apt-get`` アプリケーションの実行です。これはパッケージをインストールするものですが、 ``RUN apt-get`` は直感的に分かるものではないため、注意点が幾つかあります。
 
 .. Always combine RUN apt-get update with apt-get install in the same RUN statement. For example:
 
-``RUN apt-get update`` と ``apt-get install`` は、同一の ``RUN`` 命令内にて同時実行するようにしてください。たとえば以下のようにします。
+``RUN apt-get update`` と ``apt-get install`` は、同一の ``RUN`` 命令内にて同時実行するようにしてください。例えば以下のようにします。
 
 .. code-block:: bash
 
@@ -558,7 +558,7 @@ apt-get
 
 .. Using apt-get update alone in a RUN statement causes caching issues and subsequent apt-get install instructions fail. For example, the issue will occur in the following Dockerfile:
 
-１つの ``RUN`` 命令内で ``apt-get update`` だけを使うとキャッシュに問題が発生し、その後の ``apt-get install`` コマンドが失敗します。たとえば Dockerfile を以下のように記述したとします。
+１つの ``RUN`` 命令内で ``apt-get update`` だけを使うとキャッシュに問題が発生し、その後の ``apt-get install`` コマンドが失敗します。例えば Dockerfile を以下のように記述したとします。
 
 .. code-block:: bash
 
@@ -569,7 +569,7 @@ apt-get
 
 .. After building the image, all layers are in the Docker cache. Suppose you later modify apt-get install by adding an extra package as shown in the following Dockerfile:
 
-イメージが構築されると、レイヤーがすべて Docker のキャッシュに入ります。この次に ``apt-get install`` を編集して、以下のように別のパッケージを追加したとします。
+イメージの構築後、すべてのレイヤは Docker のキャッシュに入ります。この次に、 ``apt-get install`` を編集して、以下のように別のパッケージを追加したとします。
 
 .. code-block:: bash
 
@@ -580,11 +580,11 @@ apt-get
 
 .. Docker sees the initial and modified instructions as identical and reuses the cache from previous steps. As a result the apt-get update isn’t executed because the build uses the cached version. Because the apt-get update isn’t run, your build can potentially get an outdated version of the curl and nginx packages.
 
-Docker は当初の命令と修正後の命令を見て、同一のコマンドであると判断するので、前回の処理において作られたキャッシュを再利用します。キャッシュされたものを利用して処理を行うため、結果として ``apt-get update`` は実行 **されません** 。``apt-get update`` を実行しないとは、つまり ``curl`` にしても ``nginx`` にしても、古いバージョンのまま利用する可能性が出てきます。
+Docker は当初の命令と修正後の命令を見て、同一のコマンドであると判断するため、前回の処理において作られたキャッシュを再利用します。キャッシュされたものを利用して処理を行うため、結果として ``apt-get update`` は実行 **されません** 。``apt-get update`` を実行しないとは、つまり ``curl`` にしても ``nginx`` にしても、古いバージョンのまま利用する可能性が出てきます。
 
 .. Using RUN apt-get update && apt-get install -y ensures your Dockerfile installs the latest package versions with no further coding or manual intervention. This technique is known as cache busting. You can also achieve cache busting by specifying a package version. This is known as version pinning. For example:
 
-``RUN apt-get update && apt-get install -y`` コマンドを使えば、 Dockerfile が確実に最新バージョンをインストールし、さらにコードを書いたり手作業を加えたりする必要がなくなります。これはキャッシュ・バスティング（cache busting）と呼ばれる技術です。この技術は、パッケージのバージョン指定にも利用できます。これはバージョン・ピニング（version pinning）よ呼ばれています。以下に例を示します。
+``RUN apt-get update && apt-get install -y`` コマンドを使えば、 Dockerfile が確実に最新バージョンをインストールし、更にコードを書いたり手作業を加えたりする必要がなくなります。これはキャッシュ・バスティング（cache busting）と呼ばれる技術です。この技術は、パッケージのバージョン指定にも利用できます。これはバージョン・ピニング（version pinning）よ呼ばれています。以下に例を示します。
 
 .. code-block:: bash
 
@@ -595,7 +595,7 @@ Docker は当初の命令と修正後の命令を見て、同一のコマンド�
 
 .. Version pinning forces the build to retrieve a particular version regardless of what’s in the cache. This technique can also reduce failures due to unanticipated changes in required packages.
 
-バージョン・ピニングでは、キャッシュにどのようなイメージがあろうとも、指定されたバージョンを使って構築します。この手法を使えば、そのパッケージの最新版に、思いもよらない変更が加わっていたとしても、ビルド失敗を回避できることもあります。
+バージョン・ピニングでは、キャッシュにどのようなイメージがあったとしても、指定されたバージョンを使って構築します。この手法を使えば、そのパッケージの最新版に、思いもよらない変更が加わっていたとしても、ビルド失敗を回避できることもあります。
 
 .. Below is a well-formed RUN instruction that demonstrates all the apt-get recommendations.
 
@@ -624,7 +624,7 @@ Docker は当初の命令と修正後の命令を見て、同一のコマンド�
 
 .. In addition, when you clean up the apt cache by removing /var/lib/apt/lists it reduces the image size, since the apt cache isn’t stored in a layer. Since the RUN statement starts with apt-get update, the package cache is always refreshed prior to apt-get install.
 
-apt キャッシュをクリーンアップし ``/var/lib/apt/lists`` を削除するのは、イメージ容量を小さくするためです。そもそも apt キャッシュはレイヤー内に保存されません。``RUN`` 命令は ``apt-get update`` から始めているので、 ``apt-get install`` の前に必ずパッケージのキャッシュが更新されます。
+apt キャッシュをクリーンアップし ``/var/lib/apt/lists`` を削除するのは、イメージ容量を小さくするためです。そもそも apt キャッシュはレイヤー内に保存されません。``RUN`` 命令は ``apt-get update`` から始めていますので、 ``apt-get install`` の前に必ずパッケージのキャッシュが更新されます。
 
 .. Official Debian and Ubuntu images automatically run apt-get clean, so explicit invocation is not required.
 
@@ -639,7 +639,7 @@ apt キャッシュをクリーンアップし ``/var/lib/apt/lists`` を削除�
 
 .. Some RUN commands depend on the ability to pipe the output of one command into another, using the pipe character (|), as in the following example:
 
-``RUN`` 命令の中には、その出力をパイプを使って他のコマンドへの受け渡しを前提としています。そのときには、以下の例のように、パイプを行う文字（ ``|`` ）を使います。
+``RUN`` 命令の中には、その出力をパイプし、他のコマンドへと受け渡すのを前提としているものもあります。そのときには、以下の例のように、パイプを行う文字（ ``|`` ）を使います。
 
 ::
 
@@ -648,11 +648,11 @@ apt キャッシュをクリーンアップし ``/var/lib/apt/lists`` を削除�
 
 .. Docker executes these commands using the /bin/sh -c interpreter, which only evaluates the exit code of the last operation in the pipe to determine success. In the example above, this build step succeeds and produces a new image so long as the wc -l command succeeds, even if the wget command fails.
 
-Docker はこういったコマンドを ``/bin/sh -c`` というインタープリタで処理します。正常処理されたかどうかは、パイプの最後の処理の終了コードにより評価します。上の例では、この構築処理が成功して新たなイメージが生成されるかどうかは、``wc -l`` コマンドの成功にかかっています。つまり ``wget`` コマンドが成功するかどうかは関係がありません。
+Docker はこういったコマンドを ``/bin/sh -c`` というインタープリタで処理します。正常に処理されたかどうかは、最後のパイプ処理における終了コードで評価します。上の例では、この構築処理が成功して新たなイメージが生成されるかどうかは、``wc -l`` コマンドの成功にかかっています。つまり ``wget`` コマンドが成功するかどうかは関係がありません。
 
 .. If you want the command to fail due to an error at any stage in the pipe, prepend set -o pipefail && to ensure that an unexpected error prevents the build from inadvertently succeeding. For example:
 
-パイプ内のどの段階でも、エラーが発生したらコマンド失敗としたい場合は、頭に ``set -o pipefail &&`` をつけて実行します。こうしておくと、予期しないエラーが発生しても、それに気づかずに構築されてしまうことはなくなります。以下は例です。
+パイプ内のどの段階でも、エラーが発生したらコマンド失敗としたい場合は、頭に ``set -o pipefail &&`` をつけて実行します。こうしますと、予期しないエラーが発生しても、それに気づかずに構築されてしまうことはなくなります。以下は例です。
 
 ::
 
@@ -679,11 +679,11 @@ CMD
 
 .. The CMD instruction should be used to run the software contained in your image, along with any arguments. CMD should almost always be used in the form of CMD ["executable", "param1", "param2"…]. Thus, if the image is for a service, such as Apache and Rails, you would run something like CMD ["apache2","-DFOREGROUND"]. Indeed, this form of the instruction is recommended for any service-based image.
 
-``CMD`` 命令は、イメージ内に含まれるソフトウェアを実行するために用いるもので、引数を指定して実行します。``CMD`` はほぼ、``CMD ["実行モジュール名", "引数1", "引数2" …]`` の形式をとります。Apache や Rails のようなサービス用途のイメージに対しては、たとえば ``CMD ["apache2","-DFOREGROUND"]`` といったコマンド実行になります。サービスの土台となるイメージに対しては、この実行形式を推奨します。
+``CMD`` 命令は、イメージ内に含まれるソフトウェアを実行するために用いるもので、引数を指定して実行します。``CMD`` はほぼ、``CMD ["実行モジュール名", "引数1", "引数2" …]`` の形式をとります。Apache や Rails のようなサービス用途のイメージに対しては、例えば ``CMD ["apache2","-DFOREGROUND"]`` といったコマンド実行になります。サービスの土台となるイメージに対しては、この実行形式を推奨します。
 
 .. In most other cases, CMD should be given an interactive shell, such as bash, python and perl. For example, CMD ["perl", "-de0"], CMD ["python"], or CMD ["php", "-a"]. Using this form means that when you execute something like docker run -it python, you’ll get dropped into a usable shell, ready to go. CMD should rarely be used in the manner of CMD ["param", "param"] in conjunction with ENTRYPOINT, unless you and your expected users are already quite familiar with how ENTRYPOINT works.
 
-ほとんどのケースでは、 ``CMD`` に対して bash、python、perl など双方向のシェルがあります。たとえば ``CMD ["perl", "-de0"]`` 、 ``CMD ["python"]`` 、 ``CMD ["php", "-a"]`` といった具合です。この実行形式の利用とは、たとえば ``docker run -it python`` というコマンドを実行したときに、指定したシェルの中に入り込んで、処理の進行を意味します。``CMD`` と ``ENTRYPOINT`` を組み合わせて用いる ``CMD ["引数", "引数"]`` という実行形式がありますが、これを利用するのは稀です。開発者自身や利用者にとって ``ENTRYPOINT`` がどのように動作するのかを十分に理解していないなら、使うべきではありません。
+ほとんどのケースでは、 ``CMD`` に対して bash、python、perl など双方向のシェルがあります。例えば ``CMD ["perl", "-de0"]`` 、 ``CMD ["python"]`` 、 ``CMD ["php", "-a"]`` といった具合です。この実行形式の利用とは、例えば ``docker run -it python`` というコマンドを実行したときに、指定したシェルの中に入り込んで、処理の進行を意味します。``CMD`` と ``ENTRYPOINT`` を組み合わせて用いる ``CMD ["引数", "引数"]`` という実行形式がありますが、これを利用するのは稀です。開発者自身や利用者にとって ``ENTRYPOINT`` がどのように動作するのかを十分に理解していないなら、使うべきではありません。
 
 .. For more information about CMD, see Dockerfile reference for the CMD instruction.
 
@@ -697,11 +697,11 @@ EXPOSE
 
 .. The EXPOSE instruction indicates the ports on which a container listens for connections. Consequently, you should use the common, traditional port for your application. For example, an image containing the Apache web server would use EXPOSE 80, while an image containing MongoDB would use EXPOSE 27017 and so on.
 
-``EXPOSE`` 命令は、コンテナが接続のためにリッスンするポートを指定します。当然ながら、アプリケーションは標準的なポートを試用すべきです。たとえば Apache ウェブ・サーバを含んでいるイメージに対しては ``EXPOSE 80`` を使います。また MongoDB を含んでいれば ``EXPOSE 27017`` を使います。
+``EXPOSE`` 命令は、コンテナが接続のためにリッスンするポートを指定します。当然ながら、アプリケーションは標準的なポートを試用すべきです。例えば Apache ウェブ・サーバを含んでいるイメージに対しては ``EXPOSE 80`` を使います。また MongoDB を含んでいれば ``EXPOSE 27017`` を使います。
 
 .. For external access, your users can execute docker run with a flag indicating how to map the specified port to the port of their choice. For container linking, Docker provides environment variables for the path from the recipient container back to the source (ie, MYSQL_PORT_3306_TCP).
 
-外部からアクセスできるようにするには、 ``docker run`` にフラグをつけて実行します。そのフラグとは、指定されているポートを、自分が取り決めるどのようなポートに割り当てるかを指示するものです。Docker のリンク機能においては環境変数が利用できます。受け側のコンテナが提供元をたどれるようにするものです（例: ``MYSQL_PORT_3306_TCP`` ）。
+外部からアクセスできるようにするには、 ``docker run`` にフラグをつけて実行します。そのフラグとは、指定されているポートを、自分が取り決めるどのようなポートに割り当てるかを指示するものです。Docker のリンク機能では環境変数が利用できます。受け側のコンテナが提供元をたどれるようにするものです（例: ``MYSQL_PORT_3306_TCP`` ）。
 
 .. For more information about EXPOSE, see Dockerfile reference for the EXPOSE instruction.
 
@@ -715,15 +715,15 @@ ENV
 
 .. To make new software easier to run, you can use ENV to update the PATH environment variable for the software your container installs. For example, ENV PATH=/usr/local/nginx/bin:$PATH ensures that CMD ["nginx"] just works.
 
-新しいソフトウェアに対しては ``ENV`` を用いれば簡単にそのソフトウェアを実行できます。コンテナがインストールするソフトウェアに必要な環境変数 ``PATH`` を、この ``ENV`` を使って更新します。たとえば ``ENV PATH=/usr/local/nginx/bin:$PATH`` を実行すれば、 ``CMD ["nginx"]`` が確実に動作するようになります。
+新しいソフトウェアに対しては ``ENV`` を用いれば簡単にそのソフトウェアを実行できます。コンテナがインストールするソフトウェアに必要な環境変数 ``PATH`` を、この ``ENV`` を使って更新します。例えば ``ENV PATH=/usr/local/nginx/bin:$PATH`` を実行すれば、 ``CMD ["nginx"]`` が確実に動作するようになります。
 
 .. The ENV instruction is also useful for providing required environment variables specific to services you wish to containerize, such as Postgres’s PGDATA.
 
-``ENV`` 命令は、必要となる環境変数を設定するときにも利用します。たとえば Postgres の ``PGDATA`` のように、コンテナ化したいサービスに固有の環境変数が設定できます。
+``ENV`` 命令は、必要となる環境変数を設定するときにも利用します。例えば Postgres の ``PGDATA`` のように、コンテナ化したいサービスに固有の環境変数が設定できます。
 
 .. Lastly, ENV can also be used to set commonly used version numbers so that version bumps are easier to maintain, as seen in the following example:
 
-また ``ENV`` は普段利用している各種バージョン番号を設定しておくときにも利用されます。これによってバージョンを混同することなく、管理が容易になります。たとえば以下がその例です。
+また ``ENV`` にはふだん利用している各種バージョン番号を設定しておくときにも利用されます。これによってバージョンを混同することなく、管理が容易になります。以下がその例です。
 
 .. code-block:: bash
 
@@ -734,7 +734,7 @@ ENV
 
 .. Similar to having constant variables in a program, as opposed to hard-coding values, this approach lets you change a single ENV instruction to automatically bump the version of the software in your container.
 
-プログラムにおけるハードコーディングではない定数の定義と同じように、この方法を使うのが便利です。ただ１つの ``ENV`` 命令を変更するだけで、コンテナ内のソフトウェアバージョンも、いとも簡単に変えられるからです。
+この方法は、プログラムにおけるハードコーディングではない定数を定義するのと同じように使うのが便利です。ただ１つの ``ENV`` 命令を変更するだけで、コンテナ内のソフトウェアバージョンも、いとも簡単に変えられるからです。
 
 .. Each ENV line creates a new intermediate layer, just like RUN commands. This means that even if you unset the environment variable in a future layer, it still persists in this layer and its value can  be dumped. You can test this by creating a Dockerfile like the following, and then building it.
 
@@ -756,7 +756,7 @@ ENV
 
 .. To prevent this, and really unset the environment variable, use a RUN command with shell commands, to set, use, and unset the variable all in a single layer. You can separate your commands with ; or &&. If you use the second method, and one of the commands fails, the docker build also fails. This is usually a good idea. Using \ as a line continuation character for Linux Dockerfiles improves readability. You could also put all of the commands into a shell script and have the RUN command just run that shell script.
 
-この挙動を避けるには、 ``RUN`` 命令でシェルのコマンドを使い、環境変数を実際にアンセットします。ただし、レイヤ内の環境変数の指定とアンセットを、１つのレイヤで指定する必要があります。コマンドは ``;`` や ``&`` で分割できます。ただし、 ``&`` を使う場合、どこかの行の１つでも失敗すると、 ``docker build`` そのものが失敗します。 ``\`` をライン継続文字として使う方が、 Linux Dockerfile の読み込みやすさを改善します。また、コマンドのすべてをシェルスクリプトにし、そのスクリプトを ``RUN`` 命令として実行する方法もあります。
+この挙動を避けるには、 ``RUN`` 命令でシェルのコマンドを使い、環境変数を実際にアンセットします。ただし、レイヤ内の環境変数の指定とアンセットを、１つのレイヤで指定する必要があります。コマンドは ``;`` や ``&`` で分割できます。ただし、 ``&`` を使う場合、どこかの行の１つでも失敗したら、 ``docker build`` そのものが失敗します。 ``\`` をライン継続文字として使う方が、 Linux Dockerfile の読み込みやすさを改善します。また、コマンドのすべてをシェルスクリプトにし、そのスクリプトを ``RUN`` 命令として実行する方法もあります。
 
 .. code-block:: bash
 
@@ -783,11 +783,11 @@ ADD と COPY
 
 .. Although ADD and COPY are functionally similar, generally speaking, COPY is preferred. That’s because it’s more transparent than ADD. COPY only supports the basic copying of local files into the container, while ADD has some features (like local-only tar extraction and remote URL support) that are not immediately obvious. Consequently, the best use for ADD is local tar file auto-extraction into the image, as in ADD rootfs.tar.xz /.
 
-``ADD`` と ``COPY`` の機能は似ていますが、一般的には ``COPY`` を優先します。それは ``ADD`` よりも機能が明確だからです。``COPY`` は単に、基本的なコピー機能を使ってローカルファイルをコンテナにコピーするだけです。一方 ``ADD`` には特定の機能（ローカルでの tar 展開やリモート URL サポート）があり、これはすぐにわかるものではありません。結局 ``ADD`` の最も適切な利用場面は、ローカルの tar ファイルを自動的に展開してイメージに書き込むときです。たとえば ``ADD rootfs.tar.xz /`` といったコマンドです。
+``ADD`` と ``COPY`` の機能は似ていますが、一般的には ``COPY`` を優先します。それは ``ADD`` よりも機能が明確だからです。``COPY`` は単に、基本的なコピー機能を使ってローカルファイルをコンテナにコピーするだけです。一方 ``ADD`` には特定の機能（ローカル環境での tar 展開やリモート URL サポート）がありますが、これはすぐにわかるものではありません。結局 ``ADD`` の最も適切な利用場面は、ローカルの tar ファイルを自動的に展開してイメージに書き込むときです。例えば ``ADD rootfs.tar.xz /`` といったコマンドです。
 
 .. If you have multiple Dockerfile steps that use different files from your context, COPY them individually, rather than all at once. This ensures that each step’s build cache is only invalidated, forcing the step to be re-run if the specifically required files change.
 
-Dockerfile 内の複数ステップで異なるファイルをコピーするには、一度にすべてをコピーするのではなく、 ``COPY`` を使って個別にコピーしてください。こうしておくと、個々のステップに対するキャッシュのビルドは最低限に抑えられます。つまり指定されているファイルが変更になったときのみ、キャッシュが無効化されます（そのステップは再実行されます）。
+Dockerfile 内の複数ステップで異なるファイルをコピーするには、一度にすべてをコピーするのではなく、 ``COPY`` を使って個別にコピーしてください。こうしておけば、個々のステップに対するキャッシュのビルドは最低限に抑えられます。つまり指定されているファイルが変更になったときのみ、キャッシュが無効化されます（そのステップは再実行されます）。
 
 .. For example:
 
@@ -805,7 +805,7 @@ Dockerfile 内の複数ステップで異なるファイルをコピーするに
 
 .. Because image size matters, using ADD to fetch packages from remote URLs is strongly discouraged; you should use curl or wget instead. That way you can delete the files you no longer need after they’ve been extracted and you don’t have to add another layer in your image. For example, you should avoid doing things like:
 
-イメージ容量の問題があるので、 ``ADD`` を用いてリモート URL からのパッケージ取得をやめてください。かわりに ``curl`` や ``wget`` を使ってください。こうすると、ファイルを取得し展開した後や、イメージ内の他のレイヤにファイルを加える必要がないのであれば、その後にファイルを削除できます。たとえば以下に示すのは、望ましくない例です。
+イメージ容量の問題があるため、 ``ADD`` を用いてリモート URL からのパッケージ取得をやめてください。かわりに ``curl`` や ``wget`` を使ってください。こうしますと、ファイルを取得し展開した後や、イメージ内の他のレイヤにファイルを加える必要がないのであれば、その後にファイルを削除できます。例えば以下に示すのは、望ましくない例です。
 
 .. code-block:: bash
 
@@ -843,7 +843,7 @@ ENTRYPOINT
 
 .. The best use for ENTRYPOINT is to set the image’s main command, allowing that image to be run as though it was that command, and then use CMD as the default flags.
 
-``ENTRYPOINT`` の最適な利用方法は、イメージに対してメインとなるコマンドの設定です。これを設定すると、イメージをそのコマンドそのものであるかのようにして実行できます。また、続いて ``CMD`` を使えば、デフォルトのフラグを指定します。
+``ENTRYPOINT`` の最適な利用方法は、イメージに対してメインとなるコマンドの設定です。これを設定しますと、イメージをそのコマンドそのものであるかのようにして実行できます。また、続いて ``CMD`` を使えば、デフォルトのフラグを指定します。
 
 .. The following is an example of an image for the command line tool s3cmd:
 
@@ -880,7 +880,7 @@ ENTRYPOINT
 
 .. For example, the Postgres Official Image uses the following script as its ENTRYPOINT:
 
-たとえば `Postgres 公式イメージ <https://hub.docker.com/_/postgres/>`_ は次のスクリプトを ``ENTRYPOINT`` として使っています。
+例えば `Postgres 公式イメージ <https://hub.docker.com/_/postgres/>`_ は次のスクリプトを ``ENTRYPOINT`` として使っています。
 
 .. code-block:: bash
 
@@ -915,7 +915,7 @@ ENTRYPOINT
 
 .. This script allows the user to interact with Postgres in several ways.
 
-このスクリプトを用いると、Postgres との間で、ユーザがいろいろな方法でやり取りできるようになります。
+このスクリプトを使うと、Postgres との間で、ユーザがいろいろな方法でやり取りできるようになります。
 
 .. It can simply start Postgres:
 
@@ -935,7 +935,7 @@ ENTRYPOINT
 
 .. Lastly, it could also be used to start a totally different tool, such as Bash:
 
-または Bash のような全く異なるツールを起動するための利用もできます。
+又は Bash のような全く異なるツールを起動するための利用もできます。
 
 .. code-block:: bash
 
@@ -970,7 +970,7 @@ USER
 
 .. If a service can run without privileges, use USER to change to a non-root user. Start by creating the user and group in the Dockerfile with something like the following example:
 
-サービスが特権ユーザでなくても実行できる場合は、 ``USER`` を用いて非 root ユーザに変更します。ユーザとグループを生成するところから始めてください。``Dockerfile`` 内で、たとえば次のように入力します。
+サービスが特権ユーザでなくても実行できる場合は、 ``USER`` を用いて非 root ユーザに変更します。ユーザとグループを生成するところから始めてください。``Dockerfile`` 内で、例えば次のように入力します。
 
 .. code-block:: bash
 
@@ -987,15 +987,15 @@ USER
 
 .. note::
 
-   Go 言語の archive/tar パッケージが取り扱うスパースファイルにおいて `未解決のバグ <https://github.com/golang/go/issues/13548>`_ があります。これは Docker コンテナ内にて非常に大きな値の UID を使ってユーザを生成しようとするため、ディスクを異常に消費します。コンテナ・レイヤ内の ``/var/log/faillog`` が NUL (\\0) キャラクタにより埋められてしまいます。useradd に対して ``--no-log-init`` フラグをつけると、とりあえずこの問題は回避できます。ただし Debian/Ubuntu の ``adduser`` ラッパーは ``--no-log-init`` フラグをサポートしていないため、利用できません。
+   Go 言語の archive/tar パッケージが取り扱うスパースファイルにおいて `未解決のバグ <https://github.com/golang/go/issues/13548>`_ があります。これは Docker コンテナ内で非常に大きな値の UID を使ってユーザを生成しようとするため、ディスクを異常に消費します。コンテナ・レイヤ内の ``/var/log/faillog`` が NUL (\\0) キャラクタにより埋められてしまいます。useradd に対して ``--no-log-init`` フラグを付けますと、とりあえずこの問題は回避できます。ただし Debian/Ubuntu の ``adduser`` ラッパーは ``--no-log-init`` フラグをサポートしていないため、利用出来ません。
 
 .. Avoid installing or using sudo as it has unpredictable TTY and signal-forwarding behavior that can cause problems. If you absolutely need functionality similar to sudo, such as initializing the daemon as root but running it as non-root, consider using “gosu”.
 
-``sudo`` のインストールとその利用は避けてください。TTY やシグナル送信が予期しない動作をするため、多くの問題を引き起こす可能性があります。 ``sudo`` と同様の機能（たとえばデーモンの初期化を root により行い、起動は root 以外で行うなど）を実現する必要がある場合は、 `gosu <https://github.com/tianon/gosu>`_ を検討ください。
+``sudo`` のインストールとその利用は避けてください。TTY やシグナル送信が予期しない動作をするため、多くの問題を引き起こす可能性があります。 ``sudo`` と同様の機能（例えばデーモンの初期化を root により行い、起動は root 以外で行うなど）を実現する必要がある場合は、 `gosu <https://github.com/tianon/gosu>`_ を検討ください。
 
 .. Lastly, to reduce layers and complexity, avoid switching USER back and forth frequently.
 
-レイヤ数を減らしたり複雑にならないようにするためには、 ``USER`` の設定を何度も繰り返すのは避けてください。
+レイヤ数を減らしたり複雑さを減らしたりするには、 ``USER`` の設定を何度も繰り返すのは避けてください。
 
 .. For more information about USER, see Dockerfile reference for the USER instruction.
 
@@ -1010,7 +1010,7 @@ WORKDIR
 
 .. For clarity and reliability, you should always use absolute paths for your WORKDIR. Also, you should use WORKDIR instead of proliferating instructions like RUN cd … && do-something, which are hard to read, troubleshoot, and maintain.
 
-``WORKDIR`` に設定するパスは、分かり易く確実なものとするために、絶対パス指定としてください。また ``RUN cd … && do-something`` といった長くなる一方のコマンドを書くくらいなら、 ``WORKDIR`` を利用してください。そのような書き方は読みにくく、トラブル発生時には解決しにくく保守が困難になるためです。
+``WORKDIR`` に設定するパスは、分かりやすく確実なものとするために、絶対パス指定としてください。また ``RUN cd … && do-something`` といった長くなる一方のコマンドを書くくらいなら、 ``WORKDIR`` を利用してください。そのような書き方は読みにくく、トラブル発生時には解決しにくく保守が困難になるためです。
 
 .. For more information about WORKDIR, see Dockerfile reference for the WORKDIR instruction.
 
@@ -1032,15 +1032,15 @@ Docker によるビルドは、 子 Dockerfile 内のどの命令よりも先に
 
 .. ONBUILD is useful for images that are going to be built FROM a given image. For example, you would use ONBUILD for a language stack image that builds arbitrary user software written in that language within the Dockerfile, as you can see in Ruby’s ONBUILD variants.
 
-``ONBUILD`` は、所定のイメージから ``FROM`` を使ってのイメージ構築時に利用できます。たとえば特定言語のスタックイメージは ``ONBUILD`` を利用します。``Dockerfile`` 内にて、その言語で書かれたどのようなユーザ・ソフトウェアであっても構築できます。その例として `Ruby's ONBUILD variants <https://github.com/docker-library/ruby/blob/master/2.1/onbuild/Dockerfile>`_ があります。
+``ONBUILD`` は、所定のイメージから ``FROM`` を使ってのイメージ構築時に利用できます。例えば特定言語のスタックイメージは ``ONBUILD`` を利用します。``Dockerfile`` 内にて、その言語で書かれたどのようなユーザ・ソフトウェアであっても構築できます。その例として `Ruby's ONBUILD variants <https://github.com/docker-library/ruby/blob/master/2.1/onbuild/Dockerfile>`_ があります。
 
 .. Images built with ONBUILD should get a separate tag, for example: ruby:1.9-onbuild or ruby:2.0-onbuild.
 
-``ONBUILD`` によって構築するイメージは、異なったタグを指定してください。たとえば ``ruby:1.9-onbuild`` と ``ruby:2.0-onbuild`` などです。
+``ONBUILD`` によって構築するイメージは、異なったタグを指定してください。例えば ``ruby:1.9-onbuild`` と ``ruby:2.0-onbuild`` などです。
 
 .. Be careful when putting ADD or COPY in ONBUILD. The onbuild image fails catastrophically if the new build’s context is missing the resource being added. Adding a separate tag, as recommended above, helps mitigate this by allowing the Dockerfile author to make a choice.
 
-``ONBUILD`` において ``ADD`` や ``COPY`` を用いるときは注意してください。onbuild イメージで新たに構築する際に、追加しようとしているリソースが見つからなかったとしたら、このイメージは復旧できない状態になります。上に示したように個別にタグをつけておけば、 Dockerfile の開発者にとっても判断ができるようになるので、不測の事態は軽減されます。
+``ONBUILD`` において ``ADD`` や ``COPY`` を用いるときは注意してください。onbuild イメージで新たに構築する際に、追加しようとしているリソースが見つからなかったとしたら、このイメージは復旧できない状態になります。上に示したように個別にタグをつけておけば、 Dockerfile の開発者にとっても判断ができるようになりますので、不測の事態は軽減されます。
 
 .. For more information about ONBUILD, see Dockerfile reference for the ONBUILD instruction.
 
