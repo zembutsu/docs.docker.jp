@@ -67,8 +67,7 @@ Doc v24.0 目次
    get-started/hands-on-overview.rst
    language/toc.rst
    develop/toc.rst
-   ci-cd/toc.rst
-   cloud/toc.rst
+   build/guide/toc.rst
    production.rst
    get-started/resources.rst
    opensource/toc.rst
