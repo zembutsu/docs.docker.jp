@@ -120,7 +120,7 @@ Compose ファイルのパスを指定
 
 .. You can use the -f flag to specify a path to a Compose file that is not located in the current directory, either from the command line or by setting up a COMPOSE_FILE environment variable in your shell or in an environment file.
 
-コマンドライン上で ``-f`` オプションを使う例として、Compose で Rails サンプルの実行を想定します。そして、 ``sandbox/rials`` ディレクトリに ``compose.yaml`` ファイルがあるとします。 ``docker compose pull`` のようなコマンドを使うとき、次のように ``-f`` フラグを使うと、あらゆる場所から db サービスに対する postgres イメージを取得できます。
+コマンドライン上で ``-f`` オプションを使う例として、Compose で Rails サンプルの実行を想定します。そして、 ``sandbox/rails`` ディレクトリに ``compose.yaml`` ファイルがあるとします。 ``docker compose pull`` のようなコマンドを使うとき、次のように ``-f`` フラグを使うと、あらゆる場所から db サービスに対する postgres イメージを取得できます。
 
 .. For an example of using the -f option at the command line, suppose you are running the Compose Rails sample, and have a compose.yaml file in a directory called sandbox/rails. You can use a command like docker compose pull to get the postgres image for the db service from anywhere by using the -f flag as follows:
 
