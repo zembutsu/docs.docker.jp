@@ -174,13 +174,13 @@ profile でオプションのサービスを有効化
 環境変数でセットアップ
 ------------------------------
 
-.. You can set environment variables for various docker compose options, including the -f, -p and --profiles flags.
+.. You can set environment variables for various docker compose options, including the -f, -p and --profile flags.
 
-``-f`` 、 ``-p`` 、 ``--profiles`` フラグを含む、様々な docker  compose オプションを環境変数で指定できます。
+``-f`` 、 ``-p`` 、 ``--profile`` フラグを含む、様々な docker  compose オプションを環境変数で指定できます。
 
-.. Setting the COMPOSE_FILE environment variable is equivalent to passing the -f flag, COMPOSE_PROJECT_NAME environment variable does the same for to the -p flag, and so does COMPOSE_PROFILES environment variable for to the --profiles flag.
+.. Setting the COMPOSE_FILE environment variable is equivalent to passing the -f flag, COMPOSE_PROJECT_NAME environment variable does the same for to the -p flag, and so does COMPOSE_PROFILES environment variable for to the --profile flag.
 
-``COMPOSE_FILE`` 環境変数の設定は、 ``-f``` フラグを渡すのと同じです。 ``COMPOSE_PROJECT_NAME`` 環境変数は、 ``-p`` フラグを渡すのと同じです。さらに ``COMPOSE_PROFILES`` 環境変数は、 ``--profiles`` フラグを渡すのと同じです。
+``COMPOSE_FILE`` 環境変数の設定は、 ``-f``` フラグを渡すのと同じです。 ``COMPOSE_PROJECT_NAME`` 環境変数は、 ``-p`` フラグを渡すのと同じです。さらに ``COMPOSE_PROFILES`` 環境変数は、 ``--profile`` フラグを渡すのと同じです。
 
 .. If flags are explicitly set on command line, associated environment variable is ignored
 
