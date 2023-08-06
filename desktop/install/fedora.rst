@@ -69,7 +69,7 @@ Debian に Docker Desktop をインストールするため、推奨する手順
     Install the package with dnf as follows:
 
 1. :ref:`Docker のパッケージ リポジトリをセットアップ <fedora-set-up-the-repository>`
-2. 最新の `RPM パッケージ <https://desktop.docker.com/linux/main/amd64/docker-desktop-4.12.0-x86_64.rpm>`_ をダウンロード
+2. 最新の `RPM パッケージ <https://desktop.docker.com/linux/main/amd64/docker-desktop-4.22.0-x86_64.rpm>`_ をダウンロード
 3. 以下のように dnf でパッケージをインストール：
 
 .. code-block:: bash
