@@ -44,9 +44,9 @@ Linux に Docker Desktop をインストール
 
    ----
 
-   * `RPM パッケージ <https://desktop.docker.com/linux/main/amd64/docker-desktop-4.12.0-x86_64.rpm>`_
-   * `DEB パッケージ <https://desktop.docker.com/linux/main/amd64/docker-desktop-4.12.0-amd64.deb>`_
-   * `Arch パッケージ（実験的） <https://desktop.docker.com/linux/main/amd64/docker-desktop-4.12.0-x86_64.pkg.tar.zst>`_
+   * `RPM パッケージ <https://desktop.docker.com/linux/main/amd64/docker-desktop-4.22.0-x86_64.rpm>`_
+   * `DEB パッケージ <https://desktop.docker.com/linux/main/amd64/docker-desktop-4.22.0-amd64.deb>`_
+   * `Arch パッケージ（実験的） <https://desktop.docker.com/linux/main/amd64/docker-desktop-4.22.0-x86_64.pkg.tar.zst>`_
 
 
 .. System requirements

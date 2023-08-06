@@ -93,7 +93,7 @@ Debian に Docker Desktop をインストールするため、推奨する手順
     Install the package with apt as follows:
 
 1. :ref:`Docker のパッケージ リポジトリをセットアップ <ubuntu-set-up-the-repository>`
-2. 最新の `DEB パッケージ <https://desktop.docker.com/linux/main/amd64/docker-desktop-4.11.0-amd64.deb>`_ をダウンロード
+2. 最新の `DEB パッケージ <https://desktop.docker.com/linux/main/amd64/docker-desktop-4.22.0-amd64.deb>`_ をダウンロード
 3. 以下のように apt でパッケージをインストール：
 
 .. code-block:: bash
