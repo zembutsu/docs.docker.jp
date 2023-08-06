@@ -113,14 +113,14 @@ Docker コンテナ内で複数のサービスを構築・管理するため、c
 
 .. _specifying-a-path-to-a-single-compose-file:
 
-Commpose ファイルのパスを指定
+Compose ファイルのパスを指定
 ------------------------------
 
 ``-f`` フラグを使い、Compose ファイルのパスを指定できます。このファイルのパスとは、現在のディレクトリに存在していなくても、コマンドラインでパスを指定するか、あるいはシェル上の ``COMPOSE_FILE`` 環境変数 もしくは environment ファイル内で指定できます。
 
 .. You can use the -f flag to specify a path to a Compose file that is not located in the current directory, either from the command line or by setting up a COMPOSE_FILE environment variable in your shell or in an environment file.
 
-コマンドライン上で ``-f`` オプションを使う例として、Compose で Rails サンプルの実行を想定します。そして、 ``sandbox/rials`` ディレクトリに ``compose.yaml`` ファイルがあるとします。 ``docker compose pull`` のようなコマンドを使うとき、次のように ``-f`` フラグを使うと、あらゆる場所から db サービスに対する postgres イメージを取得できます。
+コマンドライン上で ``-f`` オプションを使う例として、Compose で Rails サンプルの実行を想定します。そして、 ``sandbox/rails`` ディレクトリに ``compose.yaml`` ファイルがあるとします。 ``docker compose pull`` のようなコマンドを使うとき、次のように ``-f`` フラグを使うと、あらゆる場所から db サービスに対する postgres イメージを取得できます。
 
 .. For an example of using the -f option at the command line, suppose you are running the Compose Rails sample, and have a compose.yaml file in a directory called sandbox/rails. You can use a command like docker compose pull to get the postgres image for the db service from anywhere by using the -f flag as follows:
 
@@ -174,13 +174,13 @@ profile でオプションのサービスを有効化
 環境変数でセットアップ
 ------------------------------
 
-.. You can set environment variables for various docker compose options, including the -f, -p and --profiles flags.
+.. You can set environment variables for various docker compose options, including the -f, -p and --profile flags.
 
-``-f`` 、 ``-p`` 、 ``--profiles`` フラグを含む、様々な docker  compose オプションを環境変数で指定できます。
+``-f`` 、 ``-p`` 、 ``--profile`` フラグを含む、様々な docker  compose オプションを環境変数で指定できます。
 
-.. Setting the COMPOSE_FILE environment variable is equivalent to passing the -f flag, COMPOSE_PROJECT_NAME environment variable does the same for to the -p flag, and so does COMPOSE_PROFILES environment variable for to the --profiles flag.
+.. Setting the COMPOSE_FILE environment variable is equivalent to passing the -f flag, COMPOSE_PROJECT_NAME environment variable does the same for to the -p flag, and so does COMPOSE_PROFILES environment variable for to the --profile flag.
 
-``COMPOSE_FILE`` 環境変数の設定は、 ``-f``` フラグを渡すのと同じです。 ``COMPOSE_PROJECT_NAME`` 環境変数は、 ``-p`` フラグを渡すのと同じです。さらに ``COMPOSE_PROFILES`` 環境変数は、 ``--profiles`` フラグを渡すのと同じです。
+``COMPOSE_FILE`` 環境変数の設定は、 ``-f``` フラグを渡すのと同じです。 ``COMPOSE_PROJECT_NAME`` 環境変数は、 ``-p`` フラグを渡すのと同じです。さらに ``COMPOSE_PROFILES`` 環境変数は、 ``--profile`` フラグを渡すのと同じです。
 
 .. If flags are explicitly set on command line, associated environment variable is ignored
 
