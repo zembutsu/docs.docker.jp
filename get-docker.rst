@@ -28,8 +28,10 @@ Docker はアプリケーションを開発、移動、実行するためのプ�
 * :doc:`Docker Desktop for Windows </desktop/install/windows-install>`
    * ネイティブな Windows アプリケーションで、Windows コンピュータ用に全ての Docker ツールを提供
 
+.. A native Linux application which delivers all Docker tools to your Linux computer.
+
 * :doc:`Docker Desktop for Linux </desktop/install/linux-install>`
-   * ネイティブな Windows アプリケーションで、Windows コンピュータ用に全ての Docker ツールを提供
+   * ネイティブな Linux アプリケーションで、Linux コンピュータ用に全ての Docker ツールを提供
 
 
 
