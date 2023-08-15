@@ -217,7 +217,7 @@ CLI か Docker Desktop のグラフィカルインタフェースを使い、ボ
 1. コンテナが起動したら、アプリを開き、todo リストに新しいアイテムを追加します。
 
    .. image:: ./images/items-added.png
-      :scale: 60%
+      :width: 60%
       :alt: Todo リストにアイテムを追加
 
 ..    Stop and remove the container for the todo app. Use the Dashboard or docker ps to get the ID and then docker rm -f <id> to remove it.

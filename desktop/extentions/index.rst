@@ -43,7 +43,7 @@ Docker Extensions は誰でも利用でき、インストール可能な拡張�
 .. extenstions
 
 .. image:: ../images/extensions-marketplace.png
-   :scale: 60%
+   :width: 60%
    :alt: extensions
 
 

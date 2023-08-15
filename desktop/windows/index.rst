@@ -9,7 +9,7 @@
 .. -----------------------------------------------------------------------------
 
 .. |whale| image:: ./images/whale-x.png
-      :scale: 50%
+      :width: 50%
 
 .. Docker Desktop for Windows user manual
 .. _docker-desktop-for-windows-user-manual:
@@ -55,7 +55,7 @@ Settings （設定）
 1.　Docker Desktop のメニューを開くには、通知エリア（又はシステムトレイ）にある Docker アイコンをクリックします。
 
 .. image:: ./images/whale-icon-systray-hidden.png
-   :scale: 60%
+   :width: 60%
    :alt: タスクバー内に隠れているアプリを表示
 
 ..    Showing hidden apps in the taskbar
@@ -65,7 +65,7 @@ Settings （設定）
 ..    Select Settings to open the Settings dialog:
 
 .. image:: ./images/docker-menu-settings.png
-   :scale: 60%
+   :width: 60%
    :alt: タスクバー内に隠れているアプリを表示
 
 .. General
@@ -78,7 +78,7 @@ General（一般的な設定）
 設定画面の **General** タブでは、Docker の起動や他の設定を調整できます。
 
 .. image:: ./images/settings-general.png
-   :scale: 60%
+   :width: 60%
    :alt: 設定
 
 .. Start Docker when you log in: Select this option to automatically start Docker Desktop when you log into your Windows machine.
@@ -604,7 +604,7 @@ Docker Desktop を :ruby:`一時停止 <pause>` するには、通知エリア�
 
 
 .. image:: ./images/docker-menu-pause.png
-   :scale: 60%
+   :width: 60%
    :alt: Docker のメニュー項目
 
 .. Docker Desktop now displays the paused status on the Docker menu and on the Containers / Apps, Images, Volumes, and Dev Environment screens on the Docker Dashboard. You can still access the Preferences and the Troubleshoot menu from the Dashboard when you’ve paused Docker Desktop.

@@ -9,7 +9,7 @@
 .. -----------------------------------------------------------------------------
 
 .. |whale| image:: ./images/whale-x.png
-      :scale: 50%
+      :width: 50%
 
 .. Logs and troubleshooting
 .. _win-logs-and-troubleshooting:
@@ -47,7 +47,7 @@
 メニューバーにある Docker のアイコン |whale| > **Troubleshoot** を選択し、トラブルシュートのオプションを表示します。
 
 .. image:: ./images/troubleshoot.png
-   :scale: 60%
+   :width: 60%
    :alt: Docker Desktop のトラブルシュート
 
 
@@ -106,7 +106,7 @@
 3. **Get support** をクリック。これはアプリ内の **Support** ページを開き、診断情報の収集を開始します。
 
    .. image:: ./images/diagnose-support.png
-      :scale: 60%
+      :width: 60%
       :alt: 診断とフィードバック
 
 .. When the diagnostics collection process is complete, click Upload to get a Diagnostic ID.
@@ -456,7 +456,7 @@ Windows 10 Pro や Enterprise では、以下の機能を有効にして Hyper-V
 3. Windows 起動時にハイパーバイザーを有効化
 
 .. image:: ./images/hyperv-enabled.png
-   :scale: 60%
+   :width: 60%
    :alt: Windows 機能の Hyper-V
 
 .. Docker Desktop requires Hyper-V as well as the Hyper-V Module for Windows Powershell to be installed and enabled. The Docker Desktop installer enables it for you.
@@ -486,7 +486,7 @@ Hyper-V を手動でインストールするには、 `Windows 10 上に Hyper-V
 :ref:`Hyper-V <win-troubleshoot-hyper-v>` や :doc:`WSL 2 <wsl>` を追加するには、仮想化の有効化が必要です。タスクマネージャー上のパフォーマンス タブをクリックします。
 
 .. image:: ./images/virtualization-enabled.png
-   :scale: 60%
+   :width: 60%
    :alt: タスクマネージャー
 
 .. If you manually uninstall Hyper-V, WSL 2 or disable virtualization, Docker Desktop cannot start. See Unable to run Docker for Windows on Windows 10 Enterprise.

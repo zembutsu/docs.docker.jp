@@ -7,7 +7,7 @@
 .. -----------------------------------------------------------------------------
 
 .. |whale| image:: ./images/whale-x.png
-      :scale: 50%
+      :width: 50%
 
 .. Install Docker Desktop on Linux
 .. _install-docker-desktop-on-linux:
@@ -236,7 +236,7 @@ kvm デバイスに対してアクセスするには、ユーザを kvm グル�
    ..    Docker app in Hockeyapp
 
    .. image:: ./images/docker-app-in-apps.png
-      :scale: 60%
+      :width: 60%
       :alt: アプリ一覧での Docker
 
 .. Select Docker Desktop to start Docker.

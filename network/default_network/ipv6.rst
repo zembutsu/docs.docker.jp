@@ -76,7 +76,7 @@ IPv6 転送（IPv6 forwarding）は既存の IPv6 設定に干渉する場合が
 
 
 .. image:: ./images/ipv6-basic-host-config.png
-   :scale: 60%
+   :width: 60%
    :alt: IPv6基本設定
 
 .. Every new container will get an IPv6 address from the defined subnet. Further a default route will be added on eth0 in the container via the address specified by the daemon option --default-gateway-v6 if present, otherwise via fe80::1:
@@ -106,7 +106,7 @@ IPv6 転送（IPv6 forwarding）は既存の IPv6 設定に干渉する場合が
 サーバや仮想マシンは ``/64`` IPv4 サブネットを割り当てられます（例： ``2001:db8:23:42::/64`` ）。今回の例では、ホスト上の他のアプリケーションとの分離に ``/80`` サブネットが使いますが、 Docker の設定でサブネットを ``/80`` 以上にも分割できます。
 
 .. image:: ./images/ipv6-slash64-subnet-config.png
-   :scale: 60%
+   :width: 60%
    :alt: IPv6基本設定
 
 .. In this setup the subnet 2001:db8:23:42::/80 with a range from 2001:db8:23:42:0:0:0:0 to 2001:db8:23:42:0:ffff:ffff:ffff is attached to eth0, with the host listening at 2001:db8:23:42::1. The subnet 2001:db8:23:42:1::/80 with an address range from 2001:db8:23:42:1:0:0:0 to 2001:db8:23:42:1:ffff:ffff:ffff is attached to docker0 and will be used by containers.
@@ -149,7 +149,7 @@ Docker ホストが IPv6 サブネットの範囲にありながら IPv6 サブ�
 Docker サブネットには、 ``eth0`` に接続するルータが管理しているサブネットが含まれているのに気を付けてください。つまり、Docker サブネットで公開される全てのデバイス（コンテナ）のアドレスは、ルータ側のサブネットから見つけることができます。つまり、ルータはこれらのコンテナと直接通信できると考えられます。
 
 .. image:: ./images/ipv6-ndp-proxying.png
-   :scale: 60%
+   :width: 60%
    :alt: IPv6 NDP Proxying
 
 .. As soon as the router wants to send an IPv6 packet to the first container it will transmit a neighbor solicitation request, asking, who has 2001:db8::c009? But it will get no answer because no one on this subnet has this address. The container with this address is hidden behind the Docker host. The Docker host has to listen to neighbor solicitation requests for the container address and send a response that itself is the device that is responsible for the address. This is done by a Kernel feature called NDP Proxy. You can enable it by executing
@@ -201,7 +201,7 @@ Docker IPv6 クラスタ
 到達可能な IPv6 アドレスを使い、異なったホスト上のコンテナ間での通信を可能にします。簡単な Docker IPv6 クラスタの例を見ていきましょう。
 
 .. image:: ./images/ipv6-switched-network-example.png
-   :scale: 60%
+   :width: 60%
    :alt: IPv6 スイッチ・ネットワーク
 
 .. The Docker hosts are in the 2001:db8:0::/64 subnet. Host1 is configured to provide addresses from the 2001:db8:1::/64 subnet to its containers. It has three routes configured:
@@ -260,7 +260,7 @@ Docker ホストは ``2001:db8:0::/64`` サブネットを持ちます。ホス�
 ネットワーク環境の経路は、レイヤ２スイッチとレイヤ３ルータの関係に置き換えられます。ホストはデフォルト・ゲートウェイ（ルータ）を知っており、（Docker によって管理されている）個々のコンテナに対する経路を処理します。ルータは Docker サブネットに関する全ての経路情報も保持しています。この環境でホストの追加や削除時は、各ホストではなく、ルータ上のルーティング・テーブルを更新しなくてはいけません。
 
 .. image:: ./images/ipv6-routed-network-example.png
-   :scale: 60%
+   :width: 60%
    :alt: IPv6 経路ネットワーク
 
 .. In this scenario containers of the same host can communicate directly with each other. The traffic between containers on different hosts will be routed via their hosts and the router. For example packet from Container1-1 to Container2-1 will be routed through Host1, Router and Host2 until it arrives at Container2-1.

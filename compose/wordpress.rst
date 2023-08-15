@@ -266,13 +266,13 @@ Docker Desktop for Mac や Docker Desktop for Windows を利用している場�
 .. ![Choose language for WordPress install](images/wordpress-lang.png)
 
 .. image:: ./images/wordpress-lang.png
-   :scale: 60%
+   :width: 60%
    :alt: WordPress 言語選択
 
 .. ![WordPress Welcome](images/wordpress-welcome.png)
 
 .. image:: ./images/wordpress-welcome.png
-   :scale: 60%
+   :width: 60%
    :alt: WordPress ようこそ画面
 
 .. ### Shutdown and cleanup

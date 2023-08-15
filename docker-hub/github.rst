@@ -41,7 +41,7 @@ Bitbucket 上のリポジトリに対する自動構築をセットアップす�
 .. authorized-services
 
 .. image:: ./images/linked-acct.png
-   :scale: 60%
+   :width: 60%
    :alt: リンクされたアカウント
 
 .. When linking to GitHub, you’ll need to select either “Public and Private”, or “Limited Access” linking.
@@ -235,7 +235,7 @@ Docker Hub からリンクする GitHub アカウントが「Limited Access」�
 .. bitbucket-hooks
 
 .. image:: ./images/github-service-hook.png
-   :scale: 60%
+   :width: 60%
    :alt: GitHub サービスフック
 
 .. If you add the “Docker” service manually, make sure the “Active” checkbox is selected and click the “Update service” button to save your changes.

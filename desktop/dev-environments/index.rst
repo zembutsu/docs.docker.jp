@@ -42,7 +42,7 @@ Dev Environmens はコードエディタ内蔵ツールを使います。これ�
    Dev Environments 機能は現時点では `ベータ <https://docs.docker.com/release-lifecycle/#beta>`_ です。プロダクション環境での利用を推奨しません。
 
 .. image:: ../images/dev-env.png
-   :scale: 60%
+   :width: 60%
    :alt: Docker Desktop
 
 .. Prerequisites
@@ -90,7 +90,7 @@ GIt をインストール済みの場合で、適切な状態か分からなけ�
 有効なコマンドとして Git を確認できなければ、Git の再インストールが必要です。さらに、 **Adjusting your PATH environment** のステップで、 **Git from the command line..** や **Use Git and optional Unix tools...** オプションを選ぶ必要があります。
 
 .. image:: ../images/dev-env-gitbash.png
-   :scale: 60%
+   :width: 60%
    :alt: Windows のパスに Git を追加
 
 ..  Note

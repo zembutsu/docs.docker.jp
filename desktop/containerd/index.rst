@@ -60,7 +60,7 @@ Containerd Image Store ベータ機能は、デフォルトでは無効化され
 
 
 .. image:: ../images/containerd_feature_activation.png
-   :scale: 60%
+   :width: 60%
    :alt: Contaienrd 機能
 
 .. Simple usage examples
@@ -199,7 +199,7 @@ NGINX コンテナの実行状況を確認します：
 ブラウザからも NGINX の実行状況を確認できます。
 
 .. image:: ../images/containerd_feature_nginx.png
-   :scale: 60%
+   :width: 60%
    :alt: Contaienrd 機能 nginx
 
 .. Building multi-platform images
@@ -275,7 +275,7 @@ Dockerfile のサンプル：
 Docker Hub でマルチプラットフォーム対応のタグを確認：
 
 .. image:: ../images/containerd_feature_tags.png
-   :scale: 60%
+   :width: 60%
    :alt: Contaienrd 機能 タグ
 
 .. Containerd Image Store Release Notes

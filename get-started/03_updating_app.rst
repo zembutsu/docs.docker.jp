@@ -165,7 +165,7 @@ Docker ダッシュボードでコンテナを削除
 .. Updated application with updated empty text
 
 .. image:: ./images/todo-list-updated-empty-text.png
-   :scale: 60%
+   :width: 60%
    :alt: Todo List Manager のスクリーンショット
 
 .. Next steps

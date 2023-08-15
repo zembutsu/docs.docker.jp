@@ -108,7 +108,7 @@ TLS 認証を使うためには、 Docker Engine CLI と Docker Engine デーモ
 また、Docker Engine デーモンも Docker Engine CLI が使う証明証を信頼する必要があります。信頼とは、通常は第三者の信頼機関によって担保されます。下図は Docker Engine CLI とデーモンが TLS 通信に必要となる設定です。
 
 .. image:: ./images/trust-diagram.png
-   :scale: 60%
+   :width: 60%
 
 .. The trusted third party in this diagram is the the Certificate Authority (CA) server. Like the country in the passport example, a CA creates, signs, issues, revokes certificates. Trust is established by installing the CA’s root certificate on the host running the Docker Engine daemon. The Engine CLI then requests its own certificate from the CA server, which the CA server signs and issues to the client.
 

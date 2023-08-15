@@ -51,7 +51,7 @@
 既存の Docker プラットフォームを拡張し、脆弱性検査のオプションを導入すると、脆弱性検出の手順に慣れ、かつ、開発プロセスの初期で脆弱性の修正を可能にします。手順はシンプルで継続的に確認します。たとえば、バックグラウンドで `Snyk Advisor <https://snyk.io/advisor/docker>`_ を使ってイメージをチェックすると、Docker Hub 上にあるいくつかの脆弱性も確認できます。この結果、CI サイクルを短くし、開発から本番環境への信頼性を高めます。
 
 .. image:: ./images/dev-security-journey.png
-   :scale: 60%
+   :width: 60%
    :alt: 開発者のセキュリティ ジャーニー
 
 .. Scanning images
@@ -82,7 +82,7 @@ CLI を使って検査
 イメージを構築したら、 Docker Hub にイメージを送る前に、 ``docker scan`` コマンドを実行します。CLI を使ったイメージ検査の手順詳細は、 :doc:`docker scan </engine/scan>` をご覧ください。
 
 .. image:: ./images/docker-scan-cli.png
-   :scale: 60%
+   :width: 60%
    :alt: 脆弱性検査
 
 .. Scan using Docker Hub
@@ -101,7 +101,7 @@ Docker Hub を通した脆弱性検査、表示、調査のトリガを設定で
    Docker Hub 脆弱性検査が利用可能なのは、 Docker Pro、Team、Business を契約している開発者のみです。料金プランに関する詳しい情報は `Docker Pricing <https://www.docker.com/pricing>`_ をご覧ください。
 
 .. image:: ./images/hvs-scan-summary.png
-   :scale: 60%
+   :width: 60%
    :alt: 脆弱性検査のサマリ
 
 .. View the scan summary in Docker Desktop
@@ -151,7 +151,7 @@ Docker Desktop では、 Docker ダッシュボード上で脆弱性の状態に
 Docker Hub には 830 万以上のリポジトリがあります。この中のイメージのいくつかが Docker によって提供されている :doc:`公式イメージ（Official Image） </docker-hub/official_images>` であり、これは、Docker が企画したオープンソースのソリューションを集めたリポジトリです。また、 Docker は :doc:`Verified Publisher（認定パブリッシャー） </docker-hub/publish>` が公開するイメージも提供します。これらの高品質なイメージは、 Docker と提携した組織によってメンテナンスされており、Docker が各リポジトリの信頼性を検証しているものです。ベースイメージを選ぶには、 **Official Image** （公式イメージ）と **Verified Publisher** （認定パブリッシャー）のバッジが付いているものを探してください。
 
 .. image:: ./images/hub-official-images.png
-   :scale: 60%
+   :width: 60%
    :alt: Docker Hub 公式イメージ
 
 .. When building your own image from a Dockerfile, ensure you choose a minimal base image that matches your requirements. A smaller base image not just offers portability and fast downloads, but also shrinks the size of your image and minimizes the number of vulnerabilities introduced through the dependencies.

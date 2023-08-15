@@ -7,7 +7,7 @@
 .. -----------------------------------------------------------------------------
 
 .. |whale| image:: ./images/whale-x.png
-      :scale: 50%
+      :width: 50%
 
 .. Install Docker Desktop on Ubuntu
 .. _install-docker-desktop-on-ubuntu:

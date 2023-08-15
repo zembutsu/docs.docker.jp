@@ -67,7 +67,7 @@
 2. クローンしたリポジトリの内容を表示します。 ``getting-started/app`` ディレクトリ内に、 ``package.json`` と2つのサブディレクトリ（ ``src`` と ``spec`` ）が見えるでしょう。
 
    .. image:: ./images/ide-screenshot.png
-      :scale: 60%
+      :width: 60%
       :alt: Virusl Studio Code で 読み込んだアプリのスクリーンショット
 
 .. Build the app’s container image
@@ -199,7 +199,7 @@
 2. 数秒後、自分のウェブ ブラウザで http://localhost:3000  を開きます。そうしたら、私たちのアプリが見えるでしょう。
 
    .. image:: ./images/todo-list-empty.png
-      :scale: 60%
+      :width: 60%
       :alt: まだ何も入っていない ToDo List
 
 .. Go ahead and add an item or two and see that it works as you expect. You can mark items as complete and remove them. Your frontend is successfully storing items in the backend.

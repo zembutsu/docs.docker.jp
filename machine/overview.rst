@@ -99,7 +99,7 @@ Docker Machine は主に２つの使い方があります。
    ..  ![Docker Machine on Mac and Windows](img/machine-mac-win.png){: .white-bg}
 
    .. image:: ./img/machine-mac-win.png
-      :scale: 60%
+      :width: 60%
       :alt: Mac と Windows 上の Docker Machine
 
    .. If you work primarily on an older Mac or Windows laptop or desktop that doesn't meet the requirements for the new [Docker Desktop for Mac](../docker-for-mac/index.md) and [Docker Desktop for Windows](../docker-for-windows/index.md) apps, then you need Docker Machine to run Docker Engine locally. Installing Docker Machine on a Mac or Windows box with the [Docker Toolbox](../toolbox/overview.md) installer provisions a local virtual machine with Docker Engine, gives you the ability to connect it, and run `docker` commands.
@@ -116,7 +116,7 @@ Docker Machine は主に２つの使い方があります。
    ..  ![Docker Machine for provisioning multiple systems](img/provision-use-case.png){: .white-bg}
 
    .. image:: ./img/provision-use-case.png
-      :scale: 60%
+      :width: 60%
       :alt: 複数システムをプロビジョニングする Docker Machine
 
    .. Docker Engine runs natively on Linux systems. If you have a Linux box as your
@@ -163,7 +163,7 @@ Docker Engine は CLI から ``docker`` コマンド、たとえば ``docker run
 .. Docker Engine
 
 .. image:: ./img/engine.png
-   :scale: 60%
+   :width: 60%
    :alt: Docker Engine
 
 .. **Docker Machine** is a tool for provisioning and managing your Dockerized hosts
@@ -179,7 +179,7 @@ Docker Engine は CLI から ``docker`` コマンド、たとえば ``docker run
 **Docker Machine** は Docker ホスト（Docker Engine が動くホスト環境）のプロビジョニングと管理用のツールです。一般的には Docker Machine を自分のローカルシステム上にインストールします。Docker Machine には独自のコマンドライン・クライアント`docker-machine`と Docker Engine クライアント`docker`があります。Docker Machine を使えば仮想システム上に Docker Engine をインストールできます。仮想システムとはローカル（Machine を使い、Mac または Windows 上の VirtualBox に Docker Engine をインストール、実行します）でも、リモート（Machine を使い、クラウド・プロバイダ上に Docker をプロビジョン）でも構いません。Docker に対応したホストであれば、何でも常に 「 **マシン** 」として管理できるのです（訳者注：Docker Machine の管理対象のホストは、ローカルでもクラウド上でも「マシン」という概念で抽象化できる、という意味です）。
 
 .. image:: ./img/machine.png
-   :scale: 60%
+   :width: 60%
    :alt: Docker Machine
 
 .. Where to go next

@@ -327,7 +327,7 @@
 2. ウェブブラウザでページを再読み込みしたら、ほぼ直ちに変更が反映しているのが分かるでしょう。Node サーバの再起動には、数秒かかるかもしれず、もしエラーが出てしまった場合には、数秒後に再読み込みを試してください。
 
    .. image:: ./images/updated-add-button.png
-      :scale: 60%
+      :width: 60%
       :alt: Add ボタンのラベルを更新したスクリーンショット
 
 .. Feel free to make any other changes you’d like to make. Each time you make a change and save a file, the nodemon process restarts the app inside the container automatically. When you’re done, stop the container and build your new image using:

@@ -31,7 +31,7 @@ Linux 上で Docker を動かしている場合は、3つめのオプション `
 ボリュームやバインドマウントとは違い、 ``tmpfs`` マウントは一時的なもので、ホストメモリ上にのみ保持します。コンテナを停止すると、 ``tmpfs`` マウントは削除され、また、書き込まれたデータは保持されません。
 
 .. image:: ./images/types-of-mounts-tmpfs.png
-   :scale: 60%
+   :width: 60%
    :alt: Docker ホスト上の tmpfs
 
 .. This is useful to temporarily store sensitive files that you don’t want to persist in either the host or the container writable layer.

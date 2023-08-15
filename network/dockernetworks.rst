@@ -417,14 +417,14 @@ Docker Engine は自動的にネットワークの ``Subnet`` と ``Gateway`` �
 このネットワーク内で起動したコンテナは、Docker ホスト上の他のコンテナとは独立しています。ネットワーク内の各コンテナは速やかに通信が可能です。しかし、コンテナ自身が含まれるネットワークは外部のネットワークから独立しています。
 
 .. image:: ./images/bridge_network.png
-   :scale: 60%
+   :width: 60%
 
 .. Within a user-defined bridge network, linking is not supported. You can expose and publish container ports on containers in this network. This is useful if you want to make a portion of the bridge network available to an outside network.
 
 ユーザ定義ブリッジ・ネットワークの内部では、リンク機能はサポートされません。ですが、このネットワーク上にあるコンテナのポートは公開可能です。 ``bridge`` ネットワークの一部を外のネットワークから使う時に便利でしょう。
 
 .. image:: ./images/network_access.png
-   :scale: 60%
+   :width: 60%
 
 .. A bridge network is useful in cases where you want to run a relatively small network on a single host. You can, however, create significantly larger networks by creating an overlay network.
 
@@ -446,14 +446,14 @@ Docker の ``overlay`` （オーバレイ）ネットワーク・ドライバは
 ``overlay`` ネットワークはキーバリュー・ストア・サービスが必要です。現時点で Docker の ``libkv`` がサポートしているのは、Consul、Etcd、Zookeeper（分散ストア）です。ネットワークを作成する前に、キーバリュー・ストア・サービスを選び、設定する必要があります。そして、Docker ホスト側では、ネットワークとサービスが通信できるようにします。
 
 .. image:: ./images/key-value.png
-   :scale: 60%
+   :width: 60%
 
 .. Each host in the network must run a Docker Engine instance. The easiest way to provision the hosts are with Docker Machine.
 
 ネットワークの各ホストは、それぞれで Docker エンジンを動かす必要があります。最も簡単なのは Docker Machine を使ってホストをプロビジョンする方法です。
 
 .. image:: ./images/engine-on-net.png
-   :scale: 60%
+   :width: 60%
 
 .. You should open the following ports between each of your hosts.
 
@@ -511,7 +511,7 @@ Docker Machine でプロビジョンしたら、Docker Swarm を使うための 
 この結果、複数のホストを横断する１つのネットワークができます。 ``overlay`` ネットワークはコンテナに対して、完全なる独立機能を提供します。
 
 .. image:: ./images/overlay-network.png
-   :scale: 60%
+   :width: 60%
 
 .. Then, on each host, launch containers making sure to specify the network name.
 
@@ -524,7 +524,7 @@ Docker Machine でプロビジョンしたら、Docker Swarm を使うための 
 接続したあと、ネットワーク内の各コンテナ全てにアクセス可能となります。この時、コンテナがどこのホスト上で起動しているか気にする必要はありません。
 
 .. image:: ./images/overlay-network-final.png
-   :scale: 60%
+   :width: 60%
 
 .. If you would like to try this for yourself, see the Getting started for overlay.
 
