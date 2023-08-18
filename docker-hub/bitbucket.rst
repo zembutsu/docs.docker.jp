@@ -35,7 +35,7 @@ Bitbucket 上のリポジトリに対する自動構築をセットアップす�
 .. authorized-services
 
 .. image:: ./images/linked-acct.png
-   :scale: 60%
+   :width: 60%
    :alt: リンクされたアカウント
 
 .. Then follow the onscreen instructions to authorize and link your Bitbucket account to Docker Hub. Once it is linked, you’ll be able to create a Docker Hub repository from which to create the Automatic Build.
@@ -83,7 +83,7 @@ Bitbucket のサービス・フック・ログを確認・変更するには、�
 .. bitbucket-hooks
 
 .. image:: ./images/bitbucket-hook.png
-   :scale: 60%
+   :width: 60%
    :alt: bitbucket の hook
 
 

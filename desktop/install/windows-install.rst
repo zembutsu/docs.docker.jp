@@ -9,7 +9,7 @@
 .. -----------------------------------------------------------------------------
 
 .. |whale| image:: ./images/whale-x.png
-      :scale: 50%
+      :width: 50%
 
 
 .. Install Docker Desktop on Windows
@@ -241,7 +241,7 @@ Docker Desktop のスタート
 インストール後の Docker Desktop は、自動的に起動できません。Docker Desktop を開始するには、以下の手順を進めます。 
 
 .. image:: ./images/docker-app-search.png
-   :scale: 60%
+   :width: 60%
    :alt: Docker アプリを探す
 
 .. The Docker menu (whale menu) displays the Docker Subscription Service Agreement window. It includes a change to the terms of use for Docker Desktop.

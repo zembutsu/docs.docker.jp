@@ -7,7 +7,7 @@
 .. -----------------------------------------------------------------------------
 
 .. |whale| image:: /desktop/install/images/whale-x.png
-      :scale: 50%
+      :width: 50%
 
 .. Workarounds for common problems
 .. _desktop-workarounds-for-common-problems:

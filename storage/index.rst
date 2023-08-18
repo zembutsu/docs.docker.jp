@@ -57,7 +57,7 @@ Docker でのデータ管理
 データが Docker ホスト上のどこに存在しているかを考えるには、ボリューム、バインド マウント、 ``tmpfs`` マウントの違いを図にすると簡単です。
 
 .. image:: ./images/types-of-mounts.png
-   :scale: 60%
+   :width: 60%
    :alt: マウント形式と、Docker ホスト上のどこにデータが存在するか
 
 ..    Volumes are stored in a part of the host filesystem which is managed by Docker (/var/lib/docker/volumes/ on Linux). Non-Docker processes should not modify this part of the filesystem. Volumes are the best way to persist data in Docker.

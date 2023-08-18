@@ -18,7 +18,7 @@ Docker Hub 概要
 `Docker Hub <https://hub.docker.com/>`__ はクラウド上のレジストリ・サービスであり、アプリケーションやサービス・コンテナの構築と配信を行います。コンテナ化されたイメージを見つけたり、配布したり、変更の管理、ユーザやチームのコラボレーション、開発パイプラインを通したワークフローの自動化といった集約されたリソースを提供します。
 
 .. image:: ./images/getting-started.png
-   :scale: 60%
+   :width: 60%
    :alt: はじめましょう
 
 .. Specifically, Docker Hub provides the following major features and functions:

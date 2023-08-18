@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/develop/dev-best-practices/
-   doc version: 19.03
+   doc version: 24.0
       https://github.com/docker/docker.github.io/blob/master/develop/dev-best-practices.md
-.. check date: 2022/09/20
-.. Commits on Nov 7, 2020 5b6824c105c37510a635f820c6c50fef16a0aedb
+.. check date: 2023/07/22
+.. Commits on Jul 4, 2023 b6f5256248bd77fcec2f9d44e6a1123d0ebc4ab0
 .. -----------------------------------------------------------------------------
 
 .. Docker development best practices
@@ -35,29 +35,27 @@ Docker 開発ベストプラクティス
 
 ..    Start with an appropriate base image. For instance, if you need a JDK, consider basing your image on the official openjdk image, rather than starting with a generic ubuntu image and installing openjdk as part of the Dockerfile.
 
-* 適切なベースイメージで始めましょう。たとえば、 JDK が必要なら、一般的な ``ubuntu``  イメージに ``openjdk`` をインストールするのではなく、公式 ``openjdk`` イメージをベースにするのを検討します。
+* 適切なベースイメージで始めましょう。例えば、 JDK が必要なら、一般的な ``ubuntu``  イメージに ``openjdk`` をインストールするのではなく、公式 ``openjdk`` イメージをベースにするのを検討します。
 
 ..    Use multistage builds. For instance, you can use the maven image to build your Java application, then reset to the tomcat image and copy the Java artifacts into the correct location to deploy your app, all in the same Dockerfile. This means that your final image doesn’t include all of the libraries and dependencies pulled in by the build, but only the artifacts and the environment needed to run them.
-
-* :doc:`マルチステージ・ビルドを使います </develop/develop-images/multistage-build>` 。たとえば、 Java アプリケーションを構築するにあたり ``maven`` イメージを使えるとします。その時、アプリをデプロイするためには、 ``tomcat`` イメージをリセットし、Java アーティファクトを適切な場所にコピーします。これらすべてが、同じ Dockerfile 中の命令としてあります。これが意味するのは、最終イメージには構築時に取得した全てのライブラリや依存関係は含みませんが、アーティファクトと実行に必要な環境変数のみが入っています。
-
 ..        If you need to use a version of Docker that does not include multistage builds, try to reduce the number of layers in your image by minimizing the number of separate RUN commands in your Dockerfile. You can do this by consolidating multiple commands into a single RUN line and using your shell’s mechanisms to combine them together. Consider the following two fragments. The first creates two layers in the image, while the second only creates one.
 
+* :doc:`マルチステージ・ビルドを使います </build/building/multi-stage>` 。例えば、 Java アプリケーションを構築するにあたり ``maven`` イメージを使えるとします。その時、アプリをデプロイするためには、 ``tomcat`` イメージをリセットし、Java アーティファクトを適切な場所にコピーします。これらすべてが、同じ Dockerfile 中の命令としてあります。これが意味するのは、最終イメージには構築時に取得した全てのライブラリや依存関係は含みませんが、アーティファクトと実行に必要な環境変数のみが入っています。
 
    * もしも使用中の Docker がマルチステージ・ビルドに対応していないバージョンであれば、イメージのレイヤ数を減らすため、Dockerfile 中でバラバラの ``RUN`` 命令の数を最小化します。この作業時に、シェルの仕組みを使って複数の ``RUN`` 命令を1つにまとめられます。以下にある1つめのイメージには２つのレイヤがありますが、2つめのイメージは１つのレイヤしかありません。
    
-   .. code-block:: bash
-   
-      RUN apt-get -y update
-      RUN apt-get install -y python
-   
-   .. code-block:: bash
-   
-      RUN apt-get -y update && apt-get install -y python
+      .. code-block:: bash
+      
+         RUN apt-get -y update
+         RUN apt-get install -y python
+      
+      .. code-block:: bash
+      
+         RUN apt-get -y update && apt-get install -y python
 
 ..    If you have multiple images with a lot in common, consider creating your own base image with the shared components, and basing your unique images on that. Docker only needs to load the common layers once, and they are cached. This means that your derivative images use memory on the Docker host more efficiently and load more quickly.
 
-* もしも、複数のイメージで共通している箇所が多いようであれば、共通コンポーネントが入った :doc:`ベース・イメージ </develop/develop-images/baseimages>` を作成し、それを自分が使う独自イメージのベースにするように検討します。Docker は共通のレイヤを一度読み込む必要がありますが、それらのレイヤはキャッシュされます。つまり、Docker ホスト上で派生するイメージが使うメモリは効率的になり、かつ処理が素早くなります。
+* もしも、複数のイメージで共通している箇所が多いようであれば、共通コンポーネントが入った :doc:`ベース・イメージ </build/building/baseimages>` を作成し、それを自分が使う独自イメージのベースにするように検討します。Docker は共通のレイヤを一度読み込む必要がありますが、それらのレイヤはキャッシュされます。つまり、Docker ホスト上で派生するイメージが使うメモリは効率的になり、かつ処理が素早くなります。
 
 ..    To keep your production image lean but allow for debugging, consider using the production image as the base image for the debug image. Additional testing or debugging tooling can be added on top of the production image.
 
@@ -65,7 +63,7 @@ Docker 開発ベストプラクティス
 
 ..    When building images, always tag them with useful tags which codify version information, intended destination (prod or test, for instance), stability, or other information that is useful when deploying the application in different environments. Do not rely on the automatically-created latest tag.
 
-* イメージの構築時、常に分かりやすいタグを付けます。タグには、バージョン情報の明示、展開先の対象（たとえば ``prod`` や ``test`` ）、安定性、あるいはその他の情報が、様々なアプリケーションをデプロイする時に役立ちます。
+* イメージの構築時、常に分かりやすいタグを付けます。タグには、バージョン情報の明示、展開先の対象（例えば ``prod`` や ``test`` ）、安定性、あるいはその他の情報が、様々なアプリケーションをデプロイするときに役立ちます。自動的に作成される ``latest`` タグに頼らないでください。
 
 
 .. Where and how to persist application data
@@ -79,6 +77,14 @@ Docker 開発ベストプラクティス
     One case where it is appropriate to use bind mounts is during development, when you may want to mount your source directory or a binary you just built into your container. For production, use a volume instead, mounting it into the same location as you mounted a bind mount during development.
     For production, use secrets to store sensitive application data used by services, and use configs for non-sensitive data such as configuration files. If you currently use standalone containers, consider migrating to use single-replica services, so that you can take advantage of these service-only features.
 
+* :doc:`ストレージドライバ </storage/storagedriver/select-storage-driver>` を使うコンテナの書き込み可能なレイヤ内に、アプリケーションのデータを保存 **しないでください** 。これにより、コンテナの容量が増えます。さらに、ボリュームやバインドマウントの利用に比べ、 I/O 観点から効率が良くありません。
+
+* その代わり、データの保存には :doc:`ボリューム </storage/volumes>` を使います。
+
+* :doc:`バインドマウント </storage/bind-mounts>` の使用がふさわしい場面は、ソースディレクトリやバイナリをそのままコンテナ内にマウントしたい開発段階です。プロダクションでは、代わりにボリュームを使い、開発段階でバインドマウントしたのと同じ場所へマウントします。
+
+* プロダクションでは、サービスによって使われる機微なアプリケーションデータを保管するのに :doc:`シークレット </engine/swarm/secrets>` を使います。また機微ではないデータのためには :doc:`コンフィグ </engine/swarm/configs>` を使います。現時点でスタンドアロンなコンテナを使っている場合、 :ruby:`単一から複数 <single-replica>` のサービスへの移行を検討すると、サービスのみが利用できる機能を活用できるようになります。
+
 
 .. Use CI/CD for testing and deployment
 .. _use ci/cd for testing and deployment:
@@ -88,11 +94,11 @@ Docker 開発ベストプラクティス
 
 ..    When you check in a change to source control or create a pull request, use Docker Hub or another CI/CD pipeline to automatically build and tag a Docker image and test it.
 
-* ソースコントロールに対する変更処理、あるいはプルリクエスト作成を処理する時、 `Docker Hub <https://docs.docker.com/docker-hub/builds/>`_ や他の CI/CD パイプラインを使い、Docker イメージの自動構築やタグ付け、テストを行えます。
+* ソースコントロールに対する変更処理、あるいはプルリクエスト作成を処理するとき、 :doc:`Docker Hub </docker-hub/builds>` や他の CI/CD パイプラインを使い、Docker イメージの自動構築やタグ付け、テストを行えます。
 
 ..    Take this even further by requiring your development, testing, and security teams to sign images before they are deployed into production. This way, before an image is deployed into production, it has been tested and signed off by, for instance, development, quality, and security teams.
 
-* プロダクションにデプロイする前に、開発、テスト、セキュリティチームが  :doc:`イメージへの署名 </engine/reference/commandline/trust>` が必要となるでしょう。その場合は、イメージをプロダクションにデプロイする前に、たとえば開発、品質およびセキュリティチームによって、イメージのテストを署名をします。
+* プロダクションにデプロイする前に、開発、テスト、セキュリティチームが  :doc:`イメージへの署名 </engine/reference/commandline/trust>` が必要となるでしょう。その場合は、イメージをプロダクションにデプロイする前に、例えば開発、品質及びセキュリティチームによって、イメージのテストを署名をします。
 
 
 .. Differences in development and production environments

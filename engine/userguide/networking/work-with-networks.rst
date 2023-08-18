@@ -343,7 +343,7 @@ Docker Engineが自動的に ``container2`` に IP アドレスを割り当て�
 ``container2`` は２つのネットワークに所属しているのが分かります。 ``bridge`` ネットワークは起動時にデフォルトで参加したネットワークであり、 ``isolated_nw`` ネットワークは後から自分で接続したものです。
 
 .. image:: ./images/working.png
-   :scale: 60%
+   :width: 60%
    :alt: Docker のネットワーク
 
 .. In the case of container3, you connected it through docker run to the isolated_nw so that container is not connected to bridge.

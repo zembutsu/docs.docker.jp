@@ -119,7 +119,7 @@ Device Mapper は Linux カーネルのバージョン 2.6.9 以降、メイン�
 以下のハイレベルな図は、ベース・デバイスのシン・プールと２つのイメージを表します。
 
 .. image:: ./images/base-device.png
-   :scale: 60%
+   :width: 60%
    :alt: ベース・デバイス
 
 .. If you look closely at the diagram you’ll see that it’s snapshots all the way down. Each image layer is a snapshot of the layer below it. The lowest layer of each image is a snapshot of the base device that exists in the pool. This base device is a Device Mapper artifact and not a Docker image layer.
@@ -131,7 +131,7 @@ Device Mapper は Linux カーネルのバージョン 2.6.9 以降、メイン�
 コンテナとは、ここから作成したイメージのスナップショットです。下図は２つのコンテナです。一方は Ubuntu イメージをベースにし、もう一方は Busybox イメージをベースにしています。
 
 .. image:: ./images/two-dm-container.png
-   :scale: 60%
+   :width: 60%
    :alt: ２つの Device Mapper 上のコンテナ
 
 
@@ -147,7 +147,7 @@ devicemapper からの読み込み
 ``devicemapper`` ストレージ・ドライバが、どのように読み書きしているか見ていきましょう。下図は、サンプル・コンテナが単一のブロック（ ``0x44f`` ）を読み込むという、ハイレベルな手順です。
 
 .. image:: ./images/dm-container.png
-   :scale: 60%
+   :width: 60%
    :alt: Device Mapper 上のコンテナ
 
 ..    An application makes a read request for block 0x44f in the container.
@@ -511,7 +511,7 @@ Docker Engine デーモンを起動したら、シン・プールとボリュー
 下図は、先ほどの例で扱ったイメージの更新を、 ``lsblk`` コマンドの詳細とあわせて表しています。
 
 .. image:: ./images/devicemapper-pool.png
-   :scale: 60%
+   :width: 60%
    :alt: ディスク構造上のイメージ
 
 .. In the diagram, the pool is named Docker-202:1-1032-pool and spans the data and metadata devices created earlier. The devicemapper constructs the pool name as follows:

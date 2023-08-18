@@ -7,7 +7,7 @@
 .. -----------------------------------------------------------------------------
 
 .. |whale| image:: /desktop/install/images/whale-x.png
-      :scale: 50%
+      :width: 50%
 
 .. Change Docker Desktop preferences on Linux
 .. _change-docker-desktop-preferences-on-linux:

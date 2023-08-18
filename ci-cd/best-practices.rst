@@ -38,7 +38,7 @@ CI/CD のために Docker Hub を使うベストプラクティス
 始めるにあたり、CI でテストが必要な場合や、CI をローカルでする場合に、Docker とあらゆる CI/CD とが、どのようにして動作するかの理解が最も重要です。Docker では、 :ruby:`内部ループ <inner loop>` の視点（コードを書き、構築し、実行し、テストする）と :ruby:`外部ループ <outer loop>` の視点（変更を push 、 CI で構築し、 CI でテストし、デプロイする）で、開発者がどのようにして働くかを考えました。
 
 .. image:: ./images/inner-outer-loop.png
-   :scale: 60%
+   :width: 60%
    :alt: CI/CD の内部ループと外部ループ
 
 .. Before you think about optimizing your CI/CD, it is important to think about your inner loop and how it relates to the outer loop (the CI). We know that most users don’t prefer ‘debugging through the CI’. Therefore, it is better if your inner loop and outer loop are as similar as possible. We recommend that you run unit tests as part of your docker build command by adding a target for them in your Dockerfile. This way, as you are making changes and rebuilding locally, you can run the same unit tests you would run in the CI on your local machine using a simple command.

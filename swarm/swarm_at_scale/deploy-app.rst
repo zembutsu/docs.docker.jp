@@ -30,7 +30,7 @@
 次の図は最終的なアプリケーション設定であり、 ``voteapp`` オーバレイ・コンテナ・ネットワークも含みます。
 
 .. image:: ../images/final-result.png
-   :scale: 60%
+   :width: 60%
 
 .. In this procedure you will connect containers to this network. The voteapp network is available to all Docker hosts using the Consul discovery backend. Notice that the interlock, nginx, consul, and swarm manager containers on are not part of the voteapp overlay container network.
 

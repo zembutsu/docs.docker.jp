@@ -42,7 +42,7 @@ Docker プロジェクトのセットアップ
 それでは始めましょう。このガイドでは例としてシンプルな Docker プロジェクトを使います。 `SimpleWhaleDemo <https://github.com/usha-mandya/SimpleWhaleDemo>`_ リポジトリは Nginx alpine イメージを含みます。このリポジトリを複製するか、自分の Docker プロジェクトを使います。
 
 .. image:: /ci-cd/images/simplewhaledemo.png
-   :scale: 60%
+   :width: 60%
    :alt: SimpleWhaleDemo
 
 .. Before we start, ensure you can access Docker Hub from any workflows you create. To do this:
@@ -66,13 +66,13 @@ Docker プロジェクトのセットアップ
 4. このトークンを **simplewhaleci** と呼びましょう。
 
    .. image:: /ci-cd/images/github-access-token.png
-      :scale: 60%
+      :width: 60%
       :alt: New access token
 
 5. それから GitHub secrets UI で、この :ruby:`パーソナル アクセス トークン <Personal Access Token>` （PAT）を2番目のシークレットとして ``DOCKER_HUB_ACCESS_TOKEN`` という名前の値に追加します。
 
    .. image:: /ci-cd/images/github-secrets.png
-      :scale: 60%
+      :width: 60%
       :alt: New access token
 
 .. Set up the GitHub Actions workflow
@@ -181,7 +181,7 @@ GitHub Actions ワークフローのセットアップ
 .. CI to Docker Hub
 
 .. image:: /ci-cd/images/ci-to-hub.png
-   :scale: 60%
+   :width: 60%
    :alt: Docker Hub への CI
 
 .. Optimizing the workflow
@@ -295,7 +295,7 @@ Docker Hub にタグ付けされたバージョンを送信
 .. Push tagged version
 
 .. image:: /ci-cd/images/push-tagged-version.png
-   :scale: 60%
+   :width: 60%
    :alt: タグ付けされたバージョンを送信
 
 .. Now, let’s set up a second GitHub action file to store our latest commit as an image in the GitHub registry. You may want to do this to:
@@ -340,7 +340,7 @@ Docker Hub にタグ付けされたバージョンを送信
 .. Update tagged images
 
 .. image:: /ci-cd/images/ghcr-logic.png
-   :scale: 60%
+   :width: 60%
    :alt: タグ付けされたイメージの更新
 
 .. Now, we will have two different flows: one for our changes to master, and one for our pull requests. Next, we need to modify what we had before to ensure we are pushing our PRs to the GitHub registry rather than to Docker Hub.

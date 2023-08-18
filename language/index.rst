@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/language/
-   doc version: 20.10
+   doc version: 24.0
       https://github.com/docker/docker.github.io/blob/master/language/index.md
-.. check date: 2022/09/23
-.. Commits on Jul 14, 2022 2482f8ce04317b2c56301ea9885bb9a947b232d3
+.. check date: 2023/07/20
+.. Commits on Jun 30, 2023 4523221101c35de82a0d6f4263615dabe514c0a6
 .. -----------------------------------------------------------------------------
 
 .. Overview
@@ -18,7 +18,7 @@
 
 .. In addition to the language-specific modules, Docker documentation also provides guidelines to build and efficiently manage your development environment. You can find information on the best practices for writing Dockerfiles, building and managing images efficiently, gaining performance improvements by building images using BuildKit, etc. You can also find specific instructions on how to keep your images small, and how to persist application data, how to use multi-stage builds, etc.
 
- Docker のドキュメントでは、言語別の章に加え、開発環境の構築とイメージの効率的な管理に関するガイドラインも提供しています。Dockerfile の書き方のベストプラクティス、イメージの効率的な構築と管理、BuildKit を使ったイメージ構築のパフォーマンス改善を得る方法等についての情報を得られます。また、イメージを小さく保つ方法、アプリケーションデータの保持、マルチステージ ビルドの使い方に関する情報も提供しています。
+Docker のドキュメントでは、言語別の章に加え、開発環境の構築とイメージの効率的な管理に関するガイドラインも提供しています。Dockerfile の書き方のベストプラクティス、イメージの効率的な構築と管理、BuildKit を使ったイメージ構築のパフォーマンス改善を得る方法等についての情報を得られます。また、イメージを小さく保つ方法、アプリケーションデータの保持、マルチステージ ビルドの使い方に関する情報も提供しています。
 
 .. For more information, refer to the following topics:
 
@@ -27,12 +27,10 @@
 ..  Best practices for writing Dockerfiles
     Docker development best practices
     Build images with BuildKit
-    Manage images
 
 * :doc:`/develop/develop-images/dockerfile_best-practices`
 * :doc:`/develop/dev-best-practices`
-* :doc:`/develop/develop-images/build_enhancements`
-* :doc:`/develop/develop-images/image_management`
+* :doc:`/build/buidkit`
 
 .. Language-specific getting started guides
 .. _language-specific-getting-started-guides:
@@ -48,6 +46,8 @@ Docker 環境の準備とアプリケーションのコンテナ化を始める�
 * :doc:`Python <python/index>`
 * :doc:`Java <java/index>`
 * :doc:`Go <go/index>`
+* :doc:`C# (.NET) <dotnet/index>`
+* :doc:`Rust <rust/index>`
 
 .. seealso::
 

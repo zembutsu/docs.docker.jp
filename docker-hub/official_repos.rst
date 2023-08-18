@@ -156,7 +156,7 @@ Docker セキュリティ・スキャニングの結果を見るには、以下�
 
    ..  ![](images/scan-drilldown.gif)
    .. image:: images/scan-drilldown.gif
-      :scale: 60%
+      :width: 60%
 
 .. You can click into a tag's detail page to see more information about which
    layers in the image and which components within the layer are vulnerable.

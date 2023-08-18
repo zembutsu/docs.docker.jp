@@ -74,7 +74,7 @@ Docker ``zfs`` ストレージ・ドライバは、３種類の豊富な ZFS デ
 ZFS ファイルシステムはシン・プロビジョニング（訳者注：データ書き込みの領域が、初期環境では薄く構築される）であり、ZFS プール（zpool）から要求処理があるごとに、領域を割り当てます。スナップショットとクローンは、その時々で ZFS ファイルシステムのコピーをするため、領域を効率的に使います。スナップショットは読み込み専用です。クローンは読み書きできます。クローンはスナップショットからのみ作成可能です。以下の図は、これらの関係性を簡単にしたものです。
 
 .. image:: ./images/zfs-clones.png
-   :scale: 60%
+   :width: 60%
    :alt: ZFS のクローン
 
 .. The solid line in the diagram shows the process flow for creating a clone. Step 1 creates a snapshot of the filesystem, and step two creates the clone from the snapshot. The dashed line shows the relationship between the clone and the filesystem, via the snapshot. All three ZFS datasets draw space form the same underlying zpool.
@@ -86,7 +86,7 @@ ZFS ファイルシステムはシン・プロビジョニング（訳者注：�
 Docker ホストで ``zfs`` ストレージ・ドライバを使えば、イメージのベース・レイヤは ZFS ファイルシステムになります。それぞれの子レイヤとは、下にあるレイヤの ZFS スナップショットをベースとした ZFS クローンです。コンテナとは、作成するにあたってイメージの最上位レイヤの ZFS スナップショットをベースとした ZFS クローンです。全ての ZFS データセットは、共通の zpool から領域を取り込みます。以下の図は２つのレイヤ・イメージをベースにまとめたもので、コンテナを実行しています。
 
 .. image:: ./images/zfs-pool.png
-   :scale: 60%
+   :width: 60%
    :alt: ZFS pool
 
 .. The following process explains how images are layered and containers created. The process is based on the diagram above.
@@ -137,7 +137,7 @@ Docker ホストで ``zfs`` ストレージ・ドライバを使えば、イメ�
 コンテナが ``zfs`` ストレージ・ドライバから読み込むのは、非常にシンプルです。直近で起動したコンテナは、ZFS クローンを元にしています。このクローンは作成時、まず全てのデータセットを共有します。つまり、 ``zfs`` ストレージ・ドライバの読み込み処理が高速なことを意味します。これは、読み込み対象のデータがコンテナ内にコピーされていなくてもです。データブロックの共有は、次のような図になります。
 
 .. image:: ./images/zpool-blocks.png
-   :scale: 60%
+   :width: 60%
    :alt: ZFS zpool ブロック
 
 .. Writing new data to a container is accomplished via an allocate-on-demand operation. Every time a new area of the container needs writing to, a new block is allocated from the zpool. This means that containers consume additional space as new data is written to them. New space is allocated to the container (ZFS Clone) from the underlying zpool.

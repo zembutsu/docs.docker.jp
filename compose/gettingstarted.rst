@@ -257,7 +257,7 @@ redis サービス
      Hello World! I have been seen 1 times.
 
    .. image:: images/quick-hello-world-1.png
-      :scale: 60%
+      :width: 60%
       :alt: ブラウザで hello world
 
 .. Refresh the page.
@@ -273,7 +273,7 @@ redis サービス
       Hello World! I have been seen 2 times.
 
    .. image:: images/quick-hello-world-2.png
-      :scale: 60%
+      :width: 60%
       :alt: ブラウザで hello world
 
 .. Switch to another terminal window, and type docker image ls to list local images.
@@ -391,7 +391,7 @@ redis サービス
 ブラウザでアプリを再読み込みします。挨拶が更新され、さらにカウンタも増え続けます。
 
    .. image:: images/quick-hello-world-2.png
-      :scale: 60%
+      :width: 60%
       :alt: ブラウザで hello world
 
 .. Step 8: Experiment with some other commands

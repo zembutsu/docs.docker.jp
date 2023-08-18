@@ -26,7 +26,7 @@ Docker Swarm の TLS 設定
 この手順では下図のように、 Swarm クラスタにSwarm マネージャと認証局（CA）の２つのノードを作成します。全ての Docker Engine ホスト（ ``client`` 、 ``swarm`` 、 ``node1``  、 ``node2``  ）は、認証局の証明書のコピーと、自分自身で認証局の署名をしたキーペアのコピーも持ちます。
 
 .. image:: ./images/tls-1.png
-   :scale: 60%
+   :width: 60%
 
 以下の手順で作業を進めていきます。
 
@@ -461,7 +461,7 @@ Docker Swarm の TLS 設定
 コピーが完了したら、各マシンは以下の鍵を持ちます。
 
 .. image:: ./images/tls-2.png
-   :scale: 60%
+   :width: 60%
 
 ..    Each node in your infrastructure should have the following files in the /home/ubuntu/.certs/ directory:
 

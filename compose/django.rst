@@ -396,7 +396,7 @@ Django プロジェクトの生成
    ..  ![Django example](images/django-it-worked.png)
 
    .. image:: /compose/images/django-it-worked.png
-      :scale: 60%
+      :width: 60%
       :alt: Django の例
 
    ..  > Note:

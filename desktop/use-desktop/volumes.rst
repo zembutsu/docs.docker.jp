@@ -7,7 +7,7 @@
 .. -----------------------------------------------------------------------------
 
 .. |whale| image:: /desktop/install/images/whale-x.png
-      :scale: 50%
+      :width: 50%
 
 .. Explore Volumes
 .. _explore-volumes:

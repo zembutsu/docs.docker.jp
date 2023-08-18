@@ -9,7 +9,7 @@
 .. -----------------------------------------------------------------------------
 
 .. |whale| image:: ./images/whale-x.png
-      :scale: 50%
+      :width: 50%
 
 .. Docker Desktop for Mac user manual
 .. _docker-desktop-for-mac-user-manual:
@@ -53,7 +53,7 @@ General（一般的な設定）
 ------------------------------
 
 .. image:: ./images/prefs-genral.png
-   :scale: 60%
+   :width: 60%
    :alt: 設定
 
 .. On the General tab, you can configure when to start Docker and specify other settings:
@@ -107,7 +107,7 @@ ADVANCED（高度な設定）
 **Advanced** タブでは、 Docker が利用できるリソースを制限します。
 
 .. image:: ./images/prefs-advanced.png
-   :scale: 60%
+   :width: 60%
    :alt: 高度な設定
 
 
@@ -621,7 +621,7 @@ Docker Desktopで Docker Hub アカウントでサインインする前に、 Do
 3. サインインに成功すると、 Docker Desktop は authentication code（認証コード）の入力を求めてきます。電話に送られた６ケタのコードを入力し、 **Verify** をクリックします。
 
 .. image:: ./images/desktop-mac-2fa.png
-   :scale: 60%
+   :width: 60%
    :alt: Docker Desktop 二要素認証
 
 .. After you have successfully authenticated, you can access your organizations and repositories directly from the Docker Desktop menu.
@@ -641,7 +641,7 @@ Docker Desktop 4.2 リリースから、Docker Desktop をアクティブに使�
 Docker メニュー ( |whale| ) から、 **Pause** を選択して Docker Desktop を一時停止します。
 
 .. image:: ./images/menu/prefs.png
-   :scale: 60%
+   :width: 60%
    :alt: Docker のメニュー項目
 
 .. Docker Desktop now displays the paused status on the Docker menu and on the Containers / Apps, Images, Volumes, and Dev Environment screens on the Docker Dashboard. You can still access the Preferences and the Troubleshoot menu from the Dashboard when you’ve paused Docker Desktop.

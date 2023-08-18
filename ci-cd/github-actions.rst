@@ -47,7 +47,7 @@ Docker プロジェクトのセットアップ
 それでは始めましょう。このガイドでは例としてシンプルな Docker プロジェクトを使います。 `SimpleWhaleDemo <https://github.com/usha-mandya/SimpleWhaleDemo>`_ リポジトリには、 Nginx alpine イメージを含みます。このリポジトリをクローンするか、自分の Docker プロジェクトを使います。
 
 .. image:: ./images/simplewhaledemo.png
-   :scale: 60%
+   :width: 60%
    :alt: SimpleWhaleDemo
 
 .. Before we start, ensure you can access Docker Hub from any workflows you create. To do this:

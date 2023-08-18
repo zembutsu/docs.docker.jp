@@ -87,7 +87,7 @@ Docker Desktop をインストールする **前に** 、動作条件のセク�
 ..    Enable WSL 2
 
 .. image:: ./images/wsl2-enable.png
-   :scale: 60%
+   :width: 60%
    :alt: WSL 2 の有効化
 
 ..    Select the Use WSL 2 based engine check box.
@@ -174,7 +174,7 @@ Docker Desktop では何らかの Linux ディストリビューションをイ�
    ..    WSL 2 Choose Linux distro
 
    .. image:: ./images/wsl2-choose-distro.png
-      :scale: 60%
+      :width: 60%
       :alt: WSL 2 で Linux ディストリビューションを選択
 
 ..    Click Apply & Restart.

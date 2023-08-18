@@ -7,7 +7,7 @@
 .. -----------------------------------------------------------------------------
 
 .. |whale| image:: ./images/whale-x.png
-      :scale: 50%
+      :width: 50%
 
 .. Install Docker Desktop on Arch-based distributions
 .. _install-docker-desktop-on-arch-based-distributions:

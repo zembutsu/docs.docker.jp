@@ -83,7 +83,7 @@ AUFS は複数のディレクトリの積み重ねであり、１つのマウン
 Docker 内部では、 AUFS ユニオン・マウントがイメージのレイヤ化を行います。AUFS ストレージ ドライバは、ユニオン・マウント・システムを使って Docker イメージを扱います。AUFS ブランチが Docker イメージ・レイヤに相当します。以下の図は ``ubuntu:latest`` イメージをベースとする Docker コンテナです。
 
 .. image:: ./images/aufs-layers.png
-   :scale: 60%
+   :width: 60%
    :alt: イメージ層
 
 .. This diagram shows that each image layer, and the container layer, is represented in the Docker hosts filesystem as a directory under /var/lib/docker/. The union mount point provides the unified view of all layers. As of Docker 1.10, image layer IDs do not correspond to the names of the directories that contain their data.
@@ -125,7 +125,7 @@ AUFS ストレージ ドライバでのファイル削除
 AUFS ストレージ ドライバでコンテナからファイルを削除したら、コンテナの一番上のレイヤに *ホワイトアウト・ファイル（whiteout file）* が置かれます。読み込み専用のイメージ・レイヤの下にあるファイルを、ホワイトアウト・ファイルが効果的に隠します。以下の単純化した図は、３つのイメージ・レイヤのイメージに基づくコンテナを表しています。
 
 .. image:: ./images/aufs-delete.png
-   :scale: 60%
+   :width: 60%
    :alt: イメージ層
 
 .. The file3 was deleted from the container. So, the AUFS storage driver placed a whiteout file in the container’s top layer. This whiteout file effectively “deletes” file3 from the container by obscuring any of the original file’s existence in the image’s read-only layers. This works the same no matter which of the image’s read-only layers the file exists in.
@@ -211,7 +211,7 @@ AUFS ストレージ ドライバを使えるのは、AUFS がインストール
 ``/var/lib/docker/aufs/layers/`` ディレクトリに含まれるのは、どのようにイメージ・レイヤを重ねるかというメタデータです。このディレクトリには、Docker ホスト上のイメージかコンテナごとに１つのファイルがあります（ファイル名はイメージのレイヤ ID と一致しません）。各ファイルの中にはイメージ・レイヤの名前があります。次の図は１つのイメージが４つのレイヤを持つのを示しています。
 
 .. image:: ./images/aufs-metadata.png
-   :scale: 60%
+   :width: 60%
    :alt: AUFS メタデータ
 
 .. Inspecting the contents of the file relating to the top layer of the image shows the three image layers below it. They are listed in the order they are stacked.

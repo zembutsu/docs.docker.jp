@@ -75,7 +75,7 @@ OverlayFS は１つの Linux ホスト上で２つのディレクトリを扱い
 下図は Docker イメージと Docker コンテナがレイヤ化されたものです。イメージ・レイヤは「下位ディレクトリ」であり、コンテナ・レイヤは「上位ディレクトリ」です。統一した表示は「マージされた」ディレクトリであり、これがコンテナに対する事実上のマウント・ポイントです。下図では Docker の構造が OverlayFS 構造にどのように割り当てられているか分かります。
 
 .. image:: ./images/overlay-construct.png
-   :scale: 60%
+   :width: 60%
    :alt: OverlayFS の構造
 
 .. Notice how the image layer and container layer can contain the same files. When this happens, the files in the container layer (“upperdir”) are dominant and obscure the existence of the same files in the image layer (“lowerdir”). The container mount (“merged”) presents the unified view.

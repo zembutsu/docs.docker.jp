@@ -50,7 +50,7 @@
 投票アプリケーションは複数のマイクロサービスで構成されます。並列なウェブ・フロントエンドを使い、ジョブを非同期のバックグラウンド・ワーカに送ります。アプリケーションは任意に大きくスケール可能な設計です。次の図はアプリケーションのハイレベルなアーキテクチャです。
 
 .. image:: ../images/app-architecture.png
-   :scale: 60%
+   :width: 60%
 
 .. All the servers are running Docker Engine. The entire application is fully “Dockerized” in that all services are running inside of containers.
 
@@ -99,7 +99,7 @@ Swarm クラスタのアーキテクチャ
 アプリケーションをサポートするのは、次の図のように、１つの Swarm マネージャと４つのノードで構成する設計の Swarm クラスタです。
 
 .. image:: ../images/swarm-cluster-arch.png
-   :scale: 60%
+   :width: 60%
 
 .. All four nodes in the cluster are running the Docker daemon, as is the Swarm manager and the load balancer. The Swarm manager is part of the cluster and is considered out of band for the application. A single host running the Consul server acts as a keystore for both Swarm discovery and for the container network. The load balancer could be placed inside of the cluster, but for this demonstration it is not.
 
@@ -110,7 +110,7 @@ Swarm クラスタのアーキテクチャ
 サンプルとアプリケーションのデプロイを完了したら、皆さんの環境は下図のようになります。
 
 .. image:: ../images/final-result.png
-   :scale: 60%
+   :width: 60%
 
 
 .. As the previous diagram shows, each node in the cluster runs the following containers:

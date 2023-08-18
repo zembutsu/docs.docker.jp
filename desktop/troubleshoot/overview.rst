@@ -7,7 +7,7 @@
 .. -----------------------------------------------------------------------------
 
 .. |whale| image:: /desktop/install/images/whale-x.png
-      :scale: 50%
+      :width: 50%
 
 .. Overview
 .. _desktop-troubleshoot-overview:
@@ -53,7 +53,7 @@
 * Docker ダッシュボードから **Troubleshoot** アイコンを選ぶ
 
 .. image:: ../images/troubleshoot.png
-   :scale: 60%
+   :width: 60%
    :alt: Docker Desktop のトラブルシュート
 
 
@@ -106,7 +106,7 @@ Mac ユーザの場合、Docker Desktop をシステム上から **Uninstall** �
 1. **Troubleshoot** から **Get support** を選びます。これはアプリ内の **Support** ページを開き、診断情報の収集を開始します。
 
    .. image:: ../images/diagnose-support.png
-      :scale: 60%
+      :width: 60%
       :alt: 診断とフィードバック
 
 .. When the diagnostics collection process is complete, click Upload to get a Diagnostic ID.

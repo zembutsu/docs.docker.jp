@@ -7,7 +7,7 @@
 .. -----------------------------------------------------------------------------
 
 .. |whale| image:: /desktop/install/images/whale-x.png
-      :scale: 50%
+      :width: 50%
 
 .. Known issues for Docker Desktop on Mac
 .. _desktop-known-issues-for-docker-desktop-on-mac:

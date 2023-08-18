@@ -9,7 +9,7 @@
 .. -----------------------------------------------------------------------------
 
 .. |whale| image:: ./images/whale-x.png
-      :scale: 50%
+      :width: 50%
 
 .. Install Docker Desktop on Mac
 .. _install-docker-desktop-on-mac:
@@ -118,7 +118,7 @@ Mac に Docker Desktop をインストールして動かす
    ..    Install Docker app
 
    .. image:: ./images/docker-app-drag-mac.png
-      :scale: 60%
+      :width: 60%
       :alt: Docker app のインストール
 
 ..    Double-click Docker.app in the Applications folder to start Docker. (In the example below, the Applications folder is in “grid” view mode.)
@@ -128,7 +128,7 @@ Mac に Docker Desktop をインストールして動かす
    ..    Docker app in Hockeyapp
 
    .. image:: ./images/docker-app-in-apps-mac.png
-      :scale: 60%
+      :width: 60%
       :alt: アプリ一覧での Docker
 
 .. The Docker menu (whale menu) displays the Docker Subscription Service Agreement window. It includes a change to the terms of use for Docker Desktop.

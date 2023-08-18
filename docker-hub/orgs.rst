@@ -43,7 +43,7 @@ Docker Hub の `組織 <https://hub.docker.com/organizations/>`_ （organization
 .. ![organizations](images/orgs.png)
 
 .. image:: ./images/orgs.png
-   :scale: 60%
+   :width: 60%
    :alt: organizations 画面
 
 .. ### Organization teams
@@ -65,7 +65,7 @@ Docker Hub の `組織 <https://hub.docker.com/organizations/>`_ （organization
 .. ![teams](images/groups.png)
 
 .. image:: ./images/groups.png
-   :scale: 60%
+   :width: 60%
    :alt: チーム
 
 .. ### Repository team permissions
@@ -113,7 +113,7 @@ Docker Hub の `組織 <https://hub.docker.com/organizations/>`_ （organization
 .. ![Organization repository collaborators](images/org-repo-collaborators.png)
 
 .. image:: ./images/org-repo-collaborators.png
-   :scale: 60%
+   :width: 60%
    :alt: Organization リポジトリのコラボレータ
 
 

@@ -82,7 +82,7 @@ Btrfs でイメージのレイヤ化と共有
 サブボリュームはコピー・オン・ライトにネイティブに対応しており、必要があれば基礎をなすストレージ・プールから領域を割り当てます。また、領域はネスト（入れ子）にすることができ、スナップ化できます。次の図は４つのボリュームを表します。「サブボリューム４」は内部にディレクトリ・ツリーを持っているのに対し、「サブボリューム２」と「サブボリューム３」はネストされたものです。
 
 .. image:: ./images/btrfs-subvolume.png
-   :scale: 60%
+   :width: 60%
    :alt: btrfs サブボリューム
 
 .. Snapshots are a point-in-time read-write copy of an entire subvolume. They exist directly below the subvolume they were created from. You can create snapshots of snapshots as shown in the diagram below.
@@ -90,7 +90,7 @@ Btrfs でイメージのレイヤ化と共有
 スナップショットとは、ある時点におけるサブボリューム全体の読み書きをコピーします。既存のディレクトリの下にサブボリュームを作成します。下図のように、スナップショットのスナップショットも作成できます。
 
 .. image:: ./images/btrfs-snapshots.png
-   :scale: 60%
+   :width: 60%
    :alt: btrfs スナップショット
 
 .. Btfs allocates space to subvolumes and snapshots on demand from an underlying pool of storage. The unit of allocation is referred to as a chunk and chunks are normally ~1GB in size.
@@ -102,7 +102,7 @@ Btrfs でイメージのレイヤ化と共有
 スナップショットは Btrfs ファイルシステム上の優秀な機能です。つまり、通常のサブボリュームと同じ見た目と、感触、操作が可能です。ネイティブなコピー・オン・ライトの設計のおかげで、Btrfs ファイルシステム内のディレクトリにサブボリュームを構築する時、この技術が必要になります。つまり、Btrfs スナップショットは性能のオーバーヘッドが少ない、あるいは無いため、効率的に領域を使います。次の図はスナップショットが同じデータを共有しているサブボリュームです。
 
 .. image:: ./images/btrfs-pool.png
-   :scale: 60%
+   :width: 60%
    :alt: btrfs プール
 
 .. Docker’s btrfs storage driver stores every image layer and container in its own Btrfs subvolume or snapshot. The base layer of an image is stored as a subvolume whereas child image layers and containers are stored as snapshots. This is shown in the diagram below.
@@ -110,7 +110,7 @@ Btrfs でイメージのレイヤ化と共有
 Docker の ``btrfs`` ストレージ・ドライバは、各イメージ・レイヤとコンテナを、自身の Btrfs サブボリュームかスナップショットに保管します。イメージのベース・レイヤはサブボリュームとして保管します。それに対して子イメージ・レイヤとコンテナは、スナップショットに保管します。これを説明したのが次の図です。
 
 .. image:: ./images/btrfs-container-layer.png
-   :scale: 60%
+   :width: 60%
    :alt: btrfs コンテナ・レイヤ
 
 .. The high level process for creating images and containers on Docker hosts running the btrfs driver is as follows:
@@ -134,7 +134,7 @@ Docker ホストが ``btrfs`` ドライバを使い、イメージとコンテ�
 以下の図は３つのイメージ・レイヤを表しています。ベース・レイヤはサブボリュームです。レイヤ１はベース・レイヤに対するサブボリュームのスナップショットです。レイヤ２はレイヤ１のスナップショットです。
 
 .. image:: ./images/btrfs-constructs.png
-   :scale: 60%
+   :width: 60%
    :alt: ディスク構造上のイメージ
 
 .. As of Docker 1.10, image layer IDs no longer correspond to directory names under /var/lib/docker/.
