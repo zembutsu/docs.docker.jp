@@ -96,7 +96,7 @@
    
    .. The --mount option tells Docker to create a bind mount, where src is the current working directory on your host machine (getting-started/app), and target is where that directory should appear inside the container (/src).
    
-   ``--mount`` オプションは Docker に対してバインドマウントの作成を命令します。 ``src`` で示す場所は、ホストマシン上の現在の作業ディレクトリ（ ``getting-started/app`` ）です。 ``target`` で示す場所は、はコンテナ内に現れるディレクトリ（ ``/src`` ）です。
+   ``--mount`` オプションは Docker に対してバインドマウントの作成を命令します。 ``src`` で示す場所は、ホストマシン上の現在の作業ディレクトリ（ ``getting-started/app`` ）です。 ``target`` で示す場所は、コンテナ内に現れるディレクトリ（ ``/src`` ）です。
 
 .. After running the command, Docker starts an interactive bash session in the root directory of the container’s filesystem
 
