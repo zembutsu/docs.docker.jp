@@ -1608,7 +1608,7 @@ NUMA システム上でのみ、どのコンテナをメモリ上で実行する
 
 .. The next table shows the capabilities which are not granted by default and may be added.
 
-次の表は、デフォルトでは許可されていないものおん、追加可能なケーパビリティの一覧です。
+次の表は、デフォルトでは許可されていないものの、追加可能なケーパビリティの一覧です。
 
 
 .. list-table::
