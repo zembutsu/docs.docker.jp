@@ -148,7 +148,7 @@ Docker ダッシュボード
     Containers are isolated from each other and run their own software, binaries, and configurations.
 
 * 実行可能なイメージの :ruby:`実体 <instance>` 。Docker API や CLI を使ってコンテナの作成、開始、停止、移動、削除ができます。
-* ローカルマシン上や、仮想マシン上えも実行でき、クラウドにもデプロイできます。
+* ローカルマシン上や、仮想マシン上でも実行でき、クラウドにもデプロイできます。
 * :ruby:`可搬性 <portability>` があります（多くの OS で実行可能です）。
 * コンテナはお互いに隔離され、それぞれが自身のソフトウェア、バイナリ、設定を使って実行します。
 
