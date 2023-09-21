@@ -92,7 +92,7 @@ Compose の :ruby:`仕様 <specification>` とは、 :ruby:`プラットフォ�
 
 .. Some services require configuration data that is dependent on the runtime or platform. For this, the specification defines a dedicated concept: Configs. From a Service container point of view, Configs are comparable to Volumes, in that they are files mounted into the container. But the actual definition involves distinct platform resources and services, which are abstracted by this type.
 
-いくつかのサービスは、ランタイムやプラットフォームに依存する :ruby:`設定情報 <configuration>` データを必要とします。このため、仕様では :ref:`設定情報（configs） <configs-top-level-element>` という、専用の概念を定義しています。サービス用コンテナの視点からすると、コンテナ内にファイルをマウントするため、 :ruby`設定情報 <configs>` はボリュームに似ています。しかし、実際の定義では、このタイプで抽象化されたプラットフォーム固有のリソースとサービスを含みます。
+いくつかのサービスは、ランタイムやプラットフォームに依存する :ruby:`設定情報 <configuration>` データを必要とします。このため、仕様では :ref:`設定情報（configs） <configs-top-level-element>` という、専用の概念を定義しています。サービス用コンテナの視点からすると、コンテナ内にファイルをマウントするため、 :ruby:`設定情報 <configs>` はボリュームに似ています。しかし、実際の定義では、このタイプで抽象化されたプラットフォーム固有のリソースとサービスを含みます。
 
 .. A Secret is a specific flavor of configuration data for sensitive data that SHOULD NOT be exposed without security considerations. Secrets are made available to services as files mounted into their containers, but the platform-specific resources to provide sensitive data are specific enough to deserve a distinct concept and definition within the Compose specification.
 
@@ -230,7 +230,7 @@ profiles によって、様々な用途や環境にあわせて Compose アプ�
 
 .. The Services top-level element supports a profiles attribute to define a list of named profiles. Services without a profiles attribute set MUST always be enabled. A service MUST be ignored by the Compose implementation when none of the listed profiles match the active ones, unless the service is explicitly targeted by a command. In that case its profiles MUST be added to the set of active profiles. All other top-level elements are not affected by profiles and are always active.
 
-サービスのトップレベル要素は、 ``profiles`` 属性をサポートし、 profiles 名の一覧を定義します。 ``profiles`` 属性セットの無いサービスは、常に有効に :ruby:`しなければいけません <MUST>` 。 ``profiles`` に一致するアクティブな profiles が存在しなければ、サービスがコマンドで対象を明示されていない限り、サービスは Compose 実装によって無視 :ruby:`されなければいけません <MUST>` 。その場合、その porifles をアクティブな profiles のセットに追加 :ruby:`しなければいけません <MUST>` 。これ以外すべてのトップレベル要素は profiles の影響を受けず、常に機能します。
+サービスのトップレベル要素は、 ``profiles`` 属性をサポートし、 profiles 名の一覧を定義します。 ``profiles`` 属性セットの無いサービスは、常に有効に :ruby:`しなければいけません <MUST>` 。 ``profiles`` に一致するアクティブな profiles が存在しなければ、サービスがコマンドで対象を明示されていない限り、サービスは Compose 実装によって無視 :ruby:`されなければいけません <MUST>` 。その場合、その profiles をアクティブな profiles のセットに追加 :ruby:`しなければいけません <MUST>` 。これ以外すべてのトップレベル要素は profiles の影響を受けず、常に機能します。
 
 .. References to other services (by links, extends or shared resource syntax service:xxx) MUST not automatically enable a component that would otherwise have been ignored by active profiles. Instead the Compose implementation MUST return an error.
 
@@ -476,7 +476,7 @@ cpu_count
 
 .. cpu_count defines the number of usable CPUs for service container.
 
-``cpu_count`` はサービス用コンテナで利用できる CPU の下図を定義します。
+``cpu_count`` はサービス用コンテナで利用できる CPU の数を定義します。
 
 .. cpu_percent
 .. _compose-spec-cpu_percent:
@@ -526,7 +526,7 @@ cpu_rt_runtime
 
 .. cpu_rt_runtime configures CPU allocation parameters for platform with support for realtime scheduler. Can be either an integer value using microseconds as unit or a duration.
 
-``cpu_rt_runtime`` は、リアルタイム スケジューラをサポートするプラットフォームに対し、 CPU 割り当てパラメータを設定します。マイクロ秒の単位を整数値で指定するか、 ref:`期間 <compose-spec-specifying-durations>` のどちらかで指定します。
+``cpu_rt_runtime`` は、リアルタイム スケジューラをサポートするプラットフォームに対し、 CPU 割り当てパラメータを設定します。マイクロ秒の単位を整数値で指定するか、 :ref:`期間 <compose-spec-specifying-durations>` のどちらかで指定します。
 
 .. code-block:: yaml
 
@@ -541,7 +541,7 @@ cpu_rt_period
 
 .. cpu_rt_period configures CPU allocation parameters for platform with support for realtime scheduler. Can be either an integer value using microseconds as unit or a duration.
 
-``cpu_rt_period`` は、リアルタイム スケジューラをサポートするプラットフォームに対し、 CPU 割り当てパラメータを設定します。マイクロ秒の単位を整数値で指定するか、 ref:`期間 <compose-spec-specifying-durations>` のどちらかで指定します。
+``cpu_rt_period`` は、リアルタイム スケジューラをサポートするプラットフォームに対し、 CPU 割り当てパラメータを設定します。マイクロ秒の単位を整数値で指定するか、 :ref:`期間 <compose-spec-specifying-durations>` のどちらかで指定します。
 
 .. code-block:: yaml
 
@@ -556,7 +556,7 @@ cpus
 
 .. DEPRECATED: use deploy.reservations.cpus
 
-*非推奨： :ref:`deploy.reservations.cpu <compose-file-deploy-cpus>` をお使います。*
+非推奨： :ref:`deploy.reservations.cpu <compose-file-deploy-cpus>` を使います。
 
 .. cpus define the number of (potentially virtual) CPUs to allocate to service containers. This is a fractional number. 0.000 means no limit.
 
@@ -753,7 +753,8 @@ Compose ファイルで ``container_name`` を指定している場合、Compose
 指定するには、 ``container_name`` は正規表現の形式 ``[a-zA-Z0-9][a-zA-Z0-9_.-]+`` に :ruby:`従うべきです <SHOULD>` 。
 
 .. credential_spec
-_compose-spec-credential_spec:
+.. _compose-spec-credential_spec:
+
 credential_spec
 --------------------
 
@@ -1201,7 +1202,7 @@ Compose 実装がサポートする場合は、以下の方法で ``extends`` �
 ..  Services that have dependencies on other services cannot be used as a base. Therefore, any key that introduces a dependency on another service is incompatible with extends. The non-exhaustive list of such keys is: links, volumes_from, container mode (in ipc, pid, network_mode and net), service mode (in ipc, pid and network_mode), depends_on.
     Services cannot have circular references with extends
 
-* 他のサービスと依存関係を持つサービスは、他のサービスからのベースとして使えません。つまり、他のサービスに依存しているキーは、 ``extends`` と互換性がありません。このようなキーの網羅的ではない一覧： ``links`` 、 ``volumes_from`` 、 ``container`` モード（ ``ipd`` 、 ``pid`` 、 ``network_mode`` 、 ``net`` ）、 ``service`` モード（ ``ipc`` 、 ``pid`` 、 ``network_mode`` 、 ``depends_on ）。
+* 他のサービスと依存関係を持つサービスは、他のサービスからのベースとして使えません。つまり、他のサービスに依存しているキーは、 ``extends`` と互換性がありません。このようなキーの網羅的ではない一覧： ``links`` 、 ``volumes_from`` 、 ``container`` モード（ ``ipd`` 、 ``pid`` 、 ``network_mode`` 、 ``net`` ）、 ``service`` モード（ ``ipc`` 、 ``pid`` 、 ``network_mode`` 、 ``depends_on`` ）。
 - サービスは ``extends`` で :ruby:`循環参照 <circular reference>` できません。
 
 .. Compose implementations MUST return an error in all of these cases.
@@ -1303,7 +1304,7 @@ Compose 実装は、これ以外のケースでエラーを返す :ruby:`必要�
 
 .. Items under blkio_config.device_read_bps, blkio_config.device_read_iops, blkio_config.device_write_bps, blkio_config.device_write_iops, devices and volumes are also treated as mappings where key is the target path inside the container.
 
-``blkio_config.device_read_bps`` 、 `` blkio_config.device_read_iops`` 、 `` blkio_config.device_write_bps`` 、 `` blkio_config.device_write_iops`` 、 `` devices and volumes`` 以下のアイテムも、キーとしてコンテナ内のパスが対象にあれば、マッピングとして扱われます。
+``blkio_config.device_read_bps`` 、 ``blkio_config.device_read_iops`` 、 ``blkio_config.device_write_bps`` 、 ``blkio_config.device_write_iops`` 、 ``devices and volumes`` 以下のアイテムも、キーとしてコンテナ内のパスが対象にあれば、マッピングとして扱われます。
 
 .. For example, the input below:
 
@@ -1504,7 +1505,7 @@ healthcheck
 
 .. interval, timeout and start_period are specified as durations.
 
-``interval` 、 ``timeout`` 、 ``start_period`` は :ref:`期間を指定 <compose-spec-specifying-durations>` します。
+``interval`` 、 ``timeout`` 、 ``start_period`` は :ref:`期間を指定 <compose-spec-specifying-durations>` します。
 
 .. test defines the command the Compose implementation will run to check container health. It can be either a string or a list. If it’s a list, the first item must be either NONE, CMD or CMD-SHELL. If it’s a string, it’s equivalent to specifying CMD-SHELL followed by that string.
 
@@ -1542,7 +1543,7 @@ healthcheck
 hostname
 ----------
 
-hostname declares a custom host name to use for the service container. MUST be a valid RFC 1123 hostname.
+.. hostname declares a custom host name to use for the service container. MUST be a valid RFC 1123 hostname.
 
 ``hostname`` は、サービス用コンテナに対して任意のホスト名を宣言します。有効な RFC 1123 ホスト名の :ruby:`必要があります <MUST>` 。
 
@@ -1734,7 +1735,7 @@ network_mode
 
 * ``none`` 全てのコンテナ ネットワーク機能を無効化
 * ``host`` コンテナはホスト側のネットワーク インタフェースに直接アクセスできるようにする
-* ``service:{名前}` コンテナを特定のサービスのみ接続できるようにする
+* ``service:{名前}`` コンテナを特定のサービスのみ接続できるようにする
 
 .. code-block:: yaml
 
@@ -1989,7 +1990,7 @@ memswap_limit
     If memswap_limit is explicitly set to -1, the container is allowed to use unlimited swap, up to the amount available on the host system.
 
 * ``memswap_limit`` に整数値を設定する場合、 ``memory`` と ``memswap_limit`` の両方を設定 :ruby:`しなくてはいけません。` 。 ``memswap_limit`` は利用可能な全メモリ容量とスワップを表し、 ``memory`` はスワップしないで使うメモリ容量を制御します。そのため、 ``memory`` が 300m と ``memswap_limit`` が 1g の場合、コンテナは 300m のメモリと 700m（1g - 300m）のスワップを利用できます。
-* ```memswap_limit`  を 0 に設定する場合、設定は無視 :ruby:`しなければいけません` 。そして値は :ruby:`未定義 <unset>` として扱われます。
+* ``memswap_limit`` を 0 に設定する場合、設定は無視 :ruby:`しなければいけません <MUST>` 。そして値は :ruby:`未定義 <unset>` として扱われます。
 * ``memswap_limit`` を ``memory`` と同じ値に設定する場合かつ ``memory`` を整数値に設定する場合、コンテナはスワップにアクセスしません。 :ref:`コンテナがスワップをしないようにする` をご覧ください。
 * ``memswap_limit`` が未定義で、かつ、 ``memory`` が設定されている場合、ホスト コンテナにスワップメモリが設定されていれば、コンテナは ``memory`` 設定と同じ容量のスワップを利用できます。たとえば、 ``memory`` が 300m で ``memswap_limit`` が設定されていなければ、コンテナはメモリとスワップで合計 600m 利用できます。
 * ``memswap_limit`` を -1 に明示すると、ホストシステム上で利用可能な上限まで、コンテナが無制限にスワップを利用できます。
@@ -2282,7 +2283,7 @@ secrets
 
 .. secrets grants access to sensitive data defined by secrets on a per-service basis. Two different syntax variants are supported: the short syntax and the long syntax.
 
-``secrets`` は、サービス単位を元にする ref:`シークレット（secrets） <compose-spec-secrets>`_によって定義する機微データ（ :ruby:`センシティブ データ <sensitive data>` ）へのアクセスを許可します。短い形式と長い形式の、2つの異なる形式がサポートされています。
+``secrets`` は、サービス単位を元にする :ref:`シークレット（secrets） <compose-spec-secrets>` によって定義する機微データ（ :ruby:`センシティブ データ <sensitive data>` ）へのアクセスを許可します。短い形式と長い形式の、2つの異なる形式がサポートされています。
 
 .. Compose implementations MUST report an error if the secret doesn’t exist on the platform or isn’t defined in the secrets section of this Compose file.
 
@@ -2448,7 +2449,7 @@ sysctls
 
 .. sysctls defines kernel parameters to set in the container. sysctls can use either an array or a map.
 
-``sysctls`` はコンテナ内に設定する kernel パラメータを定義します。 ``sysctls` は配列形式かマップ形式のどちらかを使えます。
+``sysctls`` はコンテナ内に設定する kernel パラメータを定義します。 ``sysctls`` は配列形式かマップ形式のどちらかを使えます。
 
 .. code-block:: yaml
 
@@ -2601,7 +2602,7 @@ volumes
 * ``CONTAINER_PATH`` ：ボリュームがマウントされるコンテナ内のパス
 * ``ACCESS_MODE`` ：これはコンマ記号 ``,`` で区切られたリストで、次の値が :ruby:`設定できます <MAY>` ：
 
-   * `rw``` ： :ruby:`読み込み <read>` と :ruby:`書き込み <write>` のアクセス（デフォルト）
+   * ``rw`` ： :ruby:`読み込み <read>` と :ruby:`書き込み <write>` のアクセス（デフォルト）
    * ``ro`` ： :ruby:`読み込み専用 <read-only>` のアクセス
    * ``z`` ：SELinux オプションを示すもので、バインド マウントするホストの内容が、複数のコンテナ間で共有する
    * ``Z`` ：SELinux オプションを示すもので、バインド マウントするホストの内容がプライベートであり、他のコンテナとは共有しない
@@ -2884,7 +2885,7 @@ internal
 
 .. By default, Compose implementations MUST provides external connectivity to networks. internal when set to true allow to create an externally isolated network.
 
-デフォルトでは、 Compose 仕様はネットワークに対する外部への接続性を提供する :ruby:`必要があります <MUST>` 。 ``internal`` を ``true``に設定する場合は、外部の :ruby:`分離された <isolated>` ネットワークを作成できるようになります。
+デフォルトでは、 Compose 仕様はネットワークに対する外部への接続性を提供する :ruby:`必要があります <MUST>` 。 ``internal`` を ``true`` に設定する場合は、外部の :ruby:`分離された <isolated>` ネットワークを作成できるようになります。
 
 .. labels
 .. _compose-spec-networks-labels:
@@ -3109,7 +3110,7 @@ name
 
 .. name set a custom name for this volume. The name field can be used to reference volumes that contain special characters. The name is used as is and will not be scoped with the stack name.
 
-``name`` は、このボリュームに対して任意の名前を設定します。name フィールドは、特別な文字を含むボリュームの参照にも使えます。この名前はそのまま使われるだけであり、スタック名の範囲では使われ **ません ** 。
+``name`` は、このボリュームに対して任意の名前を設定します。name フィールドは、特別な文字を含むボリュームの参照にも使えます。この名前はそのまま使われるだけであり、スタック名の範囲では使われ **ません** 。
 
 .. code-block:: yaml
 
@@ -3142,7 +3143,7 @@ name
 .. Configs top-level element
 .. _configs-top-level-element:
 
-``configs`` ドップレベル :ruby:`要素 <element>` 
+``configs`` トップレベル :ruby:`要素 <element>` 
 ==================================================
 
 .. Configs allow services to adapt their behaviour without the need to rebuild a Docker image. Configs are comparable to Volumes from a service point of view as they are mounted into service’s containers filesystem. The actual implementation detail to get configuration provided by the platform can be set from the Configuration definition.
@@ -3425,7 +3426,7 @@ Compose ファイルでは、アプリケーション内の関連するサービ
 
 .. Value express a duration as a string in the in the form of {value}{unit}. The supported units are us (microseconds), ms (milliseconds), s (seconds), m (minutes) and h (hours). Value can can combine multiple values and using without separator.
 
-期間を ``{数値}{単位}`` 形式の文字列として表記できます。サポ-とされている単位は ``us`` （マイクロ秒）、 ``ms`` （ミリ秒）、 ``s`` （秒）、 ``m`` （分）、 ``h`` （時間）です。複数の値を区切り文字なく連結できます。
+期間を ``{数値}{単位}`` 形式の文字列として表記できます。サポートされている単位は ``us`` （マイクロ秒）、 ``ms`` （ミリ秒）、 ``s`` （秒）、 ``m`` （分）、 ``h`` （時間）です。複数の値を区切り文字なく連結できます。
 
 .. code-block:: yaml
 
@@ -3486,7 +3487,7 @@ Compsoe ファイルの値には変数を設定でき、実行時に変数展開
 
 .. If the Compose implementation can’t resolve a substituted variable and no default value is defined, it MUST warn the user and substitute the variable with an empty string.
 
-Compose 仕様が変数展開を解決できず、かつ、デフォルト値が無い場合は、ユーザに対して警告を表示し、手泣きする変数を空白の文字列とする :ruby:`必要があります <MUST>` 。
+Compose 仕様が変数展開を解決できず、かつ、デフォルト値が無い場合は、ユーザに対して警告を表示し、展開する変数を空白の文字列とする :ruby:`必要があります <MUST>` 。
 
 .. As any values in a Compose file can be interpolated with variable substitution, including compact string notation for complex elements, interpolation MUST be applied before merge on a per-file-basis.
 
