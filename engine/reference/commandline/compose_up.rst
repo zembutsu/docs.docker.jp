@@ -27,10 +27,7 @@ docker compose up
 
 コンテナを作成し、開始します。
 
-
-サービスを停止します。
-
-.. _compose_stop-usage:
+.. _compose_up-usage:
 
 使い方
 ==========
