@@ -52,7 +52,7 @@ endpoint_mode
 ..    endpoint_mode: dnsrr: Platform sets up DNS entries for the service such that a DNS query for the service name returns a list of IP addresses (DNS round-robin), and the client connects directly to one of these.
 
 * ``endpoint_mode: vip`` ：サービスに対して仮想 IP （VIP）を割り当てます。これはクライアントがネットワーク上のサービスに到達可能にするためのエンドポイントとして機能します。プラットフォームはクライアントとノードを実行しているサービス間の :ruby:`経路 <route>` を要求しますが、クライアントはノードが何台かや、適切なサービスや IP アドレスやポートを知らなくても要求できます。
-* ``endpoint_mod: dnsrr`` ：プラットフォームはサービスのために DNS エントリをセットアップします。サービス名に対する DNS 問い合わせは、IP アドレス（ DNS ラウンドロビン）のリストを返し、クライアントはそれらの1つに直接接続します。
+* ``endpoint_mode: dnsrr`` ：プラットフォームはサービスのために DNS エントリをセットアップします。サービス名に対する DNS 問い合わせは、IP アドレス（ DNS ラウンドロビン）のリストを返し、クライアントはそれらの1つに直接接続します。
 
 .. code-block:: yaml
 
