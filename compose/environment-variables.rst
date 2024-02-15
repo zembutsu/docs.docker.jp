@@ -82,7 +82,7 @@ Compose ファイルで環境変数を展開
 ..  ${VARIABLE:-default} evaluates to default if VARIABLE is unset or empty in the environment.
     ${VARIABLE-default} evaluates to default only if VARIABLE is unset in the environment.
 
-* ``${変数:-default}`` は、 ``変数`` が設定されていないか、環境変数の値が空の場合、 ``defaule`` の値とする
+* ``${変数:-default}`` は、 ``変数`` が設定されていないか、環境変数の値が空の場合、 ``default`` の値とする
 * ``${変数-default}`` は、環境変数内で ``変数`` が設定されていない場合のみ、 ``default`` の値とする
 
 .. Similarly, the following syntax allows you to specify mandatory variables:
