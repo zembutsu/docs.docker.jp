@@ -753,7 +753,8 @@ Compose ファイルで ``container_name`` を指定している場合、Compose
 指定するには、 ``container_name`` は正規表現の形式 ``[a-zA-Z0-9][a-zA-Z0-9_.-]+`` に :ruby:`従うべきです <SHOULD>` 。
 
 .. credential_spec
-_compose-spec-credential_spec:
+.. _compose-spec-credential_spec:
+
 credential_spec
 --------------------
 
