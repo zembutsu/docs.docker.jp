@@ -25,9 +25,9 @@ docker start
 説明
 ==========
 
-.. Save one or more images to a tar archive (streamed to STDOUT by default)
+.. Start one or more stopped containers
 
-1つまたは複数のイメージを tar アーカイブに保存（デフォルトでは STDOUT にストリーミング）
+1つまたは複数の停止したコンテナを起動します。
 
 .. _docker_save-usage:
 
