@@ -714,17 +714,24 @@ gMSA credential spec をサービスに対して設定する時は、以下の�
 depends_on
 --------------------
 
-.. Express dependency between services. Service dependencies cause the following behaviors:
+.. depends_on expresses startup and shutdown dependencies between services.
 
-サービス間の :ruby:`依存関係 <dependency>` を示します。サービス依存関係によって、次の働きをします。
+``depends_on``は、サービス間のスタート、シャットダウンの依存関係を表します。
 
-..    docker-compose up starts services in dependency order. In the following example, db and redis are started before web.
-    docker-compose up SERVICE automatically includes SERVICE’s dependencies. In the example below, docker-compose up web also creates and starts db and redis.
-    docker-compose stop stops services in dependency order. In the following example, web is stopped before db and redis.
+..  Short syntax
 
-* ``docker-compose up`` は、依存関係の順番でサービスを開始します。以下の例では、 ``web`` の前に ``db`` と ``redis`` を開始します。
-* ``dokcer-compose up サービス`` は、 ``サービス`` の依存関係を自動的に読み込みます。以下の例では、 ``docker-compose up web`` でも ``db`` と ``redis`` を作成と起動します。
-* ``docker-compose stop`` は、依存関係の順番でサービスを停止します。以下の例では、 ``db`` と ``redis`` の前に ``web`` を停止します。
+短い構文
+^^^^^^^^^^
+
+..  The short syntax variant only specifies service names of the dependencies. Service dependencies cause the following behaviors:
+
+短い構文では、依存関係を表す特定のサービスの名前を指定するだけです。サービスの依存関係を指定すると、以下のような挙動になります。
+
+..  Compose creates services in dependency order. In the following example, db and redis are created before web.
+    Compose removes services in dependency order. In the following example, web is removed before db and redis.
+
+* Composeは、 依存関係のある順にサービスを作成します。以下の例では、 ``web``よりも先に ``db`` と ``redis`` を作成します。
+* Composeは、依存関係の順番でサービスを削除します。以下の例では、 ``db`` と ``redis`` の前に ``web`` を削除します。
 
 .. Simple example:
 
@@ -732,28 +739,87 @@ depends_on
 
 .. code-block:: yaml
 
-   version: "3.9"
-   services:
-     web:
-       build: .
-       depends_on:
-         - db
-         - redis
-     redis:
-       image: redis
-     db:
-       image: postgres
+  services:
+    web:
+      build: .
+      depends_on:
+        - db
+        - redis
+    redis:
+      image: redis
+    db:
+      image: postgres
 
-..    There are several things to be aware of when using depends_on:
-        depends_on does not wait for db and redis to be “ready” before starting web - only until they have been started. If you need to wait for a service to be ready, see Controlling startup order for more on this problem and strategies for solving it.
-        The depends_on option is ignored when deploying a stack in swarm mode with a version 3 Compose file.
+..  Compose guarantees dependency services have been started before starting a dependent service. 
+    Compose waits for dependency services to be "ready" before starting a dependent service.
 
-.. note::
-   
-   ``depends_on`` **使用時に注意すべき点** :
-   
-   * ``depends_on`` では、 ``web`` を開始する前に ``db`` と ``redis`` の「準備」が整うのを待ちません。単に、順番通り開始するだけです。サービスの準備が調うまで待つ必要がある場合、この問題を解決する方法は :doc:`開始順番の制御 </compose/startup-order>` をご覧ください。
-   * ``depends_on`` オプションは、Compose ファイル形式バージョン3の :doc:`swarm mode でスタックのデプロイ </engine/reference/commandline/stack_deploy>` 時に無視されます。 
+この場合、Composeは、依存関係を指定したservicesがすでにstartしてからstartすることを保証します。
+Composeは、依存関係を指定したservicesが"ready"になったことを確認してからstartします
+
+.. Long syntax
+
+長い構文
+^^^^^^^^^^
+
+..  The long form syntax enables the configuration of additional fields that can't be expressed in the short form.
+
+長い構文では、短い構文では表現できない追加フィールドを設定することができます。
+
+.. restart: When set to true Compose restarts this service after it updates the dependency service. 
+　　This applies to an explicit restart controlled by a Compose operation, and excludes automated restart by the container runtime after the container dies.
+
+* ``restart``: ``true``にセットした時、Composeは依存しているサービスを更新した後にこのサービスを再起動します。これは、Composeオペレーションによって、制御される再起動に適応され、コンテナが停止した後のランタイム自動再起動は含まれません。
+
+.. condition: Sets the condition under which dependency is considered satisfied
+   service_started: An equivalent of the short syntax described above
+   service_healthy: Specifies that a dependency is expected to be "healthy" (as indicated by healthcheck) before starting a dependent service.
+   service_completed_successfully: Specifies that a dependency is expected to run to successful completion before starting a dependent service.
+
+* ``condition``: 依存関係が満たされたとされる条件を設定することができます。
+  * ``service_started``: 上記の短い構文に相当するもの
+  * ``service_healthy``: 依存サービスを開始する前に、依存関係が(healthcheck)によって示されるように、"healthy"であることが期待されます。
+  * ``service_completed_successfully``: 依存サービスを開始する前に、依存関係が正常に終了していることを指定できる。
+
+.. required: When set to false Compose only warns you when the dependency service isn't started or available. 
+   If it's not defined the default value of required is true.
+* ``required``: ``false``に設定をすると、Composeは依存サービスが開始されていないか、利用可能でない場合に警告を表示します。定義されていない場合のデフォルト値はtrueです。
+
+.. Service dependencies cause the following behaviors:
+サービスの依存関係は、以下のような動作をします：
+
+.. Compose creates services in dependency order. In the following example, db and redis are created before web.
+
+* Composeは、依存関係のある順にサービスを作成する。以下の例では、 ``db`` と ``redis`` が ``web`` よりも先に作成されています。
+
+.. Compose waits for healthchecks to pass on dependencies marked with service_healthy. In the following example, db is expected to be "healthy" before web is created.
+
+* Composeは、service_healthyとマークされた依存関係について、ヘルスチェックが通過するのを待ちます。次の例では、 ``db``は ``web``が作成される前に "healthy "であることが期待されます。
+
+.. Compose removes services in dependency order. In the following example, web is removed before db and redis.
+
+* Composeは、依存関係のあるサービスを順に削除します。次の例では、 ``web``が ``db``と ``redis``の前に削除されます。
+
+
+.. code-block:: yaml
+  services:
+  web:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+        restart: true
+      redis:
+        condition: service_started
+  redis:
+    image: redis
+  db:
+    image: postgres
+
+.. Compose guarantees dependency services are started before starting a dependent service. 
+   Compose guarantees dependency services marked with service_healthy are "healthy" before starting a dependent service.
+
+Composeは、依存サービスを開始する前に、依存サービスが開始されることを保証します。
+Composeは、service_healthy でマークされた依存サービスが、 依存サービスを開始する前に "healthy" であることを保証します。
 
 .. _compose-file-v3-deploy:
 
