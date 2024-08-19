@@ -1,5 +1,5 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/desktop/dev-environments/create-comopse-dev-env/
+.. URL: https://docs.docker.com/desktop/dev-environments/create-compose-dev-env/
    doc version: 20.10
       https://github.com/docker/docker.github.io/blob/master/desktop/dev-environments/create-compose-dev-env.md
 .. check date: 2022/09/18

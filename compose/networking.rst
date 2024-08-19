@@ -250,7 +250,7 @@ networks では、接続するネットワークごとに :ref:`ipv4_address か
        driver: custom-driver-1
 
 .. Use a pre-existing network
-.. _comopse-use-a-pre-existing-network:
+.. _compose-use-a-pre-existing-network:
 
 既存のネットワークを使う
 ==============================

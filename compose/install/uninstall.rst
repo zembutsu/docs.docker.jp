@@ -22,7 +22,7 @@ Docker Compose のアンインストール
 
 .. Uninstalling Docker Compose depends on the method you have used to install Docker Compose. On this page you can find specific instructions to uninstall Docker Compose.
 
-Docker Comopse のアンインストールは、Docker Compose のインストール方法によって異なります。このページでは、Docker Compose をアンインストールするための詳細手順を確認できます。
+Docker Compose のアンインストールは、Docker Compose のインストール方法によって異なります。このページでは、Docker Compose をアンインストールするための詳細手順を確認できます。
 
 .. Uninstalling Docker Desktop
 .. _uninstalling-docker-desktop

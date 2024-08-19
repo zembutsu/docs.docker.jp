@@ -22,7 +22,7 @@ compose コマンドと docker-compose の互換性
 
 .. The compose command in the Docker CLI supports most of the docker-compose commands and flags. It is expected to be a drop-in replacement for docker-compose.
 
-Docker CLI の ``compose`` コマンドは、 ``docker-compose`` コマンドとフラグの大部分をサポートします。このコマンドは、いずれ ``docker-comopse`` を置き換えるものとして期待されいます。
+Docker CLI の ``compose`` コマンドは、 ``docker-compose`` コマンドとフラグの大部分をサポートします。このコマンドは、いずれ ``docker-compose`` を置き換えるものとして期待されいます。
 
 .. If you see any Compose functionality that is not available in the compose command, create an issue in the Compose GitHub repository, so we can prioritize it.
 

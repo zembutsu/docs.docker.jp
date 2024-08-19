@@ -147,7 +147,7 @@ context（必須）
 
 .. When the value supplied is a relative path, it MUST be interpreted as relative to the location of the Compose file. Compose implementations MUST warn user about absolute path used to define build context as those prevent Compose file from being portable.
 
-値が相対パスとして指定される場合、 Compose ファイルの場所からの相対パスと解釈する :ruby:`必要があります <MUST>` 。Comopse ファイルがポータブルにならないのを防ぐため、構築コンテキストの定義で絶対パスが使われる場合、Compose 実装はユーザに対して警告が :ruby:`必要です <MUST>` 。
+値が相対パスとして指定される場合、 Compose ファイルの場所からの相対パスと解釈する :ruby:`必要があります <MUST>` 。Compose ファイルがポータブルにならないのを防ぐため、構築コンテキストの定義で絶対パスが使われる場合、Compose 実装はユーザに対して警告が :ruby:`必要です <MUST>` 。
 
 .. code-block:: yaml
 
