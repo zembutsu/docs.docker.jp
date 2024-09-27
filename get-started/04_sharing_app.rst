@@ -96,7 +96,7 @@
 
    .. To fix this, we need to “tag” our existing image we’ve built to give it another name.
 
-   修正するには、現在の構築済みイメージに付いている「 :ruby:`タグ <tag>` 」に、別の名前を付ける必要があります。
+   修正するには、現在の構築済みイメージに、別の名前を付ける必要があります。
 
 .. Login to the Docker Hub using the command docker login -u YOUR-USER-NAME.
 
@@ -112,7 +112,7 @@
 
 .. Now try your push command again. If you’re copying the value from Docker Hub, you can drop the tagname portion, as we didn’t add a tag to the image name. If you don’t specify a tag, Docker will use a tag called latest.
 
-4. これでもう一度 push コマンドを試します。Docker  Hub から値をコピーしている場合でも、先ほどイメージにタグを付けていたように、 ``tagname`` の文字を省略できます。タグを指定しなければ、 Docker は ``latest`` （最新）と呼ばれるタグを使います。
+4. これでもう一度 push コマンドを試します。Docker  Hub からコマンドをコピーする場合は、先ほどイメージ名にタグを付けなかったので、 ``tagname`` の文字を省略できます。タグを指定しなければ、 Docker は ``latest`` （最新）と呼ばれるタグを使います。
 
 .. code-block:: bash
 
