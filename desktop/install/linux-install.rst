@@ -263,7 +263,7 @@ kvm デバイスに対してアクセスするには、ユーザを kvm グル�
 .. Differences between Docker Desktop for Linux and Docker Engine
 .. _differences-between-docker-desktop-for-linux-and-docker-engine:
 
-Docker Desktop for Linux と Docker Engien との違い
+Docker Desktop for Linux と Docker Engine との違い
 ==================================================
 
 .. Docker Desktop for Linux and Docker Engine can be installed side-by-side on the same machine. Docker Desktop for Linux stores containers and images in an isolated storage location within a VM and offers controls to restrict its resources. Using a dedicated storage location for Docker Desktop prevents it from interfering with a Docker Engine installation on the same machine.
