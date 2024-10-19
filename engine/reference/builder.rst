@@ -518,7 +518,7 @@ escape
 
 .. By adding the escape parser directive, the following Dockerfile succeeds as expected with the use of natural platform semantics for file paths on Windows:
 
-次の ``Dockerfile`` は　``escape`` パーサ・ディレクティブの追加により、 ``Windows`` 上のファイルやパスを通常通りの構文として扱えるようになります（捕捉説明：デフォルトでは「 ``\`` 」が改行文字として扱われています。あえてエスケープ文字を「`」と明示すると、特に「\」がエスケープ文字かどうか考慮する必要がなくなり、パスの指定として「 ``C:\`` 」の記述がそのまま扱えるようになります）。
+次の ``Dockerfile`` は ``escape`` パーサ・ディレクティブの追加により、 ``Windows`` 上のファイルやパスを通常通りの構文として扱えるようになります（補足説明：デフォルトでは「 ``\`` 」が改行文字として扱われています。あえてエスケープ文字を「`」と明示すると、特に「 ``\`` 」がエスケープ文字かどうか考慮する必要がなくなり、パスの指定として「 ``C:\`` 」の記述がそのまま扱えるようになります）。
 
 ::
 
@@ -635,7 +635,7 @@ escape
 
 .. will result in def having a value of hello, not bye. However, ghi will have a value of bye because it is not part of the same instruction that set abc to bye.
 
-結果、 ``def``  の値は ``hello`` であり、 ``bye`` ではありません。しかし、 ``ghi`` の値は ``bye`` です。なぜなら、（変数） ``abc`` に ``bye`` を指定する命令の行と、この ``ghi`` の命令の行が違うからです。（捕捉説明： ``ENV abc=bye def=$abc`` の命令文の処理が終わるまでは ``$abc`` は ``hello`` のまま。この命令の処理が終わると、 ``$abc`` は ``bye`` になる。そのため、次の命令分 ``ghi=$abc`` で、 ``$abc`` の値 ``bye`` が変数 ``ghi`` に入る ）
+結果、 ``def``  の値は ``hello`` であり、 ``bye`` ではありません。しかし、 ``ghi`` の値は ``bye`` です。なぜなら、（変数） ``abc`` に ``bye`` を指定する命令の行と、この ``ghi`` の命令の行が違うからです。（補足説明： ``ENV abc=bye def=$abc`` の命令文の処理が終わるまでは ``$abc`` は ``hello`` のまま。この命令の処理が終わると、 ``$abc`` は ``bye`` になる。そのため、次の命令分 ``ghi=$abc`` で、 ``$abc`` の値 ``bye`` が変数 ``ghi`` に入る ）
 
 .. _dockerignore-file:
 
@@ -782,7 +782,7 @@ FROM
     The tag or digest values are optional. If you omit either of them, the builder assumes a latest tag by default. The builder returns an error if it cannot find the tag value.
 
 * ``Dockerfile`` では、 ``FROM`` よりも前に書ける命令は ``ARG`` だけです。 :ref:`understand-how-arg-and-from-interact` をご覧ください。
-* 複数のイメージを作成する場合や、ある構築ステージを他からの依存関係として用いる場合のため、1つの ``Dockerfile `` に複数の ``FROM`` を書けます。新しい各 ``FROM`` 命令が処理される前には、その直前でコミットされた、最も新しいイメージ ID を単に表示するだけです。 ``FROM`` 命令があるたびに、それ以前の命令で作成されたあらゆる状態がクリアになります。
+* 複数のイメージを作成する場合や、ある構築ステージを他からの依存関係として用いる場合のため、1つの ``Dockerfile`` に複数の ``FROM`` を書けます。新しい各 ``FROM`` 命令が処理される前には、その直前でコミットされた、最も新しいイメージ ID を単に表示するだけです。 ``FROM`` 命令があるたびに、それ以前の命令で作成されたあらゆる状態がクリアになります。
 * オプションとして、 ``FROM`` 命令に ``AS 名前`` を追加し、新しい構築ステージに名前を付けられます。この名前は、以降の ``FROM`` と ``COPY --from=<名前>`` 命令で使用し、このステージで構築したイメージを参照できます。
 * ``タグ`` や ``ダイジェスト`` 値はオプションです。どちらも省略すると、ビルダーは ``latest`` タグだとデフォルトで扱われます。 ``タグ`` 値（に相当するイメージ名）が見つからなければ、ビルダーはエラーを返します。
 
@@ -894,7 +894,7 @@ RUN には２つの形式があります。
 
 .. note::
 
-   （exec 形式の記述方法は JSON です）`JSON` 形式では、バックスラッシュをエスケープする必要があります。これが特に関係するのは、 :ruby:`パス区切り文字 <path separator>` にバックラッシュを使う Windows です。次の行は正しい JSON 形式ではないため、シェル形式として扱われます。しかし、想定していない動作を試みようとするため、処理は失敗します。
+   （exec 形式の記述方法は JSON です）JSON 形式では、バックスラッシュをエスケープする必要があります。これが特に関係するのは、 :ruby:`パス区切り文字 <path separator>` にバックラッシュを使う Windows です。次の行は正しい JSON 形式ではないため、シェル形式として扱われます。しかし、想定していない動作を試みようとするため、処理は失敗します。
    
    ::
    
@@ -964,7 +964,7 @@ CMD
 
 .. If CMD is used to provide default arguments for the ENTRYPOINT instruction, both the CMD and ENTRYPOINT instructions should be specified with the JSON array format.
 
-``ENTRYPOINT`` 命令に対するデフォルトの引数を `CMD`` で指定する場合は、 ``CMD`` 命令と ``ENTRYPOINT`` 命令の両方を JSON 配列形式で指定する必要があります。
+``ENTRYPOINT`` 命令に対するデフォルトの引数を ``CMD`` で指定する場合は、 ``CMD`` 命令と ``ENTRYPOINT`` 命令の両方を JSON 配列形式で指定する必要があります。
 
 ..    Note
     The exec form is parsed as a JSON array, which means that you must use double-quotes (“) around words not single-quotes (‘).
@@ -1183,7 +1183,7 @@ ENV
 
 .. Environment variable persistence can cause unexpected side effects. For example, setting ENV DEBIAN_FRONTEND=noninteractive changes the behavior of apt-get, and may confuse users of your image.
 
-環境変数の維持は、予期しない悪影響を引き起こす可能性があります。たとえば、 ``ENV DEBIAN_FRONTEND=noninteractive` を設定すると、 ``apt-get`` の挙動を変えます。そのため、イメージの利用者を混乱させるかもしれません。
+環境変数の維持は、予期しない悪影響を引き起こす可能性があります。たとえば、 ``ENV DEBIAN_FRONTEND=noninteractive`` を設定すると、 ``apt-get`` の挙動を変えます。そのため、イメージの利用者を混乱させるかもしれません。
 
 .. If an environment variable is only needed during build, and not in the final image, consider setting a value for a single command instead:
 
@@ -1302,7 +1302,7 @@ ADD には 2 つの形式があります。
 
 .. When adding files or directories that contain special characters (such as [ and ]), you need to escape those paths following the Golang rules to prevent them from being treated as a matching pattern. For example, to add a file named arr[0].txt, use the following;
 
-特殊文字（ ``[`` や ``]`` など）を含むファイルやディレクトリを追加する場合は、Go 言語のルールに従い、各パスをエスケープする必要があります。たとえば、ファイル名 ``arr[0].txt,`` を追加するには、次のようにします。
+特殊文字（ ``[`` や ``]`` など）を含むファイルやディレクトリを追加する場合は、Go 言語のルールに従い、各パスをエスケープする必要があります。たとえば、ファイル名 ``arr[0].txt`` を追加するには、次のようにします。
 
 ::
 
@@ -1737,7 +1737,7 @@ exec 形式の ENTRYPOINT 例
 
 .. Unlike the shell form, the exec form does not invoke a command shell. This means that normal shell processing does not happen. For example, ENTRYPOINT [ "echo", "$HOME" ] will not do variable substitution on $HOME. If you want shell processing then either use the shell form or execute a shell directly, for example: ENTRYPOINT [ "sh", "-c", "echo $HOME" ]. When using the exec form and executing a shell directly, as in the case for the shell form, it is the shell that is doing the environment variable expansion, not docker.
 
-*シェル* 形式とは異なり、 *exec* 形式はコマンドシェルを呼び出しません。つまり、通常のシェルとしての処理が怒らないのを意味します。たとえば、 ``ENTRYPOINT [ "echo", "$HOME" ]`` では、 ``$HOME`` を変数展開しません。シェルとしての処理を行いたい場合には、 *シェル* 形式を使うか、 ``ENTRYPOINT [ "sh", "-c", "echo $HOME" ]`` のようにシェルを直接実行します。exec 形式を使って直接シェルを実行する場合は、シェル形式の場合と同様に、環境変数の展開をするのはシェルであり、 Docker ではありません。
+*シェル* 形式とは異なり、 *exec* 形式はコマンドシェルを呼び出しません。つまり、通常のシェルとしての処理が起こらないのを意味します。たとえば、 ``ENTRYPOINT [ "echo", "$HOME" ]`` では、 ``$HOME`` を変数展開しません。シェルとしての処理を行いたい場合には、 *シェル* 形式を使うか、 ``ENTRYPOINT [ "sh", "-c", "echo $HOME" ]`` のようにシェルを直接実行します。exec 形式を使って直接シェルを実行する場合は、シェル形式の場合と同様に、環境変数の展開をするのはシェルであり、 Docker ではありません。
 
 .. Shell form ENTRYPOINT example
 
@@ -1748,7 +1748,7 @@ exec 形式の ENTRYPOINT 例
 
 .. You can specify a plain string for the ENTRYPOINT and it will execute in /bin/sh -c. This form will use shell processing to substitute shell environment variables, and will ignore any CMD or docker run command line arguments. To ensure that docker stop will signal any long running ENTRYPOINT executable correctly, you need to remember to start it with exec:
 
-単に文字列を ``ENTRYPOINT``` で指定するだけで、 ``/bin/sh -c`` の中で実行できます。この形式では、環境変数を展開するためにシェルの処理を使います。そして、 ``CMD`` や ``docker run`` コマンドラインでの引数は無視されます。長期に実行している ``ENTRYPOINT`` の実行バイナリに対し、 ``docker stop`` で適切にシグナルを送るには、 ``exec`` で起動する必要があるのを念頭に置いてください。
+単に文字列を ``ENTRYPOINT`` で指定するだけで、 ``/bin/sh -c`` の中で実行できます。この形式では、環境変数を展開するためにシェルの処理を使います。そして、 ``CMD`` や ``docker run`` コマンドラインでの引数は無視されます。長期に実行している ``ENTRYPOINT`` の実行バイナリに対し、 ``docker stop`` で適切にシグナルを送るには、 ``exec`` で起動する必要があるのを念頭に置いてください。
 
 ::
 
@@ -1900,7 +1900,7 @@ VOLUME
 
 .. The VOLUME instruction creates a mount point with the specified name and marks it as holding externally mounted volumes from native host or other containers. The value can be a JSON array, VOLUME ["/var/log/"], or a plain string with multiple arguments, such as VOLUME /var/log or VOLUME /var/log /var/db. For more information/examples and mounting instructions via the Docker client, refer to Share Directories via Volumes documentation.
 
-``VOLUME`` 命令は、指定した名前で :ruby:`マウントポイント <mount point>` を作成します。そして、（Docker が動いている）自ホスト上や他のコンテナといった、外部からマウントされたボリュームを収容する場所として、そのマウントポイントが示します。ここでの値は ``VOLUME ["/var/log/"]`` のような JSON 配列か、 ``VOLUME /var/log`` や ``VOLUME /var/log /var/db`` のような複数の引数を持つ単なる文字列です。　詳しい情報やサンプル、Docker クライアントを経由してマウントする方法は :ref:`ボリュームを通したディレクトリ共有 <mount-a-host-directory-as-a-data-volume>` を参照ください。
+``VOLUME`` 命令は、指定した名前で :ruby:`マウントポイント <mount point>` を作成します。そして、（Docker が動いている）自ホスト上や他のコンテナといった、外部からマウントされたボリュームを収容する場所として、そのマウントポイントが示します。ここでの値は ``VOLUME ["/var/log/"]`` のような JSON 配列か、 ``VOLUME /var/log`` や ``VOLUME /var/log /var/db`` のような複数の引数を持つ単なる文字列です。詳しい情報やサンプル、Docker クライアントを経由してマウントする方法は :ref:`ボリュームを通したディレクトリ共有 <mount-a-host-directory-as-a-data-volume>` を参照ください。
 
 .. The docker run command initializes the newly created volume with any data that exists at the specified location within the base image. For example, consider the following Dockerfile snippet:
 
@@ -1942,7 +1942,7 @@ VOLUME
 
 * **Dockerfile 内からのボリューム変更** ：ボリュームを宣言後、構築ステップでボリューム内のデータに対する変更があったとしても、それらの変更は破棄されます（反映されません）。
 * **JSON 形式** ：引数リストは JSON 配列として扱われます。文字を囲むにはシングル・クォート（ ``'`` ）ではなくダブル・クォート（ ``"`` ）を使う必要があります。 
-* **コンテナ実行時に宣言されるホスト側ディレクトリ** ： :ruby:`ホスト側ディレクトリ <host directory>` （マウントポイント）は、その性質上、ホストに依存します。これはイメージの移植性を維持するためであり、指定対象のホスト側ディレクトリが、全てのホスト上で利用可能である保証がないためです。この理由により、Dockerfile 内からホスト側ディレクトリをマウントできません。 ``VOLUME`` 命令は、一切の ```ホスト側ディレクトリ`` に対するパラメータ指定をサポートしません。（ホスト側を指定する必要がある場合は）コンテナの実行時や作成時に、マウントポイントを指定しなくてはいけません。
+* **コンテナ実行時に宣言されるホスト側ディレクトリ** ： :ruby:`ホスト側ディレクトリ <host directory>` （マウントポイント）は、その性質上、ホストに依存します。これはイメージの移植性を維持するためであり、指定対象のホスト側ディレクトリが、全てのホスト上で利用可能である保証がないためです。この理由により、Dockerfile 内からホスト側ディレクトリをマウントできません。 ``VOLUME`` 命令は、一切の ``ホスト側ディレクトリ`` に対するパラメータ指定をサポートしません。（ホスト側を指定する必要がある場合は）コンテナの実行時や作成時に、マウントポイントを指定しなくてはいけません。
 
 .. USER
 
@@ -2104,6 +2104,8 @@ Dockerfile に1つまたは複数の ``ARG`` 命令を入れられます。た�
 
 ``ARG`` 変数の定義が有効になるのは、 ``Dockerfile`` で定義された後の行であり、コマンドライン上などでの引数ではありません。たとえば、このような Dockerfile を例に考えましょう。
 
+::
+
    FROM busybox
    USER ${user:-some_user}
    ARG user
@@ -2230,7 +2232,7 @@ Docker には、Dockerfile 内で対応する ``ARG`` 命令を使わなくて�
 
 .. For example, consider building the following Dockerfile using --build-arg HTTP_PROXY=http://user:pass@proxy.lon.example.com
 
-たとえば、次の Dockerifle を使い 、 `` --build-arg HTTP_PROXY=http://user:pass@proxy.lon.example.com`` で構築する例を考えます。
+たとえば、次の Dockerifle を使い、 ``--build-arg HTTP_PROXY=http://user:pass@proxy.lon.example.com`` で構築する例を考えます。
 
 ::
 
@@ -2289,7 +2291,7 @@ Docker には、Dockerfile 内で対応する ``ARG`` 命令を使わなくて�
 * ``TARGETOS`` … TARGETPLATFORM の OS コンポーネント
 * ``TARGETARCH`` … TARGETPLATFORM のアーキテクチャ・コンポーネント
 * ``TARGETVARIANT`` … TARGETPLATFORM の派生コンポーネント
-* ``BUILDPLATFORM … 構築を処理するノードのプラットフォーム
+* ``BUILDPLATFORM`` … 構築を処理するノードのプラットフォーム
 * ``BUILDOS`` … BUILDPLATFORM の OS コンポーネント
 * ``BUILDARCH`` … BUILDPLATFORM のアーキテクチャ・コンポーネント
 * ``BUILDVARIANT`` … BUILDPLATFORM の派生コンポーネント
@@ -2396,7 +2398,7 @@ ONBUILD
 
 .. The solution is to use ONBUILD to register advance instructions to run later, during the next build stage.
 
-この解決策は ``ONBLUD`` 命令を使い、次の構築ステージ中に、後で実行する高度な命令を登録します。
+この解決策は ``ONBUILD`` 命令を使い、次の構築ステージ中に、後で実行する高度な命令を登録します。
 
 .. Here’s how it works:
 
@@ -2433,7 +2435,7 @@ ONBUILD
 
 .. warning::
 
-   ``ONBLUID`` 命令は ``FROM``  や ``MAINTAINER`` 命令をトリガにできません。
+   ``ONBUILD`` 命令は ``FROM``  や ``MAINTAINER`` 命令をトリガにできません。
 
 .. STOPSIGNAL
 
@@ -2479,7 +2481,7 @@ HEALTHCHECK
 
 ``CMD`` よりも前に書いて、オプションを指定できます。
 
-...    --interval=DURATION (default: 30s)
+..    --interval=DURATION (default: 30s)
     --timeout=DURATION (default: 30s)
     --start-period=DURATION (default: 0s)
     --retries=N (default: 3)
@@ -2522,8 +2524,8 @@ HEALTHCHECK
     2: reserved - do not use this exit code
 
 * 0: :ruby:`成功 <success>` コンテナは正常
-* 1: ruby:`障害 <unhealthy>` 
-* 2: ruby:`予約済み <reserved>` - この終了コードは使いません
+* 1: :ruby:`障害 <unhealthy>` 
+* 2: :ruby:`予約済み <reserved>` - この終了コードは使いません
 
 .. For example, to check every five minutes or so that a web-server is able to serve the site’s main page within three seconds:
 
@@ -2536,9 +2538,7 @@ HEALTHCHECK
 
 .. To help debug failing probes, any output text (UTF-8 encoded) that the command writes on stdout or stderr will be stored in the health status and can be queried with docker inspect. Such output should be kept short (only the first 4096 bytes are stored currently).
 
-ヘルスチェックの失敗時に調査（デバッグ）をしやすくするために、
-
-コマンドが書き込んだ標準出力や標準エラー出力といった、あらゆる出力文字（UTF-8 エンコード方式）がヘルスステータスに保存され、これらは ``docker inspect`` で調べられます。この出力は短く保たれます（初めから 4096 バイトのみ保存します）。
+ヘルスチェックの失敗時に調査（デバッグ）をしやすくするために、コマンドが書き込んだ標準出力や標準エラー出力といった、あらゆる出力文字（UTF-8 エンコード方式）がヘルスステータスに保存され、これらは ``docker inspect`` で調べられます。この出力は短く保たれます（初めから 4096 バイトのみ保存します）。
 
 .. When the health status of a container changes, a health_status event is generated with the new status.
 
@@ -2621,7 +2621,7 @@ Docker が呼び出すコマンドは、このようになります。
 
 .. While the JSON form is unambiguous and does not use the un-necessary cmd.exe, it does require more verbosity through double-quoting and escaping. The alternate mechanism is to use the SHELL instruction and the shell form, making a more natural syntax for Windows users, especially when combined with the escape parser directive:
 
-JSON 形式（で使うコマンドの指定）は明確であり、不要な cmd.exe を使いません。しかし、二重引用符（ダブルクォータ）やエスケープ処理が必要といった、冗長さがあります。もう1つの仕組みは、 ``SHELL`` 命令を使ってシェル形式にしますが、 ``escape`` パーサ・ディレクティブの指定があれば、 Windows ユーザにとって、より普通の書式で書けます（訳者捕捉： Dockerfile では、デフォルトのエスケープ文字は「\」ですが、Windows の場合「\」はパスの文字です。そのため、次の例のようにエスケープ文字を「`」などに変えると、Windows のパスがシェル形式でそのまま利用できるため、便利です）。
+JSON 形式（で使うコマンドの指定）は明確であり、不要な cmd.exe を使いません。しかし、二重引用符（ダブルクォータ）やエスケープ処理が必要といった、冗長さがあります。もう1つの仕組みは、 ``SHELL`` 命令を使ってシェル形式にしますが、 ``escape`` パーサ・ディレクティブの指定があれば、 Windows ユーザにとって、より普通の書式で書けます（訳者補足： Dockerfile では、デフォルトのエスケープ文字は「 ``\`` 」ですが、Windows の場合「 ``\`` 」はパスの文字です。そのため、次の例のようにエスケープ文字を「`」などに変えると、Windows のパスがシェル形式でそのまま利用できるため、便利です）。
 
 ::
 
