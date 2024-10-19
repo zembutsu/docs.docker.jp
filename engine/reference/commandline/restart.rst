@@ -84,5 +84,5 @@ docker restart
 .. seealso:: 
 
    docker restart
-      https://docs.docker.com/engine/reference/commandline/resatart/
+      https://docs.docker.com/engine/reference/commandline/restart/
 

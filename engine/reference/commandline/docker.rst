@@ -84,7 +84,7 @@ Docker CLI のベース（基本）コマンドです。
    * - :doc:`docker network <network>`
      - ネットワークの管理
    * - :doc:`docker node <node>`
-     - Swarm ノード音管理
+     - Swarm ノードの管理
    * - :doc:`docker pause <pause>`
      - 1つまたは複数のコンテナ内の全プロセスを一次停止
    * - :doc:`docker plugin <plugin>`
@@ -96,7 +96,7 @@ Docker CLI のベース（基本）コマンドです。
    * - :doc:`docker pull <pull>`
      - レジストリからイメージやリポジトリを取得
    * - :doc:`docker push <push>`
-     - じれストリにイメージやレプジトリを送信
+     - レジストリにイメージやリポジトリを送信
    * - :doc:`docker rename <rename>`
      - コンテナの名前を変更
    * - :doc:`docker restart <restart>`

@@ -236,11 +236,11 @@ Docker イメージは他のイメージを :ruby:`継承 <inherit>` できま�
 
 .. This would create a class called MyImage that inherited functionality from the base class NodeBaseImage.
 
-これは ``MyImage`` と呼ぶクラスと作成し、基底クラス ``NodeBaseImage`` の機能性を継承します。
+これは ``MyImage`` と呼ぶクラスを作成し、基底クラス ``NodeBaseImage`` の機能を継承します。
 
 .. In the same way, when we use the FROM command, we tell Docker to include in our image all the functionality from the node:12.18.1 image.
 
-同じような手法で、 ``FROM`` コマンドのしようとは、私たちのイメージの全機能が ``node:12.18.1`` イメージに入っていると Docker に伝えます。
+同じような手法で、 ``FROM`` コマンドを使用すると、私たちのイメージの全ての機能は ``node:12.18.1`` イメージに入っていると Docker に伝えることになります。
 
 ..  Note
     If you want to learn more about creating your own base images, see Creating base images.
@@ -443,7 +443,7 @@ build コマンドは、オプションで ``--tag`` フラグを付けられま
 
 .. Let’s remove the tag that we just created. To do this, we’ll use the rmi command. The rmi command stands for “remove image”.
 
-先ほど作成したタグを消しましょう。そのためには、 rmi コマンドを使います。rmi コマンドは「 :ruby:`イメージ削除 <remove image>` を表します。」 
+先ほど作成したタグを消しましょう。そのためには、 rmi コマンドを使います。rmi コマンドは「 :ruby:`イメージ削除 <remove image>` 」を表します。 
 
 .. code-block:: bash
 
