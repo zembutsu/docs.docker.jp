@@ -251,7 +251,7 @@ rootless モード
 
 .. Create a file named ~/.config/systemd/user/docker.service.d/http-proxy.conf that adds the HTTP_PROXY environment variable:
 
-2.  ``~/.config/systemd/user/docker.service.d/http-proxy.conf `` というファイルを生成して、そこに環境変数 ``HTTP_PROXY`` の設定を書きます。
+2.  ``~/.config/systemd/user/docker.service.d/http-proxy.conf`` というファイルを生成して、そこに環境変数 ``HTTP_PROXY`` の設定を書きます。
 
    ..  ```conf
        [Service]
