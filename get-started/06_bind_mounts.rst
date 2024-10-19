@@ -21,7 +21,7 @@
 
 .. In part 5, you used a volume mount to persist the data in your database. A volume mount is a great choice when you need somewhere persistent to store your application data.
 
-:doc:`Part 5 <05_persisting_data>` ではデータベース内のデータを保持するため、ボリュームのマントを使いました。アプリケーションのデータをどこかに保持する必要がある場合、ボリュームマウントは良い選択肢です。
+:doc:`Part 5 <05_persisting_data>` ではデータベース内のデータを保持するため、ボリュームのマウントを使いました。アプリケーションのデータをどこかに保持する必要がある場合、ボリュームマウントは良い選択肢です。
 
 .. A bind mount is another type of mount, which lets you share a directory from the host’s filesystem into the container. When working on an application, you can use a bind mount to mount source code into the container. The container sees the changes you make to the code immediately, as soon as you save a file. This means that you can run processes in the container that watch for filesystem changes and respond to them.
 
@@ -96,7 +96,7 @@
    
    .. The --mount option tells Docker to create a bind mount, where src is the current working directory on your host machine (getting-started/app), and target is where that directory should appear inside the container (/src).
    
-   ``--mount`` オプションは Docker に対してバインドマウントの作成を命令します。 ``src`` で示す場所は、ホストマシン上の現在の作業ディレクトリ（ ``getting-started/app`` ）です。 ``target`` で示す場所は、はコンテナ内に現れるディレクトリ（ ``/src`` ）です。
+   ``--mount`` オプションは Docker に対してバインドマウントの作成を命令します。 ``src`` で示す場所は、ホストマシン上の現在の作業ディレクトリ（ ``getting-started/app`` ）です。 ``target`` で示す場所は、コンテナ内に現れるディレクトリ（ ``/src`` ）です。
 
 .. After running the command, Docker starts an interactive bash session in the root directory of the container’s filesystem
 
