@@ -24,6 +24,7 @@ compose コマンドと docker-compose の互換性
 
 Docker CLI の ``compose`` コマンドは、 ``docker-compose`` コマンドとフラグの大部分をサポートします。このコマンドは、いずれ ``docker-comopse`` を置き換えるものとして期待されています。
 
+
 .. If you see any Compose functionality that is not available in the compose command, create an issue in the Compose GitHub repository, so we can prioritize it.
 
 ``compose`` コマンド内で利用できない Compose 機能が見つかれば、 `Compose <https://github.com/docker/compose/issues>`_ GitHub リポジトリに issue を作成してください。そうすると、私たちが優先度付けします。

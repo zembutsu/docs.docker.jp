@@ -12,7 +12,7 @@ Compose ファイル リファレンス
    :maxdepth: 3
    
    Compose 仕様 </compose/compose-file/index.rst>
-   Comopse ファイル構築 </compose/compose-file/build.rst>
+   Compose ファイル構築 </compose/compose-file/build.rst>
    Compose ファイル展開 </compose/compose-file/deploy.rst>
    /compose/faq.rst
    /compose/compose-file/legacy.rst

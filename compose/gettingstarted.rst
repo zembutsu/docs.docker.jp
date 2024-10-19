@@ -299,7 +299,7 @@ redis サービス
 
 .. Stop the application, either by running docker compose down from within your project directory in the second terminal, or by hitting CTRL+C in the original terminal where you started the app.
 
-5. アプリケーションを停止するには、2つめのターミナル内のプロジェクトディレクトリ内で ``docker comopse down`` を実行するか、アプリを起動した元々のターミナルで CTRL+C を実行します。
+5. アプリケーションを停止するには、2つめのターミナル内のプロジェクトディレクトリ内で ``docker compose down`` を実行するか、アプリを起動した元々のターミナルで CTRL+C を実行します。
 
 .. Step 5: Edit the Compose file to add a bind mount
 .. _compose-gettingstarted-step5:

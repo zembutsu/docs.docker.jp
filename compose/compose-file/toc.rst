@@ -12,7 +12,7 @@ Compose ファイル リファレンス
    :maxdepth: 
    
    Compose 仕様 <index.rst>
-   Comopse ファイル構築 <build.rst>
+   Compose ファイル構築 <build.rst>
    Compose ファイル展開 <deploy>
    /compose/faq.rst
    legacy.rst

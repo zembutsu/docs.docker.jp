@@ -312,7 +312,7 @@ Compose 実装は、 Compose ファイルの検証にあたり、正確なスキ
 
 .. Compose implementations SHOULD validate whether they can fully parse the Compose file. If some fields are unknown, typically because the Compose file was written with fields defined by a newer version of the specification, Compose implementations SHOULD warn the user. Compose implementations MAY offer options to ignore unknown fields (as defined by “loose” mode).
 
-Comopse 実装は Compose ファイルを完全に構文解析できるかどうかを検証 :ruby:`すべきです <SHOULD>` 。もしも一部に未知のフィールドがある場合、通常、その Compose ファイルは新しいバージョンの仕様によって定義されたフィールドで書かれているため、 Compose 実装はユーザに警告 :ruby:`すべき <SHOULD>` です。Compose 実装は未知のフィールドを無視するオプションを :ruby:`提供してもよいです <MAY>` （「 :ref:`loose <compose-spec-requirements-and-optional-attributes>` 」モードによって定義されます）。
+Compose 実装は Compose ファイルを完全に構文解析できるかどうかを検証 :ruby:`すべきです <SHOULD>` 。もしも一部に未知のフィールドがある場合、通常、その Compose ファイルは新しいバージョンの仕様によって定義されたフィールドで書かれているため、 Compose 実装はユーザに警告 :ruby:`すべき <SHOULD>` です。Compose 実装は未知のフィールドを無視するオプションを :ruby:`提供してもよいです <MAY>` （「 :ref:`loose <compose-spec-requirements-and-optional-attributes>` 」モードによって定義されます）。
 
 .. Name top-level element
 .. _name-top-level-element:
@@ -839,7 +839,7 @@ depends_on
     Compose implementations MUST remove services in dependency order. In the following example, web is removed before db and redis.
 
 * Compose 実装は、依存関係のある順番でサービスを作成する :ruby:`必要があります <MUST>` 。以下の例では、 ``web`` の前に ``db`` と ``redis`` が作成されます。
-* Comopse 実装は、依存関係のある順番でサービスを削除する :ruby:`必要があります <MUST>` 。以下の例では、 ``db`` と ``redis`` の前に ``web`` が削除されます。
+* Compose 実装は、依存関係のある順番でサービスを削除する :ruby:`必要があります <MUST>` 。以下の例では、 ``db`` と ``redis`` の前に ``web`` が削除されます。
 
 .. Simple example:
 簡単な例：
@@ -892,7 +892,7 @@ Compose 実装は、依存先のサービスが起動する前に、依存元の
 
 * Compose 実装は、依存関係のある順番でサービスを作成する :ruby:`必要があります <MUST>` 。以下の例では、 ``web`` の前に ``db`` と ``redis`` が作成されます。
 * Compose 実装は、依存元のサービスが ``service_healthy`` で示すヘルスチェックを通過するまで待つ :ruby:`必要があります <MUST>` 。以下の例では、 ``db`` が 「 :ruby:`正常 <healthy>` 」な状態になった後、 ``web`` が作成されます。
-* Comopse 実装は、依存関係のある順番でサービスを削除する :ruby:`必要があります <MUST>` 。以下の例では、 ``db`` と ``redis`` の前に ``web`` が削除されます。
+* Compose 実装は、依存関係のある順番でサービスを削除する :ruby:`必要があります <MUST>` 。以下の例では、 ``db`` と ``redis`` の前に ``web`` が削除されます。
 
 .. Simple example:
 簡単な例：
@@ -1224,7 +1224,7 @@ Compose 実装は、これ以外のケースでエラーを返す :ruby:`必要�
         Relative path. This path is considered as relative to the location of the main Compose file.
         Absolute path.
 
-* 存在しない場合。これは同じ Comopse ファイル内の別のサービスが参照されているのを示します。
+* 存在しない場合。これは同じ Compose ファイル内の別のサービスが参照されているのを示します。
 * 以下どちらかのファイルパスです。
 
   * 相対パス。このパスはメインの Compose がある場所からの相対パスとみなします。
@@ -2384,7 +2384,7 @@ shm_size
 ``shm_size`` は、サービス コンテナが利用できる共有メモリ（ Linux 上では ``/dev/shm`` パーティション）の容量を設定します。 :ref:`バイト値 <compose-spec-specifying-byte-values>` で指定します。
 
 .. stdin_open
-.. _comopse-spec-stdin_open:
+.. _compose-spec-stdin_open:
 
 stdin_open
 ----------

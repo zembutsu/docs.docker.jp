@@ -63,7 +63,7 @@ Compose 設定をファイルとプロジェクト間で共有
 
 .. When you use multiple configuration files, you must make sure all paths in the files are relative to the base Compose file (the first Compose file specified with -f). This is required because override files need not be valid Compose files. Override files can contain small fragments of configuration. Tracking which fragment of a service is relative to which path is difficult and confusing, so to keep paths easier to understand, all paths must be defined relative to the base file.
 
-複数の設定ファイルを使う場合、全ファイルのパスが基本となる Compose ファイル（ ``-f`` で１番目に指定した Comopse ファイル）からの相対パスになるので、注意が必要です。注意が要るのは、上書きするファイルは正しい Comopse ファイルである必要がないためです。サービスの一部を追跡するにあたり、相対パスは複雑で混乱するため、パスを分かりやすくするためには、全てのパスを基本ファイルからの相対パスとして指定すべきです。
+複数の設定ファイルを使う場合、全ファイルのパスが基本となる Compose ファイル（ ``-f`` で１番目に指定した Compose ファイル）からの相対パスになるので、注意が必要です。注意が要るのは、上書きするファイルは正しい Compose ファイルである必要がないためです。サービスの一部を追跡するにあたり、相対パスは複雑で混乱するため、パスを分かりやすくするためには、全てのパスを基本ファイルからの相対パスとして指定すべきです。
 
 
 .. Example use case
@@ -84,7 +84,7 @@ Compose 設定をファイルとプロジェクト間で共有
 
 .. A common use case for multiple files is changing a development Compose app for a production-like environment (which may be production, staging or CI). To support these differences, you can split your Compose configuration into a few different files:
 
-複数のファイルを使う一般的な利用例は、開発用 Compose アプリを本番のような環境用（本番や、ステージングや、CI など）に変える場合です。環境の違いに対応するには、 Comopse 設定を複数の異なるファイルに分割できます。
+複数のファイルを使う一般的な利用例は、開発用 Compose アプリを本番のような環境用（本番や、ステージングや、CI など）に変える場合です。環境の違いに対応するには、 Compose 設定を複数の異なるファイルに分割できます。
 
 .. Start with a base file that defines the canonical configuration for the services.
 
