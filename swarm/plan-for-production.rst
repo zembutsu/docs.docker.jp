@@ -179,7 +179,7 @@ Swarm のセカンダリ・マネージャは *ウォーム・スタンバイ* �
 HA Swarm マネージャの作成時は、 *障害範囲 (failure domains)* の影響を受けないよう、可能な限り分散するよう注意を払う必要があります。障害範囲とは、デバイスまたはサービスに対する致命的な問題が発生すると影響があるネットワーク区分です。仮にクラスタが Amazon Web Services のアイルランド・リージョン（eu-west-1）で動いているとします。３つの Swarm マネージャを設定するにあたり（１つはプライマリ、２つはセカンダリ）、次の図のように各アベイラビリティ・ゾーンに置くべきでしょう。
 
 .. image:: ./images/swarm-ha-cluster-aws.png
-   :scale: 60%
+   :width: 60%
 
 .. In this configuration, the Swarm cluster can survive the loss of any two availability zones. For your applications to survive such failures, they must be architected across as many failure domains as well.
 
@@ -229,7 +229,7 @@ Consul 、 etcd 、 Zookeeper はどれもプロダクションにふさわし�
 次の図は HA を設定した Swarm クラスタ設定を表しています。３つの Swarm マネージャと３つのディスカバリ・サービス・インスタンスが３つの障害領域（アベイラビリティ・ゾーン）に展開してます。また、 Swarm ノードは３つの障害領域を横断しています。２つのアベイラビリティ・ゾーンで障害が発生したとしても、Swarm クラスタは停止しない設定を表しています。
 
 .. image:: ./images/swarm-ha-cluster-discovery-aws.png
-   :scale: 60%
+   :width: 60%
 
 .. It is possible to share the same Consul, etcd, or Zookeeper containers between the Swarm discovery and Engine container networks. However, for best performance and availability you should deploy dedicated instances -- a discovery instance for Swarm and another for your container networks.
 
@@ -247,7 +247,7 @@ Consul 、 etcd 、 Zookeeper はどれもプロダクションにふさわし�
  Swarm クラスタを複数のクラウド・プロバイダを横断するよう設計・構築できます。これはパブリック・クラウドでも、オンプレミスの基盤でもです。次の図は Swarm クラスタを AWS と Azure に横断しています。
 
  .. image:: ./images/swarm-across-aws-and-azure.png
-   :scale: 60%
+   :width: 60%
 
 .. While such architectures may appear to provide the ultimate in availability, there are several factors to consider. Network latency can be problematic, as can partitioning. As such, you should seriously consider technologies that provide reliable, high speed, low latency connections into these cloud platforms -- technologies such as AWS Direct Connect and Azure ExpressRoute.
 

@@ -5,8 +5,8 @@
    contain the root `toctree` directive.
 .. -----------------------------------------------------------------------------
 .. URL: https://docs.docker.com/
-   doc version: 23.0 (current)
-.. check date: 2023/05/06
+   doc version: 24.0 (current)
+.. check date: 2023/07/15
 .. -----------------------------------------------------------------------------
 
 .. Welcome to Docker-docs-ja's documentation!
@@ -23,7 +23,7 @@ Docker ドキュメント日本語化プロジェクト
 
 .. attention::
 
-  * Docker `v23.0.x (current)`  向けにドキュメントの改訂作業中です(2023年7月現在)。一部古い場合がありますので、ご注意ください。
+  * Docker `v24.0.x (current)`  向けにドキュメントの改訂作業中です(2023年7月現在)。一部古い場合がありますので、ご注意ください。
   * Docker のドキュメントは常に変わり続けています。最新の情報については `公式ドキュメント <https://docs.docker.com/>`_ をご覧ください。
   * 本プロジェクトは有志による翻訳プロジェクトです。お気づきの点がございましたら、 `issue <https://github.com/zembutsu/docs.docker.jp/issues>`_ や `Pull Request <https://github.com/zembutsu/docs.docker.jp/pulls>`_ 、 `Docker 道場（日本語の Docker オンラインフォーラム） <https://dojo.docker.jp/>`_ でお知らせ願います。
 
@@ -54,7 +54,7 @@ Docker ドキュメント
 
 ---
 
-Doc v23.0 目次
+Doc v24.0 目次
 ====================
 
 .. toctree::
@@ -64,10 +64,10 @@ Doc v23.0 目次
    Docker 概要 <get-started/overview.rst>
    get-docker.rst
    get-started/toc.rst
+   get-started/hands-on-overview.rst
    language/toc.rst
    develop/toc.rst
-   ci-cd/toc.rst
-   cloud/toc.rst
+   build/guide/toc.rst
    production.rst
    get-started/resources.rst
    opensource/toc.rst

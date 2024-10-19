@@ -224,7 +224,7 @@ Swarm クラスタのアベイラビリティ・ゾーンを増やすには：
 この設定を反映したものが、次の図です。
 
 .. image:: ../images/infrastructure-failures.png
-   :scale: 60%
+   :width: 60%
 
 .. This will allow us to lose an entire AZ and still have our cluster and application operate.
 
@@ -239,7 +239,7 @@ Swarm クラスタのアベイラビリティ・ゾーンを増やすには：
 以下の図はアプリケーションとインフラを AWS と Microsoft Azure にデプロイしたものです。ですが、クラウドプロバイダはデータセンタにあるオンプレミスに置き換えても構いません。これらのシナリオでは、ネットワークのレイテンシと信頼性がスムーズに動作させるための鍵となります。
 
 .. image:: ../images/deployed-across.png
-   :scale: 60%
+   :width: 60%
 
 .. Related information
 

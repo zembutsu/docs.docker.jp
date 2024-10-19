@@ -51,7 +51,7 @@ Environment の共有準備が整ったら、 Dev Environment の上にマウス
 .. Dev environment shared
 
 .. image:: ../images/dev-share.png
-   :scale: 60%
+   :width: 60%
    :alt: Dev Environment の共有
 
 .. Open a Dev Environment that has been shared with you

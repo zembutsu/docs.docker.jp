@@ -44,7 +44,7 @@ Docker コンテナによって作成され、かつ、使われるデータを�
 加えて、コンテナの書き込み可能なレイヤーにデータを保持するためには、ボリュームがより良い選択です。これは、ボリュームによってコンテナが使用する容量が増えませんし、対象となるコンテナのライフサイクル外でボリュームの内容が存在し続けます。
 
 .. image:: ./images/todo-list-sample.png
-   :scale: 60%
+   :width: 60%
    :alt: Docker ホスト上のボリューム
 
 .. If your container generates non-persistent state data, consider using a tmpfs mount to avoid storing the data anywhere permanently, and to increase the container’s performance by avoiding writing into the container’s writable layer.
@@ -466,7 +466,7 @@ compose でボリュームを使うための詳しい情報は、 :ref:`compose 
 :ruby:`耐障害性 <fault-tolerant>` のアプリケーションを構築する場合は、同じファイルにアクセスするために、同じサービスにタイして複数のレプリカの設定が必要になるでしょう。
 
 .. image:: ./images/volumes-shared-storage.png
-   :scale: 60%
+   :width: 60%
    :alt: 共有ストレージ
 
 .. There are several ways to achieve this when developing your applications. One is to add logic to your application to store files on a cloud object storage system like Amazon S3. Another is to create volumes with a driver that supports writing files to an external storage system like NFS or Amazon S3.

@@ -75,7 +75,7 @@ Docker Hub アカウントを作成する別の方法は、コマンドライン
 .. Login using the web console
 
 .. image:: ./images/login-web.png
-   :scale: 60%
+   :width: 60%
    :alt: ウェブ・コンソールでログイン
 
 .. Or via the command line with the docker login command:

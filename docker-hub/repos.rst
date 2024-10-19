@@ -35,7 +35,7 @@ Docker Hub リポジトリは、共同作業者、顧客、Docker コミュニ�
 .. ![repositories](/docker-hub/images/repos.png)
 
 .. image:: ./images/repos.png
-   :scale: 60%
+   :width: 60%
    :alt: リポジトリ
 
 .. ## Searching for images
@@ -130,7 +130,7 @@ Docker Hub リポジトリ上の「タグ」（Tags）画面では、利用可�
 .. ![images/busybox-image-tags.png](/docker-hub/images/busybox-image-tags.png)
 
 .. image:: ./images/busybox-image-tags.png
-   :scale: 60%
+   :width: 60%
    :alt: タグの一覧
 
 .. ## Creating a new repository on Docker Hub

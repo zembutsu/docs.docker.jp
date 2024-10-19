@@ -2,7 +2,7 @@
 
 http://docs.docker.jp
 
-Here is a translated documents  of Docker Version v23.0. 
+Here is a translated documents  of Docker Version v24.0. 
 Original (English) version is here; https://docs.docker.com/ 
 
 # Pull Request について

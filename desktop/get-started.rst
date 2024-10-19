@@ -7,7 +7,7 @@
 .. -----------------------------------------------------------------------------
 
 .. |whale| image:: ./images/whale-x.png
-      :scale: 50%
+      :width: 50%
 
 .. Sign in and get started
 .. _sign-in-and-get-started:
@@ -33,7 +33,7 @@
 Docker Desktop をインストールしたら、クイックスタートガイドが起動します。これには簡単な練習が入っており、 Docker イメージ例の構築、コンテナとしてイメージの実行、そしてイメージを保存して Docker Hub に送信します。
 
 .. image:: ./images/docker-tutorial-linux.png
-   :scale: 60%
+   :width: 60%
    :alt: Docker クイックスタート チュートリアル
 
 .. To run the Quick Start Guide on demand, select whale menu and then choose Quick Start Guide.

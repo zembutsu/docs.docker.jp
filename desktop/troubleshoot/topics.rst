@@ -7,7 +7,7 @@
 .. -----------------------------------------------------------------------------
 
 .. |whale| image:: /desktop/install/images/whale-x.png
-      :scale: 50%
+      :width: 50%
 
 .. Troubleshoot topics
 .. _desktop-troubleshoot-topics:
@@ -224,7 +224,7 @@ Docker Desktop でも適切な形式で Unix 風のパスを指定できます�
    $ docker run --rm -ti -v /c/Users/user/work:/work alpine ls /work
 
 .. Working with Git Bash
-.. _.. _desktop-topics-windows-working-with-git-bash:
+.. _desktop-topics-windows-working-with-git-bash:
 
 Git Bash で動かす
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -347,7 +347,7 @@ Windows 10 Pro や Enterprise では、以下の機能を有効にして Hyper-V
 3. Windows 起動時にハイパーバイザーを有効化
 
 .. image:: ../images/hyperv-enabled.png
-   :scale: 60%
+   :width: 60%
    :alt: Windows 機能の Hyper-V
 
 .. Docker Desktop requires Hyper-V as well as the Hyper-V Module for Windows Powershell to be installed and enabled. The Docker Desktop installer enables it for you.
@@ -377,7 +377,7 @@ Hyper-V を手動でインストールするには、 `Windows 10 上に Hyper-V
 :ref:`Hyper-V <win-troubleshoot-hyper-v>` や :doc:`WSL 2 <wsl>` を追加するには、仮想化の有効化が必要です。タスクマネージャー上のパフォーマンス タブをクリックします。
 
 .. image:: ../images/virtualization-enabled.png
-   :scale: 60%
+   :width: 60%
    :alt: タスクマネージャー
 
 .. If you manually uninstall Hyper-V, WSL 2 or disable virtualization, Docker Desktop cannot start. See Unable to run Docker for Windows on Windows 10 Enterprise.

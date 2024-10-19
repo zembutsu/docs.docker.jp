@@ -72,7 +72,7 @@ Docker :ruby:`イメージ <image>` とは、積み重なる :ruby:`レイヤー
 レイヤーとは、各レイヤーの一番上に積み上げられます。新しいコンテナを作成すると、元のレイヤー上に新しい :ruby:`書き込み可能なレイヤー <writable layer>` を追加します。このレイヤーは、たいてい「 :ruby:`コンテナ レイヤー <container layer>` 」と呼ばれます。新しいファイルの書き込み、既存ファイルの変更、ファイルの削除といった、実行中のコンテナに対する全ての変更は、この :ruby:`薄い <thin>` 書き込み可能なコンテナ レイヤーに書き込まれます。下図は ``ubuntu:15.04`` イメージを元にするコンテナを表します。
 
 .. image:: ./images/container-layers.png
-   :scale: 60%
+   :width: 60%
    :alt: Ubuntu イメージを元にするコンテナのレイヤー
 
 . . A storage driver handles the details about the way these layers interact with each other. Different storage drivers are available, which have advantages and disadvantages in different situations.
@@ -94,7 +94,7 @@ Docker :ruby:`イメージ <image>` とは、積み重なる :ruby:`レイヤー
 それぞれのコンテナは、自身の書き込み可能なコンテナ レイヤーを持ちます。また、このコンテナ レイヤーに全ての変更が保存されます。そのため、複数のコンテナが同じ元イメージを共有しながらアクセスでき、さらに、それぞれが自身のデータ状態を持てます。下図は、複数のコンテナが同じ Ubuntu 15.04 イメージを共有するのを表します。
 
 .. image:: ./images/sharing-layers.png
-   :scale: 60%
+   :width: 60%
    :alt: 複数のコンテナが同じイメージを共有
 
 ..     Note

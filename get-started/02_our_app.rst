@@ -1,16 +1,16 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/get-started/02_our_app/
-   doc version: 20.10
+   doc version: 24.0
       https://github.com/docker/docker.github.io/blob/master/get-started/02_our_app.md
-.. check date: 2022/09/20
-.. Commits on Jul 28, 2022 820366d4bfe722cc6f47847066214a48b56d66c5
+.. check date: 2023/07/16
+.. Commits on Jun 28, 2023 50ea31a03d158ce12466422856930e4666451a3d
 .. -----------------------------------------------------------------------------
 
-.. Sample application
-.. _sample-application:
+.. Containerize an application
+.. _containerize-an-application:
 
 ========================================
-サンプル・アプリケーション
+アプリケーションのコンテナ化
 ========================================
 
 .. sidebar:: 目次
@@ -19,17 +19,30 @@
        :depth: 2
        :local:
 
-.. For the rest of this tutorial, we will be working with a simple todo list manager that is running in Node.js. If you’re not familiar with Node.js, don’t worry. No real JavaScript experience is needed.
+.. For the rest of this guide, you’ll be working with a simple todo list manager that runs on Node.js. If you’re not familiar with Node.js, don’t worry. This guide doesn’t require any prior experience with JavaScript.
 
-以降のチュートリアルでは、Node.js で動作するシンプルな Todo リスト・マネージャを扱います。Node.js に慣れていなくても、心配無用です。実際の JavaScript 経験を必要としません。
+以降のガイドでは、 Node.js で動作するシンプルな Todo リスト管理を扱います。Node.js に慣れていなくても、心配はいりません。このガイドでは JavaScript の事前経験は要りません。
 
-.. At this point, your development team is quite small and you’re simply building an app to prove out your MVP (minimum viable product). You want to show how it works and what it’s capable of doing without needing to think about how it will work for a large team, multiple developers, etc.
+.. To complete this guide, you’ll need the following:
 
-この段階では、あなたの開発チームは非常に小さく、MVP（ :ruby:`実用最小限の製品 <Minimum Viable Product>` ）を検証するためのアプリを構築したばかりです。このアプリが機能する所を見せたいので、この時点では、大きなチームや複数の開発者等が、どのようにして動作させるかを考慮する必要はありません。
+このガイドを終えるために、以下の項目が必要です：
 
-.. image:: ./images/todo-list-sample.png
-   :scale: 60%
-   :alt: Todo List Manager のスクリーンショット
+..  Docker running locally. Follow the instructions to download and install Docker.
+    A Git client.
+        Note
+        If you use Windows and want to use Git Bash to run Docker commands, see Working with Git Bash for syntax differences.
+    An IDE or a text editor to edit files. Docker recommends using Visual Studio Code.
+    A conceptual understanding of containers and images.
+
+* ローカルで動作する Docker。 :doc:`Docker のダウンロードとインストール </get-docker>` の手順に従ってください。
+* `Git クライアント <https://git-scm.com/downloads>`_ 。
+
+   .. note::
+   
+      Windows を利用中で、Git Bash を使って Docker コマンドを実行したい場合は、構文の違いについて :ref:`desktop-topics-windows-working-with-git-bash` を御覧ください。
+
+* ファイルを編集するための IDE （統合開発環境）やテキストエディタ。Docker は `Visual Studio Code <https://code.visualstudio.com/>`_ の利用を推奨します。
+* :ref:`コンテナとイメージ <overview-docker-objects>` の概念を理解。
 
 .. Get the app
 .. _get-the-app:
@@ -37,21 +50,25 @@
 アプリの入手
 ====================
 
-.. Before we can run the application, we need to get the application source code onto our machine. For real projects, you will typically clone the repo. But, for this tutorial, we have created a ZIP file containing the application.
+.. Before you can run the application, you need to get the application source code onto your machine.
 
-アプリケーションを実行する前に、マシン上にアプリケーションのソースコードを入手する必要があります。実際のプロジェクトでは、リポジトリのクローンが一般的でしょう。ですが、このチュートリアルでは、アプリケーションを含む ZIP ファイルを作成しました。
+アプリケーションを実行する前に、マシン上にアプリケーションのソースコードを入手する必要があります。
 
-..    Download the App contents from the getting-started repository. You can either pull the entire project or download it as a zip and extract the app folder out to get started with.
+.. Clone the getting-started repository using the following command:
+    git clone https://github.com/docker/getting-started.git
+   View the contents of the cloned repository. Inside the getting-started/app directory you should see package.json and two subdirectories (src and spec).
 
-..    Download the App contents. You can either pull the entire project or download it as a zip and extract the app folder out to get started with.
-    Once extracted, use your favorite code editor to open the project. If you’re in need of an editor, you can use Visual Studio Code. You should see the package.json and two subdirectories (src and spec).
+1. 次のコマンドを使い、 `getting-started リポジトリ <https://github.com/docker/getting-started/tree/master>`_ をクローンします。
 
-1. アプリの中身を `getting-started リポジトリ <https://github.com/docker/getting-started/tree/master>`_ からダウンロードします。 プロジェクト全体を pull するか、あるいは、 `リポジトリの zip ファイルをダウンロード <https://github.com/docker/getting-started/archive/refs/heads/master.zip>`_ してアプリ用フォルダに展開してから始めましょう。
-2. 展開後は、好きなコードエディタでプロジェクトを開きます。エディタが必要であれば、 `Visual Studio Code <https://code.visualstudio.com/>`_ が使えます。開くと、 ``package.json`` と2つのサブディレクトリ（ ``src`` と ``spec`` ）が見えるでしょう。
+   .. code-block:: bash
+   
+      $ git clone https://github.com/docker/getting-started.git
 
-.. image:: ./images/ide-screenshot.png
-   :scale: 60%
-   :alt: Virusl Studio Code で 読み込んだアプリのスクリーンショット
+2. クローンしたリポジトリの内容を表示します。 ``getting-started/app`` ディレクトリ内に、 ``package.json`` と2つのサブディレクトリ（ ``src`` と ``spec`` ）が見えるでしょう。
+
+   .. image:: ./images/ide-screenshot.png
+      :width: 60%
+      :alt: Virusl Studio Code で 読み込んだアプリのスクリーンショット
 
 .. Build the app’s container image
 .. _build-the-apps-container-image:
@@ -59,15 +76,55 @@
 アプリのコンテナ イメージを :ruby:`構築 <build>`
 ==================================================
 
-.. In order to build the application, we need to use a Dockerfile. A Dockerfile is simply a text-based script of instructions that is used to create a container image. If you’ve created Dockerfiles before, you might see a few flaws in the Dockerfile below. But, don’t worry. We’ll go over them.
+.. To build the container image, you’ll need to use a Dockerfile. A Dockerfile is simply a text-based file with no file extension that contains a script of instructions. Docker uses this script to build a container image.
 
-アプリケーションを :ruby:`構築 <build>` するには、 ``Dockerfile`` を使う必要があります。 Dockerfile とは、コンテナ イメージの作成で使う命令が、分かりやすい文字列で構成されるスクリプトです。これまでに Dockerfile の作成経験があれば、以下手順にある Dockerfile には問題があると気づくかもしれません。ですが、今は心配しないでください。後ほど説明します。
+:ref:`コンテナ イメージ <overview-docker-objects>` を :ruby:`構築 <build>` するには、 ``Dockerfile`` を使う必要があります。Dockerfile とはシンプルな文字情報を主体とするファイルで、ファイルの拡張子がありません。このファイル内に命令のスクリプトが入っています。Docker はコンテナ イメージを構築するために、このスクリプトを使います。
 
-..    Create a file named Dockerfile in the same folder as the file package.json with the following contents.
+.. In the app directory, the same location as the package.json file, create a file named Dockerfile. You can use the following commands below to create a Dockerfile based on your operating system.
 
-1. ``package.json`` と同じフォルダ内に ``Dockerfile`` という名前のファイルを作成し、内容は以下のようにします
-   
-   .. code-block:: bash
+1.  同じ場所に ``package.json`` ファイル等がある ``app`` ディレクトリ内で、 ``Dockerfile`` という名前のファイルを作成します。使っているオペレーティングシステムに応じた Dockerfile を作成するには、以下のコマンドが使えます。
+
+   **Mac / Linux**
+
+      .. In the terminal, run the following commands listed below.
+      .. Change directory to the app directory. Replace /path/to/app with the path to your getting-started/app directory.
+      
+      ターミナル上で、以下に記載してあるコマンドを実行します。
+      ディレクトリを ``app`` ディレクトリに変更します。 ``/path/to/app`` を ``getting-started/app`` ディレクトリのパスに置き換えます。
+      
+      .. code-block:: bash
+      
+         $ cd /path/to/app
+      
+      ``Dockerfile`` という名前の空ファイルを作成します。
+      
+      .. code-block:: bash
+      
+         $ touch Dockerfile
+
+   **Windows**
+
+      .. In the Windows Command Prompt, run the following commands listed below.
+      
+      Windows コマンドプロンプト上で、以下に記載してあるコマンドを実行します。
+      ディレクトリを ``app`` ディレクトリに変更します。 ``\path\to\app`` を ``getting-started\app`` ディレクトリのパスに置き換えます。
+      
+      .. code-block:: bash
+      
+         $ cd \path\to\app
+      
+      ``Dockerfile`` という名前の空ファイルを作成します。
+      
+      .. code-block:: bash
+      
+         $ type nul > Dockerfile
+
+
+.. Using a text editor or code editor, add the following contents to the Dockerfile:
+
+2. テキストエディタかコードエディタを使い、Dockerfile に以下の内容を追加します。
+
+   .. code-block:: Dockerfile
    
       # syntax=docker/dockerfile:1
       FROM node:18-alpine
@@ -77,33 +134,43 @@
       CMD ["node", "src/index.js"]
       EXPOSE 3000
 
-.. Please check that the file Dockerfile has no file extension like .txt. Some editors may append this file extension automatically and this would result in an error in the next step.
 
-``Dockerfile`` には ``.txt`` のようなファイル拡張子が無いのをご確認ください。エディタによってはファイル拡張子を自動的に付けるため、次の手順でエラーになる場合があります。
+.. Build the container image using the following commands:
 
-.. If you haven’t already done so, open a terminal and go to the app directory with the Dockerfile. Now build the container image using the docker build command.
+3. 以下のコマンドを使い、コンテナイメージを構築します。
 
-2. まだ終わっていなければ、ターミナルを開き、 ``app`` ディレクトリで ``Dockerfile`` を開きます。それから ``docker build`` コマンドを使ってコンテナ イメージを :ruby:`構築 <build>` します。
+   .. In the terminal, change directory to the getting-started/app directory. Replace /path/to/app with the path to your getting-started/app directory.
 
-.. code-block:: bash
+   ターミナル上で、ディレクトリを ``getting-started/app`` ディレクトリに変更します。 ``/path/to/app`` のパスは、自分の ``getting-started/app`` ディレクトリに置き換えます。
+   
+   .. code-block:: bash
+   
+      $ cd /path/to/app
+   
+   
+   .. Build the container image.
+   
+   コンテナイメージを構築します。
+   
+   .. code-block:: bash
+   
+      $ docker build -t getting-started .
+   
+   .. The docker build command uses the Dockerfile to build a new container image. You might have noticed that Docker downloaded a lot of “layers”. This is because you instructed the builder that you wanted to start from the node:18-alpine image. But, since you didn’t have that on your machine, Docker needed to download the image.
+   
+   ``docker build`` コマンドは Dockerfile を使い新しいコンテナイメージを構築します。Docker が多くの「 :ruby:`レイヤー <layer>` 」をダウンロードするのが分かるでしょう。こうなるのは、 :ruby:`構築用プログラム <builder>` に対して ``node:18-alpine`` イメージから始めると命令したからです。ですが、まだマシン上にイメージがないため、 Docker はイメージをダウンロードする必要があります。
 
-   $ docker build -t getting-started .
+   .. After Docker downloaded the image, the instructions from the Dockerfile copied in your application and used yarn to install your application’s dependencies. The CMD directive specifies the default command to run when starting a container from this image.
+   
+   Docker がイメージをダウンロードした後は、 Dockerfile の命令によってアプリケーションをコピーし、それから、 ``yarn`` を使ってアプリケーションの依存関係をインストールします。 ``CMD`` 命令は、このイメージからコンテナを起動したとき、デフォルトで実行するコマンドを指定します。
 
-..    This command used the Dockerfile to build a new container image. You might have noticed that a lot of “layers” were downloaded. This is because we instructed the builder that we wanted to start from the node:12-alpine image. But, since we didn’t have that on our machine, that image needed to be downloaded.
+   .. Finally, the -t flag tags your image. Think of this simply as a human-readable name for the final image. Since you named the image getting-started, you can refer to that image when you run a container.
+   
+   最後に ``-t`` フラグでイメージに :ruby:`タグ <tag>` を付けます。タグとは、最終イメージに対して、人間が読める名前を単に付けるためと考えてください。このイメージには ``getting-started`` と名前を付けましたので、このイメージ名を示してコンテナを実行できます。
 
-このコマンドは、先ほどの Dockerfile を使い、新しいコンテナ イメージを :ruby:`構築 <build>` します。実行すると、多くの「 :ruby:`レイヤー <layer>` 」がダウンロードされるのが分かるでしょう。これは ``node:18-alpine`` イメージから起動したいと  :ruby:`構築用プログラム <builder>` に対して命令したからです。ですが、マシン上にはイメージがないため、ダウンロードする必要があります。
+   .. The . at the end of the docker build command tells Docker that it should look for the Dockerfile in the current directory.
 
-..    After the image was downloaded, we copied in our application and used yarn to install our application’s dependencies. The CMD directive specifies the default command to run when starting a container from this image.
-
-イメージをダウンロードしたら、アプリケーションをコピーし、 ``yarn`` を使ってアプリケーションの :ruby:`依存関係 <dependency>` をインストールします。 ``CMD`` 命令は、このイメージでコンテナを起動する時に、デフォルトで実行するコマンドを指定します。
-
-..    Finally, the -t flag tags our image. Think of this simply as a human-readable name for the final image. Since we named the image getting-started, we can refer to that image when we run a container.
-
-最後に ``-t`` フラグでイメージに :ruby:`タグ <tag>` を付けます。タグとは、最後のイメージに対し、人間が読める名前を単に付けるためと考えてください。このイメージには `getting-started`` と名前を単に付けましたので、コンテナの実行時に、このイメージ名を示せます。
-
-..    The . at the end of the docker build command tells Docker that it should look for the Dockerfile in the current directory.
-
-``docker build`` コマンドの最後にある ``.`` は、Docker に対して、現在のディレクトリ内にある ``Dockerfile`` を探すべきと命令します。
+   ``docker build`` コマンドの最後にある ``.`` は、Docker に対して、現在のディレクトリ内にある ``Dockerfile`` を探すべきと命令します。
 
 .. Start an app container
 .. _start-an-app-container:
@@ -111,64 +178,95 @@
 アプリ コンテナの起動
 ==============================
 
-.. Now that we have an image, let’s run the application. To do so, we will use the docker run command (remember that from earlier?).
+.. Now that you have an image, you can run the application in a container. To do so, you will use the docker run command.
 
-これでイメージが手に入りましたので、アプリケーションを実行しましょう。そのためには、 ``docker run`` コマンドを使います（Part 1 を覚えていますか？）。
+イメージが手に入りましたので、コンテナ内でアプリケーションを実行できます。そのためには、 ``docker run`` コマンドを使います。
 
-..    Start your container using the docker run command and specify the name of the image we just created:
+.. Start your container using the docker run command and specify the name of the image you just created:
 
 1. コンテナを起動するには、 ``docker run`` コマンドを使い、先ほど作成したイメージ名を指定します。
 
    .. code-block:: bash
    
-      $  docker run -dp 3000:3000 getting-started
+      $ docker run -dp 127.0.0.1:3000:3000 getting-started
 
-..    Remember the -d and -p flags? We’re running the new container in “detached” mode (in the background) and creating a mapping between the host’s port 3000 to the container’s port 3000. Without the port mapping, we wouldn’t be able to access the application.
+   .. The -d flag (short for --detach) runs the container in the background. The -p flag (short for --publish) creates a port mapping between the host and the container. The -p flag take a string value in the format of HOST:CONTAINER, where HOST is the address on the host, and CONTAINER is the port on the container. The command shown here publishes the container’s port 3000 to 127.0.0.1:3000 (localhost:3000) on the host. Without the port mapping, you wouldn’t be able to access the application from the host.
+   
+   ``--d`` フラグ（ ``--detach`` の省略）は、コンテナをバックグラウンドで実行します。 ``-p`` フラグ（ ``--publish`` の省略）は、ホストとコンテナ間でポートの関連付け（ :ruby:`ポート マッピング <port mapping>` ）を作成します。 ``-p`` フラグは ``HOST:CONTAINER`` という書式の文字列値です。 ``HOST`` はホスト上のアドレスにあたり、 ``CONTAINER`` はコンテナ上で対象となるポートです。このコマンドが示すのは、コンテナのポート 3000 をホスト上の ``127.0.0.1:3000`` （ ``localhost:3000`` ）へ公開します。ポート割り当ての指定がなければ、ホスト上からアプリケーションに接続できません。
 
-この ``-d`` と ``-p`` フラグを覚えていますか？ ここでは「 :ruby:`デタッチド <detouched>` モード」（バックグランドで）新しいコンテナを実行し、ホスト側のポート 3000 をコンテナのポート 3000 間で関連付け（ :ruby:`マッピング <mapping>` ）をします。ポートの関連付け（ :ruby:`ポート マッピング <port mapping>` ）をしなければ、アプリケーションに接続できません。
+.. After a few seconds, open your web browser to http://localhost:3000. You should see your app.
 
-..    After a few seconds, open your web browser to http://localhost:3000. You should see our app.
-
-2. 数秒後、自分のウェブ ブラウザで http://localhost:3000  を開きます。そうすると、私たちのアプリが見えるでしょう。
+2. 数秒後、自分のウェブ ブラウザで http://localhost:3000  を開きます。そうしたら、私たちのアプリが見えるでしょう。
 
    .. image:: ./images/todo-list-empty.png
-      :scale: 60%
+      :width: 60%
       :alt: まだ何も入っていない ToDo List
 
-..    Go ahead and add an item or two and see that it works as you expect. You can mark items as complete and remove items. Your frontend is successfully storing items in the backend. Pretty quick and easy, huh?
+.. Go ahead and add an item or two and see that it works as you expect. You can mark items as complete and remove them. Your frontend is successfully storing items in the backend.
 
-3. あとは１つ２つとアイテムを追加すると、期待通りに動作するでしょう。完了したアイテムに印を付けると、アイテムを削除できます。このように、フロントエンドはバックエンドへのアイテム保存に成功しています。とても素早く簡単ですよね？
+3. あとはアイテムを1つ2つと追加したら、期待通りに動作するでしょう。完了したアイテムに印を付けると、アイテムを削除できます。このように、フロントエンドはバックエンドへのアイテム保存に成功しています。
 
-.. At this point, you should have a running todo list manager with a few items, all built by you. Now, let’s make a few changes and learn about managing our containers.
+.. At this point, you should have a running todo list manager with a few items, all built by you.
 
-この時点で、実行中の todo リスト マネージャには複数のアイテムが入っていて、これらは全て自分が構築したものです。それでは、変更を加えつつ、コンテナ管理の仕方を学びましょう。
+この時点で、全て自分で構築した todo リストマネージャは実行中で、複数のアイテムが入っています。
+
+.. If you take a quick look at your containers, you should see at least one container running that is using the getting-started image and on port 3000. To see your containers, you can use the CLI or Docker Desktop’s graphical interface.
+
+ここでコンテナをちょっと調べると、 ``getting-started`` イメージを使い、ポート ``3000`` を使っている実行中のコンテナが、少なくとも1つ見えるでしょう。コンテナを調べるには、 CLI か Docker Desktop のグラフィカルインターフェースが使えます。
+
+**CLI**
+
+   .. Run the following docker ps command in a terminal to list your containers.
+   コンテナ一覧を表示するには、ターミナル上で以下の ``docker ps`` コマンドを実行します。
+   
+   .. code-block:: bash
+   
+      $ docker ps
 
 
-.. If you take a quick look at the Docker Dashboard, you should see your two containers running now (this tutorial and your freshly launched app container).
+   .. Output similar to the following should appear.
+   次のような出力が表示されます。
+   
+   .. code-block:: bash
+   
+      CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                      NAMES
+      df784548666d        getting-started     "docker-entrypoint.s…"   2 minutes ago       Up 2 minutes        127.0.0.1:3000->3000/tcp   priceless_mcclintock
 
-ここで Docker ダッシュボードを軽く見てみると、２つのコンテナが実行中だと分かるでしょう（このチュートリアルと、作成したばかりのアプリ用コンテナです）。
+
+**Docker Desktop**
+
+   .. In Docker Desktop, select the Containers tab to see a list of your containers.
+   Docker Desktop では、コンテナ一覧を表示するには **Containers** タブを選びます。
+
 
    .. image:: ./images/dashboard-two-containers.png
-      :scale: 60%
       :alt: Docker ダッシュボードにはチュートリアルとアプリ用コンテナが実行中
 
-.. Recap
-.. _part2-recap:
+.. Next steps
+.. _part2-next-steps:
 
-まとめ
-==========
+次のステップ
+====================
 
-.. In this short section, we learned the very basics about building a container image and created a Dockerfile to do so. Once we built an image, we started the container and saw the running app.
+.. In this short section, you learned the basics about creating a Dockerfile to build a container image. Once you built an image, you started a container and saw the running app.
 
-この短いセクションでは、基本中の基本として、コンテナ イメージの構築と、 Dockerfile の作成とイメージの構築を学びました。イメージを構築するだけでコンテナを実行でき、実行中のアプリを表示しています。
+この短いセクションでは、コンテナ イメージを構築するための、 Dockerfile を作成する基本を学びました。イメージを構築した後、コンテナを実行し、アプリケーションが動作しているのが見えます。
 
-.. Next, we’re going to make a modification to our app and learn how to update our running application with a new image. Along the way, we’ll learn a few other useful commands.
+.. Next, you’re going to make a modification to your app and learn how to update your running application with a new image. Along the way, you’ll learn a few other useful commands.
 
-次はアプリに変更を加え、実行中のアプリケーションを新しいイメージに更新する方法を学びます。その途中で、いくつかの便利なコマンドも学びます。
+次はアプリに変更を加え、実行中のアプリケーションを新しいイメージに更新する方法を学びます。その途中で、幾つかの便利なコマンドも学びます。
+
+.. raw:: html
+
+   <div style="overflow: hidden; margin-bottom:20px;">
+      <a href="03_updating_app.html" class="btn btn-neutral float-left">アプリケーションの更新 <span class="fa fa-arrow-circle-right"></span></a>
+   </div>
+
 
 .. seealso::
 
-   Sample application
-      https://docs.docker.com/get-started/02_our_app/
+   Containerize an application
+      https://docs.docker.com/get-started/02_our_app
+
 
 

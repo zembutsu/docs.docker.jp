@@ -70,7 +70,7 @@ Docker Hub の自動構築
 システムがログインのためサービス（Bitbucket か GitHub）の委任を要求してきます。次の例は Bitbucket のプロンプト例です。
 
 .. image:: ./images/bitbucket-creds.png
-   :scale: 60%
+   :width: 60%
    :alt: Bitbucket
 
 ..    After you grant access to your code repository, the system returns you to Docker Hub and the link is complete.
@@ -80,7 +80,7 @@ Docker Hub の自動構築
 ..    Linked account
 
 .. image:: ./images/linked-acct.png
-   :scale: 45%
+   :width: 45%
    :alt: リンク済みアカウント
 
 .. Create an automated build
@@ -121,7 +121,7 @@ Docker Hub の自動構築
 ..    Create dialog
 
 .. image:: ./images/create-dialog1.png
-   :scale: 60%
+   :width: 60%
    :alt: 作成ダイアログ
 
 ..    The dialog assumes some defaults which you can customize. By default, Docker builds images for each branch in your repository. It assumes the Dockerfile lives at the root of your source. When it builds an image, Docker tags it with the branch name.
@@ -135,7 +135,7 @@ Docker Hub の自動構築
 ..    Create dialog
 
 .. image:: ./images/create-dialog1.png
-   :scale: 60%
+   :width: 60%
    :alt: 作成ダイアログ
 
 ..    Specify which code branches or tags to build from. You can add new configurations by clicking the + (plus sign). The dialog accepts regular expressions.
@@ -145,7 +145,7 @@ Docker Hub の自動構築
 ..    Create dialog
 
 .. image:: ./images/regex-help.png
-   :scale: 60%
+   :width: 60%
    :alt: 作成ダイアログ
 
 ..    Click Create.
@@ -159,7 +159,7 @@ Docker Hub の自動構築
 ..    Home page
 
 .. image:: ./images/home-page.png
-   :scale: 45%
+   :width: 45%
    :alt: 自動構築ホームページ
 
 ..    Within GitHub, a Docker integration appears in your repositories Settings > Webhooks & services page.
@@ -169,7 +169,7 @@ GitHub を使っている場合、リポジトリの Settings > Webhooks & Servi
 ..    GitHub
 
 .. image:: ./images/docker-integration.png
-   :scale: 60%
+   :width: 60%
    :alt: GitHub
 
 ..    A similar page appears in Bitbucket if you use that code repository.Be careful to leave the Docker integration in place. Removing it causes your automated builds to stop.
@@ -190,7 +190,7 @@ Bitbucket のコード・リポジトリを使っている場合も、同様に�
 .. Pending
 
 .. image:: ./images/first-pending.png
-   :scale: 45%
+   :width: 45%
    :alt: 構築のログ
 
 .. During the build process, Docker copies the contents of your Dockerfile to Docker Hub. The Docker community (for public repositories) or approved team members/orgs (for private repositories) can then view the Dockerfile on your repository page.
@@ -219,7 +219,7 @@ Build Setting ページでは、既存の自動構築設定の管理や、新し
 ..  Default checkbox
 
 .. image:: ./images/merge-buildings.png
-   :scale: 60%
+   :width: 60%
    :alt: チェックボックス
 
 .. Clear the checkbox to turn this behavior off. You can use the other settings on the page to configure and build images.
@@ -263,7 +263,7 @@ Docker はコード・リポジトリに対して push で変更が加えられ�
 ..    Regexhelp
 
 .. image:: ./images/regex-help.png
-   :scale: 60%
+   :width: 60%
    :alt: 正規表現のヘルプ
 
 ..    Enter a Dockerfile location.
@@ -316,7 +316,7 @@ Docker はコード・リポジトリに対して push で変更が加えられ�
 ..    Links
 
 .. image:: ./images/repo-links.png
-   :scale: 60%
+   :width: 60%
    :alt: リポジトリへのリンク
 
 .. Remote Build triggers
@@ -333,7 +333,7 @@ Docker はコード・リポジトリに対して push で変更が加えられ�
 .. Build trigger screen
 
 .. image:: ./images/build-trigger.png
-   :scale: 60%
+   :width: 60%
    :alt: 構築トリガの画面
 
 .. You can use curl to trigger a build:

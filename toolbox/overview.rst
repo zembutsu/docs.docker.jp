@@ -22,7 +22,7 @@ Docker Toolbox 概要
 Docker Toolbox は Mac と Windows システム上に Docker 環境を迅速にインストールして起動します。
 
 .. image:: ./images/toolbox-installer.png
-   :scale: 60%
+   :width: 60%
    :alt: Toolbox インストーラ
 
 .. What’s in the box

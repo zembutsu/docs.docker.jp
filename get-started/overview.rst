@@ -1,9 +1,9 @@
 .. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/get-started/overview/
+   doc version: 24.0
 .. SOURCE: https://github.com/docker/docker.github.io/blob/master/get-started/overview.md
-.. check date: 2022/09/20
-.. Commits on Aug 12, 2022 3393f95fa8ce5efb999f06aa6d1392e0f4557a9c
-.. Commits on Feb 7, 2022 4fd778a3167596ff720cae99840d17a4ff604c8e
+.. check date: 2023/07/15
+.. Commits on Mar 2, 2023 75a2468ce346d75a5ca380809e00219197d317f8
 .. -----------------------------------------------------------------------------
 
 .. Docker Overview
@@ -103,9 +103,9 @@ Docker の可搬性と軽量な特性は、以下のようなことを容易に�
 同じハードウェア上で負荷の高い処理を実行
 ----------------------------------------
 
-.. Docker is lightweight and fast. It provides a viable, cost-effective alternative to hypervisor-based virtual machines, so you can use more of your compute capacity to achieve your business goals. Docker is perfect for high density environments and for small and medium deployments where you need to do more with fewer resources.
+.. Docker is lightweight and fast. It provides a viable, cost-effective alternative to hypervisor-based virtual machines, so you can use more of your server capacity to achieve your business goals. Docker is perfect for high density environments and for small and medium deployments where you need to do more with fewer resources.
 
-Docker は軽量かつ高速です。ハイパーバイザ・ベースの仮想マシンに取って変わる、実用的で費用対効果の高いものです。したがってコンピュータ性能をフルに活用してビジネス目標を達成できます。Docker は高度に処理集中する環境に適しており、さらには中小規模の、より少ないリソースの中でのシステム構築にも適しています。
+Docker は軽量かつ高速です。ハイパーバイザ・ベースの仮想マシンに取って変わる、実用的で費用対効果の高いものです。したがってサーバ性能をフルに活用してビジネス目標を達成できます。Docker は高度に処理集中する環境に適しており、さらには中小規模の、より少ないリソースの中でのシステム構築にも適しています。
 
 .. Docker architecture
 .. _docker-architecture:
@@ -117,8 +117,7 @@ Docker のアーキテクチャ
 
 Docker はクライアント・サーバ型のアーキテクチャを採用しています。Docker *クライアント* は Docker デーモンに処理を依頼します。このデーモンは、Docker コンテナの構築、実行、配布という複雑な仕事をこなします。Docker クライアントとデーモンは同一システム上で動かすことも *可能* ですが、別のシステム上であっても、Docker クライアントからリモートにある Docker デーモンへのアクセスが可能です。Docker クライアントとデーモンの間の通信には REST API が利用され、UNIX ソケットまたはネット・ワークインターフェイスを介して行われます。他にも Docker クライアントには Docker Compose があり、コンテナ一式で構成されるアプリケーションを操作します。
 
-.. image:: /engine/article-img/architecture.png
-   :scale: 60%
+.. image:: /assets/images/architecture.png
    :alt: Docker アーキテクチャ図
 
 .. The Docker daemon
@@ -268,7 +267,7 @@ Docker は `Go プログラミング言語 <https://golang.org/>`_ で書かれ�
     Get hands-on experience with the Getting started with Docker tutorial.
 
 * :doc:`/get-docker` を読む
-* ハンズオンで :doc:`Docker を使い始める </get-started/index>` ためのチュートリアルを試す
+* ハンズオンで :doc:`Docker を使い始める </get-started/01_overview>` ためのチュートリアルを試す
 
 .. seealso:: 
 

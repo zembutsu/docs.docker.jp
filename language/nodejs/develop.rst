@@ -244,7 +244,7 @@ Compose ファイルを使う上で、もう1つの素晴らしい機能は、�
 正常に動作すると、次のような画面が見えます。
 
 .. image:: ./images/node-compile.png
-   :scale: 60%
+   :width: 60%
    :alt: node-compile
 
 .. Now let’s test our API endpoint. Run the following curl command:
@@ -276,7 +276,7 @@ Compose ファイルを使う上で、もう1つの素晴らしい機能は、�
 .. It opens the following screen.
 
 .. image:: ./images/chrome-inspect.png
-   :scale: 60%
+   :width: 60%
    :alt: Chrome-inspect
 
 .. Click the Open dedicated DevTools for Node link. This opens the DevTools that are connected to the running Node.js process inside our container.
@@ -302,7 +302,7 @@ Compose ファイルを使う上で、もう1つの素晴らしい機能は、�
 Compose アプリケーションを実行しているターミナルを見ると、nodemon が変更を検出し、アプリケーションを再読み込みします。
 
 .. image:: ./images/nodemon.png
-   :scale: 60%
+   :width: 60%
    :alt: nodemon
 
 .. Navigate back to the Chrome DevTools and set a breakpoint on the line containing the return res.json({ "foo": "bar" }) statement, and then run the following curl command to trigger the breakpoint.

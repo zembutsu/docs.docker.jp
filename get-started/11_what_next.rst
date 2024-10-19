@@ -1,9 +1,9 @@
 ﻿.. -*- coding: utf-8 -*-
 .. URL: https://docs.docker.com/get-started/11_what_next/
-   doc version: 20.10
+   doc version: 24.0
       https://github.com/docker/docker.github.io/blob/master/get-started/11_what_next.md
-.. check date: 2022/09/20
-.. Commits on Feb 2, 2021 dc7352020eb1e19aa7319c895c01970dd011d0e0
+.. check date: 2023/07/17
+.. Commits on Mar 2, 2023 5f610a9961a77397bc756ed2a70e97f39215a3b8
 .. -----------------------------------------------------------------------------
 
 .. what next
@@ -19,9 +19,9 @@
        :depth: 2
        :local:
 
-.. Although we’re done with our workshop, there’s still a LOT more to learn about containers! We’re not going to go deep-dive here, but here are a few other areas to look at next!
+.. Although we’re done with our get started guide, there’s still a LOT more to learn about containers! We’re not going to go deep-dive here, but here are a few other areas to look at next!
 
-ワークショップが全て完了しましたが、コンテナについてはまだまだ学ぶことが多くあります！ ここでは深掘りをしませんでしたが、ここに次に見るべき場所があります。
+始め方のガイドは全て完了しましたが、コンテナについて学ぶことはまだまだ多くあります！ これまで深掘りをしませんでしたが、ここには次に見るべき場所があります。
 
 .. Container orchestration
 .. _get-started-container-orchestration:
@@ -31,7 +31,7 @@
 
 .. Running containers in production is tough. You don’t want to log into a machine and simply run a docker run or docker-compose up. Why not? Well, what happens if the containers die? How do you scale across several machines? Container orchestration solves this problem. Tools like Kubernetes, Swarm, Nomad, and ECS all help solve this problem, all in slightly different ways.
 
-本番環境でコンテナを実行するのは大変です。マシンへログインしたり、簡単な ``docker run`` や ``docker-compose up`` も実行したくはないでしょう。ちがいますか？ そうですね、もしコンテナが停止してしまったら？ 複数のマシンを横断してスケールするには？ この問題を解決するのが :ruby:`コンテナ オーケストレーション <container orchestration>` です。Kubernetes 、 Swarm 、 Nomad 、 ECS のようなツール、これらすべてが問題解決に役立ちますが、どれもわずかに手法が異なります。
+本番環境でコンテナを実行するのは大変です。マシンへログインしたり、簡単な ``docker run`` や ``docker compose up`` も実行したくはないでしょう。ちがいますか？ そうですね、もしコンテナが停止してしまったら？ 複数のマシンを横断してスケールするには？ この問題を解決するのが :ruby:`コンテナ オーケストレーション <container orchestration>` です。Kubernetes 、 Swarm 、 Nomad 、 ECS のようなツール、これらすべてが問題解決に役立ちますが、どれもわずかに手法が異なります。
 
 .. The general idea is that you have “managers” who receive expected state. This state might be “I want to run two instances of my web app and expose port 80.” The managers then look at all of the machines in the cluster and delegate work to “worker” nodes. The managers watch for changes (such as a container quitting) and then work to make actual state reflect the expected state.
 
@@ -50,6 +50,64 @@ CNCF とは、様々なオープンソース プロジェクトのためのベ�
 .. So, if you’re new to the container landscape and cloud-native application development, welcome! Please connect with the community, ask questions, and keep learning! We’re excited to have you!
 
 ですから、コンテナの :ruby:`全体図 <landscape>` やクラウドネイティブ アプリケーション開発が初めてでも、歓迎します！ コミュニティとつながって、質問をして、学び続けましょう！ あなたがいるとワクワクします！
+
+.. Getting started video workshop
+.. _getting-started-video-workshop:
+
+始め方ワークショップのビデオ
+==============================
+
+.. We recommend the video workshop from DockerCon 2022. Watch the video below or use the links to open the video at a particular section.
+
+Dockercon 2022 のビデオワークショップを推奨します。以下の動画を再生するか、適切な動画セクションへのリンクを開きます。
+
+
+..  Docker overview and installation
+    Pull, run, and explore containers
+    Build a container image
+    Containerize an app
+    Connect a DB and set up a bind mount
+    Deploy a container to the cloud
+
+* `Docker 概要とインストール <https://youtu.be/gAGEar5HQoU>`_ 
+* `pull、run、コンテナを見渡す <https://youtu.be/gAGEar5HQoU?t=1400>`_ 
+* `コンテナイメージ構築 <https://youtu.be/gAGEar5HQoU?t=3185>`_ 
+* `アプリのコンテナ化 <https://youtu.be/gAGEar5HQoU?t=4683>`_ 
+* `DB に接続し、バインド マウントの準備 <https://youtu.be/gAGEar5HQoU?t=6305>`_ 
+* `コンテナをクラウドへデプロイ <https://youtu.be/gAGEar5HQoU?t=8280>`_ 
+
+
+.. raw:: html
+
+   <iframe src="https://www.youtube-nocookie.com/embed/gAGEar5HQoU" style="max-width: 100%; aspect-ratio: 16 / 9;" width="560" height="auto" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+   <br />&nbsp;<br />&nbsp;<br />&nbsp;
+
+
+
+.. Creating a container from scratch
+.. _creating-a-container-from-scratch:
+
+ゼロからコンテナを作成する
+==============================
+
+.. If you’d like to see how containers are built from scratch, Liz Rice from Aqua Security has a fantastic talk in which she creates a container from scratch in Go. While the talk does not go into networking, using images for the filesystem, and other advanced topics, it gives a deep dive into how things are working.
+
+コンテナをゼロから作る方法に興味があれば、Aqua Security の Liz Rice による Go 言語でコンテナをゼロから作成する素敵なトークがあります。トークではネットワーク機能を扱いませんが、ファイルシステムのためにイメージを使い、他の高度なトピックも扱いますので、どのように動作しているかを深掘りするのに役立つでしょう。
+
+
+.. raw:: html
+
+   <iframe src="https://www.youtube-nocookie.com/embed/8fi7uSYlOdc" style="max-width: 100%; aspect-ratio: 16 / 9;" width="560" height="auto" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+   <br />&nbsp;<br />&nbsp;<br />&nbsp;
+
+
+.. Language-specific guides
+言語別ガイド
+====================
+
+.. If you are looking for information on how to containerize an application using your favorite language, see Language-specific getting started guides.
+
+好きな言語を使ってアプリケーションをコンテナ化する情報をさがしている場合は、 :doc:`言語別導入ガイド </language/index>` を御覧ください。
 
 .. seealso::
 
