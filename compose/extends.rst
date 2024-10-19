@@ -488,7 +488,7 @@ Compose はオリジナルのサービスにある設定情報を、ローカル
 
 .. Entries for volumes and devices are merged using the mount path in the container:
 
-``voluems`` と ``devices`` のエントリは、コンテナ内にマウントするパスを使う場合に :ruby:`統合 <merge>` されます。
+``volumes`` と ``devices`` のエントリは、コンテナ内にマウントするパスを使う場合に :ruby:`統合 <merge>` されます。
 
 .. original service:
 

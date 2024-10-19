@@ -2989,7 +2989,7 @@ name
 
 .. The volumes section allows the configuration of named volumes that can be reused across multiple services. Here’s an example of a two-service setup where a database’s data directory is shared with another service as a volume named db-data so that it can be periodically backed up:
 
-``voluems`` セクションは、複数のサービスを横断して再利用できる :ruby:`名前付きボリューム <named volume>` の設定ができます。こちらは2つのサービスをセットアップする例で、データベースのデータディレクトリは ``db-data`` という名前のボリュームとして他のサービスから共有されます。そのため、バックアップ用途にも使えるでしょう。
+``volumes`` セクションは、複数のサービスを横断して再利用できる :ruby:`名前付きボリューム <named volume>` の設定ができます。こちらは2つのサービスをセットアップする例で、データベースのデータディレクトリは ``db-data`` という名前のボリュームとして他のサービスから共有されます。そのため、バックアップ用途にも使えるでしょう。
 
 .. code-block:: yaml
 
