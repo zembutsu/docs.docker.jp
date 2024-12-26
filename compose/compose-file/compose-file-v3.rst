@@ -1298,7 +1298,7 @@ entrypoint は :ref:`Dockerfile <entrypoint>` と同様にリストにもでき�
 
 .. note::
 
-   サービス用のイメージが Dockerfile で ``ENTRYPOINT`` 命令を持っていたとしても、 ``entrypoint`` はすべてのデフォルトの entrypoint 設定を上書きします。さらに、イメージ上のデフォルトのコマンドもクリアします。つまり、 Dockerifle 上のに ``CMD`` 命令は無視されます。
+   サービス用のイメージが Dockerfile で ``ENTRYPOINT`` 命令を持っていたとしても、 ``entrypoint`` はすべてのデフォルトの entrypoint 設定を上書きします。さらに、イメージ上のデフォルトのコマンドもクリアします。つまり、 Dockerfile 上のに ``CMD`` 命令は無視されます。
 
 .. _compose-file-v3-env_file:
 
