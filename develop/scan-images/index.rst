@@ -190,7 +190,7 @@ Dockerfile 内で複数の ``FROM`` 記述が行え、 ``FROM`` ごとに異な�
 
 .. A Docker image is built from a Dockerfile. A Dockerfile contains a set of instructions which allows you to automate the steps you would normally (manually) take to create an image. Additionally, it can include some imported libraries and install custom software. These appear as instructions in the Dockerfile.
 
-Docker イメージは Dockerifle から構築します。Dockerfile の内容には、通常（手動で）イメージを作成する手順を、自動的に行えるようにするための命令が入っています。さらに、いうつかのライブラリの読み込みや、任意のソフトウェアをインストールできます。これらは Dockerfile 内で命令として見えます。
+Docker イメージは Dockerfile から構築します。Dockerfile の内容には、通常（手動で）イメージを作成する手順を、自動的に行えるようにするための命令が入っています。さらに、いうつかのライブラリの読み込みや、任意のソフトウェアをインストールできます。これらは Dockerfile 内で命令として見えます。
 
 .. Building your image is a snapshot of that image, at that moment in time. When you depend on a base image without a tag, you’ll get a different base image every time you rebuild. Also, when you install packages using a package installer, rebuilding can change the image drastically. For example, a Dockerfile containing the following entries can potentially have a different binary with every rebuild.
 

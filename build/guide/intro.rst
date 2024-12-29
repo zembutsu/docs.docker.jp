@@ -76,7 +76,7 @@ Docker で構築
 .. The Dockerfile
 .. _build-the-dockerfile:
 
-Dockerifle
+Dockerfile
 ==========
 
 .. A Dockerfile is a text document in which you define the build steps for your application. You write the Dockerfile in a domain-specific language, called the Dockerfile syntax.

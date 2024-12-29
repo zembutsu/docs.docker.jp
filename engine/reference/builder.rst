@@ -2004,7 +2004,7 @@ WORKDIR
 
 .. The WORKDIR instruction can be used multiple times in a Dockerfile. If a relative path is provided, it will be relative to the path of the previous WORKDIR instruction. For example:
 
-``WORKDIR`` 命令は ``Dockerifle`` 内で何度も利用できます。相対パスを指定すると、その前の ``WORKDIR`` 命令で指定された場所に対する相対パスになります。
+``WORKDIR`` 命令は ``Dockerfile`` 内で何度も利用できます。相対パスを指定すると、その前の ``WORKDIR`` 命令で指定された場所に対する相対パスになります。
 
 ::
 
@@ -2232,7 +2232,7 @@ Docker には、Dockerfile 内で対応する ``ARG`` 命令を使わなくて�
 
 .. For example, consider building the following Dockerfile using --build-arg HTTP_PROXY=http://user:pass@proxy.lon.example.com
 
-たとえば、次の Dockerifle を使い、 ``--build-arg HTTP_PROXY=http://user:pass@proxy.lon.example.com`` で構築する例を考えます。
+たとえば、次の Dockerfile を使い、 ``--build-arg HTTP_PROXY=http://user:pass@proxy.lon.example.com`` で構築する例を考えます。
 
 ::
 
@@ -2358,7 +2358,7 @@ Docker には、Dockerfile 内で対応する ``ARG`` 命令を使わなくて�
 
 .. If an ENV instruction overrides an ARG instruction of the same name, like this Dockerfile:
 
-``ENV`` 命令を、同じ名前の ``ARG`` で上書きする場合は、次のような Dockerifle になります。
+``ENV`` 命令を、同じ名前の ``ARG`` で上書きする場合は、次のような Dockerfile になります。
 
 ::
 
@@ -2685,7 +2685,7 @@ JSON 形式（で使うコマンドの指定）は明確であり、不要な cm
 
 .. _dockerfile-examples:
 
-Dockerifle の例
+Dockerfile の例
 ====================
 
 Dockerfile の例は、以下をご覧ください。
