@@ -192,7 +192,7 @@ Docker Engine はユーザの認証情報を外部の認証情報ストアに保
 
 .. Credential helpers can be any program or script that follows a very simple protocol. This protocol is heavily inspired by Git, but it differs in the information shared.
 
-: ruby:`認証情報ヘルパー <credential helper>` は、どのようなプログラムやスクリプトでも扱える非常にシンプルなプロトコルです。このプロトコルは Git のアイディアに強く影響を受けていますが、情報を共有する仕組みは違います。
+:ruby:`認証情報ヘルパー <credential helper>` は、どのようなプログラムやスクリプトでも扱える非常にシンプルなプロトコルです。このプロトコルは Git のアイディアに強く影響を受けていますが、情報を共有する仕組みは違います。
 
 .. The helpers always use the first argument in the command to identify the action. There are only three possible values for that argument: store, get, and erase.
 
