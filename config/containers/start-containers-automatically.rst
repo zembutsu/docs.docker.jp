@@ -22,7 +22,7 @@
 
 .. Docker provides restart policies to control whether your containers start automatically when they exit, or when Docker restarts. Restart policies ensure that linked containers are started in the correct order. Docker recommends that you use restart policies, and avoid using process managers to start containers.
 
-Docker は :ref:`再起動ポリシー（restart policy） <restart-policies-restart>` の指定により、たとえ終了したり Docker が再起動しても、自動的にコンテナを起動するように制御します。再起動ポリシーにより、つながっているコンテナが正しい順番で起動できるようにします。Docker が推奨するのは、再起動ポリシーを利用することであり、プロセス・マネージャによるコンテナの起動時は避けるべきです。
+Docker は :ref:`再起動ポリシー（restart policy） <restart-policies-restart>` の指定により、たとえ終了したり Docker が再起動しても、自動的にコンテナを起動するように制御します。再起動ポリシーにより、つながっているコンテナが正しい順番で起動できるようにします。Docker が推奨するのは、再起動ポリシーを利用することであり、プロセス・マネージャによるコンテナの起動は避けるべきです。
 
 .. Restart policies are different from the --live-restore flag of the dockerd command. Using --live-restore allows you to keep your containers running during a Docker upgrade, though networking and user input are interrupted.
 
