@@ -49,13 +49,14 @@ source_suffix = '.rst'
 
 # The encoding of source files.
 #source_encoding = 'utf-8-sig'
+#source_encoding = 'utf-8'
 
 # The master toctree document.
 master_doc = 'index'
 
 # General information about the project.
 project = u'Docker-docs-ja'
-copyright = u'2015-2023, Docker Docs Translation Ja-Jp Project'
+copyright = u'2015-2025, Docker Docs Translation Ja-Jp Project'
 author = u'Docker Docs Translation Ja-Jp Project'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -124,7 +125,7 @@ html_theme = 'sphinx_rtd_theme'
 # documentation.
 html_theme_options = {
     'logo_only': False,
-    'display_version': True,
+    # 'display_version': True,
     'prev_next_buttons_location': 'bottom',
     'style_external_links': True,
     'collapse_navigation': True,
