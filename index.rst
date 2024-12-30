@@ -32,7 +32,7 @@ Docker ドキュメント日本語化プロジェクト
 
   * Docker `v27.0.x (current)`  向けにドキュメントの改訂作業中です(2024年12月現在)。一部古い場合がありますので、ご注意ください。
   * Docker のドキュメントは常に変わり続けています。最新の情報については `公式ドキュメント <https://docs.docker.com/>`_ をご覧ください。
-  * 本プロジェクトは有志による翻訳プロジェクトです。お気づきの点がございましたら、 `issue <https://github.com/zembutsu/docs.docker.jp/issues>`_ や `Pull Request <https://github.com/zembutsu/docs.docker.jp/pulls>`_ 、 `Docker 道場（日本語の Docker オンラインフォーラム） <https://dojo.docker.jp/>`_ でお知らせ願います。
+  * 本プロジェクトは有志による翻訳プロジェクトです。お気づきの点がございましたら、 `issue <https://github.com/zembutsu/docs.docker.jp/issues>`_ や `Pull Request <https://github.com/zembutsu/docs.docker.jp/pulls>`_ 、  でお知らせ願います。
 
 .. Docker Documentation
 
@@ -44,7 +44,7 @@ Docker ドキュメント
 * :doc:`始めましょう </get-started/index>`
    * Docker の基礎とアプリケーションをコンテナ化する利点を学びます。
 
-* :doc:`ダウンロードとインストール <get-docker>`
+* :doc:`ダウンロードとインストール </get-started/get-docker>`
    * Docker をダウンロードし、マシン上に 簡単な数ステップでインストールします。
 
 * :doc:`ガイド </develop/index>`
@@ -61,22 +61,24 @@ Docker ドキュメント
 
 ---
 
-Doc v24.0 目次
+Doc v27.0 目次
 ====================
+
+.. toctree::
+   :caption: はじめよう
+   :maxdepth: 1
+
+   get-started/index
+
 
 .. toctree::
    :caption: Guides - ガイド
    :maxdepth: 1
 
-   Docker 概要 <get-started/overview.rst>
-   get-docker.rst
-   get-started/toc.rst
-   get-started/hands-on-overview.rst
    language/toc.rst
    develop/toc.rst
    build/guide/toc.rst
    production.rst
-   get-started/resources.rst
    opensource/toc.rst
    docsarchive.rst
 
