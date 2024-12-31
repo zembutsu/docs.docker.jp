@@ -35,9 +35,17 @@ import sphinx_fontawesome
 extensions = [
     'sphinx.ext.doctest',
     'sphinxcontrib.textstyle',
-    'sphinx_fontawesome',
+#    'sphinx_fontawesome',
 #    'sphinx.ext.autosectionlabel',
+    'sphinx_design',
+    'sphinxcontrib.images'
 ]
+
+# 設定オプション https://sphinxcontrib-images.readthedocs.io/en/latest/
+images_config = {
+    'override_image_directive': True,
+    'download': False,
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -142,7 +150,7 @@ html_context = {
     "display_github": True,
     "github_user": "zembutsu",
     "github_repo": "docs.docker.jp",
-    "github_version": "v27.0",
+    "github_version": "v27",
     "conf_py_path": "/",
 }
 

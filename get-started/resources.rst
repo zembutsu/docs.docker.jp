@@ -43,7 +43,7 @@ Docker と幅広い Docker コミュニティの専門家らは、Docker の更�
 
 .. * Labs are free but require registration with a Docker ID
 
-* :ruby:`ラボ <Labs>` は無料ですが、Docker ID の登録が必要です。
+※ :ruby:`ラボ <Labs>` は無料ですが、Docker ID の登録が必要です。
 
 .. Self-Guided Tutorials
 
@@ -72,7 +72,8 @@ Docker コミュニティの専門家によって作成されました。これ�
    * `Java Development: IntelliJ <https://training.play-with-docker.com/java-debugging-intellij/>`_
    * `Java Development: Netbeans <https://training.play-with-docker.com/java-debugging-netbeans/>`_
    * `Live Debugging Node.js with Docker and Visual Studio Code <https://training.play-with-docker.com/nodejs-live-debugging/>`_
-   
+
+
 * **Windows コンテナ**
 
    * `Windows Container Setup <https://training.play-with-docker.com/windows-containers-setup/>`_
@@ -88,7 +89,7 @@ Docker コミュニティの専門家によって作成されました。これ�
 
 .. If books are your preferred learning style, check out these written by the Docker Captains. Docker Captain is a distinction that Docker awards to select members of the community that are both experts in their field and are committed to sharing their Docker knowledge with others.
 
-読書が好ましい学習スタイルであれば、 `Docker キャプテン <https://www.docker.com/community/captains>`_  によって書かれたこれら書籍をお読みください。Docker キャプテンとは、各分野における専門家であり、かつ Docker の知識を他社と共有するのに熱心なコミュニティーメンバーに贈らる Docker のアワードです。
+読書が好ましい学習スタイルであれば、 `Docker キャプテン <https://www.docker.com/community/captains>`_  によって書かれたこれら書籍をお読みください。Docker キャプテンとは、各分野における専門家であり、かつ Docker の知識を他社と共有するのに熱心なコミュニティメンバーに贈られる Docker のアワードです。
 
 ..    Learn Docker in a Month of Lunches (use the code webdoc40 for 40% off), Elton Stoneman
     Docker on Windows: From 101 to Production with Docker on Windows, Elton Stoneman
@@ -103,9 +104,9 @@ Docker コミュニティの専門家によって作成されました。これ�
 * `Docker in Action 2nd Edition <https://www.manning.com/books/docker-in-action-second-edition>`_  Jeff Nickoloff 著、2019年10月
 * `The Kubernetes Book <https://www.amazon.com/Kubernetes-Book-Nigel-Poulton/dp/1521823634/ref=sr_1_3?ie=UTF8&qid=1509660871&sr=8-3&keywords=nigel+poulton>`_ 　、 Nigel Poulton著、2018年11月
 * `Docker Deep Dive <https://www.amazon.com/Docker-Deep-Dive-Nigel-Poulton/dp/1521822808/ref=sr_1_1?ie=UTF8&qid=1509660871&sr=8-1&keywords=nigel+poulton>`_ 、 Nigel Poulton著、2018年3月
-* `[ポルトガル語] `Docker para desenvolvedores <https://leanpub.com/dockerparadesenvolvedores>`_ (2017) 、Rafael Gomes著
-* `[スペイン語]` `Érase una vez Docker <https://leanpub.com/erase-una-vez-docker>`_ Manuel Morejón著、2023年3月
-* `[スペイン語]` `Érase una vez Kubernetes <https://leanpub.com/erase-una-vez-kubernete>`_ Manuel Morejón著、2022年1月
+* [ポルトガル語] `Docker para desenvolvedores <https://leanpub.com/dockerparadesenvolvedores>`_ (2017) 、Rafael Gomes著
+* [スペイン語] `Érase una vez Docker <https://leanpub.com/erase-una-vez-docker>`_ Manuel Morejón著、2023年3月
+* [スペイン語] `Érase una vez Kubernetes <https://leanpub.com/erase-una-vez-kubernete>`_ Manuel Morejón著、2022年1月
 
 .. CLI cheat sheet
 .. _cli-cheat-sheet:
@@ -136,7 +137,7 @@ CLI チートシート
     [French] Luc Juggery: Introduction to Kubernetes, The Docker Platform
 
 * `Bret Fisher <https://www.bretfisher.com/courses/>`_ : Docker Mastery, Docker Swarm Mastery, Docker Mastery for Node.js Projects
-* `Elton Stoneman <https://docker4.net/udemy>`_ : Docker for .NET Apps - on Linux and Windows. 割り引きコード `644ABCBC33F474541885`
+* `Elton Stoneman <https://docker4.net/udemy>`_ : Docker for .NET Apps - on Linux and Windows. 割引コード ``644ABCBC33F474541885``
 * `Nick Janetakis <https://nickjanetakis.com/courses/>`_ Dive into Docker, Docker for DevOps
 * `Nigel Poulton <https://nigelpoulton.com/video-courses>`_ : Kubernetes 101, Getting Started with Kubernetes, Docker and Kubernetes: The Big Picture, Kubernetes Deep Dive, Docker Deep Dive
 * `Arun Gupta <https://www.lynda.com/Docker-tutorials/Docker-Java-developers/576584-2.html>`_ : Docker for Java Developers
@@ -145,7 +146,7 @@ CLI チートシート
 
 .. * Many of the courses are fee-based
 
-* ほとんどのコースは有料です。
+※ ほとんどのコースは有料です。
 
 .. Community-translated docs
 .. _community-translated-docs:

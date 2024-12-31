@@ -19,13 +19,11 @@
 
    get-docker
    docker-overview
-   introducion/index
+   introduction/index
    docker-concepts/index
    workshop/index
    resources
 
-
-.. only:: tml
 
 .. _get-started-docker:
 

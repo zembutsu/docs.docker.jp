@@ -2,7 +2,7 @@
    max-width: 850px
 }
 
-/* see also のアイコンを変更 */
+/* see also 縺ｮ繧｢繧､繧ｳ繝ｳ繧貞､画峩 */
 div.seealso > .admonition-title:before {
     content: "\f02d";
     font-family: "FontAwesome";
