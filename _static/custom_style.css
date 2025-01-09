@@ -2,10 +2,416 @@
    max-width: 850px
 }
 
-/* see also �̃A�C�R����ύX */
+/* see also のアイコンを変更 */
 div.seealso > .admonition-title:before {
-    content: "\f02d";
+    content: "\f0c1";
     font-family: "FontAwesome";
     font-weight: 900;
     margin-right: 0.5em;
+}
+
+div.hint > .admonition-title:before {
+    content: "\f0eb";
+    font-family: "FontAwesome";
+    font-weight: 900;
+    margin-right: 0.5em;
+}
+
+div.note > .admonition-title:before {
+    content: "\f05a";
+    font-family: "FontAwesome";
+    font-weight: 900;
+    margin-right: 0.5em;
+}
+
+/* version 表示の調整 */
+.version {
+    color: rgba(255,255,255,0.3);
+    padding: 0px 5px;
+    margin-top: -0.5em;
+    margin-bottom:0.5em;
+}
+
+/* sidebar の余白抑制 */
+.sidebar nav.contents.local ul.simple {
+    margin-bottom: 0;
+}
+
+/* note の書式 */
+.rst-content .note {
+    background: #f8f9fa;
+    border: 1px solid #0066cc;
+}
+
+.rst-content .note .admonition-title {
+    background: #0066cc;
+    color: #ffffff;
+}
+.rst-content .note p:not(.admonition-title) {
+    color: #333333;
+}
+
+.rst-content .note {
+    border-radius: 4px;
+}
+
+.rst-content .note .admonition-title {
+    border-radius: 4px 4px 0 0;
+}
+
+/* ヒントも同様に書式変更 */
+.rst-content .hint {
+    border-radius: 4px;
+}
+
+.rst-content .hint .admonition-title {
+    border-radius: 4px 4px 0 0;
+}
+
+/* attention も同様に書式変更 */
+.rst-content .attenton {
+    border-radius: 4px;
+}
+
+.rst-content .attention .admonition-title {
+    border-radius: 4px 4px 0 0;
+}
+
+/* seealso も同様に変更 */
+.rst-content .seealso {
+    border-radius: 4px;
+}
+
+.rst-content .seealso .admonition-title {
+    border-radius: 4px 4px 0 0;
+}
+
+/* リンク用ボタン */
+.docker-button-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.docker-button {
+    display: flex;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    text-decoration: none;
+    color: inherit;
+    width: 300px;
+    transition: box-shadow 0.3s ease;
+}
+
+.docker-button:hover {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    text-decoration: none;
+    color: inherit;
+}
+
+.docker-button .icon {
+    font-size: 24px;
+    margin-right: 15px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.docker-button .content h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    color: #000;
+}
+
+.docker-button .content p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+/* リンク用ボタン（大きい箱） */
+.docker-button-full {
+    display: flex;
+    padding: 20px;
+    margin: 1rem 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    transition: box-shadow 0.3s ease;
+}
+
+.docker-button-full:hover {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    text-decoration: none;
+    color: inherit;
+}
+
+.docker-button-full .icon {
+    margin-right: 15px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.docker-button-full .content h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    color: #000;
+}
+
+.docker-button-full .content p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.4;
+}
+
+
+
+/* セクションと関係無い見出しの表示を調整 */
+.rubric {
+    font-size: 150% !important;
+}
+
+/* インラインコードブロック用のスタイル */
+code.docutils.literal {
+    background-color: #e1e2e6;
+    border: 1px solid #c4c8d1;
+    border-radius: 3px;
+    color: #24292e;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 105%;
+    padding: 0.2em 0.4em;
+    margin: 0 0.2em;
+    white-space: nowrap;
+}
+
+code.docutils.literal:hover {
+    background-color: #f0f3f6;
+}
+
+/* pre 用のスタイル */
+.rst-content div[class^='highlight'] pre,
+.rst-content pre.literal-block {
+     background-color: #fefefe;
+    border: 1px solid #c4c8d1;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+     font-size: 105% !important;
+}
+
+/* 引用スタイル */
+.blockquote {
+    border-left: 4px solid #888; 
+    margin: 1.5em 0;
+    padding: 0.5em 0 0 1.5em;
+}
+
+.blockquote p {
+    color: #666;
+    margin-bottom: 1em;
+}
+
+.blockquote b {
+    color: #666;
+    font-weight: bold;
+    margin-bottom: 1em;
+    display: block;
+}
+
+/* 本文中　行間の調整 */
+.rst-content p {
+    line-height: 1.8em;
+    color: #000;
+}
+
+/* 本文中　リスト間の調整 */
+.rst-content ul > li {
+    margin-bottom: 0.6em;
+}
+.rst-content ul > li > ul > li {
+    margin-bottom: 0.3em;
+}
+.rst-content ul > li:last-child {
+    margin-bottom: 0;
+}
+
+/* スキルレベル */
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    background-color: #e1e2e6; 
+    padding: 1.5rem 2rem;
+    margin: 1.5rem 0;
+    border-radius: 4px;
+}
+
+.skill-item {
+    text-align: center;
+    flex: 1;
+}
+
+.skill-item h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: #000;
+}
+
+.skill-item p {
+    font-size: 1rem;
+    margin: 0;
+    color: #333;
+}
+
+/* イントロスペクション用のスタイル */
+.start-button {
+    display: inline-block;
+    padding: 8px 24px;
+    background-color: #0066ff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.start-button:hover {
+    background-color: #1c90ed;
+    color: white;
+    text-decoration: none;
+}
+
+.start-button:visited {
+    color: white;
+}
+
+.tutorial-section {
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    padding: 2rem;
+    margin: 1.5rem 0;
+}
+
+.tutorial-section h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: #000;
+}
+
+.tutorial-section p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    color: #24292e;
+}
+
+/* iframe YouTube 動画埋め込み */
+iframe {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #909090;
+}
+
+/* 外部リンクのアイコンサイズ調整 */
+.rst-content.style-external-links a.external::after {
+    font-size: 14px !important;
+    /* color: #3091d1 !important; */
+    margin: 0 0 0 4px !important;
+    position: relative;
+    top: 3px;
+}
+
+/* Sphinx コードブロックのベーススタイル */
+pre {
+    position: relative;
+    background-color: #f8f9fc;
+    padding: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+}
+
+/* 行番号のスタイル */
+.linenos {
+    user-select: none;
+    color: #6b7280;
+    padding-right: 1rem;
+    border-right: 1px solid #e5e7eb;
+    text-align: right;
+}
+
+/* 通常行のスタイル */
+.hll {
+    position: relative;
+    background-color: #f1f5f9;
+}
+
+/* ハイライト行の左側の縦線 */
+.hll::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: #8bc7f5;
+}
+
+/* 強調行の背景色を変更 */
+.highlight .hll {
+    background-color: #e5f2fc;
+}
+
+/* Sphinx-design のボタン色調整 */
+.sd-sphinx-override.sd-btn.sd-btn-primary {
+    background-color: #0066ff  !important;
+    border-color: #0066ff  !important;
+}
+
+.sd-sphinx-override.sd-btn.sd-btn-primary:hover {
+    background-color: #1c90ed  !important;
+    border-color: #1c90ed  !important;
+}
+
+/* プロンプトの色 */
+.highlight .gp {
+    color: #3ba08d; 
+}
+
+/* ルビの調整 */
+rt {
+    font-size: 0.9em;
+}
+
+/* 見出しのアンダーライン表示 */
+h2:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;  /* 下線の太さ */
+    text-underline-offset: 6px;     /* 下線と文字の間隔 */
+}
+
+h3:hover, h4:hover, h5:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;  /* 下線の太さ */
+    text-underline-offset: 4px;     /* 下線と文字の間隔 */
+}
+
+/* 見出しのルビを調整 */
+h2 rt {
+    font-size: 0.5em;  /* h2内のルビを特に小さく */
+}
+
+/* メニュー内のリンクを見やすく */
+.wy-menu-vertical li a:hover {
+    color: #2980b9;
+    /* transition: color 0.1s; */ /* 色の変化をスムーズに */
+}
+
+/* code-block 内で <語句> の時にスタイルと変更する */ 
+.highlight .param {
+    font-style: italic;
+    color: #7d2eff;
 }

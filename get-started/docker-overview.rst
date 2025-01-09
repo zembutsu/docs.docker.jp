@@ -1,17 +1,16 @@
 .. -*- coding: utf-8 -*-
-.. URL: https://docs.docker.com/get-started/overview/
-   doc version: 24.0
-.. SOURCE: https://github.com/docker/docker.github.io/blob/master/get-started/overview.md
-.. check date: 2023/07/15
-.. Commits on Mar 2, 2023 75a2468ce346d75a5ca380809e00219197d317f8
+.. URL: https://docs.docker.com/get-started/docker-overview/
+   doc version: 27.0
+.. SOURCE: https://github.com/docker/docs/blob/main/content/get-started/docker-overview.md
+.. check date: 2024/12/30
+.. Commits on Sep 10, 2024 6e4790e2912429d3e06e461d60732a7a5dba3c2a
 .. -----------------------------------------------------------------------------
 
 .. Docker Overview
-
 .. _docker-overview:
 
 =======================================
-Docker 概要
+Docker とは何か？
 =======================================
 
 .. sidebar:: 目次
@@ -19,9 +18,10 @@ Docker 概要
    .. contents:: 
        :depth: 3
        :local:
-.. Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications. By taking advantage of Docker’s methodologies for shipping, testing, and deploying code quickly, you can significantly reduce the delay between writing code and running it in production.
 
-Docker はアプリケーションを開発（developing）、移動（shipping）、実行（running）するためのオープンなプラットフォームです。Docker はインフラストラクチャ [#infractructure]_ とアプリケーションを切り離すため、ソフトウェアを短時間で提供できます。Docker があれば、アプリケーションを管理するのと同じ方法で、あなたのインフラも管理できます。Docker 的な手法を最大限活用しますと、テストやコードのデプロイを素早くできますので、コードを書いてから、プロダクション（実行環境）で動かすまでにかかる時間を著しく軽減できます。
+.. Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications. By taking advantage of Docker's methodologies for shipping, testing, and deploying code, you can significantly reduce the delay between writing code and running it in production.
+
+Docker はアプリケーションを開発（developing）、移動（shipping）、実行（running）するためのオープンなプラットフォームです。Docker はインフラストラクチャ [#infractructure]_ とアプリケーションを切り離すため、ソフトウェアを短時間で提供できます。Docker があれば、アプリケーションを管理するのと同じ方法で、インフラも管理できます。テストやコードをデプロイに Docker 的な手法を活用すると、コードの記述からプロダクション（実行環境）で動かすまでにかかる時間を大幅に短縮できます。
 
 .. [#infractructure] 訳者注：インフラ（infrastructure）とは、サーバやネットワークなど計算資源の基盤となるもの。
 
@@ -31,15 +31,15 @@ Docker はアプリケーションを開発（developing）、移動（shipping�
 Docker プラットフォーム
 ==============================
 
-.. Docker provides the ability to package and run an application in a loosely isolated environment called a container. The isolation and security allows you to run many containers simultaneously on a given host. Containers are lightweight and contain everything needed to run the application, so you do not need to rely on what is currently installed on the host. You can easily share containers while you work, and be sure that everyone you share with gets the same container that works in the same way.
+.. Docker provides the ability to package and run an application in a loosely isolated environment called a container. The isolation and security lets you run many containers simultaneously on a given host. Containers are lightweight and contain everything needed to run the application, so you don't need to rely on what's installed on the host. You can share containers while you work, and be sure that everyone you share with gets the same container that works in the same way.
 
-Docker は、コンテナ（container）という緩やかに隔離された環境 [#isolated]_ （isolated environment）で、アプリケーションのパッケージ化と実行をする機能を提供します。この分離と安全性により、実行するホスト上で多くのコンテナを同時に実行できます。コンテナは軽量であり、アプリケーションの実行に必要な全てが入っているため、ホスト上で今何をインストールしていようが関係ありません。作業中でも手軽にコンテナを共有できますので、あなたが共有したコンテナを得た全ての人が、同じコンテナを、同じ方法で、確実に動作できるようにします。
+Docker は、コンテナ（container）という緩やかに隔離された環境 [#isolated]_ （isolated environment）で、アプリケーションのパッケージ化と実行をする機能を提供します。この分離と安全性により、実行するホスト上で多くのコンテナを同時に実行できるようにします。コンテナは軽量であり、アプリケーションの実行に必要な全てが入っているため、ホスト上で何をインストールしていようが関係ありません。作業中でも手軽にコンテナを共有できますので、あなたが共有したコンテナを使う全ての人が、同じコンテナを、同じ方法で、確実に動作できるようにします。
 
 .. [#isolated] 隔離された環境とは "isolated environment" の訳。隔離されて離された環境というよりも、部屋の中を仕切るようなイメージが近いです。
 
 .. Docker provides tooling and a platform to manage the lifecycle of your containers:
 
-Docker が提供するのは、コンテナのライフサイクル（全過程）を管理するツールと、プラットフォームです。
+Docker は、コンテナのライフサイクル（全過程）を管理するツールとプラットフォームを提供します。
 
 .. 
     Develop your application and its supporting components using containers.
@@ -56,7 +56,7 @@ Docker が提供するのは、コンテナのライフサイクル（全過程�
 .. What can I use Docker for?
 .. _what-can-i-use-docker-for:
 
- Docker の用途は何ですか？
+Docker は何に使えますか？
 ========================================
 
 .. Fast, consistent delivery of your applications
@@ -71,7 +71,7 @@ Docker は開発のライフサイクルを効率化します。開発するア�
 
 .. Consider the following example scenario:
 
-以下のようなシナリオ例を検討しましょう。
+次のような利用場面を考えましょう。
 
 ..  Your developers write code locally and share their work with their colleagues using Docker containers.
     They use Docker to push their applications into a test environment and execute automated and manual tests.
@@ -80,8 +80,8 @@ Docker は開発のライフサイクルを効率化します。開発するア�
 
 * 開発者がローカルでコードを書き、仲間とその作業を共有するために Docker コンテナを使います。
 * Docker によりアプリケーションをテスト環境に投入し、自動および手動のテストを実行します。
-* 開発者がバグを発見したら、開発環境においてこれを修正して、アプリケーションをテスト環境に再デプロイし、テスト確認を行ないます。
-* テストが完了します。この後にユーザが修正版を利用できるようにすることは、更新済イメージを本番環境へ投入することと同じく容易なことです。
+* 開発者がバグを発見したら、開発環境においてこれを修正して、アプリケーションをテスト環境に再デプロイし、テスト確認を行います。
+* テストが完了します。この後にユーザが修正版を利用できるようにするのと、更新済イメージを本番環境へ投入するのは同じく容易です。
 
 .. Responsive deployment and scaling
 .. _responsive-deployment-and-scaling:
@@ -95,7 +95,7 @@ Docker によるコンテナベースのプラットフォームは、処理負�
 
 .. Docker’s portability and lightweight nature also make it easy to dynamically manage workloads, scaling up or tearing down applications and services as business needs dictate, in near real time.
 
-Docker の可搬性と軽量な特性は、以下のようなことを容易に実現します。それは処理負荷を動的に管理できること、ビジネスシーンでの要求に応じてアプリケーションのスケールアップや提供終了を簡単に、しかもほぼリアルタイムで行うことができます。
+Docker の可搬性（ポータビリティ）と軽量な特性は、次の項目を容易に実現します。それは処理負荷を動的に管理できるため、ビジネスシーンでの要求に応じてアプリケーションのスケールアップや提供終了を簡単に、しかもほぼリアルタイムで行えます。
 
 .. Running more workloads on the same hardware
 .. _running-more-workloads-on-the-same-hardware:
@@ -115,7 +115,7 @@ Docker のアーキテクチャ
 
 .. Docker uses a client-server architecture. The Docker client talks to the Docker daemon, which does the heavy lifting of building, running, and distributing your Docker containers. The Docker client and daemon can run on the same system, or you can connect a Docker client to a remote Docker daemon. The Docker client and daemon communicate using a REST API, over UNIX sockets or a network interface. Another Docker client is Docker Compose, that lets you work with applications consisting of a set of containers.
 
-Docker はクライアント・サーバ型のアーキテクチャを採用しています。Docker *クライアント* は Docker デーモンに処理を依頼します。このデーモンは、Docker コンテナの構築、実行、配布という複雑な仕事をこなします。Docker クライアントとデーモンは同一システム上で動かすことも *可能* ですが、別のシステム上であっても、Docker クライアントからリモートにある Docker デーモンへのアクセスが可能です。Docker クライアントとデーモンの間の通信には REST API が利用され、UNIX ソケットまたはネット・ワークインターフェイスを介して行われます。他にも Docker クライアントには Docker Compose があり、コンテナ一式で構成されるアプリケーションを操作します。
+Docker はクライアント・サーバ型のアーキテクチャを採用しています。Docker *クライアント* は Docker デーモンに処理を依頼します。このデーモンは、Docker コンテナの構築、実行、配布という複雑な仕事をこなします。Docker クライアントとデーモンは同一システム上で動かすのも *可能* ですが、別のシステム上であっても、Docker クライアントからリモートにある Docker デーモンへのアクセスが可能です。Docker クライアントとデーモンの間の通信には REST API が利用され、UNIX ソケットまたはネット・ワークインターフェースを介して行われます。他にも Docker クライアントには Docker Compose があり、コンテナ一式で構成されるアプリケーションを操作します。
 
 .. image:: /assets/images/architecture.png
    :alt: Docker アーキテクチャ図
@@ -136,7 +136,7 @@ Docker クライアント
 
 .. The Docker client (docker) is the primary way that many Docker users interact with Docker. When you use commands such as docker run, the client sends these commands to dockerd, which carries them out. The docker command uses the Docker API. The Docker client can communicate with more than one daemon.
 
-Docker クライアント（ ``docker`` ）は Docker とのやりとりを行うために、たいていのユーザが利用するものです。``docker run`` のようなコマンドが実行されると、Docker クライアントは ``dockerd`` にそのコマンドを伝えます。そして ``dockerd`` はその内容を実現します。``docker`` コマンドは Docker API を利用しています。Docker クライアントは複数のデーモンと通信することができます。
+Docker クライアント（ ``docker`` ）は Docker とのやりとりを行うために、たいていのユーザが利用するものです。``docker run`` のようなコマンドが実行されると、Docker クライアントは ``dockerd`` にそのコマンドを伝えます。そして ``dockerd`` はその内容を実現します。``docker`` コマンドは Docker API を利用しています。Docker クライアントは複数のデーモンと通信できます。
 
 .. _overview-docker-desktop:
 
@@ -153,13 +153,13 @@ Docker デスクトップは Mac や Windows や Linux 環境へ簡単にイン�
 Docker レジストリ
 --------------------
 
-.. A Docker registry stores Docker images. Docker Hub is a public registry that anyone can use, and Docker is configured to look for images on Docker Hub by default. You can even run your own private registry.
+.. A Docker registry stores Docker images. Docker Hub is a public registry that anyone can use, and Docker looks for images on Docker Hub by default. You can even run your own private registry.
 
-Docker レジストリは Docker イメージを保管します。Docker Hub は公開レジストリであり、誰でも利用可能です。また  Docker はデフォルトで Docker Hub のイメージを探すよう設定されています。独自にプライベート・レジストリを運用することもできます。
+Docker レジストリは Docker イメージを保管します。Docker Hub は公開レジストリであり、誰でも利用できます。また  Docker はデフォルトで Docker Hub のイメージを探す設定です。独自にプライベート・レジストリを運用できます。
 
-.. When you use the docker pull or docker run commands, the required images are pulled from your configured registry. When you use the docker push command, your image is pushed to your configured registry.
+.. When you use the docker pull or docker run commands, Docker pulls the required images from your configured registry. When you use the docker push command, Docker pushes your image to your configured registry.
 
-``docker pull`` や ``docker run`` コマンドを使うと、設定されたレジストリから必要なイメージを取得します。 ``docker push`` コマンドを使えば、イメージを指定したレジストリに送信します。
+``docker pull`` や ``docker run`` コマンドを使うと、必要とするイメージを設定されたレジストリから取得します。 ``docker push`` コマンドを使えば、イメージを指定したレジストリに送信します。
 
 .. Docker objects
 .. _overview-docker-objects:
@@ -178,22 +178,22 @@ Docker の利用時は、イメージ、コンテナ、ネットワーク、ボ�
 
 .. An image is a read-only template with instructions for creating a Docker container. Often, an image is based on another image, with some additional customization. For example, you may build an image which is based on the ubuntu image, but installs the Apache web server and your application, as well as the configuration details needed to make your application run.
 
-イメージ（ ``image`` ）とは、Docker コンテナを作成する命令が入った読み込み専用のテンプレートです。通常イメージは、他のイメージをベースにしてそれをカスタマイズして利用します。たとえば ``ubuntu`` イメージをベースとするイメージを作ったとします。そこには Apache ウェブ・サーバや自開発したアプリケーションといったものをインストールするかもしれません。さらにアプリケーション実行に必要となる詳細な設定も加えることにもなるでしょう。
+イメージ（ ``image`` ）とは、Docker コンテナを作成する命令が入った読み込み専用のテンプレートです。通常イメージは、他のイメージをベースにしてそれをカスタマイズして利用します。たとえば ``ubuntu`` イメージをベースとするイメージを作ったとします。そこには Apache ウェブ・サーバや自開発したアプリケーションといったものをインストールするかもしれません。さらにアプリケーション実行に必要となる詳細な設定も加えるでしょう。
 
 .. You might create your own images or you might only use those created by others and published in a registry. To build your own image, you create a Dockerfile with a simple syntax for defining the steps needed to create the image and run it. Each instruction in a Dockerfile creates a layer in the image. When you change the Dockerfile and rebuild the image, only those layers which have changed are rebuilt. This is part of what makes images so lightweight, small, and fast, when compared to other virtualization technologies.
 
-イメージは作ろうと思えば作ることができ、他の方が作ってレジストリに公開されているイメージを使うということもできます。イメージを自分で作る場合は Dockerfile というファイルを生成します。このファイルの文法は単純なものであり、そこにはイメージを生成して実行するまでの手順が定義されます。Dockerfile 内の個々の命令ごとに、イメージ内にはレイヤというものが生成されます。Dockerfile の内容を書き換えたことでイメージが再構築されるときには、変更がかかったレイヤのみが再生成されます。他の仮想化技術に比べて Dockerイメージというものが軽量、小さい、早いを実現できているのも、そういった部分があるからです。
+イメージは作ろうと思えば作れ、他の方が作ってレジストリに公開されているイメージも使えます。イメージを自分で作る場合は Dockerfile というファイルを生成します。このファイルの文法は単純なものであり、そこにはイメージを生成して実行するまでの手順が定義されます。Dockerfile 内の個々の命令ごとに、イメージ内にはレイヤというものが生成されます。Dockerfile の内容を書き換えると、イメージが再構築されるときには、変更がかかったレイヤのみが再生成されます。他の仮想化技術に比べて Dockerイメージというものが軽量、小さい、早いを実現できているのも、そういった部分があるからです。
 
 コンテナ
 ^^^^^^^^^^
 
 .. A container is a runnable instance of an image. You can create, start, stop, move, or delete a container using the Docker API or CLI. You can connect a container to one or more networks, attach storage to it, or even create a new image based on its current state.
 
-コンテナとは、イメージが実行状態となったインスタンスのことです。コンテナに対する生成、開始、停止、移動、削除は Docker API や CLI を使って行われます。コンテナは、複数のネットワークへの接続、ストレージの追加を行うことができ、さらには現時点の状態にもとづいた新たなイメージを生成することもできます。
+コンテナとは、イメージが実行状態となった実体（インスタンス）です。コンテナに対する生成、開始、停止、移動、削除は Docker API や CLI を使って行われます。コンテナは、複数のネットワークへの接続、ストレージの追加を行え、さらには現時点の状態にもとづいた新たなイメージの生成もできます。
 
 .. By default, a container is relatively well isolated from other containers and its host machine. You can control how isolated a container’s network, storage, or other underlying subsystems are from other containers or from the host machine.
 
-デフォルトでは、コンテナは他のコンテナやホストマシンとは、程よく分離されています。コンテナに属するネットワーク、ストレージ、基盤となるサブシステムなどを、いかにして他のコンテナやホストマシンから切り離すか、その程度は制御することが可能です。
+デフォルトでは、コンテナは他のコンテナやホストマシンとは、程よく分離されています。コンテナに属するネットワーク、ストレージ、基盤となるサブシステムなどを、いかにして他のコンテナやホストマシンから切り離すか、その程度は制御できます。
 
 .. A container is defined by its image as well as any configuration options you provide to it when you create or start it. When a container is removed, any changes to its state that are not stored in persistent storage disappear.
 
@@ -209,7 +209,7 @@ Docker の利用時は、イメージ、コンテナ、ネットワーク、ボ�
 
 次のコマンドは ``ubuntu`` コンテナを実行し、ローカルのコマンドライン処理のセッションを結びつけます。そして ``/bin/bash`` を実行します。
 
-.. code-block:: bash
+.. code-block:: console
 
     $ docker run -i -t ubuntu /bin/bash
 
@@ -231,7 +231,6 @@ Docker の利用時は、イメージ、コンテナ、ネットワーク、ボ�
 
 ..    Docker creates a network interface to connect the container to the default network, since you did not specify any networking options. This includes assigning an IP address to the container. By default, containers can connect to external networks using the host machine’s network connection.
 
-
 4. Docker はネットワーク・インターフェースを生成し、コンテナをデフォルト・ネットワークに接続します。これは、ネットワークのオプションを一切指定していないからです。この処理には、コンテナに対する IP アドレスの割り当ても含みます。デフォルトでは、コンテナが外部ネットワークに接続するには、ホストマシンのネットワーク接続を利用します。
 
 ..    Docker starts the container and executes /bin/bash. Because the container is running interactively and attached to your terminal (due to the -i and -t flags), you can provide input using your keyboard while the output is logged to your terminal.
@@ -245,8 +244,8 @@ Docker の利用時は、イメージ、コンテナ、ネットワーク、ボ�
 
 .. The underlying technology
 
-基礎技術
-==============
+基礎となる技術
+====================
 
 .. Docker is written in the Go programming language and takes advantage of several features of the Linux kernel to deliver its functionality. Docker uses a technology called namespaces to provide the isolated workspace called the container. When you run a container, Docker creates a set of namespaces for that container.
 
@@ -263,15 +262,16 @@ Docker は `Go プログラミング言語 <https://golang.org/>`_ で書かれ�
 ====================
 
 .. 
-    Read about installing Docker.
-    Get hands-on experience with the Getting started with Docker tutorial.
+    Install Docker
+    Get started with Docker
 
-* :doc:`/get-docker` を読む
-* ハンズオンで :doc:`Docker を使い始める </get-started/01_overview>` ためのチュートリアルを試す
+* :doc:`get-docker`
+* :doc:`introduction/index`
 
 .. seealso:: 
 
-   Docker overview
-     https://docs.docker.com/get-started/overview/
+   What is Docker?
+      https://docs.docker.com/get-started/docker-overview/
+
 
 
