@@ -38,7 +38,10 @@ extensions = [
 #    'sphinx_fontawesome',
 #    'sphinx.ext.autosectionlabel',
     'sphinx_design',
-    'sphinxcontrib.images'
+    'sphinxcontrib.images',
+#    'sphinxcontrib.lightbox2',
+#    'sphinx-prompt',
+    'sphinx_copybutton',
 ]
 
 # 設定オプション https://sphinxcontrib-images.readthedocs.io/en/latest/
@@ -46,6 +49,13 @@ images_config = {
     'override_image_directive': True,
     'download': False,
 }
+
+# sphinx-copybutton オプション https://sphinx-copybutton.readthedocs.io/en/latest/use.html
+# copybutton_prompt_text = "$ "  # プロンプト文字の指定
+copybutton_prompt_text = r">>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: "
+copybutton_prompt_is_regexp = True  # 正規表現を使用可能に
+copybutton_remove_prompts = True # プロンプトをコピーしない
+
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -109,7 +119,10 @@ exclude_patterns = ['migration/*']
 #show_authors = False
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+pygments_style = 'friendly'
+highlight_language = 'default'
+#languages = ['console', 'javascript']
+
 
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
@@ -162,6 +175,8 @@ html_context = {
 def setup(app):
 	    app.add_css_file('custom_style.css')
 
+
+
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
 #html_title = None
@@ -183,6 +198,9 @@ def setup(app):
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+html_js_files = [
+    'custom.js',
+]
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
 # directly to the root of the documentation.
