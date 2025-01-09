@@ -2,7 +2,7 @@
 .. URL: https://docs.docker.com/get-started/introduction/get-docker-desktop/
    doc version: 27.0
       https://github.com/docker/docs/blob/main/content/get-started/introduction/get-docker-desktop.md
-.. check date: 2024/12/31
+.. check date: 2025/01/03
 .. Commits on Nov 12, 2024 3a01ae99390f8ad7570a80beda022dc21b19f0e5
 .. -----------------------------------------------------------------------------
 
@@ -18,6 +18,12 @@ Docker Desktop の入手
    <iframe width="737" height="415" src="https://www.youtube.com/embed/C2bPVhiNU-0" title="YouTube video player" frameborder="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ----
+
+.. sidebar:: 目次
+
+   .. contents:: 
+       :depth: 3
+       :local:
 
 .. _introduction-get-docker-desktop-explanation:
 
@@ -123,10 +129,52 @@ CLI ターミナルを開き、 ``docker run`` コマンドを実行してコン
 このコンテナは、フロントエンドにはポート ``8080`` でアクセスできます。ウェブサイトを開くには、ブラウザで http://localhost:8080 を表示します。
 
 .. image:: ../docker-concepts/the-basics/images/access-the-frontend.webp
-   :class: fade-image
    :alt: Nginx ウェブサーバのランディングページの表示は、実行中のコンテナからのもの
 
+.. Manage containers using Docker Desktop
+.. _manage-containers-using-docker-desktop:
 
+Docker Desktop を使ってコンテナを管理
+========================================
+
+..    Open Docker Desktop and select the Containers field on the left sidebar.
+
+1. Docker Desktop を開き、左サイドバーの **Containers** （コンテナ）部分を選ぶ
+
+..    You can view information about your container including logs, and files, and even access the shell by selecting the Exec tab.
+    Screenshot of exec into the running container in Docker Desktop
+
+2. ログやファイルを含むコンテナについての情報を表示でき、 **Exec** （実行）タブを選ぶとシェルにもアクセスできる
+
+   .. image:: images/exec-into-docker-container.webp
+      :alt: Docker Desktop 上で、実行中のコンテナ内で実行
+
+..    Select the Inspect field to obtain detailed information about the container. You can perform various actions such as pause, resume, start or stop containers, or explore the Logs, Bind mounts, Exec, Files, and Stats tabs.
+
+3. とコンテナについての詳細情報を得るには **Inspect** （調査）部分を選択する。コンテナの一次停止、再開、起動、停止のような様々な処理や、 **Logs** （ログ）、 **Bind mounts** （バインドマウント）、 **Exec** （実行）、 **Files** （ファイル）、 **Stats** （状態）のタブを調べられます。
+
+   .. image:: images/inspecting-container.webp
+      :alt: Docker Desktop 上で実行中のコンテナを調べる
+
+.. Docker Desktop simplifies container management for developers by streamlining the setup, configuration, and compatibility of applications across different environments, thereby addressing the pain points of environment inconsistencies and deployment challenges.
+
+Docker Desktop は、様々な環境間でのアプリケーションのセットアップ、設定、互換性を合理化し、開発者のコンテナ管理をシンプルにします。その結果、環境の不一致やデプロイ時の課題を解決します。
+
+.. What's next?
+
+次は何？
+====================
+
+.. Now that you have Docker Desktop installed and ran your first container, it's time to start developing with containers.
+
+これで Docker Desktop のインストールと、初めてのコンテナを実行しましたので、次はコンテナを使った開発を始めましょう。
+
+.. raw:: html
+
+   <a href="develop-with-containers.html" class="start-button">コンテナを使って開発</a>
+
+
+|
 
 .. seealso::
 

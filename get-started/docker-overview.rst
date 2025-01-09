@@ -209,7 +209,7 @@ Docker の利用時は、イメージ、コンテナ、ネットワーク、ボ�
 
 次のコマンドは ``ubuntu`` コンテナを実行し、ローカルのコマンドライン処理のセッションを結びつけます。そして ``/bin/bash`` を実行します。
 
-.. code-block:: bash
+.. code-block:: console
 
     $ docker run -i -t ubuntu /bin/bash
 

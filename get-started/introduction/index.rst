@@ -89,7 +89,7 @@ Dockre とコンテナ化を理解するための包括的な学習パスとし�
      
      <p>初めてのコンテナを作る方法を、Docker のパワフルな機能を使ったハンズオン経験を通して学びます。コンテナ化された環境内で、バックエンドとフロントエンドの両方のコードをリアルタイムで更新し、シームレスな統合とテストをする方法を扱います。</p>
 
-     <a href="develop-with-containers.html" class="start-button">開始</a>
+     <a href="develop-with-containers.html" class="start-button">開始</a>	
    </div>
    
    <div class="tutorial-section">
