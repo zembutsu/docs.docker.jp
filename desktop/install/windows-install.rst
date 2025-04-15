@@ -163,7 +163,7 @@ Windows に Docker Desktop をインストール
 2. 確認画面が出たら、 **Use WSL 2 instead of Hyper-V** （Hyper-V の代わりに WSL 2 を使う）のオプションが、設定ページで選択されているかどうかを確認します。あるいは、必要に応じてバックエンドを選択します。
 
    .. If your system only supports one of the two options, you will not be able to select which backend to use.
-  システムが２つのオプションのうち片方しかサポートしていなければ、私用するバックエンドを選択できません。
+  システムが２つのオプションのうち片方しかサポートしていなければ、使用するバックエンドを選択できません。
 
 
 ..    Follow the instructions on the installation wizard to authorize the installer and proceed with the install.
