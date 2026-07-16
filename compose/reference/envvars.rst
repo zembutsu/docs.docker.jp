@@ -230,7 +230,7 @@ COMPOSE_DOCKER_CLI_BUILD
 
 .. Configure whether to use the Compose python client for building images or the native docker cli. By default, Compose uses the docker CLI to perform builds, which allows you to use BuildKit to perform builds.
 
-イメージ構築に使う Compose の Python クライアントか、ネイティブな docker CLI の場所を市営します。デフォルトは、構築に ``docker`` CLI を使うので、構築の処理には  :ref:`BuildKit <to-enable-buildkit-builds>` が使えます。
+イメージ構築に使う Compose の Python クライアントか、ネイティブな docker CLI の場所を指定します。デフォルトは、構築に ``docker`` CLI を使うので、構築の処理には  :ref:`BuildKit <to-enable-buildkit-builds>` が使えます。
 
 .. Set COMPOSE_DOCKER_CLI_BUILD=0 to disable native builds, and to use the built-in python client.
 
