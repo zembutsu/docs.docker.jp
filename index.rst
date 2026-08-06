@@ -5,8 +5,8 @@
    contain the root `toctree` directive.
 .. -----------------------------------------------------------------------------
 .. URL: https://docs.docker.com/
-   doc version: 24.0 (current)
-.. check date: 2023/07/15
+   doc version: 27.0 (current)
+.. check date: 2024/12/29
 .. -----------------------------------------------------------------------------
 
 .. Welcome to Docker-docs-ja's documentation!
@@ -21,11 +21,18 @@ Docker ドキュメント日本語化プロジェクト
    このサイトは Docker 公式ドキュメントを有志で日本語に翻訳しています。各ページの情報が古い可能性があるため、最新のドキュメントは https://docs.docker.com/ をご覧ください。
    DISCLAIMER: This site is translating the official Docker documentation into Japanese by volunteers. As the information on each page may be outdated, please refer to the latest documentation at https://docs.docker.com/ . 
 
+
+`公式サイトのドキュメント <https://docs.docker.com/>`_ には「Ask AI」というボタンがあります。これは公式ドキュメントの内容に基づいて回答する生成 AI チャットボットです。最新のドキュメントや詳細オプションなど **日本語でも質問** できますので、ご活用ください。
+
+   .. image:: ./assets/images/dockerdocsai.png
+      :width: 60%
+
+
 .. attention::
 
-  * Docker `v24.0.x (current)`  向けにドキュメントの改訂作業中です(2023年7月現在)。一部古い場合がありますので、ご注意ください。
+  * Docker `v27.0.x (current)`  向けにドキュメントの改訂作業中です(2024年12月現在)。一部古い場合がありますので、ご注意ください。
   * Docker のドキュメントは常に変わり続けています。最新の情報については `公式ドキュメント <https://docs.docker.com/>`_ をご覧ください。
-  * 本プロジェクトは有志による翻訳プロジェクトです。お気づきの点がございましたら、 `issue <https://github.com/zembutsu/docs.docker.jp/issues>`_ や `Pull Request <https://github.com/zembutsu/docs.docker.jp/pulls>`_ 、 `Docker 道場（日本語の Docker オンラインフォーラム） <https://dojo.docker.jp/>`_ でお知らせ願います。
+  * 本プロジェクトは有志による翻訳プロジェクトです。お気づきの点がございましたら、 `issue <https://github.com/zembutsu/docs.docker.jp/issues>`_ や `Pull Request <https://github.com/zembutsu/docs.docker.jp/pulls>`_ 、  でお知らせ願います。
 
 .. Docker Documentation
 
@@ -37,7 +44,7 @@ Docker ドキュメント
 * :doc:`始めましょう </get-started/index>`
    * Docker の基礎とアプリケーションをコンテナ化する利点を学びます。
 
-* :doc:`ダウンロードとインストール <get-docker>`
+* :doc:`ダウンロードとインストール </get-started/get-docker>`
    * Docker をダウンロードし、マシン上に 簡単な数ステップでインストールします。
 
 * :doc:`ガイド </develop/index>`
@@ -54,22 +61,24 @@ Docker ドキュメント
 
 ---
 
-Doc v24.0 目次
+Doc v27.0 目次
 ====================
+
+.. toctree::
+   :caption: はじめよう
+   :maxdepth: 1
+
+   get-started/index
+
 
 .. toctree::
    :caption: Guides - ガイド
    :maxdepth: 1
 
-   Docker 概要 <get-started/overview.rst>
-   get-docker.rst
-   get-started/toc.rst
-   get-started/hands-on-overview.rst
    language/toc.rst
    develop/toc.rst
    build/guide/toc.rst
    production.rst
-   get-started/resources.rst
    opensource/toc.rst
    docsarchive.rst
 
